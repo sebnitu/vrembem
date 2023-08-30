@@ -58,7 +58,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
   {
     inline && (
       <li class={"menu__item margin-left-md"}>
-        <ThemeSwitcherPopover client:only />
+        <ThemeSwitcherPopover client:load />
       </li>
     )
   }
@@ -70,7 +70,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
           Switch Theme
         </li>
         <li class="menu__item">
-          <ThemeSwitcherMenu client:only />
+          <ThemeSwitcherMenu client:load />
         </li>
       </>
     )

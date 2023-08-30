@@ -1,5 +1,5 @@
 <template>
-  <ul class="menu">
+  <ul v-if="state" class="menu">
     <li class="menu__item">
       <button @click="changeTheme('default')" class="menu__action" :class="store.theme === 'default' && 'is-active'">
         <Icon name="box" />
@@ -22,10 +22,19 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import Icon from './Icon.vue';
 import { store } from '../modules/useThemeStore';
+
+const state = ref(false);
 
 function changeTheme(value) {
   store.change(value);
 }
+
+onMounted(() => {
+  if (store.theme) {
+    state.value = true;
+  }
+});
 </script>
