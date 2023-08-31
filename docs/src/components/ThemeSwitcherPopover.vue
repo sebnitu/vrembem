@@ -38,5 +38,4 @@ onMounted(() => {
     state.value = true;
   }
 });
-
 </script>

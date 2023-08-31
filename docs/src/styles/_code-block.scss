@@ -9,8 +9,8 @@
     color: core.palette-get('neutral', 80);
 
     @include core.media-max('md') {
-      border-radius: 0;
       margin: auto calc(var(--vb-layout-padding) * -1);
+      border-radius: 0;
     }
   }
 
@@ -42,7 +42,6 @@
 }
 
 .code-block_inline {
-
   .code-block__prompt,
   .code-block__copy-button {
     top: 0.5rem;
