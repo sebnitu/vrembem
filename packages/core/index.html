@@ -37,7 +37,7 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
 
-        <div id="box" class="box padding">
+        <div id="box" class="box padding gap-y">
           <p>...</p>
         </div>
 
@@ -51,23 +51,27 @@
     }
 
     .box {
-      color: white;
-      background-color: var(--vb-neutral);
+      color: var(--vb-foreground);
+      background-color: var(--vb-background-darker);
       border-radius: 0.5rem;
     }
 
     .box.is-primary-start,
     .box.is-secondary-start {
-      transition: background-color var(--vb-transition-duration) ease;
+      transition-property: color background-color;
+      transition-duration: var(--vb-transition-duration);
+      transition-timing-function: var(--vb-transition-timing-function);
     }
 
     .box.is-primary-start,
     .box.is-primary-finish {
+      color: var(--vb-primary-100);
       background-color: var(--vb-primary);
     }
 
     .box.is-secondary-start,
     .box.is-secondary-finish {
+      color: var(--vb-secondary-100);
       background-color: var(--vb-secondary);
     }
   </style>
@@ -76,6 +80,7 @@
     // Load CSS
     import 'vrembem/css';
     import './index.scss';
+    import './root.scss';
 
     // Load JS and attach to window
     window.vb = await import('./index.js');

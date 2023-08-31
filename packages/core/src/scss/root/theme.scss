@@ -1,9 +1,3 @@
 @use "../theme";
 
-:root {
-  @include theme.output();
-}
-
-.theme-dark {
-  @include theme.output("dark");
-}
+@include theme.output-themes();

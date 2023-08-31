@@ -8,6 +8,10 @@
 
 $_v: prefix.$variable;
 
+$theme-prefix: "theme-" !default;
+$theme-default: "light" !default;
+$root-selector: ":root, .#{$theme-prefix}root" !default;
+
 $themes: (
   "light": (
     "background": palette.get("neutral", 100),
@@ -19,66 +23,110 @@ $themes: (
     "border-color": rgba(black, 0.1),
     "border-color-dark": rgba(black, 0.2),
     "border-color-darker": rgba(black, 0.3),
-    "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%)
+    "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+    "color-scheme": light
   ),
   "dark": (
-    "background": palette.get("neutral", 10),
-    "background-dark": palette.get("neutral", 15),
-    "background-darker": palette.get("neutral", 20),
+    "background": palette.get("neutral", 15),
+    "background-dark": palette.get("neutral", 10),
+    "background-darker": palette.get("neutral", 5),
     "foreground": palette.get("neutral", 90),
     "foreground-light": palette.get("neutral", 80),
     "foreground-lighter": palette.get("neutral", 70),
     "border-color": rgba(white, 0.1),
     "border-color-dark": rgba(white, 0.2),
     "border-color-darker": rgba(white, 0.3),
-    "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%)
+    "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%),
+    "color-scheme": dark
   )
 ) !default;
 
-$default-theme: "light" !default;
-
-@function get($keys...) {
-  @if length($keys) == 1 {
-    $theme: $default-theme;
-    $key: list.nth($keys, 1);
+@function get($args...) {
+  @if length($args) == 1 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
     @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
-  } @else if length($keys) == 2 {
-    $theme: list.nth($keys, 1);
-    $key: list.nth($keys, 2);
+  } @else if length($args) == 2 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
     @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
   }
 }
 
-@mixin set($keys...) {
-  @if length($keys) == 2 {
-    $theme: $default-theme;
-    $key: list.nth($keys, 1);
-    $value: list.nth($keys, 2);
+@mixin set($args...) {
+  @if length($args) == 2 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
+    $value: list.nth($args, 2);
     $themes: map.set($themes, $theme, $key, $value) !global;
-  } @else if length($keys) == 3 {
-    $theme: list.nth($keys, 1);
-    $key: list.nth($keys, 2);
-    $value: list.nth($keys, 3);
+  } @else if length($args) == 3 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
+    $value: list.nth($args, 3);
     $themes: map.set($themes, $theme, $key, $value) !global;
   }
 }
 
-@mixin remove($keys...) {
-  @if length($keys) == 1 {
-    $theme: $default-theme;
-    $key: list.nth($keys, 1);
+@mixin remove($args...) {
+  @if length($args) == 1 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
     $themes: map.deep-remove($themes, $theme, $key) !global;
-  } @else if length($keys) == 2 {
-    $theme: list.nth($keys, 1);
-    $key: list.nth($keys, 2);
+  } @else if length($args) == 2 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
     $themes: map.deep-remove($themes, $theme, $key) !global;
   }
 }
 
-@mixin output($theme: $default-theme) {
+@mixin add($args...) {
+  @if length($args) == 1 {
+    $name: $theme-default;
+    $map: list.nth($args, 1);
+    $themes: map.deep-merge($themes, ($name: $map)) !global;
+  } @else if length($args) == 2 {
+    $name: list.nth($args, 1);
+    $map: list.nth($args, 2);
+    $themes: map.deep-merge($themes, ($name: $map)) !global;
+  }
+}
+
+@mixin output($theme: $theme-default) {
   @if map.has-key($themes, $theme) {
+    $color-scheme: null;
     @each $key, $value in map.get($themes, $theme) {
-      --#{$_v}#{$key}: #{$value};
+      @if $key != 'color-scheme' {
+        --#{$_v}#{$key}: #{$value};
+      } @else {
+        $color-scheme: #{$value};
+      }
+    }
+    @if $color-scheme {
+      color-scheme: #{$color-scheme};
+    }
+  }
+}
+
+@mixin output-themes() {
+  #{$root-selector} {
+    @include output();
+  
+    @if $theme-default != 'light' {
+      @media (prefers-color-scheme: light) {
+        @include output("light");
+      }
+    }
+    
+    @if $theme-default != 'dark' {
+      @media (prefers-color-scheme: dark) {
+        @include output("dark");
+      }
+    }
+  }
+  
+  @each $key, $value in $themes {
+    .#{$theme-prefix}#{$key} {
+      @include output($key);
     }
   }
 }
