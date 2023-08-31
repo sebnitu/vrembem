@@ -1,5 +1,5 @@
 @use "../theme";
 
 :root {
-  @include theme.custom-properties();
+  @include theme.output();
 }

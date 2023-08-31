@@ -68,7 +68,7 @@ $lightness-default: 50 !default;
   @include build();
 }
 
-@mixin custom-properties() {
+@mixin output() {
   @each $key, $seed in $seeds {
     --#{$_v}#{$key}-hs: #{fun.get-hs($seed)};
     --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$lightness-default});

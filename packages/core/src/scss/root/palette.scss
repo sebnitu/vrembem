@@ -1,5 +1,5 @@
 @use "../palette";
 
 :root {
-  @include palette.custom-properties();
+  @include palette.output();
 }

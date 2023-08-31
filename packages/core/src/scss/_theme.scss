@@ -37,7 +37,7 @@ $mapping: (
   $mapping: map.remove($mapping, $keys...) !global;
 }
 
-@mixin custom-properties() {
+@mixin output() {
   @each $key, $value in $mapping {
     --#{$_v}#{$key}: #{$value};
   }

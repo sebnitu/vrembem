@@ -31,7 +31,7 @@
  */
 
 .theme-light {
-  @include theme.custom-properties();
+  @include theme.output();
 
   --color-scheme: light;
 }
