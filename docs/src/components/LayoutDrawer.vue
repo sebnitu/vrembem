@@ -11,28 +11,19 @@
   <div class="layout__screen" :data-drawer-close="uid"></div>
 </template>
 
-<script lang="ts">
+<script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { drawer } from '../modules/useDrawer';
 
-export default {
-  props: {},
-  setup() {
-    const uid = ref('layout-drawer');
-    const elDrawer = ref(null);
+const uid = ref('layout-drawer');
+const elDrawer = ref(null);
 
-    onMounted(() => {
-      drawer.register(elDrawer.value);
-    });
+onMounted(() => {
+  drawer.register(elDrawer.value);
+});
 
-    onBeforeUnmount(() => {
-      drawer.deregister(elDrawer.value);
-    });
+onBeforeUnmount(() => {
+  drawer.deregister(elDrawer.value);
+});
 
-    return {
-      uid,
-      elDrawer
-    };
-  }
-};
 </script>

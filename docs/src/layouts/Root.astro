@@ -29,6 +29,16 @@ mainClasses += aside ? " has-aside" : "";
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (function () {
+        // Make this script blocking to prevent flash of pre-themed content.
+        const local = localStorage.getItem("VB:Profile");
+        const store = local ? JSON.parse(local) : {};
+        if (store.theme) {
+          document.documentElement.classList.add(`theme-${store.theme}`);
+        }
+      })();
+    </script>
   </head>
   <body class={bodyClass}>
     <main id="main" class={mainClasses} tabindex="-1">

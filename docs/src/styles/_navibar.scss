@@ -1,3 +1,4 @@
+@use "@vrembem/core/theme";
 @use "./root";
 
 .navibar {
@@ -5,13 +6,15 @@
   z-index: 5;
   width: 100%;
   padding: 0 var(--vb-layout-padding);
-  background-color: var(--vb-background);
+  background-color: theme.get("background-glass");
+  backdrop-filter: blur(8px);
 
   @media (min-width: root.$bp-drawer) {
     position: fixed;
 
     .has-drawer & {
       background-color: transparent;
+      backdrop-filter: unset;
     }
   }
 }
@@ -39,6 +42,7 @@
   justify-content: flex-end;
 
   .menu__action {
+    justify-content: flex-start;
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-thickness: 1px;
@@ -50,7 +54,8 @@
 
   @media (min-width: root.$bp-drawer) {
     .has-drawer & {
-      background-color: var(--vb-background);
+      background-color: theme.get("background-glass");
+      backdrop-filter: blur(8px);
     }
   }
 }

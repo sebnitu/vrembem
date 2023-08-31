@@ -1,14 +1,11 @@
+@use "./vrembem-setup";
 @use "vrembem" with (
-  $core-palette-seeds: (
-    "primary": hsl(152, 60%, 50%),
-    "secondary": hsl(214, 50%, 50%),
-    "neutral": hsl(30, 8%, 50%),
-    "important": hsl(0, 80%, 50%),
-  ),
   $base-font-family: #{'"Barlow", sans-serif'}
 );
 
 @use "./root";
+@use "./themes";
+
 @use "./navibar";
 @use "./toolbar";
 @use "./layout";
@@ -16,6 +13,7 @@
 @use "./layout-aside";
 
 @use "./animations";
+@use "./code-block";
 @use "./floats";
 @use "./fold-shadow";
 @use "./header-anchor";

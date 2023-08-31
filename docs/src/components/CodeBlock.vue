@@ -19,110 +19,47 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup>
 import Icon from './Icon.vue';
 import Popover from './Popover.vue';
 import { popover } from '../modules/usePopover';
 import { ref } from 'vue';
 
-export default {
-  props: {
-    code: { type: String },
-    inline: {
-      type: Boolean,
-      default: false
-    }
+const props = defineProps({
+  code: {
+    type: String,
+    default: ''
   },
-  components: { Icon, Popover },
-  setup(props) {
-    const copied = ref(false);
-    const preClass = ref('');
-    const rootClass = ref('');
-    if (props.inline) {
-      preClass.value += 'pre_inline';
-      rootClass.value += 'code-block_inline';
-    }
+  inline: {
+    type: Boolean,
+    default: false
+  }
+});
 
-    function copyCode(event) {
-      const trigger = event.target.closest('.code-block__copy-button');
-      const code = event.target.closest('.code-block').querySelector('pre code');
-      const text = code.innerText;
-      navigator.clipboard.writeText(text)
-        .then((result) => {
-          copied.value = true;
-          setTimeout(() => {
-            copied.value = false;
-            popover.close(trigger.getAttribute('data-popover-trigger'));
-          }, 2000);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    }
+const copied = ref(false);
+const preClass = ref('');
+const rootClass = ref('');
 
-    return {
-      copied,
-      copyCode,
-      preClass,
-      rootClass
-    };
-  },
-};
+if (props.inline) {
+  preClass.value += 'pre_inline';
+  rootClass.value += 'code-block_inline';
+}
+
+function copyCode(event) {
+  const trigger = event.target.closest('.code-block__copy-button');
+  const code = event.target.closest('.code-block').querySelector('pre code');
+  const text = code.innerText;
+  navigator.clipboard.writeText(text)
+    .then((result) => {
+      copied.value = true;
+      setTimeout(() => {
+        copied.value = false;
+        popover.close(trigger.getAttribute('data-popover-trigger'));
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
 </script>
-
-<style lang="scss">
-@use '@vrembem/core';
-
-.code-block {
-  position: relative;
-  text-align: left;
-
-  .pre {
-    background-color: core.palette-get('neutral', 20);
-    color: core.palette-get('neutral', 80);
-
-    @include core.media-max('md') {
-      border-radius: 0;
-      margin: auto calc(var(--vb-layout-padding) * -1);
-    }
-  }
-
-  .pre_inline {
-    padding: 0.8125em 4em 0.8125em 2.5em;
-  }
-
-  .popover {
-    --vb-popover-event: click;
-    --vb-popover-placement: left;
-    --vb-foreground: #{core.palette-get('primary')};
-  }
-}
-
-.code-block__prompt,
-.code-block__copy-button {
-  position: absolute;
-  top: 0.7rem;
-  padding: 0.5rem;
-}
-
-.code-block__prompt {
-  left: 0.5rem;
-}
-
-.code-block__copy-button {
-  right: 0.7rem;
-}
-
-.code-block_inline {
-
-  .code-block__prompt,
-  .code-block__copy-button {
-    top: 0.5rem;
-  }
-
-  .popover {
-    --vb-popover-offset: 24;
-    --vb-popover-placement: bottom;
-  }
-}
-</style>

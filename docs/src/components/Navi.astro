@@ -1,6 +1,8 @@
 ---
 import Icon from "../components/Icon.vue";
 import { currentPage } from "../modules/currentPage";
+import ThemeSwitcherPopover from "../components/ThemeSwitcherPopover.vue";
+import ThemeSwitcherMenu from "../components/ThemeSwitcherMenu.vue";
 
 interface Props {
   classes?: string;
@@ -53,10 +55,24 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       />
     </a>
   </li>
-  {!inline && <li class="menu__sep" />}
-  <li class={`menu__item${inline ? " margin-left-md" : ""}`}>
-    <button class="button button_icon">
-      <Icon name="moon" />
-    </button>
-  </li>
+  {
+    inline && (
+      <li class={"menu__item margin-left-md"}>
+        <ThemeSwitcherPopover client:load />
+      </li>
+    )
+  }
+  {
+    !inline && (
+      <>
+        <li class="menu__sep" />
+        <li class="menu__item padding-x-md padding-y-sm font-weight-semi-bold">
+          Switch Theme
+        </li>
+        <li class="menu__item">
+          <ThemeSwitcherMenu client:load />
+        </li>
+      </>
+    )
+  }
 </ul>

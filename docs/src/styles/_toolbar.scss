@@ -1,14 +1,17 @@
+@use "@vrembem/core/theme";
 @use "./root";
 
 .toolbar {
   position: sticky;
   z-index: 4;
-  top: 0;
+  top: -1px;
   display: block;
   padding: var(--vb-layout-padding);
-  border-top: 1px solid rgba(0,0,0,10%);
-  border-bottom: 1px solid rgba(0,0,0,10%);
-  background-color: var(--vb-background);
+  border-top: 1px solid theme.get("border-color");
+  border-bottom: 1px solid theme.get("border-color");
+  background-color: theme.get("background-glass");
+  backdrop-filter: blur(8px);
+  background-clip: padding-box;
 
   @media (min-width: root.$bp-drawer) {
     display: none;
