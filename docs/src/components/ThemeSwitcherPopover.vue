@@ -14,7 +14,7 @@
       <span v-else>...</span>
     </template>
     <template #content>
-      <ThemeSwitcherMenu :afterChangeTheme="closePopover" />
+      <ThemeSwitcherMenu @themeChanged="closePopover" />
     </template>
   </Popover>
 </template>

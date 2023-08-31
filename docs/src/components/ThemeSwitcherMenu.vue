@@ -27,19 +27,11 @@ import Icon from './Icon.vue';
 import { store } from '../modules/useThemeStore';
 
 const state = ref(false);
-
-const props = defineProps({
-  afterChangeTheme: {
-    type: Function,
-    default: null
-  }
-});
+const emit = defineEmits(['themeChanged']);
 
 function changeTheme(value) {
   store.change(value);
-  if (props.afterChangeTheme) {
-    props.afterChangeTheme();
-  }
+  emit('themeChanged');
 }
 
 onMounted(() => {
