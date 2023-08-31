@@ -14,19 +14,24 @@
       <span v-else>...</span>
     </template>
     <template #content>
-      <ThemeSwitcherMenu />
+      <ThemeSwitcherMenu :afterChangeTheme="closePopover" />
     </template>
   </Popover>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import Popover from './Popover.vue';
-import Icon from './Icon.vue';
 import ThemeSwitcherMenu from './ThemeSwitcherMenu.vue';
+import Icon from './Icon.vue';
+import Popover from './Popover.vue';
+import { popover } from '../modules/usePopover';
 import { store } from '../modules/useThemeStore';
 
 const state = ref(false);
+
+function closePopover() {
+  popover.close('popover-theme-switcher');
+}
 
 onMounted(() => {
   if (store.theme) {

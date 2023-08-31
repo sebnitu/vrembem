@@ -28,8 +28,18 @@ import { store } from '../modules/useThemeStore';
 
 const state = ref(false);
 
+const props = defineProps({
+  afterChangeTheme: {
+    type: Function,
+    default: null
+  }
+});
+
 function changeTheme(value) {
   store.change(value);
+  if (props.afterChangeTheme) {
+    props.afterChangeTheme();
+  }
 }
 
 onMounted(() => {
