@@ -3,3 +3,7 @@
 :root {
   @include theme.output();
 }
+
+.theme-dark {
+  @include theme.output("dark");
+}

@@ -1,7 +1,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include theme.add(
+@include theme.set(
   'background-glass',
   hsl(palette.get('neutral', 'var'), 100%, 90%)
 );

@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 
@@ -7,38 +8,77 @@
 
 $_v: prefix.$variable;
 
-$mapping: (
-  "background": palette.get("neutral", 100),
-  "background-dark": palette.get("neutral", 98),
-  "background-darker": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20),
-  "foreground-light": palette.get("neutral", 40),
-  "foreground-lighter": palette.get("neutral", 60),
-  "border-color": rgba(black, 0.1),
-  "border-color-dark": rgba(black, 0.2),
-  "border-color-darker": rgba(black, 0.3),
-  "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+$themes: (
+  "light": (
+    "background": palette.get("neutral", 100),
+    "background-dark": palette.get("neutral", 98),
+    "background-darker": palette.get("neutral", 95),
+    "foreground": palette.get("neutral", 20),
+    "foreground-light": palette.get("neutral", 40),
+    "foreground-lighter": palette.get("neutral", 60),
+    "border-color": rgba(black, 0.1),
+    "border-color-dark": rgba(black, 0.2),
+    "border-color-darker": rgba(black, 0.3),
+    "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%)
+  ),
+  "dark": (
+    "background": palette.get("neutral", 10),
+    "background-dark": palette.get("neutral", 15),
+    "background-darker": palette.get("neutral", 20),
+    "foreground": palette.get("neutral", 90),
+    "foreground-light": palette.get("neutral", 80),
+    "foreground-lighter": palette.get("neutral", 70),
+    "border-color": rgba(white, 0.1),
+    "border-color-dark": rgba(white, 0.2),
+    "border-color-darker": rgba(white, 0.3),
+    "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%)
+  )
 ) !default;
 
-@function get($key) {
-  @return var(--#{$_v}#{$key}, map.get($mapping, $key));
+$default-theme: "light" !default;
+
+@function get($keys...) {
+  @if length($keys) == 1 {
+    $theme: $default-theme;
+    $key: list.nth($keys, 1);
+    @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
+  } @else if length($keys) == 2 {
+    $theme: list.nth($keys, 1);
+    $key: list.nth($keys, 2);
+    @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
+  }
 }
 
-@mixin add($key, $value: null) {
-  @if (meta.type-of($key) == "map") {
-    $mapping: map.merge($mapping, $key) !global;
-  }
-  @else {
-    $mapping: map.set($mapping, $key, $value) !global;
+@mixin set($keys...) {
+  @if length($keys) == 2 {
+    $theme: $default-theme;
+    $key: list.nth($keys, 1);
+    $value: list.nth($keys, 2);
+    $themes: map.set($themes, $theme, $key, $value) !global;
+  } @else if length($keys) == 3 {
+    $theme: list.nth($keys, 1);
+    $key: list.nth($keys, 2);
+    $value: list.nth($keys, 3);
+    $themes: map.set($themes, $theme, $key, $value) !global;
   }
 }
 
 @mixin remove($keys...) {
-  $mapping: map.remove($mapping, $keys...) !global;
+  @if length($keys) == 1 {
+    $theme: $default-theme;
+    $key: list.nth($keys, 1);
+    $themes: map.deep-remove($themes, $theme, $key) !global;
+  } @else if length($keys) == 2 {
+    $theme: list.nth($keys, 1);
+    $key: list.nth($keys, 2);
+    $themes: map.deep-remove($themes, $theme, $key) !global;
+  }
 }
 
-@mixin output() {
-  @each $key, $value in $mapping {
-    --#{$_v}#{$key}: #{$value};
+@mixin output($theme: $default-theme) {
+  @if map.has-key($themes, $theme) {
+    @each $key, $value in map.get($themes, $theme) {
+      --#{$_v}#{$key}: #{$value};
+    }
   }
 }
