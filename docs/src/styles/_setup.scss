@@ -8,5 +8,5 @@
 @include theme.set(
   "dark",
   "background-glass",
-  hsl(palette.get("neutral", "var"), 10%, 90%)
+  hsl(palette.get("neutral", "var"), 15%, 90%)
 );
