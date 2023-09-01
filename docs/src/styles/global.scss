@@ -1,11 +1,9 @@
-@use "./vrembem-setup";
+@use "./setup";
 @use "vrembem" with (
   $base-font-family: #{'"Barlow", sans-serif'}
 );
 
 @use "./root";
-@use "./themes";
-
 @use "./navibar";
 @use "./toolbar";
 @use "./layout";
