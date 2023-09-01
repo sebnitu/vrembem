@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 
@@ -5,40 +6,244 @@
 @use "./prefix";
 @use "./palette";
 
+/// Set the prefix for theme classes.
+/// @access private
+/// @alias prefix.$variable
+/// @type String
 $_v: prefix.$variable;
 
-$mapping: (
-  "background": palette.get("neutral", 100),
-  "background-dark": palette.get("neutral", 98),
-  "background-darker": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20),
-  "foreground-light": palette.get("neutral", 40),
-  "foreground-lighter": palette.get("neutral", 60),
-  "border-color": rgba(black, 0.1),
-  "border-color-dark": rgba(black, 0.2),
-  "border-color-darker": rgba(black, 0.3),
-  "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+/// Set the prefix for theme classes.
+/// @type String
+$theme-prefix: "theme-" !default;
+
+/// Set the default theme. Should match an existing theme in the $themes map.
+/// @type String
+$theme-default: "light" !default;
+
+/// CSS selector to use for outputting the root CSS custom properties.
+/// @type String
+$root-selector: ":root, .#{$theme-prefix}root" !default;
+
+/// Stores the theme maps used to build theme classes and CSS custom property
+/// output. Each entry should contain the name of the theme along with all its
+/// custom properties and values. Optionally set `color-scheme` property for
+/// outputting the `color-scheme: (light | dark);` property.
+/// @example
+///   "high-contrast": (
+///     "background": white,
+///     "foreground": black,
+///     ...
+///   )
+/// @prop {Map} name - The name of the theme (key) and a map of property/value pairs.
+/// @prop {Any} name.prop - The name of the custom property and its value.
+/// @type Map
+$themes: (
+  "light": (
+    "background": palette.get("neutral", 100),
+    "background-dark": palette.get("neutral", 98),
+    "background-darker": palette.get("neutral", 95),
+    "foreground": palette.get("neutral", 20),
+    "foreground-light": palette.get("neutral", 40),
+    "foreground-lighter": palette.get("neutral", 60),
+    "border-color": rgba(black, 0.1),
+    "border-color-dark": rgba(black, 0.2),
+    "border-color-darker": rgba(black, 0.3),
+    "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+    "color-scheme": light
+  ),
+  "dark": (
+    "background": palette.get("neutral", 15),
+    "background-dark": palette.get("neutral", 10),
+    "background-darker": palette.get("neutral", 5),
+    "foreground": palette.get("neutral", 90),
+    "foreground-light": palette.get("neutral", 80),
+    "foreground-lighter": palette.get("neutral", 70),
+    "border-color": rgba(white, 0.1),
+    "border-color-dark": rgba(white, 0.2),
+    "border-color-darker": rgba(white, 0.3),
+    "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%),
+    "color-scheme": dark
+  )
 ) !default;
 
-@function get($key) {
-  @return var(--#{$_v}#{$key}, map.get($mapping, $key));
-}
-
-@mixin add($key, $value: null) {
-  @if (meta.type-of($key) == "map") {
-    $mapping: map.merge($mapping, $key) !global;
+/// Function to return the CSS variable with fallback of an entry within the
+/// $themes map. If a theme name is not provided, $theme-default will be used.
+/// @example - Return theh background var() from the default theme.
+///   background: theme.get("background");
+/// @example - Return the background var() from the dark theme.
+///   background: theme.get("dark", "background");
+/// @param {String} $args... [$theme-default] - The theme name or property key to return.
+/// @param {String} $args... - The property key to return.
+/// @require {Variable} $themes
+/// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
+@function get($args...) {
+  @if length($args) == 1 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
+    @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
+  } @else if length($args) == 2 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
+    @return var(--#{$_v}#{$key}, map.get($themes, $theme, $key));
   }
-  @else {
-    $mapping: map.set($mapping, $key, $value) !global;
+}
+
+/// Set a new or modify an existing property value in the $themes map. If a
+/// theme name is not provided, $theme-default will be used.
+/// @example - Set the foreground custom property for the default theme.
+///   @include theme.set("foreground", blue);
+/// @example - Set the foreground custom property for the dark theme.
+///   @include theme.set("dark", "foreground", blue);
+/// @output N/A
+/// @param {String} $args... [$theme-default] - The theme name or property key to set.
+/// @param {String} $args... - The property key or property value to set.
+/// @param {String} $args... - The property value to set.
+/// @require {Variable} $themes
+@mixin set($args...) {
+  @if length($args) == 2 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
+    $value: list.nth($args, 2);
+    $themes: map.set($themes, $theme, $key, $value) !global;
+  } @else if length($args) == 3 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
+    $value: list.nth($args, 3);
+    $themes: map.set($themes, $theme, $key, $value) !global;
   }
 }
 
-@mixin remove($keys...) {
-  $mapping: map.remove($mapping, $keys...) !global;
+/// Remove a custom property in the $themes map. If a theme name is not
+/// provided, $theme-default will be used.
+/// @example - Remove the border-color property from the default theme.
+///   @include theme.remove("border-color");
+/// @example - Remove the border-color property from the dark theme.
+///   @include theme.remove("dark", "border-color");
+/// @output N/A
+/// @param {String} $args... [$theme-default] - The theme name or property key to remove.
+/// @param {String} $args... - The property key to remove.
+/// @require {Variable} $themes
+@mixin remove($args...) {
+  @if length($args) == 1 {
+    $theme: $theme-default;
+    $key: list.nth($args, 1);
+    $themes: map.deep-remove($themes, $theme, $key) !global;
+  } @else if length($args) == 2 {
+    $theme: list.nth($args, 1);
+    $key: list.nth($args, 2);
+    $themes: map.deep-remove($themes, $theme, $key) !global;
+  }
 }
 
-@mixin custom-properties() {
-  @each $key, $value in $mapping {
-    --#{$_v}#{$key}: #{$value};
+/// Allows adding a custom map of property and value pairs to a theme in the
+/// $themes map. If a theme name is not provided, $theme-default will be used.
+/// @example - Add a custom prop/value map to the default theme.
+///   @include theme.add((
+///     "background": white,
+///     "foreground": black
+///   ));
+/// @example - Add a custom prop/value map the the dark theme.
+///   @include theme.add("dark", (
+///     "background": black,
+///     "foreground": white,
+///     "color-scheme": dark
+///   ));
+/// @output N/A
+/// @param {String | Map} $args... [$theme-default] - The theme name or map of property/value pairs to add.
+/// @param {Map} $args... - The map of property/value pairs to add to the provided theme.
+/// @require {Variable} $themes
+@mixin add($args...) {
+  @if length($args) == 1 {
+    $name: $theme-default;
+    $map: list.nth($args, 1);
+    $themes: map.deep-merge($themes, ($name: $map)) !global;
+  } @else if length($args) == 2 {
+    $name: list.nth($args, 1);
+    $map: list.nth($args, 2);
+    $themes: map.deep-merge($themes, ($name: $map)) !global;
+  }
+}
+
+/// Output all the custom properties and values of a theme.
+/// @example - Output the custom properties of the default theme.
+///   @include theme.output();
+/// @example - Output the custom properties of the dark theme.
+///   @include theme.output("dark");
+/// @example - Output the custom properties of the green theme from a custom themes map.
+///   $custom-themes: (
+///     "blue": (),
+///     "green": (),
+///     ...
+///   );
+///   @include theme.output("green", $custom-themes);
+/// @output Custom properties with their associated values of a theme.
+/// @param {String} $theme [$theme-default] - The theme name to output.
+/// @param {Map} $themes [$themes] - The themes map containing the theme name to output.
+@mixin output($theme: $theme-default, $themes: $themes) {
+  // Check if the key exists on the provided $themes map.
+  @if map.has-key($themes, $theme) {
+    // Init the color scheme var.
+    $color-scheme: null;
+
+    // Loop through all theme entries and output their custom properties.
+    @each $key, $value in map.get($themes, $theme) {
+      @if $key != 'color-scheme' {
+        --#{$_v}#{$key}: #{$value};
+      } @else {
+        $color-scheme: #{$value};
+      }
+    }
+
+    // If a color scheme was stored, output it below everything else.
+    @if $color-scheme {
+      color-scheme: #{$color-scheme};
+    }
+  }
+}
+
+/// Output all the custom properties and values of every theme in the provided 
+/// $themes map or pass a custom themes map. Each theme will be wrapped in their
+/// own selector using the set $theme-prefix. The $root-selector is used to wrap
+/// the $theme-default. Themes named "light" or "dark" are also output in the
+/// `prefers-color-scheme` media query.
+/// @example
+///   @include theme.output-themes();
+/// @example - Output the custom properties of a custom themes map.
+///   $custom-themes: (
+///     "blue": (),
+///     "green": (),
+///     ...
+///   );
+///   @include theme.output-themes($custom-themes);
+/// @output
+///   Custom properties with their associated values of a theme wrapped with
+///   their associated theme classes.
+/// @param {Map} $themes [$themes] - The themes map containing all themes to output.
+/// @require {Mixin} output - Used internally to output individual themes.
+@mixin output-themes($themes: $themes) {
+  // Output the default theme in the root selector.
+  #{$root-selector} {
+    @include output();
+  
+    // If the default them is not light mode, output the prefers light media query.
+    @if $theme-default != 'light' {
+      @media (prefers-color-scheme: light) {
+        @include output("light");
+      }
+    }
+    
+    // If the default them is not dark mode, output the prefers dark media query.
+    @if $theme-default != 'dark' {
+      @media (prefers-color-scheme: dark) {
+        @include output("dark");
+      }
+    }
+  }
+  
+  // Run the output function on all 
+  @each $key, $value in $themes {
+    .#{$theme-prefix}#{$key} {
+      @include output($key);
+    }
   }
 }

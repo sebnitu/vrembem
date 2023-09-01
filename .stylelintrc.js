@@ -13,6 +13,7 @@ module.exports = {
     'scss/at-else-closing-brace-newline-after': null,
     'scss/at-else-closing-brace-space-after': null,
     'scss/at-else-empty-line-before': null,
+    'scss/at-function-pattern': null,
     'scss/at-if-closing-brace-newline-after': null,
     'scss/at-if-closing-brace-space-after': null,
     'scss/at-import-no-partial-leading-underscore': true,

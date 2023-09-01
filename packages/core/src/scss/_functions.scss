@@ -5,8 +5,8 @@
 @use "sass:string";
 
 /// Encodes a color for use in data-uri
-/// @param {String} $string - The color to encode
-/// @return {String} - Encoded color
+/// @param {String} $string - The color to encode.
+/// @return {String} - Encoded color.
 @function encodecolor($string) {
   @if meta.type-of($string) == "color" {
     $hex: string.slice(color.ie-hex-str($string), 4);
@@ -21,7 +21,7 @@
 /// @param {Value} $old-value
 /// @param {Value} $new-value
 /// @param {Boolean} $recursive [false]
-/// @return {List} - list with replaced values
+/// @return {List} - List with replaced values.
 @function replace($list, $old-value, $new-value, $recursive: false) {
   $result: ();
   @for $i from 1 through list.length($list) {
@@ -44,10 +44,10 @@
 }
 
 /// Replaces a boolean list template with two values.
-/// @param {List} $tpl - A boolean list template
-/// @param {Color} $color-1 - Color to replace 1 from template
-/// @param {Color} $color-0 [transparent] - Color to replace 0 from template
-/// @return {List} - New list with replaced values
+/// @param {List} $tpl - A boolean list template.
+/// @param {Color} $color-1 - Color to replace 1 from template.
+/// @param {Color} $color-0 [transparent] - Color to replace 0 from template.
+/// @return {List} - New list with replaced values.
 @function set-border-color($tpl, $color-1, $color-0: transparent) {
   $result: replace($tpl, 0, $color-0);
   $result: replace($result, 1, $color-1);
