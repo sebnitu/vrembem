@@ -44,8 +44,8 @@
   .menu__action {
     justify-content: flex-start;
     text-decoration: underline;
-    text-underline-offset: 2px;
     text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
 
     &.is-active {
       text-decoration: none;

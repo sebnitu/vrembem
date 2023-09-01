@@ -129,6 +129,8 @@
 @mixin link() {
   color: var.$link-color;
   text-decoration: var.$link-decoration;
+  text-decoration-thickness: var.$link-decoration-thickness;
+  text-underline-offset: var.$link-underline-offset;
 
   &:hover {
     color: var.$link-color-hover;
