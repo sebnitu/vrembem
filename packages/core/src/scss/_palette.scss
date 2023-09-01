@@ -4,9 +4,19 @@
 @use "./functions" as fun;
 @use "./prefix";
 
+/// Set the prefix for theme classes.
+/// @access private
+/// @alias prefix.$variable
+/// @type String
 $_v: prefix.$variable;
+
+/// The palette variable where all color variants are stored.
+/// @access private
+/// @type Map
 $_palette: ();
 
+/// The map of colors used to build the palette.
+/// @type Map
 $seeds: (
   "primary": hsl(152, 60%, 50%),
   "secondary": hsl(214, 50%, 50%),
@@ -14,9 +24,18 @@ $seeds: (
   "important": hsl(0, 80%, 50%),
 ) !default;
 
+/// The default color lightness to use when referencing a color.
+/// @type Number
 $lightness-default: 50 !default;
+
+/// The range of lightness values to build for each color in the palette.
+/// @type List
 $lightness: 0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
+/// Function used to build the palette lightness range for a specific color.
+/// @access private
+/// @require {Variable} $lightness
+/// @return {Map} - A map with all color lightness variations.
 @function _build-range-map($key, $color) {
   $map: ();
   @each $value in $lightness {
@@ -29,46 +48,91 @@ $lightness: 0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
   @return $map;
 }
 
+/// Builds the palette map using the values set in $seeds and $lightness maps.
+/// @require {Variable} $seeds
+/// @require {Variable} $lightness
+/// @require {Function} _build-range-map
 @mixin build() {
   @each $key, $value in $seeds {
     $_palette: map.set($_palette, $key, _build-range-map($key, $value)) !global;
   }
 }
 
+/// Function to return a palette color in a specific format. If called with no
+/// color key, the entire palette map is returned. The following value formats
+/// are accepted:
+///   $value: "seed" - Return the seed value.
+///   $value: "hs" - Return the hue and saturation values in list format.
+///   $value: "var" - Return the hue and saturation values in css var function format.
+///   $value: Number - Return the specified lightness value from the palette map.
+/// @param {String} $key [null] - The color key to return a value for.
+/// @param {Number | String} $value [$lightness-default] - The format to return the requested color.
+/// @require {Variable} $seeds
+/// @return {Color} - Return format depends on the requested value.
 @function get($key: null, $value: $lightness-default) {
+  // If key is null, return the palette.
   @if not ($key) {
     @return $_palette;
   }
+
+  // If value is seed, return the seed value.
   @else if ($value == "seed") {
     @return map.get($seeds, $key);
   }
+
+  // If value is "hs", return the hue and saturation values.
   @else if ($value == "hs") {
     @return fun.get-hs(map.get($seeds, $key));
   }
+
+  // If value is "var", return the hue and saturation values in css var function format.
   @else if ($value == "var") {
     @return var(--#{$_v}#{$key}-hs, fun.get-hs(map.get($seeds, $key)));
   }
+
+  // Else, return the specified lightness value from the palette map.
   @else {
     @return map.get($_palette, $key, $value);
   }
 }
 
-@mixin add($key, $value: null) {
+/// Set a color to the $seeds map. Can recieve single entries of key/value color
+/// pairs or a map containing multiple key/value pairs.
+/// @output N/A
+/// @param {String | map} $key - A key to associate with the provided color, or a map containing key/value color pairs.
+/// @param {Color} $value [null] - The color to associate with the provided key.
+/// @require {Variable} $seeds
+@mixin set($key, $value: null) {
   @if (meta.type-of($key) == "map") {
     $seeds: map.merge($seeds, $key) !global;
   }
   @else {
     $seeds: map.set($seeds, $key, $value) !global;
   }
+  // Run build since $seeds has been modified.
   @include build();
 }
 
+/// Removes colors from the $seeds map.
+/// @output N/A
+/// @param {String} $keys... - A string or list of strings to remove from $seeds map.
+/// @require {Variable} $seeds
 @mixin remove($keys...) {
   $seeds: map.remove($seeds, $keys...) !global;
+  // Run build since $seeds has been modified.
   @include build();
 }
 
-@mixin output() {
+/// Outputs custom properties built from the provided seeds and lightness range.
+/// @example - Output the color palette to the :root pseudo-class.
+///   :root {
+///     @include palette.output();
+///   }
+/// @output Custom properties of the palette.
+/// @param {Map} $seeds [$seeds] - Base colors to build the palette from.
+/// @param {Map} $lightness [$lightness] - Lightness range to build for each color.
+/// @param {Variable} $lightness-default [$lightness-default] - Default lightness value to use for colors.
+@mixin output($seeds: $seeds) {
   @each $key, $seed in $seeds {
     --#{$_v}#{$key}-hs: #{fun.get-hs($seed)};
     --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$lightness-default});
@@ -78,4 +142,5 @@ $lightness: 0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
   }
 }
 
+// Run the build to build the initial palette map.
 @include build();
