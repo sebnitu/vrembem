@@ -1,19 +1,13 @@
 ---
 import Icon from "../components/Icon.vue";
-
-interface Props {
-  drawer?: boolean;
-  aside?: boolean;
-}
-
-const { drawer = false, aside = false } = Astro.props;
+import { layout } from "../modules/useLayoutStore";
 ---
 
 {
-  (drawer || aside) && (
+  layout.hasAsideOrDrawer && (
     <div class="toolbar">
       <div class="clearfix">
-        {drawer && (
+        {layout.hasDrawer && (
           <button
             data-drawer-open="layout-drawer"
             class="button padding-left-sm float-left"
@@ -22,7 +16,7 @@ const { drawer = false, aside = false } = Astro.props;
             <span>Packages</span>
           </button>
         )}
-        {aside && (
+        {layout.hasAside && (
           <button
             data-drawer-open="layout-aside"
             class="button padding-right-sm float-right"

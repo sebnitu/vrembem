@@ -22,7 +22,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<Base title={entry.data.title} drawer={true} aside={true}>
+<Base title={entry.data.title}>
   <div slot="drawer">
     <Menu collection="packages" menuClass="layout__menu" />
   </div>

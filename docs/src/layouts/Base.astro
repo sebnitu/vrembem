@@ -6,22 +6,21 @@ import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.vue";
 import LayoutAside from "../components/LayoutAside.vue";
 import Icon from "../components/Icon.vue";
+import { layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
-  drawer?: boolean;
-  aside?: boolean;
 }
 
-const { title, drawer = false, aside = false } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<Root {title} {drawer} {aside}>
+<Root {title}>
   <Navibar />
-  <Toolbar {drawer} {aside} />
+  <Toolbar />
   <div class="layout">
     {
-      drawer && (
+      layout.hasDrawer && (
         <div class="layout__drawer">
           <LayoutDrawer client:load>
             <slot name="drawer" />
@@ -32,7 +31,7 @@ const { title, drawer = false, aside = false } = Astro.props;
     <div class="layout__main">
       <div class="layout__grid">
         {
-          aside && (
+          layout.hasAside && (
             <div class="layout__aside">
               <LayoutAside client:load>
                 <slot name="aside" />
@@ -42,7 +41,7 @@ const { title, drawer = false, aside = false } = Astro.props;
         }
         <div class="layout__content">
           {
-            aside && (
+            layout.hasAside && (
               <div class="toolbar-mini">
                 <button
                   data-drawer-open="layout-aside"
