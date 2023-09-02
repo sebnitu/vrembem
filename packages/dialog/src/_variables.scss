@@ -1,3 +1,4 @@
+@use "@vrembem/core/theme";
 @use "@vrembem/core";
 
 $prefix-block: core.$prefix-block !default;
@@ -8,8 +9,8 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 $z-index: 500 !default;
 $padding: 1em !default;
 $spacing: 0.5em !default;
-$background: white !default;
-$foreground: null !default;
+$foreground: theme.get("foreground") !default;
+$background: theme.get("background") !default;
 $border: null !default;
 $sep-border: core.$border !default;
 $border-radius: core.$border-radius !default;
