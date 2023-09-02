@@ -20,6 +20,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   background: var.$background;
   background-clip: var.$background-clip;
   box-shadow: var.$shadow;
+  color: var.$foreground;
   font-size: var.$font-size;
   line-height: var.$line-height;
 
