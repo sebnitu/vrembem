@@ -19,21 +19,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Icon from './Icon.vue';
 import Popover from './Popover.vue';
 import { popover } from '../modules/usePopover';
 import { ref } from 'vue';
 
-const props = defineProps({
-  code: {
-    type: String,
-    default: ''
-  },
-  inline: {
-    type: Boolean,
-    default: false
-  }
+const props = withDefaults(defineProps<{
+  code?: string
+  inline?: boolean
+}>(), {
+  code: '',
+  inline: false
 });
 
 const copied = ref(false);

@@ -5,6 +5,9 @@ import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
 import CodeBlock from "../components/CodeBlock.vue";
 import Icon from "../components/Icon.vue";
+import { $collection } from "../modules/useLayoutStore";
+
+$collection.set(null);
 ---
 
 <Root bodyClass="background-darker">
