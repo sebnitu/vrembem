@@ -1,18 +1,17 @@
 ---
 import "../styles/global.scss";
+import { $layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
-  drawer?: boolean;
-  aside?: boolean;
   bodyClass?: string;
 }
 
-const { title, drawer, aside, bodyClass } = Astro.props;
+const { title, bodyClass } = Astro.props;
 
 let mainClasses = "main";
-mainClasses += drawer ? " has-drawer" : "";
-mainClasses += aside ? " has-aside" : "";
+mainClasses += $layout.get().hasDrawer ? " has-drawer" : "";
+mainClasses += $layout.get().hasAside ? " has-aside" : "";
 ---
 
 <!DOCTYPE html>

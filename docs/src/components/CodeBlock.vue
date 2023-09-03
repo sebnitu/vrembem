@@ -61,5 +61,4 @@ function copyCode(event) {
       console.error('Error:', error);
     });
 }
-
 </script>
