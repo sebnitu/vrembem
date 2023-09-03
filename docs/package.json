@@ -12,7 +12,7 @@
     "@astrojs/mdx": "^0.19.7",
     "@astrojs/vue": "^2.2.1",
     "@types/node": "^20.5.9",
-    "astro": "^2.10.14",
+    "astro": "^3.0.7",
     "feather-icons": "^4.29.1",
     "nanostores": "^0.9.3",
     "vrembem": "^4.0.0-next.3",
