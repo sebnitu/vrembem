@@ -1,6 +1,6 @@
 ---
 import "../styles/global.scss";
-import { layout } from "../modules/useLayoutStore";
+import { $layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
@@ -10,8 +10,8 @@ interface Props {
 const { title, bodyClass } = Astro.props;
 
 let mainClasses = "main";
-mainClasses += layout.hasDrawer ? " has-drawer" : "";
-mainClasses += layout.hasAside ? " has-aside" : "";
+mainClasses += $layout.get().hasDrawer ? " has-drawer" : "";
+mainClasses += $layout.get().hasAside ? " has-aside" : "";
 ---
 
 <!DOCTYPE html>

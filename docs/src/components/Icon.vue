@@ -9,7 +9,7 @@ import feather from 'feather-icons';
 const props = defineProps({
   name: {
     type: String,
-    default: 'feather'
+    default: 'feather',
   },
   rootClass: {
     type: String,

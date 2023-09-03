@@ -1,22 +1,18 @@
-let _collection = null;
+import { atom, map } from 'nanostores'
 
-const layout = {
-  get collection() {
-    return _collection;
-  },
-  set collection(value) {
-    if (value) {
-      _collection = value;
-      this.hasDrawer = true;
-    } else {
-      this.hasDrawer = false;
-    }
-  },
+const $collection = atom(null);
+
+const $layout = map({
   hasAside: false,
   hasDrawer: false,
-  get hasAsideOrDrawer() {
-    return this.hasAside || this.hasDrawer;
-  }
-};
+});
 
-export { layout };
+$collection.listen((value) => {
+  if (value) {
+    $layout.setKey('hasDrawer', true);
+  } else {
+    $layout.setKey('hasDrawer', false);
+  }
+});
+
+export { $layout, $collection };

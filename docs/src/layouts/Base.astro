@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.vue";
 import LayoutAside from "../components/LayoutAside.vue";
 import Icon from "../components/Icon.vue";
-import { layout } from "../modules/useLayoutStore";
+import { $layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
@@ -20,7 +20,7 @@ const { title } = Astro.props;
   <Toolbar />
   <div class="layout">
     {
-      layout.hasDrawer && (
+      $layout.get().hasDrawer && (
         <div class="layout__drawer">
           <LayoutDrawer client:load>
             <slot name="drawer" />
@@ -31,7 +31,7 @@ const { title } = Astro.props;
     <div class="layout__main">
       <div class="layout__grid">
         {
-          layout.hasAside && (
+          $layout.get().hasAside && (
             <div class="layout__aside">
               <LayoutAside client:load>
                 <slot name="aside" />
@@ -41,7 +41,7 @@ const { title } = Astro.props;
         }
         <div class="layout__content">
           {
-            layout.hasAside && (
+            $layout.get().hasAside && (
               <div class="toolbar-mini">
                 <button
                   data-drawer-open="layout-aside"

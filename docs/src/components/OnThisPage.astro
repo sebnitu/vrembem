@@ -1,13 +1,13 @@
 ---
 import OnThisPageList from "./OnThisPageList.astro";
-import { layout } from "../modules/useLayoutStore";
+import { $layout } from "../modules/useLayoutStore";
 
 const { headings, menuClass } = Astro.props;
 
 // Filter the headings to only display the ones we want.
 const otp = build(headings.filter((item) => item.depth === 2));
 
-layout.hasAside = !!otp.length;
+$layout.setKey('hasAside', !!otp.length);
 
 function build(headings) {
   const otp = [];
@@ -29,7 +29,7 @@ function build(headings) {
 
 <nav>
   { 
-    layout.hasAside && (
+    $layout.get().hasAside && (
       <h2 class="padding padding-y-sm">On this page</h2>
       <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
         {otp.map((item) => <OnThisPageList {item} />)}
