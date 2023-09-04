@@ -65,7 +65,7 @@
     top: 0;
     width: var(--vb-aside-width);
     height: 100vh;
-    padding: calc(var(--vb-navibar-height) + 4rem) 0;
+    padding: calc(var(--vb-navibar-height) + 4rem) var(--vb-layout-padding);
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;
