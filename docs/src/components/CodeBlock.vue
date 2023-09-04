@@ -7,14 +7,14 @@
       :arrow="true"
       aria-label="Copy code example">
       <template #trigger>
-        <Icon v-if="!copied" name="copy" iconClass="icon_size_sm foreground-neutral-50" />
+        <Icon v-if="!copied" name="copy" iconClass="icon_size_sm foreground-lighter" />
         <Icon v-else name="check" iconClass="icon_size_sm foreground-primary-50" />
       </template>
       <template #content>
         <span>Copied!</span>
       </template>
     </Popover>
-    <Icon v-if="inline" name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-neutral-50" />
+    <Icon v-if="inline" name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-lighter" />
     <pre v-if="inline" class="pre"><code><slot /></code></pre>
     <pre v-else class="pre"><slot /></pre>
   </div>
