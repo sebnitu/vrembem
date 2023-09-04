@@ -68,7 +68,7 @@ $themes: (
 
 /// Function to return the CSS variable with fallback of an entry within the
 /// $themes map. If a theme name is not provided, $theme-default will be used.
-/// @example - Return theh background var() from the default theme.
+/// @example - Return the background var() from the default theme.
 ///   background: theme.get("background");
 /// @example - Return the background var() from the dark theme.
 ///   background: theme.get("dark", "background");
