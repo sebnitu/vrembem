@@ -1,5 +1,5 @@
 @use "sass:list";
-
+@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -70,6 +70,11 @@ $_e: var.$prefix-element;
     outline: none;
     background: var.$background-focus;
     color: var.$foreground-focus;
+  }
+
+  &:focus-visible {
+    z-index: 1;
+    outline: 2px solid theme.get("focus-visible");
   }
 
   &:active {

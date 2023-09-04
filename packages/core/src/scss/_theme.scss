@@ -42,6 +42,9 @@ $themes: (
     "background": palette.get("neutral", 100),
     "background-dark": palette.get("neutral", 98),
     "background-darker": palette.get("neutral", 95),
+    "background-hover": rgba(black, 0.05),
+    "background-focus": rgba(black, 0.05),
+    "background-active": rgba(black, 0.1),
     "foreground": palette.get("neutral", 20),
     "foreground-light": palette.get("neutral", 40),
     "foreground-lighter": palette.get("neutral", 60),
@@ -49,12 +52,16 @@ $themes: (
     "border-color-dark": rgba(black, 0.2),
     "border-color-darker": rgba(black, 0.3),
     "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+    "focus-visible": palette.get("primary"),
     "color-scheme": light
   ),
   "dark": (
-    "background": palette.get("neutral", 15),
+    "background": palette.get("neutral", 10),
     "background-dark": palette.get("neutral", 12),
-    "background-darker": palette.get("neutral", 10),
+    "background-darker": palette.get("neutral", 15),
+    "background-hover": rgba(white, 0.05),
+    "background-focus": rgba(white, 0.05),
+    "background-active": rgba(white, 0.1),
     "foreground": palette.get("neutral", 90),
     "foreground-light": palette.get("neutral", 80),
     "foreground-lighter": palette.get("neutral", 70),
@@ -62,6 +69,7 @@ $themes: (
     "border-color-dark": rgba(white, 0.2),
     "border-color-darker": rgba(white, 0.3),
     "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%),
+    "focus-visible": palette.get("primary"),
     "color-scheme": dark
   )
 ) !default;

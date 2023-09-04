@@ -1,6 +1,6 @@
-@use "@vrembem/core";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+@use "@vrembem/core";
 
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
@@ -14,9 +14,9 @@ $gap: 1px !default;
 $inner-gap: 1em !default;
 $border-radius: core.$border-radius !default;
 $background: none !default;
-$background-hover: rgba(black, 0.05) !default;
-$background-focus: rgba(black, 0.05) !default;
-$background-active: rgba(black, 0.1) !default;
+$background-hover: theme.get("background-hover") !default;
+$background-focus: theme.get("background-focus") !default;
+$background-active: theme.get("background-active") !default;
 $foreground: theme.get("foreground") !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
