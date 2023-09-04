@@ -30,9 +30,9 @@
 
 .code-block__prompt,
 .code-block__copy-button {
-  display: flex;
   position: absolute;
   top: 0.7rem;
+  display: flex;
   padding: 0.5rem;
 }
 
@@ -50,7 +50,7 @@
 
 .code-block_inline {
   .pre {
-    padding: 0.8125em 4em 0.8125em 2.5em;
+    padding: 0.5em 4em 0.5em 2.5em;
   }
 
   .code-block__prompt,

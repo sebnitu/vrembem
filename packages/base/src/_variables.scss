@@ -82,7 +82,7 @@ $code-foreground: palette.get("secondary") !default;
 $code-border: null !default;
 $code-border-radius: null !default;
 $code-font-family: core.$font-family-mono !default;
-$code-font-size: 0.9em !default;
+$code-font-size: core.$font-size !default;
 
 // Heading
 // ---
@@ -135,8 +135,9 @@ $separator-border: 1px solid theme.get("border-color") !default;
 // Type
 // ---
 
-$type-color: null !default;
+$type-heading-color: theme.get("foreground") !default;
+$type-color: theme.get("foreground-light") !default;
 $type-font-family: null !default;
-$type-font-size: null !default;
-$type-line-height: null !default;
+$type-font-size: core.$font-size-lg !default; // Computed: 18px
+$type-line-height: 1.7778 !default; // Computed: 32px
 $type-gap: null !default;

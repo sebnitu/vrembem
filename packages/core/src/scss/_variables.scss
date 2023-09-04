@@ -58,9 +58,9 @@ $font-size-sm: 0.875rem !default; // 14px
 $font-size-lg: 1.125rem !default; // 18px
 
 // Line height
-$line-height: 1.5 !default;       // 24px
-$line-height-sm: 1.375 !default;  // 22px
-$line-height-lg: 1.625 !default;  // 26px
+$line-height: 1.625 !default;    // Computed: 26px (based on 16px)
+$line-height-sm: 1.375 !default; // Computed: 22px (based on 16px)
+$line-height-lg: 1.875 !default; // Computed: 30px (based on 16px)
 
 // Font weight
 $font-weight-thin: 100 !default;
