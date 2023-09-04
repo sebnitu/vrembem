@@ -83,8 +83,8 @@
 // Heading
 // ---
 
-@mixin heading-base() {
-  color: var.$heading-color;
+@mixin heading-base($heading-color: var.$heading-color) {
+  color: $heading-color;
   font-family: var.$heading-font-family;
   font-weight: var.$heading-font-weight;
   line-height: var.$heading-line-height;
@@ -219,7 +219,7 @@
   h4,
   h5,
   h6 {
-    @include heading-base();
+    @include heading-base(var.$type-heading-color);
   }
 
   > {

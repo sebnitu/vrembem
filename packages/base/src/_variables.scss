@@ -135,8 +135,9 @@ $separator-border: 1px solid theme.get("border-color") !default;
 // Type
 // ---
 
-$type-color: null !default;
+$type-heading-color: theme.get("foreground") !default;
+$type-color: theme.get("foreground-light") !default;
 $type-font-family: null !default;
-$type-font-size: null !default;
-$type-line-height: null !default;
+$type-font-size: 1.125rem !default;
+$type-line-height: 1.8 !default;
 $type-gap: null !default;
