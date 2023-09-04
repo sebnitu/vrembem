@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [vue(), mdx()],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark'
+      theme: 'css-variables'
     },
     extendDefaultPlugins: true,
   }
