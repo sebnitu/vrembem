@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/vitest';
 import Modal from '../index';
 
 const keyEsc = new KeyboardEvent('keydown', {
