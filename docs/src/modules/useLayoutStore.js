@@ -1,4 +1,4 @@
-import { atom, map } from 'nanostores'
+import { atom, map } from 'nanostores';
 
 const $collection = atom(null);
 

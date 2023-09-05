@@ -4,7 +4,7 @@ function onThisPage(options = {}) {
     selectorHeadings: '.layout__content',
     classActive: 'is-active',
     ...options
-  }
+  };
 
   const collection = [];
 
@@ -43,7 +43,7 @@ function onThisPage(options = {}) {
         const margin = parseFloat(getComputedStyle(heading).scrollMarginTop);
         return Math.round(rect.top - margin);
       }
-    }
+    };
 
     // Push entry into otp array.
     collection.push(entry);
@@ -53,8 +53,8 @@ function onThisPage(options = {}) {
     // Filter out entries that have a positive top value.
     const pos = collection.filter((entry) => entry.top <= 0);
     // Find the entry with a negative top value that is closest to zero.
-    const min = Math.max(...pos.map(entry => entry.top))
-    const result = collection.filter(entry => entry.top === min)
+    const min = Math.max(...pos.map(entry => entry.top));
+    const result = collection.filter(entry => entry.top === min);
 
     // Set the active state of entries by comparing them with the result.
     collection.forEach((entry) => {
@@ -67,7 +67,7 @@ function onThisPage(options = {}) {
     collection,
     mount,
     register
-  }
+  };
 }
 
-export { onThisPage }
+export { onThisPage };
