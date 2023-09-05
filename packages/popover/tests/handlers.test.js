@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom/vitest';
 import { delay } from './helpers/delay';
 import Popover from '../index.js';
 import { handleClick } from '../src/js/handlers';
