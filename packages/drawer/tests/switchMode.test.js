@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import './mocks/matchMedia.mock';
 import { resizeWindow } from './helpers/resizeWindow';
 import { transition } from './helpers/transition';

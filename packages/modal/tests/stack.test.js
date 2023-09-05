@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import './mocks/getComputedStyle.mock';
 import { delay } from './helpers/delay';
 import Modal from '../index';
