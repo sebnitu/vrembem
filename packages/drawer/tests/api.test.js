@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { transition } from './helpers/transition';
 
 import Drawer from '../index.js';

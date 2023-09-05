@@ -1,5 +1,5 @@
 import { updateGlobalState } from '../index';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 document.body.innerHTML = `
   <header class="header"></header>

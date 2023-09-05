@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { transitionEnd } from './helpers/transition';
 import Modal from '../index';
 
