@@ -6,24 +6,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { modal } from '../modules/useModal';
 
-const props = defineProps({
-  id: {
-    type: String,
-    default: null,
-    required: true
-  },
-  modalClass: {
-    type: String,
-    default: null
-  },
-  dialogClass: {
-    type: String,
-    default: 'dialog'
-  }
+const props = withDefaults(defineProps<{
+  id: string,
+  modalClass?: string,
+  dialogClass?: string
+}>(), {
+  dialogClass: 'dialog'
 });
 
 const modalInstance = ref(null);
