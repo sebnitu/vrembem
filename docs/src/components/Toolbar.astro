@@ -1,15 +1,23 @@
 ---
 import Icon from "../components/Icon.vue";
-import { $layout } from "../modules/useLayoutStore";
 
-const hasAsideOrDrawer = $layout.get().hasDrawer || $layout.get().hasAside;
+interface Props {
+  layout?: {
+    hasAside?: boolean;
+    hasDrawer?: boolean;
+  };
+}
+
+const { layout } = Astro.props;
+
+const hasAsideOrDrawer = layout.hasAside || layout.hasDrawer;
 ---
 
 {
   hasAsideOrDrawer && (
     <div class="toolbar">
       <div class="clearfix">
-        {$layout.get().hasDrawer && (
+        {layout.hasDrawer && (
           <button
             data-drawer-open="layout-drawer"
             class="button padding-left-sm float-left"
@@ -18,7 +26,7 @@ const hasAsideOrDrawer = $layout.get().hasDrawer || $layout.get().hasAside;
             <span>Packages</span>
           </button>
         )}
-        {$layout.get().hasAside && (
+        {layout.hasAside && (
           <button
             data-drawer-open="layout-aside"
             class="button padding-right-sm float-right"

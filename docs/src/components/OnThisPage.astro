@@ -1,13 +1,10 @@
 ---
 import OnThisPageList from "./OnThisPageList.astro";
-import { $layout } from "../modules/useLayoutStore";
 
 const { headings, menuClass } = Astro.props;
 
 // Filter the headings to only display the ones we want.
-const otp = build(headings.filter((item) => item.depth === 2));
-
-$layout.setKey('hasAside', !!otp.length);
+const filteredHeadings = build(headings.filter((item) => item.depth === 2));
 
 function build(headings) {
   const otp = [];
@@ -28,29 +25,25 @@ function build(headings) {
 ---
 
 <nav>
-  { 
-    $layout.get().hasAside && (
-      <h2 class="padding padding-y-sm">On this page</h2>
-      <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
-        {otp.map((item) => <OnThisPageList {item} />)}
-        <li class="menu__sep slide-up scroll-spy"></li>
-        <li class="menu__item slide-up scroll-spy">
-          <a href="#main" class="menu__action">Back to top</a>
-        </li>
-      </ul>
-    )
-  }
+  <h2 class="padding padding-y-sm">On this page</h2>
+  <ul class={`menu menu_otp${menuClass ? " " + menuClass : ""}`}>
+    {filteredHeadings.map((item) => <OnThisPageList {item} />)}
+    <li class="menu__sep slide-up scroll-spy"></li>
+    <li class="menu__item slide-up scroll-spy">
+      <a href="#main" class="menu__action">Back to top</a>
+    </li>
+  </ul>
 </nav>
 
 <script>
-import { scrollSpy } from '../modules/scrollSpy';
-import { onThisPage } from '../modules/onThisPage';
+  import { scrollSpy } from "../modules/scrollSpy";
+  import { onThisPage } from "../modules/onThisPage";
 
-scrollSpy({
-  value: 200
-}).mount();
+  scrollSpy({
+    value: 200,
+  }).mount();
 
-onThisPage({
-  selectorAnchors: '.menu_otp a'
-}).mount();
+  onThisPage({
+    selectorAnchors: ".menu_otp a",
+  }).mount();
 </script>
