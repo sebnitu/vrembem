@@ -12,7 +12,7 @@ $_c: var.$class-overflow;
     .#{$_u}#{$_c}-x-#{$property} {
       overflow-x: $property !important;
     }
-    
+
     .#{$_u}#{$_c}-y-#{$property} {
       overflow-y: $property !important;
     }
