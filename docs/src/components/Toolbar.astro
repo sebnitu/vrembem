@@ -1,10 +1,20 @@
 ---
 import Icon from "../components/Icon.vue";
-import { layout } from "../modules/useLayoutStore";
+
+interface Props {
+  layout?: {
+    hasAside?: boolean;
+    hasDrawer?: boolean;
+  };
+}
+
+const { layout } = Astro.props;
+
+const hasAsideOrDrawer = layout.hasAside || layout.hasDrawer;
 ---
 
 {
-  layout.hasAsideOrDrawer && (
+  hasAsideOrDrawer && (
     <div class="toolbar">
       <div class="clearfix">
         {layout.hasDrawer && (

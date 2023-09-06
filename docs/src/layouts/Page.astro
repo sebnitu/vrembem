@@ -2,15 +2,17 @@
 import Base from "./Base.astro";
 import Menu from "../components/CollectionMenu.astro";
 import OnThisPage from "../components/OnThisPage.astro";
-import { layout } from "../modules/useLayoutStore";
 
 const { headings } = Astro.props;
 const { title, collection } = Astro.props.frontmatter || Astro.props;
 
-layout.hasDrawer = !!collection;
+const layout = {
+  hasDrawer: !!collection,
+  hasAside: !!headings.filter((item) => item.depth === 2).length,
+};
 ---
 
-<Base {title}>
+<Base {title} {layout}>
   {
     layout.hasDrawer && (
       <div slot="drawer">

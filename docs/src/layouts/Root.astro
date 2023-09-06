@@ -1,13 +1,16 @@
 ---
 import "../styles/global.scss";
-import { layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
   bodyClass?: string;
+  layout?: {
+    hasAside?: boolean;
+    hasDrawer?: boolean;
+  };
 }
 
-const { title, bodyClass } = Astro.props;
+const { title, bodyClass, layout = {} } = Astro.props;
 
 let mainClasses = "main";
 mainClasses += layout.hasDrawer ? " has-drawer" : "";

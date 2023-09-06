@@ -5,7 +5,6 @@ import Menu from "../../components/CollectionMenu.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
-import { layout } from "../../modules/useLayoutStore";
 
 export async function getStaticPaths() {
   const packages = await getCollection("packages");
@@ -22,10 +21,13 @@ interface Props {
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
-layout.hasDrawer = true;
+const layout = {
+  hasDrawer: true,
+  hasAside: true,
+};
 ---
 
-<Base title={entry.data.title}>
+<Base title={entry.data.title} {layout}>
   <div slot="drawer">
     <Menu collection="packages" menuClass="layout__menu" />
   </div>

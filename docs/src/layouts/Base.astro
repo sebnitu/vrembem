@@ -6,18 +6,21 @@ import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.vue";
 import LayoutAside from "../components/LayoutAside.vue";
 import Icon from "../components/Icon.vue";
-import { layout } from "../modules/useLayoutStore";
 
 interface Props {
   title?: string;
+  layout?: {
+    hasAside?: boolean;
+    hasDrawer?: boolean;
+  };
 }
 
-const { title } = Astro.props;
+const { title, layout = {} } = Astro.props;
 ---
 
-<Root {title}>
+<Root {title} {layout}>
   <Navibar />
-  <Toolbar />
+  <Toolbar {layout} />
   <div class="layout">
     {
       layout.hasDrawer && (
