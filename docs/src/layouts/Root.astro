@@ -36,9 +36,9 @@ mainClasses += layout.hasAside ? " has-aside" : "";
         // Make this script blocking to prevent flash of pre-themed content.
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
-        if (store.theme) {
-          document.documentElement.classList.add(`theme-${store.theme}`);
-        }
+        document.documentElement.classList.add(
+          `theme-${store.theme || "root"}`
+        );
       })();
     </script>
   </head>
