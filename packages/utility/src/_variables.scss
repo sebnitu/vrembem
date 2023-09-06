@@ -19,6 +19,7 @@ $output-gap-x: $output !default;
 $output-gap-y: $output !default;
 $output-margin: $output !default;
 $output-max-width: $output !default;
+$output-overflow: $output !default;
 $output-padding: $output !default;
 $output-position: $output !default;
 $output-text: $output !default;
@@ -38,6 +39,7 @@ $class-gap-x: "gap-x" !default;
 $class-gap-y: "gap-y" !default;
 $class-margin: "margin" !default;
 $class-max-width: "max-width" !default;
+$class-overflow: "overflow" !default;
 $class-padding: "padding" !default;
 $class-position: "position" !default;
 $class-text: "text" !default;
@@ -76,4 +78,12 @@ $max-width-scale: (
   "lg": 80rem,
   "xl": 90rem,
   "full": 100%
+) !default;
+
+$overflow-properties: (
+  visible,
+  hidden,
+  clip,
+  scroll,
+  auto
 ) !default;
