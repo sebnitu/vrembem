@@ -61,5 +61,9 @@
 }
 
 .navibar-spacer {
-  height: var(--vb-navibar-height);
+  height: 0;
+  
+  @media (min-width: root.$bp-drawer) {
+    height: var(--vb-navibar-height);
+  }
 }
