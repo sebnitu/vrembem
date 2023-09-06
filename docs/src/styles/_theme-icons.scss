@@ -1,0 +1,31 @@
+.theme-icon {
+  position: absolute;
+  top: calc(0.5rem - 1px);
+  left:  calc(0.5rem - 1px);
+  transform: translateY(calc(100% + (0.5rem - 1px)));
+  transition-property: transform, opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  opacity: 0;
+}
+
+.theme-root {
+  .theme-icon_root {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.theme-light {
+  .theme-icon_light {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.theme-dark {
+  .theme-icon_dark {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
