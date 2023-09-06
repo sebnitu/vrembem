@@ -9,10 +9,10 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/vue": "^2.2.1",
-    "@types/node": "^20.5.9",
-    "astro": "^2.10.14",
+    "@astrojs/mdx": "^1.0.1",
+    "@astrojs/vue": "^3.0.0",
+    "@types/node": "^20.4.5",
+    "astro": "^3.0.8",
     "feather-icons": "^4.29.1",
     "vrembem": "^4.0.0-next.3",
     "vue": "^3.3.4"
