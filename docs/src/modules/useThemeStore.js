@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 import { localStore } from '@vrembem/core';
 
-const prefix = 'theme-';
+const prefix = 'vb-theme-';
 const themes = ['light', 'dark', 'root'];
 const classes = themes.map((theme) => `${prefix}${theme}`);
 

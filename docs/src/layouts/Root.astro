@@ -37,7 +37,7 @@ mainClasses += layout.hasAside ? " has-aside" : "";
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
         document.documentElement.classList.add(
-          `theme-${store.theme || "root"}`
+          `vb-theme-${store.theme || "root"}`
         );
       })();
     </script>

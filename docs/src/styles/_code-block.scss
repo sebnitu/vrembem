@@ -86,7 +86,7 @@
   --astro-code-token-punctuation: #ce3b4a;
   --astro-code-token-link: #ce3b4a;
 
-  &.theme-dark {
+  &.#{core.$prefix-theme}dark {
     --astro-code-color-text: #{theme.get("foreground")};
     --astro-code-token-comment: #{theme.get("foreground-lighter")};
     --astro-code-token-constant: #79B8FF;

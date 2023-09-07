@@ -14,7 +14,7 @@ $_v: prefix.$variable;
 
 /// Set the prefix for theme classes.
 /// @type String
-$theme-prefix: "theme-" !default;
+$theme-prefix: prefix.$theme !default;
 
 /// Set the default theme. Should match an existing theme in the $themes map.
 /// @type String

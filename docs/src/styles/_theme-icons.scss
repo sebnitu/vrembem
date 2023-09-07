@@ -1,3 +1,5 @@
+@use "@vrembem/core/prefix";
+
 .theme-icon {
   position: absolute;
   top: calc(0.5rem - 1px);
@@ -9,21 +11,21 @@
   opacity: 0;
 }
 
-.theme-root {
+.#{prefix.$theme}root {
   .theme-icon_root {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.theme-light {
+.#{prefix.$theme}light {
   .theme-icon_light {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.theme-dark {
+.#{prefix.$theme}dark {
   .theme-icon_dark {
     transform: translateY(0);
     opacity: 1;
