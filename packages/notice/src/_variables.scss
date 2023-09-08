@@ -21,4 +21,4 @@ $theme: (
   "shadow": null
 ) !default;
 
-@include theme.set(theme.$theme-default, "notice", $theme);
+@include theme.set(theme.$default, "notice", $theme);

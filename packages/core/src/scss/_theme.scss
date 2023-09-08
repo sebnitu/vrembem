@@ -20,7 +20,7 @@ $_t: prefix.$theme;
 
 /// Set the default theme. Should match an existing theme in the $themes map.
 /// @type String
-$theme-default: "light" !default;
+$default: "light" !default;
 
 /// CSS selector to use for outputting the root CSS custom properties.
 /// @type String
@@ -98,7 +98,7 @@ $themes: (
 /// @require {Variable} $themes
 /// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
 @function get($args...) {
-  @if map.has-key($themes, $theme-default, $args...) {
+  @if map.has-key($themes, $default, $args...) {
     // Initial prop value and override if two arguments are passed.
     $prop: #{list.nth($args, 1)};
     @if list.length($args) == 2 {
@@ -106,7 +106,7 @@ $themes: (
     }
 
     // Get the fallback value.
-    $fallback: map.get($themes, $theme-default, $args...);
+    $fallback: map.get($themes, $default, $args...);
 
     // Return var() CSS function with the a fallback value.
     @if $fallback {
@@ -115,7 +115,7 @@ $themes: (
       @return var(--#{$_v}#{$prop});
     }
   } @else {
-    @error "Property does not exist in the default theme: (#{$theme-default}, #{$args})";
+    @error "Property does not exist in the default theme: (#{$default}, #{$args})";
   }
 }
 
@@ -166,9 +166,9 @@ $themes: (
 /// @example - Output the custom properties of the light theme for the button component.
 ///   @include theme.output("light", "button");
 /// @output Custom properties with their associated values of a theme.
-/// @param {String} $theme [$theme-default] - The theme name to output.
+/// @param {String} $theme [$default] - The theme name to output.
 /// @param {String} $component [null] - The name of component themes to output.
-@mixin output($theme: $theme-default, $component: null) {
+@mixin output($theme: $default, $component: null) {
   // Check if the key exists on the provided $themes map.
   @if map.has-key($themes, $theme) {
 
@@ -215,7 +215,7 @@ $themes: (
 /// Output all the custom properties and values of every theme in the provided 
 /// $themes map or pass a specific component name to output. Each theme will be 
 /// wrapped in their own selector using the set theme prefix and theme key. The
-/// $root-selector is used to wrap the $theme-default. Themes named "light" or
+/// $root-selector is used to wrap the $default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
 /// @example
 ///   @include theme.output-themes();
@@ -229,17 +229,17 @@ $themes: (
 @mixin output-themes($component: null) {
   // Output the default theme in the root selector.
   #{$root-selector} {
-    @include output($theme-default, $component);
+    @include output($default, $component);
   
     // If the default them is not light mode, output the prefers light media query.
-    @if $theme-default != 'light' {
+    @if $default != 'light' {
       @media (prefers-color-scheme: light) {
         @include output("light", $component);
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
-    @if $theme-default != 'dark' {
+    @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
         @include output("dark", $component);
       }
