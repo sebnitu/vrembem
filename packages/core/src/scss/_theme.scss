@@ -105,8 +105,15 @@ $themes: (
       $prop: #{list.nth($args, 1)}-#{list.nth($args, 2)};
     }
 
+    // Get the fallback value.
+    $fallback: map.get($themes, $theme-default, $args...);
+
     // Return var() CSS function with the a fallback value.
-    @return var(--#{$_v}#{$prop}, map.get($themes, $theme-default, $args...));
+    @if $fallback {
+      @return var(--#{$_v}#{$prop}, $fallback);
+    } @else {
+      @return var(--#{$_v}#{$prop});
+    }
   } @else {
     @error "Property does not exist in the default theme: (#{$theme-default}, #{$args})";
   }
@@ -180,6 +187,7 @@ $themes: (
 @mixin output($theme: $theme-default, $component: null) {
   // Check if the key exists on the provided $themes map.
   @if map.has-key($themes, $theme) {
+
     // Initial color scheme variable.
     $color-scheme: null;
 
@@ -189,20 +197,24 @@ $themes: (
       $map: map.get($themes, $theme, $component);
     }
 
-    // Loop through all theme entries and output their custom properties.
-    @each $key, $value in $map {
-      @if meta.type-of($value) != 'map' {
-        // Initial prop value and override if two arguments are passed.
-        $prop: --#{$_v}#{$key};
-        @if $component {
-          $prop: --#{$_v}#{$component}-#{$key};
-        }
+    // If a map exists...
+    @if $map {
+      // Loop through all theme entries and output their custom properties.
+      @each $key, $value in $map {
+        // Check if a value exists and if it's not a map.
+        @if $value and meta.type-of($value) != 'map' {
+          // Initial prop value and override if two arguments are passed.
+          $prop: --#{$_v}#{$key};
+          @if $component {
+            $prop: --#{$_v}#{$component}-#{$key};
+          }
 
-        // Output property or store the color scheme.
-        @if $key != 'color-scheme' {
-          #{$prop}: #{$value};
-        } @else {
-          $color-scheme: #{$value};
+          // Output property or store the color scheme.
+          @if $key != 'color-scheme' {
+            #{$prop}: #{$value};
+          } @else {
+            $color-scheme: #{$value};
+          }
         }
       }
     }
