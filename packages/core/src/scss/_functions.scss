@@ -56,13 +56,16 @@
 
 /// Output the hue and saturation values of a provided color.
 /// @param {Color} $color - The color variable to pull hue and saturation values from.
-/// TODO: documentation
+/// @return {List} - The hue and saturation values of the provided color.
 @function get-hs($color) {
   @return math.round(color.hue($color)), math.round(color.saturation($color));
 }
 
-// Removed an item from a list based on it's index.
-// TODO: documentation
+/// Removes the item of $list at index $n. If $n is negative, it counts from the
+/// end of $list.
+/// @param {List} $list - The list to have an item removed from.
+/// @param {Number} $n - The position (index) in the list to have removed.
+/// @return {List} - A new list with the item removed.
 @function remove-nth($list, $n){
   $result: ();
   $n: if($n < 0, list.length($list) + $n + 1, $n);
