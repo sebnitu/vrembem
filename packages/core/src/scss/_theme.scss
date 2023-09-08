@@ -91,9 +91,9 @@ $themes: (
 /// Function to return the CSS variable with fallback of an entry within the
 /// $themes map. Requested property must exist in the default theme.
 /// @example - Return the background var() from the dark theme.
-///   background: theme.get("dark", "background");
+///   background: theme.get("background");
 /// @example - Return the foreground var() from the card dark theme.
-///   background: theme.get("dark", "card", "background");
+///   background: theme.get("card", "background");
 /// @param {String} $args... - The property key to return.
 /// @require {Variable} $themes
 /// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
