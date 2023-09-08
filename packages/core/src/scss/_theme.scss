@@ -31,12 +31,23 @@ $root-selector: ":root, .#{$_t}root" !default;
 /// custom properties and values. Themes may also contain component maps for
 /// component specific theming. Optionally set `color-scheme` property for
 /// outputting the `color-scheme: (light | dark);` property.
-/// @example
+/// @example - Themes map with a high-contrast theme.
 ///   "high-contrast": (
 ///     "background": white,
 ///     "foreground": black,
 ///     ...
-///   )
+///   );
+/// @example - Themes map with a component theme.
+///   "dark": (
+///     "background": teal,
+///     "foreground": pink,
+///     ...
+///     "button": (
+///       "background": gray,
+///       "foreground": blue,
+///       ...
+///     )
+///   );
 /// @prop {Map} name - The name of the theme (key) and a map of property/value pairs.
 /// @prop {Any} name.prop - The name of the custom property and its value.
 /// @type Map
@@ -78,7 +89,7 @@ $themes: (
 ) !default;
 
 /// Function to return the CSS variable with fallback of an entry within the
-/// $themes map.
+/// $themes map. Requested property must exist in the default theme.
 /// @example - Return the background var() from the dark theme.
 ///   background: theme.get("dark", "background");
 /// @example - Return the foreground var() from the card dark theme.
