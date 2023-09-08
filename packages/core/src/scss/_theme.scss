@@ -6,15 +6,17 @@
 @use "./prefix";
 @use "./palette";
 
-/// Set the prefix for custom properties.
+/// Prefix for custom properties.
 /// @access private
 /// @alias prefix.$variable
 /// @type String
 $_v: prefix.$variable;
 
-/// Set the prefix for theme classes.
+/// Prefix for theme classes.
+/// @access private
+/// @alias prefix.$theme
 /// @type String
-$theme-prefix: prefix.$theme !default;
+$_t: prefix.$theme;
 
 /// Set the default theme. Should match an existing theme in the $themes map.
 /// @type String
@@ -22,11 +24,12 @@ $theme-default: "light" !default;
 
 /// CSS selector to use for outputting the root CSS custom properties.
 /// @type String
-$root-selector: ":root, .#{$theme-prefix}root" !default;
+$root-selector: ":root, .#{$_t}root" !default;
 
 /// Stores the theme maps used to build theme classes and CSS custom property
 /// output. Each entry should contain the name of the theme along with all its
-/// custom properties and values. Optionally set `color-scheme` property for
+/// custom properties and values. Themes may also contain component maps for
+/// component specific theming. Optionally set `color-scheme` property for
 /// outputting the `color-scheme: (light | dark);` property.
 /// @example
 ///   "high-contrast": (
@@ -204,7 +207,7 @@ $themes: (
 
 /// Output all the custom properties and values of every theme in the provided 
 /// $themes map or pass a specific component name to output. Each theme will be 
-/// wrapped in their own selector using the set $theme-prefix and theme key. The
+/// wrapped in their own selector using the set theme prefix and theme key. The
 /// $root-selector is used to wrap the $theme-default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
 /// @example
@@ -238,7 +241,7 @@ $themes: (
   
   // Run the output function on all 
   @each $key, $value in $themes {
-    .#{$theme-prefix}#{$key} {
+    .#{$_t}#{$key} {
       @include output($key, $component);
     }
   }
