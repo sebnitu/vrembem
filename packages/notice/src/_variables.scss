@@ -14,9 +14,11 @@ $title-font-size: core.$font-size-lg !default;
 $title-font-weight: core.$font-weight-semi-bold !default;
 $title-line-height: core.$line-height-lg !default;
 
-@include theme.set(theme.$theme-default, "notice", (
+$theme: (
   "background": theme.get("background-dark"),
   "foreground": theme.get("foreground"),
   "border": null,
   "shadow": null
-));
+) !default;
+
+@include theme.set(theme.$theme-default, "notice", $theme);
