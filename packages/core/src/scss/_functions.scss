@@ -65,11 +65,11 @@
 // TODO: documentation
 @function remove-nth($list, $n){
   $result: ();
-  $n: if($n < 0, length($list) + $n + 1, $n);
+  $n: if($n < 0, list.length($list) + $n + 1, $n);
   $bracketed: is-bracketed($list);
-  $separator: list-separator($list);
+  $separator: list.separator($list);
   @for $i from 1 through length($list){
-    @if $i != $n { $result: append($result, nth($list, $i)); }
+    @if $i != $n { $result: list.append($result, list.nth($list, $i)); }
   }
   @return join((), $result, $separator, $bracketed);
 }
