@@ -16,8 +16,8 @@ $_e: var.$prefix-element;
   border: var.$border;
   border-radius: var.$border-radius;
   background: theme.get("notice", "background");
-  color: theme.get("notice", "foreground");
   box-shadow: var.$shadow;
+  color: theme.get("notice", "foreground");
 }
 
 .#{$_b}notice#{$_e}title {
