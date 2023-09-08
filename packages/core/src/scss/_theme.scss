@@ -158,22 +158,6 @@ $themes: (
   $themes: map.deep-remove($themes, $args...) !global;
 }
 
-/// Allows adding a custom map of property and value pairs to a theme in the
-/// $themes map.
-/// @example - Add a custom prop/value map as the dark theme.
-///   @include theme.add("dark", (
-///     "background": black,
-///     "foreground": white,
-///     "color-scheme": dark
-///   ));
-/// @output N/A
-/// @param {String} $name - The theme name to add.
-/// @param {Map} $map - The map of property/value pairs to add to the provided theme.
-/// @require {Variable} $themes
-@mixin add($name, $map) {
-  $themes: map.deep-merge($themes, ($name: $map)) !global;
-}
-
 /// Output all the custom properties and values of a theme or a component theme.
 /// @example - Output the custom properties of the default theme.
 ///   @include theme.output();
