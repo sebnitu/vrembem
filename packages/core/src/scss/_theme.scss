@@ -108,7 +108,7 @@ $themes: (
     // Return var() CSS function with the a fallback value.
     @return var(--#{$_v}#{$prop}, map.get($themes, $theme-default, $args...));
   } @else {
-    @error "Property does not exist in the default theme: #{$args}";
+    @error "Property does not exist in the default theme: (#{$theme-default}, #{$args})";
   }
 }
 
