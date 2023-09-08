@@ -8,12 +8,15 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $gap: 0.5em !default;
 $padding: 1em !default;
-$border: null !default;
 $border-radius: core.$border-radius !default;
-$background: theme.get("background-dark") !default;
-$shadow: null !default;
 
-// notice__title
 $title-font-size: core.$font-size-lg !default;
 $title-font-weight: core.$font-weight-semi-bold !default;
 $title-line-height: core.$line-height-lg !default;
+
+@include theme.set(theme.$theme-default, "notice", (
+  "background": theme.get("background-dark"),
+  "foreground": theme.get("foreground"),
+  "border": null,
+  "shadow": null
+));
