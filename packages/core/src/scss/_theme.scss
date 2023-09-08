@@ -87,7 +87,7 @@ $themes: (
   @if map.has-key($themes, $theme-default, $args...) {
     // Initial prop value and override if two arguments are passed.
     $prop: #{list.nth($args, 1)};
-    @if length($args) == 2 {
+    @if list.length($args) == 2 {
       $prop: #{list.nth($args, 1)}-#{list.nth($args, 2)};
     }
 
@@ -105,7 +105,26 @@ $themes: (
 /// @param {String} $args... - The property keys and value to set.
 /// @require {Variable} $themes
 @mixin set($args...) {
-  $themes: map.set($themes, $args...) !global;
+  // Get the last item in the $args list.
+  $value: list.nth($args, -1);
+
+  // Get the props list.
+  $props: fun.remove-nth($args, -1);
+
+  // If the value is replacing a map, handle the deep-merge.
+  @if (meta.type-of($value) == "map") {
+    $new: $value;
+    $old: map.get($themes, $props...);
+    @if (meta.type-of($old) == "map") {
+      $new: map.deep-merge($old, $value);
+    }
+    $themes: map.set($themes, list.append($props, $new)...) !global;
+  }
+  
+  // Otherwise, just add the value using the $args list.
+  @else {
+    $themes: map.set($themes, $args...) !global;
+  }
 }
 
 /// Remove a custom property in the $themes map.

@@ -5,10 +5,19 @@
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
-@include theme.set("light", "notice", "background", blue);
-@include theme.set("light", "notice", "foreground", white);
-@include theme.set("dark", "notice", "background", green);
-@include theme.set("dark", "notice", "foreground", white);
+@include theme.set("light", "notice", "background", teal);
+@include theme.set("light", "notice", "foreground", yellow);
+@include theme.set("light", "notice", "border", 1px solid orange);
+
+@include theme.set("light", "notice", (
+  "background": pink,
+  "foreground": teal
+));
+
+@include theme.set("dark", "notice", (
+  "background": teal,
+  "foreground": pink
+));
 
 .#{$_b}notice {
   @include core.gap(var.$gap, "y");
