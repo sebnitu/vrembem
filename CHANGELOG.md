@@ -17,6 +17,7 @@ This document logs all notable changes to the Vrembem project.
 <!--
 Publish flow for `next` branch
 - Merge branch that contains appropriate PR label
+- Run `npm run sink`
 - Run `npx lerna-changelog`
 - Copy/paste output from changelog into this file
 - Commit changes using the commit message template
