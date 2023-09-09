@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/dialog",
   "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
-  "version": "3.0.14",
+  "version": "3.0.16",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/dialog#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.14"
+    "@vrembem/core": "^3.0.16"
   },
   "publishConfig": {
     "access": "public"
