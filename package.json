@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
-  "version": "3.0.15",
+  "version": "3.0.16",
   "private": true,
   "source": "src/js/app.js",
   "browser": "dist/bundle.js",
@@ -27,7 +27,7 @@
     "list.js": "^2.3.1",
     "scroll-stash": "^1.1.2",
     "svgxuse": "^1.2.6",
-    "vrembem": "^3.0.15",
+    "vrembem": "^3.0.16",
     "wicg-inert": "^3.1.2"
   }
 }
