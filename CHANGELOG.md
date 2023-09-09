@@ -14,9 +14,15 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.15 to CHANGELOG.md
+chore(release): add v3.0.16 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.16 (2023-09-08)
+
+### :hammer: Chore
+* Dependency bumps
 
 
 ## v3.0.15 (2023-08-01)
