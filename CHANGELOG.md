@@ -24,9 +24,57 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.3 to CHANGELOG.md
+chore(release): add v4.0.0-next.4 to CHANGELOG.md
 -->
 <!-- v4.0.0-next -->
+
+
+## 4.0.0-next.4 (2023-09-09)
+
+### :tada: New Feature
+* `core`, `notice`, `vrembem`
+  * [#1455](https://github.com/sebnitu/vrembem/pull/1455) Add component theming support
+* `utility`
+  * [#1453](https://github.com/sebnitu/vrembem/pull/1453) Add new overflow utility
+* `base`, `core`
+  * [#1443](https://github.com/sebnitu/vrembem/pull/1443) Improve the typography and default styles of the type module
+* `core`
+  * [#1432](https://github.com/sebnitu/vrembem/pull/1432) Create new theme API for better light/dark mode support
+* `core`, `drawer`, `modal`, `popover`
+  * [#1379](https://github.com/sebnitu/vrembem/pull/1379) Add transition function for using css var transition duration
+* `drawer`, `modal`
+  * [#1374](https://github.com/sebnitu/vrembem/pull/1374) Introduction of indeterminate state for better handling of inline state.
+  * [#1365](https://github.com/sebnitu/vrembem/pull/1365) Add the ability to set a custom screen for modals and modal drawers
+
+### :bug: Bug Fix
+* `dialog`, `popover`
+  * [#1433](https://github.com/sebnitu/vrembem/pull/1433) Add background and foreground theme to popover and dialog components
+* `core`, `drawer`, `icon`, `modal`, `popover`, `utility`, `vrembem`
+  * [#1358](https://github.com/sebnitu/vrembem/pull/1358) Updated templates and components for new Astro docs
+
+### :house: Refactor
+* `drawer`, `modal`, `popover`
+  * [#1363](https://github.com/sebnitu/vrembem/pull/1363) Refactor the register and deregister functionality
+
+### :books: Documentation
+* `docs`
+  * [#1454](https://github.com/sebnitu/vrembem/pull/1454) Bump astro to 3.0 and migrate templates as needed
+  * [#1448](https://github.com/sebnitu/vrembem/pull/1448) Refactor layout state to use props instead of global state module
+  * [#1434](https://github.com/sebnitu/vrembem/pull/1434) Add shared state using layout store
+  * [#1431](https://github.com/sebnitu/vrembem/pull/1431) Add theme switcher for dark and light modes
+  * [#1430](https://github.com/sebnitu/vrembem/pull/1430) Add styles for toolbar and improve mobile styles
+  * [#1414](https://github.com/sebnitu/vrembem/pull/1414) Add "Back to top" button and scroll spy module
+  * [#1413](https://github.com/sebnitu/vrembem/pull/1413) Add active state to "on this page" menu based on scroll position
+  * [#1412](https://github.com/sebnitu/vrembem/pull/1412) Add header anchors to page content
+  * [#1393](https://github.com/sebnitu/vrembem/pull/1393) Add active states to navigation (navibar, drawer, aside) menus
+* `core`, `popover`
+  * [#1380](https://github.com/sebnitu/vrembem/pull/1380) Add a "on this page" section to packages collection
+* `core`, `drawer`, `icon`, `modal`, `popover`, `utility`, `vrembem`
+  * [#1358](https://github.com/sebnitu/vrembem/pull/1358) Updated templates and components for new Astro docs
+
+### :hammer: Chore
+* `core`
+  * [#1364](https://github.com/sebnitu/vrembem/pull/1364) Remove deprecated event listeners IE11 support
 
 
 ## 4.0.0-next.3 (2023-07-27)
