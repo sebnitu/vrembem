@@ -1,8 +1,17 @@
 ---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import Base from "./Base.astro";
-import Menu from "../components/CollectionMenu.astro";
+import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 
+interface Props {
+  entry: CollectionEntry<"packages">;
+  headings?: any;
+  frontmatter?: any;
+}
+
+const entries = await getCollection("packages");
 const { headings } = Astro.props;
 const { title, collection } = Astro.props.frontmatter || Astro.props;
 
@@ -16,7 +25,7 @@ const layout = {
   {
     layout.hasDrawer && (
       <div slot="drawer">
-        <Menu collection={collection} menuClass="layout__menu" />
+        <Navi {entries} collection={collection} menuClass="layout__menu" />
       </div>
     )
   }

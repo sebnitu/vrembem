@@ -1,24 +1,20 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
 import { currentPage } from "../modules/currentPage";
 import Icon from "./Icon.vue";
 
 interface Props {
-  entry?: CollectionEntry<"packages">;
-  collection?: string;
+  entries: any;
+  collection: string;
 }
 
-const { collection } = Astro.props;
-
-const packages = await getCollection("packages");
+const { entries, collection } = Astro.props;
 const pagi = { prev: null, next: null };
 const cp = currentPage(new URL(Astro.request.url).pathname);
 
-packages.find((entry, index) => {
+entries.find((entry, index) => {
   if (cp.isCurrent(`/${collection}/${entry.slug}`)) {
-    pagi.prev = packages[index - 1];
-    pagi.next = packages[index + 1];
+    pagi.prev = entries[index - 1];
+    pagi.next = entries[index + 1];
   }
 });
 ---
