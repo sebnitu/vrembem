@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { currentPage } from "../modules/currentPage";
-import Icon from "./Icon.vue";
 
 interface Props {
   entries: CollectionEntry<"packages">[];
@@ -20,26 +19,28 @@ entries.find((entry, index) => {
 });
 ---
 
-<div class="gap-y margin-top-xl">
-  <a href="#" class="link level">
-    <Icon name="edit" iconClass="icon_size_sm" />
-    <span>Suggest changes on this page</span>
-  </a>
+<div class="pagi-container">
   <hr class="sep" />
-  <div>
-    {
-      pagi.prev && (
-        <a class="link" href={`/${collection}/${pagi.prev.slug}`}>
-          Prev {pagi.prev.data.title}
-        </a>
-      )
-    }
-    {
-      pagi.next && (
-        <a class="link" href={`/${collection}/${pagi.next.slug}`}>
-          Next {pagi.next.data.title}
-        </a>
-      )
-    }
+  <div class="pagi">
+    <div class="pagi_prev">
+      {
+        pagi.prev && (
+          <a class="pagi_link" href={`/${collection}/${pagi.prev.slug}`}>
+            <div class="pagi_label">Previous</div>
+            <div class="pagi_title">{pagi.prev.data.title}</div>
+          </a>
+        )
+      }
+    </div>
+    <div class="pagi_next">
+      {
+        pagi.next && (
+          <a class="pagi_link" href={`/${collection}/${pagi.next.slug}`}>
+            <div class="pagi_label">Next</div>
+            <div class="pagi_title">{pagi.next.data.title}</div>
+          </a>
+        )
+      }
+    </div>
   </div>
 </div>
