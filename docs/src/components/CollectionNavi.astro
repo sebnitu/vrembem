@@ -1,8 +1,9 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { currentPage } from "../modules/currentPage";
 
 interface Props {
-  entries: any;
+  entries: CollectionEntry<"packages">[];
   collection: string;
   menuClass?: string;
 }
