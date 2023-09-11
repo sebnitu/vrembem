@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { currentPage } from "../modules/currentPage";
+import Icon from "./Icon.vue";
+
+interface Props {
+  entry?: CollectionEntry<"packages">;
+  collection?: string;
+}
+
+const { collection } = Astro.props;
+
+const packages = await getCollection("packages");
+const pagi = { prev: null, next: null };
+const cp = currentPage(new URL(Astro.request.url).pathname);
+
+packages.find((entry, index) => {
+  if (cp.isCurrent(`/${collection}/${entry.slug}`)) {
+    pagi.prev = packages[index - 1];
+    pagi.next = packages[index + 1];
+  }
+});
+---
+
+<div class="gap-y margin-top-xl">
+  <a href="#" class="link level">
+    <Icon name="edit" iconClass="icon_size_sm" />
+    <span>Suggest changes on this page</span>
+  </a>
+  <hr class="sep" />
+  <div>
+    {
+      pagi.prev && (
+        <a class="link" href={`/${collection}/${pagi.prev.slug}`}>
+          Prev {pagi.prev.data.title}
+        </a>
+      )
+    }
+    {
+      pagi.next && (
+        <a class="link" href={`/${collection}/${pagi.next.slug}`}>
+          Next {pagi.next.data.title}
+        </a>
+      )
+    }
+  </div>
+</div>

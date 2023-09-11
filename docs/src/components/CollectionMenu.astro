@@ -1,10 +1,17 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { currentPage } from "../modules/currentPage";
 
+interface Props {
+  entry?: CollectionEntry<"packages">;
+  collection?: string;
+  menuClass?: string;
+}
+
 const { collection, menuClass } = Astro.props;
 
-const packages = await getCollection(collection);
+const packages = await getCollection("packages");
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 
 const cp = currentPage(new URL(Astro.request.url).pathname, {

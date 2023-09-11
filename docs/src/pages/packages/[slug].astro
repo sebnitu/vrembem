@@ -1,10 +1,12 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Menu from "../../components/CollectionMenu.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
+import NaviPagi from "../../components/NaviPagi.astro";
 
 export async function getStaticPaths() {
   const packages = await getCollection("packages");
@@ -35,6 +37,9 @@ const layout = {
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
+  <div slot="append">
+    <NaviPagi collection="packages" />
+  </div>
 </Base>
 
 <script>

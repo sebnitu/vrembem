@@ -55,9 +55,11 @@ const { title, layout = {} } = Astro.props;
               </div>
             )
           }
+          <slot name="prepend" />
           <div class="type gap-y">
             <slot />
           </div>
+          <slot name="append" />
         </div>
         <Footer classes="layout__footer" />
       </div>
