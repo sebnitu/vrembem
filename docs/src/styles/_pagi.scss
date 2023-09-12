@@ -1,0 +1,68 @@
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+@use "@vrembem/core";
+
+.pagi-container {
+  margin: 2rem 0 0;
+
+  .sep {
+    margin: 2rem 0;
+  }
+
+  @include core.media-min("md") {
+    margin: 3rem 0 0;
+  }
+
+  @include core.media-min("lg") {
+    margin: 4rem 0 0;
+  }
+}
+
+.pagi {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include core.media-min("xs") {
+    flex-direction: row;
+  }
+}
+
+.pagi_prev,
+.pagi_next {
+  flex-basis: calc(50% - (1rem / 2));
+  align-content: stretch;
+}
+
+.pagi_prev {
+  text-align: left;
+}
+
+.pagi_next {
+  text-align: right;
+}
+
+.pagi_link {
+  display: block;
+  padding: 1rem;
+  transition: border-color;
+  transition-duration: core.$transition-duration;
+  transition-timing-function: core.$transition-timing-function;
+  border: 1px solid theme.get("border-color");
+  border-radius: core.$border-radius;
+  line-height: core.$line-height-sm;
+
+  &:hover {
+    border-color: palette.get("primary");
+  }
+}
+
+.pagi_label {
+  color: theme.get("foreground-lighter");
+  font-size: core.$font-size-sm;
+}
+
+.pagi_title {
+  color: palette.get("primary");
+  font-size: core.$font-size-lg;
+}

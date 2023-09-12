@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 1rem 0 2rem;
+  padding: 2rem 0;
 
   @media (min-width: root.$bp-drawer) {
     gap: 3rem;
@@ -50,8 +50,8 @@
   @media (min-width: root.$bp-aside) {
     flex-flow: row wrap;
     align-items: flex-start;
-    padding: 4rem 0;
     gap: 4rem;
+    padding: 4rem 0;
 
     .has-drawer & {
       padding: 4rem 0 4rem 4rem;

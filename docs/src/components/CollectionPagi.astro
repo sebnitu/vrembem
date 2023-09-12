@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { currentPage } from "../modules/currentPage";
+
+interface Props {
+  entries: CollectionEntry<"packages">[];
+  collection: string;
+}
+
+const { entries, collection } = Astro.props;
+const pagi = { prev: null, next: null };
+const cp = currentPage(new URL(Astro.request.url).pathname);
+
+entries.find((entry, index) => {
+  if (cp.isCurrent(`/${collection}/${entry.slug}`)) {
+    pagi.prev = entries[index - 1];
+    pagi.next = entries[index + 1];
+  }
+});
+---
+
+<div class="pagi-container">
+  <hr class="sep" />
+  <div class="pagi">
+    <div class="pagi_prev">
+      {
+        pagi.prev && (
+          <a class="pagi_link" href={`/${collection}/${pagi.prev.slug}`}>
+            <div class="pagi_label">Previous</div>
+            <div class="pagi_title">{pagi.prev.data.title}</div>
+          </a>
+        )
+      }
+    </div>
+    <div class="pagi_next">
+      {
+        pagi.next && (
+          <a class="pagi_link" href={`/${collection}/${pagi.next.slug}`}>
+            <div class="pagi_label">Next</div>
+            <div class="pagi_title">{pagi.next.data.title}</div>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</div>

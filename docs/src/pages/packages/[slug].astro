@@ -1,10 +1,16 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import Menu from "../../components/CollectionMenu.astro";
+import Navi from "../../components/CollectionNavi.astro";
+import Pagi from "../../components/CollectionPagi.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
+
+interface Props {
+  entry: CollectionEntry<"packages">;
+}
 
 export async function getStaticPaths() {
   const packages = await getCollection("packages");
@@ -14,10 +20,7 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {
-  entry: CollectionEntry<"packages">;
-}
-
+const entries = await getCollection("packages");
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
@@ -29,12 +32,15 @@ const layout = {
 
 <Base title={entry.data.title} {layout}>
   <div slot="drawer">
-    <Menu collection="packages" menuClass="layout__menu" />
+    <Navi {entries} collection="packages" menuClass="layout__menu" />
   </div>
   <div slot="aside">
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
+  <div slot="append">
+    <Pagi {entries} collection="packages" />
+  </div>
 </Base>
 
 <script>
