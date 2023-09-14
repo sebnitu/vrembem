@@ -39,8 +39,9 @@ const layout = {
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-  <div slot="append">
+  <div slot="append" class="gap-y-xl">
     <LinkEditPage />
+    <hr class="sep" />
     <Pagi {entries} collection="packages" />
   </div>
 </Base>

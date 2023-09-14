@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./root";
 
 .layout {
@@ -71,6 +72,30 @@
 
   @media (min-width: root.$bp-aside) {
     width: calc(100% - (var(--vb-aside-width) + 4rem));
+  }
+}
+
+.layout__prepend {
+  margin-bottom: 2rem;
+
+  @include core.media-min("md") {
+    margin-bottom: 3rem;
+  }
+
+  @include core.media-min("lg") {
+    margin-bottom: 4rem;
+  }
+}
+
+.layout__append {
+  margin-top: 2rem;
+
+  @include core.media-min("md") {
+    margin-top: 3rem;
+  }
+
+  @include core.media-min("lg") {
+    margin-top: 4rem;
   }
 }
 
