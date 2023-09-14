@@ -16,6 +16,11 @@ interface Props {
 }
 
 const { title, layout = {} } = Astro.props;
+
+const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
+const dir = "content"; // TODO: Check if it's a collection. Use 'content' else 'pages'.
+const ext = ".mdx";
+console.log(`${ghPath}${dir}${Astro.url.pathname}${ext}`);
 ---
 
 <Root {title} {layout}>
