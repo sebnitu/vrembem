@@ -3,13 +3,20 @@ import Icon from "./Icon.vue";
 
 interface Props {
   dir?: string;
+  filename?: string;
   ext?: string;
 }
 
 const { dir = "content", ext = ".mdx" } = Astro.props;
 
+let { filename = "" } = Astro.props;
+
+if (filename) {
+  filename = "/" + filename;
+}
+
 const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
-const url = `${ghPath}${dir}${Astro.url.pathname}${ext}`;
+const url = `${ghPath}${dir}${Astro.url.pathname}${filename}${ext}`;
 ---
 
 <a

@@ -14,7 +14,7 @@ interface Props {
 
 const entries = await getCollection("packages");
 const { headings } = Astro.props;
-const { title, collection } = Astro.props.frontmatter || Astro.props;
+const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
   hasDrawer: !!collection,
@@ -38,7 +38,7 @@ const layout = {
     )
   }
   <div slot="prepend">
-    <LinkEditPage dir="pages" />
+    <LinkEditPage dir="pages" {filename} />
   </div>
   <slot />
 </Base>
