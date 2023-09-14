@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Base from "./Base.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
+import LinkEditPage from "../components/LinkEditPage.astro";
 
 interface Props {
   entry: CollectionEntry<"packages">;
@@ -13,7 +14,7 @@ interface Props {
 
 const entries = await getCollection("packages");
 const { headings } = Astro.props;
-const { title, collection } = Astro.props.frontmatter || Astro.props;
+const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
   hasDrawer: !!collection,
@@ -36,6 +37,9 @@ const layout = {
       </div>
     )
   }
+  <div slot="append">
+    <LinkEditPage dir="pages" {filename} />
+  </div>
   <slot />
 </Base>
 

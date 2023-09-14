@@ -5,6 +5,7 @@ import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
+import LinkEditPage from "../../components/LinkEditPage.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
 
@@ -38,7 +39,9 @@ const layout = {
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-  <div slot="append">
+  <div slot="append" class="gap-y-xl">
+    <LinkEditPage />
+    <hr class="sep" />
     <Pagi {entries} collection="packages" />
   </div>
 </Base>

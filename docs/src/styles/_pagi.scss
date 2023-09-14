@@ -2,22 +2,6 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
 
-.pagi-container {
-  margin: 2rem 0 0;
-
-  .sep {
-    margin: 2rem 0;
-  }
-
-  @include core.media-min("md") {
-    margin: 3rem 0 0;
-  }
-
-  @include core.media-min("lg") {
-    margin: 4rem 0 0;
-  }
-}
-
 .pagi {
   display: flex;
   flex-direction: column;
