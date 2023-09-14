@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Base from "./Base.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
+import LinkEditPage from "../components/LinkEditPage.astro";
 
 interface Props {
   entry: CollectionEntry<"packages">;
@@ -36,6 +37,9 @@ const layout = {
       </div>
     )
   }
+  <div slot="prepend">
+    <LinkEditPage dir="pages" />
+  </div>
   <slot />
 </Base>
 

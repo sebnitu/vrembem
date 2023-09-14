@@ -1,0 +1,22 @@
+---
+import Icon from "./Icon.vue";
+
+interface Props {
+  dir?: string;
+  ext?: string;
+}
+
+const { dir = "content", ext = ".mdx" } = Astro.props;
+
+const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
+const url = `${ghPath}${dir}${Astro.url.pathname}${ext}`;
+---
+
+<a
+  href={url}
+  target="_blank"
+  class="link flex-inline flex-align-center gap-x-sm"
+>
+  <Icon name="edit" iconClass="icon_size_sm" />
+  <span>Suggest changes to this page</span>
+</a>
