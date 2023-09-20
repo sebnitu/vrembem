@@ -37,10 +37,10 @@ const layout = {
       </div>
     )
   }
+  <slot />
   <div slot="append">
     <LinkEditPage dir="pages" {filename} />
   </div>
-  <slot />
 </Base>
 
 <script>
