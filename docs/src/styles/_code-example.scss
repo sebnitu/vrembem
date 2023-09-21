@@ -1,0 +1,28 @@
+@use "@vrembem/core";
+
+.code-example {
+  margin: 2rem 0 !important;
+  border: core.$border;
+  border-radius: core.$border-radius;
+
+  > * + * {
+    border-top: core.$border;
+  }
+}
+
+.code-example__input {
+  position: relative;
+
+  .code-block {
+    position: static;
+  }
+}
+
+.code-example__output {
+  padding: 2rem;
+}
+
+.code-example__toolbar {
+  padding: 0.5rem 1rem;
+  border-bottom: core.$border;
+}

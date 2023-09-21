@@ -1,0 +1,19 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang } = Astro.props;
+---
+
+<div class="code-example">
+  <div class="code-example__output">
+    <slot name="output" />
+  </div>
+  <div class="code-example__input">
+    <div class="code-example__toolbar">
+      <span>{lang}</span>
+    </div>
+    <slot name="input" />
+  </div>
+</div>
