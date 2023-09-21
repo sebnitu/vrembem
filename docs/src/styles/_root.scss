@@ -1,3 +1,6 @@
+@use "@vrembem/core/theme";
+@use "@vrembem/core";
+
 $bp-drawer: 60rem;
 $bp-aside: 76rem;
 
@@ -10,4 +13,34 @@ $bp-aside: 76rem;
   --vb-content-padding: 2rem 2rem 8rem;
   --vb-content-width: 42rem;
   --vb-aside-width: 12rem;
+}
+
+/**
+ * Shiki Theme
+ */
+
+ :root {
+  --astro-code-color-text: #{theme.get("foreground")};
+  --astro-code-token-comment: #{theme.get("foreground-lighter")};
+  --astro-code-token-constant: #1b6bc6;
+  --astro-code-token-string: #1b6bc6;
+  --astro-code-token-keyword: #{theme.get("foreground")};
+  --astro-code-token-parameter: #df7a32;
+  --astro-code-token-function: #794bcf;
+  --astro-code-token-string-expression: #309b4a;
+  --astro-code-token-punctuation: #ce3b4a;
+  --astro-code-token-link: #ce3b4a;
+
+  &.#{core.$prefix-theme}dark {
+    --astro-code-color-text: #{theme.get("foreground")};
+    --astro-code-token-comment: #{theme.get("foreground-lighter")};
+    --astro-code-token-constant: #79B8FF;
+    --astro-code-token-string: #79B8FF;
+    --astro-code-token-keyword: #{theme.get("foreground")};
+    --astro-code-token-parameter: #FFAB70;
+    --astro-code-token-function: #B392F0;
+    --astro-code-token-string-expression: #85E89D;
+    --astro-code-token-punctuation: #F97583;
+    --astro-code-token-link: #F97583;
+  }
 }
