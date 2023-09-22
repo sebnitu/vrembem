@@ -3,7 +3,7 @@ interface Props {
   lang?: string;
 }
 
-const { lang } = Astro.props;
+const { lang = "html" } = Astro.props;
 ---
 
 <div class="code-example">
