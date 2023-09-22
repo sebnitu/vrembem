@@ -6,7 +6,7 @@
   z-index: 4;
   top: -1px;
   display: block;
-  padding: var(--vb-layout-padding);
+  padding: var(--layout-padding);
   border-top: 1px solid theme.get("border-color");
   border-bottom: 1px solid theme.get("border-color");
   background-color: theme.get("background-glass");
@@ -25,8 +25,8 @@
 
 .toolbar-mini {
   position: fixed;
-  top: calc(var(--vb-navibar-height) + var(--vb-layout-padding));
-  right: var(--vb-layout-padding);
+  top: calc(var(--layout-navibar-height) + var(--layout-padding));
+  right: var(--layout-padding);
   visibility: hidden;
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;

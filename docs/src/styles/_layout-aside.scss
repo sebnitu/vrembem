@@ -10,8 +10,8 @@
   z-index: 100;
   visibility: hidden;
   width: calc(100% - 4rem);
-  max-width: var(--vb-drawer-width);
-  padding: var(--vb-drawer-padding);
+  max-width: var(--layout-drawer-width);
+  padding: var(--layout-drawer-padding);
   overflow-x: hidden;
   overflow-y: auto;
   transform: translate(100%);
@@ -50,7 +50,7 @@
     position: fixed;
     z-index: 2;
     visibility: visible;
-    width: var(--vb-aside-width);
+    width: var(--layout-aside-width);
     height: 100vh;
     padding: 0;
     transform: translate(0);
@@ -63,9 +63,9 @@
   .layout-aside__container {
     position: fixed;
     top: 0;
-    width: var(--vb-aside-width);
+    width: var(--layout-aside-width);
     height: 100vh;
-    padding: calc(var(--vb-navibar-height) + 4rem) var(--vb-layout-padding);
+    padding: calc(var(--layout-navibar-height) + 4rem) var(--layout-aside-padding);
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: smooth;

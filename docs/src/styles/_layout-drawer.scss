@@ -10,8 +10,8 @@
   z-index: 100;
   visibility: hidden;
   width: calc(100% - 4rem);
-  max-width: var(--vb-drawer-width);
-  padding: var(--vb-drawer-padding);
+  max-width: var(--layout-drawer-width);
+  padding: var(--layout-drawer-padding);
   overflow-x: hidden;
   overflow-y: auto;
   transform: translate(-100%);
@@ -51,9 +51,9 @@
     visibility: visible;
     box-sizing: content-box;
     width: 100%;
-    max-width: calc(var(--vb-drawer-width) - var(--vb-drawer-padding));
-    padding: calc(var(--vb-drawer-padding) + var(--vb-navibar-height)) var(--vb-drawer-padding) var(--vb-drawer-padding);
-    padding-left: max(var(--vb-drawer-padding), calc((100% - var(--vb-layout-width)) / 2));
+    max-width: calc(var(--layout-drawer-width) - var(--layout-drawer-padding));
+    padding: calc(var(--layout-drawer-padding) + var(--layout-navibar-height)) var(--layout-drawer-padding) var(--layout-drawer-padding);
+    padding-left: max(var(--layout-drawer-padding), calc((100% - var(--layout-width)) / 2));
     transform: translate(0);
     box-shadow: none;
     opacity: 1;
@@ -77,15 +77,15 @@
   .layout-drawer__mask {
     position: sticky;
     z-index: 2;
-    top: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1);
-    height: var(--vb-navibar-height);
-    margin: calc((var(--vb-navibar-height) + var(--vb-drawer-padding)) * -1) calc(var(--vb-drawer-padding) * -1) var(--vb-drawer-padding) calc(var(--vb-drawer-padding) * -1);
+    top: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1);
+    height: var(--layout-navibar-height);
+    margin: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1) calc(var(--layout-drawer-padding) * -1) var(--layout-drawer-padding) calc(var(--layout-drawer-padding) * -1);
     background-color: var(--vb-background-darker);
 
     &::after {
       content: "";
       position: absolute;
-      margin: 0 var(--vb-drawer-padding);
+      margin: 0 var(--layout-drawer-padding);
       border-bottom: 1px solid var(--vb-border-color);
       inset: 100% 0 auto;
     }

@@ -7,14 +7,15 @@ $bp-aside: 76rem;
 
 :root {
   // Layout variables
-  --vb-navibar-height: 4.5rem;
-  --vb-layout-width: 74rem;
-  --vb-layout-padding: 1rem;
-  --vb-drawer-width: 14rem;
-  --vb-drawer-padding: 1rem;
-  --vb-content-padding: 2rem 2rem 8rem;
-  --vb-content-width: 42rem;
-  --vb-aside-width: 12rem;
+  --layout-width: 74rem;
+  --layout-padding: 1rem;
+  --layout-navibar-height: 4.5rem;
+  --layout-drawer-width: 14rem;
+  --layout-drawer-padding: 1rem;
+  --layout-aside-width: 14rem;
+  --layout-aside-padding: 0.5rem;
+  --layout-content-width: 42rem;
+  --layout-content-padding: 2rem 2rem 8rem;
 
  // Shiki light theme
   --astro-code-color-text: #{theme.get("foreground")};

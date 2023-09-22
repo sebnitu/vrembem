@@ -6,8 +6,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-right: var(--vb-layout-padding);
-  padding-left: var(--vb-layout-padding);
+  padding-right: var(--layout-padding);
+  padding-left: var(--layout-padding);
   overflow-x: hidden;
 }
 
@@ -15,18 +15,18 @@
   position: relative;
   box-sizing: content-box;
   width: 100%;
-  max-width: calc(var(--vb-layout-width) - var(--vb-drawer-width));
+  max-width: calc(var(--layout-width) - var(--layout-drawer-width));
 
   * > * {
     box-sizing: border-box;
   }
 
   @media (min-width: root.$bp-drawer) {
-    padding-top: var(--vb-navibar-height);
+    padding-top: var(--layout-navibar-height);
 
     .has-drawer & {
-      width: calc(100% - var(--vb-drawer-width));
-      padding-left: var(--vb-drawer-width);
+      width: calc(100% - var(--layout-drawer-width));
+      padding-left: var(--layout-drawer-width);
     }
   }
 }
@@ -63,15 +63,15 @@
 .layout__content {
   order: 1;
   width: 100%;
-  max-width: var(--vb-content-width);
+  max-width: var(--layout-content-width);
 
   h1, h2, h3, h4, h5, h6 {
     position: relative;
-    scroll-margin-top: calc(var(--vb-navibar-height) + 1rem);
+    scroll-margin-top: calc(var(--layout-navibar-height) + 1rem);
   }
 
   @media (min-width: root.$bp-aside) {
-    width: calc(100% - (var(--vb-aside-width) + 4rem));
+    width: calc(100% - (var(--layout-aside-width) + 4rem));
   }
 }
 
@@ -101,7 +101,7 @@
 
 .layout__aside {
   order: 2;
-  width: var(--vb-aside-width);
+  width: var(--layout-aside-width);
 }
 
 .layout__footer {
