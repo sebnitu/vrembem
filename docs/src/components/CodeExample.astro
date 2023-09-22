@@ -11,9 +11,7 @@ const { lang } = Astro.props;
     <slot name="output" />
   </div>
   <div class="code-example__input">
-    <div class="code-example__toolbar">
-      <span>{lang}</span>
-    </div>
+    <div class="code-example__toolbar">{lang}</div>
     <slot name="input" />
   </div>
 </div>

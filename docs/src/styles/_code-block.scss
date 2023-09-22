@@ -3,11 +3,15 @@
 @use "@vrembem/core";
 
 .code-block {
+  font-size: core.$font-size;
+  line-height: core.$line-height;
   position: relative;
   text-align: left;
 
   .pre {
+    border: core.$border;
     background-color: theme.get("background-dark");
+    padding-right: 4em;
   }
   
   .popover {
@@ -21,6 +25,8 @@
     .pre {
       margin: auto calc(var(--vb-layout-padding) * -1);
       border-radius: 0;
+      border-left: none;
+      border-right: none;
     }
   }
 }
@@ -30,9 +36,11 @@
 .code-block__prompt,
 .code-block__copy-button {
   position: absolute;
-  top: 1rem;
+  top: 0.8rem;
   display: flex;
   padding: 0.5rem;
+  background-color: theme.get("background-dark");
+  border-radius: core.$border-radius;
 }
 
 .code-block__prompt {
@@ -41,20 +49,25 @@
 
 .code-block__copy-button {
   right: 1rem;
+  color: theme.get("foreground-lighter");
+
+  &:hover {
+    color: theme.get("foreground-light");
+  }
 }
 
 /**
  * Modifier: inline
  */
 
-.code-block_inline {
+.code-block_inline {  
   .pre {
-    padding: 0.5em 4em 0.5em 2.5em;
+    padding: calc(0.75em - 1px) 4em calc(0.75em - 1px) 2.5em;
   }
 
   .code-block__prompt,
   .code-block__copy-button {
-    top: 0.5rem;
+    top: 0.6rem;
   }
 
   .popover {
