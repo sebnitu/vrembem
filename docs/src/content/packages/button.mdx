@@ -4,6 +4,7 @@ description: "Buttons are a simple component that allow users to take actions."
 package: "@vrembem/button"
 ---
 
+import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
 
 # Button
@@ -31,15 +32,6 @@ npm install @vrembem/button
 The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<a role="button">` or `<input>` elements with a type attribute of "button", "submit" or "reset". [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
 
 <CodeExample>
-  <div slot="input">
-    ```html
-    <button class="button">Button</button>
-    <a class="button" role="button">Anchor</a>
-    <input class="button" type="button" value="Input" />
-    <input class="button" type="submit" value="Submit" />
-    <input class="button" type="reset" value="Reset" />
-    ```
-  </div>
   <div slot="output" class="level">
     <button class="button">Button</button>
     <a class="button" role="button">Anchor</a>
@@ -47,35 +39,59 @@ The most basic implementation of the button component consists of the `button` c
     <input class="button" type="submit" value="Submit" />
     <input class="button" type="reset" value="Reset" />
   </div>
+  ```html
+  <button class="button">Button</button>
+  <a class="button" role="button">Anchor</a>
+  <input class="button" type="button" value="Input" />
+  <input class="button" type="submit" value="Submit" />
+  <input class="button" type="reset" value="Reset" />
+  ```
 </CodeExample>
 
 Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
-```html
-<button class="button">
-  <svg role="img" class="icon">
-    <use xlink:href="#anchor"></use>
-  </svg>
-  <span>Button</span>
-  <span class="arrow"></span>
-</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button">
+      <Icon name="anchor" iconClass="icon_size_sm" />
+      <span>Button</span>
+      <span class="arrow"></span>
+    </button>
+  </div>
+  ```html
+  <button class="button">
+    <svg class="icon icon_size_sm">...</svg>
+    <span>Button</span>
+    <span class="arrow"></span>
+  </button>
+  ```
+</CodeExample>
 
 #### Disabled
 
 When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
 
-```html
-<button class="button" disabled>Button</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button" disabled>Button</button>
+  </div>
+  ```html
+  <button class="button" disabled>Button</button>
+  ```
+</CodeExample>
 
 #### Loading
 
 Buttons can also have a loading state by adding the `is-loading` state class. This is useful when a button has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
 
-```html
-<button class="button is-loading" disabled>Button</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button is-loading" disabled>Button</button>
+  </div>
+  ```html
+  <button class="button is-loading" disabled>Button</button>
+  ```
+</CodeExample>
 
 > Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.
 
