@@ -1,6 +1,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "./root";
 
 .code-block {
   position: relative;
@@ -21,7 +22,7 @@
     --vb-foreground: #{palette.get("primary")};
   }
 
-  @include core.media-max(700px) {
+  @include core.media-max(root.$bp-code) {
     .pre {
       margin: auto calc(var(--vb-layout-padding) * -1);
       border-right: none;
@@ -55,7 +56,7 @@
     color: theme.get("foreground-light");
   }
 
-  @include core.media-max(700px) {
+  @include core.media-max(root.$bp-code) {
     right: 0;
   }
 }
@@ -79,7 +80,7 @@
     --vb-popover-placement: bottom;
   }
 
-  @include core.media-max(700px) {
+  @include core.media-max(root.$bp-code) {
     .pre {
       margin: 0;
       border-radius: var(--vb-border-radius);
