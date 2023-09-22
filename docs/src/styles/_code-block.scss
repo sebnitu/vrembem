@@ -54,6 +54,10 @@
   &:hover {
     color: theme.get("foreground-light");
   }
+
+  @include core.media-max(700px) {
+    right: 0;
+  }
 }
 
 /**
