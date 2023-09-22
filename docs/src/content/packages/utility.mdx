@@ -4,7 +4,7 @@ description: "The utility component provides a set of atomic classes that specia
 package: "@vrembem/utility"
 ---
 
-import Demo from '../../components/Demo.astro';
+import CodeExample from '../../components/CodeExample.astro';
 
 # Utility
 
@@ -128,16 +128,7 @@ The utility component consists of a number of modules with their own set of spec
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
 
-<Demo stack={true}>
-  <div slot="input">
-    ```html
-    <div class="background"></div>
-    <div class="background-dark"></div>
-    <div class="background-darker"></div>
-    <div class="background-primary"></div>
-    ...
-    ```
-  </div>
+<CodeExample stack={true}>
   <div slot="output" class="flex flex-wrap">
     <div class="swatch background"></div>
     <div class="swatch background-dark"></div>
@@ -195,7 +186,14 @@ Applies background color property. Most options include light, lighter, dark and
     <div class="swatch background-important-98"></div>
     <div class="swatch background-important-100"></div>
   </div>
-</Demo>
+  ```html
+  <div class="background"></div>
+  <div class="background-dark"></div>
+  <div class="background-darker"></div>
+  <div class="background-primary"></div>
+  ...
+  ```
+</CodeExample>
 
 Also available are utility classes for the `background-clip-[value]` property.
 

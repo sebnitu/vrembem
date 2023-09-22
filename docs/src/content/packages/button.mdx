@@ -4,42 +4,28 @@ description: "Buttons are a simple component that allow users to take actions."
 package: "@vrembem/button"
 ---
 
-import Demo from '../../components/Demo.astro';
+import Icon from '../../components/Icon.vue';
+import CodeExample from '../../components/CodeExample.astro';
 
 # Button
 
 Buttons are a simple component that allow users to take actions.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fbutton.svg)](https://www.npmjs.com/package/%40vrembem%2Fbutton)
-
-[Documentation](https://vrembem.com/packages/button)
-
-## Installation
-
 ```sh
 npm install @vrembem/button
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/button";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/button";
-```
-
-### Markup
+## Base usage
 
 The most basic implementation of the button component consists of the `button` class that can be applied to `<button>`, `<a role="button">` or `<input>` elements with a type attribute of "button", "submit" or "reset". [Remember to add `role="button"`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role) to any none semantic buttons as needed.
 
-<Demo stack={true}>
-  <div slot="input">
-    ```html
-    <button class="button">Button</button>
-    <a class="button" role="button">Anchor</a>
-    <input class="button" type="button" value="Input" />
-    <input class="button" type="submit" value="Submit" />
-    <input class="button" type="reset" value="Reset" />
-    ```
-  </div>
+<CodeExample>
   <div slot="output" class="level">
     <button class="button">Button</button>
     <a class="button" role="button">Anchor</a>
@@ -47,49 +33,76 @@ The most basic implementation of the button component consists of the `button` c
     <input class="button" type="submit" value="Submit" />
     <input class="button" type="reset" value="Reset" />
   </div>
-</Demo>
+  ```html
+  <button class="button">Button</button>
+  <a class="button" role="button">Anchor</a>
+  <input class="button" type="button" value="Input" />
+  <input class="button" type="submit" value="Submit" />
+  <input class="button" type="reset" value="Reset" />
+  ```
+</CodeExample>
 
 Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
-```html
-<button class="button">
-  <svg role="img" class="icon">
-    <use xlink:href="#anchor"></use>
-  </svg>
-  <span>Button</span>
-  <span class="arrow"></span>
-</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button">
+      <Icon name="anchor" iconClass="icon_size_sm" />
+      <span>Button</span>
+      <span class="arrow"></span>
+    </button>
+  </div>
+  ```html
+  <button class="button">
+    <svg class="icon icon_size_sm">...</svg>
+    <span>Button</span>
+    <span class="arrow"></span>
+  </button>
+  ```
+</CodeExample>
 
-#### Disabled
+### Disabled
 
 When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
 
-```html
-<button class="button" disabled>Button</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button" disabled>Button</button>
+  </div>
+  ```html
+  <button class="button" disabled>Button</button>
+  ```
+</CodeExample>
 
-#### Loading
+### Loading
 
 Buttons can also have a loading state by adding the `is-loading` state class. This is useful when a button has an action that has a delayed response in order to give users a visual indicator that their action is being processed.
 
-```html
-<button class="button is-loading" disabled>Button</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button is-loading" disabled>Button</button>
+  </div>
+  ```html
+  <button class="button is-loading" disabled>Button</button>
+  ```
+</CodeExample>
 
 > Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.
 
-## Modifiers
-
-### `button_block_[key]`
+## button_block_[key]
 
 Gives a button "block" styles so that it spans the full width of its container. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `button_block`) will apply block styles under all conditions.
 
-```html
-<button class="button button_block_sm">Button</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button button_block">Button</button>
+  </div>
+  ```html
+  <button class="button button_block">Button</button>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variations**
 
 - `button_block`
 - `button_block_xs`
@@ -98,95 +111,65 @@ Gives a button "block" styles so that it spans the full width of its container. 
 - `button_block_lg`
 - `button_block_xl`
 
-### `button_color_[value]`
+## button_color_[value]
 
 Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
 
-```html
-<button class="button button_color_primary">Button</button>
-<button class="button button_color_secondary">Button</button>
-```
+<CodeExample>
+  <div slot="output" class="level">
+    <button class="button button_color_primary">Button</button>
+    <button class="button button_color_secondary">Button</button>
+  </div>
+  ```html
+  <button class="button button_color_primary">Button</button>
+  <button class="button button_color_secondary">Button</button>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variations**
 
 - `button_color_primary`
 - `button_color_secondary`
 
-### `button_icon`
+## button_icon
 
 Adds styles that make icon-only buttons more balanced and will appear square if the icon used also has equal width and height.
 
-```html
-<button class="button button_icon">
-  <svg role="img" class="icon">
-    <use xlink:href="#anchor"></use>
-  </svg>
-</button>
-```
+<CodeExample>
+  <div slot="output">
+    <button class="button button_icon">
+      <Icon name="anchor" />
+    </button>
+  </div>
+  ```html
+  <button class="button button_icon">
+    <svg class="icon">...</svg>
+  </button>
+  ```
+</CodeExample>
 
-### `button_invert`
-
-A boolean button modifier that allows buttons and their modifiers to provide an inversed version of themselves. Since not all button styles require an inversed variant, this is typically used for when the background context of a button matters. Can be combined with [`button_subtle`](#button_subtle) boolean modifier.
-
-```html
-<button class="button button_invert">Button</button>
-<button class="button button_invert button_subtle">Button</button>
-```
-
-#### Available Combinations
-
-- `button button_invert`
-- `button button_invert button_subtle`
-
-### `button_size_[value]`
+## button_size_[value]
 
 Adjust the size of a button by increasing or decreasing its padding and font-size. By default, the button scale will provide a button height of 30px (small `button_size_sm`), 40px (default) and 50px (large `button_size_lg`).
 
-```html
-<button class="button button_size_sm">Button</button>
-<button class="button button_size_lg">Button</button>
-```
+<CodeExample>
+  <div slot="output" class="level">
+    <button class="button button_size_lg">Button</button>
+    <button class="button">Button</button>
+    <button class="button button_size_sm">Button</button>
+  </div>
+  ```html
+  <button class="button button_size_lg">Button</button>
+  <button class="button button_size_sm">Button</button>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variations**
 
 - `button_size_sm`
 - `button_size_lg`
 
-### button_state_[value]
-
-Adds styles for changing the look and feel of a button to better reflect the urgency or status.
-
-```html
-<button class="button button_state_info">Button</button>
-<button class="button button_state_success">Button</button>
-<button class="button button_state_caution">Button</button>
-<button class="button button_state_danger">Button</button>
-```
-
-#### Available Variations
-
-- `button_state_info`
-- `button_state_success`
-- `button_state_caution`
-- `button_state_danger`
-
-### button_subtle
-
-A boolean button modifier that allows buttons and their modifiers to provide a more subtle version of themselves. Can be combined with [`button_invert`](#button_invert) boolean modifier.
-
-```html
-<button class="button button_subtle">Default Subtle</button>
-<button class="button button_subtle button_invert">Subtle Invert</button>
-```
-
-#### Available Combinations
-
-- `button button_subtle`
-- `button button_subtle button_invert`
-
 ## Customization
-
-### Sass Variables
 
 | Variable                      | Default                                        | Description                                                                                                                                       |
 | ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -247,7 +230,7 @@ A boolean button modifier that allows buttons and their modifiers to provide a m
 | `$size-lg-font-size`          | `core.$font-size-lg` &rarr; `1.125em`          | Sets the font-size property of the `button_size_lg` modifier.                                                                                     |
 | `$size-lg-line-height`        | `core.$line-height-lg` &rarr; `1.625`          | Sets the line-height property of the `button_size_lg` modifier.                                                                                   |
 
-#### `$breakpoints`
+### `$breakpoints`
 
 The breakpoints map the `button_block_[key]` modifier uses to build its styles.
 

@@ -1,0 +1,21 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "html" } = Astro.props;
+---
+
+<div class="code-example">
+  {
+    Astro.slots.has("output") && (
+      <div class="code-example__output">
+        <slot name="output" />
+      </div>
+    )
+  }
+  <div class="code-example__input">
+    <div class="code-example__toolbar">{lang}</div>
+    <slot />
+  </div>
+</div>

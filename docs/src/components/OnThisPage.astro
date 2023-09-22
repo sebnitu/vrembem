@@ -47,3 +47,11 @@ function build(headings) {
     selectorAnchors: ".menu_otp a",
   }).mount();
 </script>
+
+<style is:global>
+  .menu_otp .menu__action {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

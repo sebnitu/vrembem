@@ -7,7 +7,7 @@
       :arrow="true"
       aria-label="Copy code example">
       <template #trigger>
-        <Icon v-if="!copied" name="copy" iconClass="icon_size_sm foreground-lighter" />
+        <Icon v-if="!copied" name="copy" iconClass="icon_size_sm" />
         <Icon v-else name="check" iconClass="icon_size_sm foreground-primary-50" />
       </template>
       <template #content>
