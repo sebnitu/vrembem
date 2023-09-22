@@ -3,15 +3,15 @@
 @use "@vrembem/core";
 
 .code-block {
+  position: relative;
   font-size: core.$font-size;
   line-height: core.$line-height;
-  position: relative;
   text-align: left;
 
   .pre {
+    padding-right: 4em;
     border: core.$border;
     background-color: theme.get("background-dark");
-    padding-right: 4em;
   }
   
   .popover {
@@ -24,9 +24,9 @@
   @include core.media-max(700px) {
     .pre {
       margin: auto calc(var(--vb-layout-padding) * -1);
-      border-radius: 0;
-      border-left: none;
       border-right: none;
+      border-left: none;
+      border-radius: 0;
     }
   }
 }
@@ -39,8 +39,8 @@
   top: 0.8rem;
   display: flex;
   padding: 0.5rem;
-  background-color: theme.get("background-dark");
   border-radius: core.$border-radius;
+  background-color: theme.get("background-dark");
 }
 
 .code-block__prompt {

@@ -2,11 +2,11 @@
 @use "@vrembem/core";
 
 .code-example {
-  font-size: core.$font-size;
-  line-height: core.$line-height;
   margin: 2rem 0 !important;
   border: core.$border;
   border-radius: core.$border-radius;
+  font-size: core.$font-size;
+  line-height: core.$line-height;
 
   > * + * {
     border-top: core.$border;
@@ -14,9 +14,9 @@
 
   @include core.media-max(700px) {
     margin: 2rem calc(var(--vb-layout-padding) * -1) !important;
-    border-radius: 0;
-    border-left: none;
     border-right: none;
+    border-left: none;
+    border-radius: 0;
 
     .pre {
       margin: 0;
@@ -53,8 +53,8 @@
 }
 
 .code-example__toolbar {
-  text-transform: uppercase;
-  color: theme.get("foreground-lighter");
   padding: 0.5rem 1rem;
   border-bottom: core.$border;
+  color: theme.get("foreground-lighter");
+  text-transform: uppercase;
 }

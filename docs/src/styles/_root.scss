@@ -5,6 +5,7 @@ $bp-drawer: 60rem;
 $bp-aside: 76rem;
 
 :root {
+  // Layout variables
   --vb-navibar-height: 4.5rem;
   --vb-layout-width: 74rem;
   --vb-layout-padding: 1rem;
@@ -13,13 +14,8 @@ $bp-aside: 76rem;
   --vb-content-padding: 2rem 2rem 8rem;
   --vb-content-width: 42rem;
   --vb-aside-width: 12rem;
-}
 
-/**
- * Shiki Theme
- */
-
- :root {
+ // Shiki light theme
   --astro-code-color-text: #{theme.get("foreground")};
   --astro-code-token-comment: #{theme.get("foreground-lighter")};
   --astro-code-token-constant: #1b6bc6;
@@ -31,6 +27,7 @@ $bp-aside: 76rem;
   --astro-code-token-punctuation: #ce3b4a;
   --astro-code-token-link: #ce3b4a;
 
+  // Shiki dark theme
   &.#{core.$prefix-theme}dark {
     --astro-code-color-text: #{theme.get("foreground")};
     --astro-code-token-comment: #{theme.get("foreground-lighter")};
