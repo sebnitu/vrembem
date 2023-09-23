@@ -7,36 +7,36 @@ $_cy: var.$class-flex-gap-y;
 
 @if (var.$output-flex-gap) {
   .#{$_u}#{$_c} {
-    gap: var.$gap;
+    gap: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-#{$key} {
-      gap: $value;
+      gap: $value !important;
     }
   }
 }
 
 @if (var.$output-flex-gap-x) {
   .#{$_u}#{$_cx} {
-    column-gap: var.$gap;
+    column-gap: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_cx}-#{$key} {
-      column-gap: $value;
+      column-gap: $value !important;
     }
   }
 }
 
 @if (var.$output-flex-gap-y) {
   .#{$_u}#{$_cy} {
-    row-gap: var.$gap;
+    row-gap: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_cy}-#{$key} {
-      row-gap: $value;
+      row-gap: $value !important;
     }
   }
 }
