@@ -7,32 +7,14 @@ $_v: var.$prefix-modifier-value;
 
 @each $key, $value in var.$gap-map {
   .#{$_b}level#{$_m}gap#{$_v}#{$key} {
-    @include core.flex-gap($value);
-
-    > * {
-      @if ($value > 0) {
-        max-width: calc(100% - #{$value});
-      }
-      @else {
-        max-width: 100%;
-      }
-    }
+    gap: $value;
   }
 
   .#{$_b}level#{$_m}gap-x#{$_v}#{$key} {
-    @include core.flex-gap($value, "x");
-
-    > * {
-      @if ($value > 0) {
-        max-width: calc(100% - #{$value});
-      }
-      @else {
-        max-width: 100%;
-      }
-    }
+    column-gap: $value;
   }
 
   .#{$_b}level#{$_m}gap-y#{$_v}#{$key} {
-    @include core.flex-gap($value, "y");
+    row-gap: $value;
   }
 }

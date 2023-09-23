@@ -2,17 +2,13 @@
 @use "./variables" as var;
 
 .#{var.$prefix-block}level {
-  @include core.flex-gap(var.$gap);
+  gap: var.$gap;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 
-  & + & {
-    margin-top: 0;
-  }
-
   > * {
     flex: 0 0 auto;
-    max-width: calc(100% - #{var.$gap});
+    max-width: 100%;
   }
 }
