@@ -83,7 +83,12 @@
   @include core.media-max(root.$bp-code) {
     .pre {
       margin: 0;
+      border: core.$border;
       border-radius: var(--vb-border-radius);
+    }
+
+    .code-block__copy-button {
+      right: 1rem;
     }
   }
 }
