@@ -25,9 +25,21 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.4 to CHANGELOG.md
+chore(release): add v4.0.0-next.5 to CHANGELOG.md
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.5 (2023-10-03)
+
+#### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`
+  * [#1485](https://github.com/sebnitu/vrembem/pull/1485) Refactor level component to use gap property
+
+#### :books: Documentation
+* [#1484](https://github.com/sebnitu/vrembem/pull/1484) Update code example markup and styles
+* [#1466](https://github.com/sebnitu/vrembem/pull/1466) Add "Suggest changes to this page" link to bottom of content
+* [#1465](https://github.com/sebnitu/vrembem/pull/1465) Add page navigation to docs
 
 
 ## 4.0.0-next.4 (2023-09-09)
