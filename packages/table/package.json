@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/table",
   "description": "A table component for displaying HTML tables.",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/table#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.16"
+    "@vrembem/core": "^3.0.17"
   },
   "publishConfig": {
     "access": "public"

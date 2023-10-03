@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/button-group",
   "description": "A component for displaying groups of buttons.",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/button-group#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.16"
+    "@vrembem/core": "^3.0.17"
   },
   "publishConfig": {
     "access": "public"
