@@ -1,0 +1,22 @@
+---
+const { name, value, type = "string", description } = Astro.props;
+---
+
+<div class="card">
+  <div class="card__body gap-y-xs">
+    <p><strong>{name}</strong></p>
+    {description && <p>{description}</p>}
+    {type && <p>Type: {type}</p>}
+    {value && <p>Default: {value}</p>}
+    {
+      Astro.slots.has("default") && (
+        <>
+          <p>Default:</p>
+          <div class="margin-top-md">
+            <slot />
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
