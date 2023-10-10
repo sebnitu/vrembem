@@ -71,6 +71,6 @@
   },
   "gitHead": "d966f513f86f66dddf93ed60ddefe51124562dc0",
   "dependencies": {
-    "focusable-selectors": "^0.8.1"
+    "focusable-selectors": "^0.8.4"
   }
 }
