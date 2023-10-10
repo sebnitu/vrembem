@@ -6,6 +6,7 @@ package: "@vrembem/button"
 
 import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
+import VarCard from '../../components/VarCard.astro';
 
 # Button
 
@@ -170,6 +171,23 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 - `button_size_lg`
 
 ## Customization
+
+<VarCard name="$prefix-block" value="null" description="String to prefix blocks with." />
+<VarCard name="$prefix-element" value="__" description="String to prefix elements with." />
+<VarCard name="$prefix-modifier" value="_" description="String to prefix modifiers with." />
+<VarCard name="$prefix-modifier-value" value="_" description="String to prefix modifier values with." />
+<VarCard name="$breakpoints" type="map" description="The breakpoints map the `button_block_[key]` modifier uses to build its styles.">
+  ```scss
+  // Inherited from: core.$breakpoints
+  $breakpoints: (
+    "xs": 480px,
+    "sm": 620px,
+    "md": 760px,
+    "lg": 990px,
+    "xl": 1380px
+  ) !default;
+  ```
+</VarCard>
 
 | Variable                      | Default                                        | Description                                                                                                                                       |
 | ----------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
