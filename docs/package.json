@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^1.1.0",
-    "@astrojs/vue": "^3.0.0",
+    "@astrojs/vue": "^3.0.1",
     "@types/node": "^20.8.2",
     "astro": "^3.2.3",
     "feather-icons": "^4.29.1",
