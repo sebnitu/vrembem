@@ -12,8 +12,7 @@
   width: calc(100% - 4rem);
   max-width: var(--layout-drawer-width);
   padding: var(--layout-drawer-padding);
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   transform: translate(-100%);
   transition: opacity .5s, transform .25s ease;
   outline: none;
