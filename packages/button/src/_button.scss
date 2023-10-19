@@ -17,7 +17,7 @@ $_b: var.$prefix-block;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
   outline: none;
-  border: core.css-var("button-border");
+  border: core.css-var("button-border-width") solid core.css-var("button-border-color");
   border-radius: core.css-var("button-border-radius");
   background: core.css-var("button-background");
   background-clip: border-box;
