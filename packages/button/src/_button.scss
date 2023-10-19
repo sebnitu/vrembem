@@ -1,15 +1,18 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$prefix-block}button {
-  @include core.gap(var.$gap, "x");
+$_v: var.$prefix-variable;
+$_b: var.$prefix-block;
+
+.#{$_b}button {
   position: relative;
   display: inline-flex;
+  gap: var(--#{$_v}button-gap);
   align-items: center;
   justify-content: center;
-  min-width: var.$size;
-  height: var.$size;
-  padding: var.$padding;
+  min-width: var(--#{$_v}button-size);
+  height: var(--#{$_v}button-size);
+  padding: var(--#{$_v}button-padding);
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
@@ -17,10 +20,10 @@
   outline-offset: var.$outline-offset;
   border: var.$border;
   border-radius: var.$border-radius;
-  background: var.$background;
+  background: var(--#{$_v}button-background);
   background-clip: border-box;
   box-shadow: var.$box-shadow;
-  color: var.$color;
+  color: var(--#{$_v}button-foreground);
   font-family: inherit;
   font-size: var.$font-size;
   font-weight: var.$font-weight;
@@ -40,7 +43,7 @@
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
     box-shadow: var.$box-shadow-hover;
-    color: var.$color-hover;
+    color: var.$foreground-hover;
   }
 
   &:focus {
@@ -49,7 +52,7 @@
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
-    color: var.$color-focus;
+    color: var.$foreground-focus;
   }
 
   &:active {
@@ -58,7 +61,7 @@
     border-color: var.$border-color-active;
     background-color: var.$background-active;
     box-shadow: var.$box-shadow-active;
-    color: var.$color-active;
+    color: var.$foreground-active;
   }
 
   &.is-loading {

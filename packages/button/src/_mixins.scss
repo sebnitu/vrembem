@@ -3,14 +3,14 @@
 @use "./variables" as var;
 
 @mixin button-variant(
-  $color,
+  $foreground,
   $background,
   $border: transparent,
   $box-shadow: 0 0 0 0 rgba($background, 0),
   $outline: null,
-  $color-hover: if(var.$color-hover, $color, null),
-  $color-focus: if(var.$color-focus, $color, null),
-  $color-active: if(var.$color-active, $color, null),
+  $foreground-hover: if(var.$foreground-hover, $foreground, null),
+  $foreground-focus: if(var.$foreground-focus, $foreground, null),
+  $foreground-active: if(var.$foreground-active, $foreground, null),
   $background-hover: if($background == transparent, transparent, color.scale($background, $lightness: -10%)),
   $background-focus: $background-hover,
   $background-active: if($background == transparent, transparent, color.scale($background, $lightness: -20%)),
@@ -28,14 +28,14 @@
   border-color: $border;
   background-color: $background;
   box-shadow: $box-shadow;
-  color: $color;
+  color: $foreground;
 
   &:hover {
     outline-color: $outline-hover;
     border-color: $border-hover;
     background-color: $background-hover;
     box-shadow: $box-shadow-hover;
-    color: $color-hover;
+    color: $foreground-hover;
   }
 
   &:focus {
@@ -43,7 +43,7 @@
     border-color: $border-focus;
     background-color: $background-focus;
     box-shadow: $box-shadow-focus;
-    color: $color-focus;
+    color: $foreground-focus;
   }
 
   &:active {
@@ -51,10 +51,10 @@
     border-color: $border-active;
     background-color: $background-active;
     box-shadow: $box-shadow-active;
-    color: $color-active;
+    color: $foreground-active;
   }
 
   &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, $color);
+    border-color: core.set-border-color(var.$loading-border-tpl, $foreground);
   }
 }
