@@ -16,8 +16,7 @@ $_b: var.$prefix-block;
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
-  outline: var.$outline;
-  outline-offset: var.$outline-offset;
+  outline: none;
   border: core.css-var("button-border");
   border-radius: core.css-var("button-border-radius");
   background: core.css-var("button-background");
@@ -38,8 +37,6 @@ $_b: var.$prefix-block;
   }
 
   &:hover {
-    outline: var.$outline-hover;
-    outline-offset: var.$outline-offset-hover;
     border-color: var.$border-color-hover;
     background-color: var.$background-hover;
     box-shadow: var.$box-shadow-hover;
@@ -47,8 +44,6 @@ $_b: var.$prefix-block;
   }
 
   &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-offset-focus;
     border-color: var.$border-color-focus;
     background-color: var.$background-focus;
     box-shadow: var.$box-shadow-focus;
@@ -56,8 +51,6 @@ $_b: var.$prefix-block;
   }
 
   &:active {
-    outline: var.$outline-active;
-    outline-offset: var.$outline-offset-active;
     border-color: var.$border-color-active;
     background-color: var.$background-active;
     box-shadow: var.$box-shadow-active;
