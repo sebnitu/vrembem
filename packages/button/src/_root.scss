@@ -8,4 +8,10 @@ $_v: var.$prefix-variable;
   --#{$_v}button-gap: #{var.$gap};
   --#{$_v}button-background: #{var.$background};
   --#{$_v}button-foreground: #{var.$foreground};
+  --#{$_v}button-border: #{var.$border};
+  --#{$_v}button-border-radius: #{var.$border-radius};
+  --#{$_v}button-box-shadow: #{var.$box-shadow};
+  --#{$_v}button-font-size: #{var.$font-size};
+  --#{$_v}button-font-weight: #{var.$font-weight};
+  --#{$_v}button-line-height: #{var.$line-height};
 }
