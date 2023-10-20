@@ -43,15 +43,19 @@ $_b: var.$prefix-block;
     color: var(--#{$_v}button-foreground-hover);
   }
 
+  &:focus-visible {
+    border-color: var(--#{$_v}button-border-color-hover);
+    background-color: var(--#{$_v}button-background-hover);
+    box-shadow: var(--#{$_v}button-box-shadow-hover);
+    color: var(--#{$_v}button-foreground-hover);
+    box-shadow: var(--#{$_v}button-box-shadow-focus);
+  }
+
   &:active {
     border-color: var(--#{$_v}button-border-color-active);
     background-color: var(--#{$_v}button-background-active);
     box-shadow: var(--#{$_v}button-box-shadow-active);
     color: var(--#{$_v}button-foreground-active);
-  }
-
-  &:focus-visible {
-    box-shadow: var(--#{$_v}button-box-shadow-focus);
   }
 
   &.is-loading {
@@ -67,7 +71,7 @@ $_b: var.$prefix-block;
       animation: spin var.$loading-animation-duration infinite linear;
       border: var.$loading-border;
       border-radius: core.$border-radius-circle;
-      border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
+      border-color: core.set-border-color(var.$loading-border-tpl, var(--#{$_v}button-foreground));
     }
   }
 }
