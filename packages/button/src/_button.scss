@@ -13,7 +13,7 @@ $_b: var.$prefix-block;
   min-width: var(--#{$_v}button-size);
   height: var(--#{$_v}button-size);
   padding: var(--#{$_v}button-padding);
-  transition-property: var.$transition-property;
+  transition-property: var(--#{$_v}button-transition-property);
   transition-duration: var(--#{$_v}button-transition-duration);
   transition-timing-function: var(--#{$_v}button-transition-timing-function);
   outline: none;
@@ -32,7 +32,7 @@ $_b: var.$prefix-block;
   cursor: pointer;
 
   &:disabled:not(.is-loading) {
-    opacity: var.$disabled-opacity;
+    opacity: var(--#{$_v}button-disabled-opacity);
     pointer-events: none;
   }
 

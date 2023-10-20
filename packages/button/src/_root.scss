@@ -11,6 +11,7 @@ $_v: var.$prefix-variable;
   --#{$_v}button-font-size: #{var.$font-size};
   --#{$_v}button-font-weight: #{var.$font-weight};
   --#{$_v}button-line-height: #{var.$line-height};
+  --#{$_v}button-transition-property: #{var.$transition-property};
   --#{$_v}button-transition-duration: #{var.$transition-duration};
   --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
 
@@ -33,4 +34,6 @@ $_v: var.$prefix-variable;
   --#{$_v}button-loading-border: #{var.$loading-border};
   --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
   --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
+
+  --#{$_v}button-disabled-opacity: #{var.$disabled-opacity};
 }
