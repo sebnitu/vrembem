@@ -77,12 +77,3 @@
   }
   @return join((), $result, $separator, $bracketed);
 }
-
-/// TODO: documentation needed
-@function css-var($name, $fallback: null) {
-  @if $fallback {
-    @return var(--#{prefix.$variable}#{$name}, $fallback);
-  } @else {
-    @return var(--#{prefix.$variable}#{$name});
-  }
-}
