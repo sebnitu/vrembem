@@ -37,18 +37,66 @@
     <section class="section">
       <div class="section__container max-width-xs gap-y">
 
+        <div class="margin-bottom-sm">
+          <code>button</code>
+        </div>
+
+        <div class="level">
+          <button class="button">Button</button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>button_color_[value]</code>
+        </div>
+
+        <div class="level">
+          <button class="button">Button</button>
+          <button class="button button_color_primary">Primary</button>
+          <button class="button button_color_secondary">Secondary</button>
+          <button class="button button_color_neutral">Neutral</button>
+          <button class="button button_color_important">Important</button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>is-loading</code>
+        </div>
+
+        <div class="level">
+          <button class="button is-loading" disabled>Button</button>
+          <button class="button button_color_primary is-loading" disabled>Primary</button>
+          <button class="button button_color_secondary is-loading" disabled>Secondary</button>
+          <button class="button button_color_neutral is-loading" disabled>Neutral</button>
+          <button class="button button_color_important is-loading" disabled>Important</button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>disabled</code>
+        </div>
+
+        <div class="level">
+          <button class="button" disabled>Button</button>
+          <button class="button button_color_primary" disabled>Primary</button>
+          <button class="button button_color_secondary" disabled>Secondary</button>
+          <button class="button button_color_neutral" disabled>Neutral</button>
+          <button class="button button_color_important" disabled>Important</button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>button_size_[value]</code>
+        </div>
+
+        <div class="level">
+          <button class="button button_size_sm">button_size_sm</button>
+          <button class="button">Button</button>
+          <button class="button button_size_lg">button_size_lg</button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>button_icon</code>
+        </div>
+
         <div class="level level_gap_lg">
-          <button class="button">
-            Button
-          </button>
-          <button class="button">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <span>Button</span>
-          </button>
-          <button class="button">
-            <span>Button</span>
+          <button class="button button_icon button_size_sm">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
             </svg>
@@ -58,28 +106,37 @@
               <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
             </svg>
           </button>
-        </div>
-
-        <div class="level">
+          <button class="button button_icon button_size_lg">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </button>
+          <button class="button">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+            <span>Button</span>
+          </button>
           <button class="button">Button</button>
-          <button class="button button_color_primary">Button</button>
-          <button class="button button_color_secondary">Button</button>
-          <button class="button button_color_neutral">Button</button>
-          <button class="button button_color_important">Button</button>
+          <button class="button">
+            <span>Button</span>
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="margin-top-lg margin-bottom-sm">
+          <code>button_block_[value]</code>
         </div>
 
         <div class="level">
-          <button class="button is-loading" disabled>Button</button>
-          <button class="button button_color_primary is-loading" disabled>Button</button>
-          <button class="button button_color_secondary is-loading" disabled>Button</button>
-          <button class="button button_color_neutral is-loading" disabled>Button</button>
-          <button class="button button_color_important is-loading" disabled>Button</button>
-        </div>
-
-        <div class="level">
-          <button class="button button_size_sm">Button</button>
-          <button class="button">Button</button>
-          <button class="button button_size_lg">Button</button>
+          <button class="button button_block">button_block</button>
+          <button class="button button_block_xs">button_block_xs</button>
+          <button class="button button_block_sm">button_block_sm</button>
+          <button class="button button_block_md">button_block_md</button>
+          <button class="button button_block_lg">button_block_lg</button>
+          <button class="button button_block_xl">button_block_xl</button>
         </div>
 
       </div>
