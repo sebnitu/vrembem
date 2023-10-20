@@ -10,7 +10,7 @@ $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
 
-$transition-property: box-shadow, outline, outline-offset !default;
+$transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
@@ -25,7 +25,7 @@ $line-height: core.$line-height !default;
 
 $background: transparent !default;
 $background-hover: transparent !default;
-$background-active: rgba(black, 0.05) !default;
+$background-active: transparent !default;
 
 $foreground: theme.get("foreground") !default;
 $foreground-hover: null !default;
