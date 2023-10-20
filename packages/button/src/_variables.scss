@@ -25,23 +25,18 @@ $line-height: core.$line-height !default;
 
 $background: transparent !default;
 $background-hover: transparent !default;
-$background-focus: transparent !default;
 $background-active: rgba(black, 0.05) !default;
 
 $foreground: theme.get("foreground") !default;
 $foreground-hover: null !default;
-$foreground-focus: null !default;
 $foreground-active: null !default;
 
 $border-color: theme.get("border-color-dark");
 $border-color-hover: theme.get("border-color-darker") !default;
-$border-color-focus: theme.get("border-color-darker") !default;
 $border-color-active: null !default;
 
 $box-shadow: 0 0 0 0 rgba(black, 0) !default;
-$box-shadow-hover: null !default;
 $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
-$box-shadow-active: null !default;
 
 // disabled
 $disabled-opacity: 0.6 !default;

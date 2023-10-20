@@ -37,24 +37,21 @@ $_b: var.$prefix-block;
   }
 
   &:hover {
-    border-color: var.$border-color-hover;
-    background-color: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
-    color: var.$foreground-hover;
-  }
-
-  &:focus {
-    border-color: var.$border-color-focus;
-    background-color: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
-    color: var.$foreground-focus;
+    border-color: var(--#{$_v}button-border-color-hover);
+    background-color: var(--#{$_v}button-background-hover);
+    box-shadow: var(--#{$_v}button-box-shadow-hover);
+    color: var(--#{$_v}button-foreground-hover);
   }
 
   &:active {
-    border-color: var.$border-color-active;
-    background-color: var.$background-active;
-    box-shadow: var.$box-shadow-active;
-    color: var.$foreground-active;
+    border-color: var(--#{$_v}button-border-color-active);
+    background-color: var(--#{$_v}button-background-active);
+    box-shadow: var(--#{$_v}button-box-shadow-active);
+    color: var(--#{$_v}button-foreground-active);
+  }
+
+  &:focus-visible {
+    box-shadow: var(--#{$_v}button-box-shadow-focus);
   }
 
   &.is-loading {
