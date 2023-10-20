@@ -11,19 +11,26 @@ $_v: var.$prefix-variable;
   --#{$_v}button-font-size: #{var.$font-size};
   --#{$_v}button-font-weight: #{var.$font-weight};
   --#{$_v}button-line-height: #{var.$line-height};
+  --#{$_v}button-transition-duration: #{var.$transition-duration};
+  --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
 
   --#{$_v}button-background: #{var.$background};
-  --#{$_v}button-foreground: #{var.$foreground};
-  --#{$_v}button-border-color: #{var.$border-color};
-
   --#{$_v}button-background-hover: #{var.$background-hover};
-  --#{$_v}button-foreground-hover: #{var.$foreground-hover};
-  --#{$_v}button-border-color-hover: #{var.$border-color-hover};
-
   --#{$_v}button-background-active: #{var.$background-active};
+
+  --#{$_v}button-foreground: #{var.$foreground};
+  --#{$_v}button-foreground-hover: #{var.$foreground-hover};
   --#{$_v}button-foreground-active: #{var.$foreground-active};
+
+  --#{$_v}button-border-color: #{var.$border-color};
+  --#{$_v}button-border-color-hover: #{var.$border-color-hover};
   --#{$_v}button-border-color-active: #{var.$border-color-active};
 
   --#{$_v}button-box-shadow: #{var.$box-shadow};
   --#{$_v}button-box-shadow-focus: #{var.$box-shadow-focus};
+
+  --#{$_v}button-loading-size: #{var.$loading-size};
+  --#{$_v}button-loading-border: #{var.$loading-border};
+  --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
+  --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
 }

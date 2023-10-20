@@ -1,60 +1,21 @@
-@use "sass:color";
-@use "@vrembem/core";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
+
+$_v: var.$prefix-variable;
 
 @mixin button-variant(
   $foreground,
-  $background,
-  $border: transparent,
-  $box-shadow: 0 0 0 0 rgba($background, 0),
-  $outline: null,
-  $foreground-hover: if(var.$foreground-hover, $foreground, null),
-  $foreground-focus: if(var.$foreground-focus, $foreground, null),
-  $foreground-active: if(var.$foreground-active, $foreground, null),
-  $background-hover: if($background == transparent, transparent, color.scale($background, $lightness: -10%)),
-  $background-focus: $background-hover,
-  $background-active: if($background == transparent, transparent, color.scale($background, $lightness: -20%)),
-  $border-hover: $border,
-  $border-focus: $border-hover,
-  $border-active: $border-focus,
-  $box-shadow-hover: null,
-  $box-shadow-focus: 0 0 0 0.2rem rgba($background, 0.5),
-  $box-shadow-active: null,
-  $outline-hover: null,
-  $outline-focus: null,
-  $outline-active: null,
+  $background
 ) {
-  outline-color: $outline;
-  border-color: $border;
-  background-color: $background;
-  box-shadow: $box-shadow;
-  color: $foreground;
-
-  &:hover {
-    outline-color: $outline-hover;
-    border-color: $border-hover;
-    background-color: $background-hover;
-    box-shadow: $box-shadow-hover;
-    color: $foreground-hover;
-  }
-
-  &:focus {
-    outline-color: $outline-focus;
-    border-color: $border-focus;
-    background-color: $background-focus;
-    box-shadow: $box-shadow-focus;
-    color: $foreground-focus;
-  }
-
-  &:active {
-    outline-color: $outline-active;
-    border-color: $border-active;
-    background-color: $background-active;
-    box-shadow: $box-shadow-active;
-    color: $foreground-active;
-  }
-
-  &.is-loading::after {
-    border-color: core.set-border-color(var.$loading-border-tpl, $foreground);
-  }
+  --#{$_v}button-background: #{palette.get($background)};
+  --#{$_v}button-background-hover: #{palette.get($background, 40)};
+  --#{$_v}button-background-active: #{palette.get($background, 30)};
+  --#{$_v}button-foreground: #{$foreground};
+  --#{$_v}button-foreground-hover: #{$foreground};
+  --#{$_v}button-foreground-active: #{$foreground};
+  --#{$_v}button-border-color: transparent;
+  --#{$_v}button-border-color-hover: transparent;
+  --#{$_v}button-border-color-active: transparent;
+  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get($background, "hs")}, 50%, 0);
+  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get($background, "hs")}, 50%, 0.5);
 }

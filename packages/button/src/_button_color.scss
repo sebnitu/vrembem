@@ -2,79 +2,22 @@
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
-$_mv: var.$prefix-modifier-value;
+$_v: var.$prefix-modifier-value;
 
-.#{$_b}button#{$_m}color#{$_mv}primary {
-  // @include mix.button-variant(white, palette.get("primary", "seed"));
-  --#{$_v}button-background: #{palette.get("primary")};
-  --#{$_v}button-foreground: white;
-  --#{$_v}button-border-color: transparent;
-
-  --#{$_v}button-background-hover: #{palette.get("primary", 40)};
-  --#{$_v}button-foreground-hover: white;
-  --#{$_v}button-border-color-hover: transparent;
-
-  --#{$_v}button-background-active: #{palette.get("primary", 30)};
-  --#{$_v}button-foreground-active: white;
-  --#{$_v}button-border-color-active: transparent;
-  
-  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get("primary", "hs")}, 50%, 0);
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get("primary", "hs")}, 50%, 0.5);
+.#{$_b}button#{$_m}color#{$_v}primary {
+  @include mix.button-variant(white, "primary");
 }
 
-.#{$_b}button#{$_m}color#{$_mv}secondary {
-  // @include mix.button-variant(white, palette.get("secondary", "seed"));
-  --#{$_v}button-background: #{palette.get("secondary")};
-  --#{$_v}button-foreground: white;
-  --#{$_v}button-border-color: transparent;
-
-  --#{$_v}button-background-hover: #{palette.get("secondary", 40)};
-  --#{$_v}button-foreground-hover: white;
-  --#{$_v}button-border-color-hover: transparent;
-
-  --#{$_v}button-background-active: #{palette.get("secondary", 30)};
-  --#{$_v}button-foreground-active: white;
-  --#{$_v}button-border-color-active: transparent;
-  
-  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get("secondary", "hs")}, 50%, 0);
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get("secondary", "hs")}, 50%, 0.5);
+.#{$_b}button#{$_m}color#{$_v}secondary {
+  @include mix.button-variant(white, "secondary");
 }
 
-.#{$_b}button#{$_m}color#{$_mv}neutral {
-  // @include mix.button-variant(white, palette.get("neutral", "seed"));
-  --#{$_v}button-background: #{palette.get("neutral")};
-  --#{$_v}button-foreground: white;
-  --#{$_v}button-border-color: transparent;
-
-  --#{$_v}button-background-hover: #{palette.get("neutral", 40)};
-  --#{$_v}button-foreground-hover: white;
-  --#{$_v}button-border-color-hover: transparent;
-
-  --#{$_v}button-background-active: #{palette.get("neutral", 30)};
-  --#{$_v}button-foreground-active: white;
-  --#{$_v}button-border-color-active: transparent;
-  
-  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get("neutral", "hs")}, 50%, 0);
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get("neutral", "hs")}, 50%, 0.5);
+.#{$_b}button#{$_m}color#{$_v}neutral {
+  @include mix.button-variant(white, "neutral");
 }
 
-.#{$_b}button#{$_m}color#{$_mv}important {
-  // @include mix.button-variant(white, palette.get("important", "seed"));
-  --#{$_v}button-background: #{palette.get("important")};
-  --#{$_v}button-foreground: white;
-  --#{$_v}button-border-color: transparent;
-
-  --#{$_v}button-background-hover: #{palette.get("important", 40)};
-  --#{$_v}button-foreground-hover: white;
-  --#{$_v}button-border-color-hover: transparent;
-
-  --#{$_v}button-background-active: #{palette.get("important", 30)};
-  --#{$_v}button-foreground-active: white;
-  --#{$_v}button-border-color-active: transparent;
-  
-  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get("important", "hs")}, 50%, 0);
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get("important", "hs")}, 50%, 0.5);
+.#{$_b}button#{$_m}color#{$_v}important {
+  @include mix.button-variant(white, "important");
 }
