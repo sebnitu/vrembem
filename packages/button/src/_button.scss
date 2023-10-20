@@ -46,9 +46,8 @@ $_b: var.$prefix-block;
   &:focus-visible {
     border-color: var(--#{$_v}button-border-color-hover);
     background-color: var(--#{$_v}button-background-hover);
-    box-shadow: var(--#{$_v}button-box-shadow-hover);
-    color: var(--#{$_v}button-foreground-hover);
     box-shadow: var(--#{$_v}button-box-shadow-focus);
+    color: var(--#{$_v}button-foreground-hover);
   }
 
   &:active {
@@ -63,13 +62,13 @@ $_b: var.$prefix-block;
     pointer-events: none;
 
     &::after {
-      @include core.size(var.$loading-size);
+      @include core.size(var(--#{$_v}button-loading-size));
       content: "";
       position: absolute;
-      top: calc(50% - (#{var.$loading-size} * 0.5));
-      left: calc(50% - (#{var.$loading-size} * 0.5));
+      top: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
+      left: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
       animation: spin var(--#{$_v}button-loading-animation-duration) infinite var(--#{$_v}button-loading-animation-timing-function);
-      border: var.$loading-border;
+      border: var(--#{$_v}button-loading-border);
       border-radius: core.$border-radius-circle;
       border-color: core.set-border-color(var.$loading-border-tpl, var(--#{$_v}button-foreground));
     }
