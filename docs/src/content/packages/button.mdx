@@ -176,23 +176,107 @@ Buttons are primarily customized using CSS variables along with some Sass variab
 
 ### CSS Variables
 
-<VarCard name="--vb-custom-prop" value="asdf" description="Some description of what this does..." />
+```scss
+:root {
+  --#{$_v}button-size: #{var.$size};
+  --#{$_v}button-padding: #{var.$padding};
+  --#{$_v}button-gap: #{var.$gap};
+  --#{$_v}button-border-width: #{var.$border-width};
+  --#{$_v}button-border-radius: #{var.$border-radius};
+  --#{$_v}button-font-size: #{var.$font-size};
+  --#{$_v}button-font-weight: #{var.$font-weight};
+  --#{$_v}button-line-height: #{var.$line-height};
+  --#{$_v}button-transition-property: #{var.$transition-property};
+  --#{$_v}button-transition-duration: #{var.$transition-duration};
+  --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
+  --#{$_v}button-background: #{var.$background};
+  --#{$_v}button-background-hover: #{var.$background-hover};
+  --#{$_v}button-background-active: #{var.$background-active};
+  --#{$_v}button-foreground: #{var.$foreground};
+  --#{$_v}button-foreground-hover: #{var.$foreground-hover};
+  --#{$_v}button-foreground-active: #{var.$foreground-active};
+  --#{$_v}button-border-color: #{var.$border-color};
+  --#{$_v}button-border-color-hover: #{var.$border-color-hover};
+  --#{$_v}button-border-color-active: #{var.$border-color-active};
+  --#{$_v}button-box-shadow: #{var.$box-shadow};
+  --#{$_v}button-box-shadow-focus: #{var.$box-shadow-focus};
+  --#{$_v}button-loading-size: #{var.$loading-size};
+  --#{$_v}button-loading-border: #{var.$loading-border};
+  --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
+  --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
+  --#{$_v}button-disabled-opacity: #{var.$disabled-opacity};
+}
+```
 
 ### SCSS Variables
 
-<VarCard name="$prefix-block" value="null" description="String to prefix blocks with." />
-<VarCard name="$prefix-element" value="__" description="String to prefix elements with." />
-<VarCard name="$prefix-modifier" value="_" description="String to prefix modifiers with." />
-<VarCard name="$prefix-modifier-value" value="_" description="String to prefix modifier values with." />
-<VarCard name="$breakpoints" type="map" description="The breakpoints map the button_block_[value] modifier uses to build its styles.">
-  ```scss
-  // Inherited from: core.$breakpoints
-  $breakpoints: (
-    "xs": 480px,
-    "sm": 620px,
-    "md": 760px,
-    "lg": 990px,
-    "xl": 1380px
-  ) !default;
-  ```
-</VarCard>
+```scss
+$prefix-variable: core.$prefix-variable !default;
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
+
+$breakpoints: core.$breakpoints !default;
+
+$transition-property: background, color, border-color, box-shadow !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
+
+$size: core.$form-control-size !default;
+$padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
+$gap: 0.5rem !default;
+$border-width: 1px !default;
+$border-radius: core.$border-radius !default;
+$font-size: 1em !default;
+$font-weight: inherit !default;
+$line-height: core.$line-height !default;
+
+$background: transparent !default;
+$background-hover: transparent !default;
+$background-active: transparent !default;
+
+$foreground: theme.get("foreground") !default;
+$foreground-hover: null !default;
+$foreground-active: null !default;
+
+$border-color: theme.get("border-color-dark");
+$border-color-hover: theme.get("border-color-darker") !default;
+$border-color-active: null !default;
+
+$box-shadow: 0 0 0 0 rgba(black, 0) !default;
+$box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
+
+// disabled
+$disabled-opacity: 0.6 !default;
+
+// is-loading
+$loading-size: 1em !default;
+$loading-border: 2px solid !default;
+$loading-border-tpl: 1 1 0 0;
+$loading-animation-duration: 0.6s !default;
+$loading-animation-timing-function: linear !default;
+
+// button_icon
+$icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
+$icon-padding-sm: calc(#{list.nth(core.$padding-sm, 1)} - 1px);
+$icon-padding-lg: calc(#{list.nth(core.$padding-lg, 1)} - 1px);
+
+// button_size_sm
+$size-sm: core.$form-control-size-sm !default;
+$size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+$size-sm-font-size: core.$font-size-sm !default;
+$size-sm-line-height: core.$line-height-sm !default;
+
+// button_size_lg
+$size-lg: core.$form-control-size-lg !default;
+$size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
+$size-lg-font-size: core.$font-size-lg !default;
+$size-lg-line-height: core.$line-height-lg !default;
+```
+
+### SCSS Mixins
+
+```scss
+@mixin button-variant($foreground, $background)
+```
