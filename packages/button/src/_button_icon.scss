@@ -1,18 +1,19 @@
 @use "sass:list";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+$_mv: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}icon {
-  padding: var.$icon-padding;
+  --#{$_v}button-padding: #{var.$icon-padding};
 
-  &.#{$_b}button#{$_m}size#{$_v}sm {
-    padding: var.$icon-padding-sm;
+  &.#{$_b}button#{$_m}size#{$_mv}sm {
+    --#{$_v}button-padding: #{var.$icon-padding-sm};
   }
 
-  &.#{$_b}button#{$_m}size#{$_v}lg {
-    padding: var.$icon-padding-lg;
+  &.#{$_b}button#{$_m}size#{$_mv}lg {
+    --#{$_v}button-padding: #{var.$icon-padding-lg};
   }
 }

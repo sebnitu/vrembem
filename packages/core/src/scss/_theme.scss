@@ -108,7 +108,7 @@ $themes: (
     // Get the fallback value.
     $fallback: map.get($themes, $default, $args...);
 
-    // Return var() CSS function with the a fallback value.
+    // Return var() CSS function with a fallback value if provided.
     @if $fallback {
       @return var(--#{$_v}#{$prop}, $fallback);
     } @else {

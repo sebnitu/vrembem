@@ -66,7 +66,7 @@
 /// @param {List} $list - The list to have an item removed from.
 /// @param {Number} $n - The position (index) in the list to have removed.
 /// @return {List} - A new list with the item removed.
-@function remove-nth($list, $n){
+@function remove-nth($list, $n) {
   $result: ();
   $n: if($n < 0, list.length($list) + $n + 1, $n);
   $bracketed: list.is-bracketed($list);

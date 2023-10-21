@@ -1,22 +1,21 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+$_mv: var.$prefix-modifier-value;
 
-.#{$_b}button#{$_m}size#{$_v}sm {
-  min-width: var.$size-sm;
-  height: var.$size-sm;
-  padding: var.$size-sm-padding;
-  font-size: var.$size-sm-font-size;
-  line-height: var.$size-sm-line-height;
+.#{$_b}button#{$_m}size#{$_mv}sm {
+  --#{$_v}button-size: #{var.$size-sm};
+  --#{$_v}button-padding: #{var.$size-sm-padding};
+  --#{$_v}button-font-size: #{var.$size-sm-font-size};
+  --#{$_v}button-line-height: #{var.$size-sm-line-height};
 }
 
-.#{$_b}button#{$_m}size#{$_v}lg {
-  min-width: var.$size-lg;
-  height: var.$size-lg;
-  padding: var.$size-lg-padding;
-  font-size: var.$size-lg-font-size;
-  line-height: var.$size-lg-line-height;
+.#{$_b}button#{$_m}size#{$_mv}lg {
+  --#{$_v}button-size: #{var.$size-lg};
+  --#{$_v}button-padding: #{var.$size-lg-padding};
+  --#{$_v}button-font-size: #{var.$size-lg-font-size};
+  --#{$_v}button-line-height: #{var.$size-lg-line-height};
 }

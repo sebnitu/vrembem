@@ -7,17 +7,17 @@ $_m: var.$prefix-modifier;
 $_v: var.$prefix-modifier-value;
 
 .#{$_b}button#{$_m}color#{$_v}primary {
-  @include mix.button-variant(white, palette.get("primary", "seed"));
+  @include mix.button-variant(white, "primary");
 }
 
 .#{$_b}button#{$_m}color#{$_v}secondary {
-  @include mix.button-variant(white, palette.get("secondary", "seed"));
+  @include mix.button-variant(white, "secondary");
 }
 
 .#{$_b}button#{$_m}color#{$_v}neutral {
-  @include mix.button-variant(white, palette.get("neutral", "seed"));
+  @include mix.button-variant(white, "neutral");
 }
 
 .#{$_b}button#{$_m}color#{$_v}important {
-  @include mix.button-variant(white, palette.get("important", "seed"));
+  @include mix.button-variant(white, "important");
 }

@@ -1,64 +1,60 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$prefix-block}button {
-  @include core.gap(var.$gap, "x");
+$_v: var.$prefix-variable;
+$_b: var.$prefix-block;
+
+.#{$_b}button {
   position: relative;
   display: inline-flex;
+  gap: var(--#{$_v}button-gap);
   align-items: center;
   justify-content: center;
-  min-width: var.$size;
-  height: var.$size;
-  padding: var.$padding;
-  transition-property: var.$transition-property;
-  transition-duration: var.$transition-duration;
-  transition-timing-function: var.$transition-timing-function;
-  outline: var.$outline;
-  outline-offset: var.$outline-offset;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
+  min-width: var(--#{$_v}button-size);
+  height: var(--#{$_v}button-size);
+  padding: var(--#{$_v}button-padding);
+  transition-property: var(--#{$_v}button-transition-property);
+  transition-duration: var(--#{$_v}button-transition-duration);
+  transition-timing-function: var(--#{$_v}button-transition-timing-function);
+  outline: none;
+  border: var(--#{$_v}button-border-width) solid var(--#{$_v}button-border-color);
+  border-radius: var(--#{$_v}button-border-radius);
+  background: var(--#{$_v}button-background);
   background-clip: border-box;
-  box-shadow: var.$box-shadow;
-  color: var.$color;
+  box-shadow: var(--#{$_v}button-box-shadow);
+  color: var(--#{$_v}button-foreground);
   font-family: inherit;
-  font-size: var.$font-size;
-  font-weight: var.$font-weight;
-  line-height: var.$line-height;
+  font-size: var(--#{$_v}button-font-size);
+  font-weight: var(--#{$_v}button-font-weight);
+  line-height: var(--#{$_v}button-font-height);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
 
   &:disabled:not(.is-loading) {
-    opacity: var.$disabled-opacity;
+    opacity: var(--#{$_v}button-disabled-opacity);
     pointer-events: none;
   }
 
   &:hover {
-    outline: var.$outline-hover;
-    outline-offset: var.$outline-offset-hover;
-    border-color: var.$border-color-hover;
-    background-color: var.$background-hover;
-    box-shadow: var.$box-shadow-hover;
-    color: var.$color-hover;
+    border-color: var(--#{$_v}button-border-color-hover);
+    background-color: var(--#{$_v}button-background-hover);
+    box-shadow: var(--#{$_v}button-box-shadow-hover);
+    color: var(--#{$_v}button-foreground-hover);
   }
 
-  &:focus {
-    outline: var.$outline-focus;
-    outline-offset: var.$outline-offset-focus;
-    border-color: var.$border-color-focus;
-    background-color: var.$background-focus;
-    box-shadow: var.$box-shadow-focus;
-    color: var.$color-focus;
+  &:focus-visible {
+    border-color: var(--#{$_v}button-border-color-hover);
+    background-color: var(--#{$_v}button-background-hover);
+    box-shadow: var(--#{$_v}button-box-shadow-focus);
+    color: var(--#{$_v}button-foreground-hover);
   }
 
   &:active {
-    outline: var.$outline-active;
-    outline-offset: var.$outline-offset-active;
-    border-color: var.$border-color-active;
-    background-color: var.$background-active;
-    box-shadow: var.$box-shadow-active;
-    color: var.$color-active;
+    border-color: var(--#{$_v}button-border-color-active);
+    background-color: var(--#{$_v}button-background-active);
+    box-shadow: var(--#{$_v}button-box-shadow-active);
+    color: var(--#{$_v}button-foreground-active);
   }
 
   &.is-loading {
@@ -66,15 +62,15 @@
     pointer-events: none;
 
     &::after {
-      @include core.size(var.$loading-size);
+      @include core.size(var(--#{$_v}button-loading-size));
       content: "";
       position: absolute;
-      top: calc(50% - (#{var.$loading-size} * 0.5));
-      left: calc(50% - (#{var.$loading-size} * 0.5));
-      animation: spin var.$loading-animation-duration infinite linear;
-      border: var.$loading-border;
+      top: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
+      left: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
+      animation: spin var(--#{$_v}button-loading-animation-duration) infinite var(--#{$_v}button-loading-animation-timing-function);
+      border: var(--#{$_v}button-loading-border);
       border-radius: core.$border-radius-circle;
-      border-color: core.set-border-color(var.$loading-border-tpl, var.$loading-border-color);
+      border-color: core.set-border-color(var.$loading-border-tpl, var(--#{$_v}button-foreground));
     }
   }
 }

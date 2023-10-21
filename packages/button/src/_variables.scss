@@ -2,62 +2,51 @@
 @use "@vrembem/core";
 @use "@vrembem/core/theme";
 
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $breakpoints: core.$breakpoints !default;
+
+$transition-property: background, color, border-color, box-shadow !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
+
 $size: core.$form-control-size !default;
 $padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
 $gap: 0.5rem !default;
-$transition-property: box-shadow, outline, outline-offset !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$border-width: 1px !default;
 $border-radius: core.$border-radius !default;
 $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
-$border: 1px solid theme.get("border-color-dark") !default;
-$border-color-hover: theme.get("border-color-darker") !default;
-$border-color-focus: theme.get("border-color-darker") !default;
-$border-color-active: null !default;
-
 $background: transparent !default;
 $background-hover: transparent !default;
-$background-focus: transparent !default;
-$background-active: rgba(black, 0.05) !default;
+$background-active: transparent !default;
+
+$foreground: theme.get("foreground") !default;
+$foreground-hover: null !default;
+$foreground-active: null !default;
+
+$border-color: theme.get("border-color-dark");
+$border-color-hover: theme.get("border-color-darker") !default;
+$border-color-active: null !default;
 
 $box-shadow: 0 0 0 0 rgba(black, 0) !default;
-$box-shadow-hover: null !default;
 $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
-$box-shadow-active: null !default;
-
-$color: theme.get("foreground") !default;
-$color-hover: null !default;
-$color-focus: null !default;
-$color-active: null !default;
-
-$outline: none !default;
-$outline-hover: null !default;
-$outline-focus: null !default;
-$outline-active: null !default;
-
-$outline-offset: null !default;
-$outline-offset-hover: null !default;
-$outline-offset-focus: null !default;
-$outline-offset-active: null !default;
 
 // disabled
 $disabled-opacity: 0.6 !default;
 
 // is-loading
 $loading-size: 1em !default;
-$loading-animation-duration: 0.6s !default;
-$loading-border-color: $color !default;
 $loading-border: 2px solid !default;
 $loading-border-tpl: 1 1 0 0;
+$loading-animation-duration: 0.6s !default;
+$loading-animation-timing-function: linear !default;
 
 // button_icon
 $icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
