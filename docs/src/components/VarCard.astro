@@ -1,13 +1,16 @@
 ---
-const { name, value, type = "string", description } = Astro.props;
+const { name, description, value, valueType, computed, computedType } =
+  Astro.props;
 ---
 
 <div class="card">
   <div class="card__body gap-y-xs">
     <p class="card__title"><code>{name}</code></p>
     {description && <p>{description}</p>}
-    {type && <p>Type: {type}</p>}
-    {value && <p>Default: {value}</p>}
+    {value && <p>Value: {value}</p>}
+    {valueType && <p>Type: {valueType}</p>}
+    {computed && <p>Computed: {computed}</p>}
+    {computedType && <p>Type: {computedType}</p>}
     {
       Astro.slots.has("default") && (
         <>

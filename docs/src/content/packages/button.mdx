@@ -178,6 +178,15 @@ Buttons are primarily customized using CSS variables along with some Sass variab
 
 All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
 
+<VarCard 
+  name="--vb-button-size"
+  description="Used to set the min-width and height properties of buttons."
+  value="$button-size"
+  valueType="Sass Variable"
+  computed="2.5rem"
+  computedType="Number"
+/>
+
 ```scss
 :root {
   --vb-button-size: #{var.$size};
