@@ -1,0 +1,32 @@
+---
+const { key, value } = Astro.props;
+---
+
+<div class="data">
+  <span class="data__key">{key}</span>
+  <span class="data__value"><code>{value}</code></span>
+</div>
+
+<style lang="scss">
+  @use "@vrembem/core";
+
+  .data {
+    flex-grow: 1;
+  }
+
+  .data__key,
+  .data__value {
+    display: block;
+  }
+
+  .data__key {
+    font-size: core.$font-size-sm;
+    line-height: core.$line-height-sm;
+    color: core.theme-get("foreground-lighter");
+  }
+
+  .data__value {
+    font-size: 1rem;
+    color: core.theme-get("foreground");
+  }
+</style>

@@ -1,16 +1,26 @@
 ---
+import Data from "./Data.astro";
+
 const { name, description, value, valueType, computed, computedType } =
   Astro.props;
 ---
 
-<div class="card">
-  <div class="card__body gap-y-xs">
-    <p class="card__title"><code>{name}</code></p>
+<div id={name} class="border-bottom padding-y-sm gap-y-xs font-size-base">
+  <p class="level level_gap_lg">
+    <button class="button button_size_sm button_icon" data-button>
+      <span class="arrow"></span>
+    </button>
+    <code class="flex-grow-1 foreground-primary">{name}</code>
+    <code>{computed}</code>
+  </p>
+  <div data-panel class="display-none">
     {description && <p>{description}</p>}
-    {value && <p>Value: {value}</p>}
-    {valueType && <p>Type: {valueType}</p>}
-    {computed && <p>Computed: {computed}</p>}
-    {computedType && <p>Type: {computedType}</p>}
+    <div class="level level_gap-x_xl margin-top-sm">
+      {value && <Data key="Value" value={value} />}
+      {valueType && <Data key="Type" value={valueType} />}
+      {computed && <Data key="Computed" value={computed} />}
+      {computedType && <Data key="Type" value={computedType} />}
+    </div>
     {
       Astro.slots.has("default") && (
         <>
@@ -23,3 +33,19 @@ const { name, description, value, valueType, computed, computedType } =
     }
   </div>
 </div>
+
+<script>
+  // Find our component DOM on the page.
+  const buttons = document.querySelectorAll("[data-button]");
+
+  // Add event listeners to fire confetti when a button is clicked.
+  console.log("Setup...");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.target
+        .closest(".border-bottom")
+        .querySelector("[data-panel]")
+        .classList.toggle("display-none");
+    });
+  });
+</script>
