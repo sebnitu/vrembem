@@ -18,7 +18,7 @@ $_c: var.$class-font;
   }
 
   .#{$_u}#{$_c}-size-base {
-    font-size: core.$font-size !important;
+    font-size: 1rem !important;
   }
 
   .#{$_u}#{$_c}-size-sm {
