@@ -1,0 +1,56 @@
+---
+import Data from "./Data.astro";
+
+const { name, description, value, valueType, computed, computedType } =
+  Astro.props;
+---
+
+<div id={name} class="border-bottom padding-y-sm gap-y-xs font-size-base">
+  <div class="media">
+    <div class="media__obj">
+      <button class="button button_size_sm button_icon" data-toggle-trigger>
+        <span class="arrow"></span>
+      </button>
+    </div>
+    <div class="media__body">
+      <p class="level level_gap-x_lg">
+        <code class="flex-grow-1 foreground-primary">{name}</code>
+        <code>{computed}</code>
+      </p>
+      <div
+        data-toggle-target
+        class="display-none border-top border-color-light margin-top-sm padding-top-sm"
+      >
+        {description && <p>{description}</p>}
+        <div class="level level_gap-x_xl margin-top-sm">
+          {value && <Data key="Value" value={value} />}
+          {valueType && <Data key="Type" value={valueType} />}
+          {computed && <Data key="Computed" value={computed} />}
+          {computedType && <Data key="Type" value={computedType} />}
+        </div>
+        {
+          Astro.slots.has("default") && (
+            <>
+              <p>Default:</p>
+              <div class="margin-top-md">
+                <slot />
+              </div>
+            </>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll("[data-toggle-trigger]");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.target
+        .closest(".media")
+        .querySelector("[data-toggle-target]")
+        .classList.toggle("display-none");
+    });
+  });
+</script>
