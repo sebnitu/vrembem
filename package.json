@@ -48,7 +48,7 @@
     "sass": "^1.69.5",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-order": "^6.0.3"
+    "stylelint-order": "^6.0.4"
   },
   "overrides": {
     "nwsapi": "2.2.2"
