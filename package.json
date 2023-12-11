@@ -40,7 +40,7 @@
     "stylelint-config-standard-scss": "^11.1.0",
     "stylelint-order": "^6.0.3",
     "vite": "^5.0.7",
-    "vitest": "^1.0.1"
+    "vitest": "^1.0.4"
   },
   "overrides": {
     "nwsapi": "2.2.2"
