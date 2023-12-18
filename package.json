@@ -30,7 +30,7 @@
     "@vitest/coverage-v8": "^1.0.4",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "jsdom": "^23.0.1",
     "lerna": "^8.0.0",
     "lerna-changelog": "^2.2.0",
