@@ -5,7 +5,8 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     coverage: {
-      reporter: ['text', 'html', 'json', 'lcov']
+      reporter: ['text', 'html', 'json', 'lcov'],
+      include: ['**/packages/**/src/**'],
     },
   }
 });
