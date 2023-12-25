@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^2.0.1",
+    "@astrojs/mdx": "^2.0.2",
     "@astrojs/vue": "^4.0.4",
     "@types/node": "^20.10.5",
     "astro": "^4.0.6",
