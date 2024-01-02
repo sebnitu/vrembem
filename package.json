@@ -25,7 +25,7 @@
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/user-event": "^14.5.2",
     "@vitest/coverage-v8": "^1.1.1",
     "concurrently": "^8.2.2",
