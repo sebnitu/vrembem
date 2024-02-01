@@ -14,9 +14,16 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.17 to CHANGELOG.md
+chore(release): add v3.0.18 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.18 (2024-02-01)
+
+### :hammer: Chore
+* Dependency bumps
+* [#1692](https://github.com/sebnitu/vrembem/pull/1692) Bump to current year 2024
 
 
 ## v3.0.17 (2023-10-02)
