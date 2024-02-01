@@ -1094,13 +1094,13 @@ chore(release): add v4.0.0-next.6 to CHANGELOG.md
 
 ### :fire: Breaking Changes
 * `dismissible`, `span`, `utility`, `vrembem`
-  * [#200](https://github.com/sebnitu/vrembem/pull/200) Convert span to a utlity and remove span package 
+  * [#200](https://github.com/sebnitu/vrembem/pull/200) Convert span to a utility and remove span package 
 * `base`, `dismissible`, `dropdown`, `menu`, `notice`, `span`, `utility`, `vrembem`
   * [#199](https://github.com/sebnitu/vrembem/pull/199) Remove utility naming convention from utility classes 
 
 ### :house: Refactor
 * `dismissible`, `span`, `utility`, `vrembem`
-  * [#200](https://github.com/sebnitu/vrembem/pull/200) Convert span to a utlity and remove span package 
+  * [#200](https://github.com/sebnitu/vrembem/pull/200) Convert span to a utility and remove span package 
 * `base`, `dismissible`, `dropdown`, `menu`, `notice`, `span`, `utility`, `vrembem`
   * [#199](https://github.com/sebnitu/vrembem/pull/199) Remove utility naming convention from utility classes 
 
