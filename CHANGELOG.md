@@ -25,9 +25,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.5 to CHANGELOG.md
+chore(release): add v4.0.0-next.6 to CHANGELOG.md
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.6 (2024-02-01)
+
+### :tada: New Feature
+* `button`, `core`
+  * [#1538](https://github.com/sebnitu/vrembem/pull/1538) Add CSS variable support to button component
+
+### :hammer: Chore
+* [#1693](https://github.com/sebnitu/vrembem/pull/1693) Bump to current year 2024
 
 
 ## v4.0.0-next.5 (2023-10-03)
