@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/card",
   "description": "The cards component provides a flexible and extensive content container with multiple variants and options.",
-  "version": "4.0.0-next.5",
+  "version": "4.0.0-next.6",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/card#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.5"
+    "@vrembem/core": "^4.0.0-next.6"
   },
   "publishConfig": {
     "access": "public"
