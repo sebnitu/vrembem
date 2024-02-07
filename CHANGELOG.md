@@ -13,10 +13,21 @@ __Tags:__
 - :house: `refactor:` Refactor
 
 <!--
-Commit template:
+Publish flow for `main` branch
+- Merge branch that contains appropriate PR label
+- Run `npm run sink`
+- Run `npx lerna-changelog`
+- Copy/paste output from changelog into this file
+- Commit changes using the commit message template
+- Run `npx lerna publish` (use `--force-publish` to force a bump on all packages)
+
+Commit message template:
 chore(release): add v3.0.19 to CHANGELOG.md
+
+Docs:
+https://lerna.js.org/docs/features/version-and-publish
 -->
-<!-- ADD-NEW-CHANGELOG-HERE -->
+<!-- v3.0.0 -->
 
 
 ## v3.0.19 (2024-02-07)
@@ -208,6 +219,9 @@ chore(release): add v3.0.19 to CHANGELOG.md
       * `drawer:toDefault` and `drawer:toModal` events have been deprecated in favor of `drawer:switchMode` which is emitted whenever a drawer's mode changes. To check the mode state, use `event.target` and check for the `drawer_modal` class, or get the collection entry and check `entry.mode` property for current state.
 
 
+<!-- v2.0.0 -->
+
+
 ## v2.0.0 (2022-03-17)
 
 ### :tada: New Feature
@@ -230,6 +244,10 @@ chore(release): add v3.0.19 to CHANGELOG.md
       * `dataDialog` => `selectorDialog`: Takes a valid CSS selector string.
       * `dataRequired` => `selectorRequired`: Takes a valid CSS selector string.
       * `dataFocus` => `selectorFocus`: Takes a valid CSS selector string (defaults to`[data-focus]`).
+
+
+<!-- v1.0.0 -->
+
 
 ## v1.42.1 (2022-03-09)
 
