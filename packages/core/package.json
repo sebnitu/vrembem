@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/core",
   "description": "The core variables, functions and mixins for Vrembem components.",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "license": "MIT",
   "keywords": [
     "BEM",

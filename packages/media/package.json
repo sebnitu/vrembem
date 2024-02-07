@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/media",
   "description": "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/media#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.18"
+    "@vrembem/core": "^3.0.19"
   },
   "publishConfig": {
     "access": "public"
