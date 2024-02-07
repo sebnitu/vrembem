@@ -21,11 +21,14 @@ Publish flow for `next` branch
 - Run `npx lerna-changelog`
 - Copy/paste output from changelog into this file
 - Commit changes using the commit message template
-- Run `npx lerna version`
+- Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
 chore(release): add v4.0.0-next.6 to CHANGELOG.md
+
+Docs:
+https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
 
