@@ -14,9 +14,15 @@ __Tags:__
 
 <!--
 Commit template:
-chore(release): add v3.0.18 to CHANGELOG.md
+chore(release): add v3.0.19 to CHANGELOG.md
 -->
 <!-- ADD-NEW-CHANGELOG-HERE -->
+
+
+## v3.0.19 (2024-02-07)
+
+### :hammer: Chore
+* Deploy dev and dist assets
 
 
 ## v3.0.18 (2024-02-01)
