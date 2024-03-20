@@ -5,7 +5,7 @@ const { id, name, description, value, computed, open = "false" } =
   Astro.props;
 ---
 
-<div id={id} class="border-bottom padding-y-sm gap-y-xs font-size-base">
+<div id={id} class="data-card border-bottom padding-y-sm gap-y-xs font-size-base">
   <div class="media">
     <div class="media__obj">
       <button
@@ -25,23 +25,25 @@ const { id, name, description, value, computed, open = "false" } =
       <div
         id={"toggle-" + id}
         data-toggle-open={open === "true" ? "" : undefined}
-        class="border-top border-color-light margin-top-sm padding-top-sm"
+        class="data-card__details"
       >
-        {description && <p class="margin-bottom-md">{description}</p>}
-        <div class="level level_gap-x_xl flex-items-equal">
-          {value && <Data key="Value" value={value} />}
-          {computed && <Data key="Computed" value={computed} />}
+        <div class="border-top border-color-light margin-top-sm padding-top-sm">
+          {description && <p class="margin-bottom-md">{description}</p>}
+          <div class="level level_gap-x_xl flex-items-equal">
+            {value && <Data key="Value" value={value} />}
+            {computed && <Data key="Computed" value={computed} />}
+          </div>
+          {
+            Astro.slots.has("default") && (
+              <>
+                <p>Default:</p>
+                <div class="margin-top-md">
+                  <slot />
+                </div>
+              </>
+            )
+          }
         </div>
-        {
-          Astro.slots.has("default") && (
-            <>
-              <p>Default:</p>
-              <div class="margin-top-md">
-                <slot />
-              </div>
-            </>
-          )
-        }
       </div>
     </div>
   </div>
@@ -73,8 +75,30 @@ const { id, name, description, value, computed, open = "false" } =
   });
 </script>
 
-<style is:global>
-  [aria-hidden="true"] {
-    display: none;
+<style lang="scss">
+  @use "@vrembem/core";
+
+  .data-card__details {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    opacity: 1;
+    transition-property: height, opacity;
+    transition-duration: core.$transition-duration;
+    transition-timing-function: core.$transition-timing-function;
+  }
+
+  .data-card__details[aria-hidden="true"] {
+    height: 0;
+    opacity: 0;
+  }
+
+  [data-toggle] .arrow {
+    transform: rotate(-90deg);
+    transition: transform core.$transition-duration core.$transition-timing-function;
+  }
+
+  [data-toggle][aria-expanded="true"] .arrow {
+    transform: rotate(0);
   }
 </style>
