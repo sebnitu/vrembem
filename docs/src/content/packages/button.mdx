@@ -252,6 +252,26 @@ All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be chang
 
 ### SCSS Variables
 
+<div class="border-top">
+
+  <DataCard 
+    id="scss-var-prefix-variable"
+    name="$prefix-variable"
+    description="Used as the prefix of CSS variables."
+    value="core.$prefix-variable"
+    computed="vb-"
+  />
+
+  <DataCard 
+    id="scss-var-prefix-block"
+    name="$prefix-block"
+    description="Used as the prefix of block names."
+    value="core.$prefix-block"
+    computed="null"
+  />
+
+</div>
+
 ```scss
 $prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
