@@ -1,14 +1,19 @@
 ---
 import Data from "./Data.astro";
 
-const { name, description, value, valueType, computed, computedType } =
+const { id, name, description, value, computed, open = "false" } =
   Astro.props;
 ---
 
-<div id={name} class="border-bottom padding-y-sm gap-y-xs font-size-base">
+<div id={id} class="border-bottom padding-y-sm gap-y-xs font-size-base">
   <div class="media">
     <div class="media__obj">
-      <button class="button button_size_sm button_icon" data-toggle-trigger>
+      <button
+        type="button"
+        class="button button_size_sm button_icon" 
+        data-toggle={"toggle-" + id}
+        aria-label={`Toggle ${name} details`}
+      >
         <span class="arrow"></span>
       </button>
     </div>
@@ -18,15 +23,14 @@ const { name, description, value, valueType, computed, computedType } =
         <code>{computed}</code>
       </p>
       <div
-        data-toggle-target
-        class="display-none border-top border-color-light margin-top-sm padding-top-sm"
+        id={"toggle-" + id}
+        data-toggle-open={open === "true" ? "" : undefined}
+        class="border-top border-color-light margin-top-sm padding-top-sm"
       >
-        {description && <p>{description}</p>}
-        <div class="level level_gap-x_xl margin-top-sm">
+        {description && <p class="margin-bottom-md">{description}</p>}
+        <div class="level level_gap-x_xl flex-items-equal">
           {value && <Data key="Value" value={value} />}
-          {valueType && <Data key="Type" value={valueType} />}
           {computed && <Data key="Computed" value={computed} />}
-          {computedType && <Data key="Type" value={computedType} />}
         </div>
         {
           Astro.slots.has("default") && (
@@ -44,13 +48,33 @@ const { name, description, value, valueType, computed, computedType } =
 </div>
 
 <script>
-  const buttons = document.querySelectorAll("[data-toggle-trigger]");
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.target
-        .closest(".media")
-        .querySelector("[data-toggle-target]")
-        .classList.toggle("display-none");
+  const toggles = document.querySelectorAll("[data-toggle]");
+  toggles.forEach((trigger) => {
+    // Get the trigger and target elements
+    const targetId = trigger.getAttribute("data-toggle");
+    const target = document.getElementById(targetId);
+
+    // Get the current state
+    let state = target.hasAttribute("data-toggle-open");
+      
+    // Set the a11y attributes
+    trigger.setAttribute("id", targetId + "-trigger"); // Check if ID exists first...
+    trigger.setAttribute("aria-controls", targetId);
+    trigger.setAttribute("aria-expanded", state.toString());
+    target.setAttribute("aria-hidden", (!state).toString());
+    target.setAttribute("aria-labelledby", targetId + "-trigger"); // Use the current set ID
+
+    // Set the event listener
+    trigger.addEventListener("click", () => {
+      state = !state;
+      trigger.setAttribute("aria-expanded", state.toString());
+      target.setAttribute("aria-hidden", (!state).toString());
     });
   });
 </script>
+
+<style is:global>
+  [aria-hidden="true"] {
+    display: none;
+  }
+</style>
