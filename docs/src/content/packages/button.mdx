@@ -181,52 +181,65 @@ All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be chang
 <div class="border-top">
 
   <DataCard 
-    id="css-var-button-size"
-    name="--vb-button-size"
+    lang = "css"
+    name="button-size"
     value="button.$size"
     computed="2.5rem"
   />
 
   <DataCard 
-    id="css-var-button-padding"
-    name="--vb-button-padding"
+    lang = "css"
+    name="button-padding"
     value="button.$padding"
     computed="calc(0.5em - 1px) 1em"
   />
 
   <DataCard 
-    id="css-var-button-gap"
-    name="--vb-button-gap"
+    lang = "css"
+    name="button-gap"
     value="button.$gap"
     computed="0.5rem"
   />
 
   <DataCard
-    id="css-var-border-width"
-    name="--vb-button-border-width"
+    lang = "css"
+    name="button-border-width"
     value="button.$border-width"
     computed="1px"
   />
 
   <DataCard
-    id="css-var-border-radius"
-    name="--vb-button-border-radius"
+    lang = "css"
+    name="button-border-radius"
     value="button.$border-radius"
     computed="0.25rem"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-font-size"
+    value="button.$font-size"
+    computed="1em"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-font-weight"
+    value="button.$font-weight"
+    computed="inherit"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-line-height"
+    value="button.$line-height"
+    computed="1.625"
   />
 
 </div>
 
 ```scss
 :root {
-  --vb-button-size: #{var.$size};
-  --vb-button-padding: #{var.$padding};
-  --vb-button-gap: #{var.$gap};
-  --vb-button-border-width: #{var.$border-width};
-  --vb-button-border-radius: #{var.$border-radius};
-  --vb-button-font-size: #{var.$font-size};
-  --vb-button-font-weight: #{var.$font-weight};
-  --vb-button-line-height: #{var.$line-height};
   --vb-button-transition-property: #{var.$transition-property};
   --vb-button-transition-duration: #{var.$transition-duration};
   --vb-button-transition-timing-function: #{var.$transition-timing-function};
@@ -254,30 +267,53 @@ All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be chang
 <div class="border-top">
 
   <DataCard 
-    id="scss-var-prefix-variable"
-    name="$prefix-variable"
+    name="prefix-variable"
     value="core.$prefix-variable"
-    computed="vb-"
+    computed='"vb-"'
   />
 
   <DataCard 
-    id="scss-var-prefix-block"
-    name="$prefix-block"
+    name="prefix-block"
     value="core.$prefix-block"
     computed="null"
   />
 
+  <DataCard 
+    name="prefix-element"
+    value="core.$prefix-element"
+    computed='"__"'
+  />
+
+  <DataCard 
+    name="prefix-modifier"
+    value="core.$prefix-modifier"
+    computed='"_"'
+  />
+
+  <DataCard 
+    name="prefix-modifier-value"
+    value="core.$prefix-modifier-value"
+    computed='"_"'
+  />
+
+  <DataCard 
+    name="breakpoints"
+    value="core.$breakpoints"
+  >
+    ```scss
+    $breakpoints: (
+      "xs": 480px,
+      "sm": 620px,
+      "md": 760px,
+      "lg": 990px,
+      "xl": 1380px
+    ) !default;
+    ```
+  </DataCard>
+
 </div>
 
 ```scss
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$breakpoints: core.$breakpoints !default;
-
 $transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
