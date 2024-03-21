@@ -7,7 +7,7 @@ const { key, value } = Astro.props;
   <span class="data__value"><code>{value}</code></span>
 </div>
 
-<style lang="scss">
+<style lang="scss" is:global>
   @use "@vrembem/core";
 
   .data__key,

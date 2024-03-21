@@ -1,8 +1,12 @@
 ---
 import Data from "./Data.astro";
 
-const { id, name, description, value, computed, open = "false" } =
+const { lang = "scss", name, description, value, computed, open = "false" } =
   Astro.props;
+
+const id = ((lang === "css") ? "css-var-" : "scss-var-") + name;
+const title = ((lang === "css") ? "--vb-" : "$") + name;
+
 ---
 
 <div id={id} class="data-card border-bottom padding-y-sm gap-y-xs font-size-base">
@@ -19,7 +23,7 @@ const { id, name, description, value, computed, open = "false" } =
     </div>
     <div class="media__body">
       <p class="level level_gap-x_lg">
-        <code class="flex-grow-1 foreground-primary">{name}</code>
+        <code class="flex-grow-1 foreground-primary">{title}</code>
         <code>{computed}</code>
       </p>
       <div
@@ -35,12 +39,12 @@ const { id, name, description, value, computed, open = "false" } =
           </div>
           {
             Astro.slots.has("default") && (
-              <>
-                <p>Default:</p>
-                <div class="margin-top-md">
+              <div class="data margin-y-sm">
+                <span class="data__key margin-bottom-sm">Default</span>
+                <div class="data__value">
                   <slot />
                 </div>
-              </>
+              </div>
             )
           }
         </div>
@@ -79,10 +83,9 @@ const { id, name, description, value, computed, open = "false" } =
   @use "@vrembem/core";
 
   .data-card__details {
-    position: relative;
     overflow: hidden;
-    height: 100%;
-    opacity: 1;
+    height: 0;
+    opacity: 0;
     transition-property: height, opacity;
     transition-duration: core.$transition-duration;
     transition-timing-function: core.$transition-timing-function;
@@ -91,6 +94,11 @@ const { id, name, description, value, computed, open = "false" } =
   .data-card__details[aria-hidden="true"] {
     height: 0;
     opacity: 0;
+  }
+
+  .data-card__details[aria-hidden="false"] {
+    height: 100%;
+    opacity: 1;
   }
 
   [data-toggle] .arrow {
