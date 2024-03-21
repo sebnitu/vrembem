@@ -33,7 +33,7 @@ const title = ((lang === "css") ? "--vb-" : "$") + name;
       >
         <div class="border-top border-color-light margin-top-sm padding-top-sm">
           {description && <p class="margin-bottom-md">{description}</p>}
-          <div class="level level_gap-x_xl flex-items-equal">
+          <div class="level level_gap-x_xl flex-items-equal flex-align-start">
             {value && <Data key="Value" value={value} />}
             {computed && <Data key="Computed" value={computed} />}
           </div>

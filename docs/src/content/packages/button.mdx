@@ -236,31 +236,140 @@ All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be chang
     computed="1.625"
   />
 
-</div>
+  <DataCard
+    lang = "css"
+    name="button-transition-property"
+    value="button.$transition-property"
+    computed="background, color, border-color, box-shadow"
+  />
 
-```scss
-:root {
-  --vb-button-transition-property: #{var.$transition-property};
-  --vb-button-transition-duration: #{var.$transition-duration};
-  --vb-button-transition-timing-function: #{var.$transition-timing-function};
-  --vb-button-background: #{var.$background};
-  --vb-button-background-hover: #{var.$background-hover};
-  --vb-button-background-active: #{var.$background-active};
-  --vb-button-foreground: #{var.$foreground};
-  --vb-button-foreground-hover: #{var.$foreground-hover};
-  --vb-button-foreground-active: #{var.$foreground-active};
-  --vb-button-border-color: #{var.$border-color};
-  --vb-button-border-color-hover: #{var.$border-color-hover};
-  --vb-button-border-color-active: #{var.$border-color-active};
-  --vb-button-box-shadow: #{var.$box-shadow};
-  --vb-button-box-shadow-focus: #{var.$box-shadow-focus};
-  --vb-button-loading-size: #{var.$loading-size};
-  --vb-button-loading-border: #{var.$loading-border};
-  --vb-button-loading-animation-duration: #{var.$loading-animation-duration};
-  --vb-button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
-  --vb-button-disabled-opacity: #{var.$disabled-opacity};
-}
-```
+  <DataCard
+    lang = "css"
+    name="button-transition-duration"
+    value="button.$transition-duration"
+    computed="0.15s"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-transition-timing-function"
+    value="button.$transition-timing-function"
+    computed="cubic-bezier(0.4, 0, 0.2, 1)"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-background"
+    value="button.$background"
+    computed="transparent"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-background-hover"
+    value="button.$background-hover"
+    computed="transparent"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-background-active"
+    value="button.$background-active"
+    computed="transparent"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-foreground"
+    value="button.$foreground"
+    computed='var(--vb-foreground)'
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-foreground-hover"
+    value="button.$foreground-hover"
+    computed="null"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-foreground-active"
+    value="button.$foreground-active"
+    computed="null"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-border-color"
+    value="button.$border-color"
+    computed="var(--vb-border-color-dark)"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-border-color-hover"
+    value="button.$border-color-hover"
+    computed="var(--vb-border-color-darker)"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-border-color-active"
+    value="button.$border-color-active"
+    computed="undefined"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-box-shadow"
+    value="button.$box-shadow"
+    computed="0 0 0 0 rgba(black, 0)"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-box-shadow-focus"
+    value="button.$box-shadow-focus"
+    computed="0 0 0 0.2rem rgba(black, 0.15)"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-loading-size"
+    value="button.$loading-size"
+    computed="1em"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-loading-border"
+    value="button.$loading-border"
+    computed="2px solid"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-loading-animation-duration"
+    value="button.$loading-animation-duration"
+    computed="0.6s"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-loading-animation-timing-function"
+    value="button.$loading-animation-timing-function"
+    computed="linear"
+  />
+
+  <DataCard
+    lang = "css"
+    name="button-disabled-opacity"
+    value="button.$disabled-opacity"
+    computed="0.6"
+  />
+
+</div>
 
 ### SCSS Variables
 
@@ -311,30 +420,111 @@ All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be chang
     ```
   </DataCard>
 
+  <DataCard 
+    name="transition-property"
+    value="background, color, border-color, box-shadow"
+    computed="background, color, border-color, box-shadow"
+  />
+
+  <DataCard 
+    name="transition-duration"
+    value="core.$transition-duration-short"
+    computed="0.15s"
+  />
+
+  <DataCard 
+    name="transition-timing-function"
+    value="core.$transition-timing-function"
+    computed="cubic-bezier(0.4, 0, 0.2, 1)"
+  />
+
+  <DataCard 
+    name="size"
+    value="core.$form-control-size"
+    computed="2.5rem"
+  />
+
+  <DataCard 
+    name="padding"
+    value="calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2)"
+    computed="calc(0.5em - 1px) 1em"
+  />
+
+  <DataCard 
+    name="gap"
+    value="0.5rem"
+    computed="0.5rem"
+  />
+
+  <DataCard 
+    name="border-width"
+    value="1px"
+    computed="1px"
+  />
+
+  <DataCard 
+    name="border-radius"
+    value="core.$border-radius"
+    computed="0.25rem"
+  />
+
+  <DataCard 
+    name="font-size"
+    value="1em"
+    computed="1em"
+  />
+
+  <DataCard 
+    name="font-weight"
+    value="inherit"
+    computed="inherit"
+  />
+
+  <DataCard 
+    name="line-height"
+    value="core.$line-height"
+    computed="1.625"
+  />
+
+  <DataCard 
+    name="background"
+    value="transparent"
+    computed="transparent"
+  />
+
+  <DataCard 
+    name="background-hover"
+    value="transparent"
+    computed="transparent"
+  />
+
+  <DataCard 
+    name="background-active"
+    value="transparent"
+    computed="transparent"
+  />
+
+  <DataCard 
+    name="foreground"
+    value='theme.get("foreground")'
+    computed="var(--vb-foreground)"
+  />
+
+  <DataCard 
+    name="foreground-hover"
+    value="null"
+    computed="null"
+  />
+
+  <DataCard 
+    name="foreground-active"
+    value="null"
+    computed="null"
+  />
+
 </div>
 
 ```scss
-$transition-property: background, color, border-color, box-shadow !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
-
-$size: core.$form-control-size !default;
-$padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
-$gap: 0.5rem !default;
-$border-width: 1px !default;
-$border-radius: core.$border-radius !default;
-$font-size: 1em !default;
-$font-weight: inherit !default;
-$line-height: core.$line-height !default;
-
-$background: transparent !default;
-$background-hover: transparent !default;
-$background-active: transparent !default;
-
-$foreground: theme.get("foreground") !default;
-$foreground-hover: null !default;
-$foreground-active: null !default;
-
 $border-color: theme.get("border-color-dark");
 $border-color-hover: theme.get("border-color-darker") !default;
 $border-color-active: null !default;
