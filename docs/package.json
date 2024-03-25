@@ -11,7 +11,7 @@
   "devDependencies": {
     "@astrojs/mdx": "^2.2.0",
     "@astrojs/vue": "^4.0.9",
-    "@types/node": "^20.11.29",
+    "@types/node": "^20.11.30",
     "astro": "^4.5.6",
     "feather-icons": "^4.29.1",
     "vrembem": "^4.0.0-next.6",
