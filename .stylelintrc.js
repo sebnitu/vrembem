@@ -16,7 +16,6 @@ module.exports = {
     'scss/at-function-pattern': null,
     'scss/at-if-closing-brace-newline-after': null,
     'scss/at-if-closing-brace-space-after': null,
-    'scss/at-import-no-partial-leading-underscore': true,
     'scss/at-mixin-argumentless-call-parentheses': null,
     'scss/at-rule-conditional-no-parentheses': null,
     'scss/dollar-variable-colon-space-after': null,
@@ -29,7 +28,9 @@ module.exports = {
     'color-function-notation': 'legacy',
     'color-hex-length': null,
     'custom-property-pattern': null,
-    'declaration-empty-line-before': 'never',
+    'declaration-empty-line-before': ['never', {
+      'ignore': 'after-comment'
+    }],
     'function-whitespace-after': null,
     'hue-degree-notation': null,
     'max-line-length': null,
