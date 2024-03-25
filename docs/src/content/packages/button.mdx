@@ -7,6 +7,7 @@ package: "@vrembem/button"
 import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
 import DataCard from '../../components/DataCard.astro';
+import FileReference from '../../components/FileReference.astro';
 
 # Button
 
@@ -172,396 +173,163 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 ## Customization
 
-Buttons are primarily customized using CSS variables but can also be modified using Sass variables.
-
-### CSS Variables
-
-All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
-
-<div class="border-top">
-
-  <DataCard 
-    lang = "css"
-    name="button-size"
-    value="button.$size"
-    computed="2.5rem"
-  />
-
-  <DataCard 
-    lang = "css"
-    name="button-padding"
-    value="button.$padding"
-    computed="calc(0.5em - 1px) 1em"
-  />
-
-  <DataCard 
-    lang = "css"
-    name="button-gap"
-    value="button.$gap"
-    computed="0.5rem"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-border-width"
-    value="button.$border-width"
-    computed="1px"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-border-radius"
-    value="button.$border-radius"
-    computed="0.25rem"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-font-size"
-    value="button.$font-size"
-    computed="1em"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-font-weight"
-    value="button.$font-weight"
-    computed="inherit"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-line-height"
-    value="button.$line-height"
-    computed="1.625"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-transition-property"
-    value="button.$transition-property"
-    computed="background, color, border-color, box-shadow"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-transition-duration"
-    value="button.$transition-duration"
-    computed="0.15s"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-transition-timing-function"
-    value="button.$transition-timing-function"
-    computed="cubic-bezier(0.4, 0, 0.2, 1)"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-background"
-    value="button.$background"
-    computed="transparent"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-background-hover"
-    value="button.$background-hover"
-    computed="transparent"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-background-active"
-    value="button.$background-active"
-    computed="transparent"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-foreground"
-    value="button.$foreground"
-    computed='var(--vb-foreground)'
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-foreground-hover"
-    value="button.$foreground-hover"
-    computed="null"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-foreground-active"
-    value="button.$foreground-active"
-    computed="null"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-border-color"
-    value="button.$border-color"
-    computed="var(--vb-border-color-dark)"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-border-color-hover"
-    value="button.$border-color-hover"
-    computed="var(--vb-border-color-darker)"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-border-color-active"
-    value="button.$border-color-active"
-    computed="undefined"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-box-shadow"
-    value="button.$box-shadow"
-    computed="0 0 0 0 rgba(black, 0)"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-box-shadow-focus"
-    value="button.$box-shadow-focus"
-    computed="0 0 0 0.2rem rgba(black, 0.15)"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-loading-size"
-    value="button.$loading-size"
-    computed="1em"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-loading-border"
-    value="button.$loading-border"
-    computed="2px solid"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-loading-animation-duration"
-    value="button.$loading-animation-duration"
-    computed="0.6s"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-loading-animation-timing-function"
-    value="button.$loading-animation-timing-function"
-    computed="linear"
-  />
-
-  <DataCard
-    lang = "css"
-    name="button-disabled-opacity"
-    value="button.$disabled-opacity"
-    computed="0.6"
-  />
-
-</div>
-
-### SCSS Variables
-
-<div class="border-top">
-
-  <DataCard 
-    name="prefix-variable"
-    value="core.$prefix-variable"
-    computed='"vb-"'
-  />
-
-  <DataCard 
-    name="prefix-block"
-    value="core.$prefix-block"
-    computed="null"
-  />
-
-  <DataCard 
-    name="prefix-element"
-    value="core.$prefix-element"
-    computed='"__"'
-  />
-
-  <DataCard 
-    name="prefix-modifier"
-    value="core.$prefix-modifier"
-    computed='"_"'
-  />
-
-  <DataCard 
-    name="prefix-modifier-value"
-    value="core.$prefix-modifier-value"
-    computed='"_"'
-  />
-
-  <DataCard 
-    name="breakpoints"
-    value="core.$breakpoints"
-  >
-    ```scss
-    $breakpoints: (
-      "xs": 480px,
-      "sm": 620px,
-      "md": 760px,
-      "lg": 990px,
-      "xl": 1380px
-    ) !default;
-    ```
-  </DataCard>
-
-  <DataCard 
-    name="transition-property"
-    value="background, color, border-color, box-shadow"
-    computed="background, color, border-color, box-shadow"
-  />
-
-  <DataCard 
-    name="transition-duration"
-    value="core.$transition-duration-short"
-    computed="0.15s"
-  />
-
-  <DataCard 
-    name="transition-timing-function"
-    value="core.$transition-timing-function"
-    computed="cubic-bezier(0.4, 0, 0.2, 1)"
-  />
-
-  <DataCard 
-    name="size"
-    value="core.$form-control-size"
-    computed="2.5rem"
-  />
-
-  <DataCard 
-    name="padding"
-    value="calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2)"
-    computed="calc(0.5em - 1px) 1em"
-  />
-
-  <DataCard 
-    name="gap"
-    value="0.5rem"
-    computed="0.5rem"
-  />
-
-  <DataCard 
-    name="border-width"
-    value="1px"
-    computed="1px"
-  />
-
-  <DataCard 
-    name="border-radius"
-    value="core.$border-radius"
-    computed="0.25rem"
-  />
-
-  <DataCard 
-    name="font-size"
-    value="1em"
-    computed="1em"
-  />
-
-  <DataCard 
-    name="font-weight"
-    value="inherit"
-    computed="inherit"
-  />
-
-  <DataCard 
-    name="line-height"
-    value="core.$line-height"
-    computed="1.625"
-  />
-
-  <DataCard 
-    name="background"
-    value="transparent"
-    computed="transparent"
-  />
-
-  <DataCard 
-    name="background-hover"
-    value="transparent"
-    computed="transparent"
-  />
-
-  <DataCard 
-    name="background-active"
-    value="transparent"
-    computed="transparent"
-  />
-
-  <DataCard 
-    name="foreground"
-    value='theme.get("foreground")'
-    computed="var(--vb-foreground)"
-  />
-
-  <DataCard 
-    name="foreground-hover"
-    value="null"
-    computed="null"
-  />
-
-  <DataCard 
-    name="foreground-active"
-    value="null"
-    computed="null"
-  />
-
-</div>
-
-```scss
-$border-color: theme.get("border-color-dark");
-$border-color-hover: theme.get("border-color-darker") !default;
-$border-color-active: null !default;
-
-$box-shadow: 0 0 0 0 rgba(black, 0) !default;
-$box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
-
-// disabled
-$disabled-opacity: 0.6 !default;
-
-// is-loading
-$loading-size: 1em !default;
-$loading-border: 2px solid !default;
-$loading-border-tpl: 1 1 0 0;
-$loading-animation-duration: 0.6s !default;
-$loading-animation-timing-function: linear !default;
-
-// button_icon
-$icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
-$icon-padding-sm: calc(#{list.nth(core.$padding-sm, 1)} - 1px);
-$icon-padding-lg: calc(#{list.nth(core.$padding-lg, 1)} - 1px);
-
-// button_size_sm
-$size-sm: core.$form-control-size-sm !default;
-$size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
-$size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.$line-height-sm !default;
-
-// button_size_lg
-$size-lg: core.$form-control-size-lg !default;
-$size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
-$size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.$line-height-lg !default;
-```
-
-### SCSS Mixins
-
-```scss
-@mixin button-variant($foreground, $background)
-```
+Buttons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
+
+<FileReference name="button/src/_button.scss">
+  ```scss
+  .button {
+    // Size properties
+    --#{$_v}button-size: #{var.$size};
+    --#{$_v}button-padding: #{var.$padding};
+    --#{$_v}button-gap: #{var.$gap};
+    --#{$_v}button-border-width: #{var.$border-width};
+    --#{$_v}button-border-radius: #{var.$border-radius};
+    --#{$_v}button-font-size: #{var.$font-size};
+    --#{$_v}button-font-weight: #{var.$font-weight};
+    --#{$_v}button-line-height: #{var.$line-height};
+
+    // Theme properties
+    --#{$_v}button-background: #{var.$background};
+    --#{$_v}button-background-hover: #{var.$background-hover};
+    --#{$_v}button-background-active: #{var.$background-active};
+    --#{$_v}button-foreground: #{var.$foreground};
+    --#{$_v}button-foreground-hover: #{var.$foreground-hover};
+    --#{$_v}button-foreground-active: #{var.$foreground-active};
+    --#{$_v}button-border-color: #{var.$border-color};
+    --#{$_v}button-border-color-hover: #{var.$border-color-hover};
+    --#{$_v}button-border-color-active: #{var.$border-color-active};
+    --#{$_v}button-box-shadow: #{var.$box-shadow};
+    --#{$_v}button-box-shadow-focus: #{var.$box-shadow-focus};
+
+    // Transition properties
+    --#{$_v}button-transition-property: #{var.$transition-property};
+    --#{$_v}button-transition-duration: #{var.$transition-duration};
+    --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
+    
+    // Disabled
+    --#{$_v}button-disabled-opacity: #{var.$disabled-opacity};
+    
+    // is-loading
+    --#{$_v}button-loading-size: #{var.$loading-size};
+    --#{$_v}button-loading-border: #{var.$loading-border};
+    --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
+    --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
+  }
+  ```
+</FileReference>
+
+<FileReference name="button/src/_variables.scss">
+  ```scss
+  // Prefix variables
+  $prefix-variable: core.$prefix-variable !default;
+  $prefix-block: core.$prefix-block !default;
+  $prefix-element: core.$prefix-element !default;
+  $prefix-modifier: core.$prefix-modifier !default;
+  $prefix-modifier-value: core.$prefix-modifier-value !default;
+
+  // Size properties
+  $size: core.$form-control-size !default;
+  $padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
+  $gap: 0.5rem !default;
+  $border-width: 1px !default;
+  $border-radius: core.$border-radius !default;
+  $font-size: 1em !default;
+  $font-weight: inherit !default;
+  $line-height: core.$line-height !default;
+
+  // Theme properties
+  $background: transparent !default;
+  $background-hover: transparent !default;
+  $background-active: transparent !default;
+  $foreground: theme.get("foreground") !default;
+  $foreground-hover: null !default;
+  $foreground-active: null !default;
+  $border-color: theme.get("border-color-dark");
+  $border-color-hover: theme.get("border-color-darker") !default;
+  $border-color-active: null !default;
+  $box-shadow: 0 0 0 0 rgba(black, 0) !default;
+  $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
+
+  // Transition properties
+  $transition-property: background, color, border-color, box-shadow !default;
+  $transition-duration: core.$transition-duration-short !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Disabled
+  $disabled-opacity: 0.6 !default;
+
+  // is-loading
+  $loading-size: 1em !default;
+  $loading-border: 2px solid !default;
+  $loading-border-tpl: 1 1 0 0;
+  $loading-animation-duration: 0.6s !default;
+  $loading-animation-timing-function: linear !default;
+
+  // button_icon
+  $icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
+  $icon-padding-sm: calc(#{list.nth(core.$padding-sm, 1)} - 1px);
+  $icon-padding-lg: calc(#{list.nth(core.$padding-lg, 1)} - 1px);
+
+  // button_size_sm
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+  $size-sm-font-size: core.$font-size-sm !default;
+  $size-sm-line-height: core.$line-height-sm !default;
+
+  // button_size_lg
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
+  $size-lg-font-size: core.$font-size-lg !default;
+  $size-lg-line-height: core.$line-height-lg !default;
+  ```
+</FileReference>
+
+<article class="gap-y">
+
+  ### `button-variant`
+  
+  <ul>
+    <li>
+      <strong>Type:</strong>
+      <span>Mixin</span>
+    </li>
+    <li>
+      <a href="#">View Source on GitHub</a>
+    </li>
+  </ul>
+  
+  <div>
+    <p>Creates a button variant using CSS variables and the palette module.</p>
+  </div>
+  
+  #### Arguments
+  
+  | Name | Type | Description |
+  |---|---|---|
+  | `$foreground` | `Color` | A color for the foreground of the button. |
+  | `$background` | `String` | The color key for the background of the button (should exist in palette map). |
+
+  #### Example
+
+  ```scss
+  .button-custom {
+    @include mix.button-variant(white, "secondary");
+  }
+
+  // CSS Output
+  .button-custom {
+    --vb-button-background: var(--vb-secondary-50, hsl(214, 50%, 50%));
+    --vb-button-background-hover: var(--vb-secondary-40, hsl(214, 50%, 40%));
+    --vb-button-background-active: var(--vb-secondary-30, hsl(214, 50%, 30%));
+    --vb-button-foreground: white;
+    --vb-button-foreground-hover: white;
+    --vb-button-foreground-active: white;
+    --vb-button-border-color: transparent;
+    --vb-button-border-color-hover: transparent;
+    --vb-button-border-color-active: transparent;
+    --vb-button-box-shadow: 0 0 0 0 hsl(214deg, 50%, 50%, 0%);
+    --vb-button-box-shadow-focus: 0 0 0 0.2rem hsl(214deg, 50%, 50%, 50%);
+  }
+  ```
+
+</article>
