@@ -3,6 +3,10 @@
 
 $_v: var.$prefix-variable;
 
+/// Creates a button variant using CSS variables and the palette module.
+/// @param {Color} $foreground - A color for the foreground of the button.
+/// @param {String} $background - The color key for the background of the button (should exist in palette map).
+/// @output Outputs theme CSS variables based ont he provided foreground and background.
 @mixin button-variant($foreground, $background) {
   --#{$_v}button-background: #{palette.get($background)};
   --#{$_v}button-background-hover: #{palette.get($background, 40)};
