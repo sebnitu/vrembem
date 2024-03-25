@@ -42,6 +42,7 @@ $_b: var.$prefix-block;
   --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
   --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
 
+  // Properties
   position: relative;
   display: inline-flex;
   gap: var(--#{$_v}button-gap);
