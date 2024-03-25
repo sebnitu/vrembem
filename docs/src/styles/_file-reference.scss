@@ -1,0 +1,56 @@
+@use "@vrembem/core/theme";
+@use "@vrembem/core";
+@use "./root";
+
+.file-reference {
+  margin: 2rem 0 !important;
+  border: core.$border;
+  border-radius: core.$border-radius;
+  font-size: core.$font-size;
+  line-height: core.$line-height;
+
+  > * + * {
+    border-top: core.$border;
+  }
+
+  @include core.media-max(root.$bp-code) {
+    margin: 2rem calc(var(--layout-padding) * -1) !important;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+
+    .pre {
+      margin: 0;
+    }
+  }
+}
+
+.file-reference__content {
+  position: relative;
+
+  .code-block {
+    position: static;
+
+    .pre {
+      border: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  .code-block__copy-button {
+    top: 0.25rem;
+    right: 0.5rem;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.file-reference__toolbar {
+  padding: 0.5rem 1rem;
+  border-bottom: core.$border;
+  color: theme.get("foreground-lighter");
+}

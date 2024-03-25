@@ -1,0 +1,14 @@
+---
+interface Props {
+  name?: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div class="file-reference">
+  <div class="file-reference__content">
+    <div class="file-reference__toolbar">{name}</div>
+    <slot />
+  </div>
+</div>
