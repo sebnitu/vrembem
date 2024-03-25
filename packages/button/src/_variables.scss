@@ -2,18 +2,14 @@
 @use "@vrembem/core";
 @use "@vrembem/core/theme";
 
+// Prefix variables
 $prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$breakpoints: core.$breakpoints !default;
-
-$transition-property: background, color, border-color, box-shadow !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
-
+// Size properties
 $size: core.$form-control-size !default;
 $padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
 $gap: 0.5rem !default;
@@ -23,22 +19,25 @@ $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
+// Theme properties
 $background: transparent !default;
 $background-hover: transparent !default;
 $background-active: transparent !default;
-
 $foreground: theme.get("foreground") !default;
 $foreground-hover: null !default;
 $foreground-active: null !default;
-
 $border-color: theme.get("border-color-dark");
 $border-color-hover: theme.get("border-color-darker") !default;
 $border-color-active: null !default;
-
 $box-shadow: 0 0 0 0 rgba(black, 0) !default;
 $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
 
-// disabled
+// Transition properties
+$transition-property: background, color, border-color, box-shadow !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
+
+// Disabled
 $disabled-opacity: 0.6 !default;
 
 // is-loading
