@@ -10,7 +10,7 @@ $_v: var.$prefix-modifier-value;
   width: 100%;
 }
 
-@each $key, $value in var.$breakpoints {
+@each $key, $value in core.$breakpoints {
   .#{$_b}button#{$_m}block#{$_v}#{$key} {
     display: flex;
     width: 100%;
