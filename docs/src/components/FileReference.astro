@@ -1,14 +1,33 @@
 ---
+import Icon from './Icon.vue';
+
 interface Props {
   name?: string;
+  file?: string;
 }
 
-const { name } = Astro.props;
+const { name, file } = Astro.props;
 ---
 
 <div class="file-reference">
   <div class="file-reference__content">
-    <div class="file-reference__toolbar">{name}</div>
+    <div class="file-reference__toolbar">
+      <div class="media media_gap-x_sm flex-align-center">
+        <div class="media__obj">
+          <button class="button button_icon button_size_sm">
+            <Icon name="chevron-right" iconClass="icon_size_sm" />
+          </button>
+        </div>
+        <div class="media__body flex flex-gap-x flex-wrap">
+          <strong>{name}</strong>
+          <code>
+            <a class="link" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${file}`}>
+              {file}
+            </a>
+          </code>
+        </div>
+      </div>
+    </div>
     <slot />
   </div>
 </div>
