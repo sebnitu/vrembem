@@ -180,7 +180,7 @@ Buttons are primarily customized using CSS variables but can also be modified us
   ```scss
   // Notice: Prefix variable in CSS var names have
   // been replaced with its default value of "vb-".
-  
+
   .button {
     // Size properties
     --vb-button-size: #{var.$size};
@@ -225,6 +225,10 @@ Buttons are primarily customized using CSS variables but can also be modified us
 <FileReference name="SCSS Variables" file="button/src/_variables.scss">
 
   ```scss
+  @use "sass:list";
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+
   // Prefix variables
   $prefix-variable: core.$prefix-variable !default;
   $prefix-block: core.$prefix-block !default;

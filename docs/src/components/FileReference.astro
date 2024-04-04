@@ -9,17 +9,17 @@ interface Props {
 const { name, file } = Astro.props;
 ---
 
-<div class="file-reference">
+<div class="file-reference is-closed">
   <div class="file-reference__content">
     <div class="file-reference__toolbar">
       <div class="media media_gap-x_sm flex-align-center">
         <div class="media__obj">
-          <button class="button button_icon button_size_sm">
+          <button type="button" class="file-reference__toggle button button_icon button_size_sm">
             <Icon name="chevron-right" iconClass="icon_size_sm" />
           </button>
         </div>
         <div class="media__body flex flex-gap-x flex-wrap">
-          <strong>{name}</strong>
+          <strong class="flex-grow-1">{name}</strong>
           <code>
             <a class="link" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${file}`}>
               {file}
@@ -31,3 +31,17 @@ const { name, file } = Astro.props;
     <slot />
   </div>
 </div>
+
+<script>
+  // Find our component DOM on the page.
+  const buttons = document.querySelectorAll('.file-reference__toggle');
+
+  // Add event listeners to fire confetti when a button is clicked.
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const root = button.closest('.file-reference');
+      root.classList.toggle('is-closed');
+      root.classList.toggle('is-opened');
+    });
+  });
+</script>
