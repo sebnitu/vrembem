@@ -7,41 +7,73 @@ interface Props {
 }
 
 const { name, file } = Astro.props;
+
+function makeSafeForCSS(name) {
+  return name.replace(/[^a-z0-9]/g, function(s) {
+    const c = s.charCodeAt(0);
+    if (c == 32) return '-';
+    return s.toLowerCase();
+  });
+}
+
+const id = makeSafeForCSS(name);
 ---
 
-<div class="file-reference is-closed">
-  <div class="file-reference__content">
-    <div class="file-reference__toolbar">
-      <div class="media media_gap-x_sm flex-align-center">
-        <div class="media__obj">
-          <button type="button" class="file-reference__toggle button button_icon button_size_sm">
-            <Icon name="chevron-right" iconClass="icon_size_sm" />
-          </button>
-        </div>
-        <div class="media__body flex flex-gap-x flex-wrap">
-          <strong class="flex-grow-1">{name}</strong>
-          <code>
-            <a class="link" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${file}`}>
-              {file}
-            </a>
-          </code>
-        </div>
+<div class="file-reference">
+  <div class="file-reference__toolbar">
+    <div class="media media_gap-x_sm flex-align-center">
+      <div class="media__obj">
+        <button
+          type="button" 
+          id={"toggle-" + id + "-trigger"}
+          data-toggle={"toggle-" + id}
+          aria-controls={"toggle-" + id}
+          aria-label={`Toggle ${file} file contents`}
+          class="file-reference__toggle button button_icon button_size_sm"
+        >
+          <Icon name="chevron-right" iconClass="icon_size_sm" />
+        </button>
+      </div>
+      <div class="media__body flex flex-gap-x flex-wrap">
+        <strong class="flex-grow-1">{name}</strong>
+        <code>
+          <a class="link" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${file}`}>
+            {file}
+          </a>
+        </code>
       </div>
     </div>
+  </div>
+  <div
+    id={"toggle-" + id}
+    aria-labelledby={"toggle-" + id + "-trigger"}
+    class="file-reference__content"
+  >
     <slot />
   </div>
 </div>
 
 <script>
-  // Find our component DOM on the page.
-  const buttons = document.querySelectorAll('.file-reference__toggle');
+  // Get all the file reference toggle buttons.
+  const toggles = document.querySelectorAll("[data-toggle]");
+  toggles.forEach((trigger) => {
+    // Get the target element.
+    const targetId = trigger.getAttribute("data-toggle");
+    const target = document.getElementById(targetId);
 
-  // Add event listeners to fire confetti when a button is clicked.
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const root = button.closest('.file-reference');
-      root.classList.toggle('is-closed');
-      root.classList.toggle('is-opened');
+    // Get the current state.
+    let state = target.hasAttribute("data-toggle-open");
+      
+    // Set the initial state.
+    trigger.setAttribute("aria-expanded", state.toString());
+    target.setAttribute("aria-hidden", (!state).toString());
+
+    // Set the event listener.
+    trigger.addEventListener("click", () => {
+      // Toggle the new state.
+      state = !state;
+      trigger.setAttribute("aria-expanded", state.toString());
+      target.setAttribute("aria-hidden", (!state).toString());
     });
   });
 </script>

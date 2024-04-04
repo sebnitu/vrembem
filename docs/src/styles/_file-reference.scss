@@ -13,10 +13,6 @@
     margin-top: -1rem !important;
   }
 
-  > * + * {
-    border-top: core.$border;
-  }
-
   @include core.media-max(root.$bp-code) {
     margin: 2rem calc(var(--layout-padding) * -1) !important;
     border-right: none;
@@ -27,40 +23,6 @@
       margin: 0;
     }
   }
-
-  &.is-closed {
-    .file-reference__toggle .icon {
-      transform: rotate(0);
-    }
-
-    .code-block {
-      display: none;
-    }
-  }
-
-  &.is-opened {
-    .file-reference__toggle .icon {
-      transform: rotate(90deg);
-    }
-
-    .code-block {
-      display: block;
-    }
-  }
-}
-
-.file-reference__content {
-  position: relative;
-
-  .code-block {
-    border-top: core.$border;
-
-    .pre {
-      border: none;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
 }
 
 .file-reference__toolbar {
@@ -68,8 +30,33 @@
   color: theme.get("foreground-lighter");
 }
 
-.file-reference__toggle .icon {
-  transition-property: transform;
-  transition-duration: core.$transition-duration;
-  transition-timing-function: core.$transition-timing-function;
+.file-reference__toggle {
+  .icon {
+    transform: rotate(0);
+    transition-property: transform;
+    transition-duration: core.$transition-duration;
+    transition-timing-function: core.$transition-timing-function;
+  }
+
+  &[aria-expanded="true"] .icon {
+    transform: rotate(90deg);
+  }
+}
+
+.file-reference__content {
+  position: relative;
+  display: none;
+  border-top: core.$border;
+
+  .code-block {
+    .pre {
+      border: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  &[aria-hidden="false"] {
+    display: block;
+  }
 }
