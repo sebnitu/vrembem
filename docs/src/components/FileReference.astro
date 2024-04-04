@@ -4,9 +4,10 @@ import Icon from './Icon.vue';
 interface Props {
   name?: string;
   file?: string;
+  open?: boolean;
 }
 
-const { name, file } = Astro.props;
+const { name, file, open = false } = Astro.props;
 
 function makeSafeForCSS(name) {
   return name.replace(/[^a-z0-9]/g, function(s) {
@@ -29,13 +30,14 @@ const id = makeSafeForCSS(name);
           data-toggle={"toggle-" + id}
           aria-controls={"toggle-" + id}
           aria-label={`Toggle ${file} file contents`}
+          aria-expanded={open ? "true" : "false"}
           class="file-reference__toggle button button_icon button_size_sm"
         >
           <Icon name="chevron-right" iconClass="icon_size_sm" />
         </button>
       </div>
       <div class="media__body flex flex-gap-x flex-wrap">
-        <strong class="flex-grow-1">{name}</strong>
+        <span class="flex-grow-1">{name}</span>
         <code>
           <a class="link" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${file}`}>
             {file}
@@ -47,6 +49,7 @@ const id = makeSafeForCSS(name);
   <div
     id={"toggle-" + id}
     aria-labelledby={"toggle-" + id + "-trigger"}
+    aria-hidden={open ? "false" : "true"}
     class="file-reference__content"
   >
     <slot />
@@ -62,18 +65,14 @@ const id = makeSafeForCSS(name);
     const target = document.getElementById(targetId);
 
     // Get the current state.
-    let state = target.hasAttribute("data-toggle-open");
-      
-    // Set the initial state.
-    trigger.setAttribute("aria-expanded", state.toString());
-    target.setAttribute("aria-hidden", (!state).toString());
+    let open = (trigger.getAttribute("aria-expanded") === 'true');
 
     // Set the event listener.
     trigger.addEventListener("click", () => {
       // Toggle the new state.
-      state = !state;
-      trigger.setAttribute("aria-expanded", state.toString());
-      target.setAttribute("aria-hidden", (!state).toString());
+      open = !open;
+      trigger.setAttribute("aria-expanded", open.toString());
+      target.setAttribute("aria-hidden", (!open).toString());
     });
   });
 </script>
