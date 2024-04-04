@@ -174,54 +174,46 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 Buttons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
 
-<FileReference name="CSS Variables" file="button/src/_button.scss">
+<FileReference name="CSS Vars" file="button/src/_root.scss">
 
   ```scss
-  // Notice: Prefix variable in CSS var names have
-  // been replaced with its default value of "vb-".
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
 
-  .button {
+  $_v: var.$prefix-variable;
+
+  :root {
     // Size properties
-    --vb-button-size: #{var.$size};
-    --vb-button-padding: #{var.$padding};
-    --vb-button-gap: #{var.$gap};
-    --vb-button-border-width: #{var.$border-width};
-    --vb-button-border-radius: #{var.$border-radius};
-    --vb-button-font-size: #{var.$font-size};
-    --vb-button-font-weight: #{var.$font-weight};
-    --vb-button-line-height: #{var.$line-height};
-
-    // Theme properties
-    --vb-button-background: #{var.$background};
-    --vb-button-background-hover: #{var.$background-hover};
-    --vb-button-background-active: #{var.$background-active};
-    --vb-button-foreground: #{var.$foreground};
-    --vb-button-foreground-hover: #{var.$foreground-hover};
-    --vb-button-foreground-active: #{var.$foreground-active};
-    --vb-button-border-color: #{var.$border-color};
-    --vb-button-border-color-hover: #{var.$border-color-hover};
-    --vb-button-border-color-active: #{var.$border-color-active};
-    --vb-button-box-shadow: #{var.$box-shadow};
-    --vb-button-box-shadow-focus: #{var.$box-shadow-focus};
+    --#{$_v}button-size: #{var.$size};
+    --#{$_v}button-padding: #{var.$padding};
+    --#{$_v}button-gap: #{var.$gap};
+    --#{$_v}button-border-width: #{var.$border-width};
+    --#{$_v}button-border-radius: #{var.$border-radius};
+    --#{$_v}button-font-size: #{var.$font-size};
+    --#{$_v}button-font-weight: #{var.$font-weight};
+    --#{$_v}button-line-height: #{var.$line-height};
 
     // Transition properties
-    --vb-button-transition-property: #{var.$transition-property};
-    --vb-button-transition-duration: #{var.$transition-duration};
-    --vb-button-transition-timing-function: #{var.$transition-timing-function};
+    --#{$_v}button-transition-property: #{var.$transition-property};
+    --#{$_v}button-transition-duration: #{var.$transition-duration};
+    --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
     
     // Disabled
-    --vb-button-disabled-opacity: #{var.$disabled-opacity};
+    --#{$_v}button-disabled-opacity: #{var.$disabled-opacity};
     
     // is-loading
-    --vb-button-loading-size: #{var.$loading-size};
-    --vb-button-loading-border: #{var.$loading-border};
-    --vb-button-loading-animation-duration: #{var.$loading-animation-duration};
-    --vb-button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
+    --#{$_v}button-loading-size: #{var.$loading-size};
+    --#{$_v}button-loading-border: #{var.$loading-border};
+    --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
+    --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
   }
+
+  // Theme properties
+  @include theme.output-themes("button");
   ```
 </FileReference>
 
-<FileReference name="SCSS Variables" file="button/src/_variables.scss">
+<FileReference name="SCSS Vars" file="button/src/_variables.scss">
 
   ```scss
   @use "sass:list";
@@ -244,19 +236,6 @@ Buttons are primarily customized using CSS variables but can also be modified us
   $font-size: 1em !default;
   $font-weight: inherit !default;
   $line-height: core.$line-height !default;
-
-  // Theme properties
-  $background: transparent !default;
-  $background-hover: transparent !default;
-  $background-active: transparent !default;
-  $foreground: theme.get("foreground") !default;
-  $foreground-hover: null !default;
-  $foreground-active: null !default;
-  $border-color: theme.get("border-color-dark");
-  $border-color-hover: theme.get("border-color-darker") !default;
-  $border-color-active: null !default;
-  $box-shadow: 0 0 0 0 rgba(black, 0) !default;
-  $box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
 
   // Transition properties
   $transition-property: background, color, border-color, box-shadow !default;
@@ -289,6 +268,23 @@ Buttons are primarily customized using CSS variables but can also be modified us
   $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
   $size-lg-font-size: core.$font-size-lg !default;
   $size-lg-line-height: core.$line-height-lg !default;
+
+  // Theme properties
+  $theme: (
+    "background": transparent,
+    "background-hover": transparent,
+    "background-active": transparent,
+    "foreground": theme.get("foreground"),
+    "foreground-hover": null,
+    "foreground-active": null,
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-active": null,
+    "box-shadow": 0 0 0 0 rgba(black, 0),
+    "box-shadow-focus": 0 0 0 0.2rem rgba(black, 0.15),
+  ) !default;
+
+  @include theme.set(theme.$default, "button", $theme);
   ```
 </FileReference>
 

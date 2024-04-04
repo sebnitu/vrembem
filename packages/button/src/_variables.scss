@@ -19,19 +19,6 @@ $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: core.$line-height !default;
 
-// Theme properties
-$background: transparent !default;
-$background-hover: transparent !default;
-$background-active: transparent !default;
-$foreground: theme.get("foreground") !default;
-$foreground-hover: null !default;
-$foreground-active: null !default;
-$border-color: theme.get("border-color-dark");
-$border-color-hover: theme.get("border-color-darker") !default;
-$border-color-active: null !default;
-$box-shadow: 0 0 0 0 rgba(black, 0) !default;
-$box-shadow-focus: 0 0 0 0.2rem rgba(black, 0.15) !default;
-
 // Transition properties
 $transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: core.$transition-duration-short !default;
@@ -63,3 +50,20 @@ $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
+
+// Theme properties
+$theme: (
+  "background": transparent,
+  "background-hover": transparent,
+  "background-active": transparent,
+  "foreground": theme.get("foreground"),
+  "foreground-hover": null,
+  "foreground-active": null,
+  "border-color": theme.get("border-color-dark"),
+  "border-color-hover": theme.get("border-color-darker"),
+  "border-color-active": null,
+  "box-shadow": 0 0 0 0 rgba(black, 0),
+  "box-shadow-focus": 0 0 0 0.2rem rgba(black, 0.15),
+) !default;
+
+@include theme.set(theme.$default, "button", $theme);
