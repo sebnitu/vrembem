@@ -6,6 +6,7 @@ package: "@vrembem/button"
 
 import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 import FileReference from '../../components/FileReference.astro';
 
 # Button
@@ -288,23 +289,8 @@ Buttons are primarily customized using CSS variables but can also be modified us
   ```
 </FileReference>
 
-<article class="gap-y">
-
-  ### `button-variant`
-  
-  <ul class="list">
-    <li>
-      <strong>Type:</strong>
-      <span>Mixin</span>
-    </li>
-    <li>
-      <a href="#">View Source on GitHub</a>
-    </li>
-  </ul>
-  
-  <div>
-    <p>Creates a button variant using CSS variables and the palette module.</p>
-  </div>
+<DocBlock name="button-variant" type="mixin" src="#">
+  <p>Creates a button variant using CSS variables and the palette module.</p>
   
   #### Arguments
   
@@ -335,5 +321,4 @@ Buttons are primarily customized using CSS variables but can also be modified us
     --vb-button-box-shadow-focus: 0 0 0 0.2rem hsl(214deg, 50%, 50%, 50%);
   }
   ```
-
-</article>
+</DocBlock>

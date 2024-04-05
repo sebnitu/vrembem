@@ -1,0 +1,23 @@
+@use "@vrembem/core";
+@use "@vrembem/base";
+
+.doc-block {
+  @include core.gap(1rem, "y");
+  padding: 1rem;
+  border: core.$border;
+  border-radius: core.$border-radius;
+
+  .header-anchor {
+    @include base.link();
+    position: static;
+    margin: 0 0.25rem 0 -0.25rem;
+    opacity: 1;
+  }
+}
+
+.doc-block__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}

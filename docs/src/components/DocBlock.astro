@@ -1,0 +1,26 @@
+---
+import { makeSafeForCSS } from "../modules/makeSafeForCSS";
+
+interface Props {
+  name?: string;
+  type?: string;
+  src?: string;
+}
+
+const { name, type, src } = Astro.props;
+const id = makeSafeForCSS(name);
+---
+
+<article class="doc-block">
+  <div class="doc-block__header">
+    <h3 id={id} class="flex-grow-1"><code>{name}</code></h3>
+    <p>
+      <strong>Type:</strong>
+      <span>{type}</span>
+    </p>
+    <a href={src} target="_blank">Source</a>
+  </div>
+  <div class="doc-block__content">
+    <slot />
+  </div>
+</article>
