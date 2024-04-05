@@ -1,5 +1,6 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "@vrembem/base";
 @use "./root";
 
 .file-reference {
@@ -28,6 +29,13 @@
 .file-reference__toolbar {
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   color: theme.get("foreground-lighter");
+
+  .header-anchor {
+    @include base.link();
+    position: static;
+    margin: 0 0.25rem 0 -0.25rem;
+    opacity: 1;
+  }
 }
 
 .file-reference__toggle {
