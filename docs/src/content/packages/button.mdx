@@ -7,7 +7,6 @@ package: "@vrembem/button"
 import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
 import DocBlock from '../../components/DocBlock.astro';
-import FileReference from '../../components/FileReference.astro';
 
 # Button
 
@@ -175,7 +174,7 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 Buttons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
 
-<FileReference name="CSS Vars" file="button/src/_root.scss">
+<DocBlock name="CSS Variables" type="file" src="button/src/_root.scss">
 
   ```scss
   @use "@vrembem/core/theme";
@@ -212,9 +211,9 @@ Buttons are primarily customized using CSS variables but can also be modified us
   // Theme properties
   @include theme.output-themes("button");
   ```
-</FileReference>
+</DocBlock>
 
-<FileReference name="SCSS Vars" file="button/src/_variables.scss">
+<DocBlock name="SCSS Variables" type="file" src="button/src/_variables.scss">
 
   ```scss
   @use "sass:list";
@@ -287,38 +286,39 @@ Buttons are primarily customized using CSS variables but can also be modified us
 
   @include theme.set(theme.$default, "button", $theme);
   ```
-</FileReference>
+</DocBlock>
 
-<DocBlock name="button-variant" type="mixin" src="#">
+<DocBlock name="button-variant" type="mixin" src="button/src/_mixins.scss">
   <p>Creates a button variant using CSS variables and the palette module.</p>
   
-  #### Arguments
-  
-  | Name | Type | Description |
-  |---|---|---|
-  | `$foreground` | `Color` | A color for the foreground of the button. |
-  | `$background` | `String` | The color key for the background of the button (should exist in palette map). |
+  <div slot="arguments">
+    | Name | Type | Description |
+    |---|---|---|
+    | `$foreground` | `Color` | A color for the foreground of the button. |
+    | `$background` | `String` | The color key for the background of the button (should exist in palette map). |
+  </div>
 
-  #### Example
+  <div slot="example">
 
-  ```scss
-  .button-custom {
-    @include mix.button-variant(white, "secondary");
-  }
+    ```scss
+    .button-custom {
+      @include mix.button-variant(white, "secondary");
+    }
 
-  // CSS Output
-  .button-custom {
-    --vb-button-background: var(--vb-secondary-50, hsl(214, 50%, 50%));
-    --vb-button-background-hover: var(--vb-secondary-40, hsl(214, 50%, 40%));
-    --vb-button-background-active: var(--vb-secondary-30, hsl(214, 50%, 30%));
-    --vb-button-foreground: white;
-    --vb-button-foreground-hover: white;
-    --vb-button-foreground-active: white;
-    --vb-button-border-color: transparent;
-    --vb-button-border-color-hover: transparent;
-    --vb-button-border-color-active: transparent;
-    --vb-button-box-shadow: 0 0 0 0 hsl(214deg, 50%, 50%, 0%);
-    --vb-button-box-shadow-focus: 0 0 0 0.2rem hsl(214deg, 50%, 50%, 50%);
-  }
-  ```
+    // CSS Output
+    .button-custom {
+      --vb-button-background: var(--vb-secondary-50, hsl(214, 50%, 50%));
+      --vb-button-background-hover: var(--vb-secondary-40, hsl(214, 50%, 40%));
+      --vb-button-background-active: var(--vb-secondary-30, hsl(214, 50%, 30%));
+      --vb-button-foreground: white;
+      --vb-button-foreground-hover: white;
+      --vb-button-foreground-active: white;
+      --vb-button-border-color: transparent;
+      --vb-button-border-color-hover: transparent;
+      --vb-button-border-color-active: transparent;
+      --vb-button-box-shadow: 0 0 0 0 hsl(214deg, 50%, 50%, 0%);
+      --vb-button-box-shadow-focus: 0 0 0 0.2rem hsl(214deg, 50%, 50%, 50%);
+    }
+    ```
+  </div>
 </DocBlock>
