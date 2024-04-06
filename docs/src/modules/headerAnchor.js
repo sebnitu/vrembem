@@ -9,6 +9,7 @@ function headerAnchor(options = {}) {
     settings.headings.forEach((heading) => {
       const els = document.querySelectorAll(`${settings.prefix} ${heading}`);
       els.forEach((el) => {
+        if (el.classList.contains('no-anchor')) return;
         el.setAttribute('tabindex', '-1');
         const elText = el.innerHTML;
         const elId = el.getAttribute('id');

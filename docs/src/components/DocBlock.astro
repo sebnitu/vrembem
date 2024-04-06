@@ -6,10 +6,11 @@ interface Props {
   name?: string;
   type?: string;
   src?: string;
+  args?: Array<Array<string>>;
   open?: boolean;
 }
 
-const { name, type, src, open = false } = Astro.props;
+const { name, type, src, args, open = false } = Astro.props;
 const id = makeSafeForCSS(`${name}-${type}`);
 const isFile = (type === 'file');
 ---
@@ -46,6 +47,7 @@ const isFile = (type === 'file');
     aria-hidden={open ? "false" : "true"}  
     class="toggle-content doc-block__content"
   >
+
     {
       isFile ? (
         <div class="doc-block__file">
@@ -58,21 +60,39 @@ const isFile = (type === 'file');
         </div>
       )
     }
+
     {
-      Astro.slots.has("arguments") && (
+      args && (
         <div class="doc-block__arguments">
-          <h4 id={id + '-arguments'}>Arguments</h4>
-          <slot name="arguments" />
+          <h4 id={id + '-arguments'} class="font-size-lg no-anchor">Arguments</h4>
+          <table class="table table_style_rowed">
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            {
+              args.map((arg) => (
+                <tr>
+                  <td><code class="text-nowrap">{arg[0]}</code></td>
+                  <td><code class="text-nowrap">{arg[1]}</code></td>
+                  <td>{arg[2]}</td>
+                </tr>
+              ))
+            }
+          </table>
         </div>
       )
     }
+
     {
       Astro.slots.has("example") && (
         <div class="doc-block__example">
-          <h4 id={id + '-example'}>Example</h4>
+          <h4 id={id + '-example'} class="font-size-lg no-anchor">Example</h4>
           <slot name="example" />
         </div>
       )
     }
+
   </div>
 </article>

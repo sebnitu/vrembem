@@ -10,6 +10,16 @@ $_v: var.$prefix-modifier-value;
   tr {
     border-top: var.$border;
   }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 0;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 0;
+  }
 }
 
 .#{$_b}table#{$_m}style#{$_v}bordered {
