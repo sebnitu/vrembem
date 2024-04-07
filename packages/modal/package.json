@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/modal",
   "description": "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the dialog component to make modal dialogs.",
-  "version": "4.0.0-next.6",
+  "version": "4.0.0-next.7",
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -53,7 +53,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/modal#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.6"
+    "@vrembem/core": "^4.0.0-next.7"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/drawer",
   "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
-  "version": "4.0.0-next.6",
+  "version": "4.0.0-next.7",
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -53,7 +53,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/drawer#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.6"
+    "@vrembem/core": "^4.0.0-next.7"
   },
   "publishConfig": {
     "access": "public"
