@@ -1,0 +1,22 @@
+@use "@vrembem/core";
+
+.toggle-trigger {
+  .icon {
+    transform: rotate(0);
+    transition-property: transform;
+    transition-duration: core.$transition-duration;
+    transition-timing-function: core.$transition-timing-function;
+  }
+
+  &[aria-expanded="true"] .icon {
+    transform: rotate(90deg);
+  }
+}
+
+.toggle-content {
+  display: none;
+
+  &[aria-hidden="false"] {
+    display: block;
+  }
+}

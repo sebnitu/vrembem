@@ -1,5 +1,8 @@
 <template>
   <div class="code-block" :class="rootClass">
+    <Icon v-if="inline" name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-lighter" />
+    <pre tabindex="0" v-if="inline" class="pre"><code><slot /></code></pre>
+    <pre tabindex="0" v-else class="pre"><slot /></pre>
     <Popover
       triggerClass="code-block__copy-button"
       targetClass="popover_tooltip"
@@ -14,9 +17,6 @@
         <span>Copied!</span>
       </template>
     </Popover>
-    <Icon v-if="inline" name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-lighter" />
-    <pre v-if="inline" class="pre"><code><slot /></code></pre>
-    <pre v-else class="pre"><slot /></pre>
   </div>
 </template>
 

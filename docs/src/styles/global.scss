@@ -13,6 +13,7 @@
 @use "./animations";
 @use "./code-block";
 @use "./code-example";
+@use "./doc-block";
 @use "./floats";
 @use "./fold-shadow";
 @use "./header-anchor";
@@ -20,6 +21,7 @@
 @use "./pagi";
 @use "./swatch";
 @use "./theme-icons";
+@use "./toggle";
 
 astro-island {
   display: block !important;

@@ -106,6 +106,12 @@ $_c: var.$class-flex;
     }
   }
 
+  .#{$_u}#{$_c}-items-fill {
+    > * {
+      flex: 1 0 auto !important;
+    }
+  }
+
   // flex-order-[key]
 
   @for $i from 1 through var.$flex-order-count {

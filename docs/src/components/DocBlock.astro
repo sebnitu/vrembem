@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.vue';
+import { makeSafeForCSS } from "../modules/makeSafeForCSS";
+
+interface Props {
+  name?: string;
+  type?: string;
+  src?: string;
+  args?: Array<Array<string>>;
+  open?: boolean;
+}
+
+const { name, type, src, args, open = false } = Astro.props;
+const id = makeSafeForCSS(`${name}-${type}`);
+const isFile = (type === 'file');
+---
+
+<article class="doc-block">
+  <div class="doc-block__header">
+    <div class="media media_gap-x_sm flex-align-center">
+      <div class="media__obj">
+        <button
+          type="button" 
+          id={"toggle-" + id + "-trigger"}
+          data-toggle={"toggle-" + id}
+          aria-controls={"toggle-" + id}
+          aria-label={`Toggle ${id} file contents`}
+          aria-expanded={open ? "true" : "false"}
+          class="toggle-trigger button button_icon button_size_sm"
+        >
+          <Icon name="chevron-right" iconClass="icon_size_sm" />
+        </button>
+      </div>
+      <div class="media__body flex flex-align-center flex-gap-x flex-wrap">
+        <h3 id={id} class="flex-grow-1">{name}</h3>
+        <code>
+          <a class="link font-size-sm" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}`}>
+            {src}
+          </a>
+        </code>
+      </div>
+    </div>
+  </div>
+  <div 
+    id={"toggle-" + id}
+    aria-labelledby={"toggle-" + id + "-trigger"}
+    aria-hidden={open ? "false" : "true"}  
+    class="toggle-content doc-block__content"
+  >
+
+    {
+      isFile ? (
+        <div class="doc-block__file">
+          <slot />
+        </div>
+      ) : (
+        <div class="doc-block__intro">
+          <p>Type: <code>{type}</code></p>
+          <slot />
+        </div>
+      )
+    }
+
+    {
+      args && (
+        <div class="doc-block__arguments">
+          <h4 id={id + '-arguments'} class="font-size-lg no-anchor">Arguments</h4>
+          <table class="table table_style_rowed">
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            {
+              args.map((arg) => (
+                <tr>
+                  <td><code class="text-nowrap">{arg[0]}</code></td>
+                  <td><code class="text-nowrap">{arg[1]}</code></td>
+                  <td>{arg[2]}</td>
+                </tr>
+              ))
+            }
+          </table>
+        </div>
+      )
+    }
+
+    {
+      Astro.slots.has("example") && (
+        <div class="doc-block__example">
+          <h4 id={id + '-example'} class="font-size-lg no-anchor">Example</h4>
+          <slot name="example" />
+        </div>
+      )
+    }
+
+  </div>
+</article>
