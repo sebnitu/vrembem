@@ -16,6 +16,7 @@ $_e: var.$prefix-element;
   border: var(--#{$_v}card-border);
   border-radius: var(--#{$_v}card-border-radius);
   background: var(--#{$_v}card-background);
+  background-clip: padding-box;
   box-shadow: var(--#{$_v}card-box-shadow);
   color: var(--#{$_v}card-foreground);
 }
