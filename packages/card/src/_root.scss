@@ -1,0 +1,32 @@
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+$_v: var.$prefix-variable;
+
+:root {
+  // Size properties
+  --#{$_v}card-padding: #{var.$padding};
+  --#{$_v}card-border-radius: #{var.$border-radius};
+
+  // Transition properties
+  --#{$_v}card-transition-property: #{var.$transition-property};
+  --#{$_v}card-transition-duration: #{var.$transition-duration};
+  --#{$_v}card-transition-timing-function: #{var.$transition-timing-function};
+
+  // Title properties
+  --#{$_v}card-title-font-size: #{var.$title-font-size};
+  --#{$_v}card-title-line-height: #{var.$title-line-height};
+  --#{$_v}card-title-font-weight: #{var.$title-font-weight};
+
+  // Screen properties
+  --#{$_v}card-screen-background: #{var.$screen-background};
+  --#{$_v}card-screen-opacity: #{var.$screen-opacity};
+
+  // Link properties
+  --#{$_v}card-link-box-shadow: #{var.$link-box-shadow};
+  --#{$_v}card-link-box-shadow-hover: #{var.$link-box-shadow-hover};
+  --#{$_v}card-link-offset: #{var.$link-offset};
+}
+
+// Theme properties
+@include theme.output-themes("card");

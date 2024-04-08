@@ -1,16 +1,17 @@
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;
 
 .#{$_b}card#{$_m}link {
   transform: translate(0, 0);
-  box-shadow: var.$link-shadow;
+  box-shadow: var(--#{$_v}card-link-box-shadow);
 
   &:hover,
   &:focus,
   &:focus-within {
-    transform: translate(0, -(var.$link-offset));
-    box-shadow: var.$link-shadow-hover;
+    transform: translate(0, var(--#{$_v}card-link-offset));
+    box-shadow: var(--#{$_v}card-link-box-shadow-hover);
   }
 }

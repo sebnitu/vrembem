@@ -4,27 +4,24 @@ description: "The cards component provides a flexible and extensive content cont
 package: "@vrembem/card"
 ---
 
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+
 # Card
 
 The cards component provides a flexible and extensive content container with multiple variants and options.
-
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fcard.svg)](https://www.npmjs.com/package/%40vrembem%2Fcard)
-
-[Documentation](https://vrembem.com/packages/card)
-
-## Installation
 
 ```sh
 npm install @vrembem/card
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/card";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/card";
-```
-
-### Markup
+## Basic usage
 
 Card is a highly composable container component that comes with a variety of elements. The three most basic are:
 
@@ -32,129 +29,210 @@ Card is a highly composable container component that comes with a variety of ele
 - `card__image`
 - `card__title`
 
-```html
-<div class="card">
-  <img class="card__image" src="..." />
-  <div class="card__body">
-    <h3 class="card__title">...</h3>
-    ...
+<CodeExample lang="html">
+  <div slot="output">
+    <div class="card">
+      <img class="card__image" src="https://picsum.photos/600/300" />
+      <div class="card__body">
+        <h2 class="card__title">Card Title</h2>
+        <p>This is a paragraph in the card.</p>
+      </div>
+    </div>
   </div>
-</div>
-```
-
-#### `card__header + card__footer`
+  ```html
+  <div class="card">
+    <img class="card__image" src="..." />
+    <div class="card__body">
+      <h2 class="card__title">...</h2>
+      ...
+    </div>
+  </div>
+  ```
+</CodeExample>
 
 Used to separate distinct card sections for headers and footers. It's also possible to include multiple `card__body` elements as needed.
 
 - `card__header`
 - `card__footer`
 
-```html
-<div class="card">
-  <div class="card__header">
-    <h3 class="card__title">...</h3>
+<CodeExample lang="html">
+  <div slot="output">
+    <div class="card">
+      <div class="card__header">
+        <h2 class="card__title">Card Title</h2>
+      </div>
+      <div class="card__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+      </div>
+      <div class="card__footer flex flex-justify-between">
+        <button class="button button_color_primary">Submit</button>
+        <button class="link">Cancel</button>
+      </div>
+    </div>
   </div>
-  <div class="card__body">
-    ...
+  ```html
+  <div class="card">
+    <div class="card__header">
+      <h2 class="card__title">...</h2>
+    </div>
+    <div class="card__body">
+      ...
+    </div>
+    <div class="card__footer">
+      ...
+    </div>
   </div>
-  <div class="card__footer">
-    ...
-  </div>
-</div>
-```
-
-#### `card__screen + card__background`
+  ```
+</CodeExample>
 
 Card screens and backgrounds are displayed behind the other card elements. These are typically paired with the [`card_invert` modifier](#card_invert) which switches text colors to better suite a dark background theme.
 
 - `card__screen`
 - `card__background`
 
-```html
-<div class="card card_invert">
-  <div class="card__body">
-    ...
+<CodeExample lang="html">
+  <div slot="output">
+    <div class="card vb-theme-dark">
+      <div class="card__body gap-y">
+        <h2 class="card__title">Card Title</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+      </div>
+      <img src="https://picsum.photos/600/300" class="card__background" />
+      <div class="card__screen"></div>
+    </div>
   </div>
-  <img src="..." class="card__background" />
-  <div class="card__screen"></div>
-</div>
-```
+  ```html
+  <div class="card">
+    <div class="card__body">
+      ...
+    </div>
+    <img src="..." class="card__background" />
+    <div class="card__screen"></div>
+  </div>
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `card_fade`
-
-Hides the content of a card so that [only the `card__background` is visible](#card__screen-+-card__background). The content is then revealed on user interaction via `:hover` and `:focus` events.
-
-```html
-<div class="card card_fade">
-  ...
-  <img src="..." class="card__background">
-  <div class="card__screen"></div>
-</div>
-```
-
-### `card_invert`
-
-Inverts the contrast of the card component (by default adds a dark background with white text). This can be used together with the [`card__screen` and `card__background` elements](#card__screen-+-card__background) to help keep the content of a card legible. 
-
-```html
-<div class="card card_invert">
-  ...
-</div>
-```
-
-### `card_link`
+## card_link
 
 Add styles to a card when the entire component is a clickable link. 
 
-```html
-<a class="card card_link" href="#">
-  ...
-</a>
-```
-
-### `card_zoom`
-
-A style enhancement modifier for when the [`card__background` element](#card__screen-+-card__background) is used. This will create a "zoom" effect when the card is hovered or focused.
-
-```html
-<div class="card card_zoom">
-  ...
-  <img src="..." class="card__background">
-  <div class="card__screen"></div>
-</div>
-```
+<CodeExample lang="html">
+  <div slot="output" class="gap-y">
+    <a href="#" class="card card_link vb-theme-dark">
+      <div class="card__header">
+        <h2 class="card__title">Card Title</h2>
+      </div>
+      <div class="card__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+      </div>
+      <img src="https://picsum.photos/600/300" class="card__background" />
+      <div class="card__screen"></div>
+    </a>
+    <a href="#" class="card card_link">
+      <div class="card__header">
+        <h2 class="card__title">Card Title</h2>
+      </div>
+      <div class="card__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+      </div>
+    </a>
+  </div>
+  ```html
+  <a class="card card_link" href="#">
+    ...
+  </a>
+  ```
+</CodeExample>
 
 ## Customization
 
-### Sass Variables
+Cards are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable either globally via the `core` module or per component.
 
-| Variable                      | Default                                                 | Description                                                                                     |
-| ----------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                                                  | String to prefix blocks with.                                                                   |
-| `$prefix-element`             | `"__"`                                                  | String to prefix elements with.                                                                 |
-| `$prefix-modifier`            | `"_"`                                                   | String to prefix modifiers with.                                                                |
-| `$prefix-modifier-value`      | `"_"`                                                   | String to prefix modifier values with.                                                          |
-| `$padding`                    | `1.25em`                                                | Sets the padding property on the `card__body`, `card__header` and `card__footer` elements.      |
-| `$background`                 | `white`                                                 | Sets the background property.                                                                   |
-| `$border`                     | `null`                                                  | Sets the border property.                                                                       |
-| `$sep-border`                 | `core.$border`                                          | Sets the border property that separates card elements.                                          |
-| `$border-radius`              | `core.$border-radius`                                   | Sets the border-radius property.                                                                |
-| `$box-shadow`                 | `core.$box-shadow-1`                                    | Sets the box-shadow property.                                                                   |
-| `$color`                      | `null`                                                  | Sets the color property.                                                                        |
-| `$transition-property`        | `background-color, border-color, box-shadow, transform` | Sets the transition-property property.                                                          |
-| `$transition-duration`        | `core.$transition-duration`                             | Sets the transition-duration property.                                                          |
-| `$transition-timing-function` | `core.$transition-timing-function`                      | Sets the transition-timing-function property.                                                   |
-| `$title-font-size`            | `core.$font-size-lg`                                    | Sets the font-size property on the `card__title` element.                                       |
-| `$title-line-height`          | `core.$line-height-lg`                                  | Sets the line-height property on the `card__title` element.                                     |
-| `$title-font-weight`          | `core.$font-weight-semi-bold`                           | Sets the font-weight property on the `card__title` element.                                     |
-| `$screen-opacity`             | `0.7`                                                   | Sets the opacity property on the `card__screen` element.                                        |
-| `$screen-background`          | `core.$night`                                           | Sets the background property on the `card__screen` element.                                     |
-| `$invert-background`          | `core.$night`                                           | Sets the background property of the `card_invert` modifier.                                     |
-| `$invert-border-color`        | `null`                                                  | Sets the border-color property of the `card_invert` modifier.                                   |
-| `$invert-sep-border-color`    | `core.$border-color-invert`                             | Sets the border-color property that separates card elements of the `card_invert` modifier.      |
-| `$invert-color`               | `white`                                                 | Sets the background property of the `card_invert` modifier.                                     |
-| `$link-shadow`                | `core.$box-shadow-2`                                    | Sets the box-shadow property of the `card_link` modifier.                                       |
-| `$link-shadow-hover`          | `core.$box-shadow-3`                                    | Sets the box-shadow property of the `card_link` modifier on `:hover` state.                     |
-| `$link-offset`                | `0.25em`                                                | Sets the distance that the card will travel vertically on `:hover` of the `card_link` modifier. |
+<DocBlock name="CSS Variables" type="file" src="card/src/_root.scss">
+
+  ```scss
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  $_v: var.$prefix-variable;
+
+  :root {
+    // Size properties
+    --#{$_v}card-padding: #{var.$padding};
+    --#{$_v}card-border-radius: #{var.$border-radius};
+
+    // Transition properties
+    --#{$_v}card-transition-property: #{var.$transition-property};
+    --#{$_v}card-transition-duration: #{var.$transition-duration};
+    --#{$_v}card-transition-timing-function: #{var.$transition-timing-function};
+
+    // Title properties
+    --#{$_v}card-title-font-size: #{var.$title-font-size};
+    --#{$_v}card-title-line-height: #{var.$title-line-height};
+    --#{$_v}card-title-font-weight: #{var.$title-font-weight};
+
+    // Screen properties
+    --#{$_v}card-screen-background: #{var.$screen-background};
+    --#{$_v}card-screen-opacity: #{var.$screen-opacity};
+
+    // Link properties
+    --#{$_v}card-link-shadow: #{var.$link-shadow};
+    --#{$_v}card-link-shadow-hover: #{var.$link-shadow-hover};
+    --#{$_v}card-link-offset: #{var.$link-offset};
+  }
+
+  // Theme properties
+  @include theme.output-themes("card");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="card/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "@vrembem/core/palette";
+
+  // Prefix variables
+  $prefix-variable: core.$prefix-variable !default;
+  $prefix-block: core.$prefix-block !default;
+  $prefix-element: core.$prefix-element !default;
+  $prefix-modifier: core.$prefix-modifier !default;
+  $prefix-modifier-value: core.$prefix-modifier-value !default;
+
+  // Size properties
+  $padding: 1.25em !default;
+  $border-radius: core.$border-radius !default;
+
+  // Transition properties
+  $transition-property: background-color, border-color, box-shadow, transform !default;
+  $transition-duration: core.$transition-duration !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Title properties
+  $title-font-size: core.$font-size-lg !default;
+  $title-line-height: core.$line-height-lg !default;
+  $title-font-weight: core.$font-weight-semi-bold !default;
+
+  // Screen properties
+  $screen-background: palette.get("neutral", 10) !default;
+  $screen-opacity: 0.7 !default;
+
+  // card_link
+  $link-shadow: core.$shadow-2 !default;
+  $link-shadow-hover: core.$shadow-3 !default;
+  $link-offset: -0.25em !default;
+
+  // Theme properties
+  $theme: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "border": 1px solid theme.get("border-color"),
+    "sep-border": 1px solid theme.get("border-color"),
+    "box-shadow": core.$shadow-1,
+    // "box-shadow-focus": 0 0 0 0.2rem hsl(palette.get("primary", "hs"), 50%, 0.15),
+  ) !default;
+
+  @include theme.set(theme.$default, "card", $theme);
+  ```
+</DocBlock>

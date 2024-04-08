@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
+$_v: var.$prefix-variable;
 $_b: var.$prefix-block;
 $_e: var.$prefix-element;
 
@@ -9,14 +10,14 @@ $_e: var.$prefix-element;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: var.$transition-property;
-  transition-duration: var.$transition-duration;
-  transition-timing-function: var.$transition-timing-function;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
-  box-shadow: var.$shadow;
-  color: var.$foreground;
+  transition-property: var(--#{$_v}card-transition-property);
+  transition-duration: var(--#{$_v}card-transition-duration);
+  transition-timing-function: var(--#{$_v}card-transition-timing-function);
+  border: var(--#{$_v}card-border);
+  border-radius: var(--#{$_v}card-border-radius);
+  background: var(--#{$_v}card-background);
+  box-shadow: var(--#{$_v}card-box-shadow);
+  color: var(--#{$_v}card-foreground);
 }
 
 .#{$_b}card#{$_e}header,
@@ -30,14 +31,14 @@ $_e: var.$prefix-element;
 .#{$_b}card#{$_e}body,
 .#{$_b}card#{$_e}header,
 .#{$_b}card#{$_e}footer {
-  padding: var.$padding;
+  padding: var(--#{$_v}card-padding);
 }
 
 .#{$_b}card#{$_e}body {
   flex: 1 1 auto;
 
   & + & {
-    border-top: var.$sep-border;
+    border-top: var(--#{$_v}card-sep-border);
   }
 }
 
@@ -47,39 +48,39 @@ $_e: var.$prefix-element;
   height: auto;
 
   &:first-child {
-    border-top-left-radius: var.$border-radius;
-    border-top-right-radius: var.$border-radius;
+    border-top-left-radius: var(--#{$_v}card-border-radius);
+    border-top-right-radius: var(--#{$_v}card-border-radius);
   }
 
   &:last-child {
-    border-bottom-left-radius: var.$border-radius;
-    border-bottom-right-radius: var.$border-radius;
+    border-bottom-left-radius: var(--#{$_v}card-border-radius);
+    border-bottom-right-radius: var(--#{$_v}card-border-radius);
   }
 }
 
 .#{$_b}card#{$_e}header {
-  border-bottom: var.$sep-border;
+  border-bottom: var(--#{$_v}card-sep-border);
 
   &:first-child {
-    border-top-left-radius: var.$border-radius;
-    border-top-right-radius: var.$border-radius;
+    border-top-left-radius: var(--#{$_v}card-border-radius);
+    border-top-right-radius: var(--#{$_v}card-border-radius);
   }
 }
 
 .#{$_b}card#{$_e}footer {
-  border-top: var.$sep-border;
+  border-top: var(--#{$_v}card-sep-border);
 
   &:last-child {
-    border-bottom-left-radius: var.$border-radius;
-    border-bottom-right-radius: var.$border-radius;
+    border-bottom-left-radius: var(--#{$_v}card-border-radius);
+    border-bottom-right-radius: var(--#{$_v}card-border-radius);
   }
 }
 
 .#{$_b}card#{$_e}title {
   flex-grow: 1;
-  font-size: var.$title-font-size;
-  font-weight: var.$title-font-weight;
-  line-height: var.$title-line-height;
+  font-size: var(--#{$_v}card-title-font-size);
+  font-weight: var(--#{$_v}card-title-font-weight);
+  line-height: var(--#{$_v}card-title-line-height);
 }
 
 .#{$_b}card#{$_e}background,
@@ -87,10 +88,10 @@ $_e: var.$prefix-element;
   @include core.size(100%);
   position: absolute;
   inset: 0;
-  transition-property: var.$transition-property;
-  transition-duration: var.$transition-duration;
-  transition-timing-function: var.$transition-timing-function;
-  border-radius: var.$border-radius;
+  transition-property: var(--#{$_v}card-transition-property);
+  transition-duration: var(--#{$_v}card-transition-duration);
+  transition-timing-function: var(--#{$_v}card-transition-timing-function);
+  border-radius: var(--#{$_v}card-border-radius);
 }
 
 .#{$_b}card#{$_e}background {
@@ -100,6 +101,6 @@ $_e: var.$prefix-element;
 
 .#{$_b}card#{$_e}screen {
   z-index: 2;
-  background: var.$screen-background;
-  opacity: var.$screen-opacity;
+  background: var(--#{$_v}card-screen-background);
+  opacity: var(--#{$_v}card-screen-opacity);
 }
