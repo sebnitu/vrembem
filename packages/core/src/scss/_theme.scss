@@ -105,15 +105,8 @@ $themes: (
       $prop: #{list.nth($args, 1)}-#{list.nth($args, 2)};
     }
 
-    // Get the fallback value.
-    $fallback: map.get($themes, $default, $args...);
-
-    // Return var() CSS function with a fallback value if provided.
-    @if $fallback {
-      @return var(--#{$_v}#{$prop}, $fallback);
-    } @else {
-      @return var(--#{$_v}#{$prop});
-    }
+    // Return the CSS variable.
+    @return var(--#{$_v}#{$prop});
   } @else {
     @error "Property does not exist in the default theme: (#{$default}, #{$args})";
   }
