@@ -29,7 +29,7 @@ function scrollSpy(options = {}) {
     const entry = {
       el: el,
       ...{ ...settings, ...config }
-    }
+    };
     collection.push(entry);
   }
 
