@@ -6,15 +6,14 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...globals.browser,
-        ...globals.node,
-        ...globals.es2021
+        ...globals.browser
       }
     },
     ignores: [
-      '**/dev/*',
-      '**/dist/*',
-      '**/tests/**/*'
+      '**/dev/**/*',
+      '**/dist/**/*',
+      '**/tests/**/*',
+      '**/vite.config.js'
     ],
     rules: {
       // Copied over from: https://github.com/eslint/eslint/blob/main/packages/js/src/configs/eslint-recommended.js

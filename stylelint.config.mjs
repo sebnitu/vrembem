@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   'extends': [
     'stylelint-config-standard-scss'
   ],
@@ -262,4 +262,4 @@ module.exports = {
       'nav-left'
     ]
   }
-}
+};
