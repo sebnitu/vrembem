@@ -79,6 +79,7 @@ $_e: var.$prefix-element;
 
 .#{$_b}card#{$_e}title {
   flex-grow: 1;
+  color: var(--#{$_v}card-title-color);
   font-size: var(--#{$_v}card-title-font-size);
   font-weight: var(--#{$_v}card-title-font-weight);
   line-height: var(--#{$_v}card-title-line-height);

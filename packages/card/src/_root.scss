@@ -7,6 +7,7 @@ $_v: var.$prefix-variable;
   // Size properties
   --#{$_v}card-padding: #{var.$padding};
   --#{$_v}card-border-radius: #{var.$border-radius};
+  --#{$_v}card-box-shadow: #{var.$box-shadow};
 
   // Transition properties
   --#{$_v}card-transition-property: #{var.$transition-property};
@@ -18,11 +19,7 @@ $_v: var.$prefix-variable;
   --#{$_v}card-title-line-height: #{var.$title-line-height};
   --#{$_v}card-title-font-weight: #{var.$title-font-weight};
 
-  // Screen properties
-  --#{$_v}card-screen-background: #{var.$screen-background};
-  --#{$_v}card-screen-opacity: #{var.$screen-opacity};
-
-  // Link properties
+  // card_link
   --#{$_v}card-link-box-shadow: #{var.$link-box-shadow};
   --#{$_v}card-link-box-shadow-hover: #{var.$link-box-shadow-hover};
   --#{$_v}card-link-offset: #{var.$link-offset};
