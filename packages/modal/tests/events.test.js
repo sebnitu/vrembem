@@ -64,7 +64,6 @@ test('should be able to set a custom event prefix', async () => {
     customEventPrefix: 'vrembem:'
   });
   await modal.init();
-  const el = document.querySelector('#modal-default');
   const btn = document.querySelector('[data-modal-open]');
   const btnClose = document.querySelector('[data-modal-close]');
   let eventOpened = false;
