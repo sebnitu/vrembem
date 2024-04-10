@@ -1,6 +1,5 @@
 import globals from 'globals';
 import js from '@eslint/js';
-import pluginVue from 'eslint-plugin-vue';
 
 const formattingRules = {
   rules: {
@@ -29,7 +28,6 @@ const formattingRules = {
 export default [
   js.configs.recommended,
   formattingRules,
-  ...pluginVue.configs['flat/recommended'],
   {
     ignores: [
       '**/dev/**/*',
@@ -43,8 +41,6 @@ export default [
       '**/*.config.js'
     ],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       globals: {
         ...globals.browser
       }
@@ -57,8 +53,6 @@ export default [
       '**/tests/**/*'
     ],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       globals: {
         ...globals.node
       }
@@ -71,8 +65,6 @@ export default [
       '**/*.config.js'
     ],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       globals: {
         ...globals.browser,
         global: 'readonly',
