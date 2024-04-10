@@ -1,5 +1,6 @@
 {
   "name": "root",
+  "type": "module",
   "private": true,
   "license": "MIT",
   "workspaces": [
@@ -32,6 +33,7 @@
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
     "eslint": "^9.0.0",
+    "eslint-plugin-vue": "^9.24.1",
     "jsdom": "^24.0.0",
     "lerna": "^8.1.2",
     "lerna-changelog": "^2.2.0",

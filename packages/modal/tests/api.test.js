@@ -318,7 +318,7 @@ describe('replace()', () => {
     modal.open('modal-3');
     modal.open('modal-4');
 
-    await Promise.all(modal.collection.map(async (entry) => {
+    await Promise.all(modal.collection.map(async () => {
       await vi.runAllTimers();
     }));
 
@@ -330,7 +330,7 @@ describe('replace()', () => {
 
     modal.replace('modal-2');
 
-    await Promise.all(modal.collection.map(async (entry) => {
+    await Promise.all(modal.collection.map(async () => {
       await vi.runAllTimers();
     }));
 
