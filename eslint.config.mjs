@@ -36,9 +36,8 @@ export default [
   },
   {
     name: 'vb/src',
-    ignores: [
-      '**/tests/**/*',
-      '**/*.config.js'
+    files: [
+      '**/src/**/*'
     ],
     languageOptions: {
       globals: {
@@ -47,22 +46,9 @@ export default [
     },
   },
   {
-    name: 'vb/config',
-    ignores: [
-      '**/src/**/*',
-      '**/tests/**/*'
-    ],
-    languageOptions: {
-      globals: {
-        ...globals.node
-      }
-    },
-  },
-  {
     name: 'vb/tests',
-    ignores: [
-      '**/src/**/*',
-      '**/*.config.js'
+    files: [
+      '**/tests/**/*'
     ],
     languageOptions: {
       globals: {
@@ -76,6 +62,17 @@ export default [
         beforeEach: 'readonly',
         afterEach: 'readonly',
         beforeAll: 'readonly'
+      }
+    },
+  },
+  {
+    name: 'vb/config',
+    files: [
+      '**/*.config.js'
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.node
       }
     },
   }
