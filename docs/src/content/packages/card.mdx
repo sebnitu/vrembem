@@ -4,6 +4,7 @@ description: "The cards component provides a flexible and extensive content cont
 package: "@vrembem/card"
 ---
 
+import Icon from '../../components/Icon.vue';
 import CodeExample from '../../components/CodeExample.astro';
 import DocBlock from '../../components/DocBlock.astro';
 
@@ -61,12 +62,18 @@ Used to separate distinct card sections for headers and footers. It's also possi
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
       </div>
-      <div class="card__body">
+      <div class="card__body gap-y">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis.</p>
+        <p class="foreground-lighter level flex-justify-between">
+          <span>April 9th, 2024</span>
+          <span>30 comments</span>
+        </p>
       </div>
       <div class="card__footer flex flex-justify-between">
-        <button class="button button_color_primary">Submit</button>
-        <button class="link">Cancel</button>
+        <button class="button button_color_primary">Read More</button>
+        <button class="button button_color_secondary button_icon">
+          <Icon name="heart" />
+        </button>
       </div>
     </div>
   </div>
@@ -85,24 +92,28 @@ Used to separate distinct card sections for headers and footers. It's also possi
   ```
 </CodeExample>
 
-Card screens and backgrounds are displayed behind the other card elements. These can be paired with the `vb-theme-dark` class which switches text colors to better suite a dark background theme.
+Card screens and backgrounds are displayed behind the other card elements. These can be paired with the `vb-theme-light` or `vb-theme-dark` class which switches text colors to better suite a light or dark card theme.
 
 - `card__screen`
 - `card__background`
 
 <CodeExample lang="html">
   <div slot="output" class="gap-y">
-    <div class="card">
-      <div class="card__body gap-y">
+    <div class="card vb-theme-light">
+      <div class="card__header">
         <h2 class="card__title">Card Title</h2>
+      </div>
+      <div class="card__body">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis.</p>
       </div>
       <img src="https://picsum.photos/id/976/600/300" class="card__background" />
       <div class="card__screen"></div>
     </div>
     <div class="card vb-theme-dark">
-      <div class="card__body gap-y">
+      <div class="card__header">
         <h2 class="card__title">Card Title</h2>
+      </div>
+      <div class="card__body">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis.</p>
       </div>
       <img src="https://picsum.photos/id/976/600/300" class="card__background" />
@@ -127,9 +138,12 @@ Add styles to a card when the entire component is a clickable link.
 <CodeExample lang="html">
   <div slot="output" class="gap-y">
     <a href="#" class="card card_link">
-      <div class="card__body">
+      <img class="card__image" src="https://picsum.photos/id/106/600/300" />
+      <div class="card__header">
         <h2 class="card__title">Card Title</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis.</p>
+      </div>
+      <div class="card__body gap-y">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci id venenatis nisi quam non turpis... <strong>Continue Reading</strong></p>
       </div>
     </a>
   </div>
