@@ -21,6 +21,18 @@ $_e: var.$prefix-element;
   color: var(--#{$_v}card-foreground);
 }
 
+a.#{$_b}card {
+  transform: translate(0, 0);
+  box-shadow: var(--#{$_v}card-link-box-shadow);
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    transform: translate(0, var(--#{$_v}card-link-offset));
+    box-shadow: var(--#{$_v}card-link-box-shadow-hover);
+  }
+}
+
 .#{$_b}card#{$_e}header,
 .#{$_b}card#{$_e}body,
 .#{$_b}card#{$_e}footer,

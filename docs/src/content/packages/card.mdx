@@ -122,22 +122,18 @@ Card screens and backgrounds are displayed behind the other card elements. These
   </div>
   ```html
   <div class="card">
-    <div class="card__body">
-      ...
-    </div>
+    ...
     <img src="..." class="card__background" />
     <div class="card__screen"></div>
   </div>
   ```
 </CodeExample>
 
-## card_link
-
-Add styles to a card when the entire component is a clickable link. 
+When creating a card using the `<a>` element, additional styles are applied to make the card more visually interactive such as hover and focus styles.
 
 <CodeExample lang="html">
   <div slot="output" class="gap-y">
-    <a href="#" class="card card_link">
+    <a href="#" class="card">
       <img class="card__image" src="https://picsum.photos/id/106/600/300" />
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
@@ -148,7 +144,7 @@ Add styles to a card when the entire component is a clickable link.
     </a>
   </div>
   ```html
-  <a href="#" class="card card_link">
+  <a href="#" class="card">
     ...
   </a>
   ```
@@ -182,7 +178,7 @@ Cards are primarily customized using CSS variables but can also be modified usin
     --#{$_v}card-title-line-height: #{var.$title-line-height};
     --#{$_v}card-title-font-weight: #{var.$title-font-weight};
 
-    // card_link
+    // Link properties
     --#{$_v}card-link-box-shadow: #{var.$link-box-shadow};
     --#{$_v}card-link-box-shadow-hover: #{var.$link-box-shadow-hover};
     --#{$_v}card-link-offset: #{var.$link-offset};
@@ -217,12 +213,12 @@ Cards are primarily customized using CSS variables but can also be modified usin
   $transition-duration: core.$transition-duration !default;
   $transition-timing-function: core.$transition-timing-function !default;
 
-  // Title element properties
+  // Title properties
   $title-font-size: core.$font-size-lg !default;
   $title-line-height: core.$line-height-lg !default;
   $title-font-weight: core.$font-weight-semi-bold !default;
 
-  // card_link
+  // Link properties
   $link-box-shadow: core.$shadow-2 !default;
   $link-box-shadow-hover: core.$shadow-3 !default;
   $link-offset: -0.25em !default;

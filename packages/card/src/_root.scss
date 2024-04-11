@@ -19,7 +19,7 @@ $_v: var.$prefix-variable;
   --#{$_v}card-title-line-height: #{var.$title-line-height};
   --#{$_v}card-title-font-weight: #{var.$title-font-weight};
 
-  // card_link
+  // Link properties
   --#{$_v}card-link-box-shadow: #{var.$link-box-shadow};
   --#{$_v}card-link-box-shadow-hover: #{var.$link-box-shadow-hover};
   --#{$_v}card-link-offset: #{var.$link-offset};
