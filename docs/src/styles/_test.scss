@@ -1,0 +1,62 @@
+@use "@vrembem/core/theme";
+@use "@vrembem/core/palette";
+
+.test-1,
+.test-2,
+.test-3 {
+  padding: 0.5em 1em;
+  border-radius: 0.25em;
+  border: 1px solid transparent;
+}
+
+/**
+ * Test 1
+ */
+
+.test-1 {
+  background: theme.get("background");
+  color: theme.get("foreground");
+  border-color: theme.get("border-color");
+}
+
+/**
+ * Test 2
+ */
+
+:root {
+  --vb-test-2-background: #{theme.get("background")};
+  --vb-test-2-foreground: #{theme.get("foreground")};
+  --vb-test-2-border-color: #{theme.get("border-color")};
+}
+
+.test-2 {
+  background: var(--vb-test-2-background);
+  color: var(--vb-test-2-foreground);
+  border-color: var(--vb-test-2-border-color);
+}
+
+/**
+ * Test 3
+ */
+
+$theme-light: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "border-color": theme.get("border-color"),
+);
+
+$theme-dark: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "border-color": theme.get("border-color"),
+);
+
+@include theme.set("light", "test-3", $theme-light);
+@include theme.set("dark", "test-3", $theme-dark);
+@include theme.output-themes("test-3");
+
+.test-3 {
+  background: var(--vb-test-3-background);
+  color: var(--vb-test-3-foreground);
+  border-color: var(--vb-test-3-border-color);
+}

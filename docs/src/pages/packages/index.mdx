@@ -7,4 +7,86 @@ filename: index
 
 # Packages
 
-...
+Vrembem is organized into a set of packages. These packages all consist of a SCSS module and some also contain corresponding JavaScript ES modules. Most packages can be considered their own self enclosed components but there are some unique packages to consider.
+
+The core module (`@vrembem/core`) is used by all packages and is the central place that shared configurations and settings live. To make Vrembem wide changes (such as adjusting prefix values or color palettes), the core module is the place to do that.
+
+The base (`@vrembem/base`) and utility (`@vrembem/utility`) modules are also unique because they contain a set of sub-modules that can be thought of as more general purpose.
+
+Lastly the Vrembem package (simply named `vrembem`) is setup so that users can install the entire Vrembem suite via a single entry point package.
+
+## Prefixes
+
+There are a number of ways to alter prefixes in Vrembem and they can all be changed either on a per-component bases or globally using the core module. The following prefixes can be set:
+
+- `$variable` (default `"vb-"`) - Sets the prefix for all CSS variables.
+- `$theme` (default `"vb-theme-"`) - Sets the prefix of theme classes.
+- `$block` (default `null`) - Set the prefix of BEM CSS class blocks.
+- `$element` (default `"__"`) - Set the prefix of BEM CSS class elements.
+- `$modifier` (default `"_"`) - Set the prefix of BEM CSS class modifiers.
+- `$modifier-value` (default `"_"`) - Set the prefix of BEM CSS class modifier values.
+
+## Palette Module
+
+The palette module is used to manage Vrembem's colors and their CSS variable output. These can be used directly in components or assigned to theme alias to make them more flexible using the theme system.
+
+By default, the palette module ships with four colors with a wide range of lightness values. This includes:
+
+<div class="level flex-gap-lg">
+  <span class="swatch radius background-primary"></span>
+  <span>`primary`</span>
+</div>
+
+<div class="level flex-gap-lg">
+  <span class="swatch radius background-secondary"></span>
+  <span>`secondary`</span>
+</div>
+
+<div class="level flex-gap-lg">
+  <span class="swatch radius background-neutral"></span>
+  <span>`neutral`</span>
+</div>
+
+<div class="level flex-gap-lg">
+  <span class="swatch radius background-important"></span>
+  <span>`important`</span>
+</div>
+
+## Theme Module
+
+Packages and their use of the theme module will impact the flexibility of a components themes and their ability to use theme classes. There are three primary states that a component can adopt the theme module.
+
+1. If a package uses the theme CSS vars directly, it will inherit root/light/dark preferences as well as the ability to use theme classes directly.
+
+<div class="level">
+  <span class="test-1">Default</span>
+  <span class="test-1 vb-theme-root">vb-theme-root</span>
+  <span class="test-1 vb-theme-light">vb-theme-light</span>
+  <span class="test-1 vb-theme-dark">vb-theme-dark</span>
+</div>
+
+2. If a package has its own custom CSS vars that are set to theme CSS vars, it will inherit root/light/dark preferences but theme classes won't be available.
+
+<div class="level">
+  <span class="test-2">Default</span>
+  <span class="test-2 vb-theme-root">vb-theme-root</span>
+  <span class="test-2 vb-theme-light">vb-theme-light</span>
+  <span class="test-2 vb-theme-dark">vb-theme-dark</span>
+</div>
+
+3. If a package has its own custom CSS vars but uses the theme module's `theme.set` to set and `theme.output-themes` to output theme variables, it will have the ability to use theme classes directly.
+
+<div class="level">
+  <span class="test-3">Default</span>
+  <span class="test-3 vb-theme-root">vb-theme-root</span>
+  <span class="test-3 vb-theme-light">vb-theme-light</span>
+  <span class="test-3 vb-theme-dark">vb-theme-dark</span>
+</div>
+
+### CSS Theme Classes
+
+There are three themes that come from Vrembem by default though these can be expanded or removed as needed via the theme module. These themes include:
+
+- `vb-theme-root` - Will display the theme of the users preference.
+- `vb-theme-light` - Will display the light theme regardless of user preference.
+- `vb-theme-dark` - Will display the dark theme regardless of user preference.
