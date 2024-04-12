@@ -90,9 +90,9 @@ $themes: (
 
 /// Function to return the CSS variable with fallback of an entry within the
 /// $themes map. Requested property must exist in the default theme.
-/// @example - Return the background var() from the dark theme.
+/// @example - Return the background var() from the default theme.
 ///   background: theme.get("background");
-/// @example - Return the foreground var() from the card dark theme.
+/// @example - Return the background var() from the card default theme.
 ///   background: theme.get("card", "background");
 /// @param {String} $args... - The property key to return.
 /// @require {Variable} $themes
@@ -105,17 +105,32 @@ $themes: (
       $prop: #{list.nth($args, 1)}-#{list.nth($args, 2)};
     }
 
-    // Get the fallback value.
-    $fallback: map.get($themes, $default, $args...);
-
-    // Return var() CSS function with a fallback value if provided.
-    @if $fallback {
-      @return var(--#{$_v}#{$prop}, $fallback);
-    } @else {
-      @return var(--#{$_v}#{$prop});
-    }
+    // Return the CSS variable.
+    @return var(--#{$_v}#{$prop});
   } @else {
     @error "Property does not exist in the default theme: (#{$default}, #{$args})";
+  }
+}
+
+/// Function to return the value of an entry within the $themes map.
+/// @example - Return the background value from the default theme.
+///   background: theme.val("background");
+/// @example - Return the foreground value from the card default theme.
+///   background: theme.val("card", "foreground");
+/// @example - Return the background value from the card dark theme.
+///   background: theme.val("dark", "card", "background");
+/// @param {String} $args... - The property key to return.
+/// @require {Variable} $themes
+/// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
+@function val($args...) {
+  @if map.has-key($themes, $default, $args...) {
+    @return map.get($themes, $default, $args...);
+  } 
+  @else if map.has-key($themes, $args...) {
+    @return map.get($themes, $args...);
+  }
+  @else {
+    @error "Property does not exist in the themes object: (#{$args})";
   }
 }
 

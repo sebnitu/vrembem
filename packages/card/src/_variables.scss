@@ -1,29 +1,54 @@
 @use "@vrembem/core";
+@use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 
+// Prefix variables
+$prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
 $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
+// Size properties
 $padding: 1.25em !default;
-$background: white !default;
-$foreground: null !default;
-$border: null !default;
-$sep-border: core.$border !default;
 $border-radius: core.$border-radius !default;
-$shadow: core.$shadow-1 !default;
+$box-shadow: core.$shadow-1 !default;
+
+// Transition properties
 $transition-property: background-color, border-color, box-shadow, transform !default;
 $transition-duration: core.$transition-duration !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
+// Title properties
 $title-font-size: core.$font-size-lg !default;
 $title-line-height: core.$line-height-lg !default;
 $title-font-weight: core.$font-weight-semi-bold !default;
 
-$screen-background: palette.get("neutral", 10) !default;
-$screen-opacity: 0.7 !default;
+// Link properties
+$link-box-shadow: core.$shadow-2 !default;
+$link-box-shadow-hover: core.$shadow-3 !default;
+$link-offset: -0.25em !default;
 
-$link-shadow: core.$shadow-2 !default;
-$link-shadow-hover: core.$shadow-3 !default;
-$link-offset: 0.25em !default;
+// Theme properties
+$theme-light: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground-light"),
+  "border": 1px solid theme.get("border-color"),
+  "sep-border": 1px solid theme.get("border-color"),
+  "title-color": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.9
+) !default;
+
+$theme-dark: (
+  "background": theme.get("background-darker"),
+  "foreground": theme.get("foreground-light"),
+  "border": 1px solid theme.get("border-color"),
+  "sep-border": 1px solid theme.get("border-color"),
+  "title-color": theme.get("foreground"),
+  "screen-background": theme.get("background-darker"),
+  "screen-opacity": 0.8
+) !default;
+
+@include theme.set("light", "card", $theme-light);
+@include theme.set("dark", "card", $theme-dark);
