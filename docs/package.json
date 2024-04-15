@@ -13,7 +13,7 @@
     "@astrojs/mdx": "^2.2.4",
     "@astrojs/vue": "^4.1.0",
     "@types/node": "^20.12.6",
-    "astro": "^4.5.16",
+    "astro": "^4.6.1",
     "feather-icons": "^4.29.1",
     "vrembem": "^4.0.0-next.6",
     "vue": "^3.4.22"
