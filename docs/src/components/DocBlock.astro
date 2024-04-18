@@ -96,3 +96,17 @@ const isFile = (type === 'file');
 
   </div>
 </article>
+
+<script>
+  const docBlock = [];
+  window['docBlock'] = docBlock;
+
+  const els = document.querySelectorAll('.doc-block');
+  els.forEach((el) => {
+    const id = el.querySelector('h3').id;
+    docBlock.push({
+      id: id,
+      el: el
+    });
+  });
+</script>
