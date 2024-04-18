@@ -1,0 +1,52 @@
+---
+interface Props {
+  id?: string;
+  arrow?: boolean;
+  ariaLabel?: string;
+  triggerClass?: string;
+  targetClass?: string;
+  placement?: string;
+}
+
+const { 
+  id, 
+  arrow = false,
+  ariaLabel, 
+  triggerClass = 'link', 
+  targetClass = '',
+  placement
+} = Astro.props;
+
+const uid = `popover-${id ? id : JSON.stringify(Math.floor(Math.random() * Date.now()))}`;
+
+const css = {};
+if (placement) {
+  css['--vb-popover-placement'] = placement;
+}
+---
+
+<button
+  id={`${uid}-trigger`}
+  data-popover-trigger={uid}
+  aria-controls={uid}
+  aria-label={ariaLabel}
+  class={triggerClass}>
+  <slot name="trigger">Popover Trigger</slot>
+</button>
+
+<div
+  id={uid}
+  aria-labelledby={`${uid}-trigger`}
+  class={(targetClass + " popover").trim()}
+  style={css}>
+  <slot>Popover Content</slot>
+  { 
+    arrow && (
+      <span class="popover__arrow"></span>
+    )
+  }
+</div>
+
+<script>
+import "../modules/usePopover";
+</script>

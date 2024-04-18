@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.vue';
+---
+
+<ul class="menu menu_theme-switcher">
+  <li class="menu__item">
+    <button data-value="root" class="menu__action">
+      <svg class="icon icon_style_fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M21 12C21 7.36745 17.5 3.55237 13 3.05493L13 20.9451C17.4999 20.4476 21 16.6326 21 12ZM12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 0.999999 18.0751 1 12C1 5.92487 5.92487 0.999999 12 1Z" fill="currentColor" />
+      </svg>
+      <span>OS Default</span>
+    </button>
+  </li>
+  <li class="menu__item">
+    <button data-value="light" class="menu__action">
+      <Icon name="sun" />
+      <span>Light</span>
+    </button>
+  </li>
+  <li class="menu__item">
+    <button data-value="dark" class="menu__action">
+      <Icon name="moon" />
+      <span>Dark</span>
+    </button>
+  </li>
+</ul>
+
+<script>
+import { store } from '../modules/useThemeStore';
+import { popover } from '../modules/usePopover';
+
+function changeTheme(value) {
+  store.change(value);
+}
+
+function setActive(value) {
+  btns.forEach((btn) => btn.classList.remove('is-active'));
+  btns.forEach((btn) => {
+    if (btn.getAttribute('data-value') === value) {
+      btn.classList.add('is-active');
+    }
+  });
+}
+
+const btns = document.querySelectorAll('.menu_theme-switcher .menu__action');
+
+btns.forEach((btn) => {
+  btn.addEventListener(('click'), () => {
+    const value = btn.getAttribute('data-value');
+    changeTheme(value);
+    setActive(value);
+    popover.close('popover-theme-switcher');
+  });
+});
+
+setActive(store.theme);
+</script>
