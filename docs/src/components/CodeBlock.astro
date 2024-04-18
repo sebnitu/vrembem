@@ -1,5 +1,5 @@
 ---
-import Icon from "./Icon.vue";
+import Icon from "./Icon.astro";
 import Popover from "./Popover.astro";
 
 interface Props {
@@ -7,18 +7,12 @@ interface Props {
 }
 
 const { inline = false } = Astro.props;
-
-let rootClass = '';
-
-if (inline) {
-  rootClass += ' code-block_inline';
-}
 ---
 
-<div class={`code-block` + rootClass}>
+<div class={`code-block ${inline ? 'code-block_inline' : ''}`.trim()}>
   {
     inline ? (
-      <Icon name="chevron-right" rootClass="code-block__prompt" iconClass="icon_size_sm foreground-lighter" />
+      <Icon name="chevron-right" iconClass="code-block__prompt icon_size_sm foreground-lighter" />
       <pre tabindex="0" class="pre"><code><slot /></code></pre>
     ) : (
       <pre tabindex="0" class="pre"><slot /></pre>
@@ -29,10 +23,10 @@ if (inline) {
     targetClass="popover_tooltip"
     arrow={true}
     aria-label="Copy code example">
-    <span slot="trigger">
+    <Fragment slot="trigger">
       <Icon name="copy" iconClass="icon_size_sm" />
       <Icon name="check" iconClass="icon_size_sm foreground-primary-50 display-none" />
-    </span>
+    </Fragment>
     Copied!
   </Popover>
 </div>
