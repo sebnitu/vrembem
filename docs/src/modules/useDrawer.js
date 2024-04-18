@@ -6,4 +6,6 @@ if (typeof window !== 'undefined') {
   window['drawer'] = await drawer.init();
 }
 
+console.log(drawer);
+
 export { drawer };
