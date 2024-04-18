@@ -1,8 +1,8 @@
 ---
 import Navi from "../components/Navi.astro";
-import Icon from "../components/Icon.vue";
 import LogoIcon from "./LogoIcon.astro";
-import Modal from "../components/Modal.vue";
+import Modal from "./Modal.astro";
+import Icon from "../components/Icon.vue";
 
 interface Props {
   classes?: string;
@@ -32,7 +32,7 @@ const { classes = "" } = Astro.props;
   </div>
 </header>
 
-<Modal client:only="vue" id="modal-navi" modalClass="modal_pos_top">
+<Modal id="modal-navi" modalClass="modal_pos_top">
   <div class="dialog__header">
     <h2 class="dialog__title">Menu</h2>
     <button data-modal-close class="button button_icon dialog__close">
