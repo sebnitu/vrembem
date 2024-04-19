@@ -1,11 +1,10 @@
-function headerAnchor(options = {}) {
-  const settings = {
-    prefix: '.layout__content',
-    headings: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-    ...options
-  };
+const settings = {
+  prefix: '.layout__content',
+  headings: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+};
 
-  function mount() {
+const headerAnchor = {
+  mount() {
     settings.headings.forEach((heading) => {
       const els = document.querySelectorAll(`${settings.prefix} ${heading}`);
       els.forEach((el) => {
@@ -28,11 +27,6 @@ function headerAnchor(options = {}) {
       });
     });
   }
-
-  return {
-    settings,
-    mount
-  };
-}
+};
 
 export { headerAnchor };

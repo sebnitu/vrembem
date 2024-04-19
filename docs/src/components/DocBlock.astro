@@ -98,9 +98,10 @@ const isFile = (type === 'file');
 </article>
 
 <script>
-  const docBlock = [];
-  window['docBlock'] = docBlock;
+  import { toggle } from '../modules/toggle';
 
+  // Build the docBlock array.
+  const docBlock = [];
   const els = document.querySelectorAll('.doc-block');
   els.forEach((el) => {
     const id = el.querySelector('h3').id;
@@ -108,5 +109,28 @@ const isFile = (type === 'file');
       id: id,
       el: el
     });
+  });
+  
+  // Check for active block function.
+  function checkActiveBlock() {
+    const result = docBlock.find((el) => {
+      return `#${el.id}` === window.location.hash;
+    });
+
+    docBlock.forEach((item) => {
+      item.el.classList.remove('is-active')
+    });
+
+    if (result) {
+      toggle.open(result.id);
+      result.el.classList.add('is-active');
+    }
+  }
+
+  // Setup event listener for hash change and
+  // check for active block on load and change.
+  checkActiveBlock();
+  window.addEventListener('hashchange', () => {
+    checkActiveBlock();
   });
 </script>
