@@ -5,13 +5,13 @@
 
 .doc-block {
   margin: 2rem 0 !important;
-  border: core.$border;
-  border-radius: core.$border-radius;
-  font-size: core.$font-size;
-  line-height: core.$line-height;
-  box-shadow: 0 0 0 0 palette.get("primary", 90);
   transition: core.$transition-duration core.$transition-timing-function;
   transition-property: border-color, box-shadow;
+  border: core.$border;
+  border-radius: core.$border-radius;
+  box-shadow: 0 0 0 0 palette.get("primary", 90);
+  font-size: core.$font-size;
+  line-height: core.$line-height;
 
   & + & {
     margin-top: -1rem !important;
