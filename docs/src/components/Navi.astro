@@ -1,8 +1,8 @@
 ---
-import Icon from "../components/Icon.vue";
 import { currentPage } from "../modules/currentPage";
-import ThemeSwitcherPopover from "../components/ThemeSwitcherPopover.vue";
-import ThemeSwitcherMenu from "../components/ThemeSwitcherMenu.vue";
+import ThemeSwitcherPopover from "./ThemeSwitcherPopover.astro";
+import ThemeSwitcherMenu from "../components/ThemeSwitcherMenu.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
   classes?: string;
@@ -40,7 +40,6 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       GitHub
       <Icon
         name="arrow-up-right"
-        rootClass="display-inline"
         iconClass="icon_external"
       />
     </a>
@@ -50,7 +49,6 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       Sponsor
       <Icon
         name="arrow-up-right"
-        rootClass="display-inline"
         iconClass="icon_external"
       />
     </a>
@@ -58,7 +56,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
   {
     inline && (
       <li class={"menu__item margin-left-md"}>
-        <ThemeSwitcherPopover client:load />
+        <ThemeSwitcherPopover />
       </li>
     )
   }
@@ -70,7 +68,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
           Switch Theme
         </li>
         <li class="menu__item">
-          <ThemeSwitcherMenu client:load />
+          <ThemeSwitcherMenu />
         </li>
       </>
     )

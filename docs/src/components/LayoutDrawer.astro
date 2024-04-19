@@ -1,0 +1,14 @@
+<aside
+  id="layout-drawer"
+  class="layout-drawer"
+  data-drawer-breakpoint="60rem"
+  data-drawer-config="{'classModal': 'is-modal', 'store': false}">
+  <div class="layout-drawer__mask"></div>
+  <slot />
+</aside>
+<div class="layout__screen" data-drawer-close="layout-drawer"></div>
+
+<script>
+import { drawer } from '../modules/useDrawer';
+drawer.register(document.getElementById('layout-drawer'));
+</script>

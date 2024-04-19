@@ -1,0 +1,15 @@
+<aside
+  id="layout-aside"
+  class="layout-aside"
+  data-drawer-breakpoint="76rem"
+  data-drawer-config="{'classModal': 'is-modal', 'store': false}">
+  <div class="layout-aside__container">
+    <slot />
+  </div>
+</aside>
+<div class="layout__screen" data-drawer-close="layout-aside"></div>
+
+<script>
+import { drawer } from '../modules/useDrawer';
+drawer.register(document.getElementById('layout-aside'));
+</script>

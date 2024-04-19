@@ -1,0 +1,64 @@
+---
+import Icon from "./Icon.astro";
+import Popover from "./Popover.astro";
+
+interface Props {
+  inline?: boolean;
+}
+
+const { inline = false } = Astro.props;
+---
+
+<div class={`code-block ${inline ? 'code-block_inline' : ''}`.trim()}>
+  {
+    inline ? (
+      <Icon name="chevron-right" iconClass="code-block__prompt icon_size_sm foreground-lighter" />
+      <pre tabindex="0" class="pre"><code><slot /></code></pre>
+    ) : (
+      <pre tabindex="0" class="pre"><slot /></pre>
+    )
+  }
+  <Popover
+    triggerClass="code-block__copy-button"
+    targetClass="popover_tooltip"
+    arrow={true}
+    aria-label="Copy code example">
+    <Fragment slot="trigger">
+      <Icon name="copy" iconClass="icon_size_sm" />
+      <Icon name="check" iconClass="icon_size_sm foreground-primary-50 display-none" />
+    </Fragment>
+    Copied!
+  </Popover>
+</div>
+
+<script>
+import { popover } from "../modules/usePopover";
+
+function copyCode(event) {
+  const trigger = event.target.closest('.code-block__copy-button');
+  const code = event.target.closest('.code-block').querySelector('pre code');
+  const text = code.innerText;
+  const icons = trigger.querySelectorAll('.icon');
+  navigator.clipboard.writeText(text)
+    .then((result) => {
+      trigger.disabled = true;
+      icons.forEach((icon) => icon.classList.toggle('display-none'));
+      setTimeout(() => {
+        trigger.disabled = false;
+        icons.forEach((icon) => icon.classList.toggle('display-none'));
+        popover.close(trigger.getAttribute('data-popover-trigger'));
+      }, 2000);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+const btns = document.querySelectorAll('.code-block__copy-button');
+
+btns.forEach((btn) => {
+  btn.addEventListener('click', (event) => {
+    copyCode(event);
+  });
+});
+</script>

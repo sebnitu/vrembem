@@ -3,8 +3,8 @@ import Root from "../layouts/Root.astro";
 import Logo from "../components/Logo.astro";
 import Footer from "../components/Footer.astro";
 import Navibar from "../components/Navibar.astro";
-import CodeBlock from "../components/CodeBlock.vue";
-import Icon from "../components/Icon.vue";
+import CodeBlock from "../components/CodeBlock.astro";
+import Icon from "../components/Icon.astro";
 ---
 
 <Root bodyClass="background-darker">
@@ -31,7 +31,7 @@ import Icon from "../components/Icon.vue";
         >
           Documentation
         </a>
-        <CodeBlock inline={true} client:load>npm install vrembem</CodeBlock>
+        <CodeBlock inline>npm install vrembem</CodeBlock>
       </div>
     </div>
   </div>
