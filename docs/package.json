@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^2.3.0",
+    "@astrojs/mdx": "^2.3.1",
     "astro": "^4.6.3",
     "feather-icons": "^4.29.1",
     "vrembem": "^4.0.0-next.6"
