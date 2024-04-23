@@ -13,9 +13,9 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 $background: transparent !default;
-$background-hover: rgba($color, 0.1) !default;
-$background-focus: rgba($color, 0.1) !default;
-$background-active: rgba($color, 0.2) !default;
+$background-hover: palette.get("primary", 95) !default;
+$background-focus: palette.get("primary", 95) !default;
+$background-active: palette.get("primary", 90) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
