@@ -52,4 +52,12 @@ const layout = {
 
   headerAnchor.mount();
   toggle.mount();
+
+  const checkboxes = document.querySelectorAll(
+    'input[type="checkbox"][aria-checked="mixed"]'
+  );
+  checkboxes.forEach((checkbox) => {
+    // @ts-ignore
+    checkbox.indeterminate = true;
+  });
 </script>
