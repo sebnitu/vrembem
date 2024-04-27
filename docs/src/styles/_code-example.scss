@@ -39,7 +39,7 @@
   }
 
   .code-block__copy-button {
-    top: 0.25rem;
+    top: calc(-2.5rem + 1px);
     right: 0.5rem;
     background-color: transparent;
 
@@ -54,8 +54,13 @@
 }
 
 .code-example__toolbar {
+  display: flex;
+  gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border-bottom: core.$border;
   color: theme.get("foreground-lighter");
   text-transform: uppercase;
+
+  > * + * {
+    margin-left: 1rem;
+  }
 }

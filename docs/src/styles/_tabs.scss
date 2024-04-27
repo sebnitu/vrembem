@@ -1,0 +1,37 @@
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+[role="tab"] {
+  position: relative;
+  margin: -0.5rem 0;
+  padding: 0.5rem;
+  color: theme.get("foreground-lighter");
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -1px;
+    height: 3px;
+    background: transparent;
+  }
+
+  &:hover {
+    color: theme.get("foreground");
+  }
+
+  &[aria-selected="true"] {
+    color: palette.get("primary");
+
+    &::after {
+      background: palette.get("primary");
+    }
+  }
+}
+
+[role="tabpanel"] {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}

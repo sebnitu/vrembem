@@ -25,8 +25,8 @@ npm install @vrembem/checkbox
 
 Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
 
-<CodeExample lang="html">
-  <div slot="output">
+<CodeExample tabs={true}>
+  <Fragment slot="output">
     <span class="checkbox">
       <input class="checkbox__native" type="checkbox" checked />
       <span class="checkbox__background">
@@ -51,38 +51,41 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
         </span>
       </span>
     </span>
-  </div>
-  ```html
-  <span class="checkbox">
-    <input class="checkbox__native" type="checkbox" />
-    <span class="checkbox__background">
-      <span class="checkbox__box">
-        <span class="checkbox__icon"></span>
+  </Fragment>
+  <Fragment slot="tab-html">
+    ```html
+    <span class="checkbox">
+      <input class="checkbox__native" type="checkbox" />
+      <span class="checkbox__background">
+        <span class="checkbox__box">
+          <span class="checkbox__icon"></span>
+        </span>
       </span>
     </span>
-  </span>
-  ```
+    ```
+  </Fragment>
+  <Fragment slot="tab-js">
+    ```js
+    const checkboxes = document.querySelectorAll(
+      'input[type="checkbox"][aria-checked="mixed"]'
+    );
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.indeterminate = true;
+    });
+    ```
+  </Fragment>
 </CodeExample>
 
 Indeterminate checkboxes need to be set in JavaScript though styling is provided by Vrembem for the indeterminate states (see example above). Review [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate) for more details.
 
-<CodeExample lang="js">
-  ```js
-  const checkboxes = document.querySelectorAll(
-    'input[type="checkbox"][aria-checked="mixed"]'
-  );
-  checkboxes.forEach((checkbox) => {
-    checkbox.indeterminate = true;
-  });
-  ```
-</CodeExample>
 
 ### Checkboxes with labels
 
 For checkboxes with labels, wrap the checkbox component along with the text label using the `<label>` element.
 
 <CodeExample lang="html">
-  <div slot="output">
+  <Fragment slot="output">
     <label>
       <span class="checkbox">
         <input class="checkbox__native" type="checkbox" checked />
@@ -118,7 +121,7 @@ For checkboxes with labels, wrap the checkbox component along with the text labe
       </span>
       <span>Checkbox with a label</span>
     </label>
-  </div>
+  </Fragment>
   ```html
   <label>
     <span class="checkbox">
@@ -134,7 +137,7 @@ For checkboxes with labels, wrap the checkbox component along with the text labe
 Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
 
 <CodeExample lang="html">
-  <div slot="output">
+  <Fragment slot="output">
     <span class="checkbox checkbox_size_sm">
       <input class="checkbox__native" type="checkbox" checked />
       <span class="checkbox__background">
@@ -159,7 +162,7 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
         </span>
       </span>
     </span>
-  </div>
+  </Fragment>
   ```html
   <span class="checkbox checkbox_size_sm">
     ...
