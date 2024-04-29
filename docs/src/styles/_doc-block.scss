@@ -50,6 +50,12 @@
   border-top: core.$border;
 }
 
+.doc-block__meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .doc-block__intro,
 .doc-block__arguments,
 .doc-block__example {

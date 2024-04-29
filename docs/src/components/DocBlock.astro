@@ -5,12 +5,13 @@ import { makeSafeForCSS } from "../modules/makeSafeForCSS";
 interface Props {
   name?: string;
   type?: string;
+  returns?: string;
   src?: string;
   args?: Array<Array<string>>;
   open?: boolean;
 }
 
-const { name, type, src, args, open = false } = Astro.props;
+const { name, type, returns, src, args, open = false } = Astro.props;
 const id = makeSafeForCSS(`${name}-${type}`);
 const isFile = (type === 'file');
 ---
@@ -55,7 +56,18 @@ const isFile = (type === 'file');
         </div>
       ) : (
         <div class="doc-block__intro">
-          <p>Type: <code>{type}</code></p>
+          <div class="doc-block__meta">
+            { 
+              type && (
+                <span>Type: <code>{type}</code></span>
+              )
+            }
+            { 
+              returns && (
+                <span>Returns: <code>{returns}</code></span>
+              )
+            }
+          </div>
           <slot />
         </div>
       )

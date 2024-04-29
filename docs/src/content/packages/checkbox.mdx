@@ -201,9 +201,9 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   $transition-timing-function: core.$transition-timing-function !default;
 
   $background: transparent !default;
-  $background-hover: rgba($color, 0.1) !default;
-  $background-focus: rgba($color, 0.1) !default;
-  $background-active: rgba($color, 0.2) !default;
+  $background-hover: palette.get("primary", 95) !default;
+  $background-focus: palette.get("primary", 95) !default;
+  $background-active: palette.get("primary", 90) !default;
   $background-checked: null !default;
   $background-border-radius: core.$border-radius-circle !default;
 
@@ -235,4 +235,48 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   $size-lg-icon: 18px !default;
   $size-lg-icon-stroke: 2 !default;
   ```
+</DocBlock>
+
+<DocBlock name="icon-check" type="function" returns="string" src="checkbox/src/_functions.scss" args={[
+  ["$size", "Number (with unit)", "Value for width and height attributes"],
+  ["$color", "Color", "Value for stroke attribute"],
+  ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
+]}>
+  <p>Outputs data image string for check SVG icon. Used as the value of <code>url()</code> in the <code>background-image</code> property.</p>
+
+  <Fragment slot="example">
+
+    ```scss
+    .check-icon {
+      background-image: url("#{icon-check(12px, black, 2.5)}");
+    }
+
+    // CSS Output
+    .check-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="%23000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
+    }
+    ```
+  </Fragment>
+</DocBlock>
+
+<DocBlock name="icon-minus" type="function" returns="string" src="checkbox/src/_functions.scss" args={[
+  ["$size", "Number (with unit)", "Value for width and height attributes"],
+  ["$color", "Color", "Value for stroke attribute"],
+  ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
+]}>
+  <p>Outputs data image string for minus SVG icon. Used as the value of <code>url()</code> in the <code>background-image</code> property.</p>
+
+  <Fragment slot="example">
+
+    ```scss
+    .minus-icon {
+      background-image: url("#{icon-minus(12px, black, 2.5)}");
+    }
+
+    // CSS Output
+    .minus-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="%23000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
+    }
+    ```
+  </Fragment>
 </DocBlock>

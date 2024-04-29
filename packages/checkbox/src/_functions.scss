@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 
 /// Outputs data image string for check SVG icon. Used as the value of url() in
-/// background-image property.
+/// the background-image property.
 /// @param {Number (with unit)} $size - Value for width and height attributes
 /// @param {Color} $color - Value for stroke attribute
 /// @param {Number (unitless)} $stroke - Value for stroke-width attribute
@@ -11,7 +11,7 @@
 }
 
 /// Outputs data image string for minus SVG icon. Used as the value of url() in
-/// background-image property.
+/// the background-image property.
 /// @param {Number (with unit)} $size - Value for width and height attributes
 /// @param {Color} $color - Value for stroke attribute
 /// @param {Number (unitless)} $stroke - Value for stroke-width attribute
