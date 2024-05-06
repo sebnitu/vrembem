@@ -23,7 +23,7 @@
     "directory": "packages/docs"
   },
   "dependencies": {
-    "feather-icons": "^4.29.1",
+    "feather-icons": "^4.29.2",
     "list.js": "^2.3.1",
     "scroll-stash": "^1.1.2",
     "svgxuse": "^1.2.6",
