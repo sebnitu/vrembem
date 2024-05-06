@@ -48,8 +48,18 @@ const layout = {
 
 <script>
   import { headerAnchor } from "../../modules/headerAnchor";
+  import { tabs } from "../../modules/tabs";
   import { toggle } from "../../modules/toggle";
 
   headerAnchor.mount();
+  tabs.mount();
   toggle.mount();
+
+  const checkboxes = document.querySelectorAll(
+    'input[type="checkbox"][aria-checked="mixed"]'
+  );
+  checkboxes.forEach((checkbox) => {
+    // @ts-ignore
+    checkbox.indeterminate = true;
+  });
 </script>
