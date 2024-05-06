@@ -89,7 +89,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // If value is "var", return the hue and saturation values in css var function format.
   @else if ($value == "var") {
-    @return var(--#{$_v}#{$key}-hs, fun.get-hs(map.get($seeds, $key)));
+    @return var(--#{$_v}#{$key}-hs);
   }
 
   // Else, return the specified lightness value from the palette map.
