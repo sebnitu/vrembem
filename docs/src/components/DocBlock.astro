@@ -7,11 +7,12 @@ interface Props {
   type?: string;
   returns?: string;
   src?: string;
+  line?: string;
   args?: Array<Array<string>>;
   open?: boolean;
 }
 
-const { name, type, returns, src, args, open = false } = Astro.props;
+const { name, type, returns, src, line, args, open = false } = Astro.props;
 const id = makeSafeForCSS(`${name}-${type}`);
 const isFile = (type === 'file');
 ---
@@ -35,7 +36,7 @@ const isFile = (type === 'file');
       <div class="media__body flex flex-align-center flex-gap-x flex-wrap">
         <h3 id={id} class="foreground flex-grow-1">{name}</h3>
         <code>
-          <a class="link font-size-sm" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}`}>
+          <a class="link font-size-sm" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
             {src}
           </a>
         </code>
