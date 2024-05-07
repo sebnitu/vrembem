@@ -17,6 +17,6 @@ $_v: var.$prefix-variable;
   --#{$_v}button-border-color: transparent;
   --#{$_v}button-border-color-hover: transparent;
   --#{$_v}button-border-color-active: transparent;
-  --#{$_v}button-box-shadow: 0 0 0 0 hsl(#{palette.get($background, "hs")}, 50%, 0%);
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem hsl(#{palette.get($background, "hs")}, 50%, 50%);
+  --#{$_v}button-box-shadow: 0 0 0 0 #{palette.get($background, 50%, 0%)};
+  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem #{palette.get($background, 50%, 50%)};
 }
