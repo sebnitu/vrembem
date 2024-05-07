@@ -58,7 +58,7 @@
 /// @param {Color} $color - The color variable to pull hue and saturation values from.
 /// @return {List} - The hue and saturation values of the provided color.
 @function get-hs($color) {
-  @return math.round(color.hue($color)), math.round(color.saturation($color));
+  @return math.round(color.hue($color)) math.round(color.saturation($color));
 }
 
 /// Removes the item of $list at index $n. If $n is negative, it counts from the
