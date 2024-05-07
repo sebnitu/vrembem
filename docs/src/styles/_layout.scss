@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 @use "./root";
 
 .layout {
@@ -119,13 +120,13 @@
   position: fixed;
   z-index: 99;
   transition: background-color .25s, backdrop-filter .25s;
-  background-color: hsl(var(--vb-neutral-hs), 10%, 0%);
+  background-color: palette.get("neutral", 10%, 0%);
   backdrop-filter: blur(4px) opacity(0);
   inset: auto;
 
   .is-opened ~ &,
   .is-opening ~ & {
-    background-color: hsl(var(--vb-neutral-hs), 10%, 80%);
+    background-color: palette.get("neutral", 10%, 80%);
     backdrop-filter: blur(4px) opacity(1);
   }
 

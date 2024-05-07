@@ -201,9 +201,9 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   $transition-timing-function: core.$transition-timing-function !default;
 
   $background: transparent !default;
-  $background-hover: hsl(palette.get("primary", "var"), 50%, 20%) !default;
-  $background-focus: hsl(palette.get("primary", "var"), 50%, 20%) !default;
-  $background-active: hsl(palette.get("primary", "var"), 50%, 30%) !default;
+  $background-hover: palette.get("primary", 50%, 20%) !default;
+  $background-focus: palette.get("primary", 50%, 20%) !default;
+  $background-active: palette.get("primary", 50%, 30%) !default;
   $background-checked: null !default;
   $background-border-radius: core.$border-radius-circle !default;
 

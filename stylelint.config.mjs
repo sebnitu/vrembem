@@ -25,7 +25,7 @@ export default {
     'scss/selector-no-redundant-nesting-selector': true,
     'at-rule-no-unknown': null,
     'at-rule-empty-line-before': null,
-    'color-function-notation': 'legacy',
+    'color-function-notation': 'modern',
     'color-hex-length': null,
     'custom-property-pattern': null,
     'declaration-empty-line-before': ['never', {

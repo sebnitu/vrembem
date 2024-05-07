@@ -18,10 +18,10 @@ $_palette: ();
 /// The map of colors used to build the palette.
 /// @type Map
 $seeds: (
-  "primary": hsl(152, 60%, 50%),
-  "secondary": hsl(214, 50%, 50%),
-  "neutral": hsl(214, 20%, 50%),
-  "important": hsl(0, 80%, 50%),
+  "primary":   hsl(152 60% 50%),
+  "secondary": hsl(214 50% 50%),
+  "neutral":   hsl(214 20% 50%),
+  "important": hsl(0 80% 50%),
 ) !default;
 
 /// The default color lightness to use when referencing a color.
@@ -60,45 +60,45 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   }
 }
 
-/// Function to return a palette color in a specific format. If called with no
-/// color key, the entire palette map is returned. The following value formats
-/// are accepted:
-///   $value: "seed" - Return the seed value.
-///   $value: "hs" - Return the hue and saturation values in list format.
-///   $value: "var" - Return the hue and saturation values in css var function format.
-///   $value: Number - Return the specified lightness value from the palette map.
+/// Function to return a palette color. If called with no color key, the entire
+/// palette map is returned. The following lightness formats are accepted:
+///   $lightness: "seed" - Return the seed value.
+///   $lightness: Number - Return the specified lightness CSS var from the palette map.
+///   $lightness: Percentage - Return the hsl value of the color.
+///   $alpha: Number - Return the hsl value with an alpha channel of the color.
 /// @param {String} $key [null] - The color key to return a value for.
-/// @param {Number | String} $value [$lightness-default] - The format to return the requested color.
+/// @param {Number | Percentage | String} $lightness [$lightness-default] - The lightness value of the requested color.
+/// @param {Number (alpha-value)} $alpha [null] - The alpha value of the requested color.
 /// @require {Variable} $seeds
 /// @return {Color} - Return format depends on the requested value.
-@function get($key: null, $value: $lightness-default) {
+@function get($key: null, $lightness: $lightness-default, $alpha: null) {
   // If key is null, return the palette.
   @if not ($key) {
     @return $_palette;
   }
 
-  // If value is seed, return the seed value.
-  @else if ($value == "seed") {
+  // If lightness is passed as "seed", return the seed value.
+  @else if ($lightness == "seed") {
     @return map.get($seeds, $key);
   }
 
-  // If value is "hs", return the hue and saturation values.
-  @else if ($value == "hs") {
-    @return fun.get-hs(map.get($seeds, $key));
+  // If an alpha value is passed, return hsl with the alpha.
+  @else if ($alpha) {
+    @return hsl(var(--#{$_v}#{$key}-hs) #{$lightness + ' / ' + $alpha});
   }
 
-  // If value is "var", return the hue and saturation values in css var function format.
-  @else if ($value == "var") {
-    @return var(--#{$_v}#{$key}-hs);
+  // If the specified lightness value exists in the palette map, return its value.
+  @else if (map.has-key($_palette, $key, $lightness)) {
+    @return map.get($_palette, $key, $lightness);
   }
 
-  // Else, return the specified lightness value from the palette map.
+  // Else return hsl using the provided lightness value.
   @else {
-    @return map.get($_palette, $key, $value);
+    @return hsl(var(--#{$_v}#{$key}-hs) $lightness);
   }
 }
 
-/// Set a color to the $seeds map. Can recieve single entries of key/value color
+/// Set a color to the $seeds map. Can receive single entries of key/value color
 /// pairs or a map containing multiple key/value pairs.
 /// @output N/A
 /// @param {String | map} $key - A key to associate with the provided color, or a map containing key/value color pairs.
@@ -139,7 +139,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
     --#{$_v}#{$key}-hs: #{fun.get-hs($seed)};
     --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$lightness-default});
     @each $value in $lightness {
-      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs), #{$value + '%'});
+      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs) #{$value + '%'});
     }
   }
 }
