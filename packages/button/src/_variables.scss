@@ -63,8 +63,8 @@ $theme: (
   "border-color": theme.get("border-color-dark"),
   "border-color-hover": theme.get("border-color-darker"),
   "border-color-active": theme.get("border-color-darker"),
-  "box-shadow": 0 0 0 0 rgba(black, 0),
-  "box-shadow-focus": 0 0 0 0.2rem rgba(black, 0.15),
+  "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
+  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
 ) !default;
 
 @include theme.set(theme.$default, "button", $theme);
