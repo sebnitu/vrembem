@@ -66,7 +66,6 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 /// are accepted:
 ///   $value: "seed" - Return the seed value.
 ///   $value: "hs" - Return the hue and saturation values in list format.
-///   $value: "var" - Return the hue and saturation values in css var function format.
 ///   $value: Number - Return the specified lightness CSS var from the palette map.
 ///   $value: Percentage - Return the hsl value of the color.
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
@@ -91,12 +90,6 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   // If value is "hs", return the hue and saturation values.
   @else if ($value == "hs") {
     @return fun.get-hs(map.get($seeds, $key));
-  }
-
-  // TODO: maybe deprecate
-  // If value is "var", return the hue and saturation values in css var function format.
-  @else if ($value == "var") {
-    @return var(--#{$_v}#{$key}-hs);
   }
 
   // If an alpha value is passed, return hsl with the alpha.

@@ -65,7 +65,7 @@ $themes: (
     "border-color": rgba(black, 0.1),
     "border-color-dark": rgba(black, 0.2),
     "border-color-darker": rgba(black, 0.3),
-    "shadow-color": hsl(palette.get("neutral", "var"), 20%, 20%),
+    "shadow-color": palette.get("neutral", 20%, 20%),
     "focus-visible": palette.get("primary"),
     "color-scheme": light
   ),
@@ -82,7 +82,7 @@ $themes: (
     "border-color": rgba(white, 0.1),
     "border-color-dark": rgba(white, 0.2),
     "border-color-darker": rgba(white, 0.3),
-    "shadow-color": hsl(palette.get("neutral", "var"), 0%, 20%),
+    "shadow-color": palette.get("neutral", 0%, 20%),
     "focus-visible": palette.get("primary"),
     "color-scheme": dark
   )

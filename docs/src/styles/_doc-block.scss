@@ -19,7 +19,7 @@
 
   &.is-active {
     border-color: palette.get("primary");
-    box-shadow: 0 0 0 0.2rem hsl(palette.get("primary", "var"), 50%, 20%);
+    box-shadow: 0 0 0 0.2rem palette.get("primary", 50%, 20%);
   }
 
   @include core.media-max(root.$bp-code) {

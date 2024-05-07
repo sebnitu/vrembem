@@ -19,8 +19,8 @@ $border: 1px solid $border-color !default;
 $border-alt: 1px dotted $border-color !default;
 
 $background: null !default;
-$background-zebra: hsl(palette.get("neutral", "var"), 50%, 3%) !default;
-$background-hover: hsl(53, 100%, 50%, 15%) !default;
+$background-zebra: palette.get("neutral", 50%, 5%) !default;
+$background-hover: palette.get("primary", 50%, 10%) !default;
 $shadow-hover: null !default;
 
 $color: null !default;
