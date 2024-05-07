@@ -61,7 +61,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   }
 }
 
-/// Function to return a palette color in a specific format. If called with no
+/// Function to return a palette color. If called with no
 /// color key, the entire palette map is returned. The following value formats
 /// are accepted:
 ///   $value: "seed" - Return the seed value.
@@ -69,35 +69,34 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 ///   $value: Percentage - Return the hsl value of the color.
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
 /// @param {String} $key [null] - The color key to return a value for.
-/// @param {Number | Percentage | String} $value [$lightness-default] - The lightness value or the format to return the requested color.
-/// @param {Number (alpha-value)} $alpha [null] - An alpha-value representing the alpha channel value of the color.
+/// @param {Number | Percentage | String} $lightness [$lightness-default] - The lightness value of the requested color.
+/// @param {Number (alpha-value)} $alpha [null] - The alpha value of the requested color.
 /// @require {Variable} $seeds
 /// @return {Color} - Return format depends on the requested value.
-@function get($key: null, $value: $lightness-default, $alpha: null) {
+@function get($key: null, $lightness: $lightness-default, $alpha: null) {
   // If key is null, return the palette.
   @if not ($key) {
     @return $_palette;
   }
 
-  // TODO: maybe deprecate
-  // If value is seed, return the seed value.
-  @else if ($value == "seed") {
+  // If lightness is passed as "seed", return the seed value.
+  @else if ($lightness == "seed") {
     @return map.get($seeds, $key);
   }
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(var(--#{$_v}#{$key}-hs) #{$value + ' / ' + $alpha});
+    @return hsl(var(--#{$_v}#{$key}-hs) #{$lightness + ' / ' + $alpha});
   }
 
   // If the specified lightness value exists in the palette map, return its value.
-  @else if (map.has-key($_palette, $key, $value)) {
-    @return map.get($_palette, $key, $value);
+  @else if (map.has-key($_palette, $key, $lightness)) {
+    @return map.get($_palette, $key, $lightness);
   }
 
   // Else return hsl using the provided lightness value.
   @else {
-    @return hsl(var(--#{$_v}#{$key}-hs) $value);
+    @return hsl(var(--#{$_v}#{$key}-hs) $lightness);
   }
 }
 
