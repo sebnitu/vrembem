@@ -1,3 +1,5 @@
+import { drawer } from './useDrawer.js';
+
 function onThisPage(options = {}) {
   const settings = {
     selectorAnchors: '',
@@ -60,6 +62,11 @@ function onThisPage(options = {}) {
     collection.forEach((entry) => {
       entry.active = (entry === result[0]);
     });
+
+    // Close the modal drawer if open.
+    if (drawer.activeModal && drawer.activeModal.id === 'layout-aside') {
+      drawer.activeModal.close();
+    }
   }
 
   return {
