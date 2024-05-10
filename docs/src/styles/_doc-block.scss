@@ -1,6 +1,5 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core";
-@use "@vrembem/base";
 @use "./root";
 
 .doc-block {
@@ -36,13 +35,11 @@
 
 .doc-block__header {
   padding: 0.5rem 1rem 0.5rem 0.5rem;
+}
 
-  .header-anchor {
-    @include base.link();
-    position: static;
-    margin: 0 0.25rem 0 -0.25rem;
-    opacity: 1;
-  }
+.doc-block__title {
+  flex-grow: 1;
+  font-weight: normal;
 }
 
 .doc-block__content {
@@ -52,7 +49,7 @@
 
 .doc-block__meta {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
