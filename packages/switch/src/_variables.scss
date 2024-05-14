@@ -13,14 +13,14 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 $background: transparent !default;
-$background-hover: rgba($color, 0.1) !default;
-$background-focus: rgba($color, 0.1) !default;
-$background-active: rgba($color, 0.2) !default;
+$background-hover: palette.get("primary", 50%, 20%) !default;
+$background-focus: palette.get("primary", 50%, 20%) !default;
+$background-active: palette.get("primary", 50%, 30%) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $track-size: 20px !default;
-$track-background: palette.get("neutral", 80) !default;
+$track-background: palette.get("neutral", 60%, 30%) !default;
 $track-background-hover: null !default;
 $track-background-focus: null !default;
 $track-background-active: null !default;
@@ -32,7 +32,7 @@ $track-border-color-active: null !default;
 $track-border-color-checked: $color !default;
 $track-border-radius: core.$border-radius-circle !default;
 
-$thumb-background: white !default;
+$thumb-background: palette.get("neutral", 100) !default;
 $thumb-background-hover: null !default;
 $thumb-background-focus: null !default;
 $thumb-background-active: null !default;

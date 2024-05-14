@@ -13,14 +13,14 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 $background: transparent !default;
-$background-hover: rgba($color, 0.1) !default;
-$background-focus: rgba($color, 0.1) !default;
-$background-active: rgba($color, 0.2) !default;
+$background-hover: palette.get("primary", 50%, 20%) !default;
+$background-focus: palette.get("primary", 50%, 20%) !default;
+$background-active: palette.get("primary", 50%, 30%) !default;
 $background-checked: null !default;
 $background-border-radius: core.$border-radius-circle !default;
 
 $circle-size: 20px !default;
-$circle-background: white !default;
+$circle-background: palette.get("neutral", 100) !default;
 $circle-background-hover: null !default;
 $circle-background-focus: null !default;
 $circle-background-active: null !default;
@@ -33,7 +33,7 @@ $circle-border-color-checked: $color !default;
 $circle-border-radius: core.$border-radius !default;
 
 $dot-size: 8px !default;
-$dot-color: white !default;
+$dot-color: palette.get("neutral", 100) !default;
 
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
