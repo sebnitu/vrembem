@@ -1,6 +1,18 @@
 @use "sass:map";
 
+@use "./prefix" as prefix;
 @use "./variables" as var;
+
+// Output a CSS variable if a value is provided.
+/// @param {String} $name - The name to use in the CSS variable property.
+/// @param {All} $value - The value of the CSS variable. Can be any valid CSS property value.
+/// @param {String} $prefix [prefix.$variable] - A string to prefix CSS variable.
+/// @output CSS Variable or nothing.
+@mixin css-var($name, $value, $prefix: prefix.$variable) {
+  @if ($value) {
+    --#{$prefix}#{$name}: #{$value};
+  }
+}
 
 /// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to
