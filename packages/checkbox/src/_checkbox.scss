@@ -39,10 +39,11 @@ $_e: core.$prefix-element;
 
 .#{$_b}checkbox#{$_e}icon {
   @include core.size(var(--#{$_v}checkbox-icon-size));
-  background-image: url("#{fun.icon-check(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
-  background-repeat: no-repeat;
-  background-position: center (var.$icon-size * -1);
-  background-size: 100%;
+  background-color: var(--#{$_v}checkbox-icon-color);
+  mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
+  mask-repeat: no-repeat;
+  mask-position: center (var.$icon-size * -1);
+  mask-size: 100%;
   opacity: 0;
 }
 
@@ -90,10 +91,10 @@ $_e: core.$prefix-element;
     }
 
     .#{$_b}checkbox#{$_e}icon {
-      transition-property: opacity, background-position;
+      transition-property: opacity, mask-position;
       transition-duration: var(--#{$_v}checkbox-transition-duration);
       transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
-      background-position: center center;
+      mask-position: center center;
       opacity: 1;
     }
   }
@@ -105,11 +106,12 @@ $_e: core.$prefix-element;
     }
 
     .#{$_b}checkbox#{$_e}icon {
-      transition-property: opacity, background-position;
+      transition-property: opacity, mask-position;
       transition-duration: var(--#{$_v}checkbox-transition-duration);
       transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
-      background-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
-      background-position: center center;
+      background-color: var(--#{$_v}checkbox-icon-color);
+      mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
+      mask-position: center center;
       opacity: 1;
     }
   }

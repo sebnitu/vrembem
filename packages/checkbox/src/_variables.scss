@@ -21,9 +21,8 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 // Icon properties
-// TODO: Find a way to use CSS var as the icon color (ref: https://stackoverflow.com/questions/51395179/svg-fill-with-css-variables).
 $icon-size: 12px !default;
-$icon-color: white !default;
+$icon-color: null !default;
 $icon-stroke: 2.5 !default;
 
 // Size modifier properties
@@ -43,11 +42,13 @@ $size-lg-icon-stroke: 2 !default;
 $theme-light: (
   "fill": white,
   "border-color": palette.get("neutral"),
+  "icon-color": white
 ) !default;
 
 $theme-dark: (
   "fill": palette.get("neutral", 10),
   "border-color": palette.get("neutral", 80),
+  "icon-color": palette.get("neutral", 10)
 ) !default;
 
 @include theme.set("light", "checkbox", $theme-light);

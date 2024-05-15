@@ -16,11 +16,11 @@ $_mv: core.$prefix-modifier-value;
   --#{$_v}checkbox-icon-stroke: #{var.$size-sm-icon-stroke};
 
   .#{$_b}checkbox#{$_e}icon {
-    background-image: url("#{fun.icon-check(var.$icon-size, var.$icon-color, var.$size-sm-icon-stroke)}");
+    mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-sm-icon-stroke)}");
   }
 
   .#{$_b}checkbox#{$_e}native:indeterminate + .#{$_b}checkbox#{$_e}background .#{$_b}checkbox#{$_e}icon {
-    background-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-color, var.$size-sm-icon-stroke)}");
+    mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-sm-icon-stroke)}");
   }
 }
 
@@ -32,10 +32,10 @@ $_mv: core.$prefix-modifier-value;
   --#{$_v}checkbox-icon-stroke: #{var.$size-lg-icon-stroke};
 
   .#{$_b}checkbox#{$_e}icon {
-    background-image: url("#{fun.icon-check(var.$icon-size, var.$icon-color, var.$size-lg-icon-stroke)}");
+    mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-lg-icon-stroke)}");
   }
 
   .#{$_b}checkbox#{$_e}native:indeterminate + .#{$_b}checkbox#{$_e}background .#{$_b}checkbox#{$_e}icon {
-    background-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-color, var.$size-lg-icon-stroke)}");
+    mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-lg-icon-stroke)}");
   }
 }
