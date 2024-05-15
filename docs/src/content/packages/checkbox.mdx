@@ -251,42 +251,32 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   ```scss
   @use "@vrembem/core";
   @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
 
-  $prefix-block: core.$prefix-block !default;
-  $prefix-element: core.$prefix-element !default;
-  $prefix-modifier: core.$prefix-modifier !default;
-  $prefix-modifier-value: core.$prefix-modifier-value !default;
-
-  $color: palette.get("primary") !default;
+  // Checkbox properties
   $size: core.$form-control-size !default;
+  $box-size: 18px !default;
+  $color: palette.get("primary") !default;
+  $fill: null !default;
+  $border-color: null !default;
   $border-width: 2px !default;
+  $border-radius: core.$border-radius !default;
+  $background-border-radius: core.$border-radius-circle !default;
+  $background-opacity: 0% !default;
+  $background-opacity-hover: 20% !default;
+  $background-opacity-focus: 20% !default;
+  $background-opacity-active: 30% !default;
+
+  // Transition properties
   $transition-duration: core.$transition-duration-short !default;
   $transition-timing-function: core.$transition-timing-function !default;
 
-  $background: transparent !default;
-  $background-hover: palette.get("primary", 50%, 20%) !default;
-  $background-focus: palette.get("primary", 50%, 20%) !default;
-  $background-active: palette.get("primary", 50%, 30%) !default;
-  $background-checked: null !default;
-  $background-border-radius: core.$border-radius-circle !default;
-
-  $box-size: 18px !default;
-  $box-background: white !default;
-  $box-background-hover: null !default;
-  $box-background-focus: null !default;
-  $box-background-active: null !default;
-  $box-background-checked: $color !default;
-  $box-border-color: palette.get("neutral") !default;
-  $box-border-color-hover: $color !default;
-  $box-border-color-focus: $color !default;
-  $box-border-color-active: $color !default;
-  $box-border-color-checked: $color !default;
-  $box-border-radius: core.$border-radius !default;
-
+  // Icon properties
   $icon-size: 12px !default;
-  $icon-color: white !default;
+  $icon-color: null !default;
   $icon-stroke: 2.5 !default;
 
+  // Size modifier properties
   $size-sm: core.$form-control-size-sm !default;
   $size-sm-border-width: 2px !default;
   $size-sm-box: 14px !default;
@@ -297,26 +287,41 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   $size-lg-box: 24px !default;
   $size-lg-icon: 18px !default;
   $size-lg-icon-stroke: 2 !default;
+
+  // Theme properties
+  $theme-light: (
+    "fill": white,
+    "border-color": palette.get("neutral"),
+    "icon-color": white
+  ) !default;
+
+  $theme-dark: (
+    "fill": palette.get("neutral", 10),
+    "border-color": palette.get("neutral", 80),
+    "icon-color": palette.get("neutral", 10)
+  ) !default;
+
+  @include theme.set("light", "checkbox", $theme-light);
+  @include theme.set("dark", "checkbox", $theme-dark);
   ```
 </DocBlock>
 
 <DocBlock name="icon-check" type="function" returns="string" src="checkbox/src/_functions.scss" line="9" args={[
   ["$size", "Number (with unit)", "Value for width and height attributes"],
-  ["$color", "Color", "Value for stroke attribute"],
   ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
 ]}>
-  <p>Outputs data image string for check SVG icon. Used as the value of <code>url()</code> in the <code>background-image</code> property.</p>
+  <p>Outputs data image string for check SVG icon. Used as the value of <code>url()</code> in the <code>mask-image</code> property.</p>
 
   <Fragment slot="example">
 
     ```scss
     .check-icon {
-      background-image: url("#{icon-check(12px, black, 2.5)}");
+      mask-image: url("#{icon-check(12px, 2.5)}");
     }
 
     // CSS Output
     .check-icon {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="%23000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
+      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
     }
     ```
   </Fragment>
@@ -324,21 +329,20 @@ Checkboxes are primarily customized using CSS variables but can also be modified
 
 <DocBlock name="icon-minus" type="function" returns="string" src="checkbox/src/_functions.scss" line="19" args={[
   ["$size", "Number (with unit)", "Value for width and height attributes"],
-  ["$color", "Color", "Value for stroke attribute"],
   ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
 ]}>
-  <p>Outputs data image string for minus SVG icon. Used as the value of <code>url()</code> in the <code>background-image</code> property.</p>
+  <p>Outputs data image string for minus SVG icon. Used as the value of <code>url()</code> in the <code>mask-image</code> property.</p>
 
   <Fragment slot="example">
 
     ```scss
     .minus-icon {
-      background-image: url("#{icon-minus(12px, black, 2.5)}");
+      mask-image: url("#{icon-minus(12px, 2.5)}");
     }
 
     // CSS Output
     .minus-icon {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="%23000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
+      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
     }
     ```
   </Fragment>
