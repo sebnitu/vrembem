@@ -2,8 +2,9 @@
 @use "./variables" as var;
 @use "./functions" as fun;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
+$_v: core.$prefix-variable;
+$_b: core.$prefix-block;
+$_e: core.$prefix-element;
 
 .#{$_b}checkbox {
   position: relative;
@@ -15,24 +16,24 @@ $_e: var.$prefix-element;
 }
 
 .#{$_b}checkbox#{$_e}background {
-  @include core.size(var.$size);
+  @include core.size(var(--#{$_v}checkbox-size));
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var.$background-border-radius;
-  background-color: var.$background;
+  border-radius: var(--#{$_v}checkbox-background-border-radius);
+  background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity));
 }
 
 .#{$_b}checkbox#{$_e}box {
-  @include core.size(var.$box-size);
+  @include core.size(var(--#{$_v}checkbox-box-size));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var.$border-width solid var.$box-border-color;
-  border-radius: var.$box-border-radius;
-  background-color: var.$box-background;
+  border: var(--#{$_v}checkbox-border-width) solid var(--#{$_v}checkbox-border-color);
+  border-radius: var(--#{$_v}checkbox-border-radius);
+  background-color: var(--#{$_v}checkbox-fill);
   color: transparent;
 }
 
@@ -55,62 +56,58 @@ $_e: var.$prefix-element;
   cursor: pointer;
 
   &:hover + .#{$_b}checkbox#{$_e}background {
-    background-color: var.$background-hover;
+    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-hover));
 
     .#{$_b}checkbox#{$_e}box {
-      border-color: var.$box-border-color-hover;
-      background-color: var.$box-background-hover;
+      border-color: var(--#{$_v}checkbox-color);
+      background-color: var(--#{$_v}checkbox-fill);
     }
   }
 
   &:focus + .#{$_b}checkbox#{$_e}background {
-    background-color: var.$background-focus;
+    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-focus));
 
     .#{$_b}checkbox#{$_e}box {
-      border-color: var.$box-border-color-focus;
-      background-color: var.$box-background-focus;
+      border-color: var(--#{$_v}checkbox-color);
+      background-color: var(--#{$_v}checkbox-fill);
     }
   }
 
   &:focus-visible + .#{$_b}checkbox#{$_e}background,
   &:active + .#{$_b}checkbox#{$_e}background {
-    background-color: var.$background-active;
+    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-active));
 
     .#{$_b}checkbox#{$_e}box {
-      border-color: var.$box-border-color-active;
-      background-color: var.$box-background-active;
+      border-color: var(--#{$_v}checkbox-color);
+      background-color: var(--#{$_v}checkbox-fill);
     }
   }
 
   &:checked + .#{$_b}checkbox#{$_e}background {
-    background-color: var.$background-checked;
-
     .#{$_b}checkbox#{$_e}box {
-      border-color: var.$box-border-color-checked;
-      background-color: var.$box-background-checked;
+      border-color: var(--#{$_v}checkbox-color);
+      background-color: var(--#{$_v}checkbox-color);
     }
 
     .#{$_b}checkbox#{$_e}icon {
       transition-property: opacity, background-position;
-      transition-duration: var.$transition-duration;
-      transition-timing-function: var.$transition-timing-function;
+      transition-duration: var(--#{$_v}checkbox-transition-duration);
+      transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
       background-position: center center;
       opacity: 1;
     }
   }
 
   &:indeterminate + .#{$_b}checkbox#{$_e}background {
-    background-color: var.$background-checked;
-
     .#{$_b}checkbox#{$_e}box {
-      border-color: var.$box-border-color-checked;
-      background-color: var.$box-background-checked;
+      border-color: var(--#{$_v}checkbox-color);
+      background-color: var(--#{$_v}checkbox-color);
     }
 
     .#{$_b}checkbox#{$_e}icon {
       transition-property: opacity, background-position;
-      transition-duration: var.$transition-duration;
-      transition-timing-function: var.$transition-timing-function;
+      transition-duration: var(--#{$_v}checkbox-transition-duration);
+      transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
       background-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
       background-position: center center;
       opacity: 1;

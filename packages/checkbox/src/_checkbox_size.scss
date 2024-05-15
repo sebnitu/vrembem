@@ -2,10 +2,10 @@
 @use "./variables" as var;
 @use "./functions" as fun;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+$_b: core.$prefix-block;
+$_e: core.$prefix-element;
+$_m: core.$prefix-modifier;
+$_v: core.$prefix-modifier-value;
 
 .#{$_b}checkbox#{$_m}size#{$_v}sm {
   .#{$_b}checkbox#{$_e}background {
