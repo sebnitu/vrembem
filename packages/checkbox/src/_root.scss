@@ -17,11 +17,9 @@
   @include core.css-var("checkbox-background-opacity-active", var.$background-opacity-active);
   @include core.css-var("checkbox-transition-duration", var.$transition-duration);
   @include core.css-var("checkbox-transition-timing-function", var.$transition-timing-function);
-
   @include core.css-var("checkbox-icon-size", var.$icon-size);
   @include core.css-var("checkbox-icon-color", var.$icon-color);
   @include core.css-var("checkbox-icon-stroke", var.$icon-stroke);
 }
 
-// Theme properties
 @include theme.output-themes("checkbox");

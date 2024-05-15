@@ -2,40 +2,34 @@
 @use "./variables" as var;
 @use "./functions" as fun;
 
-$_v: core.$prefix-variable;
-$_b: core.$prefix-block;
-$_e: core.$prefix-element;
-$_m: core.$prefix-modifier;
-$_mv: core.$prefix-modifier-value;
+#{core.bem("checkbox", null, "size", "sm")} {
+  @include core.css-var("checkbox-size", var.$size-sm);
+  @include core.css-var("checkbox-border-width", var.$size-sm-border-width);
+  @include core.css-var("checkbox-box-size", var.$size-sm-box);
+  @include core.css-var("checkbox-icon-size", var.$size-sm-icon);
+  @include core.css-var("checkbox-icon-stroke", var.$size-sm-icon-stroke);
 
-.#{$_b}checkbox#{$_m}size#{$_mv}sm {
-  --#{$_v}checkbox-size: #{var.$size-sm};
-  --#{$_v}checkbox-border-width: #{var.$size-sm-border-width};
-  --#{$_v}checkbox-box-size: #{var.$size-sm-box};
-  --#{$_v}checkbox-icon-size: #{var.$size-sm-icon};
-  --#{$_v}checkbox-icon-stroke: #{var.$size-sm-icon-stroke};
-
-  .#{$_b}checkbox#{$_e}icon {
+  #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-sm-icon-stroke)}");
   }
 
-  .#{$_b}checkbox#{$_e}native:indeterminate + .#{$_b}checkbox#{$_e}background .#{$_b}checkbox#{$_e}icon {
+  #{core.bem("checkbox", "native")}:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-sm-icon-stroke)}");
   }
 }
 
-.#{$_b}checkbox#{$_m}size#{$_mv}lg {
-  --#{$_v}checkbox-size: #{var.$size-lg};
-  --#{$_v}checkbox-border-width: #{var.$size-lg-border-width};
-  --#{$_v}checkbox-box-size: #{var.$size-lg-box};
-  --#{$_v}checkbox-icon-size: #{var.$size-lg-icon};
-  --#{$_v}checkbox-icon-stroke: #{var.$size-lg-icon-stroke};
+#{core.bem("checkbox", null, "size", "lg")} {
+  @include core.css-var("checkbox-size", var.$size-lg);
+  @include core.css-var("checkbox-border-width", var.$size-lg-border-width);
+  @include core.css-var("checkbox-box-size", var.$size-lg-box);
+  @include core.css-var("checkbox-icon-size", var.$size-lg-icon);
+  @include core.css-var("checkbox-icon-stroke", var.$size-lg-icon-stroke);
 
-  .#{$_b}checkbox#{$_e}icon {
+  #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-lg-icon-stroke)}");
   }
 
-  .#{$_b}checkbox#{$_e}native:indeterminate + .#{$_b}checkbox#{$_e}background .#{$_b}checkbox#{$_e}icon {
+  #{core.bem("checkbox", "native")}:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-lg-icon-stroke)}");
   }
 }

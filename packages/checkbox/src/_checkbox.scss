@@ -2,11 +2,7 @@
 @use "./variables" as var;
 @use "./functions" as fun;
 
-$_v: core.$prefix-variable;
-$_b: core.$prefix-block;
-$_e: core.$prefix-element;
-
-.#{$_b}checkbox {
+#{core.bem("checkbox")} {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -15,31 +11,31 @@ $_e: core.$prefix-element;
   vertical-align: middle;
 }
 
-.#{$_b}checkbox#{$_e}background {
-  @include core.size(var(--#{$_v}checkbox-size));
+#{core.bem("checkbox", "background")} {
+  @include core.size(core.css("checkbox-size"));
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--#{$_v}checkbox-background-border-radius);
-  background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity));
+  border-radius: core.css("checkbox-background-border-radius");
+  background-color: hsl(from core.css("checkbox-color") h s l / core.css("checkbox-background-opacity"));
 }
 
-.#{$_b}checkbox#{$_e}box {
-  @include core.size(var(--#{$_v}checkbox-box-size));
+#{core.bem("checkbox", "box")} {
+  @include core.size(core.css("checkbox-box-size"));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--#{$_v}checkbox-border-width) solid var(--#{$_v}checkbox-border-color);
-  border-radius: var(--#{$_v}checkbox-border-radius);
-  background-color: var(--#{$_v}checkbox-fill);
+  border: core.css("checkbox-border-width") solid core.css("checkbox-border-color");
+  border-radius: core.css("checkbox-border-radius");
+  background-color: core.css("checkbox-fill");
   color: transparent;
 }
 
-.#{$_b}checkbox#{$_e}icon {
-  @include core.size(var(--#{$_v}checkbox-icon-size));
-  background-color: var(--#{$_v}checkbox-icon-color);
+#{core.bem("checkbox", "icon")} {
+  @include core.size(core.css("checkbox-icon-size"));
+  background-color: core.css("checkbox-icon-color");
   mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
   mask-repeat: no-repeat;
   mask-position: center (var.$icon-size * -1);
@@ -47,7 +43,7 @@ $_e: core.$prefix-element;
   opacity: 0;
 }
 
-.#{$_b}checkbox#{$_e}native {
+#{core.bem("checkbox", "native")} {
   @include core.size(100%);
   position: absolute;
   z-index: 2;
@@ -56,60 +52,60 @@ $_e: core.$prefix-element;
   opacity: 0;
   cursor: pointer;
 
-  &:hover + .#{$_b}checkbox#{$_e}background {
-    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-hover));
+  &:hover + #{core.bem("checkbox", "background")} {
+    background-color: hsl(from core.css("checkbox-color") h s l / core.css("checkbox-background-opacity-hover"));
 
-    .#{$_b}checkbox#{$_e}box {
-      border-color: var(--#{$_v}checkbox-color);
-      background-color: var(--#{$_v}checkbox-fill);
+    #{core.bem("checkbox", "box")} {
+      border-color: core.css("checkbox-color");
+      background-color: core.css("checkbox-fill");
     }
   }
 
-  &:focus + .#{$_b}checkbox#{$_e}background {
-    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-focus));
+  &:focus + #{core.bem("checkbox", "background")} {
+    background-color: hsl(from core.css("checkbox-color") h s l / core.css("checkbox-background-opacity-focus"));
 
-    .#{$_b}checkbox#{$_e}box {
-      border-color: var(--#{$_v}checkbox-color);
-      background-color: var(--#{$_v}checkbox-fill);
+    #{core.bem("checkbox", "box")} {
+      border-color: core.css("checkbox-color");
+      background-color: core.css("checkbox-fill");
     }
   }
 
-  &:focus-visible + .#{$_b}checkbox#{$_e}background,
-  &:active + .#{$_b}checkbox#{$_e}background {
-    background-color: hsl(from var(--#{$_v}checkbox-color) h s l / var(--#{$_v}checkbox-background-opacity-active));
+  &:focus-visible + #{core.bem("checkbox", "background")},
+  &:active + #{core.bem("checkbox", "background")} {
+    background-color: hsl(from core.css("checkbox-color") h s l / core.css("checkbox-background-opacity-active"));
 
-    .#{$_b}checkbox#{$_e}box {
-      border-color: var(--#{$_v}checkbox-color);
-      background-color: var(--#{$_v}checkbox-fill);
+    #{core.bem("checkbox", "box")} {
+      border-color: core.css("checkbox-color");
+      background-color: core.css("checkbox-fill");
     }
   }
 
-  &:checked + .#{$_b}checkbox#{$_e}background {
-    .#{$_b}checkbox#{$_e}box {
-      border-color: var(--#{$_v}checkbox-color);
-      background-color: var(--#{$_v}checkbox-color);
+  &:checked + #{core.bem("checkbox", "background")} {
+    #{core.bem("checkbox", "box")} {
+      border-color: core.css("checkbox-color");
+      background-color: core.css("checkbox-color");
     }
 
-    .#{$_b}checkbox#{$_e}icon {
+    #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: var(--#{$_v}checkbox-transition-duration);
-      transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
+      transition-duration: core.css("checkbox-transition-duration");
+      transition-timing-function: core.css("checkbox-transition-timing-function");
       mask-position: center center;
       opacity: 1;
     }
   }
 
-  &:indeterminate + .#{$_b}checkbox#{$_e}background {
-    .#{$_b}checkbox#{$_e}box {
-      border-color: var(--#{$_v}checkbox-color);
-      background-color: var(--#{$_v}checkbox-color);
+  &:indeterminate + #{core.bem("checkbox", "background")} {
+    #{core.bem("checkbox", "box")} {
+      border-color: core.css("checkbox-color");
+      background-color: core.css("checkbox-color");
     }
 
-    .#{$_b}checkbox#{$_e}icon {
+    #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: var(--#{$_v}checkbox-transition-duration);
-      transition-timing-function: var(--#{$_v}checkbox-transition-timing-function);
-      background-color: var(--#{$_v}checkbox-icon-color);
+      transition-duration: core.css("checkbox-transition-duration");
+      transition-timing-function: core.css("checkbox-transition-timing-function");
+      background-color: core.css("checkbox-icon-color");
       mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
       mask-position: center center;
       opacity: 1;

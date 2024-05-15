@@ -26,7 +26,6 @@ $icon-color: null !default;
 $icon-stroke: 2.5 !default;
 
 // Size modifier properties
-// TODO: Maybe add a checkbox size mixin for assigning size properties (similar to button variants mixin).
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;
