@@ -16,18 +16,18 @@ $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
-// Icon properties
-// TODO
-// - Find a way to use CSS var as the icon color (ref: https://stackoverflow.com/questions/51395179/svg-fill-with-css-variables)
-$icon-size: 12px !default;
-$icon-color: white !default;
-$icon-stroke: 2.5 !default;
-
 // Transition properties
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
+// Icon properties
+// TODO: Find a way to use CSS var as the icon color (ref: https://stackoverflow.com/questions/51395179/svg-fill-with-css-variables).
+$icon-size: 12px !default;
+$icon-color: white !default;
+$icon-stroke: 2.5 !default;
+
 // Size modifier properties
+// TODO: Maybe add a checkbox size mixin for assigning size properties (similar to button variants mixin).
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;

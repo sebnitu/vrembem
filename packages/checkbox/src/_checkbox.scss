@@ -38,7 +38,7 @@ $_e: core.$prefix-element;
 }
 
 .#{$_b}checkbox#{$_e}icon {
-  @include core.size(var.$icon-size);
+  @include core.size(var(--#{$_v}checkbox-icon-size));
   background-image: url("#{fun.icon-check(var.$icon-size, var.$icon-color, var.$icon-stroke)}");
   background-repeat: no-repeat;
   background-position: center (var.$icon-size * -1);

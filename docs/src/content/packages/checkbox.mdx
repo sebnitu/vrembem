@@ -21,6 +21,69 @@ npm install @vrembem/checkbox
   ```
 </CodeExample>
 
+{/* FOR TESTING */}
+
+<span class="checkbox">
+  <input class="checkbox__native" type="checkbox" checked />
+  <span class="checkbox__background">
+    <span class="checkbox__box">
+      <span class="checkbox__icon"></span>
+    </span>
+  </span>
+</span>
+<span class="checkbox">
+  <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
+  <span class="checkbox__background">
+    <span class="checkbox__box">
+      <span class="checkbox__icon"></span>
+    </span>
+  </span>
+</span>
+<span class="checkbox">
+  <input class="checkbox__native" type="checkbox" />
+  <span class="checkbox__background">
+    <span class="checkbox__box">
+      <span class="checkbox__icon"></span>
+    </span>
+  </span>
+</span>
+<hr class="sep" />
+<span class="radio">
+  <input type="radio" class="radio__native" name="example-1" value="1" checked />
+  <span class="radio__background">
+    <span class="radio__circle">
+      <span class="radio__dot"></span>
+    </span>
+  </span>
+</span>
+<span class="radio">
+  <input type="radio" class="radio__native" name="example-1" value="2" />
+  <span class="radio__background">
+    <span class="radio__circle">
+      <span class="radio__dot"></span>
+    </span>
+  </span>
+</span>
+<hr class="sep" />
+<span class="switch">
+  <input type="checkbox" class="switch__native" checked />
+  <span class="switch__background">
+    <span class="switch__track">
+      <span class="switch__thumb"></span>
+    </span>
+  </span>
+</span>
+<span class="switch">
+  <input type="checkbox" class="switch__native" />
+  <span class="switch__background">
+    <span class="switch__track">
+      <span class="switch__thumb"></span>
+    </span>
+  </span>
+</span>
+
+{/* END FOR TESTING */}
+
 ## Basic usage
 
 Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
