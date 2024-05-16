@@ -14,10 +14,10 @@ const { classes = "" } = Astro.props;
 <header class={`navibar${classes ? " " + classes : ""}`}>
   <div class="navibar__container">
     <div class="navibar__title">
-      <a href="/" class="flex-inline flex-align-center gap-x-sm">
-        <LogoIcon width={24} height={24} classes="foreground-primary" />
-        <strong>Vrembem</strong>
-        <span class="foreground-lighter">v4.0.0</span>
+      <a href="/" class="brand">
+        <LogoIcon width={24} height={24} classes="brand__icon" />
+        <strong class="brand__name">Vrembem</strong>
+        <span class="brand__version">v4.0.0</span>
       </a>
     </div>
     <div class="navibar__menu">
