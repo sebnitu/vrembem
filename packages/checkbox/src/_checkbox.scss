@@ -38,7 +38,7 @@
   background-color: core.css("checkbox-icon-color");
   mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
   mask-repeat: no-repeat;
-  mask-position: center (var.$icon-size * -1);
+  mask-position: center calc(core.css("checkbox-icon-size") * -1);
   mask-size: 100%;
   opacity: 0;
 }
