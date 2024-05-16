@@ -2,13 +2,13 @@
 @use "./variables" as var;
 
 #{core.bem("switch", null, "size", "sm")} {
-  @include core.css-var("radio-size", var.$size-sm);
-  @include core.css-var("radio-border-width", var.$size-sm-border-width);
-  @include core.css-var("radio-track-size", var.$size-sm-track);
+  @include core.css-var("switch-size", var.$size-sm);
+  @include core.css-var("switch-border-width", var.$size-sm-border-width);
+  @include core.css-var("switch-track-size", var.$size-sm-track);
 }
 
 #{core.bem("switch", null, "size", "lg")} {
-  @include core.css-var("radio-size", var.$size-lg);
-  @include core.css-var("radio-border-width", var.$size-lg-border-width);
-  @include core.css-var("radio-track-size", var.$size-lg-track);
+  @include core.css-var("switch-size", var.$size-lg);
+  @include core.css-var("switch-border-width", var.$size-lg-border-width);
+  @include core.css-var("switch-track-size", var.$size-lg-track);
 }
