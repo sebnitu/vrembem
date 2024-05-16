@@ -1,41 +1,29 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$color: palette.get("primary") !default;
+// Checkbox properties
 $size: core.$form-control-size !default;
+$box-size: 18px !default;
+$color: palette.get("primary") !default;
+$fill: null !default;
+$border-color: null !default;
 $border-width: 2px !default;
+$border-radius: core.$border-radius !default;
+$background-border-radius: core.$border-radius-circle !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$background: transparent !default;
-$background-hover: palette.get("primary", 50%, 20%) !default;
-$background-focus: palette.get("primary", 50%, 20%) !default;
-$background-active: palette.get("primary", 50%, 30%) !default;
-$background-checked: null !default;
-$background-border-radius: core.$border-radius-circle !default;
-
-$box-size: 18px !default;
-$box-background: white !default;
-$box-background-hover: null !default;
-$box-background-focus: null !default;
-$box-background-active: null !default;
-$box-background-checked: $color !default;
-$box-border-color: palette.get("neutral") !default;
-$box-border-color-hover: $color !default;
-$box-border-color-focus: $color !default;
-$box-border-color-active: $color !default;
-$box-border-color-checked: $color !default;
-$box-border-radius: core.$border-radius !default;
-
+// Icon properties
 $icon-size: 12px !default;
-$icon-color: white !default;
+$icon-color: null !default;
 $icon-stroke: 2.5 !default;
 
+// Size modifier properties
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;
@@ -46,3 +34,19 @@ $size-lg-border-width: 2.5px !default;
 $size-lg-box: 24px !default;
 $size-lg-icon: 18px !default;
 $size-lg-icon-stroke: 2 !default;
+
+// Theme properties
+$theme-light: (
+  "fill": white,
+  "border-color": palette.get("neutral"),
+  "icon-color": white
+) !default;
+
+$theme-dark: (
+  "fill": palette.get("neutral", 10),
+  "border-color": palette.get("neutral", 80),
+  "icon-color": palette.get("neutral", 10)
+) !default;
+
+@include theme.set("light", "checkbox", $theme-light);
+@include theme.set("dark", "checkbox", $theme-dark);

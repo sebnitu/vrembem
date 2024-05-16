@@ -1,120 +1,14 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-$_size-sm-thumb: var.$size-sm-track - (var.$size-sm-border-width * 2);
-$_size-lg-thumb: var.$size-lg-track - (var.$size-lg-border-width * 2);
-
-.#{$_b}switch#{$_m}size#{$_v}sm {
-  padding-right: (var.$size-sm * 0.25);
-  padding-left: (var.$size-sm * 0.25);
-
-  .#{$_b}switch#{$_e}background {
-    @include core.size(var.$size-sm);
-
-    &::after {
-      @include core.size(var.$size-sm);
-      left: ((var.$size-sm * 0.25) * -1);
-    }
-  }
-
-  .#{$_b}switch#{$_e}track {
-    @include core.size(100%, var.$size-sm-track);
-    border-width: var.$size-sm-border-width;
-  }
-
-  .#{$_b}switch#{$_e}thumb {
-    @include core.size($_size-sm-thumb);
-    box-shadow: 0 0 0 var.$size-sm-border-width var.$thumb-box-shadow-color;
-  }
-
-  .#{$_b}switch#{$_e}native {
-    &:hover + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-sm-border-width var.$thumb-box-shadow-color-hover;
-      }
-    }
-
-    &:focus + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-sm-border-width var.$thumb-box-shadow-color-focus;
-      }
-    }
-
-    &:active + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-sm-border-width var.$thumb-box-shadow-color-active;
-      }
-    }
-
-    &:checked + .#{$_b}switch#{$_e}background {
-      &::after {
-        left: calc(100% - #{(var.$size-sm * 0.75)});
-      }
-
-      .#{$_b}switch#{$_e}thumb {
-        left: calc(100% - #{$_size-sm-thumb});
-        box-shadow: 0 0 0 var.$size-sm-border-width var.$thumb-box-shadow-color-checked;
-      }
-    }
-  }
+#{core.bem("switch", null, "size", "sm")} {
+  @include core.css-var("switch-size", var.$size-sm);
+  @include core.css-var("switch-border-width", var.$size-sm-border-width);
+  @include core.css-var("switch-track-size", var.$size-sm-track);
 }
 
-.#{$_b}switch#{$_m}size#{$_v}lg {
-  padding-right: (var.$size-lg * 0.25);
-  padding-left: (var.$size-lg * 0.25);
-
-  .#{$_b}switch#{$_e}background {
-    @include core.size(var.$size-lg);
-
-    &::after {
-      @include core.size(var.$size-lg);
-      left: ((var.$size-lg * 0.25) * -1);
-    }
-  }
-
-  .#{$_b}switch#{$_e}track {
-    @include core.size(100%, var.$size-lg-track);
-    border-width: var.$size-lg-border-width;
-  }
-
-  .#{$_b}switch#{$_e}thumb {
-    @include core.size($_size-lg-thumb);
-    box-shadow: 0 0 0 var.$size-lg-border-width var.$thumb-box-shadow-color;
-  }
-
-  .#{$_b}switch#{$_e}native {
-    &:hover + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-lg-border-width var.$thumb-box-shadow-color-hover;
-      }
-    }
-
-    &:focus + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-lg-border-width var.$thumb-box-shadow-color-focus;
-      }
-    }
-
-    &:active + .#{$_b}switch#{$_e}background {
-      .#{$_b}switch#{$_e}thumb {
-        box-shadow: 0 0 0 var.$size-lg-border-width var.$thumb-box-shadow-color-active;
-      }
-    }
-
-    &:checked + .#{$_b}switch#{$_e}background {
-      &::after {
-        left: calc(100% - #{(var.$size-lg * 0.75)});
-      }
-
-      .#{$_b}switch#{$_e}thumb {
-        left: calc(100% - #{$_size-lg-thumb});
-        box-shadow: 0 0 0 var.$size-lg-border-width var.$thumb-box-shadow-color-checked;
-      }
-    }
-  }
+#{core.bem("switch", null, "size", "lg")} {
+  @include core.css-var("switch-size", var.$size-lg);
+  @include core.css-var("switch-border-width", var.$size-lg-border-width);
+  @include core.css-var("switch-track-size", var.$size-lg-track);
 }

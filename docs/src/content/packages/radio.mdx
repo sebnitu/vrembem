@@ -4,115 +4,272 @@ description: "Radios allow the user to select a single option from a set."
 package: "@vrembem/radio"
 ---
 
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+
 # Radio
 
 Radios allow the user to select a single option from a set.
-
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fradio.svg)](https://www.npmjs.com/package/%40vrembem%2Fradio)
-
-[Documentation](https://vrembem.com/packages/radio)
-
-## Installation
 
 ```sh
 npm install @vrembem/radio
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/radio";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/radio";
-```
-
-### Markup
+## Basic usage
 
 Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
 
-```html
-<span class="radio">
-  <input type="radio" class="radio__native" name="...">
-  <span class="radio__background">
-    <span class="radio__circle">
-      <span class="radio__dot"></span>
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <span class="radio">
+      <input type="radio" class="radio__native" name="example-1" value="1" checked />
+      <span class="radio__background">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+    </span>
+    <span class="radio">
+      <input type="radio" class="radio__native" name="example-1" value="2" />
+      <span class="radio__background">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+    </span>
+  </Fragment>
+  ```html
+  <span class="radio">
+    <input type="radio" class="radio__native">
+    <span class="radio__background">
+      <span class="radio__circle">
+        <span class="radio__dot"></span>
+      </span>
     </span>
   </span>
-</span>
-```
+  ```
+</CodeExample>
 
-#### radio + label
+### Radio with labels
 
 For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
 
-```html
-<label>
-  <span class="radio">
-    ...
-  </span>
-  Radio with a label
-</label>
-```
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="1" checked />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="2" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="3" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <label>
+    <span class="radio">
+      ...
+    </span>
+    <span>Radio with a label</span>
+  </label>
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `radio_size_[value]`
+## radio_size_[value]
 
 Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small `radio_size_sm`), 40px (default) and 50px (large `radio_size_lg`).
 
-```html
-<span class="radio radio_size_sm">
-  ...
-</span>
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <div class="level flex-gap-xl">
+      <div>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <div>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <div>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <span class="radio radio_size_sm">
+    ...
+  </span>
 
-<span class="radio radio_size_lg">
-  ...
-</span>
-```
+  <span class="radio radio_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variations**
 
 - `radio_size_sm`
 - `radio_size_lg`
 
 ## Customization
 
-### Sass Variables
+Radios are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                       | Default                            | Description                                                                                      |
-| ------------------------------ | ---------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `$prefix-block`                | `null`                             | String to prefix blocks with.                                                                    |
-| `$prefix-element`              | `"__"`                             | String to prefix elements with.                                                                  |
-| `$prefix-modifier`             | `"_"`                              | String to prefix modifiers with.                                                                 |
-| `$prefix-modifier-value`       | `"_"`                              | String to prefix modifier values with.                                                           |
-| `$color`                       | `--vb-primary`                     | Sets the base color theme for the radio component.                                               |
-| `$size`                        | `core.$form-control-size`          | Sets the width and height of the `radio__background` element.                                    |
-| `$border-width`                | `2px`                              | Sets the border-width property for the `radio__circle` element.                                  |
-| `$transition-duration`         | `core.$transition-duration-short`  | Sets the transition-duration property for the `radio__dot` element.                              |
-| `$transition-timing-function`  | `core.$transition-timing-function` | Sets the transition-timing-function property for the `radio__dot` element.                       |
-| `$background`                  | `transparent`                      | Sets the background-color property for the `radio__background` element.                          |
-| `$background-hover`            | `rgba($color, 0.1)`                | Sets the background-color property on `:hover` state.                                            |
-| `$background-focus`            | `rgba($color, 0.1)`                | Sets the background-color property on `:focus` state.                                            |
-| `$background-active`           | `rgba($color, 0.2)`                | Sets the background-color property on `:active` state.                                           |
-| `$background-checked`          | `null`                             | Sets the background-color property on `:checked` state.                                          |
-| `$background-border-radius`    | `core.$border-radius-circle`       | Sets the border-radius property for the `radio__background` element.                             |
-| `$circle-size`                 | `20px`                             | Sets the width and height of the `radio__circle` element.                                        |
-| `$circle-background`           | `white`                            | Sets the background-color property for the `radio__circle` element.                              |
-| `$circle-background-hover`     | `null`                             | Sets the background-color property on `:hover` state.                                            |
-| `$circle-background-focus`     | `null`                             | Sets the background-color property on `:focus` state.                                            |
-| `$circle-background-active`    | `null`                             | Sets the background-color property on `:active` state.                                           |
-| `$circle-background-checked`   | `$color`                           | Sets the background-color property on `:checked` state.                                          |
-| `$circle-border-color`         | `core.$gray-400`                   | Sets the border-color property for the `radio__circle` element.                                  |
-| `$circle-border-color-hover`   | `$color`                           | Sets the border-color property on `:hover` state.                                                |
-| `$circle-border-color-focus`   | `$color`                           | Sets the border-color property on `:focus` state.                                                |
-| `$circle-border-color-active`  | `$color`                           | Sets the border-color property on `:active` state.                                               |
-| `$circle-border-color-checked` | `$color`                           | Sets the border-color property on `:checked` state.                                              |
-| `$circle-border-radius`        | `core.$border-radius`              | Sets the border-radius property for the `radio__circle` element.                                 |
-| `$dot-size`                    | `8px`                              | Sets the width and height property for the `radio__dot` element.                                 |
-| `$dot-color`                   | `white`                            | Sets the background-color property for the `radio__dot` element.                                 |
-| `$size-sm`                     | `core.$form-control-size-sm`       | Sets the width and height of the `radio__background` element of the `radio_size_sm` modifier.    |
-| `$size-sm-border-width`        | `2px`                              | Sets the border-width property for the `radio__circle` element of the `radio_size_sm` modifier.  |
-| `$size-sm-circle`              | `16px`                             | Sets the width and height of the `radio__circle` element of the `radio_size_sm` modifier.        |
-| `$size-sm-dot`                 | `6px`                              | Sets the width and height property for the `radio__dot` element of the `radio_size_sm` modifier. |
-| `$size-lg`                     | `core.$form-control-size-lg`       | Sets the width and height of the `radio__background` element of the `radio_size_lg` modifier.    |
-| `$size-lg-border-width`        | `2.5px`                            | Sets the border-width property for the `radio__circle` element of the `radio_size_lg` modifier.  |
-| `$size-lg-circle`              | `26px`                             | Sets the width and height of the `radio__circle` element of the `radio_size_lg` modifier.        |
-| `$size-lg-dot`                 | `10px`                             | Sets the width and height property for the `radio__dot` element of the `radio_size_lg` modifier. |
+<DocBlock name="CSS Variables" type="file" src="radio/src/_root.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css-var("radio-size", var.$size);
+    @include core.css-var("radio-circle-size", var.$circle-size);
+    @include core.css-var("radio-color", var.$color);
+    @include core.css-var("radio-fill", var.$fill);
+    @include core.css-var("radio-border-color", var.$border-color);
+    @include core.css-var("radio-border-width", var.$border-width);
+    @include core.css-var("radio-background-border-radius", var.$background-border-radius);
+    @include core.css-var("radio-background-opacity", var.$background-opacity);
+    @include core.css-var("radio-background-opacity-hover", var.$background-opacity-hover);
+    @include core.css-var("radio-background-opacity-focus", var.$background-opacity-focus);
+    @include core.css-var("radio-background-opacity-active", var.$background-opacity-active);
+    @include core.css-var("radio-transition-duration", var.$transition-duration);
+    @include core.css-var("radio-transition-timing-function", var.$transition-timing-function);
+    @include core.css-var("radio-dot-size", var.$dot-size);
+    @include core.css-var("radio-dot-color", var.$dot-color);
+  }
+
+  @include theme.output-themes("radio");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="radio/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  // Radio properties
+  $size: core.$form-control-size !default;
+  $circle-size: 20px !default;
+  $color: palette.get("primary") !default;
+  $fill: null !default;
+  $border-color: null !default;
+  $border-width: 2px !default;
+  $background-border-radius: core.$border-radius-circle !default;
+  $background-opacity: 0% !default;
+  $background-opacity-hover: 20% !default;
+  $background-opacity-focus: 20% !default;
+  $background-opacity-active: 30% !default;
+  $transition-duration: core.$transition-duration-short !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Dot properties
+  $dot-size: 8px !default;
+  $dot-color: null !default;
+
+  // Size modifier properties
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-border-width: 2px !default;
+  $size-sm-circle: 16px !default;
+  $size-sm-dot: 6px !default;
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-border-width: 2.5px !default;
+  $size-lg-circle: 26px !default;
+  $size-lg-dot: 10px !default;
+
+  // Theme properties
+  $theme-light: (
+    "fill": white,
+    "border-color": palette.get("neutral"),
+    "dot-color": white
+  ) !default;
+
+  $theme-dark: (
+    "fill": palette.get("neutral", 10),
+    "border-color": palette.get("neutral", 80),
+    "dot-color": palette.get("neutral", 10)
+  ) !default;
+
+  @include theme.set("light", "radio", $theme-light);
+  @include theme.set("dark", "radio", $theme-dark);
+  ```
+</DocBlock>

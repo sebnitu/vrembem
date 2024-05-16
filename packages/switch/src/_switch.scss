@@ -1,24 +1,21 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
+$_thumb-size: calc(core.css("switch-track-size") - calc(core.css("switch-border-width") * 2));
 
-$_thumb-size: var.$track-size - (var.$border-width * 2);
-
-.#{$_b}switch {
+#{core.bem("switch")} {
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: (var.$size * 0.25);
-  padding-left: (var.$size * 0.25);
+  padding-right: calc(core.css("switch-size") * 0.25);
+  padding-left: calc(core.css("switch-size") * 0.25);
   vertical-align: middle;
 }
 
-.#{$_b}switch#{$_e}background {
-  @include core.size(var.$size);
+#{core.bem("switch", "background")} {
+  @include core.size(core.css("switch-size"));
   position: relative;
   z-index: 1;
   display: flex;
@@ -26,40 +23,40 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
   justify-content: center;
 
   &::after {
-    @include core.size(var.$size);
+    @include core.size(core.css("switch-size"));
     content: "";
     position: absolute;
     top: 0;
-    left: ((var.$size * 0.25) * -1);
-    transition: left var.$transition-duration var.$transition-timing-function;
-    border-radius: var.$background-border-radius;
-    background-color: var.$background;
+    left: calc(calc(core.css("switch-size") * 0.25) * -1);
+    transition: left core.css("switch-transition-duration") core.css("switch-transition-timing-function");
+    border-radius: core.css("switch-background-border-radius");
+    background-color: hsl(from core.css("switch-color") h s l / core.css("switch-background-opacity"));
   }
 }
 
-.#{$_b}switch#{$_e}track {
-  @include core.size(100%, var.$track-size);
+#{core.bem("switch", "track")} {
+  @include core.size(100%, core.css("switch-track-size"));
   position: relative;
   display: block;
-  border: var.$border-width solid var.$track-border-color;
-  border-radius: var.$track-border-radius;
-  background-color: var.$track-background;
+  border: core.css("switch-border-width") solid core.css("switch-border-color");
+  border-radius: core.css("switch-border-radius");
+  background-color: core.css("switch-track-fill");
 }
 
-.#{$_b}switch#{$_e}thumb {
+#{core.bem("switch", "thumb")} {
   @include core.size($_thumb-size);
   position: absolute;
   z-index: 1;
   top: 0;
   left: 0;
   display: block;
-  transition: left var.$transition-duration var.$transition-timing-function;
-  border-radius: core.$border-radius-circle;
-  background-color: var.$thumb-background;
-  box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color;
+  transition: left core.css("switch-transition-duration") core.css("switch-transition-timing-function");
+  border-radius: core.css("switch-border-radius");
+  background-color: core.css("switch-thumb-fill");
+  box-shadow: 0 0 0 core.css("switch-border-width") core.css("switch-border-color");
 }
 
-.#{$_b}switch#{$_e}native {
+#{core.bem("switch", "native")} {
   @include core.size(100%);
   position: absolute;
   z-index: 2;
@@ -68,70 +65,65 @@ $_thumb-size: var.$track-size - (var.$border-width * 2);
   opacity: 0;
   cursor: pointer;
 
-  &:hover + .#{$_b}switch#{$_e}background {
+  &:hover + #{core.bem("switch", "background")} {
     &::after {
-      background-color: var.$background-hover;
+      background-color: hsl(from core.css("switch-color") h s l / core.css("switch-background-opacity-hover"));
     }
 
-    .#{$_b}switch#{$_e}track {
-      border-color: var.$track-border-color-hover;
-      background-color: var.$track-background-hover;
+    #{core.bem("switch", "track")} {
+      border-color: core.css("switch-border-color");
+      background-color: core.css("switch-track-fill");
     }
 
-    .#{$_b}switch#{$_e}thumb {
-      background-color: var.$thumb-background-hover;
-      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-hover;
+    #{core.bem("switch", "thumb")} {
+      box-shadow: 0 0 0 core.css("switch-border-width") core.css("switch-color");
     }
   }
 
-  &:focus + .#{$_b}switch#{$_e}background {
+  &:focus + #{core.bem("switch", "background")} {
     &::after {
-      background-color: var.$background-focus;
+      background-color: hsl(from core.css("switch-color") h s l / core.css("switch-background-opacity-focus"));
     }
 
-    .#{$_b}switch#{$_e}track {
-      border-color: var.$track-border-color-focus;
-      background-color: var.$track-background-focus;
+    #{core.bem("switch", "track")} {
+      border-color: core.css("switch-border-color");
+      background-color: core.css("switch-track-fill");
     }
 
-    .#{$_b}switch#{$_e}thumb {
-      background-color: var.$thumb-background-focus;
-      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-focus;
+    #{core.bem("switch", "thumb")} {
+      box-shadow: 0 0 0 core.css("switch-border-width") core.css("switch-color");
     }
   }
 
-  &:focus-visible + .#{$_b}switch#{$_e}background,
-  &:active + .#{$_b}switch#{$_e}background {
+  &:focus-visible + #{core.bem("switch", "background")},
+  &:active + #{core.bem("switch", "background")} {
     &::after {
-      background-color: var.$background-active;
+      background-color: hsl(from core.css("switch-color") h s l / core.css("switch-background-opacity-active"));
     }
 
-    .#{$_b}switch#{$_e}track {
-      border-color: var.$track-border-color-active;
-      background-color: var.$track-background-active;
+    #{core.bem("switch", "track")} {
+      border-color: core.css("switch-border-color");
+      background-color: core.css("switch-track-fill");
     }
 
-    .#{$_b}switch#{$_e}thumb {
-      background-color: var.$thumb-background-active;
-      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-active;
+    #{core.bem("switch", "thumb")} {
+      box-shadow: 0 0 0 core.css("switch-border-width") core.css("switch-color");
     }
   }
 
-  &:checked + .#{$_b}switch#{$_e}background {
+  &:checked + #{core.bem("switch", "background")} {
     &::after {
-      left: calc(100% - #{(var.$size * 0.75)});
-      background-color: var.$background-checked;
+      left: calc(100% - calc(core.css("switch-size") * 0.75));
     }
 
-    .#{$_b}switch#{$_e}track {
-      border-color: var.$track-border-color-checked;
-      background-color: var.$track-background-checked;
+    #{core.bem("switch", "track")} {
+      border-color: core.css("switch-color");
+      background-color: core.css("switch-color");
     }
 
-    .#{$_b}switch#{$_e}thumb {
+    #{core.bem("switch", "thumb")} {
       left: calc(100% - #{$_thumb-size});
-      background-color: var.$thumb-background-checked;
-      box-shadow: 0 0 0 var.$border-width var.$thumb-box-shadow-color-checked;
+      box-shadow: 0 0 0 core.css("switch-border-width") core.css("switch-color");
     }
   }
 }

@@ -1,51 +1,44 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$color: palette.get("primary") !default;
+// Switch properties
 $size: core.$form-control-size !default;
+$track-size: 20px !default;
+$color: palette.get("primary") !default;
+$thumb-fill: null !default;
+$track-fill: null !default;
+$border-color: null !default;
 $border-width: 2px !default;
+$border-radius: core.$border-radius-circle !default;
+$background-border-radius: core.$border-radius-circle !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$background: transparent !default;
-$background-hover: rgba($color, 0.1) !default;
-$background-focus: rgba($color, 0.1) !default;
-$background-active: rgba($color, 0.2) !default;
-$background-checked: null !default;
-$background-border-radius: core.$border-radius-circle !default;
-
-$track-size: 20px !default;
-$track-background: palette.get("neutral", 80) !default;
-$track-background-hover: null !default;
-$track-background-focus: null !default;
-$track-background-active: null !default;
-$track-background-checked: $color !default;
-$track-border-color: palette.get("neutral") !default;
-$track-border-color-hover: null !default;
-$track-border-color-focus: null !default;
-$track-border-color-active: null !default;
-$track-border-color-checked: $color !default;
-$track-border-radius: core.$border-radius-circle !default;
-
-$thumb-background: white !default;
-$thumb-background-hover: null !default;
-$thumb-background-focus: null !default;
-$thumb-background-active: null !default;
-$thumb-background-checked: null !default;
-$thumb-box-shadow-color: palette.get("neutral") !default;
-$thumb-box-shadow-color-hover: $color !default;
-$thumb-box-shadow-color-focus: $color !default;
-$thumb-box-shadow-color-active: $color !default;
-$thumb-box-shadow-color-checked: $color !default;
-
+// Size modifier properties
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-track: 16px !default;
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-track: 26px !default;
+
+// Theme properties
+$theme-light: (
+  "thumb-fill": white,
+  "track-fill": palette.get("neutral", 50%, 20%),
+  "border-color": palette.get("neutral"),
+) !default;
+
+$theme-dark: (
+  "thumb-fill": palette.get("neutral", 10),
+  "track-fill": palette.get("neutral", 50%, 20%),
+  "border-color": palette.get("neutral", 80),
+) !default;
+
+@include theme.set("light", "switch", $theme-light);
+@include theme.set("dark", "switch", $theme-dark);

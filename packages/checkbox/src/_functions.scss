@@ -3,19 +3,17 @@
 /// Outputs data image string for check SVG icon. Used as the value of url() in
 /// the background-image property.
 /// @param {Number (with unit)} $size - Value for width and height attributes
-/// @param {Color} $color - Value for stroke attribute
 /// @param {Number (unitless)} $stroke - Value for stroke-width attribute
 /// @return {String} - Data image string
-@function icon-check($size, $color, $stroke) {
-  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="#{core.encodecolor($color)}" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>';
+@function icon-check($size, $stroke) {
+  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="black" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>';
 }
 
 /// Outputs data image string for minus SVG icon. Used as the value of url() in
 /// the background-image property.
 /// @param {Number (with unit)} $size - Value for width and height attributes
-/// @param {Color} $color - Value for stroke attribute
 /// @param {Number (unitless)} $stroke - Value for stroke-width attribute
 /// @return {String} - Data image string
-@function icon-minus($size, $color, $stroke) {
-  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="#{core.encodecolor($color)}" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>';
+@function icon-minus($size, $stroke) {
+  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="black" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>';
 }

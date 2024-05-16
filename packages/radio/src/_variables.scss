@@ -1,40 +1,27 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$color: palette.get("primary") !default;
+// Radio properties
 $size: core.$form-control-size !default;
+$circle-size: 20px !default;
+$color: palette.get("primary") !default;
+$fill: null !default;
+$border-color: null !default;
 $border-width: 2px !default;
+$background-border-radius: core.$border-radius-circle !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-$background: transparent !default;
-$background-hover: rgba($color, 0.1) !default;
-$background-focus: rgba($color, 0.1) !default;
-$background-active: rgba($color, 0.2) !default;
-$background-checked: null !default;
-$background-border-radius: core.$border-radius-circle !default;
-
-$circle-size: 20px !default;
-$circle-background: white !default;
-$circle-background-hover: null !default;
-$circle-background-focus: null !default;
-$circle-background-active: null !default;
-$circle-background-checked: $color !default;
-$circle-border-color: palette.get("neutral") !default;
-$circle-border-color-hover: $color !default;
-$circle-border-color-focus: $color !default;
-$circle-border-color-active: $color !default;
-$circle-border-color-checked: $color !default;
-$circle-border-radius: core.$border-radius !default;
-
+// Dot properties
 $dot-size: 8px !default;
-$dot-color: white !default;
+$dot-color: null !default;
 
+// Size modifier properties
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-circle: 16px !default;
@@ -43,3 +30,19 @@ $size-lg: core.$form-control-size-lg !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-circle: 26px !default;
 $size-lg-dot: 10px !default;
+
+// Theme properties
+$theme-light: (
+  "fill": white,
+  "border-color": palette.get("neutral"),
+  "dot-color": white
+) !default;
+
+$theme-dark: (
+  "fill": palette.get("neutral", 10),
+  "border-color": palette.get("neutral", 80),
+  "dot-color": palette.get("neutral", 10)
+) !default;
+
+@include theme.set("light", "radio", $theme-light);
+@include theme.set("dark", "radio", $theme-dark);
