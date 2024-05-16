@@ -1,0 +1,23 @@
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.brand__icon {
+  color: palette.get("primary");
+}
+
+.brand__version {
+  color: theme.get("foreground-lighter");
+}
+
+.brand:hover,
+.brand:focus {
+  .brand__version {
+    color: palette.get("primary");
+  }
+}

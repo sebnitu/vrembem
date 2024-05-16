@@ -17,7 +17,11 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
 ---
 
 <nav>
-  <h2 class="padding padding-y-sm">{title}</h2>
+  <h2 class="padding padding-y-sm">
+    <a class="header-link" href={`/${collection}/`}>
+      {title}
+    </a>
+  </h2>
   <ul class={`menu${menuClass ? " " + menuClass : ""}`}>
     {
       entries.map((entry) => (

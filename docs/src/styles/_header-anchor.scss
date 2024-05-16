@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/base";
 
 .header-anchor {
   margin-right: 0.5rem;
@@ -26,4 +27,8 @@
       opacity: 1;
     }
   }
+}
+
+.header-link:hover {
+  color: base.$link-color-hover;
 }
