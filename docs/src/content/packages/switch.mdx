@@ -4,121 +4,236 @@ description: "Switches are a binary form element used to toggle between two opti
 package: "@vrembem/switch"
 ---
 
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+
 # Switch
 
 Switches are a binary form element used to toggle between two options.
-
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fswitch.svg)](https://www.npmjs.com/package/%40vrembem%2Fswitch)
-
-[Documentation](https://vrembem.com/packages/switch)
-
-## Installation
 
 ```sh
 npm install @vrembem/switch
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/switch";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/switch";
-```
-
-### Markup
+## Basic usage
 
 Switch form controls are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `switch__native` class and come before the remaining presentational `<span>` elements.
 
-```html
-<span class="switch">
-  <input type="checkbox" class="switch__native">
-  <span class="switch__background">
-    <span class="switch__track">
-      <span class="switch__thumb"></span>
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <span class="switch">
+      <input type="checkbox" class="switch__native" checked />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+    <span class="switch">
+      <input type="checkbox" class="switch__native" />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+  </Fragment>
+  ```html
+  <span class="switch">
+    <input type="checkbox" class="switch__native">
+    <span class="switch__background">
+      <span class="switch__track">
+        <span class="switch__thumb"></span>
+      </span>
     </span>
   </span>
-</span>
-```
+  ```
+</CodeExample>
 
-#### switch + label
+### Switch with labels
 
 For switch with labels, just wrap the switch component along with label text using the `<label>` element.
 
-```html
-<label>
-  <span class="switch">
-    ...
-  </span>
-  Switch with a label
-</label>
-```
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="switch">
+        <input type="checkbox" class="switch__native" checked />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch with a label</span>
+    </label>
+    <br />
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="switch">
+        <input type="checkbox" class="switch__native" />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch with a label</span>
+    </label>
+    <br />
+    <label class="display-inline-flex flex-align-center flex-gap-xs">
+      <span class="switch">
+        <input type="checkbox" class="switch__native" />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <label>
+    <span class="switch">
+      ...
+    </span>
+    <span>Switch with a label</span>
+  </label>
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `switch_size_[value]`
+## switch_size_[value]
 
 Adjust the size of a switch by increasing or decreasing its width and height. By default, the switch scale will provide a switch height of 30px (small `switch_size_sm`), 40px (default) and 50px (large `switch_size_lg`).
 
-```html
-<span class="switch switch_size_sm">
-  ...
-</span>
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <span class="switch switch_size_sm">
+      <input type="checkbox" class="switch__native" />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+    <span class="switch">
+      <input type="checkbox" class="switch__native" />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+    <span class="switch switch_size_lg">
+      <input type="checkbox" class="switch__native" />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+  </Fragment>
+  ```html
+  <span class="switch switch_size_sm">
+    ...
+  </span>
 
-<span class="switch switch_size_lg">
-  ...
-</span>
-```
+  <span class="switch switch_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variations**
 
 - `switch_size_sm`
 - `switch_size_lg`
 
 ## Customization
 
-### Sass Variables
+Switches are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                          | Default                            | Description                                                                                                                                          |
-| --------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-block`                   | `null`                             | String to prefix blocks with.                                                                                                                        |
-| `$prefix-element`                 | `"__"`                             | String to prefix elements with.                                                                                                                      |
-| `$prefix-modifier`                | `"_"`                              | String to prefix modifiers with.                                                                                                                     |
-| `$prefix-modifier-value`          | `"_"`                              | String to prefix modifier values with.                                                                                                               |
-| `$color`                          | `--vb-primary`                     | Sets the base color theme for the switch component.                                                                                                  |
-| `$size`                           | `core.$form-control-size`          | Sets the width and height of the `switch__background` element.                                                                                       |
-| `$border-width`                   | `2px`                              | Sets the border-width property for the `switch__track` element and box-shadow spread for other elements and states.                                  |
-| `$transition-duration`            | `core.$transition-duration-short`  | Sets the transition-duration property for the `switch__thumb` element.                                                                               |
-| `$transition-timing-function`     | `core.$transition-timing-function` | Sets the transition-timing-function property for the `switch__thumb` element.                                                                        |
-| `$background`                     | `transparent`                      | Sets the background-color property for the `switch__background` element.                                                                             |
-| `$background-hover`               | `rgba($color, 0.1)`                | Sets the background-color property on `:hover` state.                                                                                                |
-| `$background-focus`               | `rgba($color, 0.1)`                | Sets the background-color property on `:focus` state.                                                                                                |
-| `$background-active`              | `rgba($color, 0.2)`                | Sets the background-color property on `:active` state.                                                                                               |
-| `$background-checked`             | `null`                             | Sets the background-color property on `:checked` state.                                                                                              |
-| `$background-border-radius`       | `core.$border-radius-circle`       | Sets the border-radius property for the `switch__background` element.                                                                                |
-| `$track-size`                     | `20px`                             | Sets the width and height of the `switch__track` element.                                                                                            |
-| `$track-background`               | `core.$gray-200`                   | Sets the background-color property for the `switch__track` element.                                                                                  |
-| `$track-background-hover`         | `null`                             | Sets the background-color property on `:hover` state.                                                                                                |
-| `$track-background-focus`         | `null`                             | Sets the background-color property on `:focus` state.                                                                                                |
-| `$track-background-active`        | `null`                             | Sets the background-color property on `:active` state.                                                                                               |
-| `$track-background-checked`       | `$color`                           | Sets the background-color property on `:checked` state.                                                                                              |
-| `$track-border-color`             | `core.$gray-400`                   | Sets the border-color property for the `switch__track` element.                                                                                      |
-| `$track-border-color-hover`       | `null`                             | Sets the border-color property on `:hover` state.                                                                                                    |
-| `$track-border-color-focus`       | `null`                             | Sets the border-color property on `:focus` state.                                                                                                    |
-| `$track-border-color-active`      | `null`                             | Sets the border-color property on `:active` state.                                                                                                   |
-| `$track-border-color-checked`     | `$color`                           | Sets the border-color property on `:checked` state.                                                                                                  |
-| `$track-border-radius`            | `core.$border-radius-circle`       | Sets the border-radius property for the `switch__track` element.                                                                                     |
-| `$thumb-background`               | `white`                            | Sets the background-color property for the `switch__thumb` element.                                                                                  |
-| `$thumb-background-hover`         | `null`                             | Sets the background-color property on `:hover` state.                                                                                                |
-| `$thumb-background-focus`         | `null`                             | Sets the background-color property on `:focus` state.                                                                                                |
-| `$thumb-background-active`        | `null`                             | Sets the background-color property on `:active` state.                                                                                               |
-| `$thumb-background-checked`       | `null`                             | Sets the background-color property on `:checked` state.                                                                                              |
-| `$thumb-box-shadow-color`         | `core.$gray-400`                   | Sets the box-shadow color property for the `switch__thumb` element.                                                                                  |
-| `$thumb-box-shadow-color-hover`   | `$color`                           | Sets the box-shadow color property on `:hover` state.                                                                                                |
-| `$thumb-box-shadow-color-focus`   | `$color`                           | Sets the box-shadow color property on `:focus` state.                                                                                                |
-| `$thumb-box-shadow-color-active`  | `$color`                           | Sets the box-shadow color property on `:active` state.                                                                                               |
-| `$thumb-box-shadow-color-checked` | `$color`                           | Sets the box-shadow color property on `:checked` state.                                                                                              |
-| `$size-sm`                        | `core.$form-control-size-sm`       | Sets the width and height of the `switch__background` element of the `switch_size_sm` modifier.                                                      |
-| `$size-sm-border-width`           | `2px`                              | Sets the border-width property for the `switch__track` element and box-shadow spread for other elements and states of the `switch_size_sm` modifier. |
-| `$size-sm-track`                  | `16px`                             | Sets the width and height of the `switch__track` element of the `switch_size_sm` modifier.                                                           |
-| `$size-lg`                        | `core.$form-control-size-lg`       | Sets the width and height of the `switch__background` element of the `switch_size_lg` modifier.                                                      |
-| `$size-lg-border-width`           | `2.5px`                            | Sets the border-width property for the `switch__track` element and box-shadow spread for other elements and states of the `switch_size_lg` modifier. |
-| `$size-lg-track`                  | `26px`                             | Sets the width and height of the `switch__track` element of the `switch_size_lg` modifier.                                                           |
+<DocBlock name="CSS Variables" type="file" src="switch/src/_root.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css-var("switch-size", var.$size);
+    @include core.css-var("switch-track-size", var.$track-size);
+    @include core.css-var("switch-color", var.$color);
+    @include core.css-var("switch-thumb-fill", var.$thumb-fill);
+    @include core.css-var("switch-track-fill", var.$track-fill);
+    @include core.css-var("switch-border-color", var.$border-color);
+    @include core.css-var("switch-border-width", var.$border-width);
+    @include core.css-var("switch-border-radius", var.$border-radius);
+    @include core.css-var("switch-background-border-radius", var.$background-border-radius);
+    @include core.css-var("switch-background-opacity", var.$background-opacity);
+    @include core.css-var("switch-background-opacity-hover", var.$background-opacity-hover);
+    @include core.css-var("switch-background-opacity-focus", var.$background-opacity-focus);
+    @include core.css-var("switch-background-opacity-active", var.$background-opacity-active);
+    @include core.css-var("switch-transition-duration", var.$transition-duration);
+    @include core.css-var("switch-transition-timing-function", var.$transition-timing-function);
+  }
+
+  @include theme.output-themes("switch");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="switch/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  // Switch properties
+  $size: core.$form-control-size !default;
+  $track-size: 20px !default;
+  $color: palette.get("primary") !default;
+  $thumb-fill: null !default;
+  $track-fill: null !default;
+  $border-color: null !default;
+  $border-width: 2px !default;
+  $border-radius: core.$border-radius-circle !default;
+  $background-border-radius: core.$border-radius-circle !default;
+  $background-opacity: 0% !default;
+  $background-opacity-hover: 20% !default;
+  $background-opacity-focus: 20% !default;
+  $background-opacity-active: 30% !default;
+  $transition-duration: core.$transition-duration-short !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Size modifier properties
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-border-width: 2px !default;
+  $size-sm-track: 16px !default;
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-border-width: 2.5px !default;
+  $size-lg-track: 26px !default;
+
+  // Theme properties
+  $theme-light: (
+    "thumb-fill": white,
+    "track-fill": palette.get("neutral", 50%, 20%),
+    "border-color": palette.get("neutral"),
+  ) !default;
+
+  $theme-dark: (
+    "thumb-fill": palette.get("neutral", 10),
+    "track-fill": palette.get("neutral", 50%, 20%),
+    "border-color": palette.get("neutral", 80),
+  ) !default;
+
+  @include theme.set("light", "switch", $theme-light);
+  @include theme.set("dark", "switch", $theme-dark);
+  ```
+</DocBlock>
