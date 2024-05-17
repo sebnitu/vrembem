@@ -2,10 +2,11 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// Radio properties
 $size: core.$form-control-size !default;
 $circle-size: 20px !default;
+$dot-size: 8px !default;
 $color: palette.get("primary") !default;
+$dot-color: null !default;
 $fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
@@ -14,24 +15,24 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
+
+// Transition
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-// Dot properties
-$dot-size: 8px !default;
-$dot-color: null !default;
-
-// Size modifier properties
+// radio_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-circle: 16px !default;
 $size-sm-dot: 6px !default;
+
+// radio_size_lg
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-circle: 26px !default;
 $size-lg-dot: 10px !default;
 
-// Theme properties
+// Themes
 $theme-light: (
   "fill": white,
   "border-color": palette.get("neutral"),

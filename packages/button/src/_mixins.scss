@@ -1,22 +1,20 @@
+@use "@vrembem/core";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
-
-$_v: var.$prefix-variable;
 
 /// Creates a button variant using CSS variables and the palette module.
 /// @param {Color} $foreground - A color for the foreground of the button.
 /// @param {String} $background - The color key for the background of the button (should exist in palette map).
 /// @output Outputs theme CSS variables based on the provided foreground and background.
 @mixin button-variant($foreground, $background) {
-  --#{$_v}button-background: #{palette.get($background)};
-  --#{$_v}button-background-hover: #{palette.get($background, 40)};
-  --#{$_v}button-background-active: #{palette.get($background, 30)};
-  --#{$_v}button-foreground: #{$foreground};
-  --#{$_v}button-foreground-hover: #{$foreground};
-  --#{$_v}button-foreground-active: #{$foreground};
-  --#{$_v}button-border-color: transparent;
-  --#{$_v}button-border-color-hover: transparent;
-  --#{$_v}button-border-color-active: transparent;
-  --#{$_v}button-box-shadow: 0 0 0 0 #{palette.get($background, 50%, 0%)};
-  --#{$_v}button-box-shadow-focus: 0 0 0 0.2rem #{palette.get($background, 50%, 50%)};
+  @include core.css("button-background", palette.get($background));
+  @include core.css("button-background-hover", palette.get($background, 40));
+  @include core.css("button-background-active", palette.get($background, 30));
+  @include core.css("button-foreground", $foreground);
+  @include core.css("button-foreground-hover", $foreground);
+  @include core.css("button-foreground-active", $foreground);
+  @include core.css("button-border-color", transparent);
+  @include core.css("button-border-color-hover", transparent);
+  @include core.css("button-border-color-active", transparent);
+  @include core.css("button-box-shadow", 0 0 0 0 #{palette.get($background, 50%, 0%)});
+  @include core.css("button-box-shadow-focus", 0 0 0 0.2rem #{palette.get($background, 50%, 50%)});
 }

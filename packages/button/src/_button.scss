@@ -1,60 +1,55 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-
-.#{$_b}button {
+#{core.bem("button")} {
   position: relative;
   display: inline-flex;
-  gap: var(--#{$_v}button-gap);
+  gap: core.css("button-gap");
   align-items: center;
   justify-content: center;
-  min-width: var(--#{$_v}button-size);
-  height: var(--#{$_v}button-size);
-  padding: var(--#{$_v}button-padding);
-  transition-property: var(--#{$_v}button-transition-property);
-  transition-duration: var(--#{$_v}button-transition-duration);
-  transition-timing-function: var(--#{$_v}button-transition-timing-function);
+  min-width: core.css("button-size");
+  height: core.css("button-size");
+  padding: core.css("button-padding");
+  transition-property: core.css("button-transition-property");
+  transition-duration: core.css("button-transition-duration");
+  transition-timing-function: core.css("button-transition-timing-function");
   outline: none;
-  border: var(--#{$_v}button-border-width) solid var(--#{$_v}button-border-color);
-  border-radius: var(--#{$_v}button-border-radius);
-  background: var(--#{$_v}button-background);
+  border: core.css("button-border-width") solid core.css("button-border-color");
+  border-radius: core.css("button-border-radius");
+  background: core.css("button-background");
   background-clip: border-box;
-  box-shadow: var(--#{$_v}button-box-shadow);
-  color: var(--#{$_v}button-foreground);
+  box-shadow: core.css("button-box-shadow");
+  color: core.css("button-foreground");
   font-family: inherit;
-  font-size: var(--#{$_v}button-font-size);
-  font-weight: var(--#{$_v}button-font-weight);
-  line-height: var(--#{$_v}button-line-height);
+  font-size: core.css("button-font-size");
+  font-weight: core.css("button-font-weight");
+  line-height: core.css("button-line-height");
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
 
   &:disabled:not(.is-loading) {
-    opacity: var(--#{$_v}button-disabled-opacity);
+    opacity: core.css("button-disabled-opacity");
     pointer-events: none;
   }
 
-  &:hover {
-    border-color: var(--#{$_v}button-border-color-hover);
-    background-color: var(--#{$_v}button-background-hover);
-    box-shadow: var(--#{$_v}button-box-shadow-hover);
-    color: var(--#{$_v}button-foreground-hover);
+  &:hover,
+  &:focus-visible {
+    border-color: core.css("button-border-color-hover");
+    background-color: core.css("button-background-hover");
+    box-shadow: core.css("button-box-shadow");
+    color: core.css("button-foreground-hover");
   }
 
   &:focus-visible {
-    border-color: var(--#{$_v}button-border-color-hover);
-    background-color: var(--#{$_v}button-background-hover);
-    box-shadow: var(--#{$_v}button-box-shadow-focus);
-    color: var(--#{$_v}button-foreground-hover);
+    box-shadow: core.css("button-box-shadow-focus");
   }
 
   &:active {
-    border-color: var(--#{$_v}button-border-color-active);
-    background-color: var(--#{$_v}button-background-active);
-    box-shadow: var(--#{$_v}button-box-shadow-active);
-    color: var(--#{$_v}button-foreground-active);
+    border-color: core.css("button-border-color-active");
+    background-color: core.css("button-background-active");
+    box-shadow: core.css("button-box-shadow-active");
+    color: core.css("button-foreground-active");
   }
 
   &.is-loading {
@@ -62,15 +57,15 @@ $_b: var.$prefix-block;
     pointer-events: none;
 
     &::after {
-      @include core.size(var(--#{$_v}button-loading-size));
+      @include core.size(core.css("button-loading-size"));
       content: "";
       position: absolute;
-      top: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
-      left: calc(50% - (var(--#{$_v}button-loading-size) * 0.5));
-      animation: spin var(--#{$_v}button-loading-animation-duration) infinite var(--#{$_v}button-loading-animation-timing-function);
-      border: var(--#{$_v}button-loading-border);
+      top: calc(50% - calc(core.css("button-loading-size") * 0.5));
+      left: calc(50% - calc(core.css("button-loading-size") * 0.5));
+      animation: spin core.css("button-loading-animation-duration") infinite core.css("button-loading-animation-timing-function");
+      border: core.css("button-loading-border");
       border-radius: core.$border-radius-circle;
-      border-color: core.set-border-color(var.$loading-border-tpl, var(--#{$_v}button-foreground));
+      border-color: core.set-border-color(var.$loading-border-tpl, core.css("button-foreground"));
     }
   }
 }

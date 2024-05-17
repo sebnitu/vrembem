@@ -1,110 +1,105 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}card {
+#{core.bem("card")} {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: var(--#{$_v}card-transition-property);
-  transition-duration: var(--#{$_v}card-transition-duration);
-  transition-timing-function: var(--#{$_v}card-transition-timing-function);
-  border: var(--#{$_v}card-border);
-  border-radius: var(--#{$_v}card-border-radius);
-  background: var(--#{$_v}card-background);
+  transition-property: core.css("card-transition-property");
+  transition-duration: core.css("card-transition-duration");
+  transition-timing-function: core.css("card-transition-timing-function");
+  border: core.css("card-border");
+  border-radius: core.css("card-border-radius");
+  background: core.css("card-background");
   background-clip: padding-box;
-  box-shadow: var(--#{$_v}card-box-shadow);
-  color: var(--#{$_v}card-foreground);
+  box-shadow: core.css("card-box-shadow");
+  color: core.css("card-foreground");
 }
 
-a.#{$_b}card {
+a#{core.bem("card")} {
   transform: translate(0, 0);
-  box-shadow: var(--#{$_v}card-link-box-shadow);
+  box-shadow: core.css("card-link-box-shadow");
 
   &:hover,
   &:focus,
   &:focus-within {
-    transform: translate(0, var(--#{$_v}card-link-offset));
-    box-shadow: var(--#{$_v}card-link-box-shadow-hover);
+    transform: translate(0, core.css("card-link-offset"));
+    box-shadow: core.css("card-link-box-shadow-hover");
   }
 }
 
-.#{$_b}card#{$_e}header,
-.#{$_b}card#{$_e}body,
-.#{$_b}card#{$_e}footer,
-.#{$_b}card#{$_e}image {
+#{core.bem("card", "header")},
+#{core.bem("card", "body")},
+#{core.bem("card", "footer")},
+#{core.bem("card", "image")} {
   position: relative;
   z-index: 3;
 
   &:first-child {
-    border-top-left-radius: var(--#{$_v}card-border-radius);
-    border-top-right-radius: var(--#{$_v}card-border-radius);
+    border-top-left-radius: core.css("card-border-radius");
+    border-top-right-radius: core.css("card-border-radius");
   }
 
   &:last-child {
-    border-bottom-left-radius: var(--#{$_v}card-border-radius);
-    border-bottom-right-radius: var(--#{$_v}card-border-radius);
+    border-bottom-left-radius: core.css("card-border-radius");
+    border-bottom-right-radius: core.css("card-border-radius");
   }
 }
 
-.#{$_b}card#{$_e}body,
-.#{$_b}card#{$_e}header,
-.#{$_b}card#{$_e}footer {
-  padding: var(--#{$_v}card-padding);
+#{core.bem("card", "header")},
+#{core.bem("card", "body")},
+#{core.bem("card", "footer")} {
+  padding: core.css("card-padding");
 }
 
-.#{$_b}card#{$_e}body {
+#{core.bem("card", "body")} {
   flex: 1 1 auto;
 
   & + & {
-    border-top: var(--#{$_v}card-sep-border);
+    border-top: core.css("card-sep-border");
   }
 }
 
-.#{$_b}card#{$_e}header {
-  border-bottom: var(--#{$_v}card-sep-border);
+#{core.bem("card", "header")} {
+  border-bottom: core.css("card-sep-border");
 }
 
-.#{$_b}card#{$_e}footer {
-  border-top: var(--#{$_v}card-sep-border);
+#{core.bem("card", "footer")} {
+  border-top: core.css("card-sep-border");
 }
 
-.#{$_b}card#{$_e}image {
+#{core.bem("card", "image")} {
   flex: 0 1 auto;
   width: 100%;
   height: auto;
 }
 
-.#{$_b}card#{$_e}title {
+#{core.bem("card", "title")} {
   flex-grow: 1;
-  color: var(--#{$_v}card-title-color);
-  font-size: var(--#{$_v}card-title-font-size);
-  font-weight: var(--#{$_v}card-title-font-weight);
-  line-height: var(--#{$_v}card-title-line-height);
+  color: core.css("card-title-color");
+  font-size: core.css("card-title-font-size");
+  font-weight: core.css("card-title-font-weight");
+  line-height: core.css("card-title-line-height");
 }
 
-.#{$_b}card#{$_e}background,
-.#{$_b}card#{$_e}screen {
+#{core.bem("card", "background")},
+#{core.bem("card", "screen")} {
   @include core.size(100%);
   position: absolute;
   inset: 0;
-  transition-property: var(--#{$_v}card-transition-property);
-  transition-duration: var(--#{$_v}card-transition-duration);
-  transition-timing-function: var(--#{$_v}card-transition-timing-function);
-  border-radius: var(--#{$_v}card-border-radius);
+  transition-property: core.css("card-transition-property");
+  transition-duration: core.css("card-transition-duration");
+  transition-timing-function: core.css("card-transition-timing-function");
+  border-radius: core.css("card-border-radius");
 }
 
-.#{$_b}card#{$_e}background {
+#{core.bem("card", "background")} {
   object-fit: cover;
   z-index: 1;
 }
 
-.#{$_b}card#{$_e}screen {
+#{core.bem("card", "screen")} {
   z-index: 2;
-  background: var(--#{$_v}card-screen-background);
-  opacity: var(--#{$_v}card-screen-opacity);
+  background: core.css("card-screen-background");
+  opacity: core.css("card-screen-opacity");
 }

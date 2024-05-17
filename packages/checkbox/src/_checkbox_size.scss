@@ -3,11 +3,11 @@
 @use "./functions" as fun;
 
 #{core.bem("checkbox", null, "size", "sm")} {
-  @include core.css-var("checkbox-size", var.$size-sm);
-  @include core.css-var("checkbox-border-width", var.$size-sm-border-width);
-  @include core.css-var("checkbox-box-size", var.$size-sm-box);
-  @include core.css-var("checkbox-icon-size", var.$size-sm-icon);
-  @include core.css-var("checkbox-icon-stroke", var.$size-sm-icon-stroke);
+  @include core.css("checkbox-size", var.$size-sm);
+  @include core.css("checkbox-border-width", var.$size-sm-border-width);
+  @include core.css("checkbox-box-size", var.$size-sm-box);
+  @include core.css("checkbox-icon-size", var.$size-sm-icon);
+  @include core.css("checkbox-icon-stroke", var.$size-sm-icon-stroke);
 
   #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-sm-icon-stroke)}");
@@ -19,11 +19,11 @@
 }
 
 #{core.bem("checkbox", null, "size", "lg")} {
-  @include core.css-var("checkbox-size", var.$size-lg);
-  @include core.css-var("checkbox-border-width", var.$size-lg-border-width);
-  @include core.css-var("checkbox-box-size", var.$size-lg-box);
-  @include core.css-var("checkbox-icon-size", var.$size-lg-icon);
-  @include core.css-var("checkbox-icon-stroke", var.$size-lg-icon-stroke);
+  @include core.css("checkbox-size", var.$size-lg);
+  @include core.css("checkbox-border-width", var.$size-lg-border-width);
+  @include core.css("checkbox-box-size", var.$size-lg-box);
+  @include core.css("checkbox-icon-size", var.$size-lg-icon);
+  @include core.css("checkbox-icon-stroke", var.$size-lg-icon-stroke);
 
   #{core.bem("checkbox", "icon")} {
     mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-lg-icon-stroke)}");

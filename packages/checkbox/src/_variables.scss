@@ -2,10 +2,12 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// Checkbox properties
 $size: core.$form-control-size !default;
 $box-size: 18px !default;
+$icon-size: 12px !default;
 $color: palette.get("primary") !default;
+$icon-color: null !default;
+$icon-stroke: 2.5 !default;
 $fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
@@ -15,27 +17,26 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
+
+// Transition
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-// Icon properties
-$icon-size: 12px !default;
-$icon-color: null !default;
-$icon-stroke: 2.5 !default;
-
-// Size modifier properties
+// checkbox_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;
 $size-sm-icon: 10px !default;
 $size-sm-icon-stroke: 2.5 !default;
+
+// checkbox_size_lg
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-box: 24px !default;
 $size-lg-icon: 18px !default;
 $size-lg-icon-stroke: 2 !default;
 
-// Theme properties
+// Themes
 $theme-light: (
   "fill": white,
   "border-color": palette.get("neutral"),

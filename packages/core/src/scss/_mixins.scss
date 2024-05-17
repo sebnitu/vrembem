@@ -7,7 +7,7 @@
 /// @param {String} $name - The name to use in the CSS variable property.
 /// @param {All} $value - The value of the CSS variable. Can be any valid CSS property value.
 /// @output CSS Variable or nothing.
-@mixin css-var($name, $value) {
+@mixin css($name, $value) {
   @if ($value) {
     --#{prefix.$variable}#{$name}: #{$value};
   }

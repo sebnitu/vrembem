@@ -1,21 +1,16 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_mv: var.$prefix-modifier-value;
-
-.#{$_b}button#{$_m}size#{$_mv}sm {
-  --#{$_v}button-size: #{var.$size-sm};
-  --#{$_v}button-padding: #{var.$size-sm-padding};
-  --#{$_v}button-font-size: #{var.$size-sm-font-size};
-  --#{$_v}button-line-height: #{var.$size-sm-line-height};
+#{core.bem("button", null, "size", "sm")} {
+  @include core.css("button-size", var.$size-sm);
+  @include core.css("button-padding", var.$size-sm-padding);
+  @include core.css("button-font-size", var.$size-sm-font-size);
+  @include core.css("button-line-height", var.$size-sm-line-height);
 }
 
-.#{$_b}button#{$_m}size#{$_mv}lg {
-  --#{$_v}button-size: #{var.$size-lg};
-  --#{$_v}button-padding: #{var.$size-lg-padding};
-  --#{$_v}button-font-size: #{var.$size-lg-font-size};
-  --#{$_v}button-line-height: #{var.$size-lg-line-height};
+#{core.bem("button", null, "size", "lg")} {
+  @include core.css("button-size", var.$size-lg);
+  @include core.css("button-padding", var.$size-lg-padding);
+  @include core.css("button-font-size", var.$size-lg-font-size);
+  @include core.css("button-line-height", var.$size-lg-line-height);
 }

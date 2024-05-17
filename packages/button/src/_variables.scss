@@ -2,25 +2,28 @@
 @use "@vrembem/core";
 @use "@vrembem/core/theme";
 
-// Prefix variables
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-// Size properties
+$breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
 $gap: 0.5rem !default;
+$background: transparent !default;
+$background-hover: transparent !default;
+$background-active: transparent !default;
+$foreground: theme.get("foreground") !default;
+$foreground-hover: theme.get("foreground") !default;
+$foreground-active: theme.get("foreground") !default;
+$border-color: theme.get("border-color-dark") !default;
+$border-color-hover: theme.get("border-color-darker") !default;
+$border-color-active: theme.get("border-color-darker") !default;
 $border-width: 1px !default;
 $border-radius: core.$border-radius !default;
+$box-shadow: 0 0 0 0 rgb(0 0 0 / 0%) !default;
+$box-shadow-focus: 0 0 0 0.2rem rgb(0 0 0 / 15%) !default;
 $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: 1.6 !default;
-$breakpoints: core.$breakpoints !default;
 
-// Transition properties
+// Transition
 $transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -51,20 +54,3 @@ $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
-
-// Theme properties
-$theme: (
-  "background": transparent,
-  "background-hover": transparent,
-  "background-active": transparent,
-  "foreground": theme.get("foreground"),
-  "foreground-hover": theme.get("foreground"),
-  "foreground-active": theme.get("foreground"),
-  "border-color": theme.get("border-color-dark"),
-  "border-color-hover": theme.get("border-color-darker"),
-  "border-color-active": theme.get("border-color-darker"),
-  "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
-) !default;
-
-@include theme.set(theme.$default, "button", $theme);

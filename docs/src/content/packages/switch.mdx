@@ -167,21 +167,21 @@ Switches are primarily customized using CSS variables but can also be modified u
   @use "./variables" as var;
 
   #{theme.$root-selector} {
-    @include core.css-var("switch-size", var.$size);
-    @include core.css-var("switch-track-size", var.$track-size);
-    @include core.css-var("switch-color", var.$color);
-    @include core.css-var("switch-thumb-fill", var.$thumb-fill);
-    @include core.css-var("switch-track-fill", var.$track-fill);
-    @include core.css-var("switch-border-color", var.$border-color);
-    @include core.css-var("switch-border-width", var.$border-width);
-    @include core.css-var("switch-border-radius", var.$border-radius);
-    @include core.css-var("switch-background-border-radius", var.$background-border-radius);
-    @include core.css-var("switch-background-opacity", var.$background-opacity);
-    @include core.css-var("switch-background-opacity-hover", var.$background-opacity-hover);
-    @include core.css-var("switch-background-opacity-focus", var.$background-opacity-focus);
-    @include core.css-var("switch-background-opacity-active", var.$background-opacity-active);
-    @include core.css-var("switch-transition-duration", var.$transition-duration);
-    @include core.css-var("switch-transition-timing-function", var.$transition-timing-function);
+    @include core.css("switch-size", var.$size);
+    @include core.css("switch-track-size", var.$track-size);
+    @include core.css("switch-color", var.$color);
+    @include core.css("switch-thumb-fill", var.$thumb-fill);
+    @include core.css("switch-track-fill", var.$track-fill);
+    @include core.css("switch-border-color", var.$border-color);
+    @include core.css("switch-border-width", var.$border-width);
+    @include core.css("switch-border-radius", var.$border-radius);
+    @include core.css("switch-background-border-radius", var.$background-border-radius);
+    @include core.css("switch-background-opacity", var.$background-opacity);
+    @include core.css("switch-background-opacity-hover", var.$background-opacity-hover);
+    @include core.css("switch-background-opacity-focus", var.$background-opacity-focus);
+    @include core.css("switch-background-opacity-active", var.$background-opacity-active);
+    @include core.css("switch-transition-duration", var.$transition-duration);
+    @include core.css("switch-transition-timing-function", var.$transition-timing-function);
   }
 
   @include theme.output-themes("switch");
@@ -195,7 +195,6 @@ Switches are primarily customized using CSS variables but can also be modified u
   @use "@vrembem/core/palette";
   @use "@vrembem/core/theme";
 
-  // Switch properties
   $size: core.$form-control-size !default;
   $track-size: 20px !default;
   $color: palette.get("primary") !default;
@@ -209,18 +208,22 @@ Switches are primarily customized using CSS variables but can also be modified u
   $background-opacity-hover: 20% !default;
   $background-opacity-focus: 20% !default;
   $background-opacity-active: 30% !default;
+
+  // Transition
   $transition-duration: core.$transition-duration-short !default;
   $transition-timing-function: core.$transition-timing-function !default;
 
-  // Size modifier properties
+  // switch_size_sm
   $size-sm: core.$form-control-size-sm !default;
   $size-sm-border-width: 2px !default;
   $size-sm-track: 16px !default;
+
+  // switch_size_lg
   $size-lg: core.$form-control-size-lg !default;
   $size-lg-border-width: 2.5px !default;
   $size-lg-track: 26px !default;
 
-  // Theme properties
+  // Themes
   $theme-light: (
     "thumb-fill": white,
     "track-fill": palette.get("neutral", 50%, 20%),
