@@ -5,7 +5,10 @@
 #{theme.$root-selector} {
   @include core.css("checkbox-size", var.$size);
   @include core.css("checkbox-box-size", var.$box-size);
+  @include core.css("checkbox-icon-size", var.$icon-size);
   @include core.css("checkbox-color", var.$color);
+  @include core.css("checkbox-icon-color", var.$icon-color);
+  @include core.css("checkbox-icon-stroke", var.$icon-stroke);
   @include core.css("checkbox-fill", var.$fill);
   @include core.css("checkbox-border-color", var.$border-color);
   @include core.css("checkbox-border-width", var.$border-width);
@@ -17,9 +20,6 @@
   @include core.css("checkbox-background-opacity-active", var.$background-opacity-active);
   @include core.css("checkbox-transition-duration", var.$transition-duration);
   @include core.css("checkbox-transition-timing-function", var.$transition-timing-function);
-  @include core.css("checkbox-icon-size", var.$icon-size);
-  @include core.css("checkbox-icon-color", var.$icon-color);
-  @include core.css("checkbox-icon-stroke", var.$icon-stroke);
 }
 
 @include theme.output-themes("checkbox");

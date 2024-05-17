@@ -2,7 +2,6 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// Switch properties
 $size: core.$form-control-size !default;
 $track-size: 20px !default;
 $color: palette.get("primary") !default;
@@ -16,18 +15,22 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
+
+// Transition
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-// Size modifier properties
+// switch_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-border-width: 2px !default;
 $size-sm-track: 16px !default;
+
+// switch_size_lg
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-track: 26px !default;
 
-// Theme properties
+// Themes
 $theme-light: (
   "thumb-fill": white,
   "track-fill": palette.get("neutral", 50%, 20%),

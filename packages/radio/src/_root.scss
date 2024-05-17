@@ -5,7 +5,9 @@
 #{theme.$root-selector} {
   @include core.css("radio-size", var.$size);
   @include core.css("radio-circle-size", var.$circle-size);
+  @include core.css("radio-dot-size", var.$dot-size);
   @include core.css("radio-color", var.$color);
+  @include core.css("radio-dot-color", var.$dot-color);
   @include core.css("radio-fill", var.$fill);
   @include core.css("radio-border-color", var.$border-color);
   @include core.css("radio-border-width", var.$border-width);
@@ -16,8 +18,6 @@
   @include core.css("radio-background-opacity-active", var.$background-opacity-active);
   @include core.css("radio-transition-duration", var.$transition-duration);
   @include core.css("radio-transition-timing-function", var.$transition-timing-function);
-  @include core.css("radio-dot-size", var.$dot-size);
-  @include core.css("radio-dot-color", var.$dot-color);
 }
 
 @include theme.output-themes("radio");

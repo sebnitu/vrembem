@@ -193,7 +193,10 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   #{theme.$root-selector} {
     @include core.css("checkbox-size", var.$size);
     @include core.css("checkbox-box-size", var.$box-size);
+    @include core.css("checkbox-icon-size", var.$icon-size);
     @include core.css("checkbox-color", var.$color);
+    @include core.css("checkbox-icon-color", var.$icon-color);
+    @include core.css("checkbox-icon-stroke", var.$icon-stroke);
     @include core.css("checkbox-fill", var.$fill);
     @include core.css("checkbox-border-color", var.$border-color);
     @include core.css("checkbox-border-width", var.$border-width);
@@ -205,9 +208,6 @@ Checkboxes are primarily customized using CSS variables but can also be modified
     @include core.css("checkbox-background-opacity-active", var.$background-opacity-active);
     @include core.css("checkbox-transition-duration", var.$transition-duration);
     @include core.css("checkbox-transition-timing-function", var.$transition-timing-function);
-    @include core.css("checkbox-icon-size", var.$icon-size);
-    @include core.css("checkbox-icon-color", var.$icon-color);
-    @include core.css("checkbox-icon-stroke", var.$icon-stroke);
   }
 
   @include theme.output-themes("checkbox");
@@ -221,10 +221,12 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   @use "@vrembem/core/palette";
   @use "@vrembem/core/theme";
 
-  // Checkbox properties
   $size: core.$form-control-size !default;
   $box-size: 18px !default;
+  $icon-size: 12px !default;
   $color: palette.get("primary") !default;
+  $icon-color: null !default;
+  $icon-stroke: 2.5 !default;
   $fill: null !default;
   $border-color: null !default;
   $border-width: 2px !default;
@@ -234,27 +236,26 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   $background-opacity-hover: 20% !default;
   $background-opacity-focus: 20% !default;
   $background-opacity-active: 30% !default;
+
+  // Transition
   $transition-duration: core.$transition-duration-short !default;
   $transition-timing-function: core.$transition-timing-function !default;
 
-  // Icon properties
-  $icon-size: 12px !default;
-  $icon-color: null !default;
-  $icon-stroke: 2.5 !default;
-
-  // Size modifier properties
+  // checkbox_size_sm
   $size-sm: core.$form-control-size-sm !default;
   $size-sm-border-width: 2px !default;
   $size-sm-box: 14px !default;
   $size-sm-icon: 10px !default;
   $size-sm-icon-stroke: 2.5 !default;
+
+  // checkbox_size_lg
   $size-lg: core.$form-control-size-lg !default;
   $size-lg-border-width: 2.5px !default;
   $size-lg-box: 24px !default;
   $size-lg-icon: 18px !default;
   $size-lg-icon-stroke: 2 !default;
 
-  // Theme properties
+  // Themes
   $theme-light: (
     "fill": white,
     "border-color": palette.get("neutral"),
