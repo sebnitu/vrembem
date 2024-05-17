@@ -2,15 +2,15 @@
 @use "./variables" as var;
 
 #{core.bem("radio", null, "size", "sm")} {
-  @include core.css-var("radio-size", var.$size-sm);
-  @include core.css-var("radio-border-width", var.$size-sm-border-width);
-  @include core.css-var("radio-circle-size", var.$size-sm-circle);
-  @include core.css-var("radio-dot-size", var.$size-sm-dot);
+  @include core.css("radio-size", var.$size-sm);
+  @include core.css("radio-border-width", var.$size-sm-border-width);
+  @include core.css("radio-circle-size", var.$size-sm-circle);
+  @include core.css("radio-dot-size", var.$size-sm-dot);
 }
 
 #{core.bem("radio", null, "size", "lg")} {
-  @include core.css-var("radio-size", var.$size-lg);
-  @include core.css-var("radio-border-width", var.$size-lg-border-width);
-  @include core.css-var("radio-circle-size", var.$size-lg-circle);
-  @include core.css-var("radio-dot-size", var.$size-lg-dot);
+  @include core.css("radio-size", var.$size-lg);
+  @include core.css("radio-border-width", var.$size-lg-border-width);
+  @include core.css("radio-circle-size", var.$size-lg-circle);
+  @include core.css("radio-dot-size", var.$size-lg-dot);
 }

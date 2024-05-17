@@ -3,23 +3,23 @@
 @use "./variables" as var;
 
 #{theme.$root-selector} {
-  @include core.css-var("checkbox-size", var.$size);
-  @include core.css-var("checkbox-box-size", var.$box-size);
-  @include core.css-var("checkbox-color", var.$color);
-  @include core.css-var("checkbox-fill", var.$fill);
-  @include core.css-var("checkbox-border-color", var.$border-color);
-  @include core.css-var("checkbox-border-width", var.$border-width);
-  @include core.css-var("checkbox-border-radius", var.$border-radius);
-  @include core.css-var("checkbox-background-border-radius", var.$background-border-radius);
-  @include core.css-var("checkbox-background-opacity", var.$background-opacity);
-  @include core.css-var("checkbox-background-opacity-hover", var.$background-opacity-hover);
-  @include core.css-var("checkbox-background-opacity-focus", var.$background-opacity-focus);
-  @include core.css-var("checkbox-background-opacity-active", var.$background-opacity-active);
-  @include core.css-var("checkbox-transition-duration", var.$transition-duration);
-  @include core.css-var("checkbox-transition-timing-function", var.$transition-timing-function);
-  @include core.css-var("checkbox-icon-size", var.$icon-size);
-  @include core.css-var("checkbox-icon-color", var.$icon-color);
-  @include core.css-var("checkbox-icon-stroke", var.$icon-stroke);
+  @include core.css("checkbox-size", var.$size);
+  @include core.css("checkbox-box-size", var.$box-size);
+  @include core.css("checkbox-color", var.$color);
+  @include core.css("checkbox-fill", var.$fill);
+  @include core.css("checkbox-border-color", var.$border-color);
+  @include core.css("checkbox-border-width", var.$border-width);
+  @include core.css("checkbox-border-radius", var.$border-radius);
+  @include core.css("checkbox-background-border-radius", var.$background-border-radius);
+  @include core.css("checkbox-background-opacity", var.$background-opacity);
+  @include core.css("checkbox-background-opacity-hover", var.$background-opacity-hover);
+  @include core.css("checkbox-background-opacity-focus", var.$background-opacity-focus);
+  @include core.css("checkbox-background-opacity-active", var.$background-opacity-active);
+  @include core.css("checkbox-transition-duration", var.$transition-duration);
+  @include core.css("checkbox-transition-timing-function", var.$transition-timing-function);
+  @include core.css("checkbox-icon-size", var.$icon-size);
+  @include core.css("checkbox-icon-color", var.$icon-color);
+  @include core.css("checkbox-icon-stroke", var.$icon-stroke);
 }
 
 @include theme.output-themes("checkbox");

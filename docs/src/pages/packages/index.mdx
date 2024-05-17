@@ -7,7 +7,7 @@ filename: index
 
 # Packages
 
-Vrembem is organized into a set of packages. These packages all consist of a SCSS module and some also contain corresponding JavaScript ES modules. Most packages can be considered their own self enclosed components but there are some unique packages to consider.
+Vrembem is a collection of packages that consist of a SCSS modules and some JavaScript ES modules when needed. Most packages can be considered their own self enclosed components but there are some unique packages to consider.
 
 The core module (`@vrembem/core`) is used by all packages and is the central place that shared configurations and settings live. To make Vrembem wide changes (such as adjusting prefix values or color palettes), the core module is the place to do that.
 
@@ -17,18 +17,18 @@ Lastly the Vrembem package (simply named `vrembem`) is setup so that users can i
 
 ## Prefixes
 
-There are a number of ways to alter prefixes in Vrembem and they can all be changed either on a per-component bases or globally using the core module. The following prefixes can be set:
+There are a number prefixes used in Vrembem that can be changed globally using the core module. Vrembem prefixes include:
 
 - `$variable` (default `"vb-"`): Sets the prefix for all CSS variables.
 - `$theme` (default `"vb-theme-"`): Sets the prefix of theme classes.
-- `$block` (default `null`): Set the prefix of BEM CSS class blocks.
-- `$element` (default `"__"`): Set the prefix of BEM CSS class elements.
-- `$modifier` (default `"_"`): Set the prefix of BEM CSS class modifiers.
-- `$modifier-value` (default `"_"`): Set the prefix of BEM CSS class modifier values.
+- `$block` (default `null`): Set the prefix of BEM class blocks.
+- `$element` (default `"__"`): Set the prefix of BEM class elements.
+- `$modifier` (default `"_"`): Set the prefix of BEM class modifiers.
+- `$modifier-value` (default `"_"`): Set the prefix of BEM class modifier values.
 
 ## Palette Module
 
-The palette module is used to manage Vrembem's colors and their CSS variable output. These can be used directly in components or assigned to theme alias to make them more flexible using the theme system.
+The palette module is used to manage Vrembem's colors and their CSS variable output. These can be used directly in components or assigned to theme aliases to make them more flexible when using the theme system.
 
 By default, the palette module ships with four colors with a wide range of lightness values. This includes:
 

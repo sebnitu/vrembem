@@ -7,15 +7,10 @@
 /// @param {String} $name - The name to use in the CSS variable property.
 /// @param {All} $value - The value of the CSS variable. Can be any valid CSS property value.
 /// @output CSS Variable or nothing.
-@mixin css-var($name, $value) {
+@mixin css($name, $value) {
   @if ($value) {
     --#{prefix.$variable}#{$name}: #{$value};
   }
-}
-
-// TODO: Maybe change mixin names css-var -> css.
-@mixin css($name, $value) {
-  @include css-var($name, $value);
 }
 
 /// A media query mixin that defines a query using max-width. You can pass in a
