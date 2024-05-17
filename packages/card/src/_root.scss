@@ -1,29 +1,27 @@
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-
-:root {
-  // Size properties
-  --#{$_v}card-padding: #{var.$padding};
-  --#{$_v}card-border-radius: #{var.$border-radius};
-  --#{$_v}card-box-shadow: #{var.$box-shadow};
-
-  // Transition properties
-  --#{$_v}card-transition-property: #{var.$transition-property};
-  --#{$_v}card-transition-duration: #{var.$transition-duration};
-  --#{$_v}card-transition-timing-function: #{var.$transition-timing-function};
-
-  // Title properties
-  --#{$_v}card-title-font-size: #{var.$title-font-size};
-  --#{$_v}card-title-line-height: #{var.$title-line-height};
-  --#{$_v}card-title-font-weight: #{var.$title-font-weight};
-
-  // Link properties
-  --#{$_v}card-link-box-shadow: #{var.$link-box-shadow};
-  --#{$_v}card-link-box-shadow-hover: #{var.$link-box-shadow-hover};
-  --#{$_v}card-link-offset: #{var.$link-offset};
+#{theme.$root-selector} {
+  @include core.css("card-padding", var.$padding);
+  @include core.css("card-background", var.$background);
+  @include core.css("card-foreground", var.$foreground);
+  @include core.css("card-border", var.$border);
+  @include core.css("card-sep-border", var.$sep-border);
+  @include core.css("card-border-radius", var.$border-radius);
+  @include core.css("card-box-shadow", var.$box-shadow);
+  @include core.css("card-screen-background", var.$screen-background);
+  @include core.css("card-screen-opacity", var.$screen-opacity);
+  @include core.css("card-transition-property", var.$transition-property);
+  @include core.css("card-transition-duration", var.$transition-duration);
+  @include core.css("card-transition-timing-function", var.$transition-timing-function);
+  @include core.css("card-title-color", var.$title-color);
+  @include core.css("card-title-font-size", var.$title-font-size);
+  @include core.css("card-title-line-height", var.$title-line-height);
+  @include core.css("card-title-font-weight", var.$title-font-weight);
+  @include core.css("card-link-box-shadow", var.$link-box-shadow);
+  @include core.css("card-link-box-shadow-hover", var.$link-box-shadow-hover);
+  @include core.css("card-link-offset", var.$link-offset);
 }
 
-// Theme properties
 @include theme.output-themes("card");
