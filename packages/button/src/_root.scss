@@ -1,33 +1,42 @@
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-
-:root {
+#{theme.$root-selector} {
   // Size properties
-  --#{$_v}button-size: #{var.$size};
-  --#{$_v}button-padding: #{var.$padding};
-  --#{$_v}button-gap: #{var.$gap};
-  --#{$_v}button-border-width: #{var.$border-width};
-  --#{$_v}button-border-radius: #{var.$border-radius};
-  --#{$_v}button-font-size: #{var.$font-size};
-  --#{$_v}button-font-weight: #{var.$font-weight};
-  --#{$_v}button-line-height: #{var.$line-height};
+  @include core.css("button-size", var.$size);
+  @include core.css("button-padding", var.$padding);
+  @include core.css("button-gap", var.$gap);
+  @include core.css("button-border-width", var.$border-width);
+  @include core.css("button-border-radius", var.$border-radius);
+  @include core.css("button-font-size", var.$font-size);
+  @include core.css("button-font-weight", var.$font-weight);
+  @include core.css("button-line-height", var.$line-height);
+
+  // Theme properties
+  @include core.css("button-background", var.$background);
+  @include core.css("button-background-hover", var.$background-hover);
+  @include core.css("button-background-active", var.$background-active);
+  @include core.css("button-foreground", var.$foreground);
+  @include core.css("button-foreground-hover", var.$foreground-hover);
+  @include core.css("button-foreground-active", var.$foreground-active);
+  @include core.css("button-border-color", var.$border-color);
+  @include core.css("button-border-color-hover", var.$border-color-hover);
+  @include core.css("button-border-color-active", var.$border-color-active);
+  @include core.css("button-box-shadow", var.$box-shadow);
+  @include core.css("button-box-shadow-focus", var.$box-shadow-focus);
 
   // Transition properties
-  --#{$_v}button-transition-property: #{var.$transition-property};
-  --#{$_v}button-transition-duration: #{var.$transition-duration};
-  --#{$_v}button-transition-timing-function: #{var.$transition-timing-function};
+  @include core.css("button-transition-property", var.$transition-property);
+  @include core.css("button-transition-duration", var.$transition-duration);
+  @include core.css("button-transition-timing-function", var.$transition-timing-function);
   
   // Disabled
-  --#{$_v}button-disabled-opacity: #{var.$disabled-opacity};
+  @include core.css("button-disabled-opacity", var.$disabled-opacity);
   
   // is-loading
-  --#{$_v}button-loading-size: #{var.$loading-size};
-  --#{$_v}button-loading-border: #{var.$loading-border};
-  --#{$_v}button-loading-animation-duration: #{var.$loading-animation-duration};
-  --#{$_v}button-loading-animation-timing-function: #{var.$loading-animation-timing-function};
+  @include core.css("button-loading-size", var.$loading-size);
+  @include core.css("button-loading-border", var.$loading-border);
+  @include core.css("button-loading-animation-duration", var.$loading-animation-duration);
+  @include core.css("button-loading-animation-timing-function", var.$loading-animation-timing-function);
 }
-
-// Theme properties
-@include theme.output-themes("button");

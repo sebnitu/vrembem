@@ -13,6 +13,11 @@
   }
 }
 
+// TODO: Maybe change mixin names css-var -> css.
+@mixin css($name, $value) {
+  @include css-var($name, $value);
+}
+
 /// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints()` maps to access that value, or pass a value to
 /// create your media query. This mixin will shave a pixel off your breakpoint

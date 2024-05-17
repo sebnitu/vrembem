@@ -1,19 +1,14 @@
-@use "sass:list";
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_mv: var.$prefix-modifier-value;
+#{core.bem("button", null, "icon")} {
+  @include core.css("button-padding", var.$icon-padding);
 
-.#{$_b}button#{$_m}icon {
-  --#{$_v}button-padding: #{var.$icon-padding};
-
-  &.#{$_b}button#{$_m}size#{$_mv}sm {
-    --#{$_v}button-padding: #{var.$icon-padding-sm};
+  &#{core.bem("button", null, "size", "sm")} {
+    @include core.css("button-padding", var.$icon-padding-sm);
   }
 
-  &.#{$_b}button#{$_m}size#{$_mv}lg {
-    --#{$_v}button-padding: #{var.$icon-padding-lg};
+  &#{core.bem("button", null, "size", "lg")} {
+    @include core.css("button-padding", var.$icon-padding-lg);
   }
 }
