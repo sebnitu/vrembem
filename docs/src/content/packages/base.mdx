@@ -11,23 +11,17 @@ import CodeExample from '../../components/CodeExample.astro';
 
 Includes useful default styles and base modules for common HTML elements.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fbase.svg)](https://www.npmjs.com/package/%40vrembem%2Fbase)
-
-[Documentation](https://vrembem.com/packages/base)
-
-## Installation
-
 ```sh
 npm install @vrembem/base
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/base";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/base";
-```
-
-### Markup
+## Basic usage
 
 Once loaded, the base component provides default styles for HTML elements and a number of output modules. Base also provides helpful variables and mixins for customizing the output.
 
@@ -64,7 +58,7 @@ Alternatively, you can disable CSS output using the `$output` and `$output-[modu
 );
 ```
 
-#### Global Variables
+## Customization
 
 Setting these variables will impact more than one or up to all base modules.
 
@@ -76,25 +70,7 @@ Setting these variables will impact more than one or up to all base modules.
 | `$prefix-modifier-value` | `"_"`   | String to prefix modifier values with.     |
 | `$output`                | `true`  | Toggles the default output of all modules. |
 
-## Modules
-
-The base component consists of a number of modules with their own set of specific customizable variables and output mixins.
-
-- [`base`](#base)
-- [`arrow`](#arrow)
-- [`blockquote`](#blockquote)
-- [`code`](#code)
-- [`heading`](#heading)
-- [`link`](#link)
-- [`list`](#list)
-- [`pre`](#pre)
-- [`scroll-box`](#scroll-box)
-- [`separator`](#separator)
-- [`type`](#type)
-
-> Modules are sorted by the order they're imported; alphabetically except for `base` having priority as first import.
-
-### `base`
+## base
 
 Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
 
@@ -147,7 +123,7 @@ body {
 
 For a complete understanding of what this module does, checkout the source: [`_base.scss`](https://github.com/sebnitu/vrembem/blob/main/packages/base/src/_base.scss)
 
-### `arrow`
+## arrow
 
 The arrow (caret) module creates directional triangles drawn with CSS.
 
@@ -174,7 +150,7 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 | `$arrow-size`   | `8px 6px`               | Sets the size of arrows. Can be a list where first number is the width of the "flat" side of the arrow and second is the width of the "pointer". |
 | `$arrow-radius` | `2px`                   | Applies a slightly rounded edge to the none pointer corners.                                                                                     |
 
-#### Example
+### Example
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other togglable components.
 
@@ -185,7 +161,7 @@ Arrows are great indicators for buttons and menu items when interacting with the
 </button>
 ```
 
-#### `@mixin arrow($dir, $color, $size, $radius)`
+### @mixin arrow($dir, $color, $size, $radius)
 
 Output the styles for an arrow.
 
@@ -222,7 +198,7 @@ Output the styles for an arrow.
 }
 ```
 
-### `blockquote`
+## blockquote
 
 The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
@@ -250,7 +226,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 | `$blockquote-accent-offset` | `-1px`                  | Sets the offset of the accent CSS pseudo-element. Recommended to set negative of the border width.         |
 | `$blockquote-accent-color`  | `--vb-primary-50`       | Sets the color of the accent CSS pseudo-element.                                                           |
 
-#### `@mixin blockquote()`
+### @mixin blockquote()
 
 Output the styles for a blockquote element.
 
@@ -284,7 +260,7 @@ blockquote > * + * {
 }
 ```
 
-### `code`
+## code
 
 The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
 
@@ -304,7 +280,7 @@ The HTML code element displays its contents styled in a fashion intended to indi
 | `$code-font-family`   | `core.$font-family-mono` | Sets the font-family property.                       |
 | `$code-font-size`     | `0.9em`                  | Sets the font-size property.                         |
 
-#### `@mixin code()`
+### @mixin code()
 
 Output the styles for a code element.
 
@@ -324,7 +300,7 @@ code {
 }
 ```
 
-### `heading`
+## heading
 
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
 
@@ -347,7 +323,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 | `$heading-font-weight`  | `core.$font-weight-semi-bold`           | Sets the font-weight property.                                                                |
 | `$heading-scale`        | [`Sass Map` Ref &darr;](#heading-scale) | A map containing the font-size and optional line-height scale for HTML headings.              |
 
-#### `$heading-scale`
+### $heading-scale
 
 A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
 
@@ -362,7 +338,7 @@ $heading-scale: (
 ) !default;
 ```
 
-#### `@mixin heading-base()`
+### @mixin heading-base()
 
 Output the shared base styles for heading elements.
 
@@ -381,7 +357,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 ```
 
-#### `@mixin heading-levels($map: $heading-scale, $prefix: null)`
+### @mixin heading-levels($map: $heading-scale, $prefix: null)
 
 Output all the heading styles set in the passed map which defaults to the [`$heading-scale`](#heading-scale) map.
 
@@ -422,7 +398,7 @@ $custom-heading-scale: (
 }
 ```
 
-#### `@mixin heading($level, $map: $heading-scale)`
+### @mixin heading($level, $map: $heading-scale)
 
 Output the specific styles for a heading level. Takes the heading level as an argument.
 
@@ -455,7 +431,7 @@ h1 {
 }
 ```
 
-### `link`
+## link
 
 A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
 
@@ -492,7 +468,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 | `$link-invert-subtle-border-color`       | `rgba(white, 0.5)`             | Sets the border-color property on invert-subtle modifier.             |
 | `$link-invert-subtle-border-color-hover` | `currentColor`                 | Sets the border-color property on invert-subtle modifier hover state. |
 
-#### `@mixin link()`
+### @mixin link()
 
 Output the styles for a link element.
 
@@ -523,7 +499,7 @@ a:focus {
 }
 ```
 
-#### `@mixin link-modifier($modifier)`
+### @mixin link-modifier($modifier)
 
 Output the styes for a specific link modifier. This is meant to be used in addition to a link's base styles.
 
@@ -552,7 +528,7 @@ a.subtle {
 }
 ```
 
-### `list`
+## list
 
 The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
@@ -581,7 +557,7 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 | `$list-gap`      | `1.5em`                 | Sets the margin-left property of list elements.      |
 | `$list-item-gap` | `0.5em`                 | Sets the top margin of list items.                   |
 
-#### `@mixin list()`
+### @mixin list()
 
 Output the styles for list elements.
 
@@ -612,7 +588,7 @@ ol li + li {
 }
 ```
 
-### `pre`
+## pre
 
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
 
@@ -639,7 +615,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 | `$pre-border-radius` | `core.$border-radius`   | Sets the border-radius property.                    |
 | `$pre-color`         | `core.$color`           | Sets the text color property.                       |
 
-#### `@mixin pre()`
+### @mixin pre()
 
 Output the styles for a pre element.
 
@@ -667,7 +643,7 @@ pre code {
 }
 ```
 
-### `scroll-box`
+## scroll-box
 
 This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
 
@@ -682,7 +658,7 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 | `$output-scroll-box` | `$output` &rarr; `true` | Toggles the output of this module.                         |
 | `$class-scroll-box`  | `"scroll-box"`          | String to use for the class name of the scroll-box module. |
 
-#### `@mixin scroll-box()`
+### @mixin scroll-box()
 
 Output the styles for a scroll-box container.
 
@@ -702,7 +678,7 @@ Output the styles for a scroll-box container.
 }
 ```
 
-### `separator`
+## separator
 
 This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
@@ -723,7 +699,7 @@ This module adds the `.sep` and `.sep-invert` CSS classes which visually renders
 | `$separator-border`        | `1px solid core.$border-color`        | Sets the border property.                                 |
 | `$separator-border-invert` | `1px solid core.$border-color-invert` | Sets the border property on invert variant.               |
 
-#### `@mixin separator($border)`
+### @mixin separator($border)
 
 Output the separator styles.
 
@@ -749,7 +725,7 @@ Output the separator styles.
 }
 ```
 
-### `type`
+## type
 
 The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
 
@@ -788,7 +764,7 @@ Modules that get mapped to HTML elements include:
 | `$type-line-height`  | `null`                  | Sets the line-height property.                              |
 | `$type-gap`          | `null`                  | Applies vertical gap between elements via the `gap` module. |
 
-#### `@mixin type()`
+### @mixin type()
 
 Output base type module styles.
 
@@ -800,7 +776,7 @@ Output base type module styles.
 }
 ```
 
-#### `@mixin type-invert($color)`
+### @mixin type-invert($color)
 
 Output invert modifier styles of the type module. Pass in the background color if you're not sure it will meet the lightness threshold set in `core.$lightness-threshold`.
 
