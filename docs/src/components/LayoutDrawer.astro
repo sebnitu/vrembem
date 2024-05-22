@@ -12,8 +12,11 @@
   import { drawer } from '../modules/useDrawer';
   const drawerItem = await drawer.register(document.getElementById('layout-drawer'));
   if (drawerItem.mode == 'inline') {
-    drawerItem.dialog.querySelector('.is-active').scrollIntoView(
-      { behavior: 'auto', block: 'nearest' }
-    );
+    const active = drawerItem.dialog.querySelector('.is-active');
+    const space = window.innerHeight - active.offsetTop;
+    console.log(space, active);
+    if (space < 80) {
+      active.scrollIntoView({ behavior: 'instant', block: 'center' });
+    }
   }
 </script>
