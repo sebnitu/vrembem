@@ -1,4 +1,4 @@
-import { updateGlobalState } from '@vrembem/core';
+import { updateGlobalState } from "@vrembem/core";
 
 export function stack(settings) {
 
@@ -16,7 +16,7 @@ export function stack(settings) {
     updateIndex() {
       stackArray.forEach((entry, index) => {
         entry.el.style.zIndex = null;
-        const value = getComputedStyle(entry.el)['z-index'];
+        const value = getComputedStyle(entry.el)["z-index"];
         entry.el.style.zIndex = parseInt(value) + index + 1;
       });
     },
@@ -29,7 +29,7 @@ export function stack(settings) {
     add(entry) {
       // Apply z-index styles based on stack length.
       entry.el.style.zIndex = null;
-      const value = getComputedStyle(entry.el)['z-index'];
+      const value = getComputedStyle(entry.el)["z-index"];
       entry.el.style.zIndex = parseInt(value) + stackArray.length + 1;
 
       // Move back to end of stack.

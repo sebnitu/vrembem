@@ -3,9 +3,9 @@ function setOverflowHidden(state, selector) {
     const els = document.querySelectorAll(selector);
     els.forEach((el) => {
       if (state) {
-        el.style.overflow = 'hidden';
+        el.style.overflow = "hidden";
       } else {
-        el.style.removeProperty('overflow');
+        el.style.removeProperty("overflow");
       }
     });
   }
@@ -17,10 +17,10 @@ function setInert(state, selector) {
     els.forEach((el) => {
       if (state) {
         el.inert = true;
-        el.setAttribute('aria-hidden', true);
+        el.setAttribute("aria-hidden", true);
       } else {
         el.inert = null;
-        el.removeAttribute('aria-hidden');
+        el.removeAttribute("aria-hidden");
       }
     });
   }

@@ -1,10 +1,10 @@
-import { createPopper } from '@popperjs/core/dist/esm';
+import { createPopper } from "@popperjs/core/dist/esm";
 
-import { handleClick, handleDocumentClick } from './handlers';
-import { deregister } from './deregister';
-import { open } from './open';
-import { close, closeCheck } from './close';
-import { getConfig } from './helpers';
+import { handleClick, handleDocumentClick } from "./handlers";
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close, closeCheck } from "./close";
+import { getConfig } from "./helpers";
 
 export async function register(el, trigger) {
   // Deregister entry incase it has already been registered.
@@ -16,7 +16,7 @@ export async function register(el, trigger) {
   // Setup the popover object.
   const entry = {
     id: el.id,
-    state: 'closed',
+    state: "closed",
     el: el,
     trigger: trigger,
     popper: createPopper(trigger, el),
@@ -33,8 +33,8 @@ export async function register(el, trigger) {
   };
 
   // Set aria-expanded to false if trigger has aria-controls attribute.
-  if (entry.trigger.hasAttribute('aria-controls')) {
-    entry.trigger.setAttribute('aria-expanded', 'false');
+  if (entry.trigger.hasAttribute("aria-controls")) {
+    entry.trigger.setAttribute("aria-expanded", "false");
   }
 
   // Setup event listeners.
@@ -57,18 +57,18 @@ export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
   if (!entry.__eventListeners) {
     // Add event listeners based on event type.
-    const eventType = entry.config['event'];
+    const eventType = entry.config["event"];
 
     // If the event type is hover.
-    if (eventType === 'hover') {
+    if (eventType === "hover") {
       // Setup event listeners object for hover.
       entry.__eventListeners = [{
-        el: ['trigger'],
-        type: ['mouseenter', 'focus'],
+        el: ["trigger"],
+        type: ["mouseenter", "focus"],
         listener: open.bind(this, entry)
       }, {
-        el: ['el', 'trigger'],
-        type: ['mouseleave', 'focusout'],
+        el: ["el", "trigger"],
+        type: ["mouseleave", "focusout"],
         listener: closeCheck.bind(this, entry)
       }];
 
@@ -86,8 +86,8 @@ export function registerEventListeners(entry) {
     else {
       // Setup event listeners object for click.
       entry.__eventListeners = [{
-        el: ['trigger'],
-        type: ['click'],
+        el: ["trigger"],
+        type: ["click"],
         listener: handleClick.bind(this, entry)
       }];
 

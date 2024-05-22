@@ -1,4 +1,4 @@
-import { getPrefix } from '@vrembem/core';
+import { getPrefix } from "@vrembem/core";
 
 export function getConfig(el, settings) {
   // Get the computed styles of the element.
@@ -6,13 +6,13 @@ export function getConfig(el, settings) {
 
   // Setup the config obj with default values.
   const config = {
-    'placement': settings.placement,
-    'event': settings.eventType,
-    'offset': 0,
-    'overflow-padding': 0,
-    'flip-padding': 0,
-    'arrow-element': settings.selectorArrow,
-    'arrow-padding': 0
+    "placement": settings.placement,
+    "event": settings.eventType,
+    "offset": 0,
+    "overflow-padding": 0,
+    "flip-padding": 0,
+    "arrow-element": settings.selectorArrow,
+    "arrow-padding": 0
   };
 
   // Loop through config obj.

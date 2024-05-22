@@ -14,7 +14,7 @@ export class Breakpoint {
   // Unmount existing handler before setting a new one.
   set handler(func) {
     if (this.mql) {
-      this.mql.removeEventListener('change', this.#handler);
+      this.mql.removeEventListener("change", this.#handler);
     }
     this.#handler = func;
   }
@@ -31,7 +31,7 @@ export class Breakpoint {
     this.mql = window.matchMedia(`(min-width: ${this.value})`);
 
     // Add event listener.
-    this.mql.addEventListener('change', this.#handler);
+    this.mql.addEventListener("change", this.#handler);
 
     // Run the handler.
     this.#handler(this.mql);
@@ -44,7 +44,7 @@ export class Breakpoint {
     if (!this.mql) return this;
 
     // Add event listener.
-    this.mql.removeEventListener('change', this.#handler);
+    this.mql.removeEventListener("change", this.#handler);
 
     // Set value, handler and MediaQueryList to null.
     this.value = null;

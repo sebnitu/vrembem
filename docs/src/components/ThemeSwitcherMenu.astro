@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 ---
 
 <ul class="menu menu_theme-switcher">
@@ -26,32 +26,32 @@ import Icon from './Icon.astro';
 </ul>
 
 <script>
-import { store } from '../modules/useThemeStore';
-import { popover } from '../modules/usePopover';
+  import { store } from "../modules/useThemeStore";
+  import { popover } from "../modules/usePopover";
 
-function changeTheme(value) {
-  store.change(value);
-}
+  function changeTheme(value) {
+    store.change(value);
+  }
 
-function setActive(value) {
-  btns.forEach((btn) => btn.classList.remove('is-active'));
+  function setActive(value) {
+    btns.forEach((btn) => btn.classList.remove("is-active"));
+    btns.forEach((btn) => {
+      if (btn.getAttribute("data-value") === value) {
+        btn.classList.add("is-active");
+      }
+    });
+  }
+
+  const btns = document.querySelectorAll(".menu_theme-switcher .menu__action");
+
   btns.forEach((btn) => {
-    if (btn.getAttribute('data-value') === value) {
-      btn.classList.add('is-active');
-    }
+    btn.addEventListener(("click"), () => {
+      const value = btn.getAttribute("data-value");
+      changeTheme(value);
+      setActive(value);
+      popover.close("popover-theme-switcher");
+    });
   });
-}
 
-const btns = document.querySelectorAll('.menu_theme-switcher .menu__action');
-
-btns.forEach((btn) => {
-  btn.addEventListener(('click'), () => {
-    const value = btn.getAttribute('data-value');
-    changeTheme(value);
-    setActive(value);
-    popover.close('popover-theme-switcher');
-  });
-});
-
-setActive(store.theme);
+  setActive(store.theme);
 </script>

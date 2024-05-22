@@ -1,5 +1,5 @@
-import { transition, updateGlobalState } from '@vrembem/core';
-import { updateFocusState, getDrawer } from './helpers';
+import { transition, updateGlobalState } from "@vrembem/core";
+import { updateFocusState, getDrawer } from "./helpers";
 
 export async function open(query, enableTransition, focus = true) {
   // Get the drawer from collection.
@@ -12,9 +12,9 @@ export async function open(query, enableTransition, focus = true) {
   if (enableTransition !== undefined) config.transition = enableTransition;
 
   // If drawer is closed or indeterminate.
-  if (entry.state === 'closed' || entry.state === 'indeterminate') {
+  if (entry.state === "closed" || entry.state === "indeterminate") {
     // Update drawer state.
-    entry.state = 'opening';
+    entry.state = "opening";
 
     // Run the open transition.
     if (config.transition) {
@@ -31,10 +31,10 @@ export async function open(query, enableTransition, focus = true) {
     }
 
     // Update drawer state.
-    entry.state = 'opened';
+    entry.state = "opened";
 
     // Update the global state if mode is modal.
-    if (entry.mode === 'modal') updateGlobalState(true, config);
+    if (entry.mode === "modal") updateGlobalState(true, config);
 
     // Set focus to the drawer element if the focus param is true.
     if (focus) {
@@ -42,7 +42,7 @@ export async function open(query, enableTransition, focus = true) {
     }
 
     // Dispatch custom opened event.
-    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "opened", {
       detail: this,
       bubbles: true
     }));

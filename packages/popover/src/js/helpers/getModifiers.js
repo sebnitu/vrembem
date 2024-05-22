@@ -1,26 +1,26 @@
-import { getPadding } from './getPadding';
+import { getPadding } from "./getPadding";
 
 export function getModifiers(options) {
   return [{
-    name: 'offset',
+    name: "offset",
     options: {
-      offset: [0, parseInt(options['offset'], 10)]
+      offset: [0, parseInt(options["offset"], 10)]
     }
   }, {
-    name: 'preventOverflow',
+    name: "preventOverflow",
     options: {
-      padding: getPadding(options['overflow-padding'])
+      padding: getPadding(options["overflow-padding"])
     }
   }, {
-    name: 'flip',
+    name: "flip",
     options: {
-      padding: getPadding(options['flip-padding'])
+      padding: getPadding(options["flip-padding"])
     }
   }, {
-    name: 'arrow',
+    name: "arrow",
     options: {
-      element: options['arrow-element'],
-      padding: getPadding(options['arrow-padding'])
+      element: options["arrow-element"],
+      padding: getPadding(options["arrow-padding"])
     }
   }];
 }

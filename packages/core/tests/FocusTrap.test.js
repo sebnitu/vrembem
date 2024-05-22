@@ -1,7 +1,7 @@
-import '@testing-library/jest-dom/vitest';
-import userEvent from '@testing-library/user-event';
+import "@testing-library/jest-dom/vitest";
+import userEvent from "@testing-library/user-event";
 
-import { FocusTrap } from '../index.js';
+import { FocusTrap } from "../index.js";
 const user = userEvent.setup();
 
 const markup = `
@@ -33,12 +33,12 @@ const markup = `
 document.body.innerHTML = markup;
 
 let focusTrap = new FocusTrap();
-let el = document.querySelector('.container-1');
-let child_1 = el.querySelector('.child-1');
-let child_2 = el.querySelector('.child-2');
-let child_3 = el.querySelector('.child-3');
+let el = document.querySelector(".container-1");
+let child_1 = el.querySelector(".child-1");
+let child_2 = el.querySelector(".child-2");
+let child_3 = el.querySelector(".child-3");
 
-test('mount() should mount the focus trap setup', () => {
+test("mount() should mount the focus trap setup", () => {
   focusTrap.mount(el);
 
   expect(el).toHaveFocus();
@@ -47,39 +47,39 @@ test('mount() should mount the focus trap setup', () => {
   expect(focusTrap.focusableLast).toBe(child_3);
 });
 
-test('should correctly cycle through focusable elements on tab', async () => {
+test("should correctly cycle through focusable elements on tab", async () => {
   focusTrap.mount(el);
 
   expect(el).toHaveFocus();
 
-  await user.keyboard('{Tab}');
+  await user.keyboard("{Tab}");
   expect(child_1).toHaveFocus();
 
-  await user.keyboard('{Tab}');
+  await user.keyboard("{Tab}");
   expect(child_2).toHaveFocus();
 
-  await user.keyboard('{Tab}');
+  await user.keyboard("{Tab}");
   expect(child_3).toHaveFocus();
 
-  await user.keyboard('{Tab}');
+  await user.keyboard("{Tab}");
   expect(child_1).toHaveFocus();
 });
 
-test('should correctly cycle through focusable elements on shift-tab', async () => {
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+test("should correctly cycle through focusable elements on shift-tab", async () => {
+  await user.keyboard("{Shift>}{Tab}{/Shift}");
   expect(child_3).toHaveFocus();
 
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+  await user.keyboard("{Shift>}{Tab}{/Shift}");
   expect(child_2).toHaveFocus();
 
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+  await user.keyboard("{Shift>}{Tab}{/Shift}");
   expect(child_1).toHaveFocus();
 
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+  await user.keyboard("{Shift>}{Tab}{/Shift}");
   expect(child_3).toHaveFocus();
 });
 
-test('unmount() should unmount the focus trap setup', () => {
+test("unmount() should unmount the focus trap setup", () => {
   focusTrap.unmount();
 
   expect(focusTrap.focusable.length).toBe(0);
@@ -87,27 +87,27 @@ test('unmount() should unmount the focus trap setup', () => {
   expect(focusTrap.focusableLast).toBe(undefined);
 });
 
-test('focus() should set focus to preferred focus element', () => {
-  el = document.querySelector('.container-2');
-  child_1 = el.querySelector('.child-1');
-  child_2 = el.querySelector('.child-2');
-  child_3 = el.querySelector('.child-3');
+test("focus() should set focus to preferred focus element", () => {
+  el = document.querySelector(".container-2");
+  child_1 = el.querySelector(".child-1");
+  child_2 = el.querySelector(".child-2");
+  child_3 = el.querySelector(".child-3");
 
   focusTrap.focus(el);
   expect(child_1).toHaveFocus();
 
-  focusTrap.focus(el, '.child-2');
+  focusTrap.focus(el, ".child-2");
   expect(child_2).toHaveFocus();
 
-  focusTrap.mount(el, '.child-3');
+  focusTrap.mount(el, ".child-3");
   expect(child_3).toHaveFocus();
 });
 
-test('getFocusable() should return focusable elements array', () => {
-  el = document.querySelector('.container-2');
-  child_1 = el.querySelector('.child-1');
-  child_2 = el.querySelector('.child-2');
-  child_3 = el.querySelector('.child-3');
+test("getFocusable() should return focusable elements array", () => {
+  el = document.querySelector(".container-2");
+  child_1 = el.querySelector(".child-1");
+  child_2 = el.querySelector(".child-2");
+  child_3 = el.querySelector(".child-3");
 
   const result = focusTrap.getFocusable(el);
   expect(result.length).toBe(3);
@@ -116,8 +116,8 @@ test('getFocusable() should return focusable elements array', () => {
   expect(result[2]).toBe(child_3);
 });
 
-test('should correctly setup focus lock when there are no focusable elements', async () => {
-  el = document.querySelector('.container-3');
+test("should correctly setup focus lock when there are no focusable elements", async () => {
+  el = document.querySelector(".container-3");
   focusTrap = new FocusTrap(el);
   focusTrap.mount();
 
@@ -126,9 +126,9 @@ test('should correctly setup focus lock when there are no focusable elements', a
   expect(focusTrap.focusableFirst).toBe(undefined);
   expect(focusTrap.focusableLast).toBe(undefined);
 
-  await user.keyboard('{Tab}');
+  await user.keyboard("{Tab}");
   expect(el).toHaveFocus();
 
-  await user.keyboard('{Shift>}{Tab}{/Shift}');
+  await user.keyboard("{Shift>}{Tab}{/Shift}");
   expect(el).toHaveFocus();
 });

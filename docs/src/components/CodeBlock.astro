@@ -7,9 +7,10 @@ interface Props {
 }
 
 const { inline = false } = Astro.props;
+
 ---
 
-<div class={`code-block ${inline ? 'code-block_inline' : ''}`.trim()}>
+<div class={`code-block ${inline ? "code-block_inline" : ""}`.trim()}>
   {
     inline ? (
       <Icon name="chevron-right" iconClass="code-block__prompt icon_size_sm foreground-lighter" />
@@ -32,33 +33,33 @@ const { inline = false } = Astro.props;
 </div>
 
 <script>
-import { popover } from "../modules/usePopover";
+  import { popover } from "../modules/usePopover";
 
-function copyCode(event) {
-  const trigger = event.target.closest('.code-block__copy-button');
-  const code = event.target.closest('.code-block').querySelector('pre code');
-  const text = code.innerText;
-  const icons = trigger.querySelectorAll('.icon');
-  navigator.clipboard.writeText(text)
-    .then((result) => {
-      trigger.disabled = true;
-      icons.forEach((icon) => icon.classList.toggle('display-none'));
-      setTimeout(() => {
-        trigger.disabled = false;
-        icons.forEach((icon) => icon.classList.toggle('display-none'));
-        popover.close(trigger.getAttribute('data-popover-trigger'));
-      }, 2000);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
+  function copyCode(event) {
+    const trigger = event.target.closest(".code-block__copy-button");
+    const code = event.target.closest(".code-block").querySelector("pre code");
+    const text = code.innerText;
+    const icons = trigger.querySelectorAll(".icon");
+    navigator.clipboard.writeText(text)
+      .then((result) => {
+        trigger.disabled = true;
+        icons.forEach((icon) => icon.classList.toggle("display-none"));
+        setTimeout(() => {
+          trigger.disabled = false;
+          icons.forEach((icon) => icon.classList.toggle("display-none"));
+          popover.close(trigger.getAttribute("data-popover-trigger"));
+        }, 2000);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+  const btns = document.querySelectorAll(".code-block__copy-button");
+
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      copyCode(event);
     });
-}
-
-const btns = document.querySelectorAll('.code-block__copy-button');
-
-btns.forEach((btn) => {
-  btn.addEventListener('click', (event) => {
-    copyCode(event);
   });
-});
 </script>

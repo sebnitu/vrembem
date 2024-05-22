@@ -1,12 +1,12 @@
-import { getConfig } from '@vrembem/core';
+import { getConfig } from "@vrembem/core";
 
 function scrollSpy(options = {}) {
   const settings = {
-    selector: '.scroll-spy',
-    dataConfig: 'scroll-config',
+    selector: ".scroll-spy",
+    dataConfig: "scroll-config",
     value: 0,
-    operator: '<',
-    classActive: 'is-active',
+    operator: "<",
+    classActive: "is-active",
     ...options
   };
 
@@ -19,7 +19,7 @@ function scrollSpy(options = {}) {
     });
 
     checkScroll();
-    document.addEventListener('scroll', () => {
+    document.addEventListener("scroll", () => {
       checkScroll();
     });
   }
@@ -45,13 +45,13 @@ function scrollSpy(options = {}) {
 
   function customOperator(a, op, b) {
     switch (op) {
-      case '<':
+      case "<":
         return a < b;
-      case '>':
+      case ">":
         return a > b;
-      case '<=':
+      case "<=":
         return a <= b;
-      case '>=':
+      case ">=":
         return a >= b;
     }
   }

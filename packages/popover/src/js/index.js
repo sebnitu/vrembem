@@ -1,12 +1,12 @@
-import { Collection } from '@vrembem/core';
+import { Collection } from "@vrembem/core";
 
-import defaults from './defaults';
-import { handleKeydown } from './handlers';
-import { register, registerEventListeners } from './register';
-import { deregister, deregisterEventListeners } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { getPopoverElements } from './helpers';
+import defaults from "./defaults";
+import { handleKeydown } from "./handlers";
+import { register, registerEventListeners } from "./register";
+import { deregister, deregisterEventListeners } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { getPopoverElements } from "./helpers";
 
 export default class Popover extends Collection {
   #handleKeydown;
@@ -66,7 +66,7 @@ export default class Popover extends Collection {
     }
 
     // Add keydown global event listener.
-    document.addEventListener('keydown', this.#handleKeydown, false);
+    document.addEventListener("keydown", this.#handleKeydown, false);
   }
 
   destroyEventListeners(processCollection = true) {
@@ -78,7 +78,7 @@ export default class Popover extends Collection {
     }
 
     // Remove keydown global event listener.
-    document.removeEventListener('keydown', this.#handleKeydown, false);
+    document.removeEventListener("keydown", this.#handleKeydown, false);
   }
 
   register(query) {

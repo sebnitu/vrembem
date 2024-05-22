@@ -1,9 +1,9 @@
 function currentPage(pathname, options = {}) {
   const settings = {
     pathname: pathname,
-    classBase: '',
-    classCurrent: 'is-current',
-    classParent: 'is-parent',
+    classBase: "",
+    classCurrent: "is-current",
+    classParent: "is-parent",
     ...options
   };
 
@@ -28,7 +28,7 @@ function currentPage(pathname, options = {}) {
       classes.push(settings.classParent);
     }
 
-    return classes.join(' ');
+    return classes.join(" ");
   }
 
   return {

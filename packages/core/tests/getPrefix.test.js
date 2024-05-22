@@ -1,12 +1,12 @@
-import { getPrefix } from '../index';
+import { getPrefix } from "../index";
 
-test('should return the vrembem prefix value', () => {
+test("should return the vrembem prefix value", () => {
   const data = getPrefix();
-  expect(data).toBe('');
+  expect(data).toBe("");
 });
 
-test('should return the vrembem prefix value', () => {
-  document.body.style.setProperty('--vrembem-prefix', 'vb-');
+test("should return the vrembem prefix value", () => {
+  document.body.style.setProperty("--vrembem-prefix", "vb-");
   const data = getPrefix();
-  expect(data).toBe('vb-');
+  expect(data).toBe("vb-");
 });

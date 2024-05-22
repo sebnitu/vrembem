@@ -9,7 +9,7 @@ export async function deregister(obj, close = true) {
     const entry = this.collection[index];
 
     // If entry is in the opened state, close it.
-    if (close && entry.state === 'opened') {
+    if (close && entry.state === "opened") {
       await entry.close(false);
     } else {
       // Remove modal from stack.
@@ -17,7 +17,7 @@ export async function deregister(obj, close = true) {
     }
 
     // Return teleported modal if a reference has been set.
-    if (entry.getSetting('teleport')) {
+    if (entry.getSetting("teleport")) {
       entry.teleportReturn();
     }
 

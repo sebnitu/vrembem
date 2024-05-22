@@ -9,7 +9,7 @@ export async function deregister(obj, close = true) {
     const entry = this.collection[index];
 
     // If entry is in the opened state.
-    if (close && entry.state === 'opened') {
+    if (close && entry.state === "opened") {
       // Close the drawer.
       await entry.close(false);
     }

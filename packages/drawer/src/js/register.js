@@ -1,12 +1,12 @@
-import { Breakpoint, getConfig } from '@vrembem/core';
+import { Breakpoint, getConfig } from "@vrembem/core";
 
-import { deregister } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { toggle } from './toggle';
-import { switchMode } from './switchMode';
-import { applyInitialState } from './helpers';
-import { getBreakpoint } from './helpers';
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { toggle } from "./toggle";
+import { switchMode } from "./switchMode";
+import { applyInitialState } from "./helpers";
+import { getBreakpoint } from "./helpers";
 
 export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
@@ -19,7 +19,7 @@ export async function register(el, config = {}) {
   const breakpoint = new Breakpoint();
 
   // Setup private variables and their default values if any.
-  let _mode, _state = 'indeterminate';
+  let _mode, _state = "indeterminate";
 
   // Setup the drawer object.
   const entry = {
@@ -28,7 +28,7 @@ export async function register(el, config = {}) {
     dialog: null,
     trigger: null,
     settings: { ...getConfig(el, this.settings.dataConfig), ...config },
-    inlineState: 'indeterminate',
+    inlineState: "indeterminate",
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },
@@ -49,22 +49,22 @@ export async function register(el, config = {}) {
       _state = value;
 
       // If mode is inline and not in a transitioning state...
-      if (this.mode === 'inline' && value != 'opening' && value != 'closing') {
+      if (this.mode === "inline" && value != "opening" && value != "closing") {
         // Save the inline state.
         this.inlineState = value;
 
         // Save the store state if enabled.
-        if (this.getSetting('store')) {
+        if (this.getSetting("store")) {
           root.store.set(this.id, value);
         }
       }
 
       // If state is indeterminate, remove the state classes.
-      if (value === 'indeterminate') {
-        this.el.classList.remove(this.getSetting('stateOpened'));
-        this.el.classList.remove(this.getSetting('stateOpening'));
-        this.el.classList.remove(this.getSetting('stateClosed'));
-        this.el.classList.remove(this.getSetting('stateClosing'));
+      if (value === "indeterminate") {
+        this.el.classList.remove(this.getSetting("stateOpened"));
+        this.el.classList.remove(this.getSetting("stateOpening"));
+        this.el.classList.remove(this.getSetting("stateClosed"));
+        this.el.classList.remove(this.getSetting("stateClosing"));
       }
     },
     open(transition, focus) {
@@ -90,7 +90,7 @@ export async function register(el, config = {}) {
       return this;
     },
     handleBreakpoint(event) {
-      const bpMode = (event.matches) ? 'inline' : 'modal';
+      const bpMode = (event.matches) ? "inline" : "modal";
       if (this.mode != bpMode) {
         this.mode = bpMode;
       }
@@ -105,12 +105,12 @@ export async function register(el, config = {}) {
   this.collection.push(entry);
 
   // Set the dialog element. If none is found, use the root element.
-  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  const dialog = el.querySelector(entry.getSetting("selectorDialog"));
   entry.dialog = (dialog) ? dialog : el;
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
-  if (entry.getSetting('setTabindex')) {
-    entry.dialog.setAttribute('tabindex', '-1');
+  if (entry.getSetting("setTabindex")) {
+    entry.dialog.setAttribute("tabindex", "-1");
   }
 
   // Set both the initial state and inline state.
@@ -120,7 +120,7 @@ export async function register(el, config = {}) {
   entry.inlineState = entry.state;
 
   // Set the initial mode.
-  entry.mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+  entry.mode = (el.classList.contains(entry.getSetting("classModal"))) ? "modal" : "inline";
 
   // If the entry has a breakpoint, get it mounted.
   if (entry.breakpoint) {
