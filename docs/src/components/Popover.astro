@@ -37,7 +37,7 @@ if (placement) {
 <div
   id={uid}
   aria-labelledby={`${uid}-trigger`}
-  class={(targetClass + " popover").trim()}
+  class={("popover " + targetClass).trim()}
   style={css}>
   <slot>Popover Content</slot>
   { 
