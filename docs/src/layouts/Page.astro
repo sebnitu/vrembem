@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-import { packageOrder } from "../modules/packageOrder";
+import { getPackages } from "../modules/getPackages";
 import Base from "./Base.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
@@ -13,9 +12,7 @@ interface Props {
   frontmatter?: any;
 }
 
-const entries = await getCollection("packages");
-entries.sort(packageOrder);
-
+const entries = await getPackages();
 const { headings } = Astro.props;
 const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 

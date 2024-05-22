@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-import { packageOrder } from "../../modules/packageOrder";
+import { getPackages } from "../../modules/getPackages";
 import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
@@ -15,16 +14,14 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const packages = await getCollection("packages");
+  const packages = await getPackages();
   return packages.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
-const entries = await getCollection("packages");
-entries.sort(packageOrder);
-
+const entries = await getPackages();
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
