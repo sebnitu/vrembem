@@ -64,7 +64,7 @@
     top: 0;
     width: var(--layout-aside-width);
     height: 100vh;
-    padding: calc(var(--layout-navibar-height) + 4rem) var(--layout-aside-padding);
+    padding: calc(var(--layout-navibar-height) + 4rem) var(--layout-aside-padding) calc(var(--layout-footer-height) + 8rem);
     overflow: hidden auto;
     scroll-behavior: smooth;
   }

@@ -7,6 +7,7 @@ const packages = defineCollection({
     title: z.string(),
     description: z.string(),
     package: z.string(),
+    state: z.string().optional(),
   }),
 });
 

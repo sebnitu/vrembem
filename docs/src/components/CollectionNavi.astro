@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { currentPage } from "../modules/currentPage";
+import Icon from './Icon.astro';
 
 interface Props {
   entries: CollectionEntry<"packages">[];
@@ -14,6 +15,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
   classBase: "menu__action",
   classCurrent: "is-active",
 });
+
 ---
 
 <nav>
@@ -30,7 +32,12 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
             class={cp.classes(`/${collection}/${entry.slug}`)}
             href={`/${collection}/${entry.slug}`}
           >
-            {entry.data.title}
+            <span class="flex-grow-1">{entry.data.title}</span>
+            {
+              entry.data.state && (
+                <Icon name={entry.data.state} iconClass="icon_size_sm foreground-primary" />
+              )
+            }
           </a>
         </li>
       ))

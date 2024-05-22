@@ -2,6 +2,7 @@
 title: Utility
 description: "The utility component provides a set of atomic classes that specialize in a single function."
 package: "@vrembem/utility"
+state: "layers"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
@@ -10,55 +11,54 @@ import CodeExample from '../../components/CodeExample.astro';
 
 The utility component provides a set of atomic classes that specialize in a single function.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Futility.svg)](https://www.npmjs.com/package/%40vrembem%2Futility)
-
-[Documentation](https://vrembem.com/packages/utility)
-
-## Installation
-
 ```sh
 npm install @vrembem/utility
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/utility";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/utility";
-```
-
-### Markup
+## Basic usage
 
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
 
-```html
-<!-- Using utility classes independently -->
-<div class="padding background-shade border radius">
-  <p class="text-bold text-align-center">...</p>
-</div>
+<CodeExample lang="html">
+  ```html
+  <!-- Using utility classes independently -->
+  <div class="padding background-shade border radius">
+    <p class="text-bold text-align-center">...</p>
+  </div>
 
-<!-- Using utility classes with other components -->
-<div class="grid flex-justify-center">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item span-auto">...</div>
-</div>
-```
+  <!-- Using utility classes with other components -->
+  <div class="grid flex-justify-center">
+    <div class="grid__item span-auto">...</div>
+    <div class="grid__item span-auto">...</div>
+  </div>
+  ```
+</CodeExample>
 
 Each utility has a corresponding `$output-[module]` and `$class-[module]` variable that determines whether or not the module is output and it's class name. Output variable inherits their default value from `$output`.
 
-```scss
-// Will disable the output of the color module
-@use "@vrembem/utility" with (
-  $output-color: false
-);
+<CodeExample lang="scss">
 
-// Will disable all modules, but enables the color module
-@use "@vrembem/utility" with (
-  $output: false,
-  $output-color: true
-);
-```
+  ```scss
+  // Will disable the output of the color module
+  @use "@vrembem/utility" with (
+    $output-color: false
+  );
 
-#### Global Variables
+  // Will disable all modules, but enables the color module
+  @use "@vrembem/utility" with (
+    $output: false,
+    $output-color: true
+  );
+  ```
+</CodeExample>
+
+## Customization
 
 Setting these variables will apply to all utility modules.
 
@@ -70,7 +70,7 @@ Setting these variables will apply to all utility modules.
 | `$gap`            | `core.$gap` &rarr; `1em`                       | Used as the default spacing unit for many utilities.                                                                          |
 | `$gap-map`        | [`core.$gap-map` Ref &darr;](#gap-map)         | Used to build gap variants for many utilities.                                                                                |
 
-#### `$breakpoints`
+### $breakpoints
 
 A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
 
@@ -85,7 +85,7 @@ $breakpoints: (
 ) !default;
 ```
 
-#### `$gap-map`
+### $gap-map
 
 Used to build gap variants for [`flex-gap`](#flex-gap-key), [`flex-gap-x`](#flex-gap-x-key), [`flex-gap-y`](#flex-gap-y-key), [`gap-x`](#gap-x-key), [`gap-y`](#gap-y-key), [`margin`](#margin) and [`padding`](#padding) utilities.
 
@@ -101,30 +101,7 @@ $gap-map: (
 ) !default;
 ```
 
-## Modules
-
-The utility component consists of a number of modules with their own set of specific customizable class and output variables.
-
-- [`background`](#background)
-- [`border`](#border)
-- [`border-radius`](#border-radius)
-- [`elevate`](#elevate)
-- [`color`](#color)
-- [`display`](#display)
-- [`flex`](#flex)
-- [`flex-gap-[key]`](#flex-gap-key)
-- [`flex-gap-x-[key]`](#flex-gap-x-key)
-- [`flex-gap-y-[key]`](#flex-gap-y-key)
-- [`font`](#font)
-- [`gap-x-[key]`](#gap-x-key)
-- [`gap-y-[key]`](#gap-y-key)
-- [`margin`](#margin)
-- [`max-width`](#max-width)
-- [`padding`](#padding)
-- [`position`](#position)
-- [`text`](#text)
-
-### `background`
+## background
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
 
@@ -210,7 +187,7 @@ Also available are utility classes for the `background-clip-[value]` property.
 
 > Checkout the [web documentation](https://vrembem.com/packages/utility/#background) for a complete list of available options.
 
-### `border`
+## border
 
 Applies border property with optional sides variants.
 
@@ -227,7 +204,7 @@ Applies border property with optional sides variants.
 | `$output-border` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
 | `$class-border`  | `"border"`              | String to use for the class name of the border utility. |
 
-#### `border-none`
+### border-none
 
 Remove border styles with `border-none` utilities and optional side variants.
 
@@ -239,7 +216,7 @@ Remove border styles with `border-none` utilities and optional side variants.
 <div class="border-left-none"></div>
 ```
 
-#### `border-color`
+### border-color
 
 Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
 
@@ -257,7 +234,7 @@ Add border color utilities with light, dark and darker variants. Also available 
 <div class="border border-color-invert-darker"></div>
 ```
 
-### `border-radius`
+## border-radius
 
 Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
 
@@ -283,7 +260,7 @@ Applies border-radius styles with optional corner variants. The value used by th
 | `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
 | `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
 
-#### `radius-circle`
+### radius-circle
 
 Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
@@ -304,7 +281,7 @@ Applies the maximum value to border-radius with optional corner variants. The va
 <div class="radius-circle-bottom-left"></div>
 ```
 
-#### `radius-square`
+### radius-square
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 
@@ -325,7 +302,7 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 <div class="radius-square-bottom-left"></div>
 ```
 
-### `elevate`
+## elevate
 
 Applies different levels of elevation through box-shadow styles.
 
@@ -344,7 +321,7 @@ Applies different levels of elevation through box-shadow styles.
 | `$output-box-shadow` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
 | `$class-box-shadow`  | `"elevate"`             | String to use for the class name of the box-shadow utility. |
 
-### `color`
+## color
 
 Applies text color property. Most options include light, lighter, dark and darker variants.
 
@@ -364,7 +341,7 @@ Applies text color property. Most options include light, lighter, dark and darke
 
 > Checkout the [web documentation](https://vrembem.com/packages/utility/#color) for a complete list of available options.
 
-### `display`
+## display
 
 Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
 
@@ -406,7 +383,7 @@ Available properties are generated from the `$display-properties` variable map a
 | `$class-display`      | `"display"`                                  | String to use for the class name of the display utility.                     |
 | `$display-properties` | [`Sass Map` Ref &darr;](#display-properties) | A list of display properties to output along with their breakpoint variants. |
 
-#### `$display-properties`
+### $display-properties
 
 A list of display properties to output along with their breakpoint variants.
 
@@ -421,7 +398,7 @@ $display-properties: (
 ) !default;
 ```
 
-### `flex`
+## flex
 
 The flex utility is a great way to adjust individual flex properties on components that use flex layout. Flex utilities fall under two categories: 1) those that are appleid to a flexbox container and 2) those that are applied to flexbox children elements directly. These are some available flex property based utilities:
 
@@ -453,7 +430,7 @@ The flex utility is a great way to adjust individual flex properties on componen
 | `$flex-grow-count`   | `6`                     | Number of flex-grow utilities to output starting from 0.   |
 | `$flex-shrink-count` | `6`                     | Number of flex-shrink utilities to output starting from 0. |
 
-#### `flex-direction-[value]`
+### flex-direction-[value]
 
 Applies a flex direction property with the provided key value.
 
@@ -462,7 +439,7 @@ Applies a flex direction property with the provided key value.
 - `flex-direction-column`
 - `flex-direction-column-reverse`
 
-#### `flex-wrap`
+### flex-wrap
 
 Applies various flex-wrap property values.
 
@@ -471,7 +448,7 @@ Applies various flex-wrap property values.
 - `flex-wrap-reverse` - Applies the flex-wrap property with the value of `wrap-reverse`.
 
 
-#### `flex-justify-[value]`
+### flex-justify-[value]
 
 Applies the justify-content property with the provided key as the value.
 
@@ -482,7 +459,7 @@ Applies the justify-content property with the provided key as the value.
 - `flex-justify-around`
 - `flex-justify-evenly`
 
-#### `flex-align-[value]`
+### flex-align-[value]
 
 Applies the align-items property with the provided key as the value.
 
@@ -492,14 +469,14 @@ Applies the align-items property with the provided key as the value.
 - `flex-align-stretch`
 - `flex-align-baseline`
 
-#### `flex-items-[key]`
+### flex-items-[key]
 
 Gives all direct children the flex property to either share the container space equally (`equal`) or keep their content's width (`auto`).
 
 - `flex-items-equal` - Applies the flex property children elements with the value of `1 1 0` to share the container space equally.
 - `flex-items-auto` - Applies the flex property children elements with the value of `0 0 auto` to keep their content's width.
 
-### `flex-gap-[key]`
+## flex-gap-[key]
 
 The flex-gap module adds both horizontal and vertical spacing between an element's children. It also adds negative top and left margins to the element it's applied to which may require an anonymous `<div>` if additional margins are needed. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
@@ -524,7 +501,7 @@ The flex-gap module adds both horizontal and vertical spacing between an element
 | `$output-flex-gap` | `$output` &rarr; `true` | Toggles the output of this utility.                       |
 | `$class-flex-gap`  | `"flex-gap"`            | String to use for the class name of the flex-gap utility. |
 
-### `flex-gap-x-[key]`
+## flex-gap-x-[key]
 
 Adds flex-gap spacing horizontally between an element's children using margin-left. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
@@ -549,7 +526,7 @@ Adds flex-gap spacing horizontally between an element's children using margin-le
 | `$output-flex-gap-x` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
 | `$class-flex-gap-x`  | `"flex-gap-x"`          | String to use for the class name of the flex-gap-x utility. |
 
-### `flex-gap-y-[key]`
+## flex-gap-y-[key]
 
 Adds flex-gap spacing vertically between an element's children using margin-top. Flex-gap keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
@@ -574,7 +551,7 @@ Adds flex-gap spacing vertically between an element's children using margin-top.
 | `$output-flex-gap-y` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
 | `$class-flex-gap-y`  | `"flex-gap-y"`          | String to use for the class name of the flex-gap-y utility. |
 
-### `font`
+## font
 
 A utility for adjusting various font styles.
 
@@ -604,7 +581,7 @@ A utility for adjusting various font styles.
 - `font-style-normal` - Sets the font-style property to normal.
 - `font-style-italic` - Sets the font-style property to italic.
 
-### `gap-x-[key]`
+## gap-x-[key]
 
 Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
@@ -629,7 +606,7 @@ Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-
 | `$output-gap-x` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
 | `$class-gap-x`  | `"gap-x"`               | String to use for the class name of the gap-x utility. |
 
-### `gap-y-[key]`
+## gap-y-[key]
 
 Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
@@ -654,7 +631,7 @@ Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y k
 | `$output-gap-y` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
 | `$class-gap-y`  | `"gap-y"`               | String to use for the class name of the gap-y utility. |
 
-### `margin`
+## margin
 
 Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
@@ -674,7 +651,7 @@ Add margin to an element using directional and size variations. Margin size and 
 | `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
 | `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
 
-### `max-width`
+## max-width
 
 Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
 
@@ -690,7 +667,7 @@ Set the max-width property on an element using values mapped from scale keys. Sc
 | `$max-width`        | `70rem`                                 | The default value used to set max-width.                   |
 | `$max-width-scale`  | [Sass map ref &darr;](#max-width-scale) | Map used to build max-width utility variants.              |
 
-#### `$max-width-scale`
+### $max-width-scale
 
 A scale map used for building max-width utility variations using the key as variant name.
 
@@ -706,7 +683,7 @@ $max-width-scale: (
 ) !default;
 ```
 
-### `padding`
+## Padding
 
 Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
@@ -722,7 +699,7 @@ Add padding to an element using directional and size variations. Padding size an
 | `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
 | `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
 
-### `position`
+## position
 
 A utility for setting the position CSS property.
 
@@ -737,7 +714,7 @@ A utility for setting the position CSS property.
 | `$output-position` | `$output` &rarr; `true` | Toggles the output of this utility.                       |
 | `$class-position`  | `"position"`            | String to use for the class name of the position utility. |
 
-### `text`
+## text
 
 A utility for adjusting various text styles.
 
