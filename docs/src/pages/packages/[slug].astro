@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import { packageOrder } from "../../modules/packageOrder";
 import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
@@ -22,6 +23,8 @@ export async function getStaticPaths() {
 }
 
 const entries = await getCollection("packages");
+entries.sort(packageOrder);
+
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
 
@@ -29,6 +32,7 @@ const layout = {
   hasDrawer: true,
   hasAside: true,
 };
+
 ---
 
 <Base title={entry.data.title} {layout}>

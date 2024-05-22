@@ -16,14 +16,6 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
   classCurrent: "is-active",
 });
 
-entries.sort(function(a, b) { 
-  return a.data.state == "layers" ? -1 : b.data.state == "layers" ? 1 : 0;
-});
-
-entries.sort(function(a, b) { 
-  return a.data.state == "settings" ? -1 : b.data.state == "settings" ? 1 : 0;
-});
-
 ---
 
 <nav>
