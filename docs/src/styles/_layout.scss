@@ -119,15 +119,13 @@
 .layout__screen {
   position: fixed;
   z-index: 99;
-  transition: background-color .25s, backdrop-filter .25s;
+  transition: background-color .25s;
   background-color: palette.get("neutral", 10%, 0%);
-  backdrop-filter: blur(4px) opacity(0);
   inset: auto;
 
   .is-opened ~ &,
   .is-opening ~ & {
     background-color: palette.get("neutral", 10%, 80%);
-    backdrop-filter: blur(4px) opacity(1);
   }
 
   .is-opened ~ &,
