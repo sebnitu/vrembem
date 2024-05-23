@@ -1,6 +1,6 @@
-import { open } from './open';
-import { closeAll } from './closeAll';
-import { updateFocusState, getModal } from './helpers';
+import { open } from "./open";
+import { closeAll } from "./closeAll";
+import { updateFocusState, getModal } from "./helpers";
 
 export async function replace(query, transition, focus = true) {
   // Get the modal from collection.
@@ -9,7 +9,7 @@ export async function replace(query, transition, focus = true) {
   // Setup results for return.
   let resultOpened, resultClosed;
 
-  if (entry.state === 'opened') {
+  if (entry.state === "opened") {
     // If modal is open, close all modals except for replacement.
     resultOpened = entry;
     resultClosed = await closeAll.call(this, entry.id, transition);

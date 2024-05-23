@@ -1,12 +1,12 @@
-import { Collection, FocusTrap, localStore } from '@vrembem/core';
+import { Collection, FocusTrap, localStore } from "@vrembem/core";
 
-import defaults from './defaults';
-import { handleClick, handleKeydown } from './handlers';
-import { register } from './register';
-import { deregister } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { toggle } from './toggle';
+import defaults from "./defaults";
+import { handleClick, handleKeydown } from "./handlers";
+import { register } from "./register";
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { toggle } from "./toggle";
 
 export default class Drawer extends Collection {
   #handleClick;
@@ -28,7 +28,7 @@ export default class Drawer extends Collection {
 
   get activeModal() {
     return this.collection.find((entry) => {
-      return entry.state === 'opened' && entry.mode === 'modal';
+      return entry.state === "opened" && entry.mode === "modal";
     });
   }
 
@@ -63,17 +63,17 @@ export default class Drawer extends Collection {
   }
 
   initEventListeners() {
-    document.addEventListener('click', this.#handleClick, false);
-    document.addEventListener('keydown', this.#handleKeydown, false);
+    document.addEventListener("click", this.#handleClick, false);
+    document.addEventListener("keydown", this.#handleKeydown, false);
   }
 
   destroyEventListeners() {
-    document.removeEventListener('click', this.#handleClick, false);
-    document.removeEventListener('keydown', this.#handleKeydown, false);
+    document.removeEventListener("click", this.#handleClick, false);
+    document.removeEventListener("keydown", this.#handleKeydown, false);
   }
 
   register(query, config = {}) {
-    let el = (typeof query == 'string') ?
+    let el = (typeof query == "string") ?
       document.getElementById(query) : query;
     return (el) ?
       register.call(this, el, config) :

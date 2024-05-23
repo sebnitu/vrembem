@@ -36,7 +36,7 @@ export async function handleClick(event) {
 
     if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
       const selector = trigger.getAttribute(`data-${this.settings.dataClose}`).trim();
-      return (selector === '*') ? this.closeAll() : this.close(selector);
+      return (selector === "*") ? this.closeAll() : this.close(selector);
     }
   }
 
@@ -53,7 +53,7 @@ export async function handleClick(event) {
 
 export function handleKeydown(event) {
   // If escape key was pressed.
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal.
     if (this.active && !this.active.dialog.matches(this.settings.selectorRequired)) {
       return this.close();

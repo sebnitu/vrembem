@@ -5,7 +5,8 @@ interface Props {
   dialogClass?: string;
 }
 
-const { id, modalClass, dialogClass = 'dialog' } = Astro.props;
+const { id, modalClass, dialogClass = "dialog" } = Astro.props;
+
 ---
 
 <div id={id} class={`modal ${modalClass}`.trim()}>
@@ -15,5 +16,5 @@ const { id, modalClass, dialogClass = 'dialog' } = Astro.props;
 </div>
 
 <script>
-import '../modules/useModal';
+  import "../modules/useModal";
 </script>

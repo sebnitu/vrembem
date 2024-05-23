@@ -9,7 +9,7 @@ export async function deregister(obj) {
     const entry = this.collection[index];
 
     // If entry is in the opened state, close it.
-    if (entry.state === 'opened') {
+    if (entry.state === "opened") {
       entry.close();
     }
 

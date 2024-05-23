@@ -1,12 +1,12 @@
-import globals from 'globals';
-import js from '@eslint/js';
+import globals from "globals";
+import js from "@eslint/js";
 
 const formattingRules = {
   rules: {
-    'indent': ['error', 2, {'SwitchCase': 1}],
-    'linebreak-style': ['error', 'unix'],
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'always'],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
   }
 };
 
@@ -15,37 +15,37 @@ export default [
   formattingRules,
   {
     ignores: [
-      '**/dev/**/*',
-      '**/dist/**/*'
+      "**/dev/**/*",
+      "**/dist/**/*"
     ]
   }, {
-    name: 'vb/src',
-    files: ['**/src/**/*'],
+    name: "vb/src",
+    files: ["**/src/**/*"],
     languageOptions: {
       globals: {
         ...globals.browser
       }
     },
   }, {
-    name: 'vb/tests',
-    files: ['**/tests/**/*'],
+    name: "vb/tests",
+    files: ["**/tests/**/*"],
     languageOptions: {
       globals: {
         ...globals.browser,
-        global: 'readonly',
-        vi: 'readonly',
-        it: 'readonly',
-        expect: 'readonly',
-        test: 'readonly',
-        describe: 'readonly',
-        beforeAll: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly'
+        global: "readonly",
+        vi: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        test: "readonly",
+        describe: "readonly",
+        beforeAll: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly"
       }
     },
   }, {
-    name: 'vb/config',
-    files: ['**/*.config.js'],
+    name: "vb/config",
+    files: ["**/*.config.js"],
     languageOptions: {
       globals: {
         ...globals.node

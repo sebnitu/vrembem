@@ -1,5 +1,5 @@
 const settings = {
-  attr: 'data-toggle'
+  attr: "data-toggle"
 };
 
 const toggle = {
@@ -8,8 +8,8 @@ const toggle = {
     const targetId = trigger.getAttribute(settings.attr);
     const target = document.getElementById(targetId);
 
-    trigger.setAttribute('aria-expanded', 'true');
-    target.setAttribute('aria-hidden', 'false');
+    trigger.setAttribute("aria-expanded", "true");
+    target.setAttribute("aria-hidden", "false");
   },
 
   close(id) {
@@ -17,8 +17,8 @@ const toggle = {
     const targetId = trigger.getAttribute(settings.attr);
     const target = document.getElementById(targetId);
 
-    trigger.setAttribute('aria-expanded', 'false');
-    target.setAttribute('aria-hidden', 'true');
+    trigger.setAttribute("aria-expanded", "false");
+    target.setAttribute("aria-hidden", "true");
   },
 
   mount() {
@@ -30,11 +30,11 @@ const toggle = {
       const target = document.getElementById(targetId);
 
       // Set the event listener.
-      trigger.addEventListener('click', () => {
+      trigger.addEventListener("click", () => {
         // Toggle the new state.
-        const open = !(trigger.getAttribute('aria-expanded') === 'true');
-        trigger.setAttribute('aria-expanded', open.toString());
-        target.setAttribute('aria-hidden', (!open).toString());
+        const open = !(trigger.getAttribute("aria-expanded") === "true");
+        trigger.setAttribute("aria-expanded", open.toString());
+        target.setAttribute("aria-hidden", (!open).toString());
       });
     });
   }

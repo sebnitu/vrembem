@@ -12,8 +12,8 @@ const {
   id, 
   arrow = false,
   ariaLabel, 
-  triggerClass = 'link', 
-  targetClass = '',
+  triggerClass = "link", 
+  targetClass = "",
   placement
 } = Astro.props;
 
@@ -21,8 +21,9 @@ const uid = `popover-${id ? id : JSON.stringify(Math.floor(Math.random() * Date.
 
 const css = {};
 if (placement) {
-  css['--vb-popover-placement'] = placement;
+  css["--vb-popover-placement"] = placement;
 }
+
 ---
 
 <button
@@ -48,5 +49,5 @@ if (placement) {
 </div>
 
 <script>
-import "../modules/usePopover";
+  import "../modules/usePopover";
 </script>

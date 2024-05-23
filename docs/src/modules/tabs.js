@@ -1,14 +1,14 @@
 function selectTab(active, tabs) {
   tabs.forEach((tab) => {
-    const tabpanel = document.querySelector(`#${tab.getAttribute('aria-controls')}`);
+    const tabpanel = document.querySelector(`#${tab.getAttribute("aria-controls")}`);
     if (active === tab) {
-      tab.setAttribute('aria-selected', 'true');
-      tab.removeAttribute('tabindex');
-      tabpanel.classList.add('is-active');
+      tab.setAttribute("aria-selected", "true");
+      tab.removeAttribute("tabindex");
+      tabpanel.classList.add("is-active");
     } else {
-      tab.setAttribute('aria-selected', 'false');
-      tab.setAttribute('tabindex', '-1');
-      tabpanel.classList.remove('is-active');
+      tab.setAttribute("aria-selected", "false");
+      tab.setAttribute("tabindex", "-1");
+      tabpanel.classList.remove("is-active");
     }
   });
 }
@@ -29,17 +29,17 @@ function selectPrevTab(tabs) {
 
 function handlerKeydown(tabs, event) {
   switch (event.key) {
-    case 'Down':
-    case 'ArrowDown':
-    case 'Right':
-    case 'ArrowRight':
+    case "Down":
+    case "ArrowDown":
+    case "Right":
+    case "ArrowRight":
       event.preventDefault();
       selectNextTab(tabs);
       break;
-    case 'Up':
-    case 'ArrowUp':
-    case 'Left':
-    case 'ArrowLeft':
+    case "Up":
+    case "ArrowUp":
+    case "Left":
+    case "ArrowLeft":
       event.preventDefault();
       selectPrevTab(tabs);
       break;
@@ -51,9 +51,9 @@ function handlerKeydown(tabs, event) {
 const tabs = {
   mount() {
     // Get all the tablists.
-    const tablists = document.querySelectorAll('[role="tablist"]');
+    const tablists = document.querySelectorAll("[role=\"tablist\"]");
     tablists.forEach((tablist) => {
-      const tabs = tablist.querySelectorAll('[role="tab"]');
+      const tabs = tablist.querySelectorAll("[role=\"tab\"]");
 
       // Select the first tab.
       selectTab(tabs[0], tabs);
@@ -62,16 +62,16 @@ const tabs = {
       tabs.forEach((tab) => {
         const __handlerKeydown = handlerKeydown.bind(null, tabs);
 
-        tab.addEventListener('click', () => {
+        tab.addEventListener("click", () => {
           selectTab(tab, tabs);
         });
 
-        tab.addEventListener('focus', () => {
-          document.addEventListener('keydown', __handlerKeydown);
+        tab.addEventListener("focus", () => {
+          document.addEventListener("keydown", __handlerKeydown);
         });
 
-        tab.addEventListener('blur', () => {
-          document.removeEventListener('keydown', __handlerKeydown);
+        tab.addEventListener("blur", () => {
+          document.removeEventListener("keydown", __handlerKeydown);
         });
       });
     });

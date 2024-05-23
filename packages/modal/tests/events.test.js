@@ -1,5 +1,5 @@
-import '@testing-library/jest-dom/vitest';
-import Modal from '../index';
+import "@testing-library/jest-dom/vitest";
+import Modal from "../index";
 
 const markup = `
   <button data-modal-open="modal-default">...</button>
@@ -12,68 +12,68 @@ const markup = `
 
 beforeEach(() => {
   document.body.innerHTML = markup;
-  document.querySelector('#modal-default').style.setProperty('--vb-modal-transition-duration', '0.3s');
+  document.querySelector("#modal-default").style.setProperty("--vb-modal-transition-duration", "0.3s");
   vi.useFakeTimers();
 });
 
-test('should emit custom event when modal has opened', async () => {
+test("should emit custom event when modal has opened", async () => {
   const modal = new Modal();
   await modal.init();
-  const el = document.querySelector('#modal-default');
-  const btn = document.querySelector('[data-modal-open]');
+  const el = document.querySelector("#modal-default");
+  const btn = document.querySelector("[data-modal-open]");
   let eventFired = false;
 
-  document.addEventListener('modal:opened', () => {
+  document.addEventListener("modal:opened", () => {
     eventFired = true;
   });
 
   btn.click();
   await vi.runAllTimers();
 
-  expect(el).toHaveClass('is-opened');
+  expect(el).toHaveClass("is-opened");
   expect(eventFired).toBe(true);
 });
 
-test('should emit custom event when modal has closed', async () => {
+test("should emit custom event when modal has closed", async () => {
   const modal = new Modal();
   await modal.init();
-  const el = document.querySelector('#modal-default');
-  const btn = document.querySelector('[data-modal-open]');
-  const btnClose = document.querySelector('[data-modal-close]');
+  const el = document.querySelector("#modal-default");
+  const btn = document.querySelector("[data-modal-open]");
+  const btnClose = document.querySelector("[data-modal-close]");
   let eventFired = false;
 
-  document.addEventListener('modal:closed', () => {
+  document.addEventListener("modal:closed", () => {
     eventFired = true;
   });
 
   btn.click();
   await vi.runAllTimers();
 
-  expect(el).toHaveClass('is-opened');
+  expect(el).toHaveClass("is-opened");
   expect(eventFired).toBe(false);
 
   btnClose.click();
   await vi.runAllTimers();
 
-  expect(el).toHaveClass('is-closed');
+  expect(el).toHaveClass("is-closed");
   expect(eventFired).toBe(true);
 });
 
-test('should be able to set a custom event prefix', async () => {
+test("should be able to set a custom event prefix", async () => {
   const modal = new Modal({
-    customEventPrefix: 'vrembem:'
+    customEventPrefix: "vrembem:"
   });
   await modal.init();
-  const btn = document.querySelector('[data-modal-open]');
-  const btnClose = document.querySelector('[data-modal-close]');
+  const btn = document.querySelector("[data-modal-open]");
+  const btnClose = document.querySelector("[data-modal-close]");
   let eventOpened = false;
   let eventClosed = false;
 
-  document.addEventListener('vrembem:opened', () => {
+  document.addEventListener("vrembem:opened", () => {
     eventOpened = true;
   });
 
-  document.addEventListener('vrembem:closed', () => {
+  document.addEventListener("vrembem:closed", () => {
     eventClosed = true;
   });
 

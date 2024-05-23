@@ -1,12 +1,12 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
   test: {
-    environment: 'jsdom',
+    environment: "jsdom",
     globals: true,
     coverage: {
-      reporter: ['text', 'html', 'json', 'lcov'],
-      include: ['**/packages/**/src/**'],
+      reporter: ["text", "html", "json", "lcov"],
+      include: ["**/packages/**/src/**"],
     },
   }
 });

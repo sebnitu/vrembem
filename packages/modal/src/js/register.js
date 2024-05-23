@@ -1,9 +1,9 @@
-import { getConfig, teleport } from '@vrembem/core';
+import { getConfig, teleport } from "@vrembem/core";
 
-import { deregister } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { replace } from './replace';
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { replace } from "./replace";
 
 export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
@@ -15,11 +15,11 @@ export async function register(el, config = {}) {
   // Setup the modal object.
   const entry = {
     id: el.id,
-    state: 'closed',
+    state: "closed",
     el: el,
     dialog: null,
     get required() {
-      return this.dialog.matches(this.getSetting('selectorRequired'));
+      return this.dialog.matches(this.getSetting("selectorRequired"));
     },
     returnRef: null,
     settings: { ...getConfig(el, this.settings.dataConfig), ...config },
@@ -35,12 +35,12 @@ export async function register(el, config = {}) {
     deregister() {
       return deregister.call(root, this);
     },
-    teleport(ref = this.getSetting('teleport'), method = this.getSetting('teleportMethod')) {
+    teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
       if (!this.returnRef) {
         this.returnRef = teleport(this.el, ref, method);
         return this.el;
       } else {
-        console.error('Element has already been teleported:', this.el);
+        console.error("Element has already been teleported:", this.el);
         return false;
       }
     },
@@ -49,7 +49,7 @@ export async function register(el, config = {}) {
         this.returnRef = teleport(this.el, this.returnRef);
         return this.el;
       } else {
-        console.error('No return reference found:', this.el);
+        console.error("No return reference found:", this.el);
         return false;
       }
     },
@@ -59,24 +59,24 @@ export async function register(el, config = {}) {
   };
 
   // Set the dialog element. If none is found, use the root element.
-  const dialog = el.querySelector(entry.getSetting('selectorDialog'));
+  const dialog = el.querySelector(entry.getSetting("selectorDialog"));
   entry.dialog = (dialog) ? dialog : el;
 
   // Set aria-modal attribute to true.
-  entry.dialog.setAttribute('aria-modal', 'true');
+  entry.dialog.setAttribute("aria-modal", "true");
 
   // If a role attribute is not set, set it to "dialog" as the default.
-  if (!entry.dialog.hasAttribute('role')) {
-    entry.dialog.setAttribute('role', 'dialog');
+  if (!entry.dialog.hasAttribute("role")) {
+    entry.dialog.setAttribute("role", "dialog");
   }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
-  if (entry.getSetting('setTabindex')) {
-    entry.dialog.setAttribute('tabindex', '-1');
+  if (entry.getSetting("setTabindex")) {
+    entry.dialog.setAttribute("tabindex", "-1");
   }
 
   // Teleport modal if a reference has been set.
-  if (entry.getSetting('teleport')) {
+  if (entry.getSetting("teleport")) {
     entry.teleport();
   }
 

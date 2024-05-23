@@ -1,4 +1,4 @@
-import { getPrefix } from './getPrefix';
+import { getPrefix } from "./getPrefix";
 
 /**
  * Get the value of a CSS custom property (variable).
@@ -16,7 +16,7 @@ export function cssVar(property, el = document.body, prefix = true) {
     // If there is a prefix value and it doesn't already exist on the var...
     if (prefixValue && !property.includes(`--${prefixValue}`)) {
       // Apply the prefix.
-      property = property.replace('--', `--${prefixValue}`);
+      property = property.replace("--", `--${prefixValue}`);
     }
   }
 

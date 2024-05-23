@@ -1,4 +1,4 @@
-import { cssVar } from './cssVar';
+import { cssVar } from "./cssVar";
 
 /**
  * Get the value of a CSS custom property (variable).
@@ -13,13 +13,13 @@ import { cssVar } from './cssVar';
  * @return {Promise} Return a promise that resolves when the transition 
  *   has finished.
  */
-export function transition(el, from, to, duration = '--transition-duration') {
+export function transition(el, from, to, duration = "--transition-duration") {
   return new Promise((resolve) => {
     // If duration is a string, query for the css var value.
-    if (typeof duration === 'string') {
+    if (typeof duration === "string") {
       const cssValue = cssVar(duration, el);
       // Convert value to ms if needed.
-      const ms = (cssValue.includes('ms')) ? true : false;
+      const ms = (cssValue.includes("ms")) ? true : false;
       duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
     }
 

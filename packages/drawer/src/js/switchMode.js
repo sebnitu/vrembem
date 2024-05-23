@@ -1,12 +1,12 @@
-import { updateGlobalState } from '@vrembem/core';
-import { close } from './close';
-import { applyInlineState } from './helpers';
+import { updateGlobalState } from "@vrembem/core";
+import { close } from "./close";
+import { applyInlineState } from "./helpers";
 
 export function switchMode(entry) {
   switch (entry.mode) {
-    case 'inline':
+    case "inline":
       return toInline.call(this, entry);
-    case 'modal':
+    case "modal":
       return toModal.call(this, entry);
     default:
       throw new Error(`"${entry.mode}" is not a valid drawer mode.`);
@@ -15,10 +15,10 @@ export function switchMode(entry) {
 
 async function toInline(entry) {
   // Remove the modal class.
-  entry.el.classList.remove(entry.getSetting('classModal'));
+  entry.el.classList.remove(entry.getSetting("classModal"));
 
   // Remove the aria-modal attribute.
-  entry.dialog.removeAttribute('aria-modal');
+  entry.dialog.removeAttribute("aria-modal");
 
   // Update the global state.
   updateGlobalState(false, { ...this.settings, ...entry.settings });
@@ -30,7 +30,7 @@ async function toInline(entry) {
   await applyInlineState(entry);
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting('customEventPrefix') + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
     detail: this,
     bubbles: true
   }));
@@ -41,16 +41,16 @@ async function toInline(entry) {
 
 async function toModal(entry) {
   // Add the modal class.
-  entry.el.classList.add(entry.getSetting('classModal'));
+  entry.el.classList.add(entry.getSetting("classModal"));
 
   // Set aria-modal attribute to true.
-  entry.dialog.setAttribute('aria-modal', 'true');
+  entry.dialog.setAttribute("aria-modal", "true");
 
   // Modal drawer defaults to closed state.
   await close.call(this, entry, false, false);
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting('customEventPrefix') + 'switchMode', {
+  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
     detail: this,
     bubbles: true
   }));

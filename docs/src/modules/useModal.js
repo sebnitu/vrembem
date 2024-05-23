@@ -1,12 +1,12 @@
-import { Modal } from 'vrembem';
+import { Modal } from "vrembem";
 let modal = null;
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   modal = new Modal({
-    selectorInert: 'main',
-    teleport: '.modals'
+    selectorInert: "main",
+    teleport: ".modals"
   });
-  window['modal'] = await modal.init();
+  window["modal"] = await modal.init();
 }
 
 export { modal };

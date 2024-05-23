@@ -1,12 +1,12 @@
 ---
-import feather from 'feather-icons';
+import feather from "feather-icons";
 
 interface Props {
   name?: string;
   iconClass?: string;
 }
 
-const { name, iconClass = '' } = Astro.props;
+const { name, iconClass = "" } = Astro.props;
 
 const svg = feather.icons[name].toSvg({
   class: `icon ${iconClass}`.trim()

@@ -12,7 +12,7 @@ export async function handleClick(event) {
 
     // If it's a toggle trigger...
     if (trigger.matches(`[data-${this.settings.dataToggle}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataToggle}`).trim().split(' ');
+      const selectors = trigger.getAttribute(`data-${this.settings.dataToggle}`).trim().split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
         const entry = this.get(selector);
@@ -25,7 +25,7 @@ export async function handleClick(event) {
 
     // If it's a open trigger...
     if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim().split(' ');
+      const selectors = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim().split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
         const entry = this.get(selector);
@@ -38,7 +38,7 @@ export async function handleClick(event) {
 
     // If it's a close trigger...
     if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataClose}`).trim().split(' ');
+      const selectors = trigger.getAttribute(`data-${this.settings.dataClose}`).trim().split(" ");
       selectors.forEach((selector) => {
         if (selector) {
           // Get the entry from collection using the attribute value.
@@ -68,7 +68,7 @@ export async function handleClick(event) {
 
 export function handleKeydown(event) {
   // If escape key was pressed.
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     // If a modal is opened, close the modal.
     if (this.activeModal) return this.close(this.activeModal);
   }

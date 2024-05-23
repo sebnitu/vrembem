@@ -18,18 +18,18 @@ export function teleport(what, where, how) {
   where = (isComment || isElement) ? where : document.querySelector(where);
 
   // If ref is a comment, set teleport type to 'after'.
-  if (isComment) how = 'after';
+  if (isComment) how = "after";
 
   // Must be a valid reference element and method.
   if (!where) throw new Error(`Not a valid teleport reference: '${where}'`);
-  if (typeof where[how] != 'function') throw new Error(`Not a valid teleport method: '${how}'`);
+  if (typeof where[how] != "function") throw new Error(`Not a valid teleport method: '${how}'`);
 
   // Initial return ref is null.
   let returnRef = null;
 
   // If ref is not a comment, set a return reference comment.
   if (!isComment) {
-    returnRef = document.createComment('teleported #' + what.id);
+    returnRef = document.createComment("teleported #" + what.id);
     what.before(returnRef);
   }
 

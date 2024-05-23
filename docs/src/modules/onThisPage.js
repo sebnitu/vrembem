@@ -1,10 +1,10 @@
-import { drawer } from './useDrawer.js';
+import { drawer } from "./useDrawer.js";
 
 function onThisPage(options = {}) {
   const settings = {
-    selectorAnchors: '',
-    selectorHeadings: '.layout__content',
-    classActive: 'is-active',
+    selectorAnchors: "",
+    selectorHeadings: ".layout__content",
+    classActive: "is-active",
     ...options
   };
 
@@ -17,14 +17,14 @@ function onThisPage(options = {}) {
     });
 
     setActive();
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       setActive();
     });
   }
 
   function register(anchor) {
     // Get the heading using the menu action's href.
-    const href = anchor.getAttribute('href');
+    const href = anchor.getAttribute("href");
     const heading = document.querySelector(`${settings.selectorHeadings} ${href}`);
 
     // Guard if there is no heading returned.
@@ -64,7 +64,7 @@ function onThisPage(options = {}) {
     });
 
     // Close the modal drawer if open.
-    if (drawer.activeModal && drawer.activeModal.id === 'layout-aside') {
+    if (drawer.activeModal && drawer.activeModal.id === "layout-aside") {
       drawer.activeModal.close();
     }
   }
