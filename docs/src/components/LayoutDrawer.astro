@@ -14,7 +14,6 @@
   if (drawerItem.mode == "inline") {
     const active = drawerItem.dialog.querySelector(".is-active");
     const space = window.innerHeight - active.offsetTop;
-    console.log(space, active);
     if (space < 80) {
       active.scrollIntoView({ behavior: "instant", block: "center" });
     }
