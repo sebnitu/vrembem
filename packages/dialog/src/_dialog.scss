@@ -56,10 +56,3 @@
   font-weight: core.css("dialog-title-font-weight");
   line-height: core.css("dialog-title-line-height");
 }
-
-// TODO: Refactor how we handle a close button in the root of a dialog.
-#{core.bem("dialog")} > #{core.bem("dialog", "close")} {
-  position: absolute;
-  top: core.css("dialog-padding");
-  right: core.css("dialog-padding");
-}
