@@ -1,75 +1,65 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}dialog {
+#{core.bem("dialog")} {
   position: relative;
-  z-index: var.$z-index;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
+  border: core.css("dialog-border");
+  border-radius: core.css("dialog-border-radius");
+  background: core.css("dialog-background");
   background-clip: padding-box;
-  box-shadow: var.$shadow;
-  color: var.$foreground;
+  box-shadow: core.css("dialog-box-shadow");
+  color: core.css("dialog-foreground");
   -webkit-overflow-scrolling: touch;
 }
 
-.#{$_b}dialog#{$_e}header,
-.#{$_b}dialog#{$_e}body,
-.#{$_b}dialog#{$_e}footer {
+#{core.bem("dialog", "header")},
+#{core.bem("dialog", "body")},
+#{core.bem("dialog", "footer")} {
   flex: 0 0 auto;
-  padding: var.$padding;
+  padding: core.css("dialog-padding");
 }
 
-.#{$_b}dialog#{$_e}header,
-.#{$_b}dialog#{$_e}footer {
+#{core.bem("dialog", "header")},
+#{core.bem("dialog", "footer")} {
   position: sticky;
   z-index: 1;
   display: flex;
   align-items: center;
-  background: var.$background;
+  background: core.css("dialog-background");
   vertical-align: middle;
-
-  > * + * {
-    margin-left: var.$spacing;
-  }
+  gap: core.css("dialog-gap");
 }
 
-.#{$_b}dialog#{$_e}header {
+#{core.bem("dialog", "header")} {
   top: 0;
-  border-bottom: var.$sep-border;
+  border-bottom: core.css("dialog-sep-border");
 }
 
-.#{$_b}dialog#{$_e}body {
+#{core.bem("dialog", "body")} {
   flex-grow: 1;
 
   & + & {
-    border-top: var.$sep-border;
+    border-top: core.css("dialog-sep-border");
   }
 }
 
-.#{$_b}dialog#{$_e}footer {
+#{core.bem("dialog", "footer")} {
   bottom: 0;
-  border-top: var.$sep-border;
+  border-top: core.css("dialog-sep-border");
 }
 
-.#{$_b}dialog#{$_e}title {
+#{core.bem("dialog", "title")} {
   flex-grow: 1;
-  font-size: var.$title-font-size;
-  font-weight: var.$title-font-weight;
-  line-height: var.$title-line-height;
+  font-size: core.css("dialog-title-font-size");
+  font-weight: core.css("dialog-title-font-weight");
+  line-height: core.css("dialog-title-line-height");
 }
 
-.#{$_b}dialog > .#{$_b}dialog#{$_e}close {
+// TODO: Refactor how we handle a close button in the root of a dialog.
+#{core.bem("dialog")} > #{core.bem("dialog", "close")} {
   position: absolute;
-  top: var.$padding;
-  right: var.$padding;
-
-  + .#{$_b}dialog#{$_e}body {
-    padding-right: 3.5em;
-  }
+  top: core.css("dialog-padding");
+  right: core.css("dialog-padding");
 }

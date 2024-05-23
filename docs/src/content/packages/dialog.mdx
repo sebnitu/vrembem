@@ -7,6 +7,7 @@ state: "loader"
 
 import CodeExample from '../../components/CodeExample.astro';
 import DocBlock from '../../components/DocBlock.astro';
+import Icon from '../../components/Icon.astro';
 
 # Dialog
 
@@ -28,9 +29,66 @@ Dialog is a highly composable container component that comes with a variety of e
 
 <CodeExample lang="html">
   <Fragment slot="output">
-    <div class="dialog">
-      <div class="dialog__body">
-        This is some dialog content...
+    <div class="gap-y-xl">
+      <div class="dialog">
+        <div class="dialog__header">
+          <h2 class="dialog__title">No theme</h2>
+          <button class="button button_icon button_size_sm">
+            <Icon name="x" iconClass="icon_size_sm" />
+          </button>
+        </div>
+        <div class="dialog__body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+        </div>
+        <div class="dialog__footer">
+          <button class="button button_color_primary">Submit</button>
+          <button class="button">Cancel</button>
+        </div>
+      </div>
+      <div class="dialog vb-theme-root">
+        <div class="dialog__header">
+          <h2 class="dialog__title">Root theme</h2>
+          <button class="button button_icon button_size_sm">
+            <Icon name="x" iconClass="icon_size_sm" />
+          </button>
+        </div>
+        <div class="dialog__body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+        </div>
+        <div class="dialog__footer">
+          <button class="button button_color_primary">Submit</button>
+          <button class="button">Cancel</button>
+        </div>
+      </div>
+      <div class="dialog vb-theme-light">
+        <div class="dialog__header">
+          <h2 class="dialog__title">Light theme</h2>
+          <button class="button button_icon button_size_sm">
+            <Icon name="x" iconClass="icon_size_sm" />
+          </button>
+        </div>
+        <div class="dialog__body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+        </div>
+        <div class="dialog__footer">
+          <button class="button button_color_primary">Submit</button>
+          <button class="button">Cancel</button>
+        </div>
+      </div>
+      <div class="dialog vb-theme-dark">
+        <div class="dialog__header">
+          <h2 class="dialog__title">Dark theme</h2>
+          <button class="button button_icon button_size_sm">
+            <Icon name="x" iconClass="icon_size_sm" />
+          </button>
+        </div>
+        <div class="dialog__body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+        </div>
+        <div class="dialog__footer">
+          <button class="button button_color_primary">Submit</button>
+          <button class="button">Cancel</button>
+        </div>
       </div>
     </div>
   </Fragment>
