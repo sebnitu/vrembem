@@ -22,4 +22,4 @@
   @include core.css("checkbox-transition-timing-function", var.$transition-timing-function);
 }
 
-@include theme.output-themes("checkbox");
+@include theme.output("checkbox");

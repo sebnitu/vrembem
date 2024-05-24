@@ -179,15 +179,15 @@ $themes: (
 
 /// Output all the custom properties and values of a theme or a component theme.
 /// @example - Output the custom properties of the default theme.
-///   @include theme.output();
+///   @include theme.output-theme();
 /// @example - Output the custom properties of the dark theme.
-///   @include theme.output("dark");
+///   @include theme.output-theme("dark");
 /// @example - Output the custom properties of the light theme for the button component.
-///   @include theme.output("light", "button");
+///   @include theme.output-theme("light", "button");
 /// @output Custom properties with their associated values of a theme.
 /// @param {String} $theme [$default] - The theme name to output.
 /// @param {String} $component [null] - The name of component themes to output.
-@mixin output($theme: $default, $component: null) {
+@mixin output-theme($theme: $default, $component: null) {
   // Check if the key exists on the provided $themes map.
   @if map.has-key($themes, $theme) {
 
@@ -237,30 +237,30 @@ $themes: (
 /// $root-selector is used to wrap the $default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
 /// @example
-///   @include theme.output-themes();
+///   @include theme.output();
 /// @example - Output the custom properties of the notice component.
-///   @include theme.output-themes("notice");
+///   @include theme.output("notice");
 /// @output
 ///   Custom properties with their associated values of a theme wrapped with
 ///   their associated theme classes.
 /// @param {String} $component [null] - The name of component themes to output.
 /// @require {Mixin} output - Used internally to output individual themes.
-@mixin output-themes($component: null) {
+@mixin output($component: null) {
   // Output the default theme in the root selector.
   #{$root-selector} {
-    @include output($default, $component);
+    @include output-theme($default, $component);
   
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
-        @include output("light", $component);
+        @include output-theme("light", $component);
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
     @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
-        @include output("dark", $component);
+        @include output-theme("dark", $component);
       }
     }
   }
@@ -268,7 +268,7 @@ $themes: (
   // Run the output function on all 
   @each $key, $value in $themes {
     .#{$_t}#{$key} {
-      @include output($key, $component);
+      @include output-theme($key, $component);
     }
   }
 }
