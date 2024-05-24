@@ -20,4 +20,4 @@
   @include core.css("switch-transition-timing-function", var.$transition-timing-function);
 }
 
-@include theme.output-themes("switch");
+@include theme.output("switch");

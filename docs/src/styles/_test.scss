@@ -53,7 +53,7 @@ $theme-dark: (
 
 @include theme.set("light", "test-3", $theme-light);
 @include theme.set("dark", "test-3", $theme-dark);
-@include theme.output-themes("test-3");
+@include theme.output("test-3");
 
 .test-3 {
   border-color: var(--vb-test-3-border-color);
