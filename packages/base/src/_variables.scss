@@ -76,13 +76,13 @@ $blockquote-accent-color: palette.get("primary") !default;
 // Code
 // ---
 
-$code-padding: null !default;
-$code-background: null !default;
-$code-foreground: palette.get("secondary") !default;
+$code-padding: 0.125rem 0.375rem !default;
+$code-background: theme.get("background-alt") !default;
+$code-foreground: theme.get("foreground-alt") !default;
 $code-border: null !default;
-$code-border-radius: null !default;
+$code-border-radius: core.$border-radius !default;
 $code-font-family: core.$font-family-mono !default;
-$code-font-size: core.$font-size !default;
+$code-font-size: core.$font-size-sm !default;
 
 // Heading
 // ---
@@ -126,6 +126,7 @@ $pre-background: theme.get("background-dark") !default;
 $pre-foreground: theme.get("foreground") !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
+$pre-font-size: core.$font-size !default;
 
 // Separator
 // ---
