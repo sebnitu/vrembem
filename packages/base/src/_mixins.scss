@@ -70,6 +70,8 @@
 // ---
 
 @mixin code() {
+  display: inline-block;
+  margin-block: -(list.nth(var.$code-padding, 1));
   padding: var.$code-padding;
   border: var.$code-border;
   border-radius: var.$code-border-radius;
@@ -232,7 +234,7 @@
   }
 
   > code,
-  > :not(div) code {
+  > :not(pre) code {
     @include code();
   }
 
