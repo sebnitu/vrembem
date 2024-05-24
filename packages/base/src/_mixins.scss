@@ -70,7 +70,6 @@
 // ---
 
 @mixin code() {
-  display: inline-block;
   margin-block: -(list.nth(var.$code-padding, 1));
   padding: var.$code-padding;
   border: var.$code-border;
@@ -181,7 +180,7 @@
     border: none;
     background: none;
     color: inherit;
-    font-size: var.$code-font-size;
+    font-size: var.$pre-font-size;
   }
 }
 
@@ -228,13 +227,11 @@
     @include heading-levels();
   }
 
-  > a,
-  > :not(div) a {
+  :not(div) > a {
     @include link();
   }
 
-  > code,
-  > :not(pre) code {
+  :not(pre) > code {
     @include code();
   }
 

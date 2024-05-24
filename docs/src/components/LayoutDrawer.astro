@@ -13,9 +13,11 @@
   const drawerItem = await drawer.register(document.getElementById("layout-drawer"));
   if (drawerItem.mode == "inline") {
     const active = drawerItem.dialog.querySelector(".is-active");
-    const space = window.innerHeight - active.offsetTop;
-    if (space < 80) {
-      active.scrollIntoView({ behavior: "instant", block: "center" });
+    if (active) {
+      const space = window.innerHeight - active.offsetTop;
+      if (space < 80) {
+        active.scrollIntoView({ behavior: "instant", block: "center" });
+      }
     }
   }
 </script>

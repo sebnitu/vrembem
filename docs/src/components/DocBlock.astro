@@ -36,11 +36,9 @@ const isFile = (type === "file");
       </div>
       <div class="media__body flex flex-align-center flex-gap-x flex-wrap">
         <h3 id={id} class="doc-block__title level level_gap_lg no-anchor">
-          <code>
-            <a class="link font-size-sm" href={`#${id}`}>
-              { isFile ? src : name }
-            </a>
-          </code>
+          <a class="link font-family-mono font-size-sm" href={`#${id}`}>
+            { isFile ? src : name }
+          </a>
           { 
             !isFile && type && (
               <span class="badge">{type}</span>
