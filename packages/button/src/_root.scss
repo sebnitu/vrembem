@@ -31,3 +31,5 @@
   @include core.css("button-loading-animation-duration", var.$loading-animation-duration);
   @include core.css("button-loading-animation-timing-function", var.$loading-animation-timing-function);
 }
+
+@include theme.output("button");
