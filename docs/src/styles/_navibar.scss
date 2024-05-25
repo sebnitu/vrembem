@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "./root";
 
@@ -34,7 +35,25 @@
 }
 
 .navibar__title {
+  position: relative;
   width: var(--layout-drawer-width);
+}
+
+.navibar__skip {
+  position: absolute;
+  z-index: 100;
+  top: -100%;
+  width: calc(100% - 1em);
+  margin-right: 1em;
+  transition-property: top, opacity;
+  transition-duration: core.$transition-duration;
+  transition-timing-function: core.$transition-timing-function;
+  opacity: 0;
+
+  &:focus {
+    top: calc(calc(var(--layout-navibar-height) - var(--vb-button-size)) / 2);
+    opacity: 1;
+  }
 }
 
 .navibar__menu {
