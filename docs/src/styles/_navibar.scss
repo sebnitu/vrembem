@@ -41,14 +41,14 @@
 
 .navibar__skip {
   position: absolute;
-  top: -100%;
-  opacity: 0;
-  margin-right: 1em;
-  width: calc(100% - 1em);
   z-index: 100;
+  top: -100%;
+  width: calc(100% - 1em);
+  margin-right: 1em;
   transition-property: top, opacity;
   transition-duration: core.$transition-duration;
   transition-timing-function: core.$transition-timing-function;
+  opacity: 0;
 
   &:focus {
     top: calc(calc(var(--layout-navibar-height) - var(--vb-button-size)) / 2);
