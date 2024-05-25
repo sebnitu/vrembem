@@ -15,6 +15,9 @@ const { classes = "" } = Astro.props;
 <header class={`navibar${classes ? " " + classes : ""}`}>
   <div class="navibar__container">
     <div class="navibar__title">
+      <a class="navibar__skip button button_color_primary" href="#main-content">
+        Skip to main content
+      </a>
       <a href="/" class="brand">
         <LogoIcon width={24} height={24} classes="brand__icon" />
         <strong class="brand__name">Vrembem</strong>

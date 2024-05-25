@@ -32,7 +32,7 @@ const { title, layout = {} } = Astro.props;
         </div>
       )
     }
-    <div class="layout__main">
+    <div id="main-content" class="layout__main" tabindex="-1">
       <div class="layout__grid">
         {
           layout.hasAside && (
