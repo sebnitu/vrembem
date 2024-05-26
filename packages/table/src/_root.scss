@@ -1,0 +1,10 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("table-border-color", var.$border-color);
+  @include core.css("table-background", var.$background);
+}
+
+@include theme.output("table");
