@@ -10,13 +10,16 @@
 
 <script>
   import { drawer } from "../modules/useDrawer";
-  const drawerItem = await drawer.register(document.getElementById("layout-drawer"));
-  if (drawerItem.mode == "inline") {
-    const active = drawerItem.dialog.querySelector(".is-active");
-    if (active) {
-      const space = window.innerHeight - active.offsetTop;
-      if (space < 80) {
-        active.scrollIntoView({ behavior: "instant", block: "center" });
+  const drawerElement = document.getElementById("layout-drawer");
+  if (drawerElement) {
+    const drawerItem = await drawer.register(drawerElement);
+    if (drawerItem.mode == "inline") {
+      const active = drawerItem.dialog.querySelector(".is-active");
+      if (active) {
+        const space = window.innerHeight - active.offsetTop;
+        if (space < 80) {
+          active.scrollIntoView({ behavior: "instant", block: "center" });
+        }
       }
     }
   }
