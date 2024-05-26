@@ -2,10 +2,6 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
 @mixin table-responsive-styles() {
   thead,
   tbody,
@@ -42,7 +38,7 @@ $_v: var.$prefix-modifier-value;
     }
   }
 
-  &.#{$_b}table#{$_m}size#{$_v}sm [#{var.$mobile-label-attr}] {
+  &#{core.bem("table", null, "size", "sm")} [#{var.$mobile-label-attr}] {
     padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-sm, 2)});
 
     &::before {
@@ -50,7 +46,7 @@ $_v: var.$prefix-modifier-value;
     }
   }
 
-  &.#{$_b}table#{$_m}size#{$_v}lg [#{var.$mobile-label-attr}] {
+  &#{core.bem("table", null, "size", "lg")} [#{var.$mobile-label-attr}] {
     padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-lg, 2)});
 
     &::before {
@@ -58,7 +54,7 @@ $_v: var.$prefix-modifier-value;
     }
   }
 
-  &.#{$_b}table#{$_m}style#{$_v}bordered {
+  &#{core.bem("table", null, "style", "bordered")} {
     border: var.$border;
 
     td {

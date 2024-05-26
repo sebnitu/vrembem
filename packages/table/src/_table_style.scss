@@ -1,10 +1,7 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}table#{$_m}style#{$_v}rowed {
+#{core.bem("table", null, "style", "rowed")} {
   border-bottom: var.$border;
 
   tr {
@@ -22,7 +19,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}table#{$_m}style#{$_v}bordered {
+#{core.bem("table", null, "style", "bordered")} {
   th,
   td {
     border: var.$border;

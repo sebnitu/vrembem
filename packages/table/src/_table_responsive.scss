@@ -2,16 +2,12 @@
 @use "./variables" as var;
 @use "./mixins";
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}table#{$_m}responsive {
+#{core.bem("table", null, "responsive")} {
   @include mixins.table-responsive-styles();
 }
 
 @each $key, $value in var.$breakpoints {
-  .#{$_b}table#{$_m}responsive#{$_v}#{$key} {
+  #{core.bem("table", null, "responsive", $key)} {
     @include core.media-max($value) {
       @include mixins.table-responsive-styles();
     }

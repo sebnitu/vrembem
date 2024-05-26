@@ -1,10 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-
-.#{$_b}table#{$_m}ellipsis {
+#{core.bem("table", null, "ellipsis")} {
   table-layout: fixed;
 
   th,

@@ -1,9 +1,7 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-
-.#{$_b}table#{$_m}hover {
+#{core.bem("table", null, "hover")} {
   tr {
     position: relative;
     z-index: 1;

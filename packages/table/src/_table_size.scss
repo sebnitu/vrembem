@@ -1,10 +1,7 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}table#{$_m}size#{$_v}sm {
+#{core.bem("table", null, "size", "sm")} {
   th,
   td,
   caption {
@@ -12,7 +9,7 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}table#{$_m}size#{$_v}lg {
+#{core.bem("table", null, "size", "lg")} {
   th,
   td,
   caption {

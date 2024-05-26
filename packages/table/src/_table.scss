@@ -1,8 +1,7 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-
-.#{$_b}table {
+#{core.bem("table")} {
   width: 100%;
   background-color: var.$background;
   color: var.$color;
@@ -25,7 +24,7 @@ $_b: var.$prefix-block;
   }
 }
 
-.#{$_b}table__auto {
+#{core.bem("table", "auto")} {
   width: 0;
   white-space: nowrap;
 }
