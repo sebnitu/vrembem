@@ -25,34 +25,143 @@ npm install @vrembem/table
 
 For basic table styles, only the `table` component class is required. Use [proper HTML table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
 
-```html
-<table class="table">
-  <caption>...</caption>
-  <thead>
-    <tr>
-      <th>...</th>
-      ...
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>...</td>
-      ...
-    </tr>
-    ...
-  </tbody>
-</table>
-```
-
-For simple responsive table styles, wrap your tables in the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/main/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
-
-```html
-<div class="scroll-box">
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <table class="table">
+      <caption>List of my favorite anarchists.</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First</th>
+          <th>Last</th>
+          <th>Email</th>
+          <th>Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1</th>
+          <td>Noam</td>
+          <td>Chomsky</td>
+          <td>noam@gmail.com</td>
+          <td>@chomsky</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>Howard</td>
+          <td>Zinn</td>
+          <td>hzinn@gmail.com</td>
+          <td>@zinn</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>PJ</td>
+          <td>Proudhon</td>
+          <td>pj@proudhon.com</td>
+          <td>@pjproudhon</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>Rudolf</td>
+          <td>Rocker</td>
+          <td>rudolf@rocker.com</td>
+          <td>@rrocker</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
   <table class="table">
-    ...
+    <caption>List of my favorite anarchists.</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Email</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Noam</td>
+        <td>Chomsky</td>
+        <td>noam@gmail.com</td>
+        <td>@chomsky</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Howard</td>
+        <td>Zinn</td>
+        <td>hzinn@gmail.com</td>
+        <td>@zinn</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>PJ</td>
+        <td>Proudhon</td>
+        <td>pj@proudhon.com</td>
+        <td>@pjproudhon</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Rudolf</td>
+        <td>Rocker</td>
+        <td>rudolf@rocker.com</td>
+        <td>@rrocker</td>
+      </tr>
+    </tbody>
   </table>
-</div>
-```
+  ```
+</CodeExample>
+
+For simple responsive table styles, wrap your tables in the [`scroll-box` base module](/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
+
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <div class="scroll-box">
+      <table class="table" style="width: 64rem">
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Pages</th>
+            <th>Quote</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">The Hobbit</td>
+            <td>272</td>
+            <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Fellowship of the Ring</td>
+            <td>377</td>
+            <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Two Towers</td>
+            <td>322</td>
+            <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Return of the King</td>
+            <td>277</td>
+            <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </Fragment>
+  ```html
+  <div class="scroll-box">
+    <table class="table">
+      ...
+    </table>
+  </div>
+  ```
+</CodeExample>
 
 ## table_ellipsis
 
