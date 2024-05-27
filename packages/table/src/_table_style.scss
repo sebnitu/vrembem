@@ -1,11 +1,10 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("table", null, "style", "rowed")} {
-  border-bottom: var.$border;
+  border-bottom: core.css("table-border");
 
   tr {
-    border-top: var.$border;
+    border-top: core.css("table-border");
   }
 
   th:first-child,
@@ -22,6 +21,6 @@
 #{core.bem("table", null, "style", "bordered")} {
   th,
   td {
-    border: var.$border;
+    border: core.css("table-border");
   }
 }

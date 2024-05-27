@@ -9,13 +9,14 @@ $padding: core.$padding !default;
 $padding-sm: core.$padding-sm !default;
 $padding-lg: core.$padding-lg !default;
 
-$border-color: theme.get("border-color") !default;
-$border: 1px solid $border-color !default;
-$border-alt: 1px dotted $border-color !default;
-
-$background: null !default;
+$background: transparent !default;
 $background-zebra: palette.get("neutral", 50%, 5%) !default;
 $background-hover: palette.get("primary", 50%, 10%) !default;
+
+$border-color: theme.get("border-color") !default;
+$border: 1px solid core.css("table-border-color") !default;
+$border-alt: 1px dotted core.css("table-border-color") !default;
+
 $shadow-hover: null !default;
 
 $color: null !default;

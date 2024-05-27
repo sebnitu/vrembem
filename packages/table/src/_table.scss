@@ -3,7 +3,7 @@
 
 #{core.bem("table")} {
   width: 100%;
-  background-color: var.$background;
+  background-color: core.css("table-background");
   color: var.$color;
   text-align: left;
 

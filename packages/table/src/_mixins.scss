@@ -55,7 +55,7 @@
   }
 
   &#{core.bem("table", null, "style", "bordered")} {
-    border: var.$border;
+    border: core.css("table-border");
 
     td {
       border: none;
@@ -63,15 +63,15 @@
 
     td + td,
     th + td {
-      border-top: var.$border-alt;
+      border-top: core.css("table-border-alt");;
     }
 
     [#{var.$mobile-label-attr}]::before {
-      border-right: var.$border;
+      border-right: core.css("table-border");
     }
 
     tr + tr {
-      border-top: var.$border;
+      border-top: core.css("table-border");
     }
   }
 }

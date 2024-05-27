@@ -3,8 +3,12 @@
 @use "./variables" as var;
 
 #{theme.$root-selector} {
-  @include core.css("table-border-color", var.$border-color);
   @include core.css("table-background", var.$background);
+  @include core.css("table-background-zebra", var.$background-zebra);
+  @include core.css("table-background-hover", var.$background-hover);
+  @include core.css("table-border-color", var.$border-color);
+  @include core.css("table-border", var.$border);
+  @include core.css("table-border-alt", var.$border-alt);
 }
 
 @include theme.output("table");

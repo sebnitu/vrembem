@@ -10,7 +10,7 @@
   tbody tr:hover,
   tbody tr:focus {
     z-index: 2;
-    background-color: var.$background-hover;
+    background-color: core.css("table-background-hover");
     box-shadow: var.$shadow-hover;
     color: var.$color-hover;
   }
