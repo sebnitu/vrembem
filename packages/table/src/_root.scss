@@ -9,18 +9,13 @@
   @include core.css("table-background", var.$background);
   @include core.css("table-background-zebra", var.$background-zebra);
   @include core.css("table-background-hover", var.$background-hover);
+  @include core.css("table-foreground", var.$foreground);
+  @include core.css("table-foreground-hover", var.$foreground-hover);
   @include core.css("table-border", var.$border);
   @include core.css("table-border-alt", var.$border-alt);
-  @include core.css("table-shadow-hover", var.$shadow-hover);
-  @include core.css("table-color", var.$color);
-  @include core.css("table-color-hover", var.$color-hover);
-  @include core.css("table-th-font-weight", var.$th-font-weight);
-  @include core.css("table-th-background", var.$th-background);
-  @include core.css("table-td-background", var.$td-background);
   @include core.css("table-mobile-label-width", var.$mobile-label-width);
   @include core.css("table-mobile-label-background", var.$mobile-label-background);
-  @include core.css("table-mobile-label-color", var.$mobile-label-color);
-  @include core.css("table-mobile-label-font-weight", var.$mobile-label-font-weight);
+  @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
 }
 
 @include theme.output("table");

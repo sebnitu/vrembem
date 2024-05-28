@@ -242,7 +242,9 @@ Space will be split equally between columns when `table_ellipsis` is applied. Fo
   ```html
   <table class="table table_ellipsis">
     <colgroup>
+      <col />
       <col style="width: 5em;" />
+      <col />
     </colgroup>
     ...
   </table>
@@ -327,23 +329,11 @@ When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile frie
           <td data-mobile-label="Class">Medium</td>
           <td data-mobile-label="Variant">HBK-4P</td>
         </tr>
-        <tr>
-          <td data-mobile-label="Name">Catapult</td>
-          <td data-mobile-label="Mass">65t</td>
-          <td data-mobile-label="Class">Heavy</td>
-          <td data-mobile-label="Variant">CPLT-K2</td>
-        </tr>
-        <tr>
-          <td data-mobile-label="Name">Atlas</td>
-          <td data-mobile-label="Mass">100t</td>
-          <td data-mobile-label="Class">Assault</td>
-          <td data-mobile-label="Variant">AS7-D-DC</td>
-        </tr>
       </tbody>
     </table>
   </Fragment>
   ```html
-  <table class="table table_responsive_lg">
+  <table class="table table_responsive">
     <thead>
       <tr>
         <th>key</th>
@@ -416,7 +406,7 @@ Adjust the size of a table by increasing or decreasing cell padding.
   </Fragment>
   ```html
   <table class="table table_size_sm">
-    ...`
+    ...
   </table>
   ```
 </CodeExample>
@@ -450,7 +440,7 @@ Adjust the size of a table by increasing or decreasing cell padding.
   </Fragment>
   ```html
   <table class="table table_size_lg">
-    ...`
+    ...
   </table>
   ```
 </CodeExample>

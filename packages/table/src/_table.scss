@@ -3,23 +3,18 @@
 #{core.bem("table")} {
   width: 100%;
   background-color: core.css("table-background");
-  color: core.css("table-color");;
+  color: core.css("table-foreground");
   text-align: left;
 
   th,
   td,
   caption {
-    padding: core.css("table-padding");;
+    padding: core.css("table-padding");
     vertical-align: top;
   }
 
   th {
-    background-color: core.css("table-th-background");
-    font-weight: core.css("table-th-font-weight");
-  }
-
-  td {
-    background-color: core.css("table-td-background");
+    font-weight: core.$font-weight-bold;
   }
 }
 

@@ -33,8 +33,8 @@
       width: core.css("table-mobile-label-width");
       padding: core.css("table-padding");
       background-color: core.css("table-mobile-label-background");
-      color: core.css("table-mobile-label-color");
-      font-weight: core.css("table-mobile-label-font-weight");
+      color: core.css("table-mobile-label-foreground");
+      font-weight: core.$font-weight-bold;
     }
   }
 
@@ -63,7 +63,7 @@
 
     td + td,
     th + td {
-      border-top: core.css("table-border-alt");;
+      border-top: core.css("table-border-alt");
     }
 
     [#{var.$mobile-label-attr}]::before {

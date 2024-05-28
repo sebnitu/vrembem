@@ -7,19 +7,38 @@ $breakpoints: core.$breakpoints !default;
 $padding: core.$padding !default;
 $padding-sm: core.$padding-sm !default;
 $padding-lg: core.$padding-lg !default;
-$background: transparent !default;
-$background-zebra: palette.get("neutral", 50%, 5%) !default;
-$background-hover: palette.get("primary", 50%, 10%) !default;
-$border: 1px solid theme.get("border-color") !default;
-$border-alt: 1px dotted theme.get("border-color") !default;
-$shadow-hover: null !default;
-$color: null !default;
-$color-hover: null !default;
-$th-font-weight: core.$font-weight-bold !default;
-$th-background: null !default;
-$td-background: null !default;
+$background: null !default;
+$background-zebra: null !default;
+$background-hover: null !default;
+$foreground: null !default;
+$foreground-hover: null !default;
+$border: null !default;
+$border-alt: null !default;
+
 $mobile-label-attr: "data-mobile-label" !default;
 $mobile-label-width: 8rem !default;
 $mobile-label-background: null !default;
-$mobile-label-color: null !default;
-$mobile-label-font-weight: core.$font-weight-semi-bold !default;
+$mobile-label-foreground: null !default;
+
+$theme-light: (
+  "background": theme.get("background"),
+  "background-zebra": theme.get("background-darker"),
+  "background-hover": palette.get("primary", 90),
+  "border": 1px solid theme.get("border-color"),
+  "border-alt": 1px dotted theme.get("border-color"),
+  "foreground": theme.get("foreground"),
+  "foreground-hover": null
+) !default;
+
+$theme-dark: (
+  "background": theme.get("background"),
+  "background-zebra": theme.get("background-darker"),
+  "background-hover": palette.get("primary", 50%, 20%),
+  "border": 1px solid theme.get("border-color-dark"),
+  "border-alt": 1px dotted theme.get("border-color-dark"),
+  "foreground": theme.get("foreground"),
+  "foreground-hover": null
+) !default;
+
+@include theme.set("light", "table", $theme-light);
+@include theme.set("dark", "table", $theme-dark);
