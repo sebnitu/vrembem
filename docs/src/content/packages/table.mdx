@@ -2,118 +2,358 @@
 title: Table
 description: "A table component for displaying HTML tables."
 package: "@vrembem/table"
+state: "check"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Table
 
 A table component for displaying HTML tables.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Ftable.svg)](https://www.npmjs.com/package/%40vrembem%2Ftable)
-
-[Documentation](https://vrembem.com/packages/table)
-
-## Installation
-
 ```sh
 npm install @vrembem/table
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/table";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/table";
-```
-
-### Markup
+## Basic usage
 
 For basic table styles, only the `table` component class is required. Use [proper HTML table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
 
-```html
-<table class="table">
-  <caption>...</caption>
-  <thead>
-    <tr>
-      <th>...</th>
-      ...
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>...</td>
-      ...
-    </tr>
-    ...
-  </tbody>
-</table>
-```
-
-For simple responsive table styles, wrap your tables in the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/main/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
-
-```html
-<div class="scroll-box">
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <table class="table">
+      <caption>Example of a table caption.</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Locust</td>
+          <td>20t</td>
+          <td>Light</td>
+          <td>LCT-1V</td>
+        </tr>
+        <tr>
+          <td>Shadow Hawk</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>SHD-2H</td>
+        </tr>
+        <tr>
+          <td>Thunderbolt</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>TDR-5S</td>
+        </tr>
+        <tr>
+          <td>BattleMaster</td>
+          <td>85t</td>
+          <td>Assault</td>
+          <td>BLR-1G</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
   <table class="table">
-    ...
+    <caption>Example of a table caption.</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mass</th>
+        <th>Class</th>
+        <th>Variant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Locust</td>
+        <td>20t</td>
+        <td>Light</td>
+        <td>LCT-1V</td>
+      </tr>
+      <tr>
+        <td>Shadow Hawk</td>
+        <td>55t</td>
+        <td>Medium</td>
+        <td>SHD-2H</td>
+      </tr>
+      <tr>
+        <td>Thunderbolt</td>
+        <td>65t</td>
+        <td>Heavy</td>
+        <td>TDR-5S</td>
+      </tr>
+      <tr>
+        <td>BattleMaster</td>
+        <td>85t</td>
+        <td>Assault</td>
+        <td>BLR-1G</td>
+      </tr>
+    </tbody>
   </table>
-</div>
-```
+  ```
+</CodeExample>
 
-## Modifiers
+For simple responsive table styles, wrap your tables in the [`scroll-box` base module](/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
 
-### `table_ellipsis`
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <div class="scroll-box">
+      <table class="table" style="width: 64rem">
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Pages</th>
+            <th>Quote</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">The Hobbit</td>
+            <td>272</td>
+            <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Fellowship of the Ring</td>
+            <td>377</td>
+            <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Two Towers</td>
+            <td>322</td>
+            <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Return of the King</td>
+            <td>277</td>
+            <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </Fragment>
+  ```html
+  <div class="scroll-box">
+    <table class="table">
+      ...
+    </table>
+  </div>
+  ```
+</CodeExample>
+
+## table_ellipsis
 
 Switches a table layout to `fixed` and adds ellipsis overflow styles to table cells and headers.
 
-```html
-<table class="table table_ellipsis">
-  ...
-</table>
-```
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <table class="table table_ellipsis">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Pages</th>
+          <th>Quote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-nowrap">The Hobbit</td>
+          <td>272</td>
+          <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Fellowship of the Ring</td>
+          <td>377</td>
+          <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Two Towers</td>
+          <td>322</td>
+          <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Return of the King</td>
+          <td>277</td>
+          <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_ellipsis">
+    ...
+  </table>
+  ```
+</CodeExample>
 
 Space will be split equally between columns when `table_ellipsis` is applied. For more control over specific column widths, use the `<colgroup>` and `<col>` elements and set their desired widths as needed.
 
-```html
-<table class="table table_ellipsis">
-  <colgroup>
-    <col style="width: 50px;">
-  </colgroup>
-  ...
-</table>
-```
+<CodeExample lang="html">
+  <Fragment slot="output">
+    <table class="table table_ellipsis">
+      <colgroup>
+        <col />
+        <col style="width: 5em;" />
+        <col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Pages</th>
+          <th>Quote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-nowrap">The Hobbit</td>
+          <td>272</td>
+          <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Fellowship of the Ring</td>
+          <td>377</td>
+          <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Two Towers</td>
+          <td>322</td>
+          <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Return of the King</td>
+          <td>277</td>
+          <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_ellipsis">
+    <colgroup>
+      <col />
+      <col style="width: 5em;" />
+      <col />
+    </colgroup>
+    ...
+  </table>
+  ```
+</CodeExample>
 
-### `table_hover`
+## table_hover
 
 Adds hover and focus state styles for table row (`<tr>`) elements.
 
-```html
-<table class="table table_hover">
-  ...
-</table>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jenner</td>
+          <td>35t</td>
+          <td>Light</td>
+          <td>JR7-D</td>
+        </tr>
+        <tr>
+          <td>Hunchback</td>
+          <td>50t</td>
+          <td>Medium</td>
+          <td>HBK-4G</td>
+        </tr>
+        <tr>
+          <td>Catapult</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>CPLT-C1</td>
+        </tr>
+        <tr>
+          <td>Atlas</td>
+          <td>100t</td>
+          <td>Assault</td>
+          <td>AS7-D</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_hover">
+    ...
+  </table>
+  ```
+</CodeExample>
 
-### `table_responsive_[key]`
+## table_responsive_[key]
 
-When the [`scroll-box` base module](https://github.com/sebnitu/vrembem/tree/main/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
+When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
 
-```html
-<table class="table table_responsive_lg">
-  <thead>
-    <tr>
-      <th>key</th>
-      <th>value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td data-mobile-label="key">...</td>
-      <td data-mobile-label="value">...</td>
-    </tr>
-  </tbody>
-</table>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_responsive table_style_bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-mobile-label="Name">Jenner</td>
+          <td data-mobile-label="Mass">35t</td>
+          <td data-mobile-label="Class">Light</td>
+          <td data-mobile-label="Variant">JR7-F</td>
+        </tr>
+        <tr>
+          <td data-mobile-label="Name">Hunchback</td>
+          <td data-mobile-label="Mass">50t</td>
+          <td data-mobile-label="Class">Medium</td>
+          <td data-mobile-label="Variant">HBK-4P</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_responsive">
+    <thead>
+      <tr>
+        <th>key</th>
+        <th>value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-mobile-label="key">...</td>
+        <td data-mobile-label="value">...</td>
+      </tr>
+    </tbody>
+  </table>
+  ```
+</CodeExample>
 
 The mobile label value will be truncated if it exceeds the width set by `$mobile-label-width`, so keep the label terse when possible.
 
-#### Available Variations
+**Available Variants**
 
 - `table_responsive`
 - `table_responsive_xs`
@@ -122,7 +362,7 @@ The mobile label value will be truncated if it exceeds the width set by `$mobile
 - `table_responsive_lg`
 - `table_responsive_xl`
 
-#### `@mixin table-responsive-styles()`
+### `@mixin table-responsive-styles()`
 
 Output responsive table styles. This is used to generate the styles for the `table_responsive_[key]` modifier.
 
@@ -134,89 +374,286 @@ Output responsive table styles. This is used to generate the styles for the `tab
 }
 ```
 
-### `table_size_[value]`
+## table_size_[value]
 
 Adjust the size of a table by increasing or decreasing cell padding.
 
-```html
-<table class="table table_size_sm">
-  ...
-</table>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_size_sm table_style_bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Griffin</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>GRF-1N</td>
+        </tr>
+        <tr>
+          <td>Wolverine</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>WVR-6R</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_size_sm">
+    ...
+  </table>
+  ```
+</CodeExample>
 
-#### Available Variations
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_size_lg table_style_bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Griffin</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>GRF-1N</td>
+        </tr>
+        <tr>
+          <td>Wolverine</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>WVR-6R</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_size_lg">
+    ...
+  </table>
+  ```
+</CodeExample>
+
+**Available Variants**
 
 - `table_size_sm`
 - `table_size_lg`
 
-### `table_style_[value]`
+## table_style_[value]
 
 Adds table styles based on the provided value.
 
-```html
-<table class="table table_style_rowed">
-  ...
-</table>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_style_rowed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Griffin</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>GRF-2N</td>
+        </tr>
+        <tr>
+          <td>Wolverine</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>WVR-7K</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_style_rowed">
+    ...
+  </table>
+  ```
+</CodeExample>
 
-#### Available Variations
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_style_bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Griffin</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>GRF-2N</td>
+        </tr>
+        <tr>
+          <td>Wolverine</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>WVR-7K</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_style_bordered">
+    ...
+  </table>
+  ```
+</CodeExample>
+
+**Available Variants**
 
 - `table_style_rowed`
 - `table_style_bordered`
 
-### `table_zebra`
+## table_zebra
 
 Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
 
-```html
-<table class="table table_zebra">
-  ...
-</table>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_zebra">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Firestarter</td>
+          <td>35t</td>
+          <td>Light</td>
+          <td>FS9-A</td>
+        </tr>
+        <tr>
+          <td>Uziel</td>
+          <td>50t</td>
+          <td>Medium</td>
+          <td>UZL-6P</td>
+        </tr>
+        <tr>
+          <td>Crusader</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>CRD-6T</td>
+        </tr>
+        <tr>
+          <td>Cyclops</td>
+          <td>90t</td>
+          <td>Assault</td>
+          <td>CP-11-P</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_zebra">
+    ...
+  </table>
+  ```
+</CodeExample>
 
 ## Customization
 
-### Sass Variables
+Tables are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                    | Default                                        | Description                                                                                                  |
-| --------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `$prefix-block`             | `null`                                         | String to prefix blocks with.                                                                                |
-| `$prefix-element`           | `"__"`                                         | String to prefix elements with.                                                                              |
-| `$prefix-modifier`          | `"_"`                                          | String to prefix modifiers with.                                                                             |
-| `$prefix-modifier-value`    | `"_"`                                          | String to prefix modifier values with.                                                                       |
-| `$breakpoints`              | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the [`table_responsive_[key]` modifier](#table_responsive_key) uses to build its styles. |
-| `$padding`                  | `core.$padding`                                | Sets the padding property on the `<th>`, `<td>` and `<caption>` elements.                                    |
-| `$padding-sm`               | `core.$padding-sm`                             | Sets the padding property of the `table_size_sm` modifier.                                                   |
-| `$padding-lg`               | `core.$padding-lg`                             | Sets the padding property of the `table_size_lg` modifier.                                                   |
-| `$border-color`             | `core.$border-color`                           | Sets the border-color value in `$border` and `$border-alt` variables.                                        |
-| `$border`                   | `1px solid $border-color`                      | Sets the border property.                                                                                    |
-| `$border-alt`               | `1px dotted $border-color`                     | Sets the border property in between `<td>` elements of the `table_responsive_[key]` modifier.                |
-| `$background`               | `null`                                         | Sets the background-color property.                                                                          |
-| `$background-zebra`         | `rgba(black, 0.03)`                            | Sets the background-color property of the `table_zebra` modifier.                                            |
-| `$background-hover`         | `rgba(core.$yellow, 0.3)`                      | Sets the background-color property of the `table_hover` modifier.                                            |
-| `$box-shadow-hover`         | `null`                                         | Sets the box-shadow property of the `table_hover` modifier.                                                  |
-| `$color`                    | `null`                                         | Sets the color property.                                                                                     |
-| `$color-hover`              | `null`                                         | Sets the color property of the `table_hover` modifier.                                                       |
-| `$th-font-weight`           | `core.$font-weight-bold`                       | Sets the font-weight property on the `<th>` element.                                                         |
-| `$th-background`            | `null`                                         | Sets the background-color property on the `<th>` element.                                                    |
-| `$td-background`            | `null`                                         | Sets the background-color property on the `<td>` element.                                                    |
-| `$mobile-label-attr`        | `"data-mobile-label"`                          | Attribute value to use for settings the mobile label of the `table_responsive_[key]` modifier.               |
-| `$mobile-label-width`       | `8rem`                                         | Sets the width property on the mobile label pseudo-element.                                                  |
-| `$mobile-label-background`  | `null`                                         | Sets the background-color property on the mobile label pseudo-element.                                       |
-| `$mobile-label-color`       | `null`                                         | Sets the color property on the mobile label pseudo-element.                                                  |
-| `$mobile-label-font-weight` | `core.$font-weight-semi-bold`                  | Sets the font-weight property on the mobile label pseudo-element.                                            |
+<DocBlock name="CSS Variables" type="file" src="table/src/_root.scss">
 
-#### `$breakpoints`
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
 
-The breakpoints map the [`table_responsive_[key]` modifier](#table_responsive_key) uses to build its styles.
+  #{theme.$root-selector} {
+    @include core.css("table-padding", var.$padding);
+    @include core.css("table-padding-sm", var.$padding-sm);
+    @include core.css("table-padding-lg", var.$padding-lg);
+    @include core.css("table-background", var.$background);
+    @include core.css("table-background-zebra", var.$background-zebra);
+    @include core.css("table-background-hover", var.$background-hover);
+    @include core.css("table-foreground", var.$foreground);
+    @include core.css("table-foreground-hover", var.$foreground-hover);
+    @include core.css("table-border", var.$border);
+    @include core.css("table-border-alt", var.$border-alt);
+    @include core.css("table-mobile-label-width", var.$mobile-label-width);
+    @include core.css("table-mobile-label-background", var.$mobile-label-background);
+    @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
+  }
 
-```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
-```
+  @include theme.output("table");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="table/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  $breakpoints: core.$breakpoints !default;
+  $padding: core.$padding !default;
+  $padding-sm: core.$padding-sm !default;
+  $padding-lg: core.$padding-lg !default;
+  $background: null !default;
+  $background-zebra: null !default;
+  $background-hover: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $border: null !default;
+  $border-alt: null !default;
+
+  $mobile-label-attr: "data-mobile-label" !default;
+  $mobile-label-width: 8rem !default;
+  $mobile-label-background: null !default;
+  $mobile-label-foreground: null !default;
+
+  $theme-light: (
+    "background": theme.get("background"),
+    "background-zebra": theme.get("background-darker"),
+    "background-hover": palette.get("primary", 90),
+    "border": 1px solid theme.get("border-color"),
+    "border-alt": 1px dotted theme.get("border-color"),
+    "foreground": theme.get("foreground"),
+    "foreground-hover": null
+  ) !default;
+
+  $theme-dark: (
+    "background": theme.get("background"),
+    "background-zebra": theme.get("background-darker"),
+    "background-hover": palette.get("primary", 50%, 20%),
+    "border": 1px solid theme.get("border-color-dark"),
+    "border-alt": 1px dotted theme.get("border-color-dark"),
+    "foreground": theme.get("foreground"),
+    "foreground-hover": null
+  ) !default;
+
+  @include theme.set("light", "table", $theme-light);
+  @include theme.set("dark", "table", $theme-dark);
+  ```
+</DocBlock>

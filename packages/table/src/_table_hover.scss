@@ -1,9 +1,6 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-
-.#{$_b}table#{$_m}hover {
+#{core.bem("table", null, "hover")} {
   tr {
     position: relative;
     z-index: 1;
@@ -12,8 +9,7 @@ $_m: var.$prefix-modifier;
   tbody tr:hover,
   tbody tr:focus {
     z-index: 2;
-    background-color: var.$background-hover;
-    box-shadow: var.$shadow-hover;
-    color: var.$color-hover;
+    background-color: core.css("table-background-hover");
+    color: core.css("table-foreground-hover");
   }
 }

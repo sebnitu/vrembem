@@ -1,14 +1,11 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-
-.#{$_b}table#{$_m}zebra {
+#{core.bem("table", null, "zebra")} {
   thead tr {
-    background-color: var.$background-zebra;
+    background-color: core.css("table-background-zebra");
   }
 
   tr:nth-child(even) {
-    background-color: var.$background-zebra;
+    background-color: core.css("table-background-zebra");
   }
 }

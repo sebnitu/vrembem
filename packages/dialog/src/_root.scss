@@ -5,8 +5,8 @@
 #{theme.$root_selector} {
   @include core.css("dialog-padding", var.$padding);
   @include core.css("dialog-gap", var.$gap);
-  @include core.css("dialog-foreground", var.$foreground);
   @include core.css("dialog-background", var.$background);
+  @include core.css("dialog-foreground", var.$foreground);
   @include core.css("dialog-border", var.$border);
   @include core.css("dialog-sep-border", var.$sep-border);
   @include core.css("dialog-border-radius", var.$border-radius);

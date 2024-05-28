@@ -1,21 +1,17 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}table#{$_m}size#{$_v}sm {
+#{core.bem("table", null, "size", "sm")} {
   th,
   td,
   caption {
-    padding: var.$padding-sm;
+    padding: core.css("table-padding-sm");
   }
 }
 
-.#{$_b}table#{$_m}size#{$_v}lg {
+#{core.bem("table", null, "size", "lg")} {
   th,
   td,
   caption {
-    padding: var.$padding-lg;
+    padding: core.css("table-padding-lg");
   }
 }

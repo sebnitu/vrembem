@@ -103,8 +103,8 @@ Dialogs are primarily customized using CSS variables but can also be modified us
   #{theme.$root_selector} {
     @include core.css("dialog-padding", var.$padding);
     @include core.css("dialog-gap", var.$gap);
-    @include core.css("dialog-foreground", var.$foreground);
     @include core.css("dialog-background", var.$background);
+    @include core.css("dialog-foreground", var.$foreground);
     @include core.css("dialog-border", var.$border);
     @include core.css("dialog-sep-border", var.$sep-border);
     @include core.css("dialog-border-radius", var.$border-radius);
@@ -126,8 +126,8 @@ Dialogs are primarily customized using CSS variables but can also be modified us
 
   $padding: 1em !default;
   $gap: 0.5em !default;
-  $foreground: null !default;
   $background: null !default;
+  $foreground: null !default;
   $border: null !default;
   $sep-border: null !default;
   $border-radius: core.$border-radius !default;

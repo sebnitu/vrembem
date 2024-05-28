@@ -1,31 +1,24 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-
-.#{$_b}table {
+#{core.bem("table")} {
   width: 100%;
-  background-color: var.$background;
-  color: var.$color;
+  background-color: core.css("table-background");
+  color: core.css("table-foreground");
   text-align: left;
 
   th,
   td,
   caption {
-    padding: var.$padding;
+    padding: core.css("table-padding");
     vertical-align: top;
   }
 
   th {
-    background-color: var.$th-background;
-    font-weight: var.$th-font-weight;
-  }
-
-  td {
-    background-color: var.$td-background;
+    font-weight: core.$font-weight-bold;
   }
 }
 
-.#{$_b}table__auto {
+#{core.bem("table", "auto")} {
   width: 0;
   white-space: nowrap;
 }

@@ -2,10 +2,6 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
 @mixin table-responsive-styles() {
   thead,
   tbody,
@@ -24,7 +20,7 @@ $_v: var.$prefix-modifier-value;
 
   [#{var.$mobile-label-attr}] {
     position: relative;
-    padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding, 2)});
+    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding, 2)});
     white-space: normal;
 
     &::before {
@@ -34,32 +30,32 @@ $_v: var.$prefix-modifier-value;
       top: 0;
       bottom: 0;
       left: 0;
-      width: var.$mobile-label-width;
-      padding: var.$padding;
-      background-color: var.$mobile-label-background;
-      color: var.$mobile-label-color;
-      font-weight: var.$mobile-label-font-weight;
+      width: core.css("table-mobile-label-width");
+      padding: core.css("table-padding");
+      background-color: core.css("table-mobile-label-background");
+      color: core.css("table-mobile-label-foreground");
+      font-weight: core.$font-weight-bold;
     }
   }
 
-  &.#{$_b}table#{$_m}size#{$_v}sm [#{var.$mobile-label-attr}] {
-    padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-sm, 2)});
+  &#{core.bem("table", null, "size", "sm")} [#{var.$mobile-label-attr}] {
+    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding-sm, 2)});
 
     &::before {
-      padding: var.$padding-sm;
+      padding: core.css("table-padding-sm");
     }
   }
 
-  &.#{$_b}table#{$_m}size#{$_v}lg [#{var.$mobile-label-attr}] {
-    padding-left: calc(#{var.$mobile-label-width} + #{list.nth(var.$padding-lg, 2)});
+  &#{core.bem("table", null, "size", "lg")} [#{var.$mobile-label-attr}] {
+    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding-lg, 2)});
 
     &::before {
-      padding: var.$padding-lg;
+      padding: core.css("table-padding-lg");
     }
   }
 
-  &.#{$_b}table#{$_m}style#{$_v}bordered {
-    border: var.$border;
+  &#{core.bem("table", null, "style", "bordered")} {
+    border: core.css("table-border");
 
     td {
       border: none;
@@ -67,15 +63,15 @@ $_v: var.$prefix-modifier-value;
 
     td + td,
     th + td {
-      border-top: var.$border-alt;
+      border-top: core.css("table-border-alt");
     }
 
     [#{var.$mobile-label-attr}]::before {
-      border-right: var.$border;
+      border-right: core.css("table-border");
     }
 
     tr + tr {
-      border-top: var.$border;
+      border-top: core.css("table-border");
     }
   }
 }

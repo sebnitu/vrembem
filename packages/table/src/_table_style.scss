@@ -1,14 +1,10 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}table#{$_m}style#{$_v}rowed {
-  border-bottom: var.$border;
+#{core.bem("table", null, "style", "rowed")} {
+  border-bottom: core.css("table-border");
 
   tr {
-    border-top: var.$border;
+    border-top: core.css("table-border");
   }
 
   th:first-child,
@@ -22,9 +18,9 @@ $_v: var.$prefix-modifier-value;
   }
 }
 
-.#{$_b}table#{$_m}style#{$_v}bordered {
+#{core.bem("table", null, "style", "bordered")} {
   th,
   td {
-    border: var.$border;
+    border: core.css("table-border");
   }
 }
