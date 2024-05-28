@@ -24,6 +24,7 @@ $output-list: $output !default;
 $output-pre: $output !default;
 $output-scroll-box: $output !default;
 $output-separator: $output !default;
+$output-sr-only: $output !default;
 $output-type: $output !default;
 
 // Base component classes
@@ -37,6 +38,7 @@ $class-list: "list" !default;
 $class-pre: "pre" !default;
 $class-scroll-box: "scroll-box" !default;
 $class-separator: "sep" !default;
+$class-sr-only: "sr-only" !default;
 $class-type: "type" !default;
 
 // Normalize
