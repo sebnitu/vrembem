@@ -1,11 +1,10 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("table", null, "size", "sm")} {
   th,
   td,
   caption {
-    padding: var.$padding-sm;
+    padding: core.css("table-padding-sm");
   }
 }
 
@@ -13,6 +12,6 @@
   th,
   td,
   caption {
-    padding: var.$padding-lg;
+    padding: core.css("table-padding-lg");
   }
 }

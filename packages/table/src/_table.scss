@@ -1,26 +1,25 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("table")} {
   width: 100%;
   background-color: core.css("table-background");
-  color: var.$color;
+  color: core.css("table-color");;
   text-align: left;
 
   th,
   td,
   caption {
-    padding: var.$padding;
+    padding: core.css("table-padding");;
     vertical-align: top;
   }
 
   th {
-    background-color: var.$th-background;
-    font-weight: var.$th-font-weight;
+    background-color: core.css("table-th-background");
+    font-weight: core.css("table-th-font-weight");
   }
 
   td {
-    background-color: var.$td-background;
+    background-color: core.css("table-td-background");
   }
 }
 

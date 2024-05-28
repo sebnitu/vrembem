@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("table", null, "hover")} {
   tr {
@@ -11,7 +10,7 @@
   tbody tr:focus {
     z-index: 2;
     background-color: core.css("table-background-hover");
-    box-shadow: var.$shadow-hover;
-    color: var.$color-hover;
+    box-shadow: core.css("table-shadow-hover");
+    color: core.css("table-color-hover");
   }
 }
