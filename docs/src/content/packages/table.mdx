@@ -2,10 +2,11 @@
 title: Table
 description: "A table component for displaying HTML tables."
 package: "@vrembem/table"
-state: "loader"
+state: "check"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Table
 
@@ -579,4 +580,80 @@ Adds zebra styled rows to a table to help increase its readability. This is done
 
 ## Customization
 
-TBD
+Tables are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+
+<DocBlock name="CSS Variables" type="file" src="table/src/_root.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("table-padding", var.$padding);
+    @include core.css("table-padding-sm", var.$padding-sm);
+    @include core.css("table-padding-lg", var.$padding-lg);
+    @include core.css("table-background", var.$background);
+    @include core.css("table-background-zebra", var.$background-zebra);
+    @include core.css("table-background-hover", var.$background-hover);
+    @include core.css("table-foreground", var.$foreground);
+    @include core.css("table-foreground-hover", var.$foreground-hover);
+    @include core.css("table-border", var.$border);
+    @include core.css("table-border-alt", var.$border-alt);
+    @include core.css("table-mobile-label-width", var.$mobile-label-width);
+    @include core.css("table-mobile-label-background", var.$mobile-label-background);
+    @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
+  }
+
+  @include theme.output("table");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="table/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  $breakpoints: core.$breakpoints !default;
+  $padding: core.$padding !default;
+  $padding-sm: core.$padding-sm !default;
+  $padding-lg: core.$padding-lg !default;
+  $background: null !default;
+  $background-zebra: null !default;
+  $background-hover: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $border: null !default;
+  $border-alt: null !default;
+
+  $mobile-label-attr: "data-mobile-label" !default;
+  $mobile-label-width: 8rem !default;
+  $mobile-label-background: null !default;
+  $mobile-label-foreground: null !default;
+
+  $theme-light: (
+    "background": theme.get("background"),
+    "background-zebra": theme.get("background-darker"),
+    "background-hover": palette.get("primary", 90),
+    "border": 1px solid theme.get("border-color"),
+    "border-alt": 1px dotted theme.get("border-color"),
+    "foreground": theme.get("foreground"),
+    "foreground-hover": null
+  ) !default;
+
+  $theme-dark: (
+    "background": theme.get("background"),
+    "background-zebra": theme.get("background-darker"),
+    "background-hover": palette.get("primary", 50%, 20%),
+    "border": 1px solid theme.get("border-color-dark"),
+    "border-alt": 1px dotted theme.get("border-color-dark"),
+    "foreground": theme.get("foreground"),
+    "foreground-hover": null
+  ) !default;
+
+  @include theme.set("light", "table", $theme-light);
+  @include theme.set("dark", "table", $theme-dark);
+  ```
+</DocBlock>
