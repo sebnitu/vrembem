@@ -1,50 +1,46 @@
 @use "sass:map";
-
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}section {
+#{core.bem("section")} {
   position: relative;
   display: flex;
   flex-direction: column;
   padding: map.get(var.$padding, "base");
 }
 
-.#{$_b}section#{$_e}container {
+#{core.bem("section", "container")} {
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: var.$max-width;
+  max-width: core.css("section-max-width");
   margin: auto;
 }
 
 @each $bp, $value in var.$padding {
   @if ($bp != "base") {
     @include core.media-min($bp) {
-      .#{$_b}section {
+      #{core.bem("section")} {
         padding: $value;
       }
     }
   }
 }
 
-.#{$_b}section#{$_e}background,
-.#{$_b}section#{$_e}screen {
+#{core.bem("section", "background")},
+#{core.bem("section", "screen")} {
   @include core.size(100%);
   position: absolute;
   inset: 0;
 }
 
-.#{$_b}section#{$_e}background {
+#{core.bem("section", "background")} {
   object-fit: cover;
   z-index: 1;
 }
 
-.#{$_b}section#{$_e}screen {
+#{core.bem("section", "screen")} {
   z-index: 2;
-  background: var.$screen-background;
-  opacity: var.$screen-opacity;
+  background: core.css("section-screen-background");
+  opacity: core.css("section-screen-opacity");
 }

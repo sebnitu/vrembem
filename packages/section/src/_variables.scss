@@ -1,11 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $max-width: 70rem !default;
 $screen-background: palette.get("neutral", 10) !default;
 $screen-opacity: 0.7 !default;
