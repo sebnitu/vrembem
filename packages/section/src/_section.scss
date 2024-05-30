@@ -6,7 +6,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: map.get(var.$padding, "base");
+  padding: core.css("section-padding");
   background: core.css("section-background");
   color: core.css("section-foreground");
 }
@@ -17,16 +17,6 @@
   width: 100%;
   max-width: core.css("section-max-width");
   margin: auto;
-}
-
-@each $bp, $value in var.$padding {
-  @if ($bp != "base") {
-    @include core.media-min($bp) {
-      #{core.bem("section")} {
-        padding: $value;
-      }
-    }
-  }
 }
 
 #{core.bem("section", "image")},

@@ -9,6 +9,7 @@
   @include core.css("section-image-opacity", var.$image-opacity);
   @include core.css("section-screen-background", var.$screen-background);
   @include core.css("section-screen-opacity", var.$screen-opacity);
+  @include core.css-query("section-padding", var.$padding, var.$breakpoints);
 }
 
 @include theme.output("section");
