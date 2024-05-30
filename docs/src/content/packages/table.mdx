@@ -351,7 +351,7 @@ When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile frie
   ```
 </CodeExample>
 
-The mobile label value will be truncated if it exceeds the width set by `$mobile-label-width`, so keep the label terse when possible.
+The mobile label value will be truncated if it exceeds the width set by `$mobile-label-width`, so keep the label short when possible.
 
 **Available Variants**
 
@@ -591,8 +591,6 @@ Tables are primarily customized using CSS variables but can also be modified usi
 
   #{theme.$root-selector} {
     @include core.css("table-padding", var.$padding);
-    @include core.css("table-padding-sm", var.$padding-sm);
-    @include core.css("table-padding-lg", var.$padding-lg);
     @include core.css("table-background", var.$background);
     @include core.css("table-background-zebra", var.$background-zebra);
     @include core.css("table-background-hover", var.$background-hover);
@@ -601,6 +599,7 @@ Tables are primarily customized using CSS variables but can also be modified usi
     @include core.css("table-border", var.$border);
     @include core.css("table-border-alt", var.$border-alt);
     @include core.css("table-mobile-label-width", var.$mobile-label-width);
+    @include core.css("table-mobile-label-spacing", var.$mobile-label-spacing);
     @include core.css("table-mobile-label-background", var.$mobile-label-background);
     @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
   }
@@ -617,9 +616,7 @@ Tables are primarily customized using CSS variables but can also be modified usi
   @use "@vrembem/core/theme";
 
   $breakpoints: core.$breakpoints !default;
-  $padding: core.$padding !default;
-  $padding-sm: core.$padding-sm !default;
-  $padding-lg: core.$padding-lg !default;
+  $padding: 0.5em 0.75em !default;
   $background: null !default;
   $background-zebra: null !default;
   $background-hover: null !default;
@@ -628,11 +625,24 @@ Tables are primarily customized using CSS variables but can also be modified usi
   $border: null !default;
   $border-alt: null !default;
 
+  // table_responsive
   $mobile-label-attr: "data-mobile-label" !default;
-  $mobile-label-width: 8rem !default;
+  $mobile-label-width: 8em !default;
+  $mobile-label-spacing: core.get-side($padding, left) !default;
   $mobile-label-background: null !default;
   $mobile-label-foreground: null !default;
 
+  // table_size_sm
+  $size-sm-padding: 0.25em 0.5em !default;
+  $size-sm-mobile-label-width: $mobile-label-width !default;
+  $size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
+
+  // table_size_lg
+  $size-lg-padding: 1em 1.25em !default;
+  $size-lg-mobile-label-width: $mobile-label-width !default;
+  $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
+
+  // Theme maps
   $theme-light: (
     "background": theme.get("background"),
     "background-zebra": theme.get("background-darker"),
