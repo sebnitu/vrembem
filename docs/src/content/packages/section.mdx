@@ -2,7 +2,7 @@
 title: Section
 description: "A container component for wrapping distinct sections of a page."
 package: "@vrembem/section"
-state: "loader"
+state: "check"
 ---
 
 import CodeExample from "../../components/CodeExample.astro";
@@ -110,7 +110,7 @@ Section screens and backgrounds are displayed behind the section container. Thes
 
 ## section_size_[key]
 
-Sections have a few size modifier options to help adjust the space that is used based on how prominent the section needs to be. These are optimized for all screen sizes to avoid oversized areas on mobile. These values are built using the [`$padding-scale`](#padding-scale) map.
+Sections have a few size modifier options to help adjust the space that is used based on how prominent the section needs to be. These are optimized for all screen sizes to avoid oversized areas on mobile.
 
 <CodeExample lang="html" flush={true}>
   <Fragment slot="output">
@@ -137,7 +137,6 @@ Sections have a few size modifier options to help adjust the space that is used 
 
 **Available Variants**
 
-* `section_size_xs`
 * `section_size_sm`
 * `section_size_md`
 * `section_size_lg`
@@ -150,13 +149,79 @@ Sections are primarily customized using CSS variables but can also be modified u
 <DocBlock name="CSS Variables" type="file" src="section/src/_root.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root_selector} {
+    @include core.css("section-max-width", var.$max-width);
+    @include core.css("section-background", var.$background);
+    @include core.css("section-foreground", var.$foreground);
+    @include core.css("section-image-opacity", var.$image-opacity);
+    @include core.css("section-screen-background", var.$screen-background);
+    @include core.css("section-screen-opacity", var.$screen-opacity);
+    @include core.css-query("section-padding", var.$padding, var.$breakpoints);
+  }
+
+  @include theme.output("section");
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" type="file" src="section/src/_variables.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+
+  $breakpoints: core.$breakpoints !default;
+  $max-width: 70rem !default;
+  $padding: (
+    "sm": 1.5em,
+    "md": 2em 1.5em,
+    "lg": 3em 1.5em,
+  ) !default;
+  $background: null !default;
+  $foreground: null !default;
+  $image-opacity: 1 !default;
+  $screen-background: null !default;
+  $screen-opacity: null !default;
+
+  // section_size_[key]
+  $size-xs-padding: null !default;
+  $size-sm-padding: 1em !default;
+  $size-md-padding: (
+    "sm": 1.5em,
+    "md": 2em 1.5em,
+    "lg": 3em 1.5em
+  ) !default;
+  $size-lg-padding: (
+    "sm": 1.5em,
+    "md": 4em 1.5em,
+    "lg": 6em 1.5em
+  ) !default;
+  $size-xl-padding: (
+    "xs": 1.5em,
+    "sm": 3em 1.5em,
+    "md": 8em 2em,
+    "lg": 12em 2em
+  ) !default;
+
+  // Theme maps
+  $theme-light: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "screen-background": theme.get("background"),
+    "screen-opacity": 0.8
+  ) !default;
+
+  $theme-dark: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "screen-background": theme.get("background"),
+    "screen-opacity": 0.7
+  ) !default;
+
+  @include theme.set("light", "section", $theme-light);
+  @include theme.set("dark", "section", $theme-dark);
   ```
 </DocBlock>
