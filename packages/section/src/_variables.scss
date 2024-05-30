@@ -36,14 +36,14 @@ $size-xl-padding: (
 
 // Theme maps
 $theme-light: (
-  "background": theme.get("background"),
+  "background": transparent,
   "foreground": theme.get("foreground"),
   "screen-background": theme.get("background"),
   "screen-opacity": 0.8
 ) !default;
 
 $theme-dark: (
-  "background": theme.get("background"),
+  "background": transparent,
   "foreground": theme.get("foreground"),
   "screen-background": theme.get("background"),
   "screen-opacity": 0.7
