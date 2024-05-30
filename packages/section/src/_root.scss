@@ -7,7 +7,7 @@
   @include core.css("section-background", var.$background);
   @include core.css("section-foreground", var.$foreground);
   @include core.css("section-image-opacity", var.$image-opacity);
-  @include core.css("section-screen-color", var.$screen-color);
+  @include core.css("section-screen-background", var.$screen-background);
   @include core.css("section-screen-opacity", var.$screen-opacity);
 }
 

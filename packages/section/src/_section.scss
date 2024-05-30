@@ -44,6 +44,6 @@
 
 #{core.bem("section", "screen")} {
   z-index: 2;
-  background: core.css("section-screen-color");
+  background: core.css("section-screen-background");
   opacity: core.css("section-screen-opacity");
 }
