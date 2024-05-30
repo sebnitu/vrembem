@@ -2,9 +2,10 @@
 interface Props {
   lang?: string;
   tabs?: boolean;
+  flush?: boolean;
 }
 
-const { lang = "html", tabs = false } = Astro.props;
+const { lang = "html", tabs = false, flush = false } = Astro.props;
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
 ---
@@ -12,7 +13,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 <div class="code-example">
   {
     Astro.slots.has("output") && (
-      <div class="code-example__output">
+      <div class={`code-example__output ${flush ? 'padding-none' : ''}`.trim()}>
         <slot name="output" />
       </div>
     )

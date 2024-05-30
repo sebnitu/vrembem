@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   padding: map.get(var.$padding, "base");
+  background: core.css("section-background");
+  color: core.css("section-foreground");
 }
 
 #{core.bem("section", "container")} {
@@ -27,20 +29,21 @@
   }
 }
 
-#{core.bem("section", "background")},
+#{core.bem("section", "image")},
 #{core.bem("section", "screen")} {
   @include core.size(100%);
   position: absolute;
   inset: 0;
 }
 
-#{core.bem("section", "background")} {
+#{core.bem("section", "image")} {
   object-fit: cover;
   z-index: 1;
+  opacity: core.css("section-image-opacity");
 }
 
 #{core.bem("section", "screen")} {
   z-index: 2;
-  background: core.css("section-screen-background");
+  background: core.css("section-screen-color");
   opacity: core.css("section-screen-opacity");
 }
