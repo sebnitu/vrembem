@@ -32,8 +32,8 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
 // Theme maps
 $theme-light: (
   "background": theme.get("background"),
-  "background-zebra": theme.get("background-darker"),
-  "background-hover": palette.get("primary", 90),
+  "background-zebra": palette.get("neutral", 50%, 6%),
+  "background-hover": palette.get("primary", 50%, 20%),
   "border": 1px solid theme.get("border-color"),
   "border-alt": 1px dotted theme.get("border-color"),
   "foreground": theme.get("foreground"),
@@ -42,7 +42,7 @@ $theme-light: (
 
 $theme-dark: (
   "background": theme.get("background"),
-  "background-zebra": theme.get("background-darker"),
+  "background-zebra": palette.get("neutral", 50%, 10%),
   "background-hover": palette.get("primary", 50%, 20%),
   "border": 1px solid theme.get("border-color-dark"),
   "border-alt": 1px dotted theme.get("border-color-dark"),
