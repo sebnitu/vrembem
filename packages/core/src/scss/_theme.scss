@@ -153,12 +153,12 @@ $themes: (
 
   // If the value is replacing a map, handle the deep-merge.
   @if (meta.type-of($value) == "map") {
-      $new: $value;
-      $old: map.get($themes, $props...);
-      @if (meta.type-of($old) == "map") {
-        $new: map.deep-merge($old, $value);
-      }
-      $themes: map.set($themes, list.append($props, $new)...) !global;
+    $new: $value;
+    $old: map.get($themes, $props...);
+    @if (meta.type-of($old) == "map") {
+      $new: map.deep-merge($old, $value);
+    }
+    $themes: map.set($themes, list.append($props, $new)...) !global;
   }
   
   // Otherwise, just add the value using the $args list.
