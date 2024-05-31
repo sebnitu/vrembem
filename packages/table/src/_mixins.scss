@@ -20,7 +20,7 @@
 
   [#{var.$mobile-label-attr}] {
     position: relative;
-    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding, 2)});
+    padding-left: calc(core.css("table-mobile-label-width") + core.css("table-mobile-label-spacing"));
     white-space: normal;
 
     &::before {
@@ -35,22 +35,6 @@
       background-color: core.css("table-mobile-label-background");
       color: core.css("table-mobile-label-foreground");
       font-weight: core.$font-weight-bold;
-    }
-  }
-
-  &#{core.bem("table", null, "size", "sm")} [#{var.$mobile-label-attr}] {
-    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding-sm, 2)});
-
-    &::before {
-      padding: core.css("table-padding-sm");
-    }
-  }
-
-  &#{core.bem("table", null, "size", "lg")} [#{var.$mobile-label-attr}] {
-    padding-left: calc(core.css("table-mobile-label-width") + #{list.nth(var.$padding-lg, 2)});
-
-    &::before {
-      padding: core.css("table-padding-lg");
     }
   }
 

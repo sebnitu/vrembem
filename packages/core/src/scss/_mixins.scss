@@ -1,20 +1,54 @@
 @use "sass:map";
+@use "sass:meta";
+@use "sass:list";
 
 @use "./prefix" as prefix;
 @use "./variables" as var;
 
-// Output a CSS variable if a value is provided.
+/// Output a CSS variable if a value is provided.
 /// @param {String} $name - The name to use in the CSS variable property.
 /// @param {All} $value - The value of the CSS variable. Can be any valid CSS property value.
-/// @output CSS Variable or nothing.
+/// @output CSS variable or nothing.
 @mixin css($name, $value) {
   @if ($value) {
     --#{prefix.$variable}#{$name}: #{$value};
   }
 }
 
+/// Output a dynamic CSS variable using maps and breakpoints.
+/// @param {String} $name - The name to use in the CSS variable property.
+/// @param {Map | All} $value - The value of the CSS variable or a map of valid variables with breakpoints as the key.
+/// @param {Map} $breakpoints - A valid breakpoints map. See: core.$breakpoints.
+/// @output A default CSS variable and CSS variables in media queries.
+@mixin css-query($name, $value, $breakpoints) {
+  // If padding is not a map, set the CSS var.
+  @if meta.type-of($value) != 'map' {
+    @include css($name, $value);
+  }
+  // Else padding is a map, loop through the breakpoints and output CSS var.
+  @else {
+    // Get the first item from breakpoints.
+    $_firstKey: list.nth(list.nth($value, 1), 1);
+    // Output the fist padding value in the map as the base CSS var.
+    @include css($name, map.get($value, $_firstKey));
+    // Loop through the breakpoints.
+    @each $key, $bpValue in $breakpoints {
+      // If key matches padding first key, skip it. We already output it.
+      @if $key != $_firstKey {
+        // If the breakpoint key exists in the padding map...
+        @if map.has-key($value, $key) {
+          // Output the media query with new CSS variable value.
+          @include media-min($bpValue) {
+            @include css($name, map.get($value, $key));
+          }
+        }
+      }
+    }
+  }
+}
+
 /// A media query mixin that defines a query using max-width. You can pass in a
-/// key to the `$breakpoints()` maps to access that value, or pass a value to
+/// key to the `$breakpoints` maps to access that value, or pass a value to
 /// create your media query. This mixin will shave a pixel off your breakpoint
 /// values so that it never overlaps with a min-width usage.
 /// @content Content to output in media query.
@@ -35,7 +69,7 @@
 }
 
 /// A media query mixin that defines a query using min-width. You can pass in a
-/// key to the `$breakpoints()` map to access that value, or pass a value to
+/// key to the `$breakpoints` map to access that value, or pass a value to
 /// create your media query.
 /// @content Content to output in media query.
 /// @param {Number | String} $point

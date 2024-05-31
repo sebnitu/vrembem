@@ -1,0 +1,15 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root_selector} {
+  @include core.css("section-max-width", var.$max-width);
+  @include core.css("section-background", var.$background);
+  @include core.css("section-foreground", var.$foreground);
+  @include core.css("section-image-opacity", var.$image-opacity);
+  @include core.css("section-screen-background", var.$screen-background);
+  @include core.css("section-screen-opacity", var.$screen-opacity);
+  @include core.css-query("section-padding", var.$padding, var.$breakpoints);
+}
+
+@include theme.output("section");

@@ -1,23 +1,32 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+@if var.$size-xs-padding {
+  #{core.bem("section", null, "size", "xs")} {
+    @include core.css-query("section-padding", var.$size-xs-padding, var.$breakpoints);
+  }
+}
 
-@each $key, $group in var.$padding-scale {
-  @each $bp, $value in $group {
-    @if ($bp == "base") {
-      .#{$_b}section#{$_m}size#{$_v}#{$key} {
-        padding: $value;
-      }
-    }
-    @else {
-      @include core.media-min($bp) {
-        .#{$_b}section#{$_m}size#{$_v}#{$key} {
-          padding: $value;
-        }
-      }
-    }
+@if var.$size-sm-padding {
+  #{core.bem("section", null, "size", "sm")} {
+    @include core.css-query("section-padding", var.$size-sm-padding, var.$breakpoints);
+  }
+}
+
+@if var.$size-md-padding {
+  #{core.bem("section", null, "size", "md")} {
+    @include core.css-query("section-padding", var.$size-md-padding, var.$breakpoints);
+  }
+}
+
+@if var.$size-lg-padding {
+  #{core.bem("section", null, "size", "lg")} {
+    @include core.css-query("section-padding", var.$size-lg-padding, var.$breakpoints);
+  }
+}
+
+@if var.$size-xl-padding {
+  #{core.bem("section", null, "size", "xl")} {
+    @include core.css-query("section-padding", var.$size-xl-padding, var.$breakpoints);
   }
 }

@@ -1,45 +1,53 @@
 @use "@vrembem/core";
-@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
+$breakpoints: core.$breakpoints !default;
 $max-width: 70rem !default;
-$screen-background: palette.get("neutral", 10) !default;
-$screen-opacity: 0.7 !default;
-
 $padding: (
-  "base": 1.5em,
+  "sm": 1.5em,
+  "md": 2em 1.5em,
+  "lg": 3em 1.5em,
+) !default;
+$background: null !default;
+$foreground: null !default;
+$image-opacity: 1 !default;
+$screen-background: null !default;
+$screen-opacity: null !default;
+
+// section_size_[key]
+$size-xs-padding: null !default;
+$size-sm-padding: 1em !default;
+$size-md-padding: (
+  "sm": 1.5em,
   "md": 2em 1.5em,
   "lg": 3em 1.5em
 ) !default;
-
-$padding-scale: (
-  "xs": (
-    "base": 0,
-    "md": 0,
-    "lg": 0
-  ),
-  "sm": (
-    "base": 1em,
-    "md": 1em,
-    "lg": 1em
-  ),
-  "md": (
-    "base": 1.5em,
-    "md": 2em 1.5em,
-    "lg": 3em 1.5em
-  ),
-  "lg": (
-    "base": 1.5em,
-    "md": 4em 1.5em,
-    "lg": 6em 1.5em
-  ),
-  "xl": (
-    "base": 3em 1.5em,
-    "md": 8em 2em,
-    "lg": 12em 2em
-  )
+$size-lg-padding: (
+  "sm": 1.5em,
+  "md": 4em 1.5em,
+  "lg": 6em 1.5em
 ) !default;
+$size-xl-padding: (
+  "xs": 1.5em,
+  "sm": 3em 1.5em,
+  "md": 8em 2em,
+  "lg": 12em 2em
+) !default;
+
+// Theme maps
+$theme-light: (
+  "background": transparent,
+  "foreground": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.8
+) !default;
+
+$theme-dark: (
+  "background": transparent,
+  "foreground": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.7
+) !default;
+
+@include theme.set("light", "section", $theme-light);
+@include theme.set("dark", "section", $theme-dark);

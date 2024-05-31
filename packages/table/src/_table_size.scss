@@ -1,10 +1,13 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
 #{core.bem("table", null, "size", "sm")} {
   th,
   td,
   caption {
-    padding: core.css("table-padding-sm");
+    @include core.css("table-padding", var.$size-sm-padding);
+    @include core.css("table-mobile-label-width", var.$size-sm-mobile-label-width);
+    @include core.css("table-mobile-label-spacing", var.$size-sm-mobile-label-spacing);
   }
 }
 
@@ -12,6 +15,8 @@
   th,
   td,
   caption {
-    padding: core.css("table-padding-lg");
+    @include core.css("table-padding", var.$size-lg-padding);
+    @include core.css("table-mobile-label-width", var.$size-lg-mobile-label-width);
+    @include core.css("table-mobile-label-spacing", var.$size-lg-mobile-label-spacing);
   }
 }

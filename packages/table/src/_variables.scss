@@ -3,9 +3,7 @@
 @use "@vrembem/core/theme";
 
 $breakpoints: core.$breakpoints !default;
-$padding: core.$padding !default;
-$padding-sm: core.$padding-sm !default;
-$padding-lg: core.$padding-lg !default;
+$padding: 0.5em 0.75em !default;
 $background: null !default;
 $background-zebra: null !default;
 $background-hover: null !default;
@@ -14,15 +12,28 @@ $foreground-hover: null !default;
 $border: null !default;
 $border-alt: null !default;
 
+// table_responsive
 $mobile-label-attr: "data-mobile-label" !default;
-$mobile-label-width: 8rem !default;
+$mobile-label-width: 8em !default;
+$mobile-label-spacing: core.get-side($padding, left) !default;
 $mobile-label-background: null !default;
 $mobile-label-foreground: null !default;
 
+// table_size_sm
+$size-sm-padding: 0.25em 0.5em !default;
+$size-sm-mobile-label-width: $mobile-label-width !default;
+$size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
+
+// table_size_lg
+$size-lg-padding: 1em 1.25em !default;
+$size-lg-mobile-label-width: $mobile-label-width !default;
+$size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
+
+// Theme maps
 $theme-light: (
   "background": theme.get("background"),
-  "background-zebra": theme.get("background-darker"),
-  "background-hover": palette.get("primary", 90),
+  "background-zebra": palette.get("neutral", 50%, 6%),
+  "background-hover": palette.get("primary", 50%, 20%),
   "border": 1px solid theme.get("border-color"),
   "border-alt": 1px dotted theme.get("border-color"),
   "foreground": theme.get("foreground"),
@@ -31,7 +42,7 @@ $theme-light: (
 
 $theme-dark: (
   "background": theme.get("background"),
-  "background-zebra": theme.get("background-darker"),
+  "background-zebra": palette.get("neutral", 50%, 10%),
   "background-hover": palette.get("primary", 50%, 20%),
   "border": 1px solid theme.get("border-color-dark"),
   "border-alt": 1px dotted theme.get("border-color-dark"),
