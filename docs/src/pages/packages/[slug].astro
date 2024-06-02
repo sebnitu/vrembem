@@ -34,7 +34,7 @@ const layout = {
 
 <Base title={entry.data.title} {layout}>
   <div slot="drawer">
-    <Navi {entries} collection="packages" menuClass="layout__menu" />
+    <Navi {entries} collection="packages" />
   </div>
   <div slot="aside">
     <OnThisPage {headings} />
@@ -51,6 +51,7 @@ const layout = {
   import { headerAnchor } from "../../modules/headerAnchor";
   import { tabs } from "../../modules/tabs";
   import { toggle } from "../../modules/toggle";
+  import "../../modules/currentViewport";
 
   headerAnchor.mount();
   tabs.mount();
