@@ -1,0 +1,25 @@
+@use "@vrembem/core/palette";
+
+.menu_otp {
+  .menu__action {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.is-active::before {
+      content: "";
+      position: absolute;
+      top: calc(50% - 3px);
+      left: 0;
+      width: 6px;
+      height: 6px;
+      background: palette.get("primary");
+      border-radius: 1rem;
+    }
+  }
+
+  .menu {
+    margin-left: 1rem;
+  }
+}

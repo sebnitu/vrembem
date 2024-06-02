@@ -20,7 +20,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
 
 <nav>
   <h2 class="sr-only">{title}</h2>
-  <ul class={`menu${menuClass ? " " + menuClass : ""}`}>
+  <ul class={`menu menu_collection ${menuClass}`.trim()}>
     <li class="menu__item">
       <a
         class={cp.classes(`/${collection}`)} 
