@@ -83,7 +83,9 @@ const isFile = (type === "file");
             }
           </div>
           <hr class="sep" />
-          <slot />
+          <div class="type">
+            <slot />
+          </div>
         </div>
       )
     }
