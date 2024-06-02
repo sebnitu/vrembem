@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 @use "./root";
 
 .layout {
@@ -71,6 +72,11 @@
     scroll-margin-top: calc(var(--layout-navibar-height) + 1rem);
   }
 
+  h3 {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
   @media (min-width: root.$bp-aside) {
     width: calc(100% - (var(--layout-aside-width) + 4rem));
   }
@@ -132,17 +138,5 @@
   .is-opening ~ &,
   .is-closing ~ & {
     inset: 0;
-  }
-}
-
-/**
- * Layout menu
- */
-
-.layout__menu {
-  margin-top: 0.5rem;
-
-  .menu__action.is-active {
-    background: var(--vb-background);
   }
 }
