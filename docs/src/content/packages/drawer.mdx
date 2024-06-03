@@ -61,7 +61,7 @@ Drawers are composed using classes and data attributes for their triggers. The b
   <div class="drawer-frame">
 
     <!-- The drawer element -->
-    <aside id="drawer-id" class="drawer">
+    <aside id="[unique-id]" class="drawer">
       <div class="drawer__dialog">
         ...
       </div>
@@ -83,9 +83,9 @@ Drawer triggers are defined using three data attributes:
 
 <CodeExample lang="html">
   ```html
-  <button data-drawer-open="drawer-id">...</button>
-  <button data-drawer-close="drawer-id">...</button>
-  <button data-drawer-toggle="drawer-id">...</button>
+  <button data-drawer-open="[unique-id]">...</button>
+  <button data-drawer-close="[unique-id]">...</button>
+  <button data-drawer-toggle="[unique-id]">...</button>
   ```
 </CodeExample>
 
@@ -118,7 +118,7 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
     </div>
   </Fragment>
   ```html
-  <aside id="drawer-id" class="drawer">
+  <aside id="[unique-id]" class="drawer">
     <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
       <div class="dialog__header">
         <h2 id="dialog-title">...</h2>
@@ -152,19 +152,13 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
         </div>
       </aside>
       <div class="drawer-main padding">
-        <ul class="list">
-          <li>
-            <button class="link" data-drawer-toggle="drawer-3">
-              Toggle
-            </button>
-          </li>
-        </ul>
+        <button class="link" data-drawer-toggle="drawer-3">Toggle</button>
       </div>
     </div>
   </Fragment>
   <Fragment slot="tab-html">
     ```html
-    <aside id="drawer-id" class="drawer drawer_modal">
+    <aside id="[unique-id]" class="drawer drawer_modal">
       ...
     </aside>
     ```
@@ -218,12 +212,12 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   </Fragment>
   ```html
   <!-- Switches to modal below 1200px viewports -->
-  <aside id="drawer-id" class="drawer" data-drawer-breakpoint="1200px">
+  <aside id="[unique-id]" class="drawer" data-drawer-breakpoint="1200px">
     ...
   </aside>
 
   <!-- Switches to modal below "md" breakpoint viewports -->
-  <aside id="drawer-id" class="drawer" data-drawer-breakpoint="md">
+  <aside id="[unique-id]" class="drawer" data-drawer-breakpoint="md">
     ...
   </aside>
   ```
@@ -298,13 +292,13 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
   ```html
   <div class="drawer-frame">
     <!-- Focuses the drawer dialog on open -->
-    <aside id="drawer-id" class="drawer">
+    <aside id="[unique-id]" class="drawer">
       <div class="drawer__dialog" tabindex="-1">
         ...
       </div>
     </aside>
     <!-- Focuses an inner element on open -->
-    <aside id="drawer-id" class="drawer">
+    <aside id="[unique-id]" class="drawer">
       <div class="drawer__dialog">
         <input data-focus type="text" />
       </div>
@@ -312,7 +306,7 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
     
     <div class="drawer-main">
       <!-- Return focus to toggle on close -->
-      <button data-drawer-toggle="drawer-id">...</button>
+      <button data-drawer-toggle="[unique-id]">...</button>
     </div>
   </div>
   ```
@@ -334,8 +328,6 @@ Drawers while in their modal state follow a set of patterns expected from other 
 4. When a modal drawer is closed, focus is returned to the initial trigger element that activated the dialog.
 
 To take full advantage of modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
-
-> Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
 
 **Example**
 
@@ -369,18 +361,12 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
         </div>
       </aside>
       <div class="drawer-main padding">
-        <ul class="list">
-          <li>
-            <button class="link" data-drawer-toggle="drawer-8">
-              Toggle
-            </button>
-          </li>
-        </ul>
+        <button class="link" data-drawer-toggle="drawer-8">Toggle</button>
       </div>
      </div>
   </Fragment>
   ```html
-  <aside id="drawer-id" class="drawer drawer_modal">
+  <aside id="[unique-id]" class="drawer drawer_modal">
     ...
   </aside>
   ```
@@ -402,13 +388,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
         </div>
       </aside>
       <div class="drawer-main padding">
-        <ul class="list">
-          <li>
-            <button class="link" data-drawer-toggle="drawer-9">
-              Toggle
-            </button>
-          </li>
-        </ul>
+        <button class="link" data-drawer-toggle="drawer-9">Toggle</button>
       </div>
     </div>
   </Fragment>
@@ -522,7 +502,7 @@ Drawers are primarily customized using CSS variables but can also be modified us
 
 ## JavaScript usage
 
-After the drawer component has been instantiated the drawer object is returned with a robust API to help manage all the drawers on your page.
+After the drawer component has been instantiated the drawer object is returned with a robust API to help manage all drawer components on your page.
 
 <DocBlock name="drawer.collection" type="property" returns="array" src="core/src/js/Collection.js" line="3">
   Returns an array where all drawer objects are stored when registered. Each drawer object contains the following properties:
@@ -550,7 +530,7 @@ After the drawer component has been instantiated the drawer object is returned w
 </DocBlock>
 
 <DocBlock name="drawer.activeModal" type="property" returns="Object || undefined" src="drawer/src/js/index.js" line="29">
-  Returns the currently active modal drawer. Returns `undefined` if there is no modal drawer open.
+  Returns the currently active modal drawer. Returns `undefined` if there are no modal drawer open.
 </DocBlock>
 
 <DocBlock name="drawer.init" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
@@ -665,9 +645,9 @@ After the drawer component has been instantiated the drawer object is returned w
   ["value", "String || Object", "The value to search for within the collection."],
   ["key", "String (optional)", "The property key to search the value against (defaults to 'id')."]
 ]}>
-   Used to retrieve a registered drawer object from the collection. The value should match the key type to search by: e.g. to search by drawer elements, pass the drawer html node with a key of `'el'`. Defaults to `'id'`.
+  Used to retrieve a registered drawer entry from the collection. The value should match the key type to search by: e.g. to search by drawer elements, pass the drawer html node with a key of `'el'`. Defaults to `'id'`.
 
-   Returns the first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
+  Returns the first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
 
   <Fragment slot="example">
     ```js
@@ -682,7 +662,7 @@ After the drawer component has been instantiated the drawer object is returned w
   ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
   ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
 ]}>
-   Opens a drawer using the provided ID. Returns the drawer object that was opened.
+  Opens a drawer using the provided ID. Returns the drawer object that was opened.
 
   <Fragment slot="example">
     ```js
@@ -698,7 +678,7 @@ After the drawer component has been instantiated the drawer object is returned w
   ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
   ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
 ]}>
-   Closes a drawer using the provided ID. Returns the drawer object that was closed.
+  Closes a drawer using the provided ID. Returns the drawer object that was closed.
 
   <Fragment slot="example">
     ```js
@@ -725,7 +705,7 @@ After the drawer component has been instantiated the drawer object is returned w
 
 ### Custom Events
 
-The drawer component also exposes some custom events for hooking into the drawer lifecycle. All drawer events are fired on the root drawer element (i.e. at the `<aside id="drawer-id" class="drawer">`).
+The drawer component also exposes some custom events for hooking into the drawer lifecycle. All drawer events are fired on the root drawer element (i.e. at the `<aside id="[unique-id]" class="drawer">`).
 
 - `drawer:opened` Emits when a drawer has opened.
 - `drawer:closed` Emits when a drawer has closed.
