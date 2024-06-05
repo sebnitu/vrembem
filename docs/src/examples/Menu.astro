@@ -1,0 +1,105 @@
+---
+export interface Props {
+	name: string;
+}
+
+const { name } = Astro.props;
+
+---
+
+{ name == "utility" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Cut</span>
+        <span class="foreground-lighter">⌘X</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Copy</span>
+        <span class="foreground-lighter">⌘C</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Paste</span>
+        <span class="foreground-lighter">⌘V</span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Find</span>
+        <span class="foreground-lighter">⌘F</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Replace</span>
+        <span class="foreground-lighter">⌥⌘F</span>
+      </button>
+    </li>
+  </ul>
+)}
+
+{ name == "text" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Bold</span>
+        <span class="foreground-lighter">⌘B</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Italic</span> 
+        <span class="foreground-lighter">⌘I</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Underline</span>
+        <span class="foreground-lighter">⌘U</span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Paragraph Styles</span>
+        <span class="foreground-lighter arrow-right"></span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Align</span>
+        <span class="foreground-lighter arrow-right"></span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Line spacing</span>
+        <span class="foreground-lighter arrow-right"></span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Numbered lists</span>
+        <span class="foreground-lighter arrow-right"></span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">List options</span>
+        <span class="foreground-lighter arrow-right"></span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button class="menu__action">
+        <span class="menu__text">Clear formatting</span>
+        <span class="foreground-lighter">⌘/</span>
+      </button>
+    </li>
+  </ul>
+)}
