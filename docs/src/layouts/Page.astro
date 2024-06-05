@@ -27,14 +27,14 @@ const layout = {
   {
     layout.hasDrawer && (
       <div slot="drawer">
-        <Navi {entries} collection={collection} menuClass="layout__menu" />
+        <Navi {entries} collection={collection} />
       </div>
     )
   }
   {
     layout.hasAside && (
       <div slot="aside">
-        <OnThisPage {headings} menuClass="layout__menu" />
+        <OnThisPage {headings} />
       </div>
     )
   }
