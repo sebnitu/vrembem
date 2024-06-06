@@ -25,12 +25,83 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.7 to CHANGELOG.md
+chore(release): add v4.0.0-next.8 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.8 (2024-06-06)
+
+### :tada: New Feature
+* `core`, `section`, `table`
+  * [#1848](https://github.com/sebnitu/vrembem/pull/1848) Migrate the section component to new theme method
+* `base`
+  * [#1847](https://github.com/sebnitu/vrembem/pull/1847) Add sr-only class to base module
+* `checkbox`, `core`, `radio`, `switch`
+  * [#1817](https://github.com/sebnitu/vrembem/pull/1817) Apply CSS Variables to Checkbox, Radio and Switch form controls
+* `button`, `checkbox`, `core`, `input`, `table`
+  * [#1809](https://github.com/sebnitu/vrembem/pull/1809) Refactor palette get function to support hsl with alpha returns
+
+### :bug: Bug Fix
+* Other
+  * [#1838](https://github.com/sebnitu/vrembem/pull/1838) Fix error on Get Started page by adding drawer element conditional check
+* `button`
+  * [#1835](https://github.com/sebnitu/vrembem/pull/1835) Add light and dark themes to default button styles
+  * [#1781](https://github.com/sebnitu/vrembem/pull/1781) Button variable fixes and documentation update
+* `checkbox`, `core`
+  * [#1788](https://github.com/sebnitu/vrembem/pull/1788) Update checkbox documentation and expanded documentation features
+
+### :house: Refactor
+* `drawer`, `modal`
+  * [#1863](https://github.com/sebnitu/vrembem/pull/1863) Improve error messages on modal and drawer event handlers
+* `core`, `drawer`, `modal`, `popover`, `vrembem`
+  * [#1862](https://github.com/sebnitu/vrembem/pull/1862) Rename init and destroy methods to mount and unmount
+  * [#1827](https://github.com/sebnitu/vrembem/pull/1827) Convert to using double quotes instead of single for JS formatting
+* `core`, `drawer`, `modal`, `popover`
+  * [#1861](https://github.com/sebnitu/vrembem/pull/1861) Refactor cssVar core function to not require the double dash
+* `core`, `section`, `table`
+  * [#1848](https://github.com/sebnitu/vrembem/pull/1848) Migrate the section component to new theme method
+* `dialog`, `table`
+  * [#1839](https://github.com/sebnitu/vrembem/pull/1839) Migrate the table component to new theme method
+* `card`, `checkbox`, `core`, `dialog`, `notice`, `radio`, `switch`
+  * [#1834](https://github.com/sebnitu/vrembem/pull/1834) Update the mixin names for outputting a theme's CSS variables
+* `base`, `core`
+  * [#1833](https://github.com/sebnitu/vrembem/pull/1833) Improve inline code styles
+* `dialog`
+  * [#1832](https://github.com/sebnitu/vrembem/pull/1832) Migrate the dialog component to new theme method
+* `button`, `card`, `checkbox`, `core`, `radio`, `switch`
+  * [#1819](https://github.com/sebnitu/vrembem/pull/1819) Apply new BEM and CSS Variable functions/mixins to components
+* `button`, `checkbox`, `core`, `input`, `table`
+  * [#1809](https://github.com/sebnitu/vrembem/pull/1809) Refactor palette get function to support hsl with alpha returns
+* `base`, `card`, `core`
+  * [#1769](https://github.com/sebnitu/vrembem/pull/1769) Refactor card component and apply new docs format
+
+### :books: Documentation
+* Other
+  * [#1849](https://github.com/sebnitu/vrembem/pull/1849) Migrate drawer, modal and popover documentation to new format
+  * [#1838](https://github.com/sebnitu/vrembem/pull/1838) Fix error on Get Started page by adding drawer element conditional check
+  * [#1836](https://github.com/sebnitu/vrembem/pull/1836) Add skip to main content link in navibar
+  * [#1820](https://github.com/sebnitu/vrembem/pull/1820) Package documentation state
+  * [#1818](https://github.com/sebnitu/vrembem/pull/1818) Minor improvements to documentation UI
+  * [#1810](https://github.com/sebnitu/vrembem/pull/1810) Update docs UI to improve DocBlock
+  * [#1780](https://github.com/sebnitu/vrembem/pull/1780) Fix Astro hydration mismatch and remove Vue from docs
+  * [#1771](https://github.com/sebnitu/vrembem/pull/1771) Add missing component value in astro directive
+  * [#1770](https://github.com/sebnitu/vrembem/pull/1770) Add documentation for packages index
+* `base`
+  * [#1847](https://github.com/sebnitu/vrembem/pull/1847) Add sr-only class to base module
+* `checkbox`, `core`, `radio`, `switch`
+  * [#1817](https://github.com/sebnitu/vrembem/pull/1817) Apply CSS Variables to Checkbox, Radio and Switch form controls
+* `checkbox`, `core`
+  * [#1788](https://github.com/sebnitu/vrembem/pull/1788) Update checkbox documentation and expanded documentation features
+* `button`
+  * [#1781](https://github.com/sebnitu/vrembem/pull/1781) Button variable fixes and documentation update
+
+### :hammer: Chore
+* `modal`
+  * [#1768](https://github.com/sebnitu/vrembem/pull/1768) Improve ESlint config
 
 
 ## v4.0.0-next.7 (2024-04-07)
