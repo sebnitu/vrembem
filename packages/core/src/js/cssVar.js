@@ -4,7 +4,6 @@ import { getPrefix } from "./getPrefix";
  * Get the value of a CSS custom property (variable).
  * @param {String} property - The CSS custom property to query for.
  * @param {Node} [el=document.body] - The element to get computed styles from.
- * @param {Boolean} [prefix=true] - Whether or not to apply a CSS var prefix.
  * @return {String || Error} Return the CSS value or an error if none is found.
  */
 export function cssVar(property, el = document.body) {
