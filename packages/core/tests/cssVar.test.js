@@ -8,18 +8,22 @@ beforeEach(() => {
 });
 
 test("should return a CSS custom property", () => {
+  const data = cssVar("--background-color");
+  expect(data).toBe("pink");
+});
+
+test("should return a CSS custom property with no prefix defined", () => {
   const data = cssVar("background-color");
   expect(data).toBe("pink");
 });
 
-test("should return a CSS custom property using vrembem prefix", () => {
+test("should return a CSS custom property with vrembem prefix", () => {
   document.body.style.setProperty("--vb-prefix", "vb-");
-  const data = cssVar("--background-color");
+  const data = cssVar("background-color");
   expect(data).toBe("green");
 });
 
 test("should return a CSS custom property with an already appended prefix", () => {
-  document.body.style.setProperty("--vb-prefix", "vb-");
   const data = cssVar("--vb-background-color");
   expect(data).toBe("green");
 });

@@ -8,35 +8,30 @@ import { getPrefix } from "./getPrefix";
  * @return {String || Error} Return the CSS value or an error if none is found.
  */
 export function cssVar(property, el = document.body) {
-  // Get the prefix value.
-  const prefixValue = getPrefix();
-  if (prefixValue) {
-    // Remove leading "--" if it exists in the property string.
-    if (property.slice(0, 2) === "--") {
-      property = property.substring(2);
-    }
+  // If property doesn't have CSS variable double dash...
+  if (property.slice(0, 2) !== "--") {
+    // Get the prefix value.
+    const prefixValue = getPrefix();
 
-    // If there is a prefix value and it doesn't already exist on the prop...
-    if (property.slice(0, prefixValue.length) !== prefixValue) {
-      // Add the prefix.
+    // If a prefix was found, add it to the property name.
+    if (prefixValue) {
       property = `${prefixValue}${property}`;
     }
-  }
 
-  // Add the double dash for CSS variables if it's missing.
-  if (property.slice(0, 2) !== "--") {
+    // Add the double dash for CSS variables to the property name.
     property = `--${property}`;
   }
 
   // Get the CSS value.
   const cssValue = getComputedStyle(el).getPropertyValue(property).trim();
 
-  // If a CSS value was found...
+  // If a CSS value was found, return the CSS value.
   if (cssValue) {
-    // Return the CSS value.
     return cssValue;
-  } else {
-    // Else, return a blocking error.
+  }
+  
+  // Else, return a blocking error.
+  else {
     throw new Error(`CSS variable "${property}" was not found!`);
   }
 }
