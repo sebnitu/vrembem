@@ -24,7 +24,7 @@ describe("getBreakpoint()", () => {
   beforeAll(() => {
     document.body.innerHTML = markup;
     document.body.style.setProperty("--breakpoint-lg", "800px");
-    document.body.style.setProperty("--vrembem-breakpoint-lg", "900px");
+    document.body.style.setProperty("--asdf-breakpoint-lg", "900px");
   });
 
   it("should return a fixed breakpoint value", () => {
@@ -46,7 +46,7 @@ describe("getBreakpoint()", () => {
   });
 
   it("should return a breakpoint from a CSS variable with prefix", () => {
-    document.body.style.setProperty("--vrembem-prefix", "vrembem-");
+    document.body.style.setProperty("--vb-prefix", "asdf-");
     const el = document.querySelector("#drawer-3");
     const result = getBreakpoint.call(mockObj, el);
     expect(result).toBe("900px");

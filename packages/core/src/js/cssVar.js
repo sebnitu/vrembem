@@ -7,21 +7,19 @@ import { getPrefix } from "./getPrefix";
  * @param {Boolean} [prefix=true] - Whether or not to apply a CSS var prefix.
  * @return {String || Error} Return the CSS value or an error if none is found.
  */
-export function cssVar(property, el = document.body, prefix = true) {
-  // Apply CSS prefix if enabled.
-  if (prefix) {
-    // Get the prefix value.
-    const prefixValue = getPrefix();
-    if (prefixValue) {
-      // Remove leading "--" if it exists in the property string.
-      if (property.slice(0, 2) === "--") {
-        property = property.substring(2);
-      }
+export function cssVar(property, el = document.body) {
+  // Get the prefix value.
+  const prefixValue = getPrefix();
+  if (prefixValue) {
+    // Remove leading "--" if it exists in the property string.
+    if (property.slice(0, 2) === "--") {
+      property = property.substring(2);
+    }
 
-      // If there is a prefix value and it doesn't already exist on the prop...
-      if (property.slice(0, prefixValue.length) !== prefixValue) {
-        property = `--${prefixValue}${property}`;
-      }
+    // If there is a prefix value and it doesn't already exist on the prop...
+    if (property.slice(0, prefixValue.length) !== prefixValue) {
+      // Add the prefix.
+      property = `${prefixValue}${property}`;
     }
   }
 

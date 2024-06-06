@@ -2,6 +2,6 @@
 
 :root {
   @if (prefix.$variable) {
-    --vrembem-prefix: #{prefix.$variable};
+    --vb-prefix: #{prefix.$variable};
   }
 }

@@ -4,7 +4,7 @@ document.body.style.setProperty("--background-color", "pink");
 document.body.style.setProperty("--vb-background-color", "green");
 
 beforeEach(() => {
-  document.body.style.removeProperty("--vrembem-prefix");
+  document.body.style.removeProperty("--vb-prefix");
 });
 
 test("should return a CSS custom property", () => {
@@ -13,13 +13,13 @@ test("should return a CSS custom property", () => {
 });
 
 test("should return a CSS custom property using vrembem prefix", () => {
-  document.body.style.setProperty("--vrembem-prefix", "vb-");
+  document.body.style.setProperty("--vb-prefix", "vb-");
   const data = cssVar("--background-color");
   expect(data).toBe("green");
 });
 
 test("should return a CSS custom property with an already appended prefix", () => {
-  document.body.style.setProperty("--vrembem-prefix", "vb-");
+  document.body.style.setProperty("--vb-prefix", "vb-");
   const data = cssVar("--vb-background-color");
   expect(data).toBe("green");
 });
