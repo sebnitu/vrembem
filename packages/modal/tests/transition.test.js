@@ -3,7 +3,7 @@ import Modal from "../index";
 
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div id="modal-default" class="modal is-closed" style="--vb-modal-transition-duration: 300ms">
+  <div id="modal-default" class="modal is-closed" style="--modal-transition-duration: 300ms">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>
@@ -12,7 +12,7 @@ const markup = `
 
 const markupCustomState = `
   <button data-modal-open="modal-default">Modal Default</button>
-  <div id="modal-default" class="modal off" style="--vb-modal-transition-duration: 300ms">
+  <div id="modal-default" class="modal off" style="--modal-transition-duration: 300ms">
     <div class="modal__dialog">
       <button data-modal-close>Close</button>
     </div>

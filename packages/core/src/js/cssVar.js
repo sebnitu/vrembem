@@ -12,12 +12,22 @@ export function cssVar(property, el = document.body, prefix = true) {
   if (prefix) {
     // Get the prefix value.
     const prefixValue = getPrefix();
+    if (prefixValue) {
+      // Remove leading "--" if it exists in the property string.
+      if (property.slice(0, 2) === "--") {
+        property = property.substring(2);
+      }
 
-    // If there is a prefix value and it doesn't already exist on the var...
-    if (prefixValue && !property.includes(`--${prefixValue}`)) {
-      // Apply the prefix.
-      property = property.replace("--", `--${prefixValue}`);
+      // If there is a prefix value and it doesn't already exist on the prop...
+      if (property.slice(0, prefixValue.length) !== prefixValue) {
+        property = `--${prefixValue}${property}`;
+      }
     }
+  }
+
+  // Add the double dash for CSS variables if it's missing.
+  if (property.slice(0, 2) !== "--") {
+    property = `--${property}`;
   }
 
   // Get the CSS value.

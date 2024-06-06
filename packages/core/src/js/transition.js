@@ -7,13 +7,13 @@ import { cssVar } from "./cssVar";
  *   transition from.
  * @param {Object} to - An object with a start and finish classes to 
  *   transition to.
- * @param {String || Number} [duration='--transition-duration'] - Either a CSS 
+ * @param {String || Number} [duration="transition-duration"] - Either a CSS 
  *   custom property to get a duration value from or a millisecond value used 
  *   for the transition duration.
  * @return {Promise} Return a promise that resolves when the transition 
  *   has finished.
  */
-export function transition(el, from, to, duration = "--transition-duration") {
+export function transition(el, from, to, duration = "transition-duration") {
   return new Promise((resolve) => {
     // If duration is a string, query for the css var value.
     if (typeof duration === "string") {

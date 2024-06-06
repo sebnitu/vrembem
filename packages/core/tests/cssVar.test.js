@@ -8,7 +8,7 @@ beforeEach(() => {
 });
 
 test("should return a CSS custom property", () => {
-  const data = cssVar("--background-color");
+  const data = cssVar("background-color");
   expect(data).toBe("pink");
 });
 
@@ -25,6 +25,6 @@ test("should return a CSS custom property with an already appended prefix", () =
 });
 
 test("should throw an error if a CSS custom property is not found", () => {
-  const func = cssVar.bind(null, "--asdf");
+  const func = cssVar.bind(null, "asdf");
   expect(func).toThrow("CSS variable \"--asdf\" was not found!");
 });

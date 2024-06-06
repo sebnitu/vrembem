@@ -191,7 +191,7 @@ describe("open() & close()", () => {
 
   beforeAll(async () => {
     document.body.innerHTML = markup;
-    document.querySelector("#modal-default").style.setProperty("--vb-modal-transition-duration", "0.3s");
+    document.querySelector("#modal-default").style.setProperty("--modal-transition-duration", "0.3s");
     modal = new Modal();
     await modal.init();
     el = document.querySelector(".modal");
@@ -279,7 +279,7 @@ describe("replace()", () => {
   beforeEach(() => {
     document.body.innerHTML = markupMulti;
     document.querySelectorAll(".modal").forEach((el) => {
-      el.style.setProperty("--vb-modal-transition-duration", "0.3s");
+      el.style.setProperty("--modal-transition-duration", "0.3s");
     });
     vi.useFakeTimers();
   });
@@ -372,7 +372,7 @@ describe("closeAll()", () => {
   beforeEach(() => {
     document.body.innerHTML = markupMulti;
     document.querySelectorAll(".modal").forEach((el) => {
-      el.style.setProperty("--vb-modal-transition-duration", "0.3s");
+      el.style.setProperty("--modal-transition-duration", "0.3s");
     });
     vi.useFakeTimers();
   });

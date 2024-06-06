@@ -28,7 +28,7 @@ const markup = `
 beforeEach(() => {
   document.body.innerHTML = markup;
   document.querySelectorAll(".modal").forEach((el) => {
-    el.style.setProperty("--vb-modal-transition-duration", "0.3s");
+    el.style.setProperty("--modal-transition-duration", "0.3s");
   });
   vi.useFakeTimers();
 });

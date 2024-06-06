@@ -12,7 +12,7 @@ const markup = `
 
 beforeEach(() => {
   document.body.innerHTML = markup;
-  document.querySelector("#modal-default").style.setProperty("--vb-modal-transition-duration", "0.3s");
+  document.querySelector("#modal-default").style.setProperty("--modal-transition-duration", "0.3s");
   vi.useFakeTimers();
 });
 
