@@ -70,7 +70,7 @@ Add an arrow to a popover using an empty `<div>` or `<span>` with the `popover__
 
 ### Event type
 
-There are two event types that can trigger a popover: `click` (the default) and `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or initialization.
+There are two event types that can trigger a popover: `click` (the default) and `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or mount.
 
 <CodeExample lang="js">
 
@@ -80,7 +80,7 @@ There are two event types that can trigger a popover: `click` (the default) and 
     eventType: "click"
   });
 
-  // Set on initialization
+  // Set on mount
   popover.mount({
     eventType: "hover"
   });
@@ -105,7 +105,7 @@ Alternatively, this value can be overridden using the [`--vb-popover-event` CSS 
 
 ### Placement
 
-Popover uses the [Popper JS positioning engine](https://popper.js.org/) to determine the optimal place to display a popover. The default preference is `bottom` but can be changed by passing it as an option on instantiation or initialization.
+Popover uses the [Popper JS positioning engine](https://popper.js.org/) to determine the optimal place to display a popover. The default preference is `bottom` but can be changed by passing it as an option on instantiation or mount.
 
 <CodeExample lang="js">
 
@@ -115,7 +115,7 @@ Popover uses the [Popper JS positioning engine](https://popper.js.org/) to deter
     placement: "top"
   });
 
-  // Set on initialization
+  // Set on mount
   popover.mount({
     placement: "bottom"
   });
@@ -373,10 +373,10 @@ After the popover component has been instantiated the popover object is returned
 <DocBlock name="popover.mount" type="method" returns="Object" src="popover/src/js/index.js" line="23" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
-  Initializes the popover instance. During initialization, the following processes are run:
+  Mounts the popover instance. During mounting, the following processes are run:
 
   - Builds the popover collection by running `registerCollection()`
-  - Sets up the global event listeners by running `initEventListeners()`
+  - Sets up the global event listeners by running `mountEventListeners()`
 
   <Fragment slot="example">
     ```js
@@ -387,7 +387,7 @@ After the popover component has been instantiated the popover object is returned
 </DocBlock>
 
 <DocBlock name="popover.unmount" type="method" returns="Object" src="popover/src/js/index.js" line="43">
-  Destroys and cleans up the popover initialization. During cleanup, the following processes are run:
+  Destroys and cleans up the popover mount. During cleanup, the following processes are run:
 
   - Deregister the popover collection by running `deregisterCollection()`
   - Removes global event listeners by running `unmountEventListeners()`

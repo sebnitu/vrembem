@@ -21,7 +21,7 @@ afterEach(() => {
 });
 
 describe("mount() & unmount()", () => {
-  it("should mount the popover module when init is run", () => {
+  it("should mount the popover module when mount is run", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.mount();
@@ -34,7 +34,7 @@ describe("mount() & unmount()", () => {
     expect(popover.collection.length).toBe(2);
   });
 
-  it("running init multiple times should not create duplicates in collection", async () => {
+  it("running mount multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoMount: true });
     await popover.mount();
@@ -57,7 +57,7 @@ describe("mount() & unmount()", () => {
     expect(target).toHaveClass("is-active");
   });
 
-  it("should be able to pass options through init method", async () => {
+  it("should be able to pass options through mount method", async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ selectorPopover: ".asdf" });
     expect(popover.settings.selectorPopover).toBe(".asdf");
@@ -80,7 +80,7 @@ describe("mount() & unmount()", () => {
   });
 });
 
-describe("initEventListeners() & unmountEventListeners()", () => {
+describe("mountEventListeners() & unmountEventListeners()", () => {
   it("should remove event listeners", () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoMount: true });

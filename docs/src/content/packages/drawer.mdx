@@ -536,10 +536,10 @@ After the drawer component has been instantiated the drawer object is returned w
 <DocBlock name="drawer.mount" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
-  Initializes the drawer instance. During initialization, the following processes are run:
+  Mounts the drawer instance. During mounting, the following processes are run:
 
   - Register each drawer in the collection by running `registerCollection()`.
-  - Sets up global event listeners by running `initEventListeners()`.
+  - Sets up global event listeners by running `mountEventListeners()`.
 
   <Fragment slot="example">
     ```js
@@ -550,7 +550,7 @@ After the drawer component has been instantiated the drawer object is returned w
 </DocBlock>
 
 <DocBlock name="drawer.unmount" type="method" returns="Object" src="drawer/src/js/index.js" line="53">
-  Destroys and cleans up the drawer initialization. During cleanup, the following processes are run:
+  Destroys and cleans up the drawer mount. During cleanup, the following processes are run:
 
   - Deregister the drawer collection by running `deregisterCollection()`.
   - Removes global event listeners by running `unmountEventListeners()`.

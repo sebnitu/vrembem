@@ -70,7 +70,7 @@ export class FocusTrap {
   }
 
   getFocusable(el = this.el) {
-    // Initialize the focusable array.
+    // Create the focusable array.
     const focusable = [];
 
     // Store the initial focus and scroll position.

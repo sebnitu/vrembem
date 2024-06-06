@@ -631,10 +631,10 @@ After the modal component has been instantiated the modal object is returned wit
 <DocBlock name="modal.mount" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
-  Initializes the modal instance. During initialization, the following processes are run:
+  Mounts the modal instance. During mounting, the following processes are run:
 
   - Register each modal in the collection by running `registerCollection()`.
-  - Sets up global event listeners by running `initEventListeners()`.
+  - Sets up global event listeners by running `mountEventListeners()`.
 
   <Fragment slot="example">
     ```js
@@ -645,7 +645,7 @@ After the modal component has been instantiated the modal object is returned wit
 </DocBlock>
 
 <DocBlock name="modal.unmount" type="method" returns="Object" src="modal/src/js/index.js" line="55">
-  Destroys and cleans up the modal initialization. During cleanup, the following processes are run:
+  Destroys and cleans up the modal mount. During cleanup, the following processes are run:
 
   - Deregister the modal collection by running `deregisterCollection()`.
   - Removes global event listeners by running `unmountEventListeners()`.
