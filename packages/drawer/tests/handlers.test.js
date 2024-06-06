@@ -35,6 +35,7 @@ const btnClose = document.querySelector("[data-drawer-close=\"drawer\"]");
 const btnCloseInner = document.querySelector(".drawer [data-drawer-close]");
 const btnCloseEmpty = document.querySelector(".empty");
 
+document.body.style.setProperty("--vb-prefix", "vb-");
 drawerEl.style.setProperty("--vb-drawer-transition-duration", "0.3s");
 
 beforeAll(async () => {

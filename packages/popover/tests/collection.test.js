@@ -19,7 +19,7 @@ const markup = `
 `;
 
 beforeAll(() => {
-  document.body.style.setProperty("--vrembem-prefix", "vb-");
+  document.body.style.setProperty("--vb-prefix", "vb-");
 });
 
 afterEach(() => {

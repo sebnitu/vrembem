@@ -1,3 +1,3 @@
 export function getPrefix() {
-  return getComputedStyle(document.body).getPropertyValue("--vrembem-prefix").trim();
+  return getComputedStyle(document.body).getPropertyValue("--vb-prefix").trim();
 }

@@ -11,7 +11,7 @@ const keySpace = new KeyboardEvent("keydown", {
 const markup = `
   <button data-modal-open="modal-default">...</button>
   <button data-modal-replace="modal-default">...</button>
-  <div id="modal-default" class="modal" style="--vb-modal-transition-duration: 300ms">
+  <div id="modal-default" class="modal" style="--modal-transition-duration: 300ms">
     <div class="modal__dialog">
       <button data-modal-close>...</button>
     </div>
@@ -20,7 +20,7 @@ const markup = `
 
 const markupReq = `
   <button data-modal-open="modal-default">...</button>
-  <div id="modal-default" class="modal" style="--vb-modal-transition-duration: 300ms">
+  <div id="modal-default" class="modal" style="--modal-transition-duration: 300ms">
     <div class="modal__dialog" role="alertdialog">
       <button data-modal-close data-focus>...</button>
     </div>
