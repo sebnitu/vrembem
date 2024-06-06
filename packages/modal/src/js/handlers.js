@@ -1,3 +1,5 @@
+import { getModal } from "./helpers";
+
 export async function handleClick(event) {
   // If an open, close or replace button was clicked, handle the click event.
   const trigger = event.target.closest(`
@@ -14,7 +16,7 @@ export async function handleClick(event) {
     if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
       const selector = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim();
       // Get the entry from collection using the attribute value.
-      const entry = this.get(selector);
+      const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
       const fromModal = event.target.closest(this.settings.selectorModal);
       if (!fromModal) this.trigger = trigger;
@@ -26,7 +28,7 @@ export async function handleClick(event) {
     if (trigger.matches(`[data-${this.settings.dataReplace}]`)) {
       const selector = trigger.getAttribute(`data-${this.settings.dataReplace}`).trim();
       // Get the entry from collection using the attribute value.
-      const entry = this.get(selector);
+      const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
       const fromModal = event.target.closest(this.settings.selectorModal);
       if (!fromModal) this.trigger = trigger;
