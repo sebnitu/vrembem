@@ -13,6 +13,6 @@
     "@astrojs/mdx": "^3.0.1",
     "astro": "^4.9.2",
     "feather-icons": "^4.29.2",
-    "vrembem": "^4.0.0-next.6"
+    "vrembem": "^4.0.0-next.8"
   }
 }
