@@ -65,7 +65,7 @@ describe("entry.open() & entry.close() & entry.replace()", () => {
   beforeAll(async () => {
     document.body.innerHTML = markup;
     modal = new Modal({ transition: false });
-    await modal.init();
+    await modal.mount();
   });
 
   it("should open modal with transitions disabled", async () => {

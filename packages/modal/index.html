@@ -309,7 +309,7 @@
       selectorInert: 'main',
       teleport: '.modals'
     });
-    window.modal = await modal.init();
+    window.modal = await modal.mount();
 
     // Post message to console
     console.log('Modal instance has been attached to window:', modal);

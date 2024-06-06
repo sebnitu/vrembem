@@ -34,7 +34,7 @@ test("should set accessibility attributes to modal drawer dialog", async () => {
   expect(dialog.getAttribute("aria-modal")).toBe(null);
   expect(dialog.getAttribute("tabindex")).toBe(null);
 
-  await drawer.init();
+  await drawer.mount();
 
   expect(dialog.getAttribute("aria-modal")).toBe("true");
   expect(dialog.getAttribute("tabindex")).toBe("-1");

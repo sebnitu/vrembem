@@ -15,13 +15,13 @@ const markup = `
   <div class="modals"></div>
 `;
 
-describe("init()", () => {
+describe("mount()", () => {
   it("should teleport modals to the provided reference selector using the default method", async () => {
     document.body.innerHTML = markup;
     const modal = new Modal({ teleport: ".modals" });
     const div = document.querySelector(".modals");
     expect(div.children.length).toBe(0);
-    await modal.init();
+    await modal.mount();
     expect(div.children.length).toBe(2);
   });
 });
@@ -32,7 +32,7 @@ describe("entry.teleport() & entry.teleportReturn()", () => {
   beforeAll(async () => {
     document.body.innerHTML = markup;
     modal = new Modal();
-    await modal.init();
+    await modal.mount();
     entry = modal.collection[0];
     div = document.querySelector(".modals");
   });

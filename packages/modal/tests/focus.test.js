@@ -35,7 +35,7 @@ beforeEach(() => {
 
 test("should focus modal dialog when opened and refocus trigger when closed", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector("#modal-one");
   const dialog = el.querySelector(".modal__dialog");
   const btnOpen = document.querySelector("[data-modal-open=\"modal-one\"]");
@@ -47,7 +47,7 @@ test("should focus modal dialog when opened and refocus trigger when closed", as
 
 test("should focus inner modal element and refocus trigger when closed", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector("#modal-two");
   const btnOpen = document.querySelector("[data-modal-open=\"modal-two\"]");
   const btnClose = el.querySelector("[data-modal-close]");
@@ -63,7 +63,7 @@ test("should focus inner modal element and refocus trigger when closed", async (
 
 test("should remember initial trigger when opening modal through another modal", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const elOne = document.querySelector("#modal-one");
   const elTwo = document.querySelector("#modal-two");
   const btnOpen = document.querySelector("[data-modal-open=\"modal-one\"]");
@@ -85,7 +85,7 @@ test("should remember initial trigger when opening modal through another modal",
 
 test("should retain focus on modal if nothing inner is focusable", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const elModal = document.querySelector("#modal-empty");
   const dialog = elModal.querySelector(".modal__dialog");
   modal.open("modal-empty");

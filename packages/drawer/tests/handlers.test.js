@@ -39,7 +39,7 @@ document.body.style.setProperty("--vb-prefix", "vb-");
 drawerEl.style.setProperty("--vb-drawer-transition-duration", "0.3s");
 
 beforeAll(async () => {
-  await drawer.init();
+  await drawer.mount();
   entry = drawer.get("drawer");
 });
 

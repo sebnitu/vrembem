@@ -15,36 +15,36 @@ const markup = `
 `;
 
 afterEach(() => {
-  popover.destroy();
+  popover.unmount();
   popover = null;
   document.body.innerHTML = null;
 });
 
-describe("init() & destroy()", () => {
-  it("should initialize the popover module when init is run", () => {
+describe("mount() & unmount()", () => {
+  it("should mount the popover module when init is run", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    popover.init();
+    popover.mount();
     expect(popover.collection.length).toBe(2);
   });
 
-  it("should auto initialize the popover module autoInit is set to true", () => {
+  it("should auto mount the popover module autoMount is set to true", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     expect(popover.collection.length).toBe(2);
   });
 
   it("running init multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
-    await popover.init();
+    popover = new Popover({ autoMount: true });
+    await popover.mount();
     expect(popover.collection.length).toBe(2);
   });
 
   it("should not attach keyboard event listener if eventListeners is set to false", () => {
     document.body.innerHTML = markup;
     popover = new Popover({
-      autoInit: true,
+      autoMount: true,
       eventListeners: false
     });
 
@@ -61,48 +61,48 @@ describe("init() & destroy()", () => {
     document.body.innerHTML = markup;
     popover = new Popover({ selectorPopover: ".asdf" });
     expect(popover.settings.selectorPopover).toBe(".asdf");
-    await popover.init({ selectorPopover: ".popover" });
+    await popover.mount({ selectorPopover: ".popover" });
     expect(popover.settings.selectorPopover).toBe(".popover");
   });
 
   it("should remove all event listeners and clear collection", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
     expect(popover.collection.length).toBe(2);
-    await popover.destroy();
+    await popover.unmount();
     expect(popover.collection.length).toBe(0);
     trigger.click();
     expect(target).not.toHaveClass("is-active");
   });
 });
 
-describe("initEventListeners() & destroyEventListeners()", () => {
+describe("initEventListeners() & unmountEventListeners()", () => {
   it("should remove event listeners", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
-    popover.destroyEventListeners();
+    popover.unmountEventListeners();
 
     trigger.click();
     expect(target).not.toHaveClass("is-active");
   });
 
-  it("should re-initialize event listeners", () => {
+  it("should re-mount event listeners", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
-    popover.destroyEventListeners();
-    popover.initEventListeners();
+    popover.unmountEventListeners();
+    popover.mountEventListeners();
 
     trigger.click();
     expect(target).toHaveClass("is-active");
@@ -110,7 +110,7 @@ describe("initEventListeners() & destroyEventListeners()", () => {
 
   it("should remove keyboard event listener", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -118,15 +118,15 @@ describe("initEventListeners() & destroyEventListeners()", () => {
     trigger.click();
     expect(target).toHaveClass("is-active");
 
-    popover.destroyEventListeners();
+    popover.unmountEventListeners();
 
     document.dispatchEvent(keyEsc);
     expect(target).toHaveClass("is-active");
   });
 
-  it("should re-initialize keyboard event listener", () => {
+  it("should re-mount keyboard event listener", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -134,8 +134,8 @@ describe("initEventListeners() & destroyEventListeners()", () => {
     trigger.click();
     expect(target).toHaveClass("is-active");
 
-    popover.destroyEventListeners();
-    popover.initEventListeners();
+    popover.unmountEventListeners();
+    popover.mountEventListeners();
 
     document.dispatchEvent(keyEsc);
     expect(target).not.toHaveClass("is-active");
@@ -160,7 +160,7 @@ describe("register() & deregister()", () => {
 
   it("should be able to manually deregister a popover", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     expect(popover.collection.length).toBe(2);
     popover.deregister(popover.collection[0]);
@@ -174,7 +174,7 @@ describe("register() & deregister()", () => {
   });
 
   it("should reject promise with error if deregister is called on non-existent entry", async () => {
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     const result = await popover.deregister("asdf").catch((error) => { return error.message; });
     expect(result).toBe("Failed to deregister; popover does not exist in collection with ID of: \"asdf\".");
   });
@@ -183,7 +183,7 @@ describe("register() & deregister()", () => {
 describe("registerCollection() & deregisterCollection()", () => {
   it("should remove all items from collection and their event listeners", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -223,7 +223,7 @@ describe("registerCollection() & deregisterCollection()", () => {
 describe("open() & close()", () => {
   it("should open the provided popover", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const target = document.querySelector(".popover");
 
@@ -234,7 +234,7 @@ describe("open() & close()", () => {
 
   it("should close the provided popover", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     const target = document.querySelector(".popover");
 
@@ -246,7 +246,7 @@ describe("open() & close()", () => {
   it("should close all popovers", async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    await popover.init();
+    await popover.mount();
 
     popover.collection.forEach(async (item) => {
       await popover.open(item.id);
@@ -268,7 +268,7 @@ describe("open() & close()", () => {
   it("should reject promise with error when open is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    await popover.init();
+    await popover.mount();
 
     let catchError = false;
     await popover.open("missing").catch((error) => {
@@ -280,7 +280,7 @@ describe("open() & close()", () => {
 
   it("should reject promise with error when close is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
 
     let catchError = false;
     await popover.close("missing").catch((error) => {

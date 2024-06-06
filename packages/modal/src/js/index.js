@@ -27,14 +27,14 @@ export default class Modal extends Collection {
 
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
-    if (this.settings.autoInit) this.init();
+    if (this.settings.autoMount) this.mount();
   }
 
   get active() {
     return this.stack.top;
   }
 
-  async init(options) {
+  async mount(options) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
@@ -44,35 +44,35 @@ export default class Modal extends Collection {
     // Register the collections array with modal instances.
     await this.registerCollection(modals);
 
-    // If eventListeners are enabled, init event listeners.
+    // If eventListeners are enabled, mount event listeners.
     if (this.settings.eventListeners) {
-      this.initEventListeners();
+      this.mountEventListeners();
     }
 
     return this;
   }
 
-  async destroy() {
+  async unmount() {
     // Clear stored trigger.
     this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
 
-    // If eventListeners are enabled, destroy event listeners.
+    // If eventListeners are enabled, unmount event listeners.
     if (this.settings.eventListeners) {
-      this.destroyEventListeners();
+      this.unmountEventListeners();
     }
 
     return this;
   }
 
-  initEventListeners() {
+  mountEventListeners() {
     document.addEventListener("click", this.#handleClick, false);
     document.addEventListener("keydown", this.#handleKeydown, false);
   }
 
-  destroyEventListeners() {
+  unmountEventListeners() {
     document.removeEventListener("click", this.#handleClick, false);
     document.removeEventListener("keydown", this.#handleKeydown, false);
   }

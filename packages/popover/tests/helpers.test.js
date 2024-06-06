@@ -27,8 +27,8 @@ const markup = `
 `;
 
 afterEach(() => {
-  if (popover && "destroy" in popover) {
-    popover.destroy();
+  if (popover && "unmount" in popover) {
+    popover.unmount();
   }
   popover = null;
   document.body.innerHTML = null;

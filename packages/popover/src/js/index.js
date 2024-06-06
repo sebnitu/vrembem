@@ -17,10 +17,10 @@ export default class Popover extends Collection {
     this.settings = { ...this.defaults, ...options };
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
-    if (this.settings.autoInit) this.init();
+    if (this.settings.autoMount) this.mount();
   }
 
-  async init(options) {
+  async mount(options) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
 
@@ -30,34 +30,34 @@ export default class Popover extends Collection {
     // Register the collections array with popover instances.
     await this.registerCollection(popovers);
 
-    // If eventListeners are enabled, init event listeners.
+    // If eventListeners are enabled, mount event listeners.
     if (this.settings.eventListeners) {
-      // Pass false to initEventListeners() since registerCollection()
+      // Pass false to mountEventListeners() since registerCollection()
       // already adds event listeners to popovers.
-      this.initEventListeners(false);
+      this.mountEventListeners(false);
     }
 
     return this;
   }
 
-  async destroy() {
+  async unmount() {
     // Clear stored trigger.
     this.trigger = null;
 
     // Remove all entries from the collection.
     await this.deregisterCollection();
 
-    // If eventListeners are enabled, destroy event listeners.
+    // If eventListeners are enabled, unmount event listeners.
     if (this.settings.eventListeners) {
-      // Pass false to destroyEventListeners() since deregisterCollection()
+      // Pass false to unmountEventListeners() since deregisterCollection()
       // already removes event listeners from popovers.
-      this.destroyEventListeners(false);
+      this.unmountEventListeners(false);
     }
 
     return this;
   }
 
-  initEventListeners(processCollection = true) {
+  mountEventListeners(processCollection = true) {
     if (processCollection) {
       // Loop through collection and setup event listeners.
       this.collection.forEach((popover) => {
@@ -69,7 +69,7 @@ export default class Popover extends Collection {
     document.addEventListener("keydown", this.#handleKeydown, false);
   }
 
-  destroyEventListeners(processCollection = true) {
+  unmountEventListeners(processCollection = true) {
     if (processCollection) {
       // Loop through collection and remove event listeners.
       this.collection.forEach((popover) => {

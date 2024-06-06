@@ -13,7 +13,7 @@ const markup = `
 `;
 
 afterEach(() => {
-  popover.destroy();
+  popover.unmount();
   popover = null;
   document.body.innerHTML = null;
 });
@@ -22,7 +22,7 @@ describe("open()", () => {
   it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    await popover.init();
+    await popover.mount();
     const entry = popover.get("asdf");
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
@@ -35,7 +35,7 @@ describe("open()", () => {
 
   it("should open the provided popover tooltip", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     const entry = popover.get("fdsa");
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");

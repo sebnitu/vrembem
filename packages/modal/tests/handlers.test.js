@@ -34,7 +34,7 @@ beforeEach(() => {
 test("should close when root modal (screen) is clicked", async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const dialog = document.querySelector(".modal__dialog");
   const btnOpen = document.querySelector("[data-modal-open]");
@@ -59,7 +59,7 @@ test("should close when root modal (screen) is clicked", async () => {
 test("should close when the escape key is pressed", async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -80,7 +80,7 @@ test("should close when the escape key is pressed", async () => {
 test("should do nothing if none escape key is pressed", async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -101,7 +101,7 @@ test("should do nothing if none escape key is pressed", async () => {
 test("should not be able to close while modal transition is in process", async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -119,7 +119,7 @@ test("should not be able to close while modal transition is in process", async (
 test("should prevent escape or screen click closing modal if required", async () => {
   document.body.innerHTML = markupReq;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
@@ -147,7 +147,7 @@ test("should prevent escape or screen click closing modal if required", async ()
 test("should run the replace method when replace button is clicked", async () => {
   document.body.innerHTML = markup;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnReplace = document.querySelector("[data-modal-replace]");
 

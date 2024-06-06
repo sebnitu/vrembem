@@ -53,19 +53,17 @@ Customize core variables which all components inherit from. The example below wi
 
 ## JavaScript
 
-Import and initialize the components you'll need:
+Import and mount the components you'll need:
 
 ```js
 // Import all under the vb namespace
 import * as vb from 'vrembem';
-const drawer = new vb.Drawer({ autoInit: true });
+const drawer = new vb.Drawer({ autoMount: true });
 
 // Or import individual components
 import { Drawer } from 'vrembem';
-const drawer = new Drawer({ autoInit: true });
+const drawer = new Drawer({ autoMount: true });
 ```
-
-> Note that `core` modules do not need to be initialized since they're just a set of helpful utility and functional modules.
 
 ## Markup
 

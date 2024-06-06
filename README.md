@@ -43,7 +43,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 <!-- Instantiate the component rendered in the document -->
 <script>
   const modal = new vrembem.Modal();
-  modal.init();
+  modal.mount();
 </script>
 ```
 
@@ -115,21 +115,21 @@ Vrembem uses [Sass' module system](https://sass-lang.com/blog/the-module-system-
 
 #### JavaScript
 
-Some packages also have included modules for their functionality. You can include these in your JavaScript files by importing, instantiate and initialize:
+Some packages also have included modules for their functionality. You can include these in your JavaScript files by importing the modules you'll need then instantiate and mount them:
 
 ```js
 // Import your component
 import Modal from "@vrembem/modal";
 
-// Instantiate and initialize
+// Instantiate and mount
 const modal = new Modal();
-modal.init();
+modal.mount();
 ```
 
-Alternatively, you can use the `autoInit` option to auto initialize and optionally omit saving the instance to a variable if the returned API won't be needed later.
+Alternatively, you can use the `autoMount` option to auto mount and optionally omit saving the instance to a variable if the returned API won't be needed later.
 
 ```js
-new Modal({ autoInit: true });
+new Modal({ autoMount: true });
 ```
 
 #### HTML
@@ -175,14 +175,12 @@ Via your project's JavaScript manifest file:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = new vb.Drawer({ autoInit: true });
+const drawer = new vb.Drawer({ autoMount: true });
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = new Drawer({ autoInit: true });
+const drawer = new Drawer({ autoMount: true });
 ```
-
-> Note that `core` helpers do not need to be initialized since they're just a set of helpful utility functions.
 
 ## Copyright and License
 

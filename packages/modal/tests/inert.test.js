@@ -17,7 +17,7 @@ describe("when selectorInert is set:", () => {
   beforeAll(() => {
     document.body.innerHTML = markup;
     new Modal({
-      autoInit: true,
+      autoMount: true,
       selectorInert: "main"
     });
     main = document.querySelector("main");

@@ -26,7 +26,7 @@ document.body.innerHTML = `
 
 beforeAll(async () => {
   modal = new Modal({ transition: false });
-  await modal.init();
+  await modal.mount();
 
   modal1 = modal.get("modal-1");
   modal2 = modal.get("modal-2");

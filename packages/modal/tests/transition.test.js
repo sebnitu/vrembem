@@ -37,7 +37,7 @@ test("should apply state classes on `click` and `transitionend` events", async (
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
 
-  await modal.init();
+  await modal.mount();
   expect(el).toHaveClass("modal");
 
   btnOpen.click();
@@ -62,7 +62,7 @@ test("should apply custom state classes", async () => {
     stateClosing: "disable",
     stateClosed: "off"
   });
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
@@ -85,7 +85,7 @@ test("should not apply transition classes when transitions are disabled", async 
   document.body.innerHTML = markup;
   const el = document.querySelector(".modal");
   const modal = new Modal({ transition: false });
-  await modal.init();
+  await modal.mount();
   await modal.open("modal-default");
   expect(el).toHaveClass("is-opened");
   expect(el.classList.length).toBe(2);
@@ -98,7 +98,7 @@ test("should not apply transition classes when transitions are disabled", async 
 test("should open and close modal while using the data modal config attribute", async () => {
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
 
   const modalObj = modal.get("modal-default");
   await modalObj.open();
@@ -113,7 +113,7 @@ test("should open and close modal while using the data modal config attribute", 
 test("should return modal config if set, otherwise should return global settings", async () => {
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
 
   const entry = modal.get("modal-default");
   expect(entry.getSetting("transition")).toBe(false);

@@ -26,7 +26,7 @@ npm install @vrembem/modal
 <CodeExample lang="js">
   ```js
   import Modal from "@vrembem/modal";
-  const modal = new Modal({ autoInit: true });
+  const modal = new Modal({ autoMount: true });
   ```
 </CodeExample>
 
@@ -218,7 +218,7 @@ Here's an example where we want the `<main>` content area to be inaccessible whi
     teleportMethod: "after"
   });
 
-  await modal.init();
+  await modal.mount();
   ```
 </CodeExample>
 
@@ -559,7 +559,7 @@ Modals are primarily customized using CSS variables but can also be modified usi
 
   ```js
   export default {
-    autoInit: false,
+    autoMount: false,
 
     // Data attributes
     dataOpen: "modal-open",
@@ -628,7 +628,7 @@ After the modal component has been instantiated the modal object is returned wit
   Returns the currently active modal or the modal at the top of the stack if multiple modals are open. Will return `undefined` if no modals are open.
 </DocBlock>
 
-<DocBlock name="modal.init" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
+<DocBlock name="modal.mount" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
   Initializes the modal instance. During initialization, the following processes are run:
@@ -639,48 +639,48 @@ After the modal component has been instantiated the modal object is returned wit
   <Fragment slot="example">
     ```js
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="modal.destroy" type="method" returns="Object" src="modal/src/js/index.js" line="55">
+<DocBlock name="modal.unmount" type="method" returns="Object" src="modal/src/js/index.js" line="55">
   Destroys and cleans up the modal initialization. During cleanup, the following processes are run:
 
   - Deregister the modal collection by running `deregisterCollection()`.
-  - Removes global event listeners by running `destroyEventListeners()`.
+  - Removes global event listeners by running `unmountEventListeners()`.
 
   <Fragment slot="example">
     ```js
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
     // ...
-    await modal.destroy();
+    await modal.unmount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="modal.initEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="70">
+<DocBlock name="modal.mountEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="70">
   Set document event listeners.
 
   <Fragment slot="example">
     ```js
     const modal = new Modal({ eventListeners: false });
-    await modal.init();
-    modal.initEventListeners();
+    await modal.mount();
+    modal.mountEventListeners();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="modal.destroyEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="75">
+<DocBlock name="modal.unmountEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="75">
   Remove document event listeners.
 
   <Fragment slot="example">
     ```js
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
     // ...
-    modal.destroyEventListeners();
+    modal.unmountEventListeners();
     ```
   </Fragment>
 </DocBlock>
