@@ -49,29 +49,29 @@ const markupConfig = `
 document.body.innerHTML = markup;
 
 const drawer = new Drawer({ transitionDuration: 300 });
-const drawerAuto = new Drawer({ autoInit: true, transitionDuration: 300 });
+const drawerAuto = new Drawer({ autoMount: true, transitionDuration: 300 });
 
-describe("init() & destroy()", () => {
-  it("should correctly register all drawers on init()", async () => {
-    await drawer.init();
+describe("mount() & unmount()", () => {
+  it("should correctly register all drawers on mount()", async () => {
+    await drawer.mount();
     expect(drawer.collection.length).toBe(2);
   });
 
-  it("should correctly deregister all drawers on destroy()", async () => {
-    await drawer.destroy();
+  it("should correctly deregister all drawers on unmount()", async () => {
+    await drawer.unmount();
     expect(drawer.collection.length).toBe(0);
   });
 
-  it("should initialize with custom settings passed on init", async () => {
-    await drawer.init({ eventListeners: false });
+  it("should mount with custom settings passed on init", async () => {
+    await drawer.mount({ eventListeners: false });
     expect(drawer.collection.length).toBe(2);
     expect(drawer.defaults.eventListeners).toBe(true);
     expect(drawer.settings.eventListeners).toBe(false);
-    await drawer.destroy();
+    await drawer.unmount();
     expect(drawer.collection.length).toBe(0);
   });
 
-  it("should automatically initialize when autoInit option set to true", () => {
+  it("should automatically mount when autoMount option set to true", () => {
     expect(drawerAuto.collection.length).toBe(2);
   });
 });
@@ -95,7 +95,7 @@ describe("open(), close() & toggle()", () => {
   });
 
   it("should open and close using open() and close() methods", async () => {
-    await drawer.init();
+    await drawer.mount();
     const entry = drawer.get("drawer-1");
     expect(entry.state).toBe("closed");
     expect(entry.mode).toBe("inline");
@@ -171,7 +171,7 @@ describe("activeModal", () => {
 describe("register() & deregister()", () => {
   beforeAll(async () => {
     document.body.innerHTML = markupInitState;
-    await drawer.destroy();
+    await drawer.unmount();
   });
 
   it("should disable setting tabindex on drawer dialog", async () => {
@@ -252,7 +252,7 @@ describe("register() & deregister()", () => {
 describe("data-drawer-config", () => {
   beforeAll(async () => {
     document.body.innerHTML = markupInitState;
-    await drawer.destroy();
+    await drawer.unmount();
   });
 
   it("should override global drawer configs using drawer specific data configuration", async () => {

@@ -1,5 +1,5 @@
 export default {
-  autoInit: false,
+  autoMount: false,
 
   // Selectors
   selectorPopover: ".popover",

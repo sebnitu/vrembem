@@ -25,7 +25,7 @@ npm install @vrembem/drawer
 <CodeExample lang="js">
   ```js
   import Drawer from "@vrembem/drawer";
-  const drawer = new Drawer({ autoInit: true });
+  const drawer = new Drawer({ autoMount: true });
   ```
 </CodeExample>
 
@@ -341,7 +341,7 @@ Here's an example where we want the `drawer-main` content area to be inaccessibl
      selectorOverflow: "body, .drawer-main"
    });
 
-   await drawer.init();
+   await drawer.mount();
    ```
 </CodeExample>
 
@@ -461,7 +461,7 @@ Drawers are primarily customized using CSS variables but can also be modified us
 
   ```js
   export default {
-    autoInit: false,
+    autoMount: false,
 
     // Data attributes
     dataOpen: "drawer-open",
@@ -533,7 +533,7 @@ After the drawer component has been instantiated the drawer object is returned w
   Returns the currently active modal drawer. Returns `undefined` if there are no modal drawer open.
 </DocBlock>
 
-<DocBlock name="drawer.init" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
+<DocBlock name="drawer.mount" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
   Initializes the drawer instance. During initialization, the following processes are run:
@@ -544,48 +544,48 @@ After the drawer component has been instantiated the drawer object is returned w
   <Fragment slot="example">
     ```js
     const drawer = new Drawer();
-    await drawer.init();
+    await drawer.mount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="drawer.destroy" type="method" returns="Object" src="drawer/src/js/index.js" line="53">
+<DocBlock name="drawer.unmount" type="method" returns="Object" src="drawer/src/js/index.js" line="53">
   Destroys and cleans up the drawer initialization. During cleanup, the following processes are run:
 
   - Deregister the drawer collection by running `deregisterCollection()`.
-  - Removes global event listeners by running `destroyEventListeners()`.
+  - Removes global event listeners by running `unmountEventListeners()`.
 
   <Fragment slot="example">
     ```js
     const drawer = new Drawer();
-    await drawer.init();
+    await drawer.mount();
     // ...
-    await drawer.destroy();
+    await drawer.unmount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="drawer.initEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="65">
+<DocBlock name="drawer.mountEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="65">
   Set document event listeners.
 
   <Fragment slot="example">
     ```js
     const drawer = new Drawer({ eventListeners: false });
-    await drawer.init();
-    drawer.initEventListeners();
+    await drawer.mount();
+    drawer.mountEventListeners();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="drawer.destroyEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="70">
+<DocBlock name="drawer.unmountEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="70">
   Remove document event listeners.
 
   <Fragment slot="example">
     ```js
     const drawer = new Drawer();
-    await drawer.init();
+    await drawer.mount();
     // ...
-    drawer.destroyEventListeners();
+    drawer.unmountEventListeners();
     ```
   </Fragment>
 </DocBlock>

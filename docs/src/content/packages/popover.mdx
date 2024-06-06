@@ -26,7 +26,7 @@ npm install @vrembem/popover
 <CodeExample lang="js">
   ```js
   import Popover from "@vrembem/popover";
-  const popover = new Popover({ autoInit: true });
+  const popover = new Popover({ autoMount: true });
   ```
 </CodeExample>
 
@@ -81,7 +81,7 @@ There are two event types that can trigger a popover: `click` (the default) and 
   });
 
   // Set on initialization
-  popover.init({
+  popover.mount({
     eventType: "hover"
   });
   ```
@@ -116,7 +116,7 @@ Popover uses the [Popper JS positioning engine](https://popper.js.org/) to deter
   });
 
   // Set on initialization
-  popover.init({
+  popover.mount({
     placement: "bottom"
   });
   ```
@@ -331,7 +331,7 @@ Popovers are primarily customized using CSS variables but can also be modified u
 
   ```js
   export default {
-    autoInit: false,
+    autoMount: false,
 
     // Selectors
     selectorPopover: ".popover",
@@ -370,7 +370,7 @@ After the popover component has been instantiated the popover object is returned
   ```
 </DocBlock>
 
-<DocBlock name="popover.init" type="method" returns="Object" src="popover/src/js/index.js" line="23" args={[
+<DocBlock name="popover.mount" type="method" returns="Object" src="popover/src/js/index.js" line="23" args={[
   ["options", "Object (optional)", "An options object for passing custom settings."]
 ]}>
   Initializes the popover instance. During initialization, the following processes are run:
@@ -381,28 +381,28 @@ After the popover component has been instantiated the popover object is returned
   <Fragment slot="example">
     ```js
     const popover = new Popover();
-    await popover.init();
+    await popover.mount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="popover.destroy" type="method" returns="Object" src="popover/src/js/index.js" line="43">
+<DocBlock name="popover.unmount" type="method" returns="Object" src="popover/src/js/index.js" line="43">
   Destroys and cleans up the popover initialization. During cleanup, the following processes are run:
 
   - Deregister the popover collection by running `deregisterCollection()`
-  - Removes global event listeners by running `destroyEventListeners()`
+  - Removes global event listeners by running `unmountEventListeners()`
 
   <Fragment slot="example">
     ```js
     const popover = new Popover();
-    await popover.init();
+    await popover.mount();
     // ...
-    await popover.destroy();
+    await popover.unmount();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="popover.initEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="60" args={[
+<DocBlock name="popover.mountEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="60" args={[
   ["processCollection", "Boolean", "Whether or not to process the event listeners of popover collection. Defaults to true."]
 ]}>
   Set document and collection entry event listeners.
@@ -410,13 +410,13 @@ After the popover component has been instantiated the popover object is returned
   <Fragment slot="example">
     ```js
     const popover = new Popover({ eventListeners: false });
-    await popover.init();
-    popover.initEventListeners();
+    await popover.mount();
+    popover.mountEventListeners();
     ```
   </Fragment>
 </DocBlock>
 
-<DocBlock name="popover.destroyEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="72" args={[
+<DocBlock name="popover.unmountEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="72" args={[
   ["processCollection", "Boolean", "Whether or not to process the event listeners of popover collection. Defaults to true."]
 ]}>
   Remove document and collection entry event listeners.
@@ -424,9 +424,9 @@ After the popover component has been instantiated the popover object is returned
   <Fragment slot="example">
     ```js
     const popover = new Popover();
-    await popover.init();
+    await popover.mount();
     // ...
-    popover.destroyEventListeners();
+    popover.unmountEventListeners();
     ```
   </Fragment>
 </DocBlock>

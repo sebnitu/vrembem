@@ -16,7 +16,7 @@ const markup = `
 `;
 
 afterEach(() => {
-  popover.destroy();
+  popover.unmount();
   popover = null;
   document.body.innerHTML = null;
 });
@@ -24,7 +24,7 @@ afterEach(() => {
 describe("close()", () => {
   it("should close the provided popover", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     const entry = popover.get("asdf");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
@@ -37,7 +37,7 @@ describe("close()", () => {
 
   it("should close the provided popover tooltip", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     const entry = popover.get("afsd");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
@@ -52,7 +52,7 @@ describe("close()", () => {
 describe("closeAll()", () => {
   it("should close all popovers", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     expect(popover.collection.length).toBe(3);
     expect(popover.collection[0].el).toHaveClass("is-active");
     expect(popover.collection[1].el).toHaveClass("is-active");
@@ -65,7 +65,7 @@ describe("closeAll()", () => {
 describe("closeCheck()", () => {
   it("should close popover if closeCheck does not detect a hover or focus on trigger or popover elements", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     expect(popover.collection.length).toBe(3);
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
@@ -74,7 +74,7 @@ describe("closeCheck()", () => {
 
   it("should not close popover if closeCheck detects a focus on trigger elements", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     popover.collection[0].trigger.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
@@ -83,7 +83,7 @@ describe("closeCheck()", () => {
 
   it("should not close popover if closeCheck detects a focus on popover elements", () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoInit: true });
+    popover = new Popover({ autoMount: true });
     popover.collection[0].el.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);

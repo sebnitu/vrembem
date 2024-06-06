@@ -39,7 +39,7 @@ const markupPreOpened = `
   <div class="modals"></div>
 `;
 
-describe("init() & destroy()", () => {
+describe("mount() & unmount()", () => {
   let modal, entry, el, btnOpen;
 
   beforeAll(() => {
@@ -49,25 +49,25 @@ describe("init() & destroy()", () => {
     btnOpen = document.querySelector("[data-modal-open]");
   });
 
-  it("should initialize the modal instance", async () => {
-    await modal.init({ transition: false });
+  it("should mount the modal instance", async () => {
+    await modal.mount({ transition: false });
     entry = modal.get("modal-default");
     btnOpen.click();
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-opened");
   });
 
-  it("should destroy the modal instance", async () => {
-    await modal.destroy();
+  it("should unmount the modal instance", async () => {
+    await modal.unmount();
     expect(modal.collection.length).toBe(0);
     expect(el).toHaveClass("is-closed");
     btnOpen.click();
     expect(el).toHaveClass("is-closed");
   });
 
-  it("should initialize the modal instance with event listeners disabled", async () => {
-    const spy = vi.spyOn(modal, "initEventListeners");
-    await modal.init({
+  it("should mount the modal instance with event listeners disabled", async () => {
+    const spy = vi.spyOn(modal, "mountEventListeners");
+    await modal.mount({
       eventListeners: false,
       transition: false
     });
@@ -75,15 +75,15 @@ describe("init() & destroy()", () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it("should destroy the modal instance with event listeners disabled", async () => {
-    const spy = vi.spyOn(modal, "destroyEventListeners");
-    expect(modal.settings.eventListeners).toBe(false);
-    await modal.destroy();
+  it("should unmount the modal instance with event listeners disabled", async () => {
+    const spy = vi.spyOn(modal, "unmountEventListeners");
+    expect(modal.settings.eventListeners).toBe(false); 
+    await modal.unmount();
     expect(spy).not.toHaveBeenCalled();
   });
 });
 
-describe("initEventListeners() & destroyEventListeners()", () => {
+describe("mountEventListeners() & unmountEventListeners()", () => {
   let modal, entry, btnOpen, btnClose;
 
   beforeAll(async () => {
@@ -92,21 +92,21 @@ describe("initEventListeners() & destroyEventListeners()", () => {
       eventListeners: false,
       transition: false
     });
-    await modal.init();
+    await modal.mount();
     entry = modal.get("modal-default");
     btnOpen = document.querySelector("[data-modal-open]");
     btnClose = document.querySelector("[data-modal-close]");
   });
 
-  it("should initialize event listeners", async () => {
-    modal.initEventListeners();
+  it("should mount event listeners", async () => {
+    modal.mountEventListeners();
     btnOpen.click();
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-opened");
   });
 
-  it("should destroy event listeners", async () => {
-    modal.destroyEventListeners();
+  it("should unmount event listeners", async () => {
+    modal.unmountEventListeners();
     btnClose.click();
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-opened");
@@ -160,7 +160,7 @@ describe("register() & deregister()", () => {
       selectorOverflow: "body, main",
       teleport: ".modals"
     });
-    await modal.init();
+    await modal.mount();
     expect(document.body.style.overflow).toBe("hidden");
     expect(main).toHaveAttribute("aria-hidden", "true");
     expect(main.inert).toBe(true);
@@ -171,7 +171,7 @@ describe("register() & deregister()", () => {
   it("re-registering a modal that is already open should retain the open state", async () => {
     document.body.innerHTML = markupPreOpened;
     modal = new Modal({ teleport: ".modals" });
-    await modal.init();
+    await modal.mount();
     await modal.open("modal-default");
     expect(modal.active.id).toBe("modal-default");
     await modal.register("modal-default");
@@ -193,7 +193,7 @@ describe("open() & close()", () => {
     document.body.innerHTML = markup;
     document.querySelector("#modal-default").style.setProperty("--modal-transition-duration", "0.3s");
     modal = new Modal();
-    await modal.init();
+    await modal.mount();
     el = document.querySelector(".modal");
     entry = modal.get("modal-default");
   });
@@ -286,7 +286,7 @@ describe("replace()", () => {
 
   it("should close a modal and open a new one simultaneously", async () => {
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
 
     let entry = modal.get("modal-1");
 
@@ -311,7 +311,7 @@ describe("replace()", () => {
 
   it("should close all open modals except for the replacement", async () => {
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
 
     modal.open("modal-1");
     modal.open("modal-2");
@@ -343,7 +343,7 @@ describe("replace()", () => {
 
   it("should correctly handle focus management when focus param is passed", async () => {
     const modal = new Modal({ transition: false });
-    await modal.init();
+    await modal.mount();
 
     const entry = modal.get("modal-2");
 
@@ -379,7 +379,7 @@ describe("closeAll()", () => {
 
   it("should close all open modals", async () => {
     const modal = new Modal();
-    await modal.init();
+    await modal.mount();
 
     modal.open("modal-1");
     modal.open("modal-2");
@@ -415,7 +415,7 @@ describe("closeAll()", () => {
 
   it("should return focus to stored trigger when all modals are closed", async () => {
     const modal = new Modal({ transition: false });
-    await modal.init();
+    await modal.mount();
 
     const btn = document.querySelector("button");
     modal.trigger = btn;
@@ -436,7 +436,7 @@ describe("closeAll()", () => {
 
   it("should not handle focus when param is set to false", async () => {
     const modal = new Modal({ transition: false });
-    await modal.init();
+    await modal.mount();
 
     const btn = document.querySelector("button");
     modal.trigger = btn;

@@ -26,10 +26,7 @@ function setInert(state, selector) {
   }
 }
 
-export function updateGlobalState(param, config) {
-  // Set inert state based on if a modal is active.
-  setInert(!!param, config.selectorInert);
-
-  // Set overflow state based on if a modal is active.
-  setOverflowHidden(!!param, config.selectorOverflow);
+export function updateGlobalState(state, config) {
+  setInert(!!state, config.selectorInert);
+  setOverflowHidden(!!state, config.selectorOverflow);
 }

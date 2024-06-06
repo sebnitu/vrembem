@@ -18,7 +18,7 @@ beforeEach(() => {
 
 test("should emit custom event when modal has opened", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector("#modal-default");
   const btn = document.querySelector("[data-modal-open]");
   let eventFired = false;
@@ -36,7 +36,7 @@ test("should emit custom event when modal has opened", async () => {
 
 test("should emit custom event when modal has closed", async () => {
   const modal = new Modal();
-  await modal.init();
+  await modal.mount();
   const el = document.querySelector("#modal-default");
   const btn = document.querySelector("[data-modal-open]");
   const btnClose = document.querySelector("[data-modal-close]");
@@ -63,7 +63,7 @@ test("should be able to set a custom event prefix", async () => {
   const modal = new Modal({
     customEventPrefix: "vrembem:"
   });
-  await modal.init();
+  await modal.mount();
   const btn = document.querySelector("[data-modal-open]");
   const btnClose = document.querySelector("[data-modal-close]");
   let eventOpened = false;

@@ -23,7 +23,7 @@ beforeAll(() => {
 });
 
 afterEach(() => {
-  popover.destroy();
+  popover.unmount();
   popover = null;
   document.body.innerHTML = null;
 });

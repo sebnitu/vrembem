@@ -6,7 +6,7 @@ if (typeof window !== "undefined") {
     selectorInert: "main",
     teleport: ".modals"
   });
-  window["modal"] = await modal.init();
+  window["modal"] = await modal.mount();
 }
 
 export { modal };

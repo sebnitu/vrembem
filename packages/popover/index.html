@@ -72,7 +72,7 @@
 
     // Init and attach instance to window
     const popover = new Popover();
-    window.popover = await popover.init();
+    window.popover = await popover.mount();
 
     // Post message to console
     console.log('Popover instance has been attached to window:', popover);
