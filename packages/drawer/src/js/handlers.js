@@ -1,3 +1,5 @@
+import { getDrawer } from "./helpers";
+
 export async function handleClick(event) {
   // If an open, close or toggle button was clicked, handle the click event.
   const trigger = event.target.closest(`
@@ -15,7 +17,7 @@ export async function handleClick(event) {
       const selectors = trigger.getAttribute(`data-${this.settings.dataToggle}`).trim().split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
-        const entry = this.get(selector);
+        const entry = getDrawer.call(this, selector);
         // Store the trigger on the entry.
         entry.trigger = trigger;
         // Toggle the drawer
@@ -28,7 +30,7 @@ export async function handleClick(event) {
       const selectors = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim().split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
-        const entry = this.get(selector);
+        const entry = getDrawer.call(this, selector);
         // Store the trigger on the entry.
         entry.trigger = trigger;
         // Open the drawer.
@@ -42,7 +44,7 @@ export async function handleClick(event) {
       selectors.forEach((selector) => {
         if (selector) {
           // Get the entry from collection using the attribute value.
-          const entry = this.get(selector);
+          const entry = getDrawer.call(this, selector);
           // Store the trigger on the entry.
           entry.trigger = trigger;
           // Close the drawer.
