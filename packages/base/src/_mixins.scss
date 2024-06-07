@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
 
 // Arrow
@@ -133,9 +134,18 @@
   text-decoration-thickness: var.$link-decoration-thickness;
   text-underline-offset: var.$link-underline-offset;
 
+  code {
+    color: var.$link-color;
+    background-color: palette.get("primary", 50%, 10%);
+  }
+
   &:hover {
     color: var.$link-color-hover;
     text-decoration: var.$link-decoration-hover;
+
+    code {
+      color: var.$link-color-hover;
+    }
   }
 
   &:focus {
@@ -143,6 +153,10 @@
     outline-offset: var.$link-outline-focus-offset;
     color: var.$link-color-hover;
     text-decoration: var.$link-decoration-hover;
+
+    code {
+      color: var.$link-color-hover;
+    }
   }
 }
 
