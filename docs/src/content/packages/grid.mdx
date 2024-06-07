@@ -37,7 +37,7 @@ The most basic implementation of the grid component consists of two elements. By
 
 > Grid is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/main/packages/utility) package—specifically [`flex`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#flex) and [`span`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#span) modules—to further customize your layout.
 
-#### `grid__clear`
+### grid__clear
 
 The clear element allows you to start a new row at any point in a column set.
 
@@ -50,9 +50,7 @@ The clear element allows you to start a new row at any point in a column set.
 </div>
 ```
 
-## Modifiers
-
-### `grid_auto`
+## grid_auto
 
 Gives grid items a basis of auto so their content dictates their width.
 
@@ -72,7 +70,7 @@ Set an individual grid item to auto using `grid__item_auto` element modifier.
 </div>
 ```
 
-### `grid_fill`
+## grid_fill
 
 The fill modifier stretches grid item’s contents to fill the height of it’s container.
 
@@ -92,7 +90,7 @@ Set an individual grid item to fill using the `grid__item_fill` element modifier
 </div>
 ```
 
-### `grid_gap_[key]`
+## grid_gap_[key]
 
 Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -103,7 +101,7 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 </div>
 ```
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap_none`
 - `grid_gap_xs`
@@ -112,7 +110,7 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 - `grid_gap_lg`
 - `grid_gap_xl`
 
-### `grid_gap-x_[key]`
+## grid_gap-x_[key]
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -123,7 +121,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 </div>
 ```
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap-x_none`
 - `grid_gap-x_xs`
@@ -132,7 +130,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 - `grid_gap-x_lg`
 - `grid_gap-x_xl`
 
-### `grid_gap-y_[key]`
+## grid_gap-y_[key]
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -143,7 +141,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 </div>
 ```
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap-y_none`
 - `grid_gap-y_xs`
@@ -152,7 +150,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
-### `grid_stack_[key]`
+## grid_stack_[key]
 
 Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
 
@@ -163,7 +161,7 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 </div>
 ```
 
-#### Available Variations
+**Available Variants**
 
 - `grid_stack`
 - `grid_stack_xs`
@@ -172,7 +170,7 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 - `grid_stack_lg`
 - `grid_stack_xl`
 
-### `span`
+## span
 
 Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map. These are the available variants:
 
@@ -187,7 +185,7 @@ Set the flex-basis, width and max-width on an element using the `span` module. S
 | `$prefix-span`  | `null`   | String to prefix the span module with.                |
 | `$span-columns` | `12`     | The columns value to use when building span variants. |
 
-#### `span-[col]-[key]`
+### span-[col]-[key]
 
 Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
 
@@ -213,7 +211,7 @@ Here's an example of using the optional breakpoint variants. Breakpoints variant
 </div>
 ```
 
-#### `span-auto-[key]`
+### span-auto-[key]
 
 Sets an elements width to `auto` with an optional breakpoint condition.
 
@@ -225,7 +223,7 @@ Sets an elements width to `auto` with an optional breakpoint condition.
 </div>
 ```
 
-#### `span-full-[key]`
+### span-full-[key]
 
 Sets an elements width to `100%` with an optional breakpoint condition.
 
@@ -239,44 +237,18 @@ Sets an elements width to `100%` with an optional breakpoint condition.
 
 ## Customization
 
-### Sass Variables
+Grids are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default                                        | Description                                                                   |
-| ------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                 |
-| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                               |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                              |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                        |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build its styles. |
-| `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                               |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                 |
+<DocBlock name="CSS Variables" type="file" src="grid/src/_root.scss">
 
-#### `$breakpoints`
+  ```scss
+  // TBD
+  ```
+</DocBlock>
 
-The breakpoints map the `grid_stack_[key]` modifier uses to build its styles.
+<DocBlock name="SCSS Variables" type="file" src="grid/src/_variables.scss">
 
-```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
-```
-
-#### `$gap-map`
-
-Used to output gap modifiers.
-
-```scss
-$gap-map: (
-  "none": 0,
-  "xs": 0.5em,
-  "sm": 1em,
-  "md": 2em,
-  "lg": 3em,
-  "xl": 4em
-) !default;
-```
+  ```scss
+  // TBD
+  ```
+</DocBlock>
