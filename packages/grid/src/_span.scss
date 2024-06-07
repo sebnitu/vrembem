@@ -2,39 +2,36 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_p: var.$prefix-span;
-$_c: var.$class-span;
-
-@if (var.$output-span) {
-  .#{$_p}#{$_c}-auto {
+@if (var.$span and var.$span != 0) {
+  .#{var.$span-class}-auto {
     flex: 0 0 auto;
   }
 
-  @for $i from 1 through var.$span-columns {
-    $_s: ".#{$_p}#{$_c}-#{$i}";
-    @if ($i == var.$span-columns) {
-      $_s: "#{$_s}, .#{$_p}#{$_c}-full";
+  @for $i from 1 through var.$span {
+    $_s: ".#{var.$span-class}-#{$i}";
+    @if ($i == var.$span) {
+      $_s: "#{$_s}, .#{var.$span-class}-full";
     }
     #{$_s} {
       flex: none;
-      width: (100% * (math.div($i, var.$span-columns)));
+      width: (100% * (math.div($i, var.$span)));
     }
   }
 
   @each $key, $value in var.$breakpoints {
     @include core.media-min($value) {
-      .#{$_p}#{$_c}-auto-#{$key} {
+      .#{var.$span-class}-auto-#{$key} {
         flex: 0 0 auto;
       }
 
-      @for $i from 1 through var.$span-columns {
-        $_s: ".#{$_p}#{$_c}-#{$i}-#{$key}";
-        @if ($i == var.$span-columns) {
-          $_s: "#{$_s}, .#{$_p}#{$_c}-full-#{$key}";
+      @for $i from 1 through var.$span {
+        $_s: ".#{var.$span-class}-#{$i}-#{$key}";
+        @if ($i == var.$span) {
+          $_s: "#{$_s}, .#{var.$span-class}-full-#{$key}";
         }
         #{$_s} {
           flex: none;
-          width: (100% * (math.div($i, var.$span-columns)));
+          width: (100% * (math.div($i, var.$span)));
         }
       }
     }

@@ -11,7 +11,5 @@ $gap-map: (
   "xl": 4em
 ) !default;
 
-$output-span: true !default;
-$class-span: "span" !default;
-$prefix-span: null !default;
-$span-columns: 12 !default;
+$span: 12 !default;
+$span-class: "span" !default;
