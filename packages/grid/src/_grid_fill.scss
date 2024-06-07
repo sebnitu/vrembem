@@ -1,11 +1,7 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-
-.#{$_b}grid#{$_m}fill > .#{$_b}grid#{$_e}item,
-.#{$_b}grid#{$_e}item#{$_m}fill {
+#{core.bem("grid", null, "fill")} > #{core.bem("grid", "item")},
+#{core.bem("grid", "item", "fill")} {
   display: flex;
   flex-direction: column;
 

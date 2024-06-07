@@ -1,23 +1,18 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
 @each $key, $value in var.$gap-map {
-  .#{$_b}grid#{$_m}gap#{$_v}#{$key} {
+  #{core.bem("grid", null, "gap", $key)} {
     @include core.flex-gap($value, $prop: "padding");
   }
 }
 
 @each $key, $value in var.$gap-map {
-  .#{$_b}grid#{$_m}gap-x#{$_v}#{$key} {
+  #{core.bem("grid", null, "gap-x", $key)} {
     @include core.flex-gap($value, "x", $prop: "padding");
   }
 
-  .#{$_b}grid#{$_m}gap-y#{$_v}#{$key} {
+  #{core.bem("grid", null, "gap-y", $key)} {
     @include core.flex-gap($value, "y", $prop: "padding");
   }
 }
