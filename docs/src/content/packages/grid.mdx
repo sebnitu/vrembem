@@ -2,29 +2,25 @@
 title: Grid
 description: "A flexbox based grid system component."
 package: "@vrembem/grid"
+status: "loader"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Grid
 
 A flexbox based grid system component.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fgrid.svg)](https://www.npmjs.com/package/%40vrembem%2Fgrid)
-
-[Documentation](https://vrembem.com/packages/grid)
-
-## Installation
-
 ```sh
 npm install @vrembem/grid
 ```
-
-### Styles
 
 ```scss
 @use "@vrembem/grid";
 ```
 
-### Markup
+## Basic usage
 
 The most basic implementation of the grid component consists of two elements. By default, `grid__item`'s split the available space within the `grid` parent evenly:
 
