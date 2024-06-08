@@ -3,7 +3,7 @@
 
 @each $key, $value in var.$gap-map {
   #{core.bem("grid", null, "gap", $key)} {
-    @include core.flex-gap($value, $prop: "padding");
+    @include core.css("grid-gap", $value);
   }
 }
 

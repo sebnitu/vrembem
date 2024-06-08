@@ -312,51 +312,91 @@ Set the flex-basis, width and max-width on an element using the `span` module. S
 
 Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#scss-variables-file) variable map.
 
-```html
-<div class="grid">
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__break"></div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-3">...</div>
-  <div class="grid__item span-3">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__item span-3"><div class="box">...</div></div>
+      <div class="grid__item span-3"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-6">...</div>
+    <div class="grid__item span-6">...</div>
+    <div class="grid__clear"></div>
+    <div class="grid__item span-6">...</div>
+    <div class="grid__item span-3">...</div>
+    <div class="grid__item span-3">...</div>
+  </div>
+  ```
+</CodeExample>
 
 Here's an example of using the optional breakpoint variants. Breakpoints variants should be added with a mobile-first approach.
 
-```html
-<div class="grid">
-  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+  </div>
+  ```
+</CodeExample>
 
 ### span-auto-[key]
 
 Sets an elements width to `auto` with an optional breakpoint condition.
 
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-auto"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-auto">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 ### span-full-[key]
 
 Sets an elements width to `100%` with an optional breakpoint condition.
 
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-full"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-full">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 ## Customization
 

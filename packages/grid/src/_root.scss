@@ -1,0 +1,7 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("grid-gap", var.$gap);
+}
