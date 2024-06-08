@@ -16,7 +16,7 @@ export async function register(el, trigger) {
   // Setup the popover object.
   const entry = {
     id: el.id,
-    status: "closed",
+    state: "closed",
     el: el,
     trigger: trigger,
     popper: createPopper(trigger, el),

@@ -15,7 +15,7 @@ export async function register(el, config = {}) {
   // Setup the modal object.
   const entry = {
     id: el.id,
-    status: "closed",
+    state: "closed",
     el: el,
     dialog: null,
     get required() {
