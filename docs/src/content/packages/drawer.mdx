@@ -36,7 +36,7 @@ Drawers are composed using classes and data attributes for their triggers. The b
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-1" class="drawer">
@@ -81,7 +81,7 @@ Drawer triggers are defined using three data attributes:
 - `data-drawer-close`: Closes a drawer. Will close the parent drawer if left value-less. Can also take an id of a drawer to close.
 - `data-drawer-toggle`: Toggles a drawer opened or closed. Takes the id of the drawer it's meant to toggle.
 
-<CodeExample lang="html">
+<CodeExample>
   ```html
   <button data-drawer-open="[unique-id]">...</button>
   <button data-drawer-close="[unique-id]">...</button>
@@ -91,7 +91,7 @@ Drawer triggers are defined using three data attributes:
 
 The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on if the drawer is currently in modal mode.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 16rem;">
       <aside id="drawer-2" class="drawer">
@@ -176,7 +176,7 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
 
 In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-drawer-breakpoint` data attribute with either a width value or a breakpoint key.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-4" class="drawer" data-drawer-breakpoint="1200px" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
@@ -257,7 +257,7 @@ While a modal drawer is active, the contents obscured by the modal are made inac
 
 Drawer dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once closed.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-6" class="drawer">
@@ -349,7 +349,7 @@ Here's an example where we want the `drawer-main` content area to be inaccessibl
 
 Applies modal drawer styles to a drawer. This modifier should be applied before the drawer has been registered to properly setup the modal drawer. For more details on modal drawers and how to create them dynamically, please see the [modal drawer](#modal-drawers) documentation.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-8" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
@@ -376,7 +376,7 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
 
 Drawers slide in from the left by default. To create a right side drawer, use the `drawer_switch` modifier.
 
-<CodeExample lang="html" flush={true}>
+<CodeExample flush={true}>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-9" class="drawer drawer_switch">

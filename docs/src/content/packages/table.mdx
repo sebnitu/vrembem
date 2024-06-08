@@ -26,7 +26,7 @@ npm install @vrembem/table
 
 For basic table styles, only the `table` component class is required. Use [proper HTML table markup](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table) and styles should apply as expected.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <table class="table">
       <caption>Example of a table caption.</caption>
@@ -109,7 +109,7 @@ For basic table styles, only the `table` component class is required. Use [prope
 
 For simple responsive table styles, wrap your tables in the [`scroll-box` base module](/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <div class="scroll-box">
       <table class="table" style="width: 64rem">
@@ -158,7 +158,7 @@ For simple responsive table styles, wrap your tables in the [`scroll-box` base m
 
 Switches a table layout to `fixed` and adds ellipsis overflow styles to table cells and headers.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <table class="table table_ellipsis">
       <thead>
@@ -201,7 +201,7 @@ Switches a table layout to `fixed` and adds ellipsis overflow styles to table ce
 
 Space will be split equally between columns when `table_ellipsis` is applied. For more control over specific column widths, use the `<colgroup>` and `<col>` elements and set their desired widths as needed.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <table class="table table_ellipsis">
       <colgroup>
