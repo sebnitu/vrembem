@@ -135,8 +135,8 @@
   text-underline-offset: var.$link-underline-offset;
 
   code {
-    color: var.$link-color;
     background-color: palette.get("primary", 50%, 10%);
+    color: var.$link-color;
   }
 
   &:hover {
