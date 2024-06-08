@@ -29,13 +29,28 @@ The most basic implementation of the grid component consists of two elements. By
 - `grid`
 - `grid__item`
 
-```html
-<div class="grid">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item">
+        <div class="box">...</div>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 > Grid is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
 
