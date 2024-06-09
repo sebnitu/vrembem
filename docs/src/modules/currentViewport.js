@@ -1,4 +1,4 @@
-const els = document.querySelectorAll(".vp-width");
+const els = document.querySelectorAll("[data-vp-width]");
 
 if (els.length) {
   update(els);
@@ -10,6 +10,6 @@ if (els.length) {
 function update(els) {
   const vpw = window.innerWidth;
   els.forEach((el) => {
-    el.innerText = vpw;
+    el.innerText = `${vpw}px`;
   });
 }

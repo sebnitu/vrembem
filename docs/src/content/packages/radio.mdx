@@ -2,7 +2,7 @@
 title: Radio
 description: "Radios allow the user to select a single option from a set."
 package: "@vrembem/radio"
-state: "check"
+status: "check"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
@@ -26,7 +26,7 @@ npm install @vrembem/radio
 
 Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <span class="radio">
       <input type="radio" class="radio__native" name="example-1" value="1" checked />
@@ -61,7 +61,7 @@ Radio buttons are composed using a set of `<span>` elements alongside the native
 
 For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <label class="display-inline-flex flex-align-center flex-gap-xs">
       <span class="radio">
@@ -113,7 +113,7 @@ For radio buttons with labels, just wrap the radio component along with label te
 
 Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small `radio_size_sm`), 40px (default) and 50px (large `radio_size_lg`).
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <div class="level flex-gap-xl">
       <div>

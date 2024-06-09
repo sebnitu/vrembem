@@ -1,10 +1,5 @@
 @use "@vrembem/core";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $breakpoints: core.$breakpoints !default;
 $gap: 2em !default;
 $gap-map: (
@@ -16,7 +11,5 @@ $gap-map: (
   "xl": 4em
 ) !default;
 
-$output-span: true !default;
-$class-span: "span" !default;
-$prefix-span: null !default;
-$span-columns: 12 !default;
+$span: 12 !default;
+$span-class: "span" !default;

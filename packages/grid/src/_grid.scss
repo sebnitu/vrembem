@@ -1,25 +1,28 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}grid {
-  @include core.flex-gap(var.$gap, $prop: "padding");
+#{core.bem("grid")} {
   display: flex;
   flex-wrap: wrap;
+  margin-top: calc(core.css("grid-gap-y") * -1);
+  margin-left: calc(core.css("grid-gap-x") * -1);
+
+  > * {
+    padding-top: core.css("grid-gap-y");
+    padding-left: core.css("grid-gap-x");
+  }
 
   & + & {
     margin-top: 0;
   }
 }
 
-.#{$_b}grid#{$_e}item {
+#{core.bem("grid", "item")} {
   flex: 1 1 0;
   max-width: 100%;
 }
 
-.#{$_b}grid#{$_e}clear {
+#{core.bem("grid", "clear")} {
   flex: 1 0 100%;
   margin: 0 !important;
   padding: 0 !important;

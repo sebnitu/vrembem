@@ -2,7 +2,7 @@
 title: Modal
 description: "A component for changing the mode of a page to complete a critical task. This is usually used in conjunction with the dialog component to make modal dialogs."
 package: "@vrembem/modal"
-state: "circle"
+status: "circle"
 ---
 
 import CodeExample from "../../components/CodeExample.astro";
@@ -38,7 +38,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 - `data-modal-close`: Closes a modal. Will close the last opened modal if left value-less. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
 - `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-1">Open</button>
     <div id="modal-1" class="modal">
@@ -64,7 +64,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 
 The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-2">Open</button>
     <div id="modal-2" class="modal">
@@ -107,7 +107,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
 
 Modal dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <ul class="list">
       <li>
@@ -166,7 +166,7 @@ While a modal is active, the contents obscured by the modal are made inaccessibl
 
 Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. Required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-5">Open</button>
     <div id="modal-5" class="modal">
@@ -239,7 +239,7 @@ To return a modal to its original location, use the collection API method `telep
 
 Adds styles to a modal that make it fill the entire viewport when opened.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-6">Open</button>
     <div id="modal-6" class="modal modal_full">
@@ -267,7 +267,7 @@ Adds styles to a modal that make it fill the entire viewport when opened.
 
 The default position of modals is in the center of the viewport. The position modifier allows positioning a modal to the top, bottom, left and right side of the document viewport.
 
-<CodeExample lang="html">
+<CodeExample>
   <div slot="output" class="level">
     <button class="button" data-modal-open="modal-pos-top">
       <span>Top</span>
@@ -397,7 +397,7 @@ The default position of modals is in the center of the viewport. The position mo
 
 Adjusts the size of modals. This modifier provides five options that are output using the [`$size-scale`](#scss-variables-file) variable map.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <ul class="list">
       <li>

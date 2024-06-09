@@ -2,112 +2,184 @@
 title: Grid
 description: "A flexbox based grid system component."
 package: "@vrembem/grid"
+status: "loader"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Grid
 
 A flexbox based grid system component.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fgrid.svg)](https://www.npmjs.com/package/%40vrembem%2Fgrid)
-
-[Documentation](https://vrembem.com/packages/grid)
-
-## Installation
-
 ```sh
 npm install @vrembem/grid
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/grid";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/grid";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation of the grid component consists of two elements. By default, `grid__item`'s split the available space within the `grid` parent evenly:
 
 - `grid`
 - `grid__item`
 
-```html
-<div class="grid">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
-> Grid is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/main/packages/utility) package—specifically [`flex`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#flex) and [`span`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#span) modules—to further customize your layout.
+> Grid is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
 
-#### `grid__clear`
+The `grid__clear` element allows you to start a new row at any point in a column set.
 
-The clear element allows you to start a new row at any point in a column set.
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item">...</div>
+    <div class="grid__clear"></div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
-```html
-<div class="grid">
-  <div class="grid__item">...</div>
-  <div class="grid__clear"></div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
-
-## Modifiers
-
-### `grid_auto`
+## grid_auto
 
 Gives grid items a basis of auto so their content dictates their width.
 
-```html
-<div class="grid grid_auto">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid grid_auto">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid_auto">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 Set an individual grid item to auto using `grid__item_auto` element modifier.
 
-```html
-<div class="grid">
-  <div class="grid__item grid__item_auto">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item grid__item_auto"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item grid__item_auto">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
-### `grid_fill`
+## grid_fill
 
 The fill modifier stretches grid item’s contents to fill the height of it’s container.
 
-```html
-<div class="grid grid_fill">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid grid_fill">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item gap-y">
+        <div class="box">...</div>
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid_fill">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 Set an individual grid item to fill using the `grid__item_fill` element modifier.
 
-```html
-<div class="grid">
-  <div class="grid__item grid__item_fill">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item grid__item_fill"><div class="box">...</div></div>
+      <div class="grid__item gap-y">
+        <div class="box">...</div>
+        <div class="box">...</div>
+      </div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item grid__item_fill">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
-### `grid_gap_[key]`
+## grid_gap_[key]
 
-Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="grid grid_gap_sm">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid grid_gap_xs">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid_gap_xs">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    ...
+  </div>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap_none`
 - `grid_gap_xs`
@@ -116,18 +188,31 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 - `grid_gap_lg`
 - `grid_gap_xl`
 
-### `grid_gap-x_[key]`
+## grid_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="grid grid_gap-x_xs">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid grid_gap-x_xs">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid_gap-x_xs">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    ...
+  </div>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap-x_none`
 - `grid_gap-x_xs`
@@ -136,18 +221,31 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 - `grid_gap-x_lg`
 - `grid_gap-x_xl`
 
-### `grid_gap-y_[key]`
+## grid_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="grid grid_gap-y_xl">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid grid_gap-y_xs">
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid_gap-y_xl">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    ...
+  </div>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variants**
 
 - `grid_gap-y_none`
 - `grid_gap-y_xs`
@@ -156,18 +254,44 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
-### `grid_stack_[key]`
+## grid_stack_[key]
 
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
+Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#scss-variables-file) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
 
-```html
-<div class="grid grid_stack_md">
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="grid grid_gap_sm grid_stack_md">
+      <div class="grid__item span-full">
+        Grid will stack below the <code>md (760px)</code> breakpoint.
+      </div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+    <div class="grid grid_gap_sm grid_stack_lg">
+      <div class="grid__item span-full">
+        Grid will stack below the <code>lg (990px)</code> breakpoint.
+      </div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </div>
+  ```html
+  <div class="grid grid_stack_md">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
 
-#### Available Variations
+  <div class="grid grid_stack_lg">
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available Variants**
 
 - `grid_stack`
 - `grid_stack_xs`
@@ -176,111 +300,140 @@ Adds a breakpoint for when grid items should be stacked vertically. Values and c
 - `grid_stack_lg`
 - `grid_stack_xl`
 
-### `span`
+## span
 
-Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map. These are the available variants:
+Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#scss-variables-file) variable map. These are the available variants:
 
 - `span-[col]-[key]` - Sets the number of columns an element should span with an optional breakpoint condition.
 - `span-auto-[key]` - Sets an elements width to `auto` with an optional breakpoint condition.
 - `span-full-[key]` - Sets an elements width to `100%` with an optional breakpoint condition.
 
-| Variable        | Default  | Description                                           |
-| --------------- | -------- | ----------------------------------------------------- |
-| `$output-span`  | `true`   | Toggles the output of this module.                    |
-| `$class-span`   | `"span"` | String to use for the class name of the span module.  |
-| `$prefix-span`  | `null`   | String to prefix the span module with.                |
-| `$span-columns` | `12`     | The columns value to use when building span variants. |
+### span-[col]-[key]
 
-#### `span-[col]-[key]`
+Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#scss-variables-file) variable map.
 
-Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#breakpoints) variable map.
-
-```html
-<div class="grid">
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__break"></div>
-  <div class="grid__item span-6">...</div>
-  <div class="grid__item span-3">...</div>
-  <div class="grid__item span-3">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__clear"></div>
+      <div class="grid__item span-6"><div class="box">...</div></div>
+      <div class="grid__item span-3"><div class="box">...</div></div>
+      <div class="grid__item span-3"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-6">...</div>
+    <div class="grid__item span-6">...</div>
+    <div class="grid__clear"></div>
+    <div class="grid__item span-6">...</div>
+    <div class="grid__item span-3">...</div>
+    <div class="grid__item span-3">...</div>
+  </div>
+  ```
+</CodeExample>
 
 Here's an example of using the optional breakpoint variants. Breakpoints variants should be added with a mobile-first approach.
 
-```html
-<div class="grid">
-  <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-  <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
+      <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
+    <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
+  </div>
+  ```
+</CodeExample>
 
-#### `span-auto-[key]`
+### span-auto-[key]
 
 Sets an elements width to `auto` with an optional breakpoint condition.
 
-```html
-<div class="grid">
-  <div class="grid__item span-auto">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-auto"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-auto">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
-#### `span-full-[key]`
+### span-full-[key]
 
 Sets an elements width to `100%` with an optional breakpoint condition.
 
-```html
-<div class="grid">
-  <div class="grid__item span-full">...</div>
-  <div class="grid__item">...</div>
-  <div class="grid__item">...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-full"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-full">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
 
 ## Customization
 
-### Sass Variables
+Grids are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default                                        | Description                                                                   |
-| ------------------------ | ---------------------------------------------- | ----------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                 |
-| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                               |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                              |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                        |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `grid_stack_[key]` modifier uses to build its styles. |
-| `$gap`                   | `2em`                                          | The default gap spacing for the grid component.                               |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                 |
+<DocBlock name="CSS Variables" type="file" src="grid/src/_root.scss">
 
-#### `$breakpoints`
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
 
-The breakpoints map the `grid_stack_[key]` modifier uses to build its styles.
+  #{theme.$root-selector} {
+    @include core.css("grid-gap", var.$gap);
+    @include core.css("grid-gap-x", core.css("grid-gap"));
+    @include core.css("grid-gap-y", core.css("grid-gap"));
+  }
+  ```
+</DocBlock>
 
-```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
-```
+<DocBlock name="SCSS Variables" type="file" src="grid/src/_variables.scss">
 
-#### `$gap-map`
+  ```scss
+  @use "@vrembem/core";
 
-Used to output gap modifiers.
+  $breakpoints: core.$breakpoints !default;
+  $gap: 2em !default;
+  $gap-map: (
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "md": 2em,
+    "lg": 3em,
+    "xl": 4em
+  ) !default;
 
-```scss
-$gap-map: (
-  "none": 0,
-  "xs": 0.5em,
-  "sm": 1em,
-  "md": 2em,
-  "lg": 3em,
-  "xl": 4em
-) !default;
-```
+  $span: 12 !default;
+  $span-class: "span" !default;
+  ```
+</DocBlock>

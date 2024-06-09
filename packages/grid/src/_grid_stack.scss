@@ -1,33 +1,28 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}grid#{$_m}stack {
+#{core.bem("grid", null, "stack")} {
   flex-direction: column;
 
-  > .#{$_b}grid#{$_e}item {
+  > #{core.bem("grid", "item")} {
     flex: none;
     width: 100%;
   }
 }
 
 @each $key, $value in var.$breakpoints {
-  .#{$_b}grid#{$_m}stack#{$_v}#{$key} {
+  #{core.bem("grid", null, "stack", $key)} {
     flex-direction: column;
   }
 
   @include core.media-min($value) {
-    .#{$_b}grid#{$_m}stack#{$_v}#{$key} {
+    #{core.bem("grid", null, "stack", $key)} {
       flex-direction: row;
     }
   }
 
   @include core.media-max($value) {
-    .#{$_b}grid#{$_m}stack#{$_v}#{$key} > .#{$_b}grid#{$_e}item {
+    #{core.bem("grid", null, "stack", $key)} > #{core.bem("grid", "item")} {
       flex: none;
       width: 100%;
     }

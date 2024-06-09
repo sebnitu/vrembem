@@ -2,7 +2,7 @@
 title: Checkbox
 description: "Checkboxes allow the user to select multiple options from a set."
 package: "@vrembem/checkbox"
-state: "check"
+status: "check"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
@@ -85,7 +85,7 @@ Indeterminate checkboxes need to be set in JavaScript though styling is provided
 
 For checkboxes with labels, wrap the checkbox component along with the text label using the `<label>` element.
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <label class="display-inline-flex flex-align-center flex-gap-xs">
       <span class="checkbox">
@@ -137,7 +137,7 @@ For checkboxes with labels, wrap the checkbox component along with the text labe
 
 Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
 
-<CodeExample lang="html">
+<CodeExample>
   <Fragment slot="output">
     <span class="checkbox checkbox_size_sm">
       <input class="checkbox__native" type="checkbox" checked />

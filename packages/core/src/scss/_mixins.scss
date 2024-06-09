@@ -97,46 +97,6 @@
   }
 }
 
-/// A gap mixin that creates spacing between an elements children comparable to
-/// the gap property for flexbox. Optionally pass a direction string for
-/// column-gap ("x") and row-gaps ("y") output.
-/// @param {Number} $val - Number unit to apply.
-/// @param {String} $dir ["xy"] - Direction to apply flex-gap ("x", "y" or "xy" for both).
-/// @param {Boolean} $imp [null] - Whether or not to add `!important` flag.
-/// @param {String} $prop ["margin"] - Property to apply gap with ("margin" | "padding").
-@mixin flex-gap($val, $dir: "xy", $imp: false, $prop: "margin") {
-  @if ($imp) {
-    $imp: "!important";
-  }
-  @else if ($imp == false) {
-    $imp: null;
-  }
-
-  @if ($dir == "x") {
-    margin-left: ($val * -1) #{$imp};
-
-    > * {
-      #{$prop}-left: $val #{$imp};
-    }
-  }
-  @else if ($dir == "y") {
-    margin-top: ($val * -1) #{$imp};
-
-    > * {
-      #{$prop}-top: $val #{$imp};
-    }
-  }
-  @else {
-    margin-top: ($val * -1) #{$imp};
-    margin-left: ($val * -1) #{$imp};
-
-    > * {
-      #{$prop}-top: $val #{$imp};
-      #{$prop}-left: $val #{$imp};
-    }
-  }
-}
-
 /// A gap mixin that creates spacing between inline or block level elements.
 /// Spacing is added using the `> * + *` selector and can either be applied
 /// horizontally or vertically by passing $dir "x" or "y" respectively.
