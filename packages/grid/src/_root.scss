@@ -4,6 +4,4 @@
 
 #{theme.$root-selector} {
   @include core.css("grid-gap", var.$gap);
-  @include core.css("grid-gap-x", core.css("grid-gap"));
-  @include core.css("grid-gap-y", core.css("grid-gap"));
 }

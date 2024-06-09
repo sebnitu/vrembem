@@ -4,12 +4,12 @@
 #{core.bem("grid")} {
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(core.css("grid-gap-y") * -1);
-  margin-left: calc(core.css("grid-gap-x") * -1);
+  margin-top: calc(core.css("grid-gap-y", "grid-gap") * -1);
+  margin-left: calc(core.css("grid-gap-x", "grid-gap") * -1);
 
   > * {
-    padding-top: core.css("grid-gap-y");
-    padding-left: core.css("grid-gap-x");
+    padding-top: core.css("grid-gap-y", "grid-gap");
+    padding-left: core.css("grid-gap-x", "grid-gap");
   }
 
   & + & {
