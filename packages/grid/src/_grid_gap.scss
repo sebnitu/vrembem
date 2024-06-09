@@ -3,7 +3,8 @@
 
 @each $key, $value in var.$gap-map {
   #{core.bem("grid", null, "gap", $key)} {
-    @include core.css("grid-gap", $value);
+    @include core.css("grid-gap-x", $value);
+    @include core.css("grid-gap-y", $value);
   }
 }
 
