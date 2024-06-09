@@ -29,10 +29,14 @@
 
 /// Output a CSS variable using the core variable prefix.
 /// @param {String} $name - The custom property name.
+/// @param {String} $fallback [null] - The custom property name of a fallback.
 /// @return {CSS var} - The var() CSS function with the value of the custom property.
-/// TODO: Add the ability to set a variable fallback; e.g. core.css("grid-gap-x", "grid-gap").
-@function css($name) {
-  @return var(--#{prefix.$variable}#{$name});
+@function css($name, $fallback: null) {
+  @if ($fallback) {
+    @return var(--#{prefix.$variable}#{$name}, var(--#{prefix.$variable}#{$fallback}));
+  } @else {
+    @return var(--#{prefix.$variable}#{$name});
+  }
 }
 
 /// Encodes a color for use in data-uri
