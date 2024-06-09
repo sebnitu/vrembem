@@ -30,6 +30,7 @@
 /// Output a CSS variable using the core variable prefix.
 /// @param {String} $name - The custom property name.
 /// @return {CSS var} - The var() CSS function with the value of the custom property.
+/// TODO: Add the ability to set a variable fallback; e.g. core.css("grid-gap-x", "grid-gap").
 @function css($name) {
   @return var(--#{prefix.$variable}#{$name});
 }
