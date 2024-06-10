@@ -84,6 +84,7 @@
   from {
     box-shadow: 0 0 0 3px palette.get("primary", 50%, 100%) inset;
   }
+
   to {
     box-shadow: 0 0 0 3px palette.get("primary", 50%, 0%) inset;
   }
