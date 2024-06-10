@@ -22,11 +22,13 @@ document.addEventListener("click", (event) => {
     const result = document.querySelector(`#${save.id}`);
     if (result) {
       el.disabled = true;
+      el.classList.add("is-loading");
       result.innerHTML = save.data;
       result.classList.add("updated");
       setTimeout(() => {
         result.classList.remove("updated");
         el.disabled = false;
+        el.classList.remove("is-loading");
       }, 600);
     }
   }
