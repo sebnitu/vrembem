@@ -2,122 +2,126 @@
 title: Icon
 description: "The icon component provides a consistent way to style icons."
 package: "@vrembem/icon"
+status: "loader"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+import Icon from '../../components/Icon.astro';
 
 # Icon
 
 The icon component provides a consistent way to style icons.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Ficon.svg)](https://www.npmjs.com/package/%40vrembem%2Ficon)
-
-[Documentation](https://vrembem.com/packages/icon)
-
-## Installation
-
 ```sh
 npm install @vrembem/icon
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/icon";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/icon";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation of the icon component consists of the `icon` class applied to an svg element.
 
-```html
-<svg class="icon" role="img">
-  <use xlink:href="#icon-anchor"></use>
-</svg>
-```
+<CodeExample>
+  <div slot="output" class="level level_gap_xl">
+    <Icon name="anchor" />
+    <Icon name="arrow-left" />
+    <Icon name="arrow-right" />
+    <Icon name="arrow-up" />
+    <Icon name="arrow-down" />
+    <Icon name="clipboard" />
+    <Icon name="clock" />
+    <Icon name="download-cloud" />
+  </div>
+  ```html
+  <svg class="icon" role="img">...</svg>
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `icon_size_[value]`
+## icon_size_[value]
 
 Add a size modifier to adjust the size of your icons. Icon sizes are controlled using the font-size attribute and optionally a stroke width.
 
-```html
-<svg class="icon icon_size_sm" role="img">
-  <use xlink:href="#icon-anchor"></use>
-</svg>
-```
+<CodeExample>
+  <div slot="output" class="level level_gap_xl">
+    <Icon name="anchor" iconClass="icon_size_xs" />
+    <Icon name="anchor" iconClass="icon_size_sm" />
+    <Icon name="anchor" />
+    <Icon name="anchor" iconClass="icon_size_lg" />
+    <Icon name="anchor" iconClass="icon_size_xl" />
+  </div>
+  ```html
+  <svg class="icon icon_size_sm" role="img">...</svg>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available Variants**
 
 - `icon_size_xs`
 - `icon_size_sm`
 - `icon_size_lg`
 - `icon_size_xl`
 
-### `icon_style_[value]`
+## icon_style_[value]
 
 The default icon style is set using the `$icon-style` variable. You can also explicitly style an icon using the style modifier.
 
-```html
-<svg class="icon icon_style_stroke" role="img">
-  <use xlink:href="#icon-heart"></use>
-</svg>
+<CodeExample>
+  <div slot="output" class="level level_gap_xl">
+    <Icon name="heart" iconClass="icon_style_stroke" />
+    <Icon name="heart" iconClass="icon_style_fill" />
+  </div>
+  ```html
+  <svg class="icon icon_style_stroke" role="img">...</svg>
+  <svg class="icon icon_style_fill" role="img">...</svg>
+  ```
+</CodeExample>
 
-<svg class="icon icon_style_fill" role="img">
-  <use xlink:href="#icon-heart"></use>
-</svg>
-```
-
-#### Available Variations
+**Available Variants**
 
 - `icon_style_stroke`
 - `icon_style_fill`
 
-#### `@mixin icon-style($style)`
-
-Output unique styles for an icons based on their style type.
-
-**Arguments**
-
-| Variable | Type     | Description                                                                                         |
-| -------- | -------- | --------------------------------------------------------------------------------------------------- |
-| `$style` | `string` | The icon styles to output. Current options include `"stroke"` and `"fill"`, defaults to `"stroke"`. |
-
-**Example**
-
-```scss
-.icon-selector {
-  @include icon-style("fill");
-}
-
-// CSS Output
-.icon-selector {
-  stroke: none;
-  stroke-width: 0;
-  fill: currentColor;
-}
-```
-
 ## Customization
 
-### Sass Variables
+Icons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default    | Description                                                                         |
-| ------------------------ | ---------- | ----------------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`     | String to prefix blocks with.                                                       |
-| `$prefix-element`        | `"__"`     | String to prefix elements with.                                                     |
-| `$prefix-modifier`       | `"_"`      | String to prefix modifiers with.                                                    |
-| `$prefix-modifier-value` | `"_"`      | String to prefix modifier values with.                                              |
-| `$style`                 | `"stroke"` | The default icon styles to output. Current options include `"stroke"` and `"fill"`. |
-| `$size`                  | `1.25em`   | The base size of icons. This is applied using the `font-size` property.             |
-| `$stroke-width`          | `2xp`      | Sets the stroke-width property of icons.                                            |
-| `$stroke-linecap`        | `round`    | Sets the stroke-linecap property of icons.                                          |
-| `$stroke-linejoin`       | `round`    | Sets the stroke-linejoin property of icons.                                         |
-| `$vertical-align`        | `top`      | Sets the vertical-align property of icons.                                          |
-| `$size-xs`               | `0.75em`   | Sets the font-size property of icons with the `icon_size_xs` modifier.              |
-| `$size-xs-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_xs` modifier.           |
-| `$size-sm`               | `1em`      | Sets the font-size property of icons with the `icon_size_sm` modifier.              |
-| `$size-sm-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_sm` modifier.           |
-| `$size-lg`               | `1.75em`   | Sets the font-size property of icons with the `icon_size_lg` modifier.              |
-| `$size-lg-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_lg` modifier.           |
-| `$size-xl`               | `2.75em`   | Sets the font-size property of icons with the `icon_size_xl` modifier.              |
-| `$size-xl-stroke-width`  | `null`     | Sets the stroke-width property of icons with the `icon_size_xl` modifier.           |
+<DocBlock name="CSS Variables" type="file" src="icon/src/_root.scss">
+
+  ```scss
+  TBD
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="icon/src/_variables.scss">
+
+  ```scss
+  TBD
+  ```
+</DocBlock>
+
+<DocBlock name="icon-style" type="mixin" src="icon/src/_mixins.scss" args={[
+  ["$style", "String", "The icon styles to output. Current options include \"stroke\" and \"fill\", defaults to \"stroke\"."]
+]}>
+  Output unique styles for an icons based on their style type.
+
+  <div slot="example">
+    ```scss
+    .icon-selector {
+      @include icon-style("fill");
+    }
+
+    // CSS Output
+    .icon-selector {
+      stroke: none;
+      stroke-width: 0;
+      fill: currentColor;
+    }
+    ```
+  </div>
+</DocBlock>
