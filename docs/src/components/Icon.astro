@@ -9,7 +9,8 @@ interface Props {
 const { name, iconClass = "" } = Astro.props;
 
 const svg = feather.icons[name].toSvg({
-  class: `icon ${iconClass}`.trim()
+  class: `icon ${iconClass}`.trim(),
+  role: "img"
 });
 
 ---
