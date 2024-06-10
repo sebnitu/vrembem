@@ -181,7 +181,7 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 Buttons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-<DocBlock name="CSS Variables" type="file" src="button/src/_root.scss">
+<DocBlock name="CSS Variables" src="button/src/_root.scss">
 
   ```scss
   @use "@vrembem/core";
@@ -220,7 +220,7 @@ Buttons are primarily customized using CSS variables but can also be modified us
   ```
 </DocBlock>
 
-<DocBlock name="SCSS Variables" type="file" src="button/src/_variables.scss">
+<DocBlock name="SCSS Variables" src="button/src/_variables.scss">
 
   ```scss
   @use "sass:list";
@@ -289,7 +289,7 @@ Buttons are primarily customized using CSS variables but can also be modified us
   Creates a button variant using CSS variables and the palette module.
 
   <div slot="example">
-  
+
     ```scss
     .button-custom {
       @include button-variant(white, "secondary");

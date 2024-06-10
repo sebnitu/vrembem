@@ -12,7 +12,7 @@ interface Props {
   open?: boolean;
 }
 
-const { name, type, returns, src, line, args, open = false } = Astro.props;
+const { name, type = "file", returns, src, line, args, open = false } = Astro.props;
 const id = makeSafeForCSS(`${name}-${type}`);
 const isFile = (type === "file");
 
