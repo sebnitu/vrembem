@@ -102,7 +102,7 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 It's a common pattern to allow users to dismiss notices. This can be accomplished using the button component along with some simple vanilla JavaScript.
 
-<CodeExample tabs={true}>
+<CodeExample tabs resettable>
   <Fragment slot="output">
     <div class="notice">
       <div class="flex flex-justify-between">
@@ -118,7 +118,11 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
     <div class="notice">
       <div class="flex flex-justify-between">
         <p>...</p>
-        <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
+        <button 
+          class="button button_icon button_size_sm" 
+          aria-label="Dismiss this notice" 
+          data-dismiss=".notice"
+        >
           ...
         </button>
       </div>
