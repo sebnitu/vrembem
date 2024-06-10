@@ -1,14 +1,10 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 @use "./mixins" as mix;
 
-$_b: #{var.$prefix-block};
-$_m: #{var.$prefix-modifier};
-$_v: #{var.$prefix-modifier-value};
-
-.#{$_b}icon#{$_m}style#{$_v}stroke {
+#{core.bem("icon", null, "style", "stroke")} {
   @include mix.icon-style("stroke");
 }
 
-.#{$_b}icon#{$_m}style#{$_v}fill {
+#{core.bem("icon", null, "style", "fill")} {
   @include mix.icon-style("fill");
 }

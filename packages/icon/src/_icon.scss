@@ -1,7 +1,8 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-.#{var.$prefix-block}icon {
+#{core.bem("icon")} {
   @include mix.icon-style(var.$style);
   display: inline-block;
   box-sizing: content-box;

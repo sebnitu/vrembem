@@ -1,25 +1,22 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: #{var.$prefix-block};
-$_m: #{var.$prefix-modifier};
-$_v: #{var.$prefix-modifier-value};
-
-.#{$_b}icon#{$_m}size#{$_v}xs {
+#{core.bem("icon", null, "size", "xs")} {
   stroke-width: var.$size-xs-stroke-width;
   font-size: var.$size-xs;
 }
 
-.#{$_b}icon#{$_m}size#{$_v}sm {
+#{core.bem("icon", null, "size", "sm")} {
   stroke-width: var.$size-sm-stroke-width;
   font-size: var.$size-sm;
 }
 
-.#{$_b}icon#{$_m}size#{$_v}lg {
+#{core.bem("icon", null, "size", "lg")} {
   stroke-width: var.$size-lg-stroke-width;
   font-size: var.$size-lg;
 }
 
-.#{$_b}icon#{$_m}size#{$_v}xl {
+#{core.bem("icon", null, "size", "xl")} {
   stroke-width: var.$size-xl-stroke-width;
   font-size: var.$size-xl;
 }
