@@ -48,6 +48,7 @@ const layout = {
 </Base>
 
 <script>
+  // @ts-nocheck
   import { headerAnchor } from "../../modules/headerAnchor";
   import { tabs } from "../../modules/tabs";
   import { toggle } from "../../modules/toggle";
@@ -57,11 +58,19 @@ const layout = {
   tabs.mount();
   toggle.mount();
 
+  // Checkboxes
   const checkboxes = document.querySelectorAll(
     "input[type='checkbox'][aria-checked='mixed']"
   );
-  checkboxes.forEach((checkbox) => {
-    // @ts-ignore
-    checkbox.indeterminate = true;
+  checkboxes.forEach((checkbox) => checkbox.indeterminate = true);
+
+  // Dismissible
+  const btns = document.querySelectorAll("[data-dismiss]");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const selector = btn.getAttribute("data-dismiss");
+      const result = event.target.closest(selector);
+      if (result) result.classList.add("display-none");
+    });
   });
 </script>

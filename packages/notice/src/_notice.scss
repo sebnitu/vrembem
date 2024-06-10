@@ -1,22 +1,18 @@
 @use "@vrembem/core";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}notice {
+#{core.bem("notice")} {
   @include core.gap(var.$gap, "y");
-  padding: var.$padding;
-  border: theme.get("notice", "border");
-  border-radius: var.$border-radius;
-  background: theme.get("notice", "background");
-  box-shadow: theme.get("notice", "shadow");
-  color: theme.get("notice", "foreground");
+  padding: core.css("notice-padding");
+  border: core.css("notice-border");
+  border-radius: core.css("notice-border-radius");
+  background: core.css("notice-background");
+  box-shadow: core.css("notice-box-shadow");
+  color: core.css("notice-foreground");
 }
 
-.#{$_b}notice#{$_e}title {
-  font-size: var.$title-font-size;
-  font-weight: var.$title-font-weight;
-  line-height: var.$title-line-height;
+#{core.bem("notice", "title")} {
+  font-size: core.css("notice-title-font-size");
+  font-weight: core.css("notice-title-font-weight");
+  line-height: core.css("notice-title-line-height");
 }

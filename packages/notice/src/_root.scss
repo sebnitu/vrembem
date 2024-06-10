@@ -1,3 +1,18 @@
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("notice-gap", var.$gap);
+  @include core.css("notice-padding", var.$padding);
+  @include core.css("notice-background", var.$background);
+  @include core.css("notice-foreground", var.$foreground);
+  @include core.css("notice-border", var.$border);
+  @include core.css("notice-border-radius", var.$border-radius);
+  @include core.css("notice-box-shadow", var.$box-shadow);
+  @include core.css("notice-title-font-size", var.$title-font-size);
+  @include core.css("notice-title-line-height", var.$title-line-height);
+  @include core.css("notice-title-font-weight", var.$title-font-weight);
+}
 
 @include theme.output("notice");
