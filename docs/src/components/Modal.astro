@@ -1,15 +1,15 @@
 ---
 interface Props {
   id?: string;
-  modalClass?: string;
+  classes?: string;
   dialogClass?: string;
 }
 
-const { id, modalClass, dialogClass = "dialog" } = Astro.props;
+const { id, classes, dialogClass = "dialog" } = Astro.props;
 
 ---
 
-<div id={id} class={`modal ${modalClass}`.trim()}>
+<div id={id} class={`modal ${classes}`.trim()}>
   <div class={`modal__dialog ${dialogClass}`.trim()} role="dialog" aria-modal="true">
     <slot />
   </div>
