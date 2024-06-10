@@ -1,5 +1,6 @@
-@use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "@vrembem/core/palette";
 @use "./root";
 
 .code-example {
@@ -57,16 +58,33 @@
   .drawer-frame {
     height: 100%;
   }
+
+  &.updated {
+    animation: .6s linear updated;
+  }
 }
 
 .code-example__toolbar {
   display: flex;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 3.5rem 0.5rem 1rem;
   color: theme.get("foreground-lighter");
   text-transform: uppercase;
 
-  > * + * {
-    margin-left: 1rem;
+  [role="tablist"] {
+    flex-grow: 1;
+  }
+
+  [data-reset] {
+    margin: -2px 0;
+  }
+}
+
+@keyframes updated {
+  from {
+    background-color: palette.get("primary", 50%, 10%);
+  }
+  to {
+    background-color: palette.get("primary", 50%, 0%);
   }
 }
