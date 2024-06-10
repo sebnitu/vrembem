@@ -2,118 +2,249 @@
 title: Notice
 description: "A component for highlighting messages to the user."
 package: "@vrembem/notice"
+status: "loader"
 ---
+
+import CodeExample from "../../components/CodeExample.astro";
+import DocBlock from "../../components/DocBlock.astro";
+import Icon from "../../components/Icon.astro";
 
 # Notice
 
 A component for highlighting messages to the user.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fnotice.svg)](https://www.npmjs.com/package/%40vrembem%2Fnotice)
-
-[Documentation](https://vrembem.com/packages/notice)
-
-## Installation
-
 ```sh
 npm install @vrembem/notice
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/notice";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/notice";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation component consists of the `notice` container element wrapping text content.
 
-```html
-<div class="notice">
-  <p>...</p>
-</div>
-```
-
-#### `notice__title`
+<CodeExample>
+  <Fragment slot="output">
+    <div class="notice">
+      <p>This is an example notice.</p>
+    </div>
+  </Fragment>
+  ```html
+  <div class="notice">
+    <p>...</p>
+  </div>
+  ```
+</CodeExample>
 
 Add a title to your notice using the `notice__title` element.
 
-```html
-<div class="notice">
-  <h2 class="notice__title">...</h2>
-  <p>...</p>
-</div>
-```
-
-#### `notice + media`
-
-For cases where a notice message should be displayed alongside an icon or image, try combining it with the media component.
-
-```html
-<div class="notice">
-  <div class="media media_gap_sm">
-    <div class="media__obj">
-      ...
+<CodeExample>
+  <Fragment slot="output">
+    <div class="notice">
+      <h2 class="notice__title">Notice title</h2>
+      <p>This is an example notice with a title. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
-    <div class="media__body">
-      ...
-    </div>
-  </div>
-</div>
-```
-
-#### `notice + icon-action`
-
-When a notice needs to be dismissible, try adding the icon-action component along with some flex utilities.
-
-```html
-<div class="notice">
-  <div class="flex flex-justify-between">
+  </Fragment>
+  ```html
+  <div class="notice">
+    <h2 class="notice__title">...</h2>
     <p>...</p>
-    <button class="icon-action" aria-label="Close">
-      <svg role="img" class="icon">...</svg>
-    </button>
   </div>
-</div>
-```
+  ```
+</CodeExample>
 
-> Dismissible JavaScript behavior is not provided.
+### Using media
 
-## Modifiers
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the [media](/packages/media) component.
 
-### `notice_state_[value]`
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <div class="notice notice_color_important">
+      <div class="media media_gap_sm">
+        <div class="media__obj">
+          <Icon name="alert-triangle" />
+        </div>
+        <div class="media__body">
+          This is an example notice using the media component for layout.
+        </div>
+      </div>
+    </div>
+    <div class="notice notice_color_secondary">
+      <div class="media media_gap_sm">
+        <div class="media__body">
+          This is an example notice using the media component for layout.
+        </div>
+        <div class="media__obj">
+          <Icon name="archive" />
+        </div>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="notice">
+    <div class="media media_gap_sm">
+      <div class="media__obj">
+        ...
+      </div>
+      <div class="media__body">
+        ...
+      </div>
+    </div>
+  </div>
+  ```
+</CodeExample>
 
-Adds styles for changing the look and feel of a notice to better reflect the urgency or status.
+### Dismissible
 
-```html
-<div class="notice notice_state_danger">
-  <p>An error has occurred!</p>
-</div>
-```
+It's a common pattern to allow users to dismiss notices. This can be accomplished using the button component along with some simple vanilla JavaScript.
 
-#### Available Variations
+<CodeExample tabs={true}>
+  <Fragment slot="output">
+    <div class="notice">
+      <div class="flex flex-justify-between">
+        <p>This is an example notice with a dismiss button.</p>
+        <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
+          <Icon name="x" iconClass="icon_size_sm" />
+        </button>
+      </div>
+    </div>
+  </Fragment>
+  <Fragment slot="tab-html">
+    ```html
+    <div class="notice">
+      <div class="flex flex-justify-between">
+        <p>...</p>
+        <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
+          ...
+        </button>
+      </div>
+    </div>
+    ```
+  </Fragment>
+  <Fragment slot="tab-js">
+    ```js
+    // Get the button elements.
+    const btns = document.querySelectorAll("[data-dismiss]");
 
-- `notice_state_info`
-- `notice_state_success`
-- `notice_state_caution`
-- `notice_state_danger`
+    // Loop through them and add click event listeners.
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        // Get the value of data-dismiss and select the nearest matching element.
+        const selector = btn.getAttribute("data-dismiss");
+        const result = event.target.closest(selector);
+
+        // Hide the notice if it exists.
+        if (result) result.classList.add("display-none");
+      });
+    });
+    ```
+  </Fragment>
+</CodeExample>
+
+## notice_color_[value]
+
+Adds styles for changing the look and feel to better reflect the urgency or status of a notice.
+
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <div class="notice notice_color_primary">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_secondary">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_neutral">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_important">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+  </div>
+  ```html
+  <div class="notice notice_color_important">
+    <p>An error has occurred!</p>
+  </div>
+  ```
+</CodeExample>
+
+**Available Variants**
+
+- `notice_color_primary`
+- `notice_color_secondary`
+- `notice_color_neutral`
+- `notice_color_important`
 
 ## Customization
 
-### Sass Variables
+Notices are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default                       | Description                                                                |
-| ------------------------ | ----------------------------- | -------------------------------------------------------------------------- |
-| `$prefix-block`          | `null`                        | String to prefix blocks with.                                              |
-| `$prefix-element`        | `"__"`                        | String to prefix elements with.                                            |
-| `$prefix-modifier`       | `"_"`                         | String to prefix modifiers with.                                           |
-| `$prefix-modifier-value` | `"_"`                         | String to prefix modifier values with.                                     |
-| `$gap`                   | `0.5em`                       | The default vertical gap spacing for elements inside the notice component. |
-| `$padding`               | `1em`                         | Sets the padding property.                                                 |
-| `$border`                | `null`                        | Sets the border property.                                                  |
-| `$border-radius`         | `core.$border-radius`         | Sets the border-radius property.                                           |
-| `$background`            | `core.$shade`                 | Sets the background property.                                              |
-| `$box-shadow`            | `null`                        | Sets the box-shadow property.                                              |
-| `$title-font-size`       | `core.$font-size-lg`          | Sets the font-size property of the `notice__title` element.                |
-| `$title-font-weight`     | `core.$font-weight-semi-bold` | Sets the font-weight property of the `notice__title` element.              |
-| `$title-line-height`     | `core.$line-height-lg`        | Sets the line-height property of the `notice__title` element.              |
+<DocBlock name="CSS Variables" type="file" src="notice/src/_root.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("notice-gap", var.$gap);
+    @include core.css("notice-padding", var.$padding);
+    @include core.css("notice-background", var.$background);
+    @include core.css("notice-foreground", var.$foreground);
+    @include core.css("notice-border", var.$border);
+    @include core.css("notice-border-radius", var.$border-radius);
+    @include core.css("notice-box-shadow", var.$box-shadow);
+    @include core.css("notice-title-font-size", var.$title-font-size);
+    @include core.css("notice-title-line-height", var.$title-line-height);
+    @include core.css("notice-title-font-weight", var.$title-font-weight);
+  }
+
+  @include theme.output("notice");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" type="file" src="notice/src/_variables.scss">
+
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "@vrembem/core/palette";
+
+  $prefix-block: core.$prefix-block !default;
+  $prefix-element: core.$prefix-element !default;
+  $prefix-modifier: core.$prefix-modifier !default;
+  $prefix-modifier-value: core.$prefix-modifier-value !default;
+
+  $gap: 0.5em !default;
+  $padding: 1em !default;
+  $background: null !default;
+  $foreground: null !default;
+  $border: null !default;
+  $border-radius: core.$border-radius !default;
+  $box-shadow: null !default;
+
+  $title-font-size: core.$font-size-lg !default;
+  $title-line-height: core.$line-height-lg !default;
+  $title-font-weight: core.$font-weight-semi-bold !default;
+
+  $theme-light: (
+    "background": palette.get("neutral", 95),
+    "foreground": palette.get("neutral", 20),
+    "border": null,
+    "box-shadow": null
+  ) !default;
+
+  $theme-dark: (
+    "background": palette.get("neutral", 20),
+    "foreground": palette.get("neutral", 95),
+    "border": null,
+    "box-shadow": null
+  ) !default;
+
+  @include theme.set("light", "notice", $theme-light);
+  @include theme.set("dark", "notice", $theme-dark);
+  ```
+</DocBlock>
