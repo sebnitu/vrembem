@@ -9,8 +9,6 @@
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  stroke-linecap: var.$stroke-linecap;
-  stroke-linejoin: var.$stroke-linejoin;
   font-size: var.$size;
-  vertical-align: var.$vertical-align;
+  vertical-align: top;
 }

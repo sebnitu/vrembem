@@ -6,9 +6,16 @@
     stroke-width: var.$stroke-width;
     fill: none;
   }
+
   @else if ($style == "fill") {
     stroke: none;
     stroke-width: 0;
+    fill: currentcolor;
+  }
+
+  @else {
+    stroke: currentcolor;
+    stroke-width: var.$stroke-width;
     fill: currentcolor;
   }
 }

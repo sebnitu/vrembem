@@ -8,3 +8,7 @@
 #{core.bem("icon", null, "style", "fill")} {
   @include mix.icon-style("fill");
 }
+
+#{core.bem("icon", null, "style", "both")} {
+  @include mix.icon-style("both");
+}
