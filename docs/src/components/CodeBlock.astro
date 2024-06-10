@@ -22,8 +22,9 @@ const { inline = false } = Astro.props;
   <Popover
     triggerClass="code-block__copy-button"
     targetClass="popover_tooltip"
-    arrow={true}
-    aria-label="Copy code example">
+    aria-label="Copy code example"
+    arrow
+  >
     <Fragment slot="trigger">
       <Icon name="copy" iconClass="icon_size_sm" />
       <Icon name="check" iconClass="icon_size_sm foreground-primary-50 display-none" />

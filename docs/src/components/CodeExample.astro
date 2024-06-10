@@ -3,9 +3,16 @@ interface Props {
   lang?: string;
   tabs?: boolean;
   flush?: boolean;
+  resettable?: boolean;
 }
 
-const { lang = "html", tabs = false, flush = false } = Astro.props;
+const { 
+  lang = "html",
+  tabs = false,
+  flush = false,
+  resettable = false
+} = Astro.props;
+
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
 ---
@@ -13,7 +20,10 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 <div class="code-example">
   {
     Astro.slots.has("output") && (
-      <div class={`code-example__output ${flush ? 'padding-none' : ''}`.trim()}>
+      <div 
+        id={`code-example-output-${uid}`}
+        class={`code-example__output ${flush ? 'padding-none' : ''}`.trim()}
+      >
         <slot name="output" />
       </div>
     )
@@ -26,39 +36,49 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         <slot />
       </div>
     ) : (
-      <div 
-        class="code-example__toolbar" 
-        role="tablist" 
-        aria-label="Code examples">
-        {
-          Astro.slots.has("tab-html") && (
-          <button 
-            class="tab"
-            id={`tab-html-${uid}`}
-            role="tab"
-            aria-controls={`tabpanel-html-${uid}`}
-            aria-selected="false">HTML</button>
+      <div class="code-example__toolbar">
+        <div role="tablist" aria-label="Code examples">
+          {
+            Astro.slots.has("tab-html") && (
+            <button 
+              class="tab"
+              id={`tab-html-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-html-${uid}`}
+              aria-selected="false">HTML</button>
+              )
+          }
+          {
+            Astro.slots.has("tab-scss") && (
+            <button 
+              class="tab"
+              id={`tab-scss-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-scss-${uid}`}
+              aria-selected="false">SCSS</button>
+              )
+          }
+          {
+            Astro.slots.has("tab-js") && (
+            <button 
+              class="tab"
+              id={`tab-js-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-js-${uid}`}
+              aria-selected="false"
+              tabindex="-1">JS</button>
             )
-        }
+          }
+        </div>
         {
-          Astro.slots.has("tab-scss") && (
-          <button 
-            class="tab"
-            id={`tab-scss-${uid}`}
-            role="tab"
-            aria-controls={`tabpanel-scss-${uid}`}
-            aria-selected="false">SCSS</button>
-            )
-        }
-        {
-          Astro.slots.has("tab-js") && (
-          <button 
-            class="tab"
-            id={`tab-js-${uid}`}
-            role="tab"
-            aria-controls={`tabpanel-js-${uid}`}
-            aria-selected="false"
-            tabindex="-1">JS</button>
+          resettable && (
+            <button
+              type="button"
+              class="button button_size_sm button_color_secondary"
+              data-reset={`code-example-output-${uid}`}
+            >
+              Reset <span class="sr-only">example</span>
+            </button>
           )
         }
       </div>
