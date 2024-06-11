@@ -28,15 +28,19 @@
 }
 
 /// Output a CSS variable using the core variable prefix.
-/// @param {String} $name - The custom property name.
-/// @param {String} $fallback [null] - The custom property name of a fallback.
+/// @param {List} $props - List of custom property names.
 /// @return {CSS var} - The var() CSS function with the value of the custom property.
-@function css($name, $fallback: null) {
-  @if ($fallback) {
-    @return var(--#{prefix.$variable}#{$name}, var(--#{prefix.$variable}#{$fallback}));
-  } @else {
-    @return var(--#{prefix.$variable}#{$name});
+@function css($props...) {
+  $result: null;
+  @each $prop in $props {
+    @if ($result) {
+      $result: var(--#{prefix.$variable}#{$prop}, $result);
+    }
+    @else {
+      $result: var(--#{prefix.$variable}#{$prop});
+    }
   }
+  @return $result;
 }
 
 /// Encodes a color for use in data-uri
