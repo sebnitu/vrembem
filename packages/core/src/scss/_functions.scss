@@ -31,7 +31,9 @@
 /// @param {List} $props - List of custom property names.
 /// @return {CSS var} - The var() CSS function with the value of the custom property.
 @function css($props...) {
+  $props: reverse($props);
   $result: null;
+
   @each $prop in $props {
     @if ($result) {
       $result: var(--#{prefix.$variable}#{$prop}, $result);
@@ -40,6 +42,25 @@
       $result: var(--#{prefix.$variable}#{$prop});
     }
   }
+  
+  @return $result;
+}
+
+/// Reverse the order of elements within a list.
+/// @param {List} $list - The list to reverse.
+/// @param {Boolean} $recursive[false] - Whether or not the list should be reversed recursively.
+/// @return {List} - The reversed list.
+@function reverse($list, $recursive: false) {
+  $result: ();
+
+  @for $i from length($list) * -1 through -1 {
+    @if type-of(nth($list, abs($i))) == list and $recursive {
+      $result: append($result, reverse(nth($list, abs($i)), $recursive));
+    } @else {
+      $result: append($result, nth($list, abs($i)));
+    }
+  }
+
   @return $result;
 }
 
