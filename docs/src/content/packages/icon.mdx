@@ -69,7 +69,7 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 
 ## icon_style_[value]
 
-The default icon style is set using the `$icon-style` variable. You can also explicitly style an icon using the style modifier.
+The default icon style is set using the `$icon-style` variable. You can also use the `icon_style_[value]` modifier to style individual icons.
 
 <CodeExample>
   <div slot="output" class="level level_gap_xl">
@@ -100,19 +100,44 @@ Icons are primarily customized using CSS variables but can also be modified usin
 <DocBlock name="CSS Variables" src="icon/src/_root.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("icon-size", var.$size);
+    @include core.css("icon-stroke-width", var.$stroke-width);
+    @include core.css("icon-color", var.$color);
+  }
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="icon/src/_variables.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+
+  $style: "stroke" !default;
+  $size: 1.5em !default;
+  $stroke-width: 2 !default;
+  $color: currentColor !default;
+
+  $size-xs: 0.75em !default;
+  $size-xs-stroke-width: 3.5 !default;
+
+  $size-sm: 1.125em !default;
+  $size-sm-stroke-width: 2.5 !default;
+
+  $size-lg: 2em !default;
+  $size-lg-stroke-width: 1.75 !default;
+
+  $size-xl: 3em !default;
+  $size-xl-stroke-width: 1.3 !default;
   ```
 </DocBlock>
 
 <DocBlock name="icon-style" type="mixin" src="icon/src/_mixins.scss" args={[
-  ["$style", "String", "The icon styles to output. Current options include \"stroke\" and \"fill\", defaults to \"stroke\"."]
+  ["$style", "String", "The icon styles to output. Current options include \"stroke\", \"fill\" and \"both\". Defaults to \"stroke\"."]
 ]}>
   Output unique styles for an icons based on their style type.
 

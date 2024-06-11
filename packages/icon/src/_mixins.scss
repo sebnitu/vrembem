@@ -1,21 +1,21 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
 @mixin icon-style($style) {
   @if ($style == "stroke") {
-    stroke: currentcolor;
-    stroke-width: var.$stroke-width;
+    stroke: core.css("icon-color");
+    stroke-width: core.css("icon-stroke-width");
     fill: none;
   }
 
   @else if ($style == "fill") {
     stroke: none;
     stroke-width: 0;
-    fill: currentcolor;
+    fill: core.css("icon-color");
   }
 
   @else {
-    stroke: currentcolor;
-    stroke-width: var.$stroke-width;
-    fill: currentcolor;
+    stroke: core.css("icon-color");
+    stroke-width: core.css("icon-stroke-width");
+    fill: core.css("icon-color");
   }
 }
