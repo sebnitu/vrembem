@@ -3,50 +3,44 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $size: core.$form-control-size !default;
 $padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
-$transition-property: box-shadow, outline, outline-offset !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
-$border-radius: core.$border-radius !default;
-$font-size: core.$font-size !default;
-$line-height: core.$line-height !default;
-
-$border: 1px solid theme.get("border-color-dark") !default;
-$border-color-hover: theme.get("border-color-darker") !default;
-$border-color-focus: palette.get("primary") !default;
-
-$background: white !default;
+$background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
-
-$foreground: theme.get("foreground") !default;
+$foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-placeholder: theme.get("foreground-lighter") !default;
-
-$shadow: 0 0 0 0 palette.get("primary", 50%, 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
-$shadow-hover: null !default;
-$shadow-focus: 0 0 0 0.2rem palette.get("primary", 50%, 50%), inset 0 0 0 rgb(0 0 0 / 0%) !default;
-
+$border-color: theme.get("border-color-dark") !default;
+$border-color-hover: theme.get("border-color-darker") !default;
+$border-color-focus: palette.get("primary") !default;
+$border-width: 1px !default;
+$border-radius: core.$border-radius !default;
+$box-shadow: 0 0 0 0 palette.get("primary", 50%, 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
+$box-shadow-focus: 0 0 0 0.2rem palette.get("primary", 50%, 50%), inset 0 0 0 rgb(0 0 0 / 0%) !default;
+$font-size: core.$font-size !default;
+$line-height: core.$line-height !default;
 $outline: none !default;
+
+// Transition
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
 
 // disabled
 $disabled-background: theme.get("background-darker") !default;
 
-// read-only
-$read-only-background: theme.get("background-darker") !default;
+// readonly
+$readonly-background: theme.get("background-dark") !default;
 
-// input_size_[value]
+// input_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
+
+// input_size_lg
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
 $size-lg-font-size: core.$font-size-lg !default;
@@ -56,3 +50,16 @@ $size-lg-line-height: core.$line-height-lg !default;
 $type-select-icon-color: palette.get("neutral", "seed") !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-width: 100% !default;
+
+$theme-light: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground")
+) !default;
+
+$theme-dark: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground")
+) !default;
+
+@include theme.set("light", "input", $theme-light);
+@include theme.set("dark", "input", $theme-dark);

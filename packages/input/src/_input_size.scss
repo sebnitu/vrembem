@@ -1,18 +1,14 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}input#{$_m}size#{$_v}sm {
+#{core.bem("input", null, "size", "sm")} {
   height: var.$size-sm;
   padding: var.$size-sm-padding;
   font-size: var.$size-sm-font-size;
   line-height: var.$size-sm-line-height;
 }
 
-.#{$_b}input#{$_m}size#{$_v}lg {
+#{core.bem("input", null, "size", "lg")} {
   height: var.$size-lg;
   padding: var.$size-lg-padding;
   font-size: var.$size-lg-font-size;

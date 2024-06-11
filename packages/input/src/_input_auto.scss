@@ -1,5 +1,5 @@
-@use "./variables" as var;
+@use "@vrembem/core";
 
-.#{var.$prefix-block}input#{var.$prefix-modifier}auto {
+#{core.bem("input", null, "auto")} {
   width: auto;
 }

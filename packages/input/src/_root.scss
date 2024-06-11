@@ -1,0 +1,18 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("input-size", var.$size);
+  @include core.css("input-padding", var.$padding);
+  @include core.css("input-background", var.$background);
+  @include core.css("input-foreground", var.$foreground);
+  @include core.css("input-border-color", var.$border-color);
+  @include core.css("input-border-color-hover", var.$border-color-hover);
+  @include core.css("input-border-color-focus", var.$border-color-focus);
+  @include core.css("input-border-width", var.$border-width);
+  @include core.css("input-box-shadow", var.$box-shadow);
+  @include core.css("input-box-shadow-focus", var.$box-shadow-focus);
+}
+
+@include theme.output("input");

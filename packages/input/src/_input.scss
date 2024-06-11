@@ -1,9 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-
-.#{$_b}input {
+#{core.bem("input")} {
   position: relative;
   display: block;
   width: 100%;
@@ -14,11 +12,11 @@ $_b: var.$prefix-block;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
   outline: none;
-  border: var.$border;
+  border: core.css("input-border-width") solid core.css("input-border-color");
   border-radius: var.$border-radius;
-  background: var.$background;
-  box-shadow: var.$shadow;
-  color: var.$foreground;
+  background: core.css("input-background");
+  box-shadow: core.css("input-box-shadow");
+  color: core.css("input-foreground");
   font-family: core.$font-family;
   font-size: var.$font-size;
   line-height: var.$line-height;
@@ -27,26 +25,25 @@ $_b: var.$prefix-block;
   appearance: none;
 
   &:hover {
-    border-color: var.$border-color-hover;
+    border-color: core.css("input-border-color-hover");
     background-color: var.$background-hover;
-    box-shadow: var.$shadow-hover;
     color: var.$foreground-hover;
   }
 
   &:focus {
-    border-color: var.$border-color-focus;
+    border-color: core.css("input-border-color-focus");
     background-color: var.$background-focus;
-    box-shadow: var.$shadow-focus;
+    box-shadow: core.css("input-box-shadow-focus");
     color: var.$foreground-focus;
+  }
+
+  &:read-only {
+    background-color: var.$readonly-background;
   }
 
   &:disabled {
     background-color: var.$disabled-background;
     pointer-events: none;
-  }
-
-  &:read-only {
-    background-color: var.$read-only-background;
   }
 
   &::placeholder {
