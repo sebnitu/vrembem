@@ -2,19 +2,15 @@
 @use "@vrembem/core/palette";
 
 #{core.bem("input", null, "state", "success")} {
-  @include core.css("input-foreground", palette.get("primary", 30));
   @include core.css("input-border-color", palette.get("primary"));
   @include core.css("input-border-color-hover", palette.get("primary"));
   @include core.css("input-border-color-focus", palette.get("primary"));
-  @include core.css("input-box-shadow", (0 0 0 0 palette.get("primary", 50%, 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%)));
-  @include core.css("input-box-shadow-focus", (0 0 0 0.2rem palette.get("primary", 50%, 50%), inset 0 0 0 rgb(0 0 0 / 0%)));
 }
 
 #{core.bem("input", null, "state", "error")} {
-  @include core.css("input-foreground", palette.get("important", 30));
   @include core.css("input-border-color", palette.get("important"));
   @include core.css("input-border-color-hover", palette.get("important"));
   @include core.css("input-border-color-focus", palette.get("important"));
-  @include core.css("input-box-shadow", (0 0 0 0 palette.get("important", 50%, 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%)));
-  @include core.css("input-box-shadow-focus", (0 0 0 0.2rem palette.get("important", 50%, 50%), inset 0 0 0 rgb(0 0 0 / 0%)));
+  @include core.css("input-box-shadow", palette.get("important", 50%, 0%));
+  @include core.css("input-box-shadow-focus", palette.get("important", 50%, 50%));
 }

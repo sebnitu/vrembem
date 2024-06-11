@@ -11,14 +11,16 @@ $background-focus: null !default;
 $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
-$foreground-placeholder: theme.get("foreground-lighter") !default;
-$border-color: theme.get("border-color-dark") !default;
-$border-color-hover: theme.get("border-color-darker") !default;
-$border-color-focus: palette.get("primary") !default;
+$foreground-placeholder: null !default;
+$border-color: null !default;
+$border-color-hover: null !default;
+$border-color-focus: null !default;
 $border-width: 1px !default;
 $border-radius: core.$border-radius !default;
-$box-shadow: 0 0 0 0 palette.get("primary", 50%, 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
-$box-shadow-focus: 0 0 0 0.2rem palette.get("primary", 50%, 50%), inset 0 0 0 rgb(0 0 0 / 0%) !default;
+$box-shadow: palette.get("primary", 50%, 0%) !default;
+$box-shadow-focus: palette.get("primary", 50%, 50%) !default;
+$box-shadow-inset: rgb(0 0 0 / 10%);
+$box-shadow-inset-focus: rgb(0 0 0 / 0%);
 $font-size: core.$font-size !default;
 $line-height: core.$line-height !default;
 $outline: none !default;
@@ -28,11 +30,11 @@ $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
-// disabled
-$disabled-background: theme.get("background-darker") !default;
+// Disabled
+$background-disabled: theme.get("background-darker") !default;
 
-// readonly
-$readonly-background: theme.get("background-dark") !default;
+// Readonly
+$background-readonly: theme.get("background-dark") !default;
 
 // input_size_sm
 $size-sm: core.$form-control-size-sm !default;
@@ -51,14 +53,23 @@ $type-select-icon-color: palette.get("neutral", "seed") !default;
 $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
 $type-textarea-min-width: 100% !default;
 
+// Theme maps
 $theme-light: (
   "background": theme.get("background"),
-  "foreground": theme.get("foreground")
+  "foreground": theme.get("foreground"),
+  "foreground-placeholder": theme.get("foreground-lighter"),
+  "border-color": theme.get("border-color-dark"),
+  "border-color-hover": theme.get("border-color-darker"),
+  "border-color-focus": palette.get("primary")
 ) !default;
 
 $theme-dark: (
   "background": theme.get("background"),
-  "foreground": theme.get("foreground")
+  "foreground": theme.get("foreground"),
+  "foreground-placeholder": theme.get("foreground-lighter"),
+  "border-color": theme.get("border-color-dark"),
+  "border-color-hover": theme.get("border-color-darker"),
+  "border-color-focus": palette.get("primary", 60)
 ) !default;
 
 @include theme.set("light", "input", $theme-light);

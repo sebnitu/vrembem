@@ -28,10 +28,10 @@ The most basic implementation of the input component consists of the `input` cla
 
 <CodeExample>
   <Fragment slot="output">
-    <input class="input" type="text" />
+    <input class="input" type="text" placeholder="Example input..." />
   </Fragment>
   ```html
-  <input class="input" type="text" />
+  <input class="input" type="text" placeholder="Example input..." />
   ```
 </CodeExample>
 
@@ -152,13 +152,121 @@ Inputs are primarily customized using CSS variables but can also be modified usi
 <DocBlock name="CSS Variables" src="input/src/_root.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("input-size", var.$size);
+    @include core.css("input-padding", var.$padding);
+    @include core.css("input-background", var.$background);
+    @include core.css("input-background-hover", var.$background-hover);
+    @include core.css("input-background-focus", var.$background-focus);
+    @include core.css("input-foreground", var.$foreground);
+    @include core.css("input-foreground-hover", var.$foreground-hover);
+    @include core.css("input-foreground-focus", var.$foreground-focus);
+    @include core.css("input-foreground-placeholder", var.$foreground-placeholder);
+    @include core.css("input-border-color", var.$border-color);
+    @include core.css("input-border-color-hover", var.$border-color-hover);
+    @include core.css("input-border-color-focus", var.$border-color-focus);
+    @include core.css("input-border-width", var.$border-width);
+    @include core.css("input-border-radius", var.$border-radius);
+    @include core.css("input-box-shadow", var.$box-shadow);
+    @include core.css("input-box-shadow-focus", var.$box-shadow-focus);
+    @include core.css("input-box-shadow-inset", var.$box-shadow-inset);
+    @include core.css("input-box-shadow-inset-focus", var.$box-shadow-inset-focus);
+    @include core.css("input-font-size", var.$font-size);
+    @include core.css("input-line-height", var.$line-height);
+    @include core.css("input-outline", var.$outline);
+    @include core.css("input-transition-property", var.$transition-property);
+    @include core.css("input-transition-duration", var.$transition-duration);
+    @include core.css("input-transition-timing-function", var.$transition-timing-function);
+    @include core.css("input-background-disabled", var.$background-disabled);
+    @include core.css("input-background-readonly", var.$background-readonly);
+  }
+
+  @include theme.output("input");
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="input/src/_variables.scss">
 
   ```scss
-  TBD
+  @use "sass:list";
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  $size: core.$form-control-size !default;
+  $padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
+  $background: null !default;
+  $background-hover: null !default;
+  $background-focus: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $foreground-focus: null !default;
+  $foreground-placeholder: null !default;
+  $border-color: null !default;
+  $border-color-hover: null !default;
+  $border-color-focus: null !default;
+  $border-width: 1px !default;
+  $border-radius: core.$border-radius !default;
+  $box-shadow: palette.get("primary", 50%, 0%) !default;
+  $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
+  $box-shadow-inset: rgb(0 0 0 / 10%);
+  $box-shadow-inset-focus: rgb(0 0 0 / 0%);
+  $font-size: core.$font-size !default;
+  $line-height: core.$line-height !default;
+  $outline: none !default;
+
+  // Transition
+  $transition-property: box-shadow, outline, outline-offset !default;
+  $transition-duration: core.$transition-duration-short !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Disabled
+  $background-disabled: theme.get("background-darker") !default;
+
+  // Readonly
+  $background-readonly: theme.get("background-dark") !default;
+
+  // input_size_sm
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+  $size-sm-font-size: core.$font-size-sm !default;
+  $size-sm-line-height: core.$line-height-sm !default;
+
+  // input_size_lg
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
+  $size-lg-font-size: core.$font-size-lg !default;
+  $size-lg-line-height: core.$line-height-lg !default;
+
+  // input_type_[value]
+  $type-select-icon-color: palette.get("neutral", "seed") !default;
+  $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
+  $type-textarea-min-width: 100% !default;
+
+  // Theme maps
+  $theme-light: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "foreground-placeholder": theme.get("foreground-lighter"),
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-focus": palette.get("primary")
+  ) !default;
+
+  $theme-dark: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "foreground-placeholder": theme.get("foreground-lighter"),
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-focus": palette.get("primary", 60)
+  ) !default;
+
+  @include theme.set("light", "input", $theme-light);
+  @include theme.set("dark", "input", $theme-dark);
   ```
 </DocBlock>

@@ -9,26 +9,26 @@
   cursor: pointer;
 
   &:read-only {
-    background-color: var.$background;
+    background-color: core.css("input-background");
   }
 
   &:disabled {
-    background-color: var.$disabled-background;
+    background-color: core.css("input-background-disabled");
   }
 }
 
 #{core.bem("input", null, "type", "textarea")} {
   min-width: var.$type-textarea-min-width;
   height: auto;
-  min-height: var.$size;
+  min-height: core.css("input-size");
 
   &#{core.bem("input", null, "size", "sm")} {
     height: auto;
-    min-height: var.$size-sm;
+    min-height: core.css("input-size");
   }
 
   &#{core.bem("input", null, "size", "lg")} {
     height: auto;
-    min-height: var.$size-lg;
+    min-height: core.css("input-size");
   }
 }
