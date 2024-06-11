@@ -54,7 +54,7 @@ The dialog component comes with a variety of elements to help fit a wide range o
       <div class="dialog__header">
         <h2 class="dialog__title">Dialog example</h2>
         <button class="button button_icon button_size_sm">
-          <Icon name="x" iconClass="icon_size_sm" />
+          <Icon name="x" classes="icon_size_sm" />
         </button>
       </div>
       <div class="dialog__body">
@@ -93,7 +93,7 @@ The dialog component comes with a variety of elements to help fit a wide range o
 
 Dialogs are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-<DocBlock name="CSS Variables" type="file" src="dialog/src/_root.scss">
+<DocBlock name="CSS Variables" src="dialog/src/_root.scss">
 
   ```scss
   @use "@vrembem/core";
@@ -118,7 +118,7 @@ Dialogs are primarily customized using CSS variables but can also be modified us
   ```
 </DocBlock>
 
-<DocBlock name="SCSS Variables" type="file" src="dialog/src/_variables.scss">
+<DocBlock name="SCSS Variables" src="dialog/src/_variables.scss">
 
   ```scss
   @use "@vrembem/core/theme";

@@ -25,7 +25,7 @@ const { classes = "" } = Astro.props;
       </a>
     </div>
     <div class="navibar__menu">
-      <Navi menuClass="display-none display-flex-md" inline />
+      <Navi classes="display-none display-flex-md" inline />
       <button
         data-modal-open="modal-navi"
         class="button button_icon display-block display-none-md"
@@ -36,7 +36,7 @@ const { classes = "" } = Astro.props;
   </div>
 </header>
 
-<Modal id="modal-navi" modalClass="modal_pos_top">
+<Modal id="modal-navi" classes="modal_pos_top">
   <div class="dialog__header">
     <h2 class="dialog__title">Menu</h2>
     <button data-modal-close class="button button_icon dialog__close">

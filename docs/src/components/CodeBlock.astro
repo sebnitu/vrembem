@@ -13,21 +13,21 @@ const { inline = false } = Astro.props;
 <div class={`code-block ${inline ? "code-block_inline" : ""}`.trim()}>
   {
     inline ? (
-      <Icon name="chevron-right" iconClass="code-block__prompt icon_size_sm foreground-lighter" />
+      <Icon name="chevron-right" classes="code-block__prompt icon_size_sm foreground-lighter" />
       <pre tabindex="0" class="pre"><code><slot /></code></pre>
     ) : (
       <pre tabindex="0" class="pre"><slot /></pre>
     )
   }
   <Popover
-    triggerClass="code-block__copy-button"
-    targetClass="popover_tooltip"
+    buttonClass="code-block__copy-button"
+    popoverClass="popover_tooltip"
     aria-label="Copy code example"
     arrow
   >
     <Fragment slot="trigger">
-      <Icon name="copy" iconClass="icon_size_sm" />
-      <Icon name="check" iconClass="icon_size_sm foreground-primary-50 display-none" />
+      <Icon name="copy" classes="icon_size_sm" />
+      <Icon name="check" classes="icon_size_sm foreground-primary-50 display-none" />
     </Fragment>
     Copied!
   </Popover>

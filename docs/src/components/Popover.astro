@@ -3,8 +3,8 @@ interface Props {
   id?: string;
   arrow?: boolean;
   ariaLabel?: string;
-  triggerClass?: string;
-  targetClass?: string;
+  buttonClass?: string;
+  popoverClass?: string;
   placement?: string;
 }
 
@@ -12,8 +12,8 @@ const {
   id, 
   arrow = false,
   ariaLabel, 
-  triggerClass = "link", 
-  targetClass = "",
+  buttonClass = "link", 
+  popoverClass = "",
   placement
 } = Astro.props;
 
@@ -31,14 +31,14 @@ if (placement) {
   data-popover-trigger={uid}
   aria-controls={uid}
   aria-label={ariaLabel}
-  class={triggerClass}>
+  class={buttonClass}>
   <slot name="trigger">Popover Trigger</slot>
 </button>
 
 <div
   id={uid}
   aria-labelledby={`${uid}-trigger`}
-  class={("popover " + targetClass).trim()}
+  class={("popover " + popoverClass).trim()}
   style={css}>
   <slot>Popover Content</slot>
   { 

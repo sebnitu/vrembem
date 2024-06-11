@@ -1,16 +1,9 @@
 @use "@vrembem/core";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $style: "stroke" !default;
 $size: 1.5em !default;
 $stroke-width: 2 !default;
-$stroke-linecap: round !default;
-$stroke-linejoin: round !default;
-$vertical-align: top !default;
+$color: currentcolor !default;
 
 $size-xs: 0.75em !default;
 $size-xs-stroke-width: 3.5 !default;

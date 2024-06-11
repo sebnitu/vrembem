@@ -5,11 +5,11 @@ import ThemeSwitcherMenu from "../components/ThemeSwitcherMenu.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
-  menuClass?: string;
+  classes?: string;
   inline?: boolean;
 }
 
-const { menuClass, inline = false } = Astro.props;
+const { classes, inline = false } = Astro.props;
 
 const cp = currentPage(new URL(Astro.request.url).pathname, {
   classBase: "menu__action",
@@ -19,7 +19,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
 
 ---
 
-<ul class={`menu ${inline ? "menu_inline" : ""} ${menuClass}`.trim()}>
+<ul class={`menu ${inline ? "menu_inline" : ""} ${classes}`.trim()}>
   <li class="menu__item">
     <a class={cp.classes("/getting-started")} href="/getting-started"
       >Get Started</a
@@ -37,7 +37,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       GitHub
       <Icon
         name="arrow-up-right"
-        iconClass="icon_external"
+        classes="icon_external"
       />
     </a>
   </li>
@@ -46,7 +46,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
       Sponsor
       <Icon
         name="arrow-up-right"
-        iconClass="icon_external"
+        classes="icon_external"
       />
     </a>
   </li>

@@ -39,7 +39,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
             <span class="flex-grow-1">{entry.data.title}</span>
             {
               entry.data.status && (
-                <Icon name={entry.data.status} iconClass="icon_size_sm foreground-primary" />
+                <Icon name={entry.data.status} classes="icon_size_sm foreground-primary" />
               )
             }
           </a>

@@ -1,15 +1,14 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-.#{var.$prefix-block}icon {
+#{core.bem("icon")} {
   @include mix.icon-style(var.$style);
   display: inline-block;
   box-sizing: content-box;
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  stroke-linecap: var.$stroke-linecap;
-  stroke-linejoin: var.$stroke-linejoin;
-  font-size: var.$size;
-  vertical-align: var.$vertical-align;
+  font-size: core.css("icon-size");
+  vertical-align: top;
 }

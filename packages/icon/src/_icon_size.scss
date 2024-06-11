@@ -1,25 +1,22 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: #{var.$prefix-block};
-$_m: #{var.$prefix-modifier};
-$_v: #{var.$prefix-modifier-value};
-
-.#{$_b}icon#{$_m}size#{$_v}xs {
-  stroke-width: var.$size-xs-stroke-width;
-  font-size: var.$size-xs;
+#{core.bem("icon", null, "size", "xs")} {
+  @include core.css("icon-size", var.$size-xs);
+  @include core.css("icon-stroke-width", var.$size-xs-stroke-width);
 }
 
-.#{$_b}icon#{$_m}size#{$_v}sm {
-  stroke-width: var.$size-sm-stroke-width;
-  font-size: var.$size-sm;
+#{core.bem("icon", null, "size", "sm")} {
+  @include core.css("icon-size", var.$size-sm);
+  @include core.css("icon-stroke-width", var.$size-sm-stroke-width);
 }
 
-.#{$_b}icon#{$_m}size#{$_v}lg {
-  stroke-width: var.$size-lg-stroke-width;
-  font-size: var.$size-lg;
+#{core.bem("icon", null, "size", "lg")} {
+  @include core.css("icon-size", var.$size-lg);
+  @include core.css("icon-stroke-width", var.$size-lg-stroke-width);
 }
 
-.#{$_b}icon#{$_m}size#{$_v}xl {
-  stroke-width: var.$size-xl-stroke-width;
-  font-size: var.$size-xl;
+#{core.bem("icon", null, "size", "xl")} {
+  @include core.css("icon-size", var.$size-xl);
+  @include core.css("icon-stroke-width", var.$size-xl-stroke-width);
 }

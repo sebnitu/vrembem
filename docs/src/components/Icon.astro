@@ -3,13 +3,14 @@ import feather from "feather-icons";
 
 interface Props {
   name?: string;
-  iconClass?: string;
+  classes?: string;
 }
 
-const { name, iconClass = "" } = Astro.props;
+const { name, classes = "" } = Astro.props;
 
 const svg = feather.icons[name].toSvg({
-  class: `icon ${iconClass}`.trim()
+  class: `icon ${classes}`.trim(),
+  role: "img"
 });
 
 ---
