@@ -8,6 +8,8 @@
   @include core.css("input-background", var.$background);
   @include core.css("input-background-hover", var.$background-hover);
   @include core.css("input-background-focus", var.$background-focus);
+  @include core.css("input-background-readonly", var.$background-readonly);
+  @include core.css("input-background-disabled", var.$background-disabled);
   @include core.css("input-foreground", var.$foreground);
   @include core.css("input-foreground-hover", var.$foreground-hover);
   @include core.css("input-foreground-focus", var.$foreground-focus);
@@ -27,8 +29,6 @@
   @include core.css("input-transition-property", var.$transition-property);
   @include core.css("input-transition-duration", var.$transition-duration);
   @include core.css("input-transition-timing-function", var.$transition-timing-function);
-  @include core.css("input-background-disabled", var.$background-disabled);
-  @include core.css("input-background-readonly", var.$background-readonly);
 }
 
 @include theme.output("input");

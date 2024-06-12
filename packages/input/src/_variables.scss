@@ -8,6 +8,8 @@ $padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
+$background-readonly: theme.get("background-dark") !default;
+$background-disabled: theme.get("background-darker") !default;
 $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
@@ -29,12 +31,6 @@ $outline: none !default;
 $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
-
-// Disabled
-$background-disabled: theme.get("background-darker") !default;
-
-// Readonly
-$background-readonly: theme.get("background-dark") !default;
 
 // input_size_sm
 $size-sm: core.$form-control-size-sm !default;
