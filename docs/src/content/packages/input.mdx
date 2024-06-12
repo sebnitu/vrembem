@@ -2,164 +2,271 @@
 title: Input
 description: "A component for displaying form input elements."
 package: "@vrembem/input"
+status: "check-square"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Input
 
 A component for displaying form input elements.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Finput.svg)](https://www.npmjs.com/package/%40vrembem%2Finput)
-
-[Documentation](https://vrembem.com/packages/input)
-
-## Installation
-
 ```sh
 npm install @vrembem/input
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/input";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/input";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation of the input component consists of the `input` class applied to an `<input>` element.
 
-```html
-<input class="input" type="text">
-```
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" placeholder="Example input..." />
+  </Fragment>
+  ```html
+  <input class="input" type="text" placeholder="Example input..." />
+  ```
+</CodeExample>
 
-#### `disabled`
+### Disabled
 
 Adding the boolean `disabled` attribute to the input will provide visual indication that the input is not available for use.
 
-```html
-<input class="input" type="text" disabled>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" disabled />
+  </Fragment>
+  ```html
+  <input class="input" type="text" disabled />
+  ```
+</CodeExample>
 
-#### `readonly`
+### Readonly
 
 Adding the boolean `readonly` attribute to the input will provide visual indication that the user should not be able to edit the value of the input.
 
-```html
-<input class="input" type="text" readonly>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" value="Readonly example" readonly />
+  </Fragment>
+  ```html
+  <input class="input" type="text" readonly />
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `input_auto`
+## input_auto
 
 Sets the width of an input to `auto` instead of the base component width of `100%`.
 
-```html
-<input class="input input_auto" type="text">
-```
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input input_auto" type="text" />
+  </Fragment>
+  ```html
+  <input class="input input_auto" type="text" />
+  ```
+</CodeExample>
 
-### `input_size_[value]`
+## input_size_[value]
 
 Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small `input_size_sm`), 40px (default) and 50px (large `input_size_lg`).
 
-```html
-<input class="input input_size_sm" type="text">
-<input class="input input_size_lg" type="text">
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <input class="input input_size_sm" type="text" />
+    <input class="input input_size_lg" type="text" />
+  </div>
+  ```html
+  <input class="input input_size_sm" type="text" />
+  <input class="input input_size_lg" type="text" />
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available variants**
 
 - `input_size_sm`
 - `input_size_lg`
 
-### `input_state_[value]`
+## input_state_[value]
 
-Adds styles for changing the look and feel of an input to better reflect the urgency or status.
+Adds styles for changing the look and feel of an input to better reflect the current state.
 
-```html
-<input class="input input_state_danger" type="text">
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <input class="input input_state_success" type="text" />
+    <input class="input input_state_error" type="text" />
+  </div>
+  ```html
+  <input class="input input_state_success" type="text" />
+  <input class="input input_state_danger" type="text" />
+  ```
+</CodeExample>
 
-### Available Variations
+**Available variants**
 
-- `input_state_info`
 - `input_state_success`
-- `input_state_caution`
-- `input_state_danger`
+- `input_state_error`
 
-### `input_type_[value]`
+## input_type_[value]
 
 Adds unique styles for various form input types. These form controls share styles with the basic form input such as [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) HTML elements.
 
-```html
-<select class="input input_type_select" name="">
-  <option value="">Select one</option>
-  <option value="1">Option 1</option>
-  <option value="2">Option 2</option>
-  <option value="3">Option 3</option>
-</select>
+<CodeExample resettable>
+  <div slot="output" class="gap-y">
+    <select class="input input_type_select" name="">
+      <option value="">Select one</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <textarea class="input input_type_textarea" rows="3"></textarea>
+  </div>
+  ```html
+  <select class="input input_type_select" name="">
+    <option value="">Select one</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
 
-<textarea class="input input_type_textarea" rows="3"></textarea>
-```
+  <textarea class="input input_type_textarea" rows="3"></textarea>
+  ```
+</CodeExample>
 
-### Available Variations
+**Available variants**
 
 - `input_type_select`
 - `input_type_textarea`
 
 ## Customization
 
-### Sass Variables
+Inputs are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                      | Default                                               | Description                                                                                                                        |
-| ----------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-block`               | `null`                                                | String to prefix blocks with.                                                                                                      |
-| `$prefix-element`             | `"__"`                                                | String to prefix elements with.                                                                                                    |
-| `$prefix-modifier`            | `"_"`                                                 | String to prefix modifiers with.                                                                                                   |
-| `$prefix-modifier-value`      | `"_"`                                                 | String to prefix modifier values with.                                                                                             |
-| `$size`                       | `core.$form-control-size`                             | Sets the height property on `input` and min-height property of the `input_type_textarea` modifier.                                 |
-| `$padding`                    | `calc(0.5em - 1px)`                                   | Sets the padding property.                                                                                                         |
-| `$transition-property`        | `box-shadow, outline, outline-offset`                 | Sets the transition-property property.                                                                                             |
-| `$transition-duration`        | `core.$transition-duration-short`                     | Sets the transition-duration property.                                                                                             |
-| `$transition-timing-function` | `core.$transition-timing-function`                    | Sets the transition-timing-function property.                                                                                      |
-| `$border-radius`              | `core.$border-radius`                                 | Sets the border-radius property.                                                                                                   |
-| `$color-placeholder`          | `core.$color-subtle`                                  | Sets the color property for the placeholder pseudo-element.                                                                        |
-| `$font-size`                  | `core.$font-size`                                     | Sets the font-size property.                                                                                                       |
-| `$line-height`                | `core.$line-height`                                   | Sets the line-height property.                                                                                                     |
-| `$border`                     | `1px solid core.$border-color-dark`                   | Sets the border property.                                                                                                          |
-| `$border-color-hover`         | `core.$border-color-darker`                           | Sets the border-color property on `:hover` state.                                                                                  |
-| `$border-color-focus`         | `--vb-primary`                                        | Sets the border-color property on `:focus` state.                                                                                  |
-| `$background`                 | `white`                                               | Sets the background property.                                                                                                      |
-| `$background-hover`           | `null`                                                | Sets the background-color property on `:hover` state.                                                                              |
-| `$background-focus`           | `null`                                                | Sets the background-color property on `:focus` state.                                                                              |
-| `$box-shadow`                 | `inset 0 1px 3px rgba(black, 0.1)`                    | Sets the box-shadow property.                                                                                                      |
-| `$box-shadow-hover`           | `null`                                                | Sets the box-shadow property on `:hover` state.                                                                                    |
-| `$box-shadow-focus`           | `none`                                                | Sets the box-shadow property on `:focus` state.                                                                                    |
-| `$color`                      | `core.$color`                                         | Sets the color property.                                                                                                           |
-| `$color-hover`                | `null`                                                | Sets the color property on `:hover` state.                                                                                         |
-| `$color-focus`                | `null`                                                | Sets the color property on `:focus` state.                                                                                         |
-| `$outline`                    | `none`                                                | Sets the outline property.                                                                                                         |
-| `$outline-hover`              | `null`                                                | Sets the outline property on `:hover` state.                                                                                       |
-| `$outline-focus`              | `null`                                                | Sets the outline property on `:focus` state.                                                                                       |
-| `$outline-offset`             | `null`                                                | Sets the outline-offset property.                                                                                                  |
-| `$outline-offset-hover`       | `null`                                                | Sets the outline-offset property on `:hover` state.                                                                                |
-| `$outline-offset-focus`       | `null`                                                | Sets the outline-offset property on `:focus` state.                                                                                |
-| `$disabled-background`        | `core.$shade`                                         | Sets the background-color property of the `disabled` state.                                                                        |
-| `$readonly-background`        | `core.$shade`                                         | Sets the background-color property of the `readonly` state.                                                                        |
-| `$size-sm`                    | `core.$form-control-size-sm`                          | Sets the height property on `input` and min-height property of the `input_type_textarea` and `input_size_sm` modifier combination. |
-| `$size-sm-padding`            | `calc(0.25rem - 1px) 0.5rem`                          | Sets the padding property of the `input_size_sm` modifier.                                                                         |
-| `$size-sm-font-size`          | `core.$font-size-sm`                                  | Sets the font-size property of the `input_size_sm` modifier.                                                                       |
-| `$size-sm-line-height`        | `core.$line-height-sm`                                | Sets the line-height property of the `input_size_sm` modifier.                                                                     |
-| `$size-lg`                    | `core.$form-control-size-lg`                          | Sets the height property on `input` and min-height property of the `input_type_textarea` and `input_size_lg` modifier combination. |
-| `$size-lg-padding`            | `calc(0.648rem - 1px)`                                | Sets the padding property of the `input_size_lg` modifier.                                                                         |
-| `$size-lg-font-size`          | `core.$font-size-lg`                                  | Sets the font-size property of the `input_size_lg` modifier.                                                                       |
-| `$size-lg-line-height`        | `core.$line-height-lg`                                | Sets the line-height property of the `input_size_lg` modifier.                                                                     |
-| `$type-select-icon-color`     | `core.$color`                                         | Sets the fill property for the svg data:image of the `input_type_select` modifier.                                                 |
-| `$type-select-icon`           | [`'data:image/svg...'` Ref &darr;](#type-select-icon) | The data:image/svg string used as the background-image property of the `input_type_select` modifier.                               |
-| `$type-textarea-min-width`    | `100%`                                                | Sets the min-width property of the `input_type_textarea` modifier.                                                                 |
+<DocBlock name="CSS Variables" src="input/src/_root.scss">
 
-#### `$type-select-icon`
+  ```scss
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
 
-```scss
-$type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
-```
+  #{theme.$root-selector} {
+    @include core.css("input-size", var.$size);
+    @include core.css("input-padding", var.$padding);
+    @include core.css("input-background", var.$background);
+    @include core.css("input-background-hover", var.$background-hover);
+    @include core.css("input-background-focus", var.$background-focus);
+    @include core.css("input-foreground", var.$foreground);
+    @include core.css("input-foreground-hover", var.$foreground-hover);
+    @include core.css("input-foreground-focus", var.$foreground-focus);
+    @include core.css("input-foreground-placeholder", var.$foreground-placeholder);
+    @include core.css("input-border-color", var.$border-color);
+    @include core.css("input-border-color-hover", var.$border-color-hover);
+    @include core.css("input-border-color-focus", var.$border-color-focus);
+    @include core.css("input-border-width", var.$border-width);
+    @include core.css("input-border-radius", var.$border-radius);
+    @include core.css("input-box-shadow", var.$box-shadow);
+    @include core.css("input-box-shadow-focus", var.$box-shadow-focus);
+    @include core.css("input-box-shadow-inset", var.$box-shadow-inset);
+    @include core.css("input-box-shadow-inset-focus", var.$box-shadow-inset-focus);
+    @include core.css("input-font-size", var.$font-size);
+    @include core.css("input-line-height", var.$line-height);
+    @include core.css("input-outline", var.$outline);
+    @include core.css("input-transition-property", var.$transition-property);
+    @include core.css("input-transition-duration", var.$transition-duration);
+    @include core.css("input-transition-timing-function", var.$transition-timing-function);
+    @include core.css("input-background-disabled", var.$background-disabled);
+    @include core.css("input-background-readonly", var.$background-readonly);
+  }
+
+  @include theme.output("input");
+  ```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" src="input/src/_variables.scss">
+
+  ```scss
+  @use "sass:list";
+  @use "@vrembem/core";
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+
+  $size: core.$form-control-size !default;
+  $padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
+  $background: null !default;
+  $background-hover: null !default;
+  $background-focus: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $foreground-focus: null !default;
+  $foreground-placeholder: null !default;
+  $border-color: null !default;
+  $border-color-hover: null !default;
+  $border-color-focus: null !default;
+  $border-width: 1px !default;
+  $border-radius: core.$border-radius !default;
+  $box-shadow: palette.get("primary", 50%, 0%) !default;
+  $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
+  $box-shadow-inset: rgb(0 0 0 / 10%);
+  $box-shadow-inset-focus: rgb(0 0 0 / 0%);
+  $font-size: core.$font-size !default;
+  $line-height: core.$line-height !default;
+  $outline: none !default;
+
+  // Transition
+  $transition-property: box-shadow, outline, outline-offset !default;
+  $transition-duration: core.$transition-duration-short !default;
+  $transition-timing-function: core.$transition-timing-function !default;
+
+  // Disabled
+  $background-disabled: theme.get("background-darker") !default;
+
+  // Readonly
+  $background-readonly: theme.get("background-dark") !default;
+
+  // input_size_sm
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+  $size-sm-font-size: core.$font-size-sm !default;
+  $size-sm-line-height: core.$line-height-sm !default;
+
+  // input_size_lg
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
+  $size-lg-font-size: core.$font-size-lg !default;
+  $size-lg-line-height: core.$line-height-lg !default;
+
+  // input_type_[value]
+  $type-select-icon-color: palette.get("neutral", "seed") !default;
+  $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
+  $type-textarea-min-width: 100% !default;
+
+  // Theme maps
+  $theme-light: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "foreground-placeholder": theme.get("foreground-lighter"),
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-focus": palette.get("primary")
+  ) !default;
+
+  $theme-dark: (
+    "background": theme.get("background"),
+    "foreground": theme.get("foreground"),
+    "foreground-placeholder": theme.get("foreground-lighter"),
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-focus": palette.get("primary", 60)
+  ) !default;
+
+  @include theme.set("light", "input", $theme-light);
+  @include theme.set("dark", "input", $theme-dark);
+  ```
+</DocBlock>

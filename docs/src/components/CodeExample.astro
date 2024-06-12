@@ -31,13 +31,26 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
   {
     !tabs ? (
-      <div class="code-example__toolbar">{lang}</div>
+      <div class="code-example__toolbar">
+        <div class="flex-grow-1">{lang}</div>
+        {
+          resettable && (
+            <button
+              type="button"
+              class="button button_size_sm button_color_secondary"
+              data-reset={`code-example-output-${uid}`}
+            >
+              Reset <span class="sr-only">example</span>
+            </button>
+          )
+        }
+      </div>
       <div class="code-example__input">
         <slot />
       </div>
     ) : (
       <div class="code-example__toolbar">
-        <div role="tablist" aria-label="Code examples">
+        <div class="flex-grow-1" role="tablist" aria-label="Code examples">
           {
             Astro.slots.has("tab-html") && (
             <button 

@@ -1,0 +1,34 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("input-size", var.$size);
+  @include core.css("input-padding", var.$padding);
+  @include core.css("input-background", var.$background);
+  @include core.css("input-background-hover", var.$background-hover);
+  @include core.css("input-background-focus", var.$background-focus);
+  @include core.css("input-background-readonly", var.$background-readonly);
+  @include core.css("input-background-disabled", var.$background-disabled);
+  @include core.css("input-foreground", var.$foreground);
+  @include core.css("input-foreground-hover", var.$foreground-hover);
+  @include core.css("input-foreground-focus", var.$foreground-focus);
+  @include core.css("input-foreground-placeholder", var.$foreground-placeholder);
+  @include core.css("input-border-color", var.$border-color);
+  @include core.css("input-border-color-hover", var.$border-color-hover);
+  @include core.css("input-border-color-focus", var.$border-color-focus);
+  @include core.css("input-border-width", var.$border-width);
+  @include core.css("input-border-radius", var.$border-radius);
+  @include core.css("input-box-shadow", var.$box-shadow);
+  @include core.css("input-box-shadow-focus", var.$box-shadow-focus);
+  @include core.css("input-box-shadow-inset", var.$box-shadow-inset);
+  @include core.css("input-box-shadow-inset-focus", var.$box-shadow-inset-focus);
+  @include core.css("input-font-size", var.$font-size);
+  @include core.css("input-line-height", var.$line-height);
+  @include core.css("input-outline", var.$outline);
+  @include core.css("input-transition-property", var.$transition-property);
+  @include core.css("input-transition-duration", var.$transition-duration);
+  @include core.css("input-transition-timing-function", var.$transition-timing-function);
+}
+
+@include theme.output("input");

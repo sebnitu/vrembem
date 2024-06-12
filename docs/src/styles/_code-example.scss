@@ -71,10 +71,6 @@
   color: theme.get("foreground-lighter");
   text-transform: uppercase;
 
-  [role="tablist"] {
-    flex-grow: 1;
-  }
-
   [data-reset] {
     margin: -2px 0;
   }

@@ -1,10 +1,7 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}input#{$_m}type#{$_v}select {
+#{core.bem("input", null, "type", "select")} {
   padding-right: 2em;
   background-image: url(var.$type-select-icon);
   background-repeat: no-repeat;
@@ -12,26 +9,26 @@ $_v: var.$prefix-modifier-value;
   cursor: pointer;
 
   &:read-only {
-    background-color: var.$background;
+    background-color: core.css("input-background");
   }
 
   &:disabled {
-    background-color: var.$disabled-background;
+    background-color: core.css("input-background-disabled");
   }
 }
 
-.#{$_b}input#{$_m}type#{$_v}textarea {
+#{core.bem("input", null, "type", "textarea")} {
   min-width: var.$type-textarea-min-width;
   height: auto;
-  min-height: var.$size;
+  min-height: core.css("input-size");
 
-  &.#{$_b}input#{$_m}size#{$_v}sm {
+  &#{core.bem("input", null, "size", "sm")} {
     height: auto;
-    min-height: var.$size-sm;
+    min-height: core.css("input-size");
   }
 
-  &.#{$_b}input#{$_m}size#{$_v}lg {
+  &#{core.bem("input", null, "size", "lg")} {
     height: auto;
-    min-height: var.$size-lg;
+    min-height: core.css("input-size");
   }
 }

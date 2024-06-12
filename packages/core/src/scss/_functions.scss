@@ -28,15 +28,40 @@
 }
 
 /// Output a CSS variable using the core variable prefix.
-/// @param {String} $name - The custom property name.
-/// @param {String} $fallback [null] - The custom property name of a fallback.
+/// @param {List} $props - List of custom property names.
 /// @return {CSS var} - The var() CSS function with the value of the custom property.
-@function css($name, $fallback: null) {
-  @if ($fallback) {
-    @return var(--#{prefix.$variable}#{$name}, var(--#{prefix.$variable}#{$fallback}));
-  } @else {
-    @return var(--#{prefix.$variable}#{$name});
+@function css($props...) {
+  $props: reverse($props);
+  $result: null;
+
+  @each $prop in $props {
+    @if ($result) {
+      $result: var(--#{prefix.$variable}#{$prop}, $result);
+    }
+    @else {
+      $result: var(--#{prefix.$variable}#{$prop});
+    }
   }
+  
+  @return $result;
+}
+
+/// Reverse the order of elements within a list.
+/// @param {List} $list - The list to reverse.
+/// @param {Boolean} $recursive[false] - Whether or not the list should be reversed recursively.
+/// @return {List} - The reversed list.
+@function reverse($list, $recursive: false) {
+  $result: ();
+
+  @for $i from list.length($list) * -1 through -1 {
+    @if meta.type-of(list.nth($list, math.abs($i))) == list and $recursive {
+      $result: list.append($result, reverse(list.nth($list, math.abs($i)), $recursive));
+    } @else {
+      $result: list.append($result, list.nth($list, math.abs($i)));
+    }
+  }
+
+  @return $result;
 }
 
 /// Encodes a color for use in data-uri

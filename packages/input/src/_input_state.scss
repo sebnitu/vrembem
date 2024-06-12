@@ -1,11 +1,16 @@
+@use "@vrembem/core";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
-@use "./mixins" as mix;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+#{core.bem("input", null, "state", "success")} {
+  @include core.css("input-border-color", palette.get("primary"));
+  @include core.css("input-border-color-hover", palette.get("primary"));
+  @include core.css("input-border-color-focus", palette.get("primary"));
+}
 
-.#{$_b}input#{$_m}error {
-  @include mix.input-variant(palette.get("important", "seed"));
+#{core.bem("input", null, "state", "error")} {
+  @include core.css("input-border-color", palette.get("important"));
+  @include core.css("input-border-color-hover", palette.get("important"));
+  @include core.css("input-border-color-focus", palette.get("important"));
+  @include core.css("input-box-shadow", palette.get("important", 50%, 0%));
+  @include core.css("input-box-shadow-focus", palette.get("important", 50%, 50%));
 }
