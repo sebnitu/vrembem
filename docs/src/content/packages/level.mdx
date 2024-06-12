@@ -26,27 +26,45 @@ npm install @vrembem/level
 
 The most basic implementation of the level component consists of the `level` container with any number of children. Layout styles are applied to the direct children of the level component using the `> *` selector.
 
-```html
-<div class="level">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="level">
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="level">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
 
 > Level is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
 
 ## level_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="level level_gap_sm">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="level level_gap_sm">
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="level level_gap_sm">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
 
 **Available variants**
 
@@ -59,15 +77,24 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 ## level_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="level level_gap-x_xs">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="level level_gap-x_xs">
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="level level_gap-x_xs">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
 
 **Available variants**
 
@@ -80,15 +107,24 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 ## level_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="level level_gap-y_xl">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="level level_gap-y_xl">
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+      <div><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="level level_gap-y_xl">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
 
 **Available variants**
 
@@ -98,18 +134,6 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `level_gap-y_md`
 - `level_gap-y_lg`
 - `level_gap-y_xl`
-
-## level_nowrap
-
-Removes the ability for level children to wrap and allows them to shrink as needed.
-
-```html
-<div class="level level_nowrap">
-  <div>...</div>
-  <div>...</div>
-  <div>...</div>
-</div>
-```
 
 ## Customization
 
