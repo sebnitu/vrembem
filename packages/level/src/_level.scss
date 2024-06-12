@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.#{var.$prefix-block}level {
+#{core.bem("level")} {
   gap: var.$gap;
   display: flex;
   flex-wrap: wrap;
