@@ -3,14 +3,16 @@
 
 @each $key, $value in var.$gap-map {
   #{core.bem("level", null, "gap", $key)} {
-    gap: $value;
+    @include core.css("level-gap", $value);
   }
+}
 
+@each $key, $value in var.$gap-map {
   #{core.bem("level", null, "gap-x", $key)} {
-    column-gap: $value;
+    @include core.css("level-gap-x", $value);
   }
 
   #{core.bem("level", null, "gap-y", $key)} {
-    row-gap: $value;
+    @include core.css("level-gap-y", $value);
   }
 }

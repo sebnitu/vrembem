@@ -2,7 +2,7 @@
 @use "./variables" as var;
 
 #{core.bem("level")} {
-  gap: var.$gap;
+  gap: core.css("level-gap-y", "level-gap") core.css("level-gap-x", "level-gap");
   display: flex;
   flex-wrap: wrap;
   align-items: center;
