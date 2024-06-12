@@ -2,29 +2,27 @@
 title: Level
 description: "A simple flexbox based layout component."
 package: "@vrembem/level"
+status: "loader"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
 
 # Level
 
 A simple flexbox based layout component.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Flevel.svg)](https://www.npmjs.com/package/%40vrembem%2Flevel)
-
-[Documentation](https://vrembem.com/packages/level)
-
-## Installation
-
 ```sh
 npm install @vrembem/level
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/level";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/level";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation of the level component consists of the `level` container with any number of children. Layout styles are applied to the direct children of the level component using the `> *` selector.
 
@@ -36,11 +34,9 @@ The most basic implementation of the level component consists of the `level` con
 </div>
 ```
 
-> Level is a flex based layout component. That means you can use the [`@vremben/utility`](https://github.com/sebnitu/vrembem/tree/main/packages/utility) package—specifically the [`flex`](https://github.com/sebnitu/vrembem/tree/main/packages/utility#flex) module—to further customize your layout.
+> Level is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
 
-## Modifiers
-
-### `level_gap_[key]`
+## level_gap_[key]
 
 Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -52,7 +48,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 </div>
 ```
 
-#### Available Variations
+**Available variants**
 
 - `level_gap_none`
 - `level_gap_xs`
@@ -61,7 +57,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 - `level_gap_lg`
 - `level_gap_xl`
 
-### `level_gap-x_[key]`
+## level_gap-x_[key]
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -73,7 +69,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 </div>
 ```
 
-#### Available Variations
+**Available variants**
 
 - `level_gap-x_none`
 - `level_gap-x_xs`
@@ -82,7 +78,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 - `level_gap-x_lg`
 - `level_gap-x_xl`
 
-### `level_gap-y_[key]`
+## level_gap-y_[key]
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
 
@@ -94,7 +90,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 </div>
 ```
 
-#### Available Variations
+**Available variants**
 
 - `level_gap-y_none`
 - `level_gap-y_xs`
@@ -103,7 +99,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `level_gap-y_lg`
 - `level_gap-y_xl`
 
-### level_nowrap
+## level_nowrap
 
 Removes the ability for level children to wrap and allows them to shrink as needed.
 
@@ -117,28 +113,16 @@ Removes the ability for level children to wrap and allows them to shrink as need
 
 ## Customization
 
-### Sass Variables
+Level is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default                             | Description                                      |
-| ------------------------ | ----------------------------------- | ------------------------------------------------ |
-| `$prefix-block`          | `null`                              | String to prefix blocks with.                    |
-| `$prefix-element`        | `"__"`                              | String to prefix elements with.                  |
-| `$prefix-modifier`       | `"_"`                               | String to prefix modifiers with.                 |
-| `$prefix-modifier-value` | `"_"`                               | String to prefix modifier values with.           |
-| `$gap`                   | `0.5em`                             | The default gap spacing for the level component. |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale) | Used to output gap modifiers.                    |
+<DocBlock name="CSS Variables" src="level/src/_root.scss">
+  ```scss
+  TBD
+  ```
+</DocBlock>
 
-#### `$gap-map`
-
-Used to output gap modifiers.
-
-```scss
-$gap-map: (
-  "none": 0,
-  "xs": 1px,
-  "sm": 0.25em,
-  "md": 0.5em,
-  "lg": 1em,
-  "xl": 1.5em,
-) !default;
-```
+<DocBlock name="SCSS Variables" src="level/src/_variables.scss">
+  ```scss
+  TBD
+  ```
+</DocBlock>
