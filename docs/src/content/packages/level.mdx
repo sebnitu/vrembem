@@ -140,13 +140,31 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 Level is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
 <DocBlock name="CSS Variables" src="level/src/_root.scss">
+
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("level-gap", var.$gap);
+  }
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="level/src/_variables.scss">
+
   ```scss
-  TBD
+  @use "@vrembem/core";
+
+  $gap: 0.5em !default;
+  $gap-map: (
+    "none": 0,
+    "xs": 1px,
+    "sm": 0.25em,
+    "md": 0.5em,
+    "lg": 1em,
+    "xl": 1.5em,
+  ) !default;
   ```
 </DocBlock>
