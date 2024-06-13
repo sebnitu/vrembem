@@ -1,20 +1,18 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
+@each $key, $value in var.$gap-map {
+  #{core.bem("level", null, "gap", $key)} {
+    @include core.css("level-gap", $value);
+  }
+}
 
 @each $key, $value in var.$gap-map {
-  .#{$_b}level#{$_m}gap#{$_v}#{$key} {
-    gap: $value;
+  #{core.bem("level", null, "gap-x", $key)} {
+    @include core.css("level-gap-x", $value);
   }
 
-  .#{$_b}level#{$_m}gap-x#{$_v}#{$key} {
-    column-gap: $value;
-  }
-
-  .#{$_b}level#{$_m}gap-y#{$_v}#{$key} {
-    row-gap: $value;
+  #{core.bem("level", null, "gap-y", $key)} {
+    @include core.css("level-gap-y", $value);
   }
 }
