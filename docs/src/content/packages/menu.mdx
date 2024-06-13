@@ -50,11 +50,16 @@ Use the `menu__text` element to wrap text inside the `menu__action` element. Add
     <Menu name="edit-all" />
   </Fragment>
   ```html
-  <button class="menu__action">
-    <span>...</span>
-    <span class="menu__text">...</span>
-    <span>...</span>
-  </button>
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        <span>...</span>
+        <span class="menu__text">...</span>
+        <span>...</span>
+      </button>
+    </li>
+    ...
+  </ul>
   ```
 </CodeExample>
 
@@ -65,9 +70,14 @@ For links that only contain an icon, you can use the `menu__action_icon` element
     <Menu name="browser" />
   </Fragment>
   ```html
-  <button class="menu__action menu__action_icon">
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action menu__action_icon">
+        ...
+      </button>
+    </li>
     ...
-  </button>
+  </ul>
   ```
 </CodeExample>
 
