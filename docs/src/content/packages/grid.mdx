@@ -358,7 +358,7 @@ Here's an example of using the optional breakpoint variants. Breakpoints variant
 
 ### span-auto-[key]
 
-Sets an elements width to `auto` with an optional breakpoint condition.
+Sets an elements width and flex-basis to `auto` with an optional breakpoint condition.
 
 <CodeExample>
   <Fragment slot="output">
@@ -377,9 +377,30 @@ Sets an elements width to `auto` with an optional breakpoint condition.
   ```
 </CodeExample>
 
+### span-grow-[key]
+
+Sets an elements width and flex-basis to `auto` and flex-grow to `1` with an optional breakpoint condition.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="grid">
+      <div class="grid__item span-grow"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+      <div class="grid__item"><div class="box">...</div></div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid">
+    <div class="grid__item span-grow">...</div>
+    <div class="grid__item">...</div>
+    <div class="grid__item">...</div>
+  </div>
+  ```
+</CodeExample>
+
 ### span-full-[key]
 
-Sets an elements width to `100%` with an optional breakpoint condition.
+Sets an elements flex property to `none` and width to `100%` with an optional breakpoint condition.
 
 <CodeExample>
   <Fragment slot="output">
