@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
@@ -41,9 +42,9 @@ $_e: var.$prefix-element;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-width: var.$size;
-  min-height: var.$size;
-  padding: var.$padding;
+  min-width: core.css("menu-size");
+  min-height: core.css("menu-size");
+  padding: core.css("menu-padding");
   border-radius: var.$border-radius;
   background: var.$background;
   color: var.$foreground;
