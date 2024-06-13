@@ -85,38 +85,91 @@ For links that only contain an icon, you can use the `menu__action_icon` element
 
 Adding the `is-active` class will provide visual indication that the action is currently in an active state.
 
-```html
-<button class="menu__action is-active" disabled>
-  ...
-</button>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <ul class="menu menu_inline">
+      <li class="menu__item">
+        <button class="menu__action is-active" disabled>One</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Two</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Three</button>
+      </li>
+    </ul>
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action is-active" disabled>
+        ...
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
 
 ### is-disabled
 
 Adding the boolean `disabled` attribute or `is-disabled` class will provide visual indication that the user should not be able to interact with the action.
 
-```html
-<button class="menu__action is-disabled" disabled>
-  ...
-</button>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <ul class="menu menu_inline">
+      <li class="menu__item">
+        <button class="menu__action is-disabled" disabled>One</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Two</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Three</button>
+      </li>
+    </ul>
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action is-disabled" disabled>
+        ...
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
 
 ## menu_inline_[key]
 
 Used to apply horizontal menu styles. This is typically used for short menus or toolbars where vertical space can be saved.
 
-```html
-<ul class="menu menu_inline">...</ul>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="crud" classes="menu_inline" />
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">...</ul>
+  ```
+</CodeExample>
 
 To set a menu to inline **above** a specific breakpoint, use the inline breakpoint modifier: `menu_inline_[key]`
 
-```html
-<ul class="menu menu_inline_lg">...</ul>
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <p>Current viewport width: <code data-vp-width>...</code></p>
+    <p>Menu will be inline above the <code>lg (990px)</code> breakpoint.</p>
+    <Menu name="crud" classes="menu_inline_lg" />
+  </div>
+  ```html
+  <ul class="menu menu_inline_lg">...</ul>
+  ```
+</CodeExample>
 
 **Available variants**
 
+- `menu_inline`
 - `menu_inline_xl`
 - `menu_inline_lg`
 - `menu_inline_md`
@@ -127,18 +180,31 @@ To set a menu to inline **above** a specific breakpoint, use the inline breakpoi
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
 
-```html
-<ul class="menu menu_inline menu_full">...</ul>
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <Menu name="crud" classes="menu_inline menu_full" />
+  </div>
+  ```html
+  <ul class="menu menu_inline menu_full">...</ul>
+  ```
+</CodeExample>
 
 To set a menu to full **below** a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
 
-```html
-<ul class="menu menu_inline menu_full_lg">...</ul>
-```
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <p>Current viewport width: <code data-vp-width>...</code></p>
+    <p>Menu will be full width below the <code>lg (990px)</code> breakpoint.</p>
+    <Menu name="crud" classes="menu_inline menu_full_lg" />
+  </div>
+  ```html
+  <ul class="menu menu_inline menu_full_lg">...</ul>
+  ```
+</CodeExample>
 
 **Available variants**
 
+- `menu_full`
 - `menu_full_xl`
 - `menu_full_lg`
 - `menu_full_md`
@@ -149,15 +215,21 @@ To set a menu to full **below** a specific breakpoint, use the full breakpoint m
 
 Adjust the size of a menu by increasing or decreasing its padding and font-size. By default, the menu scale will provide an action height of 30px (small `menu_size_sm`), 40px (default) and 50px (large `menu_size_lg`).
 
-```html
-<ul class="menu menu_size_sm">
-  ...
-</ul>
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <Menu name="crud" classes="menu_inline menu_size_sm" />
+    <Menu name="crud" classes="menu_inline menu_size_lg" />
+  </div>
+  ```html
+  <ul class="menu menu_size_sm">
+    ...
+  </ul>
 
-<ul class="menu menu_size_lg">
-  ...
-</ul>
-```
+  <ul class="menu menu_size_lg">
+    ...
+  </ul>
+  ```
+</CodeExample>
 
 **Available variants**
 
