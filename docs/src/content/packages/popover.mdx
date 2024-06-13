@@ -38,7 +38,7 @@ The popover is a simple container component consisting of the `popover` class an
   <Fragment slot="output">
     <button class="button button_color_primary" aria-controls="popover-1">Popover</button>
     <div class="popover" id="popover-1">
-      <Menu name="text" />
+      <Menu name="format-text" />
     </div>
   </Fragment>
   ```html
@@ -55,7 +55,7 @@ Add an arrow to a popover using an empty `<div>` or `<span>` with the `popover__
   <Fragment slot="output">
     <button class="button button_color_primary" aria-controls="popover-2">Popover</button>
     <div class="popover" id="popover-2">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
       <span class="popover__arrow"></span>
     </div>
   </Fragment>
@@ -93,7 +93,7 @@ Alternatively, this value can be overridden using the [`--vb-popover-event` CSS 
   <Fragment slot="output">
     <button class="button button_color_primary" aria-describedby="popover-3">Popover</button>
     <div id="popover-3" class="popover" style="--vb-popover-event: hover;">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
     </div>
   </Fragment>
   ```html
@@ -128,7 +128,7 @@ Alternatively, this value can be overridden using the [`--vb-popover-placement` 
   <Fragment slot="output">
     <button class="button button_color_primary" aria-describedby="popover-4">Popover</button>
     <div id="popover-4" class="popover" style="--vb-popover-placement: right;">
-      <Menu name="text" />
+      <Menu name="format-text" />
       <span class="popover__arrow"></span>
     </div>
   </Fragment>
@@ -171,7 +171,7 @@ The advantage to having these values set by a CSS variable is that they can be g
           <span class="arrow-right"></span>
         </button>
         <div id="popover-5" class="popover">
-          <Menu name="utility" />
+          <Menu name="edit-shortcuts" />
           <span class="popover__arrow"></span>
         </div>
       </div>
@@ -180,7 +180,7 @@ The advantage to having these values set by a CSS variable is that they can be g
           <span class="arrow-left"></span>
         </button>
         <div id="popover-6" class="popover">
-          <Menu name="utility" />
+          <Menu name="edit-shortcuts" />
           <span class="popover__arrow"></span>
         </div>
       </div>
@@ -206,19 +206,19 @@ Adjusts the size of the popover. There are two options relative to the default s
   <div slot="output" class="level">
     <button class="button" aria-describedby="popover-7">Auto</button>
     <div id="popover-7" class="popover popover_size_auto">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-8">Small</button>
     <div id="popover-8" class="popover popover_size_sm">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-9">Default</button>
     <div id="popover-9" class="popover">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-10">Large</button>
     <div id="popover-10" class="popover popover_size_lg">
-      <Menu name="utility" />
+      <Menu name="edit-shortcuts" />
     </div>
   </div>
   ```html

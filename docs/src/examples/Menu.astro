@@ -1,4 +1,6 @@
 ---
+import Icon from '../components/Icon.astro';
+
 export interface Props {
 	name: string;
 }
@@ -7,96 +9,229 @@ const { name } = Astro.props;
 
 ---
 
-{ name == "utility" && (
-  <ul class="menu">
+{ name == "browser" && (
+  <ul class="menu menu_inline">
     <li class="menu__item">
-      <button class="menu__action">
-        <span class="menu__text">Cut</span>
-        <span class="foreground-lighter">⌘X</span>
+      <button type="button" class="menu__action menu__action_icon">
+        <Icon name="arrow-left" classes="icon_size_sm" />
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
-        <span class="menu__text">Copy</span>
-        <span class="foreground-lighter">⌘C</span>
+      <button type="button" class="menu__action menu__action_icon" disabled>
+        <Icon name="arrow-right" classes="icon_size_sm" />
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
-        <span class="menu__text">Paste</span>
-        <span class="foreground-lighter">⌘V</span>
+      <button type="button" class="menu__action menu__action_icon">
+        <Icon name="rotate-cw" classes="icon_size_sm" />
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action menu__action_icon">
+        <Icon name="home" classes="icon_size_sm" />
       </button>
     </li>
     <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button class="menu__action">
-        <span class="menu__text">Find</span>
-        <span class="foreground-lighter">⌘F</span>
-      </button>
+    <li class="menu__item flex-grow-1">
+      <input class="input" type="url" placeholder="https://" />
     </li>
+    <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">
-        <span class="menu__text">Replace</span>
-        <span class="foreground-lighter">⌥⌘F</span>
+      <button type="button" class="menu__action menu__action_icon">
+        <Icon name="more-vertical" classes="icon_size_sm" />
       </button>
     </li>
   </ul>
 )}
 
-{ name == "text" && (
+{ name == "edit" && (
   <ul class="menu">
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">Undo</button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">Redo</button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">Cut</button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">Copy</button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">Paste</button>
+    </li>
+  </ul>
+)}
+
+{ name == "edit-icons" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Undo</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Redo</span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Cut</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="copy" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Copy</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Paste</span>
+      </button>
+    </li>
+  </ul>
+)}
+
+{ name == "edit-shortcuts" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <span class="menu__text">Undo</span>
+        <span class="foreground-lighter">⌘Z</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <span class="menu__text">Redo</span>
+        <span class="foreground-lighter">&uarr;⌘Z</span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <span class="menu__text">Cut</span>
+        <span class="foreground-lighter">⌘X</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <span class="menu__text">Copy</span>
+        <span class="foreground-lighter">⌘C</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <span class="menu__text">Paste</span>
+        <span class="foreground-lighter">⌘V</span>
+      </button>
+    </li>
+  </ul>
+)}
+
+{ name == "edit-all" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Undo</span>
+        <span class="foreground-lighter">⌘Z</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Redo</span>
+        <span class="foreground-lighter">&uarr;⌘Z</span>
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Cut</span>
+        <span class="foreground-lighter">⌘X</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="copy" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Copy</span>
+        <span class="foreground-lighter">⌘C</span>
+      </button>
+    </li>
+    <li class="menu__item">
+      <button type="button" class="menu__action">
+        <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+        <span class="menu__text">Paste</span>
+        <span class="foreground-lighter">⌘V</span>
+      </button>
+    </li>
+  </ul>
+)}
+
+{ name == "format-text" && (
+  <ul class="menu">
+    <li class="menu__item">
+      <button type="button" class="menu__action">
         <span class="menu__text">Bold</span>
         <span class="foreground-lighter">⌘B</span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Italic</span> 
         <span class="foreground-lighter">⌘I</span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Underline</span>
         <span class="foreground-lighter">⌘U</span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Paragraph Styles</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Align</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Line spacing</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Numbered lists</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">List options</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
-      <button class="menu__action">
+      <button type="button" class="menu__action">
         <span class="menu__text">Clear formatting</span>
         <span class="foreground-lighter">⌘/</span>
       </button>

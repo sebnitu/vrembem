@@ -7,7 +7,7 @@ status: "loader"
 
 import CodeExample from '../../components/CodeExample.astro';
 import DocBlock from '../../components/DocBlock.astro';
-import Icon from '../../components/Icon.astro';
+import Menu from "../../examples/Menu.astro";
 
 # Menu
 
@@ -27,34 +27,49 @@ npm install @vrembem/menu
 
 The menu component is composed of at minimum three parts: `menu`, `menu__item` and `menu__action`. The menu and menu items should be a `<ul>` and list items `<li>` respectively while the menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__sep` element to create separators in between menu items.
 
-```html
-<ul class="menu">
-  <li class="menu__item">
-    <button class="menu__action">
-      ...
-    </button>
-  </li>
-  <li class="menu__sep"></li>
-</ul>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="edit" />
+  </Fragment>
+  ```html
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        ...
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+  </ul>
+  ```
+</CodeExample>
 
 Use the `menu__text` element to wrap text inside the `menu__action` element. Additional elements inside the menu action receive appropriate spacing.
 
-```html
-<button class="menu__action">
-  <span>...</span>
-  <span class="menu__text">...</span>
-  <span>...</span>
-</button>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="edit-all" />
+  </Fragment>
+  ```html
+  <button class="menu__action">
+    <span>...</span>
+    <span class="menu__text">...</span>
+    <span>...</span>
+  </button>
+  ```
+</CodeExample>
 
 For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button_icon` modifier.
 
-```html
-<button class="menu__action menu__action_icon">
-  ...
-</button>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="browser" />
+  </Fragment>
+  ```html
+  <button class="menu__action menu__action_icon">
+    ...
+  </button>
+  ```
+</CodeExample>
 
 ### is-active
 
@@ -98,48 +113,6 @@ To set a menu to inline **above** a specific breakpoint, use the inline breakpoi
 - `menu_inline_sm`
 - `menu_inline_xs`
 
-### menu-inline()
-
-Output the styles for an inline menu.
-
-**Example**
-
-```scss
-.menu_custom {
-  @include menu-inline();
-}
-
-// CSS Output
-.menu_custom {
-  flex-direction: row;
-  align-items: center;
-}
-
-.menu_custom .menu__item + .menu__item {
-  margin-top: 0;
-  margin-left: 1px;
-}
-
-.menu_custom .menu__sep {
-  width: 1px;
-  height: auto;
-  margin: 0 0.5em;
-}
-
-.menu_custom .menu__sep:first-child {
-  margin-left: 0;
-}
-
-.menu_custom .menu__sep:last-child {
-  margin-right: 0;
-}
-
-.menu_custom .menu__action {
-  justify-content: center;
-  white-space: nowrap;
-}
-```
-
 ## menu_full_[key]
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
@@ -161,37 +134,6 @@ To set a menu to full **below** a specific breakpoint, use the full breakpoint m
 - `menu_full_md`
 - `menu_full_sm`
 - `menu_full_xs`
-
-### menu-full()
-
-Output the styles for a full width menu (should be applied to menus that are already inline).
-
-**Example**
-
-```scss
-.menu_custom {
-  @include menu-full();
-}
-
-// CSS Output
-.menu_custom .menu__item {
-  flex: 1 1 auto;
-}
-
-.menu_custom .menu__action {
-  justify-content: center;
-}
-```
-
-## menu_invert
-
-A modifier that provides an inversed menu style for better contrast on a dark background.
-
-```html
-<ul class="menu menu_invert">
-  ...
-</ul>
-```
 
 ## menu_size_[value]
 
