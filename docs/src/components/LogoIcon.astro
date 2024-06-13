@@ -5,7 +5,7 @@ interface Props {
   classes?: string;
 }
 
-const { width = 48, height = 48, classes } = Astro.props;
+const { width = 48, height = 48, classes = "" } = Astro.props;
 const widthStyle = `width: ${width}px;`;
 const heightStyle = `height: ${height}px;`;
 
