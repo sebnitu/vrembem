@@ -62,6 +62,10 @@
   &.updated {
     animation: .6s linear updated;
   }
+
+  @include core.media-max(root.$bp-code) {
+    padding: 1rem;
+  }
 }
 
 .code-example__toolbar {
