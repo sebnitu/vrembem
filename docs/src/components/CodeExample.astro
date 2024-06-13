@@ -22,7 +22,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
     Astro.slots.has("output") && (
       <div 
         id={`code-example-output-${uid}`}
-        class={`code-example__output ${flush ? 'padding-none' : ''}`.trim()}
+        class={`code-example__output scroll-box ${flush ? 'padding-none' : ''}`.trim()}
       >
         <slot name="output" />
       </div>
