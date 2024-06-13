@@ -1,8 +1,0 @@
-@use "@vrembem/core";
-@use "./variables" as var;
-
-@each $key, $value in var.$gap-map {
-  #{core.bem("media", null, "gap-x", $key)} {
-    @include core.css("media-gap-x", $value);
-  }
-}

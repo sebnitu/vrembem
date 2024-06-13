@@ -6,3 +6,13 @@
     @include core.css("media-gap", $value);
   }
 }
+
+@each $key, $value in var.$gap-map {
+  #{core.bem("media", null, "gap-x", $key)} {
+    @include core.css("media-gap-x", $value);
+  }
+
+  #{core.bem("media", null, "gap-y", $key)} {
+    @include core.css("media-gap-y", $value);
+  }
+}
