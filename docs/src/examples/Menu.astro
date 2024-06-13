@@ -3,14 +3,15 @@ import Icon from '../components/Icon.astro';
 
 export interface Props {
 	name: string;
+  classes?: string;
 }
 
-const { name } = Astro.props;
+const { name, classes = "" } = Astro.props;
 
 ---
 
 { name == "browser" && (
-  <ul class="menu menu_inline">
+  <ul class={`menu ${classes ? classes : 'menu_inline'}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action menu__action_icon">
         <Icon name="arrow-left" classes="icon_size_sm" />
@@ -32,8 +33,8 @@ const { name } = Astro.props;
       </button>
     </li>
     <li class="menu__sep"></li>
-    <li class="menu__item flex-grow-1 margin-x-sm">
-      <input class="input radius-circle padding-x-md" type="url" placeholder="https://" />
+    <li class="menu__item flex-grow-1 margin-x-md">
+      <input class="input radius-circle padding-x-md" type="url" placeholder="https://" style="min-width: 240px;" />
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action menu__action_icon">
@@ -44,7 +45,7 @@ const { name } = Astro.props;
 )}
 
 { name == "edit" && (
-  <ul class="menu">
+  <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">Undo</button>
     </li>
@@ -65,7 +66,7 @@ const { name } = Astro.props;
 )}
 
 { name == "edit-icons" && (
-  <ul class="menu">
+  <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
@@ -101,7 +102,7 @@ const { name } = Astro.props;
 )}
 
 { name == "edit-shortcuts" && (
-  <ul class="menu">
+  <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <span class="menu__text">Undo</span>
@@ -137,7 +138,7 @@ const { name } = Astro.props;
 )}
 
 { name == "edit-all" && (
-  <ul class="menu">
+  <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
@@ -178,7 +179,7 @@ const { name } = Astro.props;
 )}
 
 { name == "format-text" && (
-  <ul class="menu">
+  <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <span class="menu__text">Bold</span>
