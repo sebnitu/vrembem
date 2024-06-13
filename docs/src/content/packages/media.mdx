@@ -2,56 +2,80 @@
 title: Media
 description: "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon."
 package: "@vrembem/media"
+status: "check"
 ---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+import Icon from '../../components/Icon.astro';
 
 # Media
 
 The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.
 
-[![npm version](https://img.shields.io/npm/v/%40vrembem%2Fmedia.svg)](https://www.npmjs.com/package/%40vrembem%2Fmedia)
-
-[Documentation](https://vrembem.com/packages/media)
-
-## Installation
-
 ```sh
 npm install @vrembem/media
 ```
 
-### Styles
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/media";
+  ```
+</CodeExample>
 
-```scss
-@use "@vrembem/media";
-```
-
-### Markup
+## Basic usage
 
 The most basic implementation of the media component consists of the `media` container and atleast one body element (`media__body`) and one object element (`media__obj`).
 
-```html
-<div class="media">
-  <div class="media__obj">
+<CodeExample>
+  <Fragment slot="output">
+    <div class="media">
+      <div class="media__obj">
+        <img class="radius" src="https://picsum.photos/id/64/64/64" />
+      </div>
+      <div class="media__body">
+        <h2 class="font-size-lg">Media example</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat.</p>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="media">
+    <div class="media__obj">
+      ...
+    </div>
+    <div class="media__body">
+      ...
+    </div>
+  </div>
+  ```
+</CodeExample>
+
+> Media is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
+
+## media_gap_[key]
+
+Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="media media_gap_sm">
+      <div class="media__obj">
+        <Icon name="settings" classes="foreground-primary" />
+      </div>
+      <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat.</p>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="media media_gap_sm">
     ...
   </div>
-  <div class="media__body">
-    ...
-  </div>
-</div>
-```
+  ```
+</CodeExample>
 
-## Modifiers
-
-### `media_gap_[key]`
-
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
-
-```html
-<div class="media media_gap_xs">
-  ...
-</div>
-```
-
-#### Available Variations
+**Available variants**
 
 - `media_gap_none`
 - `media_gap_xs`
@@ -60,17 +84,29 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 - `media_gap_lg`
 - `media_gap_xl`
 
-### `media_gap-x_[key]`
+## media_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="media media_gap-x_lg">
-  ...
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="media media_gap-x_lg">
+      <div class="media__obj">
+        <Icon name="settings" classes="foreground-primary" />
+      </div>
+      <div class="media__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat.</p>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="media media_gap-x_lg">
+    ...
+  </div>
+  ```
+</CodeExample>
 
-#### Available Variations
+**Available variants**
 
 - `media_gap-x_none`
 - `media_gap-x_xs`
@@ -79,17 +115,32 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 - `media_gap-x_lg`
 - `media_gap-x_xl`
 
-### `media_gap-y_[key]`
+## media_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#gap-scale) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
-```html
-<div class="media media_gap-y_xs media_stack_lg">
-  ...
-</div>
-```
+<CodeExample>
+  <Fragment slot="output">
+    <div class="media media_gap-y_xs media_stack">
+      <div class="media__obj">
+        <img class="radius" src="https://picsum.photos/id/64/64/64" />
+      </div>
+      <div class="media__body">
+        <h2 class="font-size-lg">Media example</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat.</p>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="media media_gap-y_xs media_stack">
+    ...
+  </div>
+  ```
+</CodeExample>
 
-#### Available Variations
+> The `media_gap-y_[key]` modifier only take effect when combined with a [`media_stack_[key]`](#media_stack_key) modifier.
+
+**Available variants**
 
 - `media_gap-y_none`
 - `media_gap-y_xs`
@@ -98,19 +149,31 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 - `media_gap-y_lg`
 - `media_gap-y_xl`
 
-> The `media_gap-y_[key]` modifier only takes effect when combined with a `media_stack_[key]` modifier.
+## media_stack_[key]
 
-### `media_stack_[key]`
+Adds a breakpoint for when media items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#scss-variables-file) map. Omitting the key value from the modifier (e.g. `media_stack`) will stack items under all conditions.
 
-Adds a breakpoint for when media elements should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#breakpoints) map. Omitting the key value from the modifier (e.g. `media_stack`) will stack items under all conditions.
+<CodeExample>
+  <div slot="output" class="gap-y">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="media media_stack_lg">
+      <div class="media__obj">
+        <img class="radius" src="https://picsum.photos/id/64/64/64" />
+      </div>
+      <div class="media__body">
+        <h2 class="font-size-lg">Media stack example</h2>
+        <p>Media will stack below the <code>lg (990px)</code> breakpoint.</p>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="media media_stack_lg">
+    ...
+  </div>
+  ```
+</CodeExample>
 
-```html
-<div class="media media_stack_lg">
-  ...
-</div>
-```
-
-#### Available Variations
+**Available variants**
 
 - `media_stack`
 - `media_stack_xs`
@@ -119,62 +182,20 @@ Adds a breakpoint for when media elements should be stacked vertically. Values a
 - `media_stack_lg`
 - `media_stack_xl`
 
-#### Combined Modifiers
-
-The media component really shines when combining gap and stack modifiers.
-
-- `media_gap-x_lg` - Sets the horizontal gap between media obj and body elements.
-- `media_gap-y_xs` - Sets the vertical gap between media obj and body elements whent he stack breakpoint is met.
-- `media_stack_lg` - Sets the media component breakpoint that elements should stack.
-
-```html
-<div class="media media_gap-x_lg media_gap-y_xs media_stack_lg">
-  ...
-</div>
-```
-
 ## Customization
 
-### Sass Variables
+Media is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-| Variable                 | Default                                        | Description                                                                    |
-| ------------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------ |
-| `$prefix-block`          | `null`                                         | String to prefix blocks with.                                                  |
-| `$prefix-element`        | `"__"`                                         | String to prefix elements with.                                                |
-| `$prefix-modifier`       | `"_"`                                          | String to prefix modifiers with.                                               |
-| `$prefix-modifier-value` | `"_"`                                          | String to prefix modifier values with.                                         |
-| `$breakpoints`           | [`core.$breakpoints` Ref &darr;](#breakpoints) | The breakpoints map the `media_stack_[key]` modifier uses to build its styles. |
-| `$min-height`            | `(core.$line-height * 1em)`                    | Sets the min-height property of the `media__obj` element.                      |
-| `$max-width`             | `30%`                                          | Sets the max-width property of the `media__obj` element.                       |
-| `$gap`                   | `0.5em`                                        | The default gap spacing for the media component.                               |
-| `$gap-map`               | [`Sass Map` Ref &darr;](#gap-scale)            | Used to output gap modifiers.                                                  |
+<DocBlock name="CSS Variables" src="media/src/_root.scss">
 
-#### $breakpoints
+  ```scss
+  TBD
+  ```
+</DocBlock>
 
-The breakpoints map the `media_stack_[key]` modifier uses to build its styles.
+<DocBlock name="SCSS Variables" src="media/src/_variables.scss">
 
-```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
-```
-
-#### $gap-map
-
-Used to output gap modifiers.
-
-```scss
-$gap-map: (
-  "none": 0,
-  "xs": 0.5em,
-  "sm": 1em,
-  "md": 1.5em,
-  "lg": 2em,
-  "xl": 3em
-) !default;
-```
+  ```scss
+  TBD
+  ```
+</DocBlock>

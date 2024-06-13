@@ -1,25 +1,20 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}media {
+#{core.bem("media")} {
   display: flex;
   align-items: flex-start;
-
-  > * + * {
-    margin-left: var.$gap;
-  }
+  gap: core.css("media-gap-y", "media-gap") core.css("media-gap-x", "media-gap");
 }
 
-.#{$_b}media#{$_e}body {
+#{core.bem("media", "body")} {
   flex: 1 1 auto;
 }
 
-.#{$_b}media#{$_e}obj {
+#{core.bem("media", "obj")} {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: var.$max-width;
-  min-height: var.$min-height;
+  max-width: core.css("media-max-width");
+  min-height: core.css("media-min-height");
 }
