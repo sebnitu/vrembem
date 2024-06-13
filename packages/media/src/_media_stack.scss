@@ -1,52 +1,20 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-$_stack: ".#{$_b}media#{$_m}stack";
+$_selector: #{core.bem("media", null, "stack")};
 
 @each $key, $value in var.$breakpoints {
-  $_stack: $_stack + ", .#{$_b}media#{$_m}stack#{$_v}#{$key}";
+  $_selector: $_selector + ', #{core.bem("media", null, "stack", $key)}';
 }
 
-#{$_stack} {
+#{$_selector} {
   flex-direction: column;
-}
-
-.#{$_b}media#{$_m}stack {
-  > * + * {
-    margin-top: var.$gap;
-    margin-left: 0;
-  }
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
-    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
+    #{core.bem("media", null, "stack", $key)} {
       flex-direction: row;
-    }
-  }
-}
-
-@each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
-    .#{$_b}media#{$_m}stack#{$_v}#{$key} {
-      > * + * {
-        margin-top: var.$gap;
-        margin-left: 0;
-      }
-    }
-
-    @each $gapKey, $gapValue in var.$gap-map {
-      .#{$_b}media#{$_m}gap#{$_v}#{$gapKey},
-      .#{$_b}media#{$_m}gap-y#{$_v}#{$gapKey} {
-        &.#{$_b}media#{$_m}stack#{$_v}#{$key} > * + * {
-          margin-top: $gapValue;
-          margin-left: 0;
-        }
-      }
     }
   }
 }

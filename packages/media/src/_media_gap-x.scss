@@ -1,13 +1,8 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
 @each $key, $value in var.$gap-map {
-  .#{$_b}media#{$_m}gap-x#{$_v}#{$key} {
-    > * + * {
-      margin-left: $value;
-    }
+  #{core.bem("media", null, "gap-x", $key)} {
+    @include core.css("media-gap-x", $value);
   }
 }
