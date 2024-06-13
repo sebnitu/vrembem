@@ -189,13 +189,34 @@ Media is primarily customized using CSS variables but can also be modified using
 <DocBlock name="CSS Variables" src="media/src/_root.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("media-min-height", var.$min-height);
+    @include core.css("media-max-width", var.$max-width);
+    @include core.css("media-gap", var.$gap);
+  }
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="media/src/_variables.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+
+  $breakpoints: core.$breakpoints !default;
+  $min-height: (core.$line-height * 1em) !default;
+  $max-width: 30% !default;
+  $gap: 1.5em !default;
+  $gap-map: (
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "md": 1.5em,
+    "lg": 2em,
+    "xl": 3em
+  ) !default;
   ```
 </DocBlock>
