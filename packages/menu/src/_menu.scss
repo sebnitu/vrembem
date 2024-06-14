@@ -10,8 +10,12 @@
   list-style: none;
 }
 
+#{core.bem("menu", "item")} {
+  flex: 0 0 auto;
+}
+
 #{core.bem("menu", "sep")} {
-  flex-shrink: 0;
+  flex: 0 0 auto;
   align-self: stretch;
   width: auto;
   height: core.css("menu-sep-size");
@@ -48,20 +52,20 @@
   }
 
   &:hover {
-    background: core.css("menu-background-hover");
-    color: core.css("menu-foreground-hover");
+    background: core.css("menu-background-hover", "menu-background");
+    color: core.css("menu-foreground-hover", "menu-foreground");
   }
 
   &:focus-visible {
     z-index: 1;
     outline: core.css("menu-outline-focus");
-    background: core.css("menu-background-focus");
-    color: core.css("menu-foreground-focus");
+    background: core.css("menu-background-focus", "menu-background-hover", "menu-background");
+    color: core.css("menu-foreground-focus", "menu-foreground-hover", "menu-foreground");
   }
 
   &:active {
-    background: core.css("menu-background-active");
-    color: core.css("menu-foreground-active");
+    background: core.css("menu-background-active", "menu-background-hover", "menu-background");
+    color: core.css("menu-foreground-active", "menu-foreground-hover", "menu-foreground");
   }
 
   &.is-active,
