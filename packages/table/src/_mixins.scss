@@ -24,7 +24,6 @@
     white-space: normal;
 
     &::before {
-      @include core.overflow-ellipsis();
       content: attr(#{var.$mobile-label-attr});
       position: absolute;
       top: 0;
@@ -32,9 +31,12 @@
       left: 0;
       width: core.css("table-mobile-label-width");
       padding: core.css("table-padding");
+      overflow: hidden;
       background-color: core.css("table-mobile-label-background");
       color: core.css("table-mobile-label-foreground");
       font-weight: core.$font-weight-bold;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
