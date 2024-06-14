@@ -7,24 +7,32 @@ $_cy: var.$class-gap-y;
 
 @if (var.$output-gap-x) {
   .#{$_u}#{$_cx} {
-    @include core.gap(var.$gap, "x", true);
+    > * + * {
+      margin-left: var.$gap !important;
+    }
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_cx}-#{$key} {
-      @include core.gap($value, "x", true);
+      > * + * {
+        margin-left: $value !important;
+      }
     }
   }
 }
 
 @if (var.$output-gap-y) {
   .#{$_u}#{$_cy} {
-    @include core.gap(var.$gap, "y", true);
+    > * + * {
+      margin-top: var.$gap !important;
+    }
   }
 
   @each $key, $value in var.$gap-map {
     .#{$_u}#{$_cy}-#{$key} {
-      @include core.gap($value, "y", true);
+      > * + * {
+        margin-top: $value !important;
+      }
     }
   }
 }

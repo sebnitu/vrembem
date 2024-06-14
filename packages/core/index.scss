@@ -2,7 +2,6 @@
 @forward "./src/scss/palette" as palette-*;
 @forward "./src/scss/theme" as theme-*;
 @forward "./src/scss/variables";
-@forward "./src/scss/mixins";
 
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css";

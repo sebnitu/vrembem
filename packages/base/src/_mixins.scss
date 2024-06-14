@@ -46,13 +46,16 @@
 // ---
 
 @mixin blockquote() {
-  @include core.gap(var.$blockquote-gap, "y");
   position: relative;
   padding: var.$blockquote-padding;
   border: var.$blockquote-border;
   border-radius: var.$blockquote-border-radius;
   background: var.$blockquote-background;
   color: var.$blockquote-foreground;
+
+  > * + * {
+    margin-top: var.$blockquote-gap;
+  }
 
   @if var.$blockquote-accent-color {
     &::before {
@@ -236,11 +239,14 @@
 // ---
 
 @mixin type() {
-  @include core.gap(var.$type-gap, "y");
   color: var.$type-color;
   font-family: var.$type-font-family;
   font-size: var.$type-font-size;
   line-height: var.$type-line-height;
+
+  > * + * {
+    margin-top: var.$type-gap;
+  }
 
   > h1,
   > h2,

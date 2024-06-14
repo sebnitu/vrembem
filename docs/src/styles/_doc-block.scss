@@ -33,9 +33,12 @@
   }
 
   .type {
-    @include core.gap(1rem, "y");
     font-size: core.$font-size;
     line-height: core.$line-height;
+
+    > * + * {
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -62,8 +65,11 @@
 .doc-block__intro,
 .doc-block__arguments,
 .doc-block__example {
-  @include core.gap(1rem, "y");
   padding: 1rem;
+
+  > * + * {
+    margin-top: 1rem;
+  }
 }
 
 .doc-block__file .pre {

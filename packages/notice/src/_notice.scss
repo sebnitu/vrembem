@@ -2,13 +2,16 @@
 @use "./variables" as var;
 
 #{core.bem("notice")} {
-  @include core.gap(var.$gap, "y");
   padding: core.css("notice-padding");
   border: core.css("notice-border");
   border-radius: core.css("notice-border-radius");
   background: core.css("notice-background");
   box-shadow: core.css("notice-box-shadow");
   color: core.css("notice-foreground");
+
+  > * + * {
+    margin-top: var.$gap;
+  }
 }
 
 #{core.bem("notice", "title")} {
