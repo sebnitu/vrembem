@@ -20,11 +20,10 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 <div class="code-example">
   {
     Astro.slots.has("output") && (
-      <div 
-        id={`code-example-output-${uid}`}
-        class={`code-example__output scroll-box ${flush ? 'padding-none' : ''}`.trim()}
-      >
-        <slot name="output" />
+      <div id={`code-example-output-${uid}`} class="code-example__output">
+        <div class={`code-example__inner ${flush ? 'padding-none' : ''}`.trim()}>
+          <slot name="output" />
+        </div>
       </div>
     )
   }

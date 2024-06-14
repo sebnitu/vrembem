@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
+@use "@vrembem/base";
 @use "./root";
 
 .code-example {
@@ -53,15 +54,21 @@
 }
 
 .code-example__output {
-  padding: 2rem;
-
-  .drawer-frame {
-    height: 100%;
-  }
+  @include base.scroll-box();
 
   &.updated {
     animation: .6s linear updated;
   }
+
+  .drawer-frame {
+    height: 100%;
+  }
+}
+
+.code-example__inner {
+  width: fit-content;
+  min-width: 100%;
+  padding: 2rem;
 
   @include core.media-max(root.$bp-code) {
     padding: 1rem;
