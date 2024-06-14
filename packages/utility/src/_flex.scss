@@ -121,6 +121,10 @@ $_c: var.$class-flex;
   }
 
   // flex-grow-[key]
+  
+  .#{$_u}#{$_c}-grow {
+    flex-grow: 1 !important;
+  }
 
   @for $i from 0 through var.$flex-grow-count {
     .#{$_u}#{$_c}-grow-#{$i} {
@@ -129,6 +133,10 @@ $_c: var.$class-flex;
   }
 
   // flex-shrink-[key]
+
+  .#{$_u}#{$_c}-shrink {
+    flex-shrink: 1 !important;
+  }
 
   @for $i from 0 through var.$flex-shrink-count {
     .#{$_u}#{$_c}-shrink-#{$i} {
