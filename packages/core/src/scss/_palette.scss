@@ -32,31 +32,17 @@ $lightness-default: 50 !default;
 /// @type List
 $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
-/// Function used to build the palette lightness range for a specific color.
-/// @access private
-/// @require {Variable} $lightness
-/// @return {Map} - A map with all color lightness variations.
-@function _build-range-map($key, $color) {
-  $map: ();
-  @each $value in $lightness {
-    // To output with fallback value, replace last param with:
-    // var(--#{$_v}#{$key}-#{$value}, hsl(get-hs($color)..., $lightness: $value * 1%))
-    $map: map.set(
-      $map,
-      $value,
-      var(--#{$_v}#{$key}-#{$value})
-    );
-  }
-  @return $map;
-}
-
 /// Builds the palette map using the values set in $seeds and $lightness maps.
 /// @require {Variable} $seeds
 /// @require {Variable} $lightness
 /// @require {Function} _build-range-map
 @mixin build() {
   @each $key, $value in $seeds {
-    $_palette: map.set($_palette, $key, _build-range-map($key, $value)) !global;
+    $map: ();
+    @each $value in $lightness {
+      $map: map.set($map, $value, var(--#{$_v}#{$key}-#{$value}));
+    }
+    $_palette: map.set($_palette, $key, $map) !global;
   }
 }
 
