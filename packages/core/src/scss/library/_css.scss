@@ -1,0 +1,31 @@
+@use "../prefix";
+@use "../helpers/reverse" as *;
+
+/// Output a CSS variable value with optional fallbacks.
+/// @param {List} $props - List of custom property names.
+/// @return {CSS var} - The var() CSS function with the value of the custom property.
+@function css($props...) {
+  $props: reverse($props);
+  $result: null;
+
+  @each $prop in $props {
+    @if ($result) {
+      $result: var(--#{prefix.$variable}#{$prop}, $result);
+    }
+    @else {
+      $result: var(--#{prefix.$variable}#{$prop});
+    }
+  }
+  
+  @return $result;
+}
+
+/// Define a CSS variable if a value is provided.
+/// @param {String} $prop - The custom property name.
+/// @param {All} $value - The value of the CSS variable. Can be any valid CSS property value.
+/// @output CSS variable definition if a value is provided.
+@mixin css($prop, $value) {
+  @if ($value) {
+    --#{prefix.$variable}#{$prop}: #{$value};
+  }
+}

@@ -4,3 +4,9 @@
 @forward "./src/scss/theme" as theme-*;
 @forward "./src/scss/variables";
 @forward "./src/scss/mixins";
+
+@forward "./src/scss/library/bem";
+@forward "./src/scss/library/css";
+@forward "./src/scss/library/css-query";
+@forward "./src/scss/library/media-max";
+@forward "./src/scss/library/media-min";
