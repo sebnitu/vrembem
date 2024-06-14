@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-@mixin _menu-inline() {
+#{core.bem("menu", null, "inline")} {
   flex-direction: row;
   align-items: center;
 
@@ -22,17 +22,5 @@
   #{core.bem("menu", "action")} {
     justify-content: center;
     white-space: nowrap;
-  }
-}
-
-#{core.bem("menu", null, "inline")} {
-  @include _menu-inline();
-}
-
-@each $key, $value in var.$breakpoints {
-  @include core.media-min($value) {
-    #{core.bem("menu", null, "inline", $key)} {
-      @include _menu-inline();
-    }
   }
 }

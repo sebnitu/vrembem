@@ -2,7 +2,6 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
 
-$breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: core.$padding !default;
 $gap: 1px !default;

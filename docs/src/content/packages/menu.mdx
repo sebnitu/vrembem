@@ -154,28 +154,6 @@ Used to apply horizontal menu styles. This is typically used for short menus or 
   ```
 </CodeExample>
 
-To set a menu to inline **above** a specific breakpoint, use the inline breakpoint modifier: `menu_inline_[key]`
-
-<CodeExample>
-  <div slot="output" class="gap-y">
-    <p>Current viewport width: <code data-vp-width>...</code></p>
-    <p>Menu will be inline above the <code>lg (990px)</code> breakpoint.</p>
-    <Menu name="crud" classes="menu_inline_lg" />
-  </div>
-  ```html
-  <ul class="menu menu_inline_lg">...</ul>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `menu_inline`
-- `menu_inline_xl`
-- `menu_inline_lg`
-- `menu_inline_md`
-- `menu_inline_sm`
-- `menu_inline_xs`
-
 ## menu_full_[key]
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
@@ -188,28 +166,6 @@ Used to span a horizontal menu to fill the full width of its container. This mod
   <ul class="menu menu_inline menu_full">...</ul>
   ```
 </CodeExample>
-
-To set a menu to full **below** a specific breakpoint, use the full breakpoint modifier: `menu_full_[key]`
-
-<CodeExample>
-  <div slot="output" class="gap-y">
-    <p>Current viewport width: <code data-vp-width>...</code></p>
-    <p>Menu will be full width below the <code>lg (990px)</code> breakpoint.</p>
-    <Menu name="crud" classes="menu_inline menu_full_lg" />
-  </div>
-  ```html
-  <ul class="menu menu_inline menu_full_lg">...</ul>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `menu_full`
-- `menu_full_xl`
-- `menu_full_lg`
-- `menu_full_md`
-- `menu_full_sm`
-- `menu_full_xs`
 
 ## menu_size_[value]
 
@@ -289,7 +245,6 @@ Menus are primarily customized using CSS variables but can also be modified usin
   @use "@vrembem/core/theme";
   @use "@vrembem/core";
 
-  $breakpoints: core.$breakpoints !default;
   $size: core.$form-control-size !default;
   $padding: core.$padding !default;
   $gap: 1px !default;

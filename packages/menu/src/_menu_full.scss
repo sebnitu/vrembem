@@ -5,22 +5,4 @@
   #{core.bem("menu", "item")} {
     flex: 1 1 auto;
   }
-
-  #{core.bem("menu", "action")} {
-    justify-content: center;
-  }
-}
-
-@each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
-    #{core.bem("menu", null, "full", $key)} {
-      #{core.bem("menu", "item")} {
-        flex: 1 1 auto;
-      }
-    
-      #{core.bem("menu", "action")} {
-        justify-content: center;
-      }
-    }
-  }
 }
