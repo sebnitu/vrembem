@@ -28,6 +28,7 @@
   @include core.css("button-disabled-opacity", var.$disabled-opacity);
   @include core.css("button-loading-size", var.$loading-size);
   @include core.css("button-loading-border", var.$loading-border);
+  @include core.css("button-loading-border-color", var.$loading-border-color);
   @include core.css("button-loading-animation-duration", var.$loading-animation-duration);
   @include core.css("button-loading-animation-timing-function", var.$loading-animation-timing-function);
 }

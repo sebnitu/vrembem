@@ -65,7 +65,7 @@
       animation: spin core.css("button-loading-animation-duration") infinite core.css("button-loading-animation-timing-function");
       border: core.css("button-loading-border");
       border-radius: core.$border-radius-circle;
-      border-color: core.set-border-color(var.$loading-border-tpl, core.css("button-foreground"));
+      border-color: core.css("button-loading-border-color") core.css("button-loading-border-color") transparent transparent;
     }
   }
 }
