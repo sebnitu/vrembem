@@ -5,18 +5,6 @@
 @use "sass:meta";
 @use "sass:string";
 
-/// Encodes a color for use in data-uri
-/// @param {String} $string - The color to encode.
-/// @return {String} - Encoded color.
-@function encodecolor($string) {
-  @if meta.type-of($string) == "color" {
-    $hex: string.slice(color.ie-hex-str($string), 4);
-    $string: string.unquote("#{$hex}");
-  }
-  $string: "%23" + $string;
-  @return $string;
-}
-
 /// Replacing values from list.
 /// @param {List} $list
 /// @param {Value} $old-value
