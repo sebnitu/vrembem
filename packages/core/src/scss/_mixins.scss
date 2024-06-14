@@ -23,20 +23,3 @@
     }
   }
 }
-
-/// A utility mixin for quickly setting the width and height of an element.
-/// @param {Number} $width - Width size unit.
-/// @param {Number} $height [$width] - Height size unit.
-/// @output Width and height properties.
-@mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
-}
-
-/// Add text overflow styles with ellipsis
-/// @output Properties for creating ellipsis effect.
-@mixin overflow-ellipsis() {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}

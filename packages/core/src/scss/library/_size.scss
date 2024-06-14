@@ -1,0 +1,8 @@
+/// A utility mixin for quickly setting the width and height of an element.
+/// @param {Number} $width - Width size unit.
+/// @param {Number} $height [$width] - Height size unit.
+/// @output Width and height properties.
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
