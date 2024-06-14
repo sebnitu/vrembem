@@ -2,7 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./functions" as fun;
+@use "./helpers/remove-nth" as *;
 @use "./prefix";
 @use "./palette";
 
@@ -149,7 +149,7 @@ $themes: (
   $value: list.nth($args, -1);
 
   // Get the props list.
-  $props: fun.remove-nth($args, -1);
+  $props: remove-nth($args, -1);
 
   // If the value is replacing a map, handle the deep-merge.
   @if (meta.type-of($value) == "map") {

@@ -1,4 +1,3 @@
-@forward "./src/scss/functions";
 @forward "./src/scss/prefix" as prefix-*;
 @forward "./src/scss/palette" as palette-*;
 @forward "./src/scss/theme" as theme-*;
@@ -8,5 +7,6 @@
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css";
 @forward "./src/scss/library/css-query";
+@forward "./src/scss/library/get-side";
 @forward "./src/scss/library/media-max";
 @forward "./src/scss/library/media-min";
