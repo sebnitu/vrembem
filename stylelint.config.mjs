@@ -17,6 +17,7 @@ export default {
     "scss/at-if-closing-brace-newline-after": null,
     "scss/at-if-closing-brace-space-after": null,
     "scss/at-mixin-argumentless-call-parentheses": null,
+    "scss/at-mixin-pattern": null,
     "scss/at-rule-conditional-no-parentheses": null,
     "scss/dollar-variable-colon-space-after": null,
     "scss/dollar-variable-empty-line-before": null,

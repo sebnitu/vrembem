@@ -1,38 +1,18 @@
-@use "sass:list";
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}menu#{$_m}size#{$_v}sm {
-  font-size: var.$size-sm-font-size;
-  line-height: var.$size-sm-line-height;
-
-  .#{$_b}menu#{$_e}action {
-    min-width: var.$size-sm;
-    min-height: var.$size-sm;
-    padding: var.$size-sm-padding;
-
-    &_icon {
-      padding: list.nth(var.$size-sm-padding, 1);
-    }
-  }
+#{core.bem("menu", null, "size", "sm")} {
+  @include core.css("menu-size", var.$size-sm);
+  @include core.css("menu-padding", var.$size-sm-padding);
+  @include core.css("menu-padding-x", core.get-side(var.$size-sm-padding, top));
+  @include core.css("menu-font-size", var.$size-sm-font-size);
+  @include core.css("menu-line-height", var.$size-sm-line-height);
 }
 
-.#{$_b}menu#{$_m}size#{$_v}lg {
-  font-size: var.$size-lg-font-size;
-  line-height: var.$size-lg-line-height;
-
-  .#{$_b}menu#{$_e}action {
-    min-width: var.$size-lg;
-    min-height: var.$size-lg;
-    padding: var.$size-lg-padding;
-
-    &_icon {
-      padding: list.nth(var.$size-lg-padding, 1);
-    }
-  }
+#{core.bem("menu", null, "size", "lg")} {
+  @include core.css("menu-size", var.$size-lg);
+  @include core.css("menu-padding", var.$size-lg-padding);
+  @include core.css("menu-padding-x", core.get-side(var.$size-lg-padding, top));
+  @include core.css("menu-font-size", var.$size-lg-font-size);
+  @include core.css("menu-line-height", var.$size-lg-line-height);
 }

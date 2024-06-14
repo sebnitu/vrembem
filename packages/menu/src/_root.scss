@@ -1,0 +1,36 @@
+@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+
+#{theme.$root-selector} {
+  @include core.css("menu-size", var.$size);
+  @include core.css("menu-padding", var.$padding);
+  @include core.css("menu-padding-x", core.get-side(var.$padding, top));
+  @include core.css("menu-gap", var.$gap);
+  @include core.css("menu-border-radius", var.$border-radius);
+  @include core.css("menu-background", var.$background);
+  @include core.css("menu-background-hover", var.$background-hover);
+  @include core.css("menu-background-focus", var.$background-focus);
+  @include core.css("menu-background-active", var.$background-active);
+  @include core.css("menu-foreground", var.$foreground);
+  @include core.css("menu-foreground-hover", var.$foreground-hover);
+  @include core.css("menu-foreground-focus", var.$foreground-focus);
+  @include core.css("menu-foreground-active", var.$foreground-active);
+  @include core.css("menu-outline-focus", var.$outline-focus);
+  @include core.css("menu-font-size", var.$font-size);
+  @include core.css("menu-line-height", var.$line-height);
+
+  @include core.css("menu-action-gap", var.$action-gap);
+
+  @include core.css("menu-sep-size", var.$sep-size);
+  @include core.css("menu-sep-gap", var.$sep-gap);
+  @include core.css("menu-sep-background", var.$sep-background);
+
+  @include core.css("menu-active-background", var.$active-background);
+  @include core.css("menu-active-foreground", var.$active-foreground);
+
+  @include core.css("menu-disabled-background", var.$disabled-background);
+  @include core.css("menu-disabled-foreground", var.$disabled-foreground);
+}
+
+@include theme.output("menu");

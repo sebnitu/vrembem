@@ -2,27 +2,24 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
-$breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: core.$padding !default;
 $gap: 1px !default;
-$inner-gap: 1em !default;
 $border-radius: core.$border-radius !default;
-$background: none !default;
-$background-hover: theme.get("background-hover") !default;
-$background-focus: theme.get("background-focus") !default;
-$background-active: theme.get("background-active") !default;
-$foreground: theme.get("foreground") !default;
+$background: null !default;
+$background-hover: null !default;
+$background-focus: null !default;
+$background-active: null !default;
+$foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-active: null !default;
+$outline-focus: 2px solid theme.get("focus-visible") !default;
 $font-size: 1em !default;
 $line-height: 1.5 !default;
+
+// menu__action
+$action-gap: 0.5em !default;
 
 // menu__sep
 $sep-size: 1px !default;
@@ -37,12 +34,26 @@ $active-foreground: palette.get("primary") !default;
 $disabled-background: none !default;
 $disabled-foreground: theme.get("foreground-lighter") !default;
 
-// menu_size_[value]
+// menu_size_sm
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-padding: core.$padding-sm !default;
 $size-sm-font-size: core.$font-size-sm !default;
 $size-sm-line-height: core.$line-height-sm !default;
+
+// menu_size_sm
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: core.$padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
 $size-lg-line-height: core.$line-height-lg !default;
+
+// Theme maps
+$theme-shared: (
+  "background": none,
+  "background-hover": theme.get("background-hover"),
+  "background-focus": theme.get("background-focus"),
+  "background-active": theme.get("background-active"),
+  "foreground": theme.get("foreground"),
+) !default;
+
+@include theme.set("light", "menu", $theme-shared);
+@include theme.set("dark", "menu", $theme-shared);

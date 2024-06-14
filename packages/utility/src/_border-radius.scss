@@ -3,10 +3,12 @@
 
 $_u: var.$prefix-utility;
 $_c: var.$class-border-radius;
-$_s: #{$_u}#{$_c};
 
 @if (var.$output-border-radius) {
   @each $key, $value in var.$border-radius-map {
+    // Initialize selector
+    $_s: #{$_u}#{$_c};
+
     // Add the key to selector if one exists
     @if $key != "" {
       $_s: #{$_s}-#{$key};

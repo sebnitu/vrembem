@@ -9,7 +9,7 @@ interface Props {
   inline?: boolean;
 }
 
-const { classes, inline = false } = Astro.props;
+const { classes = "", inline = false } = Astro.props;
 
 const cp = currentPage(new URL(Astro.request.url).pathname, {
   classBase: "menu__action",

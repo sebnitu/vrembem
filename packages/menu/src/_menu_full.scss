@@ -1,19 +1,8 @@
 @use "@vrembem/core";
 @use "./variables" as var;
-@use "./mixins" as mix;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}menu#{$_m}full {
-  @include mix.menu-full();
-}
-
-@each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
-    .#{$_b}menu#{$_m}full#{$_v}#{$key} {
-      @include mix.menu-full();
-    }
+#{core.bem("menu", null, "full")} {
+  #{core.bem("menu", "item")} {
+    flex: 1 0 auto;
   }
 }
