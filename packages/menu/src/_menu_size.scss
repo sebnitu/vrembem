@@ -1,33 +1,18 @@
-@use "sass:list";
 @use "@vrembem/core";
 @use "./variables" as var;
 
 #{core.bem("menu", null, "size", "sm")} {
-  font-size: var.$size-sm-font-size;
-  line-height: var.$size-sm-line-height;
-
-  #{core.bem("menu", "action")} {
-    min-width: var.$size-sm;
-    min-height: var.$size-sm;
-    padding: var.$size-sm-padding;
-  }
-
-  #{core.bem("menu", "action", "icon")} {
-    padding: list.nth(var.$size-sm-padding, 1);
-  }
+  @include core.css("menu-size", var.$size-sm);
+  @include core.css("menu-padding", var.$size-sm-padding);
+  @include core.css("menu-padding-x", core.get-side(var.$size-sm-padding, top));
+  @include core.css("menu-font-size", var.$size-sm-font-size);
+  @include core.css("menu-line-height", var.$size-sm-line-height);
 }
 
 #{core.bem("menu", null, "size", "lg")} {
-  font-size: var.$size-lg-font-size;
-  line-height: var.$size-lg-line-height;
-
-  #{core.bem("menu", "action")} {
-    min-width: var.$size-lg;
-    min-height: var.$size-lg;
-    padding: var.$size-lg-padding;
-  }
-
-  #{core.bem("menu", "action", "icon")} {
-    padding: list.nth(var.$size-lg-padding, 1);
-  }
+  @include core.css("menu-size", var.$size-lg);
+  @include core.css("menu-padding", var.$size-lg-padding);
+  @include core.css("menu-padding-x", core.get-side(var.$size-lg-padding, top));
+  @include core.css("menu-font-size", var.$size-lg-font-size);
+  @include core.css("menu-line-height", var.$size-lg-line-height);
 }

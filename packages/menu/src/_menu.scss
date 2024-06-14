@@ -1,15 +1,12 @@
-@use "sass:list";
 @use "@vrembem/core";
-@use "@vrembem/core/theme";
-@use "./variables" as var;
 
 #{core.bem("menu")} {
   display: flex;
   gap: core.css("menu-gap");
   flex-direction: column;
   align-items: stretch;
-  font-size: var.$font-size;
-  line-height: var.$line-height;
+  font-size: core.css("menu-font-size");
+  line-height: core.css("menu-line-height");
   list-style: none;
 }
 
@@ -33,72 +30,61 @@
 #{core.bem("menu", "action")} {
   position: relative;
   display: flex;
-  gap: core.css("menu-action-gap");
   align-items: center;
   justify-content: flex-start;
   width: 100%;
   min-width: core.css("menu-size");
   min-height: core.css("menu-size");
   padding: core.css("menu-padding");
-  border-radius: var.$border-radius;
-  background: var.$background;
-  color: var.$foreground;
+  outline: none;
+  border-radius: core.css("menu-border-radius");
+  background: core.css("menu-background");
+  color: core.css("menu-foreground");
   white-space: normal;
+  gap: core.css("menu-action-gap");
 
   > * {
     flex: 0 0 auto;
   }
 
   &:hover {
-    background: var.$background-hover;
-    color: var.$foreground-hover;
-  }
-
-  &:focus {
-    outline: none;
-    background: var.$background-focus;
-    color: var.$foreground-focus;
+    background: core.css("menu-background-hover");
+    color: core.css("menu-foreground-hover");
   }
 
   &:focus-visible {
     z-index: 1;
-    outline: 2px solid theme.get("focus-visible");
+    outline: core.css("menu-outline-focus");
+    background: core.css("menu-background-focus");
+    color: core.css("menu-foreground-focus");
   }
 
   &:active {
-    background: var.$background-active;
-    color: var.$foreground-active;
+    background: core.css("menu-background-active");
+    color: core.css("menu-foreground-active");
   }
 
   &.is-active,
+  &.is-active:hover,
+  &.is-active:focus,
+  &.is-active:active,
   &.is-active[disabled] {
-    background: var.$active-background;
-    color: var.$active-foreground;
+    background: core.css("menu-active-background");
+    color: core.css("menu-active-foreground");
     cursor: pointer;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: var.$active-background;
-      color: var.$active-foreground;
-    }
   }
 
   &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &.is-disabled:active,
   &[disabled] {
-    background: var.$disabled-background;
-    color: var.$disabled-foreground;
+    background: core.css("menu-disabled-background");
+    color: core.css("menu-disabled-foreground");
     cursor: default;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: var.$disabled-background;
-      color: var.$disabled-foreground;
-    }
   }
 }
 
 #{core.bem("menu", "action", "icon")} {
-  padding: list.nth(var.$padding, 1);
+  padding: core.css("menu-padding-x");
 }

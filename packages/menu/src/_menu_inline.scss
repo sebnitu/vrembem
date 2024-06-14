@@ -1,15 +1,38 @@
 @use "@vrembem/core";
 @use "./variables" as var;
-@use "./mixins" as mix;
+
+@mixin _menu-inline() {
+  flex-direction: row;
+  align-items: center;
+
+  #{core.bem("menu", "sep")} {
+    width: core.css("menu-sep-size");
+    height: auto;
+    margin: 0 core.css("menu-sep-gap");
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  #{core.bem("menu", "action")} {
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
 
 #{core.bem("menu", null, "inline")} {
-  @include mix.menu-inline();
+  @include _menu-inline();
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
     #{core.bem("menu", null, "inline", $key)} {
-      @include mix.menu-inline();
+      @include _menu-inline();
     }
   }
 }
