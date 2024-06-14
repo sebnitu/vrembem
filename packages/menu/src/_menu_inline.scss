@@ -9,14 +9,6 @@
     width: core.css("menu-sep-size");
     height: auto;
     margin: 0 core.css("menu-sep-gap");
-
-    &:first-child {
-      margin-left: 0;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   #{core.bem("menu", "action")} {
