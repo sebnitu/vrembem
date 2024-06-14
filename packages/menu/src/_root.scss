@@ -5,4 +5,12 @@
 #{theme.$root-selector} {
   @include core.css("menu-size", var.$size);
   @include core.css("menu-padding", var.$padding);
+  @include core.css("menu-gap", var.$gap);
+  @include core.css("menu-border-radius", var.$border-radius);
+
+  @include core.css("menu-action-gap", var.$action-gap);
+
+  @include core.css("menu-sep-size", var.$sep-size);
+  @include core.css("menu-sep-gap", var.$sep-gap);
+  @include core.css("menu-sep-background", var.$sep-background);
 }

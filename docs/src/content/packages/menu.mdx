@@ -43,7 +43,7 @@ The menu component is composed of at minimum three parts: `menu`, `menu__item` a
   ```
 </CodeExample>
 
-Use the `menu__text` element to wrap text inside the `menu__action` element. Additional elements inside the menu action receive appropriate spacing.
+Use the `flex-grow` utility class to wrap text inside the `menu__action` element. Additional elements inside the menu action receive appropriate spacing.
 
 <CodeExample>
   <Fragment slot="output">
@@ -54,7 +54,7 @@ Use the `menu__text` element to wrap text inside the `menu__action` element. Add
     <li class="menu__item">
       <button class="menu__action">
         <span>...</span>
-        <span class="menu__text">...</span>
+        <span class="flex-grow">...</span>
         <span>...</span>
       </button>
     </li>

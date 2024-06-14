@@ -2,16 +2,10 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
 
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
-
 $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
 $padding: core.$padding !default;
 $gap: 1px !default;
-$inner-gap: 1em !default;
 $border-radius: core.$border-radius !default;
 $background: none !default;
 $background-hover: theme.get("background-hover") !default;
@@ -23,6 +17,9 @@ $foreground-focus: null !default;
 $foreground-active: null !default;
 $font-size: 1em !default;
 $line-height: 1.5 !default;
+
+// menu__action
+$action-gap: 0.5em !default;
 
 // menu__sep
 $sep-size: 1px !default;

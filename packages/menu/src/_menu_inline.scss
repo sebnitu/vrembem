@@ -2,17 +2,13 @@
 @use "./variables" as var;
 @use "./mixins" as mix;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}menu#{$_m}inline {
+#{core.bem("menu", null, "inline")} {
   @include mix.menu-inline();
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
-    .#{$_b}menu#{$_m}inline#{$_v}#{$key} {
+    #{core.bem("menu", null, "inline", $key)} {
       @include mix.menu-inline();
     }
   }

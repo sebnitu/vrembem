@@ -57,7 +57,7 @@ const { name, classes = "" } = Astro.props;
       </button>
     </li>
     <li class="menu__sep"></li>
-    <li class="menu__item flex-grow-1 margin-x-md">
+    <li class="menu__item flex-grow margin-x-md">
       <input class="input radius-circle padding-x-md" type="url" placeholder="https://" style="min-width: 240px;" />
     </li>
     <li class="menu__item">
@@ -94,32 +94,32 @@ const { name, classes = "" } = Astro.props;
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Undo</span>
+        <span class="flex-grow">Undo</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Redo</span>
+        <span class="flex-grow">Redo</span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="scissors" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Cut</span>
+        <span class="flex-grow">Cut</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="copy" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Copy</span>
+        <span class="flex-grow">Copy</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Paste</span>
+        <span class="flex-grow">Paste</span>
       </button>
     </li>
   </ul>
@@ -129,32 +129,32 @@ const { name, classes = "" } = Astro.props;
   <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Undo</span>
+        <span class="flex-grow">Undo</span>
         <span class="foreground-lighter">⌘Z</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Redo</span>
+        <span class="flex-grow">Redo</span>
         <span class="foreground-lighter">&uarr;⌘Z</span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Cut</span>
+        <span class="flex-grow">Cut</span>
         <span class="foreground-lighter">⌘X</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Copy</span>
+        <span class="flex-grow">Copy</span>
         <span class="foreground-lighter">⌘C</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Paste</span>
+        <span class="flex-grow">Paste</span>
         <span class="foreground-lighter">⌘V</span>
       </button>
     </li>
@@ -166,14 +166,14 @@ const { name, classes = "" } = Astro.props;
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Undo</span>
+        <span class="flex-grow">Undo</span>
         <span class="foreground-lighter">⌘Z</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Redo</span>
+        <span class="flex-grow">Redo</span>
         <span class="foreground-lighter">&uarr;⌘Z</span>
       </button>
     </li>
@@ -181,21 +181,21 @@ const { name, classes = "" } = Astro.props;
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="scissors" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Cut</span>
+        <span class="flex-grow">Cut</span>
         <span class="foreground-lighter">⌘X</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="copy" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Copy</span>
+        <span class="flex-grow">Copy</span>
         <span class="foreground-lighter">⌘C</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
         <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
-        <span class="menu__text">Paste</span>
+        <span class="flex-grow">Paste</span>
         <span class="foreground-lighter">⌘V</span>
       </button>
     </li>
@@ -206,57 +206,57 @@ const { name, classes = "" } = Astro.props;
   <ul class={`menu ${classes}`.trim()}>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Bold</span>
+        <span class="flex-grow">Bold</span>
         <span class="foreground-lighter">⌘B</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Italic</span> 
+        <span class="flex-grow">Italic</span> 
         <span class="foreground-lighter">⌘I</span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Underline</span>
+        <span class="flex-grow">Underline</span>
         <span class="foreground-lighter">⌘U</span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Paragraph Styles</span>
+        <span class="flex-grow">Paragraph Styles</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Align</span>
+        <span class="flex-grow">Align</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Line spacing</span>
+        <span class="flex-grow">Line spacing</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Numbered lists</span>
+        <span class="flex-grow">Numbered lists</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">List options</span>
+        <span class="flex-grow">List options</span>
         <span class="foreground-lighter arrow-right"></span>
       </button>
     </li>
     <li class="menu__sep"></li>
     <li class="menu__item">
       <button type="button" class="menu__action">
-        <span class="menu__text">Clear formatting</span>
+        <span class="flex-grow">Clear formatting</span>
         <span class="foreground-lighter">⌘/</span>
       </button>
     </li>
