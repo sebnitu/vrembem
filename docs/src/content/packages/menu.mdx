@@ -2,7 +2,7 @@
 title: Menu
 description: "Menus represent groups of links, actions or tools that a user can interact with."
 package: "@vrembem/menu"
-status: "loader"
+status: "check"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
@@ -243,13 +243,107 @@ Menus are primarily customized using CSS variables but can also be modified usin
 <DocBlock name="CSS Variables" src="menu/src/_root.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core";
+  @use "@vrembem/core/theme";
+  @use "./variables" as var;
+
+  #{theme.$root-selector} {
+    @include core.css("menu-size", var.$size);
+    @include core.css("menu-padding", var.$padding);
+    @include core.css("menu-padding-x", core.get-side(var.$padding, top));
+    @include core.css("menu-gap", var.$gap);
+    @include core.css("menu-border-radius", var.$border-radius);
+    @include core.css("menu-background", var.$background);
+    @include core.css("menu-background-hover", var.$background-hover);
+    @include core.css("menu-background-focus", var.$background-focus);
+    @include core.css("menu-background-active", var.$background-active);
+    @include core.css("menu-foreground", var.$foreground);
+    @include core.css("menu-foreground-hover", var.$foreground-hover);
+    @include core.css("menu-foreground-focus", var.$foreground-focus);
+    @include core.css("menu-foreground-active", var.$foreground-active);
+    @include core.css("menu-outline-focus", var.$outline-focus);
+    @include core.css("menu-font-size", var.$font-size);
+    @include core.css("menu-line-height", var.$line-height);
+
+    @include core.css("menu-action-gap", var.$action-gap);
+
+    @include core.css("menu-sep-size", var.$sep-size);
+    @include core.css("menu-sep-gap", var.$sep-gap);
+    @include core.css("menu-sep-background", var.$sep-background);
+
+    @include core.css("menu-active-background", var.$active-background);
+    @include core.css("menu-active-foreground", var.$active-foreground);
+
+    @include core.css("menu-disabled-background", var.$disabled-background);
+    @include core.css("menu-disabled-foreground", var.$disabled-foreground);
+  }
+
+  @include theme.output("menu");
   ```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="menu/src/_variables.scss">
 
   ```scss
-  TBD
+  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
+  @use "@vrembem/core";
+
+  $breakpoints: core.$breakpoints !default;
+  $size: core.$form-control-size !default;
+  $padding: core.$padding !default;
+  $gap: 1px !default;
+  $border-radius: core.$border-radius !default;
+  $background: null !default;
+  $background-hover: null !default;
+  $background-focus: null !default;
+  $background-active: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $foreground-focus: null !default;
+  $foreground-active: null !default;
+  $outline-focus: 2px solid theme.get("focus-visible") !default;
+  $font-size: 1em !default;
+  $line-height: 1.5 !default;
+
+  // menu__action
+  $action-gap: 0.5em !default;
+
+  // menu__sep
+  $sep-size: 1px !default;
+  $sep-gap: 0.5em !default;
+  $sep-background: theme.get("border-color") !default;
+
+  // is-active
+  $active-background: none !default;
+  $active-foreground: palette.get("primary") !default;
+
+  // is-disabled
+  $disabled-background: none !default;
+  $disabled-foreground: theme.get("foreground-lighter") !default;
+
+  // menu_size_sm
+  $size-sm: core.$form-control-size-sm !default;
+  $size-sm-padding: core.$padding-sm !default;
+  $size-sm-font-size: core.$font-size-sm !default;
+  $size-sm-line-height: core.$line-height-sm !default;
+
+  // menu_size_sm
+  $size-lg: core.$form-control-size-lg !default;
+  $size-lg-padding: core.$padding-lg !default;
+  $size-lg-font-size: core.$font-size-lg !default;
+  $size-lg-line-height: core.$line-height-lg !default;
+
+  // Theme maps
+  $theme-shared: (
+    "background": none,
+    "background-hover": theme.get("background-hover"),
+    "background-focus": theme.get("background-focus"),
+    "background-active": theme.get("background-active"),
+    "foreground": theme.get("foreground"),
+  ) !default;
+
+  @include theme.set("light", "menu", $theme-shared);
+  @include theme.set("dark", "menu", $theme-shared);
   ```
 </DocBlock>
