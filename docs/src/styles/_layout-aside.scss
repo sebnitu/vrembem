@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "@vrembem/drawer";
 @use "./root";
 
@@ -16,7 +17,7 @@
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;
   outline: none;
-  background-color: var(--vb-background-darker);
+  background-color: core.css("background-darker");
   box-shadow: drawer.$modal-shadow;
   opacity: 0;
   inset: 0 0 0 auto;

@@ -1,6 +1,6 @@
+@use "@vrembem/core";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@use "@vrembem/core";
 @use "./root";
 
 .code-block {
@@ -16,10 +16,10 @@
   }
   
   .popover {
-    --vb-popover-event: click;
-    --vb-popover-placement: left;
-    --vb-background: #{palette.get("primary", 100)};
-    --vb-foreground: #{palette.get("primary")};
+    @include core.css("popover-event", click);
+    @include core.css("popover-placement", left);
+    @include core.css("background", palette.get("primary", 100));
+    @include core.css("foreground", palette.get("primary"));
   }
 
   @include core.media-max(root.$bp-code) {
@@ -76,15 +76,15 @@
   }
 
   .popover {
-    --vb-popover-offset: 24;
-    --vb-popover-placement: bottom;
+    @include core.css("popover-offset", 24);
+    @include core.css("popover-placement", bottom);
   }
 
   @include core.media-max(root.$bp-code) {
     .pre {
       margin: 0;
       border: core.$border;
-      border-radius: var(--vb-border-radius);
+      border-radius: core.css("border-radius");
     }
 
     .code-block__copy-button {
