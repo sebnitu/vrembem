@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root-selector} {
+:root {
   @include core.css("menu-size", var.$size);
   @include core.css("menu-padding", var.$padding);
   @include core.css("menu-padding-x", core.get-side(var.$padding, top));

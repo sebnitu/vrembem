@@ -193,7 +193,7 @@ Notices are primarily customized using CSS variables but can also be modified us
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("notice-gap", var.$gap);
     @include core.css("notice-padding", var.$padding);
     @include core.css("notice-background", var.$background);

@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root-selector} {
+:root {
   @include core.css("card-padding", var.$padding);
   @include core.css("card-background", var.$background);
   @include core.css("card-foreground", var.$foreground);

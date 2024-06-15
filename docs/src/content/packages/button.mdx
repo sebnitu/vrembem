@@ -188,7 +188,7 @@ Buttons are primarily customized using CSS variables but can also be modified us
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("button-size", var.$size);
     @include core.css("button-padding", var.$padding);
     @include core.css("button-gap", var.$gap);

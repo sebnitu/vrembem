@@ -1,8 +1,7 @@
 @use "@vrembem/core";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root-selector} {
+:root {
   @include core.css("media-min-height", var.$min-height);
   @include core.css("media-max-width", var.$max-width);
   @include core.css("media-gap", var.$gap);
