@@ -1,5 +1,5 @@
 @use "../prefix";
-@use "../helpers/reverse" as *;
+@use "../utilities/reverse" as *;
 
 /// Output a CSS variable value with optional fallbacks.
 /// @param {List} $props - List of custom property names.

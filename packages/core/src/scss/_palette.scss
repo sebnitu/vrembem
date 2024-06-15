@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./helpers/get-hs" as *;
+@use "./utilities/get-hs" as *;
 @use "./prefix";
 
 /// Set the prefix for theme classes.

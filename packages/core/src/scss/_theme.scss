@@ -2,7 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./helpers/remove-nth" as *;
+@use "./utilities/remove-nth" as *;
 @use "./prefix";
 @use "./palette";
 
