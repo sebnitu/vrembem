@@ -116,28 +116,6 @@ $themes: (
   }
 }
 
-/// Function to return the value of an entry within the $themes map.
-/// @example - Return the background value from the default theme.
-///   background: theme.val("background");
-/// @example - Return the foreground value from the card default theme.
-///   background: theme.val("card", "foreground");
-/// @example - Return the background value from the card dark theme.
-///   background: theme.val("dark", "card", "background");
-/// @param {String} $args... - The property key to return.
-/// @require {Variable} $themes
-/// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
-@function val($args...) {
-  @if map.has-key($themes, $default, $args...) {
-    @return map.get($themes, $default, $args...);
-  } 
-  @else if map.has-key($themes, $args...) {
-    @return map.get($themes, $args...);
-  }
-  @else {
-    @error "Property does not exist in the themes object: (#{$args})";
-  }
-}
-
 /// Set a new or modify an existing property value in the $themes map.
 /// @example - Set the foreground custom property for the dark theme.
 ///   @include theme.set("dark", "foreground", blue);
