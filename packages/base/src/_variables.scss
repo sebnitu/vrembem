@@ -52,7 +52,7 @@ $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
 $font-size-sm: core.$font-size-sm !default;
-$line-height: core.$line-height !default;
+$line-height: core.css("line-height") !default;
 $box-sizing: border-box !default;
 
 // Arrow
@@ -90,9 +90,9 @@ $code-font-size: core.$font-size-sm !default;
 // ---
 
 $heading-font-family: inherit !default;
-$heading-line-height: core.$line-height-sm !default;
+$heading-line-height: core.css("line-height")-sm !default;
 $heading-color: inherit !default;
-$heading-font-weight: core.$font-weight-semi-bold !default;
+$heading-font-weight: core.css("font-weight-semi-bold") !default;
 $heading-scale: (
   "h1": 2.25em,
   "h2": 2em,

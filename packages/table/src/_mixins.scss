@@ -34,7 +34,7 @@
       overflow: hidden;
       background-color: core.css("table-mobile-label-background");
       color: core.css("table-mobile-label-foreground");
-      font-weight: core.$font-weight-bold;
+      font-weight: core.css("font-weight-bold");
       text-overflow: ellipsis;
       white-space: nowrap;
     }

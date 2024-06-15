@@ -6,7 +6,7 @@
 .code-block {
   position: relative;
   font-size: core.$font-size;
-  line-height: core.$line-height;
+  line-height: core.css("line-height");
   text-align: left;
 
   .pre {

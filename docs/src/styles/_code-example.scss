@@ -9,7 +9,7 @@
   border: core.$border;
   border-radius: core.$border-radius;
   font-size: core.$font-size;
-  line-height: core.$line-height;
+  line-height: core.css("line-height");
 
   > * + * {
     border-top: core.$border;

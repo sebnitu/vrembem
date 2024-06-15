@@ -10,7 +10,7 @@
   border-radius: core.$border-radius;
   box-shadow: 0 0 0 0 palette.get("primary", 90);
   font-size: core.$font-size;
-  line-height: core.$line-height;
+  line-height: core.css("line-height");
 
   & + & {
     margin-top: -1rem !important;
@@ -34,7 +34,7 @@
 
   .type {
     font-size: core.$font-size;
-    line-height: core.$line-height;
+    line-height: core.css("line-height");
 
     > * + * {
       margin-top: 1rem;

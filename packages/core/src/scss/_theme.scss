@@ -2,9 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 
+@use "./variables/prefix";
 @use "./library/css" as *;
 @use "./utilities/remove-nth" as *;
-@use "./prefix";
 @use "./palette";
 
 /// Prefix for theme classes.

@@ -1,5 +1,3 @@
-@use "../palette";
+@use "@vrembem/core";
 
-:root {
-  @include palette.output();
-}
+@include core.palette-output();

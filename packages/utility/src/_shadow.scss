@@ -6,7 +6,7 @@ $_c: var.$class-shadow;
 
 @if (var.$output-shadow) {
   .#{$_u}#{$_c} {
-    box-shadow: core.$shadow !important;
+    box-shadow: core.css("box-shadow") !important;
   }
 
   .#{$_u}#{$_c}-flat {
@@ -14,22 +14,22 @@ $_c: var.$class-shadow;
   }
 
   .#{$_u}#{$_c}-1 {
-    box-shadow: core.$shadow-1 !important;
+    box-shadow: core.css("box-shadow-1") !important;
   }
 
   .#{$_u}#{$_c}-2 {
-    box-shadow: core.$shadow-2 !important;
+    box-shadow: core.css("box-shadow-2") !important;
   }
 
   .#{$_u}#{$_c}-3 {
-    box-shadow: core.$shadow-3 !important;
+    box-shadow: core.css("box-shadow-3") !important;
   }
 
   .#{$_u}#{$_c}-4 {
-    box-shadow: core.$shadow-4 !important;
+    box-shadow: core.css("box-shadow-4") !important;
   }
 
   .#{$_u}#{$_c}-5 {
-    box-shadow: core.$shadow-5 !important;
+    box-shadow: core.css("box-shadow-5") !important;
   }
 }

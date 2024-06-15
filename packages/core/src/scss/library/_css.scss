@@ -1,4 +1,4 @@
-@use "../prefix";
+@use "../variables/prefix";
 @use "../utilities/reverse" as *;
 
 /// Output a CSS variable value with optional fallbacks.

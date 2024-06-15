@@ -1,7 +1,0 @@
-@use "../prefix";
-
-:root {
-  @if (prefix.$variable) {
-    --vb-prefix: #{prefix.$variable};
-  }
-}

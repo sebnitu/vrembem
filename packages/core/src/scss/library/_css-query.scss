@@ -4,14 +4,14 @@
 
 @use "./css" as *;
 @use "./media-min" as *;
-@use "../variables";
+@use "../variables/breakpoints" as *;
 
 /// Define a dynamic CSS variable using maps and breakpoints.
 /// @param {String} $prop - The custom property name.
 /// @param {Map | All} $value - The value of the custom property or a map of valid variables with breakpoints as the key.
 /// @param {Map} $breakpoints - A valid breakpoints map. See: core.$breakpoints.
 /// @output A default CSS variable and CSS variables in media queries.
-@mixin css-query($prop, $value, $breakpoints: variables.$breakpoints) {
+@mixin css-query($prop, $value, $breakpoints: $breakpoints) {
   // If padding is not a map, set the CSS var.
   @if meta.type-of($value) != 'map' {
     @include css($prop, $value);

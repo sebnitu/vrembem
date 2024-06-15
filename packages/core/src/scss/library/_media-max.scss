@@ -1,6 +1,5 @@
 @use "sass:map";
-
-@use "../variables";
+@use "../variables/breakpoints" as *;
 
 /// A media query mixin that defines a query using max-width. You can pass in a
 /// key to the `$breakpoints` maps to access that value, or pass a value to
@@ -9,8 +8,8 @@
 /// @content Content to output in media query.
 /// @param {Number | String} $point
 @mixin media-max($point) {
-  @if map.has-key(variables.$breakpoints, $point) {
-    @media (max-width: (map.get(variables.$breakpoints, $point) - 1)) {
+  @if map.has-key($breakpoints, $point) {
+    @media (max-width: (map.get($breakpoints, $point) - 1)) {
       @content;
     }
   }

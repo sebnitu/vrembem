@@ -1,6 +1,5 @@
 @use "sass:map";
-
-@use "../variables";
+@use "../variables/breakpoints" as *;
 
 /// A media query mixin that defines a query using min-width. You can pass in a
 /// key to the `$breakpoints` map to access that value, or pass a value to
@@ -8,8 +7,8 @@
 /// @content Content to output in media query.
 /// @param {Number | String} $point
 @mixin media-min($point) {
-  @if map.has-key(variables.$breakpoints, $point) {
-    @media (min-width: map.get(variables.$breakpoints, $point)) {
+  @if map.has-key($breakpoints, $point) {
+    @media (min-width: map.get($breakpoints, $point)) {
       @content;
     }
   }

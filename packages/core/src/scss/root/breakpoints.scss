@@ -1,8 +1,0 @@
-@use "../prefix";
-@use "../variables" as var;
-
-:root {
-  @each $key, $value in var.$breakpoints {
-    --#{prefix.$variable}breakpoint-#{$key}: #{$value};
-  }
-}
