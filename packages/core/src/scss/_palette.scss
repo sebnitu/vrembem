@@ -1,16 +1,10 @@
 @use "sass:map";
 @use "sass:meta";
 
+@use "./library/css" as *;
 @use "./utilities/get-hs" as *;
-@use "./prefix";
 
-/// Set the prefix for theme classes.
-/// @access private
-/// @alias prefix.$variable
-/// @type String
-$_v: prefix.$variable;
-
-/// The palette variable where all color variants are stored.
+/// The palette variable map where all color variants are stored.
 /// @access private
 /// @type Map
 $_palette: ();
@@ -40,7 +34,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   @each $key, $value in $seeds {
     $map: ();
     @each $value in $lightness {
-      $map: map.set($map, $value, var(--#{$_v}#{$key}-#{$value}));
+      $map: map.set($map, $value, css("#{$key}-#{$value}"));
     }
     $_palette: map.set($_palette, $key, $map) !global;
   }
@@ -70,7 +64,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(var(--#{$_v}#{$key}-hs) #{$lightness + ' / ' + $alpha});
+    @return hsl(#{css("#{$key}-hs") $lightness + ' / ' + $alpha});
   }
 
   // If the specified lightness value exists in the palette map, return its value.
@@ -80,7 +74,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // Else return hsl using the provided lightness value.
   @else {
-    @return hsl(var(--#{$_v}#{$key}-hs) $lightness);
+    @return hsl(#{css("#{$key}-hs") $lightness});
   }
 }
 
@@ -122,10 +116,10 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 /// @param {Variable} $lightness-default [$lightness-default] - Default lightness value to use for colors.
 @mixin output($seeds: $seeds) {
   @each $key, $seed in $seeds {
-    --#{$_v}#{$key}-hs: #{get-hs($seed)};
-    --#{$_v}#{$key}: var(--#{$_v}#{$key}-#{$lightness-default});
+    @include css("#{$key}-hs", get-hs($seed));
+    @include css("#{$key}", css("#{$key}-#{$lightness-default}"));
     @each $value in $lightness {
-      --#{$_v}#{$key}-#{$value}: hsl(var(--#{$_v}#{$key}-hs) #{$value + '%'});
+      @include css("#{$key}-#{$value}", hsl(#{css("#{$key}-hs") $value + '%'}));
     }
   }
 }
