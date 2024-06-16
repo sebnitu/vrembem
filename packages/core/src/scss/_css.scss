@@ -82,6 +82,10 @@ $_variables: (
   }
 }
 
-@mixin log() {
-  @include debug-map($_variables);
+@mixin log($module: null) {
+  @if not $module {
+    @include debug-map($_variables);
+  } @else {
+    @include debug-map(map.get($_variables, $module));
+  }
 }
