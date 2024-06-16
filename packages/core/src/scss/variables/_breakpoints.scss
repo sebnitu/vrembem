@@ -1,3 +1,5 @@
+@use "../css";
+
 $breakpoints: (
   "xs": 480px,
   "sm": 620px,
@@ -5,3 +7,7 @@ $breakpoints: (
   "lg": 990px,
   "xl": 1380px
 ) !default;
+
+@each $key, $value in $breakpoints {
+  @include css.set("core", "breakpoint-#{$key}", $value);
+}

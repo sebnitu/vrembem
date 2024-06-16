@@ -6,7 +6,9 @@
 @use "./utilities/debug-map" as *;
 
 $_variables: (
-  "core": ()
+  "core": (
+    "prefix": prefix.$variable
+  )
 );
 
 @function _pre($module) {
