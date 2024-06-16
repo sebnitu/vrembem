@@ -37,7 +37,4 @@ $font-weight-map: (
   "line-height-sm": $line-height-sm,
   "line-height-lg": $line-height-lg
 ));
-
-@each $key, $value in $font-weight-map {
-  @include css.set("core", "font-weight-#{$key}", $value);
-}
+@include css.set("core", "font-weight", $font-weight-map);

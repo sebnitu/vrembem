@@ -11,6 +11,4 @@ $gap-map: (
 ) !default;
 
 @include css.set("core", "gap", $gap);
-@each $key, $value in $gap-map {
-  @include css.set("core", "gap-#{$key}", $value);
-}
+@include css.set("core", "gap", $gap-map);

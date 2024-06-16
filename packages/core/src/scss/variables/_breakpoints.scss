@@ -8,6 +8,4 @@ $breakpoints: (
   "xl": 1380px
 ) !default;
 
-@each $key, $value in $breakpoints {
-  @include css.set("core", "breakpoint-#{$key}", $value);
-}
+@include css.set("core", "breakpoint", $breakpoints);

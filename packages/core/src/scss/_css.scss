@@ -47,6 +47,11 @@ $_variables: (
   @if (meta.type-of($prop) == "map") {
     $_variables: map.merge($_variables, $module, $prop) !global;
   }
+  @else if (meta.type-of($value) == "map") {
+    @each $key, $value in $value {
+      $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
+    }
+  }
   @else {
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
