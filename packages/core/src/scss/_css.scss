@@ -45,7 +45,16 @@ $_variables: (
 
 @mixin set($module, $prop, $value: null) {
   @if (meta.type-of($prop) == "map") {
-    $_variables: map.merge($_variables, $module, $prop) !global;
+    @each $propKey, $propValue in $prop {
+      @if (meta.type-of($propValue) == "map") {
+        @each $key, $value in $propValue {
+          $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
+        }
+      }
+      @else {
+        $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
+      }
+    }
   }
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
