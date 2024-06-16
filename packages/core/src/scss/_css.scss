@@ -86,6 +86,9 @@ $_variables: (
   @if not $module {
     @include debug-map($_variables);
   } @else {
+    @if not map.has-key($_variables, $module) {
+      @error "Module map has not been set: \"#{$module}\"";
+    }
     @include debug-map(map.get($_variables, $module));
   }
 }
