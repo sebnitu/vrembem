@@ -1,0 +1,21 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:meta";
+
+/// Reverse the order of elements within a list.
+/// @param {List} $list - The list to reverse.
+/// @param {Boolean} $recursive[false] - Whether or not the list should be reversed recursively.
+/// @return {List} - The reversed list.
+@function reverse($list, $recursive: false) {
+  $result: ();
+
+  @for $i from list.length($list) * -1 through -1 {
+    @if meta.type-of(list.nth($list, math.abs($i))) == list and $recursive {
+      $result: list.append($result, reverse(list.nth($list, math.abs($i)), $recursive));
+    } @else {
+      $result: list.append($result, list.nth($list, math.abs($i)));
+    }
+  }
+
+  @return $result;
+}

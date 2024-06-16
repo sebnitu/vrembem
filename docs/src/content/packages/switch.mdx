@@ -167,7 +167,7 @@ Switches are primarily customized using CSS variables but can also be modified u
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("switch-size", var.$size);
     @include core.css("switch-track-size", var.$track-size);
     @include core.css("switch-color", var.$color);

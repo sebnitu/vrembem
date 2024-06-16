@@ -191,7 +191,7 @@ Checkboxes are primarily customized using CSS variables but can also be modified
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("checkbox-size", var.$size);
     @include core.css("checkbox-box-size", var.$box-size);
     @include core.css("checkbox-icon-size", var.$icon-size);

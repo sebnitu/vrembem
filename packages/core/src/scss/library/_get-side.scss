@@ -1,0 +1,30 @@
+@use "sass:list";
+@use "sass:map";
+
+/// Return the top/right/bottom/right value on a padding, margin, etc. property, no matter how many values were passed in.
+/// @param {List | Number} $value - Value to analyze. Should be a shorthand sizing property, e.g. "1em 2em 1em".
+/// @param {Keyword} $side - Side to return. Should be `top`, `right`, `bottom`, or `left`.
+/// @returns {Number} - A single value based on `$value` and `$side`.
+@function get-side($value, $side) {
+  $_length: list.length($value);
+
+  @if $_length == 1 {
+    @return $value;
+  }
+
+  @else if $_length == 2 {
+    @return map.get((top: list.nth($value, 1), bottom: list.nth($value, 1), left: list.nth($value, 2), right: list.nth($value, 2)), $side);
+  }
+
+  @else if $_length == 3 {
+    @return map.get((top: list.nth($value, 1), left: list.nth($value, 2), right: list.nth($value, 2), bottom: list.nth($value, 3)), $side);
+  }
+
+  @else if $_length == 4 {
+    @return map.get((top: list.nth($value, 1), right: list.nth($value, 2), bottom: list.nth($value, 3), left: list.nth($value, 4)), $side);
+  }
+
+  @else {
+    @error "The provided list value is not valid: #{$value}";
+  }
+}

@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 
 $breakpoints: core.$breakpoints !default;
-$min-height: (core.$line-height * 1em) !default;
+$min-height: calc(core.css("line-height") * 1em) !default;
 $max-width: 30% !default;
 $gap: 1.5em !default;
 $gap-map: (

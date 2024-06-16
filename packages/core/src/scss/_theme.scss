@@ -2,15 +2,10 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./functions" as fun;
-@use "./prefix";
+@use "./variables/prefix";
+@use "./library/css" as *;
+@use "./utilities/remove-nth" as *;
 @use "./palette";
-
-/// Prefix for custom properties.
-/// @access private
-/// @alias prefix.$variable
-/// @type String
-$_v: prefix.$variable;
 
 /// Prefix for theme classes.
 /// @access private
@@ -110,31 +105,9 @@ $themes: (
     }
 
     // Return the CSS variable.
-    @return var(--#{$_v}#{$prop});
+    @return css($prop);
   } @else {
     @error "Property does not exist in the default theme: (#{$default}, #{$args})";
-  }
-}
-
-/// Function to return the value of an entry within the $themes map.
-/// @example - Return the background value from the default theme.
-///   background: theme.val("background");
-/// @example - Return the foreground value from the card default theme.
-///   background: theme.val("card", "foreground");
-/// @example - Return the background value from the card dark theme.
-///   background: theme.val("dark", "card", "background");
-/// @param {String} $args... - The property key to return.
-/// @require {Variable} $themes
-/// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
-@function val($args...) {
-  @if map.has-key($themes, $default, $args...) {
-    @return map.get($themes, $default, $args...);
-  } 
-  @else if map.has-key($themes, $args...) {
-    @return map.get($themes, $args...);
-  }
-  @else {
-    @error "Property does not exist in the themes object: (#{$args})";
   }
 }
 
@@ -149,7 +122,7 @@ $themes: (
   $value: list.nth($args, -1);
 
   // Get the props list.
-  $props: fun.remove-nth($args, -1);
+  $props: remove-nth($args, -1);
 
   // If the value is replacing a map, handle the deep-merge.
   @if (meta.type-of($value) == "map") {
@@ -207,15 +180,15 @@ $themes: (
         // Check if a value exists and if it's not a map.
         @if $value and meta.type-of($value) != 'map' {
           // Initial prop value and override if two arguments are passed.
-          $prop: --#{$_v}#{$key};
+          $prop: $key;
           @if $component {
-            $prop: --#{$_v}#{$component}-#{$key};
+            $prop: "#{$component}-#{$key}";
           }
 
           // Output property or store the color scheme.
           @if $key != 'color-scheme' {
             @if $value != () {
-              #{$prop}: #{$value};
+              @include css($prop, $value);
             }
           } @else {
             $color-scheme: #{$value};

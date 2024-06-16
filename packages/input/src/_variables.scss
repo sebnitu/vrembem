@@ -4,7 +4,7 @@
 @use "@vrembem/core/theme";
 
 $size: core.$form-control-size !default;
-$padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
+$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
@@ -24,7 +24,7 @@ $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
 $box-shadow-inset: rgb(0 0 0 / 10%);
 $box-shadow-inset-focus: rgb(0 0 0 / 0%);
 $font-size: core.$font-size !default;
-$line-height: core.$line-height !default;
+$line-height: core.css("line-height") !default;
 $outline: none !default;
 
 // Transition
@@ -34,20 +34,15 @@ $transition-timing-function: core.$transition-timing-function !default;
 
 // input_size_sm
 $size-sm: core.$form-control-size-sm !default;
-$size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
 $size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.$line-height-sm !default;
+$size-sm-line-height: core.css("line-height")-sm !default;
 
 // input_size_lg
 $size-lg: core.$form-control-size-lg !default;
-$size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
+$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
 $size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.$line-height-lg !default;
-
-// input_type_[value]
-$type-select-icon-color: palette.get("neutral", "seed") !default;
-$type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
-$type-textarea-min-width: 100% !default;
+$size-lg-line-height: core.css("line-height")-lg !default;
 
 // Theme maps
 $theme-light: (
@@ -56,7 +51,8 @@ $theme-light: (
   "foreground-placeholder": theme.get("foreground-lighter"),
   "border-color": theme.get("border-color-dark"),
   "border-color-hover": theme.get("border-color-darker"),
-  "border-color-focus": palette.get("primary")
+  "border-color-focus": palette.get("primary"),
+  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
 ) !default;
 
 $theme-dark: (
@@ -65,7 +61,8 @@ $theme-dark: (
   "foreground-placeholder": theme.get("foreground-lighter"),
   "border-color": theme.get("border-color-dark"),
   "border-color-hover": theme.get("border-color-darker"),
-  "border-color-focus": palette.get("primary", 60)
+  "border-color-focus": palette.get("primary", 60),
+  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
 ) !default;
 
 @include theme.set("light", "input", $theme-light);

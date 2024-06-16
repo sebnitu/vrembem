@@ -1,0 +1,9 @@
+@use "sass:color";
+@use "sass:math";
+
+/// Output the hue and saturation values of a provided color.
+/// @param {Color} $color - The color variable to pull hue and saturation values from.
+/// @return {List} - The hue and saturation values of the provided color.
+@function get-hs($color) {
+  @return math.round(color.hue($color)) math.round(color.saturation($color));
+}

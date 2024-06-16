@@ -194,7 +194,7 @@ Level is primarily customized using CSS variables but can also be modified using
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("level-gap", var.$gap);
   }
   ```

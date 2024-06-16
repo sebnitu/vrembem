@@ -30,15 +30,15 @@ $_c: var.$class-font;
   }
 
   .#{$_u}#{$_c}-leading-base {
-    line-height: core.$line-height !important;
+    line-height: core.css("line-height") !important;
   }
 
   .#{$_u}#{$_c}-leading-sm {
-    line-height: core.$line-height-sm !important;
+    line-height: core.css("line-height")-sm !important;
   }
 
   .#{$_u}#{$_c}-leading-lg {
-    line-height: core.$line-height-lg !important;
+    line-height: core.css("line-height")-lg !important;
   }
 
   .#{$_u}#{$_c}-kerning-0 {

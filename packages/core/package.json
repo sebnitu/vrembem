@@ -24,8 +24,9 @@
     "./dist/*": "./dist/*",
     "./root/*": "./src/scss/root/*",
     "./root": "./root.scss",
-    "./palette": "./palette.scss",
-    "./theme": "./theme.scss",
+    "./prefix": "./src/scss/variables/prefix.scss",
+    "./palette": "./src/scss/palette.scss",
+    "./theme": "./src/scss/theme.scss",
     "./*": "./src/scss/*",
     "./src/scss/root/*": "./src/scss/root/*"
   },

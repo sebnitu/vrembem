@@ -162,7 +162,7 @@ Cards are primarily customized using CSS variables but can also be modified usin
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("card-padding", var.$padding);
     @include core.css("card-background", var.$background);
     @include core.css("card-foreground", var.$foreground);
@@ -201,22 +201,22 @@ Cards are primarily customized using CSS variables but can also be modified usin
   $border: null !default;
   $sep-border: null !default;
   $border-radius: core.$border-radius !default;
-  $box-shadow: core.$shadow-1 !default;
+  $box-shadow: core.css("box-shadow-1") !default;
 
   // Screen
   $screen-background: null !default;
   $screen-opacity: null !default;
 
   // Link
-  $link-box-shadow: core.$shadow-2 !default;
-  $link-box-shadow-hover: core.$shadow-3 !default;
+  $link-box-shadow: core.css("box-shadow-2") !default;
+  $link-box-shadow-hover: core.css("box-shadow-3") !default;
   $link-offset: -0.25em !default;
 
   // Title
   $title-color: null !default;
   $title-font-size: core.$font-size-lg !default;
-  $title-line-height: core.$line-height-lg !default;
-  $title-font-weight: core.$font-weight-semi-bold !default;
+  $title-line-height: core.css("line-height")-lg !default;
+  $title-font-weight: core.css("font-weight-semi-bold") !default;
 
   // Transition
   $transition-property: background-color, border-color, box-shadow, transform !default;

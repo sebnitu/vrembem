@@ -1,6 +1,19 @@
-@forward "./src/scss/functions";
-@forward "./src/scss/prefix" as prefix-*;
+@forward "./src/scss/variables/prefix" as prefix-*;
+@forward "./src/scss/variables/breakpoints";
+@forward "./src/scss/variables/spacing";
+@forward "./src/scss/variables/form-control";
+@forward "./src/scss/variables/border";
+@forward "./src/scss/variables/box-shadow";
+@forward "./src/scss/variables/typography";
+@forward "./src/scss/variables/transition";
+
+@forward "./src/scss/library/bem";
+@forward "./src/scss/library/css";
+@forward "./src/scss/library/css-query";
+@forward "./src/scss/library/get-side";
+@forward "./src/scss/library/media-max";
+@forward "./src/scss/library/media-min";
+@forward "./src/scss/library/size";
+
 @forward "./src/scss/palette" as palette-*;
 @forward "./src/scss/theme" as theme-*;
-@forward "./src/scss/variables";
-@forward "./src/scss/mixins";

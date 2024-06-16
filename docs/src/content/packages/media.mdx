@@ -193,7 +193,7 @@ Media is primarily customized using CSS variables but can also be modified using
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("media-min-height", var.$min-height);
     @include core.css("media-max-width", var.$max-width);
     @include core.css("media-gap", var.$gap);
@@ -207,7 +207,7 @@ Media is primarily customized using CSS variables but can also be modified using
   @use "@vrembem/core";
 
   $breakpoints: core.$breakpoints !default;
-  $min-height: (core.$line-height * 1em) !default;
+  $min-height: calc(core.css("line-height") * 1em) !default;
   $max-width: 30% !default;
   $gap: 1.5em !default;
   $gap-map: (

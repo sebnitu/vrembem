@@ -1,0 +1,56 @@
+@use "@vrembem/core";
+
+:root {
+  @include core.css("prefix", core.$prefix-variable);
+
+  @each $key, $value in core.$breakpoints {
+    @include core.css("breakpoint-#{$key}", $value);
+  }
+
+  @include core.css("gap", core.$gap);
+  @each $key, $value in core.$gap-map {
+    @include core.css("gap-#{$key}", $value);
+  }
+
+  @include core.css("form-control-padding", core.$form-control-padding);
+  @include core.css("form-control-padding-sm", core.$form-control-padding-sm);
+  @include core.css("form-control-padding-lg", core.$form-control-padding-lg);
+  @include core.css("form-control-size", core.$form-control-size);
+  @include core.css("form-control-size-sm", core.$form-control-size-sm);
+  @include core.css("form-control-size-lg", core.$form-control-size-lg);
+
+  @include core.css("border-width", core.$border-width);
+  @include core.css("border-style", core.$border-style);
+  @include core.css("border", core.$border);
+  @include core.css("border-dark", core.$border-dark);
+  @include core.css("border-darker", core.$border-darker);
+  @include core.css("border-radius", core.$border-radius);
+  @include core.css("border-radius-lg", core.$border-radius-lg);
+  @include core.css("border-radius-circle", core.$border-radius-circle);
+
+  @include core.css("box-shadow", core.$box-shadow);
+  @include core.css("box-shadow-1", core.$box-shadow-1);
+  @include core.css("box-shadow-2", core.$box-shadow-2);
+  @include core.css("box-shadow-3", core.$box-shadow-3);
+  @include core.css("box-shadow-4", core.$box-shadow-4);
+  @include core.css("box-shadow-5", core.$box-shadow-5);
+
+  @include core.css("font-family", core.$font-family);
+  @include core.css("font-family-sans", core.$font-family-sans);
+  @include core.css("font-family-serif", core.$font-family-serif);
+  @include core.css("font-family-mono", core.$font-family-mono);
+  @include core.css("font-size", core.$font-size);
+  @include core.css("font-size-sm", core.$font-size-sm);
+  @include core.css("font-size-lg", core.$font-size-lg);
+  @include core.css("line-height", core.$line-height);
+  @include core.css("line-height-sm", core.$line-height-sm);
+  @include core.css("line-height-lg", core.$line-height-lg);
+  @each $key, $value in core.$font-weight-map {
+    @include core.css("font-weight-#{$key}", $value);
+  }
+
+  @include core.css("transition-duration", core.$transition-duration);
+  @include core.css("transition-duration-short", core.$transition-duration-short);
+  @include core.css("transition-duration-long", core.$transition-duration-long);
+  @include core.css("transition-timing-function", core.$transition-timing-function);
+}

@@ -2,8 +2,9 @@
 @use "./variables" as var;
 
 #{core.bem("input", null, "type", "select")} {
+  position: relative;
   padding-right: 2em;
-  background-image: url(var.$type-select-icon);
+  background-image: core.css("input-select-icon");
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
@@ -18,7 +19,7 @@
 }
 
 #{core.bem("input", null, "type", "textarea")} {
-  min-width: var.$type-textarea-min-width;
+  min-width: 100%;
   height: auto;
   min-height: core.css("input-size");
 

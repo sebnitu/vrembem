@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root-selector} {
+:root {
   @include core.css("input-size", var.$size);
   @include core.css("input-padding", var.$padding);
   @include core.css("input-background", var.$background);

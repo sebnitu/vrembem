@@ -14,7 +14,7 @@ $width: 36em !default;
 $travel: 5em !default;
 $transition-duration: var(--#{$_v}transition-duration, #{core.$transition-duration}) !default;
 $transition-timing-function: var(--#{$_v}transition-timing-function, #{core.$transition-timing-function}) !default;
-$shadow: core.$shadow-5 !default;
+$shadow: core.css("box-shadow-5") !default;
 
 $screen-background: palette.get("neutral", 10) !default;
 $screen-opacity: 0.8 !default;

@@ -156,7 +156,7 @@ Inputs are primarily customized using CSS variables but can also be modified usi
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("input-size", var.$size);
     @include core.css("input-padding", var.$padding);
     @include core.css("input-background", var.$background);
@@ -198,7 +198,7 @@ Inputs are primarily customized using CSS variables but can also be modified usi
   @use "@vrembem/core/theme";
 
   $size: core.$form-control-size !default;
-  $padding: calc(#{list.nth(core.$padding, 1)} - 1px) !default;
+  $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
   $background: null !default;
   $background-hover: null !default;
   $background-focus: null !default;
@@ -216,7 +216,7 @@ Inputs are primarily customized using CSS variables but can also be modified usi
   $box-shadow-inset: rgb(0 0 0 / 10%);
   $box-shadow-inset-focus: rgb(0 0 0 / 0%);
   $font-size: core.$font-size !default;
-  $line-height: core.$line-height !default;
+  $line-height: core.css("line-height") !default;
   $outline: none !default;
 
   // Transition
@@ -232,15 +232,15 @@ Inputs are primarily customized using CSS variables but can also be modified usi
 
   // input_size_sm
   $size-sm: core.$form-control-size-sm !default;
-  $size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+  $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
   $size-sm-font-size: core.$font-size-sm !default;
-  $size-sm-line-height: core.$line-height-sm !default;
+  $size-sm-line-height: core.css("line-height")-sm !default;
 
   // input_size_lg
   $size-lg: core.$form-control-size-lg !default;
-  $size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) !default;
+  $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
   $size-lg-font-size: core.$font-size-lg !default;
-  $size-lg-line-height: core.$line-height-lg !default;
+  $size-lg-line-height: core.css("line-height")-lg !default;
 
   // input_type_[value]
   $type-select-icon-color: palette.get("neutral", "seed") !default;

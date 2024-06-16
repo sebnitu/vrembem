@@ -115,7 +115,7 @@
   order: 3;
   width: 100%;
   padding-top: 2em;
-  border-top: 1px solid var(--vb-border-color);
+  border-top: 1px solid core.css("border-color");
 }
 
 /**

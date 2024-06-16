@@ -589,7 +589,7 @@ Tables are primarily customized using CSS variables but can also be modified usi
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("table-padding", var.$padding);
     @include core.css("table-background", var.$background);
     @include core.css("table-background-zebra", var.$background-zebra);

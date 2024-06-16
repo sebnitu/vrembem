@@ -84,7 +84,7 @@ Outputs a number of base and reset element styles to help keep html elements pre
 | `$font-family-mono` | `core.$font-family-mono` | Sets the font-family property for elements that use a mono-spacing front. |
 | `$font-size`        | `core.$font-size`        | Sets the base font-size property.                                         |
 | `$font-size-sm`     | `core.$font-size-sm`     | Sets the font-size property for small element.                            |
-| `$line-height`      | `core.$line-height`      | Sets the base line-height property.                                       |
+| `$line-height`      | `core.css("line-height")`      | Sets the base line-height property.                                       |
 | `$box-sizing`       | `border-box`             | Sets the default box-sizing property for all HTML elements.               |
 | `$body-background`  | `null`                   | Sets the background color that's applied to the body element.             |
 
@@ -317,10 +317,10 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 | ----------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `$output-heading`       | `$output` &rarr; `true`                 | Toggles the output of this module.                                                            |
 | `$heading-font-family`  | `inherit`                               | Sets the font-family property.                                                                |
-| `$heading-line-height`  | `core.$line-height-sm`                  | Sets the line-height property.                                                                |
+| `$heading-line-height`  | `core.css("line-height")-sm`                  | Sets the line-height property.                                                                |
 | `$heading-color`        | `inherit`                               | Sets the text color property.                                                                 |
 | `$heading-color-invert` | `null`                                  | Sets the inverted text color. This is used when heading elements appear on a dark background. |
-| `$heading-font-weight`  | `core.$font-weight-semi-bold`           | Sets the font-weight property.                                                                |
+| `$heading-font-weight`  | `core.css("font-weight-semi-bold")`           | Sets the font-weight property.                                                                |
 | `$heading-scale`        | [`Sass Map` Ref &darr;](#heading-scale) | A map containing the font-size and optional line-height scale for HTML headings.              |
 
 ### $heading-scale

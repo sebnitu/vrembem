@@ -1,0 +1,21 @@
+@use "../variables/prefix";
+
+/// Output a valid BEM class selector using core prefixes and the provided parameters.
+/// @param {String} $block - The block name.
+/// @param {String} $element [null] - The element name.
+/// @param {String} $modifier [null] - The modifier name.
+/// @param {String} $modifier-value [null] - The modifier value name.
+/// @return {String} - A valid BEM CSS selector using the provided parameters.
+@function bem($block, $element: null, $modifier: null, $modifier-value: null) {
+  $class: '.#{prefix.$block}#{$block}';
+  @if ($element) {
+    $class: '#{$class}#{prefix.$element}#{$element}';
+  }
+  @if ($modifier) {
+    $class: '#{$class}#{prefix.$modifier}#{$modifier}';
+  }
+  @if ($modifier-value) {
+    $class: '#{$class}#{prefix.$modifier-value}#{$modifier-value}';
+  }
+  @return $class;
+}

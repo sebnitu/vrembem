@@ -1,10 +1,11 @@
 @use "sass:list";
+@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/theme";
 
 $breakpoints: core.$breakpoints !default;
 $size: core.$form-control-size !default;
-$padding: calc(#{list.nth(core.$padding, 1)} - 1px) list.nth(core.$padding, 2) !default;
+$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) list.nth(core.$form-control-padding, 2) !default;
 $gap: 0.5rem !default;
 $background: null !default;
 $background-hover: null !default;
@@ -34,29 +35,29 @@ $disabled-opacity: 0.6 !default;
 // is-loading
 $loading-size: 1em !default;
 $loading-border: 2px solid !default;
-$loading-border-tpl: 1 1 0 0;
+$loading-border-color: null !default;
 $loading-animation-duration: 0.6s !default;
 $loading-animation-timing-function: linear !default;
 
 // button_icon
-$icon-padding: calc(#{list.nth(core.$padding, 1)} - 1px);
-$icon-padding-sm: calc(#{list.nth(core.$padding-sm, 1)} - 1px);
-$icon-padding-lg: calc(#{list.nth(core.$padding-lg, 1)} - 1px);
+$icon-padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px);
+$icon-padding-sm: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px);
+$icon-padding-lg: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px);
 
 // button_size_sm
 $size-sm: core.$form-control-size-sm !default;
-$size-sm-padding: calc(#{list.nth(core.$padding-sm, 1)} - 1px) list.nth(core.$padding-sm, 2) !default;
+$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
 $size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.$line-height-sm !default;
+$size-sm-line-height: core.css("line-height")-sm !default;
 
 // button_size_lg
 $size-lg: core.$form-control-size-lg !default;
-$size-lg-padding: calc(#{list.nth(core.$padding-lg, 1)} - 1px) list.nth(core.$padding-lg, 2) !default;
+$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) list.nth(core.$form-control-padding-lg, 2) !default;
 $size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.$line-height-lg !default;
+$size-lg-line-height: core.css("line-height")-lg !default;
 
 // Theme maps
-$theme-light: (
+$theme-shared: (
   "background": transparent,
   "background-hover": transparent,
   "background-focus": transparent,
@@ -66,23 +67,18 @@ $theme-light: (
   "border-color": theme.get("border-color-dark"),
   "border-color-hover": theme.get("border-color-darker"),
   "border-color-focus": theme.get("border-color-darker"),
+  "loading-border-color": theme.get("foreground")
+) !default;
+
+$theme-light: (
   "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%)
+  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
 ) !default;
 
 $theme-dark: (
-  "background": transparent,
-  "background-hover": transparent,
-  "background-focus": transparent,
-  "foreground": theme.get("foreground"),
-  "foreground-hover": theme.get("foreground"),
-  "foreground-focus": theme.get("foreground"),
-  "border-color": theme.get("border-color-dark"),
-  "border-color-hover": theme.get("border-color-darker"),
-  "border-color-focus": theme.get("border-color-darker"),
   "box-shadow": 0 0 0 0 rgb(255 255 255 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%)
+  "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
 ) !default;
 
-@include theme.set("light", "button", $theme-light);
-@include theme.set("dark", "button", $theme-dark);
+@include theme.set("light", "button", map.merge($theme-shared, $theme-light));
+@include theme.set("dark", "button", map.merge($theme-shared, $theme-dark));

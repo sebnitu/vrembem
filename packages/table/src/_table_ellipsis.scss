@@ -5,6 +5,8 @@
 
   th,
   td {
-    @include core.overflow-ellipsis();
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

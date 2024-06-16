@@ -203,7 +203,7 @@ Menus are primarily customized using CSS variables but can also be modified usin
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("menu-size", var.$size);
     @include core.css("menu-padding", var.$padding);
     @include core.css("menu-padding-x", core.get-side(var.$padding, top));
@@ -246,7 +246,7 @@ Menus are primarily customized using CSS variables but can also be modified usin
   @use "@vrembem/core";
 
   $size: core.$form-control-size !default;
-  $padding: core.$padding !default;
+  $padding: core.$form-control-padding !default;
   $gap: 1px !default;
   $border-radius: core.$border-radius !default;
   $background: null !default;
@@ -279,15 +279,15 @@ Menus are primarily customized using CSS variables but can also be modified usin
 
   // menu_size_sm
   $size-sm: core.$form-control-size-sm !default;
-  $size-sm-padding: core.$padding-sm !default;
+  $size-sm-padding: core.$form-control-padding-sm !default;
   $size-sm-font-size: core.$font-size-sm !default;
-  $size-sm-line-height: core.$line-height-sm !default;
+  $size-sm-line-height: core.css("line-height")-sm !default;
 
   // menu_size_sm
   $size-lg: core.$form-control-size-lg !default;
-  $size-lg-padding: core.$padding-lg !default;
+  $size-lg-padding: core.$form-control-padding-lg !default;
   $size-lg-font-size: core.$font-size-lg !default;
-  $size-lg-line-height: core.$line-height-lg !default;
+  $size-lg-line-height: core.css("line-height")-lg !default;
 
   // Theme maps
   $theme-shared: (

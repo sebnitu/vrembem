@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 
@@ -24,15 +25,15 @@
  */
 
 :root {
-  --vb-test-2-background: #{theme.get("background")};
-  --vb-test-2-foreground: #{theme.get("foreground")};
-  --vb-test-2-border-color: #{theme.get("border-color")};
+  @include core.css("test-2-background", theme.get("background"));
+  @include core.css("test-2-foreground", theme.get("foreground"));
+  @include core.css("test-2-border-color", theme.get("border-color"));
 }
 
 .test-2 {
-  border-color: var(--vb-test-2-border-color);
-  background: var(--vb-test-2-background);
-  color: var(--vb-test-2-foreground);
+  border-color: core.css("test-2-border-color");
+  background: core.css("test-2-background");
+  color: core.css("test-2-foreground");
 }
 
 /**
@@ -56,7 +57,7 @@ $theme-dark: (
 @include theme.output("test-3");
 
 .test-3 {
-  border-color: var(--vb-test-3-border-color);
-  background: var(--vb-test-3-background);
-  color: var(--vb-test-3-foreground);
+  border-color: core.css("test-3-border-color");
+  background: core.css("test-3-background");
+  color: core.css("test-3-foreground");
 }

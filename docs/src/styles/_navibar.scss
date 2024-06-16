@@ -51,7 +51,7 @@
   opacity: 0;
 
   &:focus {
-    top: calc(calc(var(--layout-navibar-height) - var(--vb-button-size)) / 2);
+    top: calc(calc(var(--layout-navibar-height) - core.css("button-size")) / 2);
     opacity: 1;
   }
 }

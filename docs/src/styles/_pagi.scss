@@ -34,7 +34,7 @@
   transition-timing-function: core.$transition-timing-function;
   border: 1px solid theme.get("border-color");
   border-radius: core.$border-radius;
-  line-height: core.$line-height-sm;
+  line-height: core.css("line-height")-sm;
 
   &:hover {
     border-color: palette.get("primary");

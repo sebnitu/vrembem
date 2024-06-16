@@ -199,7 +199,7 @@ Radios are primarily customized using CSS variables but can also be modified usi
   @use "@vrembem/core/theme";
   @use "./variables" as var;
 
-  #{theme.$root-selector} {
+  :root {
     @include core.css("radio-size", var.$size);
     @include core.css("radio-circle-size", var.$circle-size);
     @include core.css("radio-dot-size", var.$dot-size);
