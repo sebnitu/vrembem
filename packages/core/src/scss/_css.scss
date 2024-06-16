@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "sass:meta";
+
+@use "./variables/prefix";
+@use "./utilities/reverse" as *;
+@use "./utilities/debug-map" as *;
+
+$_variables: (
+  "core": ()
+);
+
+@function _pre($module) {
+  @if ($module != "core") {
+    @return "--#{prefix.$variable}#{$module}-";
+  } @else {
+    @return "--#{prefix.$variable}";
+  }
+}
+
+@function get($module, $props...) {
+  @if not map.has-key($_variables, $module) {
+    @error "Module map has not been set: \"#{$module}\"";
+  }
+
+  $props: reverse($props);
+  $result: null;
+
+  @each $prop in $props {
+    @if map.has-key($_variables, $module, $prop) {
+      @if ($result) {
+        $result: var(#{_pre($module)}#{$prop}, $result);
+      }
+      @else {
+        $result: var(#{_pre($module)}#{$prop});
+      }
+    } @else {
+      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
+    }
+  }
+  
+  @return $result;
+}
+
+@mixin set($module, $prop, $value: null) {
+  @if (meta.type-of($prop) == "map") {
+    $_variables: map.merge($_variables, $module, $prop) !global;
+  }
+  @else {
+    $_variables: map.set($_variables, $module, $prop, $value) !global;
+  }
+}
+
+@mixin remove($keys...) {
+  $_variables: map.deep-remove($_variables, $keys...) !global;
+}
+
+@mixin output($module: "core") {
+  @if not map.has-key($_variables, $module) {
+    @error "Module map has not been set: \"#{$module}\"";
+  }
+
+  @each $prop, $value in map.get($_variables, $module) {
+    @if ($value) {
+      #{_pre($module)}#{$prop}: #{$value};
+    }
+  }
+}
+
+@mixin log() {
+  @include debug-map($_variables);
+}
