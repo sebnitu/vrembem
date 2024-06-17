@@ -3,15 +3,19 @@
 @use "./variables" as var;
 
 #{core.bem("button", null, "size", "sm")} {
-  @include css.override("button", "size", var.$size-sm);
-  @include css.override("button", "padding", var.$size-sm-padding);
-  @include css.override("button", "font-size", var.$size-sm-font-size);
-  @include css.override("button", "line-height", var.$size-sm-line-height);
+  @include css.override("button", (
+    "size": var.$size-sm,
+    "padding": var.$size-sm-padding,
+    "font-size": var.$size-sm-font-size,
+    "line-height": var.$size-sm-line-height
+  ));
 }
 
 #{core.bem("button", null, "size", "lg")} {
-  @include css.override("button", "size", var.$size-lg);
-  @include css.override("button", "padding", var.$size-lg-padding);
-  @include css.override("button", "font-size", var.$size-lg-font-size);
-  @include css.override("button", "line-height", var.$size-lg-line-height);
+  @include css.override("button", (
+    "size": var.$size-lg,
+    "padding": var.$size-lg-padding,
+    "font-size": var.$size-lg-font-size,
+    "line-height": var.$size-lg-line-height
+  ));
 }
