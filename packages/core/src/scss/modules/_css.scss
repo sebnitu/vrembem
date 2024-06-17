@@ -20,6 +20,20 @@ $_variables: (
   }
 }
 
+@function reference($prop, $fallback: null, $module: "core") {
+  @if ($fallback) {
+    @return var(#{_pre($module)}#{$prop}, $fallback);
+  } @else {
+    @return var(#{_pre($module)}#{$prop});
+  }
+}
+
+@mixin define($prop, $value: null, $module: "core") {
+  @if ($value) {
+    #{_pre($module)}#{$prop}: #{$value};
+  }
+}
+
 @function get($module, $props...) {
   @if (list.length($props) == 0) {
     $props: $module;
@@ -38,11 +52,7 @@ $_variables: (
       @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
     }
     
-    @if ($result) {
-      $result: var(#{_pre($module)}#{$prop}, $result);
-    } @else {
-      $result: var(#{_pre($module)}#{$prop});
-    }
+    $result: reference($prop, $result, $module);
   }
   
   @return $result;
@@ -88,7 +98,7 @@ $_variables: (
       }
 
       @if ($value) {
-        #{_pre($module)}#{$key}: #{$value};
+        @include define($key, $value, $module);
       }
     }
   }
@@ -99,7 +109,7 @@ $_variables: (
     }
 
     @if ($value) {
-      #{_pre($module)}#{$prop}: #{$value};
+      @include define($prop, $value, $module);
     }
   }
 }
@@ -111,7 +121,7 @@ $_variables: (
 
   @each $prop, $value in map.get($_variables, $module) {
     @if ($value) {
-      #{_pre($module)}#{$prop}: #{$value};
+      @include define($prop, $value, $module);
     }
   }
 }
