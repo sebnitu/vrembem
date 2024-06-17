@@ -1,8 +1,5 @@
-@use "./variables" as var;
-
-$_v: var.$prefix-variable;
+@use "@vrembem/core/css";
 
 :root {
-  --#{$_v}drawer-transition-duration: #{var.$transition-duration};
-  --#{$_v}drawer-transition-timing-function: #{var.$transition-timing-function};
+  @include css.output("drawer");
 }

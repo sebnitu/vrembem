@@ -1,8 +1,5 @@
-@use "./variables" as var;
-
-$_v: var.$prefix-variable;
+@use "@vrembem/core/css";
 
 :root {
-  --#{$_v}modal-transition-duration: #{var.$transition-duration};
-  --#{$_v}modal-transition-timing-function: #{var.$transition-timing-function};
+  @include css.output("modal");
 }
