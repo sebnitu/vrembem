@@ -1,4 +1,4 @@
-@use "@vrembem/core";
+@use "@vrembem/core/theme";
 @use "@vrembem/drawer";
 @use "./root";
 
@@ -17,7 +17,7 @@
   transform: translate(-100%);
   transition: opacity .5s, transform .25s ease;
   outline: none;
-  background-color: core.css("background-darker");
+  background-color: theme.get("background-darker");
   box-shadow: drawer.$modal-shadow;
   opacity: 0;
   inset: 0 auto 0 0;
@@ -80,13 +80,13 @@
     top: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1);
     height: var(--layout-navibar-height);
     margin: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1) calc(var(--layout-drawer-padding) * -1) var(--layout-drawer-padding) calc(var(--layout-drawer-padding) * -1);
-    background-color: core.css("background-darker");
+    background-color: theme.get("background-darker");
 
     &::after {
       content: "";
       position: absolute;
       margin: 0 var(--layout-drawer-padding);
-      border-bottom: 1px solid core.css("border-color");
+      border-bottom: 1px solid theme.get("border-color");
       inset: 100% 0 auto;
     }
   }

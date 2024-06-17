@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 @use "./root";
@@ -6,7 +7,7 @@
 .code-block {
   position: relative;
   font-size: core.$font-size;
-  line-height: core.css("line-height");
+  line-height: css.get("line-height");
   text-align: left;
 
   .pre {
@@ -16,10 +17,10 @@
   }
   
   .popover {
-    @include core.css("popover-event", click);
-    @include core.css("popover-placement", left);
-    @include core.css("background", palette.get("primary", 100));
-    @include core.css("foreground", palette.get("primary"));
+    @include css.override("popover", "event", click);
+    @include css.override("popover", "placement", left);
+    @include css.define("background", palette.get("primary", 100));
+    @include css.define("foreground", palette.get("primary"));
   }
 
   @include core.media-max(root.$bp-code) {
@@ -76,15 +77,15 @@
   }
 
   .popover {
-    @include core.css("popover-offset", 24);
-    @include core.css("popover-placement", bottom);
+    @include css.override("popover", "offset", 24);
+    @include css.override("popover", "placement", bottom);
   }
 
   @include core.media-max(root.$bp-code) {
     .pre {
       margin: 0;
       border: core.$border;
-      border-radius: core.css("border-radius");
+      border-radius: css.get("border-radius");
     }
 
     .code-block__copy-button {

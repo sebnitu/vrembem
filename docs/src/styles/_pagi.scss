@@ -1,6 +1,7 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@use "@vrembem/core";
 
 .pagi {
   display: flex;
@@ -30,11 +31,11 @@
   display: block;
   padding: 1rem;
   transition: border-color;
-  transition-duration: core.$transition-duration;
-  transition-timing-function: core.$transition-timing-function;
+  transition-duration: css.get("transition", "duration");
+  transition-timing-function: css.get("transition", "timing-function");
   border: 1px solid theme.get("border-color");
-  border-radius: core.$border-radius;
-  line-height: core.css("line-height-sm");
+  border-radius: css.get("border-radius");
+  line-height: css.get("line-height-sm");
 
   &:hover {
     border-color: palette.get("primary");
@@ -43,10 +44,10 @@
 
 .pagi_label {
   color: theme.get("foreground-lighter");
-  font-size: core.$font-size-sm;
+  font-size: css.get("font-size-sm");
 }
 
 .pagi_title {
   color: palette.get("primary");
-  font-size: core.$font-size-lg;
+  font-size: css.get("font-size-lg");
 }
