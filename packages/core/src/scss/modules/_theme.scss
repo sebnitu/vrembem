@@ -222,9 +222,11 @@ $themes: (
 /// @require {Mixin} output - Used internally to output individual themes.
 @mixin output($component: null) {
   // Output the default theme in the root selector.
-  #{$root-selector} {
+  #{$root-selector}, .#{$_t}#{$default} {
     @include output-theme($default, $component);
-  
+  }
+
+  #{$root-selector} {
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
@@ -242,8 +244,10 @@ $themes: (
   
   // Run the output function on all 
   @each $key, $value in $themes {
-    .#{$_t}#{$key} {
-      @include output-theme($key, $component);
+    @if not ($key == $default) {
+      .#{$_t}#{$key} {
+        @include output-theme($key, $component);
+      }
     }
   }
 }
