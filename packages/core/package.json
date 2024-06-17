@@ -24,6 +24,9 @@
     "./dist/*": "./dist/*",
     "./root": "./root.scss",
     "./prefix": "./src/scss/variables/prefix.scss",
+    "./css": "./src/scss/modules/css.scss",
+    "./palette": "./src/scss/modules/palette.scss",
+    "./theme": "./src/scss/modules/theme.scss",
     "./*": "./src/scss/*"
   },
   "unpkg": "dist/index.umd.cjs",

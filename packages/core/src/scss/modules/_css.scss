@@ -2,9 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./variables/prefix";
-@use "./utilities/reverse" as *;
-@use "./utilities/debug-map" as *;
+@use "../variables/prefix";
+@use "../utilities/reverse" as *;
+@use "../utilities/debug-map" as *;
 
 $_variables: (
   "core": (

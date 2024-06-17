@@ -15,6 +15,6 @@
 @forward "./src/scss/library/media-min";
 @forward "./src/scss/library/size";
 
-@forward "./src/scss/css" as css-*;
-@forward "./src/scss/palette" as palette-*;
-@forward "./src/scss/theme" as theme-*;
+@forward "./src/scss/modules/css" as css-*;
+@forward "./src/scss/modules/palette" as palette-*;
+@forward "./src/scss/modules/theme" as theme-*;
