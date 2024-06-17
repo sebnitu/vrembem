@@ -35,9 +35,10 @@
     "src",
     "index.js",
     "index.scss",
+    "css.scss",
     "palette.scss",
-    "root.scss",
-    "theme.scss"
+    "theme.scss",
+    "root.scss"
   ],
   "scripts": {
     "serve": "vite",
