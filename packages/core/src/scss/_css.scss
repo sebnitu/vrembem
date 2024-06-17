@@ -70,6 +70,20 @@ $_variables: (
   $_variables: map.deep-remove($_variables, $keys...) !global;
 }
 
+@mixin override($module, $prop, $value) {
+  @if not map.has-key($_variables, $module) {
+    @error "Module map has not been set: \"#{$module}\"";
+  }
+
+  @if not map.has-key($_variables, $module, $prop) {
+    @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
+  }
+
+  @if ($value) {
+    #{_pre($module)}#{$prop}: #{$value};
+  }
+}
+
 @mixin output($module: "core") {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";

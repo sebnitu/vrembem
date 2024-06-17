@@ -1,16 +1,17 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("button", null, "size", "sm")} {
-  @include core.css("button-size", var.$size-sm);
-  @include core.css("button-padding", var.$size-sm-padding);
-  @include core.css("button-font-size", var.$size-sm-font-size);
-  @include core.css("button-line-height", var.$size-sm-line-height);
+  @include css.override("button", "size", var.$size-sm);
+  @include css.override("button", "padding", var.$size-sm-padding);
+  @include css.override("button", "font-size", var.$size-sm-font-size);
+  @include css.override("button", "line-height", var.$size-sm-line-height);
 }
 
 #{core.bem("button", null, "size", "lg")} {
-  @include core.css("button-size", var.$size-lg);
-  @include core.css("button-padding", var.$size-lg-padding);
-  @include core.css("button-font-size", var.$size-lg-font-size);
-  @include core.css("button-line-height", var.$size-lg-line-height);
+  @include css.override("button", "size", var.$size-lg);
+  @include css.override("button", "padding", var.$size-lg-padding);
+  @include css.override("button", "font-size", var.$size-lg-font-size);
+  @include css.override("button", "line-height", var.$size-lg-line-height);
 }

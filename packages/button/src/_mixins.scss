@@ -1,4 +1,4 @@
-@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
 /// Creates a button variant using CSS variables and the palette module.
@@ -6,16 +6,16 @@
 /// @param {String} $background - The color key for the background of the button (should exist in palette map).
 /// @output Outputs theme CSS variables based on the provided foreground and background.
 @mixin button-variant($foreground, $background) {
-  @include core.css("button-background", palette.get($background));
-  @include core.css("button-background-hover", palette.get($background, 40));
-  @include core.css("button-background-active", palette.get($background, 30));
-  @include core.css("button-foreground", $foreground);
-  @include core.css("button-foreground-hover", $foreground);
-  @include core.css("button-foreground-active", $foreground);
-  @include core.css("button-border-color", transparent);
-  @include core.css("button-border-color-hover", transparent);
-  @include core.css("button-border-color-active", transparent);
-  @include core.css("button-box-shadow", 0 0 0 0 #{palette.get($background, 50%, 0%)});
-  @include core.css("button-box-shadow-focus", 0 0 0 0.2rem #{palette.get($background, 50%, 50%)});
-  @include core.css("button-loading-border-color", $foreground);
+  @include css.override("button", "background", palette.get($background));
+  @include css.override("button", "background-hover", palette.get($background, 40));
+  @include css.override("button", "background-active", palette.get($background, 30));
+  @include css.override("button", "foreground", $foreground);
+  @include css.override("button", "foreground-hover", $foreground);
+  @include css.override("button", "foreground-active", $foreground);
+  @include css.override("button", "border-color", transparent);
+  @include css.override("button", "border-color-hover", transparent);
+  @include css.override("button", "border-color-active", transparent);
+  @include css.override("button", "box-shadow", 0 0 0 0 #{palette.get($background, 50%, 0%)});
+  @include css.override("button", "box-shadow-focus", 0 0 0 0.2rem #{palette.get($background, 50%, 50%)});
+  @include css.override("button", "loading-border-color", $foreground);
 }
