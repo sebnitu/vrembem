@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("menu", null, "full")} {
   #{core.bem("menu", "item")} {
