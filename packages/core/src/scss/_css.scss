@@ -31,11 +31,12 @@ $_variables: (
     @if map.has-key($_variables, $module, $prop) {
       @if ($result) {
         $result: var(#{_pre($module)}#{$prop}, $result);
-      }
-      @else {
+      } @else {
         $result: var(#{_pre($module)}#{$prop});
       }
-    } @else {
+    }
+    
+    @else {
       @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
     }
   }
@@ -50,17 +51,18 @@ $_variables: (
         @each $key, $value in $propValue {
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
-      }
-      @else {
+      } @else {
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
   }
+
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
+
   @else {
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
@@ -80,6 +82,7 @@ $_variables: (
       @if not map.has-key($_variables, $module, $key) {
         @error "Custom property has not been set: \"#{$module}\" > \"#{$key}\"";
       }
+
       @if ($value) {
         #{_pre($module)}#{$key}: #{$value};
       }
@@ -112,10 +115,13 @@ $_variables: (
 @mixin log($module: null) {
   @if not $module {
     @include debug-map($_variables);
-  } @else {
+  }
+  
+  @else {
     @if not map.has-key($_variables, $module) {
       @error "Module map has not been set: \"#{$module}\"";
     }
+
     @include debug-map(map.get($_variables, $module));
   }
 }
