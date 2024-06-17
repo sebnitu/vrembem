@@ -35,7 +35,7 @@
       overflow: hidden;
       background-color: css.get("table", "mobile-label-background");
       color: css.get("table", "mobile-label-foreground");
-      font-weight: core.css("font-weight-bold");
+      font-weight: css.get("font-weight-bold");
       text-overflow: ellipsis;
       white-space: nowrap;
     }

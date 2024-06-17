@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
@@ -29,6 +30,6 @@ $modal-width: $width !default;
 $modal-max-width: 80% !default;
 $modal-sep-border: null !default;
 $modal-background: white !default;
-$modal-shadow: core.css("box-shadow-5") !default;
+$modal-shadow: css.get("box-shadow-5") !default;
 $modal-screen-background: palette.get("neutral", 10) !default;
 $modal-screen-opacity: 0.8 !default;

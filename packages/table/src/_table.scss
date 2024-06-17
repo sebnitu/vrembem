@@ -15,7 +15,7 @@
   }
 
   th {
-    font-weight: core.css("font-weight-bold");
+    font-weight: css.get("font-weight-bold");
   }
 }
 
