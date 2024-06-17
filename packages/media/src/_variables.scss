@@ -1,7 +1,8 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 $breakpoints: core.$breakpoints !default;
-$min-height: calc(core.css("line-height") * 1em) !default;
+$min-height: calc(css.get("line-height") * 1em) !default;
 $max-width: 30% !default;
 $gap: 1.5em !default;
 $gap-map: (
@@ -12,3 +13,11 @@ $gap-map: (
   "lg": 2em,
   "xl": 3em
 ) !default;
+
+@include css.set("media", (
+  "min-height": $min-height,
+  "max-width": $max-width,
+  "gap": $gap,
+  "gap-x": null,
+  "gap-y": null
+));
