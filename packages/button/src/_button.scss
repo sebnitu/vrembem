@@ -1,55 +1,55 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("button")} {
   position: relative;
   display: inline-flex;
-  gap: core.css("button-gap");
+  gap: css.get("button", "gap");
   align-items: center;
   justify-content: center;
-  min-width: core.css("button-size");
-  height: core.css("button-size");
-  padding: core.css("button-padding");
-  transition-property: core.css("button-transition-property");
-  transition-duration: core.css("button-transition-duration");
-  transition-timing-function: core.css("button-transition-timing-function");
+  min-width: css.get("button", "size");
+  height: css.get("button", "size");
+  padding: css.get("button", "padding");
+  transition-property: css.get("button", "transition-property");
+  transition-duration: css.get("button", "transition-duration");
+  transition-timing-function: css.get("button", "transition-timing-function");
   outline: none;
-  border: core.css("button-border-width") solid core.css("button-border-color");
-  border-radius: core.css("button-border-radius");
-  background: core.css("button-background");
+  border: css.get("button", "border-width") solid css.get("button", "border-color");
+  border-radius: css.get("button", "border-radius");
+  background: css.get("button", "background");
   background-clip: border-box;
-  box-shadow: core.css("button-box-shadow");
-  color: core.css("button-foreground");
+  box-shadow: css.get("button", "box-shadow");
+  color: css.get("button", "foreground");
   font-family: inherit;
-  font-size: core.css("button-font-size");
-  font-weight: core.css("button-font-weight");
-  line-height: core.css("button-line-height");
+  font-size: css.get("button", "font-size");
+  font-weight: css.get("button", "font-weight");
+  line-height: css.get("button", "line-height");
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
 
   &:disabled:not(.is-loading) {
-    opacity: core.css("button-disabled-opacity");
+    opacity: css.get("button", "disabled-opacity");
     pointer-events: none;
   }
 
   &:hover,
   &:focus-visible {
-    border-color: core.css("button-border-color-hover");
-    background-color: core.css("button-background-hover");
-    box-shadow: core.css("button-box-shadow");
-    color: core.css("button-foreground-hover");
+    border-color: css.get("button", "border-color-hover");
+    background-color: css.get("button", "background-hover");
+    box-shadow: css.get("button", "box-shadow");
+    color: css.get("button", "foreground-hover");
   }
 
   &:focus-visible {
-    box-shadow: core.css("button-box-shadow-focus");
+    box-shadow: css.get("button", "box-shadow-focus");
   }
 
   &:active {
-    border-color: core.css("button-border-color-active");
-    background-color: core.css("button-background-active");
-    box-shadow: core.css("button-box-shadow-active");
-    color: core.css("button-foreground-active");
+    border-color: css.get("button", "border-color-active");
+    background-color: css.get("button", "background-active");
+    box-shadow: css.get("button", "box-shadow");
+    color: css.get("button", "foreground-active");
   }
 
   &.is-loading {
@@ -57,15 +57,15 @@
     pointer-events: none;
 
     &::after {
-      @include core.size(core.css("button-loading-size"));
+      @include core.size(css.get("button", "loading-size"));
       content: "";
       position: absolute;
-      top: calc(50% - calc(core.css("button-loading-size") * 0.5));
-      left: calc(50% - calc(core.css("button-loading-size") * 0.5));
-      animation: spin core.css("button-loading-animation-duration") infinite core.css("button-loading-animation-timing-function");
-      border: core.css("button-loading-border");
+      top: calc(50% - calc(css.get("button", "loading-size") * 0.5));
+      left: calc(50% - calc(css.get("button", "loading-size") * 0.5));
+      animation: spin css.get("button", "loading-animation-duration") infinite css.get("button", "loading-animation-timing-function");
+      border: css.get("button", "loading-border");
       border-radius: core.$border-radius-circle;
-      border-color: core.css("button-loading-border-color") core.css("button-loading-border-color") transparent transparent;
+      border-color: css.get("button", "loading-border-color") css.get("button", "loading-border-color") transparent transparent;
     }
   }
 }
