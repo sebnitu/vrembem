@@ -1,22 +1,23 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
 #{core.bem("notice", null, "color", "primary")} {
-  @include core.css("notice-background", palette.get("primary", 90));
-  @include core.css("notice-foreground", palette.get("primary", 30));
+  @include css.override("notice", "background", palette.get("primary", 90));
+  @include css.override("notice", "foreground", palette.get("primary", 30));
 }
 
 #{core.bem("notice", null, "color", "secondary")} {
-  @include core.css("notice-background", palette.get("secondary", 90));
-  @include core.css("notice-foreground", palette.get("secondary", 30));
+  @include css.override("notice", "background", palette.get("secondary", 90));
+  @include css.override("notice", "foreground", palette.get("secondary", 30));
 }
 
 #{core.bem("notice", null, "color", "neutral")} {
-  @include core.css("notice-background", palette.get("neutral", 90));
-  @include core.css("notice-foreground", palette.get("neutral", 30));
+  @include css.override("notice", "background", palette.get("neutral", 90));
+  @include css.override("notice", "foreground", palette.get("neutral", 30));
 }
 
 #{core.bem("notice", null, "color", "important")} {
-  @include core.css("notice-background", palette.get("important", 90));
-  @include core.css("notice-foreground", palette.get("important", 30));
+  @include css.override("notice", "background", palette.get("important", 90));
+  @include css.override("notice", "foreground", palette.get("important", 30));
 }

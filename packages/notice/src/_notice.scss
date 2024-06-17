@@ -1,21 +1,21 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("notice")} {
-  padding: core.css("notice-padding");
-  border: core.css("notice-border");
-  border-radius: core.css("notice-border-radius");
-  background: core.css("notice-background");
-  box-shadow: core.css("notice-box-shadow");
-  color: core.css("notice-foreground");
+  padding: css.get("notice", "padding");
+  border: css.get("notice", "border");
+  border-radius: css.get("notice", "border-radius");
+  background: css.get("notice", "background");
+  box-shadow: css.get("notice", "box-shadow");
+  color: css.get("notice", "foreground");
 
   > * + * {
-    margin-top: var.$gap;
+    margin-top: css.get("notice", "gap");
   }
 }
 
 #{core.bem("notice", "title")} {
-  font-size: core.css("notice-title-font-size");
-  font-weight: core.css("notice-title-font-weight");
-  line-height: core.css("notice-title-line-height");
+  font-size: css.get("notice", "title-font-size");
+  font-weight: css.get("notice", "title-font-weight");
+  line-height: css.get("notice", "title-line-height");
 }
