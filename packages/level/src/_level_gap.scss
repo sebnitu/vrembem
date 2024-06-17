@@ -1,18 +1,19 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 @each $key, $value in var.$gap-map {
   #{core.bem("level", null, "gap", $key)} {
-    @include core.css("level-gap", $value);
+    @include css.override("level", "gap", $value);
   }
 }
 
 @each $key, $value in var.$gap-map {
   #{core.bem("level", null, "gap-x", $key)} {
-    @include core.css("level-gap-x", $value);
+    @include css.override("level", "gap-x", $value);
   }
 
   #{core.bem("level", null, "gap-y", $key)} {
-    @include core.css("level-gap-y", $value);
+    @include css.override("level", "gap-y", $value);
   }
 }
