@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 
@@ -20,6 +21,11 @@ $_variables: (
 }
 
 @function get($module, $props...) {
+  @if (list.length($props) == 0) {
+    $props: $module;
+    $module: "core";
+  }
+
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
   }
@@ -28,16 +34,14 @@ $_variables: (
   $result: null;
 
   @each $prop in $props {
-    @if map.has-key($_variables, $module, $prop) {
-      @if ($result) {
-        $result: var(#{_pre($module)}#{$prop}, $result);
-      } @else {
-        $result: var(#{_pre($module)}#{$prop});
-      }
+    @if not map.has-key($_variables, $module, $prop) {
+      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
     }
     
-    @else {
-      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
+    @if ($result) {
+      $result: var(#{_pre($module)}#{$prop}, $result);
+    } @else {
+      $result: var(#{_pre($module)}#{$prop});
     }
   }
   
