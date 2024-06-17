@@ -38,13 +38,13 @@ $disabled-foreground: theme.get("foreground-lighter") !default;
 $size-sm: core.$form-control-size-sm !default;
 $size-sm-padding: core.$form-control-padding-sm !default;
 $size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.css("line-height")-sm !default;
+$size-sm-line-height: core.css("line-height-sm") !default;
 
 // menu_size_sm
 $size-lg: core.$form-control-size-lg !default;
 $size-lg-padding: core.$form-control-padding-lg !default;
 $size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.css("line-height")-lg !default;
+$size-lg-line-height: core.css("line-height-lg") !default;
 
 // Theme maps
 $theme-shared: (

@@ -5,7 +5,7 @@
 @use "@vrembem/core/theme";
 
 $breakpoints: core.$breakpoints !default;
-$size: core.$form-control-size !default;
+$size: css.get("form-control", "size") !default;
 $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) list.nth(core.$form-control-padding, 2) !default;
 $gap: 0.5rem !default;
 $background: null !default;
@@ -18,7 +18,7 @@ $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-active: null !default;
 $border-width: 1px !default;
-$border-radius: core.$border-radius !default;
+$border-radius: css.get("border-radius") !default;
 $box-shadow: null !default;
 $box-shadow-focus: null !default;
 $font-size: 1em !default;
@@ -27,8 +27,8 @@ $line-height: 1.6 !default;
 
 // Transition
 $transition-property: background, color, border-color, box-shadow !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: css.get("transition", "duration") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
 // Disabled
 $disabled-opacity: 0.6 !default;
@@ -46,16 +46,16 @@ $icon-padding-sm: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px);
 $icon-padding-lg: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px);
 
 // button_size_sm
-$size-sm: core.$form-control-size-sm !default;
+$size-sm: css.get("form-control", "size-sm") !default;
 $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
-$size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.css("line-height")-sm !default;
+$size-sm-font-size: css.get("font-size-sm") !default;
+$size-sm-line-height: css.get("line-height-sm") !default;
 
 // button_size_lg
-$size-lg: core.$form-control-size-lg !default;
+$size-lg: css.get("form-control", "size-lg") !default;
 $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) list.nth(core.$form-control-padding-lg, 2) !default;
-$size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.css("line-height")-lg !default;
+$size-lg-font-size: core.css("font-size-lg") !default;
+$size-lg-line-height: core.css("line-height-lg") !default;
 
 // Custom properties
 @include css.set("button", (

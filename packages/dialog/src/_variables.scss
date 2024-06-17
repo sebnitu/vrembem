@@ -11,7 +11,7 @@ $border-radius: core.$border-radius !default;
 $box-shadow: core.css("box-shadow-4") !default;
 
 $title-font-size: core.$font-size-lg !default;
-$title-line-height: core.css("line-height")-lg !default;
+$title-line-height: core.css("line-height-lg") !default;
 $title-font-weight: core.css("font-weight-semi-bold") !default;
 
 $theme-light: (

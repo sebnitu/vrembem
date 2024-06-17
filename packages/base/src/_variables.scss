@@ -90,7 +90,7 @@ $code-font-size: core.$font-size-sm !default;
 // ---
 
 $heading-font-family: inherit !default;
-$heading-line-height: core.css("line-height")-sm !default;
+$heading-line-height: core.css("line-height-sm") !default;
 $heading-color: inherit !default;
 $heading-font-weight: core.css("font-weight-semi-bold") !default;
 $heading-scale: (
