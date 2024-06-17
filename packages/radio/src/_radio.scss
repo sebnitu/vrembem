@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("radio")} {
   position: relative;
@@ -10,31 +11,31 @@
 }
 
 #{core.bem("radio", "background")} {
-  @include core.size(core.css("radio-size"));
+  @include core.size(css.get("radio", "size"));
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: core.css("radio-background-border-radius");
-  background-color: hsl(from core.css("radio-color") h s l / core.css("radio-background-opacity"));
+  border-radius: css.get("radio", "background-border-radius");
+  background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity"));
 }
 
 #{core.bem("radio", "circle")} {
-  @include core.size(core.css("radio-circle-size"));
+  @include core.size(css.get("radio", "circle-size"));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: core.css("radio-border-width") solid core.css("radio-border-color");
-  border-radius: core.css("radio-circle-size");
-  background-color: core.css("radio-fill");
+  border: css.get("radio", "border-width") solid css.get("radio", "border-color");
+  border-radius: css.get("radio", "circle-size");
+  background-color: css.get("radio", "fill");
   color: transparent;
 }
 
 #{core.bem("radio", "dot")} {
   @include core.size(0);
-  border-radius: core.css("radio-dot-size");
-  background-color: core.css("radio-dot-color");
+  border-radius: css.get("radio", "dot-size");
+  background-color: css.get("radio", "dot-color");
   opacity: 0;
 }
 
@@ -48,44 +49,44 @@
   cursor: pointer;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from core.css("radio-color") h s l / core.css("radio-background-opacity-hover"));
+    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-hover"));
 
     #{core.bem("radio", "circle")} {
-      border-color: core.css("radio-color");
-      background-color: core.css("radio-fill");
+      border-color: css.get("radio", "color");
+      background-color: css.get("radio", "fill");
     }
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from core.css("radio-color") h s l / core.css("radio-background-opacity-focus"));
+    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-focus"));
 
     #{core.bem("radio", "circle")} {
-      border-color: core.css("radio-color");
-      background-color: core.css("radio-fill");
+      border-color: css.get("radio", "color");
+      background-color: css.get("radio", "fill");
     }
   }
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from core.css("radio-color") h s l / core.css("radio-background-opacity-active"));
+    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-active"));
 
     #{core.bem("radio", "circle")} {
-      border-color: core.css("radio-color");
-      background-color: core.css("radio-fill");
+      border-color: css.get("radio", "color");
+      background-color: css.get("radio", "fill");
     }
   }
 
   &:checked + #{core.bem("radio", "background")} {
     #{core.bem("radio", "circle")} {
-      border-color: core.css("radio-color");
-      background-color: core.css("radio-color");
+      border-color: css.get("radio", "color");
+      background-color: css.get("radio", "color");
     }
 
     #{core.bem("radio", "dot")} {
-      @include core.size(core.css("radio-dot-size"));
+      @include core.size(css.get("radio", "dot-size"));
       transition-property: opacity, width, height;
-      transition-duration: core.css("radio-transition-duration");
-      transition-timing-function: core.css("radio-transition-timing-function");
+      transition-duration: css.get("radio", "transition-duration");
+      transition-timing-function: css.get("radio", "transition-timing-function");
       background-position: center center;
       opacity: 1;
     }

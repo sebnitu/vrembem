@@ -1,23 +1,8 @@
-@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./variables" as var;
 
 :root {
-  @include core.css("switch-size", var.$size);
-  @include core.css("switch-track-size", var.$track-size);
-  @include core.css("switch-color", var.$color);
-  @include core.css("switch-thumb-fill", var.$thumb-fill);
-  @include core.css("switch-track-fill", var.$track-fill);
-  @include core.css("switch-border-color", var.$border-color);
-  @include core.css("switch-border-width", var.$border-width);
-  @include core.css("switch-border-radius", var.$border-radius);
-  @include core.css("switch-background-border-radius", var.$background-border-radius);
-  @include core.css("switch-background-opacity", var.$background-opacity);
-  @include core.css("switch-background-opacity-hover", var.$background-opacity-hover);
-  @include core.css("switch-background-opacity-focus", var.$background-opacity-focus);
-  @include core.css("switch-background-opacity-active", var.$background-opacity-active);
-  @include core.css("switch-transition-duration", var.$transition-duration);
-  @include core.css("switch-transition-timing-function", var.$transition-timing-function);
+  @include css.output("switch");
 }
 
 @include theme.output("switch");

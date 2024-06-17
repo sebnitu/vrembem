@@ -1,38 +1,62 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: core.$form-control-size !default;
+$size: css.get("form-control", "size") !default;
 $circle-size: 20px !default;
 $dot-size: 8px !default;
-$color: palette.get("primary") !default;
 $dot-color: null !default;
+$color: palette.get("primary") !default;
 $fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
-$background-border-radius: core.$border-radius-circle !default;
+$background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
 // radio_size_sm
-$size-sm: core.$form-control-size-sm !default;
+$size-sm: css.get("form-control", "size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-circle: 16px !default;
 $size-sm-dot: 6px !default;
 
 // radio_size_lg
-$size-lg: core.$form-control-size-lg !default;
+$size-lg: css.get("form-control", "size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-circle: 26px !default;
 $size-lg-dot: 10px !default;
 
-// Themes
+// Custom property
+@include css.set("radio", (
+  "size": $size,
+  "circle-size": $circle-size,
+  "dot-size": $dot-size,
+  "dot-color": $dot-color,
+  "color": $color,
+  "fill": $fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
+
+// Theme maps
 $theme-light: (
   "fill": white,
   "border-color": palette.get("neutral"),
