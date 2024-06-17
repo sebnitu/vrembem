@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root_selector} {
+:root {
   @include core.css("dialog-padding", var.$padding);
   @include core.css("dialog-gap", var.$gap);
   @include core.css("dialog-background", var.$background);

@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 @use "./variables" as var;
 
-#{theme.$root_selector} {
+:root {
   @include core.css("section-max-width", var.$max-width);
   @include core.css("section-background", var.$background);
   @include core.css("section-foreground", var.$foreground);
