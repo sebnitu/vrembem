@@ -1,19 +1,8 @@
-@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./variables" as var;
 
 :root {
-  @include core.css("dialog-padding", var.$padding);
-  @include core.css("dialog-gap", var.$gap);
-  @include core.css("dialog-background", var.$background);
-  @include core.css("dialog-foreground", var.$foreground);
-  @include core.css("dialog-border", var.$border);
-  @include core.css("dialog-sep-border", var.$sep-border);
-  @include core.css("dialog-border-radius", var.$border-radius);
-  @include core.css("dialog-box-shadow", var.$box-shadow);
-  @include core.css("dialog-title-font-size", var.$title-font-size);
-  @include core.css("dialog-title-line-height", var.$title-line-height);
-  @include core.css("dialog-title-font-weight", var.$title-font-weight);
+  @include css.output("dialog");
 }
 
 @include theme.output("dialog");
