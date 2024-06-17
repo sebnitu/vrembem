@@ -1,35 +1,35 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("input", null, "type", "select")} {
   position: relative;
   padding-right: 2em;
-  background-image: core.css("input-select-icon");
+  background-image: css.get("input", "select-icon");
   background-repeat: no-repeat;
   background-position: 100% center;
   cursor: pointer;
 
   &:read-only {
-    background-color: core.css("input-background");
+    background-color: css.get("input", "background");
   }
 
   &:disabled {
-    background-color: core.css("input-background-disabled");
+    background-color: css.get("input", "background-disabled");
   }
 }
 
 #{core.bem("input", null, "type", "textarea")} {
   min-width: 100%;
   height: auto;
-  min-height: core.css("input-size");
+  min-height: css.get("input", "size");
 
   &#{core.bem("input", null, "size", "sm")} {
     height: auto;
-    min-height: core.css("input-size");
+    min-height: css.get("input", "size");
   }
 
   &#{core.bem("input", null, "size", "lg")} {
     height: auto;
-    min-height: core.css("input-size");
+    min-height: css.get("input", "size");
   }
 }

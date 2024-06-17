@@ -1,52 +1,52 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("input")} {
   position: relative;
   display: block;
   width: 100%;
   max-width: 100%;
-  height: core.css("input-size");
-  padding: core.css("input-padding");
-  transition-property: core.css("input-transition-property");
-  transition-duration: core.css("input-transition-duration");
-  transition-timing-function: core.css("input-transition-timing-function");
-  outline: core.css("input-outline");
-  border: core.css("input-border-width") solid core.css("input-border-color");
-  border-radius: core.css("input-border-radius");
-  background: core.css("input-background");
-  box-shadow: 0 0 0 0 core.css("input-box-shadow"), inset 0 0.1rem 0.2rem core.css("input-box-shadow-inset");
-  color: core.css("input-foreground");
-  font-family: core.$font-family;
-  font-size: core.css("input-font-size");
-  line-height: core.css("input-line-height");
+  height: css.get("input", "size");
+  padding: css.get("input", "padding");
+  transition-property: css.get("input", "transition-property");
+  transition-duration: css.get("input", "transition-duration");
+  transition-timing-function: css.get("input", "transition-timing-function");
+  outline: css.get("input", "outline");
+  border: css.get("input", "border-width") solid css.get("input", "border-color");
+  border-radius: css.get("input", "border-radius");
+  background: css.get("input", "background");
+  box-shadow: 0 0 0 0 css.get("input", "box-shadow"), inset 0 0.1rem 0.2rem css.get("input", "box-shadow-inset");
+  color: css.get("input", "foreground");
+  font-family: css.get("font-family");
+  font-size: css.get("input", "font-size");
+  line-height: css.get("input", "line-height");
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
 
   &:hover {
-    border-color: core.css("input-border-color-hover", "input-border-color");
-    background-color: core.css("input-background-hover", "input-background");
-    color: core.css("input-foreground-hover", "input-foreground");
+    border-color: css.get("input", "border-color-hover", "border-color");
+    background-color: css.get("input", "background-hover", "background");
+    color: css.get("input", "foreground-hover", "foreground");
   }
 
   &:focus {
-    border-color: core.css("input-border-color-focus", "input-border-color-hover", "input-border-color");
-    background-color: core.css("input-background-focus", "input-background-hover", "input-background");
-    box-shadow: 0 0 0 0.2rem core.css("input-box-shadow-focus"), inset 0 0.1rem 0.2rem core.css("input-box-shadow-inset-focus");
-    color: core.css("input-foreground-focus", "input-foreground-hover", "input-foreground");
+    border-color: css.get("input", "border-color-focus", "border-color-hover", "border-color");
+    background-color: css.get("input", "background-focus", "background-hover", "background");
+    box-shadow: 0 0 0 0.2rem css.get("input", "box-shadow-focus"), inset 0 0.1rem 0.2rem css.get("input", "box-shadow-inset-focus");
+    color: css.get("input", "foreground-focus", "foreground-hover", "foreground");
   }
 
   &:read-only {
-    background-color: core.css("input-background-readonly");
+    background-color: css.get("input", "background-readonly");
   }
 
   &:disabled {
-    background-color: core.css("input-background-disabled");
+    background-color: css.get("input", "background-disabled");
     pointer-events: none;
   }
 
   &::placeholder {
-    color: core.css("input-foreground-placeholder");
+    color: css.get("input", "foreground-placeholder");
   }
 }
