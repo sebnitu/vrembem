@@ -1,8 +1,5 @@
-@use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 :root {
-  @include core.css("icon-size", var.$size);
-  @include core.css("icon-stroke-width", var.$stroke-width);
-  @include core.css("icon-color", var.$color);
+  @include css.output("icon");
 }
