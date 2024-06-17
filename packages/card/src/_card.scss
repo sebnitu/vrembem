@@ -1,30 +1,31 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("card")} {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: core.css("card-transition-property");
-  transition-duration: core.css("card-transition-duration");
-  transition-timing-function: core.css("card-transition-timing-function");
-  border: core.css("card-border");
-  border-radius: core.css("card-border-radius");
-  background: core.css("card-background");
+  transition-property: css.get("card", "transition-property");
+  transition-duration: css.get("card", "transition-duration");
+  transition-timing-function: css.get("card", "transition-timing-function");
+  border: css.get("card", "border");
+  border-radius: css.get("card", "border-radius");
+  background: css.get("card", "background");
   background-clip: padding-box;
-  box-shadow: core.css("card-box-shadow");
-  color: core.css("card-foreground");
+  box-shadow: css.get("card", "box-shadow");
+  color: css.get("card", "foreground");
 }
 
 a#{core.bem("card")} {
   transform: translate(0, 0);
-  box-shadow: core.css("card-link-box-shadow");
+  box-shadow: css.get("card", "link-box-shadow");
 
   &:hover,
   &:focus,
   &:focus-within {
-    transform: translate(0, core.css("card-link-offset"));
-    box-shadow: core.css("card-link-box-shadow-hover");
+    transform: translate(0, css.get("card", "link-offset"));
+    box-shadow: css.get("card", "link-box-shadow-hover");
   }
 }
 
@@ -36,36 +37,36 @@ a#{core.bem("card")} {
   z-index: 3;
 
   &:first-child {
-    border-top-left-radius: core.css("card-border-radius");
-    border-top-right-radius: core.css("card-border-radius");
+    border-top-left-radius: css.get("card", "border-radius");
+    border-top-right-radius: css.get("card", "border-radius");
   }
 
   &:last-child {
-    border-bottom-left-radius: core.css("card-border-radius");
-    border-bottom-right-radius: core.css("card-border-radius");
+    border-bottom-left-radius: css.get("card", "border-radius");
+    border-bottom-right-radius: css.get("card", "border-radius");
   }
 }
 
 #{core.bem("card", "header")},
 #{core.bem("card", "body")},
 #{core.bem("card", "footer")} {
-  padding: core.css("card-padding");
+  padding: css.get("card", "padding");
 }
 
 #{core.bem("card", "body")} {
   flex: 1 1 auto;
 
   & + & {
-    border-top: core.css("card-sep-border");
+    border-top: css.get("card", "sep-border");
   }
 }
 
 #{core.bem("card", "header")} {
-  border-bottom: core.css("card-sep-border");
+  border-bottom: css.get("card", "sep-border");
 }
 
 #{core.bem("card", "footer")} {
-  border-top: core.css("card-sep-border");
+  border-top: css.get("card", "sep-border");
 }
 
 #{core.bem("card", "image")} {
@@ -76,10 +77,10 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "title")} {
   flex-grow: 1;
-  color: core.css("card-title-color");
-  font-size: core.css("card-title-font-size");
-  font-weight: core.css("card-title-font-weight");
-  line-height: core.css("card-title-line-height");
+  color: css.get("card", "title-color");
+  font-size: css.get("card", "title-font-size");
+  font-weight: css.get("card", "title-font-weight");
+  line-height: css.get("card", "title-line-height");
 }
 
 #{core.bem("card", "background")},
@@ -87,10 +88,10 @@ a#{core.bem("card")} {
   @include core.size(100%);
   position: absolute;
   inset: 0;
-  transition-property: core.css("card-transition-property");
-  transition-duration: core.css("card-transition-duration");
-  transition-timing-function: core.css("card-transition-timing-function");
-  border-radius: core.css("card-border-radius");
+  transition-property: css.get("card", "transition-property");
+  transition-duration: css.get("card", "transition-duration");
+  transition-timing-function: css.get("card", "transition-timing-function");
+  border-radius: css.get("card", "border-radius");
 }
 
 #{core.bem("card", "background")} {
@@ -100,6 +101,6 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "screen")} {
   z-index: 2;
-  background: core.css("card-screen-background");
-  opacity: core.css("card-screen-opacity");
+  background: css.get("card", "screen-background");
+  opacity: css.get("card", "screen-opacity");
 }
