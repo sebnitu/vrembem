@@ -1,15 +1,16 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("grid")} {
   display: flex;
   flex-wrap: wrap;
-  margin-top: calc(core.css("grid-gap-y", "grid-gap") * -1);
-  margin-left: calc(core.css("grid-gap-x", "grid-gap") * -1);
+  margin-top: calc(css.get("grid", "gap-y", "gap") * -1);
+  margin-left: calc(css.get("grid", "gap-x", "gap") * -1);
 
   > * {
-    padding-top: core.css("grid-gap-y", "grid-gap");
-    padding-left: core.css("grid-gap-x", "grid-gap");
+    padding-top: css.get("grid", "gap-y", "gap");
+    padding-left: css.get("grid", "gap-x", "gap");
   }
 
   & + & {
