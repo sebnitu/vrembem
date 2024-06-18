@@ -335,15 +335,19 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "font-size": $font-size,
   "font-weight": $font-weight,
   "line-height": $line-height,
-  "transition-property": $transition-property,
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function,
   "disabled-opacity": $disabled-opacity,
-  "loading-size": $loading-size,
-  "loading-border": $loading-border,
-  "loading-border-color": $loading-border-color,
-  "loading-animation-duration": $loading-animation-duration,
-  "loading-animation-timing-function": $loading-animation-timing-function,
+  "transition": (
+    "property": $transition-property,
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  ),
+  "loading": (
+    "size": $loading-size,
+    "border": $loading-border,
+    "border-color": $loading-border-color,
+    "animation-duration": $loading-animation-duration,
+    "animation-timing-function": $loading-animation-timing-function,
+  )
 ));
 
 // Theme maps
