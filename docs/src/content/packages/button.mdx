@@ -183,39 +183,71 @@ Buttons are primarily customized using CSS variables but can also be modified us
 
 <DocBlock name="CSS Variables" src="button/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
-
+  ```css
   :root {
-    @include core.css("button-size", var.$size);
-    @include core.css("button-padding", var.$padding);
-    @include core.css("button-gap", var.$gap);
-    @include core.css("button-background", var.$background);
-    @include core.css("button-background-hover", var.$background-hover);
-    @include core.css("button-background-active", var.$background-active);
-    @include core.css("button-foreground", var.$foreground);
-    @include core.css("button-foreground-hover", var.$foreground-hover);
-    @include core.css("button-foreground-active", var.$foreground-active);
-    @include core.css("button-border-color", var.$border-color);
-    @include core.css("button-border-color-hover", var.$border-color-hover);
-    @include core.css("button-border-color-active", var.$border-color-active);
-    @include core.css("button-border-width", var.$border-width);
-    @include core.css("button-border-radius", var.$border-radius);
-    @include core.css("button-box-shadow", var.$box-shadow);
-    @include core.css("button-box-shadow-focus", var.$box-shadow-focus);
-    @include core.css("button-font-size", var.$font-size);
-    @include core.css("button-font-weight", var.$font-weight);
-    @include core.css("button-line-height", var.$line-height);
-    @include core.css("button-transition-property", var.$transition-property);
-    @include core.css("button-transition-duration", var.$transition-duration);
-    @include core.css("button-transition-timing-function", var.$transition-timing-function);
-    @include core.css("button-disabled-opacity", var.$disabled-opacity);
-    @include core.css("button-loading-size", var.$loading-size);
-    @include core.css("button-loading-border", var.$loading-border);
-    @include core.css("button-loading-animation-duration", var.$loading-animation-duration);
-    @include core.css("button-loading-animation-timing-function", var.$loading-animation-timing-function);
+    --vb-button-size: var(--vb-form-control-size);
+    --vb-button-padding: calc(0.5em - 1px) 1em;
+    --vb-button-gap: 0.5rem;
+    --vb-button-border-width: 1px;
+    --vb-button-border-radius: var(--vb-border-radius);
+    --vb-button-font-size: 1em;
+    --vb-button-font-weight: inherit;
+    --vb-button-line-height: 1.6;
+    --vb-button-transition-property: background, color, border-color, box-shadow;
+    --vb-button-transition-duration: var(--vb-transition-duration);
+    --vb-button-transition-timing-function: var(--vb-transition-timing-function);
+    --vb-button-disabled-opacity: 0.6;
+    --vb-button-loading-size: 1em;
+    --vb-button-loading-border: 2px solid;
+    --vb-button-loading-animation-duration: 0.6s;
+    --vb-button-loading-animation-timing-function: linear;
+  }
+
+  :root, .vb-theme-root, .vb-theme-light {
+    --vb-button-background: transparent;
+    --vb-button-background-hover: transparent;
+    --vb-button-background-focus: transparent;
+    --vb-button-foreground: var(--vb-foreground);
+    --vb-button-foreground-hover: var(--vb-foreground);
+    --vb-button-foreground-focus: var(--vb-foreground);
+    --vb-button-border-color: var(--vb-border-color-dark);
+    --vb-button-border-color-hover: var(--vb-border-color-darker);
+    --vb-button-border-color-focus: var(--vb-border-color-darker);
+    --vb-button-loading-border-color: var(--vb-foreground);
+    --vb-button-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(0, 0, 0, 0.15);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root, .vb-theme-root {
+      --vb-button-background: transparent;
+      --vb-button-background-hover: transparent;
+      --vb-button-background-focus: transparent;
+      --vb-button-foreground: var(--vb-foreground);
+      --vb-button-foreground-hover: var(--vb-foreground);
+      --vb-button-foreground-focus: var(--vb-foreground);
+      --vb-button-border-color: var(--vb-border-color-dark);
+      --vb-button-border-color-hover: var(--vb-border-color-darker);
+      --vb-button-border-color-focus: var(--vb-border-color-darker);
+      --vb-button-loading-border-color: var(--vb-foreground);
+      --vb-button-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  .vb-theme-dark {
+    --vb-button-background: transparent;
+    --vb-button-background-hover: transparent;
+    --vb-button-background-focus: transparent;
+    --vb-button-foreground: var(--vb-foreground);
+    --vb-button-foreground-hover: var(--vb-foreground);
+    --vb-button-foreground-focus: var(--vb-foreground);
+    --vb-button-border-color: var(--vb-border-color-dark);
+    --vb-button-border-color-hover: var(--vb-border-color-darker);
+    --vb-button-border-color-focus: var(--vb-border-color-darker);
+    --vb-button-loading-border-color: var(--vb-foreground);
+    --vb-button-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.15);
   }
   ```
 </DocBlock>
@@ -224,34 +256,36 @@ Buttons are primarily customized using CSS variables but can also be modified us
 
   ```scss
   @use "sass:list";
+  @use "sass:map";
   @use "@vrembem/core";
+  @use "@vrembem/core/css";
   @use "@vrembem/core/theme";
 
   $breakpoints: core.$breakpoints !default;
-  $size: core.$form-control-size !default;
+  $size: css.get("form-control", "size") !default;
   $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) list.nth(core.$form-control-padding, 2) !default;
   $gap: 0.5rem !default;
-  $background: transparent !default;
-  $background-hover: transparent !default;
-  $background-active: transparent !default;
-  $foreground: theme.get("foreground") !default;
-  $foreground-hover: theme.get("foreground") !default;
-  $foreground-active: theme.get("foreground") !default;
-  $border-color: theme.get("border-color-dark") !default;
-  $border-color-hover: theme.get("border-color-darker") !default;
-  $border-color-active: theme.get("border-color-darker") !default;
+  $background: null !default;
+  $background-hover: null !default;
+  $background-active: null !default;
+  $foreground: null !default;
+  $foreground-hover: null !default;
+  $foreground-active: null !default;
+  $border-color: null !default;
+  $border-color-hover: null !default;
+  $border-color-active: null !default;
   $border-width: 1px !default;
-  $border-radius: core.$border-radius !default;
-  $box-shadow: 0 0 0 0 rgb(0 0 0 / 0%) !default;
-  $box-shadow-focus: 0 0 0 0.2rem rgb(0 0 0 / 15%) !default;
+  $border-radius: css.get("border-radius") !default;
+  $box-shadow: null !default;
+  $box-shadow-focus: null !default;
   $font-size: 1em !default;
   $font-weight: inherit !default;
   $line-height: 1.6 !default;
 
   // Transition
   $transition-property: background, color, border-color, box-shadow !default;
-  $transition-duration: core.$transition-duration-short !default;
-  $transition-timing-function: core.$transition-timing-function !default;
+  $transition-duration: css.get("transition", "duration") !default;
+  $transition-timing-function: css.get("transition", "timing-function") !default;
 
   // Disabled
   $disabled-opacity: 0.6 !default;
@@ -259,7 +293,7 @@ Buttons are primarily customized using CSS variables but can also be modified us
   // is-loading
   $loading-size: 1em !default;
   $loading-border: 2px solid !default;
-  $loading-border-tpl: 1 1 0 0;
+  $loading-border-color: null !default;
   $loading-animation-duration: 0.6s !default;
   $loading-animation-timing-function: linear !default;
 
@@ -269,16 +303,75 @@ Buttons are primarily customized using CSS variables but can also be modified us
   $icon-padding-lg: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px);
 
   // button_size_sm
-  $size-sm: core.$form-control-size-sm !default;
+  $size-sm: css.get("form-control", "size-sm") !default;
   $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
-  $size-sm-font-size: core.$font-size-sm !default;
-  $size-sm-line-height: core.css("line-height-sm") !default;
+  $size-sm-font-size: css.get("font-size-sm") !default;
+  $size-sm-line-height: css.get("line-height-sm") !default;
 
   // button_size_lg
-  $size-lg: core.$form-control-size-lg !default;
+  $size-lg: css.get("form-control", "size-lg") !default;
   $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) list.nth(core.$form-control-padding-lg, 2) !default;
-  $size-lg-font-size: core.$font-size-lg !default;
-  $size-lg-line-height: core.css("line-height-lg") !default;
+  $size-lg-font-size: css.get("font-size-lg") !default;
+  $size-lg-line-height: css.get("line-height-lg") !default;
+
+  // Custom properties
+  @include css.set("button", (
+    "size": $size,
+    "padding": $padding,
+    "gap": $gap,
+    "background": $background,
+    "background-hover": $background-hover,
+    "background-active": $background-active,
+    "foreground": $foreground,
+    "foreground-hover": $foreground-hover,
+    "foreground-active": $foreground-active,
+    "border-color": $border-color,
+    "border-color-hover": $border-color-hover,
+    "border-color-active": $border-color-active,
+    "border-width": $border-width,
+    "border-radius": $border-radius,
+    "box-shadow": $box-shadow,
+    "box-shadow-focus": $box-shadow-focus,
+    "font-size": $font-size,
+    "font-weight": $font-weight,
+    "line-height": $line-height,
+    "transition-property": $transition-property,
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function,
+    "disabled-opacity": $disabled-opacity,
+    "loading-size": $loading-size,
+    "loading-border": $loading-border,
+    "loading-border-color": $loading-border-color,
+    "loading-animation-duration": $loading-animation-duration,
+    "loading-animation-timing-function": $loading-animation-timing-function,
+  ));
+
+  // Theme maps
+  $theme-shared: (
+    "background": transparent,
+    "background-hover": transparent,
+    "background-focus": transparent,
+    "foreground": theme.get("foreground"),
+    "foreground-hover": theme.get("foreground"),
+    "foreground-focus": theme.get("foreground"),
+    "border-color": theme.get("border-color-dark"),
+    "border-color-hover": theme.get("border-color-darker"),
+    "border-color-focus": theme.get("border-color-darker"),
+    "loading-border-color": theme.get("foreground")
+  ) !default;
+
+  $theme-light: (
+    "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
+    "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
+  ) !default;
+
+  $theme-dark: (
+    "box-shadow": 0 0 0 0 rgb(255 255 255 / 0%),
+    "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
+  ) !default;
+
+  @include theme.set("light", "button", map.merge($theme-shared, $theme-light));
+  @include theme.set("dark", "button", map.merge($theme-shared, $theme-dark));
   ```
 </DocBlock>
 
