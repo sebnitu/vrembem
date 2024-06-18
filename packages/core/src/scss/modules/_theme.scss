@@ -8,17 +8,17 @@
 @use "../utilities/remove-nth" as *;
 
 /// Prefix for theme classes.
-/// @access private
+/// @type string
 /// @alias prefix.$theme
-/// @type String
+/// @access private
 $_t: prefix.$theme;
 
 /// Set the default theme. Should match an existing theme in the $themes map.
-/// @type String
+/// @type string
 $default: "light" !default;
 
 /// CSS selector to use for outputting the root CSS custom properties.
-/// @type String
+/// @type string
 $root-selector: ":root, .#{$_t}root" !default;
 
 /// Stores the theme maps used to build theme classes and CSS custom property
@@ -26,13 +26,22 @@ $root-selector: ":root, .#{$_t}root" !default;
 /// custom properties and values. Themes may also contain component maps for
 /// component specific theming. Optionally set `color-scheme` property for
 /// outputting the `color-scheme: (light | dark);` property.
-/// @example - Themes map with a high-contrast theme.
+/// @type map
+/// @prop {map} name
+///   The name of the theme (key) and a map of property/value pairs.
+/// @prop {any} name.prop
+///   The name of the custom property and its value.
+/// 
+/// @example scss
+///   // Themes map with a high-contrast theme.
 ///   "high-contrast": (
 ///     "background": white,
 ///     "foreground": black,
 ///     ...
 ///   );
-/// @example - Themes map with a component theme.
+///
+/// @example scss
+///   // Themes map with a component theme.
 ///   "dark": (
 ///     "background": teal,
 ///     "foreground": pink,
@@ -43,9 +52,7 @@ $root-selector: ":root, .#{$_t}root" !default;
 ///       ...
 ///     )
 ///   );
-/// @prop {Map} name - The name of the theme (key) and a map of property/value pairs.
-/// @prop {Any} name.prop - The name of the custom property and its value.
-/// @type Map
+///
 $themes: (
   "light": (
     "background": palette.get("neutral", 100),
@@ -89,13 +96,19 @@ $themes: (
 
 /// Function to return the CSS variable with fallback of an entry within the
 /// $themes map. Requested property must exist in the default theme.
-/// @example - Return the background var() from the default theme.
+/// @param {string} $args...
+///   The property key to return.
+/// @return {function}
+///   The var() CSS function with the value of the requested custom property.
+/// 
+/// @example scss
+///   // Return the background var() from the default theme.
 ///   background: theme.get("background");
-/// @example - Return the background var() from the card default theme.
+/// 
+/// @example scss
+///   // Return the background var() from the card default theme.
 ///   background: theme.get("card", "background");
-/// @param {String} $args... - The property key to return.
-/// @require {Variable} $themes
-/// @return {CSS Var} - The var() CSS function with the value of the requested custom property.
+///
 @function get($args...) {
   @if map.has-key($themes, $default, $args...) {
     // Initial prop value and override if two arguments are passed.
@@ -112,11 +125,13 @@ $themes: (
 }
 
 /// Set a new or modify an existing property value in the $themes map.
-/// @example - Set the foreground custom property for the dark theme.
+/// @param {string} $args...
+///   The property keys and value to set.
+/// 
+/// @example scss
+///   // Set the foreground custom property for the dark theme.
 ///   @include theme.set("dark", "foreground", blue);
-/// @output N/A
-/// @param {String} $args... - The property keys and value to set.
-/// @require {Variable} $themes
+///
 @mixin set($args...) {
   // Get the last item in the $args list.
   $value: list.nth($args, -1);
@@ -141,25 +156,35 @@ $themes: (
 }
 
 /// Remove a custom property in the $themes map.
-/// @example - Remove the border-color property from the dark theme.
+/// @param {string} $args...
+///   The property key to remove.
+/// 
+/// @example scss
+///   // Remove the border-color property from the dark theme.
 ///   @include theme.remove("dark", "border-color");
-/// @output N/A
-/// @param {String} $args... - The property key to remove.
-/// @require {Variable} $themes
+///
 @mixin remove($args...) {
   $themes: map.deep-remove($themes, $args...) !global;
 }
 
 /// Output all the custom properties and values of a theme or a component theme.
-/// @example - Output the custom properties of the default theme.
+/// @param {string} $theme [$default]
+///   The theme name to output.
+/// @param {string} $component [null]
+///   The name of component themes to output.
+/// 
+/// @example scss
+///   // Output the custom properties for default theme.
 ///   @include theme.output-theme();
-/// @example - Output the custom properties of the dark theme.
+/// 
+/// @example scss
+///   // Output the custom properties for dark theme.
 ///   @include theme.output-theme("dark");
-/// @example - Output the custom properties of the light theme for the button component.
+/// 
+/// @example scss
+///   // Output the custom properties for light theme of the button component.
 ///   @include theme.output-theme("light", "button");
-/// @output Custom properties with their associated values of a theme.
-/// @param {String} $theme [$default] - The theme name to output.
-/// @param {String} $component [null] - The name of component themes to output.
+///
 @mixin output-theme($theme: $default, $component: null) {
   // Check if the key exists on the provided $themes map.
   @if map.has-key($themes, $theme) {
@@ -211,15 +236,16 @@ $themes: (
 /// wrapped in their own selector using the set theme prefix and theme key. The
 /// $root-selector is used to wrap the $default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
-/// @example
+/// @param {string} $component [null]
+///   The name of component themes to output.
+///
+/// @example scss
 ///   @include theme.output();
-/// @example - Output the custom properties of the notice component.
+///
+/// @example scss
+///   // Output the custom properties of the notice component.
 ///   @include theme.output("notice");
-/// @output
-///   Custom properties with their associated values of a theme wrapped with
-///   their associated theme classes.
-/// @param {String} $component [null] - The name of component themes to output.
-/// @require {Mixin} output - Used internally to output individual themes.
+///
 @mixin output($component: null) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
