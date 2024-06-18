@@ -500,59 +500,59 @@ Modals are primarily customized using CSS variables but can also be modified usi
 
 <DocBlock name="CSS Variables" src="modal/src/scss/_root.scss">
 
-  ```scss
-  @use "./variables" as var;
-
-  $_v: var.$prefix-variable;
-
-  :root {
-    --#{$_v}modal-transition-duration: #{var.$transition-duration};
-    --#{$_v}modal-transition-timing-function: #{var.$transition-timing-function};
-  }
-  ```
+```scss
+:root {
+  --vb-modal-transition-duration: var(--vb-transition-duration);
+  --vb-modal-transition-timing-function: var(--vb-transition-timing-function);
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="modal/src/scss/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/palette";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 
-  $prefix-variable: core.$prefix-variable !default;
-  $prefix-block: core.$prefix-block !default;
-  $prefix-element: core.$prefix-element !default;
-  $prefix-modifier: core.$prefix-modifier !default;
-  $prefix-modifier-value: core.$prefix-modifier-value !default;
+$prefix-variable: core.$prefix-variable !default;
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
 
-  $_v: $prefix-variable;
+$z-index: 1000 !default;
+$width: 36em !default;
+$travel: 5em !default;
+$transition-duration: css.get("transition", "duration") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
+$shadow: css.get("box-shadow-5") !default;
 
-  $z-index: 1000 !default;
-  $width: 36em !default;
-  $travel: 5em !default;
-  $transition-duration: var(--#{$_v}transition-duration, #{core.$transition-duration}) !default;
-  $transition-timing-function: var(--#{$_v}transition-timing-function, #{core.$transition-timing-function}) !default;
-  $shadow: core.css("box-shadow-5") !default;
+$screen-background: palette.get("neutral", 10) !default;
+$screen-opacity: 0.8 !default;
 
-  $screen-background: palette.get("neutral", 10) !default;
-  $screen-opacity: 0.8 !default;
+$outline: 0 solid transparent !default;
+$outline-focus: 4px solid palette.get("primary") !default;
+$outline-focus-alert: 4px solid palette.get("important") !default;
 
-  $outline: 0 solid transparent !default;
-  $outline-focus: 4px solid palette.get("primary") !default;
-  $outline-focus-alert: 4px solid palette.get("important") !default;
+// modal_pos_[value]
+$aside-width: 16em !default;
+$aside-max-width: 90% !default;
 
-  // modal_pos_[value]
-  $aside-width: 16em !default;
-  $aside-max-width: 90% !default;
+// modal_size_[key]
+$size-scale: (
+  "xs": 20em, // 288px
+  "sm": 24em, // 384px
+  "md": 36em, // 576px
+  "lg": 48em, // 768px
+  "xl": 60em  // 960px
+) !default;
 
-  // modal_size_[key]
-  $size-scale: (
-    "xs": 20em, // 288px
-    "sm": 24em, // 384px
-    "md": 36em, // 576px
-    "lg": 48em, // 768px
-    "xl": 60em  // 960px
-  ) !default;
-  ```
+@include css.set("modal", (
+  "transition-duration": $transition-duration,
+  "transition-timing-function": $transition-timing-function
+));
+```
 </DocBlock>
 
 <DocBlock name="JS Config" src="modal/src/js/defaults.js">
