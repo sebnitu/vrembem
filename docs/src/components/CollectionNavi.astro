@@ -9,7 +9,7 @@ interface Props {
   menuClass?: string;
 }
 
-const { entries, collection, menuClass } = Astro.props;
+const { entries, collection, menuClass = "" } = Astro.props;
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 const cp = currentPage(new URL(Astro.request.url).pathname, {
   classBase: "menu__action",

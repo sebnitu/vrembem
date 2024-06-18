@@ -1,7 +1,7 @@
 ---
 import OnThisPageList from "./OnThisPageList.astro";
 
-const { headings, menuClass } = Astro.props;
+const { headings, menuClass = "" } = Astro.props;
 
 // Filter the headings to only display the ones we want.
 const filteredHeadings = build(headings.filter((item) => {
