@@ -332,7 +332,7 @@ $_variables: (
 ///   log the entire map.
 @mixin log($module: null) {
   @if not $module {
-    @include debug-map($_variables);
+    @include debug-map($_variables, "Custom properties");
   }
   
   @else {
@@ -340,6 +340,6 @@ $_variables: (
       @error "Module map has not been set: \"#{$module}\"";
     }
 
-    @include debug-map(map.get($_variables, $module));
+    @include debug-map(map.get($_variables, $module), "Custom properties of \"#{$module}\"");
   }
 }
