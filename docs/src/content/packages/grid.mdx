@@ -425,34 +425,37 @@ Grid is primarily customized using CSS variables but can also be modified using 
 
 <DocBlock name="CSS Variables" src="grid/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
-
-  :root {
-    @include core.css("grid-gap", var.$gap);
-  }
-  ```
+```scss
+:root {
+  --vb-grid-gap: 2em;
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="grid/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 
-  $breakpoints: core.$breakpoints !default;
-  $gap: 2em !default;
-  $gap-map: (
-    "none": 0,
-    "xs": 0.5em,
-    "sm": 1em,
-    "md": 2em,
-    "lg": 3em,
-    "xl": 4em
-  ) !default;
+$breakpoints: core.$breakpoints !default;
+$gap: 2em !default;
+$gap-map: (
+  "none": 0,
+  "xs": 0.5em,
+  "sm": 1em,
+  "md": 2em,
+  "lg": 3em,
+  "xl": 4em
+) !default;
 
-  $span: 12 !default;
-  $span-class: "span" !default;
-  ```
+$span: 12 !default;
+$span-class: "span" !default;
+
+@include css.set("grid", (
+  "gap": $gap,
+  "gap-x": null,
+  "gap-y": null,
+));
+```
 </DocBlock>

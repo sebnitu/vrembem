@@ -99,41 +99,41 @@ Icons are primarily customized using CSS variables but can also be modified usin
 
 <DocBlock name="CSS Variables" src="icon/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
-
-  :root {
-    @include core.css("icon-size", var.$size);
-    @include core.css("icon-stroke-width", var.$stroke-width);
-    @include core.css("icon-color", var.$color);
-  }
-  ```
+```scss
+:root {
+  --vb-icon-size: 1.5em;
+  --vb-icon-stroke-width: 2;
+  --vb-icon-color: currentcolor;
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="icon/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 
-  $style: "stroke" !default;
-  $size: 1.5em !default;
-  $stroke-width: 2 !default;
-  $color: currentColor !default;
+$style: "stroke" !default;
+$size: 1.5em !default;
+$stroke-width: 2 !default;
+$color: currentcolor !default;
 
-  $size-xs: 0.75em !default;
-  $size-xs-stroke-width: 3.5 !default;
+$size-xs: 0.75em !default;
+$size-xs-stroke-width: 3.5 !default;
+$size-sm: 1.125em !default;
+$size-sm-stroke-width: 2.5 !default;
+$size-lg: 2em !default;
+$size-lg-stroke-width: 1.75 !default;
+$size-xl: 3em !default;
+$size-xl-stroke-width: 1.3 !default;
 
-  $size-sm: 1.125em !default;
-  $size-sm-stroke-width: 2.5 !default;
-
-  $size-lg: 2em !default;
-  $size-lg-stroke-width: 1.75 !default;
-
-  $size-xl: 3em !default;
-  $size-xl-stroke-width: 1.3 !default;
-  ```
+@include css.set("icon", (
+  "size": $size,
+  "stroke-width": $stroke-width,
+  "color": $color
+));
+```
 </DocBlock>
 
 <DocBlock name="icon-style" type="mixin" src="icon/src/_mixins.scss" args={[

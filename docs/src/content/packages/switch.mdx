@@ -162,117 +162,117 @@ Switches are primarily customized using CSS variables but can also be modified u
 
 <DocBlock name="CSS Variables" src="switch/src/_root.scss">
 
-  ```scss
-  :root {
-    --vb-switch-size: var(--vb-form-control-size);
-    --vb-switch-track-size: 20px;
-    --vb-switch-color: var(--vb-primary-50);
-    --vb-switch-border-width: 2px;
-    --vb-switch-border-radius: var(--vb-border-radius-circle);
-    --vb-switch-background-border-radius: var(--vb-border-radius-circle);
-    --vb-switch-background-opacity: 0%;
-    --vb-switch-background-opacity-hover: 20%;
-    --vb-switch-background-opacity-focus: 20%;
-    --vb-switch-background-opacity-active: 30%;
-    --vb-switch-transition-duration: var(--vb-transition-duration-short);
-    --vb-switch-transition-timing-function: var(--vb-transition-timing-function);
-  }
+```scss
+:root {
+  --vb-switch-size: var(--vb-form-control-size);
+  --vb-switch-track-size: 20px;
+  --vb-switch-color: var(--vb-primary-50);
+  --vb-switch-border-width: 2px;
+  --vb-switch-border-radius: var(--vb-border-radius-circle);
+  --vb-switch-background-border-radius: var(--vb-border-radius-circle);
+  --vb-switch-background-opacity: 0%;
+  --vb-switch-background-opacity-hover: 20%;
+  --vb-switch-background-opacity-focus: 20%;
+  --vb-switch-background-opacity-active: 30%;
+  --vb-switch-transition-duration: var(--vb-transition-duration-short);
+  --vb-switch-transition-timing-function: var(--vb-transition-timing-function);
+}
 
-  :root, .vb-theme-root, .vb-theme-light {
-    --vb-switch-thumb-fill: white;
-    --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
-    --vb-switch-border-color: var(--vb-neutral-50);
-  }
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-switch-thumb-fill: white;
+  --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
+  --vb-switch-border-color: var(--vb-neutral-50);
+}
 
-  @media (prefers-color-scheme: dark) {
-    :root, .vb-theme-root {
-      --vb-switch-thumb-fill: var(--vb-neutral-10);
-      --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
-      --vb-switch-border-color: var(--vb-neutral-80);
-    }
-  }
-
-  .vb-theme-dark {
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
     --vb-switch-thumb-fill: var(--vb-neutral-10);
     --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
     --vb-switch-border-color: var(--vb-neutral-80);
   }
-  ```
+}
+
+.vb-theme-dark {
+  --vb-switch-thumb-fill: var(--vb-neutral-10);
+  --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
+  --vb-switch-border-color: var(--vb-neutral-80);
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="switch/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/css";
-  @use "@vrembem/core/palette";
-  @use "@vrembem/core/theme";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-  $size: css.get("form-control", "size") !default;
-  $track-size: 20px !default;
-  $color: palette.get("primary") !default;
-  $thumb-fill: null !default;
-  $track-fill: null !default;
-  $border-color: null !default;
-  $border-width: 2px !default;
-  $border-radius: css.get("border-radius-circle") !default;
-  $background-border-radius: css.get("border-radius-circle") !default;
-  $background-opacity: 0% !default;
-  $background-opacity-hover: 20% !default;
-  $background-opacity-focus: 20% !default;
-  $background-opacity-active: 30% !default;
+$size: css.get("form-control", "size") !default;
+$track-size: 20px !default;
+$color: palette.get("primary") !default;
+$thumb-fill: null !default;
+$track-fill: null !default;
+$border-color: null !default;
+$border-width: 2px !default;
+$border-radius: css.get("border-radius-circle") !default;
+$background-border-radius: css.get("border-radius-circle") !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 
-  // Transition
-  $transition-duration: css.get("transition", "duration-short") !default;
-  $transition-timing-function: css.get("transition", "timing-function") !default;
+// Transition
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
-  // switch_size_sm
-  $size-sm: css.get("form-control", "size-sm") !default;
-  $size-sm-border-width: 2px !default;
-  $size-sm-track: 16px !default;
+// switch_size_sm
+$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm-border-width: 2px !default;
+$size-sm-track: 16px !default;
 
-  // switch_size_lg
-  $size-lg: css.get("form-control", "size-lg") !default;
-  $size-lg-border-width: 2.5px !default;
-  $size-lg-track: 26px !default;
+// switch_size_lg
+$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg-border-width: 2.5px !default;
+$size-lg-track: 26px !default;
 
-  // Custom properties
-  @include css.set("switch", (
-    "size": $size,
-    "track-size": $track-size,
-    "color": $color,
-    "thumb-fill": $thumb-fill,
-    "track-fill": $track-fill,
-    "border-color": $border-color,
-    "border-width": $border-width,
-    "border-radius": $border-radius,
-    "background": (
-      "border-radius": $background-border-radius,
-      "opacity": $background-opacity,
-      "opacity-hover": $background-opacity-hover,
-      "opacity-focus": $background-opacity-focus,
-      "opacity-active": $background-opacity-active,
-    ),
-    "transition": (
-      "duration": $transition-duration,
-      "timing-function": $transition-timing-function,
-    )
-  ));
+// Custom properties
+@include css.set("switch", (
+  "size": $size,
+  "track-size": $track-size,
+  "color": $color,
+  "thumb-fill": $thumb-fill,
+  "track-fill": $track-fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
 
-  // Themes
-  $theme-light: (
-    "thumb-fill": white,
-    "track-fill": palette.get("neutral", 50%, 20%),
-    "border-color": palette.get("neutral"),
-  ) !default;
+// Themes
+$theme-light: (
+  "thumb-fill": white,
+  "track-fill": palette.get("neutral", 50%, 20%),
+  "border-color": palette.get("neutral"),
+) !default;
 
-  $theme-dark: (
-    "thumb-fill": palette.get("neutral", 10),
-    "track-fill": palette.get("neutral", 50%, 20%),
-    "border-color": palette.get("neutral", 80),
-  ) !default;
+$theme-dark: (
+  "thumb-fill": palette.get("neutral", 10),
+  "track-fill": palette.get("neutral", 50%, 20%),
+  "border-color": palette.get("neutral", 80),
+) !default;
 
-  @include theme.set("light", "switch", $theme-light);
-  @include theme.set("dark", "switch", $theme-dark);
-  ```
+@include theme.set("light", "switch", $theme-light);
+@include theme.set("dark", "switch", $theme-dark);
+```
 </DocBlock>

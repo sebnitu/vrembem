@@ -584,86 +584,119 @@ Tables are primarily customized using CSS variables but can also be modified usi
 
 <DocBlock name="CSS Variables" src="table/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
+```scss
+:root {
+  --vb-table-padding: 0.5em 0.75em;
+  --vb-table-mobile-label-width: 8em;
+  --vb-table-mobile-label-spacing: 0.75em;
+}
 
-  :root {
-    @include core.css("table-padding", var.$padding);
-    @include core.css("table-background", var.$background);
-    @include core.css("table-background-zebra", var.$background-zebra);
-    @include core.css("table-background-hover", var.$background-hover);
-    @include core.css("table-foreground", var.$foreground);
-    @include core.css("table-foreground-hover", var.$foreground-hover);
-    @include core.css("table-border", var.$border);
-    @include core.css("table-border-alt", var.$border-alt);
-    @include core.css("table-mobile-label-width", var.$mobile-label-width);
-    @include core.css("table-mobile-label-spacing", var.$mobile-label-spacing);
-    @include core.css("table-mobile-label-background", var.$mobile-label-background);
-    @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-table-background: var(--vb-background);
+  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 6%);
+  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
+  --vb-table-border: 1px solid var(--vb-border-color);
+  --vb-table-border-alt: 1px dotted var(--vb-border-color);
+  --vb-table-foreground: var(--vb-foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
+    --vb-table-background: var(--vb-background);
+    --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
+    --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
+    --vb-table-border: 1px solid var(--vb-border-color-dark);
+    --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
+    --vb-table-foreground: var(--vb-foreground);
   }
+}
 
-  @include theme.output("table");
-  ```
+.vb-theme-dark {
+  --vb-table-background: var(--vb-background);
+  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
+  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
+  --vb-table-border: 1px solid var(--vb-border-color-dark);
+  --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
+  --vb-table-foreground: var(--vb-foreground);
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="table/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/palette";
-  @use "@vrembem/core/theme";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-  $breakpoints: core.$breakpoints !default;
-  $padding: 0.5em 0.75em !default;
-  $background: null !default;
-  $background-zebra: null !default;
-  $background-hover: null !default;
-  $foreground: null !default;
-  $foreground-hover: null !default;
-  $border: null !default;
-  $border-alt: null !default;
+$breakpoints: core.$breakpoints !default;
+$padding: 0.5em 0.75em !default;
+$background: null !default;
+$background-zebra: null !default;
+$background-hover: null !default;
+$foreground: null !default;
+$foreground-hover: null !default;
+$border: null !default;
+$border-alt: null !default;
 
-  // table_responsive
-  $mobile-label-attr: "data-mobile-label" !default;
-  $mobile-label-width: 8em !default;
-  $mobile-label-spacing: core.get-side($padding, left) !default;
-  $mobile-label-background: null !default;
-  $mobile-label-foreground: null !default;
+// table_responsive
+$mobile-label-attr: "data-mobile-label" !default;
+$mobile-label-width: 8em !default;
+$mobile-label-spacing: core.get-side($padding, left) !default;
+$mobile-label-background: null !default;
+$mobile-label-foreground: null !default;
 
-  // table_size_sm
-  $size-sm-padding: 0.25em 0.5em !default;
-  $size-sm-mobile-label-width: $mobile-label-width !default;
-  $size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
+// table_size_sm
+$size-sm-padding: 0.25em 0.5em !default;
+$size-sm-mobile-label-width: $mobile-label-width !default;
+$size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
 
-  // table_size_lg
-  $size-lg-padding: 1em 1.25em !default;
-  $size-lg-mobile-label-width: $mobile-label-width !default;
-  $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
+// table_size_lg
+$size-lg-padding: 1em 1.25em !default;
+$size-lg-mobile-label-width: $mobile-label-width !default;
+$size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
 
-  // Theme maps
-  $theme-light: (
-    "background": theme.get("background"),
-    "background-zebra": palette.get("neutral", 50%, 6%),
-    "background-hover": palette.get("primary", 50%, 20%),
-    "border": 1px solid theme.get("border-color"),
-    "border-alt": 1px dotted theme.get("border-color"),
-    "foreground": theme.get("foreground"),
-    "foreground-hover": null
-  ) !default;
+// Custom properties
+@include css.set("table", (
+  "padding": $padding,
+  "background": $background,
+  "background-zebra": $background-zebra,
+  "background-hover": $background-hover,
+  "foreground": $foreground,
+  "foreground-hover": $foreground-hover,
+  "border": $border,
+  "border-alt": $border-alt,
+  "mobile-label": (
+    "width": $mobile-label-width,
+    "spacing": $mobile-label-spacing,
+    "background": $mobile-label-background,
+    "foreground": $mobile-label-foreground,
+  )
+));
 
-  $theme-dark: (
-    "background": theme.get("background"),
-    "background-zebra": palette.get("neutral", 50%, 10%),
-    "background-hover": palette.get("primary", 50%, 20%),
-    "border": 1px solid theme.get("border-color-dark"),
-    "border-alt": 1px dotted theme.get("border-color-dark"),
-    "foreground": theme.get("foreground"),
-    "foreground-hover": null
-  ) !default;
+// Theme maps
+$theme-light: (
+  "background": theme.get("background"),
+  "background-zebra": palette.get("neutral", 50%, 6%),
+  "background-hover": palette.get("primary", 50%, 20%),
+  "border": 1px solid theme.get("border-color"),
+  "border-alt": 1px dotted theme.get("border-color"),
+  "foreground": theme.get("foreground"),
+  "foreground-hover": null
+) !default;
 
-  @include theme.set("light", "table", $theme-light);
-  @include theme.set("dark", "table", $theme-dark);
-  ```
+$theme-dark: (
+  "background": theme.get("background"),
+  "background-zebra": palette.get("neutral", 50%, 10%),
+  "background-hover": palette.get("primary", 50%, 20%),
+  "border": 1px solid theme.get("border-color-dark"),
+  "border-alt": 1px dotted theme.get("border-color-dark"),
+  "foreground": theme.get("foreground"),
+  "foreground-hover": null
+) !default;
+
+@include theme.set("light", "table", $theme-light);
+@include theme.set("dark", "table", $theme-dark);
+```
 </DocBlock>

@@ -186,129 +186,129 @@ Checkboxes are primarily customized using CSS variables but can also be modified
 
 <DocBlock name="CSS Variables" src="checkbox/src/_root.scss">
 
-  ```scss
-  :root {
-    --vb-checkbox-size: var(--vb-form-control-size);
-    --vb-checkbox-box-size: 18px;
-    --vb-checkbox-icon-size: 12px;
-    --vb-checkbox-icon-stroke: 2.5;
-    --vb-checkbox-color: var(--vb-primary-50);
-    --vb-checkbox-border-width: 2px;
-    --vb-checkbox-border-radius: var(--vb-border-radius);
-    --vb-checkbox-background-border-radius: var(--vb-border-radius-circle);
-    --vb-checkbox-background-opacity: 0%;
-    --vb-checkbox-background-opacity-hover: 20%;
-    --vb-checkbox-background-opacity-focus: 20%;
-    --vb-checkbox-background-opacity-active: 30%;
-    --vb-checkbox-transition-duration: var(--vb-transition-duration-short);
-    --vb-checkbox-transition-timing-function: var(--vb-transition-timing-function);
-  }
+```scss
+:root {
+  --vb-checkbox-size: var(--vb-form-control-size);
+  --vb-checkbox-box-size: 18px;
+  --vb-checkbox-icon-size: 12px;
+  --vb-checkbox-icon-stroke: 2.5;
+  --vb-checkbox-color: var(--vb-primary-50);
+  --vb-checkbox-border-width: 2px;
+  --vb-checkbox-border-radius: var(--vb-border-radius);
+  --vb-checkbox-background-border-radius: var(--vb-border-radius-circle);
+  --vb-checkbox-background-opacity: 0%;
+  --vb-checkbox-background-opacity-hover: 20%;
+  --vb-checkbox-background-opacity-focus: 20%;
+  --vb-checkbox-background-opacity-active: 30%;
+  --vb-checkbox-transition-duration: var(--vb-transition-duration-short);
+  --vb-checkbox-transition-timing-function: var(--vb-transition-timing-function);
+}
 
-  :root, .vb-theme-root, .vb-theme-light {
-    --vb-checkbox-fill: white;
-    --vb-checkbox-border-color: var(--vb-neutral-50);
-    --vb-checkbox-icon-color: white;
-  }
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-checkbox-fill: white;
+  --vb-checkbox-border-color: var(--vb-neutral-50);
+  --vb-checkbox-icon-color: white;
+}
 
-  @media (prefers-color-scheme: dark) {
-    :root, .vb-theme-root {
-      --vb-checkbox-fill: var(--vb-neutral-10);
-      --vb-checkbox-border-color: var(--vb-neutral-80);
-      --vb-checkbox-icon-color: var(--vb-neutral-10);
-    }
-  }
-
-  .vb-theme-dark {
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
     --vb-checkbox-fill: var(--vb-neutral-10);
     --vb-checkbox-border-color: var(--vb-neutral-80);
     --vb-checkbox-icon-color: var(--vb-neutral-10);
   }
-  ```
+}
+
+.vb-theme-dark {
+  --vb-checkbox-fill: var(--vb-neutral-10);
+  --vb-checkbox-border-color: var(--vb-neutral-80);
+  --vb-checkbox-icon-color: var(--vb-neutral-10);
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="checkbox/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/css";
-  @use "@vrembem/core/palette";
-  @use "@vrembem/core/theme";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-  $size: css.get("form-control", "size") !default;
-  $box-size: 18px !default;
-  $icon-size: 12px !default;
-  $icon-color: null !default;
-  $icon-stroke: 2.5 !default;
-  $color: palette.get("primary") !default;
-  $fill: null !default;
-  $border-color: null !default;
-  $border-width: 2px !default;
-  $border-radius: css.get("border-radius") !default;
-  $background-border-radius: css.get("border-radius-circle") !default;
-  $background-opacity: 0% !default;
-  $background-opacity-hover: 20% !default;
-  $background-opacity-focus: 20% !default;
-  $background-opacity-active: 30% !default;
+$size: css.get("form-control", "size") !default;
+$box-size: 18px !default;
+$icon-size: 12px !default;
+$icon-color: null !default;
+$icon-stroke: 2.5 !default;
+$color: palette.get("primary") !default;
+$fill: null !default;
+$border-color: null !default;
+$border-width: 2px !default;
+$border-radius: css.get("border-radius") !default;
+$background-border-radius: css.get("border-radius-circle") !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 
-  // Transition
-  $transition-duration: css.get("transition", "duration-short") !default;
-  $transition-timing-function: css.get("transition", "timing-function") !default;
+// Transition
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
-  // checkbox_size_sm
-  $size-sm: css.get("form-control", "size-sm") !default;
-  $size-sm-border-width: 2px !default;
-  $size-sm-box: 14px !default;
-  $size-sm-icon: 10px !default;
-  $size-sm-icon-stroke: 2.5 !default;
+// checkbox_size_sm
+$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm-border-width: 2px !default;
+$size-sm-box: 14px !default;
+$size-sm-icon: 10px !default;
+$size-sm-icon-stroke: 2.5 !default;
 
-  // checkbox_size_lg
-  $size-lg: css.get("form-control", "size-lg") !default;
-  $size-lg-border-width: 2.5px !default;
-  $size-lg-box: 24px !default;
-  $size-lg-icon: 18px !default;
-  $size-lg-icon-stroke: 2 !default;
+// checkbox_size_lg
+$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg-border-width: 2.5px !default;
+$size-lg-box: 24px !default;
+$size-lg-icon: 18px !default;
+$size-lg-icon-stroke: 2 !default;
 
-  // Custom properties
-  @include css.set("checkbox", (
-    "size": $size,
-    "box-size": $box-size,
-    "icon-size": $icon-size,
-    "icon-color": $icon-color,
-    "icon-stroke": $icon-stroke,
-    "color": $color,
-    "fill": $fill,
-    "border-color": $border-color,
-    "border-width": $border-width,
-    "border-radius": $border-radius,
-    "background": (
-      "border-radius": $background-border-radius,
-      "opacity": $background-opacity,
-      "opacity-hover": $background-opacity-hover,
-      "opacity-focus": $background-opacity-focus,
-      "opacity-active": $background-opacity-active,
-    ),
-    "transition": (
-      "duration": $transition-duration,
-      "timing-function": $transition-timing-function,
-    )
-  ));
+// Custom properties
+@include css.set("checkbox", (
+  "size": $size,
+  "box-size": $box-size,
+  "icon-size": $icon-size,
+  "icon-color": $icon-color,
+  "icon-stroke": $icon-stroke,
+  "color": $color,
+  "fill": $fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
 
-  // Theme maps
-  $theme-light: (
-    "fill": white,
-    "border-color": palette.get("neutral"),
-    "icon-color": white
-  ) !default;
+// Theme maps
+$theme-light: (
+  "fill": white,
+  "border-color": palette.get("neutral"),
+  "icon-color": white
+) !default;
 
-  $theme-dark: (
-    "fill": palette.get("neutral", 10),
-    "border-color": palette.get("neutral", 80),
-    "icon-color": palette.get("neutral", 10)
-  ) !default;
+$theme-dark: (
+  "fill": palette.get("neutral", 10),
+  "border-color": palette.get("neutral", 80),
+  "icon-color": palette.get("neutral", 10)
+) !default;
 
-  @include theme.set("light", "checkbox", $theme-light);
-  @include theme.set("dark", "checkbox", $theme-dark);
-  ```
+@include theme.set("light", "checkbox", $theme-light);
+@include theme.set("dark", "checkbox", $theme-dark);
+```
 </DocBlock>
 
 <DocBlock name="icon-check" type="function" returns="string" src="checkbox/src/_functions.scss" line="9" args={[
