@@ -194,84 +194,119 @@ Radios are primarily customized using CSS variables but can also be modified usi
 
 <DocBlock name="CSS Variables" src="radio/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
+```scss
+:root {
+  --vb-radio-size: var(--vb-form-control-size);
+  --vb-radio-circle-size: 20px;
+  --vb-radio-dot-size: 8px;
+  --vb-radio-color: var(--vb-primary-50);
+  --vb-radio-border-width: 2px;
+  --vb-radio-background-border-radius: var(--vb-border-radius-circle);
+  --vb-radio-background-opacity: 0%;
+  --vb-radio-background-opacity-hover: 20%;
+  --vb-radio-background-opacity-focus: 20%;
+  --vb-radio-background-opacity-active: 30%;
+  --vb-radio-transition-duration: var(--vb-transition-duration-short);
+  --vb-radio-transition-timing-function: var(--vb-transition-timing-function);
+}
 
-  :root {
-    @include core.css("radio-size", var.$size);
-    @include core.css("radio-circle-size", var.$circle-size);
-    @include core.css("radio-dot-size", var.$dot-size);
-    @include core.css("radio-color", var.$color);
-    @include core.css("radio-dot-color", var.$dot-color);
-    @include core.css("radio-fill", var.$fill);
-    @include core.css("radio-border-color", var.$border-color);
-    @include core.css("radio-border-width", var.$border-width);
-    @include core.css("radio-background-border-radius", var.$background-border-radius);
-    @include core.css("radio-background-opacity", var.$background-opacity);
-    @include core.css("radio-background-opacity-hover", var.$background-opacity-hover);
-    @include core.css("radio-background-opacity-focus", var.$background-opacity-focus);
-    @include core.css("radio-background-opacity-active", var.$background-opacity-active);
-    @include core.css("radio-transition-duration", var.$transition-duration);
-    @include core.css("radio-transition-timing-function", var.$transition-timing-function);
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-radio-fill: white;
+  --vb-radio-border-color: var(--vb-neutral-50);
+  --vb-radio-dot-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
+    --vb-radio-fill: var(--vb-neutral-10);
+    --vb-radio-border-color: var(--vb-neutral-80);
+    --vb-radio-dot-color: var(--vb-neutral-10);
   }
+}
 
-  @include theme.output("radio");
-  ```
+.vb-theme-dark {
+  --vb-radio-fill: var(--vb-neutral-10);
+  --vb-radio-border-color: var(--vb-neutral-80);
+  --vb-radio-dot-color: var(--vb-neutral-10);
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="radio/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/palette";
-  @use "@vrembem/core/theme";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-  $size: core.$form-control-size !default;
-  $circle-size: 20px !default;
-  $dot-size: 8px !default;
-  $color: palette.get("primary") !default;
-  $dot-color: null !default;
-  $fill: null !default;
-  $border-color: null !default;
-  $border-width: 2px !default;
-  $background-border-radius: core.$border-radius-circle !default;
-  $background-opacity: 0% !default;
-  $background-opacity-hover: 20% !default;
-  $background-opacity-focus: 20% !default;
-  $background-opacity-active: 30% !default;
+$size: css.get("form-control", "size") !default;
+$circle-size: 20px !default;
+$dot-size: 8px !default;
+$dot-color: null !default;
+$color: palette.get("primary") !default;
+$fill: null !default;
+$border-color: null !default;
+$border-width: 2px !default;
+$background-border-radius: css.get("border-radius-circle") !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
 
-  // Transition
-  $transition-duration: core.$transition-duration-short !default;
-  $transition-timing-function: core.$transition-timing-function !default;
+// Transition
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
-  // radio_size_sm
-  $size-sm: core.$form-control-size-sm !default;
-  $size-sm-border-width: 2px !default;
-  $size-sm-circle: 16px !default;
-  $size-sm-dot: 6px !default;
+// radio_size_sm
+$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm-border-width: 2px !default;
+$size-sm-circle: 16px !default;
+$size-sm-dot: 6px !default;
 
-  // radio_size_lg
-  $size-lg: core.$form-control-size-lg !default;
-  $size-lg-border-width: 2.5px !default;
-  $size-lg-circle: 26px !default;
-  $size-lg-dot: 10px !default;
+// radio_size_lg
+$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg-border-width: 2.5px !default;
+$size-lg-circle: 26px !default;
+$size-lg-dot: 10px !default;
 
-  // Themes
-  $theme-light: (
-    "fill": white,
-    "border-color": palette.get("neutral"),
-    "dot-color": white
-  ) !default;
+// Custom property
+@include css.set("radio", (
+  "size": $size,
+  "circle-size": $circle-size,
+  "dot-size": $dot-size,
+  "dot-color": $dot-color,
+  "color": $color,
+  "fill": $fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
 
-  $theme-dark: (
-    "fill": palette.get("neutral", 10),
-    "border-color": palette.get("neutral", 80),
-    "dot-color": palette.get("neutral", 10)
-  ) !default;
+// Theme maps
+$theme-light: (
+  "fill": white,
+  "border-color": palette.get("neutral"),
+  "dot-color": white
+) !default;
 
-  @include theme.set("light", "radio", $theme-light);
-  @include theme.set("dark", "radio", $theme-dark);
-  ```
+$theme-dark: (
+  "fill": palette.get("neutral", 10),
+  "border-color": palette.get("neutral", 80),
+  "dot-color": palette.get("neutral", 10)
+) !default;
+
+@include theme.set("light", "radio", $theme-light);
+@include theme.set("dark", "radio", $theme-dark);
+```
 </DocBlock>

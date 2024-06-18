@@ -151,122 +151,165 @@ Inputs are primarily customized using CSS variables but can also be modified usi
 
 <DocBlock name="CSS Variables" src="input/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
+```scss
+:root {
+  --vb-input-size: var(--vb-form-control-size);
+  --vb-input-padding: calc(0.5em - 1px);
+  --vb-input-background-readonly: var(--vb-background-dark);
+  --vb-input-background-disabled: var(--vb-background-darker);
+  --vb-input-border-width: 1px;
+  --vb-input-border-radius: var(--vb-border-radius);
+  --vb-input-box-shadow: hsl(var(--vb-primary-hs) 50% / 0%);
+  --vb-input-box-shadow-focus: hsl(var(--vb-primary-hs) 50% / 50%);
+  --vb-input-box-shadow-inset: rgba(0, 0, 0, 0.1);
+  --vb-input-box-shadow-inset-focus: rgba(0, 0, 0, 0);
+  --vb-input-font-size: var(--vb-font-size);
+  --vb-input-line-height: var(--vb-line-height);
+  --vb-input-outline: none;
+  --vb-input-transition-property: box-shadow, outline, outline-offset;
+  --vb-input-transition-duration: 0.15s;
+  --vb-input-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  :root {
-    @include core.css("input-size", var.$size);
-    @include core.css("input-padding", var.$padding);
-    @include core.css("input-background", var.$background);
-    @include core.css("input-background-hover", var.$background-hover);
-    @include core.css("input-background-focus", var.$background-focus);
-    @include core.css("input-foreground", var.$foreground);
-    @include core.css("input-foreground-hover", var.$foreground-hover);
-    @include core.css("input-foreground-focus", var.$foreground-focus);
-    @include core.css("input-foreground-placeholder", var.$foreground-placeholder);
-    @include core.css("input-border-color", var.$border-color);
-    @include core.css("input-border-color-hover", var.$border-color-hover);
-    @include core.css("input-border-color-focus", var.$border-color-focus);
-    @include core.css("input-border-width", var.$border-width);
-    @include core.css("input-border-radius", var.$border-radius);
-    @include core.css("input-box-shadow", var.$box-shadow);
-    @include core.css("input-box-shadow-focus", var.$box-shadow-focus);
-    @include core.css("input-box-shadow-inset", var.$box-shadow-inset);
-    @include core.css("input-box-shadow-inset-focus", var.$box-shadow-inset-focus);
-    @include core.css("input-font-size", var.$font-size);
-    @include core.css("input-line-height", var.$line-height);
-    @include core.css("input-outline", var.$outline);
-    @include core.css("input-transition-property", var.$transition-property);
-    @include core.css("input-transition-duration", var.$transition-duration);
-    @include core.css("input-transition-timing-function", var.$transition-timing-function);
-    @include core.css("input-background-disabled", var.$background-disabled);
-    @include core.css("input-background-readonly", var.$background-readonly);
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-input-background: var(--vb-background);
+  --vb-input-foreground: var(--vb-foreground);
+  --vb-input-foreground-placeholder: var(--vb-foreground-lighter);
+  --vb-input-border-color: var(--vb-border-color-dark);
+  --vb-input-border-color-hover: var(--vb-border-color-darker);
+  --vb-input-border-color-focus: var(--vb-primary-50);
+  --vb-input-select-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
+    --vb-input-background: var(--vb-background);
+    --vb-input-foreground: var(--vb-foreground);
+    --vb-input-foreground-placeholder: var(--vb-foreground-lighter);
+    --vb-input-border-color: var(--vb-border-color-dark);
+    --vb-input-border-color-hover: var(--vb-border-color-darker);
+    --vb-input-border-color-focus: var(--vb-primary-60);
+    --vb-input-select-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
   }
+}
 
-  @include theme.output("input");
-  ```
+.vb-theme-dark {
+  --vb-input-background: var(--vb-background);
+  --vb-input-foreground: var(--vb-foreground);
+  --vb-input-foreground-placeholder: var(--vb-foreground-lighter);
+  --vb-input-border-color: var(--vb-border-color-dark);
+  --vb-input-border-color-hover: var(--vb-border-color-darker);
+  --vb-input-border-color-focus: var(--vb-primary-60);
+  --vb-input-select-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>');
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="input/src/_variables.scss">
 
-  ```scss
-  @use "sass:list";
-  @use "@vrembem/core";
-  @use "@vrembem/core/palette";
-  @use "@vrembem/core/theme";
+```scss
+@use "sass:list";
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 
-  $size: core.$form-control-size !default;
-  $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
-  $background: null !default;
-  $background-hover: null !default;
-  $background-focus: null !default;
-  $foreground: null !default;
-  $foreground-hover: null !default;
-  $foreground-focus: null !default;
-  $foreground-placeholder: null !default;
-  $border-color: null !default;
-  $border-color-hover: null !default;
-  $border-color-focus: null !default;
-  $border-width: 1px !default;
-  $border-radius: core.$border-radius !default;
-  $box-shadow: palette.get("primary", 50%, 0%) !default;
-  $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
-  $box-shadow-inset: rgb(0 0 0 / 10%);
-  $box-shadow-inset-focus: rgb(0 0 0 / 0%);
-  $font-size: core.$font-size !default;
-  $line-height: core.css("line-height") !default;
-  $outline: none !default;
+$size: css.get("form-control", "size") !default;
+$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
+$background: null !default;
+$background-hover: null !default;
+$background-focus: null !default;
+$background-readonly: theme.get("background-dark") !default;
+$background-disabled: theme.get("background-darker") !default;
+$foreground: null !default;
+$foreground-hover: null !default;
+$foreground-focus: null !default;
+$foreground-placeholder: null !default;
+$border-color: null !default;
+$border-color-hover: null !default;
+$border-color-focus: null !default;
+$border-width: 1px !default;
+$border-radius: css.get("border-radius") !default;
+$box-shadow: palette.get("primary", 50%, 0%) !default;
+$box-shadow-focus: palette.get("primary", 50%, 50%) !default;
+$box-shadow-inset: rgb(0 0 0 / 10%);
+$box-shadow-inset-focus: rgb(0 0 0 / 0%);
+$font-size: css.get("font-size") !default;
+$line-height: css.get("line-height") !default;
+$outline: none !default;
 
-  // Transition
-  $transition-property: box-shadow, outline, outline-offset !default;
-  $transition-duration: core.$transition-duration-short !default;
-  $transition-timing-function: core.$transition-timing-function !default;
+// Transition
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
 
-  // Disabled
-  $background-disabled: theme.get("background-darker") !default;
+// input_size_sm
+$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
+$size-sm-font-size: css.get("font-size-sm") !default;
+$size-sm-line-height: css.get("line-height-sm") !default;
 
-  // Readonly
-  $background-readonly: theme.get("background-dark") !default;
+// input_size_lg
+$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
+$size-lg-font-size: css.get("font-size-lg") !default;
+$size-lg-line-height: css.get("line-height-lg") !default;
 
-  // input_size_sm
-  $size-sm: core.$form-control-size-sm !default;
-  $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
-  $size-sm-font-size: core.$font-size-sm !default;
-  $size-sm-line-height: core.css("line-height-sm") !default;
+// Custom properties
+@include css.set("input", (
+  "size": $size,
+  "padding": $padding,
+  "background": $background,
+  "background-hover": $background-hover,
+  "background-focus": $background-focus,
+  "background-readonly": $background-readonly,
+  "background-disabled": $background-disabled,
+  "foreground": $foreground,
+  "foreground-hover": $foreground-hover,
+  "foreground-focus": $foreground-focus,
+  "foreground-placeholder": $foreground-placeholder,
+  "border-color": $border-color,
+  "border-color-hover": $border-color-hover,
+  "border-color-focus": $border-color-focus,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "box-shadow": $box-shadow,
+  "box-shadow-focus": $box-shadow-focus,
+  "box-shadow-inset": $box-shadow-inset,
+  "box-shadow-inset-focus": $box-shadow-inset-focus,
+  "font-size": $font-size,
+  "line-height": $line-height,
+  "outline": $outline,
+  "transition": (
+    "property": $transition-property,
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function
+  ),
+  "select-icon": null
+));
 
-  // input_size_lg
-  $size-lg: core.$form-control-size-lg !default;
-  $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
-  $size-lg-font-size: core.$font-size-lg !default;
-  $size-lg-line-height: core.css("line-height-lg") !default;
+// Theme maps
+$theme-light: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "foreground-placeholder": theme.get("foreground-lighter"),
+  "border-color": theme.get("border-color-dark"),
+  "border-color-hover": theme.get("border-color-darker"),
+  "border-color-focus": palette.get("primary"),
+  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
+) !default;
 
-  // input_type_[value]
-  $type-select-icon-color: palette.get("neutral", "seed") !default;
-  $type-select-icon: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="#{core.encodecolor($type-select-icon-color)}"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>' !default;
-  $type-textarea-min-width: 100% !default;
+$theme-dark: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "foreground-placeholder": theme.get("foreground-lighter"),
+  "border-color": theme.get("border-color-dark"),
+  "border-color-hover": theme.get("border-color-darker"),
+  "border-color-focus": palette.get("primary", 60),
+  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
+) !default;
 
-  // Theme maps
-  $theme-light: (
-    "background": theme.get("background"),
-    "foreground": theme.get("foreground"),
-    "foreground-placeholder": theme.get("foreground-lighter"),
-    "border-color": theme.get("border-color-dark"),
-    "border-color-hover": theme.get("border-color-darker"),
-    "border-color-focus": palette.get("primary")
-  ) !default;
-
-  $theme-dark: (
-    "background": theme.get("background"),
-    "foreground": theme.get("foreground"),
-    "foreground-placeholder": theme.get("foreground-lighter"),
-    "border-color": theme.get("border-color-dark"),
-    "border-color-hover": theme.get("border-color-darker"),
-    "border-color-focus": palette.get("primary", 60)
-  ) !default;
-
-  @include theme.set("light", "input", $theme-light);
-  @include theme.set("dark", "input", $theme-dark);
-  ```
+@include theme.set("light", "input", $theme-light);
+@include theme.set("dark", "input", $theme-dark);
+```
 </DocBlock>

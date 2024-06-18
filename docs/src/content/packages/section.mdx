@@ -148,80 +148,115 @@ Sections are primarily customized using CSS variables but can also be modified u
 
 <DocBlock name="CSS Variables" src="section/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
-
+```scss
+:root {
+  --vb-section-max-width: 70rem;
+  --vb-section-image-opacity: 1;
+  --vb-section-padding: 1.5em;
+}
+@media (min-width: 760px) {
   :root {
-    @include core.css("section-max-width", var.$max-width);
-    @include core.css("section-background", var.$background);
-    @include core.css("section-foreground", var.$foreground);
-    @include core.css("section-image-opacity", var.$image-opacity);
-    @include core.css("section-screen-background", var.$screen-background);
-    @include core.css("section-screen-opacity", var.$screen-opacity);
-    @include core.css-query("section-padding", var.$padding, var.$breakpoints);
+    --vb-section-padding: 2em 1.5em;
   }
+}
+@media (min-width: 990px) {
+  :root {
+    --vb-section-padding: 3em 1.5em;
+  }
+}
 
-  @include theme.output("section");
-  ```
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-section-background: transparent;
+  --vb-section-foreground: var(--vb-foreground);
+  --vb-section-screen-background: var(--vb-background);
+  --vb-section-screen-opacity: 0.8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
+    --vb-section-background: transparent;
+    --vb-section-foreground: var(--vb-foreground);
+    --vb-section-screen-background: var(--vb-background);
+    --vb-section-screen-opacity: 0.7;
+  }
+}
+
+.vb-theme-dark {
+  --vb-section-background: transparent;
+  --vb-section-foreground: var(--vb-foreground);
+  --vb-section-screen-background: var(--vb-background);
+  --vb-section-screen-opacity: 0.7;
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="section/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
-  $breakpoints: core.$breakpoints !default;
-  $max-width: 70rem !default;
-  $padding: (
-    "sm": 1.5em,
-    "md": 2em 1.5em,
-    "lg": 3em 1.5em,
-  ) !default;
-  $background: null !default;
-  $foreground: null !default;
-  $image-opacity: 1 !default;
-  $screen-background: null !default;
-  $screen-opacity: null !default;
+$breakpoints: core.$breakpoints !default;
+$max-width: 70rem !default;
+$padding: (
+  "sm": 1.5em,
+  "md": 2em 1.5em,
+  "lg": 3em 1.5em,
+) !default;
+$background: null !default;
+$foreground: null !default;
+$image-opacity: 1 !default;
+$screen-background: null !default;
+$screen-opacity: null !default;
 
-  // section_size_[key]
-  $size-xs-padding: null !default;
-  $size-sm-padding: 1em !default;
-  $size-md-padding: (
-    "sm": 1.5em,
-    "md": 2em 1.5em,
-    "lg": 3em 1.5em
-  ) !default;
-  $size-lg-padding: (
-    "sm": 1.5em,
-    "md": 4em 1.5em,
-    "lg": 6em 1.5em
-  ) !default;
-  $size-xl-padding: (
-    "xs": 1.5em,
-    "sm": 3em 1.5em,
-    "md": 8em 2em,
-    "lg": 12em 2em
-  ) !default;
+// section_size_[key]
+$size-xs-padding: null !default;
+$size-sm-padding: 1em !default;
+$size-md-padding: (
+  "sm": 1.5em,
+  "md": 2em 1.5em,
+  "lg": 3em 1.5em
+) !default;
+$size-lg-padding: (
+  "sm": 1.5em,
+  "md": 4em 1.5em,
+  "lg": 6em 1.5em
+) !default;
+$size-xl-padding: (
+  "xs": 1.5em,
+  "sm": 3em 1.5em,
+  "md": 8em 2em,
+  "lg": 12em 2em
+) !default;
 
-  // Theme maps
-  $theme-light: (
-    "background": theme.get("background"),
-    "foreground": theme.get("foreground"),
-    "screen-background": theme.get("background"),
-    "screen-opacity": 0.8
-  ) !default;
+// Custom properties
+@include css.set("section", (
+  "max-width": $max-width,
+  "padding": null,
+  "background": $background,
+  "foreground": $foreground,
+  "image-opacity": $image-opacity,
+  "screen-background": $screen-background,
+  "screen-opacity": $screen-opacity
+));
 
-  $theme-dark: (
-    "background": theme.get("background"),
-    "foreground": theme.get("foreground"),
-    "screen-background": theme.get("background"),
-    "screen-opacity": 0.7
-  ) !default;
+// Theme maps
+$theme-light: (
+  "background": transparent,
+  "foreground": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.8
+) !default;
 
-  @include theme.set("light", "section", $theme-light);
-  @include theme.set("dark", "section", $theme-dark);
-  ```
+$theme-dark: (
+  "background": transparent,
+  "foreground": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.7
+) !default;
+
+@include theme.set("light", "section", $theme-light);
+@include theme.set("dark", "section", $theme-dark);
+```
 </DocBlock>

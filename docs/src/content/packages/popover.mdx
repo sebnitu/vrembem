@@ -266,65 +266,65 @@ Popovers are primarily customized using CSS variables but can also be modified u
 
 <DocBlock name="CSS Variables" src="popover/src/scss/_root.scss">
 
-  ```scss
-  @use "./variables" as var;
-
-  $_v: var.$prefix-variable;
-
-  :root {
-    @if (var.$event) {
-      --#{$_v}popover-event: #{var.$event};
-    }
-    @if (var.$placement) {
-      --#{$_v}popover-placement: #{var.$placement};
-    }
-
-    --#{$_v}popover-offset: #{var.$offset};
-    --#{$_v}popover-overflow-padding: #{var.$overflow-padding};
-    --#{$_v}popover-flip-padding: #{var.$flip-padding};
-    --#{$_v}popover-arrow-padding: #{var.$arrow-padding};
-  }
-  ```
+```scss
+:root {
+  --vb-popover-offset: 8;
+  --vb-popover-overflow-padding: 10;
+  --vb-popover-flip-padding: 10;
+  --vb-popover-arrow-padding: 10;
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="popover/src/scss/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core/theme";
-  @use "@vrembem/core";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
-  $prefix-variable: core.$prefix-variable !default;
-  $prefix-block: core.$prefix-block !default;
-  $prefix-element: core.$prefix-element !default;
-  $prefix-modifier: core.$prefix-modifier !default;
-  $prefix-modifier-value: core.$prefix-modifier-value !default;
+$prefix-variable: core.$prefix-variable !default;
+$prefix-block: core.$prefix-block !default;
+$prefix-element: core.$prefix-element !default;
+$prefix-modifier: core.$prefix-modifier !default;
+$prefix-modifier-value: core.$prefix-modifier-value !default;
 
-  $event: null !default;
-  $placement: null !default;
-  $offset: 8 !default;
-  $overflow-padding: 10 !default;
-  $flip-padding: 10 !default;
+$event: null !default;
+$placement: null !default;
+$offset: 8 !default;
+$overflow-padding: 10 !default;
+$flip-padding: 10 !default;
 
-  $z-index: 10 !default;
-  $width: 16em !default;
-  $max-width: calc(100vw - 20px) !default;
-  $padding: 0.5em !default;
-  $border: null !default;
-  $border-radius: core.$border-radius !default;
-  $foreground: theme.get("foreground") !default;
-  $background: theme.get("background") !default;
-  $background-clip: padding-box !default;
-  $shadow: core.css("box-shadow-2") !default;
-  $font-size: core.$font-size-sm !default;
-  $line-height: null !default;
+$z-index: 10 !default;
+$width: 16em !default;
+$max-width: calc(100vw - 20px) !default;
+$padding: 0.5em !default;
+$border: null !default;
+$border-radius: core.$border-radius !default;
+$foreground: theme.get("foreground") !default;
+$background: theme.get("background") !default;
+$background-clip: padding-box !default;
+$shadow: css.get("box-shadow-2") !default;
+$font-size: core.$font-size-sm !default;
+$line-height: null !default;
 
-  $arrow-size: 12px !default;
-  $arrow-padding: 10 !default;
-  $arrow-border: core.$border !default;
+$arrow-size: 12px !default;
+$arrow-padding: 10 !default;
+$arrow-border: core.$border !default;
 
-  $size-sm-width: 12em !default;
-  $size-lg-width: 20em !default;
-  ```
+$size-sm-width: 12em !default;
+$size-lg-width: 20em !default;
+
+// Custom properties
+@include css.set("popover", (
+  "event": $event,
+  "placement": $placement,
+  "offset": $offset,
+  "overflow-padding": $overflow-padding,
+  "flip-padding": $flip-padding,
+  "arrow-padding": $arrow-padding
+));
+```
 </DocBlock>
 
 <DocBlock name="JS Config" src="popover/src/js/defaults.js">

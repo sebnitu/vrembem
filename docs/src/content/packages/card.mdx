@@ -157,94 +157,136 @@ Cards are primarily customized using CSS variables but can also be modified usin
 
 <DocBlock name="CSS Variables" src="card/src/_root.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
+```scss
+:root {
+  --vb-card-padding: 1.25em;
+  --vb-card-border-radius: var(--vb-border-radius);
+  --vb-card-box-shadow: var(--vb-box-shadow-1);
+  --vb-card-link-box-shadow: var(--vb-box-shadow-2);
+  --vb-card-link-box-shadow-hover: var(--vb-box-shadow-3);
+  --vb-card-link-offset: -0.25em;
+  --vb-card-title-font-size: var(--vb-font-size-lg);
+  --vb-card-title-line-height: var(--vb-line-height-lg);
+  --vb-card-title-font-weight: var(--vb-font-weight-semi-bold);
+  --vb-card-transition-property: background-color, border-color, box-shadow, transform;
+  --vb-card-transition-duration: var(--vb-transition-duration);
+  --vb-card-transition-timing-function: var(--vb-transition-timing-function);
+}
 
-  :root {
-    @include core.css("card-padding", var.$padding);
-    @include core.css("card-background", var.$background);
-    @include core.css("card-foreground", var.$foreground);
-    @include core.css("card-border", var.$border);
-    @include core.css("card-sep-border", var.$sep-border);
-    @include core.css("card-border-radius", var.$border-radius);
-    @include core.css("card-box-shadow", var.$box-shadow);
-    @include core.css("card-screen-background", var.$screen-background);
-    @include core.css("card-screen-opacity", var.$screen-opacity);
-    @include core.css("card-link-box-shadow", var.$link-box-shadow);
-    @include core.css("card-link-box-shadow-hover", var.$link-box-shadow-hover);
-    @include core.css("card-link-offset", var.$link-offset);
-    @include core.css("card-title-color", var.$title-color);
-    @include core.css("card-title-font-size", var.$title-font-size);
-    @include core.css("card-title-line-height", var.$title-line-height);
-    @include core.css("card-title-font-weight", var.$title-font-weight);
-    @include core.css("card-transition-property", var.$transition-property);
-    @include core.css("card-transition-duration", var.$transition-duration);
-    @include core.css("card-transition-timing-function", var.$transition-timing-function);
+:root, .vb-theme-root, .vb-theme-light {
+  --vb-card-background: var(--vb-background);
+  --vb-card-foreground: var(--vb-foreground-light);
+  --vb-card-border: 1px solid var(--vb-border-color);
+  --vb-card-sep-border: 1px solid var(--vb-border-color);
+  --vb-card-title-color: var(--vb-foreground);
+  --vb-card-screen-background: var(--vb-background);
+  --vb-card-screen-opacity: 0.9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, .vb-theme-root {
+    --vb-card-background: var(--vb-background-darker);
+    --vb-card-foreground: var(--vb-foreground-light);
+    --vb-card-border: 1px solid var(--vb-border-color);
+    --vb-card-sep-border: 1px solid var(--vb-border-color);
+    --vb-card-title-color: var(--vb-foreground);
+    --vb-card-screen-background: var(--vb-background-darker);
+    --vb-card-screen-opacity: 0.8;
   }
+}
 
-  @include theme.output("card");
-  ```
+.vb-theme-dark {
+  --vb-card-background: var(--vb-background-darker);
+  --vb-card-foreground: var(--vb-foreground-light);
+  --vb-card-border: 1px solid var(--vb-border-color);
+  --vb-card-sep-border: 1px solid var(--vb-border-color);
+  --vb-card-title-color: var(--vb-foreground);
+  --vb-card-screen-background: var(--vb-background-darker);
+  --vb-card-screen-opacity: 0.8;
+}
+```
 </DocBlock>
 
 <DocBlock name="SCSS Variables" src="card/src/_variables.scss">
 
-  ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "@vrembem/core/palette";
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
-  $padding: 1.25em !default;
-  $background: null !default;
-  $foreground: null !default;
-  $border: null !default;
-  $sep-border: null !default;
-  $border-radius: core.$border-radius !default;
-  $box-shadow: core.css("box-shadow-1") !default;
+$padding: 1.25em !default;
+$background: null !default;
+$foreground: null !default;
+$border: null !default;
+$sep-border: null !default;
+$border-radius: css.get("border-radius") !default;
+$box-shadow: css.get("box-shadow-1") !default;
 
-  // Screen
-  $screen-background: null !default;
-  $screen-opacity: null !default;
+// Screen
+$screen-background: null !default;
+$screen-opacity: null !default;
 
-  // Link
-  $link-box-shadow: core.css("box-shadow-2") !default;
-  $link-box-shadow-hover: core.css("box-shadow-3") !default;
-  $link-offset: -0.25em !default;
+// Link
+$link-box-shadow: css.get("box-shadow-2") !default;
+$link-box-shadow-hover: css.get("box-shadow-3") !default;
+$link-offset: -0.25em !default;
 
-  // Title
-  $title-color: null !default;
-  $title-font-size: core.$font-size-lg !default;
-  $title-line-height: core.css("line-height-lg") !default;
-  $title-font-weight: core.css("font-weight-semi-bold") !default;
+// Title
+$title-color: null !default;
+$title-font-size: css.get("font-size-lg") !default;
+$title-line-height: css.get("line-height-lg") !default;
+$title-font-weight: css.get("font-weight-semi-bold") !default;
 
-  // Transition
-  $transition-property: background-color, border-color, box-shadow, transform !default;
-  $transition-duration: core.$transition-duration !default;
-  $transition-timing-function: core.$transition-timing-function !default;
+// Transition
+$transition-property: background-color, border-color, box-shadow, transform !default;
+$transition-duration: css.get("transition", "duration") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
-  // Themes
-  $theme-light: (
-    "background": theme.get("background"),
-    "foreground": theme.get("foreground-light"),
-    "border": 1px solid theme.get("border-color"),
-    "sep-border": 1px solid theme.get("border-color"),
-    "title-color": theme.get("foreground"),
-    "screen-background": theme.get("background"),
-    "screen-opacity": 0.9
-  ) !default;
+// Custom properties
+@include css.set("card", (
+  "padding": $padding,
+  "background": $background,
+  "foreground": $foreground,
+  "border": $border,
+  "sep-border": $sep-border,
+  "border-radius": $border-radius,
+  "box-shadow": $box-shadow,
+  "screen-background": $screen-background,
+  "screen-opacity": $screen-opacity,
+  "link-box-shadow": $link-box-shadow,
+  "link-box-shadow-hover": $link-box-shadow-hover,
+  "link-offset": $link-offset,
+  "title-color": $title-color,
+  "title-font-size": $title-font-size,
+  "title-line-height": $title-line-height,
+  "title-font-weight": $title-font-weight,
+  "transition-property": $transition-property,
+  "transition-duration": $transition-duration,
+  "transition-timing-function": $transition-timing-function
+));
 
-  $theme-dark: (
-    "background": theme.get("background-darker"),
-    "foreground": theme.get("foreground-light"),
-    "border": 1px solid theme.get("border-color"),
-    "sep-border": 1px solid theme.get("border-color"),
-    "title-color": theme.get("foreground"),
-    "screen-background": theme.get("background-darker"),
-    "screen-opacity": 0.8
-  ) !default;
+// Themes
+$theme-light: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground-light"),
+  "border": 1px solid theme.get("border-color"),
+  "sep-border": 1px solid theme.get("border-color"),
+  "title-color": theme.get("foreground"),
+  "screen-background": theme.get("background"),
+  "screen-opacity": 0.9
+) !default;
 
-  @include theme.set("light", "card", $theme-light);
-  @include theme.set("dark", "card", $theme-dark);
-  ```
+$theme-dark: (
+  "background": theme.get("background-darker"),
+  "foreground": theme.get("foreground-light"),
+  "border": 1px solid theme.get("border-color"),
+  "sep-border": 1px solid theme.get("border-color"),
+  "title-color": theme.get("foreground"),
+  "screen-background": theme.get("background-darker"),
+  "screen-opacity": 0.8
+) !default;
+
+@include theme.set("light", "card", $theme-light);
+@include theme.set("dark", "card", $theme-dark);
+```
 </DocBlock>
