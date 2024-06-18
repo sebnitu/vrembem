@@ -163,29 +163,40 @@ Switches are primarily customized using CSS variables but can also be modified u
 <DocBlock name="CSS Variables" src="switch/src/_root.scss">
 
   ```scss
-  @use "@vrembem/core";
-  @use "@vrembem/core/theme";
-  @use "./variables" as var;
-
   :root {
-    @include core.css("switch-size", var.$size);
-    @include core.css("switch-track-size", var.$track-size);
-    @include core.css("switch-color", var.$color);
-    @include core.css("switch-thumb-fill", var.$thumb-fill);
-    @include core.css("switch-track-fill", var.$track-fill);
-    @include core.css("switch-border-color", var.$border-color);
-    @include core.css("switch-border-width", var.$border-width);
-    @include core.css("switch-border-radius", var.$border-radius);
-    @include core.css("switch-background-border-radius", var.$background-border-radius);
-    @include core.css("switch-background-opacity", var.$background-opacity);
-    @include core.css("switch-background-opacity-hover", var.$background-opacity-hover);
-    @include core.css("switch-background-opacity-focus", var.$background-opacity-focus);
-    @include core.css("switch-background-opacity-active", var.$background-opacity-active);
-    @include core.css("switch-transition-duration", var.$transition-duration);
-    @include core.css("switch-transition-timing-function", var.$transition-timing-function);
+    --vb-switch-size: var(--vb-form-control-size);
+    --vb-switch-track-size: 20px;
+    --vb-switch-color: var(--vb-primary-50);
+    --vb-switch-border-width: 2px;
+    --vb-switch-border-radius: var(--vb-border-radius-circle);
+    --vb-switch-background-border-radius: var(--vb-border-radius-circle);
+    --vb-switch-background-opacity: 0%;
+    --vb-switch-background-opacity-hover: 20%;
+    --vb-switch-background-opacity-focus: 20%;
+    --vb-switch-background-opacity-active: 30%;
+    --vb-switch-transition-duration: var(--vb-transition-duration-short);
+    --vb-switch-transition-timing-function: var(--vb-transition-timing-function);
   }
 
-  @include theme.output("switch");
+  :root, .vb-theme-root, .vb-theme-light {
+    --vb-switch-thumb-fill: white;
+    --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
+    --vb-switch-border-color: var(--vb-neutral-50);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root, .vb-theme-root {
+      --vb-switch-thumb-fill: var(--vb-neutral-10);
+      --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
+      --vb-switch-border-color: var(--vb-neutral-80);
+    }
+  }
+
+  .vb-theme-dark {
+    --vb-switch-thumb-fill: var(--vb-neutral-10);
+    --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
+    --vb-switch-border-color: var(--vb-neutral-80);
+  }
   ```
 </DocBlock>
 
@@ -193,36 +204,60 @@ Switches are primarily customized using CSS variables but can also be modified u
 
   ```scss
   @use "@vrembem/core";
+  @use "@vrembem/core/css";
   @use "@vrembem/core/palette";
   @use "@vrembem/core/theme";
 
-  $size: core.$form-control-size !default;
+  $size: css.get("form-control", "size") !default;
   $track-size: 20px !default;
   $color: palette.get("primary") !default;
   $thumb-fill: null !default;
   $track-fill: null !default;
   $border-color: null !default;
   $border-width: 2px !default;
-  $border-radius: core.$border-radius-circle !default;
-  $background-border-radius: core.$border-radius-circle !default;
+  $border-radius: css.get("border-radius-circle") !default;
+  $background-border-radius: css.get("border-radius-circle") !default;
   $background-opacity: 0% !default;
   $background-opacity-hover: 20% !default;
   $background-opacity-focus: 20% !default;
   $background-opacity-active: 30% !default;
 
   // Transition
-  $transition-duration: core.$transition-duration-short !default;
-  $transition-timing-function: core.$transition-timing-function !default;
+  $transition-duration: css.get("transition", "duration-short") !default;
+  $transition-timing-function: css.get("transition", "timing-function") !default;
 
   // switch_size_sm
-  $size-sm: core.$form-control-size-sm !default;
+  $size-sm: css.get("form-control", "size-sm") !default;
   $size-sm-border-width: 2px !default;
   $size-sm-track: 16px !default;
 
   // switch_size_lg
-  $size-lg: core.$form-control-size-lg !default;
+  $size-lg: css.get("form-control", "size-lg") !default;
   $size-lg-border-width: 2.5px !default;
   $size-lg-track: 26px !default;
+
+  // Custom properties
+  @include css.set("switch", (
+    "size": $size,
+    "track-size": $track-size,
+    "color": $color,
+    "thumb-fill": $thumb-fill,
+    "track-fill": $track-fill,
+    "border-color": $border-color,
+    "border-width": $border-width,
+    "border-radius": $border-radius,
+    "background": (
+      "border-radius": $background-border-radius,
+      "opacity": $background-opacity,
+      "opacity-hover": $background-opacity-hover,
+      "opacity-focus": $background-opacity-focus,
+      "opacity-active": $background-opacity-active,
+    ),
+    "transition": (
+      "duration": $transition-duration,
+      "timing-function": $transition-timing-function,
+    )
+  ));
 
   // Themes
   $theme-light: (
