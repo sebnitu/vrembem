@@ -1,8 +1,8 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./css";
 @use "../utilities/get-hs" as *;
+@use "./css";
 
 /// The palette variable map where all color variants are stored.
 /// @type map

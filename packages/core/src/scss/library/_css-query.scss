@@ -2,9 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./media-min" as *;
 @use "../variables/breakpoints" as *;
 @use "../modules/css";
+@use "./media-min" as *;
 
 /// Define a dynamic CSS variable using maps and breakpoints.
 /// @param {string} $prop

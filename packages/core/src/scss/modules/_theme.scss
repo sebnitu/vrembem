@@ -3,9 +3,9 @@
 @use "sass:meta";
 
 @use "../variables/prefix";
+@use "../utilities/remove-nth" as *;
 @use "./css";
 @use "./palette";
-@use "../utilities/remove-nth" as *;
 
 /// Prefix for theme classes.
 /// @type string
