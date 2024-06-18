@@ -1,14 +1,15 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("button", null, "icon")} {
-  @include core.css("button-padding", var.$icon-padding);
+  @include css.override("button", "padding", var.$icon-padding);
 
   &#{core.bem("button", null, "size", "sm")} {
-    @include core.css("button-padding", var.$icon-padding-sm);
+    @include css.override("button", "padding", var.$icon-padding-sm);
   }
 
   &#{core.bem("button", null, "size", "lg")} {
-    @include core.css("button-padding", var.$icon-padding-lg);
+    @include css.override("button", "padding", var.$icon-padding-lg);
   }
 }

@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 @mixin table-responsive-styles() {
@@ -20,7 +21,7 @@
 
   [#{var.$mobile-label-attr}] {
     position: relative;
-    padding-left: calc(core.css("table-mobile-label-width") + core.css("table-mobile-label-spacing"));
+    padding-left: calc(css.get("table", "mobile-label-width") + css.get("table", "mobile-label-spacing"));
     white-space: normal;
 
     &::before {
@@ -29,19 +30,19 @@
       top: 0;
       bottom: 0;
       left: 0;
-      width: core.css("table-mobile-label-width");
-      padding: core.css("table-padding");
+      width: css.get("table", "mobile-label-width");
+      padding: css.get("table", "padding");
       overflow: hidden;
-      background-color: core.css("table-mobile-label-background");
-      color: core.css("table-mobile-label-foreground");
-      font-weight: core.css("font-weight-bold");
+      background-color: css.get("table", "mobile-label-background");
+      color: css.get("table", "mobile-label-foreground");
+      font-weight: css.get("font-weight-bold");
       text-overflow: ellipsis;
       white-space: nowrap;
     }
   }
 
   &#{core.bem("table", null, "style", "bordered")} {
-    border: core.css("table-border");
+    border: css.get("table", "border");
 
     td {
       border: none;
@@ -49,15 +50,15 @@
 
     td + td,
     th + td {
-      border-top: core.css("table-border-alt");
+      border-top: css.get("table", "border-alt");
     }
 
     [#{var.$mobile-label-attr}]::before {
-      border-right: core.css("table-border");
+      border-right: css.get("table", "border");
     }
 
     tr + tr {
-      border-top: core.css("table-border");
+      border-top: css.get("table", "border");
     }
   }
 }

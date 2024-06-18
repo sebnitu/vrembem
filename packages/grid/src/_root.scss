@@ -1,6 +1,5 @@
-@use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 :root {
-  @include core.css("grid-gap", var.$gap);
+  @include css.output("grid");
 }

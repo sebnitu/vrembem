@@ -1,14 +1,19 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("switch", null, "size", "sm")} {
-  @include core.css("switch-size", var.$size-sm);
-  @include core.css("switch-border-width", var.$size-sm-border-width);
-  @include core.css("switch-track-size", var.$size-sm-track);
+  @include css.override("switch", (
+    "size": var.$size-sm,
+    "border-width": var.$size-sm-border-width,
+    "track-size": var.$size-sm-track
+  ));
 }
 
 #{core.bem("switch", null, "size", "lg")} {
-  @include core.css("switch-size", var.$size-lg);
-  @include core.css("switch-border-width", var.$size-lg-border-width);
-  @include core.css("switch-track-size", var.$size-lg-track);
+  @include css.override("switch", (
+    "size": var.$size-lg,
+    "border-width": var.$size-lg-border-width,
+    "track-size": var.$size-lg-track
+  ));
 }

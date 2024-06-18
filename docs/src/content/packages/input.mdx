@@ -234,13 +234,13 @@ Inputs are primarily customized using CSS variables but can also be modified usi
   $size-sm: core.$form-control-size-sm !default;
   $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
   $size-sm-font-size: core.$font-size-sm !default;
-  $size-sm-line-height: core.css("line-height")-sm !default;
+  $size-sm-line-height: core.css("line-height-sm") !default;
 
   // input_size_lg
   $size-lg: core.$form-control-size-lg !default;
   $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
   $size-lg-font-size: core.$font-size-lg !default;
-  $size-lg-line-height: core.css("line-height")-lg !default;
+  $size-lg-line-height: core.css("line-height-lg") !default;
 
   // input_type_[value]
   $type-select-icon-color: palette.get("neutral", "seed") !default;

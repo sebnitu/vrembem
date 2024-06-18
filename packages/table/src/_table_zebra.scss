@@ -1,11 +1,12 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("table", null, "zebra")} {
   thead tr {
-    background-color: core.css("table-background-zebra");
+    background-color: css.get("table", "background-zebra");
   }
 
   tr:nth-child(even) {
-    background-color: core.css("table-background-zebra");
+    background-color: css.get("table", "background-zebra");
   }
 }

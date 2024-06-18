@@ -1,20 +1,8 @@
-@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./variables" as var;
 
 :root {
-  @include core.css("table-padding", var.$padding);
-  @include core.css("table-background", var.$background);
-  @include core.css("table-background-zebra", var.$background-zebra);
-  @include core.css("table-background-hover", var.$background-hover);
-  @include core.css("table-foreground", var.$foreground);
-  @include core.css("table-foreground-hover", var.$foreground-hover);
-  @include core.css("table-border", var.$border);
-  @include core.css("table-border-alt", var.$border-alt);
-  @include core.css("table-mobile-label-width", var.$mobile-label-width);
-  @include core.css("table-mobile-label-spacing", var.$mobile-label-spacing);
-  @include core.css("table-mobile-label-background", var.$mobile-label-background);
-  @include core.css("table-mobile-label-foreground", var.$mobile-label-foreground);
+  @include css.output("table");
 }
 
 @include theme.output("table");

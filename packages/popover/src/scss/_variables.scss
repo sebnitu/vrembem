@@ -1,5 +1,6 @@
-@use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
 $prefix-variable: core.$prefix-variable !default;
 $prefix-block: core.$prefix-block !default;
@@ -22,7 +23,7 @@ $border-radius: core.$border-radius !default;
 $foreground: theme.get("foreground") !default;
 $background: theme.get("background") !default;
 $background-clip: padding-box !default;
-$shadow: core.css("box-shadow-2") !default;
+$shadow: css.get("box-shadow-2") !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
 
@@ -32,3 +33,13 @@ $arrow-border: core.$border !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
+
+// Custom properties
+@include css.set("popover", (
+  "event": $event,
+  "placement": $placement,
+  "offset": $offset,
+  "overflow-padding": $overflow-padding,
+  "flip-padding": $flip-padding,
+  "arrow-padding": $arrow-padding
+));

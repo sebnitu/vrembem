@@ -1,16 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("input", null, "size", "sm")} {
-  @include core.css("input-size", var.$size-sm);
-  @include core.css("input-padding", var.$size-sm-padding);
-  @include core.css("input-font-size", var.$size-sm-font-size);
-  @include core.css("input-line-height", var.$size-sm-line-height);
+  @include css.override("input", (
+    "size": var.$size-sm,
+    "padding": var.$size-sm-padding,
+    "font-size": var.$size-sm-font-size,
+    "line-height": var.$size-sm-line-height
+  ));
 }
 
 #{core.bem("input", null, "size", "lg")} {
-  @include core.css("input-size", var.$size-lg);
-  @include core.css("input-padding", var.$size-lg-padding);
-  @include core.css("input-font-size", var.$size-lg-font-size);
-  @include core.css("input-line-height", var.$size-lg-line-height);
+  @include css.override("input", (
+    "size": var.$size-lg,
+    "padding": var.$size-lg-padding,
+    "font-size": var.$size-lg-font-size,
+    "line-height": var.$size-lg-line-height
+  ));
 }

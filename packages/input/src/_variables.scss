@@ -1,9 +1,10 @@
 @use "sass:list";
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: core.$form-control-size !default;
+$size: css.get("form-control", "size") !default;
 $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
 $background: null !default;
 $background-hover: null !default;
@@ -18,13 +19,13 @@ $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-focus: null !default;
 $border-width: 1px !default;
-$border-radius: core.$border-radius !default;
+$border-radius: css.get("border-radius") !default;
 $box-shadow: palette.get("primary", 50%, 0%) !default;
 $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
 $box-shadow-inset: rgb(0 0 0 / 10%);
 $box-shadow-inset-focus: rgb(0 0 0 / 0%);
-$font-size: core.$font-size !default;
-$line-height: core.css("line-height") !default;
+$font-size: css.get("font-size") !default;
+$line-height: css.get("line-height") !default;
 $outline: none !default;
 
 // Transition
@@ -33,16 +34,49 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 // input_size_sm
-$size-sm: core.$form-control-size-sm !default;
+$size-sm: css.get("form-control", "size-sm") !default;
 $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
-$size-sm-font-size: core.$font-size-sm !default;
-$size-sm-line-height: core.css("line-height")-sm !default;
+$size-sm-font-size: css.get("font-size-sm") !default;
+$size-sm-line-height: css.get("line-height-sm") !default;
 
 // input_size_lg
-$size-lg: core.$form-control-size-lg !default;
+$size-lg: css.get("form-control", "size-lg") !default;
 $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
-$size-lg-font-size: core.$font-size-lg !default;
-$size-lg-line-height: core.css("line-height")-lg !default;
+$size-lg-font-size: css.get("font-size-lg") !default;
+$size-lg-line-height: css.get("line-height-lg") !default;
+
+// Custom properties
+@include css.set("input", (
+  "size": $size,
+  "padding": $padding,
+  "background": $background,
+  "background-hover": $background-hover,
+  "background-focus": $background-focus,
+  "background-readonly": $background-readonly,
+  "background-disabled": $background-disabled,
+  "foreground": $foreground,
+  "foreground-hover": $foreground-hover,
+  "foreground-focus": $foreground-focus,
+  "foreground-placeholder": $foreground-placeholder,
+  "border-color": $border-color,
+  "border-color-hover": $border-color-hover,
+  "border-color-focus": $border-color-focus,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "box-shadow": $box-shadow,
+  "box-shadow-focus": $box-shadow-focus,
+  "box-shadow-inset": $box-shadow-inset,
+  "box-shadow-inset-focus": $box-shadow-inset-focus,
+  "font-size": $font-size,
+  "line-height": $line-height,
+  "outline": $outline,
+  "transition": (
+    "property": $transition-property,
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function
+  ),
+  "select-icon": null
+));
 
 // Theme maps
 $theme-light: (

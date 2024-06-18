@@ -1,34 +1,58 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: core.$form-control-size !default;
+$size: css.get("form-control", "size") !default;
 $track-size: 20px !default;
 $color: palette.get("primary") !default;
 $thumb-fill: null !default;
 $track-fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
-$border-radius: core.$border-radius-circle !default;
-$background-border-radius: core.$border-radius-circle !default;
+$border-radius: css.get("border-radius-circle") !default;
+$background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
 // switch_size_sm
-$size-sm: core.$form-control-size-sm !default;
+$size-sm: css.get("form-control", "size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-track: 16px !default;
 
 // switch_size_lg
-$size-lg: core.$form-control-size-lg !default;
+$size-lg: css.get("form-control", "size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-track: 26px !default;
+
+// Custom properties
+@include css.set("switch", (
+  "size": $size,
+  "track-size": $track-size,
+  "color": $color,
+  "thumb-fill": $thumb-fill,
+  "track-fill": $track-fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
 
 // Themes
 $theme-light: (

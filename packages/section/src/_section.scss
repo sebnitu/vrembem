@@ -1,19 +1,20 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("section")} {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: core.css("section-padding");
-  background: core.css("section-background");
-  color: core.css("section-foreground");
+  padding: css.get("section", "padding");
+  background: css.get("section", "background");
+  color: css.get("section", "foreground");
 }
 
 #{core.bem("section", "container")} {
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: core.css("section-max-width");
+  max-width: css.get("section", "max-width");
   margin: auto;
 }
 
@@ -27,11 +28,11 @@
 #{core.bem("section", "image")} {
   object-fit: cover;
   z-index: 1;
-  opacity: core.css("section-image-opacity");
+  opacity: css.get("section", "image-opacity");
 }
 
 #{core.bem("section", "screen")} {
   z-index: 2;
-  background: core.css("section-screen-background");
-  opacity: core.css("section-screen-opacity");
+  background: css.get("section", "screen-background");
+  opacity: css.get("section", "screen-opacity");
 }

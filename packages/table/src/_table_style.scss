@@ -1,10 +1,11 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("table", null, "style", "rowed")} {
-  border-bottom: core.css("table-border");
+  border-bottom: css.get("table", "border");
 
   tr {
-    border-top: core.css("table-border");
+    border-top: css.get("table", "border");
   }
 
   th:first-child,
@@ -21,6 +22,6 @@
 #{core.bem("table", null, "style", "bordered")} {
   th,
   td {
-    border: core.css("table-border");
+    border: css.get("table", "border");
   }
 }

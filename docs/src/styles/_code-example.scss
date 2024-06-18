@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 @use "@vrembem/base";
@@ -9,7 +10,7 @@
   border: core.$border;
   border-radius: core.$border-radius;
   font-size: core.$font-size;
-  line-height: core.css("line-height");
+  line-height: css.get("line-height");
 
   > * + * {
     border-top: core.$border;

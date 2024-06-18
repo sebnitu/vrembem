@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
 $prefix-variable: core.$prefix-variable !default;
@@ -7,14 +8,12 @@ $prefix-element: core.$prefix-element !default;
 $prefix-modifier: core.$prefix-modifier !default;
 $prefix-modifier-value: core.$prefix-modifier-value !default;
 
-$_v: $prefix-variable;
-
 $z-index: 1000 !default;
 $width: 36em !default;
 $travel: 5em !default;
-$transition-duration: var(--#{$_v}transition-duration, #{core.$transition-duration}) !default;
-$transition-timing-function: var(--#{$_v}transition-timing-function, #{core.$transition-timing-function}) !default;
-$shadow: core.css("box-shadow-5") !default;
+$transition-duration: css.get("transition", "duration") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
+$shadow: css.get("box-shadow-5") !default;
 
 $screen-background: palette.get("neutral", 10) !default;
 $screen-opacity: 0.8 !default;
@@ -35,3 +34,8 @@ $size-scale: (
   "lg": 48em, // 768px
   "xl": 60em  // 960px
 ) !default;
+
+@include css.set("modal", (
+  "transition-duration": $transition-duration,
+  "transition-timing-function": $transition-timing-function
+));

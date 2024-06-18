@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
@@ -28,6 +29,24 @@ $size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
 $size-lg-padding: 1em 1.25em !default;
 $size-lg-mobile-label-width: $mobile-label-width !default;
 $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
+
+// Custom properties
+@include css.set("table", (
+  "padding": $padding,
+  "background": $background,
+  "background-zebra": $background-zebra,
+  "background-hover": $background-hover,
+  "foreground": $foreground,
+  "foreground-hover": $foreground-hover,
+  "border": $border,
+  "border-alt": $border-alt,
+  "mobile-label": (
+    "width": $mobile-label-width,
+    "spacing": $mobile-label-spacing,
+    "background": $mobile-label-background,
+    "foreground": $mobile-label-foreground,
+  )
+));
 
 // Theme maps
 $theme-light: (

@@ -1,20 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("table")} {
   width: 100%;
-  background-color: core.css("table-background");
-  color: core.css("table-foreground");
+  background-color: css.get("table", "background");
+  color: css.get("table", "foreground");
   text-align: left;
 
   th,
   td,
   caption {
-    padding: core.css("table-padding");
+    padding: css.get("table", "padding");
     vertical-align: top;
   }
 
   th {
-    font-weight: core.css("font-weight-bold");
+    font-weight: css.get("font-weight-bold");
   }
 }
 

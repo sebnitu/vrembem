@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 $style: "stroke" !default;
 $size: 1.5em !default;
@@ -7,12 +8,15 @@ $color: currentcolor !default;
 
 $size-xs: 0.75em !default;
 $size-xs-stroke-width: 3.5 !default;
-
 $size-sm: 1.125em !default;
 $size-sm-stroke-width: 2.5 !default;
-
 $size-lg: 2em !default;
 $size-lg-stroke-width: 1.75 !default;
-
 $size-xl: 3em !default;
 $size-xl-stroke-width: 1.3 !default;
+
+@include css.set("icon", (
+  "size": $size,
+  "stroke-width": $stroke-width,
+  "color": $color
+));

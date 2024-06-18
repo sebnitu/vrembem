@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "./root";
 
@@ -46,12 +47,12 @@
   width: calc(100% - 1em);
   margin-right: 1em;
   transition-property: top, opacity;
-  transition-duration: core.$transition-duration;
-  transition-timing-function: core.$transition-timing-function;
+  transition-duration: css.get("transition", "duration");
+  transition-timing-function: css.get("transition", "timing-function");
   opacity: 0;
 
   &:focus {
-    top: calc(calc(var(--layout-navibar-height) - core.css("button-size")) / 2);
+    top: calc(calc(var(--layout-navibar-height) - css.get("button", "size")) / 2);
     opacity: 1;
   }
 }

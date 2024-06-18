@@ -1,10 +1,10 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("media")} {
   display: flex;
   align-items: flex-start;
-  gap: core.css("media-gap-y", "media-gap") core.css("media-gap-x", "media-gap");
+  gap: css.get("media", "gap-y", "gap") css.get("media", "gap-x", "gap");
 }
 
 #{core.bem("media", "body")} {
@@ -15,6 +15,6 @@
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  max-width: core.css("media-max-width");
-  min-height: core.css("media-min-height");
+  max-width: css.get("media", "max-width");
+  min-height: css.get("media", "min-height");
 }

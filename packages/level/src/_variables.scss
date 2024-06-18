@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 $gap: 0.5em !default;
 $gap-map: (
@@ -9,3 +10,9 @@ $gap-map: (
   "lg": 1em,
   "xl": 1.5em,
 ) !default;
+
+@include css.set("level", (
+  "gap": $gap,
+  "gap-x": null,
+  "gap-y": null,
+));

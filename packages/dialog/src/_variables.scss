@@ -1,5 +1,6 @@
-@use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
 $padding: 1em !default;
 $gap: 0.5em !default;
@@ -7,13 +8,30 @@ $background: null !default;
 $foreground: null !default;
 $border: null !default;
 $sep-border: null !default;
-$border-radius: core.$border-radius !default;
-$box-shadow: core.css("box-shadow-4") !default;
+$border-radius: css.get("border-radius") !default;
+$box-shadow: css.get("box-shadow-4") !default;
+$title-font-size: css.get("font-size-lg") !default;
+$title-line-height: css.get("line-height-lg") !default;
+$title-font-weight: css.get("font-weight-semi-bold") !default;
 
-$title-font-size: core.$font-size-lg !default;
-$title-line-height: core.css("line-height")-lg !default;
-$title-font-weight: core.css("font-weight-semi-bold") !default;
+// Custom properties
+@include css.set("dialog", (
+  "padding": $padding,
+  "gap": $gap,
+  "background": $background,
+  "foreground": $foreground,
+  "border": $border,
+  "sep-border": $sep-border,
+  "border-radius": $border-radius,
+  "box-shadow": $box-shadow,
+  "title": (
+    "font-size": $title-font-size,
+    "line-height": $title-line-height,
+    "font-weight": $title-font-weight,
+  )
+));
 
+// Theme maps
 $theme-light: (
   "foreground": theme.get("foreground"),
   "background": theme.get("background"),

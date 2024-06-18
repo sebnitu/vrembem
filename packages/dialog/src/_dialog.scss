@@ -1,16 +1,17 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("dialog")} {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: core.css("dialog-border");
-  border-radius: core.css("dialog-border-radius");
-  background: core.css("dialog-background");
+  border: css.get("dialog", "border");
+  border-radius: css.get("dialog", "border-radius");
+  background: css.get("dialog", "background");
   background-clip: padding-box;
-  box-shadow: core.css("dialog-box-shadow");
-  color: core.css("dialog-foreground");
+  box-shadow: css.get("dialog", "box-shadow");
+  color: css.get("dialog", "foreground");
   -webkit-overflow-scrolling: touch;
 }
 
@@ -18,7 +19,7 @@
 #{core.bem("dialog", "body")},
 #{core.bem("dialog", "footer")} {
   flex: 0 0 auto;
-  padding: core.css("dialog-padding");
+  padding: css.get("dialog", "padding");
 }
 
 #{core.bem("dialog", "header")},
@@ -27,32 +28,32 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  background: core.css("dialog-background");
+  background: css.get("dialog", "background");
   vertical-align: middle;
-  gap: core.css("dialog-gap");
+  gap: css.get("dialog", "gap");
 }
 
 #{core.bem("dialog", "header")} {
   top: 0;
-  border-bottom: core.css("dialog-sep-border");
+  border-bottom: css.get("dialog", "sep-border");
 }
 
 #{core.bem("dialog", "body")} {
   flex-grow: 1;
 
   & + & {
-    border-top: core.css("dialog-sep-border");
+    border-top: css.get("dialog", "sep-border");
   }
 }
 
 #{core.bem("dialog", "footer")} {
   bottom: 0;
-  border-top: core.css("dialog-sep-border");
+  border-top: css.get("dialog", "sep-border");
 }
 
 #{core.bem("dialog", "title")} {
   flex-grow: 1;
-  font-size: core.css("dialog-title-font-size");
-  font-weight: core.css("dialog-title-font-weight");
-  line-height: core.css("dialog-title-line-height");
+  font-size: css.get("dialog", "title-font-size");
+  font-weight: css.get("dialog", "title-font-weight");
+  line-height: css.get("dialog", "title-line-height");
 }

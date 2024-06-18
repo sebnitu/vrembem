@@ -2,9 +2,11 @@
 
 /// Debug output a more readable version of a scss map in the console.
 /// Currently this mixin only supports debugging maps up to 3 levels deep.
-/// @param {Map} $map - The map to output using @debug.
-/// @output A @debug call with the provided map's content. 
-@mixin debug-map($map) {
+/// @param {map} $map
+///   The map to output using @debug.
+/// @param {string} $label
+///   A label to add before the map contents.
+@mixin debug-map($map, $label: "Debug Map") {
   // Indent variable.
   $i: "  "; 
 
@@ -12,7 +14,7 @@
   $n: "\A";
 
   // Initialize output variable.
-  $output: "#{$n}Debug Map: (";
+  $output: "#{$n}#{$label}: (";
 
   // First level map loop.
   @each $key, $value in $map {

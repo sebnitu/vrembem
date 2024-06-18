@@ -1,12 +1,13 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 #{core.bem("menu")} {
   display: flex;
-  gap: core.css("menu-gap");
+  gap: css.get("menu", "gap");
   flex-direction: column;
   align-items: stretch;
-  font-size: core.css("menu-font-size");
-  line-height: core.css("menu-line-height");
+  font-size: css.get("menu", "font-size");
+  line-height: css.get("menu", "line-height");
   list-style: none;
 }
 
@@ -18,9 +19,9 @@
   flex: 0 0 auto;
   align-self: stretch;
   width: auto;
-  height: core.css("menu-sep-size");
-  margin: core.css("menu-sep-gap") 0;
-  background: core.css("menu-sep-background");
+  height: css.get("menu", "sep-size");
+  margin: css.get("menu", "sep-gap") 0;
+  background: css.get("menu", "sep-background");
 }
 
 #{core.bem("menu", "action")} {
@@ -29,35 +30,35 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-width: core.css("menu-size");
-  min-height: core.css("menu-size");
-  padding: core.css("menu-padding");
+  min-width: css.get("menu", "size");
+  min-height: css.get("menu", "size");
+  padding: css.get("menu", "padding");
   outline: none;
-  border-radius: core.css("menu-border-radius");
-  background: core.css("menu-background");
-  color: core.css("menu-foreground");
+  border-radius: css.get("menu", "border-radius");
+  background: css.get("menu", "background");
+  color: css.get("menu", "foreground");
   white-space: normal;
-  gap: core.css("menu-action-gap");
+  gap: css.get("menu", "action-gap");
 
   > * {
     flex: 0 0 auto;
   }
 
   &:hover {
-    background: core.css("menu-background-hover", "menu-background");
-    color: core.css("menu-foreground-hover", "menu-foreground");
+    background: css.get("menu", "background-hover", "background");
+    color: css.get("menu", "foreground-hover", "foreground");
   }
 
   &:focus-visible {
     z-index: 1;
-    outline: core.css("menu-outline-focus");
-    background: core.css("menu-background-focus", "menu-background-hover", "menu-background");
-    color: core.css("menu-foreground-focus", "menu-foreground-hover", "menu-foreground");
+    outline: css.get("menu", "outline-focus");
+    background: css.get("menu", "background-focus", "background-hover", "background");
+    color: css.get("menu", "foreground-focus", "foreground-hover", "foreground");
   }
 
   &:active {
-    background: core.css("menu-background-active", "menu-background-hover", "menu-background");
-    color: core.css("menu-foreground-active", "menu-foreground-hover", "menu-foreground");
+    background: css.get("menu", "background-active", "background-hover", "background");
+    color: css.get("menu", "foreground-active", "foreground-hover", "foreground");
   }
 
   &.is-active,
@@ -65,8 +66,8 @@
   &.is-active:focus,
   &.is-active:active,
   &.is-active[disabled] {
-    background: core.css("menu-active-background");
-    color: core.css("menu-active-foreground");
+    background: css.get("menu", "active-background");
+    color: css.get("menu", "active-foreground");
     cursor: pointer;
   }
 
@@ -75,12 +76,12 @@
   &.is-disabled:focus,
   &.is-disabled:active,
   &[disabled] {
-    background: core.css("menu-disabled-background");
-    color: core.css("menu-disabled-foreground");
+    background: css.get("menu", "disabled-background");
+    color: css.get("menu", "disabled-foreground");
     cursor: default;
   }
 }
 
 #{core.bem("menu", "action", "icon")} {
-  padding: core.css("menu-padding-x");
+  padding: css.get("menu", "padding-x");
 }

@@ -1,42 +1,68 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: core.$form-control-size !default;
+$size: css.get("form-control", "size") !default;
 $box-size: 18px !default;
 $icon-size: 12px !default;
-$color: palette.get("primary") !default;
 $icon-color: null !default;
 $icon-stroke: 2.5 !default;
+$color: palette.get("primary") !default;
 $fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
-$border-radius: core.$border-radius !default;
-$background-border-radius: core.$border-radius-circle !default;
+$border-radius: css.get("border-radius") !default;
+$background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
+$transition-duration: css.get("transition", "duration-short") !default;
+$transition-timing-function: css.get("transition", "timing-function") !default;
 
 // checkbox_size_sm
-$size-sm: core.$form-control-size-sm !default;
+$size-sm: css.get("form-control", "size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;
 $size-sm-icon: 10px !default;
 $size-sm-icon-stroke: 2.5 !default;
 
 // checkbox_size_lg
-$size-lg: core.$form-control-size-lg !default;
+$size-lg: css.get("form-control", "size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-box: 24px !default;
 $size-lg-icon: 18px !default;
 $size-lg-icon-stroke: 2 !default;
 
-// Themes
+// Custom properties
+@include css.set("checkbox", (
+  "size": $size,
+  "box-size": $box-size,
+  "icon-size": $icon-size,
+  "icon-color": $icon-color,
+  "icon-stroke": $icon-stroke,
+  "color": $color,
+  "fill": $fill,
+  "border-color": $border-color,
+  "border-width": $border-width,
+  "border-radius": $border-radius,
+  "background": (
+    "border-radius": $background-border-radius,
+    "opacity": $background-opacity,
+    "opacity-hover": $background-opacity-hover,
+    "opacity-focus": $background-opacity-focus,
+    "opacity-active": $background-opacity-active,
+  ),
+  "transition": (
+    "duration": $transition-duration,
+    "timing-function": $transition-timing-function,
+  )
+));
+
+// Theme maps
 $theme-light: (
   "fill": white,
   "border-color": palette.get("neutral"),

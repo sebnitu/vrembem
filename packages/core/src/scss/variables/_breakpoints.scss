@@ -1,3 +1,5 @@
+@use "../modules/css";
+
 $breakpoints: (
   "xs": 480px,
   "sm": 620px,
@@ -5,3 +7,5 @@ $breakpoints: (
   "lg": 990px,
   "xl": 1380px
 ) !default;
+
+@include css.set("core", "breakpoint", $breakpoints);

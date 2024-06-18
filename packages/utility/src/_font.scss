@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_u: var.$prefix-utility;
@@ -30,15 +31,15 @@ $_c: var.$class-font;
   }
 
   .#{$_u}#{$_c}-leading-base {
-    line-height: core.css("line-height") !important;
+    line-height: css.get("line-height") !important;
   }
 
   .#{$_u}#{$_c}-leading-sm {
-    line-height: core.css("line-height")-sm !important;
+    line-height: css.get("line-height-sm") !important;
   }
 
   .#{$_u}#{$_c}-leading-lg {
-    line-height: core.css("line-height")-lg !important;
+    line-height: css.get("line-height-lg") !important;
   }
 
   .#{$_u}#{$_c}-kerning-0 {

@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 
 $breakpoints: core.$breakpoints !default;
@@ -33,6 +34,17 @@ $size-xl-padding: (
   "md": 8em 2em,
   "lg": 12em 2em
 ) !default;
+
+// Custom properties
+@include css.set("section", (
+  "max-width": $max-width,
+  "padding": null,
+  "background": $background,
+  "foreground": $foreground,
+  "image-opacity": $image-opacity,
+  "screen-background": $screen-background,
+  "screen-opacity": $screen-opacity
+));
 
 // Theme maps
 $theme-light: (

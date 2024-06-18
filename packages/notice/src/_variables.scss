@@ -1,23 +1,33 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
-
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
 
 $gap: 0.5em !default;
 $padding: 1em !default;
 $background: null !default;
 $foreground: null !default;
 $border: null !default;
-$border-radius: core.$border-radius !default;
+$border-radius: css.get("border-radius") !default;
 $box-shadow: null !default;
+$title-font-size: css.get("font-size-lg") !default;
+$title-line-height: css.get("line-height-lg") !default;
+$title-font-weight: css.get("font-weight-semi-bold") !default;
 
-$title-font-size: core.$font-size-lg !default;
-$title-line-height: core.css("line-height")-lg !default;
-$title-font-weight: core.css("font-weight-semi-bold") !default;
+@include css.set("notice", (
+  "gap": $gap,
+  "padding": $padding,
+  "background": $background,
+  "foreground": $foreground,
+  "border": $border,
+  "border-radius": $border-radius,
+  "box-shadow": $box-shadow,
+  "title": (
+    "font-size": $title-font-size,
+    "line-height": $title-line-height,
+    "font-weight": $title-font-weight,
+  ),
+));
 
 $theme-light: (
   "background": palette.get("neutral", 95),

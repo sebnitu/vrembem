@@ -1,16 +1,16 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "./library/css" as *;
-@use "./utilities/get-hs" as *;
+@use "../utilities/get-hs" as *;
+@use "./css";
 
 /// The palette variable map where all color variants are stored.
+/// @type map
 /// @access private
-/// @type Map
 $_palette: ();
 
 /// The map of colors used to build the palette.
-/// @type Map
+/// @type map
 $seeds: (
   "primary":   hsl(152 60% 50%),
   "secondary": hsl(214 50% 50%),
@@ -19,22 +19,20 @@ $seeds: (
 ) !default;
 
 /// The default color lightness to use when referencing a color.
-/// @type Number
+/// @type number
 $lightness-default: 50 !default;
 
 /// The range of lightness values to build for each color in the palette.
-/// @type List
+/// @type list
 $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
-/// Builds the palette map using the values set in $seeds and $lightness maps.
-/// @require {Variable} $seeds
-/// @require {Variable} $lightness
-/// @require {Function} _build-range-map
+/// Builds the palette map using the values set in `$seeds` and `$lightness` 
+/// maps. Is run automatically whenever seeds are altered.
 @mixin build() {
   @each $key, $value in $seeds {
     $map: ();
     @each $value in $lightness {
-      $map: map.set($map, $value, css("#{$key}-#{$value}"));
+      $map: map.set($map, $value, css.reference("#{$key}-#{$value}"));
     }
     $_palette: map.set($_palette, $key, $map) !global;
   }
@@ -43,14 +41,18 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 /// Function to return a palette color. If called with no color key, the entire
 /// palette map is returned. The following lightness formats are accepted:
 ///   $lightness: "seed" - Return the seed value.
-///   $lightness: Number - Return the specified lightness CSS var from the palette map.
+///   $lightness: Number - Return the specified lightness CSS var from the 
+///     palette map.
 ///   $lightness: Percentage - Return the hsl value of the color.
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
-/// @param {String} $key [null] - The color key to return a value for.
-/// @param {Number | Percentage | String} $lightness [$lightness-default] - The lightness value of the requested color.
-/// @param {Number (alpha-value)} $alpha [null] - The alpha value of the requested color.
-/// @require {Variable} $seeds
-/// @return {Color} - Return format depends on the requested value.
+/// @param {string} $key [null]
+///   The color key to return a value for.
+/// @param {number | percentage | string} $lightness [$lightness-default]
+///   The lightness value of the requested color.
+/// @param {number (alpha-value)} $alpha [null]
+///   The alpha value of the requested color.
+/// @return {Color}
+///   Return format depends on the requested value.
 @function get($key: null, $lightness: $lightness-default, $alpha: null) {
   // If key is null, return the palette.
   @if not ($key) {
@@ -64,7 +66,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(#{css("#{$key}-hs") $lightness + ' / ' + $alpha});
+    @return hsl(#{css.reference("#{$key}-hs") $lightness + ' / ' + $alpha});
   }
 
   // If the specified lightness value exists in the palette map, return its value.
@@ -74,16 +76,16 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // Else return hsl using the provided lightness value.
   @else {
-    @return hsl(#{css("#{$key}-hs") $lightness});
+    @return hsl(#{css.reference("#{$key}-hs") $lightness});
   }
 }
 
 /// Set a color to the $seeds map. Can receive single entries of key/value color
 /// pairs or a map containing multiple key/value pairs.
-/// @output N/A
-/// @param {String | map} $key - A key to associate with the provided color, or a map containing key/value color pairs.
-/// @param {Color} $value [null] - The color to associate with the provided key.
-/// @require {Variable} $seeds
+/// @param {string | map} $key
+///   A key to associate with the provided color, or a map containing key/value color pairs.
+/// @param {color} $value [null]
+///   The color to associate with the provided key.
 @mixin set($key, $value: null) {
   @if (meta.type-of($key) == "map") {
     $seeds: map.merge($seeds, $key) !global;
@@ -96,9 +98,8 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 }
 
 /// Removes colors from the $seeds map.
-/// @output N/A
-/// @param {String} $keys... - A string or list of strings to remove from $seeds map.
-/// @require {Variable} $seeds
+/// @param {string} $keys...
+///   A string or list of strings to remove from $seeds map.
 @mixin remove($keys...) {
   $seeds: map.remove($seeds, $keys...) !global;
   // Run build since $seeds has been modified.
@@ -106,25 +107,19 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.
-/// @example - Output the color palette to the :root pseudo-class.
-///   :root {
-///     @include palette.output();
-///   }
-/// @output Custom properties of the palette.
-/// @param {Map} $seeds [$seeds] - Base colors to build the palette from.
-/// @param {Map} $lightness [$lightness] - Lightness range to build for each color.
-/// @param {Variable} $lightness-default [$lightness-default] - Default lightness value to use for colors.
+/// @param {map} $seeds [$seeds]
+///   Base colors to build the palette from.
 @mixin output($seeds: $seeds) {
   :root {
     @each $key, $seed in $seeds {
-      @include css("#{$key}-hs", get-hs($seed));
-      @include css("#{$key}", css("#{$key}-#{$lightness-default}"));
+      @include css.define("#{$key}-hs", get-hs($seed));
+      @include css.define("#{$key}", css.reference("#{$key}-#{$lightness-default}"));
       @each $value in $lightness {
-        @include css("#{$key}-#{$value}", hsl(#{css("#{$key}-hs") $value + '%'}));
+        @include css.define("#{$key}-#{$value}", hsl(#{css.reference("#{$key}-hs") $value + '%'}));
       }
     }
   }
 }
 
-// Run the build to build the initial palette map.
+// Initialize the palette map.
 @include build();

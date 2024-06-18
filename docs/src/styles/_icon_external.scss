@@ -1,9 +1,9 @@
-@use "@vrembem/core";
+@use "@vrembem/core/theme";
 
 .icon_external {
   position: relative;
   right: -0.25em;
   stroke-width: 2.5;
-  color: core.css("foreground-lighter");
+  color: theme.get("foreground-lighter");
   font-size: 0.75em;
 }

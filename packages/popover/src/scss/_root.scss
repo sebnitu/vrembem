@@ -1,17 +1,5 @@
-@use "./variables" as var;
-
-$_v: var.$prefix-variable;
+@use "@vrembem/core/css";
 
 :root {
-  @if (var.$event) {
-    --#{$_v}popover-event: #{var.$event};
-  }
-  @if (var.$placement) {
-    --#{$_v}popover-placement: #{var.$placement};
-  }
-
-  --#{$_v}popover-offset: #{var.$offset};
-  --#{$_v}popover-overflow-padding: #{var.$overflow-padding};
-  --#{$_v}popover-flip-padding: #{var.$flip-padding};
-  --#{$_v}popover-arrow-padding: #{var.$arrow-padding};
+  @include css.output("popover");
 }

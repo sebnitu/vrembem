@@ -1,4 +1,5 @@
-@use "../theme";
+@use "../modules/css";
+@use "../modules/theme";
 
 $border-width: 1px !default;
 $border-style: solid !default;
@@ -10,3 +11,14 @@ $border-darker: $border-width $border-style theme.get("border-color-darker") !de
 $border-radius: 0.25rem !default;
 $border-radius-lg: 0.5rem !default;
 $border-radius-circle: 9999px !default;
+
+@include css.set("core", (
+  "border": $border,
+  "border-width": $border-width,
+  "border-style": $border-style,
+  "border-dark": $border-dark,
+  "border-darker": $border-darker,
+  "border-radius": $border-radius,
+  "border-radius-lg": $border-radius-lg,
+  "border-radius-circle": $border-radius-circle
+));

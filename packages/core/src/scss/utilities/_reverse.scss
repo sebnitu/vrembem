@@ -3,9 +3,12 @@
 @use "sass:meta";
 
 /// Reverse the order of elements within a list.
-/// @param {List} $list - The list to reverse.
-/// @param {Boolean} $recursive[false] - Whether or not the list should be reversed recursively.
-/// @return {List} - The reversed list.
+/// @param {list} $list
+///   The list to reverse.
+/// @param {boolean} $recursive[false]
+///   Whether or not the list should be reversed recursively.
+/// @return {list}
+///   The reversed list.
 @function reverse($list, $recursive: false) {
   $result: ();
 

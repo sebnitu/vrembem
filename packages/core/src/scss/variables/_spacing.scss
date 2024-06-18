@@ -1,3 +1,5 @@
+@use "../modules/css";
+
 $gap: 1em !default;
 $gap-map: (
   "none": 0,
@@ -7,3 +9,6 @@ $gap-map: (
   "lg": 1.5em,
   "xl": 2em
 ) !default;
+
+@include css.set("core", "gap", $gap);
+@include css.set("core", "gap", $gap-map);

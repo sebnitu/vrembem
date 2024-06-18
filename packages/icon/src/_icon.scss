@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 @use "./mixins" as mix;
 
@@ -9,6 +10,6 @@
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  font-size: core.css("icon-size");
+  font-size: css.get("icon", "size");
   vertical-align: top;
 }

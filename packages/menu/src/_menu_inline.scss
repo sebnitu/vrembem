@@ -1,14 +1,14 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("menu", null, "inline")} {
   flex-direction: row;
   align-items: center;
 
   #{core.bem("menu", "sep")} {
-    width: core.css("menu-sep-size");
+    width: css.get("menu", "sep-size");
     height: auto;
-    margin: 0 core.css("menu-sep-gap");
+    margin: 0 css.get("menu", "sep-gap");
   }
 
   #{core.bem("menu", "action")} {

@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 $breakpoints: core.$breakpoints !default;
 $gap: 2em !default;
@@ -13,3 +14,9 @@ $gap-map: (
 
 $span: 12 !default;
 $span-class: "span" !default;
+
+@include css.set("grid", (
+  "gap": $gap,
+  "gap-x": null,
+  "gap-y": null,
+));

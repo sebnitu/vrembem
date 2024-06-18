@@ -1,8 +1,8 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/css";
 
 #{core.bem("level")} {
-  gap: core.css("level-gap-y", "level-gap") core.css("level-gap-x", "level-gap");
+  gap: css.get("level", "gap-y", "gap") css.get("level", "gap-x", "gap");
   display: flex;
   flex-wrap: wrap;
   align-items: center;

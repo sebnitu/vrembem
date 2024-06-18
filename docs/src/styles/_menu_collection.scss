@@ -1,9 +1,9 @@
-@use "@vrembem/core";
+@use "@vrembem/core/theme";
 
 .menu_collection {
   margin-top: 0.5rem;
 
   .menu__action.is-active {
-    background: core.css("background");
+    background: theme.get("background");
   }
 }
