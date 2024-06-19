@@ -31,7 +31,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     !tabs ? (
       <div class="code-example__toolbar">
-        <div class="flex-grow-1">{lang}</div>
+        <div class="flex-grow">{lang}</div>
         {
           resettable && (
             <button
@@ -49,7 +49,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
       </div>
     ) : (
       <div class="code-example__toolbar">
-        <div class="flex-grow-1" role="tablist" aria-label="Code examples">
+        <div class="flex-grow" role="tablist" aria-label="Code examples">
           {
             Astro.slots.has("tab-html") && (
             <button 
