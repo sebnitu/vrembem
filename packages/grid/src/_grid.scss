@@ -2,7 +2,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-#{core.bem("grid")} {
+.grid {
   display: grid;
   gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
   grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
@@ -11,18 +11,16 @@
 
 /// Grid Column Modifiers
 
-/// grid_columns_[i]
 @for $i from 2 through var.$columns {
-  #{core.bem("grid", null, "columns", $i)} {
+  .grid-columns-#{$i} {
     @include css.override("grid", "columns", $i);
   }
 }
 
-/// [bp]:grid_columns_[i]
-@each $key, $value in var.$breakpoints {
+@each $key, $value in core.$breakpoints {
   @include core.media-min($value) {
     @for $i from 2 through var.$columns {
-      #{core.bem("#{$key}\\:grid", null, "columns", $i)} {
+      .#{$key}\:grid-columns-#{$i} {
         @include css.override("grid", "columns", $i);
       }
     }
@@ -45,7 +43,7 @@
   }
 }
 
-@each $key, $value in var.$breakpoints {
+@each $key, $value in core.$breakpoints {
   @include core.media-min($value) {
     .#{$key}\:col-auto {
       grid-column: auto;
