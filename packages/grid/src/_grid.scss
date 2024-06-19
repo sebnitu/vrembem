@@ -3,28 +3,62 @@
 @use "./variables" as var;
 
 #{core.bem("grid")} {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(css.get("grid", "gap-y", "gap") * -1);
-  margin-left: calc(css.get("grid", "gap-x", "gap") * -1);
+  display: grid;
+  gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
+  grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
+  grid-auto-flow: row dense;
+}
 
-  > * {
-    padding-top: css.get("grid", "gap-y", "gap");
-    padding-left: css.get("grid", "gap-x", "gap");
-  }
+/// Grid Column Modifiers
 
-  & + & {
-    margin-top: 0;
+/// grid_columns_[i]
+@for $i from 2 through var.$columns {
+  #{core.bem("grid", null, "columns", $i)} {
+    @include css.override("grid", "columns", $i);
   }
 }
 
-#{core.bem("grid", "item")} {
-  flex: 1 1 0;
-  max-width: 100%;
+/// [bp]:grid_columns_[i]
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    @for $i from 2 through var.$columns {
+      #{core.bem("#{$key}\\:grid", null, "columns", $i)} {
+        @include css.override("grid", "columns", $i);
+      }
+    }
+  }
 }
 
-#{core.bem("grid", "clear")} {
-  flex: 1 0 100%;
-  margin: 0 !important;
-  padding: 0 !important;
+/// Grid Span Utilities
+
+.col-auto {
+  grid-column: auto;
+}
+
+.col-span-full {
+  grid-column: span css.get("grid", "columns");
+}
+
+@for $i from 2 through var.$columns {
+  .col-span-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    .#{$key}\:col-auto {
+      grid-column: auto;
+    }
+
+    .#{$key}\:col-span-full {
+      grid-column: span css.get("grid", "columns");
+    }
+
+    @for $i from 2 through var.$columns {
+      .#{$key}\:col-span-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
 }

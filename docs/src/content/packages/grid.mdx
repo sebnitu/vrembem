@@ -30,18 +30,16 @@ The most basic implementation of the grid component consists of two elements. By
 - `grid__item`
 
 <CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
+  <div slot="output" class="gap-y">
+    <div class="grid grid_columns_3">
+      <div class="box">...</div>
+      <div class="box">...</div>
+      <div class="box">...</div>
     </div>
-  </Fragment>
+  </div>
   ```html
-  <div class="grid">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
+  <div class="grid grid_columns_3">
+    ...
   </div>
   ```
 </CodeExample>
