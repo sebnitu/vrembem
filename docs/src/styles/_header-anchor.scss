@@ -1,30 +1,45 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "@vrembem/base";
+@use "@vrembem/button";
+@use "./root";
 
 .header-anchor {
-  margin-right: 0.5rem;
-  float: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: button.$size-sm;
+  height: button.$size-sm;
+  margin-left: 1rem;
+  padding: button.$icon-padding-sm;
+  transition: color 0.25s, opacity 0.25s;
+  border-radius: core.$border-radius-circle;
+  background-color: palette.get("primary", 50%, 0%);
+  opacity: 0;
+  font-size: 1rem;
   font-weight: 500;
   text-decoration: none !important;
   user-select: none;
 
-  @include core.media-min('md') {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-right: 0;
-    margin-left: -0.87em;
-    transition: color 0.25s, opacity 0.25s;
-    opacity: 0;
+  &:hover,
+  &:focus {
+    background-color: palette.get("primary", 50%, 20%);
+  }
 
-    h1:hover &,
-    h2:hover &,
-    h3:hover &,
-    h4:hover &,
-    h5:hover &,
-    h6:hover &,
-    &:focus {
-      opacity: 1;
-    }
+  h1:hover &,
+  h2:hover &,
+  h3:hover &,
+  h4:hover &,
+  h5:hover &,
+  h6:hover &,
+  &:focus {
+    opacity: 1;
+  }
+
+  @include core.media-min(root.$bp-code) {
+    position: absolute;
+    top: calc(50% - calc(button.$size-sm / 2));
+    right: calc(100% + calc(button.$size-sm / 2));
   }
 }
