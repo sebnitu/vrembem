@@ -2,9 +2,14 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-.grid {
+.grid,
+.grid-inline {
   display: grid;
   grid-auto-flow: css.get("grid", "flow");
   grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
   gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
+}
+
+.grid-inline {
+  display: inline-grid;
 }
