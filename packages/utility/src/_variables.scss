@@ -32,7 +32,6 @@ $class-max-width: "max-width" !default;
 $class-overflow: "overflow" !default;
 $class-padding: "padding" !default;
 $class-position: "position" !default;
-$class-spacing: "spacing" !default;
 $class-text: "text" !default;
 
 $breakpoints: core.$breakpoints !default;
@@ -76,5 +75,3 @@ $overflow-properties: (
   scroll,
   auto
 ) !default;
-
-@include css.set("utility", "spacing-gap", $spacing-gap);

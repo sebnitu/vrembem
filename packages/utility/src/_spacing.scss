@@ -5,13 +5,15 @@
 @if (var.$output-spacing) {
   .spacing {
     > * + * {
-      margin-top: css.get("utility", "spacing-gap") !important;
+      margin-top: var.$spacing-gap !important;
     }
   }
 
   @each $key, $value in var.$spacing-gap-map {
     .spacing-#{$key} {
-      @include css.override("utility", "spacing-gap");
+      > * + * {
+        margin-top: $value !important;
+      }
     }
   }
 }
