@@ -60,3 +60,21 @@
     }
   }
 }
+
+/// Grid gap utilities
+
+@each $key, $value in var.$gap-map {
+  .grid-gap-#{$key} {
+    @include css.override("grid", "gap", $value);
+  }
+}
+
+@each $key, $value in var.$gap-map {
+  .grid-gap-x-#{$key} {
+    @include css.override("grid", "gap-x", $value);
+  }
+
+  .grid-gap-y-#{$key} {
+    @include css.override("grid", "gap-y", $value);
+  }
+}
