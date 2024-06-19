@@ -71,6 +71,16 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
               )
           }
           {
+            Astro.slots.has("tab-css") && (
+            <button 
+              class="tab"
+              id={`tab-css-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-css-${uid}`}
+              aria-selected="false">CSS</button>
+              )
+          }
+          {
             Astro.slots.has("tab-js") && (
             <button 
               class="tab"
@@ -116,6 +126,17 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         role="tabpanel"
         aria-labelledby={`tab-scss-${uid}`}>
         <slot name="tab-scss" />
+      </div>
+    )
+  }
+  {
+    Astro.slots.has("tab-css") && (
+      <div
+        class="code-example__input"
+        id={`tabpanel-css-${uid}`}
+        role="tabpanel"
+        aria-labelledby={`tab-css-${uid}`}>
+        <slot name="tab-css" />
       </div>
     )
   }
