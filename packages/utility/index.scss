@@ -1,4 +1,5 @@
 @forward "./src/variables";
+@forward "./src/root";
 @forward "./src/background";
 @forward "./src/foreground";
 @forward "./src/border";
@@ -6,10 +7,10 @@
 @forward "./src/shadow";
 @forward "./src/display";
 @forward "./src/font";
-@forward "./src/gap";
 @forward "./src/margin";
 @forward "./src/max-width";
 @forward "./src/overflow";
 @forward "./src/padding";
 @forward "./src/position";
+@forward "./src/spacing";
 @forward "./src/text";
