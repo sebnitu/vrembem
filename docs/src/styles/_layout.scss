@@ -41,16 +41,20 @@
   gap: 2rem;
   padding: 2rem 0;
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(root.$bp-code) {
+    padding: 3rem;
+  }
+
+  @include core.media-min(root.$bp-drawer) {
     gap: 3rem;
     padding: 3rem 0;
     
     .has-drawer & {
-      padding: 3rem 3.5rem 3rem 3rem;
+      padding: 3rem 3.5rem 3rem 4.5rem;
     }
   }
 
-  @media (min-width: root.$bp-aside) {
+  @include core.media-min(root.$bp-aside) {
     flex-flow: row wrap;
     align-items: flex-start;
     gap: 4rem;
@@ -67,18 +71,17 @@
   width: 100%;
   max-width: var(--layout-content-width);
 
+  @include core.media-min(root.$bp-aside) {
+    width: calc(100% - (var(--layout-aside-width) + 4rem));
+  }
+
   h1, h2, h3, h4, h5, h6 {
     position: relative;
     scroll-margin-top: calc(var(--layout-navibar-height) + 1rem);
   }
 
   h3 {
-    font-size: 1.5em;
     font-weight: 500;
-  }
-
-  @media (min-width: root.$bp-aside) {
-    width: calc(100% - (var(--layout-aside-width) + 4rem));
   }
 }
 
