@@ -1,0 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+@for $i from 2 through var.$columns {
+  .grid-columns-#{$i} {
+    @include css.override("grid", "columns", $i);
+  }
+}
+
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    @for $i from 2 through var.$columns {
+      .#{$key}\:grid-columns-#{$i} {
+        @include css.override("grid", "columns", $i);
+      }
+    }
+  }
+}

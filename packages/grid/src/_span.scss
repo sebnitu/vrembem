@@ -1,0 +1,35 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+.span-auto {
+  grid-column: auto;
+}
+
+.span-full {
+  grid-column: span css.get("grid", "columns");
+}
+
+@for $i from 2 through var.$columns {
+  .span-#{$i} {
+    grid-column: span $i;
+  }
+}
+
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    .#{$key}\:span-auto {
+      grid-column: auto;
+    }
+
+    .#{$key}\:span-full {
+      grid-column: span css.get("grid", "columns");
+    }
+
+    @for $i from 2 through var.$columns {
+      .#{$key}\:span-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+}
