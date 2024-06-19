@@ -62,7 +62,6 @@
     "@vrembem/grid": "^4.0.0-next.8",
     "@vrembem/icon": "^4.0.0-next.8",
     "@vrembem/input": "^4.0.0-next.8",
-    "@vrembem/media": "^4.0.0-next.8",
     "@vrembem/menu": "^4.0.0-next.8",
     "@vrembem/modal": "^4.0.0-next.8",
     "@vrembem/notice": "^4.0.0-next.8",

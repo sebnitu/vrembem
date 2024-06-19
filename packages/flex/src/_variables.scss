@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 
+$breakpoints: core.$breakpoints !default;
 $gap: 1em !default;
 $gap-map: (
   "none": 0,

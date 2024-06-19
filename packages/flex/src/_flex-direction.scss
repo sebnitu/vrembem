@@ -1,3 +1,6 @@
+@use "@vrembem/core";
+@use "./variables" as var;
+
 .flex-direction-row {
   flex-direction: row !important;
 }
@@ -12,4 +15,24 @@
 
 .flex-direction-column-reverse {
   flex-direction: column-reverse !important;
+}
+
+@each $key, $value in var.$breakpoints {
+  @include core.media-max($value) {
+    .#{$key}\:flex-direction-row {
+      flex-direction: row !important;
+    }
+    
+    .#{$key}\:flex-direction-row-reverse {
+      flex-direction: row-reverse !important;
+    }
+    
+    .#{$key}\:flex-direction-column {
+      flex-direction: column !important;
+    }
+    
+    .#{$key}\:flex-direction-column-reverse {
+      flex-direction: column-reverse !important;
+    }
+  }
 }

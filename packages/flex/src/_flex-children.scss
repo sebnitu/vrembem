@@ -1,14 +1,27 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
-.flex-children-equal {
+.flex-children-initial {
   > * {
-    flex: 1 1 0;
+    flex: 0 1 auto;
   }
 }
 
 .flex-children-auto {
   > * {
+    flex: 1 1 auto;
+  }
+}
+
+.flex-children-none {
+  > * {
     flex: 0 0 auto;
+  }
+}
+
+.flex-children-equal {
+  > * {
+    flex: 1 1 0;
   }
 }
 
@@ -19,21 +32,9 @@
 }
 
 .flex-children-full {
-  flex-wrap:  wrap;
-
+  flex-wrap: wrap;
+  
   > * {
     flex: 1 0 100%;
-  }
-}
-
-@each $key, $value in core.$breakpoints {
-  @include core.media-max($value) {
-    .#{$key}\:flex-children-full {
-      flex-wrap:  wrap;
-
-      > * {
-        flex: 1 0 100%;
-      }
-    }
   }
 }

@@ -1,18 +1,32 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
-.flex {
+.flex,
+.flex-inline {
   display: flex;
   gap: css.get("flex", "gap-y", "gap") css.get("flex", "gap-x", "gap");
   flex-wrap: css.get("flex", "wrap");
 }
 
-.flex-equal {
-  flex: 1 1 0 !important;
+.flex-inline {
+  display: inline-flex;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
 }
 
 .flex-auto {
+  flex: 1 1 auto !important;
+}
+
+.flex-none {
   flex: 0 0 auto !important;
+}
+
+.flex-equal {
+  flex: 1 1 0 !important;
 }
 
 .flex-fill {
@@ -23,7 +37,7 @@
   flex: 1 0 100% !important;
 }
 
-@each $key, $value in core.$breakpoints {
+@each $key, $value in var.$breakpoints {
   @include core.media-max($value) {
     .#{$key}\:flex-full {
       flex: 1 0 100% !important;

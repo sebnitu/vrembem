@@ -57,28 +57,28 @@ Add a title to your notice using the `notice__title` element.
   ```
 </CodeExample>
 
-### Using media
+### Using flex layout
 
-For cases where a notice message should be displayed alongside an icon or image, try combining it with the [media](/packages/media) component.
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the [flex](/packages/flex) utility component.
 
 <CodeExample>
   <div slot="output" class="spacing">
     <div class="notice notice_color_important">
-      <div class="media media_gap_sm">
-        <div class="media__obj">
+      <div class="flex flex-nowrap">
+        <div class="flex-none">
           <Icon name="alert-triangle" />
         </div>
-        <div class="media__body">
-          This is an example notice using the media component for layout.
+        <div class="flex-auto">
+          This is an example notice using the flex utility component for layout.
         </div>
       </div>
     </div>
     <div class="notice notice_color_secondary">
-      <div class="media media_gap_sm">
-        <div class="media__body">
-          This is an example notice using the media component for layout.
+      <div class="flex flex-nowrap">
+        <div class="flex-auto">
+          This is an example notice using the flex utility component for layout.
         </div>
-        <div class="media__obj">
+        <div class="flex-none">
           <Icon name="archive" />
         </div>
       </div>
@@ -86,11 +86,11 @@ For cases where a notice message should be displayed alongside an icon or image,
   </div>
   ```html
   <div class="notice">
-    <div class="media media_gap_sm">
-      <div class="media__obj">
+    <div class="flex flex-nowrap">
+      <div class="flex-none">
         ...
       </div>
-      <div class="media__body">
+      <div class="flex-auto">
         ...
       </div>
     </div>
