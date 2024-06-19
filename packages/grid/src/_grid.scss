@@ -4,7 +4,7 @@
 
 .grid {
   display: grid;
-  gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
-  grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
   grid-auto-flow: css.get("grid", "flow");
+  grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
+  gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
 }

@@ -1,34 +1,34 @@
 ---
-title: Level
-description: "A simple flexbox based layout component."
-package: "@vrembem/level"
+title: Flex
+description: "A simple flexbox utility component."
+package: "@vrembem/flex"
 status: "check"
 ---
 
 import CodeExample from '../../components/CodeExample.astro';
 import DocBlock from '../../components/DocBlock.astro';
 
-# Level
+# Flex
 
-A simple flexbox based layout component.
+A simple flexbox utility component.
 
 ```sh
-npm install @vrembem/level
+npm install @vrembem/flex
 ```
 
 <CodeExample lang="scss">
   ```scss
-  @use "@vrembem/level";
+  @use "@vrembem/flex";
   ```
 </CodeExample>
 
 ## Basic usage
 
-The most basic implementation of the level component consists of the `level` container with any number of children. Layout styles are applied to the direct children of the level component using the `> *` selector.
+The most basic implementation of the flex utility component consists of the `flex` class with any number of children.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="level">
+    <div class="flex">
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
@@ -47,7 +47,7 @@ The most basic implementation of the level component consists of the `level` con
     </div>
   </Fragment>
   ```html
-  <div class="level">
+  <div class="flex">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -57,13 +57,13 @@ The most basic implementation of the level component consists of the `level` con
 
 > Level is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
 
-## level_gap_[key]
+## flex-gap-[key]
 
 Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="level level_gap_sm">
+    <div class="flex flex-gap-sm">
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
@@ -82,7 +82,7 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
     </div>
   </Fragment>
   ```html
-  <div class="level level_gap_sm">
+  <div class="flex flex-gap-sm">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -92,20 +92,20 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 
 **Available variants**
 
-- `level_gap_none`
-- `level_gap_xs`
-- `level_gap_sm`
-- `level_gap_md`
-- `level_gap_lg`
-- `level_gap_xl`
+- `flex-gap-none`
+- `flex-gap-xs`
+- `flex-gap-sm`
+- `flex-gap-md`
+- `flex-gap-lg`
+- `flex-gap-xl`
 
-## level_gap-x_[key]
+## flex-gap-x_[key]
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="level level_gap-x_xs">
+    <div class="flex flex-gap-x_xs">
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
@@ -124,7 +124,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
     </div>
   </Fragment>
   ```html
-  <div class="level level_gap-x_xs">
+  <div class="flex flex-gap-x_xs">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -134,20 +134,20 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 **Available variants**
 
-- `level_gap-x_none`
-- `level_gap-x_xs`
-- `level_gap-x_sm`
-- `level_gap-x_md`
-- `level_gap-x_lg`
-- `level_gap-x_xl`
+- `flex-gap-x_none`
+- `flex-gap-x_xs`
+- `flex-gap-x_sm`
+- `flex-gap-x_md`
+- `flex-gap-x_lg`
+- `flex-gap-x_xl`
 
-## level_gap-y_[key]
+## flex-gap-y_[key]
 
 Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="level level_gap-y_xl">
+    <div class="flex flex-gap-y_xl">
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
       <div><div class="box">...</div></div>
@@ -166,7 +166,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
     </div>
   </Fragment>
   ```html
-  <div class="level level_gap-y_xl">
+  <div class="flex flex-gap-y_xl">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -176,27 +176,27 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 **Available variants**
 
-- `level_gap-y_none`
-- `level_gap-y_xs`
-- `level_gap-y_sm`
-- `level_gap-y_md`
-- `level_gap-y_lg`
-- `level_gap-y_xl`
+- `flex-gap-y_none`
+- `flex-gap-y_xs`
+- `flex-gap-y_sm`
+- `flex-gap-y_md`
+- `flex-gap-y_lg`
+- `flex-gap-y_xl`
 
 ## Customization
 
 Level is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
-<DocBlock name="CSS Variables" src="level/src/_root.scss">
+<DocBlock name="CSS Variables" src="flex/src/_root.scss">
 
 ```scss
 :root {
-  --vb-level-gap: 0.5em;
+  --vb-flex-gap: 0.5em;
 }
 ```
 </DocBlock>
 
-<DocBlock name="SCSS Variables" src="level/src/_variables.scss">
+<DocBlock name="SCSS Variables" src="flex/src/_variables.scss">
 
 ```scss
 @use "@vrembem/core";
@@ -212,7 +212,7 @@ $gap-map: (
   "xl": 1.5em,
 ) !default;
 
-@include css.set("level", (
+@include css.set("flex", (
   "gap": $gap,
   "gap-x": null,
   "gap-y": null,

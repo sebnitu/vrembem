@@ -10,10 +10,6 @@ $output-border: $output !default;
 $output-border-radius: $output !default;
 $output-shadow: $output !default;
 $output-display: $output !default;
-$output-flex: $output !default;
-$output-flex-gap: $output !default;
-$output-flex-gap-x: $output !default;
-$output-flex-gap-y: $output !default;
 $output-font: $output !default;
 $output-gap-x: $output !default;
 $output-gap-y: $output !default;
@@ -30,10 +26,6 @@ $class-border: "border" !default;
 $class-border-radius: "radius" !default;
 $class-shadow: "shadow" !default;
 $class-display: "display" !default;
-$class-flex: "flex" !default;
-$class-flex-gap: "flex-gap" !default;
-$class-flex-gap-x: "flex-gap-x" !default;
-$class-flex-gap-y: "flex-gap-y" !default;
 $class-font: "font" !default;
 $class-gap-x: "gap-x" !default;
 $class-gap-y: "gap-y" !default;
@@ -57,6 +49,8 @@ $display-properties: (
   inline,
   flex,
   inline-flex,
+  grid,
+  inline-grid,
   block,
   inline-block,
   none
@@ -64,10 +58,6 @@ $display-properties: (
 
 $gap: core.$gap !default;
 $gap-map: core.$gap-map !default;
-
-$flex-order-count: 12 !default;
-$flex-grow-count: 6 !default;
-$flex-shrink-count: 6 !default;
 
 $max-width: 70rem !default;
 $max-width-scale: (

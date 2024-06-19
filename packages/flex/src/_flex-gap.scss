@@ -1,0 +1,18 @@
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+@each $key, $value in var.$gap-map {
+  .flex-gap-#{$key} {
+    @include css.override("flex", "gap", $value);
+  }
+}
+
+@each $key, $value in var.$gap-map {
+  .flex-gap-x-#{$key} {
+    @include css.override("flex", "gap-x", $value);
+  }
+
+  .flex-gap-y-#{$key} {
+    @include css.override("flex", "gap-y", $value);
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/grid",
-  "description": "A flexbox based grid system component.",
+  "description": "A simple grid utility component.",
   "version": "4.0.0-next.8",
   "license": "MIT",
   "keywords": [

@@ -34,8 +34,8 @@ const isFile = (type === "file");
           <Icon name="chevron-right" classes="icon_size_sm" />
         </button>
       </div>
-      <div class="media__body flex flex-align-center flex-gap-x flex-wrap">
-        <h3 id={id} class="doc-block__title level level_gap_lg no-anchor">
+      <div class="media__body flex flex-align-center flex-wrap">
+        <h3 id={id} class="doc-block__title flex flex-gap-lg no-anchor">
           <a class="link font-family-mono font-size-sm" href={`#${id}`}>
             { isFile ? src : name }
           </a>

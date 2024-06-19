@@ -1,5 +1,5 @@
 @use "@vrembem/core/css";
 
 :root {
-  @include css.output("level");
+  @include css.output("flex");
 }

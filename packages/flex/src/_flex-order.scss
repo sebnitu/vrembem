@@ -1,0 +1,7 @@
+@use "./variables" as var;
+
+@for $i from 1 through var.$order-count {
+  .flex-order-#{$i} {
+    order: $i;
+  }
+}
