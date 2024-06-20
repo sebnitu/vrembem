@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
@@ -6,18 +7,20 @@
 $size: css.get("form-control", "size") !default;
 $padding: css.get("form-control", "padding") !default;
 $gap: 1px !default;
+$border-color: null !default;
+$border-color-hover: null !default;
+$border-color-active: null !default;
+$border-width: 1px !default;
 $border-radius: css.get("border-radius") !default;
 $background: null !default;
 $background-hover: null !default;
-$background-focus: null !default;
 $background-active: null !default;
 $foreground: null !default;
 $foreground-hover: null !default;
-$foreground-focus: null !default;
 $foreground-active: null !default;
 $outline-focus: 2px solid theme.get("focus-visible") !default;
-$font-size: 1em !default;
-$line-height: 1.5 !default;
+$font-size: css.get("font-size") !default;
+$line-height: css.get("line-height") !default;
 
 // menu__action
 $action-gap: 0.5em !default;
@@ -53,14 +56,16 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "padding": $padding,
   "padding-x": core.get-side($padding, top),
   "gap": $gap,
+  "border-color": $border-color,
+  "border-color-hover": $border-color-hover,
+  "border-color-active": $border-color-active,
+  "border-width": $border-width,
   "border-radius": $border-radius,
   "background": $background,
   "background-hover": $background-hover,
-  "background-focus": $background-focus,
   "background-active": $background-active,
   "foreground": $foreground,
   "foreground-hover": $foreground-hover,
-  "foreground-focus": $foreground-focus,
   "foreground-active": $foreground-active,
   "outline-focus": $outline-focus,
   "font-size": $font-size,
@@ -79,7 +84,6 @@ $size-lg-line-height: css.get("line-height-lg") !default;
 $theme-shared: (
   "background": none,
   "background-hover": theme.get("background-hover"),
-  "background-focus": theme.get("background-focus"),
   "background-active": theme.get("background-active"),
   "foreground": theme.get("foreground"),
 ) !default;

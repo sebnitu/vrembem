@@ -34,6 +34,7 @@
   min-height: css.get("menu", "size");
   padding: css.get("menu", "padding");
   outline: none;
+  border: css.get("menu", "border-width") solid css.get("menu", "border-color");
   border-radius: css.get("menu", "border-radius");
   background: css.get("menu", "background");
   color: css.get("menu", "foreground");
@@ -44,7 +45,9 @@
     flex: 0 0 auto;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
+    border-color: css.get("button", "border-color-hover", "border-color");
     background: css.get("menu", "background-hover", "background");
     color: css.get("menu", "foreground-hover", "foreground");
   }
@@ -52,11 +55,10 @@
   &:focus-visible {
     z-index: 1;
     outline: css.get("menu", "outline-focus");
-    background: css.get("menu", "background-focus", "background-hover", "background");
-    color: css.get("menu", "foreground-focus", "foreground-hover", "foreground");
   }
 
   &:active {
+    border-color: css.get("button", "border-color-active", "border-color-hover", "border-color");
     background: css.get("menu", "background-active", "background-hover", "background");
     color: css.get("menu", "foreground-active", "foreground-hover", "foreground");
   }
