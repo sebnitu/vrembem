@@ -4,7 +4,7 @@
   flex-shrink: 1 !important;
 }
 
-@for $i from 1 through var.$shrink-count {
+@for $i from 0 through var.$shrink-count {
   .flex-shrink-#{$i} {
     flex-shrink: $i !important;
   }

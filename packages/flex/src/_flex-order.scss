@@ -1,6 +1,6 @@
 @use "./variables" as var;
 
-@for $i from 1 through var.$order-count {
+@for $i from 0 through var.$order-count {
   .flex-order-#{$i} {
     order: $i !important;
   }
