@@ -18,7 +18,7 @@
 }
 
 @each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
+  @include core.media-min($value) {
     .#{$key}\:flex-direction-row {
       flex-direction: row !important;
     }
