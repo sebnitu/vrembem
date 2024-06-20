@@ -505,15 +505,15 @@ Used for controlling the flex property directly on flex items. These should be a
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex">
-      <div id="demo-flex-value" class="box flex-auto">1. One</div>
+    <div class="flex flex-items-auto">
+      <div id="demo-flex-value" class="box-alt flex-none">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex">
-    <div class="flex-auto">...</div>
+  <div class="flex flex-items-auto">
+    <div class="flex-none">...</div>
     <div>...</div>
     <div>...</div>
   </div>
@@ -547,7 +547,7 @@ There may be some cases in responsive layouts where you need a single flex item 
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <div class="flex">
-      <div id="demo-bp-flex-full" class="box lg:flex-full">1. One</div>
+      <div id="demo-bp-flex-full" class="box-alt lg:flex-full">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
@@ -570,13 +570,179 @@ There may be some cases in responsive layouts where you need a single flex item 
 - `xl:flex-full`
 
 ## flex-grow-[value]
+
+Used to control the flex-grow property which specifies how much of the flex container's remaining space should be assigned to the flex item's main size. The number of variants available is controlled by the `flex.$grow-count` variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-grow-select">Variants Demo:</label>
+    <select id="demo-flex-grow-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-grow">
+      <option value="flex-grow">flex-grow</option>
+      <option value="flex-grow-0">flex-grow-0</option>
+      <option value="flex-grow-1">flex-grow-1</option>
+      <option value="flex-grow-2">flex-grow-2</option>
+      <option value="flex-grow-3">flex-grow-3</option>
+      <option value="flex-grow-4">flex-grow-4</option>
+      <option value="flex-grow-5">flex-grow-5</option>
+      <option value="flex-grow-6">flex-grow-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="flex flex-items-auto">
+      <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-items-auto">
+    <div class="flex-grow-3">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-grow`: Shorthand for `flex-grow: 1;`.
+- `flex-grow-0`
+- `flex-grow-1`
+- `flex-grow-2`
+- `flex-grow-3`
+- `flex-grow-4`
+- `flex-grow-5`
+- `flex-grow-6`
+
 ## flex-shrink-[value]
+
+Used to control the flex-shrink property which allows a flex item to shrink if the size of all flex items is larger than the flex container. The number of variants available is controlled by the `flex.$shrink-count` variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-shrink-select">Variants Demo:</label>
+    <select id="demo-flex-shrink-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-shrink">
+      <option value="flex-shrink">flex-shrink</option>
+      <option value="flex-shrink-0">flex-shrink-0</option>
+      <option value="flex-shrink-1">flex-shrink-1</option>
+      <option value="flex-shrink-2">flex-shrink-2</option>
+      <option value="flex-shrink-3">flex-shrink-3</option>
+      <option value="flex-shrink-4">flex-shrink-4</option>
+      <option value="flex-shrink-5">flex-shrink-5</option>
+      <option value="flex-shrink-6">flex-shrink-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="flex flex-nowrap">
+      <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+      <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-nowrap">
+    <div class="flex-shrink-3">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-shrink`: Shorthand for `flex-shrink: 1;`.
+- `flex-shrink-0`
+- `flex-shrink-1`
+- `flex-shrink-2`
+- `flex-shrink-3`
+- `flex-shrink-4`
+- `flex-shrink-5`
+- `flex-shrink-6`
+
 ## flex-basis-[value]
+
+Used to control the flex-basis property which sets the initial main size of a flex item.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-basis-select">Variants Demo:</label>
+    <select id="demo-flex-basis-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-basis">
+      <option value="flex-basis-0">flex-basis-0</option>
+      <option value="flex-basis-auto">flex-basis-auto</option>
+      <option value="flex-basis-full">flex-basis-full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="flex">
+      <div id="demo-flex-basis" class="box-alt flex-basis-auto">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-basis-auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-basis-0`: Sets flex-basis to `0`.
+- `flex-basis-auto`: Sets flex-basis to `auto`.
+- `flex-basis-full`: Sets flex-basis to `100%`.
+
 ## flex-order-[value]
+
+Used to control the order property which adjusts the order items appear in a flex container. The number of variants available is controlled by the `flex.$order-count` variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-order-select">Variants Demo:</label>
+    <select id="demo-flex-order-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-order">
+      <option value="flex-order-0">flex-order-0</option>
+      <option value="flex-order-1">flex-order-1</option>
+      <option value="flex-order-2">flex-order-2</option>
+      <option value="flex-order-3">flex-order-3</option>
+      <option value="flex-order-4">flex-order-4</option>
+      <option value="flex-order-5">flex-order-5</option>
+      <option value="flex-order-6">flex-order-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="flex">
+      <div class="box flex-order-1">Order: 1;</div>
+      <div class="box flex-order-2">Order: 2;</div>
+      <div class="box flex-order-3">Order: 3;</div>
+      <div class="box flex-order-4">Order: 4;</div>
+      <div class="box flex-order-5">Order: 5;</div>
+      <div class="box flex-order-6">Order: 6;</div>
+      <div id="demo-flex-order" class="box-alt flex-order-3">Adjust</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-order-3">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-order-0`
+- `flex-order-1`
+- `flex-order-2`
+- `flex-order-3`
+- `flex-order-4`
+- `flex-order-5`
+- `flex-order-6`
 
 ## Customization
 
-Level is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+Flex is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
 
 <DocBlock name="CSS Variables" src="flex/src/_root.scss">
 
