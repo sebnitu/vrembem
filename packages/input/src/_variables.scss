@@ -35,7 +35,7 @@ $transition-timing-function: core.$transition-timing-function !default;
 
 // input_size_sm
 $size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
+$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) calc(#{list.nth(core.$form-control-padding-sm, 1)} * 2) !default;
 $size-sm-font-size: css.get("font-size-sm") !default;
 $size-sm-line-height: css.get("line-height-sm") !default;
 
