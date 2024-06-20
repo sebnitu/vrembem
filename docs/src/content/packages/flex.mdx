@@ -371,24 +371,203 @@ Used to control the justify-content property which defines how the browser distr
 - `flex-justify-evenly`
 
 ## flex-direction-[value]
-### [bp]:flex-direction-[value]
 
-## flex-children-[value]
-### flex-children-initial
-### flex-children-auto
-### flex-children-none
-### flex-children-equal
-### flex-children-fill
-### flex-children-full
+Used to control the flex-direction property which sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed).
 
-## flex-[value]
-### flex-initial
-### flex-auto
-### flex-none
-### flex-equal
-### flex-fill
-### flex-full
-### [bp]:flex-full
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-direction-select">Variants Demo:</label>
+    <select id="demo-flex-direction-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-direction">
+      <option value="flex-direction-row">flex-direction-row</option>
+      <option value="flex-direction-row-reverse">flex-direction-row-reverse</option>
+      <option value="flex-direction-column">flex-direction-column</option>
+      <option value="flex-direction-column-reverse">flex-direction-column-reverse</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-direction" class="flex flex-direction-row-reverse">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-direction-row-reverse">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-direction-row`
+- `flex-direction-row-reverse`
+- `flex-direction-column`
+- `flex-direction-column-reverse`
+
+### [key]:flex-direction-[value]
+
+The flex-direction utility also comes with optional media breakpoint modifiers. This allows changing the flex-direction property based on a specific breakpoint key in the [`$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-flex-direction-select">Variants Demo:</label>
+    <select id="demo-bp-flex-direction-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-bp-flex-direction">
+      <option value="xs:flex-direction-row">xs:flex-direction-row</option>
+      <option value="sm:flex-direction-row">sm:flex-direction-row</option>
+      <option value="md:flex-direction-row">md:flex-direction-row</option>
+      <option value="lg:flex-direction-row">lg:flex-direction-row</option>
+      <option value="xl:flex-direction-row">xl:flex-direction-row</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div id="demo-bp-flex-direction" class="flex flex-direction-column lg:flex-direction-row">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </div>
+  ```html
+  <div class="flex flex-direction-column lg:flex-direction-row">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:flex-direction-[value]`
+- `sm:flex-direction-[value]`
+- `md:flex-direction-[value]`
+- `lg:flex-direction-[value]`
+- `xl:flex-direction-[value]`
+
+## flex-items-[value]
+
+This utility helps to control the flex property on flex items (direct children of flex containers). The variants available allow for the most common combinations of flex grow, shrink and basis properties.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-items-select">Variants Demo:</label>
+    <select id="demo-flex-items-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-items">
+      <option value="flex-items-initial">flex-items-initial</option>
+      <option value="flex-items-auto">flex-items-auto</option>
+      <option value="flex-items-none">flex-items-none</option>
+      <option value="flex-items-equal">flex-items-equal</option>
+      <option value="flex-items-fill">flex-items-fill</option>
+      <option value="flex-items-full">flex-items-full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-items" class="flex flex-items-auto">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-items-auto">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-items-initial`: Sets flex items to `flex: initial;`.
+- `flex-items-auto`: Sets flex items to `flex: auto;`.
+- `flex-items-none`: Sets flex items to `flex: equal;`.
+- `flex-items-equal`: Sets flex items to `flex: 1 1 0;`.
+- `flex-items-fill`: Sets flex items to `flex: 1 0 auto;`.
+- `flex-items-full`: Sets flex items to `flex: 1 0 100%;`.
+
+### flex-[value]
+
+Used for controlling the flex property directly on flex items. These should be applied to the direct children of a flex container (elements with `display: flex` or `display: inline-flex` set on them).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-value-select">Variants Demo:</label>
+    <select id="demo-flex-value-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-value">
+      <option value="flex-initial">flex-initial</option>
+      <option value="flex-auto">flex-auto</option>
+      <option value="flex-none">flex-none</option>
+      <option value="flex-equal">flex-equal</option>
+      <option value="flex-fill">flex-fill</option>
+      <option value="flex-full">flex-full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="flex">
+      <div id="demo-flex-value" class="box flex-auto">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-initial`: Sets flex to `initial`.
+- `flex-auto`: Sets flex to `auto`.
+- `flex-none`: Sets flex to `none`.
+- `flex-equal`: Sets flex to `1 1 0`.
+- `flex-fill`: Sets flex to `1 0 auto`.
+- `flex-full`: Sets flex to `1 0 100%`.
+
+### [key]:flex-full
+
+There may be some cases in responsive layouts where you need a single flex item to span the full width of a container. This utility allows setting a flex item to full width based on a specific breakpoint key in the [`$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-flex-full-select">Variants Demo:</label>
+    <select id="demo-bp-flex-full-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-bp-flex-full">
+      <option value="xs:flex-full">xs:flex-full</option>
+      <option value="sm:flex-full">sm:flex-full</option>
+      <option value="md:flex-full">md:flex-full</option>
+      <option value="lg:flex-full">lg:flex-full</option>
+      <option value="xl:flex-full">xl:flex-full</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="flex">
+      <div id="demo-bp-flex-full" class="box lg:flex-full">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </div>
+  ```html
+  <div class="flex">
+    <div class="lg:flex-full">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:flex-full`
+- `sm:flex-full`
+- `md:flex-full`
+- `lg:flex-full`
+- `xl:flex-full`
 
 ## flex-grow-[value]
 ## flex-shrink-[value]

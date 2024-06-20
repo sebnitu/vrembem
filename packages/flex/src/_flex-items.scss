@@ -1,37 +1,37 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.flex-children-initial {
+.flex-items-initial {
   > * {
-    flex: 0 1 auto;
+    flex: initial; // Equivalent to setting flex: 0 1 auto.
   }
 }
 
-.flex-children-auto {
+.flex-items-auto {
   > * {
-    flex: 1 1 auto;
+    flex: auto; // Equivalent to setting flex: 1 1 auto.
   }
 }
 
-.flex-children-none {
+.flex-items-none {
   > * {
-    flex: 0 0 auto;
+    flex: none; // Equivalent to setting flex: 0 0 auto.
   }
 }
 
-.flex-children-equal {
+.flex-items-equal {
   > * {
     flex: 1 1 0;
   }
 }
 
-.flex-children-fill {
+.flex-items-fill {
   > * {
     flex: 1 0 auto;
   }
 }
 
-.flex-children-full {
+.flex-items-full {
   flex-wrap: wrap;
   
   > * {
@@ -40,15 +40,15 @@
 }
 
 .flex-initial {
-  flex: 0 1 auto;
+  flex: initial !important; // Equivalent to setting flex: 0 1 auto.
 }
 
 .flex-auto {
-  flex: 1 1 auto !important;
+  flex: auto !important; // Equivalent to setting flex: 1 1 auto.
 }
 
 .flex-none {
-  flex: 0 0 auto !important;
+  flex: none !important; // Equivalent to setting flex: 0 0 auto.
 }
 
 .flex-equal {
