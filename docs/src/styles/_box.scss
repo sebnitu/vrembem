@@ -5,3 +5,9 @@
   border: 2px solid palette.get("primary", 50%, 50%);
   background: palette.get("primary", 50%, 20%);
 }
+
+.box-alt {
+  padding: calc(0.75em - 2px) calc(1em - 2px);
+  border: 2px solid palette.get("secondary", 50%, 50%);
+  background: palette.get("secondary", 50%, 20%);
+}
