@@ -24,28 +24,24 @@ npm install @vrembem/flex
 
 ## Basic usage
 
-The most basic implementation of the flex utility component consists of the `flex` class with any number of children.
+The most basic implementation of the flex utility component consists of a container element with the `flex` class. This can contain any number of children elements.
 
-<CodeExample>
+<CodeExample tabs>
   <Fragment slot="output">
     <div class="flex">
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
     </div>
   </Fragment>
+  <Fragment slot="tab-html">
   ```html
   <div class="flex">
     <div>...</div>
@@ -53,36 +49,73 @@ The most basic implementation of the flex utility component consists of the `fle
     <div>...</div>
   </div>
   ```
+  </Fragment>
+  <Fragment slot="tab-css">
+  ```css
+  .flex {
+    display: flex;
+    gap: var(--vb-flex-gap-y, var(--vb-flex-gap)) var(--vb-flex-gap-x, var(--vb-flex-gap));
+    flex-wrap: var(--vb-flex-wrap);
+  }
+  ```
+  </Fragment>
 </CodeExample>
 
-> Level is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
+### flex-inline
+
+Also available is the `flex-inline` utility. This applies the same styles as `flex` but will set the `display` property to `inline-flex` instead of `flex`.
+
+<CodeExample tabs>
+  <Fragment slot="output">
+    <div class="flex-inline">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+    </div>
+  </Fragment>
+  <Fragment slot="tab-html">
+  ```html
+  <div class="flex-inline">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+  </Fragment>
+  <Fragment slot="tab-css">
+  ```css
+  .flex-inline {
+    display: inline-flex;
+    gap: var(--vb-flex-gap-y, var(--vb-flex-gap)) var(--vb-flex-gap-x, var(--vb-flex-gap));
+    flex-wrap: var(--vb-flex-wrap);
+  }
+  ```
+  </Fragment>
+</CodeExample>
 
 ## flex-gap-[key]
 
-Adjusts the gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="flex flex-gap-sm">
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
+    <div class="flex flex-gap-xs">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-sm">
+  <div class="flex flex-gap-xs">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -99,32 +132,27 @@ Adjusts the gap spacing based on the provided key. Gap key output is based on th
 - `flex-gap-lg`
 - `flex-gap-xl`
 
-## flex-gap-x_[key]
+### flex-gap-x-[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="flex flex-gap-x_xs">
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
+    <div class="flex flex-gap-x-sm">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-x_xs">
+  <div class="flex flex-gap-x-sm">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -134,39 +162,34 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key output is 
 
 **Available variants**
 
-- `flex-gap-x_none`
-- `flex-gap-x_xs`
-- `flex-gap-x_sm`
-- `flex-gap-x_md`
-- `flex-gap-x_lg`
-- `flex-gap-x_xl`
+- `flex-gap-x-none`
+- `flex-gap-x-xs`
+- `flex-gap-x-sm`
+- `flex-gap-x-md`
+- `flex-gap-x-lg`
+- `flex-gap-x-xl`
 
-## flex-gap-y_[key]
+### flex-gap-y-[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="flex flex-gap-y_xl">
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
-      <div><div class="box">...</div></div>
+    <div class="flex flex-gap-y-xl">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-y_xl">
+  <div class="flex flex-gap-y-xl">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -176,12 +199,73 @@ Adjusts the vertical gap spacing based on the provided key. Gap key output is ba
 
 **Available variants**
 
-- `flex-gap-y_none`
-- `flex-gap-y_xs`
-- `flex-gap-y_sm`
-- `flex-gap-y_md`
-- `flex-gap-y_lg`
-- `flex-gap-y_xl`
+- `flex-gap-y-none`
+- `flex-gap-y-xs`
+- `flex-gap-y-sm`
+- `flex-gap-y-md`
+- `flex-gap-y-lg`
+- `flex-gap-y-xl`
+
+## flex-wrap
+
+This utility toggles flex wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` and `flex-inline` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex flex-nowrap">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-nowrap">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-nowrap`
+- `flex-wrap`
+- `flex-wrap-reverse`
+
+## flex-align-[value]
+## flex-justify-[value]
+## flex-direction-[value]
+### [bp]:flex-direction-[value]
+
+## flex-children-[value]
+### flex-children-initial
+### flex-children-auto
+### flex-children-none
+### flex-children-equal
+### flex-children-fill
+### flex-children-full
+
+## flex-[value]
+### flex-initial
+### flex-auto
+### flex-none
+### flex-equal
+### flex-fill
+### flex-full
+### [bp]:flex-full
+
+## flex-grow-[value]
+## flex-shrink-[value]
+## flex-basis-[value]
+## flex-order-[value]
 
 ## Customization
 
@@ -191,7 +275,8 @@ Level is primarily customized using CSS variables but can also be modified using
 
 ```scss
 :root {
-  --vb-flex-gap: 0.5em;
+  --vb-flex-gap: 1em;
+  --vb-flex-wrap: wrap;
 }
 ```
 </DocBlock>
@@ -202,20 +287,26 @@ Level is primarily customized using CSS variables but can also be modified using
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 
-$gap: 0.5em !default;
+$breakpoints: core.$breakpoints !default;
+$gap: 1em !default;
 $gap-map: (
   "none": 0,
   "xs": 1px,
-  "sm": 0.25em,
-  "md": 0.5em,
-  "lg": 1em,
-  "xl": 1.5em,
+  "sm": .5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em,
 ) !default;
+$wrap: wrap !default;
+$order-count: 12 !default;
+$grow-count: 6 !default;
+$shrink-count: 6 !default;
 
 @include css.set("flex", (
   "gap": $gap,
   "gap-x": null,
   "gap-y": null,
+  "wrap": $wrap,
 ));
 ```
 </DocBlock>
