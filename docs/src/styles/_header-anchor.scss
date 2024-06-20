@@ -33,6 +33,12 @@
   h4:hover &,
   h5:hover &,
   h6:hover &,
+  h1:focus &,
+  h2:focus &,
+  h3:focus &,
+  h4:focus &,
+  h5:focus &,
+  h6:focus &,
   &:focus {
     opacity: 1;
   }
