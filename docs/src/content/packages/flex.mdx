@@ -100,8 +100,19 @@ Also available is the `flex-inline` utility. This applies the same styles as `fl
 Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
+    <select id="demo-flex-gap-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-gap">
+      <option value="flex-gap-none">flex-gap-none</option>
+      <option value="flex-gap-xs">flex-gap-xs</option>
+      <option value="flex-gap-sm">flex-gap-sm</option>
+      <option value="flex-gap-md">flex-gap-md</option>
+      <option value="flex-gap-lg">flex-gap-lg</option>
+      <option value="flex-gap-xl">flex-gap-xl</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-gap-xs">
+    <div id="demo-flex-gap" class="flex flex-gap-xs">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -137,8 +148,19 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
+    <select id="demo-flex-gap-x-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-gap-x">
+      <option value="flex-gap-x-none">flex-gap-x-none</option>
+      <option value="flex-gap-x-xs">flex-gap-x-xs</option>
+      <option value="flex-gap-x-sm">flex-gap-x-sm</option>
+      <option value="flex-gap-x-md">flex-gap-x-md</option>
+      <option value="flex-gap-x-lg">flex-gap-x-lg</option>
+      <option value="flex-gap-x-xl">flex-gap-x-xl</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-gap-x-sm">
+    <div id="demo-flex-gap-x" class="flex flex-gap-x-sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -174,8 +196,19 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
+    <select id="demo-flex-gap-y-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-gap-y">
+      <option value="flex-gap-y-none">flex-gap-y-none</option>
+      <option value="flex-gap-y-xs">flex-gap-y-xs</option>
+      <option value="flex-gap-y-sm">flex-gap-y-sm</option>
+      <option value="flex-gap-y-md">flex-gap-y-md</option>
+      <option value="flex-gap-y-lg">flex-gap-y-lg</option>
+      <option value="flex-gap-y-xl">flex-gap-y-xl</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-gap-y-xl">
+    <div id="demo-flex-gap-y" class="flex flex-gap-y-xl">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -208,11 +241,19 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 ## flex-wrap
 
-This utility toggles flex wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` and `flex-inline` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
+This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` and `flex-inline` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-wrap-select">Variants Demo:</label>
+    <select id="demo-flex-wrap-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-wrap">
+      <option value="flex-nowrap">flex-nowrap</option>
+      <option value="flex-wrap">flex-wrap</option>
+      <option value="flex-wrap-reverse">flex-wrap-reverse</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-nowrap">
+    <div id="demo-flex-wrap" class="flex flex-nowrap">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -241,7 +282,94 @@ This utility toggles flex wrapping so that flex items are forced onto one line o
 - `flex-wrap-reverse`
 
 ## flex-align-[value]
+
+Used to control the align-items property which sets the align-self value on all direct children as a group.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-align-select">Variants Demo:</label>
+    <select id="demo-flex-align-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-align">
+      <option value="flex-align-start">flex-align-start</option>
+      <option value="flex-align-center">flex-align-center</option>
+      <option value="flex-align-end">flex-align-end</option>
+      <option value="flex-align-stretch">flex-align-stretch</option>
+      <option value="flex-align-baseline">flex-align-baseline</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-align" class="flex flex-align-center">
+      <div class="box" style="width:6em; height:6em;">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-align-center">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-align-start`
+- `flex-align-center`
+- `flex-align-end`
+- `flex-align-stretch`
+- `flex-align-baseline`
+
 ## flex-justify-[value]
+
+Used to control the justify-content property which defines how the browser distributes space between and around content items.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-justify-select">Variants Demo:</label>
+    <select id="demo-flex-justify-select" class="input input_auto input_size_sm input_type_select" data-demo-target="demo-flex-justify">
+      <option value="flex-justify-start">flex-justify-start</option>
+      <option value="flex-justify-center">flex-justify-center</option>
+      <option value="flex-justify-end">flex-justify-end</option>
+      <option value="flex-justify-between">flex-justify-between</option>
+      <option value="flex-justify-around">flex-justify-around</option>
+      <option value="flex-justify-evenly">flex-justify-evenly</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-justify" class="flex flex-justify-center">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-justify-center">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-justify-start`
+- `flex-justify-center`
+- `flex-justify-end`
+- `flex-justify-between`
+- `flex-justify-around`
+- `flex-justify-evenly`
+
 ## flex-direction-[value]
 ### [bp]:flex-direction-[value]
 

@@ -73,6 +73,18 @@
   @include core.media-max(root.$bp-code) {
     padding: 1rem;
   }
+
+  > * {
+    transition: all css.get("transition", "duration") css.get("transition", "timing-function");
+  }
+}
+
+.code-example__demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
 }
 
 .code-example__toolbar {
