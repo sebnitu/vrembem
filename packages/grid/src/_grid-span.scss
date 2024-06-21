@@ -10,7 +10,7 @@
   grid-column: span css.get("grid", "columns");
 }
 
-@for $i from 2 through var.$columns {
+@for $i from 1 through var.$columns {
   .grid-span-#{$i} {
     grid-column: span $i;
   }
@@ -26,7 +26,7 @@
       grid-column: span css.get("grid", "columns");
     }
 
-    @for $i from 2 through var.$columns {
+    @for $i from 1 through var.$columns {
       .#{$key}\:grid-span-#{$i} {
         grid-column: span $i;
       }
