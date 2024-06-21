@@ -1,13 +1,38 @@
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+$theme-light: (
+  "border-color": palette.get("primary", 60),
+  "background": palette.get("primary", 90),
+  "border-color-alt": palette.get("secondary", 60),
+  "background-alt": palette.get("secondary", 90)
+);
+
+$theme-dark: (
+  "border-color": palette.get("primary", 40),
+  "background": palette.get("primary", 15%),
+  "border-color-alt": palette.get("secondary", 40),
+  "background-alt": palette.get("secondary", 15%)
+);
+
+@include theme.set("light", "box", $theme-light);
+@include theme.set("dark", "box", $theme-dark);
+@include theme.output("box");
+
+.box,
+.box-alt {
+  color: theme.get("foreground");
+  padding: calc(0.75em - 2px) calc(1em - 2px);
+  padding: calc(0.75em - 2px) calc(1em - 2px);
+  border: 2px solid transparent;
+}
 
 .box {
-  padding: calc(0.75em - 2px) calc(1em - 2px);
-  border: 2px solid palette.get("primary", 50%, 50%);
-  background: palette.get("primary", 50%, 20%);
+  border-color: theme.get("box", "border-color");
+  background: theme.get("box", "background");
 }
 
 .box-alt {
-  padding: calc(0.75em - 2px) calc(1em - 2px);
-  border: 2px solid palette.get("secondary", 50%, 50%);
-  background: palette.get("secondary", 50%, 20%);
+  border-color: theme.get("box", "border-color-alt");
+  background: theme.get("box", "background-alt");
 }
