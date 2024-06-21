@@ -44,9 +44,7 @@ The most basic implementation of the flex utility component consists of a contai
   <Fragment slot="tab-html">
   ```html
   <div class="flex">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
   </Fragment>
@@ -78,9 +76,7 @@ Also available is the `flex-inline` utility. This applies the same styles as `fl
   <Fragment slot="tab-html">
   ```html
   <div class="flex-inline">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
   </Fragment>
@@ -97,7 +93,7 @@ Also available is the `flex-inline` utility. This applies the same styles as `fl
 
 ## flex-gap-[key]
 
-Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -127,9 +123,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
   </Fragment>
   ```html
   <div class="flex flex-gap-xs">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -145,7 +139,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 
 ### flex-gap-x-[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -175,9 +169,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
   </Fragment>
   ```html
   <div class="flex flex-gap-x-sm">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -193,7 +185,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 
 ### flex-gap-y-[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`$gap-map`](#scss-variables-file) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -223,9 +215,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
   </Fragment>
   ```html
   <div class="flex flex-gap-y-xl">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -268,9 +258,7 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
   </Fragment>
   ```html
   <div class="flex flex-nowrap">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -307,9 +295,7 @@ Used to control the align-items property which sets the align-self value on all 
   </Fragment>
   ```html
   <div class="flex flex-align-center">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -354,9 +340,7 @@ Used to control the justify-content property which defines how the browser distr
   </Fragment>
   ```html
   <div class="flex flex-justify-center">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
@@ -642,7 +626,6 @@ Used to control the flex-shrink property which allows a flex item to shrink if t
   <div class="flex flex-nowrap">
     <div class="flex-shrink-3">...</div>
     <div>...</div>
-    <div>...</div>
   </div>
   ```
 </CodeExample>
@@ -712,20 +695,19 @@ Used to control the order property which adjusts the order items appear in a fle
   </Fragment>
   <Fragment slot="output">
     <div class="flex">
-      <div class="box flex-order-1">Order: 1;</div>
-      <div class="box flex-order-2">Order: 2;</div>
-      <div class="box flex-order-3">Order: 3;</div>
-      <div class="box flex-order-4">Order: 4;</div>
-      <div class="box flex-order-5">Order: 5;</div>
-      <div class="box flex-order-6">Order: 6;</div>
+      <div class="box flex-order-1">Order 1</div>
+      <div class="box flex-order-2">Order 2</div>
+      <div class="box flex-order-3">Order 3</div>
+      <div class="box flex-order-4">Order 4</div>
+      <div class="box flex-order-5">Order 5</div>
+      <div class="box flex-order-6">Order 6</div>
       <div id="demo-flex-order" class="box-alt flex-order-3">Adjust</div>
     </div>
   </Fragment>
   ```html
   <div class="flex">
     <div class="flex-order-3">...</div>
-    <div>...</div>
-    <div>...</div>
+    ...
   </div>
   ```
 </CodeExample>
