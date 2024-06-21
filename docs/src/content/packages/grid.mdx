@@ -24,19 +24,27 @@ npm install @vrembem/grid
 
 ## Basic usage
 
-The most basic implementation of the grid component consists of two elements. By default, `grid__item`'s split the available space within the `grid` parent evenly:
-
-- `grid`
-- `grid__item`
+The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` utility class to the desired grid container with an optional `grid-columns-[value]` modifier to create a grid layout.
 
 <CodeExample>
-  <div slot="output" class="gap-y">
-    <div class="grid grid-columns-3">
-      <div class="box">...</div>
-      <div class="box">...</div>
-      <div class="box">...</div>
+  <Fragment slot="demo">
+    <label for="demo-grid-basic-select" class="text-nowrap">Column variants</label>
+    <select id="demo-grid-basic-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-basic">
+      <option value="grid">None</option>
+      <option value="grid grid-columns-2">grid-columns-2</option>
+      <option value="grid grid-columns-3">grid-columns-3</option>
+      <option value="grid grid-columns-4">grid-columns-4</option>
+      <option value="grid grid-columns-5">grid-columns-5</option>
+      <option value="grid grid-columns-6">grid-columns-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-grid-basic" class="grid grid-columns-3">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
     </div>
-  </div>
+  </Fragment>
   ```html
   <div class="grid grid-columns-3">
     ...
@@ -44,134 +52,61 @@ The most basic implementation of the grid component consists of two elements. By
   ```
 </CodeExample>
 
-> Grid is a flex based layout component. Use flex utilities from [`@vremben/utility`](/packages/utility) to further customize your layout. 
+### grid-inline
 
-The `grid__clear` element allows you to start a new row at any point in a column set.
+Also available is the `grid-inline` utility. This applies the same styles as `grid` but will set the `display` property to `inline-grid` instead of `grid`.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label for="demo-grid-inline-select" class="text-nowrap">Column variants</label>
+    <select id="demo-grid-inline-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-inline">
+      <option value="grid-inline">None</option>
+      <option value="grid-inline grid-columns-2">grid-columns-2</option>
+      <option value="grid-inline grid-columns-3">grid-columns-3</option>
+      <option value="grid-inline grid-columns-4">grid-columns-4</option>
+      <option value="grid-inline grid-columns-5">grid-columns-5</option>
+      <option value="grid-inline grid-columns-6">grid-columns-6</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__clear"></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
+    <div id="demo-grid-inline" class="grid-inline grid-columns-3">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid">
-    <div class="grid__item">...</div>
-    <div class="grid__clear"></div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
+  <div class="grid-inline grid-columns-3">
+    ...
   </div>
   ```
 </CodeExample>
 
-## grid_auto
+## grid-columns-[value]
 
-Gives grid items a basis of auto so their content dictates their width.
+By default the `grid` utility class only renders a single column. To add additional columns to the grid layout, use the `grid-columns-[value]` modifier. The number of variants available is controlled by the `grid.$columns` variable.
 
 <CodeExample>
+  <Fragment slot="demo">
+    <label for="demo-grid-columns-select" class="text-nowrap">Column variants</label>
+    <select id="demo-grid-columns-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-columns">
+      <option value="grid">None</option>
+      <option value="grid grid-columns-2">grid-columns-2</option>
+      <option value="grid grid-columns-3">grid-columns-3</option>
+      <option value="grid grid-columns-4">grid-columns-4</option>
+      <option value="grid grid-columns-5">grid-columns-5</option>
+      <option value="grid grid-columns-6">grid-columns-6</option>
+    </select>
+  </Fragment>
   <Fragment slot="output">
-    <div class="grid grid_auto">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
+    <div id="demo-grid-columns" class="grid grid-columns-3">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid grid_auto">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-Set an individual grid item to auto using `grid__item_auto` element modifier.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item grid__item_auto"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item grid__item_auto">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-## grid_fill
-
-The fill modifier stretches grid item’s contents to fill the height of it’s container.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid grid_fill">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item gap-y">
-        <div class="box">...</div>
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid grid_fill">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-Set an individual grid item to fill using the `grid__item_fill` element modifier.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item grid__item_fill"><div class="box">...</div></div>
-      <div class="grid__item gap-y">
-        <div class="box">...</div>
-        <div class="box">...</div>
-      </div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item grid__item_fill">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-## grid_gap_[key]
-
-Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid grid_gap_xs">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__clear"></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid grid_gap_xs">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
+  <div class="grid grid-columns-3">
     ...
   </div>
   ```
@@ -179,243 +114,55 @@ Modifiers that adjust the gutter spacing between `grid__item` elements. Gap key 
 
 **Available variants**
 
-- `grid_gap_none`
-- `grid_gap_xs`
-- `grid_gap_sm`
-- `grid_gap_md`
-- `grid_gap_lg`
-- `grid_gap_xl`
+- `grid-columns-2`
+- `grid-columns-3`
+- `grid-columns-4`
+- `grid-columns-5`
+- `grid-columns-6`
 
-## grid_gap-x_[key]
+### [key]:grid-columns-[value]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
+The grid-columns utility also comes with optional media breakpoint modifiers. This allows changing the grid-columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
-  <Fragment slot="output">
-    <div class="grid grid_gap-x_xs">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__clear"></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-grid-columns-select">Variants Demo:</label>
+    <select id="demo-bp-grid-columns-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-grid-columns">
+      <option value="xs:grid-columns-3">xs:grid-columns-3</option>
+      <option value="sm:grid-columns-3">sm:grid-columns-3</option>
+      <option value="md:grid-columns-3">md:grid-columns-3</option>
+      <option value="lg:grid-columns-3">lg:grid-columns-3</option>
+      <option value="xl:grid-columns-3">xl:grid-columns-3</option>
+    </select>
   </Fragment>
-  ```html
-  <div class="grid grid_gap-x_xs">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    ...
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `grid_gap-x_none`
-- `grid_gap-x_xs`
-- `grid_gap-x_sm`
-- `grid_gap-x_md`
-- `grid_gap-x_lg`
-- `grid_gap-x_xl`
-
-## grid_gap-y_[key]
-
-Adjusts the vertical gap spacing based on the provided key. Gap key output is based on the values in [`$gap-map`](#scss-variables-file) variable map.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid grid_gap-y_xs">
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__clear"></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid grid_gap-y_xl">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    ...
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `grid_gap-y_none`
-- `grid_gap-y_xs`
-- `grid_gap-y_sm`
-- `grid_gap-y_md`
-- `grid_gap-y_lg`
-- `grid_gap-y_xl`
-
-## grid_stack_[key]
-
-Adds a breakpoint for when grid items should be stacked vertically. Values and class keys are generated using the [`$breakpoints`](#scss-variables-file) map. Omitting the key value from the modifier (e.g. `grid_stack`) will stack items under all conditions.
-
-<CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div class="grid grid_gap_sm grid_stack_md">
-      <div class="grid__item span-full">
-        Grid will stack below the <code>md (760px)</code> breakpoint.
-      </div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-    <div class="grid grid_gap_sm grid_stack_lg">
-      <div class="grid__item span-full">
-        Grid will stack below the <code>lg (990px)</code> breakpoint.
-      </div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
+    <div id="demo-bp-grid-columns" class="grid lg:grid-columns-3">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
     </div>
   </div>
   ```html
-  <div class="grid grid_stack_md">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-
-  <div class="grid grid_stack_lg">
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
+  <div class="grid lg:grid-columns-3">
+    ...
   </div>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `grid_stack`
-- `grid_stack_xs`
-- `grid_stack_sm`
-- `grid_stack_md`
-- `grid_stack_lg`
-- `grid_stack_xl`
+- `xs:grid-columns-[value]`
+- `sm:grid-columns-[value]`
+- `md:grid-columns-[value]`
+- `lg:grid-columns-[value]`
+- `xl:grid-columns-[value]`
 
-## span
+## grid-gap-[key]
+### grid-gap-x-[key]
+### grid-gap-y-[key]
 
-Set the flex-basis, width and max-width on an element using the `span` module. Span column widths are built from the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#scss-variables-file) variable map. These are the available variants:
-
-- `span-[col]-[key]` - Sets the number of columns an element should span with an optional breakpoint condition.
-- `span-auto-[key]` - Sets an elements width to `auto` with an optional breakpoint condition.
-- `span-full-[key]` - Sets an elements width to `100%` with an optional breakpoint condition.
-
-### span-[col]-[key]
-
-Sets the number of columns an element should span with an optional breakpoint condition. The total number of columns is set in the `$span-columns` variable. Breakpoint keys are built from the [`$breakpoints`](#scss-variables-file) variable map.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item span-6"><div class="box">...</div></div>
-      <div class="grid__item span-6"><div class="box">...</div></div>
-      <div class="grid__clear"></div>
-      <div class="grid__item span-6"><div class="box">...</div></div>
-      <div class="grid__item span-3"><div class="box">...</div></div>
-      <div class="grid__item span-3"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item span-6">...</div>
-    <div class="grid__item span-6">...</div>
-    <div class="grid__clear"></div>
-    <div class="grid__item span-6">...</div>
-    <div class="grid__item span-3">...</div>
-    <div class="grid__item span-3">...</div>
-  </div>
-  ```
-</CodeExample>
-
-Here's an example of using the optional breakpoint variants. Breakpoints variants should be added with a mobile-first approach.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg"><div class="box">...</div></div>
-      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
-      <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg"><div class="box">...</div></div>
-      <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item span-12 span-6-xs span-8-sm span-4-md span-3-lg">...</div>
-    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-    <div class="grid__item span-12 span-6-xs span-4-sm span-4-md span-3-lg">...</div>
-    <div class="grid__item span-12 span-6-xs span-8-sm span-12-md span-3-lg">...</div>
-  </div>
-  ```
-</CodeExample>
-
-### span-auto-[key]
-
-Sets an elements width and flex-basis to `auto` with an optional breakpoint condition.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item span-auto"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item span-auto">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-### span-grow-[key]
-
-Sets an elements width and flex-basis to `auto` and flex-grow to `1` with an optional breakpoint condition.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item span-grow"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item span-grow">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
-
-### span-full-[key]
-
-Sets an elements flex property to `none` and width to `100%` with an optional breakpoint condition.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="grid">
-      <div class="grid__item span-full"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-      <div class="grid__item"><div class="box">...</div></div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid">
-    <div class="grid__item span-full">...</div>
-    <div class="grid__item">...</div>
-    <div class="grid__item">...</div>
-  </div>
-  ```
-</CodeExample>
+## grid-span
 
 ## Customization
 
