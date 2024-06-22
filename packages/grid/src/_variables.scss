@@ -3,6 +3,7 @@
 
 $breakpoints: core.$breakpoints !default;
 $columns: 6 !default;
+$rows: 6 !default;
 $flow: dense !default;
 $gap: 2em !default;
 $gap-map: (
@@ -16,6 +17,7 @@ $gap-map: (
 
 @include css.set("grid", (
   "columns": 1,
+  "rows": 1,
   "flow": $flow,
   "gap": $gap,
   "gap-x": null,

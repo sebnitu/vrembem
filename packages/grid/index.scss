@@ -2,8 +2,12 @@
 @forward "./src/root";
 @forward "./src/grid";
 @forward "./src/grid-columns";
-@forward "./src/grid-flow";
-@forward "./src/grid-gap";
 @forward "./src/grid-span";
+@forward "./src/grid-rows";
+@forward "./src/grid-row";
+@forward "./src/grid-gap";
+@forward "./src/grid-flow";
 
-// TODO: Maybe add option `grid-template-row` and `grid-row` properties.
+// TODO: Maybe convert root `grid` to use BEM
+// TODO: Maybe rename `grid-columns` > `grid-cols`
+// TODO: Maybe rename `grid-span` > `grid-col`
