@@ -2,8 +2,8 @@
 @forward "./src/root";
 @forward "./src/grid";
 @forward "./src/grid-columns";
+@forward "./src/grid-flow";
 @forward "./src/grid-gap";
 @forward "./src/grid-span";
 
-// TODO: Add utility for `grid-auto-flow` property.
 // TODO: Maybe add option `grid-template-row` and `grid-row` properties.

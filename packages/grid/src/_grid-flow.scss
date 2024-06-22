@@ -1,0 +1,21 @@
+@use "@vrembem/core/css";
+
+.grid-flow-row {
+  @include css.override("grid", "flow", row);
+}
+
+.grid-flow-column {
+  @include css.override("grid", "flow", column);
+}
+
+.grid-flow-dense {
+  @include css.override("grid", "flow", dense);
+}
+
+.grid-flow-row-dense {
+  @include css.override("grid", "flow", row dense);
+}
+
+.grid-flow-column-dense {
+  @include css.override("grid", "flow", column dense);
+}

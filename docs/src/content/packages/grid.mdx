@@ -70,7 +70,7 @@ By default the `grid` utility class only renders a single column. To add additio
 
 <CodeExample>
   <Fragment slot="demo">
-    <label for="demo-grid-columns-select" class="text-nowrap">Column variants</label>
+    <label for="demo-grid-columns-select" class="text-nowrap">Variants Demo:</label>
     <select id="demo-grid-columns-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-columns">
       <option value="grid">None</option>
       <option value="grid grid-columns-2">grid-columns-2</option>
@@ -142,6 +142,45 @@ The grid-columns utility also comes with optional media breakpoint modifiers. Th
 - `md:grid-columns-[value]`
 - `lg:grid-columns-[value]`
 - `xl:grid-columns-[value]`
+
+## grid-flow-[value]
+
+Used to control the grid-auto-flow property which sets how auto-placed items get flowed into the grid. The default grid-auto-flow value is set to `dense` by the `grid.$flow` variable applied via the `--vb-grid-flow` custom property.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-grid-flow-select">Variants Demo:</label>
+    <select id="demo-grid-flow-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-flow">
+      <option value="grid-flow-row">grid-flow-row</option>
+      <option value="grid-flow-column">grid-flow-column</option>
+      <option value="grid-flow-dense">grid-flow-dense</option>
+      <option value="grid-flow-row-dense">grid-flow-row-dense</option>
+      <option value="grid-flow-column-dense">grid-flow-column-dense</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-grid-flow" class="grid grid-columns-3 grid-row-3 grid-flow-dense">
+      <div class="box grid-span-2">1</div>
+      <div class="box grid-span-2">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid-columns-3 grid-row-3 grid-flow-dense">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `grid-flow-row`
+- `grid-flow-column`
+- `grid-flow-dense`
+- `grid-flow-row-dense`
+- `grid-flow-column-dense`
 
 ## grid-gap-[key]
 
