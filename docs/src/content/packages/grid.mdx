@@ -24,7 +24,7 @@ npm install @vrembem/grid
 
 ## Basic usage
 
-The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` utility class to the desired grid container with an optional `grid_cols_[value]` modifier to create a grid layout.
+The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` class to the desired grid container with an optional `grid_cols_[value]` modifier to create a grid layout.
 
 <CodeExample>
   <Fragment slot="output">
@@ -66,7 +66,7 @@ Also available is the `grid_inline` modifier. This sets the `display` property t
 
 ## grid_cols_[value]
 
-By default the `grid` utility class only renders a single column. To add additional columns to the grid layout, use the `grid_cols_[value]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
+By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[value]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -109,7 +109,7 @@ By default the `grid` utility class only renders a single column. To add additio
 
 ### [key]:grid_cols_[value]
 
-The grid-cols utility also comes with optional media breakpoint modifiers. This allows changing the grid columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The `grid_cols_[value]` modifier also comes with optional media breakpoint modifiers. This allows changing the grid columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -147,7 +147,7 @@ The grid-cols utility also comes with optional media breakpoint modifiers. This 
 
 ## grid_rows_[value]
 
-By default the `grid` utility class only renders a single row. To add additional rows to the grid layout, use the `grid_rows_[value]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
+By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[value]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -187,7 +187,7 @@ By default the `grid` utility class only renders a single row. To add additional
 
 ### [key]:grid_rows_[value]
 
-The grid-rows utility also comes with optional media breakpoint modifiers. This allows changing the grid-rows based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The `grid_rows_[value]` modifier also comes with optional media breakpoint modifiers. This allows changing the grid-rows based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -478,7 +478,7 @@ A utility used to control the grid-column property which handles a grid item's s
 
 ### [key]:col-[value]
 
-The col utility also comes with optional media breakpoint modifiers. This allows changing the grid-column property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The `col-[value]` utility also comes with optional media breakpoint modifiers. This allows changing the grid-column property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -606,7 +606,7 @@ A utility used to control the grid-row property which handles a grid item's size
 
 ### [key]:row-[value]
 
-The row utility also comes with optional media breakpoint modifiers. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The `row-[value]` utility also comes with optional media breakpoint modifiers. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
