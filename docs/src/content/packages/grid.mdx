@@ -24,18 +24,18 @@ npm install @vrembem/grid
 
 ## Basic usage
 
-The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` utility class to the desired grid container with an optional `grid-columns-[value]` modifier to create a grid layout.
+The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` utility class to the desired grid container with an optional `grid-cols-[value]` modifier to create a grid layout.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="grid grid-columns-3">
+    <div class="grid grid-cols-3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-3">
+  <div class="grid grid-cols-3">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -49,14 +49,14 @@ Also available is the `grid-inline` utility. This applies the same styles as `gr
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="grid-inline grid-columns-3">
+    <div class="grid-inline grid-cols-3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid-inline grid-columns-3">
+  <div class="grid-inline grid-cols-3">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -64,25 +64,25 @@ Also available is the `grid-inline` utility. This applies the same styles as `gr
   ```
 </CodeExample>
 
-## grid-columns-[value]
+## grid-cols-[value]
 
-By default the `grid` utility class only renders a single column. To add additional columns to the grid layout, use the `grid-columns-[value]` modifier. The number of variants available is controlled by the `grid.$columns` variable (defaults to `6`).
+By default the `grid` utility class only renders a single column. To add additional columns to the grid layout, use the `grid-cols-[value]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
 
 <CodeExample>
   <Fragment slot="demo">
-    <label for="demo-grid-columns-select" class="text-nowrap">Variants Demo:</label>
-    <select id="demo-grid-columns-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-columns">
+    <label for="demo-grid-cols-select" class="text-nowrap">Variants Demo:</label>
+    <select id="demo-grid-cols-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-cols">
       <option value="grid">None</option>
-      <option value="grid grid-columns-1">grid-columns-1</option>
-      <option value="grid grid-columns-2">grid-columns-2</option>
-      <option value="grid grid-columns-3">grid-columns-3</option>
-      <option value="grid grid-columns-4">grid-columns-4</option>
-      <option value="grid grid-columns-5">grid-columns-5</option>
-      <option value="grid grid-columns-6">grid-columns-6</option>
+      <option value="grid grid-cols-1">grid-cols-1</option>
+      <option value="grid grid-cols-2">grid-cols-2</option>
+      <option value="grid grid-cols-3">grid-cols-3</option>
+      <option value="grid grid-cols-4">grid-cols-4</option>
+      <option value="grid grid-cols-5">grid-cols-5</option>
+      <option value="grid grid-cols-6">grid-cols-6</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-columns" class="grid grid-columns-3">
+    <div id="demo-grid-cols" class="grid grid-cols-3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -92,7 +92,7 @@ By default the `grid` utility class only renders a single column. To add additio
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-3">
+  <div class="grid grid-cols-3">
     ...
   </div>
   ```
@@ -100,38 +100,38 @@ By default the `grid` utility class only renders a single column. To add additio
 
 **Available variants**
 
-- `grid-columns-1`
-- `grid-columns-2`
-- `grid-columns-3`
-- `grid-columns-4`
-- `grid-columns-5`
-- `grid-columns-6`
+- `grid-cols-1`
+- `grid-cols-2`
+- `grid-cols-3`
+- `grid-cols-4`
+- `grid-cols-5`
+- `grid-cols-6`
 
-### [key]:grid-columns-[value]
+### [key]:grid-cols-[value]
 
-The grid-columns utility also comes with optional media breakpoint modifiers. This allows changing the grid-columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The grid-cols utility also comes with optional media breakpoint modifiers. This allows changing the grid columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-bp-grid-columns-select">Variants Demo:</label>
-    <select id="demo-bp-grid-columns-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-grid-columns">
-      <option value="xs:grid-columns-3">xs:grid-columns-3</option>
-      <option value="sm:grid-columns-3">sm:grid-columns-3</option>
-      <option value="md:grid-columns-3">md:grid-columns-3</option>
-      <option value="lg:grid-columns-3">lg:grid-columns-3</option>
-      <option value="xl:grid-columns-3">xl:grid-columns-3</option>
+    <label class="text-nowrap" for="demo-bp-grid-cols-select">Variants Demo:</label>
+    <select id="demo-bp-grid-cols-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-grid-cols">
+      <option value="xs:grid-cols-3">xs:grid-cols-3</option>
+      <option value="sm:grid-cols-3">sm:grid-cols-3</option>
+      <option value="md:grid-cols-3">md:grid-cols-3</option>
+      <option value="lg:grid-cols-3">lg:grid-cols-3</option>
+      <option value="xl:grid-cols-3">xl:grid-cols-3</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-grid-columns" class="grid lg:grid-columns-3">
+    <div id="demo-bp-grid-cols" class="grid lg:grid-cols-3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
     </div>
   </div>
   ```html
-  <div class="grid lg:grid-columns-3">
+  <div class="grid lg:grid-cols-3">
     ...
   </div>
   ```
@@ -139,11 +139,92 @@ The grid-columns utility also comes with optional media breakpoint modifiers. Th
 
 **Available variants**
 
-- `xs:grid-columns-[value]`
-- `sm:grid-columns-[value]`
-- `md:grid-columns-[value]`
-- `lg:grid-columns-[value]`
-- `xl:grid-columns-[value]`
+- `xs:grid-cols-[value]`
+- `sm:grid-cols-[value]`
+- `md:grid-cols-[value]`
+- `lg:grid-cols-[value]`
+- `xl:grid-cols-[value]`
+
+## grid-col-[value]
+
+A utility used to control the grid-column property by applying `span #`. This allows the grid item to span multiple columns.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label for="demo-grid-col-span-select" class="text-nowrap">Variants Demo:</label>
+    <select id="demo-grid-col-span-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-col-span">
+      <option value="grid-col-auto">grid-col-auto</option>
+      <option value="grid-col-span-full">grid-col-span-full</option>
+      <option value="grid-col-span-2">grid-col-span-2</option>
+      <option value="grid-col-span-3">grid-col-span-3</option>
+      <option value="grid-col-span-4">grid-col-span-4</option>
+      <option value="grid-col-span-5">grid-col-span-5</option>
+      <option value="grid-col-span-6">grid-col-span-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="grid grid-cols-6">
+      <div class="box grid-col-span-3">1</div>
+      <div class="box grid-col-span-3">2</div>
+      <div id="demo-grid-col-span" class="box-alt grid-col-span-3">3</div>
+      <div class="box">4</div>
+      <div class="box">5</div>
+      <div class="box">6</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid-cols-6">
+    <div class="grid-col-span-3">...</div>
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `grid-col-auto`
+- `grid-col-span-full`
+- `grid-col-span-2`
+- `grid-col-span-3`
+- `grid-col-span-4`
+- `grid-col-span-5`
+- `grid-col-span-6`
+
+### [key]:grid-col-[value]
+
+The grid-col-span utility also comes with optional media breakpoint modifiers. This allows changing the grid-col-span based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="grid grid-cols-6">
+      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">1</div>
+      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">2</div>
+      <div class="box grid-col-span-3 md:grid-col-span-6 lg:grid-col-span-2">3</div>
+      <div class="box grid-col-span-3 md:grid-col-span-3 lg:grid-col-span-3">4</div>
+      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-3">5</div>
+    </div>
+  </div>
+  ```html
+  <div class="grid grid-cols-6">
+    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">...</div>
+    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">...</div>
+    <div class="grid-col-span-3 md:grid-col-span-6 lg:grid-col-span-2">...</div>
+    <div class="grid-col-span-3 md:grid-col-span-3 lg:grid-col-span-3">...</div>
+    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-3">...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:grid-col-span-[value]`
+- `sm:grid-col-span-[value]`
+- `md:grid-col-span-[value]`
+- `lg:grid-col-span-[value]`
+- `xl:grid-col-span-[value]`
 
 ## grid-rows-[value]
 
@@ -153,25 +234,25 @@ By default the `grid` utility class only renders a single row. To add additional
   <Fragment slot="demo">
     <label for="demo-grid-rows-select" class="text-nowrap">Variants Demo:</label>
     <select id="demo-grid-rows-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-rows">
-      <option value="grid grid-columns-2">None</option>
-      <option value="grid grid-columns-2 grid-rows-1">grid-rows-1</option>
-      <option value="grid grid-columns-2 grid-rows-2">grid-rows-2</option>
-      <option value="grid grid-columns-2 grid-rows-3">grid-rows-3</option>
-      <option value="grid grid-columns-2 grid-rows-4">grid-rows-4</option>
-      <option value="grid grid-columns-2 grid-rows-5">grid-rows-5</option>
-      <option value="grid grid-columns-2 grid-rows-6">grid-rows-6</option>
+      <option value="grid grid-cols-2">None</option>
+      <option value="grid grid-cols-2 grid-rows-1">grid-rows-1</option>
+      <option value="grid grid-cols-2 grid-rows-2">grid-rows-2</option>
+      <option value="grid grid-cols-2 grid-rows-3">grid-rows-3</option>
+      <option value="grid grid-cols-2 grid-rows-4">grid-rows-4</option>
+      <option value="grid grid-cols-2 grid-rows-5">grid-rows-5</option>
+      <option value="grid grid-cols-2 grid-rows-6">grid-rows-6</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-rows" class="grid grid-columns-2 grid-flow-row grid-rows-2">
-      <div class="box grid-span-full">1</div>
+    <div id="demo-grid-rows" class="grid grid-cols-2 grid-flow-row grid-rows-2">
+      <div class="box grid-col-span-full">1</div>
       <div class="box grid-row-span-full">2</div>
       <div class="box grid-row-span-full">3</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-2 grid-rows-2">
-    <div class="grid-span-full">...</div>
+  <div class="grid grid-cols-2 grid-rows-2">
+    <div class="grid-col-span-full">...</div>
     <div class="grid-row-span-full">...</div>
     <div class="grid-row-span-full">...</div>
   </div>
@@ -204,15 +285,15 @@ The grid-rows utility also comes with optional media breakpoint modifiers. This 
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-grid-rows" class="grid grid-columns-2 lg:grid-rows-2">
-      <div class="box grid-span-full">1</div>
+    <div id="demo-bp-grid-rows" class="grid grid-cols-2 lg:grid-rows-2">
+      <div class="box grid-col-span-full">1</div>
       <div class="box grid-row-span-full">2</div>
       <div class="box grid-row-span-full">3</div>
     </div>
   </div>
   ```html
-  <div class="grid grid-columns-2 lg:grid-rows-2">
-    <div class="grid-span-full">...</div>
+  <div class="grid grid-cols-2 lg:grid-rows-2">
+    <div class="grid-col-span-full">...</div>
     <div class="grid-row-span-full">...</div>
     <div class="grid-row-span-full">...</div>
   </div>
@@ -226,6 +307,14 @@ The grid-rows utility also comes with optional media breakpoint modifiers. This 
 - `md:grid-rows-[value]`
 - `lg:grid-rows-[value]`
 - `xl:grid-rows-[value]`
+
+## grid-row-[value]
+
+TODO...
+
+### [key]:grid-row-[value]
+
+TODO...
 
 ## grid-flow-[value]
 
@@ -243,16 +332,16 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-flow" class="grid grid-columns-3 grid-rows-3 grid-flow-dense">
-      <div class="box grid-span-2">1</div>
-      <div class="box grid-span-2">2</div>
+    <div id="demo-grid-flow" class="grid grid-cols-3 grid-rows-3 grid-flow-dense">
+      <div class="box grid-col-span-2">1</div>
+      <div class="box grid-col-span-2">2</div>
       <div class="box">3</div>
       <div class="box">4</div>
       <div class="box">5</div>
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-3 grid-rows-3 grid-flow-dense">
+  <div class="grid grid-cols-3 grid-rows-3 grid-flow-dense">
     ...
   </div>
   ```
@@ -283,7 +372,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap" class="grid grid-columns-2 grid-gap-xs">
+    <div id="demo-grid-gap" class="grid grid-cols-2 grid-gap-xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -291,7 +380,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-2 grid-gap-xs">
+  <div class="grid grid-cols-2 grid-gap-xs">
     ...
   </div>
   ```
@@ -323,7 +412,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap-x" class="grid grid-columns-2 grid-gap-x-xs">
+    <div id="demo-grid-gap-x" class="grid grid-cols-2 grid-gap-x-xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -331,7 +420,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-2 grid-gap-x-xs">
+  <div class="grid grid-cols-2 grid-gap-x-xs">
     ...
   </div>
   ```
@@ -363,7 +452,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap-y" class="grid grid-columns-2 grid-gap-y-xs">
+    <div id="demo-grid-gap-y" class="grid grid-cols-2 grid-gap-y-xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -371,7 +460,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
     </div>
   </Fragment>
   ```html
-  <div class="grid grid-columns-2 grid-gap-y-xs">
+  <div class="grid grid-cols-2 grid-gap-y-xs">
     ...
   </div>
   ```
@@ -386,87 +475,6 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `grid-gap-y-lg`
 - `grid-gap-y-xl`
 
-## grid-span-[value]
-
-A utility used to control the grid-column property by applying `span #`. This allows the grid item to span multiple columns.
-
-<CodeExample>
-  <Fragment slot="demo">
-    <label for="demo-grid-span-select" class="text-nowrap">Column variants</label>
-    <select id="demo-grid-span-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-span">
-      <option value="grid-span-auto">grid-span-auto</option>
-      <option value="grid-span-full">grid-span-full</option>
-      <option value="grid-span-2">grid-span-2</option>
-      <option value="grid-span-3">grid-span-3</option>
-      <option value="grid-span-4">grid-span-4</option>
-      <option value="grid-span-5">grid-span-5</option>
-      <option value="grid-span-6">grid-span-6</option>
-    </select>
-  </Fragment>
-  <Fragment slot="output">
-    <div class="grid grid-columns-6">
-      <div class="box grid-span-3">1</div>
-      <div class="box grid-span-3">2</div>
-      <div id="demo-grid-span" class="box-alt grid-span-3">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-      <div class="box">6</div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="grid grid-columns-6">
-    <div class="grid-span-3">...</div>
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `grid-span-auto`
-- `grid-span-full`
-- `grid-span-2`
-- `grid-span-3`
-- `grid-span-4`
-- `grid-span-5`
-- `grid-span-6`
-
-### [key]:grid-span-[value]
-
-The grid-span utility also comes with optional media breakpoint modifiers. This allows changing the grid-span based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div class="grid grid-columns-6">
-      <div class="box grid-span-6 md:grid-span-3 lg:grid-span-2">1</div>
-      <div class="box grid-span-6 md:grid-span-3 lg:grid-span-2">2</div>
-      <div class="box grid-span-3 md:grid-span-6 lg:grid-span-2">3</div>
-      <div class="box grid-span-3 md:grid-span-3 lg:grid-span-3">4</div>
-      <div class="box grid-span-6 md:grid-span-3 lg:grid-span-3">5</div>
-    </div>
-  </div>
-  ```html
-  <div class="grid grid-columns-6">
-    <div class="grid-span-6 md:grid-span-3 lg:grid-span-2">...</div>
-    <div class="grid-span-6 md:grid-span-3 lg:grid-span-2">...</div>
-    <div class="grid-span-3 md:grid-span-6 lg:grid-span-2">...</div>
-    <div class="grid-span-3 md:grid-span-3 lg:grid-span-3">...</div>
-    <div class="grid-span-6 md:grid-span-3 lg:grid-span-3">...</div>
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:grid-span-[value]`
-- `sm:grid-span-[value]`
-- `md:grid-span-[value]`
-- `lg:grid-span-[value]`
-- `xl:grid-span-[value]`
-
 ## Customization
 
 Grid is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
@@ -475,7 +483,8 @@ Grid is primarily customized using CSS variables but can also be modified using 
 
 ```scss
 :root {
-  --vb-grid-columns: 1;
+  --vb-grid-cols: 1;
+  --vb-grid-rows: 1;
   --vb-grid-flow: dense;
   --vb-grid-gap: 2em;
 }
@@ -489,7 +498,8 @@ Grid is primarily customized using CSS variables but can also be modified using 
 @use "@vrembem/core/css";
 
 $breakpoints: core.$breakpoints !default;
-$columns: 6 !default;
+$cols: 6 !default;
+$rows: 6 !default;
 $flow: dense !default;
 $gap: 2em !default;
 $gap-map: (
@@ -502,11 +512,13 @@ $gap-map: (
 ) !default;
 
 @include css.set("grid", (
-  "columns": 1,
+  "cols": 1,
+  "rows": 1,
   "flow": $flow,
   "gap": $gap,
   "gap-x": null,
   "gap-y": null,
 ));
+
 ```
 </DocBlock>

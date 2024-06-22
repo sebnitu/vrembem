@@ -6,7 +6,7 @@
 .grid-inline {
   display: grid;
   grid-auto-flow: css.get("grid", "flow");
-  grid-template-columns: repeat(css.get("grid", "columns"), minmax(0, 1fr));
+  grid-template-columns: repeat(css.get("grid", "cols"), minmax(0, 1fr));
   grid-template-rows: repeat(css.get("grid", "rows"), minmax(0, 1fr));
   gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
 }

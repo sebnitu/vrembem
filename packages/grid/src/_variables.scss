@@ -2,7 +2,7 @@
 @use "@vrembem/core/css";
 
 $breakpoints: core.$breakpoints !default;
-$columns: 6 !default;
+$cols: 6 !default;
 $rows: 6 !default;
 $flow: dense !default;
 $gap: 2em !default;
@@ -16,7 +16,7 @@ $gap-map: (
 ) !default;
 
 @include css.set("grid", (
-  "columns": 1,
+  "cols": 1,
   "rows": 1,
   "flow": $flow,
   "gap": $gap,
