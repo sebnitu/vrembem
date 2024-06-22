@@ -2,8 +2,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-.grid,
-.grid-inline {
+#{core.bem("grid")} {
   display: grid;
   grid-auto-flow: css.get("grid", "flow");
   grid-template-columns: repeat(css.get("grid", "cols"), minmax(0, 1fr));
@@ -11,6 +10,6 @@
   gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
 }
 
-.grid-inline {
+#{core.bem("grid", null, "inline")} {
   display: inline-grid;
 }

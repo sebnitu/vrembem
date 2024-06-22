@@ -3,7 +3,7 @@
 @use "./variables" as var;
 
 @for $i from 1 through var.$rows {
-  .grid-rows-#{$i} {
+  #{core.bem("grid", null, "rows", $i)} {
     @include css.override("grid", "rows", $i);
   }
 }
@@ -11,7 +11,7 @@
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
     @for $i from 1 through var.$rows {
-      .#{$key}\:grid-rows-#{$i} {
+      #{core.bem("#{$key}\\:grid", null, "rows", $i)} {
         @include css.override("grid", "rows", $i);
       }
     }

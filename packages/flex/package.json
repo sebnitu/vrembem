@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/flex",
-  "description": "A simple flexbox utility component.",
+  "description": "A simple flexbox based layout component.",
   "version": "4.0.0-next.8",
   "license": "MIT",
   "keywords": [
