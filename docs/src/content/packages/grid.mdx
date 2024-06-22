@@ -147,26 +147,50 @@ The grid-cols utility also comes with optional media breakpoint modifiers. This 
 
 ## col-[value]
 
-A utility used to control the grid-column property by applying `span #`. This allows the grid item to span multiple columns.
+A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid.$cols`.
 
 <CodeExample>
   <Fragment slot="demo">
-    <label for="demo-col-select" class="text-nowrap">Variants Demo:</label>
-    <select id="demo-col-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-col">
-      <option value="col-auto">col-auto</option>
-      <option value="col-full">col-full</option>
-      <option value="col-2">col-2</option>
-      <option value="col-3">col-3</option>
-      <option value="col-4">col-4</option>
-      <option value="col-5">col-5</option>
-      <option value="col-6">col-6</option>
-    </select>
+    <form data-demo-target="demo-grid-col" class="flex flex-align-center">
+      <label for="demo-col-select" class="text-nowrap">Variants Demo:</label>
+      <select id="demo-col-select" name="demo-col" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="col-auto">col-auto</option>
+        <option value="col-full">col-full</option>
+        <option value="col-1">col-1</option>
+        <option value="col-2">col-2</option>
+        <option value="col-3" selected>col-3</option>
+        <option value="col-4">col-4</option>
+        <option value="col-5">col-5</option>
+        <option value="col-6">col-6</option>
+      </select>
+      <select name="demo-col-start" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="col-start-1">col-start-1</option>
+        <option value="col-start-2">col-start-2</option>
+        <option value="col-start-3">col-start-3</option>
+        <option value="col-start-4">col-start-4</option>
+        <option value="col-start-5">col-start-5</option>
+        <option value="col-start-6">col-start-6</option>
+        <option value="col-start-7">col-start-7</option>
+      </select>
+      <select name="demo-col-end" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="col-end-1">col-end-1</option>
+        <option value="col-end-2">col-end-2</option>
+        <option value="col-end-3">col-end-3</option>
+        <option value="col-end-4">col-end-4</option>
+        <option value="col-end-5">col-end-5</option>
+        <option value="col-end-6">col-end-6</option>
+        <option value="col-end-7">col-end-7</option>
+      </select>
+    </form>
   </Fragment>
   <Fragment slot="output">
     <div class="grid grid-cols-6">
       <div class="box col-3">1</div>
       <div class="box col-3">2</div>
-      <div id="demo-grid-col" class="box-alt col-3">3</div>
+      <div id="demo-grid-col" class="box-alt">3</div>
       <div class="box">4</div>
       <div class="box">5</div>
       <div class="box">6</div>
@@ -184,17 +208,40 @@ A utility used to control the grid-column property by applying `span #`. This al
 
 **Available variants**
 
-- `col-auto`
-- `col-full`
-- `col-2`
-- `col-3`
-- `col-4`
-- `col-5`
-- `col-6`
+<div class="flex flex-items-auto">
+  <div class="type">
+    - `col-1`
+    - `col-2`
+    - `col-3`
+    - `col-4`
+    - `col-5`
+    - `col-6`
+    - `col-auto`
+    - `col-full`
+  </div>
+  <div class="type">
+    - `col-start-1`
+    - `col-start-2`
+    - `col-start-3`
+    - `col-start-4`
+    - `col-start-5`
+    - `col-start-6`
+    - `col-start-7`
+  </div>
+  <div class="type">
+    - `col-end-1`
+    - `col-end-2`
+    - `col-end-3`
+    - `col-end-4`
+    - `col-end-5`
+    - `col-end-6`
+    - `col-end-7`
+  </div>
+</div>
 
 ### [key]:col-[value]
 
-The grid-col utility also comes with optional media breakpoint modifiers. This allows changing the grid-col based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The col utility also comes with optional media breakpoint modifiers. This allows changing the grid-column property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -244,7 +291,7 @@ By default the `grid` utility class only renders a single row. To add additional
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-rows" class="grid grid-cols-2 grid-flow-row grid-rows-2">
+    <div id="demo-grid-rows" class="grid grid-cols-2 grid-rows-2">
       <div class="box col-full">1</div>
       <div class="box row-full">2</div>
       <div class="box row-full">3</div>
@@ -310,11 +357,131 @@ The grid-rows utility also comes with optional media breakpoint modifiers. This 
 
 ## row-[value]
 
-TODO...
+A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid.$rows`.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <form data-demo-target="demo-grid-rol" class="flex flex-align-center">
+      <label for="demo-row-select" class="text-nowrap">Variants Demo:</label>
+      <select id="demo-row-select" name="demo-row" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="row-auto">row-auto</option>
+        <option value="row-full">row-full</option>
+        <option value="row-1">row-1</option>
+        <option value="row-2" selected>row-2</option>
+        <option value="row-3">row-3</option>
+        <option value="row-4">row-4</option>
+        <option value="row-5">row-5</option>
+        <option value="row-6">row-6</option>
+      </select>
+      <select name="demo-row-start" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="row-start-1">row-start-1</option>
+        <option value="row-start-2">row-start-2</option>
+        <option value="row-start-3">row-start-3</option>
+        <option value="row-start-4">row-start-4</option>
+        <option value="row-start-5">row-start-5</option>
+        <option value="row-start-6">row-start-6</option>
+        <option value="row-start-7">row-start-7</option>
+      </select>
+      <select name="demo-row-end" class="input input_type_select input_size_sm input_auto">
+        <option value="">None</option>
+        <option value="row-end-1">row-end-1</option>
+        <option value="row-end-2">row-end-2</option>
+        <option value="row-end-3">row-end-3</option>
+        <option value="row-end-4">row-end-4</option>
+        <option value="row-end-5">row-end-5</option>
+        <option value="row-end-6">row-end-6</option>
+        <option value="row-end-7">row-end-7</option>
+      </select>
+    </form>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="grid grid-cols-6 grid-rows-6">
+      <div id="demo-grid-rol" class="box-alt">1</div>
+      <div class="box col-3">2</div>
+      <div class="box col-3">3</div>
+      <div class="box col-4 row-2">4</div>
+      <div class="box row-2">5</div>
+      <div class="box row-2">6</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="grid grid-cols-6 grid-rows-6">
+    <div class="row-2">...</div>
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+<div class="flex flex-items-auto">
+  <div class="type">
+    - `row-1`
+    - `row-2`
+    - `row-3`
+    - `row-4`
+    - `row-5`
+    - `row-6`
+    - `row-auto`
+    - `row-full`
+  </div>
+  <div class="type">
+    - `row-start-1`
+    - `row-start-2`
+    - `row-start-3`
+    - `row-start-4`
+    - `row-start-5`
+    - `row-start-6`
+    - `row-start-7`
+  </div>
+  <div class="type">
+    - `row-end-1`
+    - `row-end-2`
+    - `row-end-3`
+    - `row-end-4`
+    - `row-end-5`
+    - `row-end-6`
+    - `row-end-7`
+  </div>
+</div>
 
 ### [key]:row-[value]
 
-TODO...
+The row utility also comes with optional media breakpoint modifiers. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="grid grid-cols-3 grid-rows-3 grid-flow-column-dense">
+      <div class="box md:row-2 lg:row-3">1</div>
+      <div class="box md:row-2 lg:row-3">2</div>
+      <div class="box md:row-1">3</div>
+      <div class="box md:row-1">4</div>
+      <div class="box md:row-3 lg:row-1">5</div>
+    </div>
+  </div>
+  ```html
+  <div class="grid grid-cols-3 grid-rows-3 grid-flow-column-dense">
+    <div class="md:row-2 lg:row-3">1</div>
+    <div class="md:row-2 lg:row-3">2</div>
+    <div class="md:row-1">3</div>
+    <div class="md:row-1">4</div>
+    <div class="md:row-3 lg:row-1">5</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:row-[value]`
+- `sm:row-[value]`
+- `md:row-[value]`
+- `lg:row-[value]`
+- `xl:row-[value]`
 
 ## grid-flow-[value]
 
