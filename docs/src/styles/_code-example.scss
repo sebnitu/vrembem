@@ -84,12 +84,12 @@
     background-image: linear-gradient(
       135deg, 
       theme.get("layout", "background-stripe") 10%, 
-      rgb(0 0 0 / 0) 0, 
-      rgb(0 0 0 / 0) 50%, 
+      rgb(0 0 0 / 0%) 0, 
+      rgb(0 0 0 / 0%) 50%, 
       theme.get("layout", "background-stripe") 0, 
       theme.get("layout", "background-stripe") 60%, 
-      rgb(0 0 0 / 0) 0, 
-      rgb(0 0 0 / 0)
+      rgb(0 0 0 / 0%) 0, 
+      rgb(0 0 0 / 0%)
     );
     background-size: 8px 8px;
   }

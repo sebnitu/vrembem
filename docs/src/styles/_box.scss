@@ -21,10 +21,9 @@ $theme-dark: (
 
 .box,
 .box-alt {
-  color: theme.get("foreground");
-  padding: calc(0.75em - 2px) calc(1em - 2px);
   padding: calc(0.75em - 2px) calc(1em - 2px);
   border: 2px solid transparent;
+  color: theme.get("foreground");
 }
 
 .box {
