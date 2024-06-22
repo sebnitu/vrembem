@@ -47,7 +47,7 @@
 
   &:hover,
   &:focus-visible {
-    border-color: css.get("button", "border-color-hover", "border-color");
+    border-color: css.get("menu", "border-color-hover", "border-color");
     background: css.get("menu", "background-hover", "background");
     color: css.get("menu", "foreground-hover", "foreground");
   }
@@ -58,7 +58,7 @@
   }
 
   &:active {
-    border-color: css.get("button", "border-color-active", "border-color-hover", "border-color");
+    border-color: css.get("menu", "border-color-active", "border-color-hover", "border-color");
     background: css.get("menu", "background-active", "background-hover", "background");
     color: css.get("menu", "foreground-active", "foreground-hover", "foreground");
   }
