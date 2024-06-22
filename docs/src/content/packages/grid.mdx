@@ -145,28 +145,28 @@ The grid-cols utility also comes with optional media breakpoint modifiers. This 
 - `lg:grid-cols-[value]`
 - `xl:grid-cols-[value]`
 
-## grid-col-[value]
+## col-[value]
 
 A utility used to control the grid-column property by applying `span #`. This allows the grid item to span multiple columns.
 
 <CodeExample>
   <Fragment slot="demo">
-    <label for="demo-grid-col-span-select" class="text-nowrap">Variants Demo:</label>
-    <select id="demo-grid-col-span-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-col-span">
-      <option value="grid-col-auto">grid-col-auto</option>
-      <option value="grid-col-span-full">grid-col-span-full</option>
-      <option value="grid-col-span-2">grid-col-span-2</option>
-      <option value="grid-col-span-3">grid-col-span-3</option>
-      <option value="grid-col-span-4">grid-col-span-4</option>
-      <option value="grid-col-span-5">grid-col-span-5</option>
-      <option value="grid-col-span-6">grid-col-span-6</option>
+    <label for="demo-col-select" class="text-nowrap">Variants Demo:</label>
+    <select id="demo-col-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-col">
+      <option value="col-auto">col-auto</option>
+      <option value="col-full">col-full</option>
+      <option value="col-2">col-2</option>
+      <option value="col-3">col-3</option>
+      <option value="col-4">col-4</option>
+      <option value="col-5">col-5</option>
+      <option value="col-6">col-6</option>
     </select>
   </Fragment>
   <Fragment slot="output">
     <div class="grid grid-cols-6">
-      <div class="box grid-col-span-3">1</div>
-      <div class="box grid-col-span-3">2</div>
-      <div id="demo-grid-col-span" class="box-alt grid-col-span-3">3</div>
+      <div class="box col-3">1</div>
+      <div class="box col-3">2</div>
+      <div id="demo-grid-col" class="box-alt col-3">3</div>
       <div class="box">4</div>
       <div class="box">5</div>
       <div class="box">6</div>
@@ -174,7 +174,7 @@ A utility used to control the grid-column property by applying `span #`. This al
   </Fragment>
   ```html
   <div class="grid grid-cols-6">
-    <div class="grid-col-span-3">...</div>
+    <div class="col-3">...</div>
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -184,47 +184,47 @@ A utility used to control the grid-column property by applying `span #`. This al
 
 **Available variants**
 
-- `grid-col-auto`
-- `grid-col-span-full`
-- `grid-col-span-2`
-- `grid-col-span-3`
-- `grid-col-span-4`
-- `grid-col-span-5`
-- `grid-col-span-6`
+- `col-auto`
+- `col-full`
+- `col-2`
+- `col-3`
+- `col-4`
+- `col-5`
+- `col-6`
 
-### [key]:grid-col-[value]
+### [key]:col-[value]
 
-The grid-col-span utility also comes with optional media breakpoint modifiers. This allows changing the grid-col-span based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The grid-col utility also comes with optional media breakpoint modifiers. This allows changing the grid-col based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <div class="grid grid-cols-6">
-      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">1</div>
-      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">2</div>
-      <div class="box grid-col-span-3 md:grid-col-span-6 lg:grid-col-span-2">3</div>
-      <div class="box grid-col-span-3 md:grid-col-span-3 lg:grid-col-span-3">4</div>
-      <div class="box grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-3">5</div>
+      <div class="box col-6 md:col-3 lg:col-2">1</div>
+      <div class="box col-6 md:col-3 lg:col-2">2</div>
+      <div class="box col-3 md:col-6 lg:col-2">3</div>
+      <div class="box col-3 md:col-3 lg:col-3">4</div>
+      <div class="box col-6 md:col-3 lg:col-3">5</div>
     </div>
   </div>
   ```html
   <div class="grid grid-cols-6">
-    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">...</div>
-    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-2">...</div>
-    <div class="grid-col-span-3 md:grid-col-span-6 lg:grid-col-span-2">...</div>
-    <div class="grid-col-span-3 md:grid-col-span-3 lg:grid-col-span-3">...</div>
-    <div class="grid-col-span-6 md:grid-col-span-3 lg:grid-col-span-3">...</div>
+    <div class="col-6 md:col-3 lg:col-2">...</div>
+    <div class="col-6 md:col-3 lg:col-2">...</div>
+    <div class="col-3 md:col-6 lg:col-2">...</div>
+    <div class="col-3 md:col-3 lg:col-3">...</div>
+    <div class="col-6 md:col-3 lg:col-3">...</div>
   </div>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `xs:grid-col-span-[value]`
-- `sm:grid-col-span-[value]`
-- `md:grid-col-span-[value]`
-- `lg:grid-col-span-[value]`
-- `xl:grid-col-span-[value]`
+- `xs:col-[value]`
+- `sm:col-[value]`
+- `md:col-[value]`
+- `lg:col-[value]`
+- `xl:col-[value]`
 
 ## grid-rows-[value]
 
@@ -245,16 +245,16 @@ By default the `grid` utility class only renders a single row. To add additional
   </Fragment>
   <Fragment slot="output">
     <div id="demo-grid-rows" class="grid grid-cols-2 grid-flow-row grid-rows-2">
-      <div class="box grid-col-span-full">1</div>
-      <div class="box grid-row-span-full">2</div>
-      <div class="box grid-row-span-full">3</div>
+      <div class="box col-full">1</div>
+      <div class="box row-full">2</div>
+      <div class="box row-full">3</div>
     </div>
   </Fragment>
   ```html
   <div class="grid grid-cols-2 grid-rows-2">
-    <div class="grid-col-span-full">...</div>
-    <div class="grid-row-span-full">...</div>
-    <div class="grid-row-span-full">...</div>
+    <div class="col-full">...</div>
+    <div class="row-full">...</div>
+    <div class="row-full">...</div>
   </div>
   ```
 </CodeExample>
@@ -286,16 +286,16 @@ The grid-rows utility also comes with optional media breakpoint modifiers. This 
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <div id="demo-bp-grid-rows" class="grid grid-cols-2 lg:grid-rows-2">
-      <div class="box grid-col-span-full">1</div>
-      <div class="box grid-row-span-full">2</div>
-      <div class="box grid-row-span-full">3</div>
+      <div class="box col-full">1</div>
+      <div class="box row-full">2</div>
+      <div class="box row-full">3</div>
     </div>
   </div>
   ```html
   <div class="grid grid-cols-2 lg:grid-rows-2">
-    <div class="grid-col-span-full">...</div>
-    <div class="grid-row-span-full">...</div>
-    <div class="grid-row-span-full">...</div>
+    <div class="col-full">...</div>
+    <div class="row-full">...</div>
+    <div class="row-full">...</div>
   </div>
   ```
 </CodeExample>
@@ -308,11 +308,11 @@ The grid-rows utility also comes with optional media breakpoint modifiers. This 
 - `lg:grid-rows-[value]`
 - `xl:grid-rows-[value]`
 
-## grid-row-[value]
+## row-[value]
 
 TODO...
 
-### [key]:grid-row-[value]
+### [key]:row-[value]
 
 TODO...
 
@@ -333,8 +333,8 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
   </Fragment>
   <Fragment slot="output">
     <div id="demo-grid-flow" class="grid grid-cols-3 grid-rows-3 grid-flow-dense">
-      <div class="box grid-col-span-2">1</div>
-      <div class="box grid-col-span-2">2</div>
+      <div class="box col-2">1</div>
+      <div class="box col-2">2</div>
       <div class="box">3</div>
       <div class="box">4</div>
       <div class="box">5</div>

@@ -2,10 +2,10 @@
 @forward "./src/root";
 @forward "./src/grid";
 @forward "./src/grid-cols";
-@forward "./src/grid-col";
 @forward "./src/grid-rows";
-@forward "./src/grid-row";
 @forward "./src/grid-gap";
 @forward "./src/grid-flow";
+@forward "./src/col";
+@forward "./src/row";
 
 // TODO: Maybe convert root `grid` to use BEM
