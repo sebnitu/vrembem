@@ -24,11 +24,11 @@ npm install @vrembem/flex
 
 ## Basic usage
 
-The most basic implementation of the flex utility component consists of a container element with the `flex` class. This can contain any number of children elements.
+The most basic implementation of the flex component consists of a container element with the `flex` class. This can contain any number of children elements.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="flex">
+    <div class="layout-demo flex">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -54,7 +54,7 @@ Also available is the `flex_inline` modifier. This sets the `display` property t
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="flex flex_inline">
+    <div class="layout-demo flex flex_inline">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -86,7 +86,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap" class="flex flex_gap_sm">
+    <div id="demo-flex-gap" class="layout-demo flex flex_gap_sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -132,7 +132,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-x" class="flex flex_gap-x_sm">
+    <div id="demo-flex-gap-x" class="layout-demo flex flex_gap-x_sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -178,7 +178,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-y" class="flex flex_gap-y_xl">
+    <div id="demo-flex-gap-y" class="layout-demo flex flex_gap-y_xl">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -251,7 +251,7 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-wrap" class="flex flex_nowrap">
+    <div id="demo-flex-wrap" class="layout-demo flex flex_nowrap">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -292,7 +292,7 @@ Used to control the flex-direction property which sets how flex items are placed
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-direction" class="flex flex_direction_row-reverse">
+    <div id="demo-flex-direction" class="layout-demo flex flex_direction_row-reverse">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
@@ -331,7 +331,7 @@ This modifier also comes with optional media breakpoint variants. This allows ch
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-flex-direction" class="flex flex_direction_col lg:flex_direction_row">
+    <div id="demo-bp-flex-direction" class="layout-demo flex flex_direction_col lg:flex_direction_row">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
@@ -371,7 +371,7 @@ This utility helps to control the flex property on flex items (direct children o
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-items" class="flex flex_items_auto">
+    <div id="demo-flex-items" class="layout-demo flex flex_items_auto">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
@@ -412,7 +412,7 @@ Used for controlling the flex property directly on flex items. These should be a
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex flex_items_auto">
+    <div class="layout-demo flex flex_items_auto">
       <div id="demo-flex-value" class="box-alt flex-none">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
@@ -453,7 +453,7 @@ The `flex_items_[value]` and `flex-[value]` also come with optional media breakp
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div class="flex">
+    <div class="layout-demo flex">
       <div id="demo-bp-flex-items" class="box-alt flex-full lg:flex-auto">1. One</div>
       <div class="box flex-auto">2. Two</div>
       <div class="box flex-auto">3. Three</div>
@@ -507,7 +507,7 @@ Used to control the flex-grow property which specifies how much of the flex cont
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex flex_items_auto">
+    <div class="layout-demo flex flex_items_auto">
       <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
@@ -552,7 +552,7 @@ Used to control the flex-shrink property which allows a flex item to shrink if t
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex flex_nowrap">
+    <div class="layout-demo flex flex_nowrap">
       <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
       <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
     </div>
@@ -590,7 +590,7 @@ Used to control the flex-basis property which sets the initial main size of a fl
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex">
+    <div class="layout-demo flex">
       <div id="demo-flex-basis" class="box-alt flex-basis-auto">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>

@@ -28,7 +28,7 @@ The most basic implementation of the grid layout consists of the grid container 
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="grid grid_cols_3">
+    <div class="layout-demo grid grid_cols_3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -49,7 +49,7 @@ Also available is the `grid_inline` modifier. This sets the `display` property t
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="grid grid_inline grid_cols_3">
+    <div class="layout-demo grid grid_inline grid_cols_3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -82,7 +82,7 @@ By default the `grid` class only defines a single column. To add additional colu
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-cols" class="grid grid_cols_3">
+    <div id="demo-grid-cols" class="layout-demo grid grid_cols_3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -124,7 +124,7 @@ This modifier also comes with optional media breakpoint variants. This allows ch
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-grid-cols" class="grid lg:grid_cols_3">
+    <div id="demo-bp-grid-cols" class="layout-demo grid lg:grid_cols_3">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -163,7 +163,7 @@ By default the `grid` class only defines a single row. To add additional rows to
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-rows" class="grid grid_cols_2 grid_rows_2">
+    <div id="demo-grid-rows" class="layout-demo grid grid_cols_2 grid_rows_2">
       <div class="box row-full">1</div>
       <div class="box">2</div>
     </div>
@@ -202,7 +202,7 @@ This modifier also comes with optional media breakpoint variants. This allows ch
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-grid-rows" class="grid grid_cols_2 lg:grid_rows_2">
+    <div id="demo-bp-grid-rows" class="layout-demo grid grid_cols_2 lg:grid_rows_2">
       <div class="box row-full">1</div>
       <div class="box">2</div>
     </div>
@@ -240,7 +240,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap" class="grid grid_cols_2 grid_gap_xs">
+    <div id="demo-grid-gap" class="layout-demo grid grid_cols_2 grid_gap_xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -280,7 +280,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap-x" class="grid grid_cols_2 grid_gap-x_xs">
+    <div id="demo-grid-gap-x" class="layout-demo grid grid_cols_2 grid_gap-x_xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -320,7 +320,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-gap-y" class="grid grid_cols_2 grid_gap-y_xs">
+    <div id="demo-grid-gap-y" class="layout-demo grid grid_cols_2 grid_gap-y_xs">
       <div class="box">1</div>
       <div class="box">2</div>
       <div class="box">3</div>
@@ -389,7 +389,7 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-flow" class="grid grid_cols_3 grid_rows_3 grid_flow_dense">
+    <div id="demo-grid-flow" class="layout-demo grid grid_cols_3 grid_rows_3 grid_flow_dense">
       <div class="box col-2">1</div>
       <div class="box col-2">2</div>
       <div class="box">3</div>
@@ -454,7 +454,7 @@ A utility used to control the grid-column property which handles a grid item's s
     </form>
   </Fragment>
   <Fragment slot="output">
-    <div class="grid grid_cols_6">
+    <div class="layout-demo grid grid_cols_6">
       <div class="box col-3">1</div>
       <div class="box col-3">2</div>
       <div id="demo-grid-col" class="box-alt">3</div>
@@ -513,7 +513,7 @@ This utility also comes with optional media breakpoint variants. This allows cha
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div class="grid grid_cols_6">
+    <div class="layout-demo grid grid_cols_6">
       <div class="box col-6 md:col-3 lg:col-2">1</div>
       <div class="box col-6 md:col-3 lg:col-2">2</div>
       <div class="box col-3 md:col-6 lg:col-2">3</div>
@@ -582,7 +582,7 @@ A utility used to control the grid-row property which handles a grid item's size
     </form>
   </Fragment>
   <Fragment slot="output">
-    <div class="grid grid_cols_6 grid_rows_6">
+    <div class="layout-demo grid grid_cols_6 grid_rows_6">
       <div id="demo-grid-rol" class="box-alt">1</div>
       <div class="box col-3">2</div>
       <div class="box col-3">3</div>
@@ -641,7 +641,7 @@ This utility also comes with optional media breakpoint variants. This allows cha
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div class="grid grid_cols_3 grid_rows_3 grid_flow_col-dense">
+    <div class="layout-demo grid grid_cols_3 grid_rows_3 grid_flow_col-dense">
       <div class="box md:row-2 lg:row-3">1</div>
       <div class="box md:row-2 lg:row-3">2</div>
       <div class="box md:row-1">3</div>

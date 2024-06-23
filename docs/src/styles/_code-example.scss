@@ -5,18 +5,6 @@
 @use "@vrembem/base";
 @use "./root";
 
-@include theme.set("light", "layout", (
-  "background-color": hsl(from magenta h s l / 5%),
-  "background-stripe": hsl(from magenta h s l / 10%)
-));
-
-@include theme.set("dark", "layout", (
-  "background-color": hsl(from magenta h s l / 10%),
-  "background-stripe": hsl(from magenta h s l / 20%)
-));
-
-@include theme.output("layout");
-
 .code-example {
   margin: 2rem 0 !important;
   border: core.$border;
@@ -74,24 +62,6 @@
 
   .drawer-frame {
     height: 100%;
-  }
-
-  .grid,
-  .grid-inline,
-  .flex,
-  .flex-inline {
-    background-color: theme.get("layout", "background-color");
-    background-image: linear-gradient(
-      135deg, 
-      theme.get("layout", "background-stripe") 10%, 
-      rgb(0 0 0 / 0%) 0, 
-      rgb(0 0 0 / 0%) 50%, 
-      theme.get("layout", "background-stripe") 0, 
-      theme.get("layout", "background-stripe") 60%, 
-      rgb(0 0 0 / 0%) 0, 
-      rgb(0 0 0 / 0%)
-    );
-    background-size: 8px 8px;
   }
 }
 
