@@ -5,63 +5,63 @@ $_c: var.$class-padding;
 
 @if (var.$output-padding) {
   .#{$_u}#{$_c} {
-    padding: var.$spacing-gap !important;
+    padding: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-top {
-    padding-top: var.$spacing-gap !important;
+    padding-top: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-bottom {
-    padding-bottom: var.$spacing-gap !important;
+    padding-bottom: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-left {
-    padding-left: var.$spacing-gap !important;
+    padding-left: var.$gap !important;
   }
 
   .#{$_u}#{$_c}-right {
-    padding-right: var.$spacing-gap !important;
+    padding-right: var.$gap !important;
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-#{$key} {
       padding: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-top-#{$key} {
       padding-top: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-bottom-#{$key} {
       padding-bottom: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-left-#{$key} {
       padding-left: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-right-#{$key} {
       padding-right: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-x-#{$key} {
       padding-right: $value !important;
       padding-left: $value !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .#{$_u}#{$_c}-y-#{$key} {
       padding-top: $value !important;
       padding-bottom: $value !important;

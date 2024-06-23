@@ -5,11 +5,11 @@
 @if (var.$output-spacing) {
   .spacing {
     > * + * {
-      margin-top: var.$spacing-gap !important;
+      margin-top: var.$gap !important;
     }
   }
 
-  @each $key, $value in var.$spacing-gap-map {
+  @each $key, $value in var.$gap-map {
     .spacing-#{$key} {
       > * + * {
         margin-top: $value !important;
