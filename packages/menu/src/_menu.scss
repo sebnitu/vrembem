@@ -11,10 +11,6 @@
   list-style: none;
 }
 
-#{core.bem("menu", "item")} {
-  flex: 0 0 auto;
-}
-
 #{core.bem("menu", "sep")} {
   flex: 0 0 auto;
   align-self: stretch;
@@ -40,10 +36,6 @@
   color: css.get("menu", "foreground");
   white-space: normal;
   gap: css.get("menu", "action-gap");
-
-  > * {
-    flex: 0 0 auto;
-  }
 
   &:hover,
   &:focus-visible {

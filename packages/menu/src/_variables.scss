@@ -54,7 +54,7 @@ $size-lg-line-height: css.get("line-height-lg") !default;
 @include css.set("menu", (
   "size": $size,
   "padding": $padding,
-  "padding-x": core.get-side($padding, top),
+  "padding-x": core.get-side(core.$form-control-padding, top),
   "gap": $gap,
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,
