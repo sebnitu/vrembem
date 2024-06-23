@@ -1,11 +1,11 @@
 @use "./variables" as var;
 
 .flex-grow {
-  flex-grow: 1 !important;
+  flex-grow: 1;
 }
 
 @for $i from 0 through var.$grow-count {
   .flex-grow-#{$i} {
-    flex-grow: $i !important;
+    flex-grow: $i;
   }
 }

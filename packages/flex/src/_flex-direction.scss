@@ -2,37 +2,37 @@
 @use "./variables" as var;
 
 .flex-direction-row {
-  flex-direction: row !important;
+  flex-direction: row;
 }
 
 .flex-direction-row-reverse {
-  flex-direction: row-reverse !important;
+  flex-direction: row-reverse;
 }
 
 .flex-direction-column {
-  flex-direction: column !important;
+  flex-direction: column;
 }
 
 .flex-direction-column-reverse {
-  flex-direction: column-reverse !important;
+  flex-direction: column-reverse;
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
     .#{$key}\:flex-direction-row {
-      flex-direction: row !important;
+      flex-direction: row;
     }
     
     .#{$key}\:flex-direction-row-reverse {
-      flex-direction: row-reverse !important;
+      flex-direction: row-reverse;
     }
     
     .#{$key}\:flex-direction-column {
-      flex-direction: column !important;
+      flex-direction: column;
     }
     
     .#{$key}\:flex-direction-column-reverse {
-      flex-direction: column-reverse !important;
+      flex-direction: column-reverse;
     }
   }
 }

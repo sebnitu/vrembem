@@ -40,33 +40,33 @@
 }
 
 .flex-initial {
-  flex: initial !important; // Equivalent to setting flex: 0 1 auto.
+  flex: initial; // Equivalent to setting flex: 0 1 auto.
 }
 
 .flex-auto {
-  flex: auto !important; // Equivalent to setting flex: 1 1 auto.
+  flex: auto; // Equivalent to setting flex: 1 1 auto.
 }
 
 .flex-none {
-  flex: none !important; // Equivalent to setting flex: 0 0 auto.
+  flex: none; // Equivalent to setting flex: 0 0 auto.
 }
 
 .flex-equal {
-  flex: 1 1 0 !important;
+  flex: 1 1 0;
 }
 
 .flex-fill {
-  flex: 1 0 auto !important;
+  flex: 1 0 auto;
 }
 
 .flex-full {
-  flex: 1 0 100% !important;
+  flex: 1 0 100%;
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-max($value) {
     .#{$key}\:flex-full {
-      flex: 1 0 100% !important;
+      flex: 1 0 100%;
     }
   }
 }
