@@ -107,9 +107,9 @@ By default the `grid` class only defines a single column. To add additional colu
 - `grid_cols_5`
 - `grid_cols_6`
 
-### [key]:grid_cols_[value]
+### Breakpoint variants
 
-The `grid_cols_[value]` modifier also comes with optional media breakpoint modifiers. This allows changing the grid columns based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-columns property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -185,9 +185,9 @@ By default the `grid` class only defines a single row. To add additional rows to
 - `grid_rows_5`
 - `grid_rows_6`
 
-### [key]:grid_rows_[value]
+### Breakpoint variants
 
-The `grid_rows_[value]` modifier also comes with optional media breakpoint modifiers. This allows changing the grid-rows based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-rows property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -343,7 +343,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
-### Breakpoint modifiers
+### Breakpoint variants
 
 Grid gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
@@ -506,9 +506,9 @@ A utility used to control the grid-column property which handles a grid item's s
   </div>
 </div>
 
-### [key]:col-[value]
+### Breakpoint variants
 
-The `col-[value]` utility also comes with optional media breakpoint modifiers. This allows changing the grid-column property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+This utility also comes with optional media breakpoint variants. This allows changing the grid-column property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -634,9 +634,9 @@ A utility used to control the grid-row property which handles a grid item's size
   </div>
 </div>
 
-### [key]:row-[value]
+### Breakpoint variants
 
-The `row-[value]` utility also comes with optional media breakpoint modifiers. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+This utility also comes with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <div slot="output" class="spacing">
