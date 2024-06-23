@@ -26,7 +26,7 @@ npm install @vrembem/flex
 
 The most basic implementation of the flex utility component consists of a container element with the `flex` class. This can contain any number of children elements.
 
-<CodeExample tabs>
+<CodeExample>
   <Fragment slot="output">
     <div class="flex">
       <div class="box">One</div>
@@ -41,22 +41,11 @@ The most basic implementation of the flex utility component consists of a contai
       <div class="box">Ten</div>
     </div>
   </Fragment>
-  <Fragment slot="tab-html">
   ```html
   <div class="flex">
     ...
   </div>
   ```
-  </Fragment>
-  <Fragment slot="tab-css">
-  ```css
-  .flex {
-    display: flex;
-    gap: var(--vb-flex-gap-y, var(--vb-flex-gap)) var(--vb-flex-gap-x, var(--vb-flex-gap));
-    flex-wrap: var(--vb-flex-wrap);
-  }
-  ```
-  </Fragment>
 </CodeExample>
 
 ### flex_inline
@@ -80,7 +69,7 @@ Also available is the `flex_inline` modifier. This sets the `display` property t
   ```
 </CodeExample>
 
-## flex-gap-[key]
+## flex_gap_[key]
 
 Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
@@ -88,16 +77,16 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
     <select id="demo-flex-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap">
-      <option value="flex-gap-none">flex-gap-none</option>
-      <option value="flex-gap-xs">flex-gap-xs</option>
-      <option value="flex-gap-sm">flex-gap-sm</option>
-      <option value="flex-gap-md">flex-gap-md</option>
-      <option value="flex-gap-lg">flex-gap-lg</option>
-      <option value="flex-gap-xl">flex-gap-xl</option>
+      <option value="flex_gap_none">flex_gap_none</option>
+      <option value="flex_gap_xs">flex_gap_xs</option>
+      <option value="flex_gap_sm">flex_gap_sm</option>
+      <option value="flex_gap_md">flex_gap_md</option>
+      <option value="flex_gap_lg">flex_gap_lg</option>
+      <option value="flex_gap_xl">flex_gap_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap" class="flex flex-gap-xs">
+    <div id="demo-flex-gap" class="flex flex_gap_xs">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -111,7 +100,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-xs">
+  <div class="flex flex_gap_xs">
     ...
   </div>
   ```
@@ -119,14 +108,14 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 
 **Available variants**
 
-- `flex-gap-none`
-- `flex-gap-xs`
-- `flex-gap-sm`
-- `flex-gap-md`
-- `flex-gap-lg`
-- `flex-gap-xl`
+- `flex_gap_none`
+- `flex_gap_xs`
+- `flex_gap_sm`
+- `flex_gap_md`
+- `flex_gap_lg`
+- `flex_gap_xl`
 
-### flex-gap-x-[key]
+### flex_gap-x_[key]
 
 Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
@@ -134,16 +123,16 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
     <select id="demo-flex-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-x">
-      <option value="flex-gap-x-none">flex-gap-x-none</option>
-      <option value="flex-gap-x-xs">flex-gap-x-xs</option>
-      <option value="flex-gap-x-sm">flex-gap-x-sm</option>
-      <option value="flex-gap-x-md">flex-gap-x-md</option>
-      <option value="flex-gap-x-lg">flex-gap-x-lg</option>
-      <option value="flex-gap-x-xl">flex-gap-x-xl</option>
+      <option value="flex_gap-x_none">flex_gap-x_none</option>
+      <option value="flex_gap-x_xs">flex_gap-x_xs</option>
+      <option value="flex_gap-x_sm">flex_gap-x_sm</option>
+      <option value="flex_gap-x_md">flex_gap-x_md</option>
+      <option value="flex_gap-x_lg">flex_gap-x_lg</option>
+      <option value="flex_gap-x_xl">flex_gap-x_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-x" class="flex flex-gap-x-sm">
+    <div id="demo-flex-gap-x" class="flex flex_gap-x_sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -157,7 +146,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-x-sm">
+  <div class="flex flex_gap-x_sm">
     ...
   </div>
   ```
@@ -165,14 +154,14 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 
 **Available variants**
 
-- `flex-gap-x-none`
-- `flex-gap-x-xs`
-- `flex-gap-x-sm`
-- `flex-gap-x-md`
-- `flex-gap-x-lg`
-- `flex-gap-x-xl`
+- `flex_gap-x_none`
+- `flex_gap-x_xs`
+- `flex_gap-x_sm`
+- `flex_gap-x_md`
+- `flex_gap-x_lg`
+- `flex_gap-x_xl`
 
-### flex-gap-y-[key]
+### flex_gap-y_[key]
 
 Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
 
@@ -180,16 +169,16 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
     <select id="demo-flex-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-y">
-      <option value="flex-gap-y-none">flex-gap-y-none</option>
-      <option value="flex-gap-y-xs">flex-gap-y-xs</option>
-      <option value="flex-gap-y-sm">flex-gap-y-sm</option>
-      <option value="flex-gap-y-md">flex-gap-y-md</option>
-      <option value="flex-gap-y-lg">flex-gap-y-lg</option>
-      <option value="flex-gap-y-xl">flex-gap-y-xl</option>
+      <option value="flex_gap-y_none">flex_gap-y_none</option>
+      <option value="flex_gap-y_xs">flex_gap-y_xs</option>
+      <option value="flex_gap-y_sm">flex_gap-y_sm</option>
+      <option value="flex_gap-y_md">flex_gap-y_md</option>
+      <option value="flex_gap-y_lg">flex_gap-y_lg</option>
+      <option value="flex_gap-y_xl">flex_gap-y_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-y" class="flex flex-gap-y-xl">
+    <div id="demo-flex-gap-y" class="flex flex_gap-y_xl">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -203,7 +192,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-gap-y-xl">
+  <div class="flex flex_gap-y_xl">
     ...
   </div>
   ```
@@ -211,14 +200,14 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 **Available variants**
 
-- `flex-gap-y-none`
-- `flex-gap-y-xs`
-- `flex-gap-y-sm`
-- `flex-gap-y-md`
-- `flex-gap-y-lg`
-- `flex-gap-y-xl`
+- `flex_gap-y_none`
+- `flex_gap-y_xs`
+- `flex_gap-y_sm`
+- `flex_gap-y_md`
+- `flex_gap-y_lg`
+- `flex_gap-y_xl`
 
-## flex-wrap
+## flex_wrap
 
 This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
 
@@ -226,13 +215,13 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-wrap-select">Variants Demo:</label>
     <select id="demo-flex-wrap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-wrap">
-      <option value="flex-nowrap">flex-nowrap</option>
-      <option value="flex-wrap">flex-wrap</option>
-      <option value="flex-wrap-reverse">flex-wrap-reverse</option>
+      <option value="flex_nowrap">flex-nowrap</option>
+      <option value="flex_wrap">flex_wrap</option>
+      <option value="flex_wrap_reverse">flex_wrap_reverse</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-wrap" class="flex flex-nowrap">
+    <div id="demo-flex-wrap" class="flex flex_nowrap">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -254,9 +243,9 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
 
 **Available variants**
 
-- `flex-nowrap`
-- `flex-wrap`
-- `flex-wrap-reverse`
+- `flex_nowrap`
+- `flex_wrap`
+- `flex_wrap_reverse`
 
 ## flex-direction-[value]
 
@@ -266,21 +255,21 @@ Used to control the flex-direction property which sets how flex items are placed
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-direction-select">Variants Demo:</label>
     <select id="demo-flex-direction-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-direction">
-      <option value="flex-direction-row">flex-direction-row</option>
-      <option value="flex-direction-row-reverse">flex-direction-row-reverse</option>
-      <option value="flex-direction-column">flex-direction-column</option>
-      <option value="flex-direction-column-reverse">flex-direction-column-reverse</option>
+      <option value="flex_direction_row">flex_direction_row</option>
+      <option value="flex_direction_row-reverse">flex_direction_row-reverse</option>
+      <option value="flex_direction_col">flex_direction_col</option>
+      <option value="flex_direction_col-reverse">flex_direction_col-reverse</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-direction" class="flex flex-direction-row-reverse">
+    <div id="demo-flex-direction" class="flex flex_direction_row-reverse">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-direction-row-reverse">
+  <div class="flex flex_direction_row-reverse">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -290,10 +279,10 @@ Used to control the flex-direction property which sets how flex items are placed
 
 **Available variants**
 
-- `flex-direction-row`
-- `flex-direction-row-reverse`
-- `flex-direction-column`
-- `flex-direction-column-reverse`
+- `flex_direction_row`
+- `flex_direction_row-reverse`
+- `flex_direction_col`
+- `flex_direction_col-reverse`
 
 ### [key]:flex-direction-[value]
 
@@ -303,23 +292,23 @@ The flex-direction utility also comes with optional media breakpoint modifiers. 
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-bp-flex-direction-select">Variants Demo:</label>
     <select id="demo-bp-flex-direction-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-direction">
-      <option value="xs:flex-direction-row">xs:flex-direction-row</option>
-      <option value="sm:flex-direction-row">sm:flex-direction-row</option>
-      <option value="md:flex-direction-row">md:flex-direction-row</option>
-      <option value="lg:flex-direction-row">lg:flex-direction-row</option>
-      <option value="xl:flex-direction-row">xl:flex-direction-row</option>
+      <option value="xs:flex_direction_row">xs:flex_direction_row</option>
+      <option value="sm:flex_direction_row">sm:flex_direction_row</option>
+      <option value="md:flex_direction_row">md:flex_direction_row</option>
+      <option value="lg:flex_direction_row">lg:flex_direction_row</option>
+      <option value="xl:flex_direction_row">xl:flex_direction_row</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <div id="demo-bp-flex-direction" class="flex flex-direction-column lg:flex-direction-row">
+    <div id="demo-bp-flex-direction" class="flex flex_direction_col lg:flex_direction_row">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </div>
   ```html
-  <div class="flex flex-direction-column lg:flex-direction-row">
+  <div class="flex flex_direction_col lg:flex_direction_row">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -335,7 +324,7 @@ The flex-direction utility also comes with optional media breakpoint modifiers. 
 - `lg:flex-direction-[value]`
 - `xl:flex-direction-[value]`
 
-## flex-items-[value]
+## flex_items_[value]
 
 This utility helps to control the flex property on flex items (direct children of flex containers). The variants available allow for the most common combinations of flex grow, shrink and basis properties.
 
@@ -343,23 +332,23 @@ This utility helps to control the flex property on flex items (direct children o
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-items-select">Variants Demo:</label>
     <select id="demo-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-items">
-      <option value="flex-items-initial">flex-items-initial</option>
-      <option value="flex-items-auto">flex-items-auto</option>
-      <option value="flex-items-none">flex-items-none</option>
-      <option value="flex-items-equal">flex-items-equal</option>
-      <option value="flex-items-fill">flex-items-fill</option>
-      <option value="flex-items-full">flex-items-full</option>
+      <option value="flex_items_initial">flex_items_initial</option>
+      <option value="flex_items_auto">flex_items_auto</option>
+      <option value="flex_items_none">flex_items_none</option>
+      <option value="flex_items_equal">flex_items_equal</option>
+      <option value="flex_items_fill">flex_items_fill</option>
+      <option value="flex_items_full">flex_items_full</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-items" class="flex flex-items-auto">
+    <div id="demo-flex-items" class="flex flex_items_auto">
       <div class="box">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-items-auto">
+  <div class="flex flex_items_auto">
     <div>...</div>
     <div>...</div>
     <div>...</div>
@@ -369,12 +358,12 @@ This utility helps to control the flex property on flex items (direct children o
 
 **Available variants**
 
-- `flex-items-initial`: Sets flex items to `flex: initial;`.
-- `flex-items-auto`: Sets flex items to `flex: auto;`.
-- `flex-items-none`: Sets flex items to `flex: equal;`.
-- `flex-items-equal`: Sets flex items to `flex: 1 1 0;`.
-- `flex-items-fill`: Sets flex items to `flex: 1 0 auto;`.
-- `flex-items-full`: Sets flex items to `flex: 1 0 100%;`.
+- `flex_items_initial`: Sets flex items to `flex: initial;`.
+- `flex_items_auto`: Sets flex items to `flex: auto;`.
+- `flex_items_none`: Sets flex items to `flex: equal;`.
+- `flex_items_equal`: Sets flex items to `flex: 1 1 0;`.
+- `flex_items_fill`: Sets flex items to `flex: 1 0 auto;`.
+- `flex_items_full`: Sets flex items to `flex: 1 0 100%;`.
 
 ### flex-[value]
 
@@ -393,14 +382,14 @@ Used for controlling the flex property directly on flex items. These should be a
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-items-auto">
+    <div class="flex flex_items_auto">
       <div id="demo-flex-value" class="box-alt flex-none">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-items-auto">
+  <div class="flex flex_items_auto">
     <div class="flex-none">...</div>
     <div>...</div>
     <div>...</div>
@@ -476,14 +465,14 @@ Used to control the flex-grow property which specifies how much of the flex cont
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="flex flex-items-auto">
+    <div class="flex flex_items_auto">
       <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
       <div class="box">2. Two</div>
       <div class="box">3. Three</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex-items-auto">
+  <div class="flex flex_items_auto">
     <div class="flex-grow-3">...</div>
     <div>...</div>
     <div>...</div>
