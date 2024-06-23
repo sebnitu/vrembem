@@ -1,5 +1,33 @@
+.align-content-start {
+  align-content: start !important;
+}
+
+.align-content-center {
+  align-content: center !important;
+}
+
+.align-content-end {
+  align-content: end !important;
+}
+
+.align-content-between {
+  align-content: space-between !important;
+}
+
+.align-content-around {
+  align-content: space-around !important;
+}
+
+.align-content-evenly {
+  align-content: space-evenly !important;
+}
+
+.align-content-stretch {
+  align-content: stretch !important;
+}
+
 .align-items-start {
-  align-items: flex-start !important;
+  align-items: start !important;
 }
 
 .align-items-center {
@@ -7,13 +35,25 @@
 }
 
 .align-items-end {
-  align-items: flex-end !important;
+  align-items: end !important;
 }
 
 .align-items-stretch {
   align-items: stretch !important;
 }
 
-.align-items-baseline {
-  align-items: baseline !important;
+.align-self-start {
+  align-self: start !important;
+}
+
+.align-self-center {
+  align-self: center !important;
+}
+
+.align-self-end {
+  align-self: end !important;
+}
+
+.align-self-stretch {
+  align-self: stretch !important;
 }

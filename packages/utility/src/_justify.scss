@@ -1,5 +1,5 @@
 .justify-content-start {
-  justify-content: flex-start !important;
+  justify-content: start !important;
 }
 
 .justify-content-center {
@@ -7,7 +7,7 @@
 }
 
 .justify-content-end {
-  justify-content: flex-end !important;
+  justify-content: end !important;
 }
 
 .justify-content-between {
@@ -20,4 +20,40 @@
 
 .justify-content-evenly {
   justify-content: space-evenly !important;
+}
+
+.justify-content-stretch {
+  justify-content: stretch !important;
+}
+
+.justify-items-start {
+  justify-items: start !important;
+}
+
+.justify-items-center {
+  justify-items: center !important;
+}
+
+.justify-items-end {
+  justify-items: end !important;
+}
+
+.justify-items-stretch {
+  justify-items: stretch !important;
+}
+
+.justify-self-start {
+  justify-self: start !important;
+}
+
+.justify-self-center {
+  justify-self: center !important;
+}
+
+.justify-self-end {
+  justify-self: end !important;
+}
+
+.justify-self-stretch {
+  justify-self: stretch !important;
 }
