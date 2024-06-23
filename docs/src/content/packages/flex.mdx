@@ -406,32 +406,32 @@ Used for controlling the flex property directly on flex items. These should be a
 - `flex-fill`: Sets flex to `1 0 auto`.
 - `flex-full`: Sets flex to `1 0 100%`.
 
-### [key]:flex-full
+### Breakpoint modifiers
 
-There may be some cases in responsive layouts where you need a single flex item to span the full width of a container. This utility allows setting a flex item to full width based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+The `flex_items_[value]` and `flex-[value]` also come with optional media breakpoint modifiers. This allows changing the flex property on flex items based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
 
 <CodeExample>
   <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-bp-flex-full-select">Variants Demo:</label>
-    <select id="demo-bp-flex-full-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-full">
-      <option value="xs:flex-full">xs:flex-full</option>
-      <option value="sm:flex-full">sm:flex-full</option>
-      <option value="md:flex-full">md:flex-full</option>
-      <option value="lg:flex-full">lg:flex-full</option>
-      <option value="xl:flex-full">xl:flex-full</option>
+    <label class="text-nowrap" for="demo-bp-flex-items-select">Variants Demo:</label>
+    <select id="demo-bp-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-items">
+      <option value="xs:flex-auto">xs:flex-auto</option>
+      <option value="sm:flex-auto">sm:flex-auto</option>
+      <option value="md:flex-auto">md:flex-auto</option>
+      <option value="lg:flex-auto">lg:flex-auto</option>
+      <option value="xl:flex-auto">xl:flex-auto</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <div class="flex">
-      <div id="demo-bp-flex-full" class="box-alt lg:flex-full">1. One</div>
-      <div class="box">2. Two</div>
-      <div class="box">3. Three</div>
+      <div id="demo-bp-flex-items" class="box-alt flex-full lg:flex-auto">1. One</div>
+      <div class="box flex-auto">2. Two</div>
+      <div class="box flex-auto">3. Three</div>
     </div>
   </div>
   ```html
   <div class="flex">
-    <div class="lg:flex-full">...</div>
+    <div class="flex-full lg:flex-auto">...</div>
     <div>...</div>
     <div>...</div>
   </div>
@@ -440,11 +440,23 @@ There may be some cases in responsive layouts where you need a single flex item 
 
 **Available variants**
 
-- `xs:flex-full`
-- `sm:flex-full`
-- `md:flex-full`
-- `lg:flex-full`
-- `xl:flex-full`
+<div class="flex flex_items_auto">
+  <div class="type">
+    - `xs:flex_items_[value]`
+    - `sm:flex_items_[value]`
+    - `md:flex_items_[value]`
+    - `lg:flex_items_[value]`
+    - `xl:flex_items_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex-[value]`
+    - `sm:flex-[value]`
+    - `md:flex-[value]`
+    - `lg:flex-[value]`
+    - `xl:flex-[value]`
+  </div>
+</div>
+
 
 ## flex-grow-[value]
 

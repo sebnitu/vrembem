@@ -39,6 +39,48 @@
   }
 }
 
+@each $key, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    #{core.bem("#{$key}\\:flex", null, "items", "initial")} {
+      > * {
+        flex: initial; // Equivalent to setting flex: 0 1 auto.
+      }
+    }
+    
+    #{core.bem("#{$key}\\:flex", null, "items", "auto")} {
+      > * {
+        flex: auto; // Equivalent to setting flex: 1 1 auto.
+      }
+    }
+    
+    #{core.bem("#{$key}\\:flex", null, "items", "none")} {
+      > * {
+        flex: none; // Equivalent to setting flex: 0 0 auto.
+      }
+    }
+    
+    #{core.bem("#{$key}\\:flex", null, "items", "equal")} {
+      > * {
+        flex: 1 1 0;
+      }
+    }
+    
+    #{core.bem("#{$key}\\:flex", null, "items", "fill")} {
+      > * {
+        flex: 1 0 auto;
+      }
+    }
+    
+    #{core.bem("#{$key}\\:flex", null, "items", "full")} {
+      flex-wrap: wrap;
+      
+      > * {
+        flex: 1 0 100%;
+      }
+    }
+  }
+}
+
 .flex-initial {
   flex: initial; // Equivalent to setting flex: 0 1 auto.
 }
@@ -64,7 +106,27 @@
 }
 
 @each $key, $value in var.$breakpoints {
-  @include core.media-max($value) {
+  @include core.media-min($value) {
+    .#{$key}\:flex-initial {
+      flex: initial; // Equivalent to setting flex: 0 1 auto.
+    }
+    
+    .#{$key}\:flex-auto {
+      flex: auto; // Equivalent to setting flex: 1 1 auto.
+    }
+    
+    .#{$key}\:flex-none {
+      flex: none; // Equivalent to setting flex: 0 0 auto.
+    }
+    
+    .#{$key}\:flex-equal {
+      flex: 1 1 0;
+    }
+    
+    .#{$key}\:flex-fill {
+      flex: 1 0 auto;
+    }
+    
     .#{$key}\:flex-full {
       flex: 1 0 100%;
     }
