@@ -33,7 +33,7 @@ const isFile = (type === "file");
         <Icon name="chevron-right" classes="icon_size_sm" />
       </button>
       <div class="flex-grow flex align-items-center">
-        <h3 id={id} class="doc-block__title flex flex-gap-sm no-anchor">
+        <h3 id={id} class="doc-block__title flex flex_gap_sm no-anchor">
           <a class="link font-family-mono font-size-sm" href={`#${id}`}>
             { isFile ? src : name }
           </a>
@@ -43,7 +43,7 @@ const isFile = (type === "file");
             )
           }
         </h3>
-        <a class="link flex flex-gap-xs" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
+        <a class="link flex flex_gap_xs" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
           Source
           <Icon
             name="arrow-up-right"
