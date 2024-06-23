@@ -207,6 +207,36 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `flex_gap-y_lg`
 - `flex_gap-y_xl`
 
+### Breakpoint modifiers
+
+Flex gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+**Available variants**
+
+<div class="flex flex_items_auto">
+  <div class="type">
+    - `xs:flex_gap_[value]`
+    - `sm:flex_gap_[value]`
+    - `md:flex_gap_[value]`
+    - `lg:flex_gap_[value]`
+    - `xl:flex_gap_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex_gap-x_[value]`
+    - `sm:flex_gap-x_[value]`
+    - `md:flex_gap-x_[value]`
+    - `lg:flex_gap-x_[value]`
+    - `xl:flex_gap-x_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex_gap-y_[value]`
+    - `sm:flex_gap-y_[value]`
+    - `md:flex_gap-y_[value]`
+    - `lg:flex_gap-y_[value]`
+    - `xl:flex_gap-y_[value]`
+  </div>
+</div>
+
 ## flex_wrap
 
 This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.

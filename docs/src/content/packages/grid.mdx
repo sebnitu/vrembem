@@ -343,6 +343,36 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
+### Breakpoint modifiers
+
+Grid gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+**Available variants**
+
+<div class="flex flex_items_auto">
+  <div class="type">
+    - `xs:grid_gap_[value]`
+    - `sm:grid_gap_[value]`
+    - `md:grid_gap_[value]`
+    - `lg:grid_gap_[value]`
+    - `xl:grid_gap_[value]`
+  </div>
+  <div class="type">
+    - `xs:grid_gap-x_[value]`
+    - `sm:grid_gap-x_[value]`
+    - `md:grid_gap-x_[value]`
+    - `lg:grid_gap-x_[value]`
+    - `xl:grid_gap-x_[value]`
+  </div>
+  <div class="type">
+    - `xs:grid_gap-y_[value]`
+    - `sm:grid_gap-y_[value]`
+    - `md:grid_gap-y_[value]`
+    - `lg:grid_gap-y_[value]`
+    - `xl:grid_gap-y_[value]`
+  </div>
+</div>
+
 ## grid_flow_[value]
 
 Used to control the grid-auto-flow property which sets how auto-placed items get flowed into the grid. The default grid-auto-flow value is set to `dense` by the `grid.$flow` variable applied via the `--vb-grid-flow` custom property.

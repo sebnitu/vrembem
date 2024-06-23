@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "./variables" as var;
 
 .gap {
@@ -25,5 +26,37 @@
 
   .gap-y-#{$key} {
     row-gap: $value !important;
+  }
+}
+
+@each $bp, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    .#{$bp}\:gap {
+      gap: var.$gap !important;
+    }
+    
+    .#{$bp}\:gap-x {
+      column-gap: var.$gap !important;
+    }
+    
+    .#{$bp}\:gap-y {
+      row-gap: var.$gap !important;
+    }
+    
+    @each $key, $value in var.$gap-map {
+      .#{$bp}\:gap-#{$key} {
+        gap: $value !important;
+      }
+    }
+    
+    @each $key, $value in var.$gap-map {
+      .#{$bp}\:gap-x-#{$key} {
+        column-gap: $value !important;
+      }
+    
+      .#{$bp}\:gap-y-#{$key} {
+        row-gap: $value !important;
+      }
+    }
   }
 }
