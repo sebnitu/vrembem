@@ -20,7 +20,7 @@ const isFile = (type === "file");
 
 <article class="doc-block">
   <div class="doc-block__header">
-    <div class="flex flex-align-center">
+    <div class="flex align-items-center">
       <button
         type="button" 
         id={"toggle-" + id + "-trigger"}
@@ -32,7 +32,7 @@ const isFile = (type === "file");
       >
         <Icon name="chevron-right" classes="icon_size_sm" />
       </button>
-      <div class="flex-grow flex flex-align-center">
+      <div class="flex-grow flex align-items-center">
         <h3 id={id} class="doc-block__title flex flex-gap-sm no-anchor">
           <a class="link font-family-mono font-size-sm" href={`#${id}`}>
             { isFile ? src : name }

@@ -43,7 +43,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
     <button class="link" data-modal-open="modal-1">Open</button>
     <div id="modal-1" class="modal">
       <div class="modal__dialog background radius padding" role="dialog">
-        <div class="flex flex-justify-between">
+        <div class="flex justify-content-between">
           <span>Modal example</span>
           <button class="link" data-modal-close>Close</button>
         </div>
@@ -119,7 +119,7 @@ Modal dialogs are given focus when opened as long as the `setTabindex` option is
     </ul>
     <div id="modal-3" class="modal">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="dialog__body flex flex-justify-between">
+        <div class="dialog__body flex justify-content-between">
           <span>Focus modal dialog when opened</span>
           <button class="link" data-modal-close>Close</button>
         </div>
@@ -128,7 +128,7 @@ Modal dialogs are given focus when opened as long as the `setTabindex` option is
     <div id="modal-4" class="modal">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between margin-bottom">
+          <div class="flex justify-content-between margin-bottom">
             <span>Focus input element when opened</span>
             <button class="link" data-modal-close>Close</button>
           </div>
@@ -174,7 +174,7 @@ Required modals are modals that need an explicit action to be closed. That means
         <div class="dialog__body spacing">
           <h2 class="dialog__title" id="modal-5-title">Required modal</h2>
           <p id="modal-5-description">Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
-          <div class="flex flex-gap-x flex-justify-end margin-top-lg">
+          <div class="flex flex-gap-x justify-content-end margin-top-lg">
             <button class="button button_color_primary" data-modal-close>I understand</button>
             <button class="button" data-modal-close>Cancel</button>
           </div>
@@ -288,12 +288,12 @@ The default position of modals is in the center of the viewport. The position mo
     <div id="modal-pos-top" class="modal modal_pos_top">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
              <p>Top position modal</p>
              <button class="link" data-modal-close>Close</button>
            </div>
         </div>
-        <div class="dialog__footer flex-justify-between">
+        <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
             Left modal
           </button>
@@ -309,7 +309,7 @@ The default position of modals is in the center of the viewport. The position mo
     <div id="modal-pos-left" class="modal modal_pos_left">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
              <p>Left position modal</p>
              <button class="link" data-modal-close>Close</button>
            </div>
@@ -334,7 +334,7 @@ The default position of modals is in the center of the viewport. The position mo
     <div id="modal-pos-right" class="modal modal_pos_right">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
              <p>Right position modal</p>
              <button class="link" data-modal-close>Close</button>
            </div>
@@ -359,12 +359,12 @@ The default position of modals is in the center of the viewport. The position mo
     <div id="modal-pos-bottom" class="modal modal_pos_bottom">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
              <p>Bottom position modal</p>
              <button class="link" data-modal-close>Close</button>
            </div>
         </div>
-        <div class="dialog__footer flex-justify-between">
+        <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
             Left modal
           </button>
@@ -429,7 +429,7 @@ Adjusts the size of modals. This modifier provides five options that are output 
     <div id="modal-size-xs" class="modal modal_size_xs">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
             <p>modal_size_xs</p>
             <button class="link" data-modal-close>Close</button>
           </div>
@@ -439,7 +439,7 @@ Adjusts the size of modals. This modifier provides five options that are output 
     <div id="modal-size-sm" class="modal modal_size_sm">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
             <p>modal_size_sm</p>
             <button class="link" data-modal-close>Close</button>
           </div>
@@ -449,7 +449,7 @@ Adjusts the size of modals. This modifier provides five options that are output 
     <div id="modal-size-md" class="modal modal_size_md">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
             <p>modal_size_md</p>
             <button class="link" data-modal-close>Close</button>
           </div>
@@ -459,7 +459,7 @@ Adjusts the size of modals. This modifier provides five options that are output 
     <div id="modal-size-lg" class="modal modal_size_lg">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
             <p>modal_size_lg</p>
             <button class="link" data-modal-close>Close</button>
           </div>
@@ -469,7 +469,7 @@ Adjusts the size of modals. This modifier provides five options that are output 
     <div id="modal-size-xl" class="modal modal_size_xl">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
-          <div class="flex flex-justify-between">
+          <div class="flex justify-content-between">
             <p>modal_size_xl</p>
             <button class="link" data-modal-close>Close</button>
           </div>
