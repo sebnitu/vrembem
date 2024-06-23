@@ -1,0 +1,13 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+#{core.bem("flex")} {
+  display: flex;
+  gap: css.get("flex", "gap-y", "gap") css.get("flex", "gap-x", "gap");
+  flex-wrap: css.get("flex", "wrap");
+}
+
+#{core.bem("flex", null, "inline")} {
+  display: inline-flex;
+}

@@ -1,0 +1,656 @@
+---
+title: Flex
+description: "A simple flexbox based layout component."
+package: "@vrembem/flex"
+status: "layout"
+---
+
+import CodeExample from '../../components/CodeExample.astro';
+import DocBlock from '../../components/DocBlock.astro';
+
+# Flex
+
+A simple flexbox based layout component.
+
+```sh
+npm install @vrembem/flex
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/flex";
+  ```
+</CodeExample>
+
+## Basic usage
+
+The most basic implementation of the flex component consists of a container element with the `flex` class. This can contain any number of children elements.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="layout-demo flex">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+### flex_inline
+
+Also available is the `flex_inline` modifier. This sets the `display` property to `inline-flex` instead of `flex`.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="layout-demo flex flex_inline">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_inline">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+## flex_gap_[key]
+
+Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
+    <select id="demo-flex-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap">
+      <option value="flex_gap_none">flex_gap_none</option>
+      <option value="flex_gap_xs">flex_gap_xs</option>
+      <option value="flex_gap_sm">flex_gap_sm</option>
+      <option value="flex_gap_md">flex_gap_md</option>
+      <option value="flex_gap_lg">flex_gap_lg</option>
+      <option value="flex_gap_xl">flex_gap_xl</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-gap" class="layout-demo flex flex_gap_sm">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_gap_sm">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_gap_none`
+- `flex_gap_xs`
+- `flex_gap_sm`
+- `flex_gap_md`
+- `flex_gap_lg`
+- `flex_gap_xl`
+
+### flex_gap-x_[key]
+
+Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
+    <select id="demo-flex-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-x">
+      <option value="flex_gap-x_none">flex_gap-x_none</option>
+      <option value="flex_gap-x_xs">flex_gap-x_xs</option>
+      <option value="flex_gap-x_sm">flex_gap-x_sm</option>
+      <option value="flex_gap-x_md">flex_gap-x_md</option>
+      <option value="flex_gap-x_lg">flex_gap-x_lg</option>
+      <option value="flex_gap-x_xl">flex_gap-x_xl</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-gap-x" class="layout-demo flex flex_gap-x_sm">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_gap-x_sm">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_gap-x_none`
+- `flex_gap-x_xs`
+- `flex_gap-x_sm`
+- `flex_gap-x_md`
+- `flex_gap-x_lg`
+- `flex_gap-x_xl`
+
+### flex_gap-y_[key]
+
+Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
+    <select id="demo-flex-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-y">
+      <option value="flex_gap-y_none">flex_gap-y_none</option>
+      <option value="flex_gap-y_xs">flex_gap-y_xs</option>
+      <option value="flex_gap-y_sm">flex_gap-y_sm</option>
+      <option value="flex_gap-y_md">flex_gap-y_md</option>
+      <option value="flex_gap-y_lg">flex_gap-y_lg</option>
+      <option value="flex_gap-y_xl">flex_gap-y_xl</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-gap-y" class="layout-demo flex flex_gap-y_xl">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_gap-y_xl">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_gap-y_none`
+- `flex_gap-y_xs`
+- `flex_gap-y_sm`
+- `flex_gap-y_md`
+- `flex_gap-y_lg`
+- `flex_gap-y_xl`
+
+### Breakpoint variants
+
+Flex gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+**Available variants**
+
+<div class="flex flex_items_auto">
+  <div class="type">
+    - `xs:flex_gap_[value]`
+    - `sm:flex_gap_[value]`
+    - `md:flex_gap_[value]`
+    - `lg:flex_gap_[value]`
+    - `xl:flex_gap_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex_gap-x_[value]`
+    - `sm:flex_gap-x_[value]`
+    - `md:flex_gap-x_[value]`
+    - `lg:flex_gap-x_[value]`
+    - `xl:flex_gap-x_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex_gap-y_[value]`
+    - `sm:flex_gap-y_[value]`
+    - `md:flex_gap-y_[value]`
+    - `lg:flex_gap-y_[value]`
+    - `xl:flex_gap-y_[value]`
+  </div>
+</div>
+
+## flex_wrap
+
+This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-wrap-select">Variants Demo:</label>
+    <select id="demo-flex-wrap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-wrap">
+      <option value="flex_nowrap">flex_nowrap</option>
+      <option value="flex_wrap">flex_wrap</option>
+      <option value="flex_wrap-reverse">flex_wrap-reverse</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-wrap" class="layout-demo flex flex_nowrap">
+      <div class="box">One</div>
+      <div class="box">Two</div>
+      <div class="box">Three</div>
+      <div class="box">Four</div>
+      <div class="box">Five</div>
+      <div class="box">Six</div>
+      <div class="box">Seven</div>
+      <div class="box">Eight</div>
+      <div class="box">Nine</div>
+      <div class="box">Ten</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_nowrap">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_nowrap`
+- `flex_wrap`
+- `flex_wrap-reverse`
+
+## flex_direction_[value]
+
+Used to control the flex-direction property which sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-direction-select">Variants Demo:</label>
+    <select id="demo-flex-direction-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-direction">
+      <option value="flex_direction_row">flex_direction_row</option>
+      <option value="flex_direction_row-reverse">flex_direction_row-reverse</option>
+      <option value="flex_direction_col">flex_direction_col</option>
+      <option value="flex_direction_col-reverse">flex_direction_col-reverse</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-direction" class="layout-demo flex flex_direction_row-reverse">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_direction_row-reverse">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_direction_row`
+- `flex_direction_row-reverse`
+- `flex_direction_col`
+- `flex_direction_col-reverse`
+
+### Breakpoint variants
+
+This modifier also comes with optional media breakpoint variants. This allows changing the flex-direction property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-flex-direction-select">Variants Demo:</label>
+    <select id="demo-bp-flex-direction-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-direction">
+      <option value="xs:flex_direction_row">xs:flex_direction_row</option>
+      <option value="sm:flex_direction_row">sm:flex_direction_row</option>
+      <option value="md:flex_direction_row">md:flex_direction_row</option>
+      <option value="lg:flex_direction_row">lg:flex_direction_row</option>
+      <option value="xl:flex_direction_row">xl:flex_direction_row</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div id="demo-bp-flex-direction" class="layout-demo flex flex_direction_col lg:flex_direction_row">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </div>
+  ```html
+  <div class="flex flex_direction_col lg:flex_direction_row">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:flex_direction_[value]`
+- `sm:flex_direction_[value]`
+- `md:flex_direction_[value]`
+- `lg:flex_direction_[value]`
+- `xl:flex_direction_[value]`
+
+## flex_items_[value]
+
+This utility helps to control the flex property on flex items (direct children of flex containers). The variants available allow for the most common combinations of flex grow, shrink and basis properties.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-items-select">Variants Demo:</label>
+    <select id="demo-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-items">
+      <option value="flex_items_initial">flex_items_initial</option>
+      <option value="flex_items_auto">flex_items_auto</option>
+      <option value="flex_items_none">flex_items_none</option>
+      <option value="flex_items_equal">flex_items_equal</option>
+      <option value="flex_items_fill">flex_items_fill</option>
+      <option value="flex_items_full">flex_items_full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div id="demo-flex-items" class="layout-demo flex flex_items_auto">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_items_auto">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex_items_initial`: Sets flex items to `flex: initial;`.
+- `flex_items_auto`: Sets flex items to `flex: auto;`.
+- `flex_items_none`: Sets flex items to `flex: equal;`.
+- `flex_items_equal`: Sets flex items to `flex: 1 1 0;`.
+- `flex_items_fill`: Sets flex items to `flex: 1 0 auto;`.
+- `flex_items_full`: Sets flex items to `flex: 1 0 100%;`.
+
+### flex-[value]
+
+Used for controlling the flex property directly on flex items. These should be applied to the direct children of a flex container (elements with `display: flex` or `display: inline-flex` set on them).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-value-select">Variants Demo:</label>
+    <select id="demo-flex-value-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-value">
+      <option value="flex-initial">flex-initial</option>
+      <option value="flex-auto">flex-auto</option>
+      <option value="flex-none">flex-none</option>
+      <option value="flex-equal">flex-equal</option>
+      <option value="flex-fill">flex-fill</option>
+      <option value="flex-full">flex-full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex flex_items_auto">
+      <div id="demo-flex-value" class="box-alt flex-none">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_items_auto">
+    <div class="flex-none">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-initial`: Sets flex to `initial`.
+- `flex-auto`: Sets flex to `auto`.
+- `flex-none`: Sets flex to `none`.
+- `flex-equal`: Sets flex to `1 1 0`.
+- `flex-fill`: Sets flex to `1 0 auto`.
+- `flex-full`: Sets flex to `1 0 100%`.
+
+### Breakpoint variants
+
+The `flex_items_[value]` and `flex-[value]` also come with optional media breakpoint modifiers. This allows changing the flex property on flex items based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-flex-items-select">Variants Demo:</label>
+    <select id="demo-bp-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-items">
+      <option value="xs:flex-auto">xs:flex-auto</option>
+      <option value="sm:flex-auto">sm:flex-auto</option>
+      <option value="md:flex-auto">md:flex-auto</option>
+      <option value="lg:flex-auto">lg:flex-auto</option>
+      <option value="xl:flex-auto">xl:flex-auto</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div class="layout-demo flex">
+      <div id="demo-bp-flex-items" class="box-alt flex-full lg:flex-auto">1. One</div>
+      <div class="box flex-auto">2. Two</div>
+      <div class="box flex-auto">3. Three</div>
+    </div>
+  </div>
+  ```html
+  <div class="flex">
+    <div class="flex-full lg:flex-auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+<div class="flex flex_items_auto">
+  <div class="type">
+    - `xs:flex_items_[value]`
+    - `sm:flex_items_[value]`
+    - `md:flex_items_[value]`
+    - `lg:flex_items_[value]`
+    - `xl:flex_items_[value]`
+  </div>
+  <div class="type">
+    - `xs:flex-[value]`
+    - `sm:flex-[value]`
+    - `md:flex-[value]`
+    - `lg:flex-[value]`
+    - `xl:flex-[value]`
+  </div>
+</div>
+
+
+## flex-grow-[value]
+
+Used to control the flex-grow property which specifies how much of the flex container's remaining space should be assigned to the flex item's main size. The number of variants available is controlled by the `flex.$grow-count` variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-grow-select">Variants Demo:</label>
+    <select id="demo-flex-grow-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-grow">
+      <option value="flex-grow">flex-grow</option>
+      <option value="flex-grow-0">flex-grow-0</option>
+      <option value="flex-grow-1">flex-grow-1</option>
+      <option value="flex-grow-2">flex-grow-2</option>
+      <option value="flex-grow-3">flex-grow-3</option>
+      <option value="flex-grow-4">flex-grow-4</option>
+      <option value="flex-grow-5">flex-grow-5</option>
+      <option value="flex-grow-6">flex-grow-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex flex_items_auto">
+      <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_items_auto">
+    <div class="flex-grow-3">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-grow`: Shorthand for `flex-grow: 1;`.
+- `flex-grow-0`
+- `flex-grow-1`
+- `flex-grow-2`
+- `flex-grow-3`
+- `flex-grow-4`
+- `flex-grow-5`
+- `flex-grow-6`
+
+## flex-shrink-[value]
+
+Used to control the flex-shrink property which allows a flex item to shrink if the size of all flex items is larger than the flex container. The number of variants available is controlled by the `flex.$shrink-count` variable.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-shrink-select">Variants Demo:</label>
+    <select id="demo-flex-shrink-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-shrink">
+      <option value="flex-shrink">flex-shrink</option>
+      <option value="flex-shrink-0">flex-shrink-0</option>
+      <option value="flex-shrink-1">flex-shrink-1</option>
+      <option value="flex-shrink-2">flex-shrink-2</option>
+      <option value="flex-shrink-3">flex-shrink-3</option>
+      <option value="flex-shrink-4">flex-shrink-4</option>
+      <option value="flex-shrink-5">flex-shrink-5</option>
+      <option value="flex-shrink-6">flex-shrink-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex flex_nowrap">
+      <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+      <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex_nowrap">
+    <div class="flex-shrink-3">...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-shrink`: Shorthand for `flex-shrink: 1;`.
+- `flex-shrink-0`
+- `flex-shrink-1`
+- `flex-shrink-2`
+- `flex-shrink-3`
+- `flex-shrink-4`
+- `flex-shrink-5`
+- `flex-shrink-6`
+
+## flex-basis-[value]
+
+Used to control the flex-basis property which sets the initial main size of a flex item.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-basis-select">Variants Demo:</label>
+    <select id="demo-flex-basis-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-basis">
+      <option value="flex-basis-0">flex-basis-0</option>
+      <option value="flex-basis-auto">flex-basis-auto</option>
+      <option value="flex-basis-full">flex-basis-full</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex">
+      <div id="demo-flex-basis" class="box-alt flex-basis-auto">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-basis-auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `flex-basis-0`: Sets flex-basis to `0`.
+- `flex-basis-auto`: Sets flex-basis to `auto`.
+- `flex-basis-full`: Sets flex-basis to `100%`.
+
+## Customization
+
+Flex is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+
+<DocBlock name="CSS Variables" src="flex/src/_root.scss">
+
+```scss
+:root {
+  --vb-flex-gap: 1em;
+  --vb-flex-wrap: wrap;
+}
+```
+</DocBlock>
+
+<DocBlock name="SCSS Variables" src="flex/src/_variables.scss">
+
+```scss
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+$breakpoints: core.$breakpoints !default;
+$gap: 1em !default;
+$gap-map: (
+  "none": 0,
+  "xs": 1px,
+  "sm": .5em,
+  "md": 1em,
+  "lg": 1.5em,
+  "xl": 2em,
+) !default;
+$wrap: wrap !default;
+$order-count: 6 !default;
+$grow-count: 6 !default;
+$shrink-count: 6 !default;
+
+@include css.set("flex", (
+  "gap": $gap,
+  "gap-x": null,
+  "gap-y": null,
+  "wrap": $wrap,
+));
+```
+</DocBlock>

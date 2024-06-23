@@ -1,0 +1,13 @@
+@use "@vrembem/core";
+
+#{core.bem("flex", null, "nowrap")} {
+  flex-wrap: nowrap;
+}
+
+#{core.bem("flex", null, "wrap")} {
+  flex-wrap: wrap;
+}
+
+#{core.bem("flex", null, "wrap-reverse")} {
+  flex-wrap: wrap-reverse;
+}

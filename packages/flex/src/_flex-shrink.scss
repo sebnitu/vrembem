@@ -1,0 +1,11 @@
+@use "./variables" as var;
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+@for $i from 0 through var.$shrink-count {
+  .flex-shrink-#{$i} {
+    flex-shrink: $i;
+  }
+}

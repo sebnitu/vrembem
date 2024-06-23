@@ -1,0 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+@if (var.$output-spacing) {
+  .spacing {
+    > * + * {
+      margin-top: var.$gap !important;
+    }
+  }
+
+  @each $key, $value in var.$gap-map {
+    .spacing-#{$key} {
+      > * + * {
+        margin-top: $value !important;
+      }
+    }
+  }
+}

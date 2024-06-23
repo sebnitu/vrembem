@@ -6,7 +6,7 @@
   @include css.override("menu", (
     "size": var.$size-sm,
     "padding": var.$size-sm-padding,
-    "padding-x": core.get-side(var.$size-sm-padding, top),
+    "padding-x": core.get-side(core.$form-control-padding-sm, top),
     "font-size": var.$size-sm-font-size,
     "line-height": var.$size-sm-line-height
   ));
@@ -16,7 +16,7 @@
   @include css.override("menu", (
     "size": var.$size-lg,
     "padding": var.$size-lg-padding,
-    "padding-x": core.get-side(var.$size-lg-padding, top),
+    "padding-x": core.get-side(core.$form-control-padding-lg, top),
     "font-size": var.$size-lg-font-size,
     "line-height": var.$size-lg-line-height
   ));

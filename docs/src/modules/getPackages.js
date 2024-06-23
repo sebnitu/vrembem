@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 
-const statusSort = ["settings", "layers", "check-square", "circle"];
+const statusSort = ["settings", "layers", "layout", "check-square", "circle"];
 
 function packageOrder(a, b) {
   let result = 0, count = 0;

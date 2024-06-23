@@ -1,9 +1,9 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core";
 
-$bp-code: 44rem;
-$bp-drawer: 60rem;
-$bp-aside: 76rem;
+$bp-code: 600px;
+$bp-drawer: 960px;
+$bp-aside: 1220px;
 
 :root {
   // Layout variables

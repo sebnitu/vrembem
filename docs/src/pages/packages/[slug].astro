@@ -40,7 +40,7 @@ const layout = {
     <OnThisPage {headings} />
   </div>
   <Content components={{ pre: Pre, table: Table }} />
-  <div slot="append" class="gap-y-xl">
+  <div slot="append" class="spacing-xl">
     <LinkEditPage />
     <hr class="sep" />
     <Pagi {entries} collection="packages" />
@@ -55,6 +55,7 @@ const layout = {
   import "../../modules/currentViewport";
   import "../../modules/dismissible";
   import "../../modules/resettable";
+  import "../../modules/demo";
 
   headerAnchor.mount();
   tabs.mount();

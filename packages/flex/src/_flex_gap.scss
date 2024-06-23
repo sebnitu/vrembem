@@ -1,0 +1,39 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+@each $key, $value in var.$gap-map {
+  #{core.bem("flex", null, "gap", $key)} {
+    @include css.override("flex", "gap", $value);
+  }
+}
+
+@each $key, $value in var.$gap-map {
+  #{core.bem("flex", null, "gap-x", $key)} {
+    @include css.override("flex", "gap-x", $value);
+  }
+
+  #{core.bem("flex", null, "gap-y", $key)} {
+    @include css.override("flex", "gap-y", $value);
+  }
+}
+
+@each $bp, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    @each $key, $value in var.$gap-map {
+      #{core.bem("#{$bp}\\:flex", null, "gap", $key)} {
+        @include css.override("flex", "gap", $value);
+      }
+    }
+    
+    @each $key, $value in var.$gap-map {
+      #{core.bem("#{$bp}\\:flex", null, "gap-x", $key)} {
+        @include css.override("flex", "gap-x", $value);
+      }
+    
+      #{core.bem("#{$bp}\\:flex", null, "gap-y", $key)} {
+        @include css.override("flex", "gap-y", $value);
+      }
+    }
+  }
+}

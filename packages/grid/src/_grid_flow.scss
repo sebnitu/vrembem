@@ -1,0 +1,22 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+#{core.bem("grid", null, "flow", "row")} {
+  @include css.override("grid", "flow", row);
+}
+
+#{core.bem("grid", null, "flow", "col")} {
+  @include css.override("grid", "flow", column);
+}
+
+#{core.bem("grid", null, "flow", "dense")} {
+  @include css.override("grid", "flow", dense);
+}
+
+#{core.bem("grid", null, "flow", "row-dense")} {
+  @include css.override("grid", "flow", row dense);
+}
+
+#{core.bem("grid", null, "flow", "col-dense")} {
+  @include css.override("grid", "flow", column dense);
+}

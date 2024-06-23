@@ -58,19 +58,19 @@ For creating more distinct sections in a card, header and footer elements can be
 - `card__footer`
 
 <CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <div class="card">
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
       </div>
-      <div class="card__body gap-y">
+      <div class="card__body spacing">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci, id venenatis nisi quam non turpis.</p>
-        <p class="foreground-lighter level flex-justify-between">
+        <p class="foreground-lighter flex justify-content-between">
           <span>April 9th, 2024</span>
           <span>30 comments</span>
         </p>
       </div>
-      <div class="card__footer flex flex-justify-between">
+      <div class="card__footer flex justify-content-between">
         <button class="button button_color_primary">Read More</button>
         <button class="button button_color_secondary button_icon">
           <Icon name="heart" />
@@ -99,7 +99,7 @@ Card screens and backgrounds are displayed behind other card elements. These can
 - `card__background`
 
 <CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <div class="card vb-theme-light">
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
@@ -133,13 +133,13 @@ Card screens and backgrounds are displayed behind other card elements. These can
 When creating a card using the `<a>` element, additional styles are applied to make the card more visually interactive with hover and focus styles.
 
 <CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <a href="#" class="card">
       <img class="card__image" src="https://picsum.photos/id/106/600/300" />
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
       </div>
-      <div class="card__body gap-y">
+      <div class="card__body spacing">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus hendrerit, lacus vel consectetur placerat, nisl eros malesuada orci id venenatis nisi quam non turpis... <strong>Continue Reading</strong></p>
       </div>
     </a>

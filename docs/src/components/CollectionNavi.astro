@@ -36,7 +36,7 @@ const cp = currentPage(new URL(Astro.request.url).pathname, {
             class={cp.classes(`/${collection}/${entry.slug}`)}
             href={`/${collection}/${entry.slug}`}
           >
-            <span class="flex-grow-1">{entry.data.title}</span>
+            <span class="flex-grow">{entry.data.title}</span>
             {
               entry.data.status && (
                 <Icon name={entry.data.status} classes="icon_size_sm foreground-primary" />

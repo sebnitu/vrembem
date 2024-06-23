@@ -32,22 +32,22 @@ The palette module is used to manage Vrembem's colors and their CSS variable out
 
 By default, the palette module ships with four colors with a wide range of lightness values. This includes:
 
-<div class="level flex-gap-lg">
+<div class="flex flex_gap_lg align-items-center">
   <span class="swatch radius background-primary"></span>
   <span>`primary`</span>
 </div>
 
-<div class="level flex-gap-lg">
+<div class="flex flex_gap_lg align-items-center">
   <span class="swatch radius background-secondary"></span>
   <span>`secondary`</span>
 </div>
 
-<div class="level flex-gap-lg">
+<div class="flex flex_gap_lg align-items-center">
   <span class="swatch radius background-neutral"></span>
   <span>`neutral`</span>
 </div>
 
-<div class="level flex-gap-lg">
+<div class="flex flex_gap_lg align-items-center">
   <span class="swatch radius background-important"></span>
   <span>`important`</span>
 </div>
@@ -58,7 +58,7 @@ Packages and their use of the theme module will impact the flexibility of a comp
 
 1. If a package uses the theme CSS vars directly, it will inherit root/light/dark preferences as well as the ability to use theme classes directly.
 
-<div class="level">
+<div class="flex">
   <span class="test-1">Default</span>
   <span class="test-1 vb-theme-root">vb-theme-root</span>
   <span class="test-1 vb-theme-light">vb-theme-light</span>
@@ -67,7 +67,7 @@ Packages and their use of the theme module will impact the flexibility of a comp
 
 2. If a package has its own custom CSS vars that are set to theme CSS vars, it will inherit root/light/dark preferences but theme classes won't be available.
 
-<div class="level">
+<div class="flex">
   <span class="test-2">Default</span>
   <span class="test-2 vb-theme-root">vb-theme-root</span>
   <span class="test-2 vb-theme-light">vb-theme-light</span>
@@ -76,7 +76,7 @@ Packages and their use of the theme module will impact the flexibility of a comp
 
 3. If a package has its own custom CSS vars but uses the theme module's `theme.set` to set and `theme.output` to output theme variables, it will have the ability to use theme classes directly.
 
-<div class="level">
+<div class="flex">
   <span class="test-3">Default</span>
   <span class="test-3 vb-theme-root">vb-theme-root</span>
   <span class="test-3 vb-theme-light">vb-theme-light</span>

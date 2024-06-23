@@ -1,7 +1,0 @@
-@use "@vrembem/core";
-
-#{core.bem("grid", null, "auto")} > #{core.bem("grid", "item")},
-#{core.bem("grid", "item", "auto")} {
-  flex: 0 0 auto;
-  width: auto;
-}

@@ -20,22 +20,20 @@ const isFile = (type === "file");
 
 <article class="doc-block">
   <div class="doc-block__header">
-    <div class="media media_gap-x_sm flex-align-center">
-      <div class="media__obj">
-        <button
-          type="button" 
-          id={"toggle-" + id + "-trigger"}
-          data-toggle={"toggle-" + id}
-          aria-controls={"toggle-" + id}
-          aria-label={`Toggle ${id} file contents`}
-          aria-expanded={open ? "true" : "false"}
-          class="toggle-trigger button button_icon button_size_sm"
-        >
-          <Icon name="chevron-right" classes="icon_size_sm" />
-        </button>
-      </div>
-      <div class="media__body flex flex-align-center flex-gap-x flex-wrap">
-        <h3 id={id} class="doc-block__title level level_gap_lg no-anchor">
+    <div class="flex align-items-center">
+      <button
+        type="button" 
+        id={"toggle-" + id + "-trigger"}
+        data-toggle={"toggle-" + id}
+        aria-controls={"toggle-" + id}
+        aria-label={`Toggle ${id} file contents`}
+        aria-expanded={open ? "true" : "false"}
+        class="toggle-trigger button button_icon button_size_sm"
+      >
+        <Icon name="chevron-right" classes="icon_size_sm" />
+      </button>
+      <div class="flex-grow flex align-items-center">
+        <h3 id={id} class="doc-block__title flex flex_gap_sm no-anchor">
           <a class="link font-family-mono font-size-sm" href={`#${id}`}>
             { isFile ? src : name }
           </a>
@@ -45,7 +43,7 @@ const isFile = (type === "file");
             )
           }
         </h3>
-        <a class="link flex" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
+        <a class="link flex flex_gap_xs" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
           Source
           <Icon
             name="arrow-up-right"
@@ -83,7 +81,7 @@ const isFile = (type === "file");
             }
           </div>
           <hr class="sep" />
-          <div class="type gap-y">
+          <div class="type spacing">
             <slot />
           </div>
         </div>

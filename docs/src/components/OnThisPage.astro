@@ -29,14 +29,14 @@ function build(headings) {
 
 <nav>
   <h2 class="sr-only">On this page</h2>
-  <ul class={`menu menu_otp ${menuClass}`.trim()}>
+  <ul class={`menu menu_otp menu_size_sm ${menuClass}`.trim()}>
     <li>
-      <a href="#main" class="menu__action"><strong>On this page</strong></a>
+      <a href="#main-content" class="menu__action"><strong>On this page</strong></a>
     </li>
     {filteredHeadings.map((item) => <OnThisPageList {item} />)}
     <li class="menu__sep slide-up scroll-spy"></li>
     <li class="menu__item slide-up scroll-spy">
-      <a href="#main" class="menu__action">Back to top</a>
+      <a href="#main-content" class="menu__action">Back to top</a>
     </li>
   </ul>
 </nav>

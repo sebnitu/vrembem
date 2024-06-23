@@ -1,13 +1,13 @@
 {
-  "name": "@vrembem/media",
-  "description": "The media component is used for displaying groups of content with a corresponding media asset, such as an image, avatar or icon.",
+  "name": "@vrembem/flex",
+  "description": "A simple flexbox based layout component.",
   "version": "4.0.0-next.8",
   "license": "MIT",
   "keywords": [
     "BEM",
     "front-end",
     "component",
-    "media"
+    "flex"
   ],
   "exports": {
     ".": "./index.scss",
@@ -32,9 +32,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/media"
+    "directory": "packages/flex"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/media#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/flex#readme",
   "dependencies": {
     "@vrembem/core": "^4.0.0-next.8"
   },

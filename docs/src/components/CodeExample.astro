@@ -19,6 +19,13 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
 <div class="code-example">
   {
+    Astro.slots.has("demo") && (
+      <div class="code-example__demo">
+        <slot name="demo" />
+      </div>
+    )
+  }
+  {
     Astro.slots.has("output") && (
       <div id={`code-example-output-${uid}`} class="code-example__output">
         <div class={`code-example__inner ${flush ? 'padding-none' : ''}`.trim()}>
@@ -31,7 +38,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     !tabs ? (
       <div class="code-example__toolbar">
-        <div class="flex-grow-1">{lang}</div>
+        <div class="flex-grow">{lang}</div>
         {
           resettable && (
             <button
@@ -49,7 +56,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
       </div>
     ) : (
       <div class="code-example__toolbar">
-        <div class="flex-grow-1" role="tablist" aria-label="Code examples">
+        <div class="flex-grow" role="tablist" aria-label="Code examples">
           {
             Astro.slots.has("tab-html") && (
             <button 
@@ -68,6 +75,16 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
               role="tab"
               aria-controls={`tabpanel-scss-${uid}`}
               aria-selected="false">SCSS</button>
+              )
+          }
+          {
+            Astro.slots.has("tab-css") && (
+            <button 
+              class="tab"
+              id={`tab-css-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-css-${uid}`}
+              aria-selected="false">CSS</button>
               )
           }
           {
@@ -116,6 +133,17 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         role="tabpanel"
         aria-labelledby={`tab-scss-${uid}`}>
         <slot name="tab-scss" />
+      </div>
+    )
+  }
+  {
+    Astro.slots.has("tab-css") && (
+      <div
+        class="code-example__input"
+        id={`tabpanel-css-${uid}`}
+        role="tabpanel"
+        aria-labelledby={`tab-css-${uid}`}>
+        <slot name="tab-css" />
       </div>
     )
   }

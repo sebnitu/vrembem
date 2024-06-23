@@ -1,37 +1,61 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-$_u: var.$prefix-utility;
-$_cx: var.$class-gap-x;
-$_cy: var.$class-gap-y;
+.gap {
+  gap: var.$gap !important;
+}
 
-@if (var.$output-gap-x) {
-  .#{$_u}#{$_cx} {
-    > * + * {
-      margin-left: var.$gap !important;
-    }
-  }
+.gap-x {
+  column-gap: var.$gap !important;
+}
 
-  @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_cx}-#{$key} {
-      > * + * {
-        margin-left: $value !important;
-      }
-    }
+.gap-y {
+  row-gap: var.$gap !important;
+}
+
+@each $key, $value in var.$gap-map {
+  .gap-#{$key} {
+    gap: $value !important;
   }
 }
 
-@if (var.$output-gap-y) {
-  .#{$_u}#{$_cy} {
-    > * + * {
-      margin-top: var.$gap !important;
-    }
+@each $key, $value in var.$gap-map {
+  .gap-x-#{$key} {
+    column-gap: $value !important;
   }
 
-  @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_cy}-#{$key} {
-      > * + * {
-        margin-top: $value !important;
+  .gap-y-#{$key} {
+    row-gap: $value !important;
+  }
+}
+
+@each $bp, $value in var.$breakpoints {
+  @include core.media-min($value) {
+    .#{$bp}\:gap {
+      gap: var.$gap !important;
+    }
+    
+    .#{$bp}\:gap-x {
+      column-gap: var.$gap !important;
+    }
+    
+    .#{$bp}\:gap-y {
+      row-gap: var.$gap !important;
+    }
+    
+    @each $key, $value in var.$gap-map {
+      .#{$bp}\:gap-#{$key} {
+        gap: $value !important;
+      }
+    }
+    
+    @each $key, $value in var.$gap-map {
+      .#{$bp}\:gap-x-#{$key} {
+        column-gap: $value !important;
+      }
+    
+      .#{$bp}\:gap-y-#{$key} {
+        row-gap: $value !important;
       }
     }
   }

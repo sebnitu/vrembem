@@ -57,28 +57,28 @@ Add a title to your notice using the `notice__title` element.
   ```
 </CodeExample>
 
-### Using media
+### Using flex layout
 
-For cases where a notice message should be displayed alongside an icon or image, try combining it with the [media](/packages/media) component.
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the [flex](/packages/flex) component.
 
 <CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <div class="notice notice_color_important">
-      <div class="media media_gap_sm">
-        <div class="media__obj">
+      <div class="flex flex_nowrap">
+        <div class="flex-none">
           <Icon name="alert-triangle" />
         </div>
-        <div class="media__body">
-          This is an example notice using the media component for layout.
+        <div class="flex-auto">
+          This is an example notice using the flex component for layout.
         </div>
       </div>
     </div>
     <div class="notice notice_color_secondary">
-      <div class="media media_gap_sm">
-        <div class="media__body">
-          This is an example notice using the media component for layout.
+      <div class="flex flex_nowrap">
+        <div class="flex-auto">
+          This is an example notice using the flex component for layout.
         </div>
-        <div class="media__obj">
+        <div class="flex-none">
           <Icon name="archive" />
         </div>
       </div>
@@ -86,11 +86,11 @@ For cases where a notice message should be displayed alongside an icon or image,
   </div>
   ```html
   <div class="notice">
-    <div class="media media_gap_sm">
-      <div class="media__obj">
+    <div class="flex flex_nowrap">
+      <div class="flex-none">
         ...
       </div>
-      <div class="media__body">
+      <div class="flex-auto">
         ...
       </div>
     </div>
@@ -105,7 +105,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
 <CodeExample tabs resettable>
   <Fragment slot="output">
     <div class="notice">
-      <div class="flex flex-justify-between flex-align-center">
+      <div class="flex justify-content-between align-items-center">
         <p>This is an example notice with a dismiss button.</p>
         <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
           <Icon name="x" classes="icon_size_sm" />
@@ -116,7 +116,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
   <Fragment slot="tab-html">
     ```html
     <div class="notice">
-      <div class="flex flex-justify-between">
+      <div class="flex justify-content-between">
         <p>...</p>
         <button 
           class="button button_icon button_size_sm" 
@@ -154,7 +154,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
 Adds styles for changing the look and feel to better reflect the urgency or status of a notice.
 
 <CodeExample>
-  <div slot="output" class="gap-y">
+  <div slot="output" class="spacing">
     <div class="notice notice_color_primary">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>

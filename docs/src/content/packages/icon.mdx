@@ -28,7 +28,7 @@ npm install @vrembem/icon
 The most basic implementation of the icon component consists of the `icon` class applied to an svg element.
 
 <CodeExample>
-  <div slot="output" class="level level_gap_xl">
+  <div slot="output" class="flex flex_gap_xl">
     <Icon name="anchor" />
     <Icon name="arrow-left" />
     <Icon name="arrow-right" />
@@ -48,7 +48,7 @@ The most basic implementation of the icon component consists of the `icon` class
 Add a size modifier to adjust the size of your icons. Icon sizes are controlled using the font-size attribute and optionally a stroke width.
 
 <CodeExample>
-  <div slot="output" class="level level_gap_xl">
+  <div slot="output" class="flex flex_gap_xl">
     <Icon name="anchor" classes="icon_size_xs" />
     <Icon name="anchor" classes="icon_size_sm" />
     <Icon name="anchor" />
@@ -72,7 +72,7 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 The default icon style is set using the `$icon-style` variable. You can also use the `icon_style_[value]` modifier to style individual icons.
 
 <CodeExample>
-  <div slot="output" class="level level_gap_xl">
+  <div slot="output" class="flex flex_gap_xl">
     <Icon name="heart" classes="icon_style_stroke" />
     <Icon name="heart" classes="icon_style_fill" />
     <Icon name="heart" classes="icon_style_both" />

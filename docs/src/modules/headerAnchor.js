@@ -1,7 +1,14 @@
+import feather from "feather-icons";
+
 const settings = {
   prefix: ".layout__content",
   headings: ["h1", "h2", "h3", "h4", "h5", "h6"]
 };
+
+const svg = feather.icons.hash.toSvg({
+  class: "icon icon_size_sm",
+  role: "img"
+});
 
 const headerAnchor = {
   mount() {
@@ -22,8 +29,8 @@ const headerAnchor = {
         anchor.setAttribute("class", "header-anchor");
         anchor.setAttribute("href", "#" + elId);
         anchor.setAttribute("aria-label", `Permalink to '${elText}'`);
-        anchor.innerHTML = "#";
-        el.prepend(anchor);
+        anchor.innerHTML = svg;
+        el.append(anchor);
       });
     });
   }

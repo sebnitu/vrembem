@@ -1,17 +1,25 @@
 @forward "./src/variables";
+
 @forward "./src/background";
 @forward "./src/foreground";
 @forward "./src/border";
 @forward "./src/border-radius";
 @forward "./src/shadow";
+
 @forward "./src/display";
-@forward "./src/flex";
-@forward "./src/flex-gap";
-@forward "./src/font";
-@forward "./src/gap";
 @forward "./src/margin";
-@forward "./src/max-width";
-@forward "./src/overflow";
 @forward "./src/padding";
+@forward "./src/spacing";
+
+@forward "./src/gap";
+@forward "./src/justify";
+@forward "./src/align";
+@forward "./src/place";
+@forward "./src/order";
+
 @forward "./src/position";
+@forward "./src/overflow";
+@forward "./src/max-width";
+
+@forward "./src/font";
 @forward "./src/text";
