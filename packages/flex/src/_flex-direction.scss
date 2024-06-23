@@ -19,7 +19,7 @@
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
-    #{core.bem("#{$key}\\:flex", null, "direction", "col")} {
+    #{core.bem("#{$key}\\:flex", null, "direction", "row")} {
       flex-direction: row;
     }
     
