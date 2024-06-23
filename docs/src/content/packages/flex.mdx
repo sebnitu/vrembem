@@ -59,13 +59,13 @@ The most basic implementation of the flex utility component consists of a contai
   </Fragment>
 </CodeExample>
 
-### flex-inline
+### flex_inline
 
-Also available is the `flex-inline` utility. This applies the same styles as `flex` but will set the `display` property to `inline-flex` instead of `flex`.
+Also available is the `flex_inline` modifier. This sets the `display` property to `inline-flex` instead of `flex`.
 
-<CodeExample tabs>
+<CodeExample>
   <Fragment slot="output">
-    <div class="flex-inline">
+    <div class="flex flex_inline">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -73,22 +73,11 @@ Also available is the `flex-inline` utility. This applies the same styles as `fl
       <div class="box">Five</div>
     </div>
   </Fragment>
-  <Fragment slot="tab-html">
   ```html
-  <div class="flex-inline">
+  <div class="flex flex_inline">
     ...
   </div>
   ```
-  </Fragment>
-  <Fragment slot="tab-css">
-  ```css
-  .flex-inline {
-    display: inline-flex;
-    gap: var(--vb-flex-gap-y, var(--vb-flex-gap)) var(--vb-flex-gap-x, var(--vb-flex-gap));
-    flex-wrap: var(--vb-flex-wrap);
-  }
-  ```
-  </Fragment>
 </CodeExample>
 
 ## flex-gap-[key]
@@ -231,7 +220,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 ## flex-wrap
 
-This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` and `flex-inline` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
+This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
 
 <CodeExample>
   <Fragment slot="demo">

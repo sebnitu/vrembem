@@ -1,37 +1,37 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.flex-direction-row {
+#{core.bem("flex", null, "direction", "row")} {
   flex-direction: row;
 }
 
-.flex-direction-row-reverse {
+#{core.bem("flex", null, "direction", "row-reverse")} {
   flex-direction: row-reverse;
 }
 
-.flex-direction-column {
+#{core.bem("flex", null, "direction", "col")} {
   flex-direction: column;
 }
 
-.flex-direction-column-reverse {
+#{core.bem("flex", null, "direction", "col-reverse")} {
   flex-direction: column-reverse;
 }
 
 @each $key, $value in var.$breakpoints {
   @include core.media-min($value) {
-    .#{$key}\:flex-direction-row {
+    #{core.bem("#{$key}\\:flex", null, "direction", "col")} {
       flex-direction: row;
     }
     
-    .#{$key}\:flex-direction-row-reverse {
+    #{core.bem("#{$key}\\:flex", null, "direction", "row-reverse")} {
       flex-direction: row-reverse;
     }
     
-    .#{$key}\:flex-direction-column {
+    #{core.bem("#{$key}\\:flex", null, "direction", "col")} {
       flex-direction: column;
     }
     
-    .#{$key}\:flex-direction-column-reverse {
+    #{core.bem("#{$key}\\:flex", null, "direction", "col-reverse")} {
       flex-direction: column-reverse;
     }
   }

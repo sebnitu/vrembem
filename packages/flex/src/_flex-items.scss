@@ -1,37 +1,37 @@
 @use "@vrembem/core";
 @use "./variables" as var;
 
-.flex-items-initial {
+#{core.bem("flex", null, "items", "initial")} {
   > * {
     flex: initial; // Equivalent to setting flex: 0 1 auto.
   }
 }
 
-.flex-items-auto {
+#{core.bem("flex", null, "items", "auto")} {
   > * {
     flex: auto; // Equivalent to setting flex: 1 1 auto.
   }
 }
 
-.flex-items-none {
+#{core.bem("flex", null, "items", "none")} {
   > * {
     flex: none; // Equivalent to setting flex: 0 0 auto.
   }
 }
 
-.flex-items-equal {
+#{core.bem("flex", null, "items", "equal")} {
   > * {
     flex: 1 1 0;
   }
 }
 
-.flex-items-fill {
+#{core.bem("flex", null, "items", "fill")} {
   > * {
     flex: 1 0 auto;
   }
 }
 
-.flex-items-full {
+#{core.bem("flex", null, "items", "full")} {
   flex-wrap: wrap;
   
   > * {
