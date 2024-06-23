@@ -1,21 +1,19 @@
-// TODO: Move this into utilities since it applies to both flex and grid.
-
-.flex-align-start {
+.align-items-start {
   align-items: flex-start !important;
 }
 
-.flex-align-center {
+.align-items-center {
   align-items: center !important;
 }
 
-.flex-align-end {
+.align-items-end {
   align-items: flex-end !important;
 }
 
-.flex-align-stretch {
+.align-items-stretch {
   align-items: stretch !important;
 }
 
-.flex-align-baseline {
+.align-items-baseline {
   align-items: baseline !important;
 }

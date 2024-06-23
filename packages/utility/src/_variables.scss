@@ -54,9 +54,6 @@ $display-properties: (
   none
 ) !default;
 
-$spacing-gap: core.$gap !default;
-$spacing-gap-map: core.$gap-map !default;
-
 $max-width: 70rem !default;
 $max-width-scale: (
   "none": none,
@@ -68,6 +65,8 @@ $max-width-scale: (
   "full": 100%
 ) !default;
 
+$order-count: 6 !default;
+
 $overflow-properties: (
   visible,
   hidden,
@@ -75,3 +74,6 @@ $overflow-properties: (
   scroll,
   auto
 ) !default;
+
+$spacing-gap: core.$gap !default;
+$spacing-gap-map: core.$gap-map !default;

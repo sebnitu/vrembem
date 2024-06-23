@@ -1,25 +1,23 @@
-// TODO: Move this into utilities since it applies to both flex and grid.
-
-.flex-justify-start {
+.justify-content-start {
   justify-content: flex-start !important;
 }
 
-.flex-justify-center {
+.justify-content-center {
   justify-content: center !important;
 }
 
-.flex-justify-end {
+.justify-content-end {
   justify-content: flex-end !important;
 }
 
-.flex-justify-between {
+.justify-content-between {
   justify-content: space-between !important;
 }
 
-.flex-justify-around {
+.justify-content-around {
   justify-content: space-around !important;
 }
 
-.flex-justify-evenly {
+.justify-content-evenly {
   justify-content: space-evenly !important;
 }
