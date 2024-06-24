@@ -40,29 +40,29 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 2rem 0 0;
 
   @include core.media-min(root.$bp-code) {
-    padding: 3rem;
+    padding: 3rem 3rem 0;
   }
 
   @include core.media-min(root.$bp-drawer) {
     gap: 3rem;
-    padding: 3rem 0;
+    padding: 3rem 0 0;
     
     .has-drawer & {
-      padding: 3rem 3.5rem 3rem 4.5rem;
+      padding: 3rem 3.5rem 0 4.5rem;
     }
   }
 
   @include core.media-min(root.$bp-aside) {
     flex-flow: row wrap;
     align-items: flex-start;
-    gap: 4rem;
-    padding: 4rem 0;
+    gap: var(--layout-gap);
+    padding: 4rem 0 0;
 
     .has-drawer & {
-      padding: 4rem 0 4rem 6rem;
+      padding: 4rem 0 0 6rem;
     }
   }
 }
@@ -73,7 +73,7 @@
   max-width: var(--layout-content-width);
 
   @include core.media-min(root.$bp-aside) {
-    width: calc(100% - (var(--layout-aside-width) + 4rem));
+    width: calc(100% - (var(--layout-aside-width) + var(--layout-gap)));
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -116,10 +116,21 @@
 }
 
 .layout__footer {
+  position: relative;
+  z-index: 2;
   order: 3;
   width: 100%;
-  padding-top: 2em;
+  padding: 2rem 0;
+  background-color: theme.get("background");
   border-top: 1px solid theme.get("border-color");
+
+  @include core.media-min(root.$bp-drawer) {
+    padding: 3rem 0;
+  }
+
+  @include core.media-min(root.$bp-aside) {
+    padding: 4rem 0;
+  }
 }
 
 /**
