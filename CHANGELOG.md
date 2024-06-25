@@ -25,12 +25,65 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.8 to CHANGELOG.md
+chore(release): add v4.0.0-next.9 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.9 (2024-06-25)
+
+### :tada: New Feature
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1897](https://github.com/sebnitu/vrembem/pull/1897) Refactor grid and flexbox layout components
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`
+  * [#1883](https://github.com/sebnitu/vrembem/pull/1883) Add CSS module for managing custom properties
+* `grid`, `menu`, `utility`
+  * [#1881](https://github.com/sebnitu/vrembem/pull/1881) Migrate the menu component to custom property methods
+* `core`, `grid`
+  * [#1865](https://github.com/sebnitu/vrembem/pull/1865) Add css function fallback parameter
+
+### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1897](https://github.com/sebnitu/vrembem/pull/1897) Refactor grid and flexbox layout components
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon`, `input`, `level`, `media`, `menu`, `modal`, `notice`, `popover`, `radio`, `switch`, `table`, `utility`, `vrembem`
+  * [#1882](https://github.com/sebnitu/vrembem/pull/1882) Refactor core into a more defined library
+* `grid`, `menu`, `utility`
+  * [#1881](https://github.com/sebnitu/vrembem/pull/1881) Migrate the menu component to custom property methods
+* `media`
+  * [#1879](https://github.com/sebnitu/vrembem/pull/1879) Migrate the media component to custom property methods
+* `level`
+  * [#1878](https://github.com/sebnitu/vrembem/pull/1878) Migrate the level component to custom property methods
+* `core`, `input`
+  * [#1877](https://github.com/sebnitu/vrembem/pull/1877) Migrate the input component to custom property methods
+* `icon`
+  * [#1875](https://github.com/sebnitu/vrembem/pull/1875) Migrate the icon component to custom property methods
+* `notice`
+  * [#1866](https://github.com/sebnitu/vrembem/pull/1866) Migrate the notice component to custom property methods
+* `base`, `core`, `grid`
+  * [#1864](https://github.com/sebnitu/vrembem/pull/1864) Migrate the grid component to custom property methods
+
+### :books: Documentation
+* `button`
+  * [#1894](https://github.com/sebnitu/vrembem/pull/1894) Update the DocBlock contents to reflect new CSS var output
+* `grid`, `menu`, `utility`
+  * [#1881](https://github.com/sebnitu/vrembem/pull/1881) Migrate the menu component to custom property methods
+* `media`
+  * [#1879](https://github.com/sebnitu/vrembem/pull/1879) Migrate the media component to custom property methods
+* `level`
+  * [#1878](https://github.com/sebnitu/vrembem/pull/1878) Migrate the level component to custom property methods
+* `core`, `input`
+  * [#1877](https://github.com/sebnitu/vrembem/pull/1877) Migrate the input component to custom property methods
+* `icon`
+  * [#1875](https://github.com/sebnitu/vrembem/pull/1875) Migrate the icon component to custom property methods
+* Other
+  * [#1867](https://github.com/sebnitu/vrembem/pull/1867) Add the ability to reset code examples
+* `notice`
+  * [#1866](https://github.com/sebnitu/vrembem/pull/1866) Migrate the notice component to custom property methods
+* `base`, `core`, `grid`
+  * [#1864](https://github.com/sebnitu/vrembem/pull/1864) Migrate the grid component to custom property methods
 
 
 ## v4.0.0-next.8 (2024-06-06)
