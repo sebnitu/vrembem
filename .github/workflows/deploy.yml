@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,10 +13,22 @@ jobs:
         with:
           node-version: 20.12.1
 
-      - name: Install and Build
-        run: |
-          npm ci
-          npx lerna run build --scope docs
+      - name: Setup
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.2.5
