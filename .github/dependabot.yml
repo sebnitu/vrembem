@@ -9,6 +9,14 @@ updates:
     target-branch: "next"
     labels:
       - "dep next"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint*"
+      stylelint:
+        patterns:
+          - "stylelint*"
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -17,3 +25,11 @@ updates:
     versioning-strategy: increase
     labels:
       - "dep"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint*"
+      stylelint:
+        patterns:
+          - "stylelint*"
