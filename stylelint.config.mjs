@@ -32,9 +32,7 @@ export default {
     "declaration-empty-line-before": ["never", {
       "ignore": "after-comment"
     }],
-    "function-whitespace-after": null,
     "hue-degree-notation": null,
-    "max-line-length": null,
     "media-feature-name-no-vendor-prefix": null,
     "media-feature-range-notation": "prefix",
     "no-descending-specificity": null,

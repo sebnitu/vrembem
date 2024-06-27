@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:meta";
 @use "../variables/breakpoints" as *;
 
 /// A media query mixin that defines a query using max-width. You can pass in a
@@ -15,7 +16,7 @@
     }
   }
   @else {
-    @if (type-of($point) == number) {
+    @if (meta.type-of($point) == number) {
       @media (max-width: ($point - 1)) {
         @content;
       }
