@@ -86,10 +86,7 @@ $_e: var.$prefix-element;
 .#{$_b}card#{$_e}screen {
   @include core.size(100%);
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   transition-property: var.$transition-property;
   transition-duration: var.$transition-duration;
   transition-timing-function: var.$transition-timing-function;
