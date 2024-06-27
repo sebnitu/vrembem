@@ -15,7 +15,7 @@
     }
   }
   @else {
-    @if (type-of($point) == number) {
+    @if (meta.type-of($point) == number) {
       @media (max-width: ($point - 1)) {
         @content;
       }
@@ -35,20 +35,11 @@
     }
   }
   @else {
-    @if (type-of($point) == number) {
+    @if (meta.type-of($point) == number) {
       @media (min-width: $point) {
         @content;
       }
     }
-  }
-}
-
-/// Media query mixin can be used for setting styles specifically to retina
-/// screens. Used when setting higher resolution background images.
-/// @param {style block} @content - passed in brackets
-@mixin media-retina() {
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    @content;
   }
 }
 

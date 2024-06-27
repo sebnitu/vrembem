@@ -26,10 +26,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   &::before {
     content: "";
     position: absolute;
-    top: auto;
-    right: 0;
-    bottom: 100%;
-    left: 0;
+    inset: auto 0 100%;
     width: 100%;
     height: $_offset;
   }
@@ -50,10 +47,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   margin: 0 0 calc(var(--#{$_v}popover-offset) * 1px) 0;
 
   &::before {
-    top: 100%;
-    right: 0;
-    bottom: auto;
-    left: 0;
+    inset: 100% 0 auto;
     width: 100%;
     height: $_offset;
   }
@@ -63,10 +57,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0 0;
 
   &::before {
-    top: auto;
-    right: 0;
-    bottom: 100%;
-    left: 0;
+    inset: auto 0 100%;
     width: 100%;
     height: $_offset;
   }
@@ -76,10 +67,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   margin: 0 calc(var(--#{$_v}popover-offset) * 1px) 0 0;
 
   &::before {
-    top: 0;
-    right: auto;
-    bottom: 0;
-    left: 100%;
+    inset: 0 auto 0 100%;
     width: $_offset;
     height: 100%;
   }
@@ -89,10 +77,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   margin: 0 0 0 calc(var(--#{$_v}popover-offset) * 1px);
 
   &::before {
-    top: 0;
-    right: 100%;
-    bottom: 0;
-    left: auto;
+    inset: 0 100% 0 auto;
     width: $_offset;
     height: 100%;
   }

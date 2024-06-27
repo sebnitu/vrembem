@@ -35,10 +35,7 @@ $_e: var.$prefix-element;
 .#{$_b}section#{$_e}screen {
   @include core.size(100%);
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
 }
 
 .#{$_b}section#{$_e}background {
