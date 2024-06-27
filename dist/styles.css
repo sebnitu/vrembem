@@ -1258,10 +1258,7 @@ input::-moz-placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   transition-property: background-color, border-color, box-shadow, transform;
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -3824,10 +3821,7 @@ input::-moz-placeholder {
 .popover::before {
   content: "";
   position: absolute;
-  top: auto;
-  right: 0;
-  bottom: 100%;
-  left: 0;
+  inset: auto 0 100%;
   width: 100%;
   height: calc((var(--vb-popover-offset) + 1) * 1px);
 }
@@ -3843,10 +3837,7 @@ input::-moz-placeholder {
   margin: 0 0 calc(var(--vb-popover-offset) * 1px) 0;
 }
 .popover[data-popper-placement^=top]::before {
-  top: 100%;
-  right: 0;
-  bottom: auto;
-  left: 0;
+  inset: 100% 0 auto;
   width: 100%;
   height: calc((var(--vb-popover-offset) + 1) * 1px);
 }
@@ -3855,10 +3846,7 @@ input::-moz-placeholder {
   margin: calc(var(--vb-popover-offset) * 1px) 0 0 0;
 }
 .popover[data-popper-placement^=bottom]::before {
-  top: auto;
-  right: 0;
-  bottom: 100%;
-  left: 0;
+  inset: auto 0 100%;
   width: 100%;
   height: calc((var(--vb-popover-offset) + 1) * 1px);
 }
@@ -3867,10 +3855,7 @@ input::-moz-placeholder {
   margin: 0 calc(var(--vb-popover-offset) * 1px) 0 0;
 }
 .popover[data-popper-placement^=left]::before {
-  top: 0;
-  right: auto;
-  bottom: 0;
-  left: 100%;
+  inset: 0 auto 0 100%;
   width: calc((var(--vb-popover-offset) + 1) * 1px);
   height: 100%;
 }
@@ -3879,10 +3864,7 @@ input::-moz-placeholder {
   margin: 0 0 0 calc(var(--vb-popover-offset) * 1px);
 }
 .popover[data-popper-placement^=right]::before {
-  top: 0;
-  right: 100%;
-  bottom: 0;
-  left: auto;
+  inset: 0 100% 0 auto;
   width: calc((var(--vb-popover-offset) + 1) * 1px);
   height: 100%;
 }
@@ -4101,10 +4083,7 @@ input::-moz-placeholder {
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
 }
 
 .section__background {
