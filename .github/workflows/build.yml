@@ -2,29 +2,31 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    branches: [next]
   pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 17.5.0
-  
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
+          node-version: 20.12.1
 
-      - name: Lint & Test
-        run: |
-          npm run lint
-          npm run test:coverage
+      - name: Setup
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:coverage
 
       - name: Coveralls
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
