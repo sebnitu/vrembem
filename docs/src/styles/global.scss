@@ -46,5 +46,8 @@ html {
 
 .main {
   min-height: 100vh;
+}
+
+[tabindex="-1"] {
   outline: none;
 }
