@@ -15,7 +15,7 @@ $bp-aside: 1220px;
   --layout-drawer-padding: 1rem;
   --layout-gap: 6rem;
   --layout-aside-width: 12rem;
-  --layout-aside-padding: 0;
+  --layout-aside-padding: 0.25rem; // Used to prevent cutoff of focus outline styles.
   --layout-content-width: 44rem;
   --layout-content-padding: 2rem 2rem 8rem;
 
