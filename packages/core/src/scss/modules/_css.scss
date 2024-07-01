@@ -401,38 +401,51 @@ $_meta: (
 }
 
 /// TODO: Documentation
-@mixin log-meta($filter: "*", $module: null) {
-  @if ($filter == "*" or $filter == "all") {
-    @include debug-map($_meta, "Referenced custom properties");
-  }
+@mixin log-meta($filters: (), $module: null) {
+  // Initial filtered map is just inherited from meta map.
+  $filtered: $_meta;
 
-  @else if ($filter == "no-defs" and $module) {
-    $filtered: ();
-    @each $prop, $meta in map.get($_meta, $module) {
-      @if (map.get($meta, "def") == 0) {
-        $filtered: map.set($filtered, $module, $prop, $meta);
-      }
+  // Do a module check and error if one is passed that hasn't been set.
+  @if ($module) {
+    @if (map.has-key($_meta, $module)) {
+      $filtered: map.get($_meta, $module);
+    } @else {
+      @error "Module map has not been set: \"#{$module}\"";
     }
-    @include debug-map($filtered, "Referenced but not defined of \"#{$module}\"");
   }
 
-  @else if ($filter == "no-defs") {
-    $filtered: ();
-    @each $module, $props in $_meta {
-      @each $prop, $meta in $props {
-        @if (map.get($meta, "def") == 0) {
-          $filtered: map.set($filtered, $module, $prop, $meta);
+  // Loop through the provided filters
+  @each $filterKey, $filterValue in $filters {
+    // If a module was passed.
+    @if ($module) {
+      @each $prop, $meta in $filtered {
+        @if (map.has-key($meta, $filterKey) and (map.get($meta, $filterKey) != $filterValue)) {
+          $filtered: map.remove($filtered, $module, $prop);
         }
       }
     }
-    @include debug-map($filtered, "Referenced but not defined");
+    // If a module was not passed.
+    @else {
+      @each $module, $props in $filtered {
+        @each $prop, $meta in $props {
+          @if (map.has-key($meta, $filterKey) and (map.get($meta, $filterKey) != $filterValue)) {
+            $filtered: map.deep-remove($filtered, $module, $prop);
+            // Remove empty maps if they exist.
+            @if (map.get($filtered, $module) == ()) {
+              $filtered: map.remove($filtered, $module);
+            }
+          }
+        }
+      }
+    }
   }
 
-  @else if (map.has-key($_meta, $filter)) {
-    @include debug-map(map.get($_meta, $filter), "Referenced custom properties of \"#{$filter}\"");
-  }
-
-  @else {
-    @error "Module map has not been set: \"#{$filter}\"";
+  // Log the filtered map.
+  @if ($module) {
+    @include debug-map($filtered, "Filtered custom properties of \"#{$module}\"");
+  } @else if ($filters == ()) {
+    @include debug-map($filtered, "All custom properties");
+  } @else {
+    @include debug-map($filtered, "Filtered custom properties");
   }
 }
