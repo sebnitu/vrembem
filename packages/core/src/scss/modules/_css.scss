@@ -241,10 +241,13 @@ $_used: (
 @function set-used($module, $prop) {
   $used: $_used;
   @if (map.has-key($_used, $module, $prop)) {
-    $count: map.get($_used, $module, $prop);
-    $used: map.set($_used, $module, $prop, $count + 1);
+    $count: map.get($_used, $module, $prop, "used");
+    $used: map.set($_used, $module, $prop, "used", $count + 1);
   } @else {
-    $used: map.set($_used, $module, $prop, 1);
+    $used: map.set($_used, $module, $prop, (
+      "output": 0,
+      "used": 1
+    ));
   }
   @return $used;
 }
@@ -302,6 +305,7 @@ $_used: (
       }
 
       @if ($value) {
+        $_used: map.set($_used, $module, $key, "override", 1) !global;
         @include define($key, $value, $module);
       }
     }
@@ -313,6 +317,7 @@ $_used: (
     }
 
     @if ($value) {
+      $_used: map.set($_used, $module, $prop, "override", 1) !global;
       @include define($prop, $value, $module);
     }
   }
@@ -355,6 +360,7 @@ $_used: (
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in map.get($_variables, $module) {
       @if ($value) {
+        $_used: map.set($_used, $module, $prop, "output", 1) !global;
         @include define($prop, $value, $module);
       }
     }
@@ -364,6 +370,7 @@ $_used: (
     @each $prop, $value in map.get($_used, $module) {
       @if map.has-key($_variables, $module, $prop) {
         @if (map.get($_variables, $module, $prop)) {
+          $_used: map.set($_used, $module, $prop, "output", 1) !global;
           @include define($prop, map.get($_variables, $module, $prop), $module);
         }
       }
@@ -394,4 +401,17 @@ $_used: (
 /// TODO: Documentation
 @mixin log-used() {
   @include debug-map($_used, "Referenced custom properties");
+}
+
+/// TODO: Documentation
+@mixin log-no-output() {
+  $no-output: ();
+  @each $module, $props in $_used {
+    @each $prop, $meta in $props {
+      @if (map.get($meta, "output") == 0) {
+        $no-output: map.set($no-output, $module, $prop, $meta);
+      }
+    }
+  }
+  @include debug-map($no-output, "Referenced but not output");
 }
