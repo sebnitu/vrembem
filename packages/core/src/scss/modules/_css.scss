@@ -38,7 +38,7 @@ $_meta: (
 ///   The custom property prefix string.
 /// @access private
 @function _prefix($module) {
-  @if ($module and $module != "core") {
+  @if ($module and $module != "core" and $module != "palette") {
     @return "--#{prefix.$variable}#{$module}-";
   } @else {
     @return "--#{prefix.$variable}";

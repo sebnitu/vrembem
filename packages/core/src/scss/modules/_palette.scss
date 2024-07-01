@@ -9,6 +9,11 @@
 /// @access private
 $_palette: ();
 
+/// Passes the name of the module to `css.reference` and `css.define` calls.
+/// @type map
+/// @access private
+$_module: "palette";
+
 /// The map of colors used to build the palette.
 /// @type map
 $seeds: (
@@ -32,7 +37,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   @each $key, $value in $seeds {
     $map: ();
     @each $value in $lightness {
-      $map: map.set($map, $value, css.reference("#{$key}-#{$value}"));
+      $map: map.set($map, $value, css.reference("#{$key}-#{$value}", $_module));
     }
     $_palette: map.set($_palette, $key, $map) !global;
   }
@@ -66,7 +71,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(#{css.reference("#{$key}-hs") $lightness + ' / ' + $alpha});
+    @return hsl(#{css.reference("#{$key}-hs", $_module) $lightness + ' / ' + $alpha});
   }
 
   // If the specified lightness value exists in the palette map, return its value.
@@ -76,7 +81,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 
   // Else return hsl using the provided lightness value.
   @else {
-    @return hsl(#{css.reference("#{$key}-hs") $lightness});
+    @return hsl(#{css.reference("#{$key}-hs", $_module) $lightness});
   }
 }
 
@@ -112,10 +117,10 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 @mixin output($seeds: $seeds) {
   :root {
     @each $key, $seed in $seeds {
-      @include css.define("#{$key}-hs", get-hs($seed));
-      @include css.define("#{$key}", css.reference("#{$key}-#{$lightness-default}"));
+      @include css.define("#{$key}-hs", get-hs($seed), $_module);
+      @include css.define("#{$key}", css.reference("#{$key}-#{$lightness-default}", $_module), $_module);
       @each $value in $lightness {
-        @include css.define("#{$key}-#{$value}", hsl(#{css.reference("#{$key}-hs") $value + '%'}));
+        @include css.define("#{$key}-#{$value}", hsl(#{css.reference("#{$key}-hs", $_module) $value + '%'}), $_module);
       }
     }
   }
