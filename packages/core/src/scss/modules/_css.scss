@@ -38,7 +38,7 @@ $_meta: (
 ///   The custom property prefix string.
 /// @access private
 @function _prefix($module) {
-  @if ($module != "core") {
+  @if ($module and $module != "core") {
     @return "--#{prefix.$variable}#{$module}-";
   } @else {
     @return "--#{prefix.$variable}";
@@ -46,19 +46,24 @@ $_meta: (
 }
 
 /// TODO: Documentation
-@function set-meta($module, $prop, $action: null) {
+@function set-meta($module, $prop, $action: "set") {
   $data: $_meta;
-  @if (map.has-key($_meta, $module, $prop) and $action) {
+  @if (map.has-key($_meta, $module, $prop)) {
     $n: map.get($_meta, $module, $prop, $action);
     $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
   } @else {
-    $_meta: map.set($_meta, $module, $prop, (
-      "def": 0,
-      "ref": 1,
-      "override": 0
-    )) !global;
+    $_meta: map.set($_meta, $module, $prop, init-action-map($action)) !global;
   }
   @return true;
+}
+
+// TODO: Documentation
+@function init-action-map($action) {
+  $def: 0; $ref: 0; $override: 0;
+  @if ($action == "def") { $def: 1; }
+  @if ($action == "ref") { $ref: 1; }
+  @if ($action == "override") { $override: 1; }
+  @return ( "def": $def, "ref": $ref, "override": $override );
 }
 
 /// Function to create reference to a custom property using the provided 

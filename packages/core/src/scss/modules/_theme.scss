@@ -201,19 +201,21 @@ $themes: (
     // If a map exists...
     @if $map {
       // Loop through all theme entries and output their custom properties.
-      @each $key, $value in $map {
+      @each $prop, $value in $map {
         // Check if a value exists and if it's not a map.
         @if $value and meta.type-of($value) != 'map' {
+          // TODO: Remove this, component is added in define function.
+          // TODO: Rename `component` to `module`.
           // Initial prop value and override if two arguments are passed.
-          $prop: $key;
-          @if $component {
-            $prop: "#{$component}-#{$key}";
-          }
+          // $prop: $key;
+          // @if $component {
+          //   $prop: "#{$component}-#{$key}";
+          // }
 
           // Output property or store the color scheme.
-          @if $key != 'color-scheme' {
+          @if $prop != 'color-scheme' {
             @if $value != () {
-              @include css.define($prop, $value);
+              @include css.define($prop, $value, $component);
             }
           } @else {
             $color-scheme: #{$value};
