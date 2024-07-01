@@ -75,5 +75,5 @@ $theme-dark: (
   "icon-color": palette.get("neutral", 10)
 ) !default;
 
-@include theme.set("light", "checkbox", $theme-light);
-@include theme.set("dark", "checkbox", $theme-dark);
+@include theme.set("checkbox", "light", $theme-light);
+@include theme.set("checkbox", "dark", $theme-dark);

@@ -69,5 +69,5 @@ $theme-dark: (
   "foreground-hover": null
 ) !default;
 
-@include theme.set("light", "table", $theme-light);
-@include theme.set("dark", "table", $theme-dark);
+@include theme.set("table", "light", $theme-light);
+@include theme.set("table", "dark", $theme-dark);

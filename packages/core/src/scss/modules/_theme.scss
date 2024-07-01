@@ -4,6 +4,7 @@
 
 @use "../variables/prefix";
 @use "../utilities/remove-nth" as *;
+@use "../utilities/debug-map" as *;
 @use "./css";
 @use "./palette";
 
@@ -53,44 +54,47 @@ $root-selector: ":root, .#{$_t}root" !default;
 ///     )
 ///   );
 ///
+/// TODO: Update documentation
 $themes: (
-  "light": (
-    "background": palette.get("neutral", 100),
-    "background-dark": palette.get("neutral", 98),
-    "background-darker": palette.get("neutral", 95),
-    "background-alt": palette.get("secondary", 60%, 10%),
-    "background-hover": rgb(0 0 0 / 5%),
-    "background-focus": rgb(0 0 0 / 5%),
-    "background-active": rgb(0 0 0 / 10%),
-    "foreground": palette.get("neutral", 20),
-    "foreground-light": palette.get("neutral", 40),
-    "foreground-lighter": palette.get("neutral", 60),
-    "foreground-alt": palette.get("secondary", 50),
-    "border-color": rgb(0 0 0 / 10%),
-    "border-color-dark": rgb(0 0 0 / 20%),
-    "border-color-darker": rgb(0 0 0 / 30%),
-    "shadow-color": palette.get("neutral", 20%, 20%),
-    "focus-visible": palette.get("primary"),
-    "color-scheme": light
-  ),
-  "dark": (
-    "background": palette.get("neutral", 10),
-    "background-dark": palette.get("neutral", 12),
-    "background-darker": palette.get("neutral", 15),
-    "background-alt": palette.get("secondary", 70%, 10%),
-    "background-hover": rgb(255 255 255 / 5%),
-    "background-focus": rgb(255 255 255 / 5%),
-    "background-active": rgb(255 255 255 / 1%),
-    "foreground": palette.get("neutral", 90),
-    "foreground-light": palette.get("neutral", 70),
-    "foreground-lighter": palette.get("neutral", 50),
-    "foreground-alt": palette.get("secondary", 60),
-    "border-color": rgb(255 255 255 / 10%),
-    "border-color-dark": rgb(255 255 255 / 20%),
-    "border-color-darker": rgb(255 255 255 / 30%),
-    "shadow-color": palette.get("neutral", 0%, 20%),
-    "focus-visible": palette.get("primary"),
-    "color-scheme": dark
+  "core": (
+    "light": (
+      "background": palette.get("neutral", 100),
+      "background-dark": palette.get("neutral", 98),
+      "background-darker": palette.get("neutral", 95),
+      "background-alt": palette.get("secondary", 60%, 10%),
+      "background-hover": rgb(0 0 0 / 5%),
+      "background-focus": rgb(0 0 0 / 5%),
+      "background-active": rgb(0 0 0 / 10%),
+      "foreground": palette.get("neutral", 20),
+      "foreground-light": palette.get("neutral", 40),
+      "foreground-lighter": palette.get("neutral", 60),
+      "foreground-alt": palette.get("secondary", 50),
+      "border-color": rgb(0 0 0 / 10%),
+      "border-color-dark": rgb(0 0 0 / 20%),
+      "border-color-darker": rgb(0 0 0 / 30%),
+      "shadow-color": palette.get("neutral", 20%, 20%),
+      "focus-visible": palette.get("primary"),
+      "color-scheme": light
+    ),
+    "dark": (
+      "background": palette.get("neutral", 10),
+      "background-dark": palette.get("neutral", 12),
+      "background-darker": palette.get("neutral", 15),
+      "background-alt": palette.get("secondary", 70%, 10%),
+      "background-hover": rgb(255 255 255 / 5%),
+      "background-focus": rgb(255 255 255 / 5%),
+      "background-active": rgb(255 255 255 / 1%),
+      "foreground": palette.get("neutral", 90),
+      "foreground-light": palette.get("neutral", 70),
+      "foreground-lighter": palette.get("neutral", 50),
+      "foreground-alt": palette.get("secondary", 60),
+      "border-color": rgb(255 255 255 / 10%),
+      "border-color-dark": rgb(255 255 255 / 20%),
+      "border-color-darker": rgb(255 255 255 / 30%),
+      "shadow-color": palette.get("neutral", 0%, 20%),
+      "focus-visible": palette.get("primary"),
+      "color-scheme": dark
+    )
   )
 ) !default;
 
@@ -109,19 +113,25 @@ $themes: (
 ///   // Return the background var() from the card default theme.
 ///   background: theme.get("card", "background");
 ///
-@function get($args...) {
-  @if map.has-key($themes, $default, $args...) {
-    // Initial prop value and override if two arguments are passed.
-    $prop: #{list.nth($args, 1)};
-    @if list.length($args) == 2 {
-      $prop: #{list.nth($args, 1)}-#{list.nth($args, 2)};
-    }
-
-    // Return the CSS variable.
-    @return css.reference($prop);
-  } @else {
-    @error "Property does not exist in the default theme: (#{$default}, #{$args})";
+/// TODO: Update docs
+@function get($module, $prop: null) {
+  @if not ($prop) {
+    $prop: $module;
+    $module: "core";
   }
+
+  @if not map.has-key($themes, $module, $default) {
+    @error "Module map has not been set: \"#{$module}\"";
+  }
+
+  @if not map.has-key($themes, $module, $default, $prop) {
+    @debug "CHECK" $module ">" $default ">" $prop;
+    @debug map.get($themes, $module, $default);
+    @error "Property does not exist in themes map: #{$module} > #{$default} > #{$prop}";
+  }
+
+  // Return the CSS custom property reference.
+  @return css.reference($prop, $module: $module);
 }
 
 /// Set a new or modify an existing property value in the $themes map.
@@ -132,26 +142,24 @@ $themes: (
 ///   // Set the foreground custom property for the dark theme.
 ///   @include theme.set("dark", "foreground", blue);
 ///
-@mixin set($args...) {
-  // Get the last item in the $args list.
-  $value: list.nth($args, -1);
-
-  // Get the props list.
-  $props: remove-nth($args, -1);
+@mixin set($module, $theme, $prop, $value: null) {
+  @if not ($value) and (meta.type-of($prop) != "map") {
+    $value: $prop;
+    $prop: $theme;
+    $theme: $module;
+    $module: "core";
+  }
 
   // If the value is replacing a map, handle the deep-merge.
-  @if (meta.type-of($value) == "map") {
-    $new: $value;
-    $old: map.get($themes, $props...);
-    @if (meta.type-of($old) == "map") {
-      $new: map.deep-merge($old, $value);
+  @if (meta.type-of($prop) == "map") {
+    @each $propKey, $propValue in $prop {
+      $themes: map.set($themes, $module, $theme, $propKey, $propValue) !global;
     }
-    $themes: map.set($themes, list.append($props, $new)...) !global;
   }
   
   // Otherwise, just add the value using the $args list.
   @else {
-    $themes: map.set($themes, $args...) !global;
+    $themes: map.set($themes, $module, $theme, $prop, $value) !global;
   }
 }
 
@@ -164,6 +172,7 @@ $themes: (
 ///   @include theme.remove("dark", "border-color");
 ///
 @mixin remove($args...) {
+  // TODO: Also remove value from $_meta map.
   $themes: map.deep-remove($themes, $args...) !global;
 }
 
@@ -185,96 +194,85 @@ $themes: (
 ///   // Output the custom properties for light theme of the button component.
 ///   @include theme.output-theme("light", "button");
 ///
-@mixin output-theme($theme: $default, $component: null) {
-  // Check if the key exists on the provided $themes map.
-  @if map.has-key($themes, $theme) {
+@mixin output-theme($module, $theme: $default) {
+  // Check if module exists in themes map.
+  @if not map.has-key($themes, $module) {
+    @error "Module \"#{$module}\" has not been set in themes map";
+  }
 
-    // Initial color scheme variable.
-    $color-scheme: null;
+  // Check if the theme exists for the module in themes map.
+  @if not map.has-key($themes, $module, $theme) {
+    @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
+  }
+  
+  // Initial color scheme variable.
+  $color-scheme: null;
 
-    // Initial themes map and override if component is passed.
-    $map: map.get($themes, $theme);
-    @if $component {
-      $map: map.get($themes, $theme, $component);
-    }
+  // Get the module theme from themes map.
+  $map: map.get($themes, $module, $theme);
 
-    // If a map exists...
-    @if $map {
-      // Loop through all theme entries and output their custom properties.
-      @each $prop, $value in $map {
-        // Check if a value exists and if it's not a map.
-        @if $value and meta.type-of($value) != 'map' {
-          // TODO: Remove this, component is added in define function.
-          // TODO: Rename `component` to `module`.
-          // Initial prop value and override if two arguments are passed.
-          // $prop: $key;
-          // @if $component {
-          //   $prop: "#{$component}-#{$key}";
-          // }
-
-          // Output property or store the color scheme.
-          @if $prop != 'color-scheme' {
-            @if $value != () {
-              @include css.define($prop, $value, $component);
-            }
-          } @else {
-            $color-scheme: #{$value};
-          }
-        }
+  // If a map exists...
+  @if $map {
+    // Loop through all theme entries and output their custom properties.
+    @each $prop, $value in $map {
+      // Output property or store the color scheme.
+      @if $prop != 'color-scheme' {
+        @include css.define($prop, $value, $module);
+      } @else {
+        $color-scheme: #{$value};
       }
     }
+  }
 
-    // If a color scheme was stored, output it below everything else.
-    @if $color-scheme {
-      color-scheme: #{$color-scheme};
-    }
-  } @else {
-    @error "Theme does not exist in themes map: #{$theme}";
+  // If a color scheme was stored, output it below everything else.
+  @if $color-scheme {
+    color-scheme: #{$color-scheme};
   }
 }
 
 /// Output all the custom properties and values of every theme in the provided 
-/// $themes map or pass a specific component name to output. Each theme will be 
+/// $themes map or pass a specific module name to output. Each theme will be 
 /// wrapped in their own selector using the set theme prefix and theme key. The
 /// $root-selector is used to wrap the $default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
-/// @param {string} $component [null]
-///   The name of component themes to output.
+/// @param {string} $module [null]
+///   The name of module themes to output.
 ///
 /// @example scss
 ///   @include theme.output();
 ///
 /// @example scss
-///   // Output the custom properties of the notice component.
+///   // Output the custom properties of the notice module.
 ///   @include theme.output("notice");
 ///
-@mixin output($component: null) {
+/// TODO: Update documentation.
+@mixin output($module: "core") {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
-    @include output-theme($default, $component);
+    @include output-theme($module, $default);
   }
 
   #{$root-selector} {
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
-        @include output-theme("light", $component);
+        @include output-theme($module, "light");
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
     @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
-        @include output-theme("dark", $component);
+        @include output-theme($module, "dark");
       }
     }
   }
   
-  // Run the output function on all 
-  @each $key, $value in $themes {
+  // Run the output function on all module themes.
+  @each $key, $value in map.get($themes, $module) {
     @if not ($key == $default) {
       .#{$_t}#{$key} {
-        @include output-theme($key, $component);
+        @include output-theme($module, $key);
       }
     }
   }

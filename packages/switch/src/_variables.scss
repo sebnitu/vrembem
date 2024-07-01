@@ -67,5 +67,5 @@ $theme-dark: (
   "border-color": palette.get("neutral", 80),
 ) !default;
 
-@include theme.set("light", "switch", $theme-light);
-@include theme.set("dark", "switch", $theme-dark);
+@include theme.set("switch", "light", $theme-light);
+@include theme.set("switch", "dark", $theme-dark);

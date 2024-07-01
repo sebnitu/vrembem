@@ -74,5 +74,5 @@ $theme-dark: (
   "screen-opacity": 0.8
 ) !default;
 
-@include theme.set("light", "card", $theme-light);
-@include theme.set("dark", "card", $theme-dark);
+@include theme.set("card", "light", $theme-light);
+@include theme.set("card", "dark", $theme-dark);

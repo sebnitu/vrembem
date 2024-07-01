@@ -99,5 +99,5 @@ $theme-dark: (
   "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
 ) !default;
 
-@include theme.set("light", "input", $theme-light);
-@include theme.set("dark", "input", $theme-dark);
+@include theme.set("input", "light", $theme-light);
+@include theme.set("input", "dark", $theme-dark);

@@ -36,6 +36,7 @@
 // @include vrembem.core-css-log-meta((), "notice");
 // @include vrembem.core-css-log-meta(("def": 0, "ref": 2));
 // @include vrembem.core-css-log-meta(("def": 0), "notice");
+// @include vrembem.core-css-log-meta($module: "layout");
 
 astro-island {
   display: block !important;

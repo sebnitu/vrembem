@@ -260,8 +260,8 @@ $_meta: (
 /// @param {string} $keys
 ///   The list of keys to follow and remove from the custom properties map.
 @mixin remove($keys...) {
-  $_variables: map.deep-remove($_variables, $keys...) !global;
   // TODO: Also remove value from $_meta map.
+  $_variables: map.deep-remove($_variables, $keys...) !global;
 }
 
 /// Mixin to override a previously defined custom property. This is primarily 
