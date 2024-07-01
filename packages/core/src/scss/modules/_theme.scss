@@ -14,7 +14,7 @@
 /// @access private
 $_t: prefix.$theme;
 
-/// Set the default theme. Should match an existing theme in the $themes map.
+/// Set the default theme. Should match an existing theme in the $_themes map.
 /// @type string
 $default: "light" !default;
 
@@ -55,7 +55,8 @@ $root-selector: ":root, .#{$_t}root" !default;
 ///   );
 ///
 /// TODO: Update documentation
-$themes: (
+/// @access private
+$_themes: (
   "core": (
     "light": (
       "background": palette.get("neutral", 100),
@@ -99,7 +100,7 @@ $themes: (
 ) !default;
 
 /// Function to return the CSS variable with fallback of an entry within the
-/// $themes map. Requested property must exist in the default theme.
+/// $_themes map. Requested property must exist in the default theme.
 /// @param {string} $args...
 ///   The property key to return.
 /// @return {function}
@@ -120,13 +121,13 @@ $themes: (
     $module: "core";
   }
 
-  @if not map.has-key($themes, $module, $default) {
+  @if not map.has-key($_themes, $module, $default) {
     @error "Module map has not been set: \"#{$module}\"";
   }
 
-  @if not map.has-key($themes, $module, $default, $prop) {
+  @if not map.has-key($_themes, $module, $default, $prop) {
     @debug "CHECK" $module ">" $default ">" $prop;
-    @debug map.get($themes, $module, $default);
+    @debug map.get($_themes, $module, $default);
     @error "Property does not exist in themes map: #{$module} > #{$default} > #{$prop}";
   }
 
@@ -134,7 +135,7 @@ $themes: (
   @return css.reference($prop, $module: $module);
 }
 
-/// Set a new or modify an existing property value in the $themes map.
+/// Set a new or modify an existing property value in the $_themes map.
 /// @param {string} $args...
 ///   The property keys and value to set.
 /// 
@@ -153,17 +154,17 @@ $themes: (
   // If the value is replacing a map, handle the deep-merge.
   @if (meta.type-of($prop) == "map") {
     @each $propKey, $propValue in $prop {
-      $themes: map.set($themes, $module, $theme, $propKey, $propValue) !global;
+      $_themes: map.set($_themes, $module, $theme, $propKey, $propValue) !global;
     }
   }
   
   // Otherwise, just add the value using the $args list.
   @else {
-    $themes: map.set($themes, $module, $theme, $prop, $value) !global;
+    $_themes: map.set($_themes, $module, $theme, $prop, $value) !global;
   }
 }
 
-/// Remove a custom property in the $themes map.
+/// Remove a custom property in the $_themes map.
 /// @param {string} $args...
 ///   The property key to remove.
 /// 
@@ -173,7 +174,7 @@ $themes: (
 ///
 @mixin remove($args...) {
   // TODO: Also remove value from $_meta map.
-  $themes: map.deep-remove($themes, $args...) !global;
+  $_themes: map.deep-remove($_themes, $args...) !global;
 }
 
 /// Output all the custom properties and values of a theme or a component theme.
@@ -196,12 +197,12 @@ $themes: (
 ///
 @mixin output-theme($module, $theme: $default) {
   // Check if module exists in themes map.
-  @if not map.has-key($themes, $module) {
+  @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
   }
 
   // Check if the theme exists for the module in themes map.
-  @if not map.has-key($themes, $module, $theme) {
+  @if not map.has-key($_themes, $module, $theme) {
     @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
   }
   
@@ -209,7 +210,7 @@ $themes: (
   $color-scheme: null;
 
   // Get the module theme from themes map.
-  $map: map.get($themes, $module, $theme);
+  $map: map.get($_themes, $module, $theme);
 
   // If a map exists...
   @if $map {
@@ -231,7 +232,7 @@ $themes: (
 }
 
 /// Output all the custom properties and values of every theme in the provided 
-/// $themes map or pass a specific module name to output. Each theme will be 
+/// $_themes map or pass a specific module name to output. Each theme will be 
 /// wrapped in their own selector using the set theme prefix and theme key. The
 /// $root-selector is used to wrap the $default. Themes named "light" or
 /// "dark" are also output in the `prefers-color-scheme` media query.
@@ -269,7 +270,7 @@ $themes: (
   }
   
   // Run the output function on all module themes.
-  @each $key, $value in map.get($themes, $module) {
+  @each $key, $value in map.get($_themes, $module) {
     @if not ($key == $default) {
       .#{$_t}#{$key} {
         @include output-theme($module, $key);
