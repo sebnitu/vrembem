@@ -32,8 +32,8 @@
 
 @use "./test";
 
-// @include vrembem.core-css-log-used();
-// @include vrembem.core-css-log-no-output();
+// @include vrembem.core-css-log-meta();
+// @include vrembem.core-css-log-meta("not-used");
 
 astro-island {
   display: block !important;

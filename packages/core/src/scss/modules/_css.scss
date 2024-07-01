@@ -16,11 +16,10 @@ $_variables: (
   )
 );
 
-/// Stores all references of custom properties. This allows us to know which 
-/// properties have been referenced for use with the "used" output strategy.
+/// Stores all references of custom properties and their meta information.
 /// @type map
 /// @access private
-$_used: (
+$_meta: (
   "core": (
     "prefix": 1
   )
@@ -147,8 +146,8 @@ $_used: (
     
     $result: reference($prop, $result, $module);
 
-    // Store the reference in the `$_used` map.
-    $_used: set-used($module, $prop) !global;
+    // Store the reference in the `$_meta` map.
+    $_meta: set-meta($module, $prop) !global;
   }
   
   @return $result;
@@ -215,11 +214,11 @@ $_used: (
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
-          @if ($required) { $_used: set-used($module, "#{$propKey}-#{$key}") !global; }
+          @if ($required) { $_meta: set-meta($module, "#{$propKey}-#{$key}") !global; }
         }
       } @else {
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
-        @if ($required) { $_used: set-used($module, $propKey) !global; }
+        @if ($required) { $_meta: set-meta($module, $propKey) !global; }
       }
     }
   }
@@ -227,29 +226,29 @@ $_used: (
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
-      @if ($required) { $_used: set-used($module, "#{$prop}-#{$key}") !global; }
+      @if ($required) { $_meta: set-meta($module, "#{$prop}-#{$key}") !global; }
     }
   }
 
   @else {
     $_variables: map.set($_variables, $module, $prop, $value) !global;
-    @if ($required) { $_used: set-used($module, $prop) !global; }
+    @if ($required) { $_meta: set-meta($module, $prop) !global; }
   }
 }
 
 /// TODO: Documentation
-@function set-used($module, $prop) {
-  $used: $_used;
-  @if (map.has-key($_used, $module, $prop)) {
-    $count: map.get($_used, $module, $prop, "used");
-    $used: map.set($_used, $module, $prop, "used", $count + 1);
+@function set-meta($module, $prop) {
+  $data: $_meta;
+  @if (map.has-key($_meta, $module, $prop)) {
+    $count: map.get($_meta, $module, $prop, "used");
+    $data: map.set($_meta, $module, $prop, "used", $count + 1);
   } @else {
-    $used: map.set($_used, $module, $prop, (
+    $data: map.set($_meta, $module, $prop, (
       "output": 0,
       "used": 1
     ));
   }
-  @return $used;
+  @return $data;
 }
 
 /// Mixin to remove items from the `$_variables` custom properties map.
@@ -257,7 +256,7 @@ $_used: (
 ///   The list of keys to follow and remove from the custom properties map.
 @mixin remove($keys...) {
   $_variables: map.deep-remove($_variables, $keys...) !global;
-  // TODO: Also remove value from $_used map.
+  // TODO: Also remove value from $_meta map.
 }
 
 /// Mixin to override a previously defined custom property. This is primarily 
@@ -305,7 +304,7 @@ $_used: (
       }
 
       @if ($value) {
-        $_used: map.set($_used, $module, $key, "override", 1) !global;
+        $_meta: map.set($_meta, $module, $key, "override", 1) !global;
         @include define($key, $value, $module);
       }
     }
@@ -317,7 +316,7 @@ $_used: (
     }
 
     @if ($value) {
-      $_used: map.set($_used, $module, $prop, "override", 1) !global;
+      $_meta: map.set($_meta, $module, $prop, "override", 1) !global;
       @include define($prop, $value, $module);
     }
   }
@@ -360,17 +359,17 @@ $_used: (
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in map.get($_variables, $module) {
       @if ($value) {
-        $_used: map.set($_used, $module, $prop, "output", 1) !global;
+        $_meta: map.set($_meta, $module, $prop, "output", 1) !global;
         @include define($prop, $value, $module);
       }
     }
   }
 
   @else {
-    @each $prop, $value in map.get($_used, $module) {
+    @each $prop, $value in map.get($_meta, $module) {
       @if map.has-key($_variables, $module, $prop) {
         @if (map.get($_variables, $module, $prop)) {
-          $_used: map.set($_used, $module, $prop, "output", 1) !global;
+          $_meta: map.set($_meta, $module, $prop, "output", 1) !global;
           @include define($prop, map.get($_variables, $module, $prop), $module);
         }
       }
@@ -399,19 +398,20 @@ $_used: (
 }
 
 /// TODO: Documentation
-@mixin log-used() {
-  @include debug-map($_used, "Referenced custom properties");
-}
-
-/// TODO: Documentation
-@mixin log-no-output() {
-  $no-output: ();
-  @each $module, $props in $_used {
-    @each $prop, $meta in $props {
-      @if (map.get($meta, "output") == 0) {
-        $no-output: map.set($no-output, $module, $prop, $meta);
+@mixin log-meta($filter: "*") {
+  @if ($filter == "not-output") {
+    $filtered: ();
+    @each $module, $props in $_meta {
+      @each $prop, $meta in $props {
+        @if (map.get($meta, "output") == 0) {
+          $filtered: map.set($filtered, $module, $prop, $meta);
+        }
       }
     }
+    @include debug-map($filtered, "Referenced but not output");
   }
-  @include debug-map($no-output, "Referenced but not output");
+
+  @else {
+    @include debug-map($_meta, "Referenced custom properties");
+  }
 }
