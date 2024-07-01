@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 
 :root {
-  @include core.css-output("core");
-  @include core.css-output("form-control");
-  @include core.css-output("transition");
+  @include core.css-output("core", "*");
+  @include core.css-output("form-control", "*");
+  @include core.css-output("transition", "*");
 }

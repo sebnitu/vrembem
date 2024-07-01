@@ -16,6 +16,16 @@ $_variables: (
   )
 );
 
+/// Stores all references of custom properties. This allows us to know which 
+/// properties have been referenced for use with the "used" output strategy.
+/// @type map
+/// @access private
+$_used: (
+  "core": (
+    "prefix": 1
+  )
+);
+
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
 ///   - Applies "vb-" vrembem prefix (via prefix.$variable).
@@ -136,6 +146,9 @@ $_variables: (
     }
     
     $result: reference($prop, $result, $module);
+
+    // Store the reference in the `$_used` map.
+    $_used: set-used($module, $prop) !global;
   }
   
   @return $result;
@@ -150,6 +163,8 @@ $_variables: (
 /// @param {any} $value [null]
 ///   The custom property value to store. Can be a map containing property and 
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
+/// @param {boolean} $required [false]
+///   TODO: Documentation
 /// 
 /// @example scss
 ///   @include css.set("button", "background", #000);
@@ -193,15 +208,18 @@ $_variables: (
 ///     )
 ///   );
 ///
-@mixin set($module, $prop, $value: null) {
+@mixin set($module, $prop, $value: null, $required: false) {
   @if (meta.type-of($prop) == "map") {
+    $required: $value;
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
+          @if ($required) { $_used: set-used($module, "#{$propKey}-#{$key}") !global; }
         }
       } @else {
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
+        @if ($required) { $_used: set-used($module, $propKey) !global; }
       }
     }
   }
@@ -209,12 +227,26 @@ $_variables: (
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
+      @if ($required) { $_used: set-used($module, "#{$prop}-#{$key}") !global; }
     }
   }
 
   @else {
     $_variables: map.set($_variables, $module, $prop, $value) !global;
+    @if ($required) { $_used: set-used($module, $prop) !global; }
   }
+}
+
+/// TODO: Documentation
+@function set-used($module, $prop) {
+  $used: $_used;
+  @if (map.has-key($_used, $module, $prop)) {
+    $count: map.get($_used, $module, $prop);
+    $used: map.set($_used, $module, $prop, $count + 1);
+  } @else {
+    $used: map.set($_used, $module, $prop, 1);
+  }
+  @return $used;
 }
 
 /// Mixin to remove items from the `$_variables` custom properties map.
@@ -222,6 +254,7 @@ $_variables: (
 ///   The list of keys to follow and remove from the custom properties map.
 @mixin remove($keys...) {
   $_variables: map.deep-remove($_variables, $keys...) !global;
+  // TODO: Also remove value from $_used map.
 }
 
 /// Mixin to override a previously defined custom property. This is primarily 
@@ -289,6 +322,8 @@ $_variables: (
 /// module must exist in the `$_variables` custom properties map.
 /// @param {string} $module ["core"]
 ///   The module to output all stored custom properties from.
+/// @param {string} $strategy ["used"]
+///   TODO: Documentation
 /// 
 /// @example scss
 ///   // Example value in `$_variables` map:
@@ -312,14 +347,26 @@ $_variables: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-@mixin output($module: "core") {
+@mixin output($module: "core", $strategy: "used") {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
   }
 
-  @each $prop, $value in map.get($_variables, $module) {
-    @if ($value) {
-      @include define($prop, $value, $module);
+  @if ($strategy == "*" or $strategy == "all") {
+    @each $prop, $value in map.get($_variables, $module) {
+      @if ($value) {
+        @include define($prop, $value, $module);
+      }
+    }
+  }
+
+  @else {
+    @each $prop, $value in map.get($_used, $module) {
+      @if map.has-key($_variables, $module, $prop) {
+        @if (map.get($_variables, $module, $prop)) {
+          @include define($prop, map.get($_variables, $module, $prop), $module);
+        }
+      }
     }
   }
 }
@@ -342,4 +389,9 @@ $_variables: (
 
     @include debug-map(map.get($_variables, $module), "Custom properties of \"#{$module}\"");
   }
+}
+
+/// TODO: Documentation
+@mixin log-used() {
+  @include debug-map($_used, "Referenced custom properties");
 }
