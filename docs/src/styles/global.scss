@@ -33,7 +33,8 @@
 @use "./test";
 
 // @include vrembem.core-css-log-meta();
-// @include vrembem.core-css-log-meta("not-used");
+// @include vrembem.core-css-log-meta("no-defs");
+// @include vrembem.core-css-log-meta("no-defs", "switch");
 
 astro-island {
   display: block !important;
