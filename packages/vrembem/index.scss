@@ -1,4 +1,3 @@
-@forward "@vrembem/core/root";
 @forward "@vrembem/core" as core-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/button" as button-*;
@@ -19,3 +18,4 @@
 @forward "@vrembem/switch" as switch-*;
 @forward "@vrembem/table" as table-*;
 @forward "@vrembem/utility" as utility-*;
+@forward "@vrembem/core/root";
