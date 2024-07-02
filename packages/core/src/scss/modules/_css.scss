@@ -25,6 +25,10 @@ $_meta: (
   )
 );
 
+/// Defines the default output strategy for output mixins.
+/// @type string
+$output-strategy: "used";
+
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
 ///   - Applies "vb-" vrembem prefix (via prefix.$variable).
@@ -356,25 +360,27 @@ $_meta: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-@mixin output($module: "core", $strategy: "used") {
+@mixin output($module: "core", $strategy: $output-strategy) {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
   }
+  @include maybeOutput(map.get($_variables, $module), $module, $strategy);
+}
 
+/// TODO: Documentation
+@mixin maybeOutput($moduleMap, $module, $strategy) {
+  // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
-    @each $prop, $value in map.get($_variables, $module) {
-      @if ($value) {
-        @include define($prop, $value, $module);
-      }
+    @each $prop, $value in $moduleMap {
+      @include define($prop, $value, $module);
     }
   }
 
+  // Else, only output variable that were referenced based on `$_meta`.
   @else {
-    @each $prop, $value in map.get($_meta, $module) {
-      @if map.has-key($_variables, $module, $prop) {
-        @if (map.get($_variables, $module, $prop)) {
-          @include define($prop, map.get($_variables, $module, $prop), $module);
-        }
+    @each $prop, $value in $moduleMap {
+      @if map.has-key($_meta, $module, $prop) {
+        @include define($prop, $value, $module);
       }
     }
   }

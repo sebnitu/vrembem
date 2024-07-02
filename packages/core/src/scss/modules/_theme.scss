@@ -4,7 +4,6 @@
 
 @use "../variables/prefix";
 @use "../utilities/remove-nth" as *;
-@use "../utilities/debug-map" as *;
 @use "./css";
 @use "./palette";
 
@@ -21,6 +20,10 @@ $default: "light" !default;
 /// CSS selector to use for outputting the root CSS custom properties.
 /// @type string
 $root-selector: ":root, .#{$_t}root" !default;
+
+/// Defines the default output strategy for output mixins.
+/// @type string
+$output-strategy: "used";
 
 /// Stores the theme maps used to build theme classes and CSS custom property
 /// output. Each entry should contain the name of the theme along with all its
@@ -195,7 +198,7 @@ $_themes: (
 ///   // Output the custom properties for light theme of the button component.
 ///   @include theme.output-theme("light", "button");
 ///
-@mixin output-theme($module, $theme: $default) {
+@mixin output-theme($module, $theme: $default, $strategy: $output-strategy) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
@@ -206,24 +209,15 @@ $_themes: (
     @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
   }
   
-  // Initial color scheme variable.
-  $color-scheme: null;
+  // Save a copy of the module map from themes.
+  $moduleMap: map.get($_themes, $module, $theme);
 
-  // Get the module theme from themes map.
-  $map: map.get($_themes, $module, $theme);
+  // Get a reference of the color scheme property and remove it from the map.
+  $color-scheme: map.get($moduleMap, "color-scheme");
+  $moduleMap: map.remove($moduleMap, "color-scheme");
 
-  // If a map exists...
-  @if $map {
-    // Loop through all theme entries and output their custom properties.
-    @each $prop, $value in $map {
-      // Output property or store the color scheme.
-      @if $prop != 'color-scheme' {
-        @include css.define($prop, $value, $module);
-      } @else {
-        $color-scheme: #{$value};
-      }
-    }
-  }
+  // Output custom properties of they've been referenced.
+  @include css.maybeOutput($moduleMap, $module, $strategy);
 
   // If a color scheme was stored, output it below everything else.
   @if $color-scheme {
@@ -247,24 +241,24 @@ $_themes: (
 ///   @include theme.output("notice");
 ///
 /// TODO: Update documentation.
-@mixin output($module: "core") {
+@mixin output($module: "core", $strategy: $output-strategy) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
-    @include output-theme($module, $default);
+    @include output-theme($module, $default, $strategy);
   }
 
   #{$root-selector} {
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
-        @include output-theme($module, "light");
+        @include output-theme($module, "light", $strategy);
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
     @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
-        @include output-theme($module, "dark");
+        @include output-theme($module, "dark", $strategy);
       }
     }
   }
@@ -273,7 +267,7 @@ $_themes: (
   @each $key, $value in map.get($_themes, $module) {
     @if not ($key == $default) {
       .#{$_t}#{$key} {
-        @include output-theme($module, $key);
+        @include output-theme($module, $key, $strategy);
       }
     }
   }

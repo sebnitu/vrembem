@@ -43,14 +43,9 @@ $_c: var.$class-background;
     background-color: transparent !important;
   }
 
-  @each $key, $map in palette.get() {
-    .#{$_u}#{$_c}-#{$key} {
-      background-color: var(--#{$_v}#{$key}) !important;
-    }
-    @each $num, $value in $map {
-      .#{$_u}#{$_c}-#{$key}-#{$num} {
-        background-color: $value !important;
-      }
+  @each $prop, $value in palette.get() {
+    .#{$_u}#{$_c}-#{$prop} {
+      background-color: $value !important;
     }
   }
 }
