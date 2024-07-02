@@ -35,4 +35,4 @@ $modal-screen-opacity: 0.8 !default;
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
-));
+), true);
