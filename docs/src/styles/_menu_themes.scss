@@ -1,0 +1,13 @@
+@use "@vrembem/core/css";
+
+.menu_themes {
+  @include css.override("menu", "action-gap", 1rem);
+
+  .popover & {
+    font-size: 0.875rem;
+
+    .icon:first-child {
+      margin-left: -0.25rem;
+    }
+  }
+}
