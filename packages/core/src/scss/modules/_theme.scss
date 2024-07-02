@@ -134,7 +134,7 @@ $_themes: (
   }
 
   // Return the CSS custom property reference.
-  @return css.reference($prop, $module: $module);
+  @return css.reference($module, $prop);
 }
 
 /// Set a new or modify an existing property value in the $_themes map.
@@ -216,7 +216,7 @@ $_themes: (
   $moduleMap: map.remove($moduleMap, "color-scheme");
 
   // Output custom properties of they've been referenced.
-  @include css.maybeOutput($moduleMap, $module, $strategy);
+  @include css.maybeOutput($module, $moduleMap, $strategy);
 
   // If a color scheme was stored, output it below everything else.
   @if $color-scheme {

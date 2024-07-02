@@ -25,15 +25,15 @@
  */
 
 :root {
-  @include css.define("background", theme.get("background"), "test-2");
-  @include css.define("foreground", theme.get("foreground"), "test-2");
-  @include css.define("border-color", theme.get("border-color"), "test-2");
+  @include css.define("test-2", "background", theme.get("background"));
+  @include css.define("test-2", "foreground", theme.get("foreground"));
+  @include css.define("test-2", "border-color", theme.get("border-color"));
 }
 
 .test-2 {
-  border-color: css.reference("border-color", $module: "test-2");
-  background: css.reference("background", $module: "test-2");
-  color: css.reference("foreground", $module: "test-2");
+  border-color: css.reference("test-2", "border-color");
+  background: css.reference("test-2", "background");
+  color: css.reference("test-2", "foreground");
 }
 
 /**
@@ -57,7 +57,7 @@ $theme-dark: (
 @include theme.output("test-3");
 
 .test-3 {
-  border-color: css.reference("border-color", $module: "test-3");
-  background: css.reference("background", $module: "test-3");
-  color: css.reference("foreground", $module: "test-3");
+  border-color: css.reference("test-3", "border-color");
+  background: css.reference("test-3", "background");
+  color: css.reference("test-3", "foreground");
 }

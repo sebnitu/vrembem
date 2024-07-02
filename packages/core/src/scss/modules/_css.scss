@@ -92,7 +92,8 @@ $output-strategy: "used";
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
-@function reference($prop, $fallback: null, $module: "core") {
+/// TODO: Update documentation
+@function reference($module, $prop, $fallback: null) {
   $do: set-meta($module, $prop, "ref");
   @if ($fallback) {
     @return var(#{_prefix($module)}#{$prop}, $fallback);
@@ -120,7 +121,8 @@ $output-strategy: "used";
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-@mixin define($prop, $value: null, $module: "core") {
+/// TODO: Update documentation
+@mixin define($module, $prop, $value: null) {
   @if ($value) {
     $do: set-meta($module, $prop, "def");
     #{_prefix($module)}#{$prop}: #{$value};
@@ -171,7 +173,7 @@ $output-strategy: "used";
       @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
     }
     
-    $result: reference($prop, $result, $module);
+    $result: reference($module, $prop, $result);
   }
   
   @return $result;
@@ -314,7 +316,7 @@ $output-strategy: "used";
 
       @if ($value) {
         $do: set-meta($module, $key, "override");
-        @include define($key, $value, $module);
+        @include define($module, $key, $value);
       }
     }
   }
@@ -326,7 +328,7 @@ $output-strategy: "used";
 
     @if ($value) {
       $do: set-meta($module, $prop, "override");
-      @include define($prop, $value, $module);
+      @include define($module, $prop, $value);
     }
   }
 }
@@ -364,15 +366,15 @@ $output-strategy: "used";
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
   }
-  @include maybeOutput(map.get($_variables, $module), $module, $strategy);
+  @include maybeOutput($module, map.get($_variables, $module), $strategy);
 }
 
 /// TODO: Documentation
-@mixin maybeOutput($moduleMap, $module, $strategy) {
+@mixin maybeOutput($module, $moduleMap, $strategy) {
   // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in $moduleMap {
-      @include define($prop, $value, $module);
+      @include define($module, $prop, $value);
     }
   }
 
@@ -380,7 +382,7 @@ $output-strategy: "used";
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key($_meta, $module, $prop) {
-        @include define($prop, $value, $module);
+        @include define($module, $prop, $value);
       }
     }
   }
