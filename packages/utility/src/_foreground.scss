@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 @use "./variables" as var;
@@ -31,9 +33,14 @@ $_c: var.$class-foreground;
     color: transparent !important;
   }
 
-  @each $prop, $value in palette.get() {
-    .#{$_u}#{$_c}-#{$prop} {
-      color: $value !important;
+  @each $name in map.keys(palette.$seeds) {
+    .#{$_u}#{$_c}-#{$name} {
+      color: palette.get($name) !important;
+    }
+    @each $value in palette.$lightness {
+      .#{$_u}#{$_c}-#{$name}-#{$value} {
+        color: palette.get($name, $value) !important;
+      }
     }
   }
 }

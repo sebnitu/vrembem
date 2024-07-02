@@ -61,7 +61,7 @@ $output-strategy: "used";
   @return true;
 }
 
-// TODO: Documentation
+/// TODO: Documentation
 @function init-action-map($action) {
   $def: 0; $ref: 0; $override: 0;
   @if ($action == "def") { $def: 1; }
@@ -187,7 +187,6 @@ $output-strategy: "used";
 ///   The custom property value to store. Can be a map containing property and 
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
 /// @param {boolean} $required [false]
-///   TODO: Documentation
 /// 
 /// @example scss
 ///   @include css.set("button", "background", #000);
@@ -231,6 +230,7 @@ $output-strategy: "used";
 ///     )
 ///   );
 ///
+/// TODO: Update documentation
 @mixin set($module, $prop, $value: null, $required: false) {
   @if (meta.type-of($prop) == "map") {
     $required: $value;
@@ -336,7 +336,6 @@ $output-strategy: "used";
 /// @param {string} $module ["core"]
 ///   The module to output all stored custom properties from.
 /// @param {string} $strategy ["used"]
-///   TODO: Documentation
 /// 
 /// @example scss
 ///   // Example value in `$_variables` map:
@@ -360,6 +359,7 @@ $output-strategy: "used";
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
+/// TODO: Update documentation
 @mixin output($module: "core", $strategy: $output-strategy) {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";

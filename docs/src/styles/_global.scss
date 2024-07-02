@@ -1,0 +1,19 @@
+astro-island {
+  display: block !important;
+}
+
+html {
+  scroll-behavior: smooth;
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+.main {
+  min-height: 100vh;
+}
+
+[tabindex="-1"] {
+  outline: none;
+}

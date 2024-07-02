@@ -1,9 +1,8 @@
-@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 
 @use "../variables/prefix";
-@use "../utilities/remove-nth" as *;
+@use "../utilities/debug-map" as *;
 @use "./css";
 @use "./palette";
 
@@ -117,7 +116,7 @@ $_themes: (
 ///   // Return the background var() from the card default theme.
 ///   background: theme.get("card", "background");
 ///
-/// TODO: Update docs
+/// TODO: Update documentation
 @function get($module, $prop: null) {
   @if not ($prop) {
     $prop: $module;
@@ -240,7 +239,7 @@ $_themes: (
 ///   // Output the custom properties of the notice module.
 ///   @include theme.output("notice");
 ///
-/// TODO: Update documentation.
+/// TODO: Update documentation
 @mixin output($module: "core", $strategy: $output-strategy) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
@@ -270,5 +269,20 @@ $_themes: (
         @include output-theme($module, $key, $strategy);
       }
     }
+  }
+}
+
+/// TODO: Documentation
+@mixin log($module: null) {
+  @if not $module {
+    @include debug-map($_themes, "Custom properties");
+  }
+  
+  @else {
+    @if not map.has-key($_themes, $module) {
+      @error "Module map has not been set: \"#{$module}\"";
+    }
+
+    @include debug-map(map.get($_themes, $module), "Custom properties of \"#{$module}\"");
   }
 }

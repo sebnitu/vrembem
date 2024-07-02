@@ -32,29 +32,10 @@
 
 @use "./test";
 
+// Module logs
+// @include vrembem.core-css-log();
+// @include vrembem.core-palette-log();
+// @include vrembem.core-theme-log();
+
+// Meta logs
 // @include vrembem.core-css-log-meta();
-// @include vrembem.core-css-log-meta((), "notice");
-// @include vrembem.core-css-log-meta(("def": 0));
-// @include vrembem.core-css-log-meta(("def": 0), "notice");
-// @include vrembem.core-css-log-meta($module: "layout");
-// @include vrembem.core-css-log-meta(("ref": 0));
-
-astro-island {
-  display: block !important;
-}
-
-html {
-  scroll-behavior: smooth;
-
-  @media screen and (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
-  }
-}
-
-.main {
-  min-height: 100vh;
-}
-
-[tabindex="-1"] {
-  outline: none;
-}
