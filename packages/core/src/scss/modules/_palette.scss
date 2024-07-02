@@ -3,16 +3,13 @@
 
 @use "../utilities/get-hs" as *;
 @use "../utilities/debug-map" as *;
+@use "./config";
 @use "./css";
 
 /// The palette variable map where all color variants are stored.
 /// @type map
 /// @access private
 $_palette: ();
-
-/// Defines the default output strategy for output mixins.
-/// @type string
-$output-strategy: "used";
 
 /// The map of colors used to build the palette.
 /// @type map
@@ -118,7 +115,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 /// Outputs custom properties built from the provided seeds and lightness range.
 /// @param {map} $seeds [$seeds]
 ///   Base colors to build the palette from.
-@mixin output($strategy: $output-strategy) {
+@mixin output($strategy: config.get("output-strategy")) {
   :root {
     // Output custom properties if they have been referenced.
     @include css.maybeOutput("palette", $_palette, $strategy);

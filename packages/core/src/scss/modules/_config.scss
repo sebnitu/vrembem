@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "../utilities/debug-map" as *;
+
+/// TODO: Documentation for entire module
+
+$_options: (
+  "output-strategy": "used"
+);
+
+@function get($keys...) {
+  @return map.get($_options, $keys...);
+}
+
+/// TODO: Allow passing in maps
+@mixin set($key, $value) {
+  $_options: map.set($_options, $key, $value) !global;
+}
+
+@mixin remove($keys...) {
+  $_options: map.deep-remove($_options, $keys...) !global;
+}
+
+@mixin log() {
+  @include debug-map($_options, "Config options map");
+}

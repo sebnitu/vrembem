@@ -3,6 +3,7 @@
 
 @use "../variables/prefix";
 @use "../utilities/debug-map" as *;
+@use "./config";
 @use "./css";
 @use "./palette";
 
@@ -19,10 +20,6 @@ $default: "light" !default;
 /// CSS selector to use for outputting the root CSS custom properties.
 /// @type string
 $root-selector: ":root, .#{$_t}root" !default;
-
-/// Defines the default output strategy for output mixins.
-/// @type string
-$output-strategy: "used";
 
 /// Stores the theme maps used to build theme classes and CSS custom property
 /// output. Each entry should contain the name of the theme along with all its
@@ -153,7 +150,8 @@ $_themes: (
     $module: "core";
   }
 
-  // If the value is replacing a map, handle the deep-merge.
+  // If the value is a map, handle the deep-merge.
+  // TODO: Can this be handled with map.merge or map.deep-merge?
   @if (meta.type-of($prop) == "map") {
     @each $propKey, $propValue in $prop {
       $_themes: map.set($_themes, $module, $theme, $propKey, $propValue) !global;
@@ -197,7 +195,7 @@ $_themes: (
 ///   // Output the custom properties for light theme of the button component.
 ///   @include theme.output-theme("light", "button");
 ///
-@mixin output-theme($module, $theme: $default, $strategy: $output-strategy) {
+@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy")) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
@@ -240,7 +238,7 @@ $_themes: (
 ///   @include theme.output("notice");
 ///
 /// TODO: Update documentation
-@mixin output($module: "core", $strategy: $output-strategy) {
+@mixin output($module: "core", $strategy: config.get("output-strategy")) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
     @include output-theme($module, $default, $strategy);
