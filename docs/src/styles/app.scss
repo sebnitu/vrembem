@@ -1,9 +1,5 @@
 @use "./setup";
-// TODO: Detach the `root` import and use it last to allow all references to be
-// caught before the custom properties output.
-@use "vrembem" with (
-  $base-font-family: #{'"Barlow", sans-serif'}
-);
+@use "vrembem";
 
 @use "./root";
 @use "./global";
@@ -36,13 +32,17 @@
 
 @use "./test";
 
-// Import this last to catch all custom property references.
-@forward "@vrembem/core/root";
+// Important!
+// Include this last to catch all custom property references.
+@forward "vrembem/root";
 
 // Module logs
+// @include vrembem.core-config-log();
 // @include vrembem.core-css-log();
 // @include vrembem.core-palette-log();
 // @include vrembem.core-theme-log();
 
 // Meta logs
+// Display custom properties that haven't been referenced: ("ref": 0)
+// Display custom properties that haven't been defined: ("def": 0)
 // @include vrembem.core-css-log-meta();
