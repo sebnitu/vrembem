@@ -45,7 +45,7 @@ $_c: var.$class-background;
     background-color: transparent !important;
   }
 
-  @each $name in map.keys(palette.$seeds) {
+  @each $name in map.keys(palette.get("seeds")) {
     .#{$_u}#{$_c}-#{$name} {
       background-color: palette.get($name) !important;
     }

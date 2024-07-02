@@ -4,6 +4,7 @@
 @use "../variables/prefix";
 @use "../utilities/debug-map" as *;
 @use "./config";
+@use "./usage";
 @use "./css";
 @use "./palette";
 
@@ -125,8 +126,6 @@ $_themes: (
   }
 
   @if not map.has-key($_themes, $module, $default, $prop) {
-    @debug "CHECK" $module ">" $default ">" $prop;
-    @debug map.get($_themes, $module, $default);
     @error "Property does not exist in themes map: #{$module} > #{$default} > #{$prop}";
   }
 
@@ -164,17 +163,19 @@ $_themes: (
   }
 }
 
-/// Remove a custom property in the $_themes map.
+/// Remove a custom property from the `$_themes` map.
 /// @param {string} $args...
 ///   The property key to remove.
 /// 
 /// @example scss
-///   // Remove the border-color property from the dark theme.
-///   @include theme.remove("dark", "border-color");
+///   // Remove the border-color property from all component themes.
+///   @include theme.remove("button", "border-color");
 ///
-@mixin remove($args...) {
-  // TODO: Also remove value from $_meta map.
-  $_themes: map.deep-remove($_themes, $args...) !global;
+@mixin remove($module, $args...) {
+  @each $theme, $props in map.get($_themes, $module) {
+    @include usage.remove($module, $args...);
+    $_themes: map.deep-remove($_themes, $module, $theme, $args...) !global;
+  }
 }
 
 /// Output all the custom properties and values of a theme or a component theme.

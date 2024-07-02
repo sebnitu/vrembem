@@ -4,6 +4,7 @@
 @use "../utilities/get-hs" as *;
 @use "../utilities/debug-map" as *;
 @use "./config";
+@use "./usage";
 @use "./css";
 
 /// The palette variable map where all color variants are stored.
@@ -13,12 +14,12 @@ $_palette: ();
 
 /// The map of colors used to build the palette.
 /// @type map
-$seeds: (
+$_seeds: (
   "primary":   hsl(152 60% 50%),
   "secondary": hsl(214 50% 50%),
   "neutral":   hsl(214 20% 50%),
   "important": hsl(0 80% 50%),
-) !default;
+);
 
 /// The default color lightness to use when referencing a color.
 /// @type number
@@ -28,11 +29,12 @@ $lightness-default: 50 !default;
 /// @type list
 $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
-/// Builds the palette map using the values set in `$seeds` and `$lightness` 
+/// Builds the palette map using the values set in `$_seeds` and `$lightness` 
 /// maps. Is run automatically whenever seeds are altered.
 @mixin build() {
+  @include usage.remove("palette");
   $result: ();
-  @each $name, $value in $seeds {
+  @each $name, $value in $_seeds {
     $result: map.set($result, "#{$name}-hs", get-hs($value));
     $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$lightness-default}"));
     @each $value in $lightness {
@@ -64,8 +66,13 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   }
 
   // If lightness is passed as "seed", return the seed value.
+  @else if ($name == "seeds") {
+    @return $_seeds;
+  }
+
+  // If lightness is passed as "seed", return the seed value.
   @else if ($lightness == "seed") {
-    @return map.get($seeds, $name);
+    @return map.get($_seeds, $name);
   }
 
   // If an alpha value is passed, return hsl with the alpha.
@@ -84,7 +91,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   }
 }
 
-/// Set a color to the $seeds map. Can receive single entries of key/value color
+/// Set a color to the `$_seeds` map. Can receive single entries of key/value color
 /// pairs or a map containing multiple key/value pairs.
 /// @param {string | map} $name
 ///   A name to associate with the provided color, or a map containing key/value
@@ -93,28 +100,27 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 ///   The color to associate with the provided key.
 @mixin set($name, $value: null) {
   @if (meta.type-of($name) == "map") {
-    $seeds: map.merge($seeds, $name) !global;
+    $_seeds: map.merge($_seeds, $name) !global;
   }
   @else {
-    $seeds: map.set($seeds, $name, $value) !global;
+    $_seeds: map.set($_seeds, $name, $value) !global;
   }
-  // Run build since $seeds has been modified.
+  // Run build since `$_seeds` has been modified.
   @include build();
 }
 
-/// Removes colors from the $seeds map.
+/// Removes colors from the `$_seeds` map.
 /// @param {string} $names...
-///   A string or list of strings to remove from $seeds map.
+///   A string or list of strings to remove from `$_seeds` map.
 @mixin remove($names...) {
-  // TODO: Also remove value from $_meta map.
-  $seeds: map.remove($seeds, $names...) !global;
-  // Run build since $seeds has been modified.
+  $_seeds: map.remove($_seeds, $names...) !global;
+  // Run build since `$_seeds` has been modified.
   @include build();
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.
-/// @param {map} $seeds [$seeds]
-///   Base colors to build the palette from.
+/// @param {map} $strategy
+///   Sets the output strategy.
 @mixin output($strategy: config.get("output-strategy")) {
   :root {
     // Output custom properties if they have been referenced.
@@ -122,7 +128,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
   }
 }
 
-/// TODO: Documentation
+/// Log to console the entire `$_palette` map.
 @mixin log() {
   @include debug-map($_palette, "Palette custom properties");
 }
