@@ -1,25 +1,38 @@
 @use "sass:map";
 @use "../utilities/debug-map" as *;
 
-/// TODO: Documentation for entire module
-
+/// TODO: Add prefixes into options map.
+/// Stores all library wide configuration options.
+/// @type map
+/// @access private
 $_options: (
   "output-strategy": "used"
 );
 
+/// Returns the value of an option in the configuration map.
+/// @param {string} $keys...
+///   A key or list of keys to follow in the `$_options` map and return.
 @function get($keys...) {
   @return map.get($_options, $keys...);
 }
 
-/// TODO: Allow passing in maps
+/// Set an option in the configuration map.
+/// @param {string} $key
+///   The key in the map to set.
+/// @param {any} $value
+///   The value to be stored.
 @mixin set($key, $value) {
   $_options: map.set($_options, $key, $value) !global;
 }
 
+/// Remove an option from the configuration map.
+/// @param {string} $keys...
+///   The list of keys to follow and remove from the configuration map.
 @mixin remove($keys...) {
   $_options: map.deep-remove($_options, $keys...) !global;
 }
 
+/// Log to console the entire `$_options` configuration map.
 @mixin log() {
   @include debug-map($_options, "Config options map");
 }
