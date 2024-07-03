@@ -148,12 +148,9 @@ $_themes: (
     $module: "core";
   }
 
-  // If the value is a map, handle the deep-merge.
-  // TODO: Can this be handled with map.merge or map.deep-merge?
+  // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
-    @each $propKey, $propValue in $prop {
-      $_themes: map.set($_themes, $module, $theme, $propKey, $propValue) !global;
-    }
+    $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
   }
   
   // Otherwise, just add the value using the $args list.
