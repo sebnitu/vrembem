@@ -23,8 +23,8 @@ $_variables: (
 ///   - Applies "[module]" string. Omitted for "core" or "palette" modules.
 ///   - Result: "--vb-[module]-"
 /// @param {string} $module
-///   The module name to use as part of the prefix. The "core" and "palette
-///   modules are not used in the prefix.
+///   The module name to use as part of the prefix. The "core" and "palette"
+///   modules are not prefixed with their module names.
 /// @return {string} 
 ///   The custom property prefix string.
 /// @access private
@@ -36,15 +36,16 @@ $_variables: (
   }
 }
 
-/// Function to create reference to a custom property using the provided 
-/// property name and optional fallback. Automatically applies with prefix and
-/// module name if provided.
+/// Function to create reference to a custom property using the provided module
+/// name, property and optional fallback. Automatically applies the necessary 
+/// custom property prefix and module name.
+/// @param {string} $module
+///   The module name to use as part of the prefix. The "core" and "palette"
+///   modules are not prefixed with their module names.
 /// @param {string} $prop
 ///   The custom property name to use in the reference.
 /// @param {any} $fallback [null]
 ///   The fallback value to use in the var() declaration.
-/// @param {string} $module ["core"]
-///   The module name to use as part of the prefix ("core" module is omitted).
 /// @return {function} 
 ///   Custom property variable reference using var().
 /// 
@@ -58,7 +59,6 @@ $_variables: (
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
-/// TODO: Update documentation
 @function reference($module, $prop, $fallback: null) {
   $do: usage.set($module, $prop, "ref");
   @if ($fallback) {
@@ -70,12 +70,13 @@ $_variables: (
 
 /// Mixin to define custom property using the provided property name and value.
 /// Automatically applies with prefix and module name if provided.
+/// @param {string} $module
+///   The module name to use as part of the prefix. The "core" and "palette"
+///   modules are not prefixed with their module names.
 /// @param {string} $prop
 ///   The custom property name to use in the definition.
 /// @param {any} $value [null]
 ///   The value of the custom property.
-/// @param {string} $module ["core"]
-///   The module name to use as part of the prefix ("core" module is omitted).
 /// 
 /// @example scss
 ///   css.define("core", "background", #000);
@@ -87,7 +88,6 @@ $_variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-/// TODO: Update documentation
 @mixin define($module, $prop, $value: null) {
   @if ($value) {
     $do: usage.set($module, $prop, "def");
@@ -155,6 +155,8 @@ $_variables: (
 ///   The custom property value to store. Can be a map containing property and 
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
 /// @param {boolean} $required [false]
+///   Whether or not this property is required to be output. Setting this value
+///   to `true` will output the variable regardless if it's referenced.
 /// 
 /// @example scss
 ///   @include css.set("button", "background", #000);
@@ -198,7 +200,6 @@ $_variables: (
 ///     )
 ///   );
 ///
-/// TODO: Update documentation
 @mixin set($module, $prop, $value: null, $required: false) {
   @if (meta.type-of($prop) == "map") {
     $required: $value;
@@ -299,7 +300,17 @@ $_variables: (
   }
 }
 
-/// TODO: Documentation
+/// Output custom properties based on the provided strategy. This can either be
+/// all (via "*" or "all" values) or "used" meaning only the custom properties
+/// that have been referenced get output.
+/// @param {string} $module
+///   The name of the module being output.
+/// @param {map} $moduleMap
+///   A map of containing property/value pairs to output.
+/// @param {string} $strategy
+///   The strategy to use for output. Possible values: "*", "all" or "used".
+///   - "*" and "all" will output all stored custom properties.
+///   - "used" will only output custom properties that have been referenced.
 @mixin maybeOutput($module, $moduleMap, $strategy) {
   // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
@@ -307,8 +318,7 @@ $_variables: (
       @include define($module, $prop, $value);
     }
   }
-
-  // Else, only output variable that were referenced based on `$_meta`.
+  // Else, only output variable that were referenced.
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key(usage.get(), $module, $prop) {
@@ -323,6 +333,9 @@ $_variables: (
 /// @param {string} $module ["core"]
 ///   The module to output all stored custom properties from.
 /// @param {string} $strategy ["used"]
+///   The strategy to use for output. Possible values: "*", "all" or "used".
+///   - "*" and "all" will output all stored custom properties.
+///   - "used" will only output custom properties that have been referenced.
 /// 
 /// @example scss
 ///   // Example value in `$_variables` map:
@@ -346,7 +359,6 @@ $_variables: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-/// TODO: Update documentation
 @mixin output($module: "core", $strategy: config.get("output-strategy")) {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
