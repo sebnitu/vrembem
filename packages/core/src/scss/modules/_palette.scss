@@ -7,13 +7,9 @@
 @use "./usage";
 @use "./css";
 
-/// The palette variable map where all color variants are stored.
-/// @type map
-/// @access private
-$_palette: ();
-
 /// The map of colors used to build the palette.
 /// @type map
+/// @access private
 $_seeds: (
   "primary":   hsl(152 60% 50%),
   "secondary": hsl(214 50% 50%),
@@ -27,22 +23,36 @@ $lightness-default: 50 !default;
 
 /// The range of lightness values to build for each color in the palette.
 /// @type list
-$lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
+$lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
-/// Builds the palette map using the values set in `$_seeds` and `$lightness` 
-/// maps. Is run automatically whenever seeds are altered.
-@mixin build() {
-  @include usage.remove("palette");
-  $result: ();
-  @each $name, $value in $_seeds {
-    $result: map.set($result, "#{$name}-hs", get-hs($value));
-    $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$lightness-default}"));
-    @each $value in $lightness {
-      $result: map.set($result, "#{$name}-#{$value}", hsl(#{css.reference("palette", "#{$name}-hs") $value + '%'}));
+/// Builds a palette map using values set in `$_seeds` and `$lightness-range`.
+/// Is run automatically whenever seeds map is modified.
+/// @param {map} $seeds [$_seeds]
+///   The seeds to generate a palette map from.
+/// @param {list} $range [$lightness-range]
+///   A list of lightness values to generate the palette map from.
+/// @param {number} $default [$lightness-default]
+///   The default lightness value. Used to generate the shorthand property.
+@function build($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
+  @if usage.remove("palette") {
+    $result: ();
+    @each $name, $value in $seeds {
+      $result: map.set($result, "#{$name}-hs", get-hs($value));
+      @if ($default) {
+        $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$default}"));
+      }
+      @each $value in $range {
+        $result: map.set($result, "#{$name}-#{$value}", hsl(#{css.reference("palette", "#{$name}-hs") $value + '%'}));
+      }
     }
+    @return $result;
   }
-  $_palette: $result !global;
 }
+
+/// The palette variable map where all color variants are stored.
+/// @type map
+/// @access private
+$_palette: build();
 
 /// Function to return a palette color. If called with no color name, the entire
 /// palette map is returned. The following lightness formats are accepted:
@@ -53,41 +63,43 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
 /// @param {string} $name [null]
 ///   The color name to return a value for.
-/// @param {number | percentage | string} $lightness [$lightness-default]
-///   The lightness value of the requested color.
+/// @param {any} $query [$lightness-default]
+///   The type of value to return. Can be "seed" to return the initial seed
+///   value or a specific lightness value.
 /// @param {number (alpha-value)} $alpha [null]
 ///   The alpha value of the requested color.
 /// @return {Color}
 ///   Return format depends on the requested value.
-@function get($name: null, $lightness: $lightness-default, $alpha: null) {
+@function get($name: null, $query: $lightness-default, $alpha: null) {
   // Return the palette map if no name is provided.
   @if not ($name) {
+    // Build the `$_palette` map before output.
     @return $_palette;
   }
 
-  // If lightness is passed as "seed", return the seed value.
+  // If query is passed as "seed", return the seed value.
   @else if ($name == "seeds") {
     @return $_seeds;
   }
 
-  // If lightness is passed as "seed", return the seed value.
-  @else if ($lightness == "seed") {
+  // If query is passed as "seed", return the seed value.
+  @else if ($query == "seed") {
     @return map.get($_seeds, $name);
   }
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(#{css.reference("palette", "#{$name}-hs") $lightness + ' / ' + $alpha});
+    @return hsl(#{css.reference("palette", "#{$name}-hs") $query + ' / ' + $alpha});
   }
 
-  // If the specified lightness value exists in the palette map, return its value.
-  @else if (map.has-key($_palette, "#{$name}-#{$lightness}")) {
-    @return css.reference("palette", "#{$name}-#{$lightness}");
+  // If the specified query value exists in the palette map, return its value.
+  @else if (map.has-key($_palette, "#{$name}-#{$query}")) {
+    @return css.reference("palette", "#{$name}-#{$query}");
   }
 
-  // Else return hsl using the provided lightness value.
+  // Else return hsl using the provided query value.
   @else {
-    @return hsl(#{css.reference("palette", "#{$name}-hs") $lightness});
+    @return hsl(#{css.reference("palette", "#{$name}-hs") $query});
   }
 }
 
@@ -106,7 +118,7 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
     $_seeds: map.set($_seeds, $name, $value) !global;
   }
   // Run build since `$_seeds` has been modified.
-  @include build();
+  $_palette: build() !global;
 }
 
 /// Removes colors from the `$_seeds` map.
@@ -115,7 +127,12 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 @mixin remove($names...) {
   $_seeds: map.remove($_seeds, $names...) !global;
   // Run build since `$_seeds` has been modified.
-  @include build();
+  $_palette: build() !global;
+}
+
+/// Update the `$_palette` map by running build() with passed params.
+@mixin update($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
+  $_palette: build($seeds, $range, $default) !global;
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.
@@ -132,6 +149,3 @@ $lightness: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !defau
 @mixin log() {
   @include debug-map($_palette, "Palette custom properties");
 }
-
-// Initialize the palette map.
-@include build();

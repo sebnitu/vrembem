@@ -169,8 +169,9 @@ $_themes: (
 ///
 @mixin remove($module, $args...) {
   @each $theme, $props in map.get($_themes, $module) {
-    @include usage.remove($module, $args...);
-    $_themes: map.deep-remove($_themes, $module, $theme, $args...) !global;
+    @if usage.remove($module, $args...) {
+      $_themes: map.deep-remove($_themes, $module, $theme, $args...) !global;
+    }
   }
 }
 

@@ -37,7 +37,7 @@ $_c: var.$class-foreground;
     .#{$_u}#{$_c}-#{$name} {
       color: palette.get($name) !important;
     }
-    @each $value in palette.$lightness {
+    @each $value in palette.$lightness-range {
       .#{$_u}#{$_c}-#{$name}-#{$value} {
         color: palette.get($name, $value) !important;
       }
