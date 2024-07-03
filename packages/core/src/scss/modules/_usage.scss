@@ -58,7 +58,7 @@ $_meta: (
 /// @param {map} $moduleMap
 ///   A map of containing property/value pairs to output.
 /// @param {string} $strategy
-///   The strategy to use for output. Possible values: "*", "all" or "used".
+///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
 @mixin output($mixin, $module, $moduleMap, $strategy) {
@@ -71,7 +71,7 @@ $_meta: (
   // Else, only output variable that were referenced.
   @else {
     @each $prop, $value in $moduleMap {
-      @if map.has-key(usage.get(), $module, $prop) {
+      @if map.has-key(get(), $module, $prop) {
         @include meta.apply($mixin, $module, $prop, $value);
       }
     }

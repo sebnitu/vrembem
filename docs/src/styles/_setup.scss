@@ -5,8 +5,6 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include config.set("output-strategy", "*");
-
 @include theme.set(
   "light",
   "background-glass",
