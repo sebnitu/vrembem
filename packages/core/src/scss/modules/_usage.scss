@@ -47,6 +47,37 @@ $_meta: (
   @return $_meta;
 }
 
+/// Output custom properties based on the provided strategy. This can either be
+/// all (via "*" or "all" values) or "used" meaning only the custom properties
+/// that have been referenced get output.
+/// @param {mixin value} $mixin
+///   The mixin to call with params in the output loop. 
+///   Value should come from `meta.get-mixin()` usage.
+/// @param {string} $module
+///   The name of the module being output.
+/// @param {map} $moduleMap
+///   A map of containing property/value pairs to output.
+/// @param {string} $strategy
+///   The strategy to use for output. Possible values: "*", "all" or "used".
+///   - "*" and "all" will output all stored custom properties.
+///   - "used" will only output custom properties that have been referenced.
+@mixin output($mixin, $module, $moduleMap, $strategy) {
+  // If strategy is set to all, output everything in the map.
+  @if ($strategy == "*" or $strategy == "all") {
+    @each $prop, $value in $moduleMap {
+      @include meta.apply($mixin, $module, $prop, $value);
+    }
+  }
+  // Else, only output variable that were referenced.
+  @else {
+    @each $prop, $value in $moduleMap {
+      @if map.has-key(usage.get(), $module, $prop) {
+        @include meta.apply($mixin, $module, $prop, $value);
+      }
+    }
+  }
+}
+
 /// TODO: Documentation
 @mixin log($module: null, $filters: ()) {
   @if ($module == "*" or $module == "all") {

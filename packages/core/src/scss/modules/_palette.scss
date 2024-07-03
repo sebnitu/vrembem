@@ -140,8 +140,10 @@ $_palette: build();
 ///   Sets the output strategy.
 @mixin output($strategy: config.get("output-strategy")) {
   :root {
-    // Output custom properties if they have been referenced.
-    @include css.maybeOutput("palette", $_palette, $strategy);
+    // Output custom properties via usage output.
+    @include usage.output(
+      meta.get-mixin("define", "css"), "palette", $_palette, $strategy
+    );
   }
 }
 

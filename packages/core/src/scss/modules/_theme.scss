@@ -211,8 +211,10 @@ $_themes: (
   $color-scheme: map.get($moduleMap, "color-scheme");
   $moduleMap: map.remove($moduleMap, "color-scheme");
 
-  // Output custom properties of they've been referenced.
-  @include css.maybeOutput($module, $moduleMap, $strategy);
+  // Output custom properties via usage output.
+  @include usage.output(
+    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy
+  );
 
   // If a color scheme was stored, output it below everything else.
   @if $color-scheme {
