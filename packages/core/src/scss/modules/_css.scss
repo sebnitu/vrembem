@@ -60,11 +60,12 @@ $_variables: (
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
 @function reference($module, $prop, $fallback: null) {
-  $do: usage.set($module, $prop, "ref");
-  @if ($fallback) {
-    @return var(#{_prefix($module)}#{$prop}, $fallback);
-  } @else {
-    @return var(#{_prefix($module)}#{$prop});
+  @if usage.set($module, $prop, "ref") {
+    @if ($fallback) {
+      @return var(#{_prefix($module)}#{$prop}, $fallback);
+    } @else {
+      @return var(#{_prefix($module)}#{$prop});
+    }
   }
 }
 
@@ -90,8 +91,9 @@ $_variables: (
 ///
 @mixin define($module, $prop, $value: null) {
   @if ($value) {
-    $do: usage.set($module, $prop, "def");
-    #{_prefix($module)}#{$prop}: #{$value};
+    @if usage.set($module, $prop, "def") {
+      #{_prefix($module)}#{$prop}: #{$value};
+    }
   }
 }
 
@@ -233,8 +235,9 @@ $_variables: (
 /// @param {string} $keys...
 ///   The list of keys to follow and remove from the custom properties map.
 @mixin remove($keys...) {
-  @include usage.remove($keys...);
-  $_variables: map.deep-remove($_variables, $keys...) !global;
+  @if usage.remove($keys...) {
+    $_variables: map.deep-remove($_variables, $keys...) !global;
+  }
 }
 
 /// Mixin to override a previously defined custom property. This is primarily 
@@ -281,8 +284,7 @@ $_variables: (
         @error "Custom property has not been set: \"#{$module}\" > \"#{$key}\"";
       }
 
-      @if ($value) {
-        $do: usage.set($module, $key, "override");
+      @if ($value and usage.set($module, $key, "override")) {
         @include define($module, $key, $value);
       }
     }
@@ -293,8 +295,7 @@ $_variables: (
       @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
     }
 
-    @if ($value) {
-      $do: usage.set($module, $prop, "override");
+    @if ($value and usage.set($module, $prop, "override")) {
       @include define($module, $prop, $value);
     }
   }

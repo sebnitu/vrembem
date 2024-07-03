@@ -1,19 +1,7 @@
 @use "sass:list";
 @use "sass:map";
+@use "sass:meta";
 @use "../utilities/debug-map" as *;
-
-/// Stores all references of custom properties and their meta information.
-/// @type map
-/// @access private
-$_meta: (
-  "core": (
-    "prefix": ( 
-      "def": 0, 
-      "ref": 0, 
-      "override": 0 
-    )
-  )
-);
 
 /// TODO: Documentation
 @function _init-meta-data($action: "set") {
@@ -24,16 +12,24 @@ $_meta: (
   @return ( "def": $def, "ref": $ref, "override": $override );
 }
 
+/// Stores all references of custom properties and their meta information.
+/// @type map
+/// @access private
+$_meta: (
+  "core": (
+    "prefix": _init-meta-data()
+  )
+);
+
 /// TODO: Documentation
 @function set($module, $prop, $action: "set") {
-  $data: $_meta;
   @if (map.has-key($_meta, $module, $prop)) {
     $n: map.get($_meta, $module, $prop, $action);
     $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
   } @else {
     $_meta: map.set($_meta, $module, $prop, _init-meta-data($action)) !global;
   }
-  @return true;
+  @return $_meta;
 }
 
 /// TODO: Documentation
@@ -46,8 +42,9 @@ $_meta: (
 }
 
 /// TODO: Documentation
-@mixin remove($keys...) {
+@function remove($keys...) {
   $_meta: map.deep-remove($_meta, $keys...) !global;
+  @return $_meta;
 }
 
 /// TODO: Documentation
