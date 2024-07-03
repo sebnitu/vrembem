@@ -1,4 +1,4 @@
-@use "@vrembem/core/prefix";
+@use "@vrembem/core/config";
 
 .theme-icon {
   position: absolute;
@@ -11,21 +11,21 @@
   opacity: 0;
 }
 
-.#{prefix.$theme}root {
+.#{config.get("prefix-themes")}root {
   .theme-icon_root {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.#{prefix.$theme}light {
+.#{config.get("prefix-themes")}light {
   .theme-icon_light {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.#{prefix.$theme}dark {
+.#{config.get("prefix-themes")}dark {
   .theme-icon_dark {
     transform: translateY(0);
     opacity: 1;

@@ -1,12 +1,17 @@
 @use "sass:map";
 @use "../utilities/debug-map" as *;
 
-/// TODO: Add prefixes into options map.
 /// Stores all library wide configuration options.
 /// @type map
 /// @access private
 $_options: (
-  "output-strategy": "used"
+  "output-strategy": "used",
+  "prefix-variables": "vb-",
+  "prefix-themes": "vb-theme-",
+  "prefix-blocks": null,
+  "prefix-elements": "__",
+  "prefix-modifiers": "_",
+  "prefix-modifier-values": "_"
 );
 
 /// Returns the value of an option in the configuration map.

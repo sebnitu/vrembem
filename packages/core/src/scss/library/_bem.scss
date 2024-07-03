@@ -1,27 +1,27 @@
-@use "../variables/prefix";
+@use "../modules/config";
 
 /// Output a valid BEM class selector using core prefixes and the provided
 /// parameters; block, element, modifier and modifier-value.
-/// @param {string} $block
+/// @param {string} $b
 ///   The block name.
-/// @param {string} $element [null]
+/// @param {string} $e [null]
 ///   The element name.
-/// @param {string} $modifier [null]
+/// @param {string} $m [null]
 ///   The modifier name.
-/// @param {string} $modifier-value [null]
+/// @param {string} $v [null]
 ///   The modifier value name.
 /// @return {selector}
 ///   A valid BEM CSS selector using the provided parameters.
-@function bem($block, $element: null, $modifier: null, $modifier-value: null) {
-  $class: '.#{prefix.$block}#{$block}';
-  @if ($element) {
-    $class: '#{$class}#{prefix.$element}#{$element}';
+@function bem($b, $e: null, $m: null, $v: null) {
+  $class: '.#{config.get("prefix-blocks")}#{$b}';
+  @if ($e) {
+    $class: '#{$class}#{config.get("prefix-elements")}#{$e}';
   }
-  @if ($modifier) {
-    $class: '#{$class}#{prefix.$modifier}#{$modifier}';
+  @if ($m) {
+    $class: '#{$class}#{config.get("prefix-modifiers")}#{$m}';
   }
-  @if ($modifier-value) {
-    $class: '#{$class}#{prefix.$modifier-value}#{$modifier-value}';
+  @if ($v) {
+    $class: '#{$class}#{config.get("prefix-modifier-values")}#{$v}';
   }
   @return $class;
 }

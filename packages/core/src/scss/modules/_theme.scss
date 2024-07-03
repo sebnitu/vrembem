@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "../variables/prefix";
 @use "../utilities/debug-map" as *;
 @use "./config";
 @use "./usage";
@@ -10,9 +9,9 @@
 
 /// Prefix for theme classes.
 /// @type string
-/// @alias prefix.$theme
+/// @alias config.get("prefix-themes")
 /// @access private
-$_t: prefix.$theme;
+$_t: config.get("prefix-themes");
 
 /// Set the default theme. Should match an existing theme in the $_themes map.
 /// @type string

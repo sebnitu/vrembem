@@ -1,5 +1,6 @@
-@use "@vrembem/core/theme";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/theme";
 
 $bp-code: 600px;
 $bp-drawer: 960px;
@@ -32,7 +33,7 @@ $bp-aside: 1220px;
   --astro-code-token-link: #ce3b4a;
 
   // Shiki dark theme
-  &.#{core.$prefix-theme}dark {
+  &.#{config.get("prefix-themes")}dark {
     --astro-code-color-text: #{theme.get("foreground")};
     --astro-code-token-comment: #{theme.get("foreground-lighter")};
     --astro-code-token-constant: #79B8FF;

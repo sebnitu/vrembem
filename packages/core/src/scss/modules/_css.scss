@@ -2,13 +2,10 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "../variables/prefix";
 @use "../utilities/reverse" as *;
 @use "../utilities/debug-map" as *;
 @use "./config";
 @use "./usage";
-
-/// TODO: Maybe move meta functionality into it's own module.
 
 /// The variables map where all custom properties are stored. These are stored
 /// under module keys with maps of their custom property key/value pairs.
@@ -16,27 +13,26 @@
 /// @access private
 $_variables: (
   "core": (
-    "prefix": prefix.$variable
+    "prefix": config.get("prefix-variables")
   )
 );
 
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
-///   - Applies "vb-" vrembem prefix (via prefix.$variable).
-///   - Applies "[module]" string. Omitted if "core" module is passed.
+///   - Applies "vb-" vrembem prefix.
+///   - Applies "[module]" string. Omitted for "core" or "palette" modules.
 ///   - Result: "--vb-[module]-"
-/// @require {variable} prefix.$variable
 /// @param {string} $module
-///   The module name to use as part of the prefix. The "core" module is not
-///   used in the prefix.
+///   The module name to use as part of the prefix. The "core" and "palette
+///   modules are not used in the prefix.
 /// @return {string} 
 ///   The custom property prefix string.
 /// @access private
 @function _prefix($module) {
   @if ($module and $module != "core" and $module != "palette") {
-    @return "--#{prefix.$variable}#{$module}-";
+    @return "--#{config.get("prefix-variables")}#{$module}-";
   } @else {
-    @return "--#{prefix.$variable}";
+    @return "--#{config.get("prefix-variables")}";
   }
 }
 

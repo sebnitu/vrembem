@@ -1,12 +1,13 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
+$prefix-variable: config.get("prefix-variables") !default;
+$prefix-block: config.get("prefix-blocks") !default;
+$prefix-element: config.get("prefix-elements") !default;
+$prefix-modifier: config.get("prefix-modifiers") !default;
+$prefix-modifier-value: config.get("prefix-modifier-values") !default;
 
 $event: null !default;
 $placement: null !default;
