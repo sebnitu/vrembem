@@ -3,8 +3,18 @@
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
 
-/// TODO: Documentation
-@function _init-data($action: "set") {
+/// Setup initial data for a new property in the usage `$_meta` map. The action
+/// parameter will increment the value of that action in the data map.
+/// @param {string} $action
+///   The action that's being taken with the custom property. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Required property should be output regardless of usage.
+/// @return {map}
+///   The initial data map for storing as property value in `$_meta` map.
+/// @access private
+@function _init-data($action) {
   $def: 0; $ref: 0; $map: ();
   @if ($action == "def") { $def: 1; }
   @else if ($action == "ref") { $ref: 1; }
@@ -17,11 +27,14 @@
 /// @access private
 $_meta: (
   "core": (
-    "prefix": _init-data()
+    "prefix": _init-data("required")
   )
 );
 
-/// TODO: Documentation
+/// Return a value from the usage `$_meta` map.
+/// @param {string} $keys...
+///   The keys to follow in the `$_meta` map and return its value. Leave empty 
+///   to return the entire `$_meta` map.
 @function get($keys...) {
   @if (list.length($keys) == 0) {
     @return $_meta;
@@ -30,8 +43,18 @@ $_meta: (
   }
 }
 
-/// TODO: Documentation
-@function set($module, $prop, $action: "set") {
+/// Set the meta data for a module's property based on the action being taken.
+/// @param {string} $module
+///   The module name who's custom property is being stored under.
+/// @param {string} $prop
+///   The custom property name that should be stored.
+/// @param {string} $action
+///   The action that's being taken with the custom property. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Required property should be output regardless of usage.
+@function set($module, $prop, $action) {
   @if (map.has-key($_meta, $module, $prop)) {
     $n: map.get($_meta, $module, $prop, $action) or 0;
     $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
@@ -41,7 +64,9 @@ $_meta: (
   @return $_meta;
 }
 
-/// TODO: Documentation
+/// Remove a property from the usage `$_meta` map.
+/// @param {string} $keys...
+///   The keys to follow in the `$_meta` map and remove.
 @function remove($keys...) {
   $_meta: map.deep-remove($_meta, $keys...) !global;
   @return $_meta;
@@ -78,7 +103,22 @@ $_meta: (
   }
 }
 
-/// TODO: Documentation
+/// Log to console data from the `$_meta` custom properties map. The log can be 
+/// filtered using a module name and further with a specific data map to match.
+/// @param {string} $module
+///   The module name to filter the meta map's data by. Can be set to null, "*"
+///   or "all" to return the values of all modules.
+/// @param {mao} $filters
+///   A filters map containing the values that should match and be returned.
+/// 
+/// @example scss
+///   // Log all properties in the button module that were never referenced.
+///   @include usage.log("button", ("ref": 0));
+/// 
+/// @example scss
+///   // Log all properties of every module that are required,
+///   @include usage.log("core", ("required": 1));
+///
 @mixin log($module: null, $filters: ()) {
   @if ($module == "*" or $module == "all") {
     $module: null;
@@ -125,9 +165,9 @@ $_meta: (
   // Log the filtered map.
   @if ($module) {
     @include debug-map($filtered, "Filtered custom properties of \"#{$module}\"");
-  } @else if ($filters == ()) {
-    @include debug-map($filtered, "All custom properties");
-  } @else {
+  } @else if ($filters != ()) {
     @include debug-map($filtered, "Filtered custom properties");
+  } @else {
+    @include debug-map($filtered, "All custom properties");
   }
 }
