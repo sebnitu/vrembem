@@ -4,12 +4,12 @@
 @use "../utilities/debug-map" as *;
 
 /// TODO: Documentation
-@function _init-meta-data($action: "set") {
-  $def: 0; $ref: 0; $override: 0;
+@function _init-data($action: "set") {
+  $def: 0; $ref: 0; $map: ();
   @if ($action == "def") { $def: 1; }
-  @if ($action == "ref") { $ref: 1; }
-  @if ($action == "override") { $override: 1; }
-  @return ( "def": $def, "ref": $ref, "override": $override );
+  @else if ($action == "ref") { $ref: 1; }
+  @else { $map: ($action: 1); }
+  @return map.merge(("def": $def, "ref": $ref), $map);
 }
 
 /// Stores all references of custom properties and their meta information.
@@ -17,20 +17,9 @@
 /// @access private
 $_meta: (
   "core": (
-    "prefix": _init-meta-data()
+    "prefix": _init-data()
   )
 );
-
-/// TODO: Documentation
-@function set($module, $prop, $action: "set") {
-  @if (map.has-key($_meta, $module, $prop)) {
-    $n: map.get($_meta, $module, $prop, $action);
-    $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
-  } @else {
-    $_meta: map.set($_meta, $module, $prop, _init-meta-data($action)) !global;
-  }
-  @return $_meta;
-}
 
 /// TODO: Documentation
 @function get($keys...) {
@@ -39,6 +28,17 @@ $_meta: (
   } @else {
     @return map.get($_meta, $keys...);
   }
+}
+
+/// TODO: Documentation
+@function set($module, $prop, $action: "set") {
+  @if (map.has-key($_meta, $module, $prop)) {
+    $n: map.get($_meta, $module, $prop, $action) or 0;
+    $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
+  } @else {
+    $_meta: map.set($_meta, $module, $prop, _init-data($action)) !global;
+  }
+  @return $_meta;
 }
 
 /// TODO: Documentation
@@ -101,7 +101,7 @@ $_meta: (
     // If a module was passed.
     @if ($module) {
       @each $prop, $meta in $filtered {
-        @if (map.has-key($meta, $filterKey) and (map.get($meta, $filterKey) != $filterValue)) {
+        @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
           $filtered: map.remove($filtered, $module, $prop);
         }
       }
@@ -110,7 +110,7 @@ $_meta: (
     @else {
       @each $module, $props in $filtered {
         @each $prop, $meta in $props {
-          @if (map.has-key($meta, $filterKey) and (map.get($meta, $filterKey) != $filterValue)) {
+          @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
             $filtered: map.deep-remove($filtered, $module, $prop);
             // Remove empty maps if they exist.
             @if (map.get($filtered, $module) == ()) {

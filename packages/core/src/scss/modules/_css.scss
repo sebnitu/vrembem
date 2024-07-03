@@ -208,11 +208,11 @@ $_variables: (
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          @if ($required) { $do: usage.set($module, "#{$propKey}-#{$key}") };
+          @if ($required) { $do: usage.set($module, "#{$propKey}-#{$key}", "required") };
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        @if ($required) { $do: usage.set($module, $propKey) };
+        @if ($required) { $do: usage.set($module, $propKey, "required") };
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
@@ -220,13 +220,13 @@ $_variables: (
 
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
-      @if ($required) { $do: usage.set($module, "#{$prop}-#{$key}") };
+      @if ($required) { $do: usage.set($module, "#{$prop}-#{$key}", "required") };
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
   @else {
-    @if ($required) { $do: usage.set($module, $prop) };
+    @if ($required) { $do: usage.set($module, $prop, "required") };
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
 }

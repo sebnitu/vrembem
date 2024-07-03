@@ -45,4 +45,4 @@
 // Usage logs
 // Display custom properties that haven't been referenced: ("ref": 0)
 // Display custom properties that haven't been defined: ("def": 0)
-// @include vrembem.core-usage-log();
+// @include vrembem.core-usage-log("*", ("required": 1));
