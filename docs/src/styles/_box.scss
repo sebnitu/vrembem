@@ -15,8 +15,8 @@ $theme-dark: (
   "background-alt": palette.get("secondary", 15%)
 );
 
-@include theme.set("light", "box", $theme-light);
-@include theme.set("dark", "box", $theme-dark);
+@include theme.set("box", "light", $theme-light);
+@include theme.set("box", "dark", $theme-dark);
 @include theme.output("box");
 
 .box,

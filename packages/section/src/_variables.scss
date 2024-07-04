@@ -61,5 +61,5 @@ $theme-dark: (
   "screen-opacity": 0.7
 ) !default;
 
-@include theme.set("light", "section", $theme-light);
-@include theme.set("dark", "section", $theme-dark);
+@include theme.set("section", "light", $theme-light);
+@include theme.set("section", "dark", $theme-dark);

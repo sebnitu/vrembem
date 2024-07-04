@@ -117,5 +117,5 @@ $theme-dark: (
   "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
 ) !default;
 
-@include theme.set("light", "button", map.merge($theme-shared, $theme-light));
-@include theme.set("dark", "button", map.merge($theme-shared, $theme-dark));
+@include theme.set("button", "light", map.merge($theme-shared, $theme-light));
+@include theme.set("button", "dark", map.merge($theme-shared, $theme-dark));

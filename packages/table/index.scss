@@ -1,6 +1,5 @@
 @forward "./src/variables";
 @forward "./src/mixins";
-@forward "./src/root";
 @forward "./src/table";
 @forward "./src/table_ellipsis";
 @forward "./src/table_hover";
@@ -8,3 +7,4 @@
 @forward "./src/table_size";
 @forward "./src/table_style";
 @forward "./src/table_zebra";
+@forward "./src/root";

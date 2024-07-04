@@ -46,5 +46,5 @@ $theme-dark: (
   "sep-border": core.$border
 ) !default;
 
-@include theme.set("light", "dialog", $theme-light);
-@include theme.set("dark", "dialog", $theme-dark);
+@include theme.set("dialog", "light", $theme-light);
+@include theme.set("dialog", "dark", $theme-dark);

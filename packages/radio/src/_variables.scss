@@ -69,5 +69,5 @@ $theme-dark: (
   "dot-color": palette.get("neutral", 10)
 ) !default;
 
-@include theme.set("light", "radio", $theme-light);
-@include theme.set("dark", "radio", $theme-dark);
+@include theme.set("radio", "light", $theme-light);
+@include theme.set("radio", "dark", $theme-dark);

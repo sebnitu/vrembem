@@ -74,7 +74,7 @@
     padding: 1rem;
   }
 
-  > * {
+  > *:not(.popover) {
     transition: all css.get("transition", "duration") css.get("transition", "timing-function");
   }
 }

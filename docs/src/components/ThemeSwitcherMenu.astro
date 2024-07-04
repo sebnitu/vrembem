@@ -2,7 +2,7 @@
 import Icon from "./Icon.astro";
 ---
 
-<ul class="menu menu_theme-switcher">
+<ul class="menu menu_themes">
   <li class="menu__item">
     <button data-value="root" class="menu__action">
       <svg class="icon icon_style_fill" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@ import Icon from "./Icon.astro";
     });
   }
 
-  const btns = document.querySelectorAll(".menu_theme-switcher .menu__action");
+  const btns = document.querySelectorAll(".menu_themes .menu__action");
 
   btns.forEach((btn) => {
     btn.addEventListener(("click"), () => {

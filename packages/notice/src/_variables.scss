@@ -43,5 +43,5 @@ $theme-dark: (
   "box-shadow": null
 ) !default;
 
-@include theme.set("light", "notice", $theme-light);
-@include theme.set("dark", "notice", $theme-dark);
+@include theme.set("notice", "light", $theme-light);
+@include theme.set("notice", "dark", $theme-dark);

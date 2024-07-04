@@ -1,0 +1,49 @@
+@use "./setup";
+@use "vrembem";
+
+@use "./root";
+@use "./global";
+@use "./brand";
+@use "./navibar";
+@use "./toolbar";
+@use "./layout";
+@use "./layout-drawer";
+@use "./layout-aside";
+
+@use "./animations";
+@use "./badge";
+@use "./box";
+@use "./code-block";
+@use "./code-example";
+@use "./doc-block";
+@use "./floats";
+@use "./fold-shadow";
+@use "./header-anchor";
+@use "./icon_external";
+@use "./layout-demo";
+@use "./menu_collection";
+@use "./menu_otp";
+@use "./menu_themes";
+@use "./pagi";
+@use "./swatch";
+@use "./tabs";
+@use "./theme-icons";
+@use "./toggle";
+
+@use "./test";
+
+// Important!
+// Include this last to catch all custom property references.
+@forward "vrembem/root";
+
+// Module logs
+// @include vrembem.core-config-log();
+// @include vrembem.core-css-log();
+// @include vrembem.core-palette-log();
+// @include vrembem.core-theme-log();
+
+// Usage logs
+// - ("ref": 0) Display custom properties that haven't been referenced.
+// - ("def": 0) Display custom properties that haven't been defined.
+// - ("required": 1) Display all required custom properties.
+// @include vrembem.core-usage-log("*", ("required": 1));

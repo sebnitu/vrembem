@@ -25,15 +25,15 @@
  */
 
 :root {
-  @include css.define("test-2-background", theme.get("background"));
-  @include css.define("test-2-foreground", theme.get("foreground"));
-  @include css.define("test-2-border-color", theme.get("border-color"));
+  @include css.define("test-2", "background", theme.get("background"));
+  @include css.define("test-2", "foreground", theme.get("foreground"));
+  @include css.define("test-2", "border-color", theme.get("border-color"));
 }
 
 .test-2 {
-  border-color: css.reference("test-2-border-color");
-  background: css.reference("test-2-background");
-  color: css.reference("test-2-foreground");
+  border-color: css.reference("test-2", "border-color");
+  background: css.reference("test-2", "background");
+  color: css.reference("test-2", "foreground");
 }
 
 /**
@@ -52,12 +52,12 @@ $theme-dark: (
   "border-color": theme.get("border-color"),
 );
 
-@include theme.set("light", "test-3", $theme-light);
-@include theme.set("dark", "test-3", $theme-dark);
+@include theme.set("test-3", "light", $theme-light);
+@include theme.set("test-3", "dark", $theme-dark);
 @include theme.output("test-3");
 
 .test-3 {
-  border-color: css.reference("test-3-border-color");
-  background: css.reference("test-3-background");
-  color: css.reference("test-3-foreground");
+  border-color: css.reference("test-3", "border-color");
+  background: css.reference("test-3", "background");
+  color: css.reference("test-3", "foreground");
 }

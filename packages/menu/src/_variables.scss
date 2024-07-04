@@ -88,5 +88,5 @@ $theme-shared: (
   "foreground": theme.get("foreground"),
 ) !default;
 
-@include theme.set("light", "menu", $theme-shared);
-@include theme.set("dark", "menu", $theme-shared);
+@include theme.set("menu", "light", $theme-shared);
+@include theme.set("menu", "dark", $theme-shared);

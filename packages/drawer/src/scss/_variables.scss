@@ -1,13 +1,14 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
+$prefix-variable: config.get("prefix-variables") !default;
+$prefix-block: config.get("prefix-blocks") !default;
+$prefix-element: config.get("prefix-elements") !default;
+$prefix-modifier: config.get("prefix-modifiers") !default;
+$prefix-modifier-value: config.get("prefix-modifier-values") !default;
 
 $class-frame: "#{$prefix-block}drawer-frame" !default;
 $class-main: "#{$prefix-block}drawer-main" !default;
@@ -35,4 +36,4 @@ $modal-screen-opacity: 0.8 !default;
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
-));
+), true);
