@@ -43,6 +43,3 @@ $size-scale: (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
 ), "required");
-
-// Set required core custom properties for JS
-@include usage.set("core", "prefix", "required", "once");

@@ -36,10 +36,6 @@
 // Include this last to catch all custom property references.
 @forward "vrembem/root";
 
-// TODO: Remove after testing
-// Note: Maybe only output core (none theme) properties once?
-// @include vrembem.core-usage-log("core");
-
 // Module logs
 // @include vrembem.core-config-log();
 // @include vrembem.core-css-log();

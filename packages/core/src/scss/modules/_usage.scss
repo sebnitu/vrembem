@@ -135,7 +135,7 @@ $_meta: ();
 // TODO: Add documentation
 @function flag-check($module, $prop) {
   $meta: get($module, $prop);
-  @if map.get($meta, "once") and map.get($meta, "def") > 0 {
+  @if map.get($meta, "def") > 0 {
     @return false;
   } @else {
     @return true;

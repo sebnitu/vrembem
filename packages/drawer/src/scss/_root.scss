@@ -1,7 +1,5 @@
 @use "@vrembem/core/css";
 
 :root {
-  // TODO: Remove after testing
-  @include css.output("core");
   @include css.output("drawer");
 }
