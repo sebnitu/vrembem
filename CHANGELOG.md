@@ -35,7 +35,7 @@ https://lerna.js.org/docs/features/version-and-publish
 
 ## v4.0.0-next.10 (2024-07-04)
 
-#### :tada: New Feature
+### :tada: New Feature
 * `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
   * [#1913](https://github.com/sebnitu/vrembem/pull/1913) Add new usage module and configuration to only output CSS vars when used.
 
