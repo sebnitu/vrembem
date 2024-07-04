@@ -202,17 +202,17 @@ $_variables: (
 ///     )
 ///   );
 ///
-@mixin set($module, $prop, $value: null, $required: false) {
+@mixin set($module, $prop, $value: null, $flags...) {
   @if (meta.type-of($prop) == "map") {
-    $required: $value;
+    $flags: $value;
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          @if ($required) { $do: usage.set($module, "#{$propKey}-#{$key}", "required") };
+          @if ($flags) { @include usage.set($module, "#{$propKey}-#{$key}", $flags...) };
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        @if ($required) { $do: usage.set($module, $propKey, "required") };
+        @if ($flags) { @include usage.set($module, $propKey, $flags...) };
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
@@ -220,13 +220,16 @@ $_variables: (
 
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
-      @if ($required) { $do: usage.set($module, "#{$prop}-#{$key}", "required") };
+      // TODO: Apply this to all instances of usage.set in this mixin
+      @if (list.length($flags) > 0) {
+        @include usage.set($module, "#{$prop}-#{$key}", $flags...);
+      }
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
   @else {
-    @if ($required) { $do: usage.set($module, $prop, "required") };
+    @if ($flags) { @include usage.set($module, $prop, $flags...) };
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
 }
@@ -273,6 +276,7 @@ $_variables: (
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
+/// TODO: Ensure that override also outputs, even if set to once.
 @mixin override($module, $prop, $value: null) {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";

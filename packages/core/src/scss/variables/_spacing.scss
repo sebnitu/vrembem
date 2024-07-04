@@ -10,5 +10,6 @@ $gap-map: (
   "xl": 2em
 ) !default;
 
-@include css.set("core", "gap", $gap);
-@include css.set("core", "gap", $gap-map);
+// TODO: Ensure that this can be overrode
+@include css.set("core", "gap", $gap, "once");
+@include css.set("core", "gap", $gap-map, "once");

@@ -5,7 +5,7 @@
 /// @type map
 /// @access private
 $_options: (
-  "output-strategy": "*",
+  "output-strategy": "used", // TODO: Reset default to "*"
   "prefix-variables": "vb-",
   "prefix-themes": "vb-theme-",
   "prefix-blocks": null,

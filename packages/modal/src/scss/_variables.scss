@@ -1,7 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
+
+@include config.set("output-strategy", "used");
 
 $prefix-variable: config.get("prefix-variables") !default;
 $prefix-block: config.get("prefix-blocks") !default;
@@ -39,4 +42,7 @@ $size-scale: (
 @include css.set("modal", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
-), true);
+), "required");
+
+// Set required core custom properties for JS
+@include usage.set("core", "prefix", "required", "once");

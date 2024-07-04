@@ -8,25 +8,6 @@
 /// @access private
 $_meta: ();
 
-/// Setup initial data for a new property in the usage `$_meta` map. The action
-/// parameter will increment the value of that action in the data map.
-/// @param {string} $action
-///   The action that's being taken with the custom property. Options include:
-///   - "ref": The property is being referenced.
-///   - "def": The property is being defined.
-///   - "override": The property is being overrode.
-///   - "required": Required property should be output regardless of usage.
-/// @return {map}
-///   The initial data map for storing as property value in `$_meta` map.
-/// @access private
-@function _init-data($action: null) {
-  $def: 0; $ref: 0; $map: ();
-  @if ($action == "def") { $def: 1; }
-  @else if ($action == "ref") { $ref: 1; }
-  @else if ($action){ $map: ($action: 1); }
-  @return map.merge(("def": $def, "ref": $ref), $map);
-}
-
 /// Return a value from the usage `$_meta` map.
 /// @param {string} $keys...
 ///   The keys to follow in the `$_meta` map and return its value. Leave empty 
@@ -50,19 +31,66 @@ $_meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Required property should be output regardless of usage.
-@function set($module, $prop, $action) {
+/// TODO: Add the ability to include multiple actions or the concept of "flags"
+@function set($module, $prop, $flags...) {
   @if (map.has-key($_meta, $module, $prop)) {
-    $n: map.get($_meta, $module, $prop, $action) or 0;
-    $_meta: map.set($_meta, $module, $prop, $action, $n + 1) !global;
+    $_meta: _update-data($module, $prop, $flags...) !global;
   } @else {
-    $_meta: map.set($_meta, $module, $prop, _init-data($action)) !global;
+    $_meta: map.set($_meta, $module, $prop, _init-data($flags...)) !global;
   }
   @return $_meta;
+}
+
+/// Mixin alias for running @function set().
+@mixin set($module, $prop, $flags...) {
+  $run: set($module, $prop, $flags...);
+}
+
+/// Setup initial data for a new property in the usage `$_meta` map. The action
+/// parameter will increment the value of that action in the data map.
+/// @param {string} $action
+///   The action that's being taken with the custom property. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Required property should be output regardless of usage.
+/// @return {map}
+///   The initial data map for storing as property value in `$_meta` map.
+/// @access private
+/// TODO: Update documentation
+@function _init-data($flags...) {
+  $result: ("def": 0, "ref": 0);
+  @each $flag in $flags {
+    @if ($flag == "def") or ($flag == "ref") { 
+      $result: map.set($result, $flag, 1);
+    }
+    @else { 
+      $result: map.set($result, $flag, true);
+    }
+  }
+  @return $result;
+}
+
+/// TODO: Documentation
+@function _update-data($module, $prop, $flags...) {
+  $result: $_meta;
+  @each $flag in $flags {
+    @if ($flag == "required") or ($flag == "once") {
+      // Set flag to true if set to: "required" or "once".
+      $result: map.set($result, $module, $prop, $flag, true);
+    } @else {
+      // Increment data if it is: "def", "ref" or "override"
+      $n: map.get($result, $module, $prop, $flag) or 0;
+      $result: map.set($result, $module, $prop, $flag, $n + 1);
+    }
+  }
+  @return $result;
 }
 
 /// Remove a property from the usage `$_meta` map.
 /// @param {string} $keys...
 ///   The keys to follow in the `$_meta` map and remove.
+/// TODO: Ensure that flags can be removed.
 @function remove($keys...) {
   $_meta: map.deep-remove($_meta, $keys...) !global;
   @return $_meta;
@@ -82,20 +110,35 @@ $_meta: ();
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
+/// TODO: Add ability to set a property to only output once.
 @mixin output($mixin, $module, $moduleMap, $strategy) {
   // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in $moduleMap {
-      @include meta.apply($mixin, $module, $prop, $value);
+      @if (flag-check($module, $prop)) {
+        @include meta.apply($mixin, $module, $prop, $value);
+      }
     }
   }
   // Else, only output variable that were referenced.
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key(get(), $module, $prop) {
-        @include meta.apply($mixin, $module, $prop, $value);
+        @if (flag-check($module, $prop)) {
+          @include meta.apply($mixin, $module, $prop, $value);
+        }
       }
     }
+  }
+}
+
+// TODO: Add documentation
+@function flag-check($module, $prop) {
+  $meta: get($module, $prop);
+  @if map.get($meta, "once") and map.get($meta, "def") > 0 {
+    @return false;
+  } @else {
+    @return true;
   }
 }
 
