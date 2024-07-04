@@ -19,8 +19,8 @@
   .popover {
     @include css.override("popover", "event", click);
     @include css.override("popover", "placement", left);
-    @include css.define("core", "background", palette.get("primary", 100));
-    @include css.define("core", "foreground", palette.get("primary"));
+    @include css.override("core", "background", palette.get("primary", 100));
+    @include css.override("core", "foreground", palette.get("primary"));
   }
 
   @include core.media-max(root.$bp-code) {

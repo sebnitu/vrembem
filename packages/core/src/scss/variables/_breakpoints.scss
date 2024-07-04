@@ -8,5 +8,4 @@ $breakpoints: (
   "xl": 1380px
 ) !default;
 
-// TODO: Do something similar for prefix custom prop.
 @include css.set("core", "breakpoint", $breakpoints);

@@ -37,7 +37,7 @@
 @forward "vrembem/root";
 
 // Module logs
-// @include vrembem.core-config-log();
+@include vrembem.core-config-log();
 // @include vrembem.core-css-log();
 // @include vrembem.core-palette-log();
 // @include vrembem.core-theme-log();
@@ -46,4 +46,4 @@
 // - ("ref": 0) Display custom properties that haven't been referenced.
 // - ("def": 0) Display custom properties that haven't been defined.
 // - ("required": 1) Display all required custom properties.
-// @include vrembem.core-usage-log("*", ("required": 1));
+// @include vrembem.core-usage-log();

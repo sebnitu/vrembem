@@ -31,7 +31,6 @@ $_meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Required property should be output regardless of usage.
-/// TODO: Add the ability to include multiple actions or the concept of "flags"
 @function set($module, $prop, $flags...) {
   @if (map.has-key($_meta, $module, $prop)) {
     $_meta: _update-data($module, $prop, $flags...) !global;
@@ -110,13 +109,13 @@ $_meta: ();
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
-/// TODO: Add ability to set a property to only output once.
-@mixin output($mixin, $module, $moduleMap, $strategy) {
+@mixin output($mixin, $module, $moduleMap, $strategy, $flag: null) {
+  
   // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in $moduleMap {
-      @if (flag-check($module, $prop)) {
-        @include meta.apply($mixin, $module, $prop, $value);
+      @if (flag-check($module, $prop, $flag)) {
+        @include meta.apply($mixin, $module, $prop, $value, $flag);
       }
     }
   }
@@ -124,18 +123,21 @@ $_meta: ();
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key(get(), $module, $prop) {
-        @if (flag-check($module, $prop)) {
-          @include meta.apply($mixin, $module, $prop, $value);
+        @if (flag-check($module, $prop, $flag)) {
+          @include meta.apply($mixin, $module, $prop, $value, $flag);
         }
       }
     }
   }
 }
 
-// TODO: Add documentation
-@function flag-check($module, $prop) {
-  $meta: get($module, $prop);
-  @if map.get($meta, "def") > 0 {
+/// TODO: Add documentation
+@function flag-check($module, $prop, $flag: null) {
+  $meta: get($module, $prop) or ();
+  @if ($prop == "prefix") {
+    @debug $module ">" $prop;
+  }
+  @if ($flag != "override") and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
     @return false;
   } @else {
     @return true;

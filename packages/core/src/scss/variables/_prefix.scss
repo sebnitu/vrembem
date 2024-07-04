@@ -1,0 +1,4 @@
+@use "../modules/config";
+@use "../modules/css";
+
+@include css.set("core", "prefix", config.get("prefix-variables"));

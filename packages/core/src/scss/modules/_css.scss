@@ -11,11 +11,7 @@
 /// under module keys with maps of their custom property key/value pairs.
 /// @type map
 /// @access private
-$_variables: (
-  "core": (
-    "prefix": config.get("prefix-variables")
-  )
-);
+$_variables: ();
 
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
@@ -89,9 +85,10 @@ $_variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-@mixin define($module, $prop, $value: null) {
+/// TODO: Add documentation
+@mixin define($module, $prop, $value: null, $flag: "def") {
   @if ($value) {
-    @if usage.set($module, $prop, "def") {
+    @if usage.set($module, $prop, $flag) {
       #{_prefix($module)}#{$prop}: #{$value};
     }
   }
@@ -208,11 +205,24 @@ $_variables: (
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          @if ($flags) { @include usage.set($module, "#{$propKey}-#{$key}", $flags...) };
+          // @if ($module == "core") {
+          //   @debug "PROP + VAL MAP" $module ">" $key ">" $flags;
+          //   @if ($flags and list.length($flags) > 0) {
+          //     @debug "SET FLAG";
+          //   }
+          // }
+          @if ($flags and list.length($flags) > 0) {
+            @include usage.set($module, "#{$propKey}-#{$key}", $flags...);
+          }
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        @if ($flags) { @include usage.set($module, $propKey, $flags...) };
+        // @if ($module == "core") {
+        //   @debug "PROP MAP" $module ">" $propKey ">" $flags;
+        // }
+        @if ($flags and list.length($flags) > 0) {
+          @include usage.set($module, $propKey, $flags...);
+        }
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
@@ -220,8 +230,7 @@ $_variables: (
 
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
-      // TODO: Apply this to all instances of usage.set in this mixin
-      @if (list.length($flags) > 0) {
+      @if ($flags and list.length($flags) > 0) {
         @include usage.set($module, "#{$prop}-#{$key}", $flags...);
       }
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
@@ -229,7 +238,9 @@ $_variables: (
   }
 
   @else {
-    @if ($flags) { @include usage.set($module, $prop, $flags...) };
+    @if ($flags and list.length($flags) > 0) {
+      @include usage.set($module, $prop, $flags...);
+    }
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
 }
@@ -276,7 +287,6 @@ $_variables: (
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
-/// TODO: Ensure that override also outputs, even if set to once.
 @mixin override($module, $prop, $value: null) {
   @if not map.has-key($_variables, $module) {
     @error "Module map has not been set: \"#{$module}\"";
@@ -284,23 +294,13 @@ $_variables: (
 
   @if (meta.type-of($prop) == "map") {
     @each $key, $value in $prop {
-      @if not map.has-key($_variables, $module, $key) {
-        @error "Custom property has not been set: \"#{$module}\" > \"#{$key}\"";
-      }
-
-      @if ($value and usage.set($module, $key, "override")) {
-        @include define($module, $key, $value);
+      @if ($value) {
+        @include define($module, $key, $value, "override");
       }
     }
-  }
-
-  @else {
-    @if not map.has-key($_variables, $module, $prop) {
-      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
-    }
-
-    @if ($value and usage.set($module, $prop, "override")) {
-      @include define($module, $prop, $value);
+  } @else {
+    @if ($value) {
+      @include define($module, $prop, $value, "override");
     }
   }
 }

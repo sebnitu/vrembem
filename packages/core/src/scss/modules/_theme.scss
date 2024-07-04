@@ -194,7 +194,8 @@ $_themes: (
 ///     @include theme.output-theme("button", "light");
 ///   }
 ///
-@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy")) {
+/// TODO: Update documentation
+@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy"), $flag: null) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
@@ -214,7 +215,7 @@ $_themes: (
 
   // Output custom properties via usage output.
   @include usage.output(
-    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy
+    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $flag
   );
 
   // If a color scheme was stored, output it below everything else.
@@ -235,6 +236,7 @@ $_themes: (
 ///   // Output all themes of the notice module.
 ///   @include theme.output("notice");
 ///
+/// TODO: Update documentation
 @mixin output($module: "core", $strategy: config.get("output-strategy")) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {
@@ -245,14 +247,14 @@ $_themes: (
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
-        @include output-theme($module, "light", $strategy);
+        @include output-theme($module, "light", $strategy, "override");
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
     @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
-        @include output-theme($module, "dark", $strategy);
+        @include output-theme($module, "dark", $strategy, "override");
       }
     }
   }
@@ -261,7 +263,7 @@ $_themes: (
   @each $key, $value in map.get($_themes, $module) {
     @if not ($key == $default) {
       .#{$_t}#{$key} {
-        @include output-theme($module, $key, $strategy);
+        @include output-theme($module, $key, $strategy, "override");
       }
     }
   }
