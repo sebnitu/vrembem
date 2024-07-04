@@ -41,3 +41,6 @@ $size-scale: (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
 ), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");

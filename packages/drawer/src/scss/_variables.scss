@@ -38,3 +38,9 @@ $modal-screen-opacity: 0.8 !default;
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
 ), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");
+@each $key, $value in core.$breakpoints {
+  @include usage.set("core", "breakpoint-#{$key}", "required");
+}
