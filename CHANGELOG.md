@@ -25,12 +25,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.9 to CHANGELOG.md
+chore(release): add v4.0.0-next.10 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.10 (2024-07-04)
+
+#### :tada: New Feature
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1913](https://github.com/sebnitu/vrembem/pull/1913) Add new usage module and configuration to only output CSS vars when used.
 
 
 ## v4.0.0-next.9 (2024-06-25)
