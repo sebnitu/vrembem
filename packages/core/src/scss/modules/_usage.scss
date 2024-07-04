@@ -3,6 +3,11 @@
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
 
+/// Stores all references of custom properties and their meta information.
+/// @type map
+/// @access private
+$_meta: ();
+
 /// Setup initial data for a new property in the usage `$_meta` map. The action
 /// parameter will increment the value of that action in the data map.
 /// @param {string} $action
@@ -14,22 +19,13 @@
 /// @return {map}
 ///   The initial data map for storing as property value in `$_meta` map.
 /// @access private
-@function _init-data($action) {
+@function _init-data($action: null) {
   $def: 0; $ref: 0; $map: ();
   @if ($action == "def") { $def: 1; }
   @else if ($action == "ref") { $ref: 1; }
-  @else { $map: ($action: 1); }
+  @else if ($action){ $map: ($action: 1); }
   @return map.merge(("def": $def, "ref": $ref), $map);
 }
-
-/// Stores all references of custom properties and their meta information.
-/// @type map
-/// @access private
-$_meta: (
-  "core": (
-    "prefix": _init-data("required")
-  )
-);
 
 /// Return a value from the usage `$_meta` map.
 /// @param {string} $keys...
