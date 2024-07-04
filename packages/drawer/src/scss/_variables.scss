@@ -5,8 +5,6 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include config.set("output-strategy", "used");
-
 $prefix-variable: config.get("prefix-variables") !default;
 $prefix-block: config.get("prefix-blocks") !default;
 $prefix-element: config.get("prefix-elements") !default;

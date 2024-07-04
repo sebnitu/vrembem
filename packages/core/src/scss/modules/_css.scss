@@ -205,21 +205,12 @@ $_variables: ();
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          // @if ($module == "core") {
-          //   @debug "PROP + VAL MAP" $module ">" $key ">" $flags;
-          //   @if ($flags and list.length($flags) > 0) {
-          //     @debug "SET FLAG";
-          //   }
-          // }
           @if ($flags and list.length($flags) > 0) {
             @include usage.set($module, "#{$propKey}-#{$key}", $flags...);
           }
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        // @if ($module == "core") {
-        //   @debug "PROP MAP" $module ">" $propKey ">" $flags;
-        // }
         @if ($flags and list.length($flags) > 0) {
           @include usage.set($module, $propKey, $flags...);
         }

@@ -1,8 +1,11 @@
 @use "@vrembem/core" with (
   $font-family: #{'"Barlow", sans-serif'}
 );
+@use "@vrembem/core/config";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+
+@include config.set("output-strategy", "*");
 
 @include theme.set(
   "light",

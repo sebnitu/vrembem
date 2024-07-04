@@ -134,9 +134,6 @@ $_meta: ();
 /// TODO: Add documentation
 @function flag-check($module, $prop, $flag: null) {
   $meta: get($module, $prop) or ();
-  @if ($prop == "prefix") {
-    @debug $module ">" $prop;
-  }
   @if ($flag != "override") and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
     @return false;
   } @else {
