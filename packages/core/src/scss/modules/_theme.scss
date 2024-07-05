@@ -195,7 +195,7 @@ $_themes: (
 ///   }
 ///
 /// TODO: Update documentation
-@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy"), $flag: null) {
+@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy"), $args...) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
@@ -215,7 +215,7 @@ $_themes: (
 
   // Output custom properties via usage output.
   @include usage.output(
-    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $flag
+    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $args...
   );
 
   // If a color scheme was stored, output it below everything else.

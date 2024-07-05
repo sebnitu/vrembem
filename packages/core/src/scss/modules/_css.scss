@@ -85,10 +85,15 @@ $_variables: ();
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-/// TODO: Add documentation
-@mixin define($module, $prop, $value: null, $flag: "def") {
+/// TODO: Update documentation
+@mixin define($module, $prop, $value: null, $args...) {
   @if ($value) {
-    @if usage.set($module, $prop, $flag) {
+    // If args is empty, set "def" as the default action.
+    @if (list.length($args) == 0) {
+      $args: "def";
+    }
+    // Set the usage before outputting the custom property.
+    @if usage.set($module, $prop, $args...) {
       #{_prefix($module)}#{$prop}: #{$value};
     }
   }
@@ -199,20 +204,19 @@ $_variables: ();
 ///     )
 ///   );
 ///
-@mixin set($module, $prop, $value: null, $flags...) {
+@mixin set($module, $prop, $value: null, $args...) {
   @if (meta.type-of($prop) == "map") {
-    $flags: $value;
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          @if ($flags and list.length($flags) > 0) {
-            @include usage.set($module, "#{$propKey}-#{$key}", $flags...);
+          @if (list.length($args) > 0) {
+            @include usage.set($module, "#{$propKey}-#{$key}", $args...);
           }
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        @if ($flags and list.length($flags) > 0) {
-          @include usage.set($module, $propKey, $flags...);
+        @if (list.length($args) > 0) {
+          @include usage.set($module, $propKey, $args...);
         }
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
@@ -221,16 +225,16 @@ $_variables: ();
 
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
-      @if ($flags and list.length($flags) > 0) {
-        @include usage.set($module, "#{$prop}-#{$key}", $flags...);
+      @if (list.length($args) > 0) {
+        @include usage.set($module, "#{$prop}-#{$key}", $args...);
       }
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
   @else {
-    @if ($flags and list.length($flags) > 0) {
-      @include usage.set($module, $prop, $flags...);
+    @if (list.length($args) > 0) {
+      @include usage.set($module, $prop, $args...);
     }
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }

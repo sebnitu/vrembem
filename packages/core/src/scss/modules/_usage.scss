@@ -31,18 +31,19 @@ $_meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Required property should be output regardless of usage.
-@function set($module, $prop, $flags...) {
+/// TODO: Update documentation
+@function set($module, $prop, $args...) {
   @if (map.has-key($_meta, $module, $prop)) {
-    $_meta: _update-data($module, $prop, $flags...) !global;
+    $_meta: _update-data($module, $prop, $args...) !global;
   } @else {
-    $_meta: map.set($_meta, $module, $prop, _init-data($flags...)) !global;
+    $_meta: map.set($_meta, $module, $prop, _init-data($args...)) !global;
   }
   @return $_meta;
 }
 
-/// Mixin alias for running @function set().
-@mixin set($module, $prop, $flags...) {
-  $run: set($module, $prop, $flags...);
+/// Mixin alias for running @function `usage.set()`.
+@mixin set($module, $prop, $args...) {
+  $run: set($module, $prop, $args...);
 }
 
 /// Setup initial data for a new property in the usage `$_meta` map. The action
@@ -57,39 +58,51 @@ $_meta: ();
 ///   The initial data map for storing as property value in `$_meta` map.
 /// @access private
 /// TODO: Update documentation
-@function _init-data($flags...) {
+@function _init-data($args...) {
   $result: ("def": 0, "ref": 0);
-  @each $flag in $flags {
-    @if ($flag == "def") or ($flag == "ref") { 
-      $result: map.set($result, $flag, 1);
+  @each $arg in $args {
+    // Handle the action
+    @if (_is-action($arg)) {
+      $result: map.set($result, $arg, 1);
     }
-    @else { 
-      $result: map.set($result, $flag, true);
+    // Handle the flags
+    @else {
+      $result: map.set($result, $arg, true);
     }
   }
   @return $result;
 }
 
 /// TODO: Documentation
-@function _update-data($module, $prop, $flags...) {
+@function _update-data($module, $prop, $args...) {
   $result: $_meta;
-  @each $flag in $flags {
-    @if ($flag == "required") or ($flag == "once") {
-      // Set flag to true if set to: "required" or "once".
-      $result: map.set($result, $module, $prop, $flag, true);
-    } @else {
-      // Increment data if it is: "def", "ref" or "override"
-      $n: map.get($result, $module, $prop, $flag) or 0;
-      $result: map.set($result, $module, $prop, $flag, $n + 1);
+  @each $arg in $args {
+    // Handle the action
+    @if (_is-action($arg)) {
+      $n: map.get($result, $module, $prop, $arg) or 0;
+      $result: map.set($result, $module, $prop, $arg, $n + 1);
+    }
+    // Handle the flags
+    @else {
+      $result: map.set($result, $module, $prop, $arg, true);
     }
   }
   @return $result;
 }
 
+/// TODO: Documentation
+@function _is-action($value) {
+  $actions: "def", "ref", "override";
+  @if (list.index($actions, $value)) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
 /// Remove a property from the usage `$_meta` map.
 /// @param {string} $keys...
 ///   The keys to follow in the `$_meta` map and remove.
-/// TODO: Ensure that flags can be removed.
 @function remove($keys...) {
   $_meta: map.deep-remove($_meta, $keys...) !global;
   @return $_meta;
@@ -109,13 +122,13 @@ $_meta: ();
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
-@mixin output($mixin, $module, $moduleMap, $strategy, $flag: null) {
+@mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
   
   // If strategy is set to all, output everything in the map.
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in $moduleMap {
-      @if (flag-check($module, $prop, $flag)) {
-        @include meta.apply($mixin, $module, $prop, $value, $flag);
+      @if (_meta-check($module, $prop, $args...)) {
+        @include meta.apply($mixin, $module, $prop, $value, $args...);
       }
     }
   }
@@ -123,16 +136,16 @@ $_meta: ();
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key(get(), $module, $prop) {
-        @if (flag-check($module, $prop, $flag)) {
-          @include meta.apply($mixin, $module, $prop, $value, $flag);
+        @if (_meta-check($module, $prop, $args...)) {
+          @include meta.apply($mixin, $module, $prop, $value, $args...);
         }
       }
     }
   }
 }
 
-/// TODO: Add documentation
-@function flag-check($module, $prop, $flag: null) {
+/// TODO: Documentation
+@function _meta-check($module, $prop, $flag: null) {
   $meta: get($module, $prop) or ();
   @if ($flag != "override") and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
     @return false;
