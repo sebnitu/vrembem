@@ -25,13 +25,12 @@ $_meta: ();
 ///   The module name who's custom property is being stored under.
 /// @param {string} $prop
 ///   The custom property name that should be stored.
-/// @param {string} $action
-///   The action that's being taken with the custom property. Options include:
+/// @param {list} $args...
+///   The action being taken and any additional flags. Options include:
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Required property should be output regardless of usage.
-/// TODO: Update documentation
 @function set($module, $prop, $args...) {
   @if (map.has-key($_meta, $module, $prop)) {
     $_meta: _update-data($module, $prop, $args...) !global;
@@ -48,8 +47,8 @@ $_meta: ();
 
 /// Setup initial data for a new property in the usage `$_meta` map. The action
 /// parameter will increment the value of that action in the data map.
-/// @param {string} $action
-///   The action that's being taken with the custom property. Options include:
+/// @param {list} $args...
+///   The action being taken and any additional flags. Options include:
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
@@ -57,7 +56,6 @@ $_meta: ();
 /// @return {map}
 ///   The initial data map for storing as property value in `$_meta` map.
 /// @access private
-/// TODO: Update documentation
 @function _init-data($args...) {
   $result: ("def": 0, "ref": 0);
   @each $arg in $args {
@@ -135,7 +133,7 @@ $_meta: ();
   // Else, only output variable that were referenced.
   @else {
     @each $prop, $value in $moduleMap {
-      @if map.has-key(get(), $module, $prop) {
+      @if map.has-key($_meta, $module, $prop) {
         @if (_meta-check($module, $prop, $args...)) {
           @include meta.apply($mixin, $module, $prop, $value, $args...);
         }
