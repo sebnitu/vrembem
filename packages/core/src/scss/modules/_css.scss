@@ -78,6 +78,9 @@ $_variables: (
 ///   The custom property name to use in the definition.
 /// @param {any} $value [null]
 ///   The value of the custom property.
+/// @param {list} $args... ["def"]
+///   The action being taken and any additional flags to be passed to 
+///   `usage.set()`. Defaults to "def".
 /// 
 /// @example scss
 ///   css.define("core", "background", #000);
@@ -89,7 +92,6 @@ $_variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-/// TODO: Update documentation
 @mixin define($module, $prop, $value: null, $args...) {
   @if ($value) {
     // If args is empty, set "def" as the default action.

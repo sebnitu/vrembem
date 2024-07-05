@@ -131,8 +131,8 @@ $_palette: build();
 }
 
 /// Update the `$_palette` map by running build() with passed params.
-@mixin update($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
-  $_palette: build($seeds, $range, $default) !global;
+@mixin update() {
+  $_palette: build($_seeds, $lightness-range, $lightness-default) !global;
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.

@@ -185,8 +185,11 @@ $_themes: (
 ///   The module to output.
 /// @param {string} $theme [$default]
 ///   The theme to output.
-/// @param {string} $strategy [null]
+/// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
+/// @param {list} $args...
+///   The action being taken and any additional flags to be passed to 
+///   `usage.output()`.
 /// 
 /// @example scss
 ///   // Output the custom properties for the button light theme.
@@ -194,7 +197,6 @@ $_themes: (
 ///     @include theme.output-theme("button", "light");
 ///   }
 ///
-/// TODO: Update documentation
 @mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy"), $args...) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
@@ -229,14 +231,13 @@ $_themes: (
 /// "dark" will have a `prefers-color-scheme` media query applied.
 /// @param {string} $module ["core"]
 ///   The module to output all applied themes for.
-/// @param {string} $strategy [null]
+/// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
 ///
 /// @example scss
 ///   // Output all themes of the notice module.
 ///   @include theme.output("notice");
 ///
-/// TODO: Update documentation
 @mixin output($module: "core", $strategy: config.get("output-strategy")) {
   // Output the default theme in the root selector.
   #{$root-selector}, .#{$_t}#{$default} {

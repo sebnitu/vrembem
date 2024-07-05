@@ -8,19 +8,9 @@
 /// @access private
 $_meta: ();
 
-/// Return a value from the usage `$_meta` map.
-/// @param {string} $keys...
-///   The keys to follow in the `$_meta` map and return its value. Leave empty 
-///   to return the entire `$_meta` map.
-@function get($keys...) {
-  @if (list.length($keys) == 0) {
-    @return $_meta;
-  } @else {
-    @return map.get($_meta, $keys...);
-  }
-}
-
-/// Set the meta data for a module's property based on the action being taken.
+/// Checks the values for a property in the `$_meta` map to see if the custom 
+/// property should be output. Properties can only be output once unless the 
+/// "override" action is used.
 /// @param {string} $module
 ///   The module name who's custom property is being stored under.
 /// @param {string} $prop
@@ -30,29 +20,43 @@ $_meta: ();
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
-///   - "required": Required property should be output regardless of usage.
-@function set($module, $prop, $args...) {
-  @if (map.has-key($_meta, $module, $prop)) {
-    $_meta: _update-data($module, $prop, $args...) !global;
+///   - "required": Flag to indicate a property is required to output.
+/// @return {boolean}
+///   Returns `true` if meta checks allow output and `false` if not.
+/// @access private
+@function _meta-check($module, $prop, $args...) {
+  $meta: get($module, $prop) or ();
+  @if (not list.index($args, "override")) and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
+    @return false;
   } @else {
-    $_meta: map.set($_meta, $module, $prop, _init-data($args...)) !global;
+    @return true;
   }
-  @return $_meta;
 }
 
-/// Mixin alias for running @function `usage.set()`.
-@mixin set($module, $prop, $args...) {
-  $run: set($module, $prop, $args...);
+/// Checks whether a provided value is an action or a flag. Actions in the 
+/// `$_meta` map are incremented while flags are set as a boolean value.
+/// @param {string} $value
+///   The string value to evaluate.
+/// @return {boolean}
+///   Returns `true` if the value is an action and `false` if it is a flag.
+/// @access private
+@function _is-action($value) {
+  $actions: "def", "ref", "override";
+  @if (list.index($actions, $value)) {
+    @return true;
+  } @else {
+    @return false;
+  }
 }
 
-/// Setup initial data for a new property in the usage `$_meta` map. The action
-/// parameter will increment the value of that action in the data map.
+/// Setup initial data for a new property in the usage `$_meta` map. The args
+/// parameter will increment the value of an action and set any flags.
 /// @param {list} $args...
 ///   The action being taken and any additional flags. Options include:
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
-///   - "required": Required property should be output regardless of usage.
+///   - "required": Flag to indicate a property is required to output.
 /// @return {map}
 ///   The initial data map for storing as property value in `$_meta` map.
 /// @access private
@@ -71,7 +75,17 @@ $_meta: ();
   @return $result;
 }
 
-/// TODO: Documentation
+/// Update an existing data map for a property in the usage `$_meta` map. The 
+/// args parameter will increment the value of an action and set any flags.
+/// @param {list} $args...
+///   The action being taken and any additional flags. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Flag to indicate a property is required to output.
+/// @return {map}
+///   The updated `$_meta` map.
+/// @access private
 @function _update-data($module, $prop, $args...) {
   $result: $_meta;
   @each $arg in $args {
@@ -88,19 +102,53 @@ $_meta: ();
   @return $result;
 }
 
-/// TODO: Documentation
-@function _is-action($value) {
-  $actions: "def", "ref", "override";
-  @if (list.index($actions, $value)) {
-    @return true;
+/// Return a value from the usage `$_meta` map.
+/// @param {string} $keys...
+///   The keys to follow in the `$_meta` map and return its value. Leave empty 
+///   to return the entire `$_meta` map.
+/// @return {map}
+///   Returns value from `$_meta` or the entire map.
+@function get($keys...) {
+  @if (list.length($keys) == 0) {
+    @return $_meta;
   } @else {
-    @return false;
+    @return map.get($_meta, $keys...);
   }
+}
+
+/// Set the meta data for a module's property based on the action being taken.
+/// @param {string} $module
+///   The module name who's custom property is being stored under.
+/// @param {string} $prop
+///   The custom property name that should be stored.
+/// @param {list} $args...
+///   The action being taken and any additional flags. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Flag to indicate a property is required to output.
+/// @return {map}
+///   Returns the updated `$_meta` map.
+@function set($module, $prop, $args...) {
+  @if (map.has-key($_meta, $module, $prop)) {
+    $_meta: _update-data($module, $prop, $args...) !global;
+  } @else {
+    $_meta: map.set($_meta, $module, $prop, _init-data($args...)) !global;
+  }
+  @return $_meta;
+}
+
+/// A mixin alias for running @function `usage.set()`.
+/// @alias usage.set()
+@mixin set($module, $prop, $args...) {
+  $run: set($module, $prop, $args...);
 }
 
 /// Remove a property from the usage `$_meta` map.
 /// @param {string} $keys...
 ///   The keys to follow in the `$_meta` map and remove.
+/// @return {map}
+///   Returns the updated `$_meta` map.
 @function remove($keys...) {
   $_meta: map.deep-remove($_meta, $keys...) !global;
   @return $_meta;
@@ -120,9 +168,14 @@ $_meta: ();
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
+/// @param {list} $args...
+///   The action being taken and any additional flags. Options include:
+///   - "ref": The property is being referenced.
+///   - "def": The property is being defined.
+///   - "override": The property is being overrode.
+///   - "required": Flag to indicate a property is required to output.
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
-  
-  // If strategy is set to all, output everything in the map.
+  // If strategy is set to all, output all custom properties in the map.
   @if ($strategy == "*" or $strategy == "all") {
     @each $prop, $value in $moduleMap {
       @if (_meta-check($module, $prop, $args...)) {
@@ -130,7 +183,7 @@ $_meta: ();
       }
     }
   }
-  // Else, only output variable that were referenced.
+  // Else, only output custom properties that were referenced.
   @else {
     @each $prop, $value in $moduleMap {
       @if map.has-key($_meta, $module, $prop) {
@@ -139,16 +192,6 @@ $_meta: ();
         }
       }
     }
-  }
-}
-
-/// TODO: Documentation
-@function _meta-check($module, $prop, $flag: null) {
-  $meta: get($module, $prop) or ();
-  @if ($flag != "override") and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
-    @return false;
-  } @else {
-    @return true;
   }
 }
 
