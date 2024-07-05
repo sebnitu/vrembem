@@ -15,6 +15,12 @@ This document logs all notable changes to the Vrembem project.
 | `PR: chore`    | :hammer: Chore             |
 
 <!--
+Fixing issues with Lerna
+- Run `npx lerna repair`
+- Run `npx lerna clean`
+- Delete `node_modules` and `package-lock.json`
+- Run `npm install`
+
 Publish flow for `next` branch
 - Merge branch that contains appropriate PR label
 - Run `npm run sink`

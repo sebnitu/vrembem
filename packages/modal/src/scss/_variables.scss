@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
@@ -39,4 +40,7 @@ $size-scale: (
 @include css.set("modal", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
-), true);
+), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");

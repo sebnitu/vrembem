@@ -185,8 +185,11 @@ $_themes: (
 ///   The module to output.
 /// @param {string} $theme [$default]
 ///   The theme to output.
-/// @param {string} $strategy [null]
+/// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
+/// @param {list} $args...
+///   The action being taken and any additional flags to be passed to 
+///   `usage.output()`.
 /// 
 /// @example scss
 ///   // Output the custom properties for the button light theme.
@@ -194,7 +197,7 @@ $_themes: (
 ///     @include theme.output-theme("button", "light");
 ///   }
 ///
-@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy")) {
+@mixin output-theme($module, $theme: $default, $strategy: config.get("output-strategy"), $args...) {
   // Check if module exists in themes map.
   @if not map.has-key($_themes, $module) {
     @error "Module \"#{$module}\" has not been set in themes map";
@@ -214,7 +217,7 @@ $_themes: (
 
   // Output custom properties via usage output.
   @include usage.output(
-    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy
+    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $args...
   );
 
   // If a color scheme was stored, output it below everything else.
@@ -228,7 +231,7 @@ $_themes: (
 /// "dark" will have a `prefers-color-scheme` media query applied.
 /// @param {string} $module ["core"]
 ///   The module to output all applied themes for.
-/// @param {string} $strategy [null]
+/// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
 ///
 /// @example scss
@@ -245,14 +248,14 @@ $_themes: (
     // If the default them is not light mode, output the prefers light media query.
     @if $default != 'light' {
       @media (prefers-color-scheme: light) {
-        @include output-theme($module, "light", $strategy);
+        @include output-theme($module, "light", $strategy, "override");
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
     @if $default != 'dark' {
       @media (prefers-color-scheme: dark) {
-        @include output-theme($module, "dark", $strategy);
+        @include output-theme($module, "dark", $strategy, "override");
       }
     }
   }
@@ -261,7 +264,7 @@ $_themes: (
   @each $key, $value in map.get($_themes, $module) {
     @if not ($key == $default) {
       .#{$_t}#{$key} {
-        @include output-theme($module, $key, $strategy);
+        @include output-theme($module, $key, $strategy, "override");
       }
     }
   }

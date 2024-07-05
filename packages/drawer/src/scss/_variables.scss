@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
@@ -36,4 +37,10 @@ $modal-screen-opacity: 0.8 !default;
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
-), true);
+), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");
+@each $key, $value in core.$breakpoints {
+  @include usage.set("core", "breakpoint-#{$key}", "required");
+}

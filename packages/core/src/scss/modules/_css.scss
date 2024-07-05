@@ -78,6 +78,9 @@ $_variables: (
 ///   The custom property name to use in the definition.
 /// @param {any} $value [null]
 ///   The value of the custom property.
+/// @param {list} $args... ["def"]
+///   The action being taken and any additional flags to be passed to 
+///   `usage.set()`. Defaults to "def".
 /// 
 /// @example scss
 ///   css.define("core", "background", #000);
@@ -89,9 +92,14 @@ $_variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-@mixin define($module, $prop, $value: null) {
+@mixin define($module, $prop, $value: null, $args...) {
   @if ($value) {
-    @if usage.set($module, $prop, "def") {
+    // If args is empty, set "def" as the default action.
+    @if (list.length($args) == 0) {
+      $args: "def";
+    }
+    // Set the usage before outputting the custom property.
+    @if usage.set($module, $prop, $args...) {
       #{_prefix($module)}#{$prop}: #{$value};
     }
   }
@@ -202,17 +210,20 @@ $_variables: (
 ///     )
 ///   );
 ///
-@mixin set($module, $prop, $value: null, $required: false) {
+@mixin set($module, $prop, $value: null, $args...) {
   @if (meta.type-of($prop) == "map") {
-    $required: $value;
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
-          @if ($required) { $do: usage.set($module, "#{$propKey}-#{$key}", "required") };
+          @if (list.length($args) > 0) {
+            @include usage.set($module, "#{$propKey}-#{$key}", $args...);
+          }
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       } @else {
-        @if ($required) { $do: usage.set($module, $propKey, "required") };
+        @if (list.length($args) > 0) {
+          @include usage.set($module, $propKey, $args...);
+        }
         $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
@@ -220,13 +231,17 @@ $_variables: (
 
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
-      @if ($required) { $do: usage.set($module, "#{$prop}-#{$key}", "required") };
+      @if (list.length($args) > 0) {
+        @include usage.set($module, "#{$prop}-#{$key}", $args...);
+      }
       $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
   @else {
-    @if ($required) { $do: usage.set($module, $prop, "required") };
+    @if (list.length($args) > 0) {
+      @include usage.set($module, $prop, $args...);
+    }
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
 }
@@ -280,23 +295,13 @@ $_variables: (
 
   @if (meta.type-of($prop) == "map") {
     @each $key, $value in $prop {
-      @if not map.has-key($_variables, $module, $key) {
-        @error "Custom property has not been set: \"#{$module}\" > \"#{$key}\"";
-      }
-
-      @if ($value and usage.set($module, $key, "override")) {
-        @include define($module, $key, $value);
+      @if ($value) {
+        @include define($module, $key, $value, "override");
       }
     }
-  }
-
-  @else {
-    @if not map.has-key($_variables, $module, $prop) {
-      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
-    }
-
-    @if ($value and usage.set($module, $prop, "override")) {
-      @include define($module, $prop, $value);
+  } @else {
+    @if ($value) {
+      @include define($module, $prop, $value, "override");
     }
   }
 }
