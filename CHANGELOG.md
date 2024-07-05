@@ -26,17 +26,29 @@ Publish flow for `next` branch
 - Run `npm run sink`
 - Run `npx lerna-changelog`
 - Copy/paste output from changelog into this file
+- Fix heading levels `####` > `###`
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.11 to CHANGELOG.md
+chore(release): add v4.0.0-next.12 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.12 (2024-07-05)
+
+### :bug: Bug Fix
+* `core`
+  * [#1916](https://github.com/sebnitu/vrembem/pull/1916) Fix param parsing in css.set
+
+### :house: Refactor
+* `vrembem`
+  * [#1915](https://github.com/sebnitu/vrembem/pull/1915) Create better build entries into the Vrembem package
 
 
 ## v4.0.0-next.11 (2024-07-05)
