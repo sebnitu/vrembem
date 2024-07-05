@@ -9,7 +9,7 @@
 $_meta: ();
 
 /// Checks the values for a property in the `$_meta` map to see if the custom 
-/// property should be output. Properties can only be output once unless the 
+/// property is valid for output. Properties can only be output once unless the 
 /// "override" action is used.
 /// @param {string} $module
 ///   The module name who's custom property is being stored under.
@@ -175,21 +175,16 @@ $_meta: ();
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
-  // If strategy is set to all, output all custom properties in the map.
-  @if ($strategy == "*" or $strategy == "all") {
-    @each $prop, $value in $moduleMap {
-      @if (_meta-check($module, $prop, $args...)) {
+  @each $prop, $value in $moduleMap {
+    // Check if the property is valid for output.
+    @if (_meta-check($module, $prop, $args...)) {
+      // If strategy is set to all, output all custom properties in the map.
+      @if ($strategy == "*" or $strategy == "all") {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
       }
-    }
-  }
-  // Else, only output custom properties that were referenced.
-  @else {
-    @each $prop, $value in $moduleMap {
-      @if map.has-key($_meta, $module, $prop) {
-        @if (_meta-check($module, $prop, $args...)) {
-          @include meta.apply($mixin, $module, $prop, $value, $args...);
-        }
+      // Else, only output custom properties that were referenced.
+      @else if map.has-key($_meta, $module, $prop) {
+        @include meta.apply($mixin, $module, $prop, $value, $args...);
       }
     }
   }
