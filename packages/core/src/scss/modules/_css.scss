@@ -11,7 +11,11 @@
 /// under module keys with maps of their custom property key/value pairs.
 /// @type map
 /// @access private
-$_variables: ();
+$_variables: (
+  "core": (
+    "prefix": config.get("prefix-variables")
+  )
+);
 
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
