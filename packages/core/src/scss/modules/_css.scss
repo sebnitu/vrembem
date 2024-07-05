@@ -212,6 +212,9 @@ $_variables: (
 ///
 @mixin set($module, $prop, $value: null, $args...) {
   @if (meta.type-of($prop) == "map") {
+    @if ($value) {
+      $args: list.append($args, $value);
+    }
     @each $propKey, $propValue in $prop {
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
