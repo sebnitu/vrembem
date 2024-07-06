@@ -32,12 +32,23 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.12 to CHANGELOG.md
+chore(release): add v4.0.0-next.13 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.13 (2024-07-06)
+
+### :tada: New Feature
+* `core`
+  * [#1917](https://github.com/sebnitu/vrembem/pull/1917) Allow passing maps to config.set mixin
+
+### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1918](https://github.com/sebnitu/vrembem/pull/1918) Improve package exports for better entry paths
 
 
 ## v4.0.0-next.12 (2024-07-05)
