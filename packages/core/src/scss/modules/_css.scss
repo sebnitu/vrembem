@@ -212,10 +212,15 @@ $_variables: (
 ///
 @mixin set($module, $prop, $value: null, $args...) {
   @if (meta.type-of($prop) == "map") {
+    
+    // Add value to args if one exists.
     @if ($value) {
       $args: list.append($args, $value);
     }
+
     @each $propKey, $propValue in $prop {
+
+      // Scenario: ("prop": ("prop": "value"))
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
           @if (list.length($args) > 0) {
@@ -223,7 +228,10 @@ $_variables: (
           }
           $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
-      } @else {
+      }
+
+      // Scenario: ("prop": "value")
+      @else {
         @if (list.length($args) > 0) {
           @include usage.set($module, $propKey, $args...);
         }
@@ -232,6 +240,7 @@ $_variables: (
     }
   }
 
+  // Scenario: "prop", ("prop": "value")
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
       @if (list.length($args) > 0) {
@@ -241,6 +250,7 @@ $_variables: (
     }
   }
 
+  // Scenario: "prop", "value"
   @else {
     @if (list.length($args) > 0) {
       @include usage.set($module, $prop, $args...);

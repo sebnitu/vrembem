@@ -1,4 +1,6 @@
 @use "sass:map";
+@use "sass:meta";
+
 @use "../utilities/debug-map" as *;
 
 /// Stores all library wide configuration options.
@@ -23,11 +25,49 @@ $_options: (
 
 /// Set an option in the configuration map.
 /// @param {string} $key
-///   The key in the map to set.
-/// @param {any} $value
-///   The value to be stored.
-@mixin set($key, $value) {
-  $_options: map.set($_options, $key, $value) !global;
+///   The key in the map to set. Can be passed a map of key/value pairs. E.g:
+///   - ("key": "value"), null
+///   - ("key": ("key": "value")), null
+/// @param {any} $value [null]
+///   The value to be stored. Can be passed a map of key/value pairs where key
+///   will be prefixed with the provided value keys. E.g:
+///   - "key", "value"
+///   - "key", ("key": "value")
+@mixin set($key, $value: null) {
+  // Initialize the options map to our result.
+  $result: $_options;
+
+  @if (meta.type-of($key) == "map") {
+    @each $keyKey, $keyValue in $key {
+
+      // Scenario: ("key": ("key": "value")), null
+      @if (meta.type-of($keyValue) == "map") {
+        @each $key, $value in $keyValue {
+          $result: map.set($result, "#{$keyKey}-#{$key}", $value);
+        }
+      }
+
+      // Scenario: ("key": "value"), null
+      @else {
+        $result: map.set($result, $keyKey, $keyValue);
+      }
+    }
+  }
+
+  // Scenario: "key", ("key": "value")
+  @else if (meta.type-of($value) == "map") {
+    @each $valueKey, $value in $value {
+      $result: map.set($result, "#{$key}-#{$valueKey}", $value);
+    }
+  }
+
+  // Scenario: "key", "value"
+  @else {
+    $result: map.set($result, $key, $value);
+  }
+
+  // Save our updated map.
+  $_options: $result !global;
 }
 
 /// Remove an option from the configuration map.
