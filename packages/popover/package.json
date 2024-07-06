@@ -10,21 +10,17 @@
     "component",
     "popover"
   ],
-  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs"
+      "import": "./index.js",
+      "require": "./dist/index.umd.cjs",
+      "sass": "./index.scss",
+      "style": "./dist/index.css"
     },
-    "./css": "./dist/index.css",
-    "./scss": "./index.scss",
-    "./dev": "./dev/index.css",
-    "./dist": "./dist/index.css",
-    "./*": "./src/scss/*"
+    "./dev/*": "./dev/*",
+    "./dist/*": "./dist/*",
+    "./*": "./src/*"
   },
-  "unpkg": "dist/index.umd.cjs",
-  "sass": "index.scss",
-  "style": "dist/index.css",
   "files": [
     "dev",
     "dist",

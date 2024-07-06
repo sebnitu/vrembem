@@ -10,15 +10,14 @@
     "table"
   ],
   "exports": {
-    ".": "./index.scss",
-    "./css": "./dist/index.css",
-    "./scss": "./index.scss",
-    "./dev": "./dev/index.css",
-    "./dist": "./dist/index.css",
+    ".": {
+      "sass": "./index.scss",
+      "style": "./dist/index.css"
+    },
+    "./dev/*": "./dev/*",
+    "./dist/*": "./dist/*",
     "./*": "./src/*"
   },
-  "sass": "index.scss",
-  "style": "dist/index.css",
   "scripts": {
     "serve": "vite",
     "build": "npm-run-all clean styles",
