@@ -14,8 +14,6 @@
       "sass": "./index.scss",
       "style": "./dist/index.css"
     },
-    "./dev": "./dev/index.css",
-    "./dist": "./dist/index.css",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./*": "./src/*"
