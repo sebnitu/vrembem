@@ -18,8 +18,8 @@ if (typeof window !== "undefined") {
     if (themes.includes(value)) {
       store.theme = value;
       profile.set("theme", value);
-      document.documentElement.classList.remove(...classes);
-      document.documentElement.classList.add(`${prefix}${value}`);
+      document.body.classList.remove(...classes);
+      document.body.classList.add(`${prefix}${value}`);
     } else {
       console.error(`Not a valid theme: "${value}"`);
     }
