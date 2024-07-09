@@ -32,18 +32,16 @@ mainClasses += layout.hasAside ? " has-aside" : "";
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap"
       rel="stylesheet"
     />
+  </head>
+  <body class={bodyClass}>
     <script is:inline>
       (function () {
         // Make this script blocking to prevent flash of pre-themed content.
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
-        document.documentElement.classList.add(
-          `vb-theme-${store.theme || "root"}`
-        );
+        document.body.classList.add(`vb-theme-${store.theme || "root"}`);
       })();
     </script>
-  </head>
-  <body class={bodyClass}>
     <main id="main" class={mainClasses} tabindex="-1">
       <slot />
     </main>
