@@ -240,7 +240,7 @@ $_themes: (
 ///
 @mixin output($module: "core", $strategy: config.get("output-strategy")) {
   // Output the default theme in the root selector.
-  #{$root-selector}, .#{$_t}#{$default} {
+  #{$root-selector} {
     @include output-theme($module, $default, $strategy);
   }
 
@@ -262,10 +262,8 @@ $_themes: (
   
   // Run the output function on all module themes.
   @each $key, $value in map.get($_themes, $module) {
-    @if not ($key == $default) {
-      .#{$_t}#{$key} {
-        @include output-theme($module, $key, $strategy, "override");
-      }
+    .#{$_t}#{$key} {
+      @include output-theme($module, $key, $strategy, "override");
     }
   }
 }
