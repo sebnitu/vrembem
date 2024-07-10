@@ -13,7 +13,8 @@ $_options: (
   "prefix-blocks": null,
   "prefix-elements": "__",
   "prefix-modifiers": "_",
-  "prefix-modifier-values": "_"
+  "prefix-modifier-values": "_",
+  "default-theme": "light"
 );
 
 /// Returns the value of an option in the configuration map.

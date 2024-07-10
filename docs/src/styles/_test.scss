@@ -12,6 +12,7 @@
 }
 
 // TEST 1
+// ---
 // Using core theme properties directly.
 
 .test-1 {
@@ -21,6 +22,7 @@
 }
 
 // TEST 2
+// ---
 // Using core theme properties as values of new properties. These end up being
 // completely to the values set in :root of these custom property definitions
 // and do not change based on the presence of theme classes.
@@ -38,6 +40,7 @@
 }
 
 // TEST 3
+// ---
 // Using core theme properties as values of new themes.
 
 $theme-default: (
@@ -46,7 +49,7 @@ $theme-default: (
   "border-color": theme.get("border-color"),
 );
 
-@include theme.set("test-3", theme.$default, $theme-default);
+@include theme.set("test-3", "default", $theme-default);
 @include theme.set("test-3", "dark");
 
 .test-3 {
@@ -56,12 +59,13 @@ $theme-default: (
 }
 
 // TEST 4
+// ---
 // Using custom properties as values of new themes. Setting the default theme 
 // should allow all themes to inherit those styles unless explicitly set.
 
 // Create the default theme. All properties used in subsequent themes bust exist
 // in the default.
-@include theme.set("test-4", theme.$default, (
+@include theme.set("test-4", "default", (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "border-color": theme.get("border-color"),
