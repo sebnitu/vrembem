@@ -24,16 +24,21 @@
  * Test 2
  */
 
-:root {
-  @include css.define("test-2", "background", theme.get("background"));
-  @include css.define("test-2", "foreground", theme.get("foreground"));
-  @include css.define("test-2", "border-color", theme.get("border-color"));
-}
+@include css.set("test-2", (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "border-color": theme.get("border-color")
+));
 
 .test-2 {
-  border-color: css.reference("test-2", "border-color");
-  background: css.reference("test-2", "background");
-  color: css.reference("test-2", "foreground");
+  border-color: css.get("test-2", "border-color");
+  background: css.get("test-2", "background");
+  color: css.get("test-2", "foreground");
+}
+
+:root {
+  // Output needs to come after the property has been referenced.
+  @include css.output("test-2");
 }
 
 /**
@@ -54,10 +59,12 @@ $theme-dark: (
 
 @include theme.set("test-3", "light", $theme-light);
 @include theme.set("test-3", "dark", $theme-dark);
-@include theme.output("test-3");
 
 .test-3 {
-  border-color: css.reference("test-3", "border-color");
-  background: css.reference("test-3", "background");
-  color: css.reference("test-3", "foreground");
+  border-color: theme.get("test-3", "border-color");
+  background: theme.get("test-3", "background");
+  color: theme.get("test-3", "foreground");
 }
+
+// Output needs to come after the property has been referenced.
+@include theme.output("test-3");
