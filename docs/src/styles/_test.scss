@@ -4,8 +4,7 @@
 
 .test-1,
 .test-2,
-.test-3,
-.test-4 {
+.test-3 {
   padding: 0.5em 1em;
   border: 1px solid transparent;
   border-radius: 0.25em;
@@ -56,45 +55,4 @@ $theme-default: (
   border-color: theme.get("test-3", "border-color");
   background: theme.get("test-3", "background");
   color: theme.get("test-3", "foreground");
-}
-
-// TEST 4
-// ---
-// Using custom properties as values of new themes. Setting the default theme 
-// should allow all themes to inherit those styles unless explicitly set.
-
-// Create the default theme. All properties used in subsequent themes bust exist
-// in the default.
-@include theme.set("test-4", "default", (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "border-color": theme.get("border-color"),
-  "font-family": css.get("font-family"),
-  "font-size": css.get("font-size-lg")
-));
-
-// Create an empty theme class. This inherits everything from the default theme.
-@include theme.set("test-4", "dark");
-
-// Create a theme with only one property. All other properties are inherited
-// from the default theme.
-@include theme.set("test-4", "pink", (
-  "background": pink
-));
-
-// Create a theme with all unique properties. These are used as expected.
-@include theme.set("test-4", "matrix", (
-  "background": black,
-  "foreground": lime,
-  "border-color": black,
-  "font-family": css.get("font-family-mono"),
-  "font-size": css.get("font-size")
-));
-
-.test-4 {
-  border-color: theme.get("test-4", "border-color");
-  background: theme.get("test-4", "background");
-  color: theme.get("test-4", "foreground");
-  font-family: theme.get("test-4", "font-family");
-  font-size: theme.get("test-4", "font-size");
 }

@@ -9,23 +9,6 @@
 @use "./css";
 @use "./palette";
 
-/// Prefix for theme classes.
-/// @type string
-/// @alias config.get("prefix-themes")
-/// @access private
-$_t: config.get("prefix-themes");
-
-/// Set the default theme. Should match an existing theme in the $_themes map.
-/// @type string
-/// @alias config.get("prefix-themes")
-/// @access private
-/// TODO: Test that changing this in docs works as expected.
-$_default: config.get("default-theme") !default;
-
-/// CSS selector to use for outputting the root CSS custom properties.
-/// @type string
-$root-selector: ":root, .#{$_t}root" !default;
-
 /// Stores theme maps for individual modules. These are used to build theme 
 /// classes and CSS custom property output. Optionally set `color-scheme` 
 /// property for outputting the `color-scheme: (light | dark);` property.
@@ -127,8 +110,8 @@ $_themes: (
     @error "Module map has not been set: \"#{$module}\"";
   }
 
-  @if not map.has-key($_themes, $module, $_default, $prop) {
-    @error "Property does not exist in the default theme: \"#{$module}\" > \"#{$_default}\" > \"#{$prop}\"";
+  @if not map.has-key($_themes, $module, config.get("default-theme"), $prop) {
+    @error "Property does not exist in the default theme: \"#{$module}\" > \"#{config.get("default-theme")}\" > \"#{$prop}\"";
   }
 
   // Return the CSS custom property reference.
@@ -158,7 +141,7 @@ $_themes: (
 @mixin set($module, $theme, $prop: null, $value: null) {
   // Set theme to default if the value "default" is passed.
   @if ($theme == "default") {
-    $theme: $_default;
+    $theme: config.get("default-theme");
   }
 
   // Shift the values of arguments if module was not passed. Also sets module to
@@ -241,9 +224,9 @@ $_themes: (
   $color-scheme: map.get($moduleMap, "color-scheme");
   $moduleMap: map.remove($moduleMap, "color-scheme");
 
-  // Merge the values of `$_default` with all other themes.
-  @if ($theme != $_default) {
-    $moduleMap: map.merge(map.get($_themes, $module, $_default), $moduleMap);
+  // Merge the values of the default theme with all other themes.
+  @if ($theme != config.get("default-theme")) {
+    $moduleMap: map.merge(map.get($_themes, $module, config.get("default-theme")), $moduleMap);
   }
 
   // Output custom properties via usage output.
@@ -279,19 +262,19 @@ $_themes: (
   } @else {  
     // Output the default theme and system preference media query under the using
     // the root selector. This should come before the theme class output.
-    #{$root-selector} {
+    :root, .#{config.get("prefix-themes")}root {
       // Output the default theme.
-      @include output-theme($module, $_default, $strategy);
+      @include output-theme($module, config.get("default-theme"), $strategy);
 
       // If the default them is not light mode, output the prefers light media query.
-      @if $_default != "light" and map.has-key($_themes, $module, "light") {
+      @if config.get("default-theme") != "light" and map.has-key($_themes, $module, "light") {
         @media (prefers-color-scheme: light) {
           @include output-theme($module, "light", $strategy, "override");
         }
       }
 
       // If the default them is not dark mode, output the prefers dark media query.
-      @if $_default != "dark" and map.has-key($_themes, $module, "dark") {
+      @if config.get("default-theme") != "dark" and map.has-key($_themes, $module, "dark") {
         @media (prefers-color-scheme: dark) {
           @include output-theme($module, "dark", $strategy, "override");
         }
@@ -300,7 +283,7 @@ $_themes: (
 
     // This outputs all custom themes using their theme class.
     @each $key, $value in map.get($_themes, $module) {
-      .#{$_t}#{$key} {
+      .#{config.get("prefix-themes")}#{$key} {
         @include output-theme($module, $key, $strategy, "override");
       }
     }
