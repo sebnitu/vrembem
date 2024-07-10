@@ -139,12 +139,10 @@ $_palette: build();
 /// @param {map} $strategy
 ///   The output strategy to apply.
 @mixin output($strategy: config.get("output-strategy")) {
-  :root {
-    // Output custom properties via usage output.
-    @include usage.output(
-      meta.get-mixin("define", "css"), "palette", $_palette, $strategy
-    );
-  }
+  // Output custom properties via usage output.
+  @include usage.output(
+    meta.get-mixin("define", "css"), "palette", $_palette, $strategy
+  );
 }
 
 /// Log to console the entire `$_palette` map.
