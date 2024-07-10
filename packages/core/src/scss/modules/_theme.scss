@@ -92,12 +92,15 @@ $_themes: (
 ) !default;
 
 /// Function to return the CSS variable with fallback of an entry within the
-/// $_themes map. Requested property must exist in the default theme.
+/// $_themes map. Requested module must be set in the `$_themes` map and contain
+/// a value for the requested property in the default theme.
 /// @param {string} $module ["core"]
 ///   The module name to search for a prop in. Can be omitted for prop value if
 ///   the desired property is in the core module.
 /// @param {string} $prop [null]
 ///   The property value to return.
+/// @param {string} $fallback [null]
+///   The fallback value if initial property is not defined.
 /// @return {function}
 ///   The var() CSS function with the value of the requested custom property.
 /// 
@@ -109,22 +112,22 @@ $_themes: (
 ///   // Return the background CSS reference for the card module.
 ///   background: theme.get("card", "background");
 ///
-@function get($module, $prop: null) {
+@function get($module, $prop: null, $fallback: null) {
   @if not ($prop) {
     $prop: $module;
     $module: "core";
   }
 
-  @if not map.has-key($_themes, $module, $default) {
+  @if not map.has-key($_themes, $module) {
     @error "Module map has not been set: \"#{$module}\"";
   }
 
   @if not map.has-key($_themes, $module, $default, $prop) {
-    @error "Property does not exist in themes map: #{$module} > #{$default} > #{$prop}";
+    @error "Property does not exist in the default theme: \"#{$module}\" > \"#{$default}\" > \"#{$prop}\"";
   }
 
   // Return the CSS custom property reference.
-  @return css.reference($module, $prop);
+  @return css.reference($module, $prop, $fallback);
 }
 
 /// Set a new or modify an existing property value in the $_themes map.
@@ -229,8 +232,9 @@ $_themes: (
 /// Output all the themes for a specific module. Each theme will be wrapped in
 /// their own appropriate root selector and theme class. Themes named "light" or
 /// "dark" will have a `prefers-color-scheme` media query applied.
-/// @param {string} $module ["core"]
-///   The module to output all applied themes for.
+/// @param {string} $module ["*"]
+///   The module to output all applied themes. If no module is passed or set to 
+///   "*" or "all", will output all applied themes for all modules.
 /// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
 ///
@@ -238,32 +242,39 @@ $_themes: (
 ///   // Output all themes of the notice module.
 ///   @include theme.output("notice");
 ///
-@mixin output($module: "core", $strategy: config.get("output-strategy")) {
-  // Output the default theme and system preference media query under the using
-  // the root selector. This should come before the theme class output.
-  #{$root-selector} {
-    // Output the default theme.
-    @include output-theme($module, $default, $strategy);
+@mixin output($module: "*", $strategy: config.get("output-strategy")) {
+  @if ($module == "*") or ($module == "all") {
+    // Call output() for every module in $_themes.
+    @each $module in map.keys($_themes) {
+      @include output($module, $strategy);
+    }
+  } @else {  
+    // Output the default theme and system preference media query under the using
+    // the root selector. This should come before the theme class output.
+    #{$root-selector} {
+      // Output the default theme.
+      @include output-theme($module, $default, $strategy);
 
-    // If the default them is not light mode, output the prefers light media query.
-    @if $default != "light" and map.has-key($_themes, $module, "light") {
-      @media (prefers-color-scheme: light) {
-        @include output-theme($module, "light", $strategy, "override");
+      // If the default them is not light mode, output the prefers light media query.
+      @if $default != "light" and map.has-key($_themes, $module, "light") {
+        @media (prefers-color-scheme: light) {
+          @include output-theme($module, "light", $strategy, "override");
+        }
+      }
+
+      // If the default them is not dark mode, output the prefers dark media query.
+      @if $default != "dark" and map.has-key($_themes, $module, "dark") {
+        @media (prefers-color-scheme: dark) {
+          @include output-theme($module, "dark", $strategy, "override");
+        }
       }
     }
 
-    // If the default them is not dark mode, output the prefers dark media query.
-    @if $default != "dark" and map.has-key($_themes, $module, "dark") {
-      @media (prefers-color-scheme: dark) {
-        @include output-theme($module, "dark", $strategy, "override");
+    // This outputs all custom themes using their theme class.
+    @each $key, $value in map.get($_themes, $module) {
+      .#{$_t}#{$key} {
+        @include output-theme($module, $key, $strategy, "override");
       }
-    }
-  }
-  
-  // This outputs all custom themes using their theme class.
-  @each $key, $value in map.get($_themes, $module) {
-    .#{$_t}#{$key} {
-      @include output-theme($module, $key, $strategy, "override");
     }
   }
 }
