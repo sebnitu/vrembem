@@ -239,28 +239,29 @@ $_themes: (
 ///   @include theme.output("notice");
 ///
 @mixin output($module: "core", $strategy: config.get("output-strategy")) {
-  // Output the default theme in the root selector.
+  // Output the default theme using the root selector.
   #{$root-selector} {
     @include output-theme($module, $default, $strategy);
   }
 
+  // This outputs the theme for system preference.
   #{$root-selector} {
     // If the default them is not light mode, output the prefers light media query.
-    @if $default != 'light' {
+    @if $default != "light" and map.has-key($_themes, $module, "light") {
       @media (prefers-color-scheme: light) {
         @include output-theme($module, "light", $strategy, "override");
       }
     }
     
     // If the default them is not dark mode, output the prefers dark media query.
-    @if $default != 'dark' {
+    @if $default != "dark" and map.has-key($_themes, $module, "dark") {
       @media (prefers-color-scheme: dark) {
         @include output-theme($module, "dark", $strategy, "override");
       }
     }
   }
   
-  // Run the output function on all module themes.
+  // This outputs all custom themes using their theme class.
   @each $key, $value in map.get($_themes, $module) {
     .#{$_t}#{$key} {
       @include output-theme($module, $key, $strategy, "override");
