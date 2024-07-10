@@ -21,7 +21,9 @@
 }
 
 // TEST 2
-// Using core theme properties as values of new properties.
+// Using core theme properties as values of new properties. These end up being
+// completely to the values set in :root of these custom property definitions
+// and do not change based on the presence of theme classes.
 
 @include css.set("test-2", (
   "background": theme.get("background"),
@@ -38,20 +40,14 @@
 // TEST 3
 // Using core theme properties as values of new themes.
 
-$theme-light: (
+$theme-default: (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "border-color": theme.get("border-color"),
 );
 
-$theme-dark: (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "border-color": theme.get("border-color"),
-);
-
-@include theme.set("test-3", "light", $theme-light);
-@include theme.set("test-3", "dark", $theme-dark);
+@include theme.set("test-3", theme.$default, $theme-default);
+@include theme.set("test-3", "dark");
 
 .test-3 {
   border-color: theme.get("test-3", "border-color");
@@ -63,24 +59,33 @@ $theme-dark: (
 // Using custom properties as values of new themes. Setting the default theme 
 // should allow all themes to inherit those styles unless explicitly set.
 
-$theme-default: (
+// Create the default theme. All properties used in subsequent themes bust exist
+// in the default.
+@include theme.set("test-4", theme.$default, (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "border-color": theme.get("border-color"),
   "font-family": css.get("font-family"),
   "font-size": css.get("font-size-lg")
-);
+));
 
-$theme-matrix: (
+// Create an empty theme class. This inherits everything from the default theme.
+@include theme.set("test-4", "dark");
+
+// Create a theme with only one property. All other properties are inherited
+// from the default theme.
+@include theme.set("test-4", "pink", (
+  "background": pink
+));
+
+// Create a theme with all unique properties. These are used as expected.
+@include theme.set("test-4", "matrix", (
   "background": black,
   "foreground": lime,
   "border-color": black,
   "font-family": css.get("font-family-mono"),
   "font-size": css.get("font-size")
-);
-
-@include theme.set("test-4", theme.$default, $theme-default);
-@include theme.set("test-4", "matrix", $theme-matrix);
+));
 
 .test-4 {
   border-color: theme.get("test-4", "border-color");

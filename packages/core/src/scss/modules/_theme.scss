@@ -1,7 +1,9 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
 @use "./config";
 @use "./usage";
 @use "./css";
@@ -135,7 +137,7 @@ $_themes: (
 ///   The module to set a property value for.
 /// @param {string} $theme
 ///   The theme to set a property value for.
-/// @param {string | map} $prop
+/// @param {string | map} $prop [null]
 ///   The property value to set for the respective module > theme. Can be a map
 ///   containing prop/value pairs.
 /// @param {any} $value [null]
@@ -144,9 +146,14 @@ $_themes: (
 /// @example scss
 ///   // Set the foreground custom property for the card dark theme.
 ///   @include theme.set("card", "dark", "foreground", blue);
+/// 
+/// @example scss
+///   // Create an empty theme by not passing a property or value. This will
+///   // take the properties of the default theme once output.
+///   @include theme.set("card", "dark");
 ///
-@mixin set($module, $theme, $prop, $value: null) {
-  @if not ($value) and (meta.type-of($prop) != "map") {
+@mixin set($module, $theme, $prop: null, $value: null) {
+  @if not ($value) and ($prop) and (meta.type-of($prop) != "map") {
     $value: $prop;
     $prop: $theme;
     $theme: $module;
@@ -156,6 +163,11 @@ $_themes: (
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
     $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
+  }
+
+  // If no property or value are provided, create a theme with an empty map.
+  @else if not ($prop) and not ($value) {
+    $_themes: map.set($_themes, $module, $theme, empty-map()) !global;
   }
   
   // Otherwise, just add the value using the $args list.
@@ -217,6 +229,11 @@ $_themes: (
   // Get a reference of the color scheme property and remove it from the map.
   $color-scheme: map.get($moduleMap, "color-scheme");
   $moduleMap: map.remove($moduleMap, "color-scheme");
+
+  // Merge the values of $default with all other themes.
+  @if ($theme != $default) {
+    $moduleMap: map.merge(map.get($_themes, $module, $default), $moduleMap);
+  }
 
   // Output custom properties via usage output.
   @include usage.output(
