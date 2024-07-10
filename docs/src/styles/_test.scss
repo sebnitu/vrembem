@@ -4,15 +4,15 @@
 
 .test-1,
 .test-2,
-.test-3 {
+.test-3,
+.test-4 {
   padding: 0.5em 1em;
   border: 1px solid transparent;
   border-radius: 0.25em;
 }
 
-/**
- * Test 1
- */
+// TEST 1
+// Using core theme properties directly.
 
 .test-1 {
   border-color: theme.get("border-color");
@@ -20,9 +20,8 @@
   color: theme.get("foreground");
 }
 
-/**
- * Test 2
- */
+// TEST 2
+// Using core theme properties as values of new properties.
 
 @include css.set("test-2", (
   "background": theme.get("background"),
@@ -36,14 +35,8 @@
   color: css.get("test-2", "foreground");
 }
 
-:root {
-  // Output needs to come after the property has been referenced.
-  @include css.output("test-2");
-}
-
-/**
- * Test 3
- */
+// TEST 3
+// Using core theme properties as values of new themes.
 
 $theme-light: (
   "background": theme.get("background"),
@@ -66,5 +59,33 @@ $theme-dark: (
   color: theme.get("test-3", "foreground");
 }
 
-// Output needs to come after the property has been referenced.
-@include theme.output("test-3");
+// TEST 4
+// Using custom properties as values of new themes. Setting the default theme 
+// should allow all themes to inherit those styles unless explicitly set.
+
+$theme-default: (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "border-color": theme.get("border-color"),
+  "font-family": css.get("font-family"),
+  "font-size": css.get("font-size-lg")
+);
+
+$theme-matrix: (
+  "background": black,
+  "foreground": lime,
+  "border-color": black,
+  "font-family": css.get("font-family-mono"),
+  "font-size": css.get("font-size")
+);
+
+@include theme.set("test-4", theme.$default, $theme-default);
+@include theme.set("test-4", "matrix", $theme-matrix);
+
+.test-4 {
+  border-color: theme.get("test-4", "border-color");
+  background: theme.get("test-4", "background");
+  color: theme.get("test-4", "foreground");
+  font-family: theme.get("test-4", "font-family");
+  font-size: theme.get("test-4", "font-size");
+}
