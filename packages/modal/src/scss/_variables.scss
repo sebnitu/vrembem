@@ -13,8 +13,8 @@ $prefix-modifier-value: config.get("prefix-modifier-values") !default;
 $z-index: 1000 !default;
 $width: 36em !default;
 $travel: 5em !default;
-$transition-duration: css.get("transition", "duration") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 $shadow: css.get("box-shadow-5") !default;
 
 $screen-background: palette.get("neutral", 10) !default;

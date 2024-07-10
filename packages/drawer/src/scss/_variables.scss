@@ -20,8 +20,8 @@ $border: null !default;
 $sep-border: null !default;
 $background: theme.get("background-darker") !default;
 $shadow: none !default;
-$transition-duration: css.get("transition", "duration") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 $frame-height: 100vh !default;
 

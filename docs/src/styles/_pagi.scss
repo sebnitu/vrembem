@@ -31,8 +31,8 @@
   display: block;
   padding: 1rem;
   transition: border-color;
-  transition-duration: css.get("transition", "duration");
-  transition-timing-function: css.get("transition", "timing-function");
+  transition-duration: css.get("transition-duration");
+  transition-timing-function: css.get("transition-timing-function");
   border: 1px solid theme.get("border-color");
   border-radius: css.get("border-radius");
   line-height: css.get("line-height-sm");

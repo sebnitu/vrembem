@@ -47,8 +47,8 @@
   width: calc(100% - 1em);
   margin-right: 1em;
   transition-property: top, opacity;
-  transition-duration: css.get("transition", "duration");
-  transition-timing-function: css.get("transition", "timing-function");
+  transition-duration: css.get("transition-duration");
+  transition-timing-function: css.get("transition-timing-function");
   opacity: 0;
 
   &:focus {

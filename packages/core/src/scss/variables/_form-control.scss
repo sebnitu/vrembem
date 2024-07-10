@@ -8,7 +8,7 @@ $form-control-size: 2.5rem !default;      // 40px
 $form-control-size-sm: 1.875rem !default; // 30px
 $form-control-size-lg: 3.125rem !default; // 50px
 
-@include css.set("form-control", (
+@include css.set("core", "form-control", (
   "padding": $form-control-padding,
   "padding-sm": $form-control-padding-sm,
   "padding-lg": $form-control-padding-lg,
