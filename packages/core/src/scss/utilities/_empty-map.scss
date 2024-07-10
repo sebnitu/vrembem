@@ -1,0 +1,5 @@
+@use "sass:map";
+
+@function empty-map() {
+  @return map.remove((x:x), x);
+}

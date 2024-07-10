@@ -10,9 +10,9 @@
   border-radius: 0.25em;
 }
 
-/**
- * Test 1
- */
+// TEST 1
+// ---
+// Using core theme properties directly.
 
 .test-1 {
   border-color: theme.get("border-color");
@@ -20,44 +20,39 @@
   color: theme.get("foreground");
 }
 
-/**
- * Test 2
- */
+// TEST 2
+// ---
+// Using core theme properties as values of new properties. These end up being
+// completely to the values set in :root of these custom property definitions
+// and do not change based on the presence of theme classes.
 
-:root {
-  @include css.define("test-2", "background", theme.get("background"));
-  @include css.define("test-2", "foreground", theme.get("foreground"));
-  @include css.define("test-2", "border-color", theme.get("border-color"));
-}
+@include css.set("test-2", (
+  "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
+  "border-color": theme.get("border-color")
+));
 
 .test-2 {
-  border-color: css.reference("test-2", "border-color");
-  background: css.reference("test-2", "background");
-  color: css.reference("test-2", "foreground");
+  border-color: css.get("test-2", "border-color");
+  background: css.get("test-2", "background");
+  color: css.get("test-2", "foreground");
 }
 
-/**
- * Test 3
- */
+// TEST 3
+// ---
+// Using core theme properties as values of new themes.
 
-$theme-light: (
+$theme-default: (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "border-color": theme.get("border-color"),
 );
 
-$theme-dark: (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "border-color": theme.get("border-color"),
-);
-
-@include theme.set("test-3", "light", $theme-light);
-@include theme.set("test-3", "dark", $theme-dark);
-@include theme.output("test-3");
+@include theme.set("test-3", "default", $theme-default);
+@include theme.set("test-3", "dark");
 
 .test-3 {
-  border-color: css.reference("test-3", "border-color");
-  background: css.reference("test-3", "background");
-  color: css.reference("test-3", "foreground");
+  border-color: theme.get("test-3", "border-color");
+  background: theme.get("test-3", "background");
+  color: theme.get("test-3", "foreground");
 }

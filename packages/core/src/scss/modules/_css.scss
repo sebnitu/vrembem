@@ -319,10 +319,11 @@ $_variables: (
   }
 }
 
-/// Output all the stored custom properties of a provided module. Provided 
-/// module must exist in the `$_variables` custom properties map.
-/// @param {string} $module ["core"]
-///   The module to output all stored custom properties from.
+/// Output all the stored custom properties of a provided module or of all 
+/// modules. Provided module must exist in the `$_variables` map.
+/// @param {string} $module ["*"]
+///   The module to output all custom properties from. If no module is passed or
+///   set to "*" or "all", will output all custom properties for all modules.
 /// @param {string} $strategy ["used"]
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
@@ -350,15 +351,22 @@ $_variables: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-@mixin output($module: "core", $strategy: config.get("output-strategy")) {
-  @if not map.has-key($_variables, $module) {
-    @error "Module map has not been set: \"#{$module}\"";
+@mixin output($module: "*", $strategy: config.get("output-strategy")) {
+  @if ($module == "*") or ($module == "all") {
+    // Call output() for every module in $_variables.
+    @each $module in map.keys($_variables) {
+      @include output($module, $strategy);
+    }
+  } @else {
+    @if not map.has-key($_variables, $module) {
+      @error "Module map has not been set: \"#{$module}\"";
+    }
+    $moduleMap: map.get($_variables, $module);
+    // Output custom properties via usage output.
+    @include usage.output(
+      meta.get-mixin("define"), $module, $moduleMap, $strategy
+    );
   }
-  $moduleMap: map.get($_variables, $module);
-  // Output custom properties via usage output.
-  @include usage.output(
-    meta.get-mixin("define"), $module, $moduleMap, $strategy
-  );
 }
 
 /// Log to console either the entire `$_variables` custom properties map or a 
