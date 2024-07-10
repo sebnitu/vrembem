@@ -19,6 +19,7 @@ $_t: config.get("prefix-themes");
 /// @type string
 /// @alias config.get("prefix-themes")
 /// @access private
+/// TODO: Test that changing this in docs works as expected.
 $_default: config.get("default-theme") !default;
 
 /// CSS selector to use for outputting the root CSS custom properties.
@@ -155,10 +156,13 @@ $_themes: (
 ///   @include theme.set("card", "dark");
 ///
 @mixin set($module, $theme, $prop: null, $value: null) {
-  // 
+  // Set theme to default if the value "default" is passed.
   @if ($theme == "default") {
     $theme: $_default;
   }
+
+  // Shift the values of arguments if module was not passed. Also sets module to
+  // "core" as the default.
   @if not ($value) and ($prop) and (meta.type-of($prop) != "map") {
     $value: $prop;
     $prop: $theme;
@@ -192,6 +196,7 @@ $_themes: (
 ///   // Remove the border-color property from all component themes.
 ///   @include theme.remove("button", "border-color");
 ///
+/// TODO: Ensure that removing a theme works
 @mixin remove($module, $args...) {
   @each $theme, $props in map.get($_themes, $module) {
     @if usage.remove($module, $args...) {
