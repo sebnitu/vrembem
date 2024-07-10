@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: css.get("form-control", "size") !default;
+$size: css.get("form-control-size") !default;
 $box-size: 18px !default;
 $icon-size: 12px !default;
 $icon-color: null !default;
@@ -20,18 +20,18 @@ $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 // checkbox_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm: css.get("form-control-size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-box: 14px !default;
 $size-sm-icon: 10px !default;
 $size-sm-icon-stroke: 2.5 !default;
 
 // checkbox_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg: css.get("form-control-size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-box: 24px !default;
 $size-lg-icon: 18px !default;

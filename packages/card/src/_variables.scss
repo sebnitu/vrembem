@@ -27,8 +27,8 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Transition
 $transition-property: background-color, border-color, box-shadow, transform !default;
-$transition-duration: css.get("transition", "duration") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 // Custom properties
 @include css.set("card", (

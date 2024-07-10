@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: css.get("form-control", "size") !default;
+$size: css.get("form-control-size") !default;
 $track-size: 20px !default;
 $color: palette.get("primary") !default;
 $thumb-fill: null !default;
@@ -18,16 +18,16 @@ $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 // switch_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm: css.get("form-control-size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-track: 16px !default;
 
 // switch_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg: css.get("form-control-size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-track: 26px !default;
 

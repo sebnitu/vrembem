@@ -4,7 +4,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: css.get("form-control", "size") !default;
+$size: css.get("form-control-size") !default;
 $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
 $background: null !default;
 $background-hover: null !default;
@@ -34,13 +34,13 @@ $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 // input_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm: css.get("form-control-size-sm") !default;
 $size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) calc(#{list.nth(core.$form-control-padding-sm, 1)} * 2) !default;
 $size-sm-font-size: css.get("font-size-sm") !default;
 $size-sm-line-height: css.get("line-height-sm") !default;
 
 // input_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg: css.get("form-control-size-lg") !default;
 $size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
 $size-lg-font-size: css.get("font-size-lg") !default;
 $size-lg-line-height: css.get("line-height-lg") !default;

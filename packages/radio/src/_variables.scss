@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$size: css.get("form-control", "size") !default;
+$size: css.get("form-control-size") !default;
 $circle-size: 20px !default;
 $dot-size: 8px !default;
 $dot-color: null !default;
@@ -18,17 +18,17 @@ $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
 
 // Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 // radio_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
+$size-sm: css.get("form-control-size-sm") !default;
 $size-sm-border-width: 2px !default;
 $size-sm-circle: 16px !default;
 $size-sm-dot: 6px !default;
 
 // radio_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
+$size-lg: css.get("form-control-size-lg") !default;
 $size-lg-border-width: 2.5px !default;
 $size-lg-circle: 26px !default;
 $size-lg-dot: 10px !default;
