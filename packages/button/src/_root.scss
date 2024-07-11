@@ -1,6 +1,5 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./variables";
 
 :root {
   @include css.output("button");

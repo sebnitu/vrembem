@@ -54,7 +54,7 @@ $transition-timing-function: css.get("transition-timing-function") !default;
 ));
 
 // Themes
-$theme-light: (
+@include theme.set("card", "light", (
   "background": theme.get("background"),
   "foreground": theme.get("foreground-light"),
   "border": 1px solid theme.get("border-color"),
@@ -62,17 +62,10 @@ $theme-light: (
   "title-color": theme.get("foreground"),
   "screen-background": theme.get("background"),
   "screen-opacity": 0.9
-) !default;
+));
 
-$theme-dark: (
+@include theme.set("card", "dark", (
   "background": theme.get("background-darker"),
-  "foreground": theme.get("foreground-light"),
-  "border": 1px solid theme.get("border-color"),
-  "sep-border": 1px solid theme.get("border-color"),
-  "title-color": theme.get("foreground"),
   "screen-background": theme.get("background-darker"),
   "screen-opacity": 0.8
-) !default;
-
-@include theme.set("card", "light", $theme-light);
-@include theme.set("card", "dark", $theme-dark);
+));
