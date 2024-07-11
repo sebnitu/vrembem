@@ -18,6 +18,10 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
 @include css.set("dialog", (
   "padding": $padding,
   "gap": $gap,
+  "background": $background,
+  "foreground": $foreground,
+  "border": $border,
+  "sep-border": $sep-border,
   "border-radius": $border-radius,
   "box-shadow": $box-shadow,
   "title": (
