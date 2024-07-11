@@ -11,6 +11,7 @@ $color: palette.get("primary") !default;
 $fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
+$background-color: $color !default;
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
@@ -42,6 +43,7 @@ $size-lg-dot: 10px !default;
   "border-color": $border-color,
   "border-width": $border-width,
   "background": (
+    "color": $background-color,
     "border-radius": $background-border-radius,
     "opacity": $background-opacity,
     "opacity-hover": $background-opacity-hover,
