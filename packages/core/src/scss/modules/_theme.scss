@@ -268,9 +268,7 @@ $_theme-keys: "light", "dark";
     }
 
     // Check if the theme exists for the module in themes map.
-    @if map.has-key($_themes, $module, $theme) {
-      // @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
-    
+    @if map.has-key($_themes, $module, $theme) {    
       // Save a copy of the module map from themes.
       $moduleMap: map.get($_themes, $module, $theme);
 
