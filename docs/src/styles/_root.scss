@@ -1,4 +1,3 @@
-@use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/theme";
 
@@ -7,19 +6,6 @@ $bp-drawer: 960px;
 $bp-aside: 1220px;
 
 :root {
-  // Layout variables
-  --layout-width: 80rem;
-  --layout-padding: 1rem;
-  --layout-navibar-height: 5.25rem;
-  --layout-footer-height: 6rem;
-  --layout-drawer-width: 14rem;
-  --layout-drawer-padding: 1rem;
-  --layout-gap: 6rem;
-  --layout-aside-width: 12rem;
-  --layout-aside-padding: 0.25rem; // Used to prevent cutoff of focus outline styles.
-  --layout-content-width: 44rem;
-  --layout-content-padding: 2rem 2rem 8rem;
-
  // Shiki light theme
   --astro-code-color-text: #{theme.get("foreground")};
   --astro-code-token-comment: #{theme.get("foreground-lighter")};

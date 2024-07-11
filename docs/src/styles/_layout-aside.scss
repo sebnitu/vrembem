@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/drawer";
 @use "./root";
@@ -11,8 +12,8 @@
   z-index: 100;
   visibility: hidden;
   width: calc(100% - 4rem);
-  max-width: var(--layout-drawer-width);
-  padding: var(--layout-drawer-padding);
+  max-width: css.get("layout", "drawer-width");
+  padding: css.get("layout", "drawer-padding");
   overflow: hidden auto;
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;
@@ -50,7 +51,7 @@
     position: fixed;
     z-index: 2;
     visibility: visible;
-    width: var(--layout-aside-width);
+    width: css.get("layout", "aside-width");
     height: 100vh;
     padding: 0;
     transform: translate(0);
@@ -63,9 +64,9 @@
   .layout-aside__container {
     position: fixed;
     top: 0;
-    width: var(--layout-aside-width);
+    width: css.get("layout", "aside-width");
     height: 100vh;
-    padding: calc(var(--layout-navibar-height) + 2rem) var(--layout-aside-padding) calc(var(--layout-footer-height) + 8rem);
+    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
     overflow: hidden auto;
     scroll-behavior: smooth;
   }

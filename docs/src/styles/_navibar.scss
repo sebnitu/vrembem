@@ -7,7 +7,7 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  padding: 0 var(--layout-padding);
+  padding: 0 css.get("layout", "padding");
   background-color: theme.get("background-glass");
   backdrop-filter: blur(8px);
 
@@ -24,7 +24,7 @@
 .navibar__container {
   display: flex;
   width: 100%;
-  max-width: var(--layout-width);
+  max-width: css.get("layout", "width");
   margin: auto;
 }
 
@@ -32,12 +32,12 @@
 .navibar__menu {
   display: flex;
   align-items: center;
-  height: var(--layout-navibar-height);
+  height: css.get("layout", "navibar-height");
 }
 
 .navibar__title {
   position: relative;
-  width: var(--layout-drawer-width);
+  width: css.get("layout", "drawer-width");
 }
 
 .navibar__skip {
@@ -52,7 +52,7 @@
   opacity: 0;
 
   &:focus {
-    top: calc(calc(var(--layout-navibar-height) - css.get("button", "size")) / 2);
+    top: calc(calc(css.get("layout", "navibar-height") - css.get("button", "size")) / 2);
     opacity: 1;
   }
 }
@@ -84,6 +84,6 @@
   height: 0;
   
   @media (min-width: root.$bp-drawer) {
-    height: var(--layout-navibar-height);
+    height: css.get("layout", "navibar-height");
   }
 }

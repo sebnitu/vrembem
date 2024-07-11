@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 @use "./root";
@@ -8,8 +9,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-right: var(--layout-padding);
-  padding-left: var(--layout-padding);
+  padding-right: css.get("layout", "padding");
+  padding-left: css.get("layout", "padding");
   overflow-x: hidden;
 }
 
@@ -17,18 +18,18 @@
   position: relative;
   box-sizing: content-box;
   width: 100%;
-  max-width: calc(var(--layout-width) - var(--layout-drawer-width));
+  max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
 
   * > * {
     box-sizing: border-box;
   }
 
   @media (min-width: root.$bp-drawer) {
-    padding-top: var(--layout-navibar-height);
+    padding-top: css.get("layout", "navibar-height");
 
     .has-drawer & {
-      width: calc(100% - var(--layout-drawer-width));
-      padding-left: var(--layout-drawer-width);
+      width: calc(100% - css.get("layout", "drawer-width"));
+      padding-left: css.get("layout", "drawer-width");
     }
   }
 }
@@ -57,7 +58,7 @@
   @include core.media-min(root.$bp-aside) {
     flex-flow: row wrap;
     align-items: flex-start;
-    gap: var(--layout-gap);
+    gap: css.get("layout", "gap");
     padding: 4rem 0 0;
 
     .has-drawer & {
@@ -69,15 +70,15 @@
 .layout__content {
   order: 1;
   width: 100%;
-  max-width: var(--layout-content-width);
+  max-width: css.get("layout", "content-width");
 
   @include core.media-min(root.$bp-aside) {
-    width: calc(100% - (var(--layout-aside-width) + var(--layout-gap)));
+    width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
   }
 
   h1, h2, h3, h4, h5, h6 {
     position: relative;
-    scroll-margin-top: calc(var(--layout-navibar-height) + 1rem);
+    scroll-margin-top: calc(css.get("layout", "navibar-height") + 1rem);
   }
 
   h3 {
@@ -111,7 +112,7 @@
 
 .layout__aside {
   order: 2;
-  width: var(--layout-aside-width);
+  width: css.get("layout", "aside-width");
 }
 
 .layout__footer {

@@ -25,7 +25,7 @@
 
   @include core.media-max(root.$bp-code) {
     .pre {
-      margin: auto calc(var(--layout-padding) * -1);
+      margin: auto calc(css.get("layout", "padding") * -1);
       border-right: none;
       border-left: none;
       border-radius: 0;

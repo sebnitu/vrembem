@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "./root";
 
@@ -6,7 +7,7 @@
   z-index: 4;
   top: -1px;
   display: block;
-  padding: var(--layout-padding);
+  padding: css.get("layout", "padding");
   border-top: 1px solid theme.get("border-color");
   border-bottom: 1px solid theme.get("border-color");
   background-color: theme.get("background-glass");
@@ -25,8 +26,8 @@
 
 .toolbar-mini {
   position: fixed;
-  top: calc(var(--layout-navibar-height) + var(--layout-padding));
-  right: var(--layout-padding);
+  top: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
+  right: css.get("layout", "padding");
   visibility: hidden;
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;
