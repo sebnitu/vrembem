@@ -46,20 +46,14 @@ $size-xl-padding: (
   "screen-opacity": $screen-opacity
 ));
 
-// Theme maps
-$theme-light: (
+// Themes
+@include theme.set("section", "light", (
   "background": transparent,
   "foreground": theme.get("foreground"),
   "screen-background": theme.get("background"),
   "screen-opacity": 0.8
-) !default;
+));
 
-$theme-dark: (
-  "background": transparent,
-  "foreground": theme.get("foreground"),
-  "screen-background": theme.get("background"),
+@include theme.set("section", "dark", (
   "screen-opacity": 0.7
-) !default;
-
-@include theme.set("section", "light", $theme-light);
-@include theme.set("section", "dark", $theme-dark);
+));

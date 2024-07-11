@@ -16,8 +16,6 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
-
-// Transition
 $transition-duration: css.get("transition-duration-short") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
 
@@ -55,17 +53,14 @@ $size-lg-track: 26px !default;
 ));
 
 // Themes
-$theme-light: (
+@include theme.set("switch", "light", (
   "thumb-fill": white,
   "track-fill": palette.get("neutral", 50%, 20%),
   "border-color": palette.get("neutral"),
-) !default;
+));
 
-$theme-dark: (
+@include theme.set("switch", "dark", (
   "thumb-fill": palette.get("neutral", 10),
   "track-fill": palette.get("neutral", 50%, 20%),
   "border-color": palette.get("neutral", 80),
-) !default;
-
-@include theme.set("switch", "light", $theme-light);
-@include theme.set("switch", "dark", $theme-dark);
+));

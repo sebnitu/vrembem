@@ -48,8 +48,8 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   )
 ));
 
-// Theme maps
-$theme-light: (
+// Themes
+@include theme.set("table", "light", (
   "background": theme.get("background"),
   "background-zebra": palette.get("neutral", 50%, 6%),
   "background-hover": palette.get("primary", 50%, 20%),
@@ -57,17 +57,11 @@ $theme-light: (
   "border-alt": 1px dotted theme.get("border-color"),
   "foreground": theme.get("foreground"),
   "foreground-hover": null
-) !default;
+));
 
-$theme-dark: (
-  "background": theme.get("background"),
+@include theme.set("table", "dark", (
   "background-zebra": palette.get("neutral", 50%, 10%),
   "background-hover": palette.get("primary", 50%, 20%),
   "border": 1px solid theme.get("border-color-dark"),
   "border-alt": 1px dotted theme.get("border-color-dark"),
-  "foreground": theme.get("foreground"),
-  "foreground-hover": null
-) !default;
-
-@include theme.set("table", "light", $theme-light);
-@include theme.set("table", "dark", $theme-dark);
+));

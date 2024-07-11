@@ -29,19 +29,14 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
   ),
 ));
 
-$theme-light: (
+@include theme.set("notice", "light", (
   "background": palette.get("neutral", 95),
   "foreground": palette.get("neutral", 20),
   "border": null,
   "box-shadow": null
-) !default;
+));
 
-$theme-dark: (
+@include theme.set("notice", "dark", (
   "background": palette.get("neutral", 20),
-  "foreground": palette.get("neutral", 95),
-  "border": null,
-  "box-shadow": null
-) !default;
-
-@include theme.set("notice", "light", $theme-light);
-@include theme.set("notice", "dark", $theme-dark);
+  "foreground": palette.get("neutral", 95)
+));

@@ -24,8 +24,6 @@ $box-shadow-focus: null !default;
 $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: 1.6 !default;
-
-// Transition
 $transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;

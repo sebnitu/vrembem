@@ -16,8 +16,6 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
-
-// Transition
 $transition-duration: css.get("transition-duration-short") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
 
@@ -56,18 +54,15 @@ $size-lg-dot: 10px !default;
   )
 ));
 
-// Theme maps
-$theme-light: (
+// Themes
+@include theme.set("radio", "light", (
   "fill": white,
   "border-color": palette.get("neutral"),
   "dot-color": white
-) !default;
+));
 
-$theme-dark: (
+@include theme.set("radio", "dark", (
   "fill": palette.get("neutral", 10),
   "border-color": palette.get("neutral", 80),
   "dot-color": palette.get("neutral", 10)
-) !default;
-
-@include theme.set("radio", "light", $theme-light);
-@include theme.set("radio", "dark", $theme-dark);
+));

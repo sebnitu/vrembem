@@ -27,8 +27,6 @@ $box-shadow-inset-focus: rgb(0 0 0 / 0%);
 $font-size: css.get("font-size") !default;
 $line-height: css.get("line-height") !default;
 $outline: none !default;
-
-// Transition
 $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
@@ -78,8 +76,8 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "select-icon": null
 ));
 
-// Theme maps
-$theme-light: (
+// Themes
+@include theme.set("input", "light", (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "foreground-placeholder": theme.get("foreground-lighter"),
@@ -87,17 +85,9 @@ $theme-light: (
   "border-color-hover": theme.get("border-color-darker"),
   "border-color-focus": palette.get("primary"),
   "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
-) !default;
+));
 
-$theme-dark: (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "foreground-placeholder": theme.get("foreground-lighter"),
-  "border-color": theme.get("border-color-dark"),
-  "border-color-hover": theme.get("border-color-darker"),
+@include theme.set("input", "dark", (
   "border-color-focus": palette.get("primary", 60),
   "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
-) !default;
-
-@include theme.set("input", "light", $theme-light);
-@include theme.set("input", "dark", $theme-dark);
+));

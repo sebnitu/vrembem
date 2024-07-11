@@ -80,13 +80,11 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "disabled-foreground": $disabled-foreground
 ));
 
-// Theme maps
-$theme-shared: (
+// Themes
+@include theme.set("menu", "light", (
   "background": none,
   "background-hover": theme.get("background-hover"),
   "background-active": theme.get("background-active"),
   "foreground": theme.get("foreground"),
-) !default;
-
-@include theme.set("menu", "light", $theme-shared);
-@include theme.set("menu", "dark", $theme-shared);
+));
+@include theme.set("menu", "dark");
