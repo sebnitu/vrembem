@@ -1,17 +1,18 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
 #{core.bem("dialog")} {
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: auto;
-  border: css.get("dialog", "border");
+  border: theme.get("dialog", "border");
   border-radius: css.get("dialog", "border-radius");
-  background: css.get("dialog", "background");
+  background: theme.get("dialog", "background");
   background-clip: padding-box;
   box-shadow: css.get("dialog", "box-shadow");
-  color: css.get("dialog", "foreground");
+  color: theme.get("dialog", "foreground");
   -webkit-overflow-scrolling: touch;
 }
 
@@ -28,27 +29,27 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  background: css.get("dialog", "background");
+  background: theme.get("dialog", "background");
   vertical-align: middle;
   gap: css.get("dialog", "gap");
 }
 
 #{core.bem("dialog", "header")} {
   top: 0;
-  border-bottom: css.get("dialog", "sep-border");
+  border-bottom: theme.get("dialog", "sep-border");
 }
 
 #{core.bem("dialog", "body")} {
   flex-grow: 1;
 
   & + & {
-    border-top: css.get("dialog", "sep-border");
+    border-top: theme.get("dialog", "sep-border");
   }
 }
 
 #{core.bem("dialog", "footer")} {
   bottom: 0;
-  border-top: css.get("dialog", "sep-border");
+  border-top: theme.get("dialog", "sep-border");
 }
 
 #{core.bem("dialog", "title")} {
