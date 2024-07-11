@@ -32,12 +32,30 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.13 to CHANGELOG.md
+chore(release): add v4.0.0-next.14 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.14 (2024-07-11)
+
+### :tada: New Feature
+* `checkbox`, `radio`, `switch`
+  * [#1927](https://github.com/sebnitu/vrembem/pull/1927) Add background color property to form-controls
+* `core`
+  * [#1924](https://github.com/sebnitu/vrembem/pull/1924) Improve creating and maintaining themes
+
+### :house: Refactor
+* `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `vrembem`
+  * [#1926](https://github.com/sebnitu/vrembem/pull/1926) Refactor build flow to separate base and root output in components
+* `button`, `card`, `checkbox`, `core`, `drawer`, `input`, `menu`, `modal`, `radio`, `switch`
+  * [#1925](https://github.com/sebnitu/vrembem/pull/1925) Add "form-control" and "transition" modules back in the "core" css module
+
+### :books: Documentation
+* [#1923](https://github.com/sebnitu/vrembem/pull/1923) Fix theme classes not overriding system preference
 
 
 ## v4.0.0-next.13 (2024-07-06)
