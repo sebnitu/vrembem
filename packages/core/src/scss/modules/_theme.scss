@@ -79,19 +79,19 @@ $_themes: (
   )
 );
 
-/// TODO: Add documentation
+/// Used to track theme keys that get added to the `$_themes` map.
+/// @type list
+/// @access private
 $_theme-keys: "light", "dark";
 
-/// TODO: Add documentation
-@mixin bump-keys($theme) {
+/// Add a theme key to the `$_theme-keys` map if it doesn't already exist.
+/// @param {string} $theme
+///   The name of the key to add.
+/// @access private
+@mixin _add-theme-key($theme) {
   @if not (list.index($_theme-keys, $theme)) {
     $_theme-keys: list.append($_theme-keys, $theme) !global;
   }
-}
-
-/// TODO: Add documentation
-@mixin log-keys() {
-  @debug "Theme Keys: #{$_theme-keys}";
 }
 
 /// Function to return the CSS variable with fallback of an entry within the
@@ -170,19 +170,19 @@ $_theme-keys: "light", "dark";
 
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
-    @include bump-keys($theme);
+    @include _add-theme-key($theme);
     $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
-    @include bump-keys($theme);
+    @include _add-theme-key($theme);
     $_themes: map.set($_themes, $module, $theme, empty-map()) !global;
   }
   
   // Otherwise, just add the value using the $args list.
   @else {
-    @include bump-keys($theme);
+    @include _add-theme-key($theme);
     $_themes: map.set($_themes, $module, $theme, $prop, $value) !global;
   }
 }
@@ -230,10 +230,11 @@ $_theme-keys: "light", "dark";
   }
 }
 
-/// Output all the custom properties and values of a module theme. The root
-/// selector or theme class are not included in the output
-/// @param {string} $module
-///   The module to output.
+/// Output all the custom properties and values of a module theme or output a
+/// specific theme from all modules. The root selector or theme class is not
+/// included in the output.
+/// @param {string} $module ["*"]
+///   The module to output. Use "*" or "all" to output a theme from all modules.
 /// @param {string} $theme [config.get("default-theme")]
 ///   The theme to output.
 /// @param {string} $strategy [config.get("output-strategy")]
@@ -247,8 +248,13 @@ $_theme-keys: "light", "dark";
 ///   .vb-theme-light {
 ///     @include theme.output-theme("button", "light");
 ///   }
+/// 
+/// @example scss
+///   // Output the custom properties for the light theme from all modules.
+///   .vb-theme-light {
+///     @include theme.output-theme("*", "light");
+///   }
 ///
-/// TODO: Update documentation
 @mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
   @if ($module == "*") or ($module == "all") {
     // Call output() for every module in $_themes.
