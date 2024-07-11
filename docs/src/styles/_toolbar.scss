@@ -1,19 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./root";
+@use "./variables" as var;
 
 .toolbar {
   position: sticky;
   z-index: 4;
   top: -1px;
   display: block;
-  padding: var(--layout-padding);
+  padding: css.get("layout", "padding");
   border-top: 1px solid theme.get("border-color");
   border-bottom: 1px solid theme.get("border-color");
   background-color: theme.get("background-glass");
   backdrop-filter: blur(8px);
   background-clip: padding-box;
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     display: none;
   }
 }
@@ -25,15 +27,22 @@
 
 .toolbar-mini {
   position: fixed;
-  top: calc(var(--layout-navibar-height) + var(--layout-padding));
-  right: var(--layout-padding);
+  top: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
+  right: css.get("layout", "padding");
   visibility: hidden;
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;
+  opacity: 0;
 
-  @media (min-width: root.$bp-drawer) and (max-width: calc(root.$bp-aside - 1px)) {
+  @include core.media-min(var.$bp-drawer) {
     visibility: visible;
     transform: translate(0);
     opacity: 1;
+  }
+
+  @include core.media-min(var.$bp-aside) {
+    visibility: hidden;
+    transform: translate(100%);
+    opacity: 0;
   }
 }

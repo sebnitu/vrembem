@@ -42,13 +42,12 @@
 // ---
 // Using core theme properties as values of new themes.
 
-$theme-default: (
+@include theme.set("test-3", "default", (
   "background": theme.get("background"),
   "foreground": theme.get("foreground"),
   "border-color": theme.get("border-color"),
-);
+));
 
-@include theme.set("test-3", "default", $theme-default);
 @include theme.set("test-3", "dark");
 
 .test-3 {

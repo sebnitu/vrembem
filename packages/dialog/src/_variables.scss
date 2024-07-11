@@ -31,20 +31,11 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
   )
 ));
 
-// Theme maps
-$theme-light: (
-  "foreground": theme.get("foreground"),
+// Themes
+@include theme.set("dialog", "light", (
   "background": theme.get("background"),
+  "foreground": theme.get("foreground"),
   "border": core.$border,
   "sep-border": core.$border
-) !default;
-
-$theme-dark: (
-  "foreground": theme.get("foreground"),
-  "background": theme.get("background"),
-  "border": core.$border,
-  "sep-border": core.$border
-) !default;
-
-@include theme.set("dialog", "light", $theme-light);
-@include theme.set("dialog", "dark", $theme-dark);
+));
+@include theme.set("dialog", "dark");

@@ -77,7 +77,22 @@ $_themes: (
       "color-scheme": dark
     )
   )
-) !default;
+);
+
+/// Used to track theme keys that get added to the `$_themes` map.
+/// @type list
+/// @access private
+$_theme-keys: "light", "dark";
+
+/// Add a theme key to the `$_theme-keys` map if it doesn't already exist.
+/// @param {string} $theme
+///   The name of the key to add.
+/// @access private
+@mixin _add-theme-key($theme) {
+  @if not (list.index($_theme-keys, $theme)) {
+    $_theme-keys: list.append($_theme-keys, $theme) !global;
+  }
+}
 
 /// Function to return the CSS variable with fallback of an entry within the
 /// $_themes map. Requested module must be set in the `$_themes` map and contain
@@ -155,16 +170,19 @@ $_themes: (
 
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
+    @include _add-theme-key($theme);
     $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
+    @include _add-theme-key($theme);
     $_themes: map.set($_themes, $module, $theme, empty-map()) !global;
   }
   
   // Otherwise, just add the value using the $args list.
   @else {
+    @include _add-theme-key($theme);
     $_themes: map.set($_themes, $module, $theme, $prop, $value) !global;
   }
 }
@@ -212,10 +230,11 @@ $_themes: (
   }
 }
 
-/// Output all the custom properties and values of a module theme. The root
-/// selector or theme class are not included in the output
-/// @param {string} $module
-///   The module to output.
+/// Output all the custom properties and values of a module theme or output a
+/// specific theme from all modules. The root selector or theme class is not
+/// included in the output.
+/// @param {string} $module ["*"]
+///   The module to output. Use "*" or "all" to output a theme from all modules.
 /// @param {string} $theme [config.get("default-theme")]
 ///   The theme to output.
 /// @param {string} $strategy [config.get("output-strategy")]
@@ -229,38 +248,51 @@ $_themes: (
 ///   .vb-theme-light {
 ///     @include theme.output-theme("button", "light");
 ///   }
+/// 
+/// @example scss
+///   // Output the custom properties for the light theme from all modules.
+///   .vb-theme-light {
+///     @include theme.output-theme("*", "light");
+///   }
 ///
-@mixin output-theme($module, $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
-  // Check if module exists in themes map.
-  @if not map.has-key($_themes, $module) {
-    @error "Module \"#{$module}\" has not been set in themes map";
-  }
+@mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
+  @if ($module == "*") or ($module == "all") {
+    // Call output() for every module in $_themes.
+    @each $module in map.keys($_themes) {
+      @include output-theme($module, $theme, $strategy, $args...);
+    }
+  } @else {
+    // Check if module exists in themes map.
+    @if not map.has-key($_themes, $module) {
+      @error "Module \"#{$module}\" has not been set in themes map";
+    }
 
-  // Check if the theme exists for the module in themes map.
-  @if not map.has-key($_themes, $module, $theme) {
-    @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
-  }
-  
-  // Save a copy of the module map from themes.
-  $moduleMap: map.get($_themes, $module, $theme);
+    // Check if the theme exists for the module in themes map.
+    @if map.has-key($_themes, $module, $theme) {
+      // @error "Theme \"#{$theme}\" does not exist for \"#{$module}\" module";
+    
+      // Save a copy of the module map from themes.
+      $moduleMap: map.get($_themes, $module, $theme);
 
-  // Get a reference of the color scheme property and remove it from the map.
-  $color-scheme: map.get($moduleMap, "color-scheme");
-  $moduleMap: map.remove($moduleMap, "color-scheme");
+      // Get a reference of the color scheme property and remove it from the map.
+      $color-scheme: map.get($moduleMap, "color-scheme");
+      $moduleMap: map.remove($moduleMap, "color-scheme");
 
-  // Merge the values of the default theme with all other themes.
-  @if ($theme != config.get("default-theme")) {
-    $moduleMap: map.merge(map.get($_themes, $module, config.get("default-theme")), $moduleMap);
-  }
+      // Merge the values of the default theme with all other themes.
+      @if ($theme != config.get("default-theme")) {
+        $moduleMap: map.merge(map.get($_themes, $module, config.get("default-theme")), $moduleMap);
+      }
 
-  // Output custom properties via usage output.
-  @include usage.output(
-    meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $args...
-  );
+      // Output custom properties via usage output.
+      @include usage.output(
+        meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $args...
+      );
 
-  // If a color scheme was stored, output it below everything else.
-  @if $color-scheme {
-    color-scheme: #{$color-scheme};
+      // If a color scheme was stored, output it below everything else.
+      @if $color-scheme {
+        color-scheme: #{$color-scheme};
+      }
+    }
   }
 }
 
@@ -278,38 +310,31 @@ $_themes: (
 ///   @include theme.output("notice");
 ///
 @mixin output($module: "*", $strategy: config.get("output-strategy")) {
-  @if ($module == "*") or ($module == "all") {
-    // Call output() for every module in $_themes.
-    @each $module in map.keys($_themes) {
-      @include output($module, $strategy);
-    }
-  } @else {  
-    // Output the default theme and system preference media query under the using
-    // the root selector. This should come before the theme class output.
-    :root, .#{config.get("prefix-themes")}root {
-      // Output the default theme.
-      @include output-theme($module, config.get("default-theme"), $strategy);
+  // Output the default theme and system preference media query under the using
+  // the root selector. This should come before the theme class output.
+  :root, .#{config.get("prefix-themes")}root {
+    // Output the default theme.
+    @include output-theme($module, config.get("default-theme"), $strategy);
 
-      // If the default them is not light mode, output the prefers light media query.
-      @if config.get("default-theme") != "light" and map.has-key($_themes, $module, "light") {
-        @media (prefers-color-scheme: light) {
-          @include output-theme($module, "light", $strategy, "override");
-        }
-      }
-
-      // If the default them is not dark mode, output the prefers dark media query.
-      @if config.get("default-theme") != "dark" and map.has-key($_themes, $module, "dark") {
-        @media (prefers-color-scheme: dark) {
-          @include output-theme($module, "dark", $strategy, "override");
-        }
+    // If the default them is not light mode, output the prefers light media query.
+    @if config.get("default-theme") != "light" {
+      @media (prefers-color-scheme: light) {
+        @include output-theme($module, "light", $strategy, "override");
       }
     }
 
-    // This outputs all custom themes using their theme class.
-    @each $key, $value in map.get($_themes, $module) {
-      .#{config.get("prefix-themes")}#{$key} {
-        @include output-theme($module, $key, $strategy, "override");
+    // If the default them is not dark mode, output the prefers dark media query.
+    @if config.get("default-theme") != "dark" {
+      @media (prefers-color-scheme: dark) {
+        @include output-theme($module, "dark", $strategy, "override");
       }
+    }
+  }
+
+  // This outputs all custom themes using their theme class.
+  @each $key in $_theme-keys {
+    .#{config.get("prefix-themes")}#{$key} {
+      @include output-theme($module, $key, $strategy, "override");
     }
   }
 }

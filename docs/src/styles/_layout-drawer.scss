@@ -1,6 +1,8 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/drawer";
-@use "./root";
+@use "./variables" as var;
 
 /**
  * Modal drawer
@@ -11,8 +13,8 @@
   z-index: 100;
   visibility: hidden;
   width: calc(100% - 4rem);
-  max-width: var(--layout-drawer-width);
-  padding: var(--layout-drawer-padding);
+  max-width: css.get("layout", "drawer-width");
+  padding: css.get("layout", "drawer-padding");
   overflow: hidden auto;
   transform: translate(-100%);
   transition: opacity .5s, transform .25s ease;
@@ -45,15 +47,15 @@
  * Inline drawer
  */
 
-@media (min-width: root.$bp-drawer) {
+@include core.media-min(var.$bp-drawer) {
   .layout-drawer {
     z-index: 2;
     visibility: visible;
     box-sizing: content-box;
     width: 100%;
-    max-width: calc(var(--layout-drawer-width) - var(--layout-drawer-padding));
-    padding: calc(var(--layout-drawer-padding) + var(--layout-navibar-height)) var(--layout-drawer-padding) var(--layout-drawer-padding);
-    padding-left: max(var(--layout-drawer-padding), calc((100% - var(--layout-width)) / 2));
+    max-width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
+    padding: calc(css.get("layout", "drawer-padding") + css.get("layout", "navibar-height")) css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
+    padding-left: max(css.get("layout", "drawer-padding"), calc((100% - css.get("layout", "width")) / 2));
     transform: translate(0);
     box-shadow: none;
     opacity: 1;
@@ -77,15 +79,15 @@
   .layout-drawer__mask {
     position: sticky;
     z-index: 2;
-    top: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1);
-    height: var(--layout-navibar-height);
-    margin: calc((var(--layout-navibar-height) + var(--layout-drawer-padding)) * -1) calc(var(--layout-drawer-padding) * -1) var(--layout-drawer-padding) calc(var(--layout-drawer-padding) * -1);
+    top: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1);
+    height: css.get("layout", "navibar-height");
+    margin: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1) calc(css.get("layout", "drawer-padding") * -1) css.get("layout", "drawer-padding") calc(css.get("layout", "drawer-padding") * -1);
     background-color: theme.get("background-darker");
 
     &::after {
       content: "";
       position: absolute;
-      margin: 0 var(--layout-drawer-padding);
+      margin: 0 css.get("layout", "drawer-padding");
       border-bottom: 1px solid theme.get("border-color");
       inset: 100% 0 auto;
     }

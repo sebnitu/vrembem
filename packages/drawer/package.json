@@ -19,6 +19,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./root": "./root.scss",
     "./*": "./src/*"
   },
   "files": [
@@ -36,8 +37,8 @@
     "scripts:dev": "vite build --outDir dev --minify false",
     "scripts:dist": "vite build --outDir dist",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
-    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
+    "styles:dev": "sass build:dev --load-path=../../node_modules",
+    "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
     "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"

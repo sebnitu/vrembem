@@ -9,6 +9,9 @@ $border: null !default;
 $sep-border: null !default;
 $border-radius: css.get("border-radius") !default;
 $box-shadow: css.get("box-shadow-1") !default;
+$transition-property: background-color, border-color, box-shadow, transform !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 // Screen
 $screen-background: null !default;
@@ -24,11 +27,6 @@ $title-color: null !default;
 $title-font-size: css.get("font-size-lg") !default;
 $title-line-height: css.get("line-height-lg") !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
-
-// Transition
-$transition-property: background-color, border-color, box-shadow, transform !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
 
 // Custom properties
 @include css.set("card", (
@@ -54,7 +52,7 @@ $transition-timing-function: css.get("transition-timing-function") !default;
 ));
 
 // Themes
-$theme-light: (
+@include theme.set("card", "light", (
   "background": theme.get("background"),
   "foreground": theme.get("foreground-light"),
   "border": 1px solid theme.get("border-color"),
@@ -62,17 +60,10 @@ $theme-light: (
   "title-color": theme.get("foreground"),
   "screen-background": theme.get("background"),
   "screen-opacity": 0.9
-) !default;
+));
 
-$theme-dark: (
+@include theme.set("card", "dark", (
   "background": theme.get("background-darker"),
-  "foreground": theme.get("foreground-light"),
-  "border": 1px solid theme.get("border-color"),
-  "sep-border": 1px solid theme.get("border-color"),
-  "title-color": theme.get("foreground"),
   "screen-background": theme.get("background-darker"),
   "screen-opacity": 0.8
-) !default;
-
-@include theme.set("card", "light", $theme-light);
-@include theme.set("card", "dark", $theme-dark);
+));

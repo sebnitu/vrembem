@@ -2,7 +2,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@use "./root";
+@use "./variables" as var;
 
 .code-block {
   position: relative;
@@ -23,9 +23,9 @@
     @include css.override("core", "foreground", palette.get("primary"));
   }
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     .pre {
-      margin: auto calc(var(--layout-padding) * -1);
+      margin: auto calc(css.get("layout", "padding") * -1);
       border-right: none;
       border-left: none;
       border-radius: 0;
@@ -57,7 +57,7 @@
     color: theme.get("foreground-light");
   }
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     right: 0;
   }
 }
@@ -81,7 +81,7 @@
     @include css.override("popover", "placement", bottom);
   }
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     .pre {
       margin: 0;
       border: core.$border;

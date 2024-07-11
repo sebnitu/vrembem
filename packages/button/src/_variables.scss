@@ -24,8 +24,6 @@ $box-shadow-focus: null !default;
 $font-size: 1em !default;
 $font-weight: inherit !default;
 $line-height: 1.6 !default;
-
-// Transition
 $transition-property: background, color, border-color, box-shadow !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
@@ -93,8 +91,8 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   )
 ));
 
-// Theme maps
-$theme-shared: (
+// Themes
+@include theme.set("button", "light", (
   "background": transparent,
   "background-hover": transparent,
   "background-focus": transparent,
@@ -104,18 +102,12 @@ $theme-shared: (
   "border-color": theme.get("border-color-dark"),
   "border-color-hover": theme.get("border-color-darker"),
   "border-color-focus": theme.get("border-color-darker"),
-  "loading-border-color": theme.get("foreground")
-) !default;
-
-$theme-light: (
+  "loading-border-color": theme.get("foreground"),
   "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
-) !default;
+  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%)
+));
 
-$theme-dark: (
+@include theme.set("button", "dark", (
   "box-shadow": 0 0 0 0 rgb(255 255 255 / 0%),
   "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
-) !default;
-
-@include theme.set("button", "light", map.merge($theme-shared, $theme-light));
-@include theme.set("button", "dark", map.merge($theme-shared, $theme-dark));
+));
