@@ -1,10 +1,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/theme";
 
-$bp-code: 600px;
-$bp-drawer: 960px;
-$bp-aside: 1220px;
-
 :root {
  // Shiki light theme
   --astro-code-color-text: #{theme.get("foreground")};

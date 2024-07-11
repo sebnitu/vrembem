@@ -1,7 +1,8 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/drawer";
-@use "./root";
+@use "./variables" as var;
 
 /**
  * Modal aside
@@ -46,7 +47,7 @@
  * Inline aside
  */
 
-@media (min-width: root.$bp-aside) {
+@include core.media-min(var.$bp-aside) {
   .layout-aside {
     position: fixed;
     z-index: 2;

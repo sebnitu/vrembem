@@ -3,7 +3,7 @@
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 @use "@vrembem/base";
-@use "./root";
+@use "./variables" as var;
 
 .code-example {
   margin: 2rem 0 !important;
@@ -16,7 +16,7 @@
     border-top: core.$border;
   }
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     margin: 2rem calc(css.get("layout", "padding") * -1) !important;
     border-right: none;
     border-left: none;
@@ -70,7 +70,7 @@
   min-width: 100%;
   padding: 2rem;
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     padding: 1rem;
   }
 

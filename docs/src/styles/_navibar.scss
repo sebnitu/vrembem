@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./root";
+@use "./variables" as var;
 
 .navibar {
   position: relative;
@@ -11,7 +11,7 @@
   background-color: theme.get("background-glass");
   backdrop-filter: blur(8px);
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     position: fixed;
 
     .has-drawer & {
@@ -72,7 +72,7 @@
     }
   }
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     .has-drawer & {
       background-color: theme.get("background-glass");
       backdrop-filter: blur(8px);
@@ -83,7 +83,7 @@
 .navibar-spacer {
   height: 0;
   
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     height: css.get("layout", "navibar-height");
   }
 }

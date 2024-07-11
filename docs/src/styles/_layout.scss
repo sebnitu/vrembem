@@ -2,7 +2,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@use "./root";
+@use "./variables" as var;
 
 .layout {
   position: relative;
@@ -24,7 +24,7 @@
     box-sizing: border-box;
   }
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     padding-top: css.get("layout", "navibar-height");
 
     .has-drawer & {
@@ -42,11 +42,11 @@
   gap: 2rem;
   padding: 2rem 0 0;
 
-  @include core.media-min(root.$bp-code) {
+  @include core.media-min(var.$bp-code) {
     padding: 3rem 3rem 0;
   }
 
-  @include core.media-min(root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     gap: 3rem;
     padding: 3rem 0 0;
     
@@ -55,7 +55,7 @@
     }
   }
 
-  @include core.media-min(root.$bp-aside) {
+  @include core.media-min(var.$bp-aside) {
     flex-flow: row wrap;
     align-items: flex-start;
     gap: css.get("layout", "gap");
@@ -72,7 +72,7 @@
   width: 100%;
   max-width: css.get("layout", "content-width");
 
-  @include core.media-min(root.$bp-aside) {
+  @include core.media-min(var.$bp-aside) {
     width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
   }
 
@@ -124,11 +124,11 @@
   border-top: 1px solid theme.get("border-color");
   background-color: theme.get("background");
 
-  @include core.media-min(root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     padding: 3rem 0;
   }
 
-  @include core.media-min(root.$bp-aside) {
+  @include core.media-min(var.$bp-aside) {
     padding: 4rem 0;
   }
 }

@@ -1,7 +1,8 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/drawer";
-@use "./root";
+@use "./variables" as var;
 
 /**
  * Modal drawer
@@ -46,7 +47,7 @@
  * Inline drawer
  */
 
-@media (min-width: root.$bp-drawer) {
+@include core.media-min(var.$bp-drawer) {
   .layout-drawer {
     z-index: 2;
     visibility: visible;

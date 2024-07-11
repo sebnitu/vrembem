@@ -1,6 +1,7 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./root";
+@use "./variables" as var;
 
 .toolbar {
   position: sticky;
@@ -14,7 +15,7 @@
   backdrop-filter: blur(8px);
   background-clip: padding-box;
 
-  @media (min-width: root.$bp-drawer) {
+  @include core.media-min(var.$bp-drawer) {
     display: none;
   }
 }
@@ -31,10 +32,17 @@
   visibility: hidden;
   transform: translate(100%);
   transition: opacity .5s, transform .25s ease;
+  opacity: 0;
 
-  @media (min-width: root.$bp-drawer) and (max-width: calc(root.$bp-aside - 1px)) {
+  @include core.media-min(var.$bp-drawer) {
     visibility: visible;
     transform: translate(0);
     opacity: 1;
+  }
+
+  @include core.media-min(var.$bp-aside) {
+    visibility: hidden;
+    transform: translate(100%);
+    opacity: 0;
   }
 }

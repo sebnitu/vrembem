@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/base";
 @use "@vrembem/button";
-@use "./root";
+@use "./variables" as var;
 
 .header-anchor {
   display: inline-flex;
@@ -43,7 +43,7 @@
     opacity: 1;
   }
 
-  @include core.media-min(root.$bp-code) {
+  @include core.media-min(var.$bp-code) {
     position: absolute;
     top: calc(50% - calc(button.$size-sm / 2));
     right: calc(100% + calc(button.$size-sm / 2));

@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./root";
+@use "./variables" as var;
 
 .doc-block {
   margin: 2rem 0 !important;
@@ -22,7 +22,7 @@
     box-shadow: 0 0 0 0.2rem palette.get("primary", 50%, 20%);
   }
 
-  @include core.media-max(root.$bp-code) {
+  @include core.media-max(var.$bp-code) {
     margin: 2rem calc(css.get("layout", "padding") * -1) !important;
     border-right: none;
     border-left: none;
