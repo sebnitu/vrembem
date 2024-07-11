@@ -11,6 +11,7 @@ $track-fill: null !default;
 $border-color: null !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius-circle") !default;
+$background-color: $color !default;
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
@@ -40,6 +41,7 @@ $size-lg-track: 26px !default;
   "border-width": $border-width,
   "border-radius": $border-radius,
   "background": (
+    "color": $background-color,
     "border-radius": $background-border-radius,
     "opacity": $background-opacity,
     "opacity-hover": $background-opacity-hover,

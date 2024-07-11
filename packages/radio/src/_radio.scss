@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   border-radius: css.get("radio", "background-border-radius");
-  background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity"));
+  background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity"));
 }
 
 #{core.bem("radio", "circle")} {
@@ -49,7 +49,7 @@
   cursor: pointer;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-hover"));
+    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-hover"));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "color");
@@ -58,7 +58,7 @@
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-focus"));
+    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-focus"));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "color");
@@ -68,7 +68,7 @@
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "color") h s l / css.get("radio", "background-opacity-active"));
+    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-active"));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "color");

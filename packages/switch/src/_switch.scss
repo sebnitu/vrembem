@@ -30,7 +30,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
     left: calc(calc(css.get("switch", "size") * 0.25) * -1);
     transition: left css.get("switch", "transition-duration") css.get("switch", "transition-timing-function");
     border-radius: css.get("switch", "background-border-radius");
-    background-color: hsl(from css.get("switch", "color") h s l / css.get("switch", "background-opacity"));
+    background-color: hsl(from css.get("switch", "background-color") h s l / css.get("switch", "background-opacity"));
   }
 }
 
@@ -67,7 +67,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
 
   &:hover + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from css.get("switch", "color") h s l / css.get("switch", "background-opacity-hover"));
+      background-color: hsl(from css.get("switch", "background-color") h s l / css.get("switch", "background-opacity-hover"));
     }
 
     #{core.bem("switch", "track")} {
@@ -82,7 +82,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
 
   &:focus + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from css.get("switch", "color") h s l / css.get("switch", "background-opacity-focus"));
+      background-color: hsl(from css.get("switch", "background-color") h s l / css.get("switch", "background-opacity-focus"));
     }
 
     #{core.bem("switch", "track")} {
@@ -98,7 +98,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
   &:focus-visible + #{core.bem("switch", "background")},
   &:active + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from css.get("switch", "color") h s l / css.get("switch", "background-opacity-active"));
+      background-color: hsl(from css.get("switch", "background-color") h s l / css.get("switch", "background-opacity-active"));
     }
 
     #{core.bem("switch", "track")} {
