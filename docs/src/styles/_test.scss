@@ -50,6 +50,16 @@ $theme-default: (
 
 @include theme.set("test-3", "default", $theme-default);
 @include theme.set("test-3", "dark");
+@include theme.set("test-3", "matrix", (
+  "background": black,
+  "foreground": lime,
+  "border-color": black
+));
+@include theme.set("test-3", "salmon", (
+  "background": salmon,
+  "foreground": white,
+  "border-color": salmon
+));
 
 .test-3 {
   border-color: theme.get("test-3", "border-color");

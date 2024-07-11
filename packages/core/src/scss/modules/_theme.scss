@@ -77,7 +77,22 @@ $_themes: (
       "color-scheme": dark
     )
   )
-) !default;
+);
+
+/// TODO: Add documentation
+$_theme-keys: "light", "dark";
+
+/// TODO: Add documentation
+@mixin bump-keys($theme) {
+  @if not (list.index($_theme-keys, $theme)) {
+    $_theme-keys: list.append($_theme-keys, $theme) !global;
+  }
+}
+
+/// TODO: Add documentation
+@mixin log-keys() {
+  @debug "Theme Keys: #{$_theme-keys}";
+}
 
 /// Function to return the CSS variable with fallback of an entry within the
 /// $_themes map. Requested module must be set in the `$_themes` map and contain
@@ -155,16 +170,19 @@ $_themes: (
 
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
+    @include bump-keys($theme);
     $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
+    @include bump-keys($theme);
     $_themes: map.set($_themes, $module, $theme, empty-map()) !global;
   }
   
   // Otherwise, just add the value using the $args list.
   @else {
+    @include bump-keys($theme);
     $_themes: map.set($_themes, $module, $theme, $prop, $value) !global;
   }
 }
