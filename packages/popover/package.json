@@ -41,7 +41,7 @@
     "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
     "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
-    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch ./src' 'npm run styles:dist -- --watch ./src'"
   },
   "repository": {
     "type": "git",
