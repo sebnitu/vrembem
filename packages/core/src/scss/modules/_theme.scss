@@ -101,7 +101,7 @@ $_theme-keys: "light", "dark";
 ///   // Remove the background property from the button light theme.
 ///   @include theme.remove("button", "light", "border-color");
 ///
-/// TODO: Either refactor this to use `$_variables` or remove it in favor of `css.remove()`
+/// TODO: Refactor this to use `$_variables` instead of `$_themes`.
 @mixin remove($module, $theme, $prop: null) {
   // Check if no properties were passed and if the theme exists in the module
   @if not ($prop) and (map.has-key($_themes, $module, $theme)) {
