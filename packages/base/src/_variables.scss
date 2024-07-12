@@ -2,7 +2,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 // Prefixes
 // ---
@@ -47,9 +46,9 @@ $class-type: "type" !default;
 // ---
 
 $root-height: 100% !default;
-$body-background: theme.get("background") !default;
-$body-foreground: theme.get("foreground") !default;
-$color-caption: theme.get("foreground-lighter") !default;
+$body-background: css.get("background") !default;
+$body-foreground: css.get("foreground") !default;
+$color-caption: css.get("foreground-lighter") !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
 $font-size: core.$font-size !default;
@@ -81,8 +80,8 @@ $blockquote-accent-color: palette.get("primary") !default;
 // ---
 
 $code-padding: 0.125rem 0.375rem !default;
-$code-background: theme.get("background-alt") !default;
-$code-foreground: theme.get("foreground-alt") !default;
+$code-background: css.get("background-alt") !default;
+$code-foreground: css.get("foreground-alt") !default;
 $code-border: null !default;
 $code-border-radius: core.$border-radius !default;
 $code-font-family: core.$font-family-mono !default;
@@ -126,8 +125,8 @@ $list-item-gap: 0.5em !default;
 // ---
 
 $pre-padding: 1em !default;
-$pre-background: theme.get("background-dark") !default;
-$pre-foreground: theme.get("foreground") !default;
+$pre-background: css.get("background-dark") !default;
+$pre-foreground: css.get("foreground") !default;
 $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 $pre-font-size: core.$font-size !default;
@@ -135,13 +134,13 @@ $pre-font-size: core.$font-size !default;
 // Separator
 // ---
 
-$separator-border: 1px solid theme.get("border-color") !default;
+$separator-border: 1px solid css.get("border-color") !default;
 
 // Type
 // ---
 
-$type-heading-color: theme.get("foreground") !default;
-$type-color: theme.get("foreground-light") !default;
+$type-heading-color: css.get("foreground") !default;
+$type-color: css.get("foreground-light") !default;
 $type-font-family: null !default;
 $type-font-size: core.$font-size-lg !default; // Computed: 18px
 $type-line-height: 1.7778 !default; // Computed: 32px

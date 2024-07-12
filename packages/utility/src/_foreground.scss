@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -10,15 +9,15 @@ $_c: var.$class-foreground;
 
 @if (var.$output-foreground) {
   .#{$_u}#{$_c} {
-    color: theme.get("foreground") !important;
+    color: css.get("foreground") !important;
   }
 
   .#{$_u}#{$_c}-light {
-    color: theme.get("foreground-light") !important;
+    color: css.get("foreground-light") !important;
   }
 
   .#{$_u}#{$_c}-lighter {
-    color: theme.get("foreground-lighter") !important;
+    color: css.get("foreground-lighter") !important;
   }
 
   .#{$_u}#{$_c}-black {

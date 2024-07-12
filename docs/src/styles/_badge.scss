@@ -1,11 +1,10 @@
-@use "@vrembem/core/theme";
-@use "@vrembem/core";
+@use "@vrembem/core/css";
 
 .badge {
   display: inline-block;
   padding: 0 0.75em;
-  border-radius: core.$border-radius-circle;
-  background-color: theme.get("background-darker");
-  color: theme.get("foreground-lighter");
-  font-size: core.$font-size-sm;
+  border-radius: css.get("border-radius-circle");
+  background-color: css.get("background-darker");
+  color: css.get("foreground-lighter");
+  font-size: css.get("font-size-sm");
 }

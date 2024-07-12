@@ -53,17 +53,17 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Themes
 @include theme.set("card", "light", (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground-light"),
-  "border": 1px solid theme.get("border-color"),
-  "sep-border": 1px solid theme.get("border-color"),
-  "title-color": theme.get("foreground"),
-  "screen-background": theme.get("background"),
+  "background": css.get("background"),
+  "foreground": css.get("foreground-light"),
+  "border": 1px solid css.get("border-color"),
+  "sep-border": 1px solid css.get("border-color"),
+  "title-color": css.get("foreground"),
+  "screen-background": css.get("background"),
   "screen-opacity": 0.9
 ));
 
 @include theme.set("card", "dark", (
-  "background": theme.get("background-darker"),
-  "screen-background": theme.get("background-darker"),
+  "background": css.get("background-darker"),
+  "screen-background": css.get("background-darker"),
   "screen-opacity": 0.8
 ));

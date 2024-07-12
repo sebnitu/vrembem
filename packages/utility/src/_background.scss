@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -22,15 +21,15 @@ $_c: var.$class-background;
   }
 
   .#{$_u}#{$_c} {
-    background-color: theme.get("background") !important;
+    background-color: css.get("background") !important;
   }
 
   .#{$_u}#{$_c}-dark {
-    background-color: theme.get("background-dark") !important;
+    background-color: css.get("background-dark") !important;
   }
 
   .#{$_u}#{$_c}-darker {
-    background-color: theme.get("background-darker") !important;
+    background-color: css.get("background-darker") !important;
   }
 
   .#{$_u}#{$_c}-black {

@@ -1,13 +1,13 @@
 @use "@vrembem/core/config";
-@use "@vrembem/core/theme";
+@use "@vrembem/core/css";
 
 :root {
  // Shiki light theme
-  --astro-code-color-text: #{theme.get("foreground")};
-  --astro-code-token-comment: #{theme.get("foreground-lighter")};
+  --astro-code-color-text: #{css.get("foreground")};
+  --astro-code-token-comment: #{css.get("foreground-lighter")};
   --astro-code-token-constant: #1b6bc6;
   --astro-code-token-string: #1b6bc6;
-  --astro-code-token-keyword: #{theme.get("foreground")};
+  --astro-code-token-keyword: #{css.get("foreground")};
   --astro-code-token-parameter: #df7a32;
   --astro-code-token-function: #794bcf;
   --astro-code-token-string-expression: #309b4a;
@@ -16,11 +16,11 @@
 
   // Shiki dark theme
   &.#{config.get("prefix-themes")}dark {
-    --astro-code-color-text: #{theme.get("foreground")};
-    --astro-code-token-comment: #{theme.get("foreground-lighter")};
+    --astro-code-color-text: #{css.get("foreground")};
+    --astro-code-token-comment: #{css.get("foreground-lighter")};
     --astro-code-token-constant: #79B8FF;
     --astro-code-token-string: #79B8FF;
-    --astro-code-token-keyword: #{theme.get("foreground")};
+    --astro-code-token-keyword: #{css.get("foreground")};
     --astro-code-token-parameter: #FFAB70;
     --astro-code-token-function: #B392F0;
     --astro-code-token-string-expression: #85E89D;

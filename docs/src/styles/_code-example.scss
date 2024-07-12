@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 @use "@vrembem/base";
 @use "./variables" as var;
@@ -91,7 +90,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
-  color: theme.get("foreground-lighter");
+  color: css.get("foreground-lighter");
   text-transform: uppercase;
 
   [data-reset] {

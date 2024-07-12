@@ -15,9 +15,9 @@
 // Using core theme properties directly.
 
 .test-1 {
-  border-color: theme.get("border-color");
-  background: theme.get("background");
-  color: theme.get("foreground");
+  border-color: css.get("border-color");
+  background: css.get("background");
+  color: css.get("foreground");
 }
 
 // TEST 2
@@ -27,9 +27,9 @@
 // and do not change based on the presence of theme classes.
 
 @include css.set("test-2", (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "border-color": theme.get("border-color")
+  "background": css.get("background"),
+  "foreground": css.get("foreground"),
+  "border-color": css.get("border-color")
 ));
 
 .test-2 {
@@ -43,15 +43,15 @@
 // Using core theme properties as values of new themes.
 
 @include theme.set("test-3", "default", (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "border-color": theme.get("border-color"),
+  "background": css.get("background"),
+  "foreground": css.get("foreground"),
+  "border-color": css.get("border-color"),
 ));
 
 @include theme.set("test-3", "dark");
 
 .test-3 {
-  border-color: theme.get("test-3", "border-color");
-  background: theme.get("test-3", "background");
-  color: theme.get("test-3", "foreground");
+  border-color: css.get("test-3", "border-color");
+  background: css.get("test-3", "background");
+  color: css.get("test-3", "foreground");
 }
