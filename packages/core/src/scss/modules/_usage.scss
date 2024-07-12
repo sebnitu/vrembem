@@ -219,7 +219,7 @@ $_meta: ();
     @if (map.has-key($filtered, $module)) {
       $filtered: map.get($filtered, $module);
     } @else {
-      @error "Module map has not been set: \"#{$module}\"";
+      @error "Module does not exist in `usage.$_meta` map: \"#{$module}\"";
     }
   }
 
