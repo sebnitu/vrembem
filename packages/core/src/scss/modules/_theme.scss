@@ -3,7 +3,6 @@
 @use "sass:meta";
 
 @use "../utilities/debug-map" as *;
-@use "../utilities/empty-map" as *;
 @use "./config";
 @use "./usage";
 @use "./css";
@@ -115,6 +114,7 @@ $_theme-keys: "light", "dark";
 ///   // Return the background CSS reference for the card module.
 ///   background: theme.get("card", "background");
 ///
+/// TODO: This should be removed in favor of css.get()
 @function get($module, $prop: null, $fallback: null) {
   @if not ($prop) {
     $prop: $module;
@@ -153,13 +153,14 @@ $_theme-keys: "light", "dark";
 ///   // take the properties of the default theme once output.
 ///   @include theme.set("card", "dark");
 ///
+/// TODO: Update documentation
 @mixin set($module, $theme, $prop: null, $value: null) {
   // Set theme to default if the value "default" is passed.
   @if ($theme == "default") {
     $theme: config.get("default-theme");
   }
 
-  // Shift the values of arguments if module was not passed. Also sets module to
+  // Shift the values of arguments if module was not passed and sets module to
   // "core" as the default.
   @if not ($value) and ($prop) and (meta.type-of($prop) != "map") {
     $value: $prop;
@@ -168,23 +169,26 @@ $_theme-keys: "light", "dark";
     $module: "core";
   }
 
+  // Initialize the results var with the variables module map.
+  $result: css.get($module, "*");
+
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
-    @include _add-theme-key($theme);
-    $_themes: map.deep-merge($_themes, ($module: ($theme: $prop))) !global;
+    $result: map.deep-merge($result, ($theme: $prop));
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
-    @include _add-theme-key($theme);
-    $_themes: map.set($_themes, $module, $theme, empty-map()) !global;
+    $result: map.set($result, $theme, empty-map());
   }
   
-  // Otherwise, just add the value using the $args list.
+  // Otherwise, just set the value directly.
   @else {
-    @include _add-theme-key($theme);
-    $_themes: map.set($_themes, $module, $theme, $prop, $value) !global;
+    $result: map.set($result, $theme, $prop, $value);
   }
+
+  @include _add-theme-key($theme);
+  @include css.set($module, "*", $result);
 }
 
 /// Remove a custom property from all themes of a provided module.
@@ -262,28 +266,26 @@ $_theme-keys: "light", "dark";
       @include output-theme($module, $theme, $strategy, $args...);
     }
   } @else {
-    // Check if module exists in themes map.
-    @if not map.has-key($_themes, $module) {
-      @error "Module \"#{$module}\" has not been set in themes map";
-    }
+    // Initialize the module map.
+    $moduleMap: css.get($module, "*");
 
-    // Check if the theme exists for the module in themes map.
-    @if map.has-key($_themes, $module, $theme) {    
-      // Save a copy of the module map from themes.
-      $moduleMap: map.get($_themes, $module, $theme);
+    // Check if the theme exists for the module in variables map.
+    @if map.has-key($moduleMap, $theme) {    
+      // Save a copy of the module map from variables.
+      $moduleThemeMap: map.get($moduleMap, $theme);
 
       // Get a reference of the color scheme property and remove it from the map.
-      $color-scheme: map.get($moduleMap, "color-scheme");
-      $moduleMap: map.remove($moduleMap, "color-scheme");
+      $color-scheme: map.get($moduleThemeMap, "color-scheme");
+      $moduleThemeMap: map.remove($moduleThemeMap, "color-scheme");
 
       // Merge the values of the default theme with all other themes.
       @if ($theme != config.get("default-theme")) {
-        $moduleMap: map.merge(map.get($_themes, $module, config.get("default-theme")), $moduleMap);
+        $moduleThemeMap: map.merge(map.get($moduleMap, config.get("default-theme")), $moduleThemeMap);
       }
 
       // Output custom properties via usage output.
       @include usage.output(
-        meta.get-mixin("define", "css"), $module, $moduleMap, $strategy, $args...
+        meta.get-mixin("define", "css"), $module, $moduleThemeMap, $strategy, $args...
       );
 
       // If a color scheme was stored, output it below everything else.
@@ -343,6 +345,7 @@ $_theme-keys: "light", "dark";
 /// @param {string} $module [null]
 ///   A module within the custom properties map to log. Leaving as `null` will
 ///   log the entire map.
+/// TODO: Remove this in favor of css.log
 @mixin log($module: null) {
   @if not $module {
     @include debug-map($_themes, "Theme custom properties");
