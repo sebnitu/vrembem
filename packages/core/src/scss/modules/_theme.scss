@@ -3,6 +3,7 @@
 @use "sass:meta";
 
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
 @use "./config";
 @use "./usage";
 @use "./css";
@@ -60,25 +61,25 @@ $_theme-keys: "light", "dark";
   }
 
   // Initialize the results var with the variables module map.
-  $result: css.get($module, "*");
+  $result: css.get("*");
 
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
-    $result: map.deep-merge($result, ($theme: $prop));
+    $result: map.deep-merge($result, ($module: ($theme: $prop)));
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
-    $result: map.set($result, $theme, empty-map());
+    $result: map.set($result, $module, $theme, empty-map());
   }
   
   // Otherwise, just set the value directly.
   @else {
-    $result: map.set($result, $theme, $prop, $value);
+    $result: map.set($result, $module, $theme, $prop, $value);
   }
 
   @include _add-theme-key($theme);
-  @include css.set($module, "*", $result);
+  @include css.set("*", $result);
 }
 
 /// Remove a custom property from all themes of a provided module.
