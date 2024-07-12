@@ -2,8 +2,10 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "../utilities/reverse" as *;
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
+@use "../utilities/remove-nth" as *;
+@use "../utilities/reverse" as *;
 @use "./config";
 @use "./usage";
 
@@ -16,6 +18,15 @@ $_variables: (
     "prefix": config.get("prefix-variables")
   )
 );
+
+/// TODO: Add documentation
+@function _module-exists($module) {
+  @if not map.has-key($_variables, $module) {
+    @error "Module `#{$module}` has not been set in variables map.";
+  } @else {
+    @return true;
+  }
+}
 
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
@@ -131,28 +142,45 @@ $_variables: (
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
+/// TODO: Update documentation
 @function get($module, $props...) {
+  // Return `$_variables` map if module is set to "*" value.
+  @if ($module == "*") {
+    @return $_variables;
+  }
+
+  // Return a nested map in `$_variables` if props contains "*" value.
+  @if (list.index($props, "*")) {
+    // Throw error if the module doesn't exist in the map.
+    @if _module-exists($module) {
+      $props: remove-nth($props, list.index($props, "*"));
+      @return map.get($_variables, $module, $props...);
+    }
+  }
+
+  // If no props are provided, shift the values and set module to "core".
   @if (list.length($props) == 0) {
     $props: $module;
     $module: "core";
   }
 
-  @if not map.has-key($_variables, $module) {
-    @error "Module map has not been set: \"#{$module}\"";
-  }
+  // Check if module exists.
+  @if _module-exists($module) {
+    // Reverse the props list and initialize our result.
+    $props: reverse($props);
+    $result: null;
 
-  $props: reverse($props);
-  $result: null;
-
-  @each $prop in $props {
-    @if not map.has-key($_variables, $module, $prop) {
-      @error "Custom property has not been set: \"#{$module}\" > \"#{$prop}\"";
+    // Loop through the props and append them to results as nested fallbacks.
+    @each $prop in $props {
+      @if map.has-key($_variables, $module, $prop) {
+        $result: reference($module, $prop, $result);
+      } @else {
+        $result: $prop;
+      }
     }
     
-    $result: reference($module, $prop, $result);
+    @return $result;
   }
-  
-  @return $result;
 }
 
 /// Mixin to store custom properties for later definition and reference.
@@ -210,14 +238,27 @@ $_variables: (
 ///     )
 ///   );
 ///
+/// TODO: Update documentation
 @mixin set($module, $prop, $value: null, $args...) {
-  @if (meta.type-of($prop) == "map") {
+  // If module is set to "*", update the entire `$_variables` map.
+  @if ($module == "*") {
+    $_variables: $prop !global;
+  }
+
+  // If prop is set to "*", update the module map in `$_variables` map.
+  @else if ($prop == "*") {
+    $_variables: map.deep-merge($_variables, ($module: $value)) !global;
+  }
+
+  // If the provided prop is a map.
+  @else if (meta.type-of($prop) == "map") {
     
     // Add value to args if one exists.
     @if ($value) {
       $args: list.append($args, $value);
     }
 
+    // Loop through the prop map.
     @each $propKey, $propValue in $prop {
 
       // Scenario: ("prop": ("prop": "value"))
@@ -302,19 +343,17 @@ $_variables: (
 ///   --vb-button-foreground: #fff;
 ///
 @mixin override($module, $prop, $value: null) {
-  @if not map.has-key($_variables, $module) {
-    @error "Module map has not been set: \"#{$module}\"";
-  }
-
-  @if (meta.type-of($prop) == "map") {
-    @each $key, $value in $prop {
-      @if ($value) {
-        @include define($module, $key, $value, "override");
+  @if _module-exists($module) {
+    @if (meta.type-of($prop) == "map") {
+      @each $key, $value in $prop {
+        @if ($value) {
+          @include define($module, $key, $value, "override");
+        }
       }
-    }
-  } @else {
-    @if ($value) {
-      @include define($module, $prop, $value, "override");
+    } @else {
+      @if ($value) {
+        @include define($module, $prop, $value, "override");
+      }
     }
   }
 }
@@ -357,10 +396,7 @@ $_variables: (
     @each $module in map.keys($_variables) {
       @include output($module, $strategy);
     }
-  } @else {
-    @if not map.has-key($_variables, $module) {
-      @error "Module map has not been set: \"#{$module}\"";
-    }
+  } @else if _module-exists($module) {
     $moduleMap: map.get($_variables, $module);
     // Output custom properties via usage output.
     @include usage.output(
@@ -372,19 +408,26 @@ $_variables: (
 /// Log to console either the entire `$_variables` custom properties map or a 
 /// specific module contained within. Provided module must exist in the 
 /// `$_variables` custom properties map.
-/// @param {string} $module [null]
+/// @param {string} $module ["*"]
 ///   A module within the custom properties map to log. Leaving as `null` will
 ///   log the entire map.
-@mixin log($module: null) {
-  @if not $module {
-    @include debug-map($_variables, "Custom properties");
+/// TODO: Update documentation
+@mixin log($module: "*", $props...) {
+  @if ($module == "*") or ($module == "all") {
+    @include debug-map($_variables, "Custom properties of \"*\"");
   }
   
-  @else {
-    @if not map.has-key($_variables, $module) {
-      @error "Module map has not been set: \"#{$module}\"";
+  @else if _module-exists($module) {
+    @if (list.length($props) > 0) {
+      @include debug-map(
+        map.get($_variables, $module, $props...), 
+        "Custom properties of \"#{$module}\" > \"#{$props}\""
+      );
+    } @else {
+      @include debug-map(
+        map.get($_variables, $module), 
+        "Custom properties of \"#{$module}\""
+      );
     }
-
-    @include debug-map(map.get($_variables, $module), "Custom properties of \"#{$module}\"");
   }
 }
