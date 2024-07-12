@@ -171,9 +171,12 @@ $_variables: (
 
     // Loop through the props and append them to results as nested fallbacks.
     @each $prop in $props {
-      @if map.has-key($_variables, $module, $prop) {
+      // If the property exists in the module or the module's default theme
+      @if map.has-key($_variables, $module, $prop) or map.has-key($_variables, $module, config.get("default-theme"), $prop) {
+        // store the reference in our result.
         $result: reference($module, $prop, $result);
       } @else {
+        // Store the raw CSS value in our result.
         $result: $prop;
       }
     }
