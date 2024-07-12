@@ -23,8 +23,8 @@
 
 .box,
 .box-alt {
-  padding: css.get("padding");
-  border: css.get("border");
+  padding: css.get("box", "padding");
+  border: css.get("box", "border");
   color: css.get("foreground");
 }
 
