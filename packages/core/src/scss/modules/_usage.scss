@@ -177,7 +177,7 @@ $_meta: ();
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
   @each $prop, $value in $moduleMap {
     // Check if the property is valid for output.
-    @if (_meta-check($module, $prop, $args...)) {
+    @if (meta.type-of($value) != "map") and (_meta-check($module, $prop, $args...)) {
       // If strategy is set to all, output all custom properties in the map.
       @if ($strategy == "*" or $strategy == "all") {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
