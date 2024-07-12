@@ -8,77 +8,7 @@
 @use "./css";
 @use "./palette";
 
-/// Stores theme maps for individual modules. These are used to build theme 
-/// classes and CSS custom property output. Optionally set `color-scheme` 
-/// property for outputting the `color-scheme: (light | dark);` property.
-/// @type map
-/// @prop {map} module
-///   The name of the module (key) containing theme maps.
-/// @prop {map} module.theme
-///   The name of the theme (key) and a map of prop/value pairs.
-/// @prop {any} module.theme.prop
-///   The prop/value pairs of properties to be applied for a particular theme.
-/// @access private
-///
-/// @example scss
-///   // A module with it's themes.
-///   "button": (
-///     "light": (
-///       "background": gray,
-///       "foreground": blue,
-///       ...
-///     ),
-///     "dark": (
-///       "background": blue,
-///       "foreground": gray,
-///       ...
-///     )
-///   );
-///
-$_themes: (
-  "core": (
-    "light": (
-      "background": palette.get("neutral", 100),
-      "background-dark": palette.get("neutral", 98),
-      "background-darker": palette.get("neutral", 95),
-      "background-alt": palette.get("secondary", 60%, 10%),
-      "background-hover": rgb(0 0 0 / 5%),
-      "background-focus": rgb(0 0 0 / 5%),
-      "background-active": rgb(0 0 0 / 10%),
-      "foreground": palette.get("neutral", 20),
-      "foreground-light": palette.get("neutral", 40),
-      "foreground-lighter": palette.get("neutral", 60),
-      "foreground-alt": palette.get("secondary", 50),
-      "border-color": rgb(0 0 0 / 10%),
-      "border-color-dark": rgb(0 0 0 / 20%),
-      "border-color-darker": rgb(0 0 0 / 30%),
-      "shadow-color": palette.get("neutral", 20%, 20%),
-      "focus-visible": palette.get("primary"),
-      "color-scheme": light
-    ),
-    "dark": (
-      "background": palette.get("neutral", 10),
-      "background-dark": palette.get("neutral", 12),
-      "background-darker": palette.get("neutral", 15),
-      "background-alt": palette.get("secondary", 70%, 10%),
-      "background-hover": rgb(255 255 255 / 5%),
-      "background-focus": rgb(255 255 255 / 5%),
-      "background-active": rgb(255 255 255 / 1%),
-      "foreground": palette.get("neutral", 90),
-      "foreground-light": palette.get("neutral", 70),
-      "foreground-lighter": palette.get("neutral", 50),
-      "foreground-alt": palette.get("secondary", 60),
-      "border-color": rgb(255 255 255 / 10%),
-      "border-color-dark": rgb(255 255 255 / 20%),
-      "border-color-darker": rgb(255 255 255 / 30%),
-      "shadow-color": palette.get("neutral", 0%, 20%),
-      "focus-visible": palette.get("primary"),
-      "color-scheme": dark
-    )
-  )
-);
-
-/// Used to track theme keys that get added to the `$_themes` map.
+/// Used to track theme keys that get added to the `css.$_variables` map.
 /// @type list
 /// @access private
 $_theme-keys: "light", "dark";
@@ -93,47 +23,7 @@ $_theme-keys: "light", "dark";
   }
 }
 
-/// Function to return the CSS variable with fallback of an entry within the
-/// $_themes map. Requested module must be set in the `$_themes` map and contain
-/// a value for the requested property in the default theme.
-/// @param {string} $module ["core"]
-///   The module name to search for a prop in. Can be omitted for prop value if
-///   the desired property is in the core module.
-/// @param {string} $prop [null]
-///   The property value to return.
-/// @param {string} $fallback [null]
-///   The fallback value if initial property is not defined.
-/// @return {function}
-///   The var() CSS function with the value of the requested custom property.
-/// 
-/// @example scss
-///   // Return the background CSS reference for the core module.
-///   background: theme.get("background");
-/// 
-/// @example scss
-///   // Return the background CSS reference for the card module.
-///   background: theme.get("card", "background");
-///
-/// TODO: This should be removed in favor of css.get()
-@function get($module, $prop: null, $fallback: null) {
-  @if not ($prop) {
-    $prop: $module;
-    $module: "core";
-  }
-
-  @if not map.has-key($_themes, $module) {
-    @error "Module map has not been set: \"#{$module}\"";
-  }
-
-  @if not map.has-key($_themes, $module, config.get("default-theme"), $prop) {
-    @error "Property does not exist in the default theme: \"#{$module}\" > \"#{config.get("default-theme")}\" > \"#{$prop}\"";
-  }
-
-  // Return the CSS custom property reference.
-  @return css.reference($module, $prop, $fallback);
-}
-
-/// Set a new or modify an existing property value in the $_themes map.
+/// Set a new or modify an existing module theme property.
 /// @param {string} $module ["core"]
 ///   The module to set a property value for.
 /// @param {string} $theme
@@ -211,6 +101,7 @@ $_theme-keys: "light", "dark";
 ///   // Remove the background property from the button light theme.
 ///   @include theme.remove("button", "light", "border-color");
 ///
+/// TODO: Either refactor this to use `$_variables` or remove it in favor of `css.remove()`
 @mixin remove($module, $theme, $prop: null) {
   // Check if no properties were passed and if the theme exists in the module
   @if not ($prop) and (map.has-key($_themes, $module, $theme)) {
@@ -261,8 +152,8 @@ $_theme-keys: "light", "dark";
 ///
 @mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
   @if ($module == "*") or ($module == "all") {
-    // Call output() for every module in $_themes.
-    @each $module in map.keys($_themes) {
+    // Call output() for every module in `css.$_variables`.
+    @each $module in map.keys(css.get("*")) {
       @include output-theme($module, $theme, $strategy, $args...);
     }
   } @else {
@@ -339,23 +230,44 @@ $_theme-keys: "light", "dark";
   }
 }
 
-/// Log to console either the entire `$_themes` custom properties map or a 
-/// specific module contained within. Provided module must exist in the 
-/// `$_themes` custom properties map.
-/// @param {string} $module [null]
-///   A module within the custom properties map to log. Leaving as `null` will
-///   log the entire map.
-/// TODO: Remove this in favor of css.log
-@mixin log($module: null) {
-  @if not $module {
-    @include debug-map($_themes, "Theme custom properties");
-  }
-  
-  @else {
-    @if not map.has-key($_themes, $module) {
-      @error "Module map has not been set: \"#{$module}\"";
-    }
+/// Initialize the core light theme.
+@include set("core", "light", (
+  "background": palette.get("neutral", 100),
+  "background-dark": palette.get("neutral", 98),
+  "background-darker": palette.get("neutral", 95),
+  "background-alt": palette.get("secondary", 60%, 10%),
+  "background-hover": rgb(0 0 0 / 5%),
+  "background-focus": rgb(0 0 0 / 5%),
+  "background-active": rgb(0 0 0 / 10%),
+  "foreground": palette.get("neutral", 20),
+  "foreground-light": palette.get("neutral", 40),
+  "foreground-lighter": palette.get("neutral", 60),
+  "foreground-alt": palette.get("secondary", 50),
+  "border-color": rgb(0 0 0 / 10%),
+  "border-color-dark": rgb(0 0 0 / 20%),
+  "border-color-darker": rgb(0 0 0 / 30%),
+  "shadow-color": palette.get("neutral", 20%, 20%),
+  "focus-visible": palette.get("primary"),
+  "color-scheme": light
+));
 
-    @include debug-map(map.get($_themes, $module), "Theme custom properties of \"#{$module}\"");
-  }
-}
+/// Initialize the core dark theme.
+@include set("core", "dark", (
+  "background": palette.get("neutral", 10),
+  "background-dark": palette.get("neutral", 12),
+  "background-darker": palette.get("neutral", 15),
+  "background-alt": palette.get("secondary", 70%, 10%),
+  "background-hover": rgb(255 255 255 / 5%),
+  "background-focus": rgb(255 255 255 / 5%),
+  "background-active": rgb(255 255 255 / 1%),
+  "foreground": palette.get("neutral", 90),
+  "foreground-light": palette.get("neutral", 70),
+  "foreground-lighter": palette.get("neutral", 50),
+  "foreground-alt": palette.get("secondary", 60),
+  "border-color": rgb(255 255 255 / 10%),
+  "border-color-dark": rgb(255 255 255 / 20%),
+  "border-color-darker": rgb(255 255 255 / 30%),
+  "shadow-color": palette.get("neutral", 0%, 20%),
+  "focus-visible": palette.get("primary"),
+  "color-scheme": dark
+));
