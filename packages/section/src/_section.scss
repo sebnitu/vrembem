@@ -3,16 +3,13 @@
 @use "./variables" as var;
 
 #{core.bem("section")} {
+  @include core.css-query("section", "padding", var.$padding, var.$breakpoints);
   position: relative;
   display: flex;
   flex-direction: column;
   padding: css.get("section", "padding");
   background: css.get("section", "background");
   color: css.get("section", "foreground");
-}
-
-#{core.bem("section")} {
-  @include core.css-query("section", "padding", var.$padding, var.$breakpoints);
 }
 
 #{core.bem("section", "container")} {
