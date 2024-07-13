@@ -5,7 +5,6 @@
 
 :root {
   @include css.output("section");
-  @include core.css-query("section", "padding", var.$padding, var.$breakpoints);
 }
 
 @include theme.output("section");
