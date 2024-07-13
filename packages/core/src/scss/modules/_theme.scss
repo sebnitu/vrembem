@@ -36,7 +36,8 @@ $_theme-keys: "light", "dark";
   }
 }
 
-/// Set a new or modify an existing module theme property.
+/// Set a new or modify an existing module theme property. These are stored as
+/// theme maps in `css.$_variables`.
 /// @param {string} $module ["core"]
 ///   The module to set a property value for.
 /// @param {string} $theme
@@ -52,11 +53,18 @@ $_theme-keys: "light", "dark";
 ///   @include theme.set("card", "dark", "foreground", blue);
 /// 
 /// @example scss
+///   // Set the background and foreground custom properties for the card light
+///   // theme using a map of property/value pairs.
+///   @include theme.set("card", "light", (
+///     "background": blue,
+///     "foreground": white,
+///   ));
+/// 
+/// @example scss
 ///   // Create an empty theme by not passing a property or value. This will
 ///   // take the properties of the default theme once output.
 ///   @include theme.set("card", "dark");
 ///
-/// TODO: Update documentation
 @mixin set($module, $theme, $prop: null, $value: null) {
   // Set theme to default if the value "default" is passed.
   @if ($theme == "default") {
@@ -94,13 +102,17 @@ $_theme-keys: "light", "dark";
   @include css.set("*", $result);
 }
 
-/// Remove a custom property from all themes of a provided module.
+/// Remove a custom property from themes in a variety of ways.
 /// @param {string} $module
-///   The module name to search under.
+///   The module name to search under. Set to "*" for the following `$theme` and 
+///   `$prop` arguments to apply to all module themes.
 /// @param {string} $theme
-///   The module theme to search under or remove.
+///   The module theme to search under or remove. Set to "*" to remove all
+///   themes from the specified module or if a `$prop` is provided, all the
+///   property from all module themes.
 /// @param {string} $prop [null]
-///   The property name to remove.
+///   The property name to remove. Set to "*" to remove the entire theme from
+///   the specified module.
 /// 
 /// @example scss
 ///   // Remove the dark theme from buttons module.
@@ -108,13 +120,16 @@ $_theme-keys: "light", "dark";
 ///
 /// @example scss
 ///   // Remove the border-color property from all button themes.
-///   @include theme.remove("button", "border-color");
+///   @include theme.remove("button", "*", "border-color");
 /// 
 /// @example scss
 ///   // Remove the background property from the button light theme.
 ///   @include theme.remove("button", "light", "border-color");
+/// 
+/// @example scss
+///   // Remove all themes from all modules.
+///   @include theme.remove("*", "*");
 ///
-/// TODO: Update documentation
 @mixin remove($module, $theme, $prop: "*") {
   @if ($module == "*") or ($module == "all") {
     // Call output() for every module in `css.$_variables`.
@@ -156,7 +171,7 @@ $_theme-keys: "light", "dark";
     }
 
     // Save the results to `css.$_variables`.
-    @include css.set($module, "*", $result);
+    @include css.set($module, "*", $result, "merge");
   }
 }
 

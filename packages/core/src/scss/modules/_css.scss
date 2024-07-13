@@ -18,7 +18,11 @@ $_variables: (
   )
 );
 
-/// TODO: Add documentation
+/// Function to check whether a module has been set in the `$_variables` map.
+/// Will throw an error if module was not found.
+/// @return {true | error}
+///   If module exists in map, returns true. Otherwise, will throw error.
+/// @access private
 @function _module-exists($module) {
   @if not map.has-key($_variables, $module) {
     @error "Module `#{$module}` has not been set in variables map.";
@@ -116,13 +120,14 @@ $_variables: (
 }
 
 /// Function to return a custom property reference that has been stored in the 
-/// `$_variables` map using set().
+/// `$_variables` map using set(). Can also return the entire `$_variables` map
+/// or one of the stored module maps.
 /// @param {string} $module
 ///   The module name to get the stored custom property from. Can be omitted if
 ///   searching a property in the core module.
 /// @param {string} $props...
 ///   The custom property name to return. Can be a list of props for returning 
-///   var() with fallbacks.
+///   var() with fallbacks. Set to "*" to return the entire module map.
 /// @return {function | error} 
 ///   Custom property variable reference using var().
 /// 
@@ -141,10 +146,9 @@ $_variables: (
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
-/// TODO: Update documentation
 @function get($module, $props...) {
   // Return `$_variables` map if module is set to "*" value.
-  @if ($module == "*") {
+  @if ($module == "*") or ($module == "all") {
     @return $_variables;
   }
 
@@ -185,18 +189,23 @@ $_variables: (
   }
 }
 
-/// Mixin to store custom properties for later definition and reference.
+/// Mixin to store custom properties for later definition and reference. Can
+/// also update the entire `$_variables` map or a stored module map by passing
+/// "*" value to `$module` or `$prop` respectively.
 /// @param {string} $module
-///   The module name to store the custom property under.
+///   The module name to store the custom property under. Set to "*" to replace
+///   the entire `$_variables` map with the value of `$prop` (must be a map).
 /// @param {string | map} $prop
 ///   The custom property name to store. Can be a map containing property and 
-///   value pairs. Values can also contain map of property/value pairs.
+///   value pairs. Values can also contain map of property/value pairs. Set to 
+///   "*" to merge a module map with the value of `$value` (must be a map).
+///   Pass "merge" to `$args` to merge the map, else it is deep-merged.
 /// @param {any} $value [null]
 ///   The custom property value to store. Can be a map containing property and 
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
-/// @param {boolean} $required [false]
-///   Whether or not this property is required to be output. Setting this value
-///   to `true` will output the variable regardless if it's referenced.
+/// @param {list} $args...
+///   The arguments to pass to `usage.set()`. Can be a list containing an action
+///   and any additional flags to log for the property.
 /// 
 /// @example scss
 ///   @include css.set("button", "background", #000);
@@ -240,16 +249,19 @@ $_variables: (
 ///     )
 ///   );
 ///
-/// TODO: Update documentation
 @mixin set($module, $prop, $value: null, $args...) {
   // If module is set to "*", update the entire `$_variables` map.
-  @if ($module == "*") {
+  @if ($module == "*") or ($module == "all") {
     $_variables: $prop !global;
   }
 
   // If prop is set to "*", update the module map in `$_variables` map.
-  @else if ($prop == "*") {
-    $_variables: map.deep-merge($_variables, ($module: $value)) !global;
+  @else if ($prop == "*") or ($prop == "all") {
+    @if (list.index($args, "merge")) {
+      $_variables: map.merge($_variables, ($module: $value)) !global;
+    } @else {
+      $_variables: map.deep-merge($_variables, ($module: $value)) !global;
+    }
   }
 
   // If the provided prop is a map.
@@ -266,6 +278,7 @@ $_variables: (
       // Scenario: ("prop": ("prop": "value"))
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
+          // Only call `usage.set` if arguments are passed.
           @if (list.length($args) > 0) {
             @include usage.set($module, "#{$propKey}-#{$key}", $args...);
           }
@@ -275,6 +288,7 @@ $_variables: (
 
       // Scenario: ("prop": "value")
       @else {
+        // Only call `usage.set` if arguments are passed.
         @if (list.length($args) > 0) {
           @include usage.set($module, $propKey, $args...);
         }
@@ -286,6 +300,7 @@ $_variables: (
   // Scenario: "prop", ("prop": "value")
   @else if (meta.type-of($value) == "map") {
     @each $key, $value in $value {
+      // Only call `usage.set` if arguments are passed.
       @if (list.length($args) > 0) {
         @include usage.set($module, "#{$prop}-#{$key}", $args...);
       }
@@ -295,6 +310,7 @@ $_variables: (
 
   // Scenario: "prop", "value"
   @else {
+    // Only call `usage.set` if arguments are passed.
     @if (list.length($args) > 0) {
       @include usage.set($module, $prop, $args...);
     }
@@ -407,13 +423,12 @@ $_variables: (
   }
 }
 
-/// Log to console either the entire `$_variables` custom properties map or a 
-/// specific module contained within. Provided module must exist in the 
-/// `$_variables` custom properties map.
+/// Log to console either the entire `$_variables` custom properties map, a 
+/// module map or module theme. Provided module must exist in the  `$_variables`
+/// custom properties map.
 /// @param {string} $module ["*"]
 ///   A module within the custom properties map to log. Leaving as `null` will
 ///   log the entire map.
-/// TODO: Update documentation
 @mixin log($module: "*", $props...) {
   @if ($module == "*") or ($module == "all") {
     @include debug-map($_variables, "Custom properties of \"*\"");
