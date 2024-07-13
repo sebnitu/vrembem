@@ -32,12 +32,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.14 to CHANGELOG.md
+chore(release): add v4.0.0-next.15 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.15 (2024-07-13)
+
+### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#1928](https://github.com/sebnitu/vrembem/pull/1928) Refactor theme module as an extension of the css module
 
 
 ## v4.0.0-next.14 (2024-07-11)
