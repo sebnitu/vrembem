@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
@@ -38,7 +39,7 @@ $size-xl-padding: (
 // Custom properties
 @include css.set("section", (
   "max-width": $max-width,
-  "padding": null,
+  "padding": map.get($padding, "sm"),
   "background": $background,
   "foreground": $foreground,
   "image-opacity": $image-opacity,
