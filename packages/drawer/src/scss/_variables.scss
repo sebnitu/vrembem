@@ -3,7 +3,6 @@
 @use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 $prefix-variable: config.get("prefix-variables") !default;
 $prefix-block: config.get("prefix-blocks") !default;
@@ -18,7 +17,7 @@ $width: 18em !default;
 $max-width: 100% !default;
 $border: null !default;
 $sep-border: null !default;
-$background: theme.get("background-darker") !default;
+$background: css.get("background-darker") !default;
 $shadow: none !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;

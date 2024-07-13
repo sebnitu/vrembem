@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 .code-block {
@@ -13,7 +12,7 @@
   .pre {
     padding-right: 4em;
     border: core.$border;
-    background-color: theme.get("background-dark");
+    background-color: css.get("background-dark");
   }
   
   .popover {
@@ -42,7 +41,7 @@
   display: flex;
   padding: 0.5rem;
   border-radius: core.$border-radius;
-  background-color: theme.get("background-dark");
+  background-color: css.get("background-dark");
 }
 
 .code-block__prompt {
@@ -51,10 +50,10 @@
 
 .code-block__copy-button {
   right: 1rem;
-  color: theme.get("foreground-lighter");
+  color: css.get("foreground-lighter");
 
   &:hover {
-    color: theme.get("foreground-light");
+    color: css.get("foreground-light");
   }
 
   @include core.media-max(var.$bp-code) {

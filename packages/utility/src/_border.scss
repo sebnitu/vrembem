@@ -1,5 +1,4 @@
-@use "@vrembem/core";
-@use "@vrembem/core/theme";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_u: var.$prefix-utility;
@@ -7,23 +6,23 @@ $_c: var.$class-border;
 
 @if (var.$output-border) {
   .#{$_u}#{$_c} {
-    border: core.$border !important;
+    border: css.get("border") !important;
   }
 
   .#{$_u}#{$_c}-top {
-    border-top: core.$border !important;
+    border-top: css.get("border") !important;
   }
 
   .#{$_u}#{$_c}-bottom {
-    border-bottom: core.$border !important;
+    border-bottom: css.get("border") !important;
   }
 
   .#{$_u}#{$_c}-left {
-    border-left: core.$border !important;
+    border-left: css.get("border") !important;
   }
 
   .#{$_u}#{$_c}-right {
-    border-right: core.$border !important;
+    border-right: css.get("border") !important;
   }
 
   .#{$_u}#{$_c}-none {
@@ -47,11 +46,11 @@ $_c: var.$class-border;
   }
 
   .#{$_u}#{$_c}-color-dark {
-    border-color: theme.get("border-color-dark") !important;
+    border-color: css.get("border-color-dark") !important;
   }
 
   .#{$_u}#{$_c}-color-darker {
-    border-color: theme.get("border-color-darker") !important;
+    border-color: css.get("border-color-darker") !important;
   }
 
   .#{$_u}#{$_c}-color-transparent {

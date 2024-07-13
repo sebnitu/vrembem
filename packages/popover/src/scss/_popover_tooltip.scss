@@ -1,4 +1,4 @@
-@use "@vrembem/core/theme";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -14,6 +14,6 @@ $_m: var.$prefix-modifier;
   width: auto;
   max-width: 16rem;
   padding: 0.5rem 0.75rem;
-  background: theme.get("foreground");
-  color: theme.get("background");
+  background: css.get("foreground");
+  color: css.get("background");
 }

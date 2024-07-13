@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
 $prefix-variable: config.get("prefix-variables") !default;
 $prefix-block: config.get("prefix-blocks") !default;
@@ -21,8 +20,8 @@ $max-width: calc(100vw - 20px) !default;
 $padding: 0.5em !default;
 $border: null !default;
 $border-radius: core.$border-radius !default;
-$foreground: theme.get("foreground") !default;
-$background: theme.get("background") !default;
+$foreground: css.get("foreground") !default;
+$background: css.get("background") !default;
 $background-clip: padding-box !default;
 $shadow: css.get("box-shadow-2") !default;
 $font-size: core.$font-size-sm !default;

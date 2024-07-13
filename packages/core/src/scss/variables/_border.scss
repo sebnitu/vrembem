@@ -4,9 +4,9 @@
 $border-width: 1px !default;
 $border-style: solid !default;
 
-$border: $border-width $border-style theme.get("border-color") !default;
-$border-dark: $border-width $border-style theme.get("border-color-dark") !default;
-$border-darker: $border-width $border-style theme.get("border-color-darker") !default;
+$border: $border-width $border-style css.get("border-color") !default;
+$border-dark: $border-width $border-style css.get("border-color-dark") !default;
+$border-darker: $border-width $border-style css.get("border-color-darker") !default;
 
 $border-radius: 0.25rem !default;
 $border-radius-lg: 0.5rem !default;

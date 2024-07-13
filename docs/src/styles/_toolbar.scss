@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 .toolbar {
@@ -9,9 +8,9 @@
   top: -1px;
   display: block;
   padding: css.get("layout", "padding");
-  border-top: 1px solid theme.get("border-color");
-  border-bottom: 1px solid theme.get("border-color");
-  background-color: theme.get("background-glass");
+  border-top: 1px solid css.get("border-color");
+  border-bottom: 1px solid css.get("border-color");
+  background-color: css.get("background-glass");
   backdrop-filter: blur(8px);
   background-clip: padding-box;
 

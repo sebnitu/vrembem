@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 .layout {
@@ -121,8 +120,8 @@
   order: 3;
   width: 100%;
   padding: 2rem 0;
-  border-top: 1px solid theme.get("border-color");
-  background-color: theme.get("background");
+  border-top: 1px solid css.get("border-color");
+  background-color: css.get("background");
 
   @include core.media-min(var.$bp-drawer) {
     padding: 3rem 0;

@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 @use "./variables" as var;
 
 .navibar {
@@ -8,7 +7,7 @@
   z-index: 5;
   width: 100%;
   padding: 0 css.get("layout", "padding");
-  background-color: theme.get("background-glass");
+  background-color: css.get("background-glass");
   backdrop-filter: blur(8px);
 
   @include core.media-min(var.$bp-drawer) {
@@ -74,7 +73,7 @@
 
   @include core.media-min(var.$bp-drawer) {
     .has-drawer & {
-      background-color: theme.get("background-glass");
+      background-color: css.get("background-glass");
       backdrop-filter: blur(8px);
     }
   }

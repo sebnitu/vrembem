@@ -1,11 +1,11 @@
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 [role="tab"] {
   position: relative;
   margin: -0.5rem 0;
   padding: 0.5rem;
-  color: theme.get("foreground-lighter");
+  color: css.get("foreground-lighter");
 
   &::after {
     content: "";
@@ -16,7 +16,7 @@
   }
 
   &:hover {
-    color: theme.get("foreground");
+    color: css.get("foreground");
   }
 
   &[aria-selected="true"] {

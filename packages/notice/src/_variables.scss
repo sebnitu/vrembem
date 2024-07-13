@@ -25,15 +25,13 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
   "title": (
     "font-size": $title-font-size,
     "line-height": $title-line-height,
-    "font-weight": $title-font-weight,
-  ),
+    "font-weight": $title-font-weight
+  )
 ));
 
 @include theme.set("notice", "light", (
   "background": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20),
-  "border": null,
-  "box-shadow": null
+  "foreground": palette.get("neutral", 20)
 ));
 
 @include theme.set("notice", "dark", (

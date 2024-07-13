@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 .pagi {
   display: flex;
@@ -33,7 +32,7 @@
   transition: border-color;
   transition-duration: css.get("transition-duration");
   transition-timing-function: css.get("transition-timing-function");
-  border: 1px solid theme.get("border-color");
+  border: 1px solid css.get("border-color");
   border-radius: css.get("border-radius");
   line-height: css.get("line-height-sm");
 
@@ -43,7 +42,7 @@
 }
 
 .pagi_label {
-  color: theme.get("foreground-lighter");
+  color: css.get("foreground-lighter");
   font-size: css.get("font-size-sm");
 }
 

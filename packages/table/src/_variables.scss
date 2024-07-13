@@ -50,18 +50,18 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
 
 // Themes
 @include theme.set("table", "light", (
-  "background": theme.get("background"),
+  "background": css.get("background"),
   "background-zebra": palette.get("neutral", 50%, 6%),
   "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color"),
-  "border-alt": 1px dotted theme.get("border-color"),
-  "foreground": theme.get("foreground"),
+  "border": 1px solid css.get("border-color"),
+  "border-alt": 1px dotted css.get("border-color"),
+  "foreground": css.get("foreground"),
   "foreground-hover": null
 ));
 
 @include theme.set("table", "dark", (
   "background-zebra": palette.get("neutral", 50%, 10%),
   "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color-dark"),
-  "border-alt": 1px dotted theme.get("border-color-dark"),
+  "border": 1px solid css.get("border-color-dark"),
+  "border-alt": 1px dotted css.get("border-color-dark"),
 ));

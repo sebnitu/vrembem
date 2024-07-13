@@ -18,7 +18,7 @@ $background-active: null !default;
 $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-active: null !default;
-$outline-focus: 2px solid theme.get("focus-visible") !default;
+$outline-focus: 2px solid css.get("focus-visible") !default;
 $font-size: css.get("font-size") !default;
 $line-height: css.get("line-height") !default;
 
@@ -28,7 +28,7 @@ $action-gap: 0.5em !default;
 // menu__sep
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
-$sep-background: theme.get("border-color") !default;
+$sep-background: css.get("border-color") !default;
 
 // is-active
 $active-background: none !default;
@@ -36,7 +36,7 @@ $active-foreground: palette.get("primary") !default;
 
 // is-disabled
 $disabled-background: none !default;
-$disabled-foreground: theme.get("foreground-lighter") !default;
+$disabled-foreground: css.get("foreground-lighter") !default;
 
 // menu_size_sm
 $size-sm: css.get("form-control-size-sm") !default;
@@ -83,8 +83,8 @@ $size-lg-line-height: css.get("line-height-lg") !default;
 // Themes
 @include theme.set("menu", "light", (
   "background": none,
-  "background-hover": theme.get("background-hover"),
-  "background-active": theme.get("background-active"),
-  "foreground": theme.get("foreground"),
+  "background-hover": css.get("background-hover"),
+  "background-active": css.get("background-active"),
+  "foreground": css.get("foreground"),
 ));
 @include theme.set("menu", "dark");

@@ -9,8 +9,8 @@ $padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
-$background-readonly: theme.get("background-dark") !default;
-$background-disabled: theme.get("background-darker") !default;
+$background-readonly: css.get("background-dark") !default;
+$background-disabled: css.get("background-darker") !default;
 $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
@@ -78,11 +78,11 @@ $size-lg-line-height: css.get("line-height-lg") !default;
 
 // Themes
 @include theme.set("input", "light", (
-  "background": theme.get("background"),
-  "foreground": theme.get("foreground"),
-  "foreground-placeholder": theme.get("foreground-lighter"),
-  "border-color": theme.get("border-color-dark"),
-  "border-color-hover": theme.get("border-color-darker"),
+  "background": css.get("background"),
+  "foreground": css.get("foreground"),
+  "foreground-placeholder": css.get("foreground-lighter"),
+  "border-color": css.get("border-color-dark"),
+  "border-color-hover": css.get("border-color-darker"),
   "border-color-focus": palette.get("primary"),
   "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
 ));

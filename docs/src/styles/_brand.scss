@@ -1,5 +1,5 @@
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 .brand {
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 .brand__version {
-  color: theme.get("foreground-lighter");
+  color: css.get("foreground-lighter");
 }
 
 .brand:hover,

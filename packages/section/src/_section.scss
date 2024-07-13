@@ -1,7 +1,9 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("section")} {
+  @include core.css-query("section", "padding", var.$padding, var.$breakpoints);
   position: relative;
   display: flex;
   flex-direction: column;
