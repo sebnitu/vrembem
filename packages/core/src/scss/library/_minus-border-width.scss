@@ -1,0 +1,18 @@
+@use "../modules/css";
+
+/// Takes a list of length values (such as padding) and returns the same values
+/// wrapped in a calc() function to subtract a provided line-width border width.
+/// @param {list} $list
+///   A list of length values (padding) that a border width should be subtracted
+///   from using the calc() function.
+/// @param {line-width} $border-width [css.get("border-width")]
+///   The border width value to subtract from the provided list values.
+/// @return {value}
+///   The provided CSS list value with a calc() subtracting the border width.
+@function minus-border-width($list, $border-width: css.get("border-width")) {
+  $result: "";
+  @each $value in $list {
+    $result: $result + " " + calc(#{$value} - #{$border-width});
+  }
+  @return #{$result};
+}
