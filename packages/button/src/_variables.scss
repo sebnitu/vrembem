@@ -6,7 +6,7 @@
 
 $breakpoints: core.$breakpoints !default;
 $size: css.get("form-control-size") !default;
-$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) list.nth(core.$form-control-padding, 2) !default;
+$padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
 $gap: 0.5rem !default;
 $background: null !default;
 $background-hover: null !default;
@@ -17,8 +17,8 @@ $foreground-active: null !default;
 $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-active: null !default;
-$border-width: 1px !default;
-$border-radius: css.get("border-radius") !default;
+$border-width: css.get("form-control-border-width") !default;
+$border-radius: css.get("form-control-border-radius") !default;
 $box-shadow: null !default;
 $box-shadow-focus: null !default;
 $font-size: 1em !default;
@@ -39,19 +39,19 @@ $loading-animation-duration: 0.6s !default;
 $loading-animation-timing-function: linear !default;
 
 // button_icon
-$icon-padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px);
-$icon-padding-sm: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px);
-$icon-padding-lg: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px);
+$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width-y"));
+$icon-padding-sm: core.minus-border-width(core.$form-control-padding-y-sm, css.get("form-control-border-width-y-sm"));
+$icon-padding-lg: core.minus-border-width(core.$form-control-padding-y-lg, css.get("form-control-border-width-y-lg"));
 
 // button_size_sm
 $size-sm: css.get("form-control-size-sm") !default;
-$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
+$size-sm-padding: core.minus-border-width(core.$form-control-padding-sm, css.get("form-control-border-width")) !default;
 $size-sm-font-size: css.get("font-size-sm") !default;
 $size-sm-line-height: css.get("line-height-sm") !default;
 
 // button_size_lg
 $size-lg: css.get("form-control-size-lg") !default;
-$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) list.nth(core.$form-control-padding-lg, 2) !default;
+$size-lg-padding: core.minus-border-width(core.$form-control-padding-lg, css.get("form-control-border-width")) !default;
 $size-lg-font-size: css.get("font-size-lg") !default;
 $size-lg-line-height: css.get("line-height-lg") !default;
 
