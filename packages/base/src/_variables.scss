@@ -51,7 +51,7 @@ $body-foreground: css.get("foreground") !default;
 $color-caption: css.get("foreground-lighter") !default;
 $font-family: core.$font-family !default;
 $font-family-mono: core.$font-family-mono !default;
-$font-size: core.$font-size !default;
+$font-size: core.$root-font-size !default;
 $font-size-sm: core.$font-size-sm !default;
 $line-height: css.get("line-height") !default;
 $box-sizing: border-box !default;
