@@ -187,7 +187,7 @@ $_variables: (
     $props: reverse($props);
     $result: null;
 
-    // TODO: if it's a single item and not a list, ensure that it exists?
+    // Get the props count.
     $count: list.length($props);
     // Loop through the props and append them to results as nested fallbacks.
     @for $i from 1 through $count {
