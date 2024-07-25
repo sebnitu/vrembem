@@ -90,8 +90,8 @@
 
     #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: css.get("checkbox", "transition-duration");
-      transition-timing-function: css.get("checkbox", "transition-timing-function");
+      transition-duration: css.get("checkbox", "transition-duration", var.$transition-duration);
+      transition-timing-function: css.get("checkbox", "transition-timing-function", var.$transition-timing-function);
       mask-position: center center;
       opacity: 1;
     }
@@ -105,8 +105,8 @@
 
     #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: css.get("checkbox", "transition-duration");
-      transition-timing-function: css.get("checkbox", "transition-timing-function");
+      transition-duration: css.get("checkbox", "transition-duration", var.$transition-duration);
+      transition-timing-function: css.get("checkbox", "transition-timing-function", var.$transition-timing-function);
       background-color: css.get("checkbox", "icon-color");
       mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
       mask-position: center center;

@@ -11,6 +11,8 @@ $line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
 $border-width: css.get("form-control-border-width") !default;
 $border-radius: css.get("form-control-border-radius") !default;
+$transition-duration: css.get("form-control-transition-duration") !default;
+$transition-timing-function: css.get("form-control-transition-timing-function") !default;
 
 // Unique
 $gap: 1px !default;
@@ -54,12 +56,6 @@ $size-lg-font-size: css.get("font-size-lg") !default;
 
 // Custom properties
 @include css.set("menu", (
-  // "size": $size,
-  // "font-size": $font-size,
-  // "line-height": $line-height,
-  // "padding": $padding,
-  // "border-width": $border-width,
-  // "border-radius": $border-radius,
   "gap": $gap,
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,

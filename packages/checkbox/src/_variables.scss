@@ -6,6 +6,8 @@
 // Form control fallbacks
 $size: css.get("form-control-size") !default;
 $font-size: css.get("form-control-font-size") !default;
+$transition-duration: css.get("form-control-transition-duration") !default;
+$transition-timing-function: css.get("form-control-transition-timing-function") !default;
 
 // Unique
 $box-size: 1.2em !default;
@@ -13,8 +15,6 @@ $icon-size: 0.8em !default;
 $icon-stroke: 2.5 !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius") !default;
-$transition-duration: css.get("transition-duration-short") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
 
 // Appearance
 $color: palette.get("primary") !default;
@@ -54,10 +54,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
     "opacity-hover": $background-opacity-hover,
     "opacity-focus": $background-opacity-focus,
     "opacity-active": $background-opacity-active,
-  ),
-  "transition": (
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
   )
 ));
 

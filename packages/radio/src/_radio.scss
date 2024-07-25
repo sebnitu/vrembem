@@ -87,8 +87,8 @@
     #{core.bem("radio", "dot")} {
       @include core.size(css.get("radio", "dot-size"));
       transition-property: opacity, width, height;
-      transition-duration: css.get("radio", "transition-duration");
-      transition-timing-function: css.get("radio", "transition-timing-function");
+      transition-duration: css.get("radio", "transition-duration", var.$transition-duration);
+      transition-timing-function: css.get("radio", "transition-timing-function", var.$transition-timing-function);
       background-position: center center;
       opacity: 1;
     }
