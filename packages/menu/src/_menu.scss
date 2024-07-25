@@ -27,8 +27,8 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-width: css.get("menu", "size", var.$font-size);
-  min-height: css.get("menu", "size", var.$font-size);
+  min-width: css.get("menu", "size", var.$size);
+  min-height: css.get("menu", "size", var.$size);
   padding: css.get("menu", "padding", var.$padding);
   outline: none;
   border: css.get("menu", "border-width", var.$border-width) solid css.get("menu", "border-color");
