@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 @if (var.$output-normalize) {
@@ -19,8 +20,8 @@
 
   html {
     box-sizing: var.$box-sizing;
-    font-size: var.$font-size;
-    line-height: var.$line-height;
+    font-size: css.get("font-size");
+    line-height: css.get("line-height");
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
   }

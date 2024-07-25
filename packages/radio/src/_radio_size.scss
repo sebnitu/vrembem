@@ -3,19 +3,9 @@
 @use "./variables" as var;
 
 #{core.bem("radio", null, "size", "sm")} {
-  @include css.override("radio", (
-    "size": var.$size-sm,
-    "border-width": var.$size-sm-border-width,
-    "circle-size": var.$size-sm-circle,
-    "dot-size": var.$size-sm-dot
-  ));
+  @include css.override("radio", "font-size", var.$size-sm-font-size);
 }
 
 #{core.bem("radio", null, "size", "lg")} {
-  @include css.override("radio", (
-    "size": var.$size-lg,
-    "border-width": var.$size-lg-border-width,
-    "circle-size": var.$size-lg-circle,
-    "dot-size": var.$size-lg-dot
-  ));
+  @include css.override("radio", "font-size", var.$size-lg-font-size);
 }

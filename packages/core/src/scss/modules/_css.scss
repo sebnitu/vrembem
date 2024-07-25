@@ -19,13 +19,22 @@ $_variables: (
 );
 
 /// Function to check whether a module has been set in the `$_variables` map.
-/// Will throw an error if module was not found.
-/// @return {true | error}
+/// Will throw an error if the module was not found and is required.
+/// @param {string} $module
+///   The module to check for its existence.
+/// @param {boolean} $required [true]
+///   Whether or not the module is required. If set to `true`, will throw an
+///   error when it's not found, otherwise will return false. 
+/// @return {boolean | error}
 ///   If module exists in map, returns true. Otherwise, will throw error.
 /// @access private
-@function _module-exists($module) {
+@function _module-exists($module, $required: true) {
   @if not map.has-key($_variables, $module) {
-    @error "Module `#{$module}` has not been set in variables map.";
+    @if $required {
+      @error "Module `#{$module}` has not been set in variables map.";
+    } @else {
+      @return false;
+    }
   } @else {
     @return true;
   }
@@ -145,6 +154,11 @@ $_variables: (
 ///   css.get("button", "background-hover", "background");
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
+/// 
+/// @example scss
+///   css.get("button", "background-hover", "background", pink);
+///   // CSS Output
+///   var(--vb-button-background-hover, var(--vb-button-background, pink));
 ///
 @function get($module, $props...) {
   // Return `$_variables` map if module is set to "*" value.
@@ -173,15 +187,30 @@ $_variables: (
     $props: reverse($props);
     $result: null;
 
+    // Get the props count.
+    $count: list.length($props);
     // Loop through the props and append them to results as nested fallbacks.
-    @each $prop in $props {
-      // If the property exists in the module or the module's default theme
-      @if map.has-key($_variables, $module, $prop) or map.has-key($_variables, $module, config.get("default-theme"), $prop) {
+    @for $i from 1 through $count {
+      $prop: list.nth($props, $i);
+      // If the property is not the first item in the list or exists in the
+      // module or the module's default theme...
+      @if 
+        map.has-key($_variables, $module, $prop) or
+        map.has-key($_variables, $module, config.get("default-theme"), $prop)
+      {
         // store the reference in our result.
         $result: reference($module, $prop, $result);
       } @else {
-        // Store the raw CSS value in our result.
-        $result: $prop;
+        @if $count > 1 and $i == 1 {
+          // First prop of the props list, store the raw value as our fallback.
+          $result: $prop;
+        } @else if $count > 1 {
+          // If there are more than one props, reference the undefined variable.
+          $result: reference($module, $prop, $result);
+        } @else {
+          // Else, it should exist in our module map, throw error.
+          @error "Property `#{$prop}` does not exist in `#{$module}` variables map.";
+        }
       }
     }
     
@@ -414,7 +443,7 @@ $_variables: (
     @each $module in map.keys($_variables) {
       @include output($module, $strategy);
     }
-  } @else if _module-exists($module) {
+  } @else if _module-exists($module, false) {
     $moduleMap: map.get($_variables, $module);
     // Output custom properties via usage output.
     @include usage.output(

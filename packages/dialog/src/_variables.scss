@@ -11,7 +11,7 @@ $sep-border: null !default;
 $border-radius: css.get("border-radius") !default;
 $box-shadow: css.get("box-shadow-4") !default;
 $title-font-size: css.get("font-size-lg") !default;
-$title-line-height: css.get("line-height-lg") !default;
+$title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Custom properties

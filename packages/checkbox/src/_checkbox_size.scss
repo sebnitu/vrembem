@@ -1,40 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
-@use "./functions" as fun;
 
 #{core.bem("checkbox", null, "size", "sm")} {
-  @include css.override("checkbox", (
-    "size": var.$size-sm,
-    "border-width": var.$size-sm-border-width,
-    "box-size": var.$size-sm-box,
-    "icon-size": var.$size-sm-icon,
-    "icon-stroke": var.$size-sm-icon-stroke
-  ));
-
-  #{core.bem("checkbox", "icon")} {
-    mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-sm-icon-stroke)}");
-  }
-
-  #{core.bem("checkbox", "native")}:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
-    mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-sm-icon-stroke)}");
-  }
+  @include css.override("checkbox", "font-size", var.$size-sm-font-size);
 }
 
 #{core.bem("checkbox", null, "size", "lg")} {
-  @include css.override("checkbox", (
-    "size": var.$size-lg,
-    "border-width": var.$size-lg-border-width,
-    "box-size": var.$size-lg-box,
-    "icon-size": var.$size-lg-icon,
-    "icon-stroke": var.$size-lg-icon-stroke
-  ));
-
-  #{core.bem("checkbox", "icon")} {
-    mask-image: url("#{fun.icon-check(var.$icon-size, var.$size-lg-icon-stroke)}");
-  }
-
-  #{core.bem("checkbox", "native")}:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
-    mask-image: url("#{fun.icon-minus(var.$icon-size, var.$size-lg-icon-stroke)}");
-  }
+  @include css.override("checkbox", "font-size", var.$size-lg-font-size);
 }

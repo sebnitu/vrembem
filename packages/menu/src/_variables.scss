@@ -4,14 +4,23 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+// Form control fallbacks
 $size: css.get("form-control-size") !default;
-$padding: css.get("form-control-padding") !default;
+$font-size: css.get("form-control-font-size") !default;
+$line-height: css.get("form-control-line-height") !default;
+$padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
+$border-width: css.get("form-control-border-width") !default;
+$border-radius: css.get("form-control-border-radius") !default;
+$transition-duration: css.get("form-control-transition-duration") !default;
+$transition-timing-function: css.get("form-control-transition-timing-function") !default;
+
+// Unique
 $gap: 1px !default;
-$border-color: null !default;
+
+// Appearance
+$border-color: transparent !default;
 $border-color-hover: null !default;
 $border-color-active: null !default;
-$border-width: 1px !default;
-$border-radius: css.get("border-radius") !default;
 $background: null !default;
 $background-hover: null !default;
 $background-active: null !default;
@@ -19,48 +28,38 @@ $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-active: null !default;
 $outline-focus: 2px solid css.get("focus-visible") !default;
-$font-size: css.get("font-size") !default;
-$line-height: css.get("line-height") !default;
 
-// menu__action
+// Element: menu__action
 $action-gap: 0.5em !default;
 
-// menu__sep
+// Element modifier: menu__action_icon
+$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
+
+// Element: menu__sep
 $sep-size: 1px !default;
 $sep-gap: 0.5em !default;
 $sep-background: css.get("border-color") !default;
 
-// is-active
+// State: active
 $active-background: none !default;
 $active-foreground: palette.get("primary") !default;
 
-// is-disabled
+// State: disabled
 $disabled-background: none !default;
 $disabled-foreground: css.get("foreground-lighter") !default;
 
-// menu_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-padding: css.get("form-control-padding-sm") !default;
+// Modifier: menu_size_sm
 $size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
 
-// menu_size_sm
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-padding: css.get("form-control-padding-lg") !default;
+// Modifier: menu_size_sm
 $size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
 
 // Custom properties
 @include css.set("menu", (
-  "size": $size,
-  "padding": $padding,
-  "padding-x": core.get-side(core.$form-control-padding, top),
   "gap": $gap,
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,
   "border-color-active": $border-color-active,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
   "background": $background,
   "background-hover": $background-hover,
   "background-active": $background-active,
@@ -68,8 +67,6 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "foreground-hover": $foreground-hover,
   "foreground-active": $foreground-active,
   "outline-focus": $outline-focus,
-  "font-size": $font-size,
-  "line-height": $line-height,
   "action-gap": $action-gap,
   "sep-size": $sep-size,
   "sep-gap": $sep-gap,

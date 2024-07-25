@@ -25,7 +25,7 @@ $link-offset: -0.25em !default;
 // Title
 $title-color: null !default;
 $title-font-size: css.get("font-size-lg") !default;
-$title-line-height: css.get("line-height-lg") !default;
+$title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Custom properties

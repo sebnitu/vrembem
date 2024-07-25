@@ -1,18 +1,41 @@
 @use "../modules/css";
 
-$form-control-padding: 0.5em 1em !default;
-$form-control-padding-sm: 0.25em 0.75em !default;
-$form-control-padding-lg: 0.648rem 1.5rem !default;
-
-$form-control-size: 2.5rem !default;      // 40px
-$form-control-size-sm: 1.875rem !default; // 30px
-$form-control-size-lg: 3.125rem !default; // 50px
-
+$form-control-font-size: css.get("font-size") !default;
+$form-control-font-size-sm: css.get("font-size-sm") !default;
+$form-control-font-size-lg: css.get("font-size-lg") !default;
+$form-control-line-height: css.get("line-height") !default;
 @include css.set("core", "form-control", (
-  "padding": $form-control-padding,
-  "padding-sm": $form-control-padding-sm,
-  "padding-lg": $form-control-padding-lg,
-  "size": $form-control-size,
-  "size-sm": $form-control-size-sm,
-  "size-lg": $form-control-size-lg
+  "font-size": $form-control-font-size,
+  "font-size-sm": $form-control-font-size-sm,
+  "font-size-lg": $form-control-font-size-lg,
+  "line-height": $form-control-line-height,
 ));
+
+$form-control-border-width: css.get("border-width") !default;
+$form-control-border-radius: css.get("border-radius") !default;
+@include css.set("core", "form-control", (
+  "border-width": $form-control-border-width,
+  "border-radius": $form-control-border-radius,
+));
+
+$form-control-padding-x: 1em !default;
+$form-control-padding-y: 0.5em !default;
+$form-control-padding: $form-control-padding-y $form-control-padding-x !default;
+@include css.set("core", "form-control", (
+  "padding-x": $form-control-padding-x,
+  "padding-y": $form-control-padding-y,
+  "padding": $form-control-padding
+));
+
+$form-control-transition-duration: css.get("transition-duration") !default;
+$form-control-transition-timing-function: css.get("transition-timing-function") !default;
+@include css.set("core", "form-control", (
+  "transition-duration": $form-control-transition-duration,
+  "transition-timing-function": $form-control-transition-timing-function
+));
+
+// Size is calculated using the line-height and vertical padding. This is used 
+// to set the minimum height and width of form controls.
+$form-control-size: calc(calc(1em * css.get("form-control-line-height")) + calc(css.get("form-control-padding-y") * 2)) !default;
+@include css.set("core", "form-control-size", $form-control-size);
+

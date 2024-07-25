@@ -3,21 +3,9 @@
 @use "./variables" as var;
 
 #{core.bem("menu", null, "size", "sm")} {
-  @include css.override("menu", (
-    "size": var.$size-sm,
-    "padding": var.$size-sm-padding,
-    "padding-x": core.get-side(core.$form-control-padding-sm, top),
-    "font-size": var.$size-sm-font-size,
-    "line-height": var.$size-sm-line-height
-  ));
+  @include css.override("menu", "font-size", var.$size-sm-font-size);
 }
 
 #{core.bem("menu", null, "size", "lg")} {
-  @include css.override("menu", (
-    "size": var.$size-lg,
-    "padding": var.$size-lg-padding,
-    "padding-x": core.get-side(core.$form-control-padding-lg, top),
-    "font-size": var.$size-lg-font-size,
-    "line-height": var.$size-lg-line-height
-  ));
+  @include css.override("menu", "font-size", var.$size-lg-font-size);
 }

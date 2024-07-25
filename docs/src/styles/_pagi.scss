@@ -34,7 +34,6 @@
   transition-timing-function: css.get("transition-timing-function");
   border: 1px solid css.get("border-color");
   border-radius: css.get("border-radius");
-  line-height: css.get("line-height-sm");
 
   &:hover {
     border-color: palette.get("primary");

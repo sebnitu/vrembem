@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("button")} {
   position: relative;
@@ -7,23 +8,23 @@
   gap: css.get("button", "gap");
   align-items: center;
   justify-content: center;
-  min-width: css.get("button", "size");
-  height: css.get("button", "size");
-  padding: css.get("button", "padding");
+  min-width: css.get("button", "size", var.$size);
+  min-height: css.get("button", "size", var.$size);
+  padding: css.get("button", "padding", var.$padding);
   transition-property: css.get("button", "transition-property");
-  transition-duration: css.get("button", "transition-duration");
-  transition-timing-function: css.get("button", "transition-timing-function");
+  transition-duration: css.get("button", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("button", "transition-timing-function", var.$transition-timing-function);
   outline: none;
-  border: css.get("button", "border-width") solid css.get("button", "border-color");
-  border-radius: css.get("button", "border-radius");
+  border: css.get("button", "border-width", var.$border-width) solid css.get("button", "border-color");
+  border-radius: css.get("button", "border-radius", var.$border-radius);
   background: css.get("button", "background");
   background-clip: border-box;
   box-shadow: css.get("button", "box-shadow");
   color: css.get("button", "foreground");
   font-family: inherit;
-  font-size: css.get("button", "font-size");
-  font-weight: css.get("button", "font-weight");
-  line-height: css.get("button", "line-height");
+  font-size: css.get("button", "font-size", var.$font-size);
+  font-weight: inherit;
+  line-height: css.get("button", "line-height", var.$line-height);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;

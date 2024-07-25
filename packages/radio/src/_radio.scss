@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("radio")} {
   position: relative;
@@ -7,11 +8,12 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  font-size: css.get("radio", "font-size", var.$font-size);
   vertical-align: middle;
 }
 
 #{core.bem("radio", "background")} {
-  @include core.size(css.get("radio", "size"));
+  @include core.size(css.get("radio", "size", var.$size));
   position: relative;
   z-index: 1;
   display: flex;
@@ -85,8 +87,8 @@
     #{core.bem("radio", "dot")} {
       @include core.size(css.get("radio", "dot-size"));
       transition-property: opacity, width, height;
-      transition-duration: css.get("radio", "transition-duration");
-      transition-timing-function: css.get("radio", "transition-timing-function");
+      transition-duration: css.get("radio", "transition-duration", var.$transition-duration);
+      transition-timing-function: css.get("radio", "transition-timing-function", var.$transition-timing-function);
       background-position: center center;
       opacity: 1;
     }

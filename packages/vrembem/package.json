@@ -19,6 +19,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./base": "./base.scss",
     "./root": "./root.scss"
   },
   "files": [
@@ -26,6 +27,7 @@
     "dist",
     "index.js",
     "index.scss",
+    "base.scss",
     "root.scss"
   ],
   "scripts": {
