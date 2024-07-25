@@ -1,5 +1,5 @@
 @use "./setup";
-@use "vrembem";
+@use "vrembem/base";
 
 @use "./root";
 @use "./global";
@@ -34,7 +34,6 @@
 
 // Important!
 // Include this last to catch all custom property references.
-// TODO: Figure out why layout custom properties are not being output.
 @forward "vrembem/root";
 
 // Module logs
