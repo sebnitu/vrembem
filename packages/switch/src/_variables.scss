@@ -34,8 +34,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("switch", (
-  // "size": $size,
-  // "font-size": $font-size,
   "color": $color,
   "fill": $fill,
   "track-fill": $track-fill,

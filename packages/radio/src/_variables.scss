@@ -34,8 +34,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom property
 @include css.set("radio", (
-  // "size": $size,
-  // "font-size": $font-size,
   "color": $color,
   "fill": $fill,
   "circle-size": $circle-size,
