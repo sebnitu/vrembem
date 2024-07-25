@@ -19,13 +19,22 @@ $_variables: (
 );
 
 /// Function to check whether a module has been set in the `$_variables` map.
-/// Will throw an error if module was not found.
-/// @return {true | error}
+/// Will throw an error if the module was not found and is required.
+/// @param {string} $module
+///   The module to check for its existence.
+/// @param {boolean} $required [true]
+///   Whether or not the module is required. If set to `true`, will throw an
+///   error when it's not found, otherwise will return false. 
+/// @return {boolean | error}
 ///   If module exists in map, returns true. Otherwise, will throw error.
 /// @access private
-@function _module-exists($module) {
+@function _module-exists($module, $required: true) {
   @if not map.has-key($_variables, $module) {
-    @error "Module `#{$module}` has not been set in variables map.";
+    @if $required {
+      @error "Module `#{$module}` has not been set in variables map.";
+    } @else {
+      @return false;
+    }
   } @else {
     @return true;
   }
@@ -429,7 +438,7 @@ $_variables: (
     @each $module in map.keys($_variables) {
       @include output($module, $strategy);
     }
-  } @else if _module-exists($module) {
+  } @else if _module-exists($module, false) {
     $moduleMap: map.get($_variables, $module);
     // Output custom properties via usage output.
     @include usage.output(
