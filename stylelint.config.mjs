@@ -45,10 +45,6 @@ export default {
     "selector-no-vendor-prefix": null,
     "order/order": [
       [
-        {
-          "type": "at-rule",
-          "hasBlock": false
-        },
         "custom-properties",
         "declarations"
       ]
