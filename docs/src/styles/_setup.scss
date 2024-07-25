@@ -6,7 +6,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include config.set("output-strategy", "*");
+@include config.set("output-strategy", "used");
 
 @include css.set("layout", (
   "width": 80rem,
