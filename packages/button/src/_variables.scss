@@ -4,12 +4,21 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 
-$breakpoints: core.$breakpoints !default;
+// Form control fallbacks
 $size: css.get("form-control-size") !default;
 $font-size: css.get("form-control-font-size") !default;
 $line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
+$border-width: css.get("form-control-border-width") !default;
+$border-radius: css.get("form-control-border-radius") !default;
+
+// Unique
 $gap: 0.5rem !default;
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
+
+// Appearance
 $background: null !default;
 $background-hover: null !default;
 $background-active: null !default;
@@ -19,39 +28,36 @@ $foreground-active: null !default;
 $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-active: null !default;
-$border-width: css.get("form-control-border-width") !default;
-$border-radius: css.get("form-control-border-radius") !default;
 $box-shadow: null !default;
 $box-shadow-focus: null !default;
-$transition-property: box-shadow, outline, outline-offset !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
 
-// Disabled
+// State: disabled
 $disabled-opacity: 0.6 !default;
 
-// is-loading
+// State: loading
 $loading-size: 1em !default;
 $loading-border: 2px solid !default;
 $loading-border-color: null !default;
 $loading-animation-duration: 0.6s !default;
 $loading-animation-timing-function: linear !default;
 
-// button_icon
+// Modifier: button_icon
 $icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
 
-// button_size_sm
+// Modifier: button_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
-// button_size_lg
+// Modifier: button_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("button", (
-  "size": $size,
-  "font-size": $font-size,
-  "line-height": $line-height,
-  "padding": $padding,
+  // "size": $size,
+  // "font-size": $font-size,
+  // "line-height": $line-height,
+  // "padding": $padding,
+  // "border-width": $border-width,
+  // "border-radius": $border-radius,
   "gap": $gap,
   "background": $background,
   "background-hover": $background-hover,
@@ -62,8 +68,7 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,
   "border-color-active": $border-color-active,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
+
   "box-shadow": $box-shadow,
   "box-shadow-focus": $box-shadow-focus,
   

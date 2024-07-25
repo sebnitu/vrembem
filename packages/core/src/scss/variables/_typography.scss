@@ -4,8 +4,7 @@ $font-family-sans: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Ro
 $font-family-serif: constantia, "Lucida Bright", lucidabright, "Lucida Serif", lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", georgia, serif !default;
 $font-family-mono: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family: $font-family-sans !default;
-$root-font-size: 16px !default;
-$font-size: 1rem !default;
+$font-size: 16px !default;
 $font-size-sm: 0.875rem !default; // 14px
 $font-size-lg: 1.125rem !default; // 18px
 $line-height: 1.5 !default;
@@ -26,7 +25,6 @@ $font-weight-map: (
   "font-family-sans": $font-family-sans,
   "font-family-serif": $font-family-serif,
   "font-family-mono": $font-family-mono,
-  "root-font-size": $root-font-size,
   "font-size": $font-size,
   "font-size-sm": $font-size-sm,
   "font-size-lg": $font-size-lg,

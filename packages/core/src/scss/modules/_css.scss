@@ -173,15 +173,17 @@ $_variables: (
     $props: reverse($props);
     $result: null;
 
+    // TODO: if it's a single item and not a list, ensure that it exists?
     // Loop through the props and append them to results as nested fallbacks.
-    @each $prop in $props {
-      // If the property exists in the module or the module's default theme
-      @if map.has-key($_variables, $module, $prop) or map.has-key($_variables, $module, config.get("default-theme"), $prop) {
+    @for $i from 1 through list.length($props) {
+      // If the property is not the first item in the list or exists in the
+      // module or the module's default theme...
+      @if $i != 1 or map.has-key($_variables, $module, list.nth($props, $i)) or map.has-key($_variables, $module, config.get("default-theme"), list.nth($props, $i)) {
         // store the reference in our result.
-        $result: reference($module, $prop, $result);
+        $result: reference($module, list.nth($props, $i), $result);
       } @else {
-        // Store the raw CSS value in our result.
-        $result: $prop;
+        // Else, store the raw value as our fallback.
+        $result: list.nth($props, $i);
       }
     }
     

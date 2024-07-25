@@ -4,10 +4,20 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+// Form control fallbacks
 $size: css.get("form-control-size") !default;
 $font-size: css.get("form-control-font-size") !default;
 $line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width")) !default;
+$border-width: css.get("form-control-border-width") !default;
+$border-radius: css.get("form-control-border-radius") !default;
+
+// Unique
+$transition-property: box-shadow, outline, outline-offset !default;
+$transition-duration: core.$transition-duration-short !default;
+$transition-timing-function: core.$transition-timing-function !default;
+
+// Appearance
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
@@ -20,27 +30,25 @@ $foreground-placeholder: null !default;
 $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-focus: null !default;
-$border-width: css.get("form-control-border-width") !default;
-$border-radius: css.get("form-control-border-radius") !default;
 $box-shadow: palette.get("primary", 50%, 0%) !default;
 $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
 $box-shadow-inset: rgb(0 0 0 / 10%);
 $box-shadow-inset-focus: rgb(0 0 0 / 0%);
-$outline: none !default;
-$transition-property: box-shadow, outline, outline-offset !default;
-$transition-duration: core.$transition-duration-short !default;
-$transition-timing-function: core.$transition-timing-function !default;
 
-// input_size_sm
+// Modifier: input_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
-// input_size_lg
+// Modifier: input_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("input", (
-  "size": $size,
-  "padding": $padding,
+  // "size": $size,
+  // "padding": $padding,
+  // "font-size": $font-size,
+  // "line-height": $line-height,
+  // "border-width": $border-width,
+  // "border-radius": $border-radius,
   "background": $background,
   "background-hover": $background-hover,
   "background-focus": $background-focus,
@@ -53,15 +61,11 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,
   "border-color-focus": $border-color-focus,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
   "box-shadow": $box-shadow,
   "box-shadow-focus": $box-shadow-focus,
   "box-shadow-inset": $box-shadow-inset,
   "box-shadow-inset-focus": $box-shadow-inset-focus,
-  "font-size": $font-size,
-  "line-height": $line-height,
-  "outline": $outline,
+  
   "transition": (
     "property": $transition-property,
     "duration": $transition-duration,

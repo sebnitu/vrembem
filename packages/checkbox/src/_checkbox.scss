@@ -9,12 +9,12 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  font-size: css.get("checkbox", "font-size", var.$font-size);
   vertical-align: middle;
-  font-size: css.get("checkbox", "font-size");
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.size(css.get("checkbox", "size"));
+  @include core.size(css.get("checkbox", "size", var.$size));
   position: relative;
   z-index: 1;
   display: flex;

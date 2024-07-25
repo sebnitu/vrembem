@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "border-width") * 2));
 
@@ -9,14 +10,14 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: calc(css.get("switch", "size") * 0.25);
-  padding-left: calc(css.get("switch", "size") * 0.25);
+  padding-right: calc(css.get("switch", "size", var.$size) * 0.25);
+  padding-left: calc(css.get("switch", "size", var.$size) * 0.25);
+  font-size: css.get("switch", "font-size", var.$font-size);
   vertical-align: middle;
-  font-size: css.get("switch", "font-size");
 }
 
 #{core.bem("switch", "background")} {
-  @include core.size(css.get("switch", "size"));
+  @include core.size(css.get("switch", "size", var.$size));
   position: relative;
   z-index: 1;
   display: flex;
@@ -24,11 +25,11 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
   justify-content: center;
 
   &::after {
-    @include core.size(css.get("switch", "size"));
+    @include core.size(css.get("switch", "size", var.$size));
     content: "";
     position: absolute;
     top: 0;
-    left: calc(calc(css.get("switch", "size") * 0.25) * -1);
+    left: calc(calc(css.get("switch", "size", var.$size) * 0.25) * -1);
     transition: left css.get("switch", "transition-duration") css.get("switch", "transition-timing-function");
     border-radius: css.get("switch", "background-border-radius");
     background-color: hsl(from css.get("switch", "background-color") h s l / css.get("switch", "background-opacity"));
@@ -114,7 +115,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
 
   &:checked + #{core.bem("switch", "background")} {
     &::after {
-      left: calc(100% - calc(css.get("switch", "size") * 0.75));
+      left: calc(100% - calc(css.get("switch", "size", var.$size) * 0.75));
     }
 
     #{core.bem("switch", "track")} {

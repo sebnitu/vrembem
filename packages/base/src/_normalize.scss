@@ -20,7 +20,7 @@
 
   html {
     box-sizing: var.$box-sizing;
-    font-size: css.get("root-font-size");
+    font-size: css.get("font-size");
     line-height: css.get("line-height");
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;

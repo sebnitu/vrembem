@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("radio")} {
   position: relative;
@@ -7,12 +8,12 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  font-size: css.get("radio", "font-size", var.$font-size);
   vertical-align: middle;
-  font-size: css.get("radio", "font-size");
 }
 
 #{core.bem("radio", "background")} {
-  @include core.size(css.get("radio", "size"));
+  @include core.size(css.get("radio", "size", var.$size));
   position: relative;
   z-index: 1;
   display: flex;

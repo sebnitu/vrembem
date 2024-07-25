@@ -1,12 +1,11 @@
 @use "@vrembem/core";
-@use "./variables" as var;
 
 #{core.bem("button", null, "block")} {
   display: flex;
   width: 100%;
 }
 
-@each $key, $value in var.$breakpoints {
+@each $key, $value in core.$breakpoints {
   #{core.bem("button", null, "block", $key)} {
     display: flex;
     width: 100%;

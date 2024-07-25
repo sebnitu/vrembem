@@ -3,34 +3,39 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+// Form control fallbacks
 $size: css.get("form-control-size") !default;
 $font-size: css.get("form-control-font-size") !default;
+
+// Unique
+$track-size: 1.25em !default;
+$border-width: 2px !default;
+$border-radius: css.get("border-radius-circle") !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
+
+// Appearance
 $color: palette.get("primary") !default;
 $fill: null !default;
 $track-fill: null !default;
-$track-size: 1.25em !default;
 $border-color: null !default;
-$border-width: 2px !default;
-$border-radius: css.get("border-radius-circle") !default;
 $background-color: $color !default;
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
-$transition-duration: css.get("transition-duration-short") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
 
-// switch_size_sm
+// Modifier: switch_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
-// switch_size_lg
+// Modifier: switch_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("switch", (
-  "size": $size,
-  "font-size": $font-size,
+  // "size": $size,
+  // "font-size": $font-size,
   "color": $color,
   "fill": $fill,
   "track-fill": $track-fill,

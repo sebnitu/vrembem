@@ -1,13 +1,14 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("menu")} {
   display: flex;
   gap: css.get("menu", "gap");
   flex-direction: column;
   align-items: stretch;
-  font-size: css.get("menu", "font-size");
-  line-height: css.get("menu", "line-height");
+  font-size: css.get("menu", "font-size", var.$font-size);
+  line-height: css.get("menu", "line-height", var.$line-height);
   list-style: none;
 }
 
@@ -26,12 +27,12 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-width: css.get("menu", "size");
-  min-height: css.get("menu", "size");
-  padding: css.get("menu", "padding");
+  min-width: css.get("menu", "size", var.$font-size);
+  min-height: css.get("menu", "size", var.$font-size);
+  padding: css.get("menu", "padding", var.$padding);
   outline: none;
-  border: css.get("menu", "border-width") solid css.get("menu", "border-color");
-  border-radius: css.get("menu", "border-radius");
+  border: css.get("menu", "border-width", var.$border-width) solid css.get("menu", "border-color");
+  border-radius: css.get("menu", "border-radius", var.$border-radius);
   background: css.get("menu", "background");
   color: css.get("menu", "foreground");
   white-space: normal;
@@ -77,5 +78,5 @@
 }
 
 #{core.bem("menu", "action", "icon")} {
-  padding: css.get("menu", "padding-x");
+  @include css.override("menu", "padding", var.$icon-padding);
 }
