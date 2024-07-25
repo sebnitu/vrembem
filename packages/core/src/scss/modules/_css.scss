@@ -154,6 +154,11 @@ $_variables: (
 ///   css.get("button", "background-hover", "background");
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
+/// 
+/// @example scss
+///   css.get("button", "background-hover", "background", pink);
+///   // CSS Output
+///   var(--vb-button-background-hover, var(--vb-button-background, pink));
 ///
 @function get($module, $props...) {
   // Return `$_variables` map if module is set to "*" value.
