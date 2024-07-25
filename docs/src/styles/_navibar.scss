@@ -51,7 +51,7 @@
   opacity: 0;
 
   &:focus {
-    top: calc(calc(css.get("layout", "navibar-height") - css.get("button", "size")) / 2);
+    top: calc(calc(css.get("layout", "navibar-height") - css.get("form-control-size")) / 2);
     opacity: 1;
   }
 }

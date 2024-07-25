@@ -1,37 +1,31 @@
 @use "../modules/css";
 
-$form-control-padding-x: 1em !default;
-$form-control-padding-y: 0.5em !default;
-$form-control-padding: $form-control-padding-y $form-control-padding-x !default;
-
-$form-control-padding-x-sm: 0.75em !default;
-$form-control-padding-y-sm: 0.25em !default;
-$form-control-padding-sm: $form-control-padding-y-sm $form-control-padding-x-sm !default;
-
-$form-control-padding-x-lg: 1.5rem !default;
-$form-control-padding-y-lg: 0.648rem !default;
-$form-control-padding-lg: $form-control-padding-y-lg $form-control-padding-x-lg !default;
-
-$form-control-size: 2.5rem !default;      // 40px
-$form-control-size-sm: 1.875rem !default; // 30px
-$form-control-size-lg: 3.125rem !default; // 50px
+$form-control-font-size: css.get("font-size");
+$form-control-font-size-sm: css.get("font-size-sm");
+$form-control-font-size-lg: css.get("font-size-lg");
+$form-control-line-height: css.get("line-height");
+@include css.set("core", "form-control", (
+  "font-size": $form-control-font-size,
+  "font-size-sm": $form-control-font-size-sm,
+  "font-size-lg": $form-control-font-size-lg,
+  "line-height": $form-control-line-height,
+));
 
 $form-control-border-width: css.get("border-width");
 $form-control-border-radius: css.get("border-radius");
+@include css.set("core", "form-control", (
+  "border-width": $form-control-border-width,
+  "border-radius": $form-control-border-radius,
+));
 
+$form-control-padding-x: 1em !default;
+$form-control-padding-y: 0.5em !default;
+$form-control-padding: $form-control-padding-y $form-control-padding-x !default;
 @include css.set("core", "form-control", (
   "padding-x": $form-control-padding-x,
   "padding-y": $form-control-padding-y,
-  "padding": $form-control-padding,
-  "padding-x-sm": $form-control-padding-x-sm,
-  "padding-y-sm": $form-control-padding-y-sm,
-  "padding-sm": $form-control-padding-sm,
-  "padding-x-lg": $form-control-padding-x-lg,
-  "padding-y-lg": $form-control-padding-y-lg,
-  "padding-lg": $form-control-padding-lg,
-  "size": $form-control-size,
-  "border-width": $form-control-border-width,
-  "border-radius": $form-control-border-radius,
-  "size-sm": $form-control-size-sm,
-  "size-lg": $form-control-size-lg
+  "padding": $form-control-padding
 ));
+
+$form-control-size: calc(calc(1em * css.get("form-control-line-height")) + calc(css.get("form-control-padding-y") * 2)) !default;
+@include css.set("core", "form-control-size", $form-control-size);

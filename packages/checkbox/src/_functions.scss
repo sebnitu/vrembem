@@ -4,7 +4,7 @@
 /// @param {Number (unitless)} $stroke - Value for stroke-width attribute
 /// @return {String} - Data image string
 @function icon-check($size, $stroke) {
-  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="black" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>';
+  @return 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="#{$size}" height="#{$size}" fill="none" stroke="black" stroke-width="#{$stroke}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>';
 }
 
 /// Outputs data image string for minus SVG icon. Used as the value of url() in

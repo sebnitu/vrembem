@@ -4,12 +4,13 @@
 @use "@vrembem/core/theme";
 
 $size: css.get("form-control-size") !default;
-$box-size: 18px !default;
-$icon-size: 12px !default;
-$icon-color: null !default;
-$icon-stroke: 2.5 !default;
+$font-size: css.get("form-control-font-size") !default;
 $color: palette.get("primary") !default;
 $fill: null !default;
+$box-size: 1.2em !default;
+$icon-size: 0.8em !default;
+$icon-color: null !default;
+$icon-stroke: 2.5 !default;
 $border-color: null !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius") !default;
@@ -23,28 +24,21 @@ $transition-duration: css.get("transition-duration-short") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
 
 // checkbox_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-border-width: 2px !default;
-$size-sm-box: 14px !default;
-$size-sm-icon: 10px !default;
-$size-sm-icon-stroke: 2.5 !default;
+$size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // checkbox_size_lg
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-border-width: 2.5px !default;
-$size-lg-box: 24px !default;
-$size-lg-icon: 18px !default;
-$size-lg-icon-stroke: 2 !default;
+$size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("checkbox", (
   "size": $size,
+  "font-size": $font-size,
+  "color": $color,
+  "fill": $fill,
   "box-size": $box-size,
   "icon-size": $icon-size,
   "icon-color": $icon-color,
   "icon-stroke": $icon-stroke,
-  "color": $color,
-  "fill": $fill,
   "border-color": $border-color,
   "border-width": $border-width,
   "border-radius": $border-radius,

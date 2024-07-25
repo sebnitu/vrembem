@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   vertical-align: middle;
+  font-size: css.get("radio", "font-size");
 }
 
 #{core.bem("radio", "background")} {

@@ -5,6 +5,8 @@
 @use "@vrembem/core/theme";
 
 $size: css.get("form-control-size") !default;
+$font-size: css.get("form-control-font-size") !default;
+$line-height: css.get("form-control-line-height") !default;
 $padding: css.get("form-control-padding") !default;
 $gap: 1px !default;
 $border-color: null !default;
@@ -19,8 +21,6 @@ $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-active: null !default;
 $outline-focus: 2px solid css.get("focus-visible") !default;
-$font-size: css.get("font-size") !default;
-$line-height: css.get("line-height") !default;
 
 // menu__action
 $action-gap: 0.5em !default;
@@ -39,16 +39,10 @@ $disabled-background: none !default;
 $disabled-foreground: css.get("foreground-lighter") !default;
 
 // menu_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-padding: css.get("form-control-padding-sm") !default;
 $size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
 
 // menu_size_sm
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-padding: css.get("form-control-padding-lg") !default;
 $size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
 
 // Custom properties
 @include css.set("menu", (

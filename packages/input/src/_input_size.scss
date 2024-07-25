@@ -3,19 +3,9 @@
 @use "./variables" as var;
 
 #{core.bem("input", null, "size", "sm")} {
-  @include css.override("input", (
-    "size": var.$size-sm,
-    "padding": var.$size-sm-padding,
-    "font-size": var.$size-sm-font-size,
-    "line-height": var.$size-sm-line-height
-  ));
+  @include css.override("input", "font-size", var.$size-sm-font-size);
 }
 
 #{core.bem("input", null, "size", "lg")} {
-  @include css.override("input", (
-    "size": var.$size-lg,
-    "padding": var.$size-lg-padding,
-    "font-size": var.$size-lg-font-size,
-    "line-height": var.$size-lg-line-height
-  ));
+  @include css.override("input", "font-size", var.$size-lg-font-size);
 }

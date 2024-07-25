@@ -4,12 +4,4 @@
 
 #{core.bem("button", null, "icon")} {
   @include css.override("button", "padding", var.$icon-padding);
-
-  &#{core.bem("button", null, "size", "sm")} {
-    @include css.override("button", "padding", var.$icon-padding-sm);
-  }
-
-  &#{core.bem("button", null, "size", "lg")} {
-    @include css.override("button", "padding", var.$icon-padding-lg);
-  }
 }

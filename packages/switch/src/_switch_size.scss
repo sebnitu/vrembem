@@ -3,17 +3,9 @@
 @use "./variables" as var;
 
 #{core.bem("switch", null, "size", "sm")} {
-  @include css.override("switch", (
-    "size": var.$size-sm,
-    "border-width": var.$size-sm-border-width,
-    "track-size": var.$size-sm-track
-  ));
+  @include css.override("switch", "font-size", var.$size-sm-font-size);
 }
 
 #{core.bem("switch", null, "size", "lg")} {
-  @include css.override("switch", (
-    "size": var.$size-lg,
-    "border-width": var.$size-lg-border-width,
-    "track-size": var.$size-lg-track
-  ));
+  @include css.override("switch", "font-size", var.$size-lg-font-size);
 }

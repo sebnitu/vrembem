@@ -4,10 +4,11 @@
 @use "@vrembem/core/theme";
 
 $size: css.get("form-control-size") !default;
-$track-size: 20px !default;
+$font-size: css.get("form-control-font-size") !default;
 $color: palette.get("primary") !default;
-$thumb-fill: null !default;
+$fill: null !default;
 $track-fill: null !default;
+$track-size: 1.25em !default;
 $border-color: null !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius-circle") !default;
@@ -21,22 +22,19 @@ $transition-duration: css.get("transition-duration-short") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
 
 // switch_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-border-width: 2px !default;
-$size-sm-track: 16px !default;
+$size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // switch_size_lg
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-border-width: 2.5px !default;
-$size-lg-track: 26px !default;
+$size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("switch", (
   "size": $size,
-  "track-size": $track-size,
+  "font-size": $font-size,
   "color": $color,
-  "thumb-fill": $thumb-fill,
+  "fill": $fill,
   "track-fill": $track-fill,
+  "track-size": $track-size,
   "border-color": $border-color,
   "border-width": $border-width,
   "border-radius": $border-radius,
@@ -56,13 +54,13 @@ $size-lg-track: 26px !default;
 
 // Themes
 @include theme.set("switch", "light", (
-  "thumb-fill": white,
+  "fill": white,
   "track-fill": palette.get("neutral", 50%, 20%),
   "border-color": palette.get("neutral"),
 ));
 
 @include theme.set("switch", "dark", (
-  "thumb-fill": palette.get("neutral", 10),
+  "fill": palette.get("neutral", 10),
   "track-fill": palette.get("neutral", 50%, 20%),
   "border-color": palette.get("neutral", 80),
 ));

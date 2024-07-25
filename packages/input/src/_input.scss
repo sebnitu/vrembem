@@ -6,7 +6,8 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  height: css.get("input", "size");
+  min-width: css.get("input", "size");
+  min-height: css.get("input", "size");
   padding: css.get("input", "padding");
   transition-property: css.get("input", "transition-property");
   transition-duration: css.get("input", "transition-duration");

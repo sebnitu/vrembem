@@ -6,6 +6,8 @@
 
 $breakpoints: core.$breakpoints !default;
 $size: css.get("form-control-size") !default;
+$font-size: css.get("form-control-font-size") !default;
+$line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
 $gap: 0.5rem !default;
 $background: null !default;
@@ -21,10 +23,7 @@ $border-width: css.get("form-control-border-width") !default;
 $border-radius: css.get("form-control-border-radius") !default;
 $box-shadow: null !default;
 $box-shadow-focus: null !default;
-$font-size: 1em !default;
-$font-weight: inherit !default;
-$line-height: 1.6 !default;
-$transition-property: background, color, border-color, box-shadow !default;
+$transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
 
@@ -39,25 +38,19 @@ $loading-animation-duration: 0.6s !default;
 $loading-animation-timing-function: linear !default;
 
 // button_icon
-$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width-y"));
-$icon-padding-sm: core.minus-border-width(core.$form-control-padding-y-sm, css.get("form-control-border-width-y-sm"));
-$icon-padding-lg: core.minus-border-width(core.$form-control-padding-y-lg, css.get("form-control-border-width-y-lg"));
+$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
 
 // button_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-padding: core.minus-border-width(core.$form-control-padding-sm, css.get("form-control-border-width")) !default;
-$size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
+$size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // button_size_lg
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-padding: core.minus-border-width(core.$form-control-padding-lg, css.get("form-control-border-width")) !default;
-$size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
+$size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("button", (
   "size": $size,
+  "font-size": $font-size,
+  "line-height": $line-height,
   "padding": $padding,
   "gap": $gap,
   "background": $background,
@@ -73,9 +66,7 @@ $size-lg-line-height: css.get("line-height-lg") !default;
   "border-radius": $border-radius,
   "box-shadow": $box-shadow,
   "box-shadow-focus": $box-shadow-focus,
-  "font-size": $font-size,
-  "font-weight": $font-weight,
-  "line-height": $line-height,
+  
   "disabled-opacity": $disabled-opacity,
   "transition": (
     "property": $transition-property,

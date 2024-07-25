@@ -5,7 +5,9 @@
 @use "@vrembem/core/theme";
 
 $size: css.get("form-control-size") !default;
-$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) !default;
+$font-size: css.get("form-control-font-size") !default;
+$line-height: css.get("form-control-line-height") !default;
+$padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width")) !default;
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
@@ -18,30 +20,22 @@ $foreground-placeholder: null !default;
 $border-color: null !default;
 $border-color-hover: null !default;
 $border-color-focus: null !default;
-$border-width: 1px !default;
-$border-radius: css.get("border-radius") !default;
+$border-width: css.get("form-control-border-width") !default;
+$border-radius: css.get("form-control-border-radius") !default;
 $box-shadow: palette.get("primary", 50%, 0%) !default;
 $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
 $box-shadow-inset: rgb(0 0 0 / 10%);
 $box-shadow-inset-focus: rgb(0 0 0 / 0%);
-$font-size: css.get("font-size") !default;
-$line-height: css.get("line-height") !default;
 $outline: none !default;
 $transition-property: box-shadow, outline, outline-offset !default;
 $transition-duration: core.$transition-duration-short !default;
 $transition-timing-function: core.$transition-timing-function !default;
 
 // input_size_sm
-$size-sm: css.get("form-control-size-sm") !default;
-$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) calc(#{list.nth(core.$form-control-padding-sm, 1)} * 2) !default;
-$size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
+$size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // input_size_lg
-$size-lg: css.get("form-control-size-lg") !default;
-$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) !default;
-$size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
+$size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("input", (

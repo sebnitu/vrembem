@@ -12,6 +12,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
   padding-right: calc(css.get("switch", "size") * 0.25);
   padding-left: calc(css.get("switch", "size") * 0.25);
   vertical-align: middle;
+  font-size: css.get("switch", "font-size");
 }
 
 #{core.bem("switch", "background")} {
@@ -52,7 +53,7 @@ $_thumb-size: calc(css.get("switch", "track-size") - calc(css.get("switch", "bor
   display: block;
   transition: left css.get("switch", "transition-duration") css.get("switch", "transition-timing-function");
   border-radius: css.get("switch", "border-radius");
-  background-color: css.get("switch", "thumb-fill");
+  background-color: css.get("switch", "fill");
   box-shadow: 0 0 0 css.get("switch", "border-width") css.get("switch", "border-color");
 }
 
