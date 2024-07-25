@@ -34,14 +34,6 @@ $_c: var.$class-font;
     line-height: css.get("line-height") !important;
   }
 
-  .#{$_u}#{$_c}-leading-sm {
-    line-height: css.get("line-height-sm") !important;
-  }
-
-  .#{$_u}#{$_c}-leading-lg {
-    line-height: css.get("line-height-lg") !important;
-  }
-
   .#{$_u}#{$_c}-kerning-0 {
     letter-spacing: 0 !important;
   }

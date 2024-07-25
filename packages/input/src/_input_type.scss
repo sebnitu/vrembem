@@ -21,15 +21,12 @@
 #{core.bem("input", null, "type", "textarea")} {
   min-width: 100%;
   height: auto;
-  min-height: css.get("input", "size");
 
   &#{core.bem("input", null, "size", "sm")} {
     height: auto;
-    min-height: css.get("input", "size");
   }
 
   &#{core.bem("input", null, "size", "lg")} {
     height: auto;
-    min-height: css.get("input", "size");
   }
 }

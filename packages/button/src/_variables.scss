@@ -11,12 +11,12 @@ $line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
 $border-width: css.get("form-control-border-width") !default;
 $border-radius: css.get("form-control-border-radius") !default;
+$transition-duration: css.get("form-control-transition-duration") !default;
+$transition-timing-function: css.get("form-control-transition-timing-function") !default;
 
 // Unique
 $gap: 0.5rem !default;
 $transition-property: box-shadow, outline, outline-offset !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
 
 // Appearance
 $background: null !default;
@@ -52,12 +52,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Custom properties
 @include css.set("button", (
-  // "size": $size,
-  // "font-size": $font-size,
-  // "line-height": $line-height,
-  // "padding": $padding,
-  // "border-width": $border-width,
-  // "border-radius": $border-radius,
   "gap": $gap,
   "background": $background,
   "background-hover": $background-hover,
@@ -68,16 +62,10 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
   "border-color": $border-color,
   "border-color-hover": $border-color-hover,
   "border-color-active": $border-color-active,
-
   "box-shadow": $box-shadow,
   "box-shadow-focus": $box-shadow-focus,
-  
   "disabled-opacity": $disabled-opacity,
-  "transition": (
-    "property": $transition-property,
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
-  ),
+  "transition-property": $transition-property,
   "loading": (
     "size": $loading-size,
     "border": $loading-border,

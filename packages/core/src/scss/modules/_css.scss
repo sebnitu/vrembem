@@ -174,16 +174,29 @@ $_variables: (
     $result: null;
 
     // TODO: if it's a single item and not a list, ensure that it exists?
+    $count: list.length($props);
     // Loop through the props and append them to results as nested fallbacks.
-    @for $i from 1 through list.length($props) {
+    @for $i from 1 through $count {
+      $prop: list.nth($props, $i);
       // If the property is not the first item in the list or exists in the
       // module or the module's default theme...
-      @if $i != 1 or map.has-key($_variables, $module, list.nth($props, $i)) or map.has-key($_variables, $module, config.get("default-theme"), list.nth($props, $i)) {
+      @if 
+        map.has-key($_variables, $module, $prop) or
+        map.has-key($_variables, $module, config.get("default-theme"), $prop)
+      {
         // store the reference in our result.
-        $result: reference($module, list.nth($props, $i), $result);
+        $result: reference($module, $prop, $result);
       } @else {
-        // Else, store the raw value as our fallback.
-        $result: list.nth($props, $i);
+        @if $count > 1 and $i == 1 {
+          // First prop of the props list, store the raw value as our fallback.
+          $result: $prop;
+        } @else if $count > 1 {
+          // If there are more than one props, reference the undefined variable.
+          $result: reference($module, $prop, $result);
+        } @else {
+          // Else, it should exist in our module map, throw error.
+          @error "Property `#{$prop}` does not exist in `#{$module}` variables map.";
+        }
       }
     }
     
