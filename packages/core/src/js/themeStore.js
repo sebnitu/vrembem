@@ -14,8 +14,10 @@ export function themeStore(options) {
 
   const api = {
     settings,
+    
     onInit() { this.settings.onInit.call(this); },
     onChange() { this.settings.onChange.call(this); },
+
     add(value) {
       return this.settings.themes.push(value);
     },
@@ -23,12 +25,14 @@ export function themeStore(options) {
       const index = this.settings.themes.indexOf(value);
       return (~index) ? this.settings.themes.splice(index, 1) : this.settings.themes;
     },
+    
     get class() {
       return `${this.settings.prefix}${this.theme}`;
     },
     get classes() {
       return this.settings.themes.map((theme) => `${this.settings.prefix}${theme}`);
     },
+
     get theme() {
       return profile.get("theme") || "root";
     },
