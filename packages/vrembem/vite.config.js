@@ -6,9 +6,12 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "index.js"),
       name: "vrembem",
-      fileName: "index",
+      fileName: "index"
     },
     emptyOutDir: false,
     sourcemap: true
+  },
+  define: {
+    "import.meta.env.VITE_PACKAGE": JSON.stringify("vrembem"),
   }
 });
