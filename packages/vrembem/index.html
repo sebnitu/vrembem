@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrembem / Package: %VITE_PACKAGE%</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <link rel="icon" type="image/png" href="https://sebnitu.com/icons/favicon.png">
   <script>
     (function () {
       // Make this script blocking to prevent flash of pre-themed content.
@@ -22,32 +22,28 @@
     console.log("Vrembem instance has been attached to window:", vb);
 
     // Setup theme switching functionality.
-    console.log("themeStore", vb.core.themeStore);
-
-    function changeTheme(value) {
-      vb.core.themeStore.change(value);
-    }
-  
-    function setActive(value) {
-      btns.forEach((btn) => btn.classList.remove("is-active"));
-      btns.forEach((btn) => {
-        if (btn.getAttribute("data-value") === value) {
-          btn.classList.add("is-active");
-        }
-      });
-    }
-  
-    const btns = document.querySelectorAll(".menu_themes .menu__action");
-  
-    btns.forEach((btn) => {
-      btn.addEventListener(("click"), () => {
-        const value = btn.getAttribute("data-value");
-        changeTheme(value);
-        setActive(value);
-      });
+    const themeStore = vb.core.themeStore({
+      onInit() {
+        document.querySelectorAll("[data-set-theme]").forEach((btn) => {
+          // Set current menu item active.
+          btn.getAttribute("data-set-theme") === this.theme ? btn.classList.add("is-active") : btn.classList.remove("is-active");
+          // Add click event listener for changing the current theme.
+          btn.addEventListener(("click"), () => {
+            this.theme = btn.getAttribute("data-set-theme");
+          });
+        });
+      },
+      onChange() {
+        document.querySelectorAll("[data-set-theme]").forEach((btn) => {
+          // Set current menu item active.
+          btn.getAttribute("data-set-theme") === this.theme ? btn.classList.add("is-active") : btn.classList.remove("is-active");
+        });
+      }
     });
-  
-    setActive(vb.core.themeStore.theme);
+
+    window["themeStore"] = themeStore;
+    console.log("themeStore", themeStore);
+    
   </script>
 </head>
 <body>
@@ -78,19 +74,17 @@
         </li>
         <li class="menu__sep"></li>
         <li class="menu__item">
-          <button type="button" data-value="root" class="menu__action">
+          <button type="button" data-set-theme="root" class="menu__action">
             <span>OS Default</span>
           </button>
         </li>
         <li class="menu__item">
-          <button type="button" data-value="light" class="menu__action">
-            <Icon name="sun" />
+          <button type="button" data-set-theme="light" class="menu__action">
             <span>Light</span>
           </button>
         </li>
         <li class="menu__item">
-          <button type="button" data-value="dark" class="menu__action">
-            <Icon name="moon" />
+          <button type="button" data-set-theme="dark" class="menu__action">
             <span>Dark</span>
           </button>
         </li>
