@@ -13,10 +13,46 @@
       document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
     })();
   </script>
+  <script type="module">
+    // Load styles.
+    import "./index.scss";
+
+    // Load JS and attach instance to window.
+    window.vb = await import("./index.js");
+    console.log("Vrembem instance has been attached to window:", vb);
+
+    // Setup theme switching functionality.
+    console.log("themeStore", vb.core.themeStore);
+
+    function changeTheme(value) {
+      vb.core.themeStore.change(value);
+    }
+  
+    function setActive(value) {
+      btns.forEach((btn) => btn.classList.remove("is-active"));
+      btns.forEach((btn) => {
+        if (btn.getAttribute("data-value") === value) {
+          btn.classList.add("is-active");
+        }
+      });
+    }
+  
+    const btns = document.querySelectorAll(".menu_themes .menu__action");
+  
+    btns.forEach((btn) => {
+      btn.addEventListener(("click"), () => {
+        const value = btn.getAttribute("data-value");
+        changeTheme(value);
+        setActive(value);
+      });
+    });
+  
+    setActive(vb.core.themeStore.theme);
+  </script>
 </head>
 <body>
 
-  <header class="section background-darker">
+  <header class="section background-dark">
     <div class="section__container max-width-xs spacing-sm">
       <h1 class="text-size-lg">Vrembem</h1>
       <p class="foreground-light">A component library based on the BEM methodology.</p>
@@ -33,6 +69,34 @@
       </ol>
     </div>
   </header>
+
+  <aside class="section section_size_sm background-darker">
+    <div class="section__container max-width-xs">
+      <ul class="menu menu_inline menu_themes">
+        <li class="menu__item">
+          <span class="padding-right">Theme</span>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button type="button" data-value="root" class="menu__action">
+            <span>OS Default</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button type="button" data-value="light" class="menu__action">
+            <Icon name="sun" />
+            <span>Light</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button type="button" data-value="dark" class="menu__action">
+            <Icon name="moon" />
+            <span>Dark</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </aside>
 
   <section class="section">
     <div class="section__container max-width-xs spacing-xl">
@@ -194,7 +258,6 @@
         <p class="font-size-lg">This is some text.</p>
       </div>
       
-      <!-- Typography -->
       <div class="spacing">
         <p class="font-size-sm">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
@@ -209,17 +272,5 @@
 
     </div>
   </section>
-
-  <script type="module">
-    // Load CSS
-    import "./index.scss";
-
-    // Load JS and attach instance to window
-    window.vb = await import("./index.js");
-
-    // Post message to console
-    console.log("Vrembem instance has been attached to window:", vb);
-  </script>
-
 </body>
 </html>
