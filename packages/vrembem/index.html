@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrembem / Package: %VITE_PACKAGE%</title>
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/favicon.png">
+  <link rel="stylesheet" href="./index.scss">
   <script>
     (function () {
       // Make this script blocking to prevent flash of pre-themed content.
@@ -14,19 +15,19 @@
     })();
   </script>
   <script type="module">
-    // Load styles.
-    import "./index.scss";
-
     // Load JS and attach instance to window.
-    window.vb = await import("./index.js");
+    window["vb"] = await import("./index.js");
     console.log("Vrembem instance has been attached to window:", vb);
+
+    // Get all the theme set button elements.
+    const buttons = document.querySelectorAll("[data-set-theme]");
 
     // Setup theme switching functionality.
     const themeStore = vb.core.themeStore({
       onInit() {
-        document.querySelectorAll("[data-set-theme]").forEach((btn) => {
+        buttons.forEach((btn) => {
           // Set current menu item active.
-          btn.getAttribute("data-set-theme") === this.theme ? btn.classList.add("is-active") : btn.classList.remove("is-active");
+          toggleState.call(this, btn);
           // Add click event listener for changing the current theme.
           btn.addEventListener(("click"), () => {
             this.theme = btn.getAttribute("data-set-theme");
@@ -34,13 +35,21 @@
         });
       },
       onChange() {
-        document.querySelectorAll("[data-set-theme]").forEach((btn) => {
+        buttons.forEach((btn) => {
           // Set current menu item active.
-          btn.getAttribute("data-set-theme") === this.theme ? btn.classList.add("is-active") : btn.classList.remove("is-active");
+          toggleState.call(this, btn);
         });
       }
     });
 
+    // Function to toggle the state class for a theme set button.
+    function toggleState(btn) {
+      btn.getAttribute("data-set-theme") === this.theme 
+        ? btn.classList.add("is-active")
+        : btn.classList.remove("is-active");
+    }
+
+    // Attach themeStore to window for testing purposes. 
     window["themeStore"] = themeStore;
     console.log("themeStore", themeStore);
     
