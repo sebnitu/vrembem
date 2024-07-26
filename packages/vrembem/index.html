@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vrembem / Package: %VITE_PACKAGE%</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <script>
+    (function () {
+      // Make this script blocking to prevent flash of pre-themed content.
+      const local = localStorage.getItem("VB:Profile");
+      const store = local ? JSON.parse(local) : {};
+      document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
+    })();
+  </script>
 </head>
 <body>
 
