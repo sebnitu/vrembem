@@ -1,55 +1,93 @@
 import { localStore } from "@vrembem/core";
 
 export function themeStore(options) {
+  // Setup the default settings object.
   const settings = {
+    // TODO: Get the prefix value from CSS property.
     prefix: "vb-theme-",
     themes: ["root", "light", "dark"],
     storeKey: "VB:Profile",
-    onInit() {},
-    onChange() {},
-    ...options
   };
 
+  // Override all settings values with provided options.
+  for (const [key] of Object.entries(settings)) {
+    if (options[key]) {
+      settings[key] = options[key];
+    }
+  }
+
+  // Setup the default callbacks object.
+  const callbacks = {
+    onInit() {},
+    onChange() {},
+  };
+
+  // Override all callback values with provided options.
+  for (const [key] of Object.entries(callbacks)) {
+    if (options[key]) {
+      callbacks[key] = options[key];
+    }
+  }
+
+  // Get the local storage profile.
   const profile = localStore(settings.storeKey);
 
+  // Setup the API object.
   const api = {
+    // Store our settings in the API.
     settings,
-    onInit() { this.settings.onInit.call(this); },
-    onChange() { this.settings.onChange.call(this); },
+
+    // Actions.
     add(value) {
-      return this.settings.themes.push(value);
+      settings.themes.push(value);
     },
     remove(value) {
-      const index = this.settings.themes.indexOf(value);
-      return (~index) ? this.settings.themes.splice(index, 1) : this.settings.themes;
+      const index = settings.themes.indexOf(value);
+      (~index) ? settings.themes.splice(index, 1) : settings.themes;
     },
+    callback(name) {
+      callbacks[name].call(this);
+    },
+
+    // Getters.
     get class() {
-      return `${this.settings.prefix}${this.theme}`;
+      return `${settings.prefix}${this.theme}`;
     },
     get classes() {
-      return this.settings.themes.map((theme) => `${this.settings.prefix}${theme}`);
+      return settings.themes.map((theme) => `${settings.prefix}${theme}`);
     },
+    get themes() {
+      return settings.themes;
+    },
+
+    // Setup the theme get and set methods.
     get theme() {
       return profile.get("theme") || "root";
     },
     set theme(value) {
-      if (this.themes.includes(value)) {
+      // Check if the value exists as a theme option.
+      if (settings.themes.includes(value)) {
+        // Check if the value is actually different from the one currently set.
         if (this.theme != value) {
+          // Save the theme value to local storage.
           profile.set("theme", value);
+          // Remove the theme classes from the html element.
           document.documentElement.classList.remove(...this.classes);
-          document.documentElement.classList.add(`${this.settings.prefix}${value}`);
-          this.onChange();
+          // Add the new theme class to the html element.
+          document.documentElement.classList.add(`${settings.prefix}${value}`);
+          // Run the on change callback.
+          this.callback("onChange");
         }
       } else {
+        // Throw a console error if the theme doesn't exist as an option.
         console.error(`Not a valid theme value: "${value}"`);
       }
     },
-    get themes() {
-      return this.settings.themes;
-    },
   };
 
-  api.onInit();
+  // Run the on initialization callback.
+  api.callback("onInit");
 
+  // Return the API.
   return api;
 }
