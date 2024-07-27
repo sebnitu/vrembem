@@ -4,14 +4,18 @@ import { getPrefix } from "./getPrefix";
  * Get the value of a CSS custom property (variable).
  * @param {String} property
  *   The CSS custom property to query for.
- * @param {Node} el [document.body]
- *   The element to get computed styles from.
- * @param {String} fallback [false]
- *   The fallback value to use if CSS property is not set.
+ * @param {Object} options
+ *   An options object with optional configuration.
  * @return {String || Error} 
  *   Return the CSS value, a provided fallback or an error if none is found.
  */
-export function cssVar(property, fallback = null, el = document.body) {
+export function cssVar(property, options) {
+  const settings = {
+    fallback: null,
+    element: document.body,
+    ...options
+  };
+
   // If property doesn't have CSS variable double dash...
   if (property.slice(0, 2) !== "--") {
     // Get the prefix value.
@@ -27,7 +31,7 @@ export function cssVar(property, fallback = null, el = document.body) {
   }
 
   // Get the CSS value.
-  const cssValue = getComputedStyle(el).getPropertyValue(property).trim();
+  const cssValue = getComputedStyle(settings.element).getPropertyValue(property).trim();
 
   // If a CSS value was found, return the CSS value.
   if (cssValue) {
@@ -36,8 +40,8 @@ export function cssVar(property, fallback = null, el = document.body) {
   
   // Else, return the fallback or a blocking error.
   else {
-    if (fallback) {
-      return fallback;
+    if (settings.fallback) {
+      return settings.fallback;
     } else {
       throw new Error(`CSS variable "${property}" was not found!`);
     }

@@ -4,7 +4,7 @@ import { cssVar } from "@vrembem/core";
 export function themeStore(options) {
   // Setup the default settings object.
   const settings = {
-    prefix: cssVar("prefix-themes", "vb-theme-"),
+    prefix: cssVar("prefix-themes", { fallback: "vb-theme-" }),
     themes: ["root", "light", "dark"],
     storeKey: "VB:Profile",
   };
