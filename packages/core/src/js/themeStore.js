@@ -1,10 +1,10 @@
 import { localStore } from "@vrembem/core";
+import { cssVar } from "@vrembem/core";
 
 export function themeStore(options) {
   // Setup the default settings object.
   const settings = {
-    // TODO: Get the prefix value from CSS property.
-    prefix: "vb-theme-",
+    prefix: cssVar("prefix-themes", "vb-theme-"),
     themes: ["root", "light", "dark"],
     storeKey: "VB:Profile",
   };
