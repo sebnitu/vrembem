@@ -11,7 +11,7 @@ export function themeStore(options) {
 
   // Override all settings values with provided options.
   for (const [key] of Object.entries(settings)) {
-    if (options[key]) {
+    if (options && options[key]) {
       settings[key] = options[key];
     }
   }
@@ -24,7 +24,7 @@ export function themeStore(options) {
 
   // Override all callback values with provided options.
   for (const [key] of Object.entries(callbacks)) {
-    if (options[key]) {
+    if (options && options[key]) {
       callbacks[key] = options[key];
     }
   }
@@ -43,7 +43,7 @@ export function themeStore(options) {
     },
     remove(value) {
       const index = settings.themes.indexOf(value);
-      (~index) ? settings.themes.splice(index, 1) : settings.themes;
+      (~index && settings.themes.splice(index, 1));
     },
     callback(name) {
       callbacks[name].call(this);
