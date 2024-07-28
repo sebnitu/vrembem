@@ -27,9 +27,11 @@ $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
   "padding": $form-control-padding
 ));
 
+$form-control-transition-property: box-shadow !default;
 $form-control-transition-duration: css.get("transition-duration") !default;
 $form-control-transition-timing-function: css.get("transition-timing-function") !default;
 @include css.set("core", "form-control", (
+  "transition-property": $form-control-transition-property,
   "transition-duration": $form-control-transition-duration,
   "transition-timing-function": $form-control-transition-timing-function
 ));

@@ -10,7 +10,7 @@
   max-width: 100%;
   min-height: css.get("input", "size", var.$size);
   padding: css.get("input", "padding", var.$padding);
-  transition-property: css.get("input", "transition-property");
+  transition-property: css.get("input", "transition-property", var.$transition-property);
   transition-duration: css.get("input", "transition-duration", var.$transition-duration);
   transition-timing-function: css.get("input", "transition-timing-function", var.$transition-timing-function);
   outline: none;

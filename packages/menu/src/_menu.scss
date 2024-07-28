@@ -30,10 +30,15 @@
   min-width: css.get("menu", "size", var.$size);
   min-height: css.get("menu", "size", var.$size);
   padding: css.get("menu", "padding", var.$padding);
+  transition-property: css.get("menu", "transition-property", var.$transition-property);
+  transition-duration: css.get("menu", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("menu", "transition-timing-function", var.$transition-timing-function);
   outline: none;
   border: css.get("menu", "border-width", var.$border-width) solid css.get("menu", "border-color");
   border-radius: css.get("menu", "border-radius", var.$border-radius);
   background: css.get("menu", "background");
+  background-clip: border-box;
+  box-shadow: 0 0 0 0 css.get("menu", "box-shadow");
   color: css.get("menu", "foreground");
   white-space: normal;
   gap: css.get("menu", "action-gap");
@@ -47,7 +52,8 @@
 
   &:focus-visible {
     z-index: 1;
-    outline: css.get("menu", "outline-focus");
+    border-color: css.get("menu", "border-color-focus");
+    box-shadow: 0 0 0 0.2rem css.get("menu", "box-shadow-focus");
   }
 
   &:active {
@@ -73,7 +79,7 @@
   &[disabled] {
     background: css.get("menu", "disabled-background");
     color: css.get("menu", "disabled-foreground");
-    cursor: default;
+    pointer-events: none;
   }
 }
 

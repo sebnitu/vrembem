@@ -11,7 +11,7 @@
   min-width: css.get("button", "size", var.$size);
   min-height: css.get("button", "size", var.$size);
   padding: css.get("button", "padding", var.$padding);
-  transition-property: css.get("button", "transition-property");
+  transition-property: css.get("button", "transition-property", var.$transition-property);
   transition-duration: css.get("button", "transition-duration", var.$transition-duration);
   transition-timing-function: css.get("button", "transition-timing-function", var.$transition-timing-function);
   outline: none;
@@ -19,7 +19,7 @@
   border-radius: css.get("button", "border-radius", var.$border-radius);
   background: css.get("button", "background");
   background-clip: border-box;
-  box-shadow: css.get("button", "box-shadow");
+  box-shadow: 0 0 0 0 css.get("button", "box-shadow");
   color: css.get("button", "foreground");
   font-family: inherit;
   font-size: css.get("button", "font-size", var.$font-size);
@@ -29,21 +29,16 @@
   white-space: nowrap;
   cursor: pointer;
 
-  &:disabled:not(.is-loading) {
-    opacity: css.get("button", "disabled-opacity");
-    pointer-events: none;
-  }
-
   &:hover,
   &:focus-visible {
     border-color: css.get("button", "border-color-hover");
     background-color: css.get("button", "background-hover");
-    box-shadow: css.get("button", "box-shadow");
     color: css.get("button", "foreground-hover");
   }
 
   &:focus-visible {
-    box-shadow: css.get("button", "box-shadow-focus");
+    border-color: css.get("button", "border-color-focus");
+    box-shadow: 0 0 0 0.2rem css.get("button", "box-shadow-focus");
   }
 
   &:active {
@@ -51,6 +46,11 @@
     background-color: css.get("button", "background-active");
     box-shadow: css.get("button", "box-shadow");
     color: css.get("button", "foreground-active");
+  }
+
+  &:disabled:not(.is-loading) {
+    opacity: css.get("button", "disabled-opacity");
+    pointer-events: none;
   }
 
   &.is-loading {

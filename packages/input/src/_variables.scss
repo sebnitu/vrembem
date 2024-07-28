@@ -11,29 +11,31 @@ $line-height: css.get("form-control-line-height") !default;
 $padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width")) !default;
 $border-width: css.get("form-control-border-width") !default;
 $border-radius: css.get("form-control-border-radius") !default;
+$transition-property: css.get("form-control-transition-property") !default;
 $transition-duration: css.get("form-control-transition-duration") !default;
 $transition-timing-function: css.get("form-control-transition-timing-function") !default;
-
-// Unique
-$transition-property: box-shadow, outline, outline-offset !default;
 
 // Appearance
 $background: null !default;
 $background-hover: null !default;
 $background-focus: null !default;
-$background-readonly: css.get("background-dark") !default;
-$background-disabled: css.get("background-darker") !default;
 $foreground: null !default;
 $foreground-hover: null !default;
 $foreground-focus: null !default;
 $foreground-placeholder: null !default;
 $border-color: null !default;
 $border-color-hover: null !default;
-$border-color-focus: null !default;
+$border-color-focus: palette.get("primary") !default;
 $box-shadow: palette.get("primary", 50%, 0%) !default;
 $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
 $box-shadow-inset: rgb(0 0 0 / 10%);
 $box-shadow-inset-focus: rgb(0 0 0 / 0%);
+
+// State: readonly
+$background-readonly: css.get("background-dark") !default;
+
+// State: disabled
+$background-disabled: css.get("background-darker") !default;
 
 // Modifier: input_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
@@ -70,7 +72,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
   "foreground-placeholder": css.get("foreground-lighter"),
   "border-color": css.get("border-color-dark"),
   "border-color-hover": css.get("border-color-darker"),
-  "border-color-focus": palette.get("primary"),
   "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
 ));
 
