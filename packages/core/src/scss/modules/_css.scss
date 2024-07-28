@@ -14,7 +14,8 @@
 /// @access private
 $_variables: (
   "core": (
-    "prefix": config.get("prefix-variables")
+    "prefix": config.get("prefix-variables"),
+    "prefix-themes": config.get("prefix-themes")
   )
 );
 

@@ -3,224 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vrembem</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <title>Vrembem / Package: %VITE_PACKAGE%</title>
+  <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
+  <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
+  <link rel="stylesheet" href="./index.scss">
+  <script>
+    (function () {
+      // Make this script blocking to prevent flash of pre-themed content.
+      const local = localStorage.getItem("VB:Profile");
+      const store = local ? JSON.parse(local) : {};
+      document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
+    })();
+  </script>
+  <script type="module">
+    // Load JS and attach instance to window.
+    window["vb"] = await import("./index.js");
+    console.log("Vrembem instance has been attached to window:", vb);
+
+    // Get all the theme set button elements.
+    const buttons = document.querySelectorAll("[data-set-theme]");
+
+    // Setup theme switching functionality.
+    const themeStore = vb.core.themeStore({
+      onInit() {
+        buttons.forEach((btn) => {
+          // Set current menu item active.
+          toggleState.call(this, btn);
+          // Add click event listener for changing the current theme.
+          btn.addEventListener(("click"), () => {
+            this.theme = btn.getAttribute("data-set-theme");
+          });
+        });
+      },
+      onChange() {
+        buttons.forEach((btn) => {
+          // Set current menu item active.
+          toggleState.call(this, btn);
+        });
+      }
+    });
+
+    // Function to toggle the state class for a theme set button.
+    function toggleState(btn) {
+      btn.getAttribute("data-set-theme") === this.theme 
+        ? btn.classList.add("is-active")
+        : btn.classList.remove("is-active");
+    }
+
+    // Attach themeStore to window for testing purposes. 
+    window["themeStore"] = themeStore;
+    console.log("themeStore", themeStore);
+    
+  </script>
 </head>
 <body>
-  <main>
-    <header class="section background-dark">
-      <div class="section__container max-width-xs spacing">
-        <h1>Vrembem</h1>
-        <p>A component library based on the BEM methodology.</p>
-        <div class="flex align-items-center foreground-lighter">
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem">
-              <span>vrembem</span>
-            </a>
-          </div>
-          <span>/</span>
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem/tree/main/packages/vrembem#readme">
-              <span>vrembem</span>
-            </a>
-          </div>
-        </div>
+
+  <header class="section background-dark">
+    <div class="section__container max-width-xs spacing-sm">
+      <h1 class="text-size-lg">Vrembem</h1>
+      <p class="foreground-light">A component library based on the BEM methodology.</p>
+      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/sandbox">sandbox</a>
+        </li>
+        <li class="foreground-neutral-80">/</li>
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/vrembem/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <aside class="section section_size_sm background-darker">
+    <div class="section__container max-width-xs">
+      <ul class="menu menu_inline menu_themes">
+        <li class="menu__item">
+          <span class="padding-right">Themes</span>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button type="button" data-set-theme="root" class="menu__action">
+            <span>OS Default</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button type="button" data-set-theme="light" class="menu__action">
+            <span>Light</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button type="button" data-set-theme="dark" class="menu__action">
+            <span>Dark</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <section class="section">
+    <div class="section__container max-width-xs spacing-xl">
+
+      <!-- form-controls sm -->
+      <div class="flex align-items-center">
+        <label class="font-size-sm flex-full">Form control label</label>
+        <input class="input input_auto input_size_sm" type="text" value="35" />
+        <select class="input input_auto input_type_select input_size_sm">
+          <option>1. One</option>
+          <option>2. Two</option>
+          <option>3. Three</option>
+        </select>
+        <button class="button button_size_sm">Button</button>
+        <ul class="menu menu_inline menu_size_sm">
+          <li class="menu__item">
+            <a class="menu__action" href="#">Menu Item</a>
+          </li>
+        </ul>
+        <span class="checkbox checkbox_size_sm">
+          <input class="checkbox__native" type="checkbox" checked />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="switch switch_size_sm">
+          <input type="checkbox" class="switch__native" />
+          <span class="switch__background">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+          </span>
+        </span>
+        <textarea class="input input_type_textarea input_size_sm"></textarea>
       </div>
-    </header>
 
-    <section class="section">
-      <div class="section__container max-width-xs spacing-xl">
-
-        <!-- form-controls sm -->
-        <div class="flex align-items-center">
-          <label class="font-size-sm flex-full">Form control label</label>
-          <input class="input input_auto input_size_sm" type="text" value="35" />
-          <select class="input input_auto input_type_select input_size_sm">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button button_size_sm">Button</button>
-          <ul class="menu menu_inline menu_size_sm">
-            <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
-            </li>
-          </ul>
-          <span class="checkbox checkbox_size_sm">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
+      <!-- form-controls -->
+      <div class="flex align-items-center">
+        <label class="flex-full">Form control label</label>
+        <input class="input input_auto" type="text" value="40" />
+        <select class="input input_auto input_type_select">
+          <option>1. One</option>
+          <option>2. Two</option>
+          <option>3. Three</option>
+        </select>
+        <button class="button">Button</button>
+        <ul class="menu menu_inline">
+          <li class="menu__item">
+            <a class="menu__action" href="#">Menu Item</a>
+          </li>
+        </ul>
+        <span class="checkbox">
+          <input class="checkbox__native" type="checkbox" checked />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
             </span>
           </span>
-          <span class="radio radio_size_sm">
-            <input type="radio" class="radio__native" name="example-3" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
+        </span>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
             </span>
           </span>
-          <span class="radio radio_size_sm">
-            <input type="radio" class="radio__native" name="example-3" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
+        </span>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
             </span>
           </span>
-          <span class="switch switch_size_sm">
-            <input type="checkbox" class="switch__native" />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
+        </span>
+        <span class="switch">
+          <input type="checkbox" class="switch__native" />
+          <span class="switch__background">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
             </span>
           </span>
-          <textarea class="input input_type_textarea input_size_sm"></textarea>
-        </div>
-
-        <!-- form-controls -->
-        <div class="flex align-items-center">
-          <label class="flex-full">Form control label</label>
-          <input class="input input_auto" type="text" value="40" />
-          <select class="input input_auto input_type_select">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button">Button</button>
-          <ul class="menu menu_inline">
-            <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
-            </li>
-          </ul>
-          <span class="checkbox">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio">
-            <input type="radio" class="radio__native" name="example-4" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio">
-            <input type="radio" class="radio__native" name="example-4" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="switch">
-            <input type="checkbox" class="switch__native" />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
-            </span>
-          </span>
-          <textarea class="input input_type_textarea"></textarea>
-        </div>
-
-        <!-- form-controls lg -->
-        <div class="flex align-items-center">
-          <label class="font-size-lg flex-full">Form control label</label>
-          <input class="input input_auto input_size_lg" type="text" value="45" />
-          <select class="input input_auto input_type_select input_size_lg">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button button_size_lg">Button</button>
-          <ul class="menu menu_inline menu_size_lg">
-            <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
-            </li>
-          </ul>
-          <span class="checkbox checkbox_size_lg">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_lg">
-            <input type="radio" class="radio__native" name="example-5" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_lg">
-            <input type="radio" class="radio__native" name="example-5" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="switch switch_size_lg">
-            <input type="checkbox" class="switch__native" />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
-            </span>
-          </span>
-          <textarea class="input input_type_textarea input_size_lg"></textarea>
-        </div>
-
-        <!-- Typography -->
-        <div class="flex align-items-center">
-          <p class="font-size-sm">This is some text.</p>
-          <p>This is some text.</p>
-          <p class="font-size-lg">This is some text.</p>
-        </div>
-        
-        <!-- Typography -->
-        <div class="spacing">
-          <p class="font-size-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-          <p class="font-size-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-        </div>
-
+        </span>
+        <textarea class="input input_type_textarea"></textarea>
       </div>
-    </section>
-  </main>
 
-  <script type="module">
-    // Load CSS
-    import "./index.scss";
+      <!-- form-controls lg -->
+      <div class="flex align-items-center">
+        <label class="font-size-lg flex-full">Form control label</label>
+        <input class="input input_auto input_size_lg" type="text" value="45" />
+        <select class="input input_auto input_type_select input_size_lg">
+          <option>1. One</option>
+          <option>2. Two</option>
+          <option>3. Three</option>
+        </select>
+        <button class="button button_size_lg">Button</button>
+        <ul class="menu menu_inline menu_size_lg">
+          <li class="menu__item">
+            <a class="menu__action" href="#">Menu Item</a>
+          </li>
+        </ul>
+        <span class="checkbox checkbox_size_lg">
+          <input class="checkbox__native" type="checkbox" checked />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="switch switch_size_lg">
+          <input type="checkbox" class="switch__native" />
+          <span class="switch__background">
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+          </span>
+        </span>
+        <textarea class="input input_type_textarea input_size_lg"></textarea>
+      </div>
 
-    // Load JS and attach instance to window
-    window.vb = await import("./index.js");
+      <!-- Typography -->
+      <div class="flex align-items-center">
+        <p class="font-size-sm">This is some text.</p>
+        <p>This is some text.</p>
+        <p class="font-size-lg">This is some text.</p>
+      </div>
+      
+      <div class="spacing">
+        <p class="font-size-sm">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+        </p>
+        <p class="font-size-lg">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+        </p>
+      </div>
 
-    // Post message to console
-    console.log("Vrembem instance has been attached to window:", vb);
-  </script>
-
+    </div>
+  </section>
 </body>
 </html>
