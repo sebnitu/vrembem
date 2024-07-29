@@ -8,7 +8,7 @@
   @include mix.button-base();
   border-color: css.get("button", "border-color", var.$border-color);
   background: css.get("button", "background", var.$background);
-  box-shadow: 0 0 0 0 css.get("button", "box-shadow", var.$box-shadow);
+  box-shadow: css.get("button", "box-shadow", var.$box-shadow);
   color: css.get("button", "foreground", var.$foreground);
   
   &:hover {

@@ -4,6 +4,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+$gap: 0.5rem !default;
 $accent: palette.get("primary") !default;
 @include css.set("button", "accent", palette.get("primary"));
 
@@ -31,9 +32,6 @@ $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;
 $box-shadow-focus-visible: 0 0 0 0.25rem hsl(from css.get("button", "accent") h s l / 50%) !default;
 $box-shadow-active: $box-shadow !default;
-
-// Unique
-$gap: 0.5rem !default;
 
 // State: disabled
 $disabled-opacity: 0.6 !default;
