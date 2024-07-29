@@ -42,21 +42,17 @@
   ],
   "scripts": {
     "serve": "vite",
-    "build": "npm-run-all clean styles root scripts",
+    "build": "npm-run-all clean styles scripts",
     "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist",
     "scripts:dev": "vite build --outDir dev --minify false",
     "scripts:dist": "vite build --outDir dist",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass root.scss dev/index.css --load-path=../../node_modules",
-    "styles:dist": "sass root.scss dist/index.css --load-path=../../node_modules --style=compressed",
-    "root": "npm-run-all root:dev root:dist",
-    "root:dev": "sass src/scss/root:dev --load-path=../../node_modules",
-    "root:dist": "sass src/scss/root:dist --load-path=../../node_modules --style=compressed",
-    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles' 'npm run watch:root'",
+    "styles:dev": "sass build:dev --load-path=../../node_modules",
+    "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
+    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
     "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
-    "watch:styles": "concurrently 'npm run styles:dev -- --watch ./src' 'npm run styles:dist -- --watch ./src'",
-    "watch:root": "concurrently 'npm run root:dev -- --watch' 'npm run root:dist -- --watch'"
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch ./src' 'npm run styles:dist -- --watch ./src'"
   },
   "repository": {
     "type": "git",
