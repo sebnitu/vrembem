@@ -3,37 +3,6 @@
 @use "./variables" as var;
 
 // TODO: Move this into core library.
-$loading-size: 1em !default;
-$loading-border: 2px solid !default;
-$loading-color: css.get("foreground") !default;
-$loading-animation-duration: 0.5s !default;
-
-// TODO: Maybe add a second param for placement strategy.
-@mixin loading-spinner($module) {
-  @include core.size(css.get($module, "loading-size", $loading-size));
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
-  left: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
-  animation: spin css.get($module, "loading-animation-duration", $loading-animation-duration) infinite linear;
-  border: css.get($module, "loading-border", $loading-border);
-  border-radius: core.$border-radius-circle;
-  border-color: css.get($module, "loading-color", $loading-color) css.get("button", "loading-color", $loading-color) transparent transparent;
-}
-
-// TODO: Ensure that this is only included once when moved to core.
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-// TODO: Move this into core library.
 @mixin form-control-properties($module) {
   min-width: css.get($module, "size", css.get("form-control-size"));
   min-height: css.get($module, "size", css.get("form-control-size"));
@@ -66,8 +35,8 @@ $loading-animation-duration: 0.5s !default;
 @mixin button-color() {
   border-color: css.get("button", "border-color", var.$border-color);
   background: css.get("button", "background", var.$background);
-  color: css.get("button", "foreground", var.$foreground);
   box-shadow: 0 0 0 0 css.get("button", "box-shadow", var.$box-shadow);
+  color: css.get("button", "foreground", var.$foreground);
 }
 
 #{core.bem("button")} {
@@ -78,29 +47,29 @@ $loading-animation-duration: 0.5s !default;
   &:hover {
     border-color: css.get("button", "border-color-hover", "border-color", var.$border-color-hover);
     background: css.get("button", "background-hover", "background", var.$background-hover);
-    color: css.get("button", "foreground-hover", "foreground", var.$foreground-hover);
     box-shadow: css.get("button", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
+    color: css.get("button", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
   &:focus {
     border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
     background: css.get("button", "background-focus", "background-hover", "background", var.$background-focus);
-    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
     box-shadow: css.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
+    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:focus-visible {
     border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
     background: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
-    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
     box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
+    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
 
   &:active {
     border-color: css.get("button", "border-color-active", "border-color", var.$border-color-active);
     background: css.get("button", "background-active", "background", var.$background-active);
-    color: css.get("button", "foreground-active", "foreground", var.$foreground-active);
     box-shadow: css.get("button", "box-shadow-active", "box-shadow", var.$box-shadow-active);
+    color: css.get("button", "foreground-active", "foreground", var.$foreground-active);
   }
 
   &:disabled:not(.is-loading) {
@@ -113,7 +82,8 @@ $loading-animation-duration: 0.5s !default;
     pointer-events: none;
 
     &::after {
-      @include loading-spinner("button");
+      @include css.override("loading", "color", css.get("button", "foreground", var.$foreground));
+      @include core.loading-spinner();
     }
   }
 }
