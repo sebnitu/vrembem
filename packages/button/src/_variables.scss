@@ -4,12 +4,10 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// TODO: Use relative values to adjust provided color/accent.
 $accent: palette.get("primary") !default;
-
-// Set accent custom property
 @include css.set("button", "accent", palette.get("primary"));
 
+// Appearance
 $background: transparent !default;
 $background-hover: $background !default;
 $background-focus: $background !default;

@@ -11,6 +11,7 @@ $_output-spin-animation: true;
   "duration": 0.6s
 ));
 
+/// TODO: Add documentation.
 @mixin loading-spinner() {
   @include size(css.get("loading", "size"));
   content: "";

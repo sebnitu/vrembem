@@ -2,20 +2,6 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-// TODO: Move this into core library.
-@mixin form-control-properties($module) {
-  min-width: css.get($module, "size", css.get("form-control-size"));
-  min-height: css.get($module, "size", css.get("form-control-size"));
-  padding: css.get($module, "padding", core.minus-border-width(core.$form-control-padding, css.get($module, "border-width", css.get("form-control-border-width"))));
-  transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));
-  transition-duration: css.get($module, "transition-duration", css.get("form-control-transition-duration"));
-  transition-timing-function: css.get($module, "transition-timing-function", css.get("form-control-transition-timing-function"));
-  border-width: css.get($module, "border-width", css.get("form-control-border-width"));
-  border-radius: css.get($module, "border-radius", css.get("form-control-border-radius"));
-  font-size: css.get($module, "font-size", css.get("form-control-font-size"));
-  line-height: css.get($module, "line-height", css.get("form-control-line-height"));
-}
-
 @mixin button-base() {
   position: relative;
   display: inline-flex;
@@ -32,17 +18,13 @@
   cursor: pointer;
 }
 
-@mixin button-color() {
+#{core.bem("button")} {
+  @include core.form-control-properties("button");
+  @include button-base();
   border-color: css.get("button", "border-color", var.$border-color);
   background: css.get("button", "background", var.$background);
   box-shadow: 0 0 0 0 css.get("button", "box-shadow", var.$box-shadow);
   color: css.get("button", "foreground", var.$foreground);
-}
-
-#{core.bem("button")} {
-  @include form-control-properties("button");
-  @include button-base();
-  @include button-color();
   
   &:hover {
     border-color: css.get("button", "border-color-hover", "border-color", var.$border-color-hover);

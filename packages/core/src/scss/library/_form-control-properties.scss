@@ -1,0 +1,17 @@
+@use "../modules/css";
+@use "../variables/form-control" as *;
+@use "./minus-border-width" as *;
+
+/// TODO: Add documentation.
+@mixin form-control-properties($module) {
+  min-width: css.get($module, "size", css.get("form-control-size"));
+  min-height: css.get($module, "size", css.get("form-control-size"));
+  padding: css.get($module, "padding", minus-border-width($form-control-padding, css.get($module, "border-width", css.get("form-control-border-width"))));
+  transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));
+  transition-duration: css.get($module, "transition-duration", css.get("form-control-transition-duration"));
+  transition-timing-function: css.get($module, "transition-timing-function", css.get("form-control-transition-timing-function"));
+  border-width: css.get($module, "border-width", css.get("form-control-border-width"));
+  border-radius: css.get($module, "border-radius", css.get("form-control-border-radius"));
+  font-size: css.get($module, "font-size", css.get("form-control-font-size"));
+  line-height: css.get($module, "line-height", css.get("form-control-line-height"));
+}
