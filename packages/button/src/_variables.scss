@@ -4,25 +4,6 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// Form control fallbacks
-// TODO: Maybe move these into a "form-control" mixin.
-// $size: css.get("form-control-size") !default;
-// $font-size: css.get("form-control-font-size") !default;
-// $line-height: css.get("form-control-line-height") !default;
-// $padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
-// $border-width: css.get("form-control-border-width") !default;
-// $border-radius: css.get("form-control-border-radius") !default;
-// $transition-property: css.get("form-control-transition-property") !default;
-// $transition-duration: css.get("form-control-transition-duration") !default;
-// $transition-timing-function: css.get("form-control-transition-timing-function") !default;
-
-// Appearance
-// TODO: User SCSS vars to set fallbacks and CSS vars for the overrides. E.g:
-//   background: css.get("button", "background", var.$background);
-// This should allow me to use Sass to set more complex default styles while
-// still allowing every state of a form-control to be overridden via CSS vars.
-// SCSS vars could include: background, foreground and color/accent. Maybe set
-// these as `hs` values or a string matching a palette value?
 // TODO: Use relative values to adjust provided color/accent.
 $accent: palette.get("primary") !default;
 

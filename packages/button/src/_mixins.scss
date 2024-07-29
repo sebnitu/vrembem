@@ -1,24 +1,23 @@
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
 
-/// Creates a button variant using CSS variables and the palette module.
-/// @param {Color} $foreground
-///   A color for the button foreground.
-/// @param {String} $background
-///   The color key for the button background (should exist in palette map).
-/// @output Outputs theme CSS variables based on the provided foreground and 
-///   background.
-/// TODO: Background should be any color and use hsl relative values.
+/// Creates a button variant using custom properties and hsl relative values.
+/// @param {Color} $color
+///   The primary color to use for the button variant.
+/// @param {Color} $color-dark [hsl(from $color h s 40%)]
+///   A darker version of the color, used on hover state.
+/// @param {Color} $color-darker [hsl(from $color h s 30%)]
+///   The darkest version of the color, used on active state.
+/// @output Override button custom properties using the provided color values.
 @mixin button-variant(
   $color,
-  $color-hover: hsl(from $color h s 40%),
-  $color-active: hsl(from $color h s 30%)
+  $color-dark: hsl(from $color h s 40%),
+  $color-darker: hsl(from $color h s 30%)
 ) {
   @include css.override("button", (
     "accent": $color,
     "background": $color,
-    "background-hover": $color-hover,
-    "background-active": $color-active,
+    "background-hover": $color-dark,
+    "background-active": $color-darker,
     "foreground": white,
     "border-color": transparent,
     "loading-border-color": white

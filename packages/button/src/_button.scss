@@ -2,6 +2,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
+// TODO: Move this into core library.
 @mixin form-control-properties($module) {
   min-width: css.get($module, "size", css.get("form-control-size"));
   min-height: css.get($module, "size", css.get("form-control-size"));
