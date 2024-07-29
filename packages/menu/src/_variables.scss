@@ -4,6 +4,9 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+$gap: 0.25em !default;
+$action-gap: 0.5em !default;
+
 // Form control fallbacks
 $size: css.get("form-control-size") !default;
 $font-size: css.get("form-control-font-size") !default;
@@ -28,12 +31,6 @@ $border-color-focus: palette.get("primary") !default;
 $border-color-active: null !default;
 $box-shadow: palette.get("primary", 50%, 0%) !default;
 $box-shadow-focus: palette.get("primary", 50%, 50%) !default;
-
-// Unique
-$gap: 0.25em !default;
-
-// Element: menu__action
-$action-gap: 0.5em !default;
 
 // Element modifier: menu__action_icon
 $icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
