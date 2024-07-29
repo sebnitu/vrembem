@@ -42,14 +42,14 @@
   @include core.form-control-properties("menu");
   @include menu-action-base();
   border-color: css.get("menu", "border-color", var.$border-color);
-  background: css.get("menu", "background");
+  background-color: css.get("menu", "background");
   box-shadow: 0 0 0 0 css.get("menu", "box-shadow");
   color: css.get("menu", "foreground");
 
   &:hover,
   &:focus-visible {
     border-color: css.get("menu", "border-color-hover", "border-color");
-    background: css.get("menu", "background-hover", "background");
+    background-color: css.get("menu", "background-hover", "background");
     color: css.get("menu", "foreground-hover", "foreground");
   }
 
@@ -61,7 +61,7 @@
 
   &:active {
     border-color: css.get("menu", "border-color-active", "border-color-hover", "border-color");
-    background: css.get("menu", "background-active", "background-hover", "background");
+    background-color: css.get("menu", "background-active", "background-hover", "background");
     color: css.get("menu", "foreground-active", "foreground-hover", "foreground");
   }
 
@@ -70,7 +70,7 @@
   &.is-active:focus,
   &.is-active:active,
   &.is-active[disabled] {
-    background: css.get("menu", "active-background");
+    background-color: css.get("menu", "active-background");
     color: css.get("menu", "active-foreground");
     cursor: pointer;
   }
@@ -80,7 +80,7 @@
   &.is-disabled:focus,
   &.is-disabled:active,
   &[disabled] {
-    background: css.get("menu", "disabled-background");
+    background-color: css.get("menu", "disabled-background");
     color: css.get("menu", "disabled-foreground");
     pointer-events: none;
   }
