@@ -40,13 +40,6 @@ $gap: 0.5rem !default;
 // State: disabled
 $disabled-opacity: 0.6 !default;
 
-// State: loading
-$loading-size: 1em !default;
-$loading-border: 2px solid !default;
-$loading-border-color: css.get("foreground") !default;
-$loading-animation-duration: 0.6s !default;
-$loading-animation-timing-function: linear !default;
-
 // Modifier: button_icon
 $icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
 

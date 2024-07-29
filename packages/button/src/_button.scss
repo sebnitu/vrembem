@@ -3,6 +3,37 @@
 @use "./variables" as var;
 
 // TODO: Move this into core library.
+$loading-size: 1em !default;
+$loading-border: 2px solid !default;
+$loading-border-color: css.get("foreground") !default;
+$loading-animation-duration: 0.6s !default;
+$loading-animation-timing-function: linear !default;
+
+// TODO: Maybe add a second param for placement strategy.
+@mixin loading-spinner($module) {
+  @include core.size(css.get($module, "loading-size", $loading-size));
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
+  left: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
+  animation: spin css.get($module, "loading-animation-duration", $loading-animation-duration) infinite css.get("button", "loading-animation-timing-function", $loading-animation-timing-function);
+  border: css.get($module, "loading-border", $loading-border);
+  border-radius: core.$border-radius-circle;
+  border-color: css.get($module, "loading-border-color", $loading-border-color) css.get("button", "loading-border-color", $loading-border-color) transparent transparent;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// TODO: Move this into core library.
 @mixin form-control-properties($module) {
   min-width: css.get($module, "size", css.get("form-control-size"));
   min-height: css.get($module, "size", css.get("form-control-size"));
@@ -77,31 +108,12 @@
     pointer-events: none;
   }
 
-  // TODO: Find a way to make this more modular.
   &.is-loading {
     color: transparent !important;
     pointer-events: none;
 
     &::after {
-      @include core.size(css.get("button", "loading-size", var.$loading-size));
-      content: "";
-      position: absolute;
-      top: calc(50% - calc(css.get("button", "loading-size", var.$loading-size) * 0.5));
-      left: calc(50% - calc(css.get("button", "loading-size", var.$loading-size) * 0.5));
-      animation: spin css.get("button", "loading-animation-duration", var.$loading-animation-duration) infinite css.get("button", "loading-animation-timing-function", var.$loading-animation-timing-function);
-      border: css.get("button", "loading-border", var.$loading-border);
-      border-radius: core.$border-radius-circle;
-      border-color: css.get("button", "loading-border-color", var.$loading-border-color) css.get("button", "loading-border-color", var.$loading-border-color) transparent transparent;
+      @include loading-spinner("button");
     }
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
   }
 }
