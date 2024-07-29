@@ -6,7 +6,7 @@
 
 $gap: 0.5rem !default;
 $accent: palette.get("primary") !default;
-@include css.set("button", "accent", palette.get("primary"));
+@include css.set("button", "accent", $accent);
 
 // Appearance
 $background: transparent !default;
@@ -24,7 +24,7 @@ $foreground-active: $foreground !default;
 $border-color: css.get("border-color-dark") !default;
 $border-color-hover: css.get("border-color-darker") !default;
 $border-color-focus: $border-color-hover !default;
-$border-color-focus-visible: $accent !default;
+$border-color-focus-visible: css.get("button", "accent") !default;
 $border-color-active: $foreground-active !default;
 
 $box-shadow: 0 0 0 0 hsl(from css.get("button", "accent") h s l / 0%) !default;
