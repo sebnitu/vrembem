@@ -5,9 +5,8 @@
 // TODO: Move this into core library.
 $loading-size: 1em !default;
 $loading-border: 2px solid !default;
-$loading-border-color: css.get("foreground") !default;
-$loading-animation-duration: 0.6s !default;
-$loading-animation-timing-function: linear !default;
+$loading-color: css.get("foreground") !default;
+$loading-animation-duration: 0.5s !default;
 
 // TODO: Maybe add a second param for placement strategy.
 @mixin loading-spinner($module) {
@@ -17,12 +16,13 @@ $loading-animation-timing-function: linear !default;
   position: absolute;
   top: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
   left: calc(50% - calc(css.get($module, "loading-size", $loading-size) * 0.5));
-  animation: spin css.get($module, "loading-animation-duration", $loading-animation-duration) infinite css.get("button", "loading-animation-timing-function", $loading-animation-timing-function);
+  animation: spin css.get($module, "loading-animation-duration", $loading-animation-duration) infinite linear;
   border: css.get($module, "loading-border", $loading-border);
   border-radius: core.$border-radius-circle;
-  border-color: css.get($module, "loading-border-color", $loading-border-color) css.get("button", "loading-border-color", $loading-border-color) transparent transparent;
+  border-color: css.get($module, "loading-color", $loading-color) css.get("button", "loading-color", $loading-color) transparent transparent;
 }
 
+// TODO: Ensure that this is only included once when moved to core.
 @keyframes spin {
   from {
     transform: rotate(0deg);
