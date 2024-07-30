@@ -3,10 +3,10 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+@include css.set("menu", ());
+$accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
 $gap: 0.25em !default;
 $action-gap: 0.5em !default;
-$accent: palette.get("primary") !default;
-@include css.set("menu", "accent", $accent);
 
 // Appearance
 $background: transparent !default;
@@ -27,10 +27,10 @@ $border-color-focus: $border-color !default;
 $border-color-focus-visible: $accent !default;
 $border-color-active: $border-color !default;
 
-$box-shadow: 0 0 0 0 hsl(from css.get("menu", "accent") h s l / 0%) !default;
+$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;
-$box-shadow-focus-visible: 0 0 0 0.25rem hsl(from css.get("menu", "accent") h s l / 50%) !default;
+$box-shadow-focus-visible: 0 0 0 0.25rem hsl(from $accent h s l / 50%) !default;
 $box-shadow-active: $box-shadow !default;
 
 // Element modifier: menu__action_icon

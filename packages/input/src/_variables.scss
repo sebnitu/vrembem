@@ -2,8 +2,8 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$accent: palette.get("primary") !default;
-@include css.set("input", "accent", $accent);
+@include css.set("input", ());
+$accent: css.get("input", "accent", css.get("form-control-accent")) !default;
 
 // Appearance
 $background: css.get("background") !default;
@@ -16,11 +16,11 @@ $foreground-focus: $foreground !default;
 
 $border-color: css.get("border-color-dark") !default;
 $border-color-hover: css.get("border-color-darker") !default;
-$border-color-focus: css.get("input", "accent") !default;
+$border-color-focus: $accent !default;
 
-$box-shadow: 0 0 0 0 hsl(from css.get("input", "accent") h s l / 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
+$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
 $box-shadow-hover: $box-shadow !default;
-$box-shadow-focus: 0 0 0 0.25rem hsl(from css.get("input", "accent") h s l / 50%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
+$box-shadow-focus: 0 0 0 0.25rem hsl(from $accent h s l / 50%), inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
 
 // State: placeholder
 $foreground-placeholder: null !default;

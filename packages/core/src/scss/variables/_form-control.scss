@@ -1,4 +1,5 @@
 @use "../modules/css";
+@use "../modules/palette";
 
 $form-control-font-size: css.get("font-size") !default;
 $form-control-font-size-sm: css.get("font-size-sm") !default;
@@ -26,6 +27,9 @@ $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
   "padding-y": $form-control-padding-y,
   "padding": $form-control-padding
 ));
+
+$form-control-accent: palette.get("primary") !default;
+@include css.set("core", "form-control-accent", $form-control-accent);
 
 $form-control-transition-property: box-shadow !default;
 $form-control-transition-duration: css.get("transition-duration") !default;

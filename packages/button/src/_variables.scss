@@ -3,9 +3,9 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
+@include css.set("button", ());
+$accent: css.get("button", "accent", css.get("form-control-accent")) !default;
 $gap: 0.5rem !default;
-$accent: palette.get("primary") !default;
-@include css.set("button", "accent", $accent);
 
 // Appearance
 $background: transparent !default;
@@ -23,13 +23,13 @@ $foreground-active: $foreground !default;
 $border-color: css.get("border-color-dark") !default;
 $border-color-hover: css.get("border-color-darker") !default;
 $border-color-focus: $border-color-hover !default;
-$border-color-focus-visible: css.get("button", "accent") !default;
+$border-color-focus-visible: $accent !default;
 $border-color-active: $foreground-active !default;
 
-$box-shadow: 0 0 0 0 hsl(from css.get("button", "accent") h s l / 0%) !default;
+$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;
-$box-shadow-focus-visible: 0 0 0 0.25rem hsl(from css.get("button", "accent") h s l / 50%) !default;
+$box-shadow-focus-visible: 0 0 0 0.25rem hsl(from $accent h s l / 50%) !default;
 $box-shadow-active: $box-shadow !default;
 
 // State: disabled
