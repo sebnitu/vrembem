@@ -1,18 +1,19 @@
 @use "@vrembem/core";
+@use "@vrembem/core/palette";
 @use "./mixins" as mix;
 
 #{core.bem("button", null, "color", "primary")} {
-  @include mix.button-variant(white, "primary");
+  @include mix.button-variant(palette.get("primary"));
 }
 
 #{core.bem("button", null, "color", "secondary")} {
-  @include mix.button-variant(white, "secondary");
+  @include mix.button-variant(palette.get("secondary"));
 }
 
 #{core.bem("button", null, "color", "neutral")} {
-  @include mix.button-variant(white, "neutral");
+  @include mix.button-variant(palette.get("neutral"));
 }
 
 #{core.bem("button", null, "color", "important")} {
-  @include mix.button-variant(white, "important");
+  @include mix.button-variant(palette.get("important"));
 }

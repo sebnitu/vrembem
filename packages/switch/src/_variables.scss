@@ -1,65 +1,17 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
-// Form control fallbacks
-$size: css.get("form-control-size") !default;
-$font-size: css.get("form-control-font-size") !default;
-$transition-duration: css.get("form-control-transition-duration") !default;
-$transition-timing-function: css.get("form-control-transition-timing-function") !default;
+@include css.register("switch");
+$accent: css.get("switch", "accent", css.get("form-control-accent")) !default;
+$background: css.get("switch", "background", css.get("form-control-background")) !default;
+$foreground: css.get("switch", "foreground", css.get("form-control-foreground")) !default;
 
-// Unique
 $track-size: 1.25em !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius-circle") !default;
-
-// Appearance
-$color: palette.get("primary") !default;
-$fill: null !default;
-$track-fill: null !default;
-$border-color: null !default;
-$background-color: $color !default;
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
 
 // Modifier: switch_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // Modifier: switch_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
-
-// Custom properties
-@include css.set("switch", (
-  "color": $color,
-  "fill": $fill,
-  "track-fill": $track-fill,
-  "track-size": $track-size,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
-  "background": (
-    "color": $background-color,
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  )
-));
-
-// Themes
-@include theme.set("switch", "light", (
-  "fill": white,
-  "track-fill": palette.get("neutral", 50%, 20%),
-  "border-color": palette.get("neutral"),
-));
-
-@include theme.set("switch", "dark", (
-  "fill": palette.get("neutral", 10),
-  "track-fill": palette.get("neutral", 50%, 20%),
-  "border-color": palette.get("neutral", 80),
-));

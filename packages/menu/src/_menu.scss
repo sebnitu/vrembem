@@ -1,14 +1,15 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 #{core.bem("menu")} {
   display: flex;
-  gap: css.get("menu", "gap");
+  gap: css.get("menu", "gap", var.$gap);
   flex-direction: column;
   align-items: stretch;
-  font-size: css.get("menu", "font-size", var.$font-size);
-  line-height: css.get("menu", "line-height", var.$line-height);
+  font-size: css.get("menu", "font-size", css.get("form-control-font-size"));
+  line-height: css.get("menu", "line-height", css.get("form-control-line-height"));
   list-style: none;
 }
 
@@ -16,64 +17,56 @@
   flex: 0 0 auto;
   align-self: stretch;
   width: auto;
-  height: css.get("menu", "sep-size");
-  margin: css.get("menu", "sep-gap") 0;
-  background: css.get("menu", "sep-background");
+  height: css.get("menu", "sep-size", var.$sep-size);
+  margin: css.get("menu", "sep-gap", var.$sep-gap) 0;
+  background: css.get("menu", "sep-background", var.$sep-background);
 }
 
 #{core.bem("menu", "action")} {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  min-width: css.get("menu", "size", var.$size);
-  min-height: css.get("menu", "size", var.$size);
-  padding: css.get("menu", "padding", var.$padding);
-  outline: none;
-  border: css.get("menu", "border-width", var.$border-width) solid css.get("menu", "border-color");
-  border-radius: css.get("menu", "border-radius", var.$border-radius);
-  background: css.get("menu", "background");
-  color: css.get("menu", "foreground");
-  white-space: normal;
-  gap: css.get("menu", "action-gap");
+  @include core.form-control-properties("menu");
+  @include mix.menu-action-base();
+  border-color: css.get("menu", "border-color", var.$border-color);
+  background-color: css.get("menu", "background", var.$background);
+  box-shadow: css.get("menu", "box-shadow", var.$box-shadow);
+  color: css.get("menu", "foreground", var.$foreground);
+  
+  &:hover {
+    border-color: css.get("menu", "border-color-hover", "border-color", var.$border-color-hover);
+    background-color: css.get("menu", "background-hover", "background", var.$background-hover);
+    box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
+    color: css.get("menu", "foreground-hover", "foreground", var.$foreground-hover);
+  }
 
-  &:hover,
-  &:focus-visible {
-    border-color: css.get("menu", "border-color-hover", "border-color");
-    background: css.get("menu", "background-hover", "background");
-    color: css.get("menu", "foreground-hover", "foreground");
+  &:focus {
+    border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
+    background-color: css.get("menu", "background-focus", "background-hover", "background", var.$background-focus);
+    box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
+    color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:focus-visible {
-    z-index: 1;
-    outline: css.get("menu", "outline-focus");
+    border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
+    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
+    box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
+    color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
 
   &:active {
-    border-color: css.get("menu", "border-color-active", "border-color-hover", "border-color");
-    background: css.get("menu", "background-active", "background-hover", "background");
-    color: css.get("menu", "foreground-active", "foreground-hover", "foreground");
+    border-color: css.get("menu", "border-color-active", "border-color", var.$border-color-active);
+    background-color: css.get("menu", "background-active", "background", var.$background-active);
+    box-shadow: css.get("menu", "box-shadow-active", "box-shadow", var.$box-shadow-active);
+    color: css.get("menu", "foreground-active", "foreground", var.$foreground-active);
   }
 
-  &.is-active,
-  &.is-active:hover,
-  &.is-active:focus,
-  &.is-active:active,
-  &.is-active[disabled] {
-    background: css.get("menu", "active-background");
-    color: css.get("menu", "active-foreground");
-    cursor: pointer;
+  &:disabled:not(.is-active) {
+    background-color: css.get("menu", "disabled-background", var.$disabled-background);
+    color: css.get("menu", "disabled-foreground", var.$disabled-foreground);
+    pointer-events: none;
   }
 
-  &.is-disabled,
-  &.is-disabled:hover,
-  &.is-disabled:focus,
-  &.is-disabled:active,
-  &[disabled] {
-    background: css.get("menu", "disabled-background");
-    color: css.get("menu", "disabled-foreground");
-    cursor: default;
+  &.is-active {
+    background-color: css.get("menu", "active-background", var.$active-background);
+    color: css.get("menu", "active-foreground", var.$active-foreground);
   }
 }
 

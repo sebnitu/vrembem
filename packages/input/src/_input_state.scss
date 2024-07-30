@@ -4,20 +4,14 @@
 
 #{core.bem("input", null, "state", "success")} {
   @include css.override("input", (
-    "border-color": palette.get("primary"),
-    "border-color-hover": palette.get("primary"),
-    "border-color-focus": palette.get("primary"),
-    "box-shadow": palette.get("primary", 50%, 0%),
-    "box-shadow-focus": palette.get("primary", 50%, 50%),
+    "accent": palette.get("primary"),
+    "border-color": palette.get("primary")
   ));
 }
 
 #{core.bem("input", null, "state", "error")} {
   @include css.override("input", (
-    "border-color": palette.get("important"),
-    "border-color-hover": palette.get("important"),
-    "border-color-focus": palette.get("important"),
-    "box-shadow": palette.get("important", 50%, 0%),
-    "box-shadow-focus": palette.get("important", 50%, 50%),
+    "accent": palette.get("important"),
+    "border-color": palette.get("important")
   ));
 }

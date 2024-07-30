@@ -1,69 +1,19 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
-// Form control fallbacks
-$size: css.get("form-control-size") !default;
-$font-size: css.get("form-control-font-size") !default;
-$transition-duration: css.get("form-control-transition-duration") !default;
-$transition-timing-function: css.get("form-control-transition-timing-function") !default;
+@include css.register("checkbox");
+$accent: css.get("checkbox", "accent", css.get("form-control-accent")) !default;
+$background: css.get("checkbox", "background", css.get("form-control-background")) !default;
+$foreground: css.get("checkbox", "foreground", css.get("form-control-foreground")) !default;
 
-// Unique
 $box-size: 1.2em !default;
 $icon-size: 0.8em !default;
 $icon-stroke: 2.5 !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius") !default;
 
-// Appearance
-$color: palette.get("primary") !default;
-$fill: null !default;
-$icon-color: null !default;
-$border-color: null !default;
-$background-color: $color !default;
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
-
 // Modifier: checkbox_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // Modifier: checkbox_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
-
-// Custom properties
-@include css.set("checkbox", (
-  "color": $color,
-  "fill": $fill,
-  "box-size": $box-size,
-  "icon-size": $icon-size,
-  "icon-color": $icon-color,
-  "icon-stroke": $icon-stroke,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
-  "background": (
-    "color": $background-color,
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  )
-));
-
-// Themes
-@include theme.set("checkbox", "light", (
-  "fill": white,
-  "border-color": palette.get("neutral"),
-  "icon-color": white
-));
-
-@include theme.set("checkbox", "dark", (
-  "fill": palette.get("neutral", 10),
-  "border-color": palette.get("neutral", 80),
-  "icon-color": palette.get("neutral", 10)
-));

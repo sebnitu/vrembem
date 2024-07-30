@@ -297,7 +297,6 @@ $_theme-keys: "light", "dark";
   "border-color-dark": rgb(0 0 0 / 20%),
   "border-color-darker": rgb(0 0 0 / 30%),
   "shadow-color": palette.get("neutral", 20%, 20%),
-  "focus-visible": palette.get("primary"),
   "color-scheme": light
 ));
 
@@ -318,6 +317,5 @@ $_theme-keys: "light", "dark";
   "border-color-dark": rgb(255 255 255 / 20%),
   "border-color-darker": rgb(255 255 255 / 30%),
   "shadow-color": palette.get("neutral", 0%, 20%),
-  "focus-visible": palette.get("primary"),
   "color-scheme": dark
 ));

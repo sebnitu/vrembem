@@ -8,36 +8,36 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  font-size: css.get("radio", "font-size", var.$font-size);
+  font-size: css.get("radio", "font-size", css.get("form-control-font-size"));
   vertical-align: middle;
 }
 
 #{core.bem("radio", "background")} {
-  @include core.size(css.get("radio", "size", var.$size));
+  @include core.size(css.get("radio", "size", css.get("form-control-size")));
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("radio", "background-border-radius");
-  background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity"));
+  border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
+  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
-  @include core.size(css.get("radio", "circle-size"));
+  @include core.size(css.get("radio", "circle-size", var.$circle-size));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("radio", "border-width") solid css.get("radio", "border-color");
-  border-radius: css.get("radio", "circle-size");
-  background-color: css.get("radio", "fill");
+  border: css.get("radio", "border-width", var.$border-width) solid var.$foreground;
+  border-radius: css.get("radio", "circle-size", var.$circle-size);
+  background-color: css.get("radio", "background", var.$background);
   color: transparent;
 }
 
 #{core.bem("radio", "dot")} {
   @include core.size(0);
-  border-radius: css.get("radio", "dot-size");
-  background-color: css.get("radio", "dot-color");
+  border-radius: css.get("radio", "dot-size", var.$dot-size);
+  background-color: css.get("radio", "background", var.$background);
   opacity: 0;
 }
 
@@ -51,44 +51,44 @@
   cursor: pointer;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-hover"));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "color");
-      background-color: css.get("radio", "fill");
+      border-color: css.get("radio", "accent", var.$accent);
+      background-color: css.get("radio", "background", var.$background);
     }
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-focus"));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "color");
-      background-color: css.get("radio", "fill");
+      border-color: css.get("radio", "accent", var.$accent);
+      background-color: css.get("radio", "background", var.$background);
     }
   }
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from css.get("radio", "background-color") h s l / css.get("radio", "background-opacity-active"));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "color");
-      background-color: css.get("radio", "fill");
+      border-color: css.get("radio", "accent", var.$accent);
+      background-color: css.get("radio", "background", var.$background);
     }
   }
 
   &:checked + #{core.bem("radio", "background")} {
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "color");
-      background-color: css.get("radio", "color");
+      border-color: css.get("radio", "accent", var.$accent);
+      background-color: css.get("radio", "accent", var.$accent);
     }
 
     #{core.bem("radio", "dot")} {
-      @include core.size(css.get("radio", "dot-size"));
+      @include core.size(css.get("radio", "dot-size", var.$dot-size));
       transition-property: opacity, width, height;
-      transition-duration: css.get("radio", "transition-duration", var.$transition-duration);
-      transition-timing-function: css.get("radio", "transition-timing-function", var.$transition-timing-function);
+      transition-duration: css.get("radio", "transition-duration", css.get("form-control-transition-duration"));
+      transition-timing-function: css.get("radio", "transition-timing-function", css.get("form-control-transition-timing-function"));
       background-position: center center;
       opacity: 1;
     }

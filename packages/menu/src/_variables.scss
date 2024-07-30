@@ -1,36 +1,36 @@
-@use "sass:list";
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
-// Form control fallbacks
-$size: css.get("form-control-size") !default;
-$font-size: css.get("form-control-font-size") !default;
-$line-height: css.get("form-control-line-height") !default;
-$padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
-$border-width: css.get("form-control-border-width") !default;
-$border-radius: css.get("form-control-border-radius") !default;
-$transition-duration: css.get("form-control-transition-duration") !default;
-$transition-timing-function: css.get("form-control-transition-timing-function") !default;
-
-// Unique
+@include css.register("menu");
+$accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
 $gap: 1px !default;
+$action-gap: 0.5em !default;
 
 // Appearance
-$border-color: transparent !default;
-$border-color-hover: null !default;
-$border-color-active: null !default;
-$background: null !default;
-$background-hover: null !default;
-$background-active: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$foreground-active: null !default;
-$outline-focus: 2px solid css.get("focus-visible") !default;
+$background: transparent !default;
+$background-hover: css.get("background-hover") !default;
+$background-focus: $background-hover !default;
+$background-focus-visible: $background-hover !default;
+$background-active: css.get("background-active") !default;
 
-// Element: menu__action
-$action-gap: 0.5em !default;
+$foreground: css.get("foreground") !default;
+$foreground-hover: $foreground !default;
+$foreground-focus: $foreground !default;
+$foreground-focus-visible: $foreground !default;
+$foreground-active: $foreground !default;
+
+$border-color: transparent !default;
+$border-color-hover: $border-color !default;
+$border-color-focus: $border-color !default;
+$border-color-focus-visible: $accent !default;
+$border-color-active: $border-color !default;
+
+$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
+$box-shadow-hover: $box-shadow !default;
+$box-shadow-focus: $box-shadow !default;
+$box-shadow-focus-visible: 0 0 0 3px hsl(from $accent h s l / 40%) !default;
+$box-shadow-active: $box-shadow !default;
 
 // Element modifier: menu__action_icon
 $icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
@@ -53,35 +53,3 @@ $size-sm-font-size: css.get("font-size-sm") !default;
 
 // Modifier: menu_size_sm
 $size-lg-font-size: css.get("font-size-lg") !default;
-
-// Custom properties
-@include css.set("menu", (
-  "gap": $gap,
-  "border-color": $border-color,
-  "border-color-hover": $border-color-hover,
-  "border-color-active": $border-color-active,
-  "background": $background,
-  "background-hover": $background-hover,
-  "background-active": $background-active,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "foreground-active": $foreground-active,
-  "outline-focus": $outline-focus,
-  "action-gap": $action-gap,
-  "sep-size": $sep-size,
-  "sep-gap": $sep-gap,
-  "sep-background": $sep-background,
-  "active-background": $active-background,
-  "active-foreground": $active-foreground,
-  "disabled-background": $disabled-background,
-  "disabled-foreground": $disabled-foreground
-));
-
-// Themes
-@include theme.set("menu", "light", (
-  "background": none,
-  "background-hover": css.get("background-hover"),
-  "background-active": css.get("background-active"),
-  "foreground": css.get("foreground"),
-));
-@include theme.set("menu", "dark");

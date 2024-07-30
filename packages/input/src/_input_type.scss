@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("input", null, "type", "select")} {
   position: relative;
@@ -10,11 +11,11 @@
   cursor: pointer;
 
   &:read-only {
-    background-color: css.get("input", "background");
+    background-color: css.get("input", "background", var.$background);
   }
 
   &:disabled {
-    background-color: css.get("input", "background-disabled");
+    background-color: css.get("input", "background-disabled", var.$background-disabled);
   }
 }
 

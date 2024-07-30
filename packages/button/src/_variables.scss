@@ -1,45 +1,37 @@
-@use "sass:list";
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
-// Form control fallbacks
-$size: css.get("form-control-size") !default;
-$font-size: css.get("form-control-font-size") !default;
-$line-height: css.get("form-control-line-height") !default;
-$padding: core.minus-border-width(core.$form-control-padding, css.get("form-control-border-width")) !default;
-$border-width: css.get("form-control-border-width") !default;
-$border-radius: css.get("form-control-border-radius") !default;
-$transition-duration: css.get("form-control-transition-duration") !default;
-$transition-timing-function: css.get("form-control-transition-timing-function") !default;
-
-// Unique
+@include css.register("button");
+$accent: css.get("button", "accent", css.get("form-control-accent")) !default;
 $gap: 0.5rem !default;
-$transition-property: box-shadow, outline, outline-offset !default;
 
 // Appearance
-$background: null !default;
-$background-hover: null !default;
-$background-active: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$foreground-active: null !default;
-$border-color: null !default;
-$border-color-hover: null !default;
-$border-color-active: null !default;
-$box-shadow: null !default;
-$box-shadow-focus: null !default;
+$background: transparent !default;
+$background-hover: $background !default;
+$background-focus: $background !default;
+$background-focus-visible: $background !default;
+$background-active: $background !default;
+
+$foreground: css.get("foreground") !default;
+$foreground-hover: $foreground !default;
+$foreground-focus: $foreground !default;
+$foreground-focus-visible: $foreground !default;
+$foreground-active: $foreground !default;
+
+$border-color: css.get("border-color-dark") !default;
+$border-color-hover: css.get("border-color-darker") !default;
+$border-color-focus: $border-color-hover !default;
+$border-color-focus-visible: $accent !default;
+$border-color-active: $foreground-active !default;
+
+$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
+$box-shadow-hover: $box-shadow !default;
+$box-shadow-focus: $box-shadow !default;
+$box-shadow-focus-visible: 0 0 0 3px hsl(from $accent h s l / 40%) !default;
+$box-shadow-active: $box-shadow !default;
 
 // State: disabled
 $disabled-opacity: 0.6 !default;
-
-// State: loading
-$loading-size: 1em !default;
-$loading-border: 2px solid !default;
-$loading-border-color: null !default;
-$loading-animation-duration: 0.6s !default;
-$loading-animation-timing-function: linear !default;
 
 // Modifier: button_icon
 $icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
@@ -49,49 +41,3 @@ $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // Modifier: button_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
-
-// Custom properties
-@include css.set("button", (
-  "gap": $gap,
-  "background": $background,
-  "background-hover": $background-hover,
-  "background-active": $background-active,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "foreground-active": $foreground-active,
-  "border-color": $border-color,
-  "border-color-hover": $border-color-hover,
-  "border-color-active": $border-color-active,
-  "box-shadow": $box-shadow,
-  "box-shadow-focus": $box-shadow-focus,
-  "disabled-opacity": $disabled-opacity,
-  "transition-property": $transition-property,
-  "loading": (
-    "size": $loading-size,
-    "border": $loading-border,
-    "border-color": $loading-border-color,
-    "animation-duration": $loading-animation-duration,
-    "animation-timing-function": $loading-animation-timing-function,
-  )
-));
-
-// Themes
-@include theme.set("button", "light", (
-  "background": transparent,
-  "background-hover": transparent,
-  "background-focus": transparent,
-  "foreground": css.get("foreground"),
-  "foreground-hover": css.get("foreground"),
-  "foreground-focus": css.get("foreground"),
-  "border-color": css.get("border-color-dark"),
-  "border-color-hover": css.get("border-color-darker"),
-  "border-color-focus": css.get("border-color-darker"),
-  "loading-border-color": css.get("foreground"),
-  "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%)
-));
-
-@include theme.set("button", "dark", (
-  "box-shadow": 0 0 0 0 rgb(255 255 255 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
-));

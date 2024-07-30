@@ -1,56 +1,47 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 #{core.bem("button")} {
-  position: relative;
-  display: inline-flex;
-  gap: css.get("button", "gap");
-  align-items: center;
-  justify-content: center;
-  min-width: css.get("button", "size", var.$size);
-  min-height: css.get("button", "size", var.$size);
-  padding: css.get("button", "padding", var.$padding);
-  transition-property: css.get("button", "transition-property");
-  transition-duration: css.get("button", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("button", "transition-timing-function", var.$transition-timing-function);
-  outline: none;
-  border: css.get("button", "border-width", var.$border-width) solid css.get("button", "border-color");
-  border-radius: css.get("button", "border-radius", var.$border-radius);
-  background: css.get("button", "background");
-  background-clip: border-box;
-  box-shadow: css.get("button", "box-shadow");
-  color: css.get("button", "foreground");
-  font-family: inherit;
-  font-size: css.get("button", "font-size", var.$font-size);
-  font-weight: inherit;
-  line-height: css.get("button", "line-height", var.$line-height);
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:disabled:not(.is-loading) {
-    opacity: css.get("button", "disabled-opacity");
-    pointer-events: none;
+  @include core.form-control-properties("button");
+  @include mix.button-base();
+  border-color: css.get("button", "border-color", var.$border-color);
+  background-color: css.get("button", "background", var.$background);
+  box-shadow: css.get("button", "box-shadow", var.$box-shadow);
+  color: css.get("button", "foreground", var.$foreground);
+  
+  &:hover {
+    border-color: css.get("button", "border-color-hover", "border-color", var.$border-color-hover);
+    background-color: css.get("button", "background-hover", "background", var.$background-hover);
+    box-shadow: css.get("button", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
+    color: css.get("button", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
-  &:hover,
-  &:focus-visible {
-    border-color: css.get("button", "border-color-hover");
-    background-color: css.get("button", "background-hover");
-    box-shadow: css.get("button", "box-shadow");
-    color: css.get("button", "foreground-hover");
+  &:focus {
+    border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
+    background-color: css.get("button", "background-focus", "background-hover", "background", var.$background-focus);
+    box-shadow: css.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
+    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:focus-visible {
-    box-shadow: css.get("button", "box-shadow-focus");
+    border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
+    background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
+    box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
+    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
 
   &:active {
-    border-color: css.get("button", "border-color-active");
-    background-color: css.get("button", "background-active");
-    box-shadow: css.get("button", "box-shadow");
-    color: css.get("button", "foreground-active");
+    border-color: css.get("button", "border-color-active", "border-color", var.$border-color-active);
+    background-color: css.get("button", "background-active", "background", var.$background-active);
+    box-shadow: css.get("button", "box-shadow-active", "box-shadow", var.$box-shadow-active);
+    color: css.get("button", "foreground-active", "foreground", var.$foreground-active);
+  }
+
+  &:disabled:not(.is-loading) {
+    opacity: css.get("button", "disabled-opacity", var.$disabled-opacity);
+    pointer-events: none;
   }
 
   &.is-loading {
@@ -58,25 +49,8 @@
     pointer-events: none;
 
     &::after {
-      @include core.size(css.get("button", "loading-size"));
-      content: "";
-      position: absolute;
-      top: calc(50% - calc(css.get("button", "loading-size") * 0.5));
-      left: calc(50% - calc(css.get("button", "loading-size") * 0.5));
-      animation: spin css.get("button", "loading-animation-duration") infinite css.get("button", "loading-animation-timing-function");
-      border: css.get("button", "loading-border");
-      border-radius: core.$border-radius-circle;
-      border-color: css.get("button", "loading-border-color") css.get("button", "loading-border-color") transparent transparent;
+      @include css.override("loading", "color", css.get("button", "foreground", var.$foreground));
+      @include core.loading-spinner();
     }
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
   }
 }

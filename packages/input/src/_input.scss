@@ -1,54 +1,40 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
+@use "./mixins" as mix;
 
 #{core.bem("input")} {
-  position: relative;
-  display: block;
-  width: 100%;
-  min-width: css.get("input", "size", var.$size);
-  max-width: 100%;
-  min-height: css.get("input", "size", var.$size);
-  padding: css.get("input", "padding", var.$padding);
-  transition-property: css.get("input", "transition-property");
-  transition-duration: css.get("input", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("input", "transition-timing-function", var.$transition-timing-function);
-  outline: none;
-  border: css.get("input", "border-width", var.$border-width) solid css.get("input", "border-color");
-  border-radius: css.get("input", "border-radius", var.$border-radius);
-  background: css.get("input", "background");
-  box-shadow: 0 0 0 0 css.get("input", "box-shadow"), inset 0 0.1rem 0.2rem css.get("input", "box-shadow-inset");
-  color: css.get("input", "foreground");
-  font-family: css.get("font-family");
-  font-size: css.get("input", "font-size", var.$font-size);
-  line-height: css.get("input", "line-height", var.$line-height);
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-
+  @include core.form-control-properties("input");
+  @include mix.input-base();
+  border-color: css.get("input", "border-color", var.$border-color);
+  background-color: css.get("input", "background", var.$background);
+  box-shadow: css.get("input", "box-shadow", var.$box-shadow);
+  color: css.get("input", "foreground", var.$foreground);
+  
   &:hover {
-    border-color: css.get("input", "border-color-hover", "border-color");
-    background-color: css.get("input", "background-hover", "background");
-    color: css.get("input", "foreground-hover", "foreground");
+    border-color: css.get("input", "border-color-hover", "border-color", var.$border-color-hover);
+    background-color: css.get("input", "background-hover", "background", var.$background-hover);
+    box-shadow: css.get("input", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
+    color: css.get("input", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
   &:focus {
-    border-color: css.get("input", "border-color-focus", "border-color-hover", "border-color");
-    background-color: css.get("input", "background-focus", "background-hover", "background");
-    box-shadow: 0 0 0 0.2rem css.get("input", "box-shadow-focus"), inset 0 0.1rem 0.2rem css.get("input", "box-shadow-inset-focus");
-    color: css.get("input", "foreground-focus", "foreground-hover", "foreground");
+    border-color: css.get("input", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
+    background-color: css.get("input", "background-focus", "background-hover", "background", var.$background-focus);
+    box-shadow: css.get("input", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
+    color: css.get("input", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:read-only {
-    background-color: css.get("input", "background-readonly");
+    background-color: css.get("input", "background-readonly", var.$background-readonly);
   }
 
   &:disabled {
-    background-color: css.get("input", "background-disabled");
+    background-color: css.get("input", "background-disabled", var.$background-disabled);
     pointer-events: none;
   }
 
   &::placeholder {
-    color: css.get("input", "foreground-placeholder");
+    color: css.get("input", "foreground-placeholder", var.$foreground-placeholder);
   }
 }

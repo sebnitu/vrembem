@@ -1,0 +1,11 @@
+/// Output the base styles for an input component.
+@mixin input-base() {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  outline: none;
+  border-style: solid;
+  font-family: inherit;
+  appearance: none;
+}

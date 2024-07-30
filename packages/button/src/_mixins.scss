@@ -1,23 +1,43 @@
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
+@use "./variables" as var;
 
-/// Creates a button variant using CSS variables and the palette module.
-/// @param {Color} $foreground - A color for the foreground of the button.
-/// @param {String} $background - The color key for the background of the button (should exist in palette map).
-/// @output Outputs theme CSS variables based on the provided foreground and background.
-@mixin button-variant($foreground, $background) {
+/// Output the base styles for a button component.
+@mixin button-base() {
+  position: relative;
+  display: inline-flex;
+  gap: css.get("button", "gap", var.$gap);
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-style: solid;
+  background-clip: border-box;
+  font-family: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/// Creates a button variant using custom properties and hsl relative values.
+/// @param {Color} $color
+///   The primary color to use for the button variant.
+/// @param {Color} $color-dark [hsl(from $color h s 40%)]
+///   A darker version of the color, used on hover state.
+/// @param {Color} $color-darker [hsl(from $color h s 30%)]
+///   The darkest version of the color, used on active state.
+/// @output Override button custom properties using the provided color values.
+@mixin button-variant(
+  $color,
+  $color-dark: hsl(from $color h s 40%),
+  $color-darker: hsl(from $color h s 30%)
+) {
   @include css.override("button", (
-    "background": palette.get($background),
-    "background-hover": palette.get($background, 40),
-    "background-active": palette.get($background, 30),
-    "foreground": $foreground,
-    "foreground-hover": $foreground,
-    "foreground-active": $foreground,
+    "accent": $color,
+    "background": $color,
+    "background-hover": $color-dark,
+    "background-active": $color-darker,
+    "foreground": white,
     "border-color": transparent,
-    "border-color-hover": transparent,
-    "border-color-active": transparent,
-    "box-shadow": 0 0 0 0 #{palette.get($background, 50%, 0%)},
-    "box-shadow-focus": 0 0 0 0.2rem #{palette.get($background, 50%, 50%)},
-    "loading-border-color": $foreground
+    "loading-border-color": white
   ));
 }
