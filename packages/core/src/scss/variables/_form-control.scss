@@ -1,5 +1,6 @@
 @use "../modules/css";
 @use "../modules/palette";
+@use "../modules/theme";
 
 $form-control-font-size: css.get("font-size") !default;
 $form-control-font-size-sm: css.get("font-size-sm") !default;
@@ -29,7 +30,13 @@ $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
 ));
 
 $form-control-accent: palette.get("primary") !default;
-@include css.set("core", "form-control-accent", $form-control-accent);
+$form-control-background: css.get("background") !default;
+@include css.set("core", "form-control", (
+  "accent": $form-control-accent,
+  "background": $form-control-background,
+));
+@include theme.set("core", "light", "form-control-foreground", palette.get("neutral"));
+@include theme.set("core", "dark", "form-control-foreground", palette.get("neutral", 80));
 
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;

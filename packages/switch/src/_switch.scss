@@ -40,9 +40,9 @@ $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
   @include core.size(100%, css.get("switch", "track-size", var.$track-size));
   position: relative;
   display: block;
-  border: css.get("switch", "border-width", var.$border-width) solid hsl(from css.get("switch", "foreground", var.$foreground) h s 50%);
+  border: css.get("switch", "border-width", var.$border-width) solid var.$foreground;
   border-radius: css.get("switch", "border-radius", var.$border-radius);
-  background-color: hsl(from css.get("switch", "foreground", var.$foreground) h s 50% / 20%);
+  background-color: hsl(from var.$foreground h s l / 20%);
 }
 
 #{core.bem("switch", "thumb")} {
@@ -55,7 +55,7 @@ $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
   transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   border-radius: css.get("switch", "border-radius", var.$border-radius);
   background-color: css.get("switch", "background", var.$background);
-  box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) hsl(from css.get("radio", "foreground", var.$foreground) h s 50%);
+  box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) var.$foreground;
 }
 
 #{core.bem("switch", "native")} {

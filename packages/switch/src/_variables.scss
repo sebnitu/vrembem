@@ -5,11 +5,8 @@
 
 @include css.register("switch");
 $accent: css.get("switch", "accent", css.get("form-control-accent")) !default;
-$background: css.get("switch", "background", css.get("background")) !default;
-
-// TODO: Find a way to add light/dark versions of this value.
-// Should probably be set as a form-control value.
-$foreground: css.get("switch", "foreground", css.get("foreground")) !default;
+$background: css.get("switch", "background", css.get("form-control-background")) !default;
+$foreground: css.get("switch", "foreground", css.get("form-control-foreground")) !default;
 
 $track-size: 1.25em !default;
 $border-width: 2px !default;

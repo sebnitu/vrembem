@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("checkbox", "border-width", var.$border-width) solid hsl(from css.get("checkbox", "foreground", var.$foreground) h s 50%);
+  border: css.get("checkbox", "border-width", var.$border-width) solid var.$foreground;
   border-radius: css.get("checkbox", "border-radius", var.$border-radius);
   background-color: css.get("checkbox", "background", var.$background);
   color: transparent;
