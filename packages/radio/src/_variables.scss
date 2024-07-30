@@ -1,7 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 @include css.register("radio");
 $accent: css.get("radio", "accent", css.get("form-control-accent")) !default;

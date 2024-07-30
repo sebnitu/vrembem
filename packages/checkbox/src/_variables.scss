@@ -1,7 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 @include css.register("checkbox");
 $accent: css.get("checkbox", "accent", css.get("form-control-accent")) !default;
