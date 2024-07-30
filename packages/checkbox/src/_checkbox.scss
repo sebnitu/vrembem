@@ -9,38 +9,38 @@
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  font-size: css.get("checkbox", "font-size", var.$font-size);
+  font-size: css.get("checkbox", "font-size", css.get("form-control-font-size"));
   vertical-align: middle;
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.size(css.get("checkbox", "size", var.$size));
+  @include core.size(css.get("checkbox", "size", css.get("form-control-size")));
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("checkbox", "background-border-radius");
-  background-color: hsl(from css.get("checkbox", "background-color") h s l / css.get("checkbox", "background-opacity"));
+  border-radius: css.get("checkbox", "background-border-radius", var.$background-border-radius);
+  background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity", var.$background-opacity));
 }
 
 #{core.bem("checkbox", "box")} {
-  @include core.size(css.get("checkbox", "box-size"));
+  @include core.size(css.get("checkbox", "box-size", var.$box-size));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("checkbox", "border-width") solid css.get("checkbox", "border-color");
-  border-radius: css.get("checkbox", "border-radius");
-  background-color: css.get("checkbox", "fill");
+  border: css.get("checkbox", "border-width", var.$border-width) solid hsl(from css.get("checkbox", "foreground", var.$foreground) h s 50%);
+  border-radius: css.get("checkbox", "border-radius", var.$border-radius);
+  background-color: css.get("checkbox", "fill", var.$background);
   color: transparent;
 }
 
 #{core.bem("checkbox", "icon")} {
-  @include core.size(css.get("checkbox", "icon-size"));
-  background-color: css.get("checkbox", "icon-color");
+  @include core.size(css.get("checkbox", "icon-size", var.$icon-size));
+  background-color: css.get("checkbox", "fill", var.$background);
   mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
   mask-repeat: no-repeat;
-  mask-position: center calc(css.get("checkbox", "icon-size") * -1);
+  mask-position: center calc(css.get("checkbox", "icon-size", var.$icon-size) * -1);
   mask-size: 100%;
   opacity: 0;
 }
@@ -55,43 +55,43 @@
   cursor: pointer;
 
   &:hover + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from css.get("checkbox", "background-color") h s l / css.get("checkbox", "background-opacity-hover"));
+    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-hover", var.$background-opacity-hover));
 
     #{core.bem("checkbox", "box")} {
-      border-color: css.get("checkbox", "color");
-      background-color: css.get("checkbox", "fill");
+      border-color: var.$accent;
+      background-color: css.get("checkbox", "fill", var.$background);
     }
   }
 
   &:focus + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from css.get("checkbox", "background-color") h s l / css.get("checkbox", "background-opacity-focus"));
+    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-focus", var.$background-opacity-focus));
 
     #{core.bem("checkbox", "box")} {
-      border-color: css.get("checkbox", "color");
-      background-color: css.get("checkbox", "fill");
+      border-color: var.$accent;
+      background-color: css.get("checkbox", "fill", var.$background);
     }
   }
 
   &:focus-visible + #{core.bem("checkbox", "background")},
   &:active + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from css.get("checkbox", "background-color") h s l / css.get("checkbox", "background-opacity-active"));
+    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-active", var.$background-opacity-active));
 
     #{core.bem("checkbox", "box")} {
-      border-color: css.get("checkbox", "color");
-      background-color: css.get("checkbox", "fill");
+      border-color: var.$accent;
+      background-color: css.get("checkbox", "fill", var.$background);
     }
   }
 
   &:checked + #{core.bem("checkbox", "background")} {
     #{core.bem("checkbox", "box")} {
-      border-color: css.get("checkbox", "color");
-      background-color: css.get("checkbox", "color");
+      border-color: var.$accent;
+      background-color: var.$accent;
     }
 
     #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: css.get("checkbox", "transition-duration", var.$transition-duration);
-      transition-timing-function: css.get("checkbox", "transition-timing-function", var.$transition-timing-function);
+      transition-duration: css.get("checkbox", "transition-duration", css.get("form-control-transition-duration"));
+      transition-timing-function: css.get("checkbox", "transition-timing-function", css.get("form-control-transition-timing-function"));
       mask-position: center center;
       opacity: 1;
     }
@@ -99,15 +99,15 @@
 
   &:indeterminate + #{core.bem("checkbox", "background")} {
     #{core.bem("checkbox", "box")} {
-      border-color: css.get("checkbox", "color");
-      background-color: css.get("checkbox", "color");
+      border-color: var.$accent;
+      background-color: var.$accent;
     }
 
     #{core.bem("checkbox", "icon")} {
       transition-property: opacity, mask-position;
-      transition-duration: css.get("checkbox", "transition-duration", var.$transition-duration);
-      transition-timing-function: css.get("checkbox", "transition-timing-function", var.$transition-timing-function);
-      background-color: css.get("checkbox", "icon-color");
+      transition-duration: css.get("checkbox", "transition-duration", css.get("form-control-transition-duration"));
+      transition-timing-function: css.get("checkbox", "transition-timing-function", css.get("form-control-transition-timing-function"));
+      background-color: css.get("checkbox", "fill", var.$background);
       mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
       mask-position: center center;
       opacity: 1;
