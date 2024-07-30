@@ -6,6 +6,9 @@
 @include css.register("checkbox");
 $accent: css.get("checkbox", "accent", css.get("form-control-accent")) !default;
 $background: css.get("checkbox", "background", css.get("background")) !default;
+
+// TODO: Find a way to add light/dark versions of this value.
+// Should probably be set as a form-control value.
 $foreground: css.get("checkbox", "foreground", css.get("foreground")) !default;
 
 $box-size: 1.2em !default;
@@ -13,6 +16,8 @@ $icon-size: 0.8em !default;
 $icon-stroke: 2.5 !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius") !default;
+
+// TODO: Find a way to add these into form-control.
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
