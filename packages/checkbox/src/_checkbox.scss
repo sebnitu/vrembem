@@ -31,13 +31,13 @@
   justify-content: center;
   border: css.get("checkbox", "border-width", var.$border-width) solid hsl(from css.get("checkbox", "foreground", var.$foreground) h s 50%);
   border-radius: css.get("checkbox", "border-radius", var.$border-radius);
-  background-color: css.get("checkbox", "fill", var.$background);
+  background-color: css.get("checkbox", "background", var.$background);
   color: transparent;
 }
 
 #{core.bem("checkbox", "icon")} {
   @include core.size(css.get("checkbox", "icon-size", var.$icon-size));
-  background-color: css.get("checkbox", "fill", var.$background);
+  background-color: css.get("checkbox", "background", var.$background);
   mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
   mask-repeat: no-repeat;
   mask-position: center calc(css.get("checkbox", "icon-size", var.$icon-size) * -1);
@@ -59,7 +59,7 @@
 
     #{core.bem("checkbox", "box")} {
       border-color: var.$accent;
-      background-color: css.get("checkbox", "fill", var.$background);
+      background-color: css.get("checkbox", "background", var.$background);
     }
   }
 
@@ -68,7 +68,7 @@
 
     #{core.bem("checkbox", "box")} {
       border-color: var.$accent;
-      background-color: css.get("checkbox", "fill", var.$background);
+      background-color: css.get("checkbox", "background", var.$background);
     }
   }
 
@@ -78,7 +78,7 @@
 
     #{core.bem("checkbox", "box")} {
       border-color: var.$accent;
-      background-color: css.get("checkbox", "fill", var.$background);
+      background-color: css.get("checkbox", "background", var.$background);
     }
   }
 
@@ -107,7 +107,7 @@
       transition-property: opacity, mask-position;
       transition-duration: css.get("checkbox", "transition-duration", css.get("form-control-transition-duration"));
       transition-timing-function: css.get("checkbox", "transition-timing-function", css.get("form-control-transition-timing-function"));
-      background-color: css.get("checkbox", "fill", var.$background);
+      background-color: css.get("checkbox", "background", var.$background);
       mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
       mask-position: center center;
       opacity: 1;

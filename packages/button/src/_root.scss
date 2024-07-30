@@ -4,3 +4,5 @@
 :root {
   @include css.output("button");
 }
+
+@include theme.output("button");

@@ -3,23 +3,14 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-// Form control fallbacks
-$size: css.get("form-control-size") !default;
-$font-size: css.get("form-control-font-size") !default;
-$transition-duration: css.get("form-control-transition-duration") !default;
-$transition-timing-function: css.get("form-control-transition-timing-function") !default;
+@include css.register("radio");
+$accent: css.get("radio", "accent", css.get("form-control-accent")) !default;
+$background: css.get("radio", "background", css.get("background")) !default;
+$foreground: css.get("radio", "foreground", css.get("foreground")) !default;
 
-// Unique
 $circle-size: 1.25em !default;
 $dot-size: 0.5em !default;
 $border-width: 2px !default;
-
-// Appearance
-$color: palette.get("primary") !default;
-$fill: null !default;
-$dot-color: null !default;
-$border-color: null !default;
-$background-color: $color !default;
 $background-border-radius: css.get("border-radius-circle") !default;
 $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
@@ -31,35 +22,3 @@ $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
 // Modifier: radio_size_lg
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
-
-// Custom property
-@include css.set("radio", (
-  "color": $color,
-  "fill": $fill,
-  "circle-size": $circle-size,
-  "dot-size": $dot-size,
-  "dot-color": $dot-color,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "background": (
-    "color": $background-color,
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  )
-));
-
-// Themes
-@include theme.set("radio", "light", (
-  "fill": white,
-  "border-color": palette.get("neutral"),
-  "dot-color": white
-));
-
-@include theme.set("radio", "dark", (
-  "fill": palette.get("neutral", 10),
-  "border-color": palette.get("neutral", 80),
-  "dot-color": palette.get("neutral", 10)
-));
