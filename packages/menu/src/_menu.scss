@@ -58,24 +58,15 @@
     color: css.get("menu", "foreground-active", "foreground", var.$foreground-active);
   }
 
-  &.is-active,
-  &.is-active:hover,
-  &.is-active:focus,
-  &.is-active:active,
-  &.is-active[disabled] {
-    background-color: css.get("menu", "active-background", var.$active-background);
-    color: css.get("menu", "active-foreground", var.$active-foreground);
-    cursor: pointer;
-  }
-
-  &.is-disabled,
-  &.is-disabled:hover,
-  &.is-disabled:focus,
-  &.is-disabled:active,
-  &[disabled] {
+  &:disabled:not(.is-active) {
     background-color: css.get("menu", "disabled-background", var.$disabled-background);
     color: css.get("menu", "disabled-foreground", var.$disabled-foreground);
     pointer-events: none;
+  }
+
+  &.is-active {
+    background-color: css.get("menu", "active-background", var.$active-background);
+    color: css.get("menu", "active-foreground", var.$active-foreground);
   }
 }
 

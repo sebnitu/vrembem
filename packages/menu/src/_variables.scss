@@ -5,7 +5,7 @@
 
 @include css.register("menu");
 $accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
-$gap: 0.25em !default;
+$gap: 1px !default;
 $action-gap: 0.5em !default;
 
 // Appearance
@@ -30,7 +30,7 @@ $border-color-active: $border-color !default;
 $box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;
-$box-shadow-focus-visible: 0 0 0 0.25rem hsl(from $accent h s l / 50%) !default;
+$box-shadow-focus-visible: 0 0 0 3px hsl(from $accent h s l / 40%) !default;
 $box-shadow-active: $box-shadow !default;
 
 // Element modifier: menu__action_icon
