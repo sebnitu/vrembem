@@ -1,23 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
-
-@mixin menu-action-base() {
-  position: relative;
-  display: flex;
-  gap: css.get("menu", "action-gap", var.$action-gap);
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  outline: none;
-  border-style: solid;
-  background-clip: border-box;
-  font-family: inherit;
-  font-weight: inherit;
-  text-decoration: none;
-  white-space: normal;
-  cursor: pointer;
-}
+@use "./mixins" as mix;
 
 #{core.bem("menu")} {
   display: flex;
@@ -40,7 +24,7 @@
 
 #{core.bem("menu", "action")} {
   @include core.form-control-properties("menu");
-  @include menu-action-base();
+  @include mix.menu-action-base();
   border-color: css.get("menu", "border-color", var.$border-color);
   background-color: css.get("menu", "background", var.$background);
   box-shadow: css.get("menu", "box-shadow", var.$box-shadow);

@@ -1,21 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
-
-@mixin input-base() {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  outline: none;
-  border-style: solid;
-  font-family: inherit;
-  appearance: none;
-}
+@use "./mixins" as mix;
 
 #{core.bem("input")} {
   @include core.form-control-properties("input");
-  @include input-base();
+  @include mix.input-base();
   border-color: css.get("input", "border-color", var.$border-color);
   background-color: css.get("input", "background", var.$background);
   box-shadow: css.get("input", "box-shadow", var.$box-shadow);

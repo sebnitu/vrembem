@@ -1,0 +1,20 @@
+@use "@vrembem/core/css";
+@use "./variables" as var;
+
+/// TODO: Add documentation.
+@mixin menu-action-base() {
+  position: relative;
+  display: flex;
+  gap: css.get("menu", "action-gap", var.$action-gap);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  outline: none;
+  border-style: solid;
+  background-clip: border-box;
+  font-family: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+}
