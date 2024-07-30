@@ -1,7 +1,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/// TODO: Add documentation.
+/// Output the base styles for a menu action component element.
 @mixin menu-action-base() {
   position: relative;
   display: flex;

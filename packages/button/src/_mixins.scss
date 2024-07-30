@@ -1,7 +1,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/// TODO: Add documentation.
+/// Output the base styles for a button component.
 @mixin button-base() {
   position: relative;
   display: inline-flex;
