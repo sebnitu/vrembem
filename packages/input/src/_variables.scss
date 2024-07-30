@@ -2,7 +2,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include css.set("input", ());
+@include css.register("input");
 $accent: css.get("input", "accent", css.get("form-control-accent")) !default;
 
 // Appearance

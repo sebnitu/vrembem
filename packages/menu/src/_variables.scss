@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include css.set("menu", ());
+@include css.register("menu");
 $accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
 $gap: 0.25em !default;
 $action-gap: 0.5em !default;
