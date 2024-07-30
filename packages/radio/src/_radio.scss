@@ -19,8 +19,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("radio", "background-border-radius", var.$background-border-radius);
-  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", var.$background-opacity));
+  border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
+  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
@@ -51,7 +51,7 @@
   cursor: pointer;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-hover", var.$background-opacity-hover));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "accent", var.$accent);
@@ -60,7 +60,7 @@
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-focus", var.$background-opacity-focus));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "accent", var.$accent);
@@ -70,7 +70,7 @@
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-active", var.$background-opacity-active));
+    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
       border-color: css.get("radio", "accent", var.$accent);

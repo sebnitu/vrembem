@@ -17,13 +17,6 @@ $icon-stroke: 2.5 !default;
 $border-width: 2px !default;
 $border-radius: css.get("border-radius") !default;
 
-// TODO: Find a way to add these into form-control.
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
-
 // Modifier: checkbox_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 

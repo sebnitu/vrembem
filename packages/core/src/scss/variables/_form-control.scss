@@ -31,6 +31,19 @@ $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
 $form-control-accent: palette.get("primary") !default;
 @include css.set("core", "form-control-accent", $form-control-accent);
 
+$background-border-radius: css.get("border-radius-circle") !default;
+$background-opacity: 0% !default;
+$background-opacity-hover: 20% !default;
+$background-opacity-focus: 20% !default;
+$background-opacity-active: 30% !default;
+@include css.set("core", "form-control", (
+  "background-border-radius": $background-border-radius,
+  "background-opacity": $background-opacity,
+  "background-opacity-hover": $background-opacity-hover,
+  "background-opacity-focus": $background-opacity-focus,
+  "background-opacity-active": $background-opacity-active
+));
+
 $form-control-transition-property: box-shadow !default;
 $form-control-transition-duration: css.get("transition-duration") !default;
 $form-control-transition-timing-function: css.get("transition-timing-function") !default;

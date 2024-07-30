@@ -15,13 +15,6 @@ $circle-size: 1.25em !default;
 $dot-size: 0.5em !default;
 $border-width: 2px !default;
 
-// TODO: Find a way to add these into form-control.
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
-
 // Modifier: radio_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 
