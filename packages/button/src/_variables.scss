@@ -3,7 +3,7 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-@include css.set("button", ());
+@include css.register("button");
 $accent: css.get("button", "accent", css.get("form-control-accent")) !default;
 $gap: 0.5rem !default;
 

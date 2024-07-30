@@ -26,7 +26,7 @@ $_meta: ();
 /// @access private
 @function _meta-check($module, $prop, $args...) {
   $meta: get($module, $prop) or ();
-  @if (not list.index($args, "override")) and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
+  @if ($prop == "register") or (not list.index($args, "override")) and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
     @return false;
   } @else {
     @return true;

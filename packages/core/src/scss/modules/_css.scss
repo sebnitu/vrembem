@@ -32,7 +32,7 @@ $_variables: (
 @function _module-exists($module, $required: true) {
   @if not map.has-key($_variables, $module) {
     @if $required {
-      @error "Module `#{$module}` has not been set in variables map.";
+      @error "Module `#{$module}` has not been registered in variables map.";
     } @else {
       @return false;
     }
@@ -346,6 +346,21 @@ $_variables: (
     }
     $_variables: map.set($_variables, $module, $prop, $value) !global;
   }
+}
+
+/// Register a module in the variables map. This is used when a module is needed
+/// to be available for later use but without setting any custom properties.
+/// @param {string} $module
+///   The module to be registered.
+/// @param {list} $args...
+///   The arguments to pass to `usage.set()`. Can be a list containing an action
+///   and any additional flags to log for the property.
+@mixin register($module, $args...) {
+  // Only call `usage.set` if arguments are passed.
+  @if (list.length($args) > 0) {
+    @include usage.set($module, $prop, $args...);
+  }
+  $_variables: map.set($_variables, $module, "register", true) !global;
 }
 
 /// Mixin to remove items from the `$_variables` custom properties map.
