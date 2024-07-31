@@ -1,0 +1,21 @@
+@use "../modules/css";
+
+$_set-custom-property: true;
+
+// Sets the form-control-size css custom property.
+// Size is calculated using the line-height and vertical padding. This is used 
+// to set the minimum height and width of form controls.
+@mixin set() {
+  $_line-height: css.get("form-control-line-height");
+  $_padding: css.get("form-control-padding-y");
+  $_size: calc(calc(1em * $_line-height) + calc($_padding * 2)) !default;
+  @if ($_set-custom-property) {
+    @include css.set("core", "form-control-size", $_size);
+    $_set-custom-property: false !global;
+  }
+}
+
+// Returns the form-control-size css custom property reference.
+@function get() {
+  @return css.get("form-control-size");
+}

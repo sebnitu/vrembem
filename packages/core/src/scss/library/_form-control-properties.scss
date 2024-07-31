@@ -1,12 +1,14 @@
 @use "../modules/css";
 @use "../variables/form-control" as *;
 @use "./minus-border-width" as *;
+@use "./form-control-size";
 
 /// Set the shared form-control properties with the component specific custom
 /// property and the form-control custom property as the fallback.
 /// @param {string} $module
 ///   The module to pass to `css.get` calls.
 @mixin form-control-properties($module) {
+  @include form-control-size.set();
   min-width: css.get($module, "size", css.get("form-control-size"));
   min-height: css.get($module, "size", css.get("form-control-size"));
   transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));

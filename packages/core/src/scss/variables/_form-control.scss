@@ -60,21 +60,3 @@ $form-control-transition-timing-function: css.defer("transition-timing-function"
   "transition-duration": $form-control-transition-duration,
   "transition-timing-function": $form-control-transition-timing-function
 ));
-
-// Size is calculated using the line-height and vertical padding. This is used 
-// to set the minimum height and width of form controls.
-$form-control-size: calc(calc(1em * css.get("form-control-line-height")) + calc(css.get("form-control-padding-y") * 2)) !default;
-@include css.set("core", "form-control-size", $form-control-size);
-
-// // TESTING DEFER
-// @include css.set("core", "defer-test", true);
-// $form-control-test: css.defer("defer-test");
-// @include css.set("core", "asdf-defer-test", $form-control-test);
-
-// body {
-//   content: css.get("asdf-defer-test");
-// }
-
-// // Expected result:
-// // --vb-defer-test: true;
-// // --vb-asdf-defer-test: var(--vb-defer-test);
