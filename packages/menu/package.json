@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/menu",
   "description": "Menus represent groups of links, actions or tools that a user can interact with.",
-  "version": "4.0.0-next.16",
+  "version": "4.0.0-next.17",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/menu#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.16"
+    "@vrembem/core": "^4.0.0-next.17"
   },
   "publishConfig": {
     "access": "public"
