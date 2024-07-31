@@ -216,7 +216,7 @@ $_variables: (
       $prop: list.nth($props, $i);
       $value: map.get($_variables, $module, $prop);
 
-      // Check if the value was deferred.
+      // Check if the value is a deferred property.
       @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
         // Create the reference using the stored value list.
         $_ref: reference(list.nth($value, 2), list.nth($value, 3));
@@ -226,8 +226,7 @@ $_variables: (
         $result: reference($module, $prop);
       }
 
-      // If the property is not the first item in the list or exists in the
-      // module or the module's default theme...
+      // Check if the property exists in the module or the its default theme.
       @else if 
         map.has-key($_variables, $module, $prop) or
         map.has-key($_variables, $module, config.get("default-theme"), $prop)
@@ -236,6 +235,7 @@ $_variables: (
         $result: reference($module, $prop, $result);
       } 
 
+      // All other cases depend on the property count and its position.
       @else {
         @if $count > 1 and $i == 1 {
           // First prop of the props list, store the raw value as our fallback.
