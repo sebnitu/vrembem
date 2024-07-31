@@ -27,7 +27,8 @@
     "dist",
     "src",
     "index.js",
-    "index.scss"
+    "index.scss",
+    "root.scss"
   ],
   "scripts": {
     "serve": "vite",
