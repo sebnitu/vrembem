@@ -32,12 +32,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.17 to CHANGELOG.md
+chore(release): add v4.0.0-next.18 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.18 (2024-07-31)
+
+### :hammer: Chore
+* `drawer`, `modal`, `popover`
+  * [#1963](https://github.com/sebnitu/vrembem/pull/1963) Add missing root.scss value in package.json "files" property
 
 
 ## v4.0.0-next.17 (2024-07-31)
