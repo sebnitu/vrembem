@@ -5,6 +5,7 @@
 $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.get("switch", "border-width", var.$border-width) * 2));
 
 #{core.bem("switch")} {
+  @include core.form-control-size();
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
