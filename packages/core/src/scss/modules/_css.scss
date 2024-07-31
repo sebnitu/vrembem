@@ -124,12 +124,24 @@ $_variables: (
     }
     // Set the usage before outputting the custom property.
     @if usage.set($module, $prop, $args...) {
+      // Check if the value has been deferred.
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+        // Create the reference using the deferred value list.
+        $value: reference(list.nth($value, 2), list.nth($value, 3));
+      }
+      // Define the custom property.
       #{_prefix($module)}#{$prop}: #{$value};
     }
   }
 }
 
-/// TODO: Add documentation
+/// Used in place of `set` for when a custom property is dependent on another.
+/// This allows the property to be omitted if the original definition is never
+/// actually referenced.
+/// @param {string} $module
+///   The module name to store the custom property under.
+/// @param {string | map} $prop
+///   The custom property name to store.
 @function defer($module, $prop: null) {
   @if not $prop {
     $prop: $module;
