@@ -32,12 +32,23 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.15 to CHANGELOG.md
+chore(release): add v4.0.0-next.16 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.16 (2024-07-30)
+
+### :tada: New Feature
+* `button`, `checkbox`, `core`, `input`, `menu`, `radio`, `switch`, `vrembem`
+  * [#1961](https://github.com/sebnitu/vrembem/pull/1961) Apply form-control appearance variables to create a more consistent style language
+* `core`, `vrembem`
+  * [#1951](https://github.com/sebnitu/vrembem/pull/1951) Add new themeStore core module for managing theme state
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `input`, `menu`, `notice`, `radio`, `switch`, `utility`, `vrembem`
+  * [#1950](https://github.com/sebnitu/vrembem/pull/1950) Apply form-control variables to create consistent scaling
 
 
 ## v4.0.0-next.15 (2024-07-13)
