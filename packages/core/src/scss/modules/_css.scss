@@ -129,6 +129,15 @@ $_variables: (
   }
 }
 
+/// TODO: Add documentation
+@function defer($module, $prop: null) {
+  @if not $prop {
+    $prop: $module;
+    $module: "core";
+  }
+  @return "defer", $module, $prop;
+}
+
 /// Function to return a custom property reference that has been stored in the 
 /// `$_variables` map using set(). Can also return the entire `$_variables` map
 /// or one of the stored module maps.
@@ -193,15 +202,29 @@ $_variables: (
     // Loop through the props and append them to results as nested fallbacks.
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
+      $value: map.get($_variables, $module, $prop);
+
+      // Check if the value was deferred.
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+        // Create the reference using the stored value list.
+        $_ref: reference(list.nth($value, 2), list.nth($value, 3));
+        // Update the variables map with the value of the reference.
+        $_variables: map.set($_variables, $module, $prop, $_ref) !global;
+        // Store the reference in our result.
+        $result: reference($module, $prop);
+      }
+
       // If the property is not the first item in the list or exists in the
       // module or the module's default theme...
-      @if 
+      @else if 
         map.has-key($_variables, $module, $prop) or
         map.has-key($_variables, $module, config.get("default-theme"), $prop)
       {
         // store the reference in our result.
         $result: reference($module, $prop, $result);
-      } @else {
+      } 
+
+      @else {
         @if $count > 1 and $i == 1 {
           // First prop of the props list, store the raw value as our fallback.
           $result: $prop;
