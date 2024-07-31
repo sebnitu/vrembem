@@ -124,9 +124,30 @@ $_variables: (
     }
     // Set the usage before outputting the custom property.
     @if usage.set($module, $prop, $args...) {
+      // Check if the value has been deferred.
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+        // Create the reference using the deferred value list.
+        $value: reference(list.nth($value, 2), list.nth($value, 3));
+      }
+      // Define the custom property.
       #{_prefix($module)}#{$prop}: #{$value};
     }
   }
+}
+
+/// Used in place of `set` for when a custom property is dependent on another.
+/// This allows the property to be omitted if the original definition is never
+/// actually referenced.
+/// @param {string} $module
+///   The module name to store the custom property under.
+/// @param {string | map} $prop
+///   The custom property name to store.
+@function defer($module, $prop: null) {
+  @if not $prop {
+    $prop: $module;
+    $module: "core";
+  }
+  @return "defer", $module, $prop;
 }
 
 /// Function to return a custom property reference that has been stored in the 
@@ -193,15 +214,29 @@ $_variables: (
     // Loop through the props and append them to results as nested fallbacks.
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
-      // If the property is not the first item in the list or exists in the
-      // module or the module's default theme...
-      @if 
+      $value: map.get($_variables, $module, $prop);
+
+      // Check if the value is a deferred property.
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+        // Create the reference using the stored value list.
+        $_ref: reference(list.nth($value, 2), list.nth($value, 3));
+        // Update the variables map with the value of the reference.
+        $_variables: map.set($_variables, $module, $prop, $_ref) !global;
+        // Store the reference in our result.
+        $result: reference($module, $prop);
+      }
+
+      // Check if the property exists in the module or the its default theme.
+      @else if 
         map.has-key($_variables, $module, $prop) or
         map.has-key($_variables, $module, config.get("default-theme"), $prop)
       {
         // store the reference in our result.
         $result: reference($module, $prop, $result);
-      } @else {
+      } 
+
+      // All other cases depend on the property count and its position.
+      @else {
         @if $count > 1 and $i == 1 {
           // First prop of the props list, store the raw value as our fallback.
           $result: $prop;
