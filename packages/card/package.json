@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/card",
   "description": "The card component provides a flexible and highly composable content container.",
-  "version": "4.0.0-next.18",
+  "version": "4.0.0-next.19",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/card#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.18"
+    "@vrembem/core": "^4.0.0-next.19"
   },
   "publishConfig": {
     "access": "public"
