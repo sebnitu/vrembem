@@ -3,7 +3,13 @@
 ///   Width size unit.
 /// @param {number} $height [$width]
 ///   Height size unit.
-@mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
+/// TODO: Add documentation
+@mixin size($width, $height: $width, $prefix: null) {
+  @if ($prefix) {
+    #{$prefix}-width: $width;
+    #{$prefix}-height: $height;
+  } @else {
+    width: $width;
+    height: $height;
+  }
 }
