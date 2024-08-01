@@ -34,7 +34,7 @@ $box-shadow-active: $box-shadow !default;
 $disabled-opacity: 0.6 !default;
 
 // Modifier: button_icon
-$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
+$icon-padding: css.get("form-control-padding-y");
 
 // Modifier: button_size_sm
 $size-sm-font-size: css.get("form-control-font-size-sm") !default;

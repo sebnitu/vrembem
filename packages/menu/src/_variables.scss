@@ -33,7 +33,7 @@ $box-shadow-focus-visible: 0 0 0 3px hsl(from $accent h s l / 40%) !default;
 $box-shadow-active: $box-shadow !default;
 
 // Element modifier: menu__action_icon
-$icon-padding: core.minus-border-width(core.$form-control-padding-y, css.get("form-control-border-width"));
+$icon-padding: css.get("form-control-padding-y");
 
 // Element: menu__sep
 $sep-size: 1px !default;
