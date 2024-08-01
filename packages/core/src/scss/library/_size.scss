@@ -3,7 +3,14 @@
 ///   Width size unit.
 /// @param {number} $height [$width]
 ///   Height size unit.
-@mixin size($width, $height: $width) {
-  width: $width;
-  height: $height;
+/// @param {string} $prefix [null]
+///   The prefix to apply to the width/height css property.
+@mixin size($width, $height: $width, $prefix: null) {
+  @if ($prefix) {
+    #{$prefix}-width: $width;
+    #{$prefix}-height: $height;
+  } @else {
+    width: $width;
+    height: $height;
+  }
 }

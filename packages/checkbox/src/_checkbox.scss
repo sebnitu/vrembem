@@ -14,8 +14,7 @@
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.form-control-size();
-  @include core.size(css.get("checkbox", "size", css.get("form-control-size")));
+  @include core.form-control-size("checkbox");
   position: relative;
   z-index: 1;
   display: flex;

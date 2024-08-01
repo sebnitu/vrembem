@@ -1,10 +1,15 @@
+@use "@vrembem/core";
 @use "@vrembem/core/config";
+
+.form-control-size {
+  @include core.form-control-size(null, "min");
+}
 
 .theme-icon {
   position: absolute;
-  top: calc(0.5rem - 1px);
-  left:  calc(0.5rem - 1px);
-  transform: translateY(calc(100% + (0.5rem - 1px)));
+  top: 0.5rem;
+  left:  0.5rem;
+  transform: translateY(calc(100% + 0.5rem));
   transition-property: transform, opacity;
   transition-duration: 0.5s;
   transition-timing-function: ease;

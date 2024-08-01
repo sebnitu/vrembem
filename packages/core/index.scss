@@ -8,13 +8,11 @@
 
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css-query";
-@forward "./src/scss/library/form-control-properties";
-@forward "./src/scss/library/form-control-size";
+@forward "./src/scss/library/form-control" as form-control-*;
 @forward "./src/scss/library/get-side";
 @forward "./src/scss/library/loading-spinner";
 @forward "./src/scss/library/media-max";
 @forward "./src/scss/library/media-min";
-@forward "./src/scss/library/minus-border-width";
 @forward "./src/scss/library/size";
 
 @forward "./src/scss/modules/config" as config-*;
