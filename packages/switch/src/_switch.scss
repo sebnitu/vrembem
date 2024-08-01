@@ -10,8 +10,8 @@ $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding-right: calc(css.get("switch", "size", css.get("form-control-size")) * 0.25);
-  padding-left: calc(css.get("switch", "size", css.get("form-control-size")) * 0.25);
+  padding-right: calc(var.$size * 0.25);
+  padding-left: calc(var.$size * 0.25);
   font-size: css.get("switch", "font-size", css.get("form-control-font-size"));
   vertical-align: middle;
 }
