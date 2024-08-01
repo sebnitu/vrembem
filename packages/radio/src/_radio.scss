@@ -13,8 +13,7 @@
 }
 
 #{core.bem("radio", "background")} {
-  @include core.form-control-size();
-  @include core.size(css.get("radio", "size", css.get("form-control-size")));
+  @include core.form-control-size("radio");
   position: relative;
   z-index: 1;
   display: flex;

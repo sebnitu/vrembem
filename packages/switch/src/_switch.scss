@@ -5,7 +5,6 @@
 $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.get("switch", "border-width", var.$border-width) * 2));
 
 #{core.bem("switch")} {
-  @include core.form-control-size();
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -18,7 +17,7 @@ $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
 }
 
 #{core.bem("switch", "background")} {
-  @include core.size(css.get("switch", "size", css.get("form-control-size")));
+  @include core.form-control-size("switch");
   position: relative;
   z-index: 1;
   display: flex;
@@ -26,7 +25,7 @@ $_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
   justify-content: center;
 
   &::after {
-    @include core.size(css.get("switch", "size", css.get("form-control-size")));
+    @include core.form-control-size("switch");
     content: "";
     position: absolute;
     top: 0;
