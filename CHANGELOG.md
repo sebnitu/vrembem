@@ -32,12 +32,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.18 to CHANGELOG.md
+chore(release): add v4.0.0-next.19 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.19 (2024-08-01)
+
+### :house: Refactor
+* `button`, `checkbox`, `core`, `menu`, `radio`, `switch`
+  * [#1964](https://github.com/sebnitu/vrembem/pull/1964) Refactor how form-controls handle size calculations
 
 
 ## v4.0.0-next.18 (2024-07-31)
