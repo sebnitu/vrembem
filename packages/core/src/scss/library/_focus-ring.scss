@@ -12,7 +12,7 @@
 ///   The module to allow component specific overrides for.
 /// @param {string} $color
 ///   The color to use as the fallback value.
-@mixin focus-ring-value($module, $color) {
+@mixin focus-ring($module, $color) {
   $_focus-ring-opacity: css.get("core", "focus-ring-opacity");
   $_focus-ring-color: css.get("core", "focus-ring-color", $color);
   @if ($module) {
