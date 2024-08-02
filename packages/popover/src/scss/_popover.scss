@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_v: var.$prefix-variable;
@@ -10,7 +11,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   z-index: var.$z-index;
   top: 100%;
   left: 0;
-  display: none;
+  display: block;
   width: var.$width;
   max-width: var.$max-width;
   margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0;
@@ -23,6 +24,11 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   color: var.$foreground;
   font-size: var.$font-size;
   line-height: var.$line-height;
+  opacity: 0;
+  pointer-events: none;
+  transition-property: opacity, transform;
+  transition-duration: css.get("transition-duration");
+  transition-timing-function: css.get("transition-timing-function");
 
   &::before {
     content: "";
@@ -34,7 +40,8 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
 
   &.is-active {
     z-index: (var.$z-index + 1);
-    display: block;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   &:hover,
