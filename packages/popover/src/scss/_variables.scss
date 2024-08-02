@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 
 $prefix-variable: config.get("prefix-variables") !default;
@@ -42,4 +43,7 @@ $size-lg-width: 20em !default;
   "overflow-padding": $overflow-padding,
   "flip-padding": $flip-padding,
   "arrow-padding": $arrow-padding
-));
+), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");
