@@ -26,7 +26,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   line-height: var.$line-height;
   opacity: 0;
   pointer-events: none;
-  transition-property: opacity; // Adding tranform transition causes too many issues with popper.
+  transition-property: opacity; // Adding transform transition causes too many issues with popper.
   transition-duration: css.get("transition-duration-short");
   transition-timing-function: css.get("transition-timing-function");
 
