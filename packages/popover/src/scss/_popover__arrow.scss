@@ -18,9 +18,6 @@ $_e: var.$prefix-element;
   content: "";
   visibility: visible;
   transform: rotate(45deg);
-  border: var(--#{$_v}popover-arrow-border, var.$arrow-border);
-  border-right-color: transparent;
-  border-bottom-color: transparent;
   background-clip: padding-box;
 }
 
