@@ -9,7 +9,8 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  outline: none;
+  outline: 0 solid transparent;
+  outline-offset: css.get("focus-ring-offset");
   border-style: solid;
   background-clip: border-box;
   font-family: inherit;

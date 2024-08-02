@@ -10,7 +10,7 @@
   background-color: css.get("input", "background", var.$background);
   box-shadow: css.get("input", "box-shadow", var.$box-shadow);
   color: css.get("input", "foreground", var.$foreground);
-  
+
   &:hover {
     border-color: css.get("input", "border-color-hover", "border-color", var.$border-color-hover);
     background-color: css.get("input", "background-hover", "background", var.$background-hover);
@@ -23,6 +23,10 @@
     background-color: css.get("input", "background-focus", "background-hover", "background", var.$background-focus);
     box-shadow: css.get("input", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
     color: css.get("input", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
+  }
+
+  &:focus-visible {
+    outline: var.$focus-ring;
   }
 
   &:read-only {

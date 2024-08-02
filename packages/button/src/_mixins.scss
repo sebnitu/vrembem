@@ -8,7 +8,8 @@
   gap: css.get("button", "gap", var.$gap);
   align-items: center;
   justify-content: center;
-  outline: none;
+  outline: 0 solid transparent;
+  outline-offset: css.get("focus-ring-offset");
   border-style: solid;
   background-clip: border-box;
   font-family: inherit;

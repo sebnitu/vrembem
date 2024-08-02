@@ -1,10 +1,13 @@
+@use "@vrembem/core/css";
+
 /// Output the base styles for an input component.
 @mixin input-base() {
   position: relative;
   display: block;
   width: 100%;
   max-width: 100%;
-  outline: none;
+  outline: 0 solid transparent;
+  outline-offset: css.get("focus-ring-offset");
   border-style: solid;
   font-family: inherit;
   appearance: none;
