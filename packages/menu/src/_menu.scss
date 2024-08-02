@@ -45,11 +45,11 @@
   }
 
   &:focus-visible {
+    outline: var.$focus-ring;
     border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
     background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
     box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
     color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
-    outline: var.$focus-ring;
   }
 
   &:active {
