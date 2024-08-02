@@ -30,10 +30,6 @@ $box-shadow-focus: $box-shadow !default;
 $box-shadow-focus-visible: $box-shadow !default;
 $box-shadow-active: $box-shadow !default;
 
-$focus-ring-opacity: css.get("button", "focus-ring-opacity", css.get("focus-ring-opacity")) !default;
-$focus-ring-color: css.get("button", "focus-ring-color", css.get("core", "focus-ring-color", hsl(from $accent h s l / $focus-ring-opacity))) !default;
-$focus-ring: css.get("focus-ring-width") css.get("focus-ring-style") $focus-ring-color !default;
-
 // State: disabled
 $disabled-opacity: 0.6 !default;
 

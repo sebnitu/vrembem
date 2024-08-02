@@ -8,7 +8,7 @@ $_set-custom-property: true;
 /// border-width values.
 /// @return {value}
 ///   The CSS value in the form of a calc function.
-@function get-size() {
+@function form-control-get-size() {
   $_line-height: css.get("form-control-line-height");
   $_padding: css.get("form-control-padding-y");
   $_border-width: css.get("form-control-border-width");
@@ -18,10 +18,10 @@ $_set-custom-property: true;
 
 /// Set the form-control-size custom property. This mixin contains a check to
 /// ensure the property is only set once.
-@mixin set-size() {
+@mixin form-control-set-size() {
   @if ($_set-custom-property) {
     $_set-custom-property: false !global;
-    @include css.set("core", "form-control-size", get-size());
+    @include css.set("core", "form-control-size", form-control-get-size());
   }
 }
 
@@ -32,8 +32,8 @@ $_set-custom-property: true;
 ///   The module to allow component specific overrides for.
 /// @param {string} $prefix [null]
 ///   The prefix to apply to the width/height css property.
-@mixin size($module: null, $prefix: null) {
-  @include set-size();
+@mixin form-control-size($module: null, $prefix: null) {
+  @include form-control-set-size();
   @if ($module) {
     @include mix.size(
       css.get($module, "size", css.get("form-control-size")),
@@ -53,7 +53,7 @@ $_set-custom-property: true;
 /// property and the form-control custom property as the fallback.
 /// @param {string} $module
 ///   The module to pass to `css.get` calls.
-@mixin properties($module) {
+@mixin form-control-properties($module) {
   @if ($module != "menu") {
     font-size: css.get($module, "font-size", css.get("form-control-font-size"));
     line-height: css.get($module, "line-height", css.get("form-control-line-height"));

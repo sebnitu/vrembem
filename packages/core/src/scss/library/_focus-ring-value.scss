@@ -1,0 +1,12 @@
+@use "../modules/css";
+
+/// TODO: Add documentation
+@function focus-ring-value($module, $color) {
+  $_focus-ring-opacity: css.get("core", "focus-ring-opacity");
+  $_focus-ring-color: css.get("core", "focus-ring-color", hsl(from $color h s l / $_focus-ring-opacity));
+  @if ($module) {
+    $_focus-ring-opacity: css.get($module, "focus-ring-opacity", $_focus-ring-opacity);
+    $_focus-ring-color: css.get($module, "focus-ring-color", css.get("core", "focus-ring-color", hsl(from $color h s l / $_focus-ring-opacity)));
+  }
+  @return css.get("focus-ring-width") css.get("focus-ring-style") $_focus-ring-color;
+}

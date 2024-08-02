@@ -32,10 +32,6 @@ $box-shadow-focus: $box-shadow !default;
 $box-shadow-focus-visible: $box-shadow !default;
 $box-shadow-active: $box-shadow !default;
 
-$focus-ring-opacity: css.get("menu", "focus-ring-opacity", css.get("focus-ring-opacity")) !default;
-$focus-ring-color: css.get("menu", "focus-ring-color", css.get("core", "focus-ring-color", hsl(from $accent h s l / $focus-ring-opacity))) !default;
-$focus-ring: css.get("focus-ring-width") css.get("focus-ring-style") $focus-ring-color !default;
-
 // Element modifier: menu__action_icon
 $icon-padding: css.get("form-control-padding-y");
 

@@ -22,10 +22,6 @@ $box-shadow: inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: none !default;
 
-$focus-ring-opacity: css.get("input", "focus-ring-opacity", css.get("focus-ring-opacity")) !default;
-$focus-ring-color: css.get("input", "focus-ring-color", css.get("core", "focus-ring-color", hsl(from $accent h s l / $focus-ring-opacity))) !default;
-$focus-ring: css.get("focus-ring-width") css.get("focus-ring-style") $focus-ring-color !default;
-
 // State: placeholder
 $foreground-placeholder: null !default;
 
