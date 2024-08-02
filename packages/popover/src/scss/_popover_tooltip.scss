@@ -16,4 +16,5 @@ $_m: var.$prefix-modifier;
   padding: 0.5rem 0.75rem;
   background: css.get("foreground");
   color: css.get("background");
+  pointer-events: none;
 }
