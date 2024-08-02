@@ -4,11 +4,13 @@
 @forward "./src/scss/variables/box-shadow";
 @forward "./src/scss/variables/typography";
 @forward "./src/scss/variables/transition";
+@forward "./src/scss/variables/focus-ring";
 @forward "./src/scss/variables/form-control";
 
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css-query";
-@forward "./src/scss/library/form-control" as form-control-*;
+@forward "./src/scss/library/focus-ring";
+@forward "./src/scss/library/form-control";
 @forward "./src/scss/library/get-side";
 @forward "./src/scss/library/loading-spinner";
 @forward "./src/scss/library/media-max";

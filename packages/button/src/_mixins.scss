@@ -1,14 +1,15 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
 /// Output the base styles for a button component.
 @mixin button-base() {
+  @include core.focus-ring-base();
   position: relative;
   display: inline-flex;
   gap: css.get("button", "gap", var.$gap);
   align-items: center;
   justify-content: center;
-  outline: none;
   border-style: solid;
   background-clip: border-box;
   font-family: inherit;

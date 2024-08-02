@@ -24,10 +24,10 @@ $border-color-focus: $border-color-hover !default;
 $border-color-focus-visible: $accent !default;
 $border-color-active: $foreground-active !default;
 
-$box-shadow: 0 0 0 0 hsl(from $accent h s l / 0%) !default;
+$box-shadow: none !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;
-$box-shadow-focus-visible: 0 0 0 3px hsl(from $accent h s l / 40%) !default;
+$box-shadow-focus-visible: $box-shadow !default;
 $box-shadow-active: $box-shadow !default;
 
 // State: disabled
