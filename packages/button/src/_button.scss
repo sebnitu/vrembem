@@ -26,7 +26,7 @@
   }
 
   &:focus-visible {
-    outline: core.focus-ring-value("button", var.$accent);
+    @include core.focus-ring-value("button", var.$accent);
     border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
     background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
     box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);

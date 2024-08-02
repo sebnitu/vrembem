@@ -1,16 +1,16 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
 /// Output the base styles for a menu action component element.
 @mixin menu-action-base() {
+  @include core.focus-ring-base();
   position: relative;
   display: flex;
   gap: css.get("menu", "action-gap", var.$action-gap);
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  outline: 0 solid transparent;
-  outline-offset: css.get("focus-ring-offset");
   border-style: solid;
   background-clip: border-box;
   font-family: inherit;
