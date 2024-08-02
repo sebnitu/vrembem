@@ -49,6 +49,11 @@ export async function register(el, trigger) {
     handleDocumentClick.call(this, entry);
   }
 
+  // Set the popper placement property.
+  entry.popper.setOptions({
+    placement: entry.config["placement"]
+  });
+
   // Return the registered entry.
   return entry;
 }
