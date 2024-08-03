@@ -1,9 +1,9 @@
 import { createPopper } from "@popperjs/core/dist/esm";
 
-import { handleClick, handleDocumentClick } from "./handlers";
+import { handleClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
-import { close, closeCheck } from "./close";
+import { close } from "./close";
 import { getConfig } from "./helpers";
 
 export async function register(el, trigger) {
@@ -19,8 +19,12 @@ export async function register(el, trigger) {
     state: "closed",
     el: el,
     trigger: trigger,
+    toggleDelayId: null,
     popper: createPopper(trigger, el),
     config: getConfig(el, this.settings),
+    get isTooltip() {
+      return trigger.hasAttribute("aria-describedby");
+    },
     open() {
       return open.call(root, this);
     },
@@ -49,6 +53,11 @@ export async function register(el, trigger) {
     handleDocumentClick.call(this, entry);
   }
 
+  // Set the popper placement property.
+  entry.popper.setOptions({
+    placement: entry.config["placement"]
+  });
+
   // Return the registered entry.
   return entry;
 }
@@ -65,11 +74,11 @@ export function registerEventListeners(entry) {
       entry.__eventListeners = [{
         el: ["trigger"],
         type: ["mouseenter", "focus"],
-        listener: open.bind(this, entry)
+        listener: handleMouseEnter.bind(this, entry)
       }, {
         el: ["el", "trigger"],
         type: ["mouseleave", "focusout"],
-        listener: closeCheck.bind(this, entry)
+        listener: handleMouseLeave.bind(this, entry)
       }];
 
       // Loop through listeners and apply to the appropriate elements.

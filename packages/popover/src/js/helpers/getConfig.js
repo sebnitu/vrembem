@@ -12,7 +12,8 @@ export function getConfig(el, settings) {
     "overflow-padding": 0,
     "flip-padding": 0,
     "arrow-element": settings.selectorArrow,
-    "arrow-padding": 0
+    "arrow-padding": 0,
+    "toggle-delay": settings.hoverToggleDelay,
   };
 
   // Loop through config obj.

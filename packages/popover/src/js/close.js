@@ -1,4 +1,4 @@
-import { getPopover } from "./helpers";
+import { getPopover, getModifiers } from "./helpers";
 
 export async function close(query) {
   // Get the popover from collection.
@@ -17,7 +17,11 @@ export async function close(query) {
 
     // Disable popper event listeners.
     popover.popper.setOptions({
-      modifiers: [{ name: "eventListeners", enabled: false }]
+      placement: popover.config["placement"],
+      modifiers: [
+        { name: "eventListeners", enabled: false },
+        ...getModifiers(popover.config)
+      ]
     });
 
     // Update popover state.

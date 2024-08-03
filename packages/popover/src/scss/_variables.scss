@@ -1,12 +1,6 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
+@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
-
-$prefix-variable: config.get("prefix-variables") !default;
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
 
 $event: null !default;
 $placement: null !default;
@@ -22,14 +16,15 @@ $border: null !default;
 $border-radius: core.$border-radius !default;
 $foreground: css.get("foreground") !default;
 $background: css.get("background") !default;
-$background-clip: padding-box !default;
-$shadow: css.get("box-shadow-2") !default;
+$box-shadow: css.get("box-shadow-2") !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
+$transition-property: opacity !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 $arrow-size: 12px !default;
 $arrow-padding: 10 !default;
-$arrow-border: core.$border !default;
 
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
@@ -42,4 +37,7 @@ $size-lg-width: 20em !default;
   "overflow-padding": $overflow-padding,
   "flip-padding": $flip-padding,
   "arrow-padding": $arrow-padding
-));
+), "required");
+
+// Required custom properties for JavaScript.
+@include usage.set("core", "prefix", "required");
