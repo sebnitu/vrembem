@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index.js";
+import { expect } from "vitest";
 
 let popover;
 
@@ -12,6 +13,8 @@ const markup = `
   <div id="asdf" class="popover">...</div>
   <button aria-controls="fdsa">...</button>
   <div id="fdsa" class="popover">...</div>
+  <button aria-describedby="tooltip">...</button>
+  <div id="tooltip" class="popover popover_tooltip">...</div>
 `;
 
 afterEach(() => {
@@ -25,20 +28,20 @@ describe("mount() & unmount()", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     popover.mount();
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
   });
 
   it("should auto mount the popover module autoMount is set to true", () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoMount: true });
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
   });
 
   it("running mount multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoMount: true });
     await popover.mount();
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
   });
 
   it("should not attach keyboard event listener if eventListeners is set to false", () => {
@@ -72,7 +75,7 @@ describe("mount() & unmount()", () => {
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     await popover.unmount();
     expect(popover.collection.length).toBe(0);
     trigger.click();
@@ -162,9 +165,9 @@ describe("register() & deregister()", () => {
     document.body.innerHTML = markup;
     popover = new Popover({ autoMount: true });
 
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     popover.deregister(popover.collection[0]);
-    expect(popover.collection.length).toBe(1);
+    expect(popover.collection.length).toBe(2);
 
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
@@ -188,7 +191,7 @@ describe("registerCollection() & deregisterCollection()", () => {
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     trigger.click();
     expect(target).toHaveClass("is-active");
 
@@ -214,7 +217,7 @@ describe("registerCollection() & deregisterCollection()", () => {
 
     popover.registerCollection(items);
 
-    expect(popover.collection.length).toBe(2);
+    expect(popover.collection.length).toBe(3);
     trigger.click();
     expect(target).toHaveClass("is-active");
   });
@@ -288,5 +291,23 @@ describe("open() & close()", () => {
       catchError = true;
     });
     expect(catchError).toBe(true);
+  });
+});
+
+describe("active() & activeTooltip()", () => {
+  it("should return the active popover when popover.active is called", () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoMount: true });
+    expect(popover.active).toBe(undefined);
+    popover.get("asdf").open();
+    expect(popover.active).toBe(popover.get("asdf"));
+  });
+
+  it("should return the active tooltip popover when popover.activeTooltip is called", () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoMount: true });
+    expect(popover.activeTooltip).toBe(undefined);
+    popover.get("tooltip").open();
+    expect(popover.activeTooltip).toBe(popover.get("tooltip"));
   });
 });

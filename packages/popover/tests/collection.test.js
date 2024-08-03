@@ -10,6 +10,10 @@ const markup = `
     <div id="asdf" class="popover">
       ...
     </div>
+    <button id="tooltip-trigger" aria-describedby="tooltip">...</button>
+    <div id="tooltip" class="popover popover_tooltip">
+      ...
+    </div>
     <button id="fdsa-trigger" aria-controls="fdsa">...</button>
     <div id="fdsa" class="popover" style="--vb-popover-event: hover;">
       ...
@@ -113,5 +117,16 @@ describe("register() & entry.deregister()", () => {
     entry.trigger.click();
     expect(entry.el).toHaveClass("is-active");
     expect(entry.state).toBe("opened");
+  });
+});
+
+describe("entry.isTooltip", () => {
+  it("should return whether or not a popover is a tooltip", async () => {
+    document.body.innerHTML = markup;
+    popover = new Popover();
+    const entry1 = await popover.register("asdf");
+    const entry2 = await popover.register("tooltip");
+    expect(entry1.isTooltip).toBe(false);
+    expect(entry2.isTooltip).toBe(true);
   });
 });
