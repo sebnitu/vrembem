@@ -1,14 +1,15 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 #{core.bem("popover", null, "size", "auto")} {
-  width: auto;
+  @include css.override("popover", "width", auto);
 }
 
 #{core.bem("popover", null, "size", "sm")} {
-  width: var.$size-sm-width;
+  @include css.override("popover", "width", var.$size-sm-width);
 }
 
 #{core.bem("popover", null, "size", "lg")} {
-  width: var.$size-lg-width;
+  @include css.override("popover", "width", var.$size-lg-width);
 }

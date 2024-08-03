@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 
@@ -17,10 +16,12 @@ $border: null !default;
 $border-radius: core.$border-radius !default;
 $foreground: css.get("foreground") !default;
 $background: css.get("background") !default;
-$background-clip: padding-box !default;
-$shadow: css.get("box-shadow-2") !default;
+$box-shadow: css.get("box-shadow-2") !default;
 $font-size: core.$font-size-sm !default;
 $line-height: null !default;
+$transition-property: opacity !default;
+$transition-duration: css.get("transition-duration-short") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
 $arrow-size: 12px !default;
 $arrow-padding: 10 !default;

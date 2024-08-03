@@ -6,13 +6,13 @@
     "event": "hover",
     "placement": "top",
     "arrow-size": 8px,
-    "toggle-delay": 300
+    "toggle-delay": 300,
+    "width": auto,
+    "max-width": 16rem,
+    "padding": 0.5rem 0.75rem,
+    "background": css.get("foreground"),
+    "foreground": css.get("background"),
   ));
-  width: auto;
-  max-width: 16rem;
-  padding: 0.5rem 0.75rem;
-  background: css.get("foreground");
-  color: css.get("background");
 
   &.is-active {
     pointer-events: none;

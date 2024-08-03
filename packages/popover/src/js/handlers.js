@@ -20,7 +20,7 @@ export function handleMouseEnter(popover) {
   const delay = (this.activeTooltip) ? 0 : popover.config["toggle-delay"];
 
   // Close any active tooltip popovers.
-  if (this.activeTooltip) { this.activeTooltip.close(); }
+  if (this.activeTooltip) this.activeTooltip.close();
 
   // Set the toggle delay before opening the popover.
   popover.toggleDelayId = setTimeout(() => {

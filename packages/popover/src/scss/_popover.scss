@@ -4,30 +4,33 @@
 
 $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 
+.transition-none {
+  transition: none !important;
+}
+
 #{core.bem("popover")} {
   position: absolute;
-  z-index: var.$z-index;
+  z-index: css.get("popover", "z-index", var.$z-index);
   top: 100%;
   left: 0;
   display: block;
-  width: var.$width;
-  max-width: var.$max-width;
+  width: css.get("popover", "width", var.$width);
+  max-width: css.get("popover", "max-width", var.$max-width);
   margin: calc(css.get("popover", "offset") * 1px) 0 0;
-  padding: var.$padding;
-  border: var.$border;
-  border-radius: var.$border-radius;
-  background: var.$background;
-  background-clip: var.$background-clip;
-  box-shadow: var.$shadow;
-  color: var.$foreground;
-  font-size: var.$font-size;
-  line-height: var.$line-height;
+  padding: css.get("popover", "padding", var.$padding);
+  border: css.get("popover", "border", var.$border);
+  border-radius: css.get("popover", "border-radius", var.$border-radius);
+  background: css.get("popover", "background", var.$background);
+  background-clip: padding-box;
+  box-shadow: css.get("popover", "box-shadow", var.$box-shadow);
+  color: css.get("popover", "foreground", var.$foreground);
+  font-size: css.get("popover", "font-size", var.$font-size);
+  line-height: css.get("popover", "line-height", var.$line-height);
   opacity: 0;
   pointer-events: none;
-  // TODO: Move this into variables.
-  transition-property: opacity; // Adding transform transition causes too many issues with popper.
-  transition-duration: css.get("transition-duration-short");
-  transition-timing-function: css.get("transition-timing-function");
+  transition-property: css.get("popover", "transition-property", var.$transition-property);
+  transition-duration: css.get("popover", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("popover", "transition-timing-function", var.$transition-timing-function);
 
   &::before {
     content: "";
@@ -38,7 +41,7 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   }
 
   &.is-active {
-    z-index: (var.$z-index + 1);
+    z-index: calc(css.get("popover", "z-index", var.$z-index) + 1);
     opacity: 1;
     pointer-events: auto;
   }
@@ -46,7 +49,7 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   &:hover,
   &:focus,
   &:focus-within {
-    z-index: (var.$z-index + 2);
+    z-index: calc(css.get("popover", "z-index", var.$z-index) + 2);
   }
 }
 
