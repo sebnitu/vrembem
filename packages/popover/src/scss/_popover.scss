@@ -2,11 +2,9 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
+$_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 
-.#{$_b}popover {
+#{core.bem("popover")} {
   position: absolute;
   z-index: var.$z-index;
   top: 100%;
@@ -14,7 +12,7 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   display: block;
   width: var.$width;
   max-width: var.$max-width;
-  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0;
+  margin: calc(css.get("popover", "offset") * 1px) 0 0;
   padding: var.$padding;
   border: var.$border;
   border-radius: var.$border-radius;
@@ -52,8 +50,8 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   }
 }
 
-.#{$_b}popover[data-popper-placement^="top"] {
-  margin: 0 0 calc(var(--#{$_v}popover-offset) * 1px) 0;
+#{core.bem("popover")}[data-popper-placement^="top"] {
+  margin: 0 0 calc(css.get("popover", "offset") * 1px) 0;
 
   &::before {
     inset: 100% 0 auto;
@@ -62,8 +60,8 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   }
 }
 
-.#{$_b}popover[data-popper-placement^="bottom"] {
-  margin: calc(var(--#{$_v}popover-offset) * 1px) 0 0 0;
+#{core.bem("popover")}[data-popper-placement^="bottom"] {
+  margin: calc(css.get("popover", "offset") * 1px) 0 0 0;
 
   &::before {
     inset: auto 0 100%;
@@ -72,8 +70,8 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   }
 }
 
-.#{$_b}popover[data-popper-placement^="left"] {
-  margin: 0 calc(var(--#{$_v}popover-offset) * 1px) 0 0;
+#{core.bem("popover")}[data-popper-placement^="left"] {
+  margin: 0 calc(css.get("popover", "offset") * 1px) 0 0;
 
   &::before {
     inset: 0 auto 0 100%;
@@ -82,8 +80,8 @@ $_offset: calc(calc(var(--#{$_v}popover-offset) + 1) * 1px);
   }
 }
 
-.#{$_b}popover[data-popper-placement^="right"] {
-  margin: 0 0 0 calc(var(--#{$_v}popover-offset) * 1px);
+#{core.bem("popover")}[data-popper-placement^="right"] {
+  margin: 0 0 0 calc(css.get("popover", "offset") * 1px);
 
   &::before {
     inset: 0 100% 0 auto;

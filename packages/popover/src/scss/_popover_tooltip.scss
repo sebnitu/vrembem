@@ -1,16 +1,13 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-
-.#{$_b}popover#{$_m}tooltip {
-  --#{$_v}popover-event: hover;
-  --#{$_v}popover-placement: top;
-  --#{$_v}popover-arrow-size: 8px;
-  --#{$_v}popover-toggle-delay: 300;
+#{core.bem("popover", null, "tooltip")} {
+  @include css.override("popover", (
+    "event": "hover",
+    "placement": "top",
+    "arrow-size": 8px,
+    "toggle-delay": 300
+  ));
   width: auto;
   max-width: 16rem;
   padding: 0.5rem 0.75rem;

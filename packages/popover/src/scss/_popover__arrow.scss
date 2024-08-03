@@ -1,52 +1,49 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}popover#{$_e}arrow,
-.#{$_b}popover#{$_e}arrow::after {
-  @include core.size(var(--#{$_v}popover-arrow-size, var.$arrow-size));
+#{core.bem("popover", "arrow")},
+#{core.bem("popover", "arrow")}::after {
+  @include core.size(css.get("popover", "arrow-size", var.$arrow-size));
   position: absolute;
   z-index: -1;
   visibility: hidden;
   background-color: inherit;
 }
 
-.#{$_b}popover#{$_e}arrow::after {
+#{core.bem("popover", "arrow")}::after {
   content: "";
   visibility: visible;
   transform: rotate(45deg);
   background-clip: padding-box;
 }
 
-[data-popper-placement^="top"] > .#{$_b}popover#{$_e}arrow {
-  bottom: calc(var(--#{$_v}popover-arrow-size, var.$arrow-size) * -0.5);
+[data-popper-placement^="top"] > #{core.bem("popover", "arrow")} {
+  bottom: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(-135deg);
   }
 }
 
-[data-popper-placement^="bottom"] > .#{$_b}popover#{$_e}arrow {
-  top: calc(var(--#{$_v}popover-arrow-size, var.$arrow-size) * -0.5);
+[data-popper-placement^="bottom"] > #{core.bem("popover", "arrow")} {
+  top: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(45deg);
   }
 }
 
-[data-popper-placement^="left"] > .#{$_b}popover#{$_e}arrow {
-  right: calc(var(--#{$_v}popover-arrow-size, var.$arrow-size) * -0.5);
+[data-popper-placement^="left"] > #{core.bem("popover", "arrow")} {
+  right: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(135deg);
   }
 }
 
-[data-popper-placement^="right"] > .#{$_b}popover#{$_e}arrow {
-  left: calc(var(--#{$_v}popover-arrow-size, var.$arrow-size) * -0.5);
+[data-popper-placement^="right"] > #{core.bem("popover", "arrow")} {
+  left: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
     transform: rotate(-45deg);
