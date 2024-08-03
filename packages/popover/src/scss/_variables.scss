@@ -3,6 +3,7 @@
 @use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 
+// TODO: Remove the use of prefix variables in favor of core.bem function.
 $prefix-variable: config.get("prefix-variables") !default;
 $prefix-block: config.get("prefix-blocks") !default;
 $prefix-element: config.get("prefix-elements") !default;
@@ -35,6 +36,7 @@ $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
 
 // Custom properties
+// TODO: Test that required custom props are working as expected.
 @include css.set("popover", (
   "event": $event,
   "placement": $placement,
