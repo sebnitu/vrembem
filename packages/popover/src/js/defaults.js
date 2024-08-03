@@ -11,5 +11,6 @@ export default {
   // Feature settings
   eventListeners: true,
   eventType: "click",
-  placement: "bottom"
+  placement: "bottom",
+  hoverToggleDelay: 0
 };

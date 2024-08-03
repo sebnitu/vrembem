@@ -11,6 +11,7 @@ $_m: var.$prefix-modifier;
   --#{$_v}popover-placement: top;
   --#{$_v}popover-arrow-size: 8px;
   --#{$_v}popover-arrow-border: none;
+  --#{$_v}popover-toggle-delay: 300;
   width: auto;
   max-width: 16rem;
   padding: 0.5rem 0.75rem;

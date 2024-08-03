@@ -10,6 +10,36 @@ export function handleClick(popover) {
   }
 }
 
+export function handleMouseEnter(popover) {
+  // Clear any existing toggle delays.
+  if (popover.toggleDelayId) {
+    clearTimeout(popover.toggleDelayId);
+  }
+
+  // Remove the open/close delay if a tooltip popover is already active.
+  const delay = (this.activeTooltip) ? 0 : popover.config["toggle-delay"];
+
+  // Close any active tooltip popovers.
+  if (this.activeTooltip) { this.activeTooltip.close(); }
+
+  // Set the toggle delay before opening the popover.
+  popover.toggleDelayId = setTimeout(() => {
+    popover.open();
+  }, delay);
+}
+
+export function handleMouseLeave(popover) {
+  // Clear any existing toggle delays.
+  if (popover.toggleDelayId) {
+    clearTimeout(popover.toggleDelayId);
+  }
+
+  // Set the toggle delay before closing the popover.
+  popover.toggleDelayId = setTimeout(() => {
+    closeCheck.call(this, popover);
+  }, popover.config["toggle-delay"]);
+}
+
 export function handleKeydown(event) {
   switch (event.key) {
     case "Escape":

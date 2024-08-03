@@ -243,9 +243,21 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 
 <CodeExample>
   <Fragment slot="output">
-    <button type="button" class="link" aria-describedby="popover-tooltip">HTML</button>
-    <div id="popover-tooltip" class="popover popover_tooltip" role="tooltip">
+    <div class="flex">
+      <button type="button" class="link" aria-describedby="popover-tooltip-1">HTML</button>
+      <button type="button" class="link" aria-describedby="popover-tooltip-2">CSS</button>
+      <button type="button" class="link" aria-describedby="popover-tooltip-3">JS</button>
+    </div>
+    <div id="popover-tooltip-1" class="popover popover_tooltip" role="tooltip">
       Hypertext Markup Language
+      <span class="popover__arrow"></span>
+    </div>
+    <div id="popover-tooltip-2" class="popover popover_tooltip" role="tooltip">
+      Cascading Style Sheets
+      <span class="popover__arrow"></span>
+    </div>
+    <div id="popover-tooltip-3" class="popover popover_tooltip" role="tooltip">
+      JavaScript
       <span class="popover__arrow"></span>
     </div>
   </Fragment>

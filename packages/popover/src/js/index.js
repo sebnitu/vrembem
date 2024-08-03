@@ -20,6 +20,14 @@ export default class Popover extends Collection {
     if (this.settings.autoMount) this.mount();
   }
 
+  get active() {
+    return this.collection.find((popover) => popover.state == "opened");
+  }
+
+  get activeTooltip() {
+    return this.collection.find((popover) => popover.state == "opened" && popover.isTooltip);
+  }
+
   async mount(options) {
     // Update settings with passed options.
     if (options) this.settings = { ...this.settings, ...options };
