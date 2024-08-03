@@ -18,19 +18,19 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   max-width: css.get("popover", "max-width", var.$max-width);
   margin: calc(css.get("popover", "offset") * 1px) 0 0;
   padding: css.get("popover", "padding", var.$padding);
+  transition-property: css.get("popover", "transition-property", var.$transition-property);
+  transition-duration: css.get("popover", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("popover", "transition-timing-function", var.$transition-timing-function);
   border: css.get("popover", "border", var.$border);
   border-radius: css.get("popover", "border-radius", var.$border-radius);
   background: css.get("popover", "background", var.$background);
   background-clip: padding-box;
   box-shadow: css.get("popover", "box-shadow", var.$box-shadow);
+  opacity: 0;
   color: css.get("popover", "foreground", var.$foreground);
   font-size: css.get("popover", "font-size", var.$font-size);
   line-height: css.get("popover", "line-height", var.$line-height);
-  opacity: 0;
   pointer-events: none;
-  transition-property: css.get("popover", "transition-property", var.$transition-property);
-  transition-duration: css.get("popover", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("popover", "transition-timing-function", var.$transition-timing-function);
 
   &::before {
     content: "";
