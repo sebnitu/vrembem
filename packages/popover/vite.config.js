@@ -10,5 +10,8 @@ export default defineConfig({
     },
     emptyOutDir: false,
     sourcemap: true
+  },
+  define: {
+    "import.meta.env.VITE_PACKAGE": JSON.stringify("popover"),
   }
 });
