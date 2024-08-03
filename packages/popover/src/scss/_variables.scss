@@ -30,7 +30,6 @@ $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
 
 // Custom properties
-// TODO: Test that required custom props are working as expected.
 @include css.set("popover", (
   "event": $event,
   "placement": $placement,
