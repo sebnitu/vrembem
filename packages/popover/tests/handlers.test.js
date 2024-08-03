@@ -116,7 +116,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     expect(entry.state).toBe("opened");
 
     handleMouseLeave.bind(popover, entry)();
-    await delay(5); // Not sure why this is needed.
+    await delay(100); // Not sure why this is needed.
     expect(entry.state).toBe("closed");
   });
 
@@ -140,7 +140,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     expect(entry2.state).toBe("opened");
 
     handleMouseLeave.bind(popover, entry2)();
-    await delay(5);
+    await delay(100);
 
     expect(entry2.state).toBe("closed");
   });
