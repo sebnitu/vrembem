@@ -47,7 +47,8 @@ describe("getConfig()", () => {
       "overflow-padding": 0,
       "flip-padding": 0,
       "arrow-element": ".popover__arrow",
-      "arrow-padding": 0
+      "arrow-padding": 0,
+      "toggle-delay": 0
     });
   });
 
@@ -62,6 +63,7 @@ describe("getConfig()", () => {
     target.style.setProperty("--popover-flip-padding", "8");
     target.style.setProperty("--popover-arrow-element", ".asdf");
     target.style.setProperty("--popover-arrow-padding", "4");
+    target.style.setProperty("--popover-toggle-delay", "500");
     const config = getConfig(target, popover.settings);
     expect(config).toEqual({
       "placement": "top",
@@ -70,7 +72,8 @@ describe("getConfig()", () => {
       "overflow-padding": "16",
       "flip-padding": "8",
       "arrow-element": ".asdf",
-      "arrow-padding": "4"
+      "arrow-padding": "4",
+      "toggle-delay": "500"
     });
   });
 });
