@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index.js";
-import { handleClick } from "../src/js/handlers";
+import { handleClick, handleMouseEnter, handleMouseLeave } from "../src/js/handlers";
+import { expect } from "vitest";
 
 let popover;
 
@@ -25,6 +26,19 @@ const markup = `
     </div>
     <button aria-controls="fdsa">...</button>
     <div id="fdsa" class="popover is-active">
+      ...
+    </div>
+  </div>
+`;
+
+const hoverMarkup = `
+  <div id="app">
+    <button aria-describedby="tooltip-1">...</button>
+    <div id="tooltip-1" class="popover popover_tooltip">
+      <button class="focus-test">...</button>
+    </div>
+    <button aria-describedby="tooltip-2">...</button>
+    <div id="tooltip-2" class="popover popover_tooltip">
       ...
     </div>
   </div>
@@ -73,6 +87,62 @@ describe("handleClick()", () => {
 
     expect(popover.collection[0].el).not.toHaveClass("is-active");
     expect(popover.collection[1].el).not.toHaveClass("is-active");
+  });
+});
+
+describe("handleMouseEnter() & handleMouseLeave()", () => {
+  it("should open tooltip when handleMouseEnter() is run", async () => {
+    document.body.innerHTML = hoverMarkup;
+    popover = new Popover();
+    await popover.mount();
+
+    const entry = popover.get("tooltip-1");
+    expect(entry.isTooltip).toBe(true);
+    expect(entry.state).toBe("closed");
+
+    handleMouseEnter.bind(popover, entry)();
+    await delay();
+    expect(entry.state).toBe("opened");
+  });
+
+  it("should close tooltip when handleMouseLeave() is run", async () => {
+    document.body.innerHTML = hoverMarkup;
+    popover = new Popover();
+    await popover.mount();
+
+    const entry = popover.get("tooltip-2");
+    expect(entry.isTooltip).toBe(true);
+    entry.open();
+    expect(entry.state).toBe("opened");
+
+    handleMouseLeave.bind(popover, entry)();
+    await delay(5); // Not sure why this is needed.
+    expect(entry.state).toBe("closed");
+  });
+
+  it("should correctly clear timeout when multiple enter/leave events are run", async () => {
+    document.body.innerHTML = hoverMarkup;
+    popover = new Popover();
+    await popover.mount();
+
+    const entry1 = popover.get("tooltip-1");
+    const entry2 = popover.get("tooltip-2");
+
+    handleMouseEnter.bind(popover, entry1)();
+    handleMouseEnter.bind(popover, entry2)();
+    await delay();
+    handleMouseLeave.bind(popover, entry1)();
+    await delay();
+    handleMouseEnter.bind(popover, entry2)();
+    await delay();
+
+    expect(entry1.state).toBe("closed");
+    expect(entry2.state).toBe("opened");
+
+    handleMouseLeave.bind(popover, entry2)();
+    await delay(5);
+
+    expect(entry2.state).toBe("closed");
   });
 });
 
