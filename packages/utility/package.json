@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/utility",
   "description": "The utility component provides a set of atomic classes that specialize in a single function.",
-  "version": "4.0.0-next.19",
+  "version": "4.0.0-next.20",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/utility#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.19"
+    "@vrembem/core": "^4.0.0-next.20"
   },
   "publishConfig": {
     "access": "public"
