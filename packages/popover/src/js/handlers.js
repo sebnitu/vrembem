@@ -24,6 +24,8 @@ export function handleMouseEnter(popover) {
 
   // Set the toggle delay before opening the popover.
   popover.toggleDelayId = setTimeout(() => {
+    // TODO: Uncaught TypeError: popover.open is not a function
+    // This happens when the popover changes/moves before the open method is fired.
     popover.open();
   }, delay);
 }
