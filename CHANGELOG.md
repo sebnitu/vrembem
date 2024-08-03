@@ -32,12 +32,21 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.19 to CHANGELOG.md
+chore(release): add v4.0.0-next.20 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.20 (2024-08-03)
+
+### :tada: New Feature
+* `popover`, `vrembem`
+  * [#1966](https://github.com/sebnitu/vrembem/pull/1966) Refactor popover and add custom properties support
+* `button`, `core`, `input`, `menu`
+  * [#1965](https://github.com/sebnitu/vrembem/pull/1965) Add focus-ring variables and apply to form-controls
 
 
 ## v4.0.0-next.19 (2024-08-01)
