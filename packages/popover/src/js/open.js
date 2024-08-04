@@ -4,7 +4,8 @@ export async function open(query) {
   // Get the popover from collection.
   const popover = getPopover.call(this, query);
 
-  // Update state class.
+  // Update inert state and state class.
+  popover.el.inert = false;
   popover.el.classList.add(this.settings.stateActive);
 
   // Update accessibility attribute(s).

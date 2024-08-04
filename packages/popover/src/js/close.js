@@ -7,7 +7,8 @@ export async function close(query) {
   // If a modal exists and its state is opened.
   if (popover && popover.state === "opened") {
 
-    // Update state class.
+    // Update inert state and state class.
+    popover.el.inert = true;
     popover.el.classList.remove(this.settings.stateActive);
 
     // Update accessibility attribute(s).
