@@ -51,6 +51,8 @@ export async function register(el, trigger) {
   if (entry.el.classList.contains(this.settings.stateActive)) {
     await entry.open();
     handleDocumentClick.call(this, entry);
+  } else {
+    entry.el.inert = true;
   }
 
   // Set the popper placement property.
