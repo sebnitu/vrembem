@@ -32,12 +32,19 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.22 to CHANGELOG.md
+chore(release): add v4.0.0-next.23 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.23 (2024-08-04)
+
+### :bug: Bug Fix
+* `popover`
+  * [#1969](https://github.com/sebnitu/vrembem/pull/1969) Apply inert attribute on popovers when they're closed
 
 
 ## v4.0.0-next.22 (2024-08-04)
