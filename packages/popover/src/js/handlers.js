@@ -25,7 +25,7 @@ export function handleMouseEnter(popover) {
   // Set the toggle delay before opening the popover.
   popover.toggleDelayId = setTimeout(() => {
     // If the popover still exists, open it.
-    if (popover) popover.open();
+    if (popover.id) popover.open();
   }, delay);
 }
 
