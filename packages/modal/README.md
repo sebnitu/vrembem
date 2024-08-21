@@ -118,8 +118,6 @@ Modals on the web have an expected set of patterns that this component follows. 
 
 To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal. If you have modal markup throughout your document, use the `teleport` option to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
-> Inert is not currently widely supported by all browsers. Consider using a polyfill such as [wicg-inert](https://github.com/WICG/inert) or Google's [inert-polyfill](https://github.com/GoogleChrome/inert-polyfill).
-
 ### Example
 
 Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want all modals to be moved outside the main content element using the `after` method.
