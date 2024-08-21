@@ -1,7 +1,6 @@
 import * as vb from 'vrembem';
 import ScrollStash from 'scroll-stash';
 import 'svgxuse';
-import 'wicg-inert';
 import './list.js';
 import './version';
 
