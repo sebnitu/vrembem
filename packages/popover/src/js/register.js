@@ -23,7 +23,7 @@ export async function register(el, trigger) {
     popper: createPopper(trigger, el),
     config: getConfig(el, this.settings),
     get isTooltip() {
-      return trigger.hasAttribute("aria-describedby");
+      return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
     },
     open() {
       return open.call(root, this);
@@ -35,6 +35,11 @@ export async function register(el, trigger) {
       return deregister.call(root, this);
     }
   };
+
+  // Set role="tooltip" attribute if the popover is a tooltip.
+  if (entry.isTooltip) {
+    entry.el.setAttribute("role", "tooltip");
+  }
 
   // Set aria-expanded to false if trigger has aria-controls attribute.
   if (entry.trigger.hasAttribute("aria-controls")) {
