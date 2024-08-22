@@ -42,7 +42,7 @@ export async function register(el, trigger) {
   }
 
   // Set aria-expanded to false if trigger has aria-controls attribute.
-  if (entry.trigger.hasAttribute("aria-controls")) {
+  if (!entry.isTooltip) {
     entry.trigger.setAttribute("aria-expanded", "false");
   }
 

@@ -9,7 +9,7 @@ export async function open(query) {
   popover.el.classList.add(this.settings.stateActive);
 
   // Update accessibility attribute(s).
-  if (popover.trigger.hasAttribute("aria-controls")) {
+  if (!popover.isTooltip) {
     popover.trigger.setAttribute("aria-expanded", "true");
   }
 
