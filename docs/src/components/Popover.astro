@@ -2,22 +2,26 @@
 interface Props {
   id?: string;
   arrow?: boolean;
-  ariaLabel?: string;
-  buttonClass?: string;
+  triggerClass?: string;
   popoverClass?: string;
+  tooltipClass?: string;
   placement?: string;
 }
 
 const { 
   id, 
   arrow = false,
-  ariaLabel, 
-  buttonClass = "link", 
+  triggerClass = "link", 
   popoverClass = "",
-  placement
+  tooltipClass = "",
+  placement,
+  ...rest
 } = Astro.props;
 
-const uid = `popover-${id ? id : JSON.stringify(Math.floor(Math.random() * Date.now()))}`;
+const uid = id ? id : JSON.stringify(Math.floor(Math.random() * Date.now()));
+const triggerId = `popover-trigger-${uid}`;
+const popoverId = Astro.slots.has("default") ? `popover-${uid}` : null;
+const tooltipId = Astro.slots.has("tooltip") ? `popover-tooltip-${uid}` : null;
 
 const css = {};
 if (placement) {
@@ -27,26 +31,46 @@ if (placement) {
 ---
 
 <button
-  id={`${uid}-trigger`}
-  data-popover-trigger={uid}
-  aria-controls={uid}
-  aria-label={ariaLabel}
-  class={buttonClass}>
+  id={triggerId}
+  data-popover-trigger={popoverId}
+  aria-controls={popoverId}
+  aria-describedby={tooltipId}
+  class={triggerClass}
+  {...rest}
+>
   <slot name="trigger">Popover Trigger</slot>
 </button>
 
-<div
-  id={uid}
-  aria-labelledby={`${uid}-trigger`}
-  class={("popover " + popoverClass).trim()}
-  style={css}>
-  <slot>Popover Content</slot>
-  { 
-    arrow && (
+{
+  Astro.slots.has("default") && (
+    <div
+      id={popoverId}
+      aria-labelledby={triggerId}
+      class={("popover " + popoverClass).trim()}
+      style={css}
+    >
+      <slot>Popover Content</slot>
+      { 
+        arrow && (
+          <span class="popover__arrow"></span>
+        )
+      }
+    </div>
+  )
+}
+
+{
+  Astro.slots.has("tooltip") && (
+    <div
+      id={tooltipId}
+      class={("popover popover_tooltip " + tooltipClass).trim()}
+      style={css}
+    >
+      <slot name="tooltip" />
       <span class="popover__arrow"></span>
-    )
-  }
-</div>
+    </div>
+  )
+}
 
 <script>
   import "../modules/usePopover";
