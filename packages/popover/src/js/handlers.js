@@ -10,7 +10,12 @@ export function handleClick(popover) {
   }
 }
 
-export function handleMouseEnter(popover) {
+export function handleMouseEnter(popover, event) {
+  // Guard to ensure only focus-visible triggers the tooltip on focus events.
+  if (event.type == "focus" && !popover.trigger.matches(":focus-visible")) {
+    return;
+  }
+
   // Clear any existing toggle delays.
   if (popover.toggleDelayId) {
     clearTimeout(popover.toggleDelayId);
