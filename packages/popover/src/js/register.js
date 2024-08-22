@@ -73,7 +73,7 @@ export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
   if (!entry.__eventListeners) {
     // Add event listeners based on event type.
-    const eventType = entry.config["event"];
+    const eventType = (entry.isTooltip) ? "hover" : entry.config["event"];
 
     // If the event type is hover.
     if (eventType === "hover") {
