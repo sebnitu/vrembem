@@ -8,6 +8,7 @@ status: "circle"
 import CodeExample from "../../components/CodeExample.astro";
 import DocBlock from "../../components/DocBlock.astro";
 import Menu from "../../examples/Menu.astro";
+import Icon from '../../components/Icon.astro';
 
 # Popover
 
@@ -238,7 +239,7 @@ Adjusts the size of the popover. There are two options relative to the default s
 
 Applies styles to create a popover tooltip. The default placement of a tooltip is `top` and are triggered by the `hover` and `focus` events. Tooltips also require a different set of attributes for accessibility:
 
-- The popover element should have the `role="tooltip"` set.
+- The popover element should have the `role="tooltip"` set. This is set automatically if the tooltip modifier is used.
 - The popover trigger should have `aria-describedby` (instead of `aria-controls`) set to the ID of the popover element.
 
 <CodeExample>
@@ -248,15 +249,15 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
       <button type="button" class="link" aria-describedby="popover-tooltip-2">CSS</button>
       <button type="button" class="link" aria-describedby="popover-tooltip-3">JS</button>
     </div>
-    <div id="popover-tooltip-1" class="popover popover_tooltip" role="tooltip">
+    <div id="popover-tooltip-1" class="popover popover_tooltip">
       Hypertext Markup Language
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-tooltip-2" class="popover popover_tooltip" role="tooltip">
+    <div id="popover-tooltip-2" class="popover popover_tooltip">
       Cascading Style Sheets
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-tooltip-3" class="popover popover_tooltip" role="tooltip">
+    <div id="popover-tooltip-3" class="popover popover_tooltip">
       JavaScript
       <span class="popover__arrow"></span>
     </div>
@@ -271,6 +272,36 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 </CodeExample>
 
 > For more information regarding tooltip accessibility and best practices, please see: [ARIA: tooltip role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role).
+
+### Multiple popovers
+
+There are cases where a single popover trigger requires both a tooltip and a click toggle popover. This can be achieved by using `aria-controls` and `aria-describedby` attributes with the values of their corresponding popover IDs.
+
+<CodeExample>
+  <Fragment slot="output">
+    <button type="button" class="button button_icon" aria-controls="popover-multi-2" aria-describedby="popover-multi-1">
+      <Icon name="menu" />
+    </button>
+    <div id="popover-multi-1" class="popover popover_tooltip">
+      Menu
+      <span class="popover__arrow"></span>
+    </div>
+    <div id="popover-multi-2" class="popover popover_size_sm">
+      <Menu name="edit-shortcuts" />
+    </div>
+  </Fragment>
+  ```html
+  <button aria-controls="unique-id-1" aria-describedby="unique-id-2">
+    ...
+  </button>
+  <div id="unique-id-1" class="popover">
+    ...
+  </div>
+  <div id="unique-id-2" class="popover popover_tooltip">
+    ...
+  </div>
+  ```
+</CodeExample>
 
 ## Customization
 
