@@ -19,6 +19,7 @@ $output-padding: $output !default;
 $output-position: $output !default;
 $output-spacing: $output !default;
 $output-text: $output !default;
+$output-transition: $output !default;
 
 $class-background: "background" !default;
 $class-foreground: "foreground" !default;
@@ -33,6 +34,7 @@ $class-overflow: "overflow" !default;
 $class-padding: "padding" !default;
 $class-position: "position" !default;
 $class-text: "text" !default;
+$class-transition: "transition" !default;
 
 $breakpoints: core.$breakpoints !default;
 
