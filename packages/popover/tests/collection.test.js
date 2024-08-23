@@ -62,7 +62,7 @@ describe("register() & entry.deregister()", () => {
     const trigger = document.querySelector("#third");
     let catchError = false;
     await popover.register(trigger).catch((error) => {
-      expect(error.message).toBe("No popover associated with the provided popover trigger.");
+      expect(error.message).toBe("No popover associated with the provided popover trigger: \"missing\".");
       catchError = true;
     });
     expect(catchError).toBe(true);

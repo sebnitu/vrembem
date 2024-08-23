@@ -210,7 +210,7 @@ describe("getPopoverElements()", () => {
     const trigger = document.querySelector("[aria-controls=\"asdf\"]");
     popover = new Popover();
     const func = getPopoverElements.call(popover, trigger);
-    expect(func.error.message).toBe("No popover associated with the provided popover trigger.");
+    expect(func.error.message).toBe("No popover associated with the provided popover trigger: \"asdf\".");
   });
 
   it("should throw error if no popover trigger is found using a popover", () => {
@@ -218,7 +218,7 @@ describe("getPopoverElements()", () => {
     const target = document.querySelector("#fdsa");
     popover = new Popover();
     const func = getPopoverElements.call(popover, target);
-    expect(func.error.message).toBe("No popover trigger associated with the provided popover.");
+    expect(func.error.message).toBe("No popover trigger associated with the provided popover: \"fdsa\".");
   });
 
   it("should throw error if unable to resolve a popover ID with provided query", () => {
