@@ -1,6 +1,20 @@
 import { closeAll, closeCheck } from "./close";
 
 export function handleClick(popover) {
+  // Check if trigger is linked to a tooltip.
+  const tooltipId = popover.trigger.getAttribute("aria-describedby");
+  if (tooltipId) {
+    // Get the entry and check if it's a tooltip.
+    const entry = this.get(tooltipId);
+    if (entry.isTooltip) {
+      // Clear any active toggle delays and close the tooltip.
+      if (entry.toggleDelayId) {
+        clearTimeout(entry.toggleDelayId);
+      }
+      entry.close();
+    }
+  }
+
   if (popover.state === "opened") {
     popover.close();
   } else {
@@ -10,7 +24,18 @@ export function handleClick(popover) {
   }
 }
 
-export function handleMouseEnter(popover) {
+export function handleMouseEnter(popover, event) {
+  // Guard to ensure only focus-visible triggers the tooltip on focus events.
+  if (event.type == "focus" && !popover.trigger.matches(":focus-visible")) {
+    return;
+  }
+
+  // Guard to ensure a popover is not already open for this trigger.
+  const isExpanded = popover.trigger.getAttribute("aria-expanded");
+  if (isExpanded && isExpanded == "true") {
+    return;
+  }
+
   // Clear any existing toggle delays.
   if (popover.toggleDelayId) {
     clearTimeout(popover.toggleDelayId);

@@ -3,6 +3,7 @@ export default {
 
   // Selectors
   selectorPopover: ".popover",
+  selectorTooltip: ".popover_tooltip",
   selectorArrow: ".popover__arrow",
 
   // State classes

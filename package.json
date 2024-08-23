@@ -43,8 +43,5 @@
     "stylelint-order": "^6.0.4",
     "vite": "^5.4.1",
     "vitest": "^2.0.1"
-  },
-  "overrides": {
-    "nwsapi": "2.2.2"
   }
 }

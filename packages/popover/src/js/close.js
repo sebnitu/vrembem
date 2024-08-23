@@ -12,7 +12,7 @@ export async function close(query) {
     popover.el.classList.remove(this.settings.stateActive);
 
     // Update accessibility attribute(s).
-    if (popover.trigger.hasAttribute("aria-controls")) {
+    if (!popover.isTooltip) {
       popover.trigger.setAttribute("aria-expanded", "false");
     }
 
@@ -56,13 +56,16 @@ export function closeCheck(popover) {
   setTimeout(() => {
     // Check if trigger or element are being hovered.
     const isHovered =
-      popover.el.closest(":hover") === popover.el ||
-      popover.trigger.closest(":hover") === popover.trigger;
+      popover.el.matches(":hover") === popover.el ||
+      popover.trigger.matches(":hover") === popover.trigger;
 
     // Check if trigger or element are being focused.
-    const isFocused = document.activeElement.closest(
+    let isFocused = document.activeElement.closest(
       `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
     );
+
+    // If a focused element was returned, ensure that it is focus-visible.
+    isFocused = (isFocused) ? isFocused.matches(":focus-visible") : false;
 
     // Close if the trigger and element are not currently hovered or focused.
     if (!isHovered && !isFocused) {

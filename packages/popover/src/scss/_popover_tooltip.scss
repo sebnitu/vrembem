@@ -3,9 +3,7 @@
 
 #{core.bem("popover", null, "tooltip")} {
   @include css.override("popover", (
-    "event": "hover",
     "placement": "top",
-    "arrow-size": 8px,
     "toggle-delay": 300,
     "width": auto,
     "max-width": 16rem,

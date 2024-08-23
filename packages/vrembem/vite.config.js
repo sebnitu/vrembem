@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
+import data from "./package.json";
 
 export default defineConfig({
   build: {
@@ -12,6 +13,7 @@ export default defineConfig({
     sourcemap: true
   },
   define: {
-    "import.meta.env.VITE_PACKAGE": JSON.stringify("vrembem"),
+    "import.meta.env.VITE_NAME": JSON.stringify(data.name),
+    "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
   }
 });

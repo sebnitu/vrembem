@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import LayoutDrawer from "../components/LayoutDrawer.astro";
 import LayoutAside from "../components/LayoutAside.astro";
 import Icon from "../components/Icon.astro";
+import Popover from "../components/Popover.astro";
 
 interface Props {
   title?: string;
@@ -47,12 +48,21 @@ const { title, layout = {} } = Astro.props;
           {
             layout.hasAside && (
               <div class="toolbar-mini">
-                <button
+                <Popover
+                  id="on-this-page-menu"
+                  aria-label="Open on this page menu"
+                  triggerClass="button button_icon"
+                  tooltipClass="text-nowrap"
+                  placement="bottom-end"
                   data-drawer-open="layout-aside"
-                  class="button button_icon"
                 >
-                  <Icon name="compass" />
-                </button>
+                  <Fragment slot="trigger">
+                    <Icon name="compass" />
+                  </Fragment>
+                  <Fragment slot="tooltip">
+                    On this page
+                  </Fragment>
+                </Popover>
               </div>
             )
           }

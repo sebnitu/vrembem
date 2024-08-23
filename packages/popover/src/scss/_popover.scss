@@ -4,6 +4,7 @@
 
 $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 
+// TODO: Move this into utilities
 .transition-none {
   transition: none !important;
 }
