@@ -101,9 +101,9 @@ export class FocusTrap {
 
 // This has been copied over from focusable-selectors package and modified.
 // https://github.com/KittyGiraudel/focusable-selectors
-const notInert = ':not([inert])'; // Previously `:not([inert]):not([inert] *)`
-const notNegTabIndex = ':not([tabindex^="-"])';
-const notDisabled = ':not(:disabled)';
+const notInert = ":not([inert])"; // Previously `:not([inert]):not([inert] *)`
+const notNegTabIndex = ":not([tabindex^=\"-\"])";
+const notDisabled = ":not(:disabled)";
 const focusableSelectors = [
   `a[href]${notInert}${notNegTabIndex}`,
   `area[href]${notInert}${notNegTabIndex}`,
