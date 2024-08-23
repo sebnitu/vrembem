@@ -30,16 +30,20 @@ if (placement) {
 
 ---
 
-<button
-  id={triggerId}
-  data-popover-trigger={popoverId}
-  aria-controls={popoverId}
-  aria-describedby={tooltipId}
-  class={triggerClass}
-  {...rest}
->
-  <slot name="trigger">Popover Trigger</slot>
-</button>
+{
+  Astro.slots.has("trigger") && (
+    <button
+      id={triggerId}
+      data-popover-trigger={popoverId}
+      aria-controls={popoverId}
+      aria-describedby={tooltipId}
+      class={triggerClass}
+      {...rest}
+    >
+      <slot name="trigger" />
+    </button>
+  )
+}
 
 {
   Astro.slots.has("default") && (
@@ -49,7 +53,7 @@ if (placement) {
       class={("popover " + popoverClass).trim()}
       style={css}
     >
-      <slot>Popover Content</slot>
+      <slot />
       { 
         arrow && (
           <span class="popover__arrow"></span>
