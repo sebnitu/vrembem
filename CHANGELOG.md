@@ -32,12 +32,21 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.23 to CHANGELOG.md
+chore(release): add v4.0.0-next.24 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.24 (2024-08-24)
+
+### :tada: New Feature
+* `popover`, `utility`
+  * [#1991](https://github.com/sebnitu/vrembem/pull/1991) Add basic transition utilities
+* `core`, `popover`, `vrembem`
+  * [#1990](https://github.com/sebnitu/vrembem/pull/1990) Improve support for multiple popovers on a single trigger
 
 
 ## v4.0.0-next.23 (2024-08-04)
