@@ -1,26 +1,21 @@
 import { closeAll, closeCheck } from "./close";
 
 export function handleClick(popover) {
-  // Check if trigger is linked to a tooltip.
-  const tooltipId = popover.trigger.getAttribute("aria-describedby");
-  if (tooltipId) {
-    // Get the entry and check if it's a tooltip.
-    const entry = this.get(tooltipId);
-    if (entry.isTooltip) {
-      // Clear any active toggle delays and close the tooltip.
-      if (entry.toggleDelayId) {
-        clearTimeout(entry.toggleDelayId);
-      }
-      entry.close();
-    }
-  }
-
   if (popover.state === "opened") {
     popover.close();
   } else {
     this.trigger = popover.trigger;
     popover.open();
     handleDocumentClick.call(this, popover);
+  }
+}
+
+export function handleTooltipClick(popover) {
+  if (popover.isTooltip) {
+    if (popover.toggleDelayId) {
+      clearTimeout(popover.toggleDelayId);
+    }
+    popover.close();
   }
 }
 
