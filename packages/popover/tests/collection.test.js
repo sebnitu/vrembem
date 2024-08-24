@@ -74,7 +74,7 @@ describe("register() & entry.deregister()", () => {
     const trigger = document.querySelector("#fdsa-trigger");
     popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
-    expect(popover.collection[0].__eventListeners.length).toBe(2);
+    expect(popover.collection[0].__eventListeners.length).toBe(3);
   });
 
   it("should attach open and close methods to registered popover", () => {

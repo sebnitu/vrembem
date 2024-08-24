@@ -1,6 +1,6 @@
 import { createPopper } from "@popperjs/core/dist/esm";
 
-import { handleClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
+import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
@@ -86,6 +86,10 @@ export function registerEventListeners(entry) {
         el: ["el", "trigger"],
         type: ["mouseleave", "focusout"],
         listener: handleMouseLeave.bind(this, entry)
+      }, {
+        el: ["trigger"],
+        type: ["click"],
+        listener: handleTooltipClick.bind(this, entry)
       }];
 
       // Loop through listeners and apply to the appropriate elements.
