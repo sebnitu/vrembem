@@ -29,7 +29,7 @@
     "@eslint/js": "^9.9.1",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/user-event": "^14.5.2",
-    "@vitest/coverage-v8": "^2.0.4",
+    "@vitest/coverage-v8": "^2.0.5",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
     "eslint": "^9.9.1",
