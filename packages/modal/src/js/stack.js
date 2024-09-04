@@ -10,7 +10,8 @@ export function stack(settings) {
     },
 
     get top() {
-      return stackArray[stackArray.length - 1];
+      const result = stackArray[stackArray.length - 1];
+      return (result) ? result : null;
     },
 
     updateIndex() {

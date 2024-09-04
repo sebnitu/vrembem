@@ -624,8 +624,8 @@ After the modal component has been instantiated the modal object is returned wit
   Returns an array of all currently opened modals. These are sorted in the order they're added to the array (first item was opened first, last item was opened last).
 </DocBlock>
 
-<DocBlock name="modal.active" type="property" returns="Object || undefined" src="modal/src/js/index.js" line="33">
-  Returns the currently active modal or the modal at the top of the stack if multiple modals are open. Will return `undefined` if no modals are open.
+<DocBlock name="modal.active" type="property" returns="Object || null" src="modal/src/js/index.js" line="33">
+  Returns the currently active modal or the modal at the top of the stack if multiple modals are open. Will return `null` if no modals are open.
 </DocBlock>
 
 <DocBlock name="modal.mount" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
