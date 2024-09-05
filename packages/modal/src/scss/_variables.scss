@@ -4,12 +4,6 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-$prefix-variable: config.get("prefix-variables") !default;
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
-
 $z-index: 1000 !default;
 $width: 36em !default;
 $max-width: 100% !default;

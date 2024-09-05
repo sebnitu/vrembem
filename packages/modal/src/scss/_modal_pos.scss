@@ -1,63 +1,59 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
-.#{$_b}modal#{$_m}pos#{$_v}top {
+#{core.bem("modal", null, "pos", "top")} {
   justify-content: flex-start;
 }
 
-.#{$_b}modal#{$_m}pos#{$_v}bottom {
+#{core.bem("modal", null, "pos", "bottom")} {
   justify-content: flex-end;
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     transform: translateY(css.get("modal", "travel", var.$travel));
   }
 
   &.is-closing {
-    .#{$_b}modal#{$_e}dialog {
+    #{core.bem("modal", "dialog")} {
       transform: translateY(css.get("modal", "travel", var.$travel));
     }
   }
 }
 
-.#{$_b}modal#{$_m}pos#{$_v}left,
-.#{$_b}modal#{$_m}pos#{$_v}right {
-  .#{$_b}modal#{$_e}dialog {
+#{core.bem("modal", null, "pos", "left")},
+#{core.bem("modal", null, "pos", "right")} {
+  #{core.bem("modal", "dialog")} {
     @include css.override("modal", "width", var.$aside-width);
     @include css.override("modal", "max-width", var.$aside-max-width);
     height: 100%;
   }
 }
 
-.#{$_b}modal#{$_m}pos#{$_v}left {
+#{core.bem("modal", null, "pos", "left")} {
   align-items: flex-start;
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     left: 0;
     transform: translateX(-100%);
   }
 
   &.is-closing {
-    .#{$_b}modal#{$_e}dialog {
+    #{core.bem("modal", "dialog")} {
       transform: translateX(-100%);
     }
   }
 }
 
-.#{$_b}modal#{$_m}pos#{$_v}right {
+#{core.bem("modal", null, "pos", "right")} {
   align-items: flex-end;
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     right: 0;
     transform: translateX(100%);
   }
 
   &.is-closing {
-    .#{$_b}modal#{$_e}dialog {
+    #{core.bem("modal", "dialog")} {
       transform: translateX(100%);
     }
   }

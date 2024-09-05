@@ -3,11 +3,7 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}modal {
+#{core.bem("modal")} {
   position: fixed;
   z-index: css.get("modal", "z-index", var.$z-index);
   top: 0;
@@ -32,7 +28,7 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}modal#{$_e}dialog {
+#{core.bem("modal", "dialog")} {
   @include core.focus-ring-base();
   width: css.get("modal", "width", var.$width);
   max-width: css.get("modal", "max-width", var.$max-width);
@@ -53,44 +49,44 @@ $_e: var.$prefix-element;
   }
 }
 
-.#{$_b}modal.is-closed {
+#{core.bem("modal")}.is-closed {
   visibility: hidden;
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-opened,
-.#{$_b}modal.is-closing {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-opened,
+#{core.bem("modal")}.is-closing {
   visibility: visible;
   width: 100%;
   height: 100%;
   padding: css.get("modal", "screen-padding", var.$screen-padding);
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-closing {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-closing {
   &::before {
     transition: opacity css.get("modal", "transition-duration", var.$transition-duration) css.get("modal", "transition-timing-function", var.$transition-timing-function);
   }
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     transition-property: opacity, transform;
     transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
     transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
   }
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-opened {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-opened {
   &::before {
     opacity: css.get("modal", "screen-opacity", var.$screen-opacity);
   }
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.#{$_b}modal.is-closing .#{$_b}modal#{$_e}dialog {
+#{core.bem("modal")}.is-closing #{core.bem("modal", "dialog")} {
   transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
 }
