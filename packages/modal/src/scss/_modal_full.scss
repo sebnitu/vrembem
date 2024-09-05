@@ -1,22 +1,20 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-
-.#{$_b}modal#{$_m}full {
-  .#{$_b}modal#{$_e}dialog {
+#{core.bem("modal", null, "full")} {
+  #{core.bem("modal", "dialog")} {
     width: 100%;
     height: 100%;
-    transform: scale(0.75);
+    transform: scale(css.get("modal", "full-scale", var.$full-scale));
   }
 
-  &.is-opened .#{$_b}modal#{$_e}dialog,
-  &.is-opening .#{$_b}modal#{$_e}dialog {
+  &.is-opened #{core.bem("modal", "dialog")},
+  &.is-opening #{core.bem("modal", "dialog")} {
     transform: scale(1);
   }
 
-  &.is-closing .#{$_b}modal#{$_e}dialog {
-    transform: scale(0.75);
+  &.is-closing #{core.bem("modal", "dialog")} {
+    transform: scale(css.get("modal", "full-scale", var.$full-scale));
   }
 }

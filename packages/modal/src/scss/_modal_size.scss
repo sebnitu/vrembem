@@ -1,12 +1,9 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
-
 @each $key, $value in var.$size-scale {
-  .#{$_b}modal#{$_m}size#{$_v}#{$key} .#{$_b}modal#{$_e}dialog {
-    width: $value;
+  #{core.bem("modal", null, "size", $key)} #{core.bem("modal", "dialog")} {
+    @include css.override("modal", "width", $value);
   }
 }

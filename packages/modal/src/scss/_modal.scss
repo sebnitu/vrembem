@@ -1,13 +1,11 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-
-.#{$_b}modal {
+#{core.bem("modal")} {
   position: fixed;
-  z-index: var.$z-index;
+  z-index: css.get("modal", "z-index", var.$z-index);
   top: 0;
   right: 0;
   display: flex;
@@ -25,74 +23,70 @@ $_e: var.$prefix-element;
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var.$screen-background;
+    background-color: css.get("modal", "screen-background", var.$screen-background);
     opacity: 0;
   }
 }
 
-.#{$_b}modal#{$_e}dialog {
-  width: var.$width;
-  max-width: 100%;
+#{core.bem("modal", "dialog")} {
+  @include core.focus-ring-base();
+  width: css.get("modal", "width", var.$width);
+  max-width: css.get("modal", "max-width", var.$max-width);
   overflow: auto;
-  transform: translateY(-(var.$travel));
+  transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
   transition-property: outline;
-  transition-duration: var(--#{$_v}modal-transition-duration);
-  transition-timing-function: var(--#{$_v}modal-transition-timing-function);
-  outline: var.$outline;
-  box-shadow: var.$shadow;
+  transition-duration: css.get("modal", "transition-duration");
+  transition-timing-function: css.get("modal", "transition-timing-function");
+  box-shadow: css.get("modal", "shadow", var.$shadow);
   opacity: 0;
 
-  &:focus {
-    outline: var.$outline-focus;
+  &:focus-visible {
+    @include core.focus-ring("modal", var.$focus-ring-color, var.$focus-ring-opacity);
   }
 
   &[role="alertdialog"]:focus {
-    outline: var.$outline-focus-alert;
+    @include core.focus-ring("modal", var.$focus-ring-color-alert, var.$focus-ring-opacity);
   }
 }
 
-.#{$_b}modal.is-closed {
+#{core.bem("modal")}.is-closed {
   visibility: hidden;
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-opened,
-.#{$_b}modal.is-closing {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-opened,
+#{core.bem("modal")}.is-closing {
   visibility: visible;
   width: 100%;
   height: 100%;
-  padding: 1em;
-
-  @include core.media-min("medium") {
-    padding: 2em;
-  }
+  padding: css.get("modal", "screen-padding", var.$screen-padding);
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-closing {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-closing {
   &::before {
-    transition: opacity var(--#{$_v}modal-transition-duration) var(--#{$_v}modal-transition-timing-function);
+    transition: opacity css.get("modal", "transition-duration", var.$transition-duration) css.get("modal", "transition-timing-function", var.$transition-timing-function);
   }
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     transition-property: opacity, transform;
-    transition-duration: var(--#{$_v}modal-transition-duration);
-    transition-timing-function: var(--#{$_v}modal-transition-timing-function);
+    transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
+    transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
   }
 }
 
-.#{$_b}modal.is-opening,
-.#{$_b}modal.is-opened {
+#{core.bem("modal")}.is-opening,
+#{core.bem("modal")}.is-opened {
   &::before {
-    opacity: var.$screen-opacity;
+    opacity: css.get("modal", "screen-opacity", var.$screen-opacity);
   }
 
-  .#{$_b}modal#{$_e}dialog {
+  #{core.bem("modal", "dialog")} {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-.#{$_b}modal.is-closing .#{$_b}modal#{$_e}dialog {
-  transform: translateY(-(var.$travel));
+#{core.bem("modal")}.is-closing #{core.bem("modal", "dialog")} {
+  transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
 }
