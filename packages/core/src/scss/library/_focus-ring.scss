@@ -1,4 +1,5 @@
 @use "../modules/css";
+@use "../variables/focus-ring" as var;
 
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
@@ -12,8 +13,10 @@
 ///   The module to allow component specific overrides for.
 /// @param {string} $color
 ///   The color to use as the fallback value.
-@mixin focus-ring($module, $color) {
-  $_focus-ring-opacity: css.get("core", "focus-ring-opacity");
+/// @param {number} $opacity
+///   The value to set for the opacity of the color.
+@mixin focus-ring($module, $color, $opacity: var.$focus-ring-opacity) {
+  $_focus-ring-opacity: css.get("core", "focus-ring-opacity", $opacity);
   $_focus-ring-color: css.get("core", "focus-ring-color", $color);
   @if ($module) {
     $_focus-ring-opacity: css.get($module, "focus-ring-opacity", $_focus-ring-opacity);
