@@ -1,15 +1,12 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
-
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
 
 /**
  * Drawer modal styles
  */
 
-.#{$_b}drawer#{$_m}modal {
+ #{core.bem("drawer", null, "modal")} {
   z-index: var.$modal-z-index;
   right: auto;
   left: 0;
@@ -28,7 +25,7 @@ $_m: var.$prefix-modifier;
     opacity: 0;
   }
 
-  .#{$_b}drawer#{$_e}dialog {
+  #{core.bem("drawer", "dialog")} {
     position: absolute;
     z-index: (var.$modal-z-index + 1);
     left: 0;
@@ -39,13 +36,13 @@ $_m: var.$prefix-modifier;
     background-color: var.$modal-background;
     box-shadow: var.$modal-shadow;
   }
-
-  &.#{$_b}drawer#{$_m}switch {
+  
+  &#{core.bem("drawer", null, "switch")} {
     right: auto;
     left: 0;
     transform: translateX(0);
 
-    .#{$_b}drawer#{$_e}dialog {
+    #{core.bem("drawer", "dialog")} {
       right: 0;
       left: auto;
       transform: translateX(100%);
@@ -53,13 +50,13 @@ $_m: var.$prefix-modifier;
     }
   }
 
-  .#{$_b}dialog#{$_e}header,
-  .#{$_b}dialog#{$_e}footer {
+  #{core.bem("dialog", "header")},
+  #{core.bem("dialog", "footer")} {
     border: var.$modal-sep-border;
     background: var.$modal-background;
   }
 
-  .#{$_b}dialog#{$_e}body {
+  #{core.bem("dialog", "body")} {
     background: var.$modal-background;
   }
 }
@@ -68,46 +65,46 @@ $_m: var.$prefix-modifier;
  * Drawer modal transition
  */
 
-.#{$_b}drawer#{$_m}modal.is-opening,
-.#{$_b}drawer#{$_m}modal.is-opened,
-.#{$_b}drawer#{$_m}modal.is-closing {
+#{core.bem("drawer", null, "modal")}.is-opening,
+#{core.bem("drawer", null, "modal")}.is-opened,
+#{core.bem("drawer", null, "modal")}.is-closing {
   width: 100%;
   max-width: 100%;
   height: 100%;
 }
 
-.#{$_b}drawer#{$_m}modal.is-opening,
-.#{$_b}drawer#{$_m}modal.is-closing {
+#{core.bem("drawer", null, "modal")}.is-opening,
+#{core.bem("drawer", null, "modal")}.is-closing {
   &::before {
-    transition: opacity var(--#{$_v}drawer-transition-duration) var(--#{$_v}drawer-transition-timing-function);
+    transition: opacity css.get("drawer", "transition-duration", var.$transition-duration) css.get("drawer", "transition-timing-function", var.$transition-timing-function);
   }
 }
 
-.#{$_b}drawer#{$_m}modal.is-opening,
-.#{$_b}drawer#{$_m}modal.is-opened {
+#{core.bem("drawer", null, "modal")}.is-opening,
+#{core.bem("drawer", null, "modal")}.is-opened {
   transform: translateX(0);
 
   &::before {
     opacity: var.$modal-screen-opacity;
   }
 
-  .#{$_b}drawer#{$_e}dialog {
+  #{core.bem("drawer", "dialog")} {
     transform: translateX(0);
   }
 }
 
-.#{$_b}drawer#{$_m}modal.is-closing {
+#{core.bem("drawer", null, "modal")}.is-closing {
   transform: translateX(0);
 
-  .#{$_b}drawer#{$_e}dialog {
+  #{core.bem("drawer", "dialog")} {
     transform: translateX(-100%);
   }
 }
 
-.#{$_b}drawer#{$_m}modal.#{$_b}drawer#{$_m}switch.is-closing {
+#{core.bem("drawer", null, "modal")}#{core.bem("drawer", null, "switch")}.is-closing {
   transform: translateX(0);
 
-  .#{$_b}drawer#{$_e}dialog {
+  #{core.bem("drawer", "dialog")} {
     transform: translateX(100%);
   }
 }

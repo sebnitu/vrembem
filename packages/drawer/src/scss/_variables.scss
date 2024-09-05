@@ -4,14 +4,8 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-$prefix-variable: config.get("prefix-variables") !default;
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
-
-$class-frame: "#{$prefix-block}drawer-frame" !default;
-$class-main: "#{$prefix-block}drawer-main" !default;
+$class-frame: "drawer-frame" !default;
+$class-main: "drawer-main" !default;
 
 $width: 18em !default;
 $max-width: 100% !default;
