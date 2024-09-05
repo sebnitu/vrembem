@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -8,7 +9,7 @@ $_m: var.$prefix-modifier;
   .#{$_b}modal#{$_e}dialog {
     width: 100%;
     height: 100%;
-    transform: scale(0.75);
+    transform: scale(css.get("modal", "full-scale", var.$full-scale));
   }
 
   &.is-opened .#{$_b}modal#{$_e}dialog,
@@ -17,6 +18,6 @@ $_m: var.$prefix-modifier;
   }
 
   &.is-closing .#{$_b}modal#{$_e}dialog {
-    transform: scale(0.75);
+    transform: scale(css.get("modal", "full-scale", var.$full-scale));
   }
 }

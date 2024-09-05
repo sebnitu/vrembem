@@ -12,6 +12,7 @@ $prefix-modifier-value: config.get("prefix-modifier-values") !default;
 
 $z-index: 1000 !default;
 $width: 36em !default;
+$max-width: 100% !default;
 $travel: 5em !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
@@ -19,14 +20,18 @@ $shadow: css.get("box-shadow-5") !default;
 
 $screen-background: palette.get("neutral", 10) !default;
 $screen-opacity: 0.8 !default;
+$screen-padding: 1em !default;
 
-$outline: 0 solid transparent !default;
-$outline-focus: 4px solid palette.get("primary") !default;
-$outline-focus-alert: 4px solid palette.get("important") !default;
+$focus-ring-color: palette.get("primary") !default;
+$focus-ring-color-alert: palette.get("important") !default;
+$focus-ring-opacity: 1 !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;
 $aside-max-width: 90% !default;
+
+// modal_full
+$full-scale: 0.75 !default;
 
 // modal_size_[key]
 $size-scale: (

@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 $_b: var.$prefix-block;
@@ -13,12 +14,12 @@ $_v: var.$prefix-modifier-value;
   justify-content: flex-end;
 
   .#{$_b}modal#{$_e}dialog {
-    transform: translateY(var.$travel);
+    transform: translateY(css.get("modal", "travel", var.$travel));
   }
 
   &.is-closing {
     .#{$_b}modal#{$_e}dialog {
-      transform: translateY(var.$travel);
+      transform: translateY(css.get("modal", "travel", var.$travel));
     }
   }
 }
@@ -26,8 +27,8 @@ $_v: var.$prefix-modifier-value;
 .#{$_b}modal#{$_m}pos#{$_v}left,
 .#{$_b}modal#{$_m}pos#{$_v}right {
   .#{$_b}modal#{$_e}dialog {
-    width: var.$aside-width;
-    max-width: var.$aside-max-width;
+    @include css.override("modal", "width", var.$aside-width);
+    @include css.override("modal", "max-width", var.$aside-max-width);
     height: 100%;
   }
 }
