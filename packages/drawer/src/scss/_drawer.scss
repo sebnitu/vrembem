@@ -49,9 +49,9 @@
   border-right: css.get("drawer", "border", var.$border);
   border-radius: 0;
   background: css.get("drawer", "background", var.$background);
-  color: css.get("drawer", "foreground", var.$foreground);
   box-shadow: css.get("drawer", "box-shadow", var.$box-shadow);
   opacity: 0;
+  color: css.get("drawer", "foreground", var.$foreground);
   -webkit-overflow-scrolling: touch;
 
   #{core.bem("dialog", "header")},

@@ -34,8 +34,8 @@
     transform: translateX(-100%);
     border-right: css.get("drawer", "modal-border", var.$modal-border);
     background-color: css.get("drawer", "modal-background", var.$modal-background);
-    color: css.get("drawer", "modal-foreground", var.$modal-foreground);
     box-shadow: css.get("drawer", "modal-box-shadow", var.$modal-box-shadow);
+    color: css.get("drawer", "modal-foreground", var.$modal-foreground);
   }
   
   &#{core.bem("drawer", null, "switch")} {
