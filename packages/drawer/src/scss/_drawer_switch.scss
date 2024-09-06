@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 /**
@@ -10,7 +11,7 @@
   transform: translateX(-100%);
 
   #{core.bem("drawer", "dialog")} {
-    border-right: var.$border;
+    border-right: css.get("drawer", "border", var.$border);
   }
 }
 
@@ -33,10 +34,8 @@
   transform: translateX(100%);
 
   #{core.bem("drawer", "dialog")} {
-    @if (var.$border) {
-      border-right: none;
-    }
-    border-left: var.$border;
+    border-right: none;
+    border-left: css.get("drawer", "border", var.$border);
   }
 }
 
@@ -50,16 +49,16 @@
 
 // IS .drawer NOT .drawer_modal .drawer_switch
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}, #{core.bem("drawer", null, "switch")}) {
-  &.is-opening ~ .#{var.$class-main},
-  &.is-opened ~ .#{var.$class-main} {
-    margin-left: var.$width;
+  &.is-opening ~ #{core.bem(var.$class-main)},
+  &.is-opened ~ #{core.bem(var.$class-main)} {
+    margin-left: css.get("drawer", "width", var.$width);
   }
 }
 
 // IS .drawer .drawer_switch NOT .drawer_modal
 #{core.bem("drawer")}#{core.bem("drawer", null, "switch")}:not(#{core.bem("drawer", null, "modal")}) {
-  &.is-opening ~ .#{var.$class-main},
-  &.is-opened ~ .#{var.$class-main} {
-    margin-right: var.$width;
+  &.is-opening ~ #{core.bem(var.$class-main)},
+  &.is-opened ~ #{core.bem(var.$class-main)} {
+    margin-right: css.get("drawer", "width", var.$width);
   }
 }

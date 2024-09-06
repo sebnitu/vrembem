@@ -7,7 +7,7 @@
  */
 
  #{core.bem("drawer", null, "modal")} {
-  z-index: var.$modal-z-index;
+  z-index: css.get("drawer", "modal-z-index", var.$modal-z-index);
   right: auto;
   left: 0;
   width: 0;
@@ -21,20 +21,21 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: var.$modal-screen-background;
+    background-color: css.get("drawer", "modal-screen-background", var.$modal-screen-background);
     opacity: 0;
   }
 
   #{core.bem("drawer", "dialog")} {
     position: absolute;
-    z-index: (var.$modal-z-index + 1);
+    z-index: calc(css.get("drawer", "modal-z-index", var.$modal-z-index) + 1);
     left: 0;
-    width: var.$modal-width;
-    max-width: var.$modal-max-width;
+    width: css.get("drawer", "modal-width", var.$modal-width);
+    max-width: css.get("drawer", "modal-max-width", var.$modal-max-width);
     transform: translateX(-100%);
-    border-right: var.$border;
-    background-color: var.$modal-background;
-    box-shadow: var.$modal-shadow;
+    border-right: css.get("drawer", "modal-border", var.$modal-border);
+    background-color: css.get("drawer", "modal-background", var.$modal-background);
+    color: css.get("drawer", "modal-foreground", var.$modal-foreground);
+    box-shadow: css.get("drawer", "modal-box-shadow", var.$modal-box-shadow);
   }
   
   &#{core.bem("drawer", null, "switch")} {
@@ -46,18 +47,18 @@
       right: 0;
       left: auto;
       transform: translateX(100%);
-      border-left: var.$border;
+      border-left: css.get("drawer", "modal-border", var.$modal-border);
     }
   }
 
   #{core.bem("dialog", "header")},
   #{core.bem("dialog", "footer")} {
-    border: var.$modal-sep-border;
-    background: var.$modal-background;
+    border-color: css.get("drawer", "modal-sep-border-color", var.$modal-sep-border-color);
+    background: css.get("drawer", "modal-background", var.$modal-background);
   }
 
   #{core.bem("dialog", "body")} {
-    background: var.$modal-background;
+    background: css.get("drawer", "modal-background", var.$modal-background);
   }
 }
 
@@ -85,7 +86,7 @@
   transform: translateX(0);
 
   &::before {
-    opacity: var.$modal-screen-opacity;
+    opacity: css.get("drawer", "modal-screen-opacity", var.$modal-screen-opacity);
   }
 
   #{core.bem("drawer", "dialog")} {

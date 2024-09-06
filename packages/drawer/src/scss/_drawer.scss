@@ -9,7 +9,7 @@
 #{core.bem(var.$class-frame)} {
   position: relative;
   display: flex;
-  height: var.$frame-height;
+  height: css.get("drawer", "frame-height", var.$frame-height);
   overflow: hidden auto;
 }
 
@@ -41,24 +41,27 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  width: var.$width;
-  max-width: var.$max-width;
+  width: css.get("drawer", "width", var.$width);
+  max-width: css.get("drawer", "max-width", var.$max-width);
   height: 100%;
   overflow: auto;
+  border: none;
+  border-right: css.get("drawer", "border", var.$border);
   border-radius: 0;
-  background: var.$background;
-  box-shadow: var.$shadow;
+  background: css.get("drawer", "background", var.$background);
+  color: css.get("drawer", "foreground", var.$foreground);
+  box-shadow: css.get("drawer", "box-shadow", var.$box-shadow);
   opacity: 0;
   -webkit-overflow-scrolling: touch;
 
   #{core.bem("dialog", "header")},
   #{core.bem("dialog", "footer")} {
-    border-color: var.$sep-border;
-    background: var.$background;
+    border-color: css.get("drawer", "sep-border-color", var.$sep-border-color);
+    background: css.get("drawer", "background", var.$background);
   }
 
   #{core.bem("dialog", "body")} {
-    background: var.$background;
+    background: css.get("drawer", "background", var.$background);
   }
 }
 
@@ -75,8 +78,8 @@
 #{core.bem("drawer")}.is-closing {
   visibility: visible;
   flex: 0 0 auto;
-  width: var.$width;
-  max-width: var.$max-width;
+  width: css.get("drawer", "width", var.$width);
+  max-width: css.get("drawer", "max-width", var.$max-width);
   height: 100%;
   overflow: visible;
 }
