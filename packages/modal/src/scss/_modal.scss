@@ -3,6 +3,10 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
+/**
+ * Modal
+ */
+
 #{core.bem("modal")} {
   position: fixed;
   z-index: css.get("modal", "z-index", var.$z-index);
@@ -48,6 +52,10 @@
     @include core.focus-ring("modal", var.$focus-ring-color-alert, var.$focus-ring-opacity);
   }
 }
+
+/**
+ * State classes
+ */
 
 #{core.bem("modal")}.is-closed {
   visibility: hidden;

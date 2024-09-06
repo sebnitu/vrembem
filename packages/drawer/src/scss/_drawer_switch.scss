@@ -1,29 +1,26 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
-
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
-$_m: var.$prefix-modifier;
-$_v: var.$prefix-modifier-value;
 
 /**
  * Drawer slide transition
  */
 
-.#{$_b}drawer {
+#{core.bem("drawer")} {
   left: 0;
   transform: translateX(-100%);
 
-  .#{$_b}drawer#{$_e}dialog {
-    border-right: var.$border;
+  #{core.bem("drawer", "dialog")} {
+    border-right: css.get("drawer", "border", var.$border);
   }
 }
 
-.#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-opened {
+#{core.bem("drawer")}.is-opening,
+#{core.bem("drawer")}.is-opened {
   transform: translateX(0);
 }
 
-.#{$_b}drawer.is-closing {
+#{core.bem("drawer")}.is-closing {
   transform: translateX(-100%);
 }
 
@@ -31,20 +28,18 @@ $_v: var.$prefix-modifier-value;
  * Drawer switched slide transition
  */
 
-.#{$_b}drawer#{$_m}switch {
+#{core.bem("drawer", null, "switch")} {
   right: 0;
   left: auto;
   transform: translateX(100%);
 
-  .#{$_b}drawer#{$_e}dialog {
-    @if (var.$border) {
-      border-right: none;
-    }
-    border-left: var.$border;
+  #{core.bem("drawer", "dialog")} {
+    border-right: none;
+    border-left: css.get("drawer", "border", var.$border);
   }
 }
 
-.#{$_b}drawer#{$_m}switch.is-closing {
+#{core.bem("drawer", null, "switch")}.is-closing {
   transform: translateX(100%);
 }
 
@@ -53,17 +48,17 @@ $_v: var.$prefix-modifier-value;
  */
 
 // IS .drawer NOT .drawer_modal .drawer_switch
-.#{$_b}drawer:not(.#{$_b}drawer#{$_m}modal, .#{$_b}drawer#{$_m}switch) {
-  &.is-opening ~ .#{var.$class-main},
-  &.is-opened ~ .#{var.$class-main} {
-    margin-left: var.$width;
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}, #{core.bem("drawer", null, "switch")}) {
+  &.is-opening ~ #{core.bem(var.$class-main)},
+  &.is-opened ~ #{core.bem(var.$class-main)} {
+    margin-left: css.get("drawer", "width", var.$width);
   }
 }
 
 // IS .drawer .drawer_switch NOT .drawer_modal
-.#{$_b}drawer.#{$_b}drawer#{$_m}switch:not(.#{$_b}drawer#{$_m}modal) {
-  &.is-opening ~ .#{var.$class-main},
-  &.is-opened ~ .#{var.$class-main} {
-    margin-right: var.$width;
+#{core.bem("drawer")}#{core.bem("drawer", null, "switch")}:not(#{core.bem("drawer", null, "modal")}) {
+  &.is-opening ~ #{core.bem(var.$class-main)},
+  &.is-opened ~ #{core.bem(var.$class-main)} {
+    margin-right: css.get("drawer", "width", var.$width);
   }
 }

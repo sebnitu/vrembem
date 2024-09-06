@@ -1,21 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
 @use "./variables" as var;
-
-$_v: var.$prefix-variable;
-$_b: var.$prefix-block;
-$_e: var.$prefix-element;
 
 /**
  * Required structure styles
  */
 
-.#{var.$class-frame} {
+#{core.bem(var.$class-frame)} {
   position: relative;
   display: flex;
-  height: var.$frame-height;
+  height: css.get("drawer", "frame-height", var.$frame-height);
   overflow: hidden auto;
 }
 
-.#{var.$class-main} {
+#{core.bem(var.$class-main)} {
   position: relative;
   flex: 1 1 auto;
   height: 100%;
@@ -27,7 +25,7 @@ $_e: var.$prefix-element;
  * Drawer
  */
 
-.#{$_b}drawer {
+#{core.bem("drawer")} {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -38,29 +36,32 @@ $_e: var.$prefix-element;
   overflow: hidden;
 }
 
-.#{$_b}drawer#{$_e}dialog {
+#{core.bem("drawer", "dialog")} {
   position: absolute;
   top: 0;
   display: flex;
   flex-direction: column;
-  width: var.$width;
-  max-width: var.$max-width;
+  width: css.get("drawer", "width", var.$width);
+  max-width: css.get("drawer", "max-width", var.$max-width);
   height: 100%;
   overflow: auto;
+  border: none;
+  border-right: css.get("drawer", "border", var.$border);
   border-radius: 0;
-  background: var.$background;
-  box-shadow: var.$shadow;
+  background: css.get("drawer", "background", var.$background);
+  box-shadow: css.get("drawer", "box-shadow", var.$box-shadow);
   opacity: 0;
+  color: css.get("drawer", "foreground", var.$foreground);
   -webkit-overflow-scrolling: touch;
 
-  .#{$_b}dialog#{$_e}header,
-  .#{$_b}dialog#{$_e}footer {
-    border-color: var.$sep-border;
-    background: var.$background;
+  #{core.bem("dialog", "header")},
+  #{core.bem("dialog", "footer")} {
+    border-color: css.get("drawer", "sep-border-color", var.$sep-border-color);
+    background: css.get("drawer", "background", var.$background);
   }
 
-  .#{$_b}dialog#{$_e}body {
-    background: var.$background;
+  #{core.bem("dialog", "body")} {
+    background: css.get("drawer", "background", var.$background);
   }
 }
 
@@ -68,49 +69,49 @@ $_e: var.$prefix-element;
  * State classes
  */
 
-.#{$_b}drawer.is-closed {
+#{core.bem("drawer")}.is-closed {
   visibility: hidden;
 }
 
-.#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-opened,
-.#{$_b}drawer.is-closing {
+#{core.bem("drawer")}.is-opening,
+#{core.bem("drawer")}.is-opened,
+#{core.bem("drawer")}.is-closing {
   visibility: visible;
   flex: 0 0 auto;
-  width: var.$width;
-  max-width: var.$max-width;
+  width: css.get("drawer", "width", var.$width);
+  max-width: css.get("drawer", "max-width", var.$max-width);
   height: 100%;
   overflow: visible;
 }
 
-.#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-closing {
+#{core.bem("drawer")}.is-opening,
+#{core.bem("drawer")}.is-closing {
   transition-property: background-color, opacity, transform;
-  transition-duration: var(--#{$_v}drawer-transition-duration);
-  transition-timing-function: var(--#{$_v}drawer-transition-timing-function);
+  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
 
-  .#{$_b}drawer#{$_e}dialog {
+  #{core.bem("drawer", "dialog")} {
     transition-property: opacity, transform;
-    transition-duration: var(--#{$_v}drawer-transition-duration);
-    transition-timing-function: var(--#{$_v}drawer-transition-timing-function);
+    transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+    transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
   }
 }
 
-.#{$_b}drawer.is-opening,
-.#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}dialog {
+#{core.bem("drawer")}.is-opening,
+#{core.bem("drawer")}.is-opened {
+  #{core.bem("drawer", "dialog")} {
     opacity: 1;
   }
 }
 
-.#{$_b}drawer.is-opened {
-  .#{$_b}drawer#{$_e}dialog {
+#{core.bem("drawer")}.is-opened {
+  #{core.bem("drawer", "dialog")} {
     opacity: 1;
   }
 }
 
-.#{$_b}drawer.is-closing {
-  .#{$_b}drawer#{$_e}dialog {
+#{core.bem("drawer")}.is-closing {
+  #{core.bem("drawer", "dialog")} {
     opacity: 0;
   }
 }

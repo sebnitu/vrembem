@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/drawer";
 @use "./variables" as var;
 
 /**
@@ -19,7 +18,7 @@
   transition: opacity .5s, transform .25s ease;
   outline: none;
   background-color: css.get("background-darker");
-  box-shadow: drawer.$modal-shadow;
+  box-shadow: css.get("box-shadow-5");
   opacity: 0;
   inset: 0 0 0 auto;
   overscroll-behavior: contain;

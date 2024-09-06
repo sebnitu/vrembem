@@ -4,32 +4,29 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-$prefix-variable: config.get("prefix-variables") !default;
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
+$class-frame: "drawer-frame" !default;
+$class-main: "drawer-main" !default;
 
-$class-frame: "#{$prefix-block}drawer-frame" !default;
-$class-main: "#{$prefix-block}drawer-main" !default;
+$frame-height: 100vh !default;
 
 $width: 18em !default;
 $max-width: 100% !default;
-$border: null !default;
-$sep-border: null !default;
 $background: css.get("background-darker") !default;
-$shadow: none !default;
+$foreground: css.get("foreground") !default;
+$border: none !default;
+$sep-border-color: css.get("border-color") !default;
+$box-shadow: none !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
-
-$frame-height: 100vh !default;
 
 $modal-z-index: 900 !default;
 $modal-width: $width !default;
 $modal-max-width: 80% !default;
-$modal-sep-border: null !default;
-$modal-background: white !default;
-$modal-shadow: css.get("box-shadow-5") !default;
+$modal-background: css.get("background") !default;
+$modal-foreground: css.get("foreground") !default;
+$modal-border: none !default;
+$modal-sep-border-color: null !default;
+$modal-box-shadow: css.get("box-shadow-5") !default;
 $modal-screen-background: palette.get("neutral", 10) !default;
 $modal-screen-opacity: 0.8 !default;
 
