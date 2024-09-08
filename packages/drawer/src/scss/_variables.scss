@@ -27,8 +27,6 @@ $modal-foreground: css.get("foreground") !default;
 $modal-border: none !default;
 $modal-sep-border-color: css.get("border-color") !default;
 $modal-box-shadow: css.get("box-shadow-5") !default;
-$modal-screen-background: palette.get("neutral", 10) !default;
-$modal-screen-opacity: 0.8 !default;
 
 @include css.set("drawer", (
   "transition-duration": $transition-duration,

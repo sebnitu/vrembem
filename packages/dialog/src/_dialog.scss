@@ -1,7 +1,9 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "./variables" as var;
 
 #{core.bem("dialog")} {
+  @include core.focus-ring-base();
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,6 +15,17 @@
   box-shadow: css.get("dialog", "box-shadow");
   color: css.get("dialog", "foreground");
   -webkit-overflow-scrolling: touch;
+  transition-property: outline;
+  transition-duration: css.get("dialog", "transition-duration");
+  transition-timing-function: css.get("dialog", "transition-timing-function");
+
+  &:focus-visible {
+    @include core.focus-ring("dialog", var.$focus-ring-color, var.$focus-ring-opacity);
+  }
+
+  &[role="alertdialog"]:focus {
+    @include core.focus-ring("dialog", var.$focus-ring-color-alert, var.$focus-ring-opacity);
+  }
 }
 
 #{core.bem("dialog", "header")},
