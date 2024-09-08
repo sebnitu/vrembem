@@ -7,7 +7,6 @@
  */
 
  #{core.bem("drawer", null, "modal")} {
-  z-index: css.get("drawer", "modal-z-index", var.$modal-z-index);
   right: auto;
   left: 0;
   width: 0;
@@ -27,15 +26,10 @@
 
   #{core.bem("drawer", "dialog")} {
     position: absolute;
-    z-index: calc(css.get("drawer", "modal-z-index", var.$modal-z-index) + 1);
     left: 0;
-    width: css.get("drawer", "modal-width", var.$modal-width);
-    max-width: css.get("drawer", "modal-max-width", var.$modal-max-width);
+    width: css.get("drawer", "width", var.$width);
+    max-width: css.get("drawer", "max-width", var.$max-width);
     transform: translateX(-100%);
-    border-right: css.get("drawer", "modal-border", var.$modal-border);
-    background-color: css.get("drawer", "modal-background", var.$modal-background);
-    box-shadow: css.get("drawer", "modal-box-shadow", var.$modal-box-shadow);
-    color: css.get("drawer", "modal-foreground", var.$modal-foreground);
   }
   
   &#{core.bem("drawer", null, "switch")} {
@@ -47,18 +41,7 @@
       right: 0;
       left: auto;
       transform: translateX(100%);
-      border-left: css.get("drawer", "modal-border", var.$modal-border);
     }
-  }
-
-  #{core.bem("dialog", "header")},
-  #{core.bem("dialog", "footer")} {
-    border-color: css.get("drawer", "modal-sep-border-color", var.$modal-sep-border-color);
-    background: css.get("drawer", "modal-background", var.$modal-background);
-  }
-
-  #{core.bem("dialog", "body")} {
-    background: css.get("drawer", "modal-background", var.$modal-background);
   }
 }
 

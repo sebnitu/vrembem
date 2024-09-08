@@ -9,24 +9,11 @@ $class-main: "drawer-main" !default;
 
 $frame-height: 100vh !default;
 
+$z-index: 900 !default;
 $width: 18em !default;
-$max-width: 100% !default;
-$background: css.get("background-darker") !default;
-$foreground: css.get("foreground") !default;
-$border: none !default;
-$sep-border-color: css.get("border-color") !default;
-$box-shadow: none !default;
+$max-width: 80% !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
-
-$modal-z-index: 900 !default;
-$modal-width: $width !default;
-$modal-max-width: 80% !default;
-$modal-background: css.get("background") !default;
-$modal-foreground: css.get("foreground") !default;
-$modal-border: none !default;
-$modal-sep-border-color: css.get("border-color") !default;
-$modal-box-shadow: css.get("box-shadow-5") !default;
 
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
