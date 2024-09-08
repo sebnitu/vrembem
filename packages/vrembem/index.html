@@ -64,13 +64,25 @@
     window["modal"] = modal;
     window["drawer"] = drawer;
 
-    // Toggle drawer mode using toggle switch.
+    // Get the drawer entry and drawer from.
     const drawerEntry = drawer.get("drawer-dialog");
-    const input = document.getElementById("drawer-modal-mode-switch");
-    drawerEntry.mode = (input.checked) ? "modal" : "inline";
-    input.addEventListener("change", () => {
-      drawerEntry.mode = (input.checked) ? "modal" : "inline";
-    });
+    const drawerForm = document.getElementById("form-drawer-state");
+
+    // Function to handle the form data of drawer state form.
+    function updateDrawerState() {
+      // Get the form data.
+      const formData = new FormData(drawerForm);
+      // Update the drawer mode state.
+      drawerEntry.mode = (formData.get("toggle-drawer-modal")) ? "modal" : "inline";
+      // Update the drawer switch state.
+      (formData.get("toggle-drawer-switch")) ?
+        drawerEntry.el.classList.add("drawer_switch"):
+        drawerEntry.el.classList.remove("drawer_switch");
+    }
+
+    // Run update drawer state and also run it any time the form changes.
+    updateDrawerState();
+    drawerForm.addEventListener("change", updateDrawerState);
 
   </script>
 </head>
@@ -169,18 +181,30 @@
           <li>
             <div class="flex align-items-center">
               <button class="link" data-drawer-toggle="drawer-dialog">Drawer dialog</button>
-              <div class="flex flex_gap_sm align-items-center">
-                <span>Inline</span>
-                <span class="switch switch_size_sm">
-                  <input id="drawer-modal-mode-switch" type="checkbox" class="switch__native" name="drawer-modal-mode" checked>
-                  <span class="switch__background">
-                    <span class="switch__track">
-                      <span class="switch__thumb"></span>
+              <form id="form-drawer-state" class="flex align-items-center">
+                <label class="flex flex_gap_xs align-items-center">
+                  <span class="checkbox">
+                    <input name="toggle-drawer-modal" class="checkbox__native" type="checkbox" />
+                    <span class="checkbox__background">
+                      <span class="checkbox__box">
+                        <span class="checkbox__icon"></span>
+                      </span>
                     </span>
                   </span>
-                </span>
-                <span>Modal</span>
-              </div>
+                  <span>Modal</span>
+                </label>
+                <label class="flex flex_gap_xs align-items-center">
+                  <span class="checkbox">
+                    <input name="toggle-drawer-switch" class="checkbox__native" type="checkbox" />
+                    <span class="checkbox__background">
+                      <span class="checkbox__box">
+                        <span class="checkbox__icon"></span>
+                      </span>
+                    </span>
+                  </span>
+                  <span>Switch</span>
+                </label>
+              </form>
             </div>
           </li>
         </ul>
@@ -365,7 +389,7 @@
 </div><!-- .drawer-frame -->
 
 <div class="modals">
-  
+
   <div id="modal-dialog" class="modal">
     <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
       <div class="dialog__header">
