@@ -1,8 +1,5 @@
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
 :root {
   @include css.output("dialog");
 }
-
-@include theme.output("dialog");
