@@ -7,6 +7,7 @@
  */
 
 #{core.bem("drawer", null, "modal")} {
+  @include css.override("drawer", "z-index", var.$modal-z-index);
   right: auto;
   left: 0;
   width: 0;
