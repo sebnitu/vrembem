@@ -18,18 +18,19 @@ $max-width: 80% !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
-// TODO: Maybe provide an "override" map with the properties to override dialog
-// custom properties with? e.g: background, foreground, border and box-shadow.
-$dialog-overrides: (
-  "background": null,
-  "foreground": null,
-  "border": null,
-  "border-radius": null,
-  "sep-border": null,
-  "box-shadow": null
+// Dialog override map
+// This is used to override `dialog` custom properties.
+// Applies to both inline and modal drawer dialogs.
+$dialog-override: () !default;
+
+// Only applies to inline drawer dialogs.
+$inline-dialog-override: (
+  "background": css.get("background-darker"),
+  "box-shadow": none
 ) !default;
 
-// TODO: Maybe provide an override method for specific modes (modal and inline).
+// Only applies to modal drawer dialogs.
+$modal-dialog-override: () !default;
 
 @include css.set("drawer", (
   "transition-duration": $transition-duration,

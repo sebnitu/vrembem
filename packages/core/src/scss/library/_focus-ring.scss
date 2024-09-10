@@ -24,3 +24,5 @@
   }
   outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from $_focus-ring-color h s l / $_focus-ring-opacity);
 }
+
+// TODO: Maybe add a function for setting the focus-ring-color custom property stack.

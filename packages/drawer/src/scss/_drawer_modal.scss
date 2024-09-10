@@ -25,13 +25,15 @@
   }
 
   #{core.bem("drawer", "dialog")} {
+    @include css.override("dialog", var.$modal-dialog-override);
     position: absolute;
     left: 0;
     width: css.get("drawer", "width", var.$width);
     max-width: css.get("drawer", "max-width", var.$max-width);
     transform: translateX(-100%);
+    background-clip: padding-box;
   }
-  
+
   &#{core.bem("drawer", null, "switch")} {
     right: auto;
     left: 0;
