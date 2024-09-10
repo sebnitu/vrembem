@@ -31,8 +31,11 @@ $inline-dialog-override: (
 
 // Only applies to modal drawer dialogs.
 $modal-dialog-override: () !default;
+
+// drawer_modal
 $modal-z-index: 950 !default;
 
+// Custom properties
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function
