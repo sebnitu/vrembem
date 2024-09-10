@@ -33,6 +33,7 @@
 }
 
 #{core.bem("modal", "dialog")} {
+  @include css.override("dialog", var.$dialog-overrides);
   width: css.get("modal", "width", var.$width);
   max-width: css.get("modal", "max-width", var.$max-width);
   overflow: auto;

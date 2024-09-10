@@ -4,6 +4,9 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
+// Register the dialog component since we will be providing overrides.
+@include css.register("dialog");
+
 $class-frame: "drawer-frame" !default;
 $class-main: "drawer-main" !default;
 
@@ -14,6 +17,19 @@ $width: 18em !default;
 $max-width: 80% !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
+
+// TODO: Maybe provide an "override" map with the properties to override dialog
+// custom properties with? e.g: background, foreground, border and box-shadow.
+$dialog-overrides: (
+  "background": null,
+  "foreground": null,
+  "border": null,
+  "border-radius": null,
+  "sep-border": null,
+  "box-shadow": null
+) !default;
+
+// TODO: Maybe provide an override method for specific modes (modal and inline).
 
 @include css.set("drawer", (
   "transition-duration": $transition-duration,

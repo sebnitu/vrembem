@@ -38,6 +38,7 @@
 }
 
 #{core.bem("drawer", "dialog")} {
+  @include css.override("dialog", var.$dialog-overrides);
   position: absolute;
   top: 0;
   display: flex;
@@ -51,6 +52,11 @@
   border-radius: 0;
   opacity: 0;
   -webkit-overflow-scrolling: touch;
+
+  // TODO: Only target non-modal drawer dialogs.
+  #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
+    background-color: pink;
+  }
 }
 
 /**

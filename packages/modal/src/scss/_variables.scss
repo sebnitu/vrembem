@@ -4,12 +4,26 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
+// Register the dialog component since we will be providing overrides.
+@include css.register("dialog");
+
 $z-index: 1000 !default;
 $width: 36em !default;
 $max-width: 100% !default;
 $travel: 5em !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
+
+// TODO: Maybe provide an "override" map with the properties to override dialog
+// custom properties with? e.g: background, foreground, border and box-shadow.
+$dialog-overrides: (
+  "background": null,
+  "foreground": null,
+  "border": null,
+  "border-radius": null,
+  "sep-border": null,
+  "box-shadow": null
+) !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;
