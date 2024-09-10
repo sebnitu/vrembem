@@ -12,8 +12,8 @@ $frame-height: 100vh !default;
 $z-index: 900 !default;
 $width: 18em !default;
 $max-width: 80% !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
+$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
+$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
 @include css.set("drawer", (
   "transition-duration": $transition-duration,

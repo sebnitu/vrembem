@@ -8,8 +8,8 @@ $z-index: 1000 !default;
 $width: 36em !default;
 $max-width: 100% !default;
 $travel: 5em !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
+$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
+$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
 // modal_pos_[value]
 $aside-width: 16em !default;

@@ -37,9 +37,8 @@
   max-width: css.get("modal", "max-width", var.$max-width);
   overflow: auto;
   transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
-  transition-property: outline;
-  transition-duration: css.get("modal", "transition-duration");
-  transition-timing-function: css.get("modal", "transition-timing-function");
+  transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
   opacity: 0;
 }
 
