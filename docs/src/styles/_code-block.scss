@@ -16,10 +16,13 @@
   }
   
   .popover {
-    @include css.override("popover", "event", click);
-    @include css.override("popover", "placement", left);
-    @include css.override("core", "background", palette.get("primary", 100));
-    @include css.override("core", "foreground", palette.get("primary"));
+    @include css.override("popover", (
+      "placement": left,
+      "width": auto,
+      "padding": 0.5rem 0.75rem,
+      "background": palette.get("primary"),
+      "foreground": white
+    ));
   }
 
   @include core.media-max(var.$bp-code) {
@@ -76,8 +79,10 @@
   }
 
   .popover {
-    @include css.override("popover", "offset", 24);
-    @include css.override("popover", "placement", bottom);
+    @include css.override("popover", (
+      "offset": 24,
+      "placement": bottom,
+    ));
   }
 
   @include core.media-max(var.$bp-code) {
