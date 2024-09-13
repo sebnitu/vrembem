@@ -35,17 +35,6 @@
   width: 0;
   height: 0;
   overflow: hidden;
-
-  // TODO: Maybe move this into the `_drawer_switch` modifier file?
-  // Left side drawer
-  &:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
-    border-left: none;
-  }
-
-  // Right side drawer
-  &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "dialog")} {
-    border-right: none;
-  }
 }
 
 #{core.bem("drawer", "dialog")} {
@@ -68,7 +57,6 @@
   -webkit-overflow-scrolling: touch;
 
   // Only target inline (not modal) drawer dialogs.
-  // TODO: Maybe add a class for targeting the inline state of drawers?
   #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
     @include css.override("dialog", var.$inline-dialog-override);
   }

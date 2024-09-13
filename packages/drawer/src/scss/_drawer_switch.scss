@@ -9,6 +9,10 @@
 #{core.bem("drawer")} {
   left: 0;
   transform: translateX(-100%);
+
+  &:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
+    border-left: none;
+  }
 }
 
 #{core.bem("drawer")}.is-opening,
@@ -28,6 +32,10 @@
   right: 0;
   left: auto;
   transform: translateX(100%);
+
+  #{core.bem("drawer", "dialog")} {
+    border-right: none;
+  }
 }
 
 #{core.bem("drawer", null, "switch")}.is-closing {
