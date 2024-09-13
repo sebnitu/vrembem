@@ -226,7 +226,7 @@ $_variables: (
         $result: reference($module, $prop);
       }
 
-      // Check if the property exists in the module or the its default theme.
+      // Check if the property exists in the module or its default theme.
       @else if 
         map.has-key($_variables, $module, $prop) or
         map.has-key($_variables, $module, config.get("default-theme"), $prop)

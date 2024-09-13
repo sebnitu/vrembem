@@ -22,7 +22,7 @@
   &:focus-visible,
   &[role="alertdialog"] {
     @include core.focus-ring("dialog", var.$focus-ring-color, var.$focus-ring-opacity);
-    border-color: css.get("dialog", "focus-ring-color", css.get("core", "focus-ring", var.$focus-ring-color));
+    border-color: core.focus-ring-color("dialog", var.$focus-ring-color);
   }
 
   &[role="alertdialog"] {
