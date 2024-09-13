@@ -27,30 +27,20 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: css.get("modal", "screen-background", var.$screen-background);
+    background-color: css.get("modal", "screen-color", core.$screen-color);
     opacity: 0;
   }
 }
 
 #{core.bem("modal", "dialog")} {
-  @include core.focus-ring-base();
+  @include css.override("dialog", var.$dialog-override);
   width: css.get("modal", "width", var.$width);
   max-width: css.get("modal", "max-width", var.$max-width);
   overflow: auto;
   transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
-  transition-property: outline;
-  transition-duration: css.get("modal", "transition-duration");
-  transition-timing-function: css.get("modal", "transition-timing-function");
-  box-shadow: css.get("modal", "shadow", var.$shadow);
+  transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
   opacity: 0;
-
-  &:focus-visible {
-    @include core.focus-ring("modal", var.$focus-ring-color, var.$focus-ring-opacity);
-  }
-
-  &[role="alertdialog"]:focus {
-    @include core.focus-ring("modal", var.$focus-ring-color-alert, var.$focus-ring-opacity);
-  }
 }
 
 /**
@@ -67,7 +57,7 @@
   visibility: visible;
   width: 100%;
   height: 100%;
-  padding: css.get("modal", "screen-padding", var.$screen-padding);
+  padding: css.get("modal", "screen-padding", core.$screen-padding);
 }
 
 #{core.bem("modal")}.is-opening,
@@ -86,7 +76,7 @@
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened {
   &::before {
-    opacity: css.get("modal", "screen-opacity", var.$screen-opacity);
+    opacity: css.get("modal", "screen-opacity", core.$screen-opacity);
   }
 
   #{core.bem("modal", "dialog")} {

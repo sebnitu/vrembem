@@ -1,6 +1,34 @@
 @use "../modules/css";
 @use "../variables/focus-ring" as var;
 
+/// Output the focus-ring-color custom property stack with core and value
+/// fallbacks.
+/// @param {string} $module
+///   The name of the module to start the property stack with.
+/// @param {css value} $value
+///   The CSS value to use as the final property fallback.
+/// @return {css var}
+///   The CSS variable with the provided module and value fallback stack.
+@function focus-ring-color($module, $value) {
+  $result: css.get("core", "focus-ring-color", $value);
+  $result: css.get($module, "focus-ring-color", $result);
+  @return $result;
+}
+
+/// Output the focus-ring-opacity custom property stack with core and value
+/// fallbacks.
+/// @param {string} $module
+///   The name of the module to start the property stack with.
+/// @param {css value} $value
+///   The CSS value to use as the final property fallback.
+/// @return {css var}
+///   The CSS variable with the provided module and value fallback stack.
+@function focus-ring-opacity($module, $value) {
+  $result: css.get("core", "focus-ring-opacity", $value);
+  $result: css.get($module, "focus-ring-opacity", $result);
+  @return $result;
+}
+
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
   outline: css.get("focus-ring-width") css.get("focus-ring-style") transparent;
@@ -16,11 +44,5 @@
 /// @param {number} $opacity
 ///   The value to set for the opacity of the color.
 @mixin focus-ring($module, $color, $opacity: var.$focus-ring-opacity) {
-  $_focus-ring-opacity: css.get("core", "focus-ring-opacity", $opacity);
-  $_focus-ring-color: css.get("core", "focus-ring-color", $color);
-  @if ($module) {
-    $_focus-ring-opacity: css.get($module, "focus-ring-opacity", $_focus-ring-opacity);
-    $_focus-ring-color: css.get($module, "focus-ring-color", $_focus-ring-color);
-  }
-  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from $_focus-ring-color h s l / $_focus-ring-opacity);
+  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from focus-ring-color($module, $color) h s l / focus-ring-opacity($module, $opacity));
 }

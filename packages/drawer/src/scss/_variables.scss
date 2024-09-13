@@ -4,32 +4,38 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
+// Register the dialog component since we will be providing overrides.
+@include css.register("dialog");
+
 $class-frame: "drawer-frame" !default;
 $class-main: "drawer-main" !default;
 
 $frame-height: 100vh !default;
 
+$z-index: 900 !default;
 $width: 18em !default;
-$max-width: 100% !default;
-$background: css.get("background-darker") !default;
-$foreground: css.get("foreground") !default;
-$border: none !default;
-$sep-border-color: css.get("border-color") !default;
-$box-shadow: none !default;
-$transition-duration: css.get("transition-duration") !default;
-$transition-timing-function: css.get("transition-timing-function") !default;
+$max-width: 80% !default;
+$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
+$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
-$modal-z-index: 900 !default;
-$modal-width: $width !default;
-$modal-max-width: 80% !default;
-$modal-background: css.get("background") !default;
-$modal-foreground: css.get("foreground") !default;
-$modal-border: none !default;
-$modal-sep-border-color: null !default;
-$modal-box-shadow: css.get("box-shadow-5") !default;
-$modal-screen-background: palette.get("neutral", 10) !default;
-$modal-screen-opacity: 0.8 !default;
+// Dialog override map
+// This is used to override `dialog` custom properties.
+// Applies to both inline and modal drawer dialogs.
+$dialog-override: () !default;
 
+// Only applies to inline drawer dialogs.
+$inline-dialog-override: (
+  "background": css.get("background-darker"),
+  "box-shadow": none
+) !default;
+
+// Only applies to modal drawer dialogs.
+$modal-dialog-override: () !default;
+
+// drawer_modal
+$modal-z-index: 950 !default;
+
+// Custom properties
 @include css.set("drawer", (
   "transition-duration": $transition-duration,
   "transition-timing-function": $transition-timing-function

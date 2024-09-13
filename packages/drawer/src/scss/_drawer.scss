@@ -27,6 +27,7 @@
 
 #{core.bem("drawer")} {
   position: absolute;
+  z-index: css.get("drawer", "z-index", var.$z-index);
   top: 0;
   bottom: 0;
   visibility: hidden;
@@ -37,31 +38,27 @@
 }
 
 #{core.bem("drawer", "dialog")} {
+  @include css.override("dialog", var.$dialog-override);
   position: absolute;
   top: 0;
   display: flex;
   flex-direction: column;
   width: css.get("drawer", "width", var.$width);
-  max-width: css.get("drawer", "max-width", var.$max-width);
+  max-width: 100%;
   height: 100%;
   overflow: auto;
-  border: none;
-  border-right: css.get("drawer", "border", var.$border);
+  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
+  border-top: none;
+  border-bottom: none;
   border-radius: 0;
-  background: css.get("drawer", "background", var.$background);
-  box-shadow: css.get("drawer", "box-shadow", var.$box-shadow);
+  background-clip: border-box;
   opacity: 0;
-  color: css.get("drawer", "foreground", var.$foreground);
   -webkit-overflow-scrolling: touch;
 
-  #{core.bem("dialog", "header")},
-  #{core.bem("dialog", "footer")} {
-    border-color: css.get("drawer", "sep-border-color", var.$sep-border-color);
-    background: css.get("drawer", "background", var.$background);
-  }
-
-  #{core.bem("dialog", "body")} {
-    background: css.get("drawer", "background", var.$background);
+  // Only target inline (not modal) drawer dialogs.
+  #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
+    @include css.override("dialog", var.$inline-dialog-override);
   }
 }
 
@@ -92,8 +89,6 @@
 
   #{core.bem("drawer", "dialog")} {
     transition-property: opacity, transform;
-    transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
-    transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
   }
 }
 

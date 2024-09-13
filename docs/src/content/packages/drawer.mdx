@@ -97,7 +97,7 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
       <aside id="drawer-2" class="drawer">
         <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
           <div class="dialog__header justify-content-between">
-            <h2 id="dialog-title">Drawer title</h2>
+            <h2 id="dialog-title" class="dialog__title">Drawer title</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
           <div class="dialog__body">
@@ -144,10 +144,12 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-3" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog padding">
-          <div class="flex justify-content-between">
-            <span>Modal drawer</span>
-            <button class="link" data-drawer-close>Close</button>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__body">
+            <div class="flex">
+              <h2 class="flex-grow">Modal drawer</h2>
+              <button class="link" data-drawer-close>Close</button>
+            </div>
           </div>
         </div>
       </aside>
@@ -180,24 +182,28 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-4" class="drawer" data-drawer-breakpoint="1200px" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog padding spacing">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
-          <code>data-drawer-breakpoint="1200px"</code>
+          <div class="dialog__body">
+            <code>data-drawer-breakpoint="1200px"</code>
+          </div>
         </div>
       </aside>
       <aside id="drawer-5" class="drawer" data-drawer-breakpoint="md" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog padding spacing">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
-          <code>data-drawer-breakpoint="md"</code>
+          <div class="dialog__body">
+            <code>data-drawer-breakpoint="md"</code>
+          </div>
         </div>
       </aside>
-      <div class="drawer-main padding spacing">
+      <div class="drawer-main padding spacing" style="min-height: 12rem;">
         <p>Current viewport width: <code data-vp-width>...</code></p>
         <ul class="list">
           <li>
@@ -261,20 +267,25 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-6" class="drawer">
-        <div class="drawer__dialog padding" tabindex="-1">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
+          </div>
+          <div class="dialog__body">
+            <p>Focus should be initially set on the dialog element.</p>
           </div>
         </div>
       </aside>
       <aside id="drawer-7" class="drawer">
-        <div class="drawer__dialog padding spacing">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
-          <input class="input" data-focus type="text" />
+          <div class="dialog__body">
+            <input class="input" data-focus type="text" />
+          </div>
         </div>
       </aside>
       <div class="drawer-main padding">
@@ -351,12 +362,15 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
 
 <CodeExample flush>
   <Fragment slot="output">
-    <div class="drawer-frame" style="min-height: 8rem;">
+    <div class="drawer-frame" style="min-height: 12rem;">
       <aside id="drawer-8" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog padding">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Modal drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
+          </div>
+          <div class="dialog__body">
+            <p>Set a drawer to modal mode by applying the <code>drawer_modal</code> modifier class.</p>
           </div>
         </div>
       </aside>
@@ -380,9 +394,9 @@ Drawers slide in from the left by default. To create a right side drawer, use th
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-9" class="drawer drawer_switch">
-        <div class="drawer__dialog padding">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
+        <div class="drawer__dialog dialog">
+          <div class="dialog__header">
+            <p class="flex-grow">Drawer example</p>
             <button class="link" data-drawer-close>Close</button>
           </div>
         </div>

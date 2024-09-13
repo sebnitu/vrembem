@@ -1,41 +1,27 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
 $padding: 1em !default;
 $gap: 0.5em !default;
-$background: null !default;
-$foreground: null !default;
-$border: null !default;
-$sep-border: null !default;
+$background: css.get("background") !default;
+$foreground: css.get("foreground") !default;
+$border: css.get("border") !default;
+$sep-border: css.get("border") !default;
 $border-radius: css.get("border-radius") !default;
 $box-shadow: css.get("box-shadow-4") !default;
 $title-font-size: css.get("font-size-lg") !default;
 $title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
+$transition-duration: css.get("transition-duration") !default;
+$transition-timing-function: css.get("transition-timing-function") !default;
 
-// Custom properties
+$focus-ring-color: palette.get("primary") !default;
+$focus-ring-color-alert: palette.get("important") !default;
+$focus-ring-opacity: 1 !default;
+
 @include css.set("dialog", (
-  "padding": $padding,
-  "gap": $gap,
-  "background": $background,
-  "foreground": $foreground,
-  "border": $border,
-  "sep-border": $sep-border,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "title": (
-    "font-size": $title-font-size,
-    "line-height": $title-line-height,
-    "font-weight": $title-font-weight,
-  )
-));
-
-// Themes
-@include theme.set("dialog", "light", (
-  "background": css.get("background"),
-  "foreground": css.get("foreground"),
-  "border": core.$border,
-  "sep-border": core.$border
-));
-@include theme.set("dialog", "dark");
+  "transition-duration": $transition-duration,
+  "transition-timing-function": $transition-timing-function
+), "required");
