@@ -21,7 +21,6 @@ const { inline = false } = Astro.props;
   }
   <Popover
     triggerClass="code-block__copy-button"
-    popoverClass="popover_tooltip"
     aria-label="Copy code example"
     arrow
   >
@@ -42,7 +41,7 @@ const { inline = false } = Astro.props;
     const text = code.innerText;
     const icons = trigger.querySelectorAll(".icon");
     navigator.clipboard.writeText(text)
-      .then((result) => {
+      .then(() => {
         trigger.disabled = true;
         icons.forEach((icon) => icon.classList.toggle("display-none"));
         setTimeout(() => {
