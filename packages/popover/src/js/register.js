@@ -4,7 +4,7 @@ import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, ha
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
-import { getConfig } from "./helpers";
+import { getCustomPropConfig } from "./helpers";
 
 export async function register(el, trigger) {
   // Deregister entry incase it has already been registered.
@@ -21,7 +21,7 @@ export async function register(el, trigger) {
     trigger: trigger,
     toggleDelayId: null,
     popper: createPopper(trigger, el),
-    config: getConfig(el, this.settings),
+    config: getCustomPropConfig(el, this.settings),
     get isTooltip() {
       return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
     },
