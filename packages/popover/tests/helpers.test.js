@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index.js";
 import {
-  getConfig,
+  getPopoverConfig,
   getPadding,
   getModifiers,
   getPopoverID,
@@ -34,12 +34,12 @@ afterEach(() => {
   document.body.innerHTML = null;
 });
 
-describe("getConfig()", () => {
+describe("getPopoverConfig()", () => {
   it("Should return the config with all default options if no CSS vars are set", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const target = document.querySelector("#pop-2");
-    const config = getConfig(target, popover.settings);
+    const config = getPopoverConfig(target, popover.settings);
     expect(config).toEqual({
       "placement": "bottom",
       "event": "click",
@@ -64,7 +64,7 @@ describe("getConfig()", () => {
     target.style.setProperty("--popover-arrow-element", ".asdf");
     target.style.setProperty("--popover-arrow-padding", "4");
     target.style.setProperty("--popover-toggle-delay", "500");
-    const config = getConfig(target, popover.settings);
+    const config = getPopoverConfig(target, popover.settings);
     expect(config).toEqual({
       "placement": "top",
       "event": "focus",
@@ -105,12 +105,12 @@ describe("getPadding()", () => {
   });
 });
 
-describe("getConfig() & getModifiers()", () => {
+describe("getPopoverConfig() & getModifiers()", () => {
   it("should return modifiers using defaults", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const target = document.querySelector(".popover");
-    const config = getConfig(target, popover.settings);
+    const config = getPopoverConfig(target, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === "offset");
     const overflow = result.find(item => item.name === "preventOverflow");
@@ -124,7 +124,7 @@ describe("getConfig() & getModifiers()", () => {
     const target = document.querySelector(".popover");
     target.style.setProperty("--popover-offset", "10");
     target.style.setProperty("--popover-overflow-padding", "20");
-    const config = getConfig(target, popover.settings);
+    const config = getPopoverConfig(target, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === "offset");
     const overflow = result.find(item => item.name === "preventOverflow");
@@ -137,7 +137,7 @@ describe("getConfig() & getModifiers()", () => {
     popover = new Popover();
     document.documentElement.style.setProperty("--popover-offset", "5");
     document.documentElement.style.setProperty("--popover-overflow-padding", "10");
-    const config = getConfig(document.documentElement, popover.settings);
+    const config = getPopoverConfig(document.documentElement, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === "offset");
     const overflow = result.find(item => item.name === "preventOverflow");

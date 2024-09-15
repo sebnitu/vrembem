@@ -1,6 +1,9 @@
 export default {
   autoMount: false,
 
+  // Data attributes
+  dataConfig: "popover-config",
+
   // Selectors
   selectorPopover: ".popover",
   selectorTooltip: ".popover_tooltip",
