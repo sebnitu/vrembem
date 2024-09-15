@@ -1,4 +1,4 @@
-export * from "./getCustomPropConfig";
+export * from "./getPopoverConfig";
 export * from "./getModifiers";
 export * from "./getPadding";
 export * from "./getPopover";

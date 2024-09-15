@@ -1,6 +1,6 @@
 import { getConfig, getPrefix } from "@vrembem/core";
 
-export function getCustomPropConfig(el, settings) {
+export function getPopoverConfig(el, settings) {
   // Get the computed styles of the element.
   const styles = getComputedStyle(el);
 

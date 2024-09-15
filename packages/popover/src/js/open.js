@@ -1,4 +1,4 @@
-import { getCustomPropConfig, getModifiers, getPopover } from "./helpers";
+import { getPopoverConfig, getModifiers, getPopover } from "./helpers";
 
 export async function open(query) {
   // Get the popover from collection.
@@ -14,7 +14,7 @@ export async function open(query) {
   }
 
   // Update popover config.
-  popover.config = getCustomPropConfig(popover.el, this.settings);
+  popover.config = getPopoverConfig(popover.el, this.settings);
 
   // Enable popper event listeners and set placement/modifiers.
   popover.popper.setOptions({
