@@ -18,10 +18,10 @@ export async function close(query) {
 
     // Disable popper event listeners.
     popover.popper.setOptions({
-      placement: popover.config["placement"],
+      placement: popover.settings["placement"],
       modifiers: [
         { name: "eventListeners", enabled: false },
-        ...getModifiers(popover.config)
+        ...getModifiers(popover.settings)
       ]
     });
 

@@ -15,7 +15,9 @@
     import Popover from "./index.js";
 
     // Init and attach instance to window
-    const popover = new Popover();
+    const popover = new Popover({
+      teleport: ".popovers"
+    });
     window.popover = await popover.mount();
 
     // Post message to console
@@ -52,27 +54,27 @@
         <button class="button" aria-describedby="popover-right">Right</button>
       </div>
 
-      <div>
-        <div id="popover-left" class="popover popover_tooltip" style="--vb-popover-placement: left;">
-          Tooltip
-          <span class="popover__arrow"></span>
-        </div>
-        <div id="popover-top" class="popover popover_tooltip">
-          Tooltip
-          <span class="popover__arrow"></span>
-        </div>
-        <div id="popover-bottom" class="popover popover_tooltip" style="--vb-popover-placement: bottom;">
-          Tooltip
-          <span class="popover__arrow"></span>
-        </div>
-        <div id="popover-right" class="popover popover_tooltip" style="--vb-popover-placement: right;">
-          Tooltip
-          <span class="popover__arrow"></span>
-        </div>
+      <div id="popover-left" class="popover popover_tooltip" style="--vb-popover-placement: left;">
+        Tooltip
+        <span class="popover__arrow"></span>
+      </div>
+      <div id="popover-top" class="popover popover_tooltip">
+        Tooltip
+        <span class="popover__arrow"></span>
+      </div>
+      <div id="popover-bottom" class="popover popover_tooltip" style="--vb-popover-placement: bottom;">
+        Tooltip
+        <span class="popover__arrow"></span>
+      </div>
+      <div id="popover-right" class="popover popover_tooltip" style="--vb-popover-placement: right;">
+        Tooltip
+        <span class="popover__arrow"></span>
       </div>
 
     </div>
   </section>
+
+  <div class="popovers"></div>
 
 </body>
 </html>

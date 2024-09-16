@@ -16,5 +16,7 @@ export default {
   eventListeners: true,
   eventType: "click",
   placement: "bottom",
-  hoverToggleDelay: 0
+  hoverToggleDelay: 0,
+  teleport: null,
+  teleportMethod: "append"
 };
