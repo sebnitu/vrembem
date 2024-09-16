@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index.js";
-import { expect } from "vitest";
+import { describe, expect } from "vitest";
 
 let popover;
 
@@ -309,5 +309,17 @@ describe("active() & activeTooltip()", () => {
     expect(popover.activeTooltip).toBe(undefined);
     popover.get("tooltip").open();
     expect(popover.activeTooltip).toBe(popover.get("tooltip"));
+  });
+});
+
+describe("getSetting()", () => {
+  it("should return a setting value from wherever it was set", () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({ autoMount: true });
+    const entry = popover.get("asdf");
+    expect(entry.id).toBe("asdf");
+    expect(entry.getSetting("dataConfig")).toBe("popover-config");
+    entry.settings["dataConfig"] = "asdf";
+    expect(entry.getSetting("dataConfig")).toBe("asdf");
   });
 });
