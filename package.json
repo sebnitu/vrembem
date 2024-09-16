@@ -51,9 +51,6 @@
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4"
   },
-  "overrides": {
-    "nwsapi": "2.2.2"
-  },
   "jest": {
     "collectCoverageFrom": [
       "./packages/**/src/**"
