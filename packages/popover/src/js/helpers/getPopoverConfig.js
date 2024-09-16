@@ -13,7 +13,7 @@ export function getPopoverConfig(el, settings) {
     "flip-padding": 0,
     "arrow-element": settings.selectorArrow,
     "arrow-padding": 0,
-    "toggle-delay": settings.hoverToggleDelay,
+    "toggle-delay": settings.toggleDelay,
   };
 
   // Loop through the custom properties object.
