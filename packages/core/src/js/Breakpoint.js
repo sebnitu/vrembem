@@ -15,8 +15,8 @@ export class Breakpoint {
   set handler(func) {
     if (this.mql) {
       // Conditionally use removeListener() for IE11 support.
-      if (typeof this.mql.removeEventListener === 'function') {
-        this.mql.removeEventListener('change', this.#handler);
+      if (typeof this.mql.removeEventListener === "function") {
+        this.mql.removeEventListener("change", this.#handler);
       } else {
         this.mql.removeListener(this.#handler);
       }
@@ -36,8 +36,8 @@ export class Breakpoint {
     this.mql = window.matchMedia(`(min-width: ${this.value})`);
 
     // Conditionally use addListener() for IE11 support.
-    if (typeof this.mql.addEventListener === 'function') {
-      this.mql.addEventListener('change', this.#handler);
+    if (typeof this.mql.addEventListener === "function") {
+      this.mql.addEventListener("change", this.#handler);
     } else {
       this.mql.addListener(this.#handler);
     }
@@ -53,8 +53,8 @@ export class Breakpoint {
     if (!this.mql) return this;
 
     // Conditionally use removeListener() for IE11 support.
-    if (typeof this.mql.removeEventListener === 'function') {
-      this.mql.removeEventListener('change', this.#handler);
+    if (typeof this.mql.removeEventListener === "function") {
+      this.mql.removeEventListener("change", this.#handler);
     } else {
       this.mql.removeListener(this.#handler);
     }

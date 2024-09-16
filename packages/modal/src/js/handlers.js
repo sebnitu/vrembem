@@ -1,4 +1,4 @@
-import { getModalID } from './helpers';
+import { getModalID } from "./helpers";
 
 export async function handleClick(event) {
   // If an open or replace button was clicked, open or replace the modal.
@@ -23,7 +23,7 @@ export async function handleClick(event) {
     // Get the value of the data attribute.
     const value = trigger.getAttribute(`data-${this.settings.dataClose}`);
     // Close all if * wildcard is passed, otherwise close a single modal.
-    return (value === '*') ? this.closeAll() : this.close(value);
+    return (value === "*") ? this.closeAll() : this.close(value);
   }
 
   // If the modal screen was clicked, close the modal.
@@ -37,7 +37,7 @@ export async function handleClick(event) {
 
 export function handleKeydown(event) {
   // If escape key was pressed.
-  if (event.key === 'Escape') {
+  if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal.
     if (this.active && !this.active.dialog.matches(this.settings.selectorRequired)) {
       return this.close();

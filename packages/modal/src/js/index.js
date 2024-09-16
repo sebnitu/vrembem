@@ -1,15 +1,15 @@
-import { Collection, FocusTrap } from '@vrembem/core/index';
+import { Collection, FocusTrap } from "@vrembem/core/index";
 
-import defaults from './defaults';
-import { handleClick, handleKeydown } from './handlers';
-import { register } from './register';
-import { deregister } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { closeAll } from './closeAll';
-import { replace } from './replace';
-import { stack } from './stack';
-import { updateFocusState, getModalElements, getModalID } from './helpers';
+import defaults from "./defaults";
+import { handleClick, handleKeydown } from "./handlers";
+import { register } from "./register";
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { closeAll } from "./closeAll";
+import { replace } from "./replace";
+import { stack } from "./stack";
+import { updateFocusState, getModalElements, getModalID } from "./helpers";
 
 export default class Modal extends Collection {
   #handleClick;
@@ -68,13 +68,13 @@ export default class Modal extends Collection {
   }
 
   initEventListeners() {
-    document.addEventListener('click', this.#handleClick, false);
-    document.addEventListener('keydown', this.#handleKeydown, false);
+    document.addEventListener("click", this.#handleClick, false);
+    document.addEventListener("keydown", this.#handleKeydown, false);
   }
 
   destroyEventListeners() {
-    document.removeEventListener('click', this.#handleClick, false);
-    document.removeEventListener('keydown', this.#handleKeydown, false);
+    document.removeEventListener("click", this.#handleClick, false);
+    document.removeEventListener("keydown", this.#handleKeydown, false);
   }
 
   register(query) {

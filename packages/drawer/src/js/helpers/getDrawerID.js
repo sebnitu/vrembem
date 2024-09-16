@@ -1,11 +1,11 @@
 export function getDrawerID(obj) {
   // If it's a string, return the string.
-  if (typeof obj === 'string') {
+  if (typeof obj === "string") {
     return obj;
   }
 
   // If it's an HTML element.
-  else if (typeof obj.hasAttribute === 'function') {
+  else if (typeof obj.hasAttribute === "function") {
     // If it's a drawer open trigger, return data value.
     if (obj.hasAttribute(`data-${this.settings.dataOpen}`)) {
       return obj.getAttribute(`data-${this.settings.dataOpen}`);

@@ -1,4 +1,4 @@
-import { getPrefix } from '@vrembem/core';
+import { getPrefix } from "@vrembem/core";
 
 export function getBreakpoint(drawer) {
   const prefix = getPrefix();

@@ -1,4 +1,4 @@
-import defaults from './defaults';
+import defaults from "./defaults";
 
 export default class Checkbox {
   constructor(options) {
@@ -13,11 +13,11 @@ export default class Checkbox {
     const selector = `[${this.settings.stateAttr}="${this.settings.stateValue}"]`;
     const mixed = document.querySelectorAll(selector);
     this.setIndeterminate(mixed);
-    document.addEventListener('click', this.__handlerClick, false);
+    document.addEventListener("click", this.__handlerClick, false);
   }
 
   destroy() {
-    document.removeEventListener('click', this.__handlerClick, false);
+    document.removeEventListener("click", this.__handlerClick, false);
   }
 
   handlerClick(event) {

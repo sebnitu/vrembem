@@ -1,5 +1,5 @@
-import { transition } from './helpers/transition';
-import Modal from '../index';
+import { transition } from "./helpers/transition";
+import Modal from "../index";
 
 const markup = `
   <main>
@@ -12,32 +12,32 @@ const markup = `
   </div>
 `;
 
-describe('when selectorInert is set:', () => {
+describe("when selectorInert is set:", () => {
   let main, el;
 
   beforeAll(() => {
     document.body.innerHTML = markup;
     new Modal({
       autoInit: true,
-      selectorInert: 'main'
+      selectorInert: "main"
     });
-    main = document.querySelector('main');
-    el = document.querySelector('#modal-default');
+    main = document.querySelector("main");
+    el = document.querySelector("#modal-default");
   });
 
-  it('should properly hide content when modal is opened', async () => {
-    const btnOpen = document.querySelector('[data-modal-open]');
+  it("should properly hide content when modal is opened", async () => {
+    const btnOpen = document.querySelector("[data-modal-open]");
     btnOpen.click();
     await transition(el);
     expect(main.inert).toBe(true);
-    expect(main.getAttribute('aria-hidden')).toBe('true');
+    expect(main.getAttribute("aria-hidden")).toBe("true");
   });
 
-  it('should properly show content when modal is closed', async () => {
-    const btnClose = document.querySelector('[data-modal-close]');
+  it("should properly show content when modal is closed", async () => {
+    const btnClose = document.querySelector("[data-modal-close]");
     btnClose.click();
     await transition(el);
     expect(main.inert).toBe(null);
-    expect(main.hasAttribute('aria-hidden')).toBe(false);
+    expect(main.hasAttribute("aria-hidden")).toBe(false);
   });
 });

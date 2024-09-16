@@ -1,4 +1,4 @@
-import { getPopoverID } from './getPopoverID';
+import { getPopoverID } from "./getPopoverID";
 
 export function getPopoverElements(query) {
   const id = getPopoverID.call(this, query);
@@ -11,13 +11,13 @@ export function getPopoverElements(query) {
     if (!trigger && !popover) {
       return { error: new Error(`No popover elements found using the ID: "${id}".`) };
     } else if (!trigger) {
-      return { error: new Error('No popover trigger associated with the provided popover.') };
+      return { error: new Error("No popover trigger associated with the provided popover.") };
     } else if (!popover) {
-      return { error: new Error('No popover associated with the provided popover trigger.') };
+      return { error: new Error("No popover associated with the provided popover trigger.") };
     } else {
       return { popover, trigger };
     }
   } else {
-    return { error: new Error('Could not resolve the popover ID.') };
+    return { error: new Error("Could not resolve the popover ID.") };
   }
 }

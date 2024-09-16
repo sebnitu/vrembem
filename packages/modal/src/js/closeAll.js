@@ -1,4 +1,4 @@
-import { close } from './close';
+import { close } from "./close";
 
 export async function closeAll(exclude, transition) {
   const result = [];

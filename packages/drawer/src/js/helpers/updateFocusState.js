@@ -1,8 +1,8 @@
 export function updateFocusState(entry) {
   // Check if there's an active modal
-  if (entry.state === 'opened') {
+  if (entry.state === "opened") {
     // Mount the focus trap on the opened drawer.
-    if (entry.mode === 'modal') {
+    if (entry.mode === "modal") {
       this.focusTrap.mount(entry.dialog, this.settings.selectorFocus);
     } else {
       this.focusTrap.focus(entry.dialog, this.settings.selectorFocus);

@@ -1,4 +1,4 @@
-import { getDrawerID } from './getDrawerID';
+import { getDrawerID } from "./getDrawerID";
 
 export function getDrawerElements(query) {
   const id = getDrawerID.call(this, query);
@@ -9,11 +9,11 @@ export function getDrawerElements(query) {
     if (!drawer && !dialog) {
       return { error: new Error(`No drawer elements found using the ID: "${id}".`) };
     } else if (!dialog) {
-      return { error: new Error('Drawer is missing dialog element.') };
+      return { error: new Error("Drawer is missing dialog element.") };
     } else {
       return { drawer, dialog };
     }
   } else {
-    return { error: new Error('Could not resolve the drawer ID.') };
+    return { error: new Error("Could not resolve the drawer ID.") };
   }
 }

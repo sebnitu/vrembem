@@ -7,7 +7,7 @@ export const openTransition = (el, settings) => {
       el.classList.add(settings.stateOpening);
 
       // Add event listener for when the transition is finished.
-      el.addEventListener('transitionend', function _f(event) {
+      el.addEventListener("transitionend", function _f(event) {
         // Prevent child transition bubbling from firing this event.
         if (event.target != el) return;
 
@@ -17,7 +17,7 @@ export const openTransition = (el, settings) => {
 
         // Resolve the promise and remove the event listener.
         resolve(el);
-        this.removeEventListener('transitionend', _f);
+        this.removeEventListener("transitionend", _f);
       });
     } else {
       // Toggle final opened state classes and resolve the promise.
@@ -37,7 +37,7 @@ export const closeTransition = (el, settings) => {
       el.classList.remove(settings.stateOpened);
 
       // Add event listener for when the transition is finished.
-      el.addEventListener('transitionend', function _f(event) {
+      el.addEventListener("transitionend", function _f(event) {
         // Prevent child transition bubbling from firing this event.
         if (event.target != el) return;
         
@@ -47,7 +47,7 @@ export const closeTransition = (el, settings) => {
 
         // Resolve the promise and remove the event listener.
         resolve(el);
-        this.removeEventListener('transitionend', _f);
+        this.removeEventListener("transitionend", _f);
       });
     } else {
       // Toggle final closed state classes and resolve the promise.
