@@ -1,5 +1,5 @@
 export default {
   autoInit: false,
-  stateAttr: 'aria-checked',
-  stateValue: 'mixed'
+  stateAttr: "aria-checked",
+  stateValue: "mixed"
 };

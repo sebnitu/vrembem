@@ -1,7 +1,7 @@
-Object.defineProperty(window, 'getComputedStyle', {
+Object.defineProperty(window, "getComputedStyle", {
   value: () => ({
-    get ['z-index']() {
-      return '1000';
+    get ["z-index"]() {
+      return "1000";
     }
   })
 });

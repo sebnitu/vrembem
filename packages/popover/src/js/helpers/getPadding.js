@@ -2,7 +2,7 @@ export function getPadding(value) {
   let padding;
 
   // Split the value by spaces if it's a string.
-  const array = (typeof value === 'string') ? value.trim().split(' ') : [value];
+  const array = (typeof value === "string") ? value.trim().split(" ") : [value];
 
   // Convert individual values to integers.
   array.forEach(function (item, index) {

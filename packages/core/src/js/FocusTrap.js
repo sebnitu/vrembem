@@ -1,11 +1,11 @@
-import focusableSelectors from 'focusable-selectors';
+import focusableSelectors from "focusable-selectors";
 
 export class FocusTrap {
   #focusable;
   #handleFocusTrap;
   #handleFocusLock;
 
-  constructor(el = null, selectorFocus = '[data-focus]') {
+  constructor(el = null, selectorFocus = "[data-focus]") {
     this.el = el;
     this.selectorFocus = selectorFocus;
     this.#handleFocusTrap = handleFocusTrap.bind(this);
@@ -22,11 +22,11 @@ export class FocusTrap {
 
     // Apply event listeners based on new focusable array length.
     if (this.#focusable.length) {
-      document.removeEventListener('keydown', this.#handleFocusLock);
-      document.addEventListener('keydown', this.#handleFocusTrap);
+      document.removeEventListener("keydown", this.#handleFocusLock);
+      document.addEventListener("keydown", this.#handleFocusTrap);
     } else {
-      document.removeEventListener('keydown', this.#handleFocusTrap);
-      document.addEventListener('keydown', this.#handleFocusLock);
+      document.removeEventListener("keydown", this.#handleFocusTrap);
+      document.addEventListener("keydown", this.#handleFocusLock);
     }
   }
 
@@ -58,8 +58,8 @@ export class FocusTrap {
     this.focusable = [];
 
     // Remove event listeners
-    document.removeEventListener('keydown', this.#handleFocusTrap);
-    document.removeEventListener('keydown', this.#handleFocusLock);
+    document.removeEventListener("keydown", this.#handleFocusTrap);
+    document.removeEventListener("keydown", this.#handleFocusLock);
   }
 
   focus(el = this.el, selectorFocus = this.selectorFocus) {
@@ -78,7 +78,7 @@ export class FocusTrap {
     const initScrollTop = el.scrollTop;
 
     // Query for all the focusable elements.
-    const els = el.querySelectorAll(focusableSelectors.join(','));
+    const els = el.querySelectorAll(focusableSelectors.join(","));
 
     // Loop through all focusable elements.
     els.forEach((el) => {
@@ -102,7 +102,7 @@ export class FocusTrap {
 
 function handleFocusTrap(event) {
   // Check if the click was a tab and return if not.
-  const isTab = (event.key === 'Tab' || event.keyCode === 9);
+  const isTab = (event.key === "Tab" || event.keyCode === 9);
   if (!isTab) return;
 
   // If the shift key is pressed.
@@ -131,6 +131,6 @@ function handleFocusTrap(event) {
 
 function handleFocusLock(event) {
   // Ignore the tab key by preventing default.
-  const isTab = (event.key === 'Tab' || event.keyCode === 9);
+  const isTab = (event.key === "Tab" || event.keyCode === 9);
   if (isTab) event.preventDefault();
 }

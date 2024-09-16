@@ -1,5 +1,5 @@
-import { openTransition } from '@vrembem/core/index';
-import { updateFocusState, getModal } from './helpers';
+import { openTransition } from "@vrembem/core/index";
+import { updateFocusState, getModal } from "./helpers";
 
 export async function open(query, transition, focus = true) {
   // Get the modal from collection.
@@ -15,9 +15,9 @@ export async function open(query, transition, focus = true) {
   this.stack.moveToTop(modal);
 
   // If modal is closed.
-  if (modal.state === 'closed') {
+  if (modal.state === "closed") {
     // Update modal state.
-    modal.state = 'opening';
+    modal.state = "opening";
 
     // Add modal to stack.
     this.stack.add(modal);
@@ -26,7 +26,7 @@ export async function open(query, transition, focus = true) {
     await openTransition(modal.el, config);
 
     // Update modal state.
-    modal.state = 'opened';
+    modal.state = "opened";
   }
 
   // Update focus if the focus param is true.
@@ -35,7 +35,7 @@ export async function open(query, transition, focus = true) {
   }
 
   // Dispatch custom opened event.
-  modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'opened', {
+  modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "opened", {
     detail: this,
     bubbles: true
   }));

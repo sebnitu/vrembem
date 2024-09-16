@@ -1,14 +1,14 @@
-import { closeTransition } from '@vrembem/core/index';
-import { updateFocusState, getModal } from './helpers';
+import { closeTransition } from "@vrembem/core/index";
+import { updateFocusState, getModal } from "./helpers";
 
 export async function close(query, transition, focus = true) {
   // Get the modal from collection, or top modal in stack if no query is provided.
   const modal = (query) ? getModal.call(this, query) : this.active;
 
   // If a modal exists and its state is opened.
-  if (modal && modal.state === 'opened') {
+  if (modal && modal.state === "opened") {
     // Update modal state.
-    modal.state = 'closing';
+    modal.state = "closing";
 
     // Get the modal configuration.
     const config = { ...this.settings, ...modal.settings };
@@ -31,10 +31,10 @@ export async function close(query, transition, focus = true) {
     }
 
     // Update modal state.
-    modal.state = 'closed';
+    modal.state = "closed";
 
     // Dispatch custom closed event.
-    modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    modal.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "closed", {
       detail: this,
       bubbles: true
     }));

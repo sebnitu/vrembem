@@ -1,12 +1,12 @@
-import { Breakpoint, getConfig } from '@vrembem/core/index';
+import { Breakpoint, getConfig } from "@vrembem/core/index";
 
-import { deregister } from './deregister';
-import { open } from './open';
-import { close } from './close';
-import { toggle } from './toggle';
-import { switchMode } from './switchMode';
-import { initialState } from './helpers/initialState';
-import { getBreakpoint } from './helpers';
+import { deregister } from "./deregister";
+import { open } from "./open";
+import { close } from "./close";
+import { toggle } from "./toggle";
+import { switchMode } from "./switchMode";
+import { initialState } from "./helpers/initialState";
+import { getBreakpoint } from "./helpers";
 
 export async function register(el, dialog) {
   // Deregister entry incase it has already been registered.
@@ -43,7 +43,7 @@ export async function register(el, dialog) {
       return this;
     },
     handleBreakpoint(event) {
-      this.mode = (event.matches) ? 'inline' : 'modal';
+      this.mode = (event.matches) ? "inline" : "modal";
       return this;
     },
     getSetting(key) {
@@ -67,8 +67,8 @@ export async function register(el, dialog) {
     set state(value) {
       __state = value;
       // Save 'opened' and 'closed' states to store if mode is inline.
-      if (value === 'opened' || value === 'closed') {
-        if (this.mode === 'inline') root.store.set(this.id, this.state);
+      if (value === "opened" || value === "closed") {
+        if (this.mode === "inline") root.store.set(this.id, this.state);
       }
     },
     get mode() {
@@ -82,23 +82,23 @@ export async function register(el, dialog) {
   };
 
   // Create the state var with the initial state.
-  let __state = (el.classList.contains(entry.getSetting('stateOpened'))) ? 'opened' : 'closed';
+  let __state = (el.classList.contains(entry.getSetting("stateOpened"))) ? "opened" : "closed";
 
   // Create the mode var with the initial mode.
-  let __mode = (el.classList.contains(entry.getSetting('classModal'))) ? 'modal' : 'inline';
+  let __mode = (el.classList.contains(entry.getSetting("classModal"))) ? "modal" : "inline";
 
   // Setup mode specific attributes.
-  if (entry.mode === 'modal') {
+  if (entry.mode === "modal") {
     // Set aria-modal attribute to true.
-    entry.dialog.setAttribute('aria-modal', 'true');
+    entry.dialog.setAttribute("aria-modal", "true");
   } else {
     // Remove the aria-modal attribute.
-    entry.dialog.removeAttribute('aria-modal');
+    entry.dialog.removeAttribute("aria-modal");
   }
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
-  if (entry.getSetting('setTabindex')) {
-    entry.dialog.setAttribute('tabindex', '-1');
+  if (entry.getSetting("setTabindex")) {
+    entry.dialog.setAttribute("tabindex", "-1");
   }
 
   // Add entry to collection.

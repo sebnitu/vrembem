@@ -5,14 +5,14 @@ export async function initialState(entry) {
   //  3. Else, initialize default state.
   if (this.store.get(entry.id)) {
     // Restore drawers to saved inline state.
-    if (this.store.get(entry.id) === 'opened') {
+    if (this.store.get(entry.id) === "opened") {
       await entry.open(false, false);
     } else {
       await entry.close(false, false);
     }
   } else if (entry.el.classList.contains(this.settings.stateOpened)) {
     // Update drawer state.
-    entry.state = 'opened';
+    entry.state = "opened";
   } else {
     // Remove transition state classes.
     entry.el.classList.remove(this.settings.stateOpening);

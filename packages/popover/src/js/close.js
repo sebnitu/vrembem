@@ -1,27 +1,27 @@
-import { getPopover } from './helpers';
+import { getPopover } from "./helpers";
 
 export async function close(query) {
   // Get the popover from collection.
   const popover = (query) ? getPopover.call(this, query) : await closeAll.call(this);
 
   // If a modal exists and its state is opened.
-  if (popover && popover.state === 'opened') {
+  if (popover && popover.state === "opened") {
 
     // Update state class.
     popover.el.classList.remove(this.settings.stateActive);
 
     // Update accessibility attribute(s).
-    if (popover.trigger.hasAttribute('aria-controls')) {
-      popover.trigger.setAttribute('aria-expanded', 'false');
+    if (popover.trigger.hasAttribute("aria-controls")) {
+      popover.trigger.setAttribute("aria-expanded", "false");
     }
 
     // Disable popper event listeners.
     popover.popper.setOptions({
-      modifiers: [{ name: 'eventListeners', enabled: false }]
+      modifiers: [{ name: "eventListeners", enabled: false }]
     });
 
     // Update popover state.
-    popover.state = 'closed';
+    popover.state = "closed";
 
     // Clear root trigger if popover trigger matches.
     if (popover.trigger === this.trigger) {
@@ -36,7 +36,7 @@ export async function close(query) {
 export async function closeAll() {
   const result = [];
   await Promise.all(this.collection.map(async (popover) => {
-    if (popover.state === 'opened') {
+    if (popover.state === "opened") {
       result.push(await close.call(this, popover));
     }
   }));
@@ -45,14 +45,14 @@ export async function closeAll() {
 
 export function closeCheck(popover) {
   // Only run closeCheck if provided popover is currently open.
-  if (popover.state != 'opened') return;
+  if (popover.state != "opened") return;
 
   // Needed to correctly check which element is currently being focused.
   setTimeout(() => {
     // Check if trigger or element are being hovered.
     const isHovered =
-      popover.el.closest(':hover') === popover.el ||
-      popover.trigger.closest(':hover') === popover.trigger;
+      popover.el.closest(":hover") === popover.el ||
+      popover.trigger.closest(":hover") === popover.trigger;
 
     // Check if trigger or element are being focused.
     const isFocused = document.activeElement.closest(

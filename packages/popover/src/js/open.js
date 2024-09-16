@@ -1,4 +1,4 @@
-import { getConfig, getModifiers, getPopover } from './helpers';
+import { getConfig, getModifiers, getPopover } from "./helpers";
 
 export async function open(query) {
   // Get the popover from collection.
@@ -8,8 +8,8 @@ export async function open(query) {
   popover.el.classList.add(this.settings.stateActive);
 
   // Update accessibility attribute(s).
-  if (popover.trigger.hasAttribute('aria-controls')) {
-    popover.trigger.setAttribute('aria-expanded', 'true');
+  if (popover.trigger.hasAttribute("aria-controls")) {
+    popover.trigger.setAttribute("aria-expanded", "true");
   }
 
   // Update popover config.
@@ -17,9 +17,9 @@ export async function open(query) {
 
   // Enable popper event listeners and set placement/modifiers.
   popover.popper.setOptions({
-    placement: popover.config['placement'],
+    placement: popover.config["placement"],
     modifiers: [
-      { name: 'eventListeners', enabled: true },
+      { name: "eventListeners", enabled: true },
       ...getModifiers(popover.config)
     ]
   });
@@ -28,7 +28,7 @@ export async function open(query) {
   popover.popper.update();
 
   // Update popover state.
-  popover.state = 'opened';
+  popover.state = "opened";
 
   // Return the popover.
   return popover;

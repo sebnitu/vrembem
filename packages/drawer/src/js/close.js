@@ -1,5 +1,5 @@
-import { closeTransition, updateGlobalState } from '@vrembem/core/index';
-import { updateFocusState, getDrawer } from './helpers';
+import { closeTransition, updateGlobalState } from "@vrembem/core/index";
+import { updateFocusState, getDrawer } from "./helpers";
 
 export async function close(query, transition, focus = true) {
   // Get the drawer from collection.
@@ -12,9 +12,9 @@ export async function close(query, transition, focus = true) {
   if (transition !== undefined) config.transition = transition;
 
   // If drawer is opened.
-  if (drawer.state === 'opened') {
+  if (drawer.state === "opened") {
     // Update drawer state.
-    drawer.state = 'closing';
+    drawer.state = "closing";
 
     // Remove focus from active element.
     document.activeElement.blur();
@@ -23,7 +23,7 @@ export async function close(query, transition, focus = true) {
     await closeTransition(drawer.el, config);
 
     // Update the global state if mode is modal.
-    if (drawer.mode === 'modal') updateGlobalState(false, config);
+    if (drawer.mode === "modal") updateGlobalState(false, config);
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
@@ -31,10 +31,10 @@ export async function close(query, transition, focus = true) {
     }
 
     // Update drawer state.
-    drawer.state = 'closed';
+    drawer.state = "closed";
 
     // Dispatch custom closed event.
-    drawer.el.dispatchEvent(new CustomEvent(config.customEventPrefix + 'closed', {
+    drawer.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "closed", {
       detail: this,
       bubbles: true
     }));

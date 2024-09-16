@@ -2,30 +2,30 @@ export default {
   autoInit: false,
 
   // Data attributes
-  dataOpen: 'modal-open',
-  dataClose: 'modal-close',
-  dataReplace: 'modal-replace',
-  dataConfig: 'modal-config',
+  dataOpen: "modal-open",
+  dataClose: "modal-close",
+  dataReplace: "modal-replace",
+  dataConfig: "modal-config",
 
   // Selectors
-  selectorModal: '.modal',
-  selectorDialog: '.modal__dialog',
-  selectorRequired: '[role="alertdialog"]',
-  selectorFocus: '[data-focus]',
+  selectorModal: ".modal",
+  selectorDialog: ".modal__dialog",
+  selectorRequired: "[role=\"alertdialog\"]",
+  selectorFocus: "[data-focus]",
   selectorInert: null,
-  selectorOverflow: 'body',
+  selectorOverflow: "body",
 
   // State classes
-  stateOpened: 'is-opened',
-  stateOpening: 'is-opening',
-  stateClosing: 'is-closing',
-  stateClosed: 'is-closed',
+  stateOpened: "is-opened",
+  stateOpening: "is-opening",
+  stateClosing: "is-closing",
+  stateClosed: "is-closed",
 
   // Feature settings
-  customEventPrefix: 'modal:',
+  customEventPrefix: "modal:",
   eventListeners: true,
   teleport: null,
-  teleportMethod: 'append',
+  teleportMethod: "append",
   setTabindex: true,
   transition: true
 };
