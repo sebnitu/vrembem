@@ -75,7 +75,7 @@ export class FocusTrap {
     const initFocus = document.activeElement;
     const initScrollTop = el.scrollTop;
 
-    // Query al the focusable elements.
+    // Query for all the focusable elements.
     const selector = focusableSelectors.join(",");
     const els = el.querySelectorAll(selector);
 
