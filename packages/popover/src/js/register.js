@@ -1,3 +1,4 @@
+import { teleport } from "@vrembem/core";
 import { createPopper } from "@popperjs/core/dist/esm";
 
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
@@ -21,7 +22,8 @@ export async function register(el, trigger) {
     trigger: trigger,
     toggleDelayId: null,
     popper: createPopper(trigger, el),
-    config: getPopoverConfig(el, this.settings),
+    returnRef: null,
+    settings: getPopoverConfig(el, this.settings),
     get isTooltip() {
       return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
     },
@@ -33,6 +35,27 @@ export async function register(el, trigger) {
     },
     deregister() {
       return deregister.call(root, this);
+    },
+    teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
+      if (!this.returnRef) {
+        this.returnRef = teleport(this.el, ref, method);
+        return this.el;
+      } else {
+        console.error("Element has already been teleported:", this.el);
+        return false;
+      }
+    },
+    teleportReturn() {
+      if (this.returnRef) {
+        this.returnRef = teleport(this.el, this.returnRef);
+        return this.el;
+      } else {
+        console.error("No return reference found:", this.el);
+        return false;
+      }
+    },
+    getSetting(key) {
+      return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
   };
 
@@ -49,6 +72,11 @@ export async function register(el, trigger) {
   // Setup event listeners.
   registerEventListeners.call(this, entry);
 
+  // Teleport modal if a reference has been set.
+  if (entry.getSetting("teleport")) {
+    entry.teleport();
+  }
+
   // Add entry to collection.
   this.collection.push(entry);
 
@@ -62,7 +90,7 @@ export async function register(el, trigger) {
 
   // Set the popper placement property.
   entry.popper.setOptions({
-    placement: entry.config["placement"]
+    placement: entry.settings["placement"]
   });
 
   // Return the registered entry.
@@ -73,7 +101,7 @@ export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
   if (!entry.__eventListeners) {
     // Add event listeners based on event type.
-    const eventType = (entry.isTooltip) ? "hover" : entry.config["event"];
+    const eventType = (entry.isTooltip) ? "hover" : entry.settings["event"];
 
     // If the event type is hover.
     if (eventType === "hover") {

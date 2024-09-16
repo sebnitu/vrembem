@@ -19,6 +19,11 @@ export async function deregister(obj) {
     // Remove event listeners.
     deregisterEventListeners(entry);
 
+    // Return teleported modal if a reference has been set.
+    if (entry.getSetting("teleport")) {
+      entry.teleportReturn();
+    }
+
     // Delete properties from collection entry.
     Object.getOwnPropertyNames(entry).forEach((prop) => {
       delete entry[prop];

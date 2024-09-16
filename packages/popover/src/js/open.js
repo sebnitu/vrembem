@@ -14,14 +14,14 @@ export async function open(query) {
   }
 
   // Update popover config.
-  popover.config = getPopoverConfig(popover.el, this.settings);
+  popover.settings = getPopoverConfig(popover.el, this.settings);
 
   // Enable popper event listeners and set placement/modifiers.
   popover.popper.setOptions({
-    placement: popover.config["placement"],
+    placement: popover.settings["placement"],
     modifiers: [
       { name: "eventListeners", enabled: true },
-      ...getModifiers(popover.config)
+      ...getModifiers(popover.settings)
     ]
   });
 
