@@ -1,19 +1,24 @@
-{
+export default {
   "extends": [
     "stylelint-config-standard-scss"
   ],
   "plugins": [
     "stylelint-order"
   ],
+  "ignoreFiles": [
+    "dev",
+    "dist"
+  ],
   "rules": {
     "scss/at-else-closing-brace-newline-after": null,
     "scss/at-else-closing-brace-space-after": null,
     "scss/at-else-empty-line-before": null,
+    "scss/at-function-pattern": null,
     "scss/at-if-closing-brace-newline-after": null,
     "scss/at-if-closing-brace-space-after": null,
     "scss/at-mixin-argumentless-call-parentheses": null,
+    "scss/at-mixin-pattern": null,
     "scss/at-rule-conditional-no-parentheses": null,
-    "scss/load-no-partial-leading-underscore": true,
     "scss/dollar-variable-colon-space-after": null,
     "scss/dollar-variable-empty-line-before": null,
     "scss/dollar-variable-pattern": null,
@@ -21,24 +26,25 @@
     "scss/selector-no-redundant-nesting-selector": true,
     "at-rule-no-unknown": null,
     "at-rule-empty-line-before": null,
-    "color-function-notation": "legacy",
+    "color-function-notation": "modern",
     "color-hex-length": null,
     "custom-property-pattern": null,
-    "declaration-empty-line-before": "never",
+    "declaration-empty-line-before": ["never", {
+      "ignore": "after-comment"
+    }],
+    "hue-degree-notation": null,
     "media-feature-name-no-vendor-prefix": null,
+    "media-feature-range-notation": "prefix",
     "no-descending-specificity": null,
     "property-no-unknown": true,
     "property-no-vendor-prefix": null,
+    "selector-class-pattern": null,
     "selector-max-compound-selectors": 3,
     "selector-max-id": 0,
     "selector-no-qualifying-type": true,
     "selector-no-vendor-prefix": null,
     "order/order": [
       [
-        {
-          "type": "at-rule",
-          "hasBlock": false
-        },
         "custom-properties",
         "declarations"
       ]
@@ -251,4 +257,4 @@
       "nav-left"
     ]
   }
-}
+};
