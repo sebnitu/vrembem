@@ -55,7 +55,6 @@ export async function register(el, trigger) {
       }
     },
     getSetting(key) {
-      console.log(this);
       return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
   };
