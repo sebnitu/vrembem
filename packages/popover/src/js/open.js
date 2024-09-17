@@ -57,11 +57,11 @@ export async function open(query) {
           left: x != null ? `${x}px` : "",
           top: y != null ? `${y}px` : ""
         });
-
-        // Apply the current placement as a data attribute.
-        // This is used in our CSS to determine the vertical position of arrows.
-        popover.el.setAttribute("data-floating-placement", placement);
       }
+
+      // Apply the current placement as a data attribute.
+      // This is used in our CSS to determine the vertical position of arrows.
+      popover.el.setAttribute("data-floating-placement", placement);
     });
   });
 

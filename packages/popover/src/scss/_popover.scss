@@ -12,7 +12,7 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   display: block;
   width: css.get("popover", "width", var.$width);
   max-width: css.get("popover", "max-width", var.$max-width);
-  margin: calc(css.get("popover", "offset") * 1px) 0 0;
+  margin: 0;
   padding: css.get("popover", "padding", var.$padding);
   transition-property: css.get("popover", "transition-property", var.$transition-property);
   transition-duration: css.get("popover", "transition-duration", var.$transition-duration);
@@ -49,42 +49,26 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   }
 }
 
-#{core.bem("popover")}[data-floating-placement^="top"] {
-  margin: 0 0 calc(css.get("popover", "offset") * 1px) 0;
-
-  &::before {
-    inset: 100% 0 auto;
-    width: 100%;
-    height: $_offset;
-  }
+#{core.bem("popover")}[data-floating-placement^="top"]::before {
+  inset: 100% 0 auto;
+  width: 100%;
+  height: $_offset;
 }
 
-#{core.bem("popover")}[data-floating-placement^="bottom"] {
-  margin: calc(css.get("popover", "offset") * 1px) 0 0 0;
-
-  &::before {
-    inset: auto 0 100%;
-    width: 100%;
-    height: $_offset;
-  }
+#{core.bem("popover")}[data-floating-placement^="bottom"]::before {
+  inset: auto 0 100%;
+  width: 100%;
+  height: $_offset;
 }
 
-#{core.bem("popover")}[data-floating-placement^="left"] {
-  margin: 0 calc(css.get("popover", "offset") * 1px) 0 0;
-
-  &::before {
-    inset: 0 auto 0 100%;
-    width: $_offset;
-    height: 100%;
-  }
+#{core.bem("popover")}[data-floating-placement^="left"]::before {
+  inset: 0 auto 0 100%;
+  width: $_offset;
+  height: 100%;
 }
 
-#{core.bem("popover")}[data-floating-placement^="right"] {
-  margin: 0 0 0 calc(css.get("popover", "offset") * 1px);
-
-  &::before {
-    inset: 0 100% 0 auto;
-    width: $_offset;
-    height: 100%;
-  }
+#{core.bem("popover")}[data-floating-placement^="right"]::before {
+  inset: 0 100% 0 auto;
+  width: $_offset;
+  height: 100%;
 }
