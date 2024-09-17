@@ -5,8 +5,8 @@
 $event: null !default;
 $placement: null !default;
 $offset: 8 !default;
-$overflow-padding: 10 !default;
 $flip-padding: 10 !default;
+$shift-padding: 10 !default;
 
 $z-index: 10 !default;
 $width: 16em !default;
@@ -34,8 +34,8 @@ $size-lg-width: 20em !default;
   "event": $event,
   "placement": $placement,
   "offset": $offset,
-  "overflow-padding": $overflow-padding,
   "flip-padding": $flip-padding,
+  "shift-padding": $shift-padding,
   "arrow-padding": $arrow-padding
 ), "required");
 

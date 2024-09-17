@@ -44,7 +44,7 @@ describe("getPopoverConfig()", () => {
       "placement": "bottom",
       "event": "click",
       "offset": 0,
-      "overflow-padding": 0,
+      "shift-padding": 0,
       "flip-padding": 0,
       "arrow-element": ".popover__arrow",
       "arrow-padding": 0,
@@ -59,7 +59,7 @@ describe("getPopoverConfig()", () => {
     target.style.setProperty("--popover-placement", "top");
     target.style.setProperty("--popover-event", "focus");
     target.style.setProperty("--popover-offset", "32");
-    target.style.setProperty("--popover-overflow-padding", "16");
+    target.style.setProperty("--popover-shift-padding", "16");
     target.style.setProperty("--popover-flip-padding", "8");
     target.style.setProperty("--popover-arrow-element", ".asdf");
     target.style.setProperty("--popover-arrow-padding", "4");
@@ -69,7 +69,7 @@ describe("getPopoverConfig()", () => {
       "placement": "top",
       "event": "focus",
       "offset": "32",
-      "overflow-padding": "16",
+      "shift-padding": "16",
       "flip-padding": "8",
       "arrow-element": ".asdf",
       "arrow-padding": "4",
@@ -123,7 +123,7 @@ describe("getPopoverConfig() & getModifiers()", () => {
     popover = new Popover();
     const target = document.querySelector(".popover");
     target.style.setProperty("--popover-offset", "10");
-    target.style.setProperty("--popover-overflow-padding", "20");
+    target.style.setProperty("--popover-shift-padding", "20");
     const config = getPopoverConfig(target, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === "offset");
@@ -136,7 +136,7 @@ describe("getPopoverConfig() & getModifiers()", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     document.documentElement.style.setProperty("--popover-offset", "5");
-    document.documentElement.style.setProperty("--popover-overflow-padding", "10");
+    document.documentElement.style.setProperty("--popover-shift-padding", "10");
     const config = getPopoverConfig(document.documentElement, popover.settings);
     const result = getModifiers(config);
     const offset = result.find(item => item.name === "offset");

@@ -7,14 +7,14 @@ export function getModifiers(options) {
       offset: [0, parseInt(options["offset"], 10)]
     }
   }, {
-    name: "preventOverflow",
-    options: {
-      padding: getPadding(options["overflow-padding"])
-    }
-  }, {
     name: "flip",
     options: {
       padding: getPadding(options["flip-padding"])
+    }
+  }, {
+    name: "preventOverflow",
+    options: {
+      padding: getPadding(options["shift-padding"])
     }
   }, {
     name: "arrow",
