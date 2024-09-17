@@ -3,7 +3,7 @@ import Popover from "../index.js";
 import {
   getPopoverConfig,
   getPadding,
-  getModifiers,
+  getMiddlewareOptions,
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
@@ -105,17 +105,15 @@ describe("getPadding()", () => {
   });
 });
 
-describe("getPopoverConfig() & getModifiers()", () => {
+describe("getPopoverConfig() & getMiddlewareOptions()", () => {
   it("should return modifiers using defaults", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const target = document.querySelector(".popover");
     const config = getPopoverConfig(target, popover.settings);
-    const result = getModifiers(config);
-    const offset = result.find(item => item.name === "offset");
-    const overflow = result.find(item => item.name === "preventOverflow");
-    expect(offset.options.offset).toEqual([0, 0]);
-    expect(overflow.options.padding).toEqual(0);
+    const result = getMiddlewareOptions(config);
+    expect(result.offset).toEqual(0);
+    expect(result.shift.padding).toEqual(0);
   });
 
   it("should return modifiers with custom CSS variables set", () => {
@@ -125,11 +123,9 @@ describe("getPopoverConfig() & getModifiers()", () => {
     target.style.setProperty("--popover-offset", "10");
     target.style.setProperty("--popover-shift-padding", "20");
     const config = getPopoverConfig(target, popover.settings);
-    const result = getModifiers(config);
-    const offset = result.find(item => item.name === "offset");
-    const overflow = result.find(item => item.name === "preventOverflow");
-    expect(offset.options.offset).toEqual([0, 10]);
-    expect(overflow.options.padding).toEqual(20);
+    const result = getMiddlewareOptions(config);
+    expect(result.offset).toEqual(10);
+    expect(result.shift.padding).toEqual(20);
   });
 
   it("should return modifiers with custom CSS variables set to root document", () => {
@@ -138,11 +134,9 @@ describe("getPopoverConfig() & getModifiers()", () => {
     document.documentElement.style.setProperty("--popover-offset", "5");
     document.documentElement.style.setProperty("--popover-shift-padding", "10");
     const config = getPopoverConfig(document.documentElement, popover.settings);
-    const result = getModifiers(config);
-    const offset = result.find(item => item.name === "offset");
-    const overflow = result.find(item => item.name === "preventOverflow");
-    expect(offset.options.offset).toEqual([0, 5]);
-    expect(overflow.options.padding).toEqual(10);
+    const result = getMiddlewareOptions(config);
+    expect(result.offset).toEqual(5);
+    expect(result.shift.padding).toEqual(10);
   });
 });
 
