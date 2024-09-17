@@ -1,4 +1,4 @@
-import { getPopover, getModifiers } from "./helpers";
+import { getPopover } from "./helpers";
 
 export async function close(query) {
   // Get the popover from collection.
@@ -16,14 +16,8 @@ export async function close(query) {
       popover.trigger.setAttribute("aria-expanded", "false");
     }
 
-    // Disable popper event listeners.
-    popover.popper.setOptions({
-      placement: popover.settings["placement"],
-      modifiers: [
-        { name: "eventListeners", enabled: false },
-        ...getModifiers(popover.settings)
-      ]
-    });
+    // Clean up the floating UI instance.
+    popover.cleanup();
 
     // Update popover state.
     popover.state = "closed";

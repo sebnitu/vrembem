@@ -1,7 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index.js";
-
-let popover;
+import Popover from "../index";
 
 vi.useFakeTimers();
 
@@ -9,19 +7,16 @@ const markup = `
   <button aria-controls="asdf">...</button>
   <div id="asdf" class="popover">...</div>
   <span aria-describedby="fdsa">...</span>
-  <div id="fdsa" class="popover popover_tooltip" role="tooltip">...</div>
+  <div id="fdsa" class="popover popover_tooltip" role="tooltip">
+    ...
+    <span class="popover__arrow"></span>
+  </div>
 `;
-
-afterEach(() => {
-  popover.unmount();
-  popover = null;
-  document.body.innerHTML = null;
-});
 
 describe("open()", () => {
   it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
     const entry = popover.get("asdf");
     expect(entry.state).toBe("closed");
@@ -33,14 +28,15 @@ describe("open()", () => {
     expect(entry.trigger.getAttribute("aria-expanded")).toBe("true");
   });
 
-  it("should open the provided popover tooltip", () => {
+  it("should open the provided popover tooltip", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     const entry = popover.get("fdsa");
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);
-    entry.open();
+    await entry.open();
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);

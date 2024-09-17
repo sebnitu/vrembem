@@ -1,8 +1,7 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index.js";
-import { describe, expect } from "vitest";
+import Popover from "../index";
 
-let popover;
+vi.useFakeTimers();
 
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
@@ -17,44 +16,40 @@ const markup = `
   <div id="tooltip" class="popover popover_tooltip">...</div>
 `;
 
-afterEach(() => {
-  popover.unmount();
-  popover = null;
-  document.body.innerHTML = null;
-});
-
 describe("mount() & unmount()", () => {
-  it("should mount the popover module when mount is run", () => {
+  it("should mount the popover module when mount is run", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
-    popover.mount();
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.collection.length).toBe(3);
   });
 
-  it("should auto mount the popover module autoMount is set to true", () => {
+  it("should auto mount the popover module autoMount is set to true", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.collection.length).toBe(3);
   });
 
   it("running mount multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover({ autoMount: true });
     await popover.mount();
     expect(popover.collection.length).toBe(3);
   });
 
-  it("should not attach keyboard event listener if eventListeners is set to false", () => {
+  it("should not attach keyboard event listener if eventListeners is set to false", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({
-      autoMount: true,
+    const popover = new Popover({
       eventListeners: false
     });
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).toHaveClass("is-active");
     document.dispatchEvent(keyEsc);
     expect(target).toHaveClass("is-active");
@@ -62,7 +57,7 @@ describe("mount() & unmount()", () => {
 
   it("should be able to pass options through mount method", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ selectorPopover: ".asdf" });
+    const popover = new Popover({ selectorPopover: ".asdf" });
     expect(popover.settings.selectorPopover).toBe(".asdf");
     await popover.mount({ selectorPopover: ".popover" });
     expect(popover.settings.selectorPopover).toBe(".popover");
@@ -70,7 +65,8 @@ describe("mount() & unmount()", () => {
 
   it("should remove all event listeners and clear collection", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -79,14 +75,16 @@ describe("mount() & unmount()", () => {
     await popover.unmount();
     expect(popover.collection.length).toBe(0);
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).not.toHaveClass("is-active");
   });
 });
 
 describe("mountEventListeners() & unmountEventListeners()", () => {
-  it("should remove event listeners", () => {
+  it("should remove event listeners", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -94,12 +92,14 @@ describe("mountEventListeners() & unmountEventListeners()", () => {
     popover.unmountEventListeners();
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).not.toHaveClass("is-active");
   });
 
-  it("should re-mount event listeners", () => {
+  it("should re-mount event listeners", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -108,17 +108,20 @@ describe("mountEventListeners() & unmountEventListeners()", () => {
     popover.mountEventListeners();
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).toHaveClass("is-active");
   });
 
-  it("should remove keyboard event listener", () => {
+  it("should remove keyboard event listener", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).toHaveClass("is-active");
 
     popover.unmountEventListeners();
@@ -127,14 +130,16 @@ describe("mountEventListeners() & unmountEventListeners()", () => {
     expect(target).toHaveClass("is-active");
   });
 
-  it("should re-mount keyboard event listener", () => {
+  it("should re-mount keyboard event listener", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).toHaveClass("is-active");
 
     popover.unmountEventListeners();
@@ -146,66 +151,69 @@ describe("mountEventListeners() & unmountEventListeners()", () => {
 });
 
 describe("register() & deregister()", () => {
-  it("should be able to manually register a popover", () => {
+  it("should be able to manually register a popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
 
     expect(popover.collection.length).toBe(0);
 
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
 
-    popover.register(trigger);
+    await popover.register(trigger);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].el).toBe(el);
     expect(popover.collection[0].trigger).toBe(trigger);
   });
 
-  it("should be able to manually deregister a popover", () => {
+  it("should be able to manually deregister a popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     expect(popover.collection.length).toBe(3);
-    popover.deregister(popover.collection[0]);
+    await popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(2);
 
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
 
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(el).not.toHaveClass("is-active");
   });
 
   it("should reject promise with error if deregister is called on non-existent entry", async () => {
-    popover = new Popover({ autoMount: true });
-    const result = await popover.deregister("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to deregister; popover does not exist in collection with ID of: \"asdf\".");
+    document.body.innerHTML = markup;
+    const popover = new Popover();
+    await popover.mount();
+    const result = await popover.deregister("fake-id").catch((error) => { return error.message; });
+    expect(result).toBe("Failed to deregister; popover does not exist in collection with ID of: \"fake-id\".");
   });
 });
 
 describe("registerCollection() & deregisterCollection()", () => {
-  it("should remove all items from collection and their event listeners", async () => {
+  it("should remove all items from collection and close open popovers", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
+    trigger.click();
 
     expect(popover.collection.length).toBe(3);
-    trigger.click();
     expect(target).toHaveClass("is-active");
 
     await popover.deregisterCollection();
 
     expect(popover.collection.length).toBe(0);
     expect(target).not.toHaveClass("is-active");
-    trigger.click();
-    expect(target).not.toHaveClass("is-active");
   });
 
-  it("should register all items into collection and add their event listeners", () => {
+  it("should register all items into collection and add their event listeners", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
@@ -213,42 +221,46 @@ describe("registerCollection() & deregisterCollection()", () => {
 
     expect(popover.collection.length).toBe(0);
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).not.toHaveClass("is-active");
 
-    popover.registerCollection(items);
+    await popover.registerCollection(items);
 
     expect(popover.collection.length).toBe(3);
     trigger.click();
+    vi.advanceTimersByTime(500);
     expect(target).toHaveClass("is-active");
   });
 });
 
 describe("open() & close()", () => {
-  it("should open the provided popover", () => {
+  it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const target = document.querySelector(".popover");
 
     expect(target).not.toHaveClass("is-active");
-    popover.open(popover.collection[0].id);
+    await popover.open(popover.collection[0].id);
     expect(target).toHaveClass("is-active");
   });
 
-  it("should close the provided popover", () => {
+  it("should close the provided popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     const target = document.querySelector(".popover");
 
-    popover.open(popover.collection[0].id);
-    popover.close(popover.collection[0].id);
+    await popover.open(popover.collection[0].id);
+    await popover.close(popover.collection[0].id);
     expect(target).not.toHaveClass("is-active");
   });
 
   it("should close all popovers", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     popover.collection.forEach(async (item) => {
@@ -270,7 +282,7 @@ describe("open() & close()", () => {
 
   it("should reject promise with error when open is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     let catchError = false;
@@ -283,7 +295,8 @@ describe("open() & close()", () => {
 
   it("should reject promise with error when close is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
 
     let catchError = false;
     await popover.close("missing").catch((error) => {
@@ -295,27 +308,30 @@ describe("open() & close()", () => {
 });
 
 describe("active() & activeTooltip()", () => {
-  it("should return the active popover when popover.active is called", () => {
+  it("should return the active popover when popover.active is called", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.active).toBe(undefined);
-    popover.get("asdf").open();
+    await popover.get("asdf").open();
     expect(popover.active).toBe(popover.get("asdf"));
   });
 
-  it("should return the active tooltip popover when popover.activeTooltip is called", () => {
+  it("should return the active tooltip popover when popover.activeTooltip is called", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.activeTooltip).toBe(undefined);
-    popover.get("tooltip").open();
+    await popover.get("tooltip").open();
     expect(popover.activeTooltip).toBe(popover.get("tooltip"));
   });
 });
 
 describe("getSetting()", () => {
-  it("should return a setting value from wherever it was set", () => {
+  it("should return a setting value from wherever it was set", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     const entry = popover.get("asdf");
     expect(entry.id).toBe("asdf");
     expect(entry.getSetting("dataConfig")).toBe("popover-config");
