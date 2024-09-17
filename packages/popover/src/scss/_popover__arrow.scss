@@ -18,7 +18,7 @@
   background-clip: padding-box;
 }
 
-[data-popper-placement^="top"] > #{core.bem("popover", "arrow")} {
+[data-floating-placement^="top"] > #{core.bem("popover", "arrow")} {
   bottom: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
@@ -26,7 +26,7 @@
   }
 }
 
-[data-popper-placement^="bottom"] > #{core.bem("popover", "arrow")} {
+[data-floating-placement^="bottom"] > #{core.bem("popover", "arrow")} {
   top: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
@@ -34,7 +34,7 @@
   }
 }
 
-[data-popper-placement^="left"] > #{core.bem("popover", "arrow")} {
+[data-floating-placement^="left"] > #{core.bem("popover", "arrow")} {
   right: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {
@@ -42,7 +42,7 @@
   }
 }
 
-[data-popper-placement^="right"] > #{core.bem("popover", "arrow")} {
+[data-floating-placement^="right"] > #{core.bem("popover", "arrow")} {
   left: calc(css.get("popover", "arrow-size", var.$arrow-size) * -0.5);
 
   &::after {

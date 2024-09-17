@@ -13,8 +13,8 @@ export async function deregister(obj) {
       entry.close();
     }
 
-    // Clean up the popper instance.
-    entry.popper.destroy();
+    // Clean up the floating UI instance.
+    entry.cleanup();
 
     // Remove event listeners.
     deregisterEventListeners(entry);

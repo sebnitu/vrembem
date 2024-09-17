@@ -1,6 +1,4 @@
 import { teleport } from "@vrembem/core";
-import { createPopper } from "@popperjs/core/dist/esm";
-
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -21,12 +19,12 @@ export async function register(el, trigger) {
     el: el,
     trigger: trigger,
     toggleDelayId: null,
-    popper: createPopper(trigger, el),
     returnRef: null,
     settings: getPopoverConfig(el, this.settings),
     get isTooltip() {
       return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
     },
+    cleanup: () => {},
     open() {
       return open.call(root, this);
     },
@@ -87,11 +85,6 @@ export async function register(el, trigger) {
   } else {
     entry.el.inert = true;
   }
-
-  // Set the popper placement property.
-  entry.popper.setOptions({
-    placement: entry.settings["placement"]
-  });
 
   // Return the registered entry.
   return entry;
