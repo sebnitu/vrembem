@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index.js";
+import Popover from "../index";
 import { closeAll, closeCheck } from "../src/js/close";
 
 vi.useFakeTimers();

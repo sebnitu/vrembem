@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
-import Popover from "../index.js";
+import Popover from "../index";
 import { handleClick, handleMouseEnter, handleMouseLeave } from "../src/js/handlers";
 
 const keyEsc = new KeyboardEvent("keydown", {

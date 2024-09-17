@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index.js";
+import Popover from "../index";
 import { registerEventListeners } from "../src/js/register";
 
 vi.useFakeTimers();
