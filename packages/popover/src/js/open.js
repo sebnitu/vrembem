@@ -43,6 +43,9 @@ export async function open(query) {
         arrow(middlewareOptions.arrow)
       ]
     }).then(({ x, y, placement, middlewareData }) => {
+      // Guard in case there is no popover element.
+      if (!popover.el) { return; }
+
       // Apply popover left and top position.
       Object.assign(popover.el.style, {
         left: `${x}px`,

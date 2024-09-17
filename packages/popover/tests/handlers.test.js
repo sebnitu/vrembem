@@ -2,9 +2,6 @@ import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index.js";
 import { handleClick, handleMouseEnter, handleMouseLeave } from "../src/js/handlers";
-import { expect } from "vitest";
-
-let popover;
 
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
@@ -58,16 +55,10 @@ const multiplePopover = `
   </div>
 `;
 
-afterEach(async () => {
-  await popover.unmount();
-  popover = null;
-  document.body.innerHTML = null;
-});
-
 describe("handleClick()", () => {
   it("should open popover if it does not contain the active class", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection.length).toBe(2);
@@ -78,7 +69,7 @@ describe("handleClick()", () => {
 
   it("should close popover if it contains the active class", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection.length).toBe(2);
@@ -89,7 +80,7 @@ describe("handleClick()", () => {
 
   it("should attach document click event listener when popover is opened", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     handleClick.bind(popover, popover.collection[0])();
@@ -105,7 +96,7 @@ describe("handleClick()", () => {
 
   it("should properly clear toggle delay if one exists on click", async () => {
     document.body.innerHTML = multiplePopover;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const trigger = document.querySelector("button");
@@ -126,7 +117,7 @@ describe("handleClick()", () => {
 describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should open tooltip when handleMouseEnter() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const entry = popover.get("tooltip-1");
@@ -141,7 +132,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should close tooltip when handleMouseLeave() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const entry = popover.get("tooltip-2");
@@ -156,7 +147,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should correctly clear timeout when multiple enter/leave events are run", async () => {
     document.body.innerHTML = hoverMarkup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const entry1 = popover.get("tooltip-1");
@@ -182,7 +173,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should not open tooltip if a popover for a trigger is already open", async () => {
     document.body.innerHTML = multiplePopover;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const trigger = document.querySelector("button");
@@ -206,7 +197,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should guard against focus if the trigger is not focus-visible", async () => {
     document.body.innerHTML = multiplePopover;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const entry1 = popover.get("popover");
@@ -224,7 +215,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 describe("handlerKeydown()", () => {
   it("should close open popover when escape key is pressed", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection[1].el).toHaveClass("is-active");
@@ -235,7 +226,7 @@ describe("handlerKeydown()", () => {
 
   it("should do nothing when a non-escape key is pressed", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection[1].el).toHaveClass("is-active");
@@ -246,7 +237,7 @@ describe("handlerKeydown()", () => {
 
   it("should return focus to the trigger element when escape key is pressed", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     const button = document.querySelector(".focus-test");
@@ -267,7 +258,7 @@ describe("handlerKeydown()", () => {
 
   it("should run close check when the tab key is pressed", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection.length).toBe(2);
@@ -281,7 +272,7 @@ describe("handlerKeydown()", () => {
 describe("documentClick()", () => {
   it("should close other popover instances when a new one is toggled", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection[0].el).not.toHaveClass("is-active");
@@ -295,7 +286,7 @@ describe("documentClick()", () => {
 
   it("should remove document event listener when popover is closed", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover();
+    const popover = new Popover();
     await popover.mount();
 
     expect(popover.collection[0].el).not.toHaveClass("is-active");

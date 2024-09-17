@@ -2,8 +2,6 @@ import "@testing-library/jest-dom/vitest";
 import Popover from "../index.js";
 import { closeAll, closeCheck } from "../src/js/close";
 
-let popover;
-
 vi.useFakeTimers();
 
 const markup = `
@@ -15,34 +13,30 @@ const markup = `
   <div id="afsd" class="popover popover_tooltip is-active" role="tooltip">...</div>
 `;
 
-afterEach(() => {
-  popover.unmount();
-  popover = null;
-  document.body.innerHTML = null;
-});
-
 describe("close()", () => {
-  it("should close the provided popover", () => {
+  it("should close the provided popover", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     const entry = popover.get("asdf");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
     expect(entry.trigger.getAttribute("aria-expanded")).toBe("true");
-    entry.close();
+    await entry.close();
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
     expect(entry.trigger.getAttribute("aria-expanded")).toBe("false");
   });
 
-  it("should close the provided popover tooltip", () => {
+  it("should close the provided popover tooltip", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     const entry = popover.get("afsd");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);
-    entry.close();
+    await entry.close();
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);
@@ -50,40 +44,44 @@ describe("close()", () => {
 });
 
 describe("closeAll()", () => {
-  it("should close all popovers", () => {
+  it("should close all popovers", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.collection.length).toBe(3);
     expect(popover.collection[0].el).toHaveClass("is-active");
     expect(popover.collection[1].el).toHaveClass("is-active");
-    closeAll.call(popover);
+    await closeAll.call(popover);
     expect(popover.collection[0].el).not.toHaveClass("is-active");
     expect(popover.collection[1].el).not.toHaveClass("is-active");
   });
 });
 
 describe("closeCheck()", () => {
-  it("should close popover if closeCheck does not detect a hover or focus on trigger or popover elements", () => {
+  it("should close popover if closeCheck does not detect a hover or focus on trigger or popover elements", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     expect(popover.collection.length).toBe(3);
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).not.toHaveClass("is-active");
   });
 
-  it("should close popover if closeCheck detects a focus but not focus-visible on trigger elements", () => {
+  it("should close popover if closeCheck detects a focus but not focus-visible on trigger elements", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     popover.collection[0].trigger.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).not.toHaveClass("is-active");
   });
 
-  it("should close popover if closeCheck detects a focus but not focus-visible on popover elements", () => {
+  it("should close popover if closeCheck detects a focus but not focus-visible on popover elements", async () => {
     document.body.innerHTML = markup;
-    popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     popover.collection[0].el.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
