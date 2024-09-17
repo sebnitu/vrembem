@@ -7,7 +7,12 @@ import {
   offset,
   arrow
 } from "@floating-ui/dom";
-import { getPopoverConfig, getMiddlewareOptions, getPopover } from "./helpers";
+import {
+  applyPositionStyle,
+  getPopoverConfig,
+  getMiddlewareOptions,
+  getPopover
+} from "./helpers";
 
 export async function open(query) {
   // Get the popover from collection.
@@ -47,19 +52,12 @@ export async function open(query) {
       if (!popover.el) { return; }
 
       // Apply popover left and top position.
-      Object.assign(popover.el.style, {
-        left: `${x}px`,
-        top: `${y}px`
-      });
+      applyPositionStyle(popover.el, x, y);
 
       // Maybe apply arrow left or top position.
       if (middlewareOptions.arrow.element && middlewareData.arrow) {
         const { x, y } = middlewareData.arrow;
-
-        Object.assign(middlewareOptions.arrow.element.style, {
-          left: x != null ? `${x}px` : "",
-          top: y != null ? `${y}px` : ""
-        });
+        applyPositionStyle(middlewareOptions.arrow.element, x, y);
       }
 
       // Apply the current placement as a data attribute.

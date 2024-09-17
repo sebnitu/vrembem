@@ -1,12 +1,14 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
 import {
+  applyPositionStyle,
   getPopoverConfig,
   getPadding,
   getMiddlewareOptions,
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
+import { describe, expect } from "vitest";
 
 let popover;
 
@@ -26,12 +28,45 @@ const markup = `
   <button id="missing-attribute">...</button>
 `;
 
+const simpleMarkup = `
+  <div id="asdf"></div>
+`;
+
 afterEach(() => {
   if (popover && "unmount" in popover) {
     popover.unmount();
   }
   popover = null;
   document.body.innerHTML = null;
+});
+
+describe("applyPositionStyle()", () => {
+  it("Should apply both x and y position values.", () => {
+    document.body.innerHTML = simpleMarkup;
+    const el = document.getElementById("asdf");
+    console.log(el);
+    applyPositionStyle(el, 10, 20);
+    expect(el.style.left).toBe("10px");
+    expect(el.style.top).toBe("20px");
+  });
+
+  it("Should apply both the y position values.", () => {
+    document.body.innerHTML = simpleMarkup;
+    const el = document.getElementById("asdf");
+    console.log(el);
+    applyPositionStyle(el, undefined, 15);
+    expect(el.style.left).toBe("");
+    expect(el.style.top).toBe("15px");
+  });
+
+  it("Should apply both the x position values.", () => {
+    document.body.innerHTML = simpleMarkup;
+    const el = document.getElementById("asdf");
+    console.log(el);
+    applyPositionStyle(el, 15, undefined);
+    expect(el.style.left).toBe("15px");
+    expect(el.style.top).toBe("");
+  });
 });
 
 describe("getPopoverConfig()", () => {

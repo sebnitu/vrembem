@@ -1,3 +1,4 @@
+export * from "./applyPositionStyle";
 export * from "./getMiddlewareOptions";
 export * from "./getPadding";
 export * from "./getPopover";
