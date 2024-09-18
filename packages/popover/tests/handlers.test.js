@@ -38,6 +38,10 @@ const hoverMarkup = `
     <div id="tooltip-2" class="popover popover_tooltip">
       ...
     </div>
+    <button aria-controls="popover">...</button>
+    <div id="popover" class="popover" data-popover-config="{'event': 'hover'}">
+      ...
+    </div>
   </div>
 `;
 
@@ -125,7 +129,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     expect(entry.state).toBe("closed");
 
     const event = new Event("mouseenter");
-    handleMouseEnter.bind(popover, entry, event)();
+    entry.trigger.dispatchEvent(event);
     await delay();
     expect(entry.state).toBe("opened");
   });
@@ -137,11 +141,37 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
     const entry = popover.get("tooltip-2");
     expect(entry.isTooltip).toBe(true);
-    entry.open();
+    await entry.open();
     expect(entry.state).toBe("opened");
 
-    handleMouseLeave.bind(popover, entry)();
+    const event = new Event("mouseleave");
+    entry.el.dispatchEvent(event);
     await delay(100); // Not sure why this is needed.
+    expect(entry.state).toBe("closed");
+  });
+
+  it("should not close popover if either the popover element or trigger are hovered", async () => {
+    document.body.innerHTML = hoverMarkup;
+    const popover = new Popover();
+    await popover.mount();
+
+    const entry = popover.get("popover");
+    expect(entry.getSetting("event")).toBe("hover");
+
+    const eventEnter = new Event("mouseenter");
+    const eventLeave = new Event("mouseleave");
+
+    entry.trigger.dispatchEvent(eventEnter);
+    await delay();
+    expect(entry.state).toBe("opened");
+
+    entry.el.dispatchEvent(eventEnter);
+    entry.trigger.dispatchEvent(eventLeave);
+    await delay();
+    expect(entry.state).toBe("opened");
+
+    entry.el.dispatchEvent(eventLeave);
+    await delay(100);
     expect(entry.state).toBe("closed");
   });
 
@@ -153,19 +183,20 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     const entry1 = popover.get("tooltip-1");
     const entry2 = popover.get("tooltip-2");
 
-    const event = new Event("mouseenter");
-    handleMouseEnter.bind(popover, entry1, event)();
-    handleMouseEnter.bind(popover, entry2, event)();
+    const eventEnter = new Event("mouseenter");
+    handleMouseEnter.bind(popover, entry1, eventEnter)();
+    handleMouseEnter.bind(popover, entry2, eventEnter)();
     await delay();
-    handleMouseLeave.bind(popover, entry1, event)();
+    handleMouseLeave.bind(popover, entry1, eventEnter)();
     await delay();
-    handleMouseEnter.bind(popover, entry2, event)();
+    handleMouseEnter.bind(popover, entry2, eventEnter)();
     await delay();
 
     expect(entry1.state).toBe("closed");
     expect(entry2.state).toBe("opened");
 
-    handleMouseLeave.bind(popover, entry2)();
+    const eventLeave = new Event("mouseleave");
+    handleMouseLeave.bind(popover, entry2, eventLeave)();
     await delay(100);
 
     expect(entry2.state).toBe("closed");

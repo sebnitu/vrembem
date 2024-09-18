@@ -8,7 +8,6 @@ import {
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
-import { describe, expect } from "vitest";
 
 let popover;
 
@@ -44,7 +43,6 @@ describe("applyPositionStyle()", () => {
   it("Should apply both x and y position values.", () => {
     document.body.innerHTML = simpleMarkup;
     const el = document.getElementById("asdf");
-    console.log(el);
     applyPositionStyle(el, 10, 20);
     expect(el.style.left).toBe("10px");
     expect(el.style.top).toBe("20px");
@@ -53,7 +51,6 @@ describe("applyPositionStyle()", () => {
   it("Should apply both the y position values.", () => {
     document.body.innerHTML = simpleMarkup;
     const el = document.getElementById("asdf");
-    console.log(el);
     applyPositionStyle(el, undefined, 15);
     expect(el.style.left).toBe("");
     expect(el.style.top).toBe("15px");
@@ -62,7 +59,6 @@ describe("applyPositionStyle()", () => {
   it("Should apply both the x position values.", () => {
     document.body.innerHTML = simpleMarkup;
     const el = document.getElementById("asdf");
-    console.log(el);
     applyPositionStyle(el, 15, undefined);
     expect(el.style.left).toBe("15px");
     expect(el.style.top).toBe("");
