@@ -12,6 +12,12 @@ export async function register(el, trigger) {
   // Save root this for use inside methods API.
   const root = this;
 
+  // Setup a private object for keeping track of the hover state.
+  const _isHovered = {
+    el: false,
+    trigger: false
+  };
+
   // Setup the popover object.
   const entry = {
     id: el.id,
@@ -21,6 +27,24 @@ export async function register(el, trigger) {
     toggleDelayId: null,
     returnRef: null,
     settings: getPopoverConfig(el, this.settings),
+    set isHovered(event) {
+      // The state can either be true, false or undefined based on event type.
+      const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
+      // Guard in case the event type is not "mouseenter" or "mouseleave".
+      if (state == undefined) return;
+      // Store the hover state if the event target matches the el or trigger.
+      switch (event.target) {
+        case this.el:
+          _isHovered.el = state;
+          break;
+        case this.trigger:
+          _isHovered.trigger = state;
+          break;
+      }
+    },
+    get isHovered() {
+      return _isHovered.el || _isHovered.trigger;
+    },
     get isTooltip() {
       return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
     },
@@ -70,7 +94,7 @@ export async function register(el, trigger) {
   // Setup event listeners.
   registerEventListeners.call(this, entry);
 
-  // Teleport modal if a reference has been set.
+  // Teleport popover if a reference has been set.
   if (entry.getSetting("teleport")) {
     entry.teleport();
   }
@@ -100,7 +124,7 @@ export function registerEventListeners(entry) {
     if (eventType === "hover") {
       // Setup event listeners object for hover.
       entry.__eventListeners = [{
-        el: ["trigger"],
+        el: ["el", "trigger"],
         type: ["mouseenter", "focus"],
         listener: handleMouseEnter.bind(this, entry)
       }, {

@@ -20,6 +20,9 @@ export function handleTooltipClick(popover) {
 }
 
 export function handleMouseEnter(popover, event) {
+  // Store our hover state.
+  popover.isHovered = event;
+
   // Guard to ensure only focus-visible triggers the tooltip on focus events.
   if (event.type == "focus" && !popover.trigger.matches(":focus-visible")) {
     return;
@@ -27,9 +30,7 @@ export function handleMouseEnter(popover, event) {
 
   // Guard to ensure a popover is not already open for this trigger.
   const isExpanded = popover.trigger.getAttribute("aria-expanded");
-  if (isExpanded && isExpanded == "true") {
-    return;
-  }
+  if (isExpanded && isExpanded == "true") return;
 
   // Clear any existing toggle delays.
   if (popover.toggleDelayId) {
@@ -49,16 +50,25 @@ export function handleMouseEnter(popover, event) {
   }, delay);
 }
 
-export function handleMouseLeave(popover) {
-  // Clear any existing toggle delays.
-  if (popover.toggleDelayId) {
-    clearTimeout(popover.toggleDelayId);
-  }
+export function handleMouseLeave(popover, event) {
+  // Add a tiny delay to ensure hover isn't being moved to the popover element.
+  setTimeout(() => {
+    // Update our hover state.
+    popover.isHovered = event;
 
-  // Set the toggle delay before closing the popover.
-  popover.toggleDelayId = setTimeout(() => {
-    closeCheck.call(this, popover);
-  }, popover.settings["toggle-delay"]);
+    // Guard to prevent closing popover if either elements are being hovered.
+    if (popover.isHovered) return;
+  
+    // Clear any existing toggle delays.
+    if (popover.toggleDelayId) {
+      clearTimeout(popover.toggleDelayId);
+    }
+
+    // Set the toggle delay before closing the popover.
+    popover.toggleDelayId = setTimeout(() => {
+      closeCheck.call(this, popover);
+    }, popover.settings["toggle-delay"]);
+  }, 1);
 }
 
 export function handleKeydown(event) {
