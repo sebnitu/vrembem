@@ -7,7 +7,7 @@ $_offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 #{core.bem("popover")} {
   position: absolute;
   z-index: css.get("popover", "z-index", var.$z-index);
-  top: 100%;
+  top: 0;
   left: 0;
   display: block;
   width: css.get("popover", "width", var.$width);
