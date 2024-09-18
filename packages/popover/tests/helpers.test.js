@@ -8,7 +8,6 @@ import {
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
-import { describe, expect } from "vitest";
 
 let popover;
 
