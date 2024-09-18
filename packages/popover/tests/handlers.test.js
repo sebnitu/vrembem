@@ -140,7 +140,8 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     entry.open();
     expect(entry.state).toBe("opened");
 
-    handleMouseLeave.bind(popover, entry)();
+    const eventLeave = new Event("mouseleave");
+    handleMouseLeave.bind(popover, entry, eventLeave)();
     await delay(100); // Not sure why this is needed.
     expect(entry.state).toBe("closed");
   });
@@ -153,19 +154,20 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     const entry1 = popover.get("tooltip-1");
     const entry2 = popover.get("tooltip-2");
 
-    const event = new Event("mouseenter");
-    handleMouseEnter.bind(popover, entry1, event)();
-    handleMouseEnter.bind(popover, entry2, event)();
+    const eventEnter = new Event("mouseenter");
+    handleMouseEnter.bind(popover, entry1, eventEnter)();
+    handleMouseEnter.bind(popover, entry2, eventEnter)();
     await delay();
-    handleMouseLeave.bind(popover, entry1, event)();
+    handleMouseLeave.bind(popover, entry1, eventEnter)();
     await delay();
-    handleMouseEnter.bind(popover, entry2, event)();
+    handleMouseEnter.bind(popover, entry2, eventEnter)();
     await delay();
 
     expect(entry1.state).toBe("closed");
     expect(entry2.state).toBe("opened");
 
-    handleMouseLeave.bind(popover, entry2)();
+    const eventLeave = new Event("mouseleave");
+    handleMouseLeave.bind(popover, entry2, eventLeave)();
     await delay(100);
 
     expect(entry2.state).toBe("closed");
