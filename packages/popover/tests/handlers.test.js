@@ -2,6 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index";
 import { handleClick, handleMouseEnter, handleMouseLeave } from "../src/js/handlers";
+import { expect } from "vitest";
 
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
@@ -36,6 +37,10 @@ const hoverMarkup = `
     </div>
     <button aria-describedby="tooltip-2">...</button>
     <div id="tooltip-2" class="popover popover_tooltip">
+      ...
+    </div>
+    <button aria-controls="popover">...</button>
+    <div id="popover" class="popover" data-popover-config="{'event': 'hover'}">
       ...
     </div>
   </div>
@@ -125,7 +130,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     expect(entry.state).toBe("closed");
 
     const event = new Event("mouseenter");
-    handleMouseEnter.bind(popover, entry, event)();
+    entry.trigger.dispatchEvent(event);
     await delay();
     expect(entry.state).toBe("opened");
   });
@@ -137,12 +142,37 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
     const entry = popover.get("tooltip-2");
     expect(entry.isTooltip).toBe(true);
-    entry.open();
+    await entry.open();
     expect(entry.state).toBe("opened");
 
-    const eventLeave = new Event("mouseleave");
-    handleMouseLeave.bind(popover, entry, eventLeave)();
+    const event = new Event("mouseleave");
+    entry.el.dispatchEvent(event);
     await delay(100); // Not sure why this is needed.
+    expect(entry.state).toBe("closed");
+  });
+
+  it("should not close popover if either the popover element or trigger are hovered", async () => {
+    document.body.innerHTML = hoverMarkup;
+    const popover = new Popover();
+    await popover.mount();
+
+    const entry = popover.get("popover");
+    expect(entry.getSetting("event")).toBe("hover");
+
+    const eventEnter = new Event("mouseenter");
+    const eventLeave = new Event("mouseleave");
+
+    entry.trigger.dispatchEvent(eventEnter);
+    await delay();
+    expect(entry.state).toBe("opened");
+
+    entry.el.dispatchEvent(eventEnter);
+    entry.trigger.dispatchEvent(eventLeave);
+    await delay();
+    expect(entry.state).toBe("opened");
+
+    entry.el.dispatchEvent(eventLeave);
+    await delay(100);
     expect(entry.state).toBe("closed");
   });
 
