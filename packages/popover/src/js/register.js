@@ -1,9 +1,8 @@
-import { getConfig, teleport, toCamel, toKebab } from "@vrembem/core";
+import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
-import { getCustomProps } from "./helpers";
 
 export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
@@ -17,6 +16,17 @@ export async function register(el, trigger, config = {}) {
     el: false,
     trigger: false
   };
+
+  // An array of custom properties to search for.
+  const _customProps = [
+    "placement",
+    "event",
+    "offset",
+    "flip-padding",
+    "shift-padding",
+    "arrow-padding",
+    "toggle-delay",
+  ];
 
   // Setup the popover object.
   const entry = {
@@ -83,7 +93,7 @@ export async function register(el, trigger, config = {}) {
       return this.dataConfig;
     },
     refreshCustomProps() {
-      this.customProps = getCustomProps(el);
+      this.customProps = getCustomProps(el, "popover", _customProps);
       return this.customProps;
     },
     getSetting(key) {
