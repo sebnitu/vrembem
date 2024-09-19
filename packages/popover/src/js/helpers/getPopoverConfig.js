@@ -4,6 +4,9 @@ export function getPopoverConfig(el, settings) {
   // Get the computed styles of the element.
   const styles = getComputedStyle(el);
 
+  // Merge the data attribute config with the provided settings.
+  settings = { ...settings, ...getConfig(el, settings.dataConfig) };
+
   // Setup the custom properties object with default values.
   const customProps = {
     "placement": settings.placement,
@@ -28,10 +31,6 @@ export function getPopoverConfig(el, settings) {
     }
   }
 
-  // Build the config object by merging the custom props object with the config
-  // object that's returned by the config data attribute.
-  const config = { ...customProps, ...getConfig(el, settings.dataConfig) };
-
-  // Return the config obj.
-  return config;
+  // Merge and return a new config object using settings and custom props.
+  return { ...settings, ...customProps };
 }
