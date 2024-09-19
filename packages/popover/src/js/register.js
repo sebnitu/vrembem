@@ -1,14 +1,27 @@
-import { teleport } from "@vrembem/core";
+import { getConfig, teleport } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
-import { getPopoverConfig } from "./helpers";
+import { getCustomProps } from "./helpers";
 
-export async function register(el, trigger) {
+function toCamel(value) {
+  return value
+    .split("-")
+    .map((word, index) => index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+}
+
+function toKebab(value) {
+  return value
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+}
+
+export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
   deregister.call(this, el);
-
+  
   // Save root this for use inside methods API.
   const root = this;
 
@@ -26,7 +39,9 @@ export async function register(el, trigger) {
     trigger: trigger,
     toggleDelayId: null,
     returnRef: null,
-    settings: getPopoverConfig(el, this.settings),
+    settings: config,
+    dataConfig: {},
+    customProps: {},
     set isHovered(event) {
       // The state can either be true, false or undefined based on event type.
       const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
@@ -76,11 +91,47 @@ export async function register(el, trigger) {
         return false;
       }
     },
+    refreshDataConfig() {
+      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
+      return this.dataConfig;
+    },
+    refreshCustomProps() {
+      this.customProps = getCustomProps(el);
+      return this.customProps;
+    },
     getSetting(key) {
-      // TODO: Maybe store data attribute config and apply key check here on that store.
-      return (key in this.settings) ? this.settings[key] : root.settings[key];
+      // Store our key in both camel and kebab naming conventions.
+      const camel = toCamel(key);
+      const kebab = toKebab(key);
+
+      // Check the data config object.
+      if (camel in this.dataConfig) {
+        return this.dataConfig[camel];
+      }
+
+      // Check the custom properties object.
+      if (kebab in this.customProps) {
+        return this.customProps[kebab];
+      }
+
+      // Check the entry settings.
+      if (camel in this.settings) {
+        return this.settings[camel];
+      }
+
+      // Check the root settings.
+      if (camel in root.settings) {
+        return root.settings[camel];
+      }
+
+      // Throw error if setting does not exist.
+      throw(new Error(`Popover setting does not exist: ${key}`));
     }
   };
+
+  // Build the configuration objects.
+  entry.refreshDataConfig();
+  entry.refreshCustomProps();
 
   // Set role="tooltip" attribute if the popover is a tooltip.
   if (entry.isTooltip) {

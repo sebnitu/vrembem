@@ -9,7 +9,6 @@ import {
 } from "@floating-ui/dom";
 import {
   applyPositionStyle,
-  getPopoverConfig,
   getMiddlewareOptions,
   getPopover
 } from "./helpers";
@@ -27,11 +26,11 @@ export async function open(query) {
     popover.trigger.setAttribute("aria-expanded", "true");
   }
 
-  // Update popover settings object.
-  popover.settings = getPopoverConfig(popover.el, this.settings);
+  // Refresh the custom property data before opening the popover.
+  popover.refreshCustomProps();
 
   // Get the middleware options for floating ui.
-  const middlewareOptions = getMiddlewareOptions(popover.settings);
+  const middlewareOptions = getMiddlewareOptions(popover);
 
   // Get the arrow element.
   const arrowEl = popover.el.querySelector(middlewareOptions.arrow.element);

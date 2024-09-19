@@ -91,10 +91,10 @@ export default class Popover extends Collection {
     document.removeEventListener("keydown", this.#handleKeydown, false);
   }
 
-  register(query) {
+  register(query, config = {}) {
     const els = getPopoverElements.call(this, query);
     if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.popover, els.trigger);
+    return register.call(this, els.popover, els.trigger, config);
   }
 
   deregister(query) {
