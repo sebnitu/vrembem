@@ -29,14 +29,14 @@ export function handleMouseEnter(popover, event) {
     return;
   }
 
-  // Guard to ensure a popover is not already open for this trigger.
-  const isExpanded = popover.trigger.getAttribute("aria-expanded");
-  if (isExpanded && isExpanded == "true") return;
-
   // Clear any existing toggle delays.
   if (popover.toggleDelayId) {
     clearTimeout(popover.toggleDelayId);
   }
+
+  // Guard to ensure a popover is not already open for this trigger.
+  const isExpanded = popover.trigger.getAttribute("aria-expanded");
+  if (isExpanded && isExpanded == "true") return;
 
   // Remove the open delay if a hover popover is already active.
   const delay = (this.activeHover) ? 0 : getDelay(popover, 0);
