@@ -4,7 +4,7 @@ export function getCustomProps(el, module, array) {
   // Get the computed styles of the element.
   const styles = getComputedStyle(el);
 
-  // Setup the custom properties object with default values.
+  // Initialize the results object for storing custom property key/value pairs.
   const result = {};
 
   // Loop through the custom properties object.
@@ -13,12 +13,12 @@ export function getCustomProps(el, module, array) {
     const prefix = getPrefix();
     const value = styles.getPropertyValue(`--${prefix}${module}-${array[i]}`).trim();
 
-    // If a value was found, replace the default value in custom props object.
+    // If a value was found, add it to our results object.
     if (value) {
       result[array[i]] = value;
     }
   }
 
-  // Merge and return a new config object using settings and custom props.
+  // Return the config object.
   return result;
 }
