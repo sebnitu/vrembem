@@ -126,6 +126,11 @@ export async function register(el, trigger, config = {}) {
     }
   };
 
+  // If it's a tooltip set the event to hover.
+  if (entry.isTooltip) {
+    entry.settings.event = "hover";
+  }
+
   // Build the configuration objects.
   entry.refreshDataConfig();
   entry.refreshCustomProps();
