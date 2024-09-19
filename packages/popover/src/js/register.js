@@ -165,14 +165,14 @@ export async function register(el, trigger, config = {}) {
 
 export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
-  if (!entry.__eventListeners) {
+  if (!entry._eventListeners) {
     // Add event listeners based on event type.
     const eventType = entry.getSetting("event");
 
     // If the event type is hover.
     if (eventType === "hover") {
       // Setup event listeners object for hover.
-      entry.__eventListeners = [{
+      entry._eventListeners = [{
         el: ["el", "trigger"],
         type: ["mouseenter", "focus"],
         listener: handleMouseEnter.bind(this, entry)
@@ -187,7 +187,7 @@ export function registerEventListeners(entry) {
       }];
 
       // Loop through listeners and apply to the appropriate elements.
-      entry.__eventListeners.forEach((evObj) => {
+      entry._eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
             entry[el].addEventListener(type, evObj.listener, false);
@@ -199,14 +199,14 @@ export function registerEventListeners(entry) {
     // Else the event type is click.
     else {
       // Setup event listeners object for click.
-      entry.__eventListeners = [{
+      entry._eventListeners = [{
         el: ["trigger"],
         type: ["click"],
         listener: handleClick.bind(this, entry)
       }];
 
       // Loop through listeners and apply to the appropriate elements.
-      entry.__eventListeners.forEach((evObj) => {
+      entry._eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
             entry[el].addEventListener(type, evObj.listener, false);

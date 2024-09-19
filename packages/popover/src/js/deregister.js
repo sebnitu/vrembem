@@ -39,9 +39,9 @@ export async function deregister(obj) {
 
 export function deregisterEventListeners(entry) {
   // If event listeners have been setup.
-  if (entry.__eventListeners) {
+  if (entry._eventListeners) {
     // Loop through listeners and remove from the appropriate elements.
-    entry.__eventListeners.forEach((evObj) => {
+    entry._eventListeners.forEach((evObj) => {
       evObj.el.forEach((el) => {
         evObj.type.forEach((type) => {
           entry[el].removeEventListener(type, evObj.listener, false);
@@ -50,7 +50,7 @@ export function deregisterEventListeners(entry) {
     });
 
     // Remove eventListeners object from collection.
-    delete entry.__eventListeners;
+    delete entry._eventListeners;
   }
 
   // Return the entry object.

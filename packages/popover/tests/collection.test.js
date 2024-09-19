@@ -33,7 +33,7 @@ describe("register() & entry.deregister()", () => {
     const trigger = document.querySelector("#asdf-trigger");
     await popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
-    expect(popover.collection[0].__eventListeners.length).toBe(1);
+    expect(popover.collection[0]._eventListeners.length).toBe(1);
   });
 
   it("should register a popover using the provided ID", async () => {
@@ -45,7 +45,7 @@ describe("register() & entry.deregister()", () => {
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].trigger).toBe(trigger);
     expect(popover.collection[0].el).toBe(target);
-    expect(popover.collection[0].__eventListeners.length).toBe(1);
+    expect(popover.collection[0]._eventListeners.length).toBe(1);
     trigger.click();
     vi.advanceTimersByTime(500);
     expect(popover.collection[0].el).toHaveClass("is-active");
@@ -69,7 +69,7 @@ describe("register() & entry.deregister()", () => {
     const trigger = document.querySelector("#fdsa-trigger");
     await popover.register(trigger, false);
     expect(popover.collection.length).toBe(1);
-    expect(popover.collection[0].__eventListeners.length).toBe(3);
+    expect(popover.collection[0]._eventListeners.length).toBe(3);
   });
 
   it("should attach open and close methods to registered popover", async () => {
