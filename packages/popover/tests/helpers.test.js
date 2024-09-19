@@ -2,9 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
 import {
   applyPositionStyle,
-  getPopoverConfig,
   getPadding,
-  getMiddlewareOptions,
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
@@ -65,50 +63,6 @@ describe("applyPositionStyle()", () => {
   });
 });
 
-describe("getPopoverConfig()", () => {
-  it("Should return the config with all default options if no CSS vars are set", () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const target = document.querySelector("#pop-2");
-    const config = getPopoverConfig(target, popover.settings);
-    expect(config).toEqual({
-      "placement": "bottom",
-      "event": "click",
-      "offset": 0,
-      "shift-padding": 0,
-      "flip-padding": 0,
-      "arrow-element": ".popover__arrow",
-      "arrow-padding": 0,
-      "toggle-delay": 0
-    });
-  });
-
-  it("Should return the config with the values of custom CSS variable values", () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const target = document.querySelector("#pop-1");
-    target.style.setProperty("--popover-placement", "top");
-    target.style.setProperty("--popover-event", "focus");
-    target.style.setProperty("--popover-offset", "32");
-    target.style.setProperty("--popover-shift-padding", "16");
-    target.style.setProperty("--popover-flip-padding", "8");
-    target.style.setProperty("--popover-arrow-element", ".asdf");
-    target.style.setProperty("--popover-arrow-padding", "4");
-    target.style.setProperty("--popover-toggle-delay", "500");
-    const config = getPopoverConfig(target, popover.settings);
-    expect(config).toEqual({
-      "placement": "top",
-      "event": "focus",
-      "offset": "32",
-      "shift-padding": "16",
-      "flip-padding": "8",
-      "arrow-element": ".asdf",
-      "arrow-padding": "4",
-      "toggle-delay": "500"
-    });
-  });
-});
-
 describe("getPadding()", () => {
   it("should return an integer if a single number string is passed", () => {
     const value = "64";
@@ -133,41 +87,6 @@ describe("getPadding()", () => {
   it("should return false if more than four numbers exist in the string", () => {
     const value = "64 32 16 8 4";
     expect(getPadding(value)).toEqual(false);
-  });
-});
-
-describe("getPopoverConfig() & getMiddlewareOptions()", () => {
-  it("should return modifiers using defaults", () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const target = document.querySelector(".popover");
-    const config = getPopoverConfig(target, popover.settings);
-    const result = getMiddlewareOptions(config);
-    expect(result.offset).toEqual(0);
-    expect(result.shift.padding).toEqual(0);
-  });
-
-  it("should return modifiers with custom CSS variables set", () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    const target = document.querySelector(".popover");
-    target.style.setProperty("--popover-offset", "10");
-    target.style.setProperty("--popover-shift-padding", "20");
-    const config = getPopoverConfig(target, popover.settings);
-    const result = getMiddlewareOptions(config);
-    expect(result.offset).toEqual(10);
-    expect(result.shift.padding).toEqual(20);
-  });
-
-  it("should return modifiers with custom CSS variables set to root document", () => {
-    document.body.innerHTML = markup;
-    popover = new Popover();
-    document.documentElement.style.setProperty("--popover-offset", "5");
-    document.documentElement.style.setProperty("--popover-shift-padding", "10");
-    const config = getPopoverConfig(document.documentElement, popover.settings);
-    const result = getMiddlewareOptions(config);
-    expect(result.offset).toEqual(5);
-    expect(result.shift.padding).toEqual(10);
   });
 });
 

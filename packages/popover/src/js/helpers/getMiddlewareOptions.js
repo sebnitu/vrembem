@@ -2,7 +2,7 @@ import { getPadding } from "./getPadding";
 
 export function getMiddlewareOptions(popover) {  
   return {
-    offset: parseInt(popover.getSetting("offset"), 10),
+    offset: Number(popover.getSetting("offset")),
     flip: {
       padding: getPadding(popover.getSetting("flip-padding"))
     },

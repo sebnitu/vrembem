@@ -6,7 +6,7 @@ export function getPadding(value) {
 
   // Convert individual values to integers.
   array.forEach(function (item, index) {
-    array[index] = parseInt(item, 10);
+    array[index] = Number(item);
   });
 
   // Build the padding object based on the number of values passed.
