@@ -1,17 +1,17 @@
 import { getPadding } from "./getPadding";
 
-export function getMiddlewareOptions(options) {
+export function getMiddlewareOptions(popover) {  
   return {
-    offset: parseInt(options["offset"], 10),
+    offset: Number(popover.getSetting("offset")),
     flip: {
-      padding: getPadding(options["flip-padding"])
+      padding: getPadding(popover.getSetting("flip-padding"))
     },
     shift: {
-      padding: getPadding(options["shift-padding"])
+      padding: getPadding(popover.getSetting("shift-padding"))
     },
     arrow: {
-      element: options["arrow-element"],
-      padding: getPadding(options["arrow-padding"])
+      element: popover.getSetting("selectorArrow"),
+      padding: getPadding(popover.getSetting("arrow-padding"))
     }
   };
 }

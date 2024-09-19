@@ -1,14 +1,13 @@
-import { teleport } from "@vrembem/core";
+import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
-import { getPopoverConfig } from "./helpers";
 
-export async function register(el, trigger) {
+export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
   deregister.call(this, el);
-
+  
   // Save root this for use inside methods API.
   const root = this;
 
@@ -18,6 +17,17 @@ export async function register(el, trigger) {
     trigger: false
   };
 
+  // An array of custom properties to search for.
+  const _customProps = [
+    "placement",
+    "event",
+    "offset",
+    "flip-padding",
+    "shift-padding",
+    "arrow-padding",
+    "toggle-delay",
+  ];
+
   // Setup the popover object.
   const entry = {
     id: el.id,
@@ -26,7 +36,9 @@ export async function register(el, trigger) {
     trigger: trigger,
     toggleDelayId: null,
     returnRef: null,
-    settings: getPopoverConfig(el, this.settings),
+    settings: config,
+    dataConfig: {},
+    customProps: {},
     set isHovered(event) {
       // The state can either be true, false or undefined based on event type.
       const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
@@ -76,10 +88,52 @@ export async function register(el, trigger) {
         return false;
       }
     },
+    refreshDataConfig() {
+      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
+      return this.dataConfig;
+    },
+    refreshCustomProps() {
+      this.customProps = getCustomProps(el, "popover", _customProps);
+      return this.customProps;
+    },
     getSetting(key) {
-      return (key in this.settings) ? this.settings[key] : root.settings[key];
+      // Store our key in both camel and kebab naming conventions.
+      const camel = toCamel(key);
+      const kebab = toKebab(key);
+
+      // Check the data config object.
+      if (camel in this.dataConfig) {
+        return this.dataConfig[camel];
+      }
+
+      // Check the custom properties object.
+      if (kebab in this.customProps) {
+        return this.customProps[kebab];
+      }
+
+      // Check the entry settings.
+      if (camel in this.settings) {
+        return this.settings[camel];
+      }
+
+      // Check the root settings.
+      if (camel in root.settings) {
+        return root.settings[camel];
+      }
+
+      // Throw error if setting does not exist.
+      throw(new Error(`Popover setting does not exist: ${key}`));
     }
   };
+
+  // If it's a tooltip set the event to hover.
+  if (entry.isTooltip) {
+    entry.settings.event = "hover";
+  }
+
+  // Build the configuration objects.
+  entry.refreshDataConfig();
+  entry.refreshCustomProps();
 
   // Set role="tooltip" attribute if the popover is a tooltip.
   if (entry.isTooltip) {
@@ -116,14 +170,14 @@ export async function register(el, trigger) {
 
 export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
-  if (!entry.__eventListeners) {
+  if (!entry._eventListeners) {
     // Add event listeners based on event type.
-    const eventType = (entry.isTooltip) ? "hover" : entry.settings["event"];
+    const eventType = entry.getSetting("event");
 
     // If the event type is hover.
     if (eventType === "hover") {
       // Setup event listeners object for hover.
-      entry.__eventListeners = [{
+      entry._eventListeners = [{
         el: ["el", "trigger"],
         type: ["mouseenter", "focus"],
         listener: handleMouseEnter.bind(this, entry)
@@ -138,7 +192,7 @@ export function registerEventListeners(entry) {
       }];
 
       // Loop through listeners and apply to the appropriate elements.
-      entry.__eventListeners.forEach((evObj) => {
+      entry._eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
             entry[el].addEventListener(type, evObj.listener, false);
@@ -150,14 +204,14 @@ export function registerEventListeners(entry) {
     // Else the event type is click.
     else {
       // Setup event listeners object for click.
-      entry.__eventListeners = [{
+      entry._eventListeners = [{
         el: ["trigger"],
         type: ["click"],
         listener: handleClick.bind(this, entry)
       }];
 
       // Loop through listeners and apply to the appropriate elements.
-      entry.__eventListeners.forEach((evObj) => {
+      entry._eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
             entry[el].addEventListener(type, evObj.listener, false);
