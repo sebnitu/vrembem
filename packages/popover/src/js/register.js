@@ -1,22 +1,9 @@
-import { getConfig, teleport } from "@vrembem/core";
+import { getConfig, teleport, toCamel, toKebab } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
 import { getCustomProps } from "./helpers";
-
-function toCamel(value) {
-  return value
-    .split("-")
-    .map((word, index) => index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1))
-    .join("");
-}
-
-function toKebab(value) {
-  return value
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .toLowerCase();
-}
 
 export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.

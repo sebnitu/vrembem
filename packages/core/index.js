@@ -8,5 +8,7 @@ export * from "./src/js/getPrefix";
 export * from "./src/js/localStore";
 export * from "./src/js/teleport";
 export * from "./src/js/themeStore";
+export * from "./src/js/toCamel";
+export * from "./src/js/toKebab";
 export * from "./src/js/transition";
 export * from "./src/js/updateGlobalState";
