@@ -338,4 +338,12 @@ describe("getSetting()", () => {
     entry.settings["dataConfig"] = "asdf";
     expect(entry.getSetting("dataConfig")).toBe("asdf");
   });
+
+  it("should throw an error if searching for a setting that doesn't exist", async () => {
+    document.body.innerHTML = markup;
+    const popover = new Popover();
+    await popover.mount();
+    const entry = popover.get("asdf");
+    expect(() => entry.getSetting("asdf")).toThrow("Popover setting does not exist: asdf");
+  });
 });
