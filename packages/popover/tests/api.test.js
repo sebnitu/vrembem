@@ -307,7 +307,7 @@ describe("open() & close()", () => {
   });
 });
 
-describe("active() & activeTooltip()", () => {
+describe("active() & activeHover()", () => {
   it("should return the active popover when popover.active is called", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
@@ -317,13 +317,13 @@ describe("active() & activeTooltip()", () => {
     expect(popover.active).toBe(popover.get("asdf"));
   });
 
-  it("should return the active tooltip popover when popover.activeTooltip is called", async () => {
+  it("should return the active tooltip popover when popover.activeHover is called", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await popover.mount();
-    expect(popover.activeTooltip).toBe(undefined);
+    expect(popover.activeHover).toBe(undefined);
     await popover.get("tooltip").open();
-    expect(popover.activeTooltip).toBe(popover.get("tooltip"));
+    expect(popover.activeHover).toBe(popover.get("tooltip"));
   });
 });
 

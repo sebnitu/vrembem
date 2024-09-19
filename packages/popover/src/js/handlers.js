@@ -1,3 +1,4 @@
+import { getDelay } from "./helpers";
 import { closeAll, closeCheck } from "./close";
 
 export function handleClick(popover) {
@@ -37,11 +38,11 @@ export function handleMouseEnter(popover, event) {
     clearTimeout(popover.toggleDelayId);
   }
 
-  // Remove the open/close delay if a tooltip popover is already active.
-  const delay = (this.activeTooltip) ? 0 : popover.getSetting("toggle-delay");
+  // Remove the open delay if a hover popover is already active.
+  const delay = (this.activeHover) ? 0 : getDelay(popover, 0);
 
-  // Close any active tooltip popovers.
-  if (this.activeTooltip) this.activeTooltip.close();
+  // Close any active hover popovers.
+  if (this.activeHover) this.activeHover.close();
 
   // Set the toggle delay before opening the popover.
   popover.toggleDelayId = setTimeout(() => {
@@ -67,7 +68,7 @@ export function handleMouseLeave(popover, event) {
     // Set the toggle delay before closing the popover.
     popover.toggleDelayId = setTimeout(() => {
       closeCheck.call(this, popover);
-    }, popover.getSetting("toggle-delay"));
+    }, getDelay(popover, 1));
   }, 1);
 }
 

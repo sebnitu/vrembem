@@ -14,12 +14,11 @@
     // Load JS
     import Popover from "./index.js";
 
-    // Init and attach instance to window
-    const popover = new Popover({
-      teleport: ".popovers",
-      toggleDelay: 250
-    });
-    window.popover = await popover.mount();
+    // Instantiate the popover class and pass along the configuration.
+    const popover = new Popover({ teleport: ".popovers" });
+
+    // Mount and attach popover to the window object.
+    window["popover"] = await popover.mount();
 
     // Post message to console
     console.log("Popover instance has been attached to window:", popover);
@@ -86,7 +85,7 @@
         <div class="padding">Popover hover example 1</div>
       </div>
 
-      <div id="popover-hover-2" class="popover vb-theme-dark" data-popover-config="{'eventType': 'hover', 'toggleDelay': 500}">
+      <div id="popover-hover-2" class="popover vb-theme-dark" data-popover-config="{'event': 'hover', 'toggleDelay': [300, 600]}">
         <div class="padding">Popover hover example 2</div>
         <span class="popover__arrow"></span>
       </div>

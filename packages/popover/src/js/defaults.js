@@ -14,7 +14,7 @@ export default {
 
   // Feature settings
   eventListeners: true,
-  eventType: "click",
+  event: "click",
   placement: "bottom",
   teleport: null,
   teleportMethod: "append",

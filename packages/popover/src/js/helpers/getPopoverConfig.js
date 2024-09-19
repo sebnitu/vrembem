@@ -10,7 +10,7 @@ export function getPopoverConfig(el, settings) {
   // Setup the custom properties object with default values.
   const customProps = {
     "placement": settings.placement,
-    "event": settings.eventType,
+    "event": settings.event,
     "offset": 0,
     "flip-padding": 0,
     "shift-padding": 0,

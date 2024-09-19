@@ -24,8 +24,10 @@ export default class Popover extends Collection {
     return this.collection.find((popover) => popover.state == "opened");
   }
 
-  get activeTooltip() {
-    return this.collection.find((popover) => popover.state == "opened" && popover.isTooltip);
+  get activeHover() {
+    return this.collection.find((popover) => {
+      return popover.state == "opened" && popover.getSetting("event") == "hover";
+    });
   }
 
   async mount(options) {

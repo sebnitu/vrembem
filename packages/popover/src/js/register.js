@@ -77,6 +77,7 @@ export async function register(el, trigger) {
       }
     },
     getSetting(key) {
+      // TODO: Maybe store data attribute config and apply key check here on that store.
       return (key in this.settings) ? this.settings[key] : root.settings[key];
     }
   };
@@ -118,7 +119,7 @@ export function registerEventListeners(entry) {
   // If event listeners aren't already setup.
   if (!entry.__eventListeners) {
     // Add event listeners based on event type.
-    const eventType = (entry.isTooltip) ? "hover" : entry.settings["event"];
+    const eventType = entry.getSetting("event");
 
     // If the event type is hover.
     if (eventType === "hover") {
