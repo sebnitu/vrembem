@@ -31,7 +31,7 @@ describe("register() & entry.deregister()", () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     const trigger = document.querySelector("#asdf-trigger");
-    await popover.register(trigger, false);
+    await popover.register(trigger);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0]._eventListeners.length).toBe(1);
   });
@@ -67,7 +67,7 @@ describe("register() & entry.deregister()", () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     const trigger = document.querySelector("#fdsa-trigger");
-    await popover.register(trigger, false);
+    await popover.register(trigger);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0]._eventListeners.length).toBe(3);
   });
