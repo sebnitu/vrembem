@@ -2,6 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
 import {
   applyPositionStyle,
+  getDelay,
   getPadding,
   getPopoverID,
   getPopoverElements
@@ -28,6 +29,21 @@ const markup = `
 const simpleMarkup = `
   <div id="asdf"></div>
 `;
+
+const customPropertyMarkup = `
+  <button aria-controls="asdf">...</button>
+  <div id="asdf" class="popover" style="--vb-popover-toggle-delay: 200, 400;">
+    ...
+  </div>
+  <button aria-controls="fdsa">...</button>
+  <div id="fdsa" class="popover" style="--vb-popover-toggle-delay: 400 800;">
+    ...
+  </div>
+`;
+
+beforeAll(() => {
+  document.body.style.setProperty("--vb-prefix", "vb-");
+});
 
 afterEach(() => {
   if (popover && "unmount" in popover) {
@@ -171,5 +187,43 @@ describe("getPopoverElements()", () => {
     popover = new Popover();
     const func = getPopoverElements.call(popover, trigger);
     expect(func.error.message).toBe("Could not resolve the popover ID.");
+  });
+});
+
+describe("getDelay()", () => {
+  it("should return the appropriate delay based on the provided index", async () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({
+      toggleDelay: 200
+    });
+    const entry1 = await popover.register("pop-1");
+    expect(getDelay(entry1, 0)).toBe(200);
+
+    const entry2 = await popover.register("pop-1", {
+      toggleDelay: [300, 600]
+    });
+    expect(getDelay(entry2, 0)).toBe(300);
+    expect(getDelay(entry2, 1)).toBe(600);
+  });
+
+  it("should create an array if the provided delay is a string", async () => {
+    document.body.innerHTML = customPropertyMarkup;
+    popover = new Popover();
+    const entry1 = await popover.register("asdf");
+    expect(getDelay(entry1, 0)).toBe(200);
+    expect(getDelay(entry1, 1)).toBe(400);
+
+    const entry2 = await popover.register("fdsa");
+    expect(getDelay(entry2, 0)).toBe(400);
+    expect(getDelay(entry2, 1)).toBe(800);
+  });
+
+  it("should throw an error if the provided delay is not a number", async () => {
+    document.body.innerHTML = markup;
+    popover = new Popover({
+      toggleDelay: "asdf"
+    });
+    const entry1 = await popover.register("pop-1");
+    expect(() => getDelay(entry1, 0)).toThrow("Provided delay value is not a number: \"asdf\"");
   });
 });
