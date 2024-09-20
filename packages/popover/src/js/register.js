@@ -6,7 +6,7 @@ import { close } from "./close";
 
 export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
-  deregister.call(this, el);
+  await deregister.call(this, el);
   
   // Save root this for use inside methods API.
   const root = this;
