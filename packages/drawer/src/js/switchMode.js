@@ -21,7 +21,7 @@ async function toInline(entry) {
   entry.dialog.removeAttribute("aria-modal");
 
   // Update the global state.
-  updateGlobalState(false, { ...this.settings, ...entry.settings });
+  updateGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
   // Remove any focus traps.
   this.focusTrap.unmount();

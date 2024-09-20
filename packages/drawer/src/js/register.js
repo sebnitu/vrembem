@@ -1,4 +1,4 @@
-import { Breakpoint, getConfig } from "@vrembem/core";
+import { Breakpoint, getConfig, toCamel } from "@vrembem/core";
 
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -27,7 +27,8 @@ export async function register(el, config = {}) {
     el: el,
     dialog: null,
     trigger: null,
-    settings: { ...getConfig(el, this.settings.dataConfig), ...config },
+    settings: config,
+    dataConfig: {},
     inlineState: "indeterminate",
     get breakpoint() {
       return getBreakpoint.call(root, el);
@@ -96,10 +97,36 @@ export async function register(el, config = {}) {
       }
       return this;
     },
+    refreshDataConfig() {
+      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
+      return this.dataConfig;
+    },
     getSetting(key) {
-      return (key in this.settings) ? this.settings[key] : root.settings[key];
+      // Store our key in both camel and kebab naming conventions.
+      const camel = toCamel(key);
+
+      // Check the data config object.
+      if (camel in this.dataConfig) {
+        return this.dataConfig[camel];
+      }
+
+      // Check the entry settings.
+      if (camel in this.settings) {
+        return this.settings[camel];
+      }
+
+      // Check the root settings.
+      if (camel in root.settings) {
+        return root.settings[camel];
+      }
+
+      // Throw error if setting does not exist.
+      throw(new Error(`Modal setting does not exist: ${key}`));
     }
   };
+
+  // Build the configuration objects.
+  entry.refreshDataConfig();
 
   // Add entry to collection.
   this.collection.push(entry);

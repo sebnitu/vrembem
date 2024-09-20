@@ -23,7 +23,7 @@ export function stack(settings) {
     },
 
     updateGlobalState() {
-      updateGlobalState(this.top, settings);
+      updateGlobalState(this.top, settings.selectorInert, settings.selectorOverflow);
       this.updateIndex();
     },
 
