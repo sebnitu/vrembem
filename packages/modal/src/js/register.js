@@ -1,4 +1,4 @@
-import { getConfig, teleport, toCamel } from "@vrembem/core";
+import { teleport } from "@vrembem/core";
 
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -12,18 +12,17 @@ export async function register(el, config = {}) {
   // Save root this for use inside methods API.
   const root = this;
 
-  // Setup the modal object.
-  const entry = {
+  // Create the entry object.
+  const entry = Object.create(this.entry);
+
+  // Build on the entry object.
+  Object.assign(entry, {
     id: el.id,
     state: "closed",
     el: el,
     dialog: null,
-    get required() {
-      return this.dialog.matches(this.getSetting("selectorRequired"));
-    },
     returnRef: null,
     settings: config,
-    dataConfig: {},
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -53,34 +52,15 @@ export async function register(el, config = {}) {
         console.error("No return reference found:", this.el);
         return false;
       }
-    },
-    refreshDataConfig() {
-      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
-      return this.dataConfig;
-    },
-    getSetting(key) {
-      // Store our key in both camel and kebab naming conventions.
-      const camel = toCamel(key);
-
-      // Check the data config object.
-      if (camel in this.dataConfig) {
-        return this.dataConfig[camel];
-      }
-
-      // Check the entry settings.
-      if (camel in this.settings) {
-        return this.settings[camel];
-      }
-
-      // Check the root settings.
-      if (camel in root.settings) {
-        return root.settings[camel];
-      }
-
-      // Throw error if setting does not exist.
-      throw(new Error(`Modal setting does not exist: ${key}`));
     }
-  };
+  });
+
+  // Create getters and setters.
+  Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
+    get required() {
+      return this.dialog.matches(this.getSetting("selectorRequired"));
+    },
+  }));
 
   // Build the configuration objects.
   entry.refreshDataConfig();
