@@ -463,7 +463,7 @@ describe("getSetting()", () => {
     await modal.mount();
     const entry = modal.get("modal-default");
     expect(entry.id).toBe("modal-default");
-    expect(entry.getSetting("dataConfig")).toBe("modal-config");
+    expect(entry.getSetting("dataConfig")).toBe("config");
     entry.settings["dataConfig"] = "asdf";
     expect(entry.getSetting("dataConfig")).toBe("asdf");
   });

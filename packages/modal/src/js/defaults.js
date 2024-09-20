@@ -3,7 +3,7 @@ export default {
   dataOpen: "modal-open",
   dataClose: "modal-close",
   dataReplace: "modal-replace",
-  dataConfig: "modal-config",
+  dataConfig: "config",
 
   // Selectors
   selectorModal: ".modal",

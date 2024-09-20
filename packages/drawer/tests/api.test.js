@@ -38,10 +38,10 @@ const markupInitState = `
 `;
 
 const markupConfig = `
-  <div id="drawer-1" class="drawer" data-drawer-config="{ 'transition': false }">
+  <div id="drawer-1" class="drawer" data-config="{ 'transition': false }">
     <div class="drawer__dialog">...</div>
   </div>
-  <div id="drawer-2" class="drawer" data-drawer-config="{ 'selectorOverflow': 'main' }">
+  <div id="drawer-2" class="drawer" data-config="{ 'selectorOverflow': 'main' }">
     <div class="drawer__dialog">...</div>
   </div>
 `;
@@ -244,7 +244,7 @@ describe("register() & deregister()", () => {
   });
 });
 
-describe("data-drawer-config", () => {
+describe("data-config", () => {
   beforeAll(async () => {
     document.body.innerHTML = markupInitState;
     await drawer.unmount();
@@ -269,7 +269,7 @@ describe("getSetting()", () => {
     await drawer.mount();
     const entry = drawer.get("drawer-1");
     expect(entry.id).toBe("drawer-1");
-    expect(entry.getSetting("dataConfig")).toBe("drawer-config");
+    expect(entry.getSetting("dataConfig")).toBe("config");
     entry.settings["dataConfig"] = "asdf";
     expect(entry.getSetting("dataConfig")).toBe("asdf");
   });

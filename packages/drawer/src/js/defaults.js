@@ -4,7 +4,7 @@ export default {
   dataClose: "drawer-close",
   dataToggle: "drawer-toggle",
   dataBreakpoint: "drawer-breakpoint",
-  dataConfig: "drawer-config",
+  dataConfig: "config",
 
   // Selectors
   selectorDrawer: ".drawer",
