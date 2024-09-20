@@ -33,7 +33,8 @@ describe("mount() & unmount()", () => {
 
   it("running mount multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover({ autoMount: true });
+    const popover = new Popover();
+    await popover.mount();
     await popover.mount();
     expect(popover.collection.length).toBe(3);
   });
