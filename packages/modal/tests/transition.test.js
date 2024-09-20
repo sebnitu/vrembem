@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import Modal from "../index";
 
+vi.useFakeTimers();
+
 const markup = `
   <button data-modal-open="modal-default">Modal Default</button>
   <div id="modal-default" class="modal is-closed" style="--modal-transition-duration: 300ms">
@@ -25,10 +27,6 @@ const markupConfig = `
     <div class="modal__dialog">...</div>
   </div>
 `;
-
-beforeEach(() => {
-  vi.useFakeTimers();
-});
 
 test("should apply state classes on `click` and `transitionend` events", async () => {
   document.body.innerHTML = markup;
@@ -100,14 +98,14 @@ test("should open and close modal while using the data modal config attribute", 
   const modal = new Modal();
   await modal.mount();
 
-  const modalObj = modal.get("modal-default");
-  await modalObj.open();
-  expect(modalObj.el).toHaveClass("is-opened");
-  expect(modalObj.state).toBe("opened");
+  const entry = modal.get("modal-default");
+  await entry.open();
+  expect(entry.el).toHaveClass("is-opened");
+  expect(entry.state).toBe("opened");
 
-  await modalObj.close();
-  expect(modalObj.el).toHaveClass("is-closed");
-  expect(modalObj.state).toBe("closed");
+  await entry.close();
+  expect(entry.el).toHaveClass("is-closed");
+  expect(entry.state).toBe("closed");
 });
 
 test("should return modal config if set, otherwise should return global settings", async () => {

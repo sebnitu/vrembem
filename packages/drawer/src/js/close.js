@@ -1,15 +1,9 @@
 import { transition, updateGlobalState } from "@vrembem/core";
 import { updateFocusState, getDrawer } from "./helpers";
 
-export async function close(query, enableTransition, focus = true) {
+export async function close(query, transitionOverride, focus = true) {
   // Get the drawer from collection.
   const entry = getDrawer.call(this, query);
-
-  // Get the modal configuration.
-  const config = { ...this.settings, ...entry.settings };
-
-  // Add transition parameter to configuration.
-  if (enableTransition !== undefined) config.transition = enableTransition;
 
   // If drawer is opened or indeterminate.
   if (entry.state === "opened" || entry.state === "indeterminate") {
@@ -20,24 +14,24 @@ export async function close(query, enableTransition, focus = true) {
     document.activeElement.blur();
 
     // Run the close transition.
-    if (config.transition) {
+    if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
       await transition(entry.el, {
-        start: config.stateOpening,
-        finish: config.stateOpened
+        start: entry.getSetting("stateOpening"),
+        finish: entry.getSetting("stateOpened")
       }, {
-        start: config.stateClosing,
-        finish: config.stateClosed
-      }, config.transitionDuration);
+        start: entry.getSetting("stateClosing"),
+        finish: entry.getSetting("stateClosed")
+      }, entry.getSetting("transitionDuration"));
     } else {
-      entry.el.classList.add(config.stateClosed);
-      entry.el.classList.remove(config.stateOpened);
+      entry.el.classList.add(entry.getSetting("stateClosed"));
+      entry.el.classList.remove(entry.getSetting("stateOpened"));
     }
 
     // Update drawer state.
     entry.state = "closed";
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") updateGlobalState(false, config);
+    if (entry.mode === "modal") updateGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
@@ -45,7 +39,7 @@ export async function close(query, enableTransition, focus = true) {
     }
 
     // Dispatch custom closed event.
-    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "closed", {
+    entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
       detail: this,
       bubbles: true
     }));

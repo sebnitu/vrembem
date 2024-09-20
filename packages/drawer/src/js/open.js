@@ -1,15 +1,9 @@
 import { transition, updateGlobalState } from "@vrembem/core";
 import { updateFocusState, getDrawer } from "./helpers";
 
-export async function open(query, enableTransition, focus = true) {
+export async function open(query, transitionOverride, focus = true) {
   // Get the drawer from collection.
   const entry = getDrawer.call(this, query);
-
-  // Get the modal configuration.
-  const config = { ...this.settings, ...entry.settings };
-
-  // Add transition parameter to configuration.
-  if (enableTransition !== undefined) config.transition = enableTransition;
 
   // If drawer is closed or indeterminate.
   if (entry.state === "closed" || entry.state === "indeterminate") {
@@ -17,24 +11,24 @@ export async function open(query, enableTransition, focus = true) {
     entry.state = "opening";
 
     // Run the open transition.
-    if (config.transition) {
+    if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
       await transition(entry.el, {
-        start: config.stateClosing,
-        finish: config.stateClosed
+        start: entry.getSetting("stateClosing"),
+        finish: entry.getSetting("stateClosed")
       }, {
-        start: config.stateOpening,
-        finish: config.stateOpened
-      }, config.transitionDuration);
+        start: entry.getSetting("stateOpening"),
+        finish: entry.getSetting("stateOpened")
+      }, entry.getSetting("transitionDuration"));
     } else {
-      entry.el.classList.add(config.stateOpened);
-      entry.el.classList.remove(config.stateClosed);
+      entry.el.classList.add(entry.getSetting("stateOpened"));
+      entry.el.classList.remove(entry.getSetting("stateClosed"));
     }
 
     // Update drawer state.
     entry.state = "opened";
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") updateGlobalState(true, config);
+    if (entry.mode === "modal") updateGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
     // Set focus to the drawer element if the focus param is true.
     if (focus) {
@@ -42,7 +36,7 @@ export async function open(query, enableTransition, focus = true) {
     }
 
     // Dispatch custom opened event.
-    entry.el.dispatchEvent(new CustomEvent(config.customEventPrefix + "opened", {
+    entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
       detail: this,
       bubbles: true
     }));

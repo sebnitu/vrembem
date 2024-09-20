@@ -1,4 +1,4 @@
-import { getConfig, teleport } from "@vrembem/core";
+import { getConfig, teleport, toCamel } from "@vrembem/core";
 
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -22,7 +22,8 @@ export async function register(el, config = {}) {
       return this.dialog.matches(this.getSetting("selectorRequired"));
     },
     returnRef: null,
-    settings: { ...getConfig(el, this.settings.dataConfig), ...config },
+    settings: config,
+    dataConfig: {},
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -53,10 +54,36 @@ export async function register(el, config = {}) {
         return false;
       }
     },
+    refreshDataConfig() {
+      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
+      return this.dataConfig;
+    },
     getSetting(key) {
-      return (key in this.settings) ? this.settings[key] : root.settings[key];
+      // Store our key in both camel and kebab naming conventions.
+      const camel = toCamel(key);
+
+      // Check the data config object.
+      if (camel in this.dataConfig) {
+        return this.dataConfig[camel];
+      }
+
+      // Check the entry settings.
+      if (camel in this.settings) {
+        return this.settings[camel];
+      }
+
+      // Check the root settings.
+      if (camel in root.settings) {
+        return root.settings[camel];
+      }
+
+      // Throw error if setting does not exist.
+      throw(new Error(`Modal setting does not exist: ${key}`));
     }
   };
+
+  // Build the configuration objects.
+  entry.refreshDataConfig();
 
   // Set the dialog element. If none is found, use the root element.
   const dialog = el.querySelector(entry.getSetting("selectorDialog"));
@@ -84,15 +111,15 @@ export async function register(el, config = {}) {
   this.collection.push(entry);
 
   // Setup initial state.
-  if (entry.el.classList.contains(this.settings.stateOpened)) {
+  if (entry.el.classList.contains(entry.getSetting("stateOpened"))) {
     // Open entry with transitions disabled.
     await entry.open(false);
   } else {
     // Remove transition state classes.
-    entry.el.classList.remove(this.settings.stateOpening);
-    entry.el.classList.remove(this.settings.stateClosing);
+    entry.el.classList.remove(entry.getSetting("stateOpening"));
+    entry.el.classList.remove(entry.getSetting("stateClosing"));
     // Add closed state class.
-    entry.el.classList.add(this.settings.stateClosed);
+    entry.el.classList.add(entry.getSetting("stateClosed"));
   }
 
   // Return the registered entry.
