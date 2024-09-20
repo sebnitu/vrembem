@@ -1,5 +1,3 @@
-import { teleport } from "@vrembem/core";
-
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
@@ -17,11 +15,10 @@ export async function register(el, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
+    el: el,
     id: el.id,
     state: "closed",
-    el: el,
     dialog: null,
-    returnRef: null,
     settings: config,
     open(transition, focus) {
       return open.call(root, this, transition, focus);
@@ -34,24 +31,6 @@ export async function register(el, config = {}) {
     },
     deregister() {
       return deregister.call(root, this);
-    },
-    teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-      if (!this.returnRef) {
-        this.returnRef = teleport(this.el, ref, method);
-        return this.el;
-      } else {
-        console.error("Element has already been teleported:", this.el);
-        return false;
-      }
-    },
-    teleportReturn() {
-      if (this.returnRef) {
-        this.returnRef = teleport(this.el, this.returnRef);
-        return this.el;
-      } else {
-        console.error("No return reference found:", this.el);
-        return false;
-      }
     }
   });
 

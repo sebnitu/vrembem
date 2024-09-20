@@ -1,4 +1,4 @@
-import { getConfig, getCustomProps, toCamel, toKebab } from "@vrembem/core";
+import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
 
 export class Collection {
   constructor() {
@@ -11,6 +11,7 @@ export class Collection {
       dataConfig: {},
       customProps: {},
       customPropsArray: [],
+      returnRef: null,
       refreshDataConfig() {
         this.dataConfig = getConfig(this.el, this.getSetting("dataConfig"));
         return this.dataConfig;
@@ -18,6 +19,24 @@ export class Collection {
       refreshCustomProps() {
         this.customProps = getCustomProps(this.el, root.module, this.customPropsArray);
         return this.customProps;
+      },
+      teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
+        if (!this.returnRef) {
+          this.returnRef = teleport(this.el, ref, method);
+          return this.el;
+        } else {
+          console.error("Element has already been teleported:", this.el);
+          return false;
+        }
+      },
+      teleportReturn() {
+        if (this.returnRef) {
+          this.returnRef = teleport(this.el, this.returnRef);
+          return this.el;
+        } else {
+          console.error("No return reference found:", this.el);
+          return false;
+        }
       },
       getSetting(key) {
         // Store our key in both camel and kebab naming conventions.

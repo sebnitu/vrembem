@@ -26,8 +26,8 @@ export async function register(el, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
-    id: el.id,
     el: el,
+    id: el.id,
     dialog: null,
     trigger: null,
     settings: config,
@@ -108,6 +108,11 @@ export async function register(el, config = {}) {
   // Build the configuration objects.
   entry.refreshDataConfig();
 
+  // Teleport drawer if a reference has been set.
+  if (entry.getSetting("teleport")) {
+    entry.teleport();
+  }
+
   // Add entry to collection.
   this.collection.push(entry);
 
@@ -121,7 +126,7 @@ export async function register(el, config = {}) {
   }
 
   // Set both the initial state and inline state.
-  await applyInitialState(entry);
+  applyInitialState(entry);
 
   // Set the inline state.
   entry.inlineState = entry.state;

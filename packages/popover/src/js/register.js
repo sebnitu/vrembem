@@ -1,4 +1,3 @@
-import { teleport } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -33,12 +32,11 @@ export async function register(el, trigger, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
+    el: el,
     id: el.id,
     state: "closed",
-    el: el,
     trigger: trigger,
     toggleDelayId: null,
-    returnRef: null,
     settings: config,
     customPropsArray: _customProps,
     cleanup: () => {},
@@ -50,24 +48,6 @@ export async function register(el, trigger, config = {}) {
     },
     deregister() {
       return deregister.call(root, this);
-    },
-    teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-      if (!this.returnRef) {
-        this.returnRef = teleport(this.el, ref, method);
-        return this.el;
-      } else {
-        console.error("Element has already been teleported:", this.el);
-        return false;
-      }
-    },
-    teleportReturn() {
-      if (this.returnRef) {
-        this.returnRef = teleport(this.el, this.returnRef);
-        return this.el;
-      } else {
-        console.error("No return reference found:", this.el);
-        return false;
-      }
     }
   });
 
