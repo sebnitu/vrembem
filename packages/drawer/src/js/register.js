@@ -121,7 +121,7 @@ export async function register(el, config = {}) {
       }
 
       // Throw error if setting does not exist.
-      throw(new Error(`Modal setting does not exist: ${key}`));
+      throw(new Error(`Drawer setting does not exist: ${key}`));
     }
   };
 
