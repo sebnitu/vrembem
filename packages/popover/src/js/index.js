@@ -17,8 +17,6 @@ export default class Popover extends Collection {
     this.settings = { ...this.defaults, ...options };
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
-    // TODO: Find a better solution for auto mounting and using await, maybe remove?
-    this.autoMount = (this.settings.autoMount) ? this.mount() : Promise.resolve();
   }
 
   get active() {

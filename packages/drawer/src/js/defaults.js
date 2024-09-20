@@ -1,6 +1,4 @@
 export default {
-  autoMount: false,
-
   // Data attributes
   dataOpen: "drawer-open",
   dataClose: "drawer-close",

@@ -49,7 +49,6 @@ const markupConfig = `
 document.body.innerHTML = markup;
 
 const drawer = new Drawer({ transitionDuration: 300 });
-const drawerAuto = new Drawer({ autoMount: true, transitionDuration: 300 });
 
 describe("mount() & unmount()", () => {
   it("should correctly register all drawers on mount()", async () => {
@@ -69,10 +68,6 @@ describe("mount() & unmount()", () => {
     expect(drawer.settings.eventListeners).toBe(false);
     await drawer.unmount();
     expect(drawer.collection.length).toBe(0);
-  });
-
-  it("should automatically mount when autoMount option set to true", () => {
-    expect(drawerAuto.collection.length).toBe(2);
   });
 });
 

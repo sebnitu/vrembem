@@ -23,7 +23,6 @@ export default class Drawer extends Collection {
 
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
-    if (this.settings.autoMount) this.mount();
   }
 
   get activeModal() {

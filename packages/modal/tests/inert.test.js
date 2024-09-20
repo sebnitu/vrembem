@@ -14,12 +14,12 @@ const markup = `
 describe("when selectorInert is set:", () => {
   let main, el;
 
-  beforeAll(() => {
+  beforeAll(async () => {
     document.body.innerHTML = markup;
-    new Modal({
-      autoMount: true,
+    const modal = new Modal({
       selectorInert: "main"
     });
+    await modal.mount();
     main = document.querySelector("main");
     el = document.querySelector("#modal-default");
     el.style.setProperty("--modal-transition-duration", "0.3s");

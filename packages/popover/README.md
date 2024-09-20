@@ -20,5 +20,6 @@ npm install @vrembem/popover
 
 ```js
 import Popover from '@vrembem/popover';
-const popover = new Popover({ autoMount: true });
+const popover = new Popover();
+await popover.mount();
 ```

@@ -1,6 +1,4 @@
 export default {
-  autoMount: false,
-
   // Data attributes
   dataOpen: "modal-open",
   dataClose: "modal-close",
