@@ -328,7 +328,7 @@ describe("getSetting()", () => {
     await popover.mount();
     const entry = popover.get("asdf");
     expect(entry.id).toBe("asdf");
-    expect(entry.getSetting("dataConfig")).toBe("popover-config");
+    expect(entry.getSetting("dataConfig")).toBe("config");
     entry.settings["dataConfig"] = "asdf";
     expect(entry.getSetting("dataConfig")).toBe("asdf");
   });

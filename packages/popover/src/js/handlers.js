@@ -59,7 +59,7 @@ export function handleMouseLeave(popover, event) {
 
     // Guard to prevent closing popover if either elements are being hovered.
     if (popover.isHovered) return;
-  
+
     // Clear any existing toggle delays.
     if (popover.toggleDelayId) {
       clearTimeout(popover.toggleDelayId);

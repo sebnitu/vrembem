@@ -39,7 +39,7 @@ const hoverMarkup = `
       ...
     </div>
     <button aria-controls="popover">...</button>
-    <div id="popover" class="popover" data-popover-config="{'event': 'hover'}">
+    <div id="popover" class="popover" data-config="{'event': 'hover'}">
       ...
     </div>
   </div>

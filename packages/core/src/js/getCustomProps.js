@@ -11,7 +11,7 @@ export function getCustomProps(el, module, array) {
   for (let i = 0; i < array.length; i++) {
     // Get the custom property value.
     const prefix = getPrefix();
-    const value = styles.getPropertyValue(`--${prefix}${module}-${array[i]}`).trim();
+    const value = styles.getPropertyValue(`--${prefix}${module.toLowerCase()}-${array[i]}`).trim();
 
     // If a value was found, add it to our results object.
     if (value) {

@@ -1,4 +1,4 @@
-import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
+import { teleport } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -28,8 +28,11 @@ export async function register(el, trigger, config = {}) {
     "toggle-delay",
   ];
 
-  // Setup the popover object.
-  const entry = {
+  // Create the entry object.
+  const entry = Object.create(this.entry);
+
+  // Build on the entry object.
+  Object.assign(entry, {
     id: el.id,
     state: "closed",
     el: el,
@@ -37,29 +40,7 @@ export async function register(el, trigger, config = {}) {
     toggleDelayId: null,
     returnRef: null,
     settings: config,
-    dataConfig: {},
-    customProps: {},
-    set isHovered(event) {
-      // The state can either be true, false or undefined based on event type.
-      const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
-      // Guard in case the event type is not "mouseenter" or "mouseleave".
-      if (state == undefined) return;
-      // Store the hover state if the event target matches the el or trigger.
-      switch (event.target) {
-        case this.el:
-          _isHovered.el = state;
-          break;
-        case this.trigger:
-          _isHovered.trigger = state;
-          break;
-      }
-    },
-    get isHovered() {
-      return _isHovered.el || _isHovered.trigger;
-    },
-    get isTooltip() {
-      return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
-    },
+    customPropsArray: _customProps,
     cleanup: () => {},
     open() {
       return open.call(root, this);
@@ -87,44 +68,33 @@ export async function register(el, trigger, config = {}) {
         console.error("No return reference found:", this.el);
         return false;
       }
-    },
-    refreshDataConfig() {
-      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
-      return this.dataConfig;
-    },
-    refreshCustomProps() {
-      this.customProps = getCustomProps(el, "popover", _customProps);
-      return this.customProps;
-    },
-    getSetting(key) {
-      // Store our key in both camel and kebab naming conventions.
-      const camel = toCamel(key);
-      const kebab = toKebab(key);
-
-      // Check the data config object.
-      if (camel in this.dataConfig) {
-        return this.dataConfig[camel];
-      }
-
-      // Check the custom properties object.
-      if (kebab in this.customProps) {
-        return this.customProps[kebab];
-      }
-
-      // Check the entry settings.
-      if (camel in this.settings) {
-        return this.settings[camel];
-      }
-
-      // Check the root settings.
-      if (camel in root.settings) {
-        return root.settings[camel];
-      }
-
-      // Throw error if setting does not exist.
-      throw(new Error(`Popover setting does not exist: ${key}`));
     }
-  };
+  });
+
+  // Create getters and setters.
+  Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
+    set isHovered(event) {
+      // The state can either be true, false or undefined based on event type.
+      const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
+      // Guard in case the event type is not "mouseenter" or "mouseleave".
+      if (state == undefined) return;
+      // Store the hover state if the event target matches the el or trigger.
+      switch (event.target) {
+        case this.el:
+          _isHovered.el = state;
+          break;
+        case this.trigger:
+          _isHovered.trigger = state;
+          break;
+      }
+    },
+    get isHovered() {
+      return _isHovered.el || _isHovered.trigger;
+    },
+    get isTooltip() {
+      return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
+    }
+  }));
 
   // If it's a tooltip set the event to hover.
   if (entry.isTooltip) {

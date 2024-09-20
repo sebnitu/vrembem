@@ -1,6 +1,6 @@
 export default {
   // Data attributes
-  dataConfig: "popover-config",
+  dataConfig: "config",
 
   // Selectors
   selectorPopover: ".popover",
