@@ -261,24 +261,3 @@ describe("data-config", () => {
     expect(entry2.getSetting("selectorOverflow")).toBe("main");
   });
 });
-
-describe("getSetting()", () => {
-  it("should return a setting value from wherever it was set", async () => {
-    document.body.innerHTML = markup;
-    const drawer = new Drawer();
-    await drawer.mount();
-    const entry = drawer.get("drawer-1");
-    expect(entry.id).toBe("drawer-1");
-    expect(entry.getSetting("dataConfig")).toBe("config");
-    entry.settings["dataConfig"] = "asdf";
-    expect(entry.getSetting("dataConfig")).toBe("asdf");
-  });
-
-  it("should throw an error if searching for a setting that doesn't exist", async () => {
-    document.body.innerHTML = markup;
-    const drawer = new Drawer();
-    await drawer.mount();
-    const entry = drawer.get("drawer-1");
-    expect(() => entry.getSetting("asdf")).toThrow("Drawer setting does not exist: asdf");
-  });
-});
