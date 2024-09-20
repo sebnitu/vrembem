@@ -20,5 +20,6 @@ npm install @vrembem/drawer
 
 ```js
 import Drawer from '@vrembem/drawer';
-const drawer = new Drawer({ autoMount: true });
+const drawer = new Drawer();
+await drawer.mount();
 ```

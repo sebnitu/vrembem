@@ -17,21 +17,7 @@ const markup = `
 `;
 
 describe("mount() & unmount()", () => {
-  it("should auto mount if autoMount is set to true", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover({ autoMount: true });
-    await popover.autoMount;
-    expect(popover.collection.length).toBe(3);
-  });
-
   it("should mount the popover module when mount is run", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.collection.length).toBe(3);
-  });
-
-  it("should auto mount the popover module autoMount is set to true", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await popover.mount();

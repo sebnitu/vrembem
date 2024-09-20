@@ -126,12 +126,6 @@ const modal = new Modal();
 modal.mount();
 ```
 
-Alternatively, you can use the `autoMount` option to auto mount and optionally omit saving the instance to a variable if the returned API won't be needed later.
-
-```js
-new Modal({ autoMount: true });
-```
-
 #### HTML
 
 Include the component's markup into your project. Use the [online docs](https://vrembem.com) for information and code examples such as markup and available modifiers for each component.
@@ -175,11 +169,13 @@ Via your project's JavaScript manifest file:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = new vb.Drawer({ autoMount: true });
+const drawer = new vb.Drawer();
+await drawer.mount();
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = new Drawer({ autoMount: true });
+const drawer = new Drawer();
+await drawer.mount();
 ```
 
 ## Copyright and License

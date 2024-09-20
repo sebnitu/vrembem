@@ -58,11 +58,13 @@ Import and mount the components you'll need:
 ```js
 // Import all under the vb namespace
 import * as vb from 'vrembem';
-const drawer = new vb.Drawer({ autoMount: true });
+const drawer = new vb.Drawer();
+await drawer.mount();
 
 // Or import individual components
 import { Drawer } from 'vrembem';
-const drawer = new Drawer({ autoMount: true });
+const drawer = new Drawer();
+await drawer.mount();
 ```
 
 ## Markup

@@ -55,11 +55,14 @@
     console.log("themeStore", themeStore);
 
     /**
-     * Initialize Vrembem components
+     * Instantiate and mount Vrembem components
      */
     
-    const modal = await new vb.Modal({ autoMount: true });
-    const drawer = await new vb.Drawer({ autoMount: true });
+    const modal = new vb.Modal();
+    await modal.mount();
+
+    const drawer = new vb.Drawer();
+    await drawer.mount();
 
     window["modal"] = modal;
     window["drawer"] = drawer;

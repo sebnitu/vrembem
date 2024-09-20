@@ -20,5 +20,6 @@ npm install @vrembem/modal
 
 ```js
 import Modal from '@vrembem/modal';
-const modal = new Modal({ autoMount: true });
+const modal = new Modal();
+await modal.mount();
 ```
