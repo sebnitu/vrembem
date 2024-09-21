@@ -31,7 +31,7 @@ export default {
   storeKey: "VB:DrawerState",
   setTabindex: true,
   teleport: null,
-  teleportMethod: "append",
+  teleportMethod: "prepend",
   transition: true,
   transitionDuration: "drawer-transition-duration"
 };
