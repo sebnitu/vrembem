@@ -39,7 +39,7 @@ test("should close when root modal (screen) is clicked", async () => {
   const dialog = document.querySelector(".modal__dialog");
   const btnOpen = document.querySelector("[data-modal-open]");
 
-  expect(modal.get("modal-default").required).toBe(false);
+  expect(modal.get("modal-default").isRequired).toBe(false);
 
   btnOpen.click();
   await vi.runAllTimers();
@@ -124,7 +124,7 @@ test("should prevent escape or screen click closing modal if required", async ()
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
 
-  expect(modal.get("modal-default").required).toBe(true);
+  expect(modal.get("modal-default").isRequired).toBe(true);
 
   btnOpen.click();
   await vi.runAllTimers();

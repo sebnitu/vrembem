@@ -455,24 +455,3 @@ describe("closeAll()", () => {
     expect(document.activeElement).toBe(document.body);
   });
 });
-
-describe("getSetting()", () => {
-  it("should return a setting value from wherever it was set", async () => {
-    document.body.innerHTML = markup;
-    const modal = new Modal();
-    await modal.mount();
-    const entry = modal.get("modal-default");
-    expect(entry.id).toBe("modal-default");
-    expect(entry.getSetting("dataConfig")).toBe("modal-config");
-    entry.settings["dataConfig"] = "asdf";
-    expect(entry.getSetting("dataConfig")).toBe("asdf");
-  });
-
-  it("should throw an error if searching for a setting that doesn't exist", async () => {
-    document.body.innerHTML = markup;
-    const modal = new Modal();
-    await modal.mount();
-    const entry = modal.get("modal-default");
-    expect(() => entry.getSetting("asdf")).toThrow("Modal setting does not exist: asdf");
-  });
-});

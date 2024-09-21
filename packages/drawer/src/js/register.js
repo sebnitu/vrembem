@@ -1,4 +1,4 @@
-import { Breakpoint, getConfig, toCamel } from "@vrembem/core";
+import { Breakpoint } from "@vrembem/core";
 
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -21,15 +21,47 @@ export async function register(el, config = {}) {
   // Setup private variables and their default values if any.
   let _mode, _state = "indeterminate";
 
-  // Setup the drawer object.
-  const entry = {
-    id: el.id,
-    el: el,
+  // Create the entry object.
+  const entry = this.createEntry(el);
+
+  // Build on the entry object.
+  Object.assign(entry, {
     dialog: null,
     trigger: null,
-    settings: config,
-    dataConfig: {},
     inlineState: "indeterminate",
+    open(transition, focus) {
+      return open.call(root, this, transition, focus);
+    },
+    close(transition, focus) {
+      return close.call(root, this, transition, focus);
+    },
+    toggle(transition, focus) {
+      return toggle.call(root, this, transition, focus);
+    },
+    deregister() {
+      return deregister.call(root, this);
+    },
+    mountBreakpoint() {
+      const value = this.breakpoint;
+      const handler = this.handleBreakpoint.bind(this);
+      breakpoint.mount(value, handler);
+      return this;
+    },
+    unmountBreakpoint() {
+      breakpoint.unmount();
+      return this;
+    },
+    handleBreakpoint(event) {
+      const bpMode = (event.matches) ? "inline" : "modal";
+      if (this.mode != bpMode) {
+        this.mode = bpMode;
+      }
+      return this;
+    }
+  });
+
+  // Create getters and setters.
+  Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
     get breakpoint() {
       return getBreakpoint.call(root, el);
     },
@@ -68,65 +100,16 @@ export async function register(el, config = {}) {
         this.el.classList.remove(this.getSetting("stateClosing"));
       }
     },
-    open(transition, focus) {
-      return open.call(root, this, transition, focus);
-    },
-    close(transition, focus) {
-      return close.call(root, this, transition, focus);
-    },
-    toggle(transition, focus) {
-      return toggle.call(root, this, transition, focus);
-    },
-    deregister() {
-      return deregister.call(root, this);
-    },
-    mountBreakpoint() {
-      const value = this.breakpoint;
-      const handler = this.handleBreakpoint.bind(this);
-      breakpoint.mount(value, handler);
-      return this;
-    },
-    unmountBreakpoint() {
-      breakpoint.unmount();
-      return this;
-    },
-    handleBreakpoint(event) {
-      const bpMode = (event.matches) ? "inline" : "modal";
-      if (this.mode != bpMode) {
-        this.mode = bpMode;
-      }
-      return this;
-    },
-    refreshDataConfig() {
-      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
-      return this.dataConfig;
-    },
-    getSetting(key) {
-      // Store our key in both camel and kebab naming conventions.
-      const camel = toCamel(key);
+  }));
 
-      // Check the data config object.
-      if (camel in this.dataConfig) {
-        return this.dataConfig[camel];
-      }
+  // Build the setting objects.
+  entry.applySettings(config);
+  entry.getDataConfig();
 
-      // Check the entry settings.
-      if (camel in this.settings) {
-        return this.settings[camel];
-      }
-
-      // Check the root settings.
-      if (camel in root.settings) {
-        return root.settings[camel];
-      }
-
-      // Throw error if setting does not exist.
-      throw(new Error(`Drawer setting does not exist: ${key}`));
-    }
-  };
-
-  // Build the configuration objects.
-  entry.refreshDataConfig();
+  // Teleport drawer if a reference has been set.
+  if (entry.getSetting("teleport")) {
+    entry.teleport();
+  }
 
   // Add entry to collection.
   this.collection.push(entry);
@@ -141,7 +124,7 @@ export async function register(el, config = {}) {
   }
 
   // Set both the initial state and inline state.
-  await applyInitialState(entry);
+  applyInitialState(entry);
 
   // Set the inline state.
   entry.inlineState = entry.state;

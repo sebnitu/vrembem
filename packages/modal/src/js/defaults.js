@@ -3,7 +3,6 @@ export default {
   dataOpen: "modal-open",
   dataClose: "modal-close",
   dataReplace: "modal-replace",
-  dataConfig: "modal-config",
 
   // Selectors
   selectorModal: ".modal",
@@ -23,9 +22,9 @@ export default {
   // Feature settings
   customEventPrefix: "modal:",
   eventListeners: true,
+  setTabindex: true,
   teleport: null,
   teleportMethod: "append",
-  setTabindex: true,
   transition: true,
   transitionDuration: "modal-transition-duration"
 };

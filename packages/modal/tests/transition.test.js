@@ -23,7 +23,7 @@ const markupCustomState = `
 
 const markupConfig = `
   <button data-modal-open="modal-default">...</button>
-  <div id="modal-default" class="modal" data-modal-config="{ 'transition': false }">
+  <div id="modal-default" class="modal" data-config="{ 'transition': false }">
     <div class="modal__dialog">...</div>
   </div>
 `;

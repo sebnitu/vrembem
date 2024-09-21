@@ -4,7 +4,6 @@ export default {
   dataClose: "drawer-close",
   dataToggle: "drawer-toggle",
   dataBreakpoint: "drawer-breakpoint",
-  dataConfig: "drawer-config",
 
   // Selectors
   selectorDrawer: ".drawer",
@@ -30,6 +29,8 @@ export default {
   store: true,
   storeKey: "VB:DrawerState",
   setTabindex: true,
+  teleport: null,
+  teleportMethod: "prepend",
   transition: true,
   transitionDuration: "drawer-transition-duration"
 };

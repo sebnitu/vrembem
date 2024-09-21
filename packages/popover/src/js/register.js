@@ -1,4 +1,3 @@
-import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
 import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
 import { deregister } from "./deregister";
 import { open } from "./open";
@@ -18,7 +17,7 @@ export async function register(el, trigger, config = {}) {
   };
 
   // An array of custom properties to search for.
-  const _customProps = [
+  const _customPropKeys = [
     "placement",
     "event",
     "offset",
@@ -28,17 +27,28 @@ export async function register(el, trigger, config = {}) {
     "toggle-delay",
   ];
 
-  // Setup the popover object.
-  const entry = {
-    id: el.id,
+  // Create the entry object.
+  const entry = this.createEntry(el, { customPropKeys: _customPropKeys });
+
+  // Build on the entry object.
+  Object.assign(entry, {
     state: "closed",
-    el: el,
     trigger: trigger,
     toggleDelayId: null,
-    returnRef: null,
-    settings: config,
-    dataConfig: {},
-    customProps: {},
+    cleanup: () => {},
+    open() {
+      return open.call(root, this);
+    },
+    close() {
+      return close.call(root, this);
+    },
+    deregister() {
+      return deregister.call(root, this);
+    }
+  });
+
+  // Create getters and setters.
+  Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
     set isHovered(event) {
       // The state can either be true, false or undefined based on event type.
       const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
@@ -59,81 +69,18 @@ export async function register(el, trigger, config = {}) {
     },
     get isTooltip() {
       return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
-    },
-    cleanup: () => {},
-    open() {
-      return open.call(root, this);
-    },
-    close() {
-      return close.call(root, this);
-    },
-    deregister() {
-      return deregister.call(root, this);
-    },
-    teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-      if (!this.returnRef) {
-        this.returnRef = teleport(this.el, ref, method);
-        return this.el;
-      } else {
-        console.error("Element has already been teleported:", this.el);
-        return false;
-      }
-    },
-    teleportReturn() {
-      if (this.returnRef) {
-        this.returnRef = teleport(this.el, this.returnRef);
-        return this.el;
-      } else {
-        console.error("No return reference found:", this.el);
-        return false;
-      }
-    },
-    refreshDataConfig() {
-      this.dataConfig = getConfig(el, this.getSetting("dataConfig"));
-      return this.dataConfig;
-    },
-    refreshCustomProps() {
-      this.customProps = getCustomProps(el, "popover", _customProps);
-      return this.customProps;
-    },
-    getSetting(key) {
-      // Store our key in both camel and kebab naming conventions.
-      const camel = toCamel(key);
-      const kebab = toKebab(key);
-
-      // Check the data config object.
-      if (camel in this.dataConfig) {
-        return this.dataConfig[camel];
-      }
-
-      // Check the custom properties object.
-      if (kebab in this.customProps) {
-        return this.customProps[kebab];
-      }
-
-      // Check the entry settings.
-      if (camel in this.settings) {
-        return this.settings[camel];
-      }
-
-      // Check the root settings.
-      if (camel in root.settings) {
-        return root.settings[camel];
-      }
-
-      // Throw error if setting does not exist.
-      throw(new Error(`Popover setting does not exist: ${key}`));
     }
-  };
+  }));
 
   // If it's a tooltip set the event to hover.
   if (entry.isTooltip) {
     entry.settings.event = "hover";
   }
 
-  // Build the configuration objects.
-  entry.refreshDataConfig();
-  entry.refreshCustomProps();
+  // Build the setting objects.
+  entry.applySettings(config);
+  entry.getDataConfig();
+  entry.getCustomProps();
 
   // Set role="tooltip" attribute if the popover is a tooltip.
   if (entry.isTooltip) {

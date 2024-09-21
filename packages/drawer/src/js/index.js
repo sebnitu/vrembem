@@ -13,9 +13,7 @@ export default class Drawer extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super();
-    this.defaults = defaults;
-    this.settings = { ...this.defaults, ...options };
+    super({ ...defaults, ...options});
     this.focusTrap = new FocusTrap();
 
     // Setup local store for inline drawer state management.

@@ -38,10 +38,10 @@ const markupInitState = `
 `;
 
 const markupConfig = `
-  <div id="drawer-1" class="drawer" data-drawer-config="{ 'transition': false }">
+  <div id="drawer-1" class="drawer" data-config="{ 'transition': false }">
     <div class="drawer__dialog">...</div>
   </div>
-  <div id="drawer-2" class="drawer" data-drawer-config="{ 'selectorOverflow': 'main' }">
+  <div id="drawer-2" class="drawer" data-config="{ 'selectorOverflow': 'main' }">
     <div class="drawer__dialog">...</div>
   </div>
 `;
@@ -64,7 +64,6 @@ describe("mount() & unmount()", () => {
   it("should mount with custom settings passed on mount", async () => {
     await drawer.mount({ eventListeners: false });
     expect(drawer.collection.length).toBe(2);
-    expect(drawer.defaults.eventListeners).toBe(true);
     expect(drawer.settings.eventListeners).toBe(false);
     await drawer.unmount();
     expect(drawer.collection.length).toBe(0);
@@ -244,7 +243,7 @@ describe("register() & deregister()", () => {
   });
 });
 
-describe("data-drawer-config", () => {
+describe("data-config", () => {
   beforeAll(async () => {
     document.body.innerHTML = markupInitState;
     await drawer.unmount();
@@ -259,26 +258,5 @@ describe("data-drawer-config", () => {
     expect(entry1.getSetting("selectorOverflow")).toBe("body");
     expect(entry2.getSetting("transition")).toBe(true);
     expect(entry2.getSetting("selectorOverflow")).toBe("main");
-  });
-});
-
-describe("getSetting()", () => {
-  it("should return a setting value from wherever it was set", async () => {
-    document.body.innerHTML = markup;
-    const drawer = new Drawer();
-    await drawer.mount();
-    const entry = drawer.get("drawer-1");
-    expect(entry.id).toBe("drawer-1");
-    expect(entry.getSetting("dataConfig")).toBe("drawer-config");
-    entry.settings["dataConfig"] = "asdf";
-    expect(entry.getSetting("dataConfig")).toBe("asdf");
-  });
-
-  it("should throw an error if searching for a setting that doesn't exist", async () => {
-    document.body.innerHTML = markup;
-    const drawer = new Drawer();
-    await drawer.mount();
-    const entry = drawer.get("drawer-1");
-    expect(() => entry.getSetting("asdf")).toThrow("Drawer setting does not exist: asdf");
   });
 });

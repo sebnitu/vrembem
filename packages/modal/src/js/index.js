@@ -16,9 +16,7 @@ export default class Modal extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super();
-    this.defaults = defaults;
-    this.settings = { ...this.defaults, ...options };
+    super({ ...defaults, ...options});
     this.trigger = null;
     this.focusTrap = new FocusTrap();
 

@@ -320,24 +320,3 @@ describe("active() & activeHover()", () => {
     expect(popover.activeHover).toBe(popover.get("tooltip"));
   });
 });
-
-describe("getSetting()", () => {
-  it("should return a setting value from wherever it was set", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("asdf");
-    expect(entry.id).toBe("asdf");
-    expect(entry.getSetting("dataConfig")).toBe("popover-config");
-    entry.settings["dataConfig"] = "asdf";
-    expect(entry.getSetting("dataConfig")).toBe("asdf");
-  });
-
-  it("should throw an error if searching for a setting that doesn't exist", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("asdf");
-    expect(() => entry.getSetting("asdf")).toThrow("Popover setting does not exist: asdf");
-  });
-});

@@ -46,7 +46,7 @@ export async function handleClick(event) {
   if (
     this.active &&
     event.target.matches(this.settings.selectorScreen) &&
-    !this.active.required
+    !this.active.isRequired
   ) {
     // Close the modal.
     return this.close(this.active.id);
