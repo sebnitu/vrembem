@@ -5,6 +5,7 @@ export * from "./src/js/FocusTrap";
 export * from "./src/js/cssVar";
 export * from "./src/js/getConfig";
 export * from "./src/js/getCustomProps";
+export * from "./src/js/getElement";
 export * from "./src/js/getPrefix";
 export * from "./src/js/localStore";
 export * from "./src/js/teleport";

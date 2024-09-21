@@ -1,13 +1,23 @@
-import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
+import { 
+  getConfig,
+  getCustomProps,
+  getElement,
+  teleport,
+  toCamel,
+  toKebab
+} from "@vrembem/core";
 
 export class Collection {
   #entryPrototype;
 
+  // TODO: Pass config to settings using constructor.
   constructor() {
     const root = this;
     this.module = this.constructor.name;
     this.collection = [];
-    this.settings = {};
+    this.settings = {
+      dataConfig: "config"
+    };
     this.#entryPrototype = {
       applySettings(obj) {
         return Object.assign(this.settings, obj);
@@ -67,10 +77,11 @@ export class Collection {
     };
   }
 
-  createEntry(el, overrides = {}) {
+  createEntry(query, overrides = {}) {
+    const el = getElement(query);
     const entry = Object.create(this.#entryPrototype);
     Object.assign(entry, {
-      id: el.id,
+      id: el?.id,
       el: el,
       settings: {},
       dataConfig: {},
