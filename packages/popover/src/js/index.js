@@ -12,8 +12,7 @@ export default class Popover extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super();
-    this.settings = { ...defaults, ...options };
+    super({ ...defaults, ...options});
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
   }

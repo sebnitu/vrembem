@@ -10,14 +10,15 @@ import {
 export class Collection {
   #entryPrototype;
 
-  // TODO: Pass config to settings using constructor.
-  constructor() {
+  constructor(options = {}) {
     const root = this;
     this.module = this.constructor.name;
     this.collection = [];
-    this.settings = {
-      dataConfig: "config"
-    };
+    this.settings = Object.assign({
+      dataConfig: "config",
+      teleport: null,
+      teleportMethod: "append"
+    }, options);
     this.#entryPrototype = {
       applySettings(obj) {
         return Object.assign(this.settings, obj);

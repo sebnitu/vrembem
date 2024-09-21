@@ -1,7 +1,4 @@
 export default {
-  // Data attributes
-  dataConfig: "config",
-
   // Selectors
   selectorPopover: ".popover",
   selectorTooltip: ".popover_tooltip",
