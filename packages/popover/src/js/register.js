@@ -28,20 +28,13 @@ export async function register(el, trigger, config = {}) {
   ];
 
   // Create the entry object.
-  const entry = Object.create(this.entry);
+  const entry = this.createEntry(el, { customPropKeys: _customPropKeys });
 
   // Build on the entry object.
   Object.assign(entry, {
-    id: el.id,
-    el: el,
     state: "closed",
     trigger: trigger,
     toggleDelayId: null,
-    settings: {},
-    dataConfig: {},
-    customProps: {},
-    customPropKeys: _customPropKeys,
-    returnRef: null,
     cleanup: () => {},
     open() {
       return open.call(root, this);

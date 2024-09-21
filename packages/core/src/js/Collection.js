@@ -1,20 +1,14 @@
 import { getConfig, getCustomProps, teleport, toCamel, toKebab } from "@vrembem/core";
 
 export class Collection {
+  #entryPrototype;
+
   constructor() {
     const root = this;
     this.module = this.constructor.name;
     this.collection = [];
     this.settings = {};
-    this.entry = {
-      // TODO: These properties should be copied.
-      settings: {},
-      dataConfig: {},
-      customProps: {},
-      customPropKeys: [],
-      returnRef: null,
-
-      // TODO: These properties should be inherited.
+    this.#entryPrototype = {
       applySettings(obj) {
         return Object.assign(this.settings, obj);
       },
@@ -71,6 +65,20 @@ export class Collection {
         }
       },
     };
+  }
+
+  createEntry(el, overrides = {}) {
+    const entry = Object.create(this.#entryPrototype);
+    Object.assign(entry, {
+      id: el.id,
+      el: el,
+      settings: {},
+      dataConfig: {},
+      customProps: {},
+      customPropKeys: [],
+      returnRef: null,
+    }, overrides);
+    return entry;
   }
 
   async register(item) {

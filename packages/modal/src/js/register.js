@@ -11,17 +11,12 @@ export async function register(el, config = {}) {
   const root = this;
 
   // Create the entry object.
-  const entry = Object.create(this.entry);
+  const entry = this.createEntry(el);
 
   // Build on the entry object.
   Object.assign(entry, {
-    id: el.id,
-    el: el,
     state: "closed",
     dialog: null,
-    settings: {},
-    dataConfig: {},
-    returnRef: null,
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },

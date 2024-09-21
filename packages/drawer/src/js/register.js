@@ -22,18 +22,13 @@ export async function register(el, config = {}) {
   let _mode, _state = "indeterminate";
 
   // Create the entry object.
-  const entry = Object.create(this.entry);
+  const entry = this.createEntry(el);
 
   // Build on the entry object.
   Object.assign(entry, {
-    id: el.id,
-    el: el,
     dialog: null,
     trigger: null,
     inlineState: "indeterminate",
-    settings: {},
-    dataConfig: {},
-    returnRef: null,
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
