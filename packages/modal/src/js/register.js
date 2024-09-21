@@ -15,11 +15,13 @@ export async function register(el, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
-    el: el,
     id: el.id,
+    el: el,
     state: "closed",
     dialog: null,
-    settings: config,
+    settings: {},
+    dataConfig: {},
+    returnRef: null,
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -41,8 +43,9 @@ export async function register(el, config = {}) {
     },
   }));
 
-  // Build the configuration objects.
-  entry.refreshDataConfig();
+  // Build the setting objects.
+  entry.applySettings(config);
+  entry.getDataConfig();
 
   // Set the dialog element. If none is found, use the root element.
   const dialog = el.querySelector(entry.getSetting("selectorDialog"));

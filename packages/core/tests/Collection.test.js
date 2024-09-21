@@ -140,7 +140,7 @@ describe("entry.getSetting()", () => {
     const collection = new Collection();
     collection.entry.el = document.getElementById("asdf");
     collection.settings.dataConfig = "config";
-    collection.entry.refreshDataConfig();
+    collection.entry.getDataConfig();
     expect(collection.entry.getSetting("test")).toBe(1234);
   });
 
@@ -150,8 +150,8 @@ describe("entry.getSetting()", () => {
     `;
     const collection = new Collection();
     collection.entry.el = document.getElementById("asdf");
-    collection.entry.customPropsArray.push("background");
-    collection.entry.refreshCustomProps();
+    collection.entry.customPropKeys.push("background");
+    collection.entry.getCustomProps();
     expect(collection.entry.getSetting("background")).toBe("pink");
   });
 

@@ -7,18 +7,50 @@ export class Collection {
     this.collection = [];
     this.settings = {};
     this.entry = {
+      // TODO: These properties should be copied.
       settings: {},
       dataConfig: {},
       customProps: {},
-      customPropsArray: [],
+      customPropKeys: [],
       returnRef: null,
-      refreshDataConfig() {
-        this.dataConfig = getConfig(this.el, this.getSetting("dataConfig"));
-        return this.dataConfig;
+
+      // TODO: These properties should be inherited.
+      applySettings(obj) {
+        return Object.assign(this.settings, obj);
       },
-      refreshCustomProps() {
-        this.customProps = getCustomProps(this.el, root.module, this.customPropsArray);
-        return this.customProps;
+      getDataConfig() {
+        return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
+      },
+      getCustomProps() {
+        return Object.assign(this.customProps, getCustomProps(this.el, root.module, this.customPropKeys));
+      },
+      getSetting(key) {
+        // Store our key in both camel and kebab naming conventions.
+        const camel = toCamel(key);
+        const kebab = toKebab(key);
+  
+        // Check the data config object.
+        if ("dataConfig" in this && camel in this.dataConfig) {
+          return this.dataConfig[camel];
+        }
+  
+        // Check the custom properties object.
+        if ("customProps" in this && kebab in this.customProps) {
+          return this.customProps[kebab];
+        }
+  
+        // Check the entry settings.
+        if ("settings" in this && camel in this.settings) {
+          return this.settings[camel];
+        }
+  
+        // Check the root settings.
+        if ("settings" in root && camel in root.settings) {
+          return root.settings[camel];
+        }
+  
+        // Throw error if setting does not exist.
+        throw(new Error(`${root.module} setting does not exist: ${key}`));
       },
       teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
         if (!this.returnRef) {
@@ -38,34 +70,6 @@ export class Collection {
           return false;
         }
       },
-      getSetting(key) {
-        // Store our key in both camel and kebab naming conventions.
-        const camel = toCamel(key);
-        const kebab = toKebab(key);
-  
-        // Check the data config object.
-        if (camel in this.dataConfig) {
-          return this.dataConfig[camel];
-        }
-  
-        // Check the custom properties object.
-        if (kebab in this.customProps) {
-          return this.customProps[kebab];
-        }
-  
-        // Check the entry settings.
-        if (camel in this.settings) {
-          return this.settings[camel];
-        }
-  
-        // Check the root settings.
-        if (camel in root.settings) {
-          return root.settings[camel];
-        }
-  
-        // Throw error if setting does not exist.
-        throw(new Error(`${root.module} setting does not exist: ${key}`));
-      }
     };
   }
 

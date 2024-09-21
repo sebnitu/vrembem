@@ -26,12 +26,14 @@ export async function register(el, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
-    el: el,
     id: el.id,
+    el: el,
     dialog: null,
     trigger: null,
-    settings: config,
     inlineState: "indeterminate",
+    settings: {},
+    dataConfig: {},
+    returnRef: null,
     open(transition, focus) {
       return open.call(root, this, transition, focus);
     },
@@ -105,8 +107,9 @@ export async function register(el, config = {}) {
     },
   }));
 
-  // Build the configuration objects.
-  entry.refreshDataConfig();
+  // Build the setting objects.
+  entry.applySettings(config);
+  entry.getDataConfig();
 
   // Teleport drawer if a reference has been set.
   if (entry.getSetting("teleport")) {

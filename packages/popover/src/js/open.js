@@ -26,8 +26,8 @@ export async function open(query) {
     popover.trigger.setAttribute("aria-expanded", "true");
   }
 
-  // Refresh the custom property data before opening the popover.
-  popover.refreshCustomProps();
+  // Get the custom property data before opening the popover.
+  popover.getCustomProps();
 
   // Get the middleware options for floating ui.
   const middlewareOptions = getMiddlewareOptions(popover);

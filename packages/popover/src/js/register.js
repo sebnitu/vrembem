@@ -17,7 +17,7 @@ export async function register(el, trigger, config = {}) {
   };
 
   // An array of custom properties to search for.
-  const _customProps = [
+  const _customPropKeys = [
     "placement",
     "event",
     "offset",
@@ -32,13 +32,16 @@ export async function register(el, trigger, config = {}) {
 
   // Build on the entry object.
   Object.assign(entry, {
-    el: el,
     id: el.id,
+    el: el,
     state: "closed",
     trigger: trigger,
     toggleDelayId: null,
-    settings: config,
-    customPropsArray: _customProps,
+    settings: {},
+    dataConfig: {},
+    customProps: {},
+    customPropKeys: _customPropKeys,
+    returnRef: null,
     cleanup: () => {},
     open() {
       return open.call(root, this);
@@ -81,9 +84,10 @@ export async function register(el, trigger, config = {}) {
     entry.settings.event = "hover";
   }
 
-  // Build the configuration objects.
-  entry.refreshDataConfig();
-  entry.refreshCustomProps();
+  // Build the setting objects.
+  entry.applySettings(config);
+  entry.getDataConfig();
+  entry.getCustomProps();
 
   // Set role="tooltip" attribute if the popover is a tooltip.
   if (entry.isTooltip) {
