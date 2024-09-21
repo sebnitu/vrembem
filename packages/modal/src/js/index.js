@@ -17,8 +17,7 @@ export default class Modal extends Collection {
 
   constructor(options) {
     super();
-    this.defaults = defaults;
-    this.settings = { ...this.defaults, ...options };
+    this.settings = { ...defaults, ...options };
     this.trigger = null;
     this.focusTrap = new FocusTrap();
 

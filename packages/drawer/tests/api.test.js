@@ -64,7 +64,6 @@ describe("mount() & unmount()", () => {
   it("should mount with custom settings passed on mount", async () => {
     await drawer.mount({ eventListeners: false });
     expect(drawer.collection.length).toBe(2);
-    expect(drawer.defaults.eventListeners).toBe(true);
     expect(drawer.settings.eventListeners).toBe(false);
     await drawer.unmount();
     expect(drawer.collection.length).toBe(0);

@@ -14,8 +14,7 @@ export default class Drawer extends Collection {
 
   constructor(options) {
     super();
-    this.defaults = defaults;
-    this.settings = { ...this.defaults, ...options };
+    this.settings = { ...defaults, ...options };
     this.focusTrap = new FocusTrap();
 
     // Setup local store for inline drawer state management.
