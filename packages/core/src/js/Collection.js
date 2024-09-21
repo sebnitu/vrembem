@@ -14,11 +14,7 @@ export class Collection {
     const root = this;
     this.module = this.constructor.name;
     this.collection = [];
-    this.settings = Object.assign({
-      dataConfig: "config",
-      teleport: null,
-      teleportMethod: "append"
-    }, options);
+    this.settings = Object.assign({ dataConfig: "config" }, options);
     this.#entryPrototype = {
       applySettings(obj) {
         return Object.assign(this.settings, obj);
