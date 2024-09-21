@@ -36,7 +36,7 @@ export async function register(el, config = {}) {
 
   // Create getters and setters.
   Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
-    get required() {
+    get isRequired() {
       return this.dialog.matches(this.getSetting("selectorRequired"));
     },
   }));
