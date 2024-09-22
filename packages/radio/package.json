@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/radio",
   "description": "Radios allow the user to select a single option from a set.",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/radio#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.19"
+    "@vrembem/core": "^3.0.20"
   },
   "publishConfig": {
     "access": "public"
