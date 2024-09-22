@@ -22,12 +22,26 @@ Publish flow for `main` branch
 - Run `npx lerna publish` (use `--force-publish` to force a bump on all packages)
 
 Commit message template:
-chore(release): add v3.0.19 to CHANGELOG.md
+chore(release): add v3.0.20 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v3.0.0 -->
+
+
+## v3.0.20 (2024-09-22)
+
+### :house: Refactor
+* `core`
+  * [#2021](https://github.com/sebnitu/vrembem/pull/2021) Refactor how focusable selectors is applied
+
+### :books: Documentation
+* `drawer`, `modal`
+  * [#1989](https://github.com/sebnitu/vrembem/pull/1989) Remove inert polyfill
+
+### :hammer: Chore
+* [#1909](https://github.com/sebnitu/vrembem/pull/1909) Update github workflows
 
 
 ## v3.0.19 (2024-02-07)
