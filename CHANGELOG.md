@@ -32,12 +32,50 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.25 to CHANGELOG.md
+chore(release): add v4.0.0-next.26 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.26 (2024-09-22)
+
+### :fire: Breaking Changes
+* `drawer`, `modal`, `popover`, `vrembem`
+  * [#2035](https://github.com/sebnitu/vrembem/pull/2035) Remove the option to auto mount on component constructor
+
+### :tada: New Feature
+* `core`, `popover`
+  * [#2033](https://github.com/sebnitu/vrembem/pull/2033) Allow setting popover open and close hover delay using the toggle-delay option
+  * [#2020](https://github.com/sebnitu/vrembem/pull/2020) Allow passing popover config via data attribute
+* `popover`
+  * [#2028](https://github.com/sebnitu/vrembem/pull/2028) Add popover teleport functionality
+* `drawer`, `modal`
+  * [#2008](https://github.com/sebnitu/vrembem/pull/2008) Refactor drawer and add custom properties support
+* `core`, `modal`
+  * [#2007](https://github.com/sebnitu/vrembem/pull/2007) Add custom properties support to modals
+
+### :bug: Bug Fix
+* `core`, `popover`
+  * [#2032](https://github.com/sebnitu/vrembem/pull/2032) Fix hover event on non-tooltip popovers by tracking hover state
+* `popover`
+  * [#2031](https://github.com/sebnitu/vrembem/pull/2031) Fix base position styles for popover
+
+### :house: Refactor
+* `core`, `drawer`, `modal`, `popover`
+  * [#2036](https://github.com/sebnitu/vrembem/pull/2036) Use inherited properties when creating collection entries
+  * [#2034](https://github.com/sebnitu/vrembem/pull/2034) Apply getSetting changes to modal and drawer components
+* `button`, `card`, `checkbox`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2030](https://github.com/sebnitu/vrembem/pull/2030) Migrate from using Popper JS to Floating UI
+* `popover`
+  * [#2029](https://github.com/sebnitu/vrembem/pull/2029) Rename popover option hoverToggleDelay to toggleDelay
+* `core`, `dialog`, `drawer`, `modal`, `vrembem`
+  * [#2018](https://github.com/sebnitu/vrembem/pull/2018) Apply dialog custom property overrides to modal and drawer components
+
+### :books: Documentation
+* [#2019](https://github.com/sebnitu/vrembem/pull/2019) Fix code block copy button popover
 
 
 ## v4.0.0-next.25 (2024-08-24)
