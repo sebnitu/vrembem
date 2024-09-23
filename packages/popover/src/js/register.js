@@ -1,12 +1,16 @@
-import { handleClick, handleTooltipClick, handleMouseEnter, handleMouseLeave, handleDocumentClick } from "./handlers";
+import {
+  handleClick,
+  handleTooltipClick,
+  handleMouseEnter,
+  handleMouseLeave,
+  handleDocumentClick
+} from "./handlers";
 import { deregister } from "./deregister";
-import { open } from "./open";
-import { close } from "./close";
 
 export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
   await deregister.call(this, el);
-  
+
   // Save root this for use inside methods API.
   const root = this;
 
@@ -37,13 +41,13 @@ export async function register(el, trigger, config = {}) {
     toggleDelayId: null,
     cleanup: () => {},
     open() {
-      return open.call(root, this);
+      return root.open(this);
     },
     close() {
-      return close.call(root, this);
+      return root.close(this);
     },
     deregister() {
-      return deregister.call(root, this);
+      return root.deregister(this);
     }
   });
 

@@ -160,7 +160,6 @@ describe("entry.getSetting()", () => {
     document.body.innerHTML = "";
     const collection = new Collection();
     const entry = collection.createEntry("asdf");
-    console.log(entry);
     expect(() => entry.getSetting("asdf")).toThrow("Collection setting does not exist: asdf");
   });
 });
