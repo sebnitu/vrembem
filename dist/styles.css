@@ -691,16 +691,16 @@ input::-moz-placeholder {
 }
 .button_color_primary:hover {
   border-color: transparent;
-  background-color: #00a9bf;
+  background-color: rgb(0, 169.2, 190.8);
 }
 .button_color_primary:focus {
   border-color: transparent;
-  background-color: #00a9bf;
+  background-color: rgb(0, 169.2, 190.8);
   box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.5);
 }
 .button_color_primary:active {
   border-color: transparent;
-  background-color: #0096aa;
+  background-color: rgb(0, 150.4, 169.6);
 }
 .button_color_primary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -714,16 +714,16 @@ input::-moz-placeholder {
 }
 .button_color_secondary:hover {
   border-color: transparent;
-  background-color: #56717d;
+  background-color: rgb(86.4, 112.5, 125.1);
 }
 .button_color_secondary:focus {
   border-color: transparent;
-  background-color: #56717d;
+  background-color: rgb(86.4, 112.5, 125.1);
   box-shadow: 0 0 0 0.2rem rgba(96, 125, 139, 0.5);
 }
 .button_color_secondary:active {
   border-color: transparent;
-  background-color: #4d646f;
+  background-color: rgb(76.8, 100, 111.2);
 }
 .button_color_secondary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -786,16 +786,16 @@ input::-moz-placeholder {
 }
 .button_state_info:hover {
   border-color: transparent;
-  background-color: #0398dc;
+  background-color: rgb(2.7, 152.1, 219.6);
 }
 .button_state_info:focus {
   border-color: transparent;
-  background-color: #0398dc;
+  background-color: rgb(2.7, 152.1, 219.6);
   box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.5);
 }
 .button_state_info:active {
   border-color: transparent;
-  background-color: #0287c3;
+  background-color: rgb(2.4, 135.2, 195.2);
 }
 .button_state_info.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -809,16 +809,16 @@ input::-moz-placeholder {
 }
 .button_state_success:hover {
   border-color: transparent;
-  background-color: #449e48;
+  background-color: rgb(68.4, 157.5, 72);
 }
 .button_state_success:focus {
   border-color: transparent;
-  background-color: #449e48;
+  background-color: rgb(68.4, 157.5, 72);
   box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5);
 }
 .button_state_success:active {
   border-color: transparent;
-  background-color: #3d8c40;
+  background-color: rgb(60.8, 140, 64);
 }
 .button_state_success.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -832,16 +832,16 @@ input::-moz-placeholder {
 }
 .button_state_caution:hover {
   border-color: transparent;
-  background-color: #e68900;
+  background-color: rgb(229.5, 136.8, 0);
 }
 .button_state_caution:focus {
   border-color: transparent;
-  background-color: #e68900;
+  background-color: rgb(229.5, 136.8, 0);
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.5);
 }
 .button_state_caution:active {
   border-color: transparent;
-  background-color: #cc7a00;
+  background-color: rgb(204, 121.6, 0);
 }
 .button_state_caution.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -855,16 +855,16 @@ input::-moz-placeholder {
 }
 .button_state_danger:hover {
   border-color: transparent;
-  background-color: #f2291a;
+  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
 }
 .button_state_danger:focus {
   border-color: transparent;
-  background-color: #f2291a;
+  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
   box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.5);
 }
 .button_state_danger:active {
   border-color: transparent;
-  background-color: #e21b0c;
+  background-color: rgb(226.0301886792, 26.9886792453, 12.3698113208);
 }
 .button_state_danger.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2466,16 +2466,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_info:hover {
   border-color: transparent;
-  background-color: #0398dc;
+  background-color: rgb(2.7, 152.1, 219.6);
 }
 .icon-action_state_info:focus {
   border-color: transparent;
-  background-color: #0398dc;
+  background-color: rgb(2.7, 152.1, 219.6);
   box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.5);
 }
 .icon-action_state_info:active {
   border-color: transparent;
-  background-color: #0287c3;
+  background-color: rgb(2.4, 135.2, 195.2);
 }
 .icon-action_state_info.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2489,16 +2489,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_success:hover {
   border-color: transparent;
-  background-color: #449e48;
+  background-color: rgb(68.4, 157.5, 72);
 }
 .icon-action_state_success:focus {
   border-color: transparent;
-  background-color: #449e48;
+  background-color: rgb(68.4, 157.5, 72);
   box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5);
 }
 .icon-action_state_success:active {
   border-color: transparent;
-  background-color: #3d8c40;
+  background-color: rgb(60.8, 140, 64);
 }
 .icon-action_state_success.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2512,16 +2512,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_caution:hover {
   border-color: transparent;
-  background-color: #e68900;
+  background-color: rgb(229.5, 136.8, 0);
 }
 .icon-action_state_caution:focus {
   border-color: transparent;
-  background-color: #e68900;
+  background-color: rgb(229.5, 136.8, 0);
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.5);
 }
 .icon-action_state_caution:active {
   border-color: transparent;
-  background-color: #cc7a00;
+  background-color: rgb(204, 121.6, 0);
 }
 .icon-action_state_caution.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2535,16 +2535,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_danger:hover {
   border-color: transparent;
-  background-color: #f2291a;
+  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
 }
 .icon-action_state_danger:focus {
   border-color: transparent;
-  background-color: #f2291a;
+  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
   box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.5);
 }
 .icon-action_state_danger:active {
   border-color: transparent;
-  background-color: #e21b0c;
+  background-color: rgb(226.0301886792, 26.9886792453, 12.3698113208);
 }
 .icon-action_state_danger.is-loading::after {
   border-color: #fff #fff transparent transparent;
