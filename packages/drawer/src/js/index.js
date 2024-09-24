@@ -29,9 +29,9 @@ export default class Drawer extends Collection {
     });
   }
 
-  async mount(options = null) {
+  async mount(options = {}) {
     // Update settings with passed options.
-    if (options) this.settings = { ...this.settings, ...options };
+    super.applySettings(options);
 
     // Get all the modals.
     const drawers = document.querySelectorAll(this.settings.selectorDrawer);

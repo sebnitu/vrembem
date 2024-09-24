@@ -31,9 +31,9 @@ export default class Modal extends Collection {
     return this.stack.top;
   }
 
-  async mount(options) {
+  async mount(options = {}) {
     // Update settings with passed options.
-    if (options) this.settings = { ...this.settings, ...options };
+    super.applySettings(options);
 
     // Get all the modals.
     const modals = document.querySelectorAll(this.settings.selectorModal);
