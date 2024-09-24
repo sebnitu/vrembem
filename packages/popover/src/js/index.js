@@ -63,10 +63,7 @@ export default class Popover extends Collection {
   }
 
   deregister(query) {
-    let obj = this.get((query.id || query));
-    return (obj) ?
-      deregister.call(this, obj) :
-      Promise.reject(new Error(`Failed to deregister; popover does not exist in collection with ID of: "${query.id || query}".`));
+    return deregister.call(this, query);
   }
 
   open(id) {

@@ -5,11 +5,10 @@ import {
   handleMouseLeave,
   handleDocumentClick
 } from "./handlers";
-import { deregister } from "./deregister";
 
 export async function register(el, trigger, config = {}) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, el);
+  await this.deregister(el);
 
   // Save root this for use inside methods API.
   const root = this;
