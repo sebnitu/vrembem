@@ -1,12 +1,8 @@
 import { Entry } from "@vrembem/core";
-import { deregister } from "./deregister";
-import { open } from "./open";
-import { close } from "./close";
-import { replace } from "./replace";
 
 export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, el, false);
+  await this.deregister(el, false);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -19,16 +15,16 @@ export async function register(el, config = {}) {
     state: "closed",
     dialog: null,
     open(transition, focus) {
-      return open.call(root, this, transition, focus);
+      return root.open(this, transition, focus);
     },
     close(transition, focus) {
-      return close.call(root, this, transition, focus);
+      return root.close(this, transition, focus);
     },
     replace(transition, focus) {
-      return replace.call(root, this, transition, focus);
+      return root.replace(this, transition, focus);
     },
     deregister() {
-      return deregister.call(root, this);
+      return root.deregister(this);
     }
   });
 

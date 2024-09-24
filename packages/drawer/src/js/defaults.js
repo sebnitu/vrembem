@@ -25,7 +25,6 @@ export default {
   // Feature toggles
   breakpoints: null,
   customEventPrefix: "drawer:",
-  eventListeners: true,
   store: true,
   storeKey: "VB:DrawerState",
   setTabindex: true,

@@ -17,7 +17,6 @@ export default {
   toggleDelay: 0,
 
   // Feature settings
-  eventListeners: true,
   teleport: null,
   teleportMethod: "append",
 };

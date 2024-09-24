@@ -41,10 +41,8 @@ export default class Modal extends Collection {
     // Register the collections array with modal instances.
     await this.registerCollection(modals);
 
-    // If eventListeners are enabled, mount event listeners.
-    if (this.settings.eventListeners) {
-      this.mountEventListeners();
-    }
+    document.addEventListener("click", this.#handleClick, false);
+    document.addEventListener("keydown", this.#handleKeydown, false);
 
     return this;
   }
@@ -56,22 +54,10 @@ export default class Modal extends Collection {
     // Remove all entries from the collection.
     await this.deregisterCollection();
 
-    // If eventListeners are enabled, unmount event listeners.
-    if (this.settings.eventListeners) {
-      this.unmountEventListeners();
-    }
-
-    return this;
-  }
-
-  mountEventListeners() {
-    document.addEventListener("click", this.#handleClick, false);
-    document.addEventListener("keydown", this.#handleKeydown, false);
-  }
-
-  unmountEventListeners() {
     document.removeEventListener("click", this.#handleClick, false);
     document.removeEventListener("keydown", this.#handleKeydown, false);
+
+    return this;
   }
 
   register(query, config = {}) {
@@ -83,10 +69,7 @@ export default class Modal extends Collection {
   }
 
   deregister(query) {
-    let obj = this.get((query.id || query));
-    return (obj) ?
-      deregister.call(this, obj) :
-      Promise.reject(new Error(`Failed to deregister; modal does not exist in collection with ID of: "${query.id || query}".`));
+    return deregister.call(this, query);
   }
 
   open(id, transition, focus) {

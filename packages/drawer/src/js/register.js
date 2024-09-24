@@ -1,15 +1,11 @@
 import { Entry, Breakpoint } from "@vrembem/core";
-import { deregister } from "./deregister";
-import { open } from "./open";
-import { close } from "./close";
-import { toggle } from "./toggle";
 import { switchMode } from "./switchMode";
 import { applyInitialState } from "./helpers";
 import { getBreakpoint } from "./helpers";
 
 export async function register(el, config = {}) {
   // Deregister entry incase it has already been registered.
-  await deregister.call(this, el, false);
+  await this.deregister(el, false);
 
   // Save root this for use inside methods API.
   const root = this;
@@ -29,16 +25,16 @@ export async function register(el, config = {}) {
     trigger: null,
     inlineState: "indeterminate",
     open(transition, focus) {
-      return open.call(root, this, transition, focus);
+      return root.open(this, transition, focus);
     },
     close(transition, focus) {
-      return close.call(root, this, transition, focus);
+      return root.close(this, transition, focus);
     },
     toggle(transition, focus) {
-      return toggle.call(root, this, transition, focus);
+      return root.toggle(this, transition, focus);
     },
     deregister() {
-      return deregister.call(root, this);
+      return root.deregister(this);
     },
     mountBreakpoint() {
       const value = this.breakpoint;
