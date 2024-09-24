@@ -8,16 +8,18 @@ import {
 } from "@vrembem/core";
 
 export class Entry {
-  constructor(root, query) {
+  constructor(context, query) {
+    this.context = context;
     const el = getElement(query);
-    this.root = root;
-    this.id = el?.id;
-    this.el = el;
-    this.settings = {};
-    this.dataConfig = {};
-    this.customProps = {};
-    this.customPropKeys = [];
-    this.returnRef = null;
+    Object.assign(this, {
+      id: el?.id,
+      el: el,
+      settings: {},
+      dataConfig: {},
+      customProps: {},
+      customPropKeys: [],
+      returnRef: null
+    });
   }
 
   applySettings(obj) {
@@ -29,7 +31,7 @@ export class Entry {
   }
 
   getCustomProps() {
-    return Object.assign(this.customProps, getCustomProps(this.el, this.root.module, this.customPropKeys));
+    return Object.assign(this.customProps, getCustomProps(this.el, this.context.module, this.customPropKeys));
   }
 
   getSetting(key) {
@@ -52,13 +54,13 @@ export class Entry {
       return this.settings[camel];
     }
 
-    // Check the root settings.
-    if ("settings" in this.root && camel in this.root.settings) {
-      return this.root.settings[camel];
+    // Check the context settings.
+    if ("settings" in this.context && camel in this.context.settings) {
+      return this.context.settings[camel];
     }
 
     // Throw error if setting does not exist.
-    throw(new Error(`${this.root.module} setting does not exist: ${key}`));
+    throw(new Error(`${this.context.module} setting does not exist: ${key}`));
   }
 
   teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
