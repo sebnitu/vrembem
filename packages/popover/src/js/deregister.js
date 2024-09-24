@@ -1,40 +1,22 @@
-export async function deregister(obj) {
-  // Check if entry has been registered in the collection.
-  const index = this.collection.findIndex((entry) => {
-    return (entry.id === obj.id);
-  });
+export async function deregister(entry) {
+  // If entry is in the opened state, close it.
+  if (entry.state === "opened") {
+    entry.close();
+  }
 
-  if (index >= 0) {
-    // Get the collection entry.
-    const entry = this.collection[index];
+  // Clean up the floating UI instance.
+  entry.cleanup();
 
-    // If entry is in the opened state, close it.
-    if (entry.state === "opened") {
-      entry.close();
-    }
+  // Remove event listeners.
+  deregisterEventListeners(entry);
 
-    // Clean up the floating UI instance.
-    entry.cleanup();
-
-    // Remove event listeners.
-    deregisterEventListeners(entry);
-
-    // Return teleported modal if a reference has been set.
-    if (entry.getSetting("teleport")) {
-      entry.teleportReturn();
-    }
-
-    // Delete properties from collection entry.
-    Object.getOwnPropertyNames(entry).forEach((prop) => {
-      delete entry[prop];
-    });
-
-    // Remove entry from collection.
-    this.collection.splice(index, 1);
+  // Return teleported modal if a reference has been set.
+  if (entry.getSetting("teleport")) {
+    entry.teleportReturn();
   }
 
   // Return the modified collection.
-  return this.collection;
+  return entry;
 }
 
 export function deregisterEventListeners(entry) {

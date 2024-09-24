@@ -1,3 +1,5 @@
+import { Entry } from "@vrembem/core";
+
 export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
@@ -11,6 +13,70 @@ export class Collection {
 
   applySettings(options) {
     return Object.assign(this.settings, options);
+  }
+
+  async register(el, config = {}) {
+    // Deregister the element in case it has already been registered.
+    await this.deregister(el?.id || el);
+
+    // Create the collection entry object.
+    const entry = new Entry(this, el);
+
+    // Check if beforeRegister has been set and that it's a function.
+    if ("beforeRegister" in this && typeof this.beforeRegister == "function") {
+      await this.beforeRegister(entry, config);
+    }
+
+    // Add the entry to the collection.
+    this.collection.push(entry);
+
+    // Check if afterRegister has been set and that it's a function.
+    if ("afterRegister" in this && typeof this.afterRegister == "function") {
+      await this.afterRegister(entry, config);
+    }
+
+    return entry;
+  }
+
+  async deregister(id) {
+    const index = this.collection.findIndex((entry) => {
+      return (entry.id === id);
+    });
+    if (~index) {
+      const entry = this.collection[index];
+
+      // Check if beforeDeregister has been set and that it's a function.
+      if ("beforeDeregister" in this && typeof this.beforeDeregister == "function") {
+        await this.beforeDeregister(entry);
+      }
+
+      // Remove all the properties from the entry.
+      Object.getOwnPropertyNames(entry).forEach((prop) => {
+        delete entry[prop];
+      });
+
+      // Remove the entry from the collection.
+      this.collection.splice(index, 1);
+
+      // Check if afterDeregister has been set and that it's a function.
+      if ("afterDeregister" in this && typeof this.afterDeregister == "function") {
+        await this.afterDeregister(entry);
+      }
+    }
+  }
+
+  async registerCollection(items) {
+    await Promise.all(Array.from(items, (item) => {
+      this.register(item);
+    }));
+    return this.collection;
+  }
+
+  async deregisterCollection() {
+    while (this.collection.length > 0) {
+      await this.deregister(this.collection[0]);
+    }
+    return this.collection;
   }
 
   async mount(options = {}) {
@@ -51,45 +117,5 @@ export class Collection {
     }
 
     return this;
-  }
-
-  // TODO: Refactor this so that it's used instead of always overridden.
-  // TODO: Create a "beforeRegister" and "afterRegister" that allows an entry to
-  // be modified before it's completely registered.
-  async register(item) {
-    await this.deregister(item);
-    this.collection.push(item);
-    return this.collection;
-  }
-
-  // TODO: Refactor this so that it's used instead of always overridden.
-  // TODO: Create a "beforeDeregister" and "afterDeregister" that allows an entry to
-  // be modified before it's completely registered.
-  async deregister(ref) {
-    const index = this.collection.findIndex((entry) => {
-      return (entry === ref);
-    });
-    if (index >= 0) {
-      const entry = this.collection[index];
-      Object.getOwnPropertyNames(entry).forEach((prop) => {
-        delete entry[prop];
-      });
-      this.collection.splice(index, 1);
-    }
-    return this.collection;
-  }
-
-  async registerCollection(items) {
-    await Promise.all(Array.from(items, (item) => {
-      this.register(item);
-    }));
-    return this.collection;
-  }
-
-  async deregisterCollection() {
-    while (this.collection.length > 0) {
-      await this.deregister(this.collection[0]);
-    }
-    return this.collection;
   }
 }

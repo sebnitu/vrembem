@@ -1,4 +1,3 @@
-import { Entry } from "@vrembem/core";
 import {
   handleClick,
   handleTooltipClick,
@@ -7,21 +6,20 @@ import {
   handleDocumentClick
 } from "./handlers";
 
-export async function register(el, trigger, config = {}) {
-  // Deregister entry incase it has already been registered.
-  await this.deregister(el);
-
+export async function register(entry, config = {}) {
   // Save root this for use inside methods API.
   const root = this;
+
+  // Get the trigger element.
+  const trigger = document.querySelector(
+    `[aria-controls="${entry.id}"], [aria-describedby="${entry.id}"]`
+  );
 
   // Setup a private object for keeping track of the hover state.
   const _isHovered = {
     el: false,
     trigger: false
   };
-
-  // Create the entry object.
-  const entry = new Entry(this, el);
 
   // Apply custom property keys.
   entry.customPropKeys = [
@@ -47,7 +45,7 @@ export async function register(el, trigger, config = {}) {
       return root.close(this);
     },
     deregister() {
-      return root.deregister(this);
+      return root.deregister(this.id);
     }
   });
 
@@ -72,7 +70,7 @@ export async function register(el, trigger, config = {}) {
       return _isHovered.el || _isHovered.trigger;
     },
     get isTooltip() {
-      return !!el.closest(root.settings.selectorTooltip) || el.getAttribute("role") == "tooltip";
+      return !!entry.el.closest(root.settings.selectorTooltip) || entry.el.getAttribute("role") == "tooltip";
     }
   }));
 
@@ -103,9 +101,6 @@ export async function register(el, trigger, config = {}) {
   if (entry.getSetting("teleport")) {
     entry.teleport();
   }
-
-  // Add entry to collection.
-  this.collection.push(entry);
 
   // Set initial state.
   if (entry.el.classList.contains(this.settings.stateActive)) {

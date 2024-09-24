@@ -6,7 +6,6 @@ import { register } from "./register";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
-import { getPopoverElements } from "./helpers";
 
 export default class Popover extends Collection {
   #handleKeydown;
@@ -18,13 +17,29 @@ export default class Popover extends Collection {
   }
 
   get active() {
-    return this.collection.find((popover) => popover.state == "opened");
+    return this.get("opened", "state");
   }
 
   get activeHover() {
     return this.collection.find((popover) => {
       return popover.state == "opened" && popover.getSetting("event") == "hover";
     });
+  }
+
+  async open(id) {
+    return open.call(this, id);
+  }
+
+  async close(id) {
+    return close.call(this, id);
+  }
+
+  async beforeRegister(entry, config) {
+    return register.call(this, entry, config);
+  }
+
+  async beforeDeregister(entry) {
+    return deregister.call(this, entry);
   }
 
   async afterMount() {
@@ -37,23 +52,5 @@ export default class Popover extends Collection {
 
   async afterUnmount() {
     document.removeEventListener("keydown", this.#handleKeydown, false);
-  }
-
-  register(query, config = {}) {
-    const els = getPopoverElements.call(this, query);
-    if (els.error) return Promise.reject(els.error);
-    return register.call(this, els.popover, els.trigger, config);
-  }
-
-  deregister(query) {
-    return deregister.call(this, query);
-  }
-
-  open(id) {
-    return open.call(this, id);
-  }
-
-  close(id) {
-    return close.call(this, id);
   }
 }
