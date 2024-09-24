@@ -75,6 +75,10 @@ export class Collection {
     };
   }
 
+  applySettings(options) {
+    return Object.assign(this.settings, options);
+  }
+
   createEntry(query, overrides = {}) {
     const el = getElement(query);
     const entry = Object.create(this.#entryPrototype);

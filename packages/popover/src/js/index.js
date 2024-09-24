@@ -11,7 +11,7 @@ import { getPopoverElements } from "./helpers";
 export default class Popover extends Collection {
   #handleKeydown;
 
-  constructor(options) {
+  constructor(options = {}) {
     super({ ...defaults, ...options});
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
@@ -27,9 +27,9 @@ export default class Popover extends Collection {
     });
   }
 
-  async mount(options) {
+  async mount(options = {}) {
     // Update settings with passed options.
-    if (options) this.settings = { ...this.settings, ...options };
+    super.applySettings(options);
 
     // Get all the popovers.
     const popovers = document.querySelectorAll(this.settings.selectorPopover);
