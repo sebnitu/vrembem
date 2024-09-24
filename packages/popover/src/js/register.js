@@ -1,3 +1,4 @@
+import { Entry } from "@vrembem/core";
 import {
   handleClick,
   handleTooltipClick,
@@ -19,8 +20,11 @@ export async function register(el, trigger, config = {}) {
     trigger: false
   };
 
-  // An array of custom properties to search for.
-  const _customPropKeys = [
+  // Create the entry object.
+  const entry = new Entry(this, el);
+
+  // Apply custom property keys.
+  entry.customPropKeys = [
     "placement",
     "event",
     "offset",
@@ -29,9 +33,6 @@ export async function register(el, trigger, config = {}) {
     "arrow-padding",
     "toggle-delay",
   ];
-
-  // Create the entry object.
-  const entry = this.createEntry(el, { customPropKeys: _customPropKeys });
 
   // Build on the entry object.
   Object.assign(entry, {

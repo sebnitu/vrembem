@@ -1,3 +1,4 @@
+import { Entry } from "@vrembem/core";
 import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
@@ -11,7 +12,7 @@ export async function register(el, config = {}) {
   const root = this;
 
   // Create the entry object.
-  const entry = this.createEntry(el);
+  const entry = new Entry(this, el);
 
   // Build on the entry object.
   Object.assign(entry, {
