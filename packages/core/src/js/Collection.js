@@ -5,6 +5,10 @@ export class Collection {
     this.settings = Object.assign({ dataConfig: "config" }, options);
   }
 
+  get(value, key = "id") {
+    return this.collection.find((entry) => entry[key] === value);
+  }
+
   applySettings(options) {
     return Object.assign(this.settings, options);
   }
@@ -49,9 +53,5 @@ export class Collection {
       await this.deregister(this.collection[0]);
     }
     return this.collection;
-  }
-
-  get(value, key = "id") {
-    return this.collection.find((entry) => entry[key] === value);
   }
 }
