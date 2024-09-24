@@ -19,16 +19,44 @@ export default class Modal extends Collection {
     super({ ...defaults, ...options});
     this.trigger = null;
     this.focusTrap = new FocusTrap();
+    this.#handleClick = handleClick.bind(this);
+    this.#handleKeydown = handleKeydown.bind(this);
 
     // Setup stack module.
     this.stack = stack(this.settings);
-
-    this.#handleClick = handleClick.bind(this);
-    this.#handleKeydown = handleKeydown.bind(this);
   }
 
   get active() {
     return this.stack.top;
+  }
+
+  async open(id, transition, focus) {
+    return open.call(this, id, transition, focus);
+  }
+
+  async close(id, transition, focus) {
+    return close.call(this, id, transition, focus);
+  }
+
+  async replace(id, transition, focus) {
+    return replace.call(this, id, transition, focus);
+  }
+
+  async closeAll(exclude = false, transition, focus = true) {
+    const result = await closeAll.call(this, exclude, transition);
+    // Update focus if the focus param is true.
+    if (focus) {
+      updateFocusState.call(this);
+    }
+    return result;
+  }
+
+  async beforeRegister(entry, config) {
+    return register.call(this, entry, config);
+  }
+
+  async beforeDeregister(entry) {
+    return deregister.call(this, entry);
   }
 
   async afterMount() {
@@ -43,38 +71,5 @@ export default class Modal extends Collection {
   async afterUnmount() {
     document.removeEventListener("click", this.#handleClick, false);
     document.removeEventListener("keydown", this.#handleKeydown, false);
-  }
-
-  register(query, config = {}) {
-    let el = (typeof query == "string") ?
-      document.getElementById(query) : query;
-    return (el) ?
-      register.call(this, el, config) :
-      Promise.reject(new Error(`Failed to register; modal not found with ID of: "${query.id || query}".`));
-  }
-
-  deregister(query) {
-    return deregister.call(this, query);
-  }
-
-  open(id, transition, focus) {
-    return open.call(this, id, transition, focus);
-  }
-
-  close(id, transition, focus) {
-    return close.call(this, id, transition, focus);
-  }
-
-  replace(id, transition, focus) {
-    return replace.call(this, id, transition, focus);
-  }
-
-  async closeAll(exclude = false, transition, focus = true) {
-    const result = await closeAll.call(this, exclude, transition);
-    // Update focus if the focus param is true.
-    if (focus) {
-      updateFocusState.call(this);
-    }
-    return result;
   }
 }

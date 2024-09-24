@@ -15,18 +15,37 @@ export default class Drawer extends Collection {
   constructor(options) {
     super({ ...defaults, ...options});
     this.focusTrap = new FocusTrap();
+    this.#handleClick = handleClick.bind(this);
+    this.#handleKeydown = handleKeydown.bind(this);
 
     // Setup local store for inline drawer state management.
     this.store = localStore(this.settings.storeKey, this.settings.store);
-
-    this.#handleClick = handleClick.bind(this);
-    this.#handleKeydown = handleKeydown.bind(this);
   }
 
   get activeModal() {
     return this.collection.find((entry) => {
       return entry.state === "opened" && entry.mode === "modal";
     });
+  }
+
+  async open(id, transition, focus) {
+    return open.call(this, id, transition, focus);
+  }
+
+  async close(id, transition, focus) {
+    return close.call(this, id, transition, focus);
+  }
+
+  async toggle(id, transition, focus) {
+    return toggle.call(this, id, transition, focus);
+  }
+
+  async beforeRegister(entry, config) {
+    return register.call(this, entry, config);
+  }
+
+  async beforeDeregister(entry) {
+    return deregister.call(this, entry);
   }
 
   async afterMount() {
@@ -41,29 +60,5 @@ export default class Drawer extends Collection {
   async afterUnmount() {
     document.removeEventListener("click", this.#handleClick, false);
     document.removeEventListener("keydown", this.#handleKeydown, false);
-  }
-
-  register(query, config = {}) {
-    let el = (typeof query == "string") ?
-      document.getElementById(query) : query;
-    return (el) ?
-      register.call(this, el, config) :
-      Promise.reject(new Error(`Failed to register; drawer not found with ID of: "${query.id || query}".`));
-  }
-
-  deregister(query) {
-    return deregister.call(this, query);
-  }
-
-  open(id, transition, focus) {
-    return open.call(this, id, transition, focus);
-  }
-
-  close(id, transition, focus) {
-    return close.call(this, id, transition, focus);
-  }
-
-  toggle(id, transition, focus) {
-    return toggle.call(this, id, transition, focus);
   }
 }

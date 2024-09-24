@@ -1,12 +1,9 @@
-import { Entry, Breakpoint } from "@vrembem/core";
+import { Breakpoint } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { applyInitialState } from "./helpers";
 import { getBreakpoint } from "./helpers";
 
-export async function register(el, config = {}) {
-  // Deregister entry incase it has already been registered.
-  await this.deregister(el, false);
-
+export async function register(entry, config = {}) {
   // Save root this for use inside methods API.
   const root = this;
 
@@ -15,9 +12,6 @@ export async function register(el, config = {}) {
 
   // Setup private variables and their default values if any.
   let _mode, _state = "indeterminate";
-
-  // Create the entry object.
-  const entry = new Entry(this, el);
 
   // Build on the entry object.
   Object.assign(entry, {
@@ -58,7 +52,7 @@ export async function register(el, config = {}) {
   // Create getters and setters.
   Object.defineProperties(entry, Object.getOwnPropertyDescriptors({
     get breakpoint() {
-      return getBreakpoint.call(root, el);
+      return getBreakpoint.call(root, this.el);
     },
     get store() {
       return root.store.get(this.id);
@@ -101,17 +95,9 @@ export async function register(el, config = {}) {
   entry.applySettings(config);
   entry.getDataConfig();
 
-  // Teleport drawer if a reference has been set.
-  if (entry.getSetting("teleport")) {
-    entry.teleport();
-  }
-
-  // Add entry to collection.
-  this.collection.push(entry);
-
   // Set the dialog element. If none is found, use the root element.
-  const dialog = el.querySelector(entry.getSetting("selectorDialog"));
-  entry.dialog = (dialog) ? dialog : el;
+  const dialog = entry.el.querySelector(entry.getSetting("selectorDialog"));
+  entry.dialog = (dialog) ? dialog : entry.el;
 
   // Set tabindex="-1" so dialog is focusable via JS or click.
   if (entry.getSetting("setTabindex")) {
@@ -125,9 +111,8 @@ export async function register(el, config = {}) {
   entry.inlineState = entry.state;
 
   // Set the initial mode.
-  entry.mode = (el.classList.contains(entry.getSetting("classModal"))) ? "modal" : "inline";
+  entry.mode = (entry.el.classList.contains(entry.getSetting("classModal"))) ? "modal" : "inline";
 
-  // If the entry has a breakpoint, get it mounted.
   if (entry.breakpoint) {
     entry.mountBreakpoint();
   }

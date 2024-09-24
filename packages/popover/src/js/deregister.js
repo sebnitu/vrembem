@@ -9,14 +9,6 @@ export async function deregister(entry) {
 
   // Remove event listeners.
   deregisterEventListeners(entry);
-
-  // Return teleported modal if a reference has been set.
-  if (entry.getSetting("teleport")) {
-    entry.teleportReturn();
-  }
-
-  // Return the modified collection.
-  return entry;
 }
 
 export function deregisterEventListeners(entry) {

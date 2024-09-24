@@ -97,11 +97,6 @@ export async function register(entry, config = {}) {
   // Setup event listeners.
   registerEventListeners.call(this, entry);
 
-  // Teleport popover if a reference has been set.
-  if (entry.getSetting("teleport")) {
-    entry.teleport();
-  }
-
   // Set initial state.
   if (entry.el.classList.contains(this.settings.stateActive)) {
     await entry.open();

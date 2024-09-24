@@ -27,6 +27,11 @@ export class Collection {
       await this.beforeRegister(entry, config);
     }
 
+    // Teleport entry if a reference has been set.
+    if (entry.getSetting("teleport")) {
+      entry.teleport();
+    }
+
     // Add the entry to the collection.
     this.collection.push(entry);
 
@@ -48,6 +53,11 @@ export class Collection {
       // Check if beforeDeregister has been set and that it's a function.
       if ("beforeDeregister" in this && typeof this.beforeDeregister == "function") {
         await this.beforeDeregister(entry);
+      }
+
+      // Return teleported entry if a reference has been set.
+      if (entry.getSetting("teleport")) {
+        entry.teleportReturn();
       }
 
       // Remove all the properties from the entry.

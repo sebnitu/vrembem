@@ -1,14 +1,6 @@
-import { Entry } from "@vrembem/core";
-
-export async function register(el, config = {}) {
-  // Deregister entry incase it has already been registered.
-  await this.deregister(el, false);
-
+export async function register(entry, config = {}) {
   // Save root this for use inside methods API.
   const root = this;
-
-  // Create the entry object.
-  const entry = new Entry(this, el);
 
   // Build on the entry object.
   Object.assign(entry, {
@@ -40,8 +32,8 @@ export async function register(el, config = {}) {
   entry.getDataConfig();
 
   // Set the dialog element. If none is found, use the root element.
-  const dialog = el.querySelector(entry.getSetting("selectorDialog"));
-  entry.dialog = (dialog) ? dialog : el;
+  const dialog = entry.el.querySelector(entry.getSetting("selectorDialog"));
+  entry.dialog = (dialog) ? dialog : entry.el;
 
   // Set aria-modal attribute to true.
   entry.dialog.setAttribute("aria-modal", "true");
@@ -55,14 +47,6 @@ export async function register(el, config = {}) {
   if (entry.getSetting("setTabindex")) {
     entry.dialog.setAttribute("tabindex", "-1");
   }
-
-  // Teleport modal if a reference has been set.
-  if (entry.getSetting("teleport")) {
-    entry.teleport();
-  }
-
-  // Add entry to collection.
-  this.collection.push(entry);
 
   // Setup initial state.
   if (entry.el.classList.contains(entry.getSetting("stateOpened"))) {
