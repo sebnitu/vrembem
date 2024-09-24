@@ -31,33 +31,18 @@ export default class Modal extends Collection {
     return this.stack.top;
   }
 
-  async mount(options = {}) {
-    // Update settings with passed options.
-    super.applySettings(options);
-
-    // Get all the modals.
-    const modals = document.querySelectorAll(this.settings.selectorModal);
-
-    // Register the collections array with modal instances.
-    await this.registerCollection(modals);
-
+  async afterMount() {
     document.addEventListener("click", this.#handleClick, false);
     document.addEventListener("keydown", this.#handleKeydown, false);
-
-    return this;
   }
 
-  async unmount() {
-    // Clear stored trigger.
+  async beforeUnmount() {
     this.trigger = null;
+  }
 
-    // Remove all entries from the collection.
-    await this.deregisterCollection();
-
+  async afterUnmount() {
     document.removeEventListener("click", this.#handleClick, false);
     document.removeEventListener("keydown", this.#handleKeydown, false);
-
-    return this;
   }
 
   register(query, config = {}) {

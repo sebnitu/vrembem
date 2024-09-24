@@ -628,7 +628,7 @@ https://lerna.js.org/docs/features/version-and-publish
     * **CSS variable changes**
       * `$wrapper-height: 100%;` => `$frame-height: 100vh;`
     * **Option changes**
-      * `dataDrawer` => `selectorDrawer`: Takes a valid CSS selector string.
+      * `dataDrawer` => `selector`: Takes a valid CSS selector string.
       * `dataDialog` => `selectorDialog`: Takes a valid CSS selector string.
       * `dataFocus` => `selectorFocus`: Takes a valid CSS selector string (defaults to`[data-focus]`).
       * `stateSave` => `store`
@@ -665,7 +665,7 @@ https://lerna.js.org/docs/features/version-and-publish
     * **Option changes**
       * `moveModals.ref` => `teleport`: Takes a valid CSS selector string.
       * `moveModals.type` => `teleportMethod`: Method options include `'after'`, `'before'`, `'append'` and `'prepend'`.
-      * `dataModal` => `selectorModal`: Takes a valid CSS selector string.
+      * `dataModal` => `selector`: Takes a valid CSS selector string.
       * `dataDialog` => `selectorDialog`: Takes a valid CSS selector string.
       * `dataRequired` => `selectorRequired`: Takes a valid CSS selector string.
       * `dataFocus` => `selectorFocus`: Takes a valid CSS selector string (defaults to`[data-focus]`).

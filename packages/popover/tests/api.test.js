@@ -51,10 +51,10 @@ describe("mount() & unmount()", () => {
 
   it("should be able to pass options through mount method", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover({ selectorPopover: ".asdf" });
-    expect(popover.settings.selectorPopover).toBe(".asdf");
-    await popover.mount({ selectorPopover: ".popover" });
-    expect(popover.settings.selectorPopover).toBe(".popover");
+    const popover = new Popover({ selector: ".asdf" });
+    expect(popover.settings.selector).toBe(".asdf");
+    await popover.mount({ selector: ".popover" });
+    expect(popover.settings.selector).toBe(".popover");
   });
 
   it("should remove all event listeners and clear collection", async () => {

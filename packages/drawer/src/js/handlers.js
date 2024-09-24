@@ -51,7 +51,7 @@ export async function handleClick(event) {
           return entry.close();
         } else {
           // If no value is set on close trigger, get the parent drawer.
-          const parent = event.target.closest(this.settings.selectorDrawer);
+          const parent = event.target.closest(this.settings.selector);
           // If a parent drawer was found, close it.
           if (parent) return this.close(parent);
         }

@@ -12,7 +12,7 @@ const mockObj = {
     dataClose: "drawer-close",
     dataToggle: "drawer-toggle",
     dataBreakpoint: "drawer-breakpoint",
-    selectorDrawer: ".drawer",
+    selector: ".drawer",
     selectorDialog: ".drawer__dialog",
     breakpoints: {
       "md": "700px"

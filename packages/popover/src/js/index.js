@@ -26,34 +26,17 @@ export default class Popover extends Collection {
       return popover.state == "opened" && popover.getSetting("event") == "hover";
     });
   }
-
-  async mount(options = {}) {
-    // Update settings with passed options.
-    super.applySettings(options);
-
-    // Get all the popovers.
-    const popovers = document.querySelectorAll(this.settings.selectorPopover);
-
-    // Register the collections array with popover instances.
-    await this.registerCollection(popovers);
-
-    // Add global event listener.
+  
+  async afterMount() {
     document.addEventListener("keydown", this.#handleKeydown, false);
-
-    return this;
   }
 
-  async unmount() {
-    // Clear stored trigger.
+  async beforeUnmount() {
     this.trigger = null;
+  }
 
-    // Remove all entries from the collection.
-    await this.deregisterCollection();
-
-    // Remove global event listener.
+  async afterUnmount() {
     document.removeEventListener("keydown", this.#handleKeydown, false);
-
-    return this;
   }
 
   register(query, config = {}) {

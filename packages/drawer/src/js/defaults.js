@@ -6,7 +6,7 @@ export default {
   dataBreakpoint: "drawer-breakpoint",
 
   // Selectors
-  selectorDrawer: ".drawer",
+  selector: ".drawer",
   selectorDialog: ".drawer__dialog",
   selectorScreen: ".drawer",
   selectorFocus: "[data-focus]",

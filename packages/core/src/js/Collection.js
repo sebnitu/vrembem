@@ -13,7 +13,45 @@ export class Collection {
     return Object.assign(this.settings, options);
   }
 
-  // TODO: Create a collection "mount" and "unmount" method.
+  async mount(options = {}) {
+    // Apply settings with passed options.
+    this.applySettings(options);
+
+    // Check if beforeMount has been set and that it's a function.
+    if ("beforeMount" in this && typeof this.beforeMount == "function") {
+      await this.beforeMount();
+    }
+
+    // Get all the selector elements.
+    const els = document.querySelectorAll(this.settings.selector);
+
+    // Register the collections using the returned elements.
+    await this.registerCollection(els);
+
+    // Check if afterMount has been set and that it's a function.
+    if ("afterMount" in this && typeof this.afterMount == "function") {
+      await this.afterMount();
+    }
+
+    return this;
+  }
+
+  async unmount() {
+    // Check if beforeUnmount has been set and that it's a function.
+    if ("beforeUnmount" in this && typeof this.beforeUnmount == "function") {
+      await this.beforeUnmount();
+    }
+
+    // Remove all entries from the collection.
+    await this.deregisterCollection();
+
+    // Check if afterUnmount has been set and that it's a function.
+    if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
+      await this.afterUnmount();
+    }
+
+    return this;
+  }
 
   // TODO: Refactor this so that it's used instead of always overridden.
   // TODO: Create a "beforeRegister" and "afterRegister" that allows an entry to

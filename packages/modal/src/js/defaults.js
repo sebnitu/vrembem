@@ -5,7 +5,7 @@ export default {
   dataReplace: "modal-replace",
 
   // Selectors
-  selectorModal: ".modal",
+  selector: ".modal",
   selectorDialog: ".modal__dialog",
   selectorScreen: ".modal",
   selectorRequired: "[role=\"alertdialog\"]",

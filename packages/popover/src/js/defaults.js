@@ -1,6 +1,6 @@
 export default {
   // Selectors
-  selectorPopover: ".popover",
+  selector: ".popover",
   selectorTooltip: ".popover_tooltip",
   selectorArrow: ".popover__arrow",
 

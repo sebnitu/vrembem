@@ -18,7 +18,7 @@ export async function handleClick(event) {
       // Get the entry from collection using the attribute value.
       const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
-      const fromModal = event.target.closest(this.settings.selectorModal);
+      const fromModal = event.target.closest(this.settings.selector);
       if (!fromModal) this.trigger = trigger;
       // Toggle the drawer
       return entry.open();
@@ -30,7 +30,7 @@ export async function handleClick(event) {
       // Get the entry from collection using the attribute value.
       const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
-      const fromModal = event.target.closest(this.settings.selectorModal);
+      const fromModal = event.target.closest(this.settings.selector);
       if (!fromModal) this.trigger = trigger;
       // Toggle the drawer
       return entry.replace();
