@@ -2,8 +2,8 @@ import { Collection } from "@vrembem/core";
 
 import defaults from "./defaults";
 import { handleKeydown } from "./handlers";
-import { register, registerEventListeners } from "./register";
-import { deregister, deregisterEventListeners } from "./deregister";
+import { register } from "./register";
+import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
 import { getPopoverElements } from "./helpers";
@@ -37,12 +37,8 @@ export default class Popover extends Collection {
     // Register the collections array with popover instances.
     await this.registerCollection(popovers);
 
-    // If eventListeners are enabled, mount event listeners.
-    if (this.settings.eventListeners) {
-      // Pass false to mountEventListeners() since registerCollection()
-      // already adds event listeners to popovers.
-      this.mountEventListeners(false);
-    }
+    // Add global event listener.
+    document.addEventListener("keydown", this.#handleKeydown, false);
 
     return this;
   }
@@ -54,38 +50,10 @@ export default class Popover extends Collection {
     // Remove all entries from the collection.
     await this.deregisterCollection();
 
-    // If eventListeners are enabled, unmount event listeners.
-    if (this.settings.eventListeners) {
-      // Pass false to unmountEventListeners() since deregisterCollection()
-      // already removes event listeners from popovers.
-      this.unmountEventListeners(false);
-    }
+    // Remove global event listener.
+    document.removeEventListener("keydown", this.#handleKeydown, false);
 
     return this;
-  }
-
-  mountEventListeners(processCollection = true) {
-    if (processCollection) {
-      // Loop through collection and setup event listeners.
-      this.collection.forEach((popover) => {
-        registerEventListeners.call(this, popover);
-      });
-    }
-
-    // Add keydown global event listener.
-    document.addEventListener("keydown", this.#handleKeydown, false);
-  }
-
-  unmountEventListeners(processCollection = true) {
-    if (processCollection) {
-      // Loop through collection and remove event listeners.
-      this.collection.forEach((popover) => {
-        deregisterEventListeners(popover);
-      });
-    }
-
-    // Remove keydown global event listener.
-    document.removeEventListener("keydown", this.#handleKeydown, false);
   }
 
   register(query, config = {}) {

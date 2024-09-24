@@ -15,6 +15,7 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.settings = Object.assign({ dataConfig: "config" }, options);
+    // TODO: Maybe create a new separate entry class.
     this.#entryPrototype = {
       applySettings(obj) {
         return Object.assign(this.settings, obj);
@@ -89,12 +90,20 @@ export class Collection {
     return entry;
   }
 
+  // TODO: Create a collection "mount" and "unmount" method.
+
+  // TODO: Refactor this so that it's used instead of always overridden.
+  // TODO: Create a "beforeRegister" and "afterRegister" that allows an entry to
+  // be modified before it's completely registered.
   async register(item) {
     await this.deregister(item);
     this.collection.push(item);
     return this.collection;
   }
 
+  // TODO: Refactor this so that it's used instead of always overridden.
+  // TODO: Create a "beforeDeregister" and "afterDeregister" that allows an entry to
+  // be modified before it's completely registered.
   async deregister(ref) {
     const index = this.collection.findIndex((entry) => {
       return (entry === ref);
