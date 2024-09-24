@@ -26,7 +26,7 @@ export default class Popover extends Collection {
       return popover.state == "opened" && popover.getSetting("event") == "hover";
     });
   }
-  
+
   async afterMount() {
     document.addEventListener("keydown", this.#handleKeydown, false);
   }
