@@ -1,5 +1,3 @@
-import { Entry } from "@vrembem/core";
-
 export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
@@ -19,17 +17,13 @@ export class Collection {
     // Deregister the element in case it has already been registered.
     await this.deregister(el?.id || el);
 
-    // Create the collection entry object.
-    const entry = new Entry(this, el);
+    // Create the collection entry object and mount it.
+    const entry = await this.createEntry(this, el, config);
+    await entry.mount(config);
 
     // Check if beforeRegister has been set and that it's a function.
     if ("beforeRegister" in this && typeof this.beforeRegister == "function") {
-      await this.beforeRegister(entry, config);
-    }
-
-    // Teleport entry if a reference has been set.
-    if (entry.getSetting("teleport")) {
-      entry.teleport();
+      await this.beforeRegister(entry);
     }
 
     // Add the entry to the collection.
@@ -37,7 +31,7 @@ export class Collection {
 
     // Check if afterRegister has been set and that it's a function.
     if ("afterRegister" in this && typeof this.afterRegister == "function") {
-      await this.afterRegister(entry, config);
+      await this.afterRegister(entry);
     }
 
     return entry;
@@ -48,16 +42,13 @@ export class Collection {
       return (entry.id === id);
     });
     if (~index) {
+      // Get the collection entry object from the collection and unmount it.
       const entry = this.collection[index];
+      await entry.unmount();
 
       // Check if beforeDeregister has been set and that it's a function.
       if ("beforeDeregister" in this && typeof this.beforeDeregister == "function") {
         await this.beforeDeregister(entry);
-      }
-
-      // Return teleported entry if a reference has been set.
-      if (entry.getSetting("teleport")) {
-        entry.teleportReturn();
       }
 
       // Remove all the properties from the entry.
@@ -75,20 +66,6 @@ export class Collection {
     }
   }
 
-  async registerCollection(items) {
-    await Promise.all(Array.from(items, (item) => {
-      this.register(item);
-    }));
-    return this.collection;
-  }
-
-  async deregisterCollection() {
-    while (this.collection.length > 0) {
-      await this.deregister(this.collection[0]);
-    }
-    return this.collection;
-  }
-
   async mount(options = {}) {
     // Apply settings with passed options.
     this.applySettings(options);
@@ -102,14 +79,14 @@ export class Collection {
     const els = document.querySelectorAll(this.settings.selector);
 
     // Register the collections using the returned elements.
-    await this.registerCollection(els);
+    await Promise.all(Array.from(els, (item) => {
+      this.register(item);
+    }));
 
     // Check if afterMount has been set and that it's a function.
     if ("afterMount" in this && typeof this.afterMount == "function") {
       await this.afterMount();
     }
-
-    return this;
   }
 
   async unmount() {
@@ -119,13 +96,13 @@ export class Collection {
     }
 
     // Remove all entries from the collection.
-    await this.deregisterCollection();
+    while (this.collection.length > 0) {
+      await this.deregister(this.collection[0]);
+    }
 
     // Check if afterUnmount has been set and that it's a function.
     if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
       await this.afterUnmount();
     }
-
-    return this;
   }
 }

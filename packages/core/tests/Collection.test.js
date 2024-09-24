@@ -151,7 +151,6 @@ describe("entry.getSetting()", () => {
     `;
     const collection = new Collection();
     const entry = collection.createEntry("asdf");
-    entry.customPropKeys.push("background");
     entry.getCustomProps();
     expect(entry.getSetting("background")).toBe("pink");
   });

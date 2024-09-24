@@ -17,7 +17,6 @@ export class Entry {
       settings: {},
       dataConfig: {},
       customProps: {},
-      customPropKeys: [],
       returnRef: null
     });
   }
@@ -31,7 +30,7 @@ export class Entry {
   }
 
   getCustomProps() {
-    return Object.assign(this.customProps, getCustomProps(this.el, this.context.module, this.customPropKeys));
+    return Object.assign(this.customProps, getCustomProps(this));
   }
 
   getSetting(key) {
@@ -80,6 +79,47 @@ export class Entry {
     } else {
       console.error("No return reference found:", this.el);
       return false;
+    }
+  }
+
+  async mount(options = {}) {
+    // Apply settings with passed options.
+    this.applySettings(options);
+
+    // Build the setting objects.
+    this.getDataConfig();
+    this.getCustomProps();
+
+    // Check if beforeMount has been set and that it's a function.
+    if ("beforeMount" in this && typeof this.beforeMount == "function") {
+      await this.beforeMount();
+    }
+
+    // Teleport entry if a reference has been set.
+    if (this.getSetting("teleport")) {
+      this.teleport();
+    }
+
+    // Check if afterMount has been set and that it's a function.
+    if ("afterMount" in this && typeof this.afterMount == "function") {
+      await this.afterMount();
+    }
+  }
+
+  async unmount() {
+    // Check if beforeUnmount has been set and that it's a function.
+    if ("beforeUnmount" in this && typeof this.beforeUnmount == "function") {
+      await this.beforeUnmount();
+    }
+
+    // Return teleported entry if a reference has been set.
+    if (this.getSetting("teleport")) {
+      this.teleportReturn();
+    }
+
+    // Check if afterUnmount has been set and that it's a function.
+    if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
+      await this.afterUnmount();
     }
   }
 }

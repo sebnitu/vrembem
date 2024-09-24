@@ -7,7 +7,7 @@ export default {
   // State classes
   stateActive: "is-active",
 
-  // Custom property defaults
+  // Custom properties and their defaults
   placement: "bottom",
   event: "click",
   offset: 0,

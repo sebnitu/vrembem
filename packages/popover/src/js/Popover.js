@@ -1,13 +1,12 @@
 import { Collection } from "@vrembem/core";
 
 import defaults from "./defaults";
+import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown } from "./handlers";
-import { register } from "./register";
-import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
 
-export default class Popover extends Collection {
+export class Popover extends Collection {
   #handleKeydown;
 
   constructor(options = {}) {
@@ -26,20 +25,16 @@ export default class Popover extends Collection {
     });
   }
 
+  async createEntry(context, el, config) {
+    return new PopoverEntry(context, el, config);
+  }
+
   async open(id) {
     return open.call(this, id);
   }
 
   async close(id) {
     return close.call(this, id);
-  }
-
-  async beforeRegister(entry, config) {
-    return register.call(this, entry, config);
-  }
-
-  async beforeDeregister(entry) {
-    return deregister.call(this, entry);
   }
 
   async afterMount() {
