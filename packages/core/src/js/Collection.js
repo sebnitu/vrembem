@@ -1,8 +1,14 @@
+import { CollectionEntry } from "./CollectionEntry";
+
 export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
     this.collection = [];
-    this.settings = Object.assign({ dataConfig: "config" }, options);
+    this.settings = Object.assign({ 
+      dataConfig: "config",
+      teleport: null,
+      teleportMethod: "append"
+    }, options);
   }
 
   get(value, key = "id") {
@@ -11,6 +17,10 @@ export class Collection {
 
   applySettings(options) {
     return Object.assign(this.settings, options);
+  }
+
+  async createEntry(context, el, config) {
+    return new CollectionEntry(context, el, config);
   }
 
   async register(el, config = {}) {
