@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import { Collection } from "../src/js/Collection";
+import { beforeAll } from "vitest";
 
 document.body.innerHTML = `
   <div id="asdf">...</div>
@@ -65,45 +66,99 @@ describe("applySettings()", () => {
 describe("createEntry()", () => {
   it("should return an instantiation of the collection entry class", async () => {
     const obj = new Collection();
-    const entry = await obj.createEntry();
+    const entry = await obj.createEntry("asdf");
+    expect(entry.id).toBe("asdf");
+    expect(entry.context.module).toBe("Collection");
+    expect(entry.getSetting("dataConfig")).toBe("config");
+  });
+
+  it("should be able to pass a settings object", async () => {
+    const obj = new Collection();
+    const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
     console.log(entry);
-    expect(entry).toBe("asdf");
+    expect(entry.id).toBe("fdsa");
+    expect(entry.context.module).toBe("Collection");
+    expect(entry.getSetting("dataConfig")).toBe("test");
   });
 });
 
-// describe("register() & deregister()", () => {
-//   it("should add an item to the registered collection and return the entry", async () => {
-//     const obj = new Collection();
-//     let result, el;
+describe("register() & deregister()", () => {
+  let obj, entry;
 
-//     el = document.getElementById("asdf");
-//     result = await obj.register(el);
-//     expect(obj.collection.length).toBe(1);
-//     expect(obj.collection[0].id).toBe("asdf");
-//     expect(obj.collection[0].el).toBe(result.el);
+  beforeAll(() => {
+    obj = new Collection();
+  });
 
-//     el = document.getElementById("fdsa");
-//     result = await obj.register(el);
-//     expect(obj.collection.length).toBe(2);
-//     expect(obj.collection[1].id).toBe("fdsa");
-//     expect(obj.collection[1].el).toBe(result.el);
-//   });
+  it("should add an item to the collection and return the entry", async () => {
+    entry = await obj.register("asdf");
+    expect(obj.collection.length).toBe(1);
+    expect(obj.collection[0].id).toBe("asdf");
+    expect(obj.collection[0].el).toBe(entry.el);
 
-//   it("should remove item from collection if it exists", async () => {
-//     const obj = new Collection();
-//     const el = document.getElementById("asdf");
-//     await obj.register(el.id);
-//     expect(obj.collection.length).toBe(1);
-//     expect(obj.collection[0].id).toBe("asdf");
+    entry = await obj.register("fdsa");
+    expect(obj.collection.length).toBe(2);
+    expect(obj.collection[1].id).toBe("fdsa");
+    expect(obj.collection[1].el).toBe(entry.el);
+  });
 
-//     await obj.deregister(el.id);
-//     expect(obj.collection.length).toBe(0);
-//   });
-// });
+  it("should remove item from collection if it exists", async () => {
+    await obj.deregister("asdf");
+    expect(obj.collection.length).toBe(1);
+    expect(obj.collection[0].id).toBe("fdsa");
+    await obj.deregister("fdsa");
+    expect(obj.collection.length).toBe(0);
+  });
 
-// describe("mount() & unmount()", () => {
-//   it("...", () => {
-//     expect(true).toBe(false);
-//   });
-// });
+  it("should call before and after register event hooks if set", async () => {
+    obj.beforeRegister = vi.fn();
+    obj.afterRegister = vi.fn();
+    entry = await obj.register("asdf");
+    expect(obj.beforeRegister).toHaveBeenCalled();
+    expect(obj.afterRegister).toHaveBeenCalled();
+  });
+
+  it("should call before and after deregister event hooks if set", async () => {
+    obj.beforeDeregister = vi.fn();
+    obj.afterDeregister = vi.fn();
+    entry = await obj.deregister("asdf");
+    expect(obj.beforeDeregister).toHaveBeenCalled();
+    expect(obj.afterDeregister).toHaveBeenCalled();
+  });
+});
+
+describe("mount() & unmount()", () => {
+  let obj;
+
+  beforeAll(() => {
+    obj = new Collection({ selector: "div" });
+  });
+
+  it("should register all elements using the provided selector on mount", async () => {
+    await obj.mount();
+    expect(obj.settings.selector).toBe("div");
+    expect(obj.collection.length).toBe(2);
+  });
+
+  it("should deregister all elements using the provided selector on mount", async () => {
+    await obj.unmount();
+    expect(obj.settings.selector).toBe("div");
+    expect(obj.collection.length).toBe(0);
+  });
+
+  it("should call before and after mount event hooks if set", async () => {
+    obj.beforeMount = vi.fn();
+    obj.afterMount = vi.fn();
+    await obj.mount();
+    expect(obj.beforeMount).toHaveBeenCalled();
+    expect(obj.afterMount).toHaveBeenCalled();
+  });
+
+  it("should call before and after unmount event hooks if set", async () => {
+    obj.beforeUnmount = vi.fn();
+    obj.afterUnmount = vi.fn();
+    await obj.unmount();
+    expect(obj.beforeUnmount).toHaveBeenCalled();
+    expect(obj.afterUnmount).toHaveBeenCalled();
+  });
+});
 
