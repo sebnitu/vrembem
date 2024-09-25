@@ -1,4 +1,4 @@
-import { updateGlobalState } from "@vrembem/core";
+import { setGlobalState } from "@vrembem/core";
 import { applyInlineState } from "./helpers";
 
 export function switchMode(entry) {
@@ -20,7 +20,7 @@ async function toInline(entry) {
   entry.dialog.removeAttribute("aria-modal");
 
   // Update the global state.
-  updateGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+  setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
   // Remove any focus traps.
   this.focusTrap.unmount();

@@ -26,8 +26,7 @@ function setInert(state, selector) {
   }
 }
 
-// TODO: Look into refactoring how this works.
-export function updateGlobalState(state, selectorInert, selectorOverflow) {
+export function setGlobalState(state, selectorInert, selectorOverflow) {
   setInert(!!state, selectorInert);
   setOverflowHidden(!!state, selectorOverflow);
 }
