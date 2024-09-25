@@ -107,7 +107,7 @@ export class Collection {
 
     // Remove all entries from the collection.
     while (this.collection.length > 0) {
-      await this.deregister(this.collection[0]);
+      await this.deregister(this.collection[0].id);
     }
 
     // Check if afterUnmount has been set and that it's a function.
