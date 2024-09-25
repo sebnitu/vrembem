@@ -1,6 +1,6 @@
-import { Entry } from "@vrembem/core";
+import { CollectionEntry } from "@vrembem/core";
 
-export class ModalEntry extends Entry {
+export class ModalEntry extends CollectionEntry {
   constructor(context, query) {
     super(context, query);
     this.state = "closed";

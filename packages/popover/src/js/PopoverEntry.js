@@ -1,4 +1,4 @@
-import { Entry } from "@vrembem/core";
+import { CollectionEntry } from "@vrembem/core";
 
 import {
   handleClick,
@@ -8,7 +8,7 @@ import {
   handleDocumentClick
 } from "./handlers";
 
-export class PopoverEntry extends Entry {
+export class PopoverEntry extends CollectionEntry {
   #eventListeners;
   #isHovered;
 

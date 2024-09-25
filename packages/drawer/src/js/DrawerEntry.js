@@ -1,9 +1,9 @@
-import { Entry, Breakpoint } from "@vrembem/core";
+import { CollectionEntry, Breakpoint } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { applyInitialState } from "./helpers";
 import { getBreakpoint } from "./helpers";
 
-export class DrawerEntry extends Entry {
+export class DrawerEntry extends CollectionEntry {
   #mode;
   #state;
   #breakpoint;

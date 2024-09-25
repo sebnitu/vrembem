@@ -7,7 +7,7 @@ import {
   toKebab
 } from "@vrembem/core";
 
-export class Entry {
+export class CollectionEntry {
   constructor(context, query) {
     this.context = context;
     const el = getElement(query);
