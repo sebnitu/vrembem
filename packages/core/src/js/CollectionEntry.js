@@ -60,26 +60,6 @@ export class CollectionEntry {
     throw(new Error(`${this.context.module} setting does not exist: ${key}`));
   }
 
-  teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-    if (!this.returnRef) {
-      this.returnRef = teleport(this.el, ref, method);
-      return this.el;
-    } else {
-      console.error("Element has already been teleported:", this.el);
-      return false;
-    }
-  }
-
-  teleportReturn() {
-    if (this.returnRef) {
-      this.returnRef = teleport(this.el, this.returnRef);
-      return this.el;
-    } else {
-      console.error("No return reference found:", this.el);
-      return false;
-    }
-  }
-
   async mount(options = {}) {
     // Apply settings with passed options.
     this.applySettings(options);
@@ -118,6 +98,26 @@ export class CollectionEntry {
     // Check if afterUnmount has been set and that it's a function.
     if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
       await this.afterUnmount();
+    }
+  }
+
+  teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
+    if (!this.returnRef) {
+      this.returnRef = teleport(this.el, ref, method);
+      return this.el;
+    } else {
+      console.error("Element has already been teleported:", this.el);
+      return false;
+    }
+  }
+
+  teleportReturn() {
+    if (this.returnRef) {
+      this.returnRef = teleport(this.el, this.returnRef);
+      return this.el;
+    } else {
+      console.error("No return reference found:", this.el);
+      return false;
     }
   }
 }
