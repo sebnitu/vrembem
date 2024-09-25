@@ -15,12 +15,20 @@ import { cssVar } from "./cssVar";
  */
 export function transition(el, from, to, duration = "transition-duration") {
   return new Promise((resolve) => {
-    // If duration is a string, query for the css var value.
-    if (typeof duration === "string") {
+    // Try an convert the provided duration to a number.
+    const number = Number(parseFloat(duration));
+
+    // Check if the number is in fact a number.
+    if (Number.isNaN(number)) {
+      // Get the CSS var of the provided custom property.
       const cssValue = cssVar(duration, { element: el });
-      // Convert value to ms if needed.
+      // Convert duration to ms if needed.
       const ms = (cssValue.includes("ms")) ? true : false;
       duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
+    } else {
+      // Convert duration to ms if needed.
+      const ms = (duration.includes("ms")) ? true : false;
+      duration = number * ((ms) ? 1 : 1000);
     }
 
     // Toggle classes for start of transition.
