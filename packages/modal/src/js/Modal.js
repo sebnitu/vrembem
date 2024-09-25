@@ -1,9 +1,8 @@
 import { Collection, FocusTrap } from "@vrembem/core";
 
 import defaults from "./defaults";
+import { ModalEntry } from "./ModalEntry";
 import { handleClick, handleKeydown } from "./handlers";
-import { register } from "./register";
-import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
 import { closeAll } from "./closeAll";
@@ -11,7 +10,7 @@ import { replace } from "./replace";
 import { stack } from "./stack";
 import { updateFocusState } from "./helpers";
 
-export default class Modal extends Collection {
+export class Modal extends Collection {
   #handleClick;
   #handleKeydown;
 
@@ -28,6 +27,10 @@ export default class Modal extends Collection {
 
   get active() {
     return this.stack.top;
+  }
+
+  async createEntry(context, el, config) {
+    return new ModalEntry(context, el, config);
   }
 
   async open(id, transition, focus) {
@@ -49,14 +52,6 @@ export default class Modal extends Collection {
       updateFocusState.call(this);
     }
     return result;
-  }
-
-  async beforeRegister(entry, config) {
-    return register.call(this, entry, config);
-  }
-
-  async beforeDeregister(entry) {
-    return deregister.call(this, entry);
   }
 
   async afterMount() {

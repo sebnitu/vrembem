@@ -14,21 +14,23 @@ export class PopoverEntry extends Entry {
 
   constructor(context, query) {
     super(context, query);
-    this.floatingCleanup = () => {};
     this.state = "closed";
     this.toggleDelayId = null;
-    this.trigger = document.querySelector(
-      `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
-    );
+    this.trigger = null;
     this.#eventListeners = null;
     this.#isHovered = {
       el: false,
       trigger: false
     };
+    this.floatingCleanup = () => {};
   }
   
   get isTooltip() {
     return !!this.el.closest(this.getSetting("selectorTooltip")) || this.el.getAttribute("role") == "tooltip";
+  }
+
+  get isHovered() {
+    return this.#isHovered.el || this.#isHovered.trigger;
   }
 
   set isHovered(event) {
@@ -47,11 +49,12 @@ export class PopoverEntry extends Entry {
     }
   }
 
-  get isHovered() {
-    return this.#isHovered.el || this.#isHovered.trigger;
-  }
-
   async beforeMount() {
+    // Get the trigger element.
+    this.trigger = document.querySelector(
+      `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
+    );
+
     // If it's a tooltip...
     if (this.isTooltip) {
       // Set the event to hover role="tooltip" attribute.
@@ -61,8 +64,10 @@ export class PopoverEntry extends Entry {
       // Set aria-expanded to false if trigger has aria-controls attribute.
       this.trigger.setAttribute("aria-expanded", "false");
     }
+
     // Setup event listeners.
     this.registerEventListeners();
+
     // Set initial state based on the presence of the active class.
     if (this.el.classList.contains(this.settings.stateActive)) {
       this.open();
@@ -77,8 +82,10 @@ export class PopoverEntry extends Entry {
     if (this.state === "opened") {
       this.close();
     }
+
     // Clean up the floating UI instance.
     this.floatingCleanup();
+    
     // Remove event listeners.
     this.deregisterEventListeners();
   }

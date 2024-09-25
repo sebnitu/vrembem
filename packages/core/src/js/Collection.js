@@ -38,9 +38,7 @@ export class Collection {
   }
 
   async deregister(id) {
-    const index = this.collection.findIndex((entry) => {
-      return (entry.id === id);
-    });
+    const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
       // Get the collection entry object from the collection and unmount it.
       const entry = this.collection[index];
@@ -87,6 +85,8 @@ export class Collection {
     if ("afterMount" in this && typeof this.afterMount == "function") {
       await this.afterMount();
     }
+
+    return this;
   }
 
   async unmount() {
@@ -104,5 +104,7 @@ export class Collection {
     if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
       await this.afterUnmount();
     }
+
+    return this;
   }
 }

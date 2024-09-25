@@ -1,3 +1,3 @@
-import Drawer from "./src/js";
+import { Drawer } from "./src/js/Drawer";
 
 export default Drawer;

@@ -1,14 +1,13 @@
 import { Collection, FocusTrap, localStore } from "@vrembem/core";
 
 import defaults from "./defaults";
+import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";
-import { register } from "./register";
-import { deregister } from "./deregister";
 import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 
-export default class Drawer extends Collection {
+export class Drawer extends Collection {
   #handleClick;
   #handleKeydown;
 
@@ -28,6 +27,10 @@ export default class Drawer extends Collection {
     });
   }
 
+  async createEntry(context, el, config) {
+    return new DrawerEntry(context, el, config);
+  }
+
   async open(id, transition, focus) {
     return open.call(this, id, transition, focus);
   }
@@ -38,14 +41,6 @@ export default class Drawer extends Collection {
 
   async toggle(id, transition, focus) {
     return toggle.call(this, id, transition, focus);
-  }
-
-  async beforeRegister(entry, config) {
-    return register.call(this, entry, config);
-  }
-
-  async beforeDeregister(entry) {
-    return deregister.call(this, entry);
   }
 
   async afterMount() {
