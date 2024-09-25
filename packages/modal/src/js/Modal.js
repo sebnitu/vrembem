@@ -29,8 +29,8 @@ export class Modal extends Collection {
     return this.stack.top;
   }
 
-  async createEntry(context, el, config) {
-    return new ModalEntry(context, el, config);
+  async createEntry(query, config) {
+    return new ModalEntry(this, query, config);
   }
 
   async open(id, transition, focus) {

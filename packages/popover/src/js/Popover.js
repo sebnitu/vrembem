@@ -25,8 +25,8 @@ export class Popover extends Collection {
     });
   }
 
-  async createEntry(context, el, config) {
-    return new PopoverEntry(context, el, config);
+  async createEntry(query, config) {
+    return new PopoverEntry(this, query, config);
   }
 
   async open(id) {

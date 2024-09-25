@@ -12,8 +12,8 @@ export class PopoverEntry extends CollectionEntry {
   #eventListeners;
   #isHovered;
 
-  constructor(context, query) {
-    super(context, query);
+  constructor(context, query, options = {}) {
+    super(context, query, options);
     this.state = "closed";
     this.toggleDelayId = null;
     this.trigger = null;

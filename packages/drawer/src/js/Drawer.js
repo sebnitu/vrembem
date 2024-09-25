@@ -27,8 +27,8 @@ export class Drawer extends Collection {
     });
   }
 
-  async createEntry(context, el, config) {
-    return new DrawerEntry(context, el, config);
+  async createEntry(query, config) {
+    return new DrawerEntry(this, query, config);
   }
 
   async open(id, transition, focus) {

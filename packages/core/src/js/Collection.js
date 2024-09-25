@@ -15,21 +15,21 @@ export class Collection {
     return this.collection.find((entry) => entry[key] === value);
   }
 
-  applySettings(options) {
-    return Object.assign(this.settings, options);
+  applySettings(obj) {
+    return Object.assign(this.settings, obj);
   }
 
-  async createEntry(context, el, config) {
-    return new CollectionEntry(context, el, config);
+  async createEntry(query, config) {
+    return new CollectionEntry(this, query, config);
   }
 
-  async register(el, config = {}) {
+  async register(query, config = {}) {
     // Deregister the element in case it has already been registered.
-    await this.deregister(el?.id || el);
+    await this.deregister(query?.id || query);
 
     // Create the collection entry object and mount it.
-    const entry = await this.createEntry(this, el, config);
-    await entry.mount(config);
+    const entry = await this.createEntry(query, config);
+    await entry.mount();
 
     // Check if beforeRegister has been set and that it's a function.
     if ("beforeRegister" in this && typeof this.beforeRegister == "function") {

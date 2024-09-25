@@ -8,8 +8,8 @@ export class DrawerEntry extends CollectionEntry {
   #state;
   #breakpoint;
 
-  constructor(context, query) {
-    super(context, query);
+  constructor(context, query, options = {}) {
+    super(context, query, options);
     this.dialog = null;
     this.trigger = null;
     // Create an instance of the Breakpoint class.

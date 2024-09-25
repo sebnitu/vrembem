@@ -8,17 +8,15 @@ import {
 } from "@vrembem/core";
 
 export class CollectionEntry {
-  constructor(context, query) {
+  constructor(context, query, options = {}) {
     this.context = context;
     const el = getElement(query);
-    Object.assign(this, {
-      id: el?.id,
-      el: el,
-      settings: {},
-      dataConfig: {},
-      customProps: {},
-      returnRef: null
-    });
+    this.id = el?.id;
+    this.el = el;
+    this.settings = Object.assign({}, options);
+    this.dataConfig = {};
+    this.customProps = {};
+    this.returnRef = null;
   }
 
   applySettings(obj) {

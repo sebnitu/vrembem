@@ -1,8 +1,8 @@
 import { CollectionEntry } from "@vrembem/core";
 
 export class ModalEntry extends CollectionEntry {
-  constructor(context, query) {
-    super(context, query);
+  constructor(context, query, options = {}) {
+    super(context, query, options);
     this.state = "closed";
     this.dialog = null;
   }
