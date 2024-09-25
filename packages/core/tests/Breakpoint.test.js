@@ -1,6 +1,5 @@
 import "./mocks/matchMedia.mock";
 import { resizeWindow } from "./helpers/resizeWindow";
-
 import { Breakpoint } from "../index";
 
 const bp = new Breakpoint();

@@ -1,6 +1,4 @@
-import "@testing-library/jest-dom/vitest";
-import { Collection } from "../src/js/Collection";
-import { CollectionEntry } from "../src/js/CollectionEntry";
+import { Collection, CollectionEntry } from "../index";
 
 document.body.innerHTML = `
   <div id="one">...</div>
@@ -72,7 +70,7 @@ describe("getSetting()", () => {
 
   it("should throw an error if a setting doesn't exist", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(entry.getSetting.bind(entry, "asdf")).toThrowError("Collection setting does not exist: asdf");
+    expect(() => entry.getSetting("asdf")).toThrowError("Collection setting does not exist: asdf");
   });
 });
 

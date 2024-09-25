@@ -1,5 +1,4 @@
-import "@testing-library/jest-dom/vitest";
-import { Collection } from "../src/js/Collection";
+import { Collection } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf">...</div>

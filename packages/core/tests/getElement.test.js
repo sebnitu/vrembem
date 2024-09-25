@@ -1,4 +1,4 @@
-import { getElement } from "../src/js/getElement";
+import { getElement } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf"></div>

@@ -1,5 +1,5 @@
-import { setGlobalState } from "../index";
 import "@testing-library/jest-dom/vitest";
+import { setGlobalState } from "../index";
 
 document.body.innerHTML = `
   <header class="header"></header>
