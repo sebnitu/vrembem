@@ -1,48 +1,32 @@
-import { cssVar } from "./cssVar";
+// import { cssVar } from "./cssVar";
+import { toMilliseconds } from "./utilities/toMilliseconds";
 
 /**
  * Get the value of a CSS custom property (variable).
  * @param {Node} el - The element to transition.
- * @param {Object} from - An object with a start and finish classes to 
- *   transition from.
- * @param {Object} to - An object with a start and finish classes to 
- *   transition to.
- * @param {String || Number} [duration="transition-duration"] - Either a CSS 
+ * @param {String} init - The initial state class. 
+ * @param {String} interim - The interim state class.
+ * @param {String} final - The final state class.
+ * @param {Number || String} [duration=0] - Either a CSS 
  *   custom property to get a duration value from or a millisecond value used 
  *   for the transition duration.
  * @return {Promise} Return a promise that resolves when the transition 
  *   has finished.
  */
-export function transition(el, from, to, duration = "transition-duration") {
+export function transition(el, init, interim, final, duration = 0) {
   return new Promise((resolve) => {
-    // Try an convert the provided duration to a number.
-    const number = Number(parseFloat(duration));
-
-    // Check if the number is in fact a number.
-    if (Number.isNaN(number)) {
-      // Get the CSS var of the provided custom property.
-      const cssValue = cssVar(duration, { element: el });
-      // Convert duration to ms if needed.
-      const ms = (cssValue.includes("ms")) ? true : false;
-      duration = parseFloat(cssValue) * ((ms) ? 1 : 1000);
-    } else {
-      // Convert duration to ms if needed.
-      const ms = (duration.includes("ms")) ? true : false;
-      duration = number * ((ms) ? 1 : 1000);
-    }
-
     // Toggle classes for start of transition.
-    el.classList.remove(from.finish);
-    el.classList.add(to.start);
+    el.classList.remove(init);
+    el.classList.add(interim);
 
     // Setup the transition timing.
     setTimeout(() => {
       // Toggle classes for end of transition.
-      el.classList.add(to.finish);
-      el.classList.remove(to.start);
+      el.classList.add(final);
+      el.classList.remove(interim);
 
       // Resolve the promise.
       resolve(el);
-    }, duration);
+    }, toMilliseconds(duration));
   });
 }

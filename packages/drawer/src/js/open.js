@@ -12,13 +12,13 @@ export async function open(query, transitionOverride, focus = true) {
 
     // Run the open transition.
     if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
-      await transition(entry.el, {
-        start: entry.getSetting("stateClosing"),
-        finish: entry.getSetting("stateClosed")
-      }, {
-        start: entry.getSetting("stateOpening"),
-        finish: entry.getSetting("stateOpened")
-      }, entry.getSetting("transitionDuration"));
+      await transition(
+        entry.el, 
+        entry.getSetting("stateClosed"),
+        entry.getSetting("stateOpening"),
+        entry.getSetting("stateOpened"),
+        entry.getSetting("transitionDuration")
+      );
     } else {
       entry.el.classList.add(entry.getSetting("stateOpened"));
       entry.el.classList.remove(entry.getSetting("stateClosed"));
