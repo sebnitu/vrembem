@@ -9,18 +9,18 @@ import {
 } from "./handlers";
 
 export class PopoverEntry extends Entry {
+  #eventListeners;
   #isHovered;
 
   constructor(context, query) {
     super(context, query);
-    this.cleanup = () => {};
+    this.floatingCleanup = () => {};
     this.state = "closed";
     this.toggleDelayId = null;
     this.trigger = document.querySelector(
       `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
     );
-
-    // Setup a private object for keeping track of the hover state.
+    this.#eventListeners = null;
     this.#isHovered = {
       el: false,
       trigger: false
@@ -52,22 +52,18 @@ export class PopoverEntry extends Entry {
   }
 
   async beforeMount() {
-    // If it's a tooltip set the event to hover.
-    // Set role="tooltip" attribute if the popover is a tooltip.
+    // If it's a tooltip...
     if (this.isTooltip) {
+      // Set the event to hover role="tooltip" attribute.
       this.settings.event = "hover";
       this.el.setAttribute("role", "tooltip");
-    }
-
-    // Set aria-expanded to false if trigger has aria-controls attribute.
-    if (!this.isTooltip) {
+    } else {
+      // Set aria-expanded to false if trigger has aria-controls attribute.
       this.trigger.setAttribute("aria-expanded", "false");
     }
-
     // Setup event listeners.
     this.registerEventListeners();
-
-    // Set initial state.
+    // Set initial state based on the presence of the active class.
     if (this.el.classList.contains(this.settings.stateActive)) {
       this.open();
       handleDocumentClick.call(this, this);
@@ -81,10 +77,8 @@ export class PopoverEntry extends Entry {
     if (this.state === "opened") {
       this.close();
     }
-
     // Clean up the floating UI instance.
-    this.cleanup();
-
+    this.floatingCleanup();
     // Remove event listeners.
     this.deregisterEventListeners();
   }
@@ -103,14 +97,14 @@ export class PopoverEntry extends Entry {
 
   registerEventListeners() {
     // If event listeners aren't already setup.
-    if (!this._eventListeners) {
+    if (!this.#eventListeners) {
       // Add event listeners based on event type.
       const eventType = this.getSetting("event");
   
       // If the event type is hover.
       if (eventType === "hover") {
         // Setup event listeners object for hover.
-        this._eventListeners = [{
+        this.#eventListeners = [{
           el: ["el", "trigger"],
           type: ["mouseenter", "focus"],
           listener: handleMouseEnter.bind(this.context, this)
@@ -125,7 +119,7 @@ export class PopoverEntry extends Entry {
         }];
   
         // Loop through listeners and apply to the appropriate elements.
-        this._eventListeners.forEach((evObj) => {
+        this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
               this[el].addEventListener(type, evObj.listener, false);
@@ -137,14 +131,14 @@ export class PopoverEntry extends Entry {
       // Else the event type is click.
       else {
         // Setup event listeners object for click.
-        this._eventListeners = [{
+        this.#eventListeners = [{
           el: ["trigger"],
           type: ["click"],
           listener: handleClick.bind(this.context, this)
         }];
   
         // Loop through listeners and apply to the appropriate elements.
-        this._eventListeners.forEach((evObj) => {
+        this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
               this[el].addEventListener(type, evObj.listener, false);
@@ -157,9 +151,9 @@ export class PopoverEntry extends Entry {
   
   deregisterEventListeners() {
     // If event listeners have been setup.
-    if (this._eventListeners) {
+    if (this.#eventListeners) {
       // Loop through listeners and remove from the appropriate elements.
-      this._eventListeners.forEach((evObj) => {
+      this.#eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
             this[el].removeEventListener(type, evObj.listener, false);
@@ -168,7 +162,7 @@ export class PopoverEntry extends Entry {
       });
   
       // Remove eventListeners object from collection.
-      delete this._eventListeners;
+      this.#eventListeners = null;
     }
   }
 }

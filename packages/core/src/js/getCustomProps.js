@@ -1,4 +1,4 @@
-import { getPrefix } from "@vrembem/core";
+import { getPrefix, toKebab } from "@vrembem/core";
 
 export function getCustomProps(entry) {
   // Get the computed styles of the element.
@@ -14,11 +14,12 @@ export function getCustomProps(entry) {
   for (let i = 0; i < keys.length; i++) {
     // Get the custom property value.
     const prefix = getPrefix();
-    const value = styles.getPropertyValue(`--${prefix}${entry.context.module.toLowerCase()}-${keys[i]}`).trim();
-
+    const module = entry.context.module.toLowerCase();
+    const key = toKebab(keys[i]);
+    const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
     // If a value was found, add it to our results object.
     if (value) {
-      result[keys[i]] = value;
+      result[key] = value;
     }
   }
 

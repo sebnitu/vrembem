@@ -37,7 +37,7 @@ export async function open(query) {
   middlewareOptions.arrow.element = arrowEl ? arrowEl : undefined;
 
   // Setup the autoUpdate of popover positioning and store the cleanup function.
-  popover.cleanup = autoUpdate(popover.trigger, popover.el, () => {
+  popover.floatingCleanup = autoUpdate(popover.trigger, popover.el, () => {
     computePosition(popover.trigger, popover.el, {
       placement: popover.getSetting("placement"),
       middleware: [

@@ -86,7 +86,7 @@ export class Entry {
     // Apply settings with passed options.
     this.applySettings(options);
 
-    // Build the setting objects.
+    // Build the data attribute and custom property setting objects.
     this.getDataConfig();
     this.getCustomProps();
 
