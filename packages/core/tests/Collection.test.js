@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom/vitest";
 import { Collection } from "../src/js/Collection";
-import { beforeAll } from "vitest";
 
 document.body.innerHTML = `
   <div id="asdf">...</div>
@@ -75,7 +74,6 @@ describe("createEntry()", () => {
   it("should be able to pass a settings object", async () => {
     const obj = new Collection();
     const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
-    console.log(entry);
     expect(entry.id).toBe("fdsa");
     expect(entry.context.module).toBe("Collection");
     expect(entry.getSetting("dataConfig")).toBe("test");
@@ -109,7 +107,7 @@ describe("register() & deregister()", () => {
     expect(obj.collection.length).toBe(0);
   });
 
-  it("should call before and after register event hooks if set", async () => {
+  it("should call before and after register lifecycle hooks if set", async () => {
     obj.beforeRegister = vi.fn();
     obj.afterRegister = vi.fn();
     entry = await obj.register("asdf");
@@ -117,7 +115,7 @@ describe("register() & deregister()", () => {
     expect(obj.afterRegister).toHaveBeenCalled();
   });
 
-  it("should call before and after deregister event hooks if set", async () => {
+  it("should call before and after deregister lifecycle hooks if set", async () => {
     obj.beforeDeregister = vi.fn();
     obj.afterDeregister = vi.fn();
     entry = await obj.deregister("asdf");
@@ -145,7 +143,7 @@ describe("mount() & unmount()", () => {
     expect(obj.collection.length).toBe(0);
   });
 
-  it("should call before and after mount event hooks if set", async () => {
+  it("should call before and after mount lifecycle hooks if set", async () => {
     obj.beforeMount = vi.fn();
     obj.afterMount = vi.fn();
     await obj.mount();
@@ -153,7 +151,7 @@ describe("mount() & unmount()", () => {
     expect(obj.afterMount).toHaveBeenCalled();
   });
 
-  it("should call before and after unmount event hooks if set", async () => {
+  it("should call before and after unmount lifecycle hooks if set", async () => {
     obj.beforeUnmount = vi.fn();
     obj.afterUnmount = vi.fn();
     await obj.unmount();
