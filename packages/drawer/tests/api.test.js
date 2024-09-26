@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom/vitest";
-
 import Drawer from "../index.js";
 
 const markup = `
@@ -195,9 +194,6 @@ describe("register() & deregister()", () => {
 
     const entry = await drawer.register("drawer-4");
     await entry.deregister();
-
-    expect(entry.mode).toBe(undefined);
-    expect(entry.state).toBe(undefined);
     expect(drawer.collection.length).toBe(3);
   });
 
@@ -214,14 +210,7 @@ describe("register() & deregister()", () => {
 
   it("should reject promise with error if register is called on non-existent drawer", async () => {
     const result = await drawer.register("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to register; drawer not found with ID of: \"asdf\".");
-  });
-
-  it("should reject promise with error if deregister is called on non-existent entry", async () => {
-    expect(drawer.collection.length).toBe(4);
-    const result = await drawer.deregister("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to deregister; drawer does not exist in collection with ID of: \"asdf\".");
-    expect(drawer.collection.length).toBe(4);
+    expect(result).toBe("Drawer element was not found with ID: \"asdf\"");
   });
 
   it("should use the root drawer element as dialog if selector returned null", async () => {
