@@ -10,9 +10,8 @@ import {
 export class CollectionEntry {
   constructor(context, query, options = {}) {
     this.context = context;
-    const el = getElement(query);
-    this.id = el?.id;
-    this.el = el;
+    this.id = query?.id || query;
+    this.el = getElement(query);
     this.settings = Object.assign({}, options);
     this.dataConfig = {};
     this.customProps = {};
@@ -61,6 +60,11 @@ export class CollectionEntry {
   }
 
   async mount(options = {}) {
+    // Throw an error if the element for this entry was not found.
+    if (this.el === null) {
+      throw new Error(`${this.context.module} element was not found with ID: "${this.id}"`);
+    }
+
     // Apply settings with passed options.
     this.applySettings(options);
 
