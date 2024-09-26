@@ -9,5 +9,14 @@ export default defineConfig({
       theme: "css-variables"
     },
     extendDefaultPlugins: true,
+  },
+  vite: {
+    css: {
+      preprocessorOptions : {
+        scss: {
+          api: "modern",
+        }        
+      } 
+    }
   }
 });

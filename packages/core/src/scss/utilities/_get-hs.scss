@@ -7,5 +7,5 @@
 /// @return {list}
 ///   The hue and saturation values of the provided color.
 @function get-hs($color) {
-  @return math.round(color.hue($color)) math.round(color.saturation($color));
+  @return math.round(color.channel($color, "hue")) math.round(color.channel($color, "saturation"));
 }
