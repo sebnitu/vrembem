@@ -2,9 +2,10 @@ import {
   getConfig,
   getCustomProps,
   getElement,
+  lifecycleHook,
   teleport,
   toCamel,
-  toKebab
+  toKebab,
 } from "@vrembem/core";
 
 export class CollectionEntry {
@@ -72,37 +73,25 @@ export class CollectionEntry {
     this.getDataConfig();
     this.getCustomProps();
 
-    // Check if beforeMount has been set and that it's a function.
-    if ("beforeMount" in this && typeof this.beforeMount == "function") {
-      await this.beforeMount();
-    }
+    await lifecycleHook.call(this, "beforeMount");
 
     // Teleport entry if a reference has been set.
     if (this.getSetting("teleport")) {
       this.teleport();
     }
 
-    // Check if afterMount has been set and that it's a function.
-    if ("afterMount" in this && typeof this.afterMount == "function") {
-      await this.afterMount();
-    }
+    await lifecycleHook.call(this, "afterMount");
   }
 
   async unmount(reMount = false) {
-    // Check if beforeUnmount has been set and that it's a function.
-    if ("beforeUnmount" in this && typeof this.beforeUnmount == "function") {
-      await this.beforeUnmount(reMount);
-    }
-    
+    await lifecycleHook.call(this, "beforeUnmount", reMount);
+
     // Return teleported entry if a reference has been set.
     if (this.getSetting("teleport")) {
       this.teleportReturn();
     }
 
-    // Check if afterUnmount has been set and that it's a function.
-    if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
-      await this.afterUnmount(reMount);
-    }
+    await lifecycleHook.call(this, "afterUnmount", reMount);
   }
 
   teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
