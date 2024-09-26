@@ -4,8 +4,7 @@ import {
   handleClick,
   handleTooltipClick,
   handleMouseEnter,
-  handleMouseLeave,
-  handleDocumentClick
+  handleMouseLeave
 } from "./handlers";
 
 export class PopoverEntry extends CollectionEntry {
@@ -73,7 +72,6 @@ export class PopoverEntry extends CollectionEntry {
     // Set initial state based on the presence of the active class.
     if (this.el.classList.contains(this.getSetting("stateActive"))) {
       await this.open();
-      handleDocumentClick.call(this, this);
     } else {
       this.el.inert = true;
     }

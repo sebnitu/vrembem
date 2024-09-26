@@ -12,6 +12,7 @@ import {
   getMiddlewareOptions,
   getPopover
 } from "./helpers";
+import { handleDocumentClick } from "./handlers";
 
 export async function open(query) {
   // Get the popover from collection.
@@ -67,6 +68,11 @@ export async function open(query) {
 
   // Update popover state.
   popover.state = "opened";
+
+  // Apply document click handler.
+  if (popover.getSetting("event") === "click") {
+    handleDocumentClick.call(this, popover);
+  }
 
   // Return the popover.
   return popover;
