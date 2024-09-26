@@ -4,10 +4,6 @@ import { expect } from "vitest";
 
 vi.useFakeTimers();
 
-// const keyEsc = new KeyboardEvent("keydown", {
-//   key: "Escape"
-// });
-
 const markup = `
   <button aria-controls="asdf">...</button>
   <div id="asdf" class="popover">...</div>
