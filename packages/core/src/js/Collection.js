@@ -87,9 +87,9 @@ export class Collection {
     const els = document.querySelectorAll(this.settings.selector);
 
     // Register the collections using the returned elements.
-    await Promise.all(Array.from(els, (item) => {
-      this.register(item);
-    }));
+    for (const el of els) {
+      await this.register(el);
+    }
 
     // Check if afterMount has been set and that it's a function.
     if ("afterMount" in this && typeof this.afterMount == "function") {
