@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
+import { expect } from "vitest";
 
 vi.useFakeTimers();
 
@@ -54,6 +55,17 @@ describe("mount() & unmount()", () => {
     trigger.click();
     vi.advanceTimersByTime(500);
     expect(target).not.toHaveClass("is-active");
+  });
+
+  it("should close open popovers when before being unmounted", async () => {
+    document.body.innerHTML = markup;
+    const popover = new Popover();
+    await popover.mount();
+    const entry = await popover.get("asdf");
+    await entry.open();
+    await popover.unmount();
+    const el = document.getElementById("asdf");
+    expect(el).not.toHaveClass("is-active");
   });
 });
 

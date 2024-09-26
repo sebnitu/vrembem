@@ -80,7 +80,7 @@ export class PopoverEntry extends CollectionEntry {
   async beforeUnmount() {
     // If entry is in the opened state, close it.
     if (this.state === "opened") {
-      this.close();
+      await this.close();
     }
 
     // Clean up the floating UI instance.
