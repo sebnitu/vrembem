@@ -80,14 +80,9 @@ describe("createEntry()", () => {
 });
 
 describe("register() & deregister()", () => {
-  let obj, entry;
-
-  beforeAll(() => {
-    obj = new Collection();
-  });
-
   it("should add an item to the collection and return the entry", async () => {
-    entry = await obj.register("asdf");
+    const obj = new Collection();
+    let entry = await obj.register("asdf");
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe("asdf");
     expect(obj.collection[0].el).toBe(entry.el);
@@ -99,6 +94,9 @@ describe("register() & deregister()", () => {
   });
 
   it("should remove item from collection if it exists", async () => {
+    const obj = new Collection();
+    await obj.register("asdf");
+    await obj.register("fdsa");
     await obj.deregister("asdf");
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe("fdsa");
@@ -107,17 +105,32 @@ describe("register() & deregister()", () => {
   });
 
   it("should call before and after register lifecycle hooks if set", async () => {
-    obj.beforeRegister = vi.fn();
-    obj.afterRegister = vi.fn();
-    entry = await obj.register("asdf");
-    expect(obj.beforeRegister).toHaveBeenCalled();
-    expect(obj.afterRegister).toHaveBeenCalled();
+    const newObj = new Collection();
+    newObj.createEntry = () => {
+      return {
+        mount: vi.fn(),
+        beforeRegister: vi.fn(),
+        afterRegister: vi.fn(),
+      };
+    };
+    newObj.beforeRegister = vi.fn();
+    newObj.afterRegister = vi.fn();
+    const newEntry = await newObj.register("asdf");
+    expect(newEntry.beforeRegister).toHaveBeenCalled();
+    expect(newEntry.afterRegister).toHaveBeenCalled();
+    expect(newObj.beforeRegister).toHaveBeenCalled();
+    expect(newObj.afterRegister).toHaveBeenCalled();
   });
 
   it("should call before and after deregister lifecycle hooks if set", async () => {
+    const obj = new Collection();
+    await obj.register("asdf");
+    await obj.register("fdsa");
+    const entry = obj.get("asdf");
+    entry.beforeDeregister = vi.fn();
     obj.beforeDeregister = vi.fn();
     obj.afterDeregister = vi.fn();
-    entry = await obj.deregister("asdf");
+    await obj.deregister("asdf");
     expect(obj.beforeDeregister).toHaveBeenCalled();
     expect(obj.afterDeregister).toHaveBeenCalled();
   });

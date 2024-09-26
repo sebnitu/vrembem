@@ -112,6 +112,11 @@ describe("mount() & unmount()", () => {
     await entry.unmount();
     expect(entry.teleportReturn).toHaveBeenCalled();
   });
+
+  it("should throw an error if an entry is mounted with no element", async () => {
+    const entry = new CollectionEntry(obj, "asdf");
+    await expect(entry.mount()).rejects.toThrow("Collection element was not found with ID: \"asdf\"");
+  });
 });
 
 describe("entry.teleport() & entry.teleportReturn()", () => {
