@@ -49,11 +49,11 @@ export class PopoverEntry extends CollectionEntry {
   }
   
   async open() {
-    return this.context.open(this.id);
+    return this.context.open(this);
   }
 
   async close() {
-    return this.context.close(this.id);
+    return this.context.close(this);
   }
   
   async deregister() {
