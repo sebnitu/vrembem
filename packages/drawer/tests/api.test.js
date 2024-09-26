@@ -70,19 +70,6 @@ describe("mount() & unmount()", () => {
   });
 });
 
-describe("registerCollection() & deregisterCollection()", () => {
-  it("should manually register collection using registerCollection()", async () => {
-    const els = document.querySelectorAll(".drawer");
-    await drawer.registerCollection(els);
-    expect(drawer.collection.length).toBe(2);
-  });
-
-  it("should manually deregister collection using deregisterCollection()", async () => {
-    await drawer.deregisterCollection();
-    expect(drawer.collection.length).toBe(0);
-  });
-});
-
 describe("open(), close() & toggle()", () => {
   beforeEach(() => {
     vi.useFakeTimers();

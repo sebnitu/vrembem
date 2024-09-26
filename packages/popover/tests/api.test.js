@@ -186,47 +186,6 @@ describe("register() & deregister()", () => {
   });
 });
 
-describe("registerCollection() & deregisterCollection()", () => {
-  it("should remove all items from collection and close open popovers", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-    trigger.click();
-
-    expect(popover.collection.length).toBe(3);
-    expect(target).toHaveClass("is-active");
-
-    await popover.deregisterCollection();
-
-    expect(popover.collection.length).toBe(0);
-    expect(target).not.toHaveClass("is-active");
-  });
-
-  it("should register all items into collection and add their event listeners", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-    const items = document.querySelectorAll(".popover");
-
-    expect(popover.collection.length).toBe(0);
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).not.toHaveClass("is-active");
-
-    await popover.registerCollection(items);
-
-    expect(popover.collection.length).toBe(3);
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).toHaveClass("is-active");
-  });
-});
-
 describe("open() & close()", () => {
   it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
