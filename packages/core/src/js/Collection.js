@@ -36,8 +36,18 @@ export class Collection {
       await this.beforeRegister(entry);
     }
 
+    // Check if beforeRegister has been set and that it's a function.
+    if ("beforeRegister" in entry && typeof entry.beforeRegister == "function") {
+      await entry.beforeRegister();
+    }
+
     // Add the entry to the collection.
     this.collection.push(entry);
+
+    // Check if afterRegister has been set and that it's a function.
+    if ("afterRegister" in entry && typeof entry.afterRegister == "function") {
+      await entry.afterRegister();
+    }
 
     // Check if afterRegister has been set and that it's a function.
     if ("afterRegister" in this && typeof this.afterRegister == "function") {
@@ -57,6 +67,11 @@ export class Collection {
       // Check if beforeDeregister has been set and that it's a function.
       if ("beforeDeregister" in this && typeof this.beforeDeregister == "function") {
         await this.beforeDeregister(entry);
+      }
+
+      // Check if beforeDeregister has been set and that it's a function.
+      if ("beforeDeregister" in entry && typeof entry.beforeDeregister == "function") {
+        await entry.beforeDeregister();
       }
 
       // Remove all the properties from the entry.

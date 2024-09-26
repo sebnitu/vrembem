@@ -67,10 +67,12 @@ export class PopoverEntry extends CollectionEntry {
 
     // Setup event listeners.
     this.registerEventListeners();
+  }
 
+  async afterRegister() {
     // Set initial state based on the presence of the active class.
-    if (this.el.classList.contains(this.settings.stateActive)) {
-      this.open();
+    if (this.el.classList.contains(this.getSetting("stateActive"))) {
+      await this.open();
       handleDocumentClick.call(this, this);
     } else {
       this.el.inert = true;
@@ -91,11 +93,11 @@ export class PopoverEntry extends CollectionEntry {
   }
   
   async open() {
-    return this.context.open(this);
+    return this.context.open(this.id);
   }
 
   async close() {
-    return this.context.close(this);
+    return this.context.close(this.id);
   }
   
   async deregister() {
