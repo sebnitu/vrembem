@@ -2,8 +2,6 @@ import "@testing-library/jest-dom/vitest";
 import "./mocks/getComputedStyle.mock";
 import Modal from "../index";
 
-// vi.useFakeTimers();
-
 let modal, modal1, modal2, modal3, btn1, btn2, btn3, btn4, btnCloseAll;
 
 document.body.innerHTML = `
