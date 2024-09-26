@@ -15,7 +15,9 @@ export class DrawerEntry extends CollectionEntry {
     // Create an instance of the Breakpoint class.
     this.#breakpoint = new Breakpoint();
     // Set indeterminate values of mode, state and inlineState.
-    this.#mode, this.#state, this.inlineState = "indeterminate";
+    this.#mode = "indeterminate";
+    this.#state = "indeterminate";
+    this.inlineState = "indeterminate";
   }
 
   get breakpoint() {
@@ -126,7 +128,7 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // Remove entry from local store.
-    this.store.set(this.id);
+    this.context.store.set(this.id);
 
     // Unmount the MatchMedia functionality.
     this.unmountBreakpoint();
