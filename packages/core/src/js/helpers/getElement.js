@@ -3,6 +3,7 @@ export function getElement(query) {
     return document.getElementById(query);
   } else if (query instanceof HTMLElement) {
     return query;
+  } else {
+    return null;
   }
-  return undefined;
 }
