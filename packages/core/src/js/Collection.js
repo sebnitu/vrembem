@@ -25,7 +25,7 @@ export class Collection {
 
   async register(query, config = {}) {
     // Deregister the element in case it has already been registered.
-    await this.deregister(query?.id || query);
+    await this.deregister(query?.id || query, true);
 
     // Create the collection entry object and mount it.
     const entry = await this.createEntry(query, config);
@@ -40,7 +40,7 @@ export class Collection {
     if ("beforeRegister" in entry && typeof entry.beforeRegister == "function") {
       await entry.beforeRegister();
     }
-
+    
     // Add the entry to the collection.
     this.collection.push(entry);
 
@@ -57,12 +57,12 @@ export class Collection {
     return entry;
   }
 
-  async deregister(id) {
+  async deregister(id, reReg = false) {
     const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
       // Get the collection entry object from the collection and unmount it.
       const entry = this.collection[index];
-      await entry.unmount();
+      await entry.unmount(reReg);
 
       // Check if beforeDeregister has been set and that it's a function.
       if ("beforeDeregister" in this && typeof this.beforeDeregister == "function") {
@@ -71,9 +71,9 @@ export class Collection {
 
       // Check if beforeDeregister has been set and that it's a function.
       if ("beforeDeregister" in entry && typeof entry.beforeDeregister == "function") {
-        await entry.beforeDeregister();
+        await entry.beforeDeregister(reReg);
       }
-
+      
       // Remove all the properties from the entry.
       Object.getOwnPropertyNames(entry).forEach((prop) => {
         delete entry[prop];
@@ -83,10 +83,17 @@ export class Collection {
       this.collection.splice(index, 1);
 
       // Check if afterDeregister has been set and that it's a function.
+      if ("afterDeregister" in entry && typeof entry.afterDeregister == "function") {
+        await entry.afterDeregister(reReg);
+      }
+
+      // Check if afterDeregister has been set and that it's a function.
       if ("afterDeregister" in this && typeof this.afterDeregister == "function") {
         await this.afterDeregister(entry);
       }
     }
+
+    return this.collection;
   }
 
   async mount(options = {}) {
@@ -100,7 +107,7 @@ export class Collection {
 
     // Get all the selector elements.
     const els = document.querySelectorAll(this.settings.selector);
-
+    
     // Register the collections using the returned elements.
     for (const el of els) {
       await this.register(el);
@@ -119,7 +126,7 @@ export class Collection {
     if ("beforeUnmount" in this && typeof this.beforeUnmount == "function") {
       await this.beforeUnmount();
     }
-
+    
     // Remove all entries from the collection.
     while (this.collection.length > 0) {
       await this.deregister(this.collection[0].id);

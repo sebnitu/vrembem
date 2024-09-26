@@ -11,6 +11,22 @@ export class ModalEntry extends CollectionEntry {
     return this.dialog.matches(this.getSetting("selectorRequired"));
   }
 
+  async open(transition, focus) {
+    return this.context.open(this, transition, focus);
+  }
+
+  async close(transition, focus) {
+    return this.context.close(this, transition, focus);
+  }
+
+  async replace(transition, focus) {
+    return this.context.replace(this, transition, focus);
+  }
+
+  async deregister() {
+    return this.context.deregister(this.id);
+  }
+
   async beforeMount() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
@@ -28,7 +44,9 @@ export class ModalEntry extends CollectionEntry {
     if (this.getSetting("setTabindex")) {
       this.dialog.setAttribute("tabindex", "-1");
     }
+  }
 
+  async afterRegister() {
     // Setup initial state.
     if (this.el.classList.contains(this.getSetting("stateOpened"))) {
       // Open entry with transitions disabled.
@@ -42,29 +60,13 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
-  async beforeUnmount(close = true) {
+  async beforeUnmount(reMount = false) {
     // If entry is in the opened state, close it.
-    if (close && this.state === "opened") {
+    if (!reMount && this.state === "opened") {
       await this.close(false);
     } else {
       // Remove modal from stack.
-      this.stack.remove(this);
+      this.context.stack.remove(this);
     }
-  }
-
-  async open(transition, focus) {
-    return this.context.open(this, transition, focus);
-  }
-
-  async close(transition, focus) {
-    return this.context.close(this, transition, focus);
-  }
-
-  async replace(transition, focus) {
-    return this.context.replace(this, transition, focus);
-  }
-
-  async deregister() {
-    return this.context.deregister(this.id);
   }
 }

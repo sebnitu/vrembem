@@ -88,12 +88,12 @@ export class CollectionEntry {
     }
   }
 
-  async unmount() {
+  async unmount(reMount = false) {
     // Check if beforeUnmount has been set and that it's a function.
     if ("beforeUnmount" in this && typeof this.beforeUnmount == "function") {
-      await this.beforeUnmount();
+      await this.beforeUnmount(reMount);
     }
-
+    
     // Return teleported entry if a reference has been set.
     if (this.getSetting("teleport")) {
       this.teleportReturn();
@@ -101,7 +101,7 @@ export class CollectionEntry {
 
     // Check if afterUnmount has been set and that it's a function.
     if ("afterUnmount" in this && typeof this.afterUnmount == "function") {
-      await this.afterUnmount();
+      await this.afterUnmount(reMount);
     }
   }
 
