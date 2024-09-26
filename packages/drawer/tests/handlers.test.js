@@ -1,6 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
 
+vi.useFakeTimers();
+
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
 });
@@ -25,9 +27,6 @@ document.body.innerHTML = `
   </div>
 `;
 
-let entry;
-const drawer = new Drawer();
-
 const drawerEl = document.querySelector("#drawer");
 const btnToggle = document.querySelector("[data-drawer-toggle]");
 const btnOpen = document.querySelector("[data-drawer-open]");
@@ -38,14 +37,9 @@ const btnCloseEmpty = document.querySelector(".empty");
 document.body.style.setProperty("--vb-prefix", "vb-");
 drawerEl.style.setProperty("--vb-drawer-transition-duration", "0.3s");
 
-beforeAll(async () => {
-  await drawer.mount();
-  entry = drawer.get("drawer");
-});
-
-beforeEach(() => {
-  vi.useFakeTimers();
-});
+const drawer = new Drawer();
+await drawer.mount();
+const entry = drawer.get("drawer");
 
 test("should open drawer when clicking data-drawer-open button", async () => {
   expect(entry.state).toBe("indeterminate");

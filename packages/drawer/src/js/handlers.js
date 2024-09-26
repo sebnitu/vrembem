@@ -53,7 +53,7 @@ export async function handleClick(event) {
           // If no value is set on close trigger, get the parent drawer.
           const parent = event.target.closest(this.settings.selector);
           // If a parent drawer was found, close it.
-          if (parent) return this.close(parent);
+          if (parent) return this.close(parent.id);
         }
       });
     }
@@ -72,6 +72,6 @@ export function handleKeydown(event) {
   // If escape key was pressed.
   if (event.key === "Escape") {
     // If a modal is opened, close the modal.
-    if (this.activeModal) return this.close(this.activeModal);
+    if (this.activeModal) return this.close(this.activeModal.id);
   }
 }
