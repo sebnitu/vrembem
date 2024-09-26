@@ -47,48 +47,6 @@ export class PopoverEntry extends CollectionEntry {
         break;
     }
   }
-
-  async beforeMount() {
-    // Get the trigger element.
-    this.trigger = document.querySelector(
-      `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
-    );
-
-    // If it's a tooltip...
-    if (this.isTooltip) {
-      // Set the event to hover role="tooltip" attribute.
-      this.settings.event = "hover";
-      this.el.setAttribute("role", "tooltip");
-    } else {
-      // Set aria-expanded to false if trigger has aria-controls attribute.
-      this.trigger.setAttribute("aria-expanded", "false");
-    }
-
-    // Setup event listeners.
-    this.registerEventListeners();
-  }
-
-  async afterRegister() {
-    // Set initial state based on the presence of the active class.
-    if (this.el.classList.contains(this.getSetting("stateActive"))) {
-      await this.open();
-    } else {
-      this.el.inert = true;
-    }
-  }
-
-  async beforeUnmount() {
-    // If entry is in the opened state, close it.
-    if (this.state === "opened") {
-      await this.close();
-    }
-
-    // Clean up the floating UI instance.
-    this.floatingCleanup();
-    
-    // Remove event listeners.
-    this.deregisterEventListeners();
-  }
   
   async open() {
     return this.context.open(this.id);
@@ -171,5 +129,47 @@ export class PopoverEntry extends CollectionEntry {
       // Remove eventListeners object from collection.
       this.#eventListeners = null;
     }
+  }
+
+  async beforeMount() {
+    // Get the trigger element.
+    this.trigger = document.querySelector(
+      `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
+    );
+
+    // If it's a tooltip...
+    if (this.isTooltip) {
+      // Set the event to hover role="tooltip" attribute.
+      this.settings.event = "hover";
+      this.el.setAttribute("role", "tooltip");
+    } else {
+      // Set aria-expanded to false if trigger has aria-controls attribute.
+      this.trigger.setAttribute("aria-expanded", "false");
+    }
+
+    // Setup event listeners.
+    this.registerEventListeners();
+  }
+
+  async afterRegister() {
+    // Set initial state based on the presence of the active class.
+    if (this.el.classList.contains(this.getSetting("stateActive"))) {
+      await this.open();
+    } else {
+      this.el.inert = true;
+    }
+  }
+
+  async beforeUnmount() {
+    // If entry is in the opened state, close it.
+    if (this.state === "opened") {
+      await this.close();
+    }
+
+    // Clean up the floating UI instance.
+    this.floatingCleanup();
+    
+    // Remove event listeners.
+    this.deregisterEventListeners();
   }
 }

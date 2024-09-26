@@ -62,6 +62,39 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
+  async open(transition, focus) {
+    return this.context.open(this, transition, focus);
+  }
+
+  async close(transition, focus) {
+    return this.context.close(this, transition, focus);
+  }
+
+  async toggle(transition, focus) {
+    return this.context.toggle(this, transition, focus);
+  }
+
+  async deregister() {
+    return this.context.deregister(this.id);
+  }
+
+  mountBreakpoint() {
+    const value = this.breakpoint;
+    const handler = this.handleBreakpoint.bind(this);
+    this.#breakpoint.mount(value, handler);
+  }
+
+  unmountBreakpoint() {
+    this.#breakpoint.unmount();
+  }
+
+  handleBreakpoint(event) {
+    const bpMode = (event.matches) ? "inline" : "modal";
+    if (this.mode != bpMode) {
+      this.mode = bpMode;
+    }
+  }
+
   async beforeMount() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
@@ -97,38 +130,5 @@ export class DrawerEntry extends CollectionEntry {
 
     // Unmount the MatchMedia functionality.
     this.unmountBreakpoint();
-  }
-
-  async open(transition, focus) {
-    return this.context.open(this, transition, focus);
-  }
-
-  async close(transition, focus) {
-    return this.context.close(this, transition, focus);
-  }
-
-  async toggle(transition, focus) {
-    return this.context.toggle(this, transition, focus);
-  }
-
-  async deregister() {
-    return this.context.deregister(this.id);
-  }
-
-  mountBreakpoint() {
-    const value = this.breakpoint;
-    const handler = this.handleBreakpoint.bind(this);
-    this.#breakpoint.mount(value, handler);
-  }
-
-  unmountBreakpoint() {
-    this.#breakpoint.unmount();
-  }
-
-  handleBreakpoint(event) {
-    const bpMode = (event.matches) ? "inline" : "modal";
-    if (this.mode != bpMode) {
-      this.mode = bpMode;
-    }
   }
 }
