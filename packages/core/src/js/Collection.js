@@ -76,7 +76,9 @@ export class Collection {
       
       // Remove all the properties from the entry.
       Object.getOwnPropertyNames(entry).forEach((prop) => {
-        delete entry[prop];
+        if (prop != "beforeDeregister" && prop != "afterDeregister") {
+          delete entry[prop];
+        }
       });
 
       // Remove the entry from the collection.

@@ -128,9 +128,12 @@ describe("register() & deregister()", () => {
     await obj.register("fdsa");
     const entry = obj.get("asdf");
     entry.beforeDeregister = vi.fn();
+    entry.afterDeregister = vi.fn();
     obj.beforeDeregister = vi.fn();
     obj.afterDeregister = vi.fn();
     await obj.deregister("asdf");
+    expect(entry.beforeDeregister).toHaveBeenCalled();
+    expect(entry.afterDeregister).toHaveBeenCalled();
     expect(obj.beforeDeregister).toHaveBeenCalled();
     expect(obj.afterDeregister).toHaveBeenCalled();
   });
