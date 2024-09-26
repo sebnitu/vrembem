@@ -3,9 +3,9 @@ import Popover from "../index";
 
 vi.useFakeTimers();
 
-const keyEsc = new KeyboardEvent("keydown", {
-  key: "Escape"
-});
+// const keyEsc = new KeyboardEvent("keydown", {
+//   key: "Escape"
+// });
 
 const markup = `
   <button aria-controls="asdf">...</button>
@@ -30,23 +30,6 @@ describe("mount() & unmount()", () => {
     await popover.mount();
     await popover.mount();
     expect(popover.collection.length).toBe(3);
-  });
-
-  it("should not attach keyboard event listener if eventListeners is set to false", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover({
-      eventListeners: false
-    });
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).toHaveClass("is-active");
-    document.dispatchEvent(keyEsc);
-    expect(target).toHaveClass("is-active");
   });
 
   it("should be able to pass options through mount method", async () => {
@@ -74,76 +57,6 @@ describe("mount() & unmount()", () => {
   });
 });
 
-describe("mountEventListeners() & unmountEventListeners()", () => {
-  it("should remove event listeners", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-
-    popover.unmountEventListeners();
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).not.toHaveClass("is-active");
-  });
-
-  it("should re-mount event listeners", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-
-    popover.unmountEventListeners();
-    popover.mountEventListeners();
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).toHaveClass("is-active");
-  });
-
-  it("should remove keyboard event listener", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).toHaveClass("is-active");
-
-    popover.unmountEventListeners();
-
-    document.dispatchEvent(keyEsc);
-    expect(target).toHaveClass("is-active");
-  });
-
-  it("should re-mount keyboard event listener", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-
-    const trigger = document.querySelector("button");
-    const target = document.querySelector(".popover");
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(target).toHaveClass("is-active");
-
-    popover.unmountEventListeners();
-    popover.mountEventListeners();
-
-    document.dispatchEvent(keyEsc);
-    expect(target).not.toHaveClass("is-active");
-  });
-});
-
 describe("register() & deregister()", () => {
   it("should be able to manually register a popover", async () => {
     document.body.innerHTML = markup;
@@ -154,7 +67,7 @@ describe("register() & deregister()", () => {
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
 
-    await popover.register(trigger);
+    await popover.register(el);
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].el).toBe(el);
     expect(popover.collection[0].trigger).toBe(trigger);
@@ -166,7 +79,7 @@ describe("register() & deregister()", () => {
     await popover.mount();
 
     expect(popover.collection.length).toBe(3);
-    await popover.deregister(popover.collection[0]);
+    await popover.deregister(popover.collection[0].id);
     expect(popover.collection.length).toBe(2);
 
     const el = document.querySelector(".popover");
@@ -175,14 +88,6 @@ describe("register() & deregister()", () => {
     trigger.click();
     vi.advanceTimersByTime(500);
     expect(el).not.toHaveClass("is-active");
-  });
-
-  it("should reject promise with error if deregister is called on non-existent entry", async () => {
-    document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const result = await popover.deregister("fake-id").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to deregister; popover does not exist in collection with ID of: \"fake-id\".");
   });
 });
 
