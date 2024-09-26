@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
-import { expect } from "vitest";
 
 vi.useFakeTimers();
 
