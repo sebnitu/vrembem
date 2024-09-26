@@ -1,4 +1,4 @@
-import { teleport } from "../src/js/teleport";
+import { teleport } from "../index";
 
 const markup = `
   <div id="box-a"><span id="span-1"></span></div>
@@ -43,14 +43,10 @@ describe("teleport()", () => {
   });
 
   it("should throw an error if not a valid teleport reference element", () => {
-    expect(
-      teleport.bind(null, el, "asdf")
-    ).toThrow("Not a valid teleport reference: 'null'");
+    expect(() => teleport(el, "asdf")).toThrow("Not a valid teleport reference: 'null'");
   });
 
   it("should throw an error if not a valid teleport method", () => {
-    expect(
-      teleport.bind(null, el, boxB, "asdf")
-    ).toThrow("Not a valid teleport method: 'asdf'");
+    expect(() => teleport(el, boxB, "asdf")).toThrow("Not a valid teleport method: 'asdf'");
   });
 });

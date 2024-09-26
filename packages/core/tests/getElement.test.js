@@ -1,4 +1,4 @@
-import { getElement } from "../src/js/getElement";
+import { getElement } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf"></div>
@@ -15,5 +15,5 @@ test("should return an HTML element if an HTML element is provided", () => {
 });
 
 test("should return undefined if the provided argument isn't valid", () => {
-  expect(getElement(64)).toBe(undefined);
+  expect(getElement(64)).toBe(null);
 });

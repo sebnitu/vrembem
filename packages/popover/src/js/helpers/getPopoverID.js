@@ -7,8 +7,8 @@ export function getPopoverID(obj) {
   // If it's an HTML element.
   else if (typeof obj.hasAttribute === "function") {
     // If it's a popover element, return the id.
-    if (obj.closest(this.settings.selectorPopover)) {
-      obj = obj.closest(this.settings.selectorPopover);
+    if (obj.closest(this.settings.selector)) {
+      obj = obj.closest(this.settings.selector);
       return obj.id;
     }
 

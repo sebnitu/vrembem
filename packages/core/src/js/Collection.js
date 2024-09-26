@@ -1,129 +1,92 @@
-import { 
-  getConfig,
-  getCustomProps,
-  getElement,
-  teleport,
-  toCamel,
-  toKebab
-} from "@vrembem/core";
+import { CollectionEntry, lifecycleHook } from "@vrembem/core";
 
 export class Collection {
-  #entryPrototype;
-
   constructor(options = {}) {
-    const root = this;
     this.module = this.constructor.name;
     this.collection = [];
-    this.settings = Object.assign({ dataConfig: "config" }, options);
-    this.#entryPrototype = {
-      applySettings(obj) {
-        return Object.assign(this.settings, obj);
-      },
-      getDataConfig() {
-        return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
-      },
-      getCustomProps() {
-        return Object.assign(this.customProps, getCustomProps(this.el, root.module, this.customPropKeys));
-      },
-      getSetting(key) {
-        // Store our key in both camel and kebab naming conventions.
-        const camel = toCamel(key);
-        const kebab = toKebab(key);
-  
-        // Check the data config object.
-        if ("dataConfig" in this && camel in this.dataConfig) {
-          return this.dataConfig[camel];
-        }
-  
-        // Check the custom properties object.
-        if ("customProps" in this && kebab in this.customProps) {
-          return this.customProps[kebab];
-        }
-  
-        // Check the entry settings.
-        if ("settings" in this && camel in this.settings) {
-          return this.settings[camel];
-        }
-  
-        // Check the root settings.
-        if ("settings" in root && camel in root.settings) {
-          return root.settings[camel];
-        }
-  
-        // Throw error if setting does not exist.
-        throw(new Error(`${root.module} setting does not exist: ${key}`));
-      },
-      teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-        if (!this.returnRef) {
-          this.returnRef = teleport(this.el, ref, method);
-          return this.el;
-        } else {
-          console.error("Element has already been teleported:", this.el);
-          return false;
-        }
-      },
-      teleportReturn() {
-        if (this.returnRef) {
-          this.returnRef = teleport(this.el, this.returnRef);
-          return this.el;
-        } else {
-          console.error("No return reference found:", this.el);
-          return false;
-        }
-      },
-    };
-  }
-
-  createEntry(query, overrides = {}) {
-    const el = getElement(query);
-    const entry = Object.create(this.#entryPrototype);
-    Object.assign(entry, {
-      id: el?.id,
-      el: el,
-      settings: {},
-      dataConfig: {},
-      customProps: {},
-      customPropKeys: [],
-      returnRef: null,
-    }, overrides);
-    return entry;
-  }
-
-  async register(item) {
-    await this.deregister(item);
-    this.collection.push(item);
-    return this.collection;
-  }
-
-  async deregister(ref) {
-    const index = this.collection.findIndex((entry) => {
-      return (entry === ref);
-    });
-    if (index >= 0) {
-      const entry = this.collection[index];
-      Object.getOwnPropertyNames(entry).forEach((prop) => {
-        delete entry[prop];
-      });
-      this.collection.splice(index, 1);
-    }
-    return this.collection;
-  }
-
-  async registerCollection(items) {
-    await Promise.all(Array.from(items, (item) => {
-      this.register(item);
-    }));
-    return this.collection;
-  }
-
-  async deregisterCollection() {
-    while (this.collection.length > 0) {
-      await this.deregister(this.collection[0]);
-    }
-    return this.collection;
+    this.settings = Object.assign({ 
+      dataConfig: "config",
+      teleport: null,
+      teleportMethod: "append"
+    }, options);
   }
 
   get(value, key = "id") {
     return this.collection.find((entry) => entry[key] === value);
+  }
+
+  applySettings(obj) {
+    return Object.assign(this.settings, obj);
+  }
+
+  async createEntry(query, config) {
+    return new CollectionEntry(this, query, config);
+  }
+
+  async register(query, config = {}) {
+    // Deregister the element in case it has already been registered.
+    await this.deregister(query?.id || query, true);
+
+    // Create the collection entry object and mount it.
+    const entry = await this.createEntry(query, config);
+    await entry.mount();
+    await lifecycleHook.call(this, "beforeRegister", entry);
+    await lifecycleHook.call(entry, "beforeRegister");
+    
+    // Add the entry to the collection.
+    this.collection.push(entry);
+
+    await lifecycleHook.call(entry, "afterRegister");
+    await lifecycleHook.call(this, "afterRegister", entry);
+    return entry;
+  }
+
+  async deregister(id, reReg = false) {
+    const index = this.collection.findIndex((entry) => entry.id === id);
+    if (~index) {
+      // Get the collection entry object from the collection and unmount it.
+      const entry = this.collection[index];
+      await entry.unmount(reReg);
+      await lifecycleHook.call(this, "beforeDeregister", entry);
+      await lifecycleHook.call(entry, "beforeDeregister", reReg);
+      
+      // Remove all the owned properties from the entry.
+      Object.getOwnPropertyNames(entry).forEach((prop) => {
+        if (prop != "beforeDeregister" && prop != "afterDeregister") {
+          delete entry[prop];
+        }
+      });
+
+      // Remove the entry from the collection.
+      this.collection.splice(index, 1);
+
+      await lifecycleHook.call(entry, "afterDeregister", reReg);
+      await lifecycleHook.call(this, "afterDeregister", entry);
+    }
+
+    return this.collection;
+  }
+
+  async mount(options = {}) {
+    // Apply settings with passed options.
+    this.applySettings(options);
+    await lifecycleHook.call(this, "beforeMount");
+    // Get all the selector elements and register them.
+    const els = document.querySelectorAll(this.settings.selector);
+    for (const el of els) {
+      await this.register(el);
+    }
+    await lifecycleHook.call(this, "afterMount");
+    return this;
+  }
+
+  async unmount() {
+    await lifecycleHook.call(this, "beforeUnmount");
+    // Loop through the collection and deregister each entry.
+    while (this.collection.length > 0) {
+      await this.deregister(this.collection[0].id);
+    }
+    await lifecycleHook.call(this, "afterUnmount");
+    return this;
   }
 }

@@ -1,4 +1,4 @@
-import { transition, updateGlobalState } from "@vrembem/core";
+import { transition, setGlobalState } from "@vrembem/core";
 import { updateFocusState, getDrawer } from "./helpers";
 
 export async function open(query, transitionOverride, focus = true) {
@@ -12,13 +12,13 @@ export async function open(query, transitionOverride, focus = true) {
 
     // Run the open transition.
     if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
-      await transition(entry.el, {
-        start: entry.getSetting("stateClosing"),
-        finish: entry.getSetting("stateClosed")
-      }, {
-        start: entry.getSetting("stateOpening"),
-        finish: entry.getSetting("stateOpened")
-      }, entry.getSetting("transitionDuration"));
+      await transition(
+        entry.el, 
+        entry.getSetting("stateClosed"),
+        entry.getSetting("stateOpening"),
+        entry.getSetting("stateOpened"),
+        entry.getSetting("transitionDuration")
+      );
     } else {
       entry.el.classList.add(entry.getSetting("stateOpened"));
       entry.el.classList.remove(entry.getSetting("stateClosed"));
@@ -28,7 +28,7 @@ export async function open(query, transitionOverride, focus = true) {
     entry.state = "opened";
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") updateGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+    if (entry.mode === "modal") setGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
     // Set focus to the drawer element if the focus param is true.
     if (focus) {

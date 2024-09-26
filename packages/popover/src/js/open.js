@@ -12,6 +12,7 @@ import {
   getMiddlewareOptions,
   getPopover
 } from "./helpers";
+import { handleDocumentClick } from "./handlers";
 
 export async function open(query) {
   // Get the popover from collection.
@@ -37,7 +38,7 @@ export async function open(query) {
   middlewareOptions.arrow.element = arrowEl ? arrowEl : undefined;
 
   // Setup the autoUpdate of popover positioning and store the cleanup function.
-  popover.cleanup = autoUpdate(popover.trigger, popover.el, () => {
+  popover.floatingCleanup = autoUpdate(popover.trigger, popover.el, () => {
     computePosition(popover.trigger, popover.el, {
       placement: popover.getSetting("placement"),
       middleware: [
@@ -67,6 +68,11 @@ export async function open(query) {
 
   // Update popover state.
   popover.state = "opened";
+
+  // Apply document click handler.
+  if (popover.getSetting("event") === "click") {
+    handleDocumentClick.call(this, popover);
+  }
 
   // Return the popover.
   return popover;

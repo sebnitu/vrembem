@@ -1,19 +1,8 @@
-import { transition } from "../index";
 import "@testing-library/jest-dom/vitest";
+import { transition } from "../index";
 
-document.body.innerHTML = "<div class=\"el\"></div>";
-
+document.body.innerHTML = "<div class='asdf'></div>";
 const el = document.querySelector("div");
-const open = {
-  start: "is-opening",
-  finish: "is-opened"
-};
-const close = {
-  start: "is-closing",
-  finish: "is-closed"
-};
-
-el.style.setProperty("--transition-duration", "0.5s");
 
 beforeEach(() => {
   vi.useFakeTimers();
@@ -21,7 +10,7 @@ beforeEach(() => {
 });
 
 test("should go through opening transition classes when transition is called", () => {
-  transition(el, close, open);
+  transition(el, "is-closed", "is-opening", "is-opened", 300);
   expect(el).toHaveClass("is-opening");
   expect(el.classList.length).toBe(2);
 
@@ -31,11 +20,11 @@ test("should go through opening transition classes when transition is called", (
   expect(el.classList.length).toBe(2);
 
   expect(setTimeout).toHaveBeenCalledTimes(1);
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500);
+  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 300);
 });
 
 test("should go through closing transition classes when transition is called", () => {
-  transition(el, open, close);
+  transition(el, "is-opened", "is-closing", "is-closed", 500);
   expect(el).toHaveClass("is-closing");
   expect(el.classList.length).toBe(2);
 
@@ -46,17 +35,4 @@ test("should go through closing transition classes when transition is called", (
 
   expect(setTimeout).toHaveBeenCalledTimes(1);
   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500);
-});
-
-test("should go through opening transition using CSS custom property", () => {
-  el.style.setProperty("--duration", "1000ms");
-  transition(el, close, open, "--duration");
-  expect(setTimeout).toHaveBeenCalledTimes(1);
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
-});
-
-test("should go through closing transition using a custom millisecond value", () => {
-  transition(el, open, close, 250);
-  expect(setTimeout).toHaveBeenCalledTimes(1);
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 250);
 });

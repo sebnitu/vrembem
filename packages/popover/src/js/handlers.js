@@ -7,7 +7,6 @@ export function handleClick(popover) {
   } else {
     this.trigger = popover.trigger;
     popover.open();
-    handleDocumentClick.call(this, popover);
   }
 }
 

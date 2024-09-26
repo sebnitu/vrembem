@@ -1,213 +1,177 @@
-import "@testing-library/jest-dom/vitest";
-import { Collection } from "../src/js/Collection";
-
-console.error = vi.fn();
+import { Collection } from "../index";
 
 document.body.innerHTML = `
-  <div id="asdf">1234</div>
-  <div id="fdsa">5678</div>
-  <div id="afsd">8765</div>
-  <div id="dsfa">4321</div>
+  <div id="asdf">...</div>
+  <div id="fdsa">...</div>
 `;
 
-function buildData() {
-  const data = [];
-  const nodes = document.querySelectorAll("div");
-  nodes.forEach((node) => {
-    data.push({
-      id: node.id,
-      text: node.innerHTML,
-      node: node
-    });
-  });
-  return data;
-}
+const defaultSettings = {
+  dataConfig: "config",
+  teleport: null,
+  teleportMethod: "append"
+};
 
 describe("constructor()", () => {
-  it("should setup an empty collection array on instantiation", () => {
+  it("should setup the collections object on instantiation", () => {
     const obj = new Collection();
-    expect(typeof obj.collection).toBe("object");
+    expect(obj.module).toBe("Collection");
+    expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
-  });
-});
-
-describe("register()", () => {
-  it("should add an item to the registered collection and return collection", async () => {
-    const obj = new Collection();
-    const data = buildData();
-    let result;
-
-    result = await obj.register(data[0]);
-    expect(obj.collection.length).toBe(1);
-    expect(obj.collection[0]).toBe(data[0]);
-    expect(obj.collection).toBe(result);
-
-    result = await obj.register(data[1]);
-    expect(obj.collection.length).toBe(2);
-    expect(obj.collection[1]).toBe(data[1]);
-    expect(obj.collection).toBe(result);
-  });
-});
-
-describe("deregister()", () => {
-  let obj;
-
-  beforeAll(() => {
-    obj = new Collection();
+    expect(obj.settings).toEqual(defaultSettings);
   });
 
-  it("should do nothing if item does not exist in collection", async () => {
-    const data = buildData();
-    await obj.register(data[0]);
-    await obj.deregister(data[1]);
-    expect(obj.collection.length).toBe(1);
-    expect(obj.collection[0].id).toBe("asdf");
-    expect(data[1].id).toBe("fdsa");
-  });
-
-  it("should remove item from collection if it exists", async () => {
-    const item = obj.collection[0];
-    await obj.deregister(item);
-    expect(obj.collection.length).toBe(0);
-    expect(item.id).toBe(undefined);
-    expect(item.text).toBe(undefined);
-  });
-});
-
-describe("registerCollection() & deregisterCollection()", () => {
-  let obj;
-
-  beforeAll(() => {
-    obj = new Collection();
-  });
-
-  it("should register an array of entries to the collection", async () => {
-    const data = buildData();
-    await obj.registerCollection(data);
-    expect(obj.collection.length).toBe(4);
-    expect(obj.collection[0]).toBe(data[0]);
-    expect(obj.collection[1]).toBe(data[1]);
-    expect(obj.collection[2]).toBe(data[2]);
-    expect(obj.collection[3]).toBe(data[3]);
-  });
-
-  it("should deregister all entries from collection", async () => {
-    await obj.deregisterCollection();
-    expect(obj.collection.length).toBe(0);
+  it("should be able to pass options through the instantiation", () => {
+    const obj = new Collection({
+      test: "asdf"
+    });
+    expect(obj.settings.test).toEqual("asdf");
   });
 });
 
 describe("get()", () => {
+  it("should return an element from the collection based on it's ID value", async () => {
+    const obj = new Collection({ selector: "div" });
+    await obj.mount();
+    const entry = obj.get("asdf");
+    expect(entry.id).toBe("asdf");
+    expect(entry.el).toBe(document.getElementById("asdf"));
+  });
+
+  it("should return an element based on a custom provided key", async () => {
+    const obj = new Collection();
+    await obj.mount({ selector: "div" });
+    const el = document.getElementById("fdsa");
+    const entry = obj.get(el, "el");
+    expect(entry.id).toBe("fdsa");
+    expect(entry.el).toBe(document.getElementById("fdsa"));
+  });
+});
+
+describe("applySettings()", () => {
+  it("should be able to modify the settings object", async () => {
+    const obj = new Collection();
+    await obj.mount();
+    expect(obj.settings).toEqual(defaultSettings);
+    obj.applySettings({
+      selector: "div",
+      test: "asdf"
+    });
+    expect(obj.settings.selector).toBe("div");
+    expect(obj.settings.test).toBe("asdf");
+  });
+});
+
+describe("createEntry()", () => {
+  it("should return an instantiation of the collection entry class", async () => {
+    const obj = new Collection();
+    const entry = await obj.createEntry("asdf");
+    expect(entry.id).toBe("asdf");
+    expect(entry.context.module).toBe("Collection");
+    expect(entry.getSetting("dataConfig")).toBe("config");
+  });
+
+  it("should be able to pass a settings object", async () => {
+    const obj = new Collection();
+    const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
+    expect(entry.id).toBe("fdsa");
+    expect(entry.context.module).toBe("Collection");
+    expect(entry.getSetting("dataConfig")).toBe("test");
+  });
+});
+
+describe("register() & deregister()", () => {
+  it("should add an item to the collection and return the entry", async () => {
+    const obj = new Collection();
+    let entry = await obj.register("asdf");
+    expect(obj.collection.length).toBe(1);
+    expect(obj.collection[0].id).toBe("asdf");
+    expect(obj.collection[0].el).toBe(entry.el);
+
+    entry = await obj.register("fdsa");
+    expect(obj.collection.length).toBe(2);
+    expect(obj.collection[1].id).toBe("fdsa");
+    expect(obj.collection[1].el).toBe(entry.el);
+  });
+
+  it("should remove item from collection if it exists", async () => {
+    const obj = new Collection();
+    await obj.register("asdf");
+    await obj.register("fdsa");
+    await obj.deregister("asdf");
+    expect(obj.collection.length).toBe(1);
+    expect(obj.collection[0].id).toBe("fdsa");
+    await obj.deregister("fdsa");
+    expect(obj.collection.length).toBe(0);
+  });
+
+  it("should call before and after register lifecycle hooks if set", async () => {
+    const newObj = new Collection();
+    newObj.createEntry = () => {
+      return {
+        mount: vi.fn(),
+        beforeRegister: vi.fn(),
+        afterRegister: vi.fn(),
+      };
+    };
+    newObj.beforeRegister = vi.fn();
+    newObj.afterRegister = vi.fn();
+    const newEntry = await newObj.register("asdf");
+    expect(newEntry.beforeRegister).toHaveBeenCalled();
+    expect(newEntry.afterRegister).toHaveBeenCalled();
+    expect(newObj.beforeRegister).toHaveBeenCalled();
+    expect(newObj.afterRegister).toHaveBeenCalled();
+  });
+
+  it("should call before and after deregister lifecycle hooks if set", async () => {
+    const obj = new Collection();
+    await obj.register("asdf");
+    await obj.register("fdsa");
+    const entry = obj.get("asdf");
+    entry.beforeDeregister = vi.fn();
+    entry.afterDeregister = vi.fn();
+    obj.beforeDeregister = vi.fn();
+    obj.afterDeregister = vi.fn();
+    await obj.deregister("asdf");
+    expect(entry.beforeDeregister).toHaveBeenCalled();
+    expect(entry.afterDeregister).toHaveBeenCalled();
+    expect(obj.beforeDeregister).toHaveBeenCalled();
+    expect(obj.afterDeregister).toHaveBeenCalled();
+  });
+});
+
+describe("mount() & unmount()", () => {
   let obj;
 
   beforeAll(() => {
-    obj = new Collection();
+    obj = new Collection({ selector: "div" });
   });
 
-  it("should return entry from collection using the passed ID", async () => {
-    let entry;
-    const data = buildData();
-    await obj.registerCollection(data);
-
-    entry = obj.get("asdf");
-    expect(entry.id).toBe("asdf");
-    expect(entry.text).toBe("1234");
-
-    entry = obj.get("fdsa");
-    expect(entry.id).toBe("fdsa");
-    expect(entry.text).toBe("5678");
+  it("should register all elements using the provided selector on mount", async () => {
+    await obj.mount();
+    expect(obj.settings.selector).toBe("div");
+    expect(obj.collection.length).toBe(2);
   });
 
-  it("should return null if no items is found in collection", () => {
-    let entry = obj.get("aaaa");
-    expect(entry).toBe(undefined);
-  });
-});
-
-describe("entry.getSetting()", () => {
-  it("should return a setting value from entry and root settings", async () => {
-    document.body.innerHTML = "<div id='asdf'>1234</div>";
-    const collection = new Collection();
-    const entry = collection.createEntry("asdf");
-    entry.settings.asdf = "asdf";
-    expect(entry.getSetting("asdf")).toBe("asdf");
-    entry.settings.asdf = "fdsa";
-    expect(entry.getSetting("asdf")).toBe("fdsa");
+  it("should deregister all elements using the provided selector on mount", async () => {
+    await obj.unmount();
+    expect(obj.settings.selector).toBe("div");
+    expect(obj.collection.length).toBe(0);
   });
 
-  it("should return a setting value from the data attribute object", async () => {
-    document.body.innerHTML = `
-      <div id="asdf" data-config="{'test': 1234}">1234</div>
-    `;
-    const collection = new Collection();
-    const entry = collection.createEntry("asdf");
-    entry.getDataConfig();
-    expect(entry.getSetting("test")).toBe(1234);
+  it("should call before and after mount lifecycle hooks if set", async () => {
+    obj.beforeMount = vi.fn();
+    obj.afterMount = vi.fn();
+    await obj.mount();
+    expect(obj.beforeMount).toHaveBeenCalled();
+    expect(obj.afterMount).toHaveBeenCalled();
   });
 
-  it("should return a setting value from custom properties", async () => {
-    document.body.innerHTML = `
-      <div id="asdf" style="--collection-background: pink;">1234</div>
-    `;
-    const collection = new Collection();
-    const entry = collection.createEntry("asdf");
-    entry.customPropKeys.push("background");
-    entry.getCustomProps();
-    expect(entry.getSetting("background")).toBe("pink");
-  });
-
-  it("should throw an error if searching for a setting that doesn't exist", async () => {
-    document.body.innerHTML = "";
-    const collection = new Collection();
-    const entry = collection.createEntry("asdf");
-    console.log(entry);
-    expect(() => entry.getSetting("asdf")).toThrow("Collection setting does not exist: asdf");
+  it("should call before and after unmount lifecycle hooks if set", async () => {
+    obj.beforeUnmount = vi.fn();
+    obj.afterUnmount = vi.fn();
+    await obj.unmount();
+    expect(obj.beforeUnmount).toHaveBeenCalled();
+    expect(obj.afterUnmount).toHaveBeenCalled();
   });
 });
 
-describe("entry.teleport() & entry.teleportReturn()", () => {
-  let collection, entry, div;
-
-  beforeAll(async () => {
-    document.body.innerHTML = `
-      <main>
-        <div id="entry"></div>
-      </main>
-      <div class="container"></div>
-    `;
-    collection = new Collection();
-    entry = collection.createEntry("entry", { settings: {
-      teleportMethod: "append"
-    }});
-    div = document.querySelector(".container");
-  });
-
-  it("should teleport a registered entry", () => {
-    expect(div.children.length).toBe(0);
-    entry.teleport(".container");
-    expect(div.children.length).toBe(1);
-    expect(entry.returnRef.textContent).toBe("teleported #entry");
-  });
-
-  it("should log error if teleport is run on an entry that has already been teleported", () => {
-    expect(div.children.length).toBe(1);
-    entry.teleport(".container");
-    expect(console.error).toHaveBeenCalledWith("Element has already been teleported:", entry.el);
-    expect(div.children.length).toBe(1);
-  });
-
-  it("should return the teleported entry", () => {
-    expect(div.children.length).toBe(1);
-    entry.teleportReturn();
-    expect(div.children.length).toBe(0);
-    expect(entry.returnRef).toBe(null);
-  });
-
-  it("should log error if teleportReturn is run with no return reference", () => {
-    expect(entry.returnRef).toBe(null);
-    expect(div.children.length).toBe(0);
-    entry.teleportReturn();
-    expect(console.error).toHaveBeenCalledWith("No return reference found:", entry.el);
-    expect(div.children.length).toBe(0);
-  });
-});

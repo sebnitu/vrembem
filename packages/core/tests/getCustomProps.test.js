@@ -7,10 +7,19 @@ document.body.style.setProperty("--vb-prefix", "vb-");
 document.getElementById("asdf").style.setProperty("--vb-asdf-background", "pink");
 document.getElementById("asdf").style.setProperty("--vb-asdf-foreground", "green");
 
+const mockEntry = {
+  el: document.getElementById("asdf"),
+  context: { 
+    module: "asdf",
+    settings: {
+      background: "black",
+      foreground: "white"
+    }
+  }
+};
+
 test("should build a config object with the provided custom properties", () => {
-  const el = document.getElementById("asdf");
-  const array = ["background", "foreground"];
-  const obj = getCustomProps(el, "asdf", array);
+  const obj = getCustomProps(mockEntry);
   expect(obj.background).toBe("pink");
   expect(obj.foreground).toBe("green");
 });

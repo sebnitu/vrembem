@@ -1,13 +1,13 @@
 export default {
   // Selectors
-  selectorPopover: ".popover",
+  selector: ".popover",
   selectorTooltip: ".popover_tooltip",
   selectorArrow: ".popover__arrow",
 
   // State classes
   stateActive: "is-active",
 
-  // Custom property defaults
+  // Custom properties and their defaults
   placement: "bottom",
   event: "click",
   offset: 0,
@@ -17,7 +17,6 @@ export default {
   toggleDelay: 0,
 
   // Feature settings
-  eventListeners: true,
   teleport: null,
   teleportMethod: "append",
 };

@@ -39,10 +39,6 @@ beforeAll(async () => {
   btnCloseAll = document.querySelector("[data-modal-close]");
 });
 
-beforeEach(() => {
-  vi.useFakeTimers();
-});
-
 test("should allow opening multiple modals at once", async () => {
   expect(modal.collection.length).toBe(3);
   expect(modal.stack.value.length).toBe(0);

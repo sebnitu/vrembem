@@ -6,7 +6,7 @@ export default {
   dataBreakpoint: "drawer-breakpoint",
 
   // Selectors
-  selectorDrawer: ".drawer",
+  selector: ".drawer",
   selectorDialog: ".drawer__dialog",
   selectorScreen: ".drawer",
   selectorFocus: "[data-focus]",
@@ -25,7 +25,6 @@ export default {
   // Feature toggles
   breakpoints: null,
   customEventPrefix: "drawer:",
-  eventListeners: true,
   store: true,
   storeKey: "VB:DrawerState",
   setTabindex: true,

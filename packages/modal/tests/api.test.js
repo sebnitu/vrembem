@@ -64,53 +64,6 @@ describe("mount() & unmount()", () => {
     btnOpen.click();
     expect(el).toHaveClass("is-closed");
   });
-
-  it("should mount the modal instance with event listeners disabled", async () => {
-    const spy = vi.spyOn(modal, "mountEventListeners");
-    await modal.mount({
-      eventListeners: false,
-      transition: false
-    });
-    expect(modal.settings.eventListeners).toBe(false);
-    expect(spy).not.toHaveBeenCalled();
-  });
-
-  it("should unmount the modal instance with event listeners disabled", async () => {
-    const spy = vi.spyOn(modal, "unmountEventListeners");
-    expect(modal.settings.eventListeners).toBe(false); 
-    await modal.unmount();
-    expect(spy).not.toHaveBeenCalled();
-  });
-});
-
-describe("mountEventListeners() & unmountEventListeners()", () => {
-  let modal, entry, btnOpen, btnClose;
-
-  beforeAll(async () => {
-    document.body.innerHTML = markup;
-    modal = new Modal({
-      eventListeners: false,
-      transition: false
-    });
-    await modal.mount();
-    entry = modal.get("modal-default");
-    btnOpen = document.querySelector("[data-modal-open]");
-    btnClose = document.querySelector("[data-modal-close]");
-  });
-
-  it("should mount event listeners", async () => {
-    modal.mountEventListeners();
-    btnOpen.click();
-    expect(entry.state).toBe("opened");
-    expect(entry.el).toHaveClass("is-opened");
-  });
-
-  it("should unmount event listeners", async () => {
-    modal.unmountEventListeners();
-    btnClose.click();
-    expect(entry.state).toBe("opened");
-    expect(entry.el).toHaveClass("is-opened");
-  });
 });
 
 describe("register() & deregister()", () => {
@@ -144,12 +97,7 @@ describe("register() & deregister()", () => {
 
   it("should reject promise with error if register is called on non-existent modal", async () => {
     const result = await modal.register("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to register; modal not found with ID of: \"asdf\".");
-  });
-
-  it("should reject promise with error if deregister is called on non-existent entry", async () => {
-    const result = await modal.deregister("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Failed to deregister; modal does not exist in collection with ID of: \"asdf\".");
+    expect(result).toBe("Modal element was not found with ID: \"asdf\"");
   });
 
   it("should open and update global state if modal already has opened class", async () => {

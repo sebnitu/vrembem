@@ -1,4 +1,4 @@
-import { updateGlobalState } from "@vrembem/core";
+import { setGlobalState } from "@vrembem/core";
 
 export function stack(settings) {
 
@@ -22,8 +22,8 @@ export function stack(settings) {
       });
     },
 
-    updateGlobalState() {
-      updateGlobalState(this.top, settings.selectorInert, settings.selectorOverflow);
+    setGlobalState() {
+      setGlobalState(this.top, settings.selectorInert, settings.selectorOverflow);
       this.updateIndex();
     },
 
@@ -37,7 +37,7 @@ export function stack(settings) {
       stackArray.push(entry);
 
       // Update the global state.
-      this.updateGlobalState();
+      this.setGlobalState();
     },
 
     remove(entry) {
@@ -55,7 +55,7 @@ export function stack(settings) {
         stackArray.splice(index, 1);
 
         // Update the global state.
-        this.updateGlobalState();
+        this.setGlobalState();
       }
     },
 

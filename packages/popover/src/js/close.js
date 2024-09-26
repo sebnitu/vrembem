@@ -17,7 +17,7 @@ export async function close(query) {
     }
 
     // Clean up the floating UI instance.
-    popover.cleanup();
+    popover.floatingCleanup();
 
     // Update popover state.
     popover.state = "closed";

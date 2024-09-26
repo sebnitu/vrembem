@@ -1,4 +1,4 @@
-import { transition, updateGlobalState } from "@vrembem/core";
+import { transition, setGlobalState } from "@vrembem/core";
 import { updateFocusState, getDrawer } from "./helpers";
 
 export async function close(query, transitionOverride, focus = true) {
@@ -15,13 +15,13 @@ export async function close(query, transitionOverride, focus = true) {
 
     // Run the close transition.
     if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
-      await transition(entry.el, {
-        start: entry.getSetting("stateOpening"),
-        finish: entry.getSetting("stateOpened")
-      }, {
-        start: entry.getSetting("stateClosing"),
-        finish: entry.getSetting("stateClosed")
-      }, entry.getSetting("transitionDuration"));
+      await transition(
+        entry.el, 
+        entry.getSetting("stateOpened"),
+        entry.getSetting("stateClosing"),
+        entry.getSetting("stateClosed"),
+        entry.getSetting("transitionDuration")
+      );
     } else {
       entry.el.classList.add(entry.getSetting("stateClosed"));
       entry.el.classList.remove(entry.getSetting("stateOpened"));
@@ -31,7 +31,7 @@ export async function close(query, transitionOverride, focus = true) {
     entry.state = "closed";
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") updateGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+    if (entry.mode === "modal") setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
