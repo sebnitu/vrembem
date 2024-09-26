@@ -86,16 +86,13 @@ describe("handleClick()", () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await popover.mount();
-
     handleClick.bind(popover, popover.collection[0])();
-    expect(popover.collection[0].el).toHaveClass("is-active");
-    expect(popover.collection[1].el).toHaveClass("is-active");
-
+    expect(popover.get("asdf").el).toHaveClass("is-active");
+    expect(popover.get("fdsa").el).toHaveClass("is-active");
     document.querySelector("#app").click();
     await delay();
-
-    expect(popover.collection[0].el).not.toHaveClass("is-active");
-    expect(popover.collection[1].el).not.toHaveClass("is-active");
+    expect(popover.get("asdf").el).not.toHaveClass("is-active");
+    expect(popover.get("fdsa").el).not.toHaveClass("is-active");
   });
 
   it("should properly clear toggle delay if one exists on click", async () => {
