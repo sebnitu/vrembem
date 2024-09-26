@@ -1,32 +1,26 @@
 import Modal from "../index";
 
-const markup = `
+document.body.innerHTML = `
   <main>
     <button data-modal-open="modal-default">...</button>
   </main>
-  <div id="modal-default" class="modal">
+  <div id="modal-default" class="modal" style="--modal-transition-duration: 0.3s">
     <div class="modal__dialog">
       <button data-modal-close>...</button>
     </div>
   </div>
 `;
 
+const main = document.querySelector("main");
+const modal = new Modal({
+  selectorInert: "main"
+});
+
 describe("when selectorInert is set:", () => {
-  let main, el;
+  vi.useFakeTimers();
 
   beforeAll(async () => {
-    document.body.innerHTML = markup;
-    const modal = new Modal({
-      selectorInert: "main"
-    });
     await modal.mount();
-    main = document.querySelector("main");
-    el = document.querySelector("#modal-default");
-    el.style.setProperty("--modal-transition-duration", "0.3s");
-  });
-
-  beforeEach(() => {
-    vi.useFakeTimers();
   });
 
   it("should properly hide content when modal is opened", async () => {

@@ -2,6 +2,8 @@ import "@testing-library/jest-dom/vitest";
 import "./mocks/getComputedStyle.mock";
 import Modal from "../index";
 
+// vi.useFakeTimers();
+
 let modal, modal1, modal2, modal3, btn1, btn2, btn3, btn4, btnCloseAll;
 
 document.body.innerHTML = `
@@ -37,10 +39,6 @@ beforeAll(async () => {
   btn3 = document.querySelector("[data-modal-open=\"modal-3\"]");
   btn4 = document.querySelector("#modal-3 [data-modal-open=\"modal-2\"]");
   btnCloseAll = document.querySelector("[data-modal-close]");
-});
-
-beforeEach(() => {
-  vi.useFakeTimers();
 });
 
 test("should allow opening multiple modals at once", async () => {
