@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/icon",
   "description": "The icon component provides a consistent way to style icons.",
-  "version": "4.0.0-next.27",
+  "version": "4.0.0-next.28",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/icon#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.27"
+    "@vrembem/core": "^4.0.0-next.28"
   },
   "publishConfig": {
     "access": "public"
