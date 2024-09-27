@@ -1,8 +1,10 @@
 .changelog
 .DS_Store
+.astro
+.output
+.vscode
 _site
 coverage
-docs/dist
-packages/**/dev
-packages/**/dist
+dev
+dist
 node_modules
