@@ -32,12 +32,21 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.26 to CHANGELOG.md
+chore(release): add v4.0.0-next.27 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.27 (2024-09-27)
+
+### :house: Refactor
+* `core`
+  * [#2047](https://github.com/sebnitu/vrembem/pull/2047) Enable Sass modern API and fix legacy color function calls
+* `core`, `drawer`, `modal`, `popover`
+  * [#2046](https://github.com/sebnitu/vrembem/pull/2046) Create new CollectionEntry class and add lifecycle hooks to Collections API
 
 
 ## v4.0.0-next.26 (2024-09-22)
