@@ -27,7 +27,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    background-color: css.get("modal", "screen-color", core.$screen-color);
+    background-color: css.get("modal", "screen-color", css.get("screen-color"));
     opacity: 0;
   }
 }
@@ -57,7 +57,7 @@
   visibility: visible;
   width: 100%;
   height: 100%;
-  padding: css.get("modal", "screen-padding", core.$screen-padding);
+  padding: css.get("modal", "screen-padding", css.get("screen-padding"));
 }
 
 #{core.bem("modal")}.is-opening,
@@ -76,7 +76,7 @@
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened {
   &::before {
-    opacity: css.get("modal", "screen-opacity", core.$screen-opacity);
+    opacity: css.get("modal", "screen-opacity", css.get("screen-opacity"));
   }
 
   #{core.bem("modal", "dialog")} {
