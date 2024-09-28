@@ -5,7 +5,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/*",
-    "docs"
+    "docs",
+    "test"
   ],
   "scripts": {
     "dev": "vite",

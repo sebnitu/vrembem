@@ -1,0 +1,2 @@
+@use "@vrembem/core/config";
+@include config.set("output-strategy", "used");
