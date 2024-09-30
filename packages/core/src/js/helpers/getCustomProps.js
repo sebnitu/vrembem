@@ -8,7 +8,6 @@ export function getCustomProps(entry) {
   const result = {};
 
   // Get the custom property keys.
-  // const keys = Object.keys(entry.context.settings);
   const keys = entry.getSetting("custom-props");
 
   // Loop through the custom properties object.
