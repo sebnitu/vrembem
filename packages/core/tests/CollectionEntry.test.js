@@ -7,7 +7,10 @@ document.body.innerHTML = `
   <div id="four" data-config="{ 'data': 111 }" style="--collection-test: fdsa;">...</div>
 `;
 
-const obj = new Collection({ test: "asdf" });
+const obj = new Collection({
+  customProps: ["test"],
+  test: "asdf" 
+});
 
 describe("constructor()", () => {
   it("should setup the collections entry object on instantiation", () => {

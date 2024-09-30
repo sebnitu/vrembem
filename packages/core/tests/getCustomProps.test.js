@@ -1,4 +1,4 @@
-import { getCustomProps } from "../index";
+import { getCustomProps, toCamel, toKebab } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf">asdf</div>
@@ -9,12 +9,43 @@ document.getElementById("asdf").style.setProperty("--vb-asdf-foreground", "green
 
 const mockEntry = {
   el: document.getElementById("asdf"),
+  settings: {
+    customProps: ["background", "foreground"],
+  },
   context: { 
     module: "asdf",
     settings: {
       background: "black",
       foreground: "white"
     }
+  },
+  getSetting(key) {
+    // Store our key in both camel and kebab naming conventions.
+    const camel = toCamel(key);
+    const kebab = toKebab(key);
+
+    // Check the data config object.
+    if ("dataConfig" in this && camel in this.dataConfig) {
+      return this.dataConfig[camel];
+    }
+
+    // Check the custom properties object.
+    if ("customProps" in this && kebab in this.customProps) {
+      return this.customProps[kebab];
+    }
+
+    // Check the entry settings.
+    if ("settings" in this && camel in this.settings) {
+      return this.settings[camel];
+    }
+
+    // Check the context settings.
+    if ("settings" in this.context && camel in this.context.settings) {
+      return this.context.settings[camel];
+    }
+
+    // Throw error if setting does not exist.
+    throw(new Error(`${this.context.module} setting does not exist: ${key}`));
   }
 };
 
