@@ -32,12 +32,22 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.29 to CHANGELOG.md
+chore(release): add v4.0.0-next.30 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.30 (2024-09-30)
+
+### :house: Refactor
+* `core`, `drawer`, `modal`, `popover`
+  * [#2051](https://github.com/sebnitu/vrembem/pull/2051) Refactor which custom properties are queried for in collection entries
+
+### :white_check_mark: Testing
+* [#2050](https://github.com/sebnitu/vrembem/pull/2050) Create page for better testing of Vrembem usage and CSS output
 
 
 ## v4.0.0-next.29 (2024-09-27)
