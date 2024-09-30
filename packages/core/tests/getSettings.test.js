@@ -20,6 +20,7 @@ const settings = {
 
 const contextSettings = {
   context: {
+    module: "MyModule",
     settings: {
       someSetting: "context-123"
     }
@@ -80,7 +81,7 @@ test("should throw an error if a setting doesn't exist anywhere", () => {
     ...settings, 
     ...contextSettings
   };
-  expect(() => getSetting.call(mockData, "asdf")).toThrow("undefined setting does not exist: asdf");
+  expect(() => getSetting.call(mockData, "asdf")).toThrow("MyModule setting does not exist: asdf");
 });
 
 test("should be able to provide a fallback if a setting isn't found", () => {
