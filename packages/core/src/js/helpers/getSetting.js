@@ -8,6 +8,7 @@ function maybeReturnSetting(prop, key, type = "camel") {
 }
 
 export function getSetting(key, options = {}) {
+  // Get the initial props to query and the fallback if provided.
   const {
     fallback,
     props = ["dataConfig", "customProps", "settings", "context.settings"],
