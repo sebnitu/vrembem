@@ -1,20 +1,10 @@
 import { toCamel, toKebab } from "@vrembem/core";
 
 function maybeReturnSetting(prop, key, type = "camel") {
-  let context = this;
-  const parts = prop.split(".");
-
-  // Check if multiple props were passed (supports max 2).
-  if (parts.length > 1) {
-    context = this[parts[0]];
-    prop = parts[1];
-  }
-
   // Convert the key case based on provided type.
   key = (type === "camel") ? toCamel(key) : toKebab(key);
-
   // Return the setting if it exists, otherwise return undefined.
-  return context?.[prop]?.[key];
+  return prop.split(".").concat(key).reduce((obj, key) => obj?.[key], this);
 }
 
 export function getSetting(key, options = {}) {
