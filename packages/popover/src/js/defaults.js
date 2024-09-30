@@ -8,6 +8,15 @@ export default {
   stateActive: "is-active",
 
   // Custom properties and their defaults
+  customProps: [
+    "placement",
+    "event",
+    "offset",
+    "flip-padding",
+    "shift-padding",
+    "arrow-padding",
+    "toggle-delay"
+  ],
   placement: "bottom",
   event: "click",
   offset: 0,

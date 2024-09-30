@@ -23,6 +23,9 @@ export default {
   classModal: "drawer_modal",
 
   // Feature toggles
+  customProps: [
+    "transition-duration"
+  ],
   breakpoints: null,
   customEventPrefix: "drawer:",
   store: true,
@@ -31,5 +34,5 @@ export default {
   teleport: null,
   teleportMethod: "prepend",
   transition: true,
-  transitionDuration: "drawer-transition-duration"
+  transitionDuration: 500
 };
