@@ -28,5 +28,5 @@ export default {
   teleport: null,
   teleportMethod: "append",
   transition: true,
-  transitionDuration: 500
+  transitionDuration: 300
 };

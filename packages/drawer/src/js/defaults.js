@@ -34,5 +34,5 @@ export default {
   teleport: null,
   teleportMethod: "prepend",
   transition: true,
-  transitionDuration: 500
+  transitionDuration: 300
 };
