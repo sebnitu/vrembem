@@ -1,4 +1,4 @@
-import { getCustomProps } from "../index";
+import { getCustomProps, getSetting } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf">asdf</div>
@@ -9,12 +9,18 @@ document.getElementById("asdf").style.setProperty("--vb-asdf-foreground", "green
 
 const mockEntry = {
   el: document.getElementById("asdf"),
+  settings: {
+    customProps: ["background", "foreground"],
+  },
   context: { 
     module: "asdf",
     settings: {
       background: "black",
       foreground: "white"
     }
+  },
+  getSetting(key) {
+    return getSetting.call(this, key);
   }
 };
 

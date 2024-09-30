@@ -6,6 +6,7 @@ export class Collection {
     this.collection = [];
     this.settings = Object.assign({ 
       dataConfig: "config",
+      customProps: [],
       teleport: null,
       teleportMethod: "append"
     }, options);

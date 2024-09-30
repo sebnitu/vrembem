@@ -20,10 +20,13 @@ export default {
   stateClosed: "is-closed",
 
   // Feature settings
+  customProps: [
+    "transition-duration"
+  ],
   customEventPrefix: "modal:",
   setTabindex: true,
   teleport: null,
   teleportMethod: "append",
   transition: true,
-  transitionDuration: "modal-transition-duration"
+  transitionDuration: 300
 };
