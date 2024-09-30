@@ -1,4 +1,4 @@
-import { getCustomProps, toCamel, toKebab } from "../index";
+import { getCustomProps, getSetting } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf">asdf</div>
@@ -20,32 +20,7 @@ const mockEntry = {
     }
   },
   getSetting(key) {
-    // Store our key in both camel and kebab naming conventions.
-    const camel = toCamel(key);
-    const kebab = toKebab(key);
-
-    // Check the data config object.
-    if ("dataConfig" in this && camel in this.dataConfig) {
-      return this.dataConfig[camel];
-    }
-
-    // Check the custom properties object.
-    if ("customProps" in this && kebab in this.customProps) {
-      return this.customProps[kebab];
-    }
-
-    // Check the entry settings.
-    if ("settings" in this && camel in this.settings) {
-      return this.settings[camel];
-    }
-
-    // Check the context settings.
-    if ("settings" in this.context && camel in this.context.settings) {
-      return this.context.settings[camel];
-    }
-
-    // Throw error if setting does not exist.
-    throw(new Error(`${this.context.module} setting does not exist: ${key}`));
+    return getSetting.call(this, key);
   }
 };
 
