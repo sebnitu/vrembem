@@ -31,6 +31,7 @@ export class CollectionEntry {
     return Object.assign(this.customProps, getCustomProps(this));
   }
 
+  // TODO: Move this into a helper function.
   getSetting(key) {
     // Store our key in both camel and kebab naming conventions.
     const camel = toCamel(key);
