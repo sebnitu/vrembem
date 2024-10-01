@@ -8,8 +8,8 @@ import {
 } from "@vrembem/core";
 
 export class CollectionEntry {
-  constructor(context, query, options = {}) {
-    this.context = context;
+  constructor(parent, query, options = {}) {
+    this.parent = parent;
     this.id = query?.id || query;
     this.el = getElement(query);
     this.settings = Object.assign({}, options);
@@ -37,7 +37,7 @@ export class CollectionEntry {
   async mount(options = {}) {
     // Throw an error if the element for this entry was not found.
     if (this.el === null) {
-      throw new Error(`${this.context.module} element was not found with ID: "${this.id}"`);
+      throw new Error(`${this.parent.module} element was not found with ID: "${this.id}"`);
     }
 
     // Apply settings with passed options.

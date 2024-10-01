@@ -11,7 +11,7 @@ export function getSetting(key, options = {}) {
   // Get the initial props to query and the fallback if provided.
   const {
     fallback,
-    props = ["dataConfig", "customProps", "settings", "context.settings"],
+    props = ["dataConfig", "customProps", "settings", "parent.settings"],
   } = options;
 
   // Loop through the props for the setting and return if found.
@@ -29,5 +29,5 @@ export function getSetting(key, options = {}) {
   }
 
   // Otherwise, throw an error.
-  throw new Error(`${this.context.module} setting does not exist: ${key}`);
+  throw new Error(`${this.parent.module} setting does not exist: ${key}`);
 }

@@ -2,6 +2,7 @@ import { CollectionEntry, lifecycleHook } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
+    // TODO: This gets lost in minified builds which cause be unexpected.
     this.module = this.constructor.name;
     this.collection = [];
     this.settings = Object.assign({ 

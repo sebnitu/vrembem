@@ -12,7 +12,7 @@ const mockEntry = {
   settings: {
     customProps: ["background", "foreground"],
   },
-  context: { 
+  parent: { 
     module: "asdf",
     settings: {
       background: "black",

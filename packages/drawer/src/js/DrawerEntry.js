@@ -8,8 +8,8 @@ export class DrawerEntry extends CollectionEntry {
   #state;
   #breakpoint;
 
-  constructor(context, query, options = {}) {
-    super(context, query, options);
+  constructor(parent, query, options = {}) {
+    super(parent, query, options);
     this.dialog = null;
     this.trigger = null;
     // Create an instance of the Breakpoint class.
@@ -21,11 +21,11 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   get breakpoint() {
-    return getBreakpoint.call(this.context, this.el);
+    return getBreakpoint.call(this.parent, this.el);
   }
 
   get store() {
-    return this.context.store.get(this.id);
+    return this.parent.store.get(this.id);
   }
 
   get mode() {
@@ -34,7 +34,7 @@ export class DrawerEntry extends CollectionEntry {
 
   set mode(value) {
     this.#mode = value;
-    switchMode.call(this.context, this);
+    switchMode.call(this.parent, this);
   }
 
   get state() {
@@ -51,7 +51,7 @@ export class DrawerEntry extends CollectionEntry {
 
       // Save the store state if enabled.
       if (this.getSetting("store")) {
-        this.context.store.set(this.id, value);
+        this.parent.store.set(this.id, value);
       }
     }
 
@@ -65,19 +65,19 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async open(transition, focus) {
-    return this.context.open(this, transition, focus);
+    return this.parent.open(this, transition, focus);
   }
 
   async close(transition, focus) {
-    return this.context.close(this, transition, focus);
+    return this.parent.close(this, transition, focus);
   }
 
   async toggle(transition, focus) {
-    return this.context.toggle(this, transition, focus);
+    return this.parent.toggle(this, transition, focus);
   }
 
   async deregister() {
-    return this.context.deregister(this.id);
+    return this.parent.deregister(this.id);
   }
 
   mountBreakpoint() {
@@ -128,7 +128,7 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // Remove entry from local store.
-    this.context.store.set(this.id);
+    this.parent.store.set(this.id);
 
     // Unmount the MatchMedia functionality.
     this.unmountBreakpoint();

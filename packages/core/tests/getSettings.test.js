@@ -18,11 +18,11 @@ const settings = {
   }
 };
 
-const contextSettings = {
-  context: {
+const parentSettings = {
+  parent: {
     module: "MyModule",
     settings: {
-      someSetting: "context-123"
+      someSetting: "parent-123"
     }
   }
 };
@@ -33,10 +33,10 @@ test("should return a settings value from settings", () => {
   expect(result).toBe("1234");
 });
 
-test("should return a settings value from context settings", () => {
-  const mockData = contextSettings;
+test("should return a settings value from parent settings", () => {
+  const mockData = parentSettings;
   const result = getSetting.call(mockData, "someSetting");
-  expect(result).toBe("context-123");
+  expect(result).toBe("parent-123");
 });
 
 test("should return a settings value from dataConfig", () => {
@@ -51,14 +51,14 @@ test("should return a settings value from customProps", () => {
   expect(result).toBe("fdsa");
 });
 
-test("should prioritize settings over context settings", () => {
-  const mockData = { ...settings, ...contextSettings };
+test("should prioritize settings over parent settings", () => {
+  const mockData = { ...settings, ...parentSettings };
   const result = getSetting.call(mockData, "someSetting");
   expect(result).toBe("1234");
 });
 
 test("should prioritize customProps over settings", () => {
-  const mockData = { ...customProps, ...settings, ...contextSettings };
+  const mockData = { ...customProps, ...settings, ...parentSettings };
   const result = getSetting.call(mockData, "someSetting");
   expect(result).toBe("fdsa");
 });
@@ -68,7 +68,7 @@ test("should prioritize dataConfig over customProps", () => {
     ...dataConfig, 
     ...customProps, 
     ...settings, 
-    ...contextSettings
+    ...parentSettings
   };
   const result = getSetting.call(mockData, "someSetting");
   expect(result).toBe("asdf");
@@ -79,7 +79,7 @@ test("should throw an error if a setting doesn't exist anywhere", () => {
     ...dataConfig, 
     ...customProps, 
     ...settings, 
-    ...contextSettings
+    ...parentSettings
   };
   expect(() => getSetting.call(mockData, "asdf")).toThrow("MyModule setting does not exist: asdf");
 });
@@ -89,7 +89,7 @@ test("should be able to provide a fallback if a setting isn't found", () => {
     ...dataConfig, 
     ...customProps, 
     ...settings, 
-    ...contextSettings
+    ...parentSettings
   };
   const result = getSetting.call(mockData, "color", {
     fallback: "blue"
@@ -102,7 +102,7 @@ test("should be able to change the properties and the order they are checked", (
     ...dataConfig, 
     ...customProps, 
     ...settings, 
-    ...contextSettings
+    ...parentSettings
   };
   const result = getSetting.call(mockData, "someSetting", {
     props: ["customProps", "settings"]
