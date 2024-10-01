@@ -13,6 +13,7 @@ export class Drawer extends Collection {
 
   constructor(options) {
     super({ ...defaults, ...options});
+    this.module = "Drawer";
     this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);

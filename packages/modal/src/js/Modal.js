@@ -16,6 +16,7 @@ export class Modal extends Collection {
 
   constructor(options) {
     super({ ...defaults, ...options});
+    this.module = "Modal";
     this.trigger = null;
     this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
