@@ -17,7 +17,7 @@ describe("constructor()", () => {
     const entry = new CollectionEntry(obj, "one");
     expect(entry.id).toBe("one");
     expect(entry.el).toBe(document.getElementById("one"));
-    expect(entry.context.module).toBe("Collection");
+    expect(entry.parent.module).toBe("Collection");
   });
 
   it("should be able to pass options through the instantiation", () => {
@@ -59,7 +59,7 @@ describe("getCustomProps()", () => {
 });
 
 describe("getSetting()", () => {
-  it("should get a settings value from the entry context", () => {
+  it("should get a settings value from the entry parent", () => {
     const entry = new CollectionEntry(obj, "one");
     expect(entry.getSetting("test")).toBe("asdf");
   });

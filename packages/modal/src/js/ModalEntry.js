@@ -1,8 +1,8 @@
 import { CollectionEntry } from "@vrembem/core";
 
 export class ModalEntry extends CollectionEntry {
-  constructor(context, query, options = {}) {
-    super(context, query, options);
+  constructor(parent, query, options = {}) {
+    super(parent, query, options);
     this.state = "closed";
     this.dialog = null;
   }
@@ -12,19 +12,19 @@ export class ModalEntry extends CollectionEntry {
   }
 
   async open(transition, focus) {
-    return this.context.open(this, transition, focus);
+    return this.parent.open(this, transition, focus);
   }
 
   async close(transition, focus) {
-    return this.context.close(this, transition, focus);
+    return this.parent.close(this, transition, focus);
   }
 
   async replace(transition, focus) {
-    return this.context.replace(this, transition, focus);
+    return this.parent.replace(this, transition, focus);
   }
 
   async deregister() {
-    return this.context.deregister(this.id);
+    return this.parent.deregister(this.id);
   }
 
   async beforeMount() {
@@ -66,7 +66,7 @@ export class ModalEntry extends CollectionEntry {
       await this.close(false);
     } else {
       // Remove modal from stack.
-      this.context.stack.remove(this);
+      this.parent.stack.remove(this);
     }
   }
 }

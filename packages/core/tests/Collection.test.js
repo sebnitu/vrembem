@@ -67,7 +67,7 @@ describe("createEntry()", () => {
     const obj = new Collection();
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
-    expect(entry.context.module).toBe("Collection");
+    expect(entry.parent.module).toBe("Collection");
     expect(entry.getSetting("dataConfig")).toBe("config");
   });
 
@@ -75,7 +75,7 @@ describe("createEntry()", () => {
     const obj = new Collection();
     const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
     expect(entry.id).toBe("fdsa");
-    expect(entry.context.module).toBe("Collection");
+    expect(entry.parent.module).toBe("Collection");
     expect(entry.getSetting("dataConfig")).toBe("test");
   });
 });

@@ -11,8 +11,8 @@ export class PopoverEntry extends CollectionEntry {
   #eventListeners;
   #isHovered;
 
-  constructor(context, query, options = {}) {
-    super(context, query, options);
+  constructor(parent, query, options = {}) {
+    super(parent, query, options);
     this.state = "closed";
     this.toggleDelayId = null;
     this.trigger = null;
@@ -49,15 +49,15 @@ export class PopoverEntry extends CollectionEntry {
   }
   
   async open() {
-    return this.context.open(this);
+    return this.parent.open(this);
   }
 
   async close() {
-    return this.context.close(this);
+    return this.parent.close(this);
   }
   
   async deregister() {
-    return this.context.deregister(this.id);
+    return this.parent.deregister(this.id);
   }
 
   registerEventListeners() {
@@ -72,15 +72,15 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners = [{
           el: ["el", "trigger"],
           type: ["mouseenter", "focus"],
-          listener: handleMouseEnter.bind(this.context, this)
+          listener: handleMouseEnter.bind(this.parent, this)
         }, {
           el: ["el", "trigger"],
           type: ["mouseleave", "focusout"],
-          listener: handleMouseLeave.bind(this.context, this)
+          listener: handleMouseLeave.bind(this.parent, this)
         }, {
           el: ["trigger"],
           type: ["click"],
-          listener: handleTooltipClick.bind(this.context, this)
+          listener: handleTooltipClick.bind(this.parent, this)
         }];
   
         // Loop through listeners and apply to the appropriate elements.
@@ -99,7 +99,7 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners = [{
           el: ["trigger"],
           type: ["click"],
-          listener: handleClick.bind(this.context, this)
+          listener: handleClick.bind(this.parent, this)
         }];
   
         // Loop through listeners and apply to the appropriate elements.
