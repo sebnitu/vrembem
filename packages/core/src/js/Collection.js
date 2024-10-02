@@ -2,6 +2,7 @@ import { CollectionEntry, lifecycleHook } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
+    // TODO: Allow passing plugins through the constructor similar to float ui
     this.module = this.constructor.name;
     this.collection = [];
     this.settings = Object.assign({ 
@@ -10,6 +11,7 @@ export class Collection {
       teleport: null,
       teleportMethod: "append"
     }, options);
+    this.plugins = [];
   }
 
   get(value, key = "id") {
@@ -68,7 +70,50 @@ export class Collection {
     return this.collection;
   }
 
+  isValidPlugin(plugin) {
+    if (typeof plugin != "object") {
+      console.error("Plugin is not a valid object!");
+      return;
+    };
+
+    if (!("name" in plugin) || typeof plugin.name !== "string") {
+      console.error("Plugin requires a name!");
+      return;
+    };
+
+    if (!("mount" in plugin) || typeof plugin.mount !== "function") {
+      console.error("Plugin requires a mount function!");
+      return;
+    };
+
+    if (!("unmount" in plugin) || typeof plugin.unmount !== "function") {
+      console.error("Plugin requires a unmount function!");
+      return;
+    };
+
+    return true;
+  }
+
+  // TODO: Figure out where `plugin.mount()` should be called.
+  async registerPlugin(plugin) {
+    console.log("registerPlugin()");
+    if (this.isValidPlugin(plugin)) {
+      plugin.mount(this);
+      this.plugins.push(plugin);
+    }
+  }
+
+  async deregisterPlugin(plugin) {
+    console.log("deregisterPlugin()");
+    const index = this.plugins.findIndex((entry) => entry === plugin);
+    if (~index) {
+      plugin.unmount(this);
+      this.plugins.splice(index, 1);
+    }
+  }
+
   async mount(options = {}) {
+    // TODO: Maybe run plugin mount calls here? `mountPlugins()?`
     // Apply settings with passed options.
     this.applySettings(options);
     await lifecycleHook.call(this, "beforeMount");
@@ -82,6 +127,7 @@ export class Collection {
   }
 
   async unmount() {
+    // TODO: Maybe run plugin unmount calls here? `unmountPlugins()?`
     await lifecycleHook.call(this, "beforeUnmount");
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
