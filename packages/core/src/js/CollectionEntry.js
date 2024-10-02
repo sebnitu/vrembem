@@ -15,7 +15,6 @@ export class CollectionEntry {
     this.settings = Object.assign({}, options);
     this.dataConfig = {};
     this.customProps = {};
-    this.returnRef = null;
   }
 
   applySettings(obj) {
@@ -61,7 +60,7 @@ export class CollectionEntry {
     await lifecycleHook.call(this, "beforeUnmount", reMount);
 
     // Return teleported entry if a reference has been set.
-    if (this.getSetting("teleport")) {
+    if (typeof this.teleportReturn === "function") {
       this.teleportReturn();
     }
 
@@ -69,22 +68,10 @@ export class CollectionEntry {
   }
 
   teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-    if (!this.returnRef) {
-      this.returnRef = teleport(this.el, ref, method);
-      return this.el;
-    } else {
-      console.error("Element has already been teleported:", this.el);
-      return false;
+    if (typeof this.teleportReturn === "function") {
+      this.teleportReturn();
     }
-  }
-
-  teleportReturn() {
-    if (this.returnRef) {
-      this.returnRef = teleport(this.el, this.returnRef);
-      return this.el;
-    } else {
-      console.error("No return reference found:", this.el);
-      return false;
-    }
+    this.teleportReturn = teleport(this.el, ref, method);
+    return this.el;
   }
 }

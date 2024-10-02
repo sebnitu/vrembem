@@ -138,31 +138,16 @@ describe("entry.teleport() & entry.teleportReturn()", () => {
   });
 
   it("should teleport a registered entry", () => {
+    expect(typeof entry.teleportReturn).toBe("undefined");
     expect(div.children.length).toBe(0);
     entry.teleport();
     expect(div.children.length).toBe(1);
-    expect(entry.returnRef.textContent).toBe("teleported #entry");
-  });
-
-  it("should log error if teleport is run on an entry that has already been teleported", () => {
-    expect(div.children.length).toBe(1);
-    entry.teleport(".container");
-    expect(console.error).toHaveBeenCalledWith("Element has already been teleported:", entry.el);
-    expect(div.children.length).toBe(1);
+    expect(typeof entry.teleportReturn).toBe("function");
   });
 
   it("should return the teleported entry", () => {
     expect(div.children.length).toBe(1);
     entry.teleportReturn();
-    expect(div.children.length).toBe(0);
-    expect(entry.returnRef).toBe(null);
-  });
-
-  it("should log error if teleportReturn is run with no return reference", () => {
-    expect(entry.returnRef).toBe(null);
-    expect(div.children.length).toBe(0);
-    entry.teleportReturn();
-    expect(console.error).toHaveBeenCalledWith("No return reference found:", entry.el);
     expect(div.children.length).toBe(0);
   });
 });

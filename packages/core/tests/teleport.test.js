@@ -6,7 +6,7 @@ const markup = `
 `;
 
 describe("teleport()", () => {
-  let result, el, boxA, boxB;
+  let cleanup, el, boxA, boxB;
 
   beforeAll(() => {
     document.body.innerHTML = markup;
@@ -16,25 +16,16 @@ describe("teleport()", () => {
   });
 
   it("should teleport element inside the provided container", () => {
-    result = teleport(el, boxB, "append");
+    cleanup = teleport(el, boxB, "append");
     expect(boxB.childNodes[0]).toBe(el);
     expect(boxB.childNodes.length).toBe(1);
   });
 
-  it("should teleport return a comment node reference", () => {
-    expect(result.nodeType).toBe(Node.COMMENT_NODE);
-    expect(result.textContent).toBe("teleported #span-1");
-    expect(boxA.childNodes[0]).toBe(result);
-    expect(boxA.childNodes.length).toBe(1);
-  });
-
-  it("should return the teleported element to the provided comment node reference", () => {
-    result = teleport(el, result);
-
-    expect(result).toBe(null);
+  it("should return the teleported element when cleanup function is run", () => {
+    expect(typeof cleanup).toBe("function");
+    cleanup();
     expect(boxA.childNodes[0]).toBe(el);
     expect(boxA.childNodes.length).toBe(1);
-    expect(boxB.childNodes.length).toBe(0);
   });
 
   it("should query teleport reference using a valid selector", () => {
