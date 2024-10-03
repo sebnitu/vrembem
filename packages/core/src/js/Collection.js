@@ -1,4 +1,4 @@
-import { CollectionEntry, lifecycleHook } from "@vrembem/core";
+import { CollectionEntry, lifecycleHook, isValidPlugin } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
@@ -40,12 +40,21 @@ export class Collection {
     // Create the collection entry object and mount it.
     const entry = await this.createEntry(query, config);
     await entry.mount();
+
+    // beforeRegister lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "beforeRegister", this);
+    }
     await lifecycleHook.call(this, "beforeRegister", entry);
     await lifecycleHook.call(entry, "beforeRegister");
     
     // Add the entry to the collection.
     this.collection.push(entry);
 
+    // afterRegister lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "afterRegister", this);
+    }
     await lifecycleHook.call(entry, "afterRegister");
     await lifecycleHook.call(this, "afterRegister", entry);
     return entry;
@@ -57,6 +66,11 @@ export class Collection {
       // Get the collection entry object from the collection and unmount it.
       const entry = this.collection[index];
       await entry.unmount(reReg);
+
+      // beforeDeregister lifecycle hooks.
+      for (const plugin of this.plugins) {
+        await lifecycleHook.call(plugin, "beforeDeregister", this);
+      }
       await lifecycleHook.call(this, "beforeDeregister", entry);
       await lifecycleHook.call(entry, "beforeDeregister", reReg);
       
@@ -70,6 +84,10 @@ export class Collection {
       // Remove the entry from the collection.
       this.collection.splice(index, 1);
 
+      // afterDeregister lifecycle hooks.
+      for (const plugin of this.plugins) {
+        await lifecycleHook.call(plugin, "afterDeregister", this);
+      }
       await lifecycleHook.call(entry, "afterDeregister", reReg);
       await lifecycleHook.call(this, "afterDeregister", entry);
     }
@@ -77,39 +95,13 @@ export class Collection {
     return this.collection;
   }
 
-  isValidPlugin(plugin) {
-    if (typeof plugin != "object") {
-      console.error("Plugin is not a valid object!");
-      return false;
-    };
-
-    if (!("name" in plugin) || typeof plugin.name !== "string") {
-      console.error("Plugin requires a name!");
-      return false;
-    };
-
-    if (!("mount" in plugin) || typeof plugin.mount !== "function") {
-      console.error("Plugin requires a mount function!");
-      return false;
-    };
-
-    if (!("unmount" in plugin) || typeof plugin.unmount !== "function") {
-      console.error("Plugin requires a unmount function!");
-      return false;
-    };
-
-    return true;
-  }
-
   registerPlugin(plugin) {
-    console.log("registerPlugin() for", this.module);
-    if (this.isValidPlugin(plugin)) {
+    if (isValidPlugin(plugin)) {
       this.plugins.push(plugin);
     }
   }
 
   deregisterPlugin(plugin) {
-    console.log("deregisterPlugin() for", this.module);
     const index = this.plugins.findIndex((entry) => entry === plugin);
     if (~index) {
       this.plugins.splice(index, 1);
@@ -117,41 +109,65 @@ export class Collection {
   }
 
   async mountPlugins() {
-    console.log("mountPlugins() for", this.module);
     for (const plugin of this.plugins) {
-      plugin.mount(this);
+      await lifecycleHook.call(plugin, "mount", this);
     }
   }
 
   async unmountPlugins() {
-    console.log("unmountPlugins() for", this.module);
     for (const plugin of this.plugins) {
-      plugin.unmount(this);
+      await lifecycleHook.call(plugin, "unmount", this);
     }
   }
 
   async mount(options = {}) {
     // Apply settings with passed options.
     this.applySettings(options);
+
+    // Mount the plugins.
     this.mountPlugins();
+
+    // beforeMount lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "beforeMount", this);
+    }
     await lifecycleHook.call(this, "beforeMount");
+
     // Get all the selector elements and register them.
     const els = document.querySelectorAll(this.settings.selector);
     for (const el of els) {
       await this.register(el);
     }
+
+    // afterMount lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "afterMount", this);
+    }
     await lifecycleHook.call(this, "afterMount");
+
     return this;
   }
 
   async unmount() {
-    this.unmountPlugins();
+    // beforeUnmount lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "beforeUnmount", this);
+    }
     await lifecycleHook.call(this, "beforeUnmount");
+    
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
       await this.deregister(this.collection[0].id);
     }
+
+    // afterUnmount lifecycle hooks.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "afterUnmount", this);
+    }
     await lifecycleHook.call(this, "afterUnmount");
+
+    // Unmount plugins and return this.
+    this.unmountPlugins();
     return this;
   }
 }

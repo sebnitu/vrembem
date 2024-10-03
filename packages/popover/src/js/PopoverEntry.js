@@ -131,7 +131,7 @@ export class PopoverEntry extends CollectionEntry {
     }
   }
 
-  async beforeMount() {
+  async onMount() {
     // Get the trigger element.
     this.trigger = document.querySelector(
       `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
@@ -151,16 +151,7 @@ export class PopoverEntry extends CollectionEntry {
     this.registerEventListeners();
   }
 
-  async afterRegister() {
-    // Set initial state based on the presence of the active class.
-    if (this.el.classList.contains(this.getSetting("stateActive"))) {
-      await this.open();
-    } else {
-      this.el.inert = true;
-    }
-  }
-
-  async beforeUnmount() {
+  async onUnmount() {
     // If entry is in the opened state, close it.
     if (this.state === "opened") {
       await this.close();
@@ -171,5 +162,14 @@ export class PopoverEntry extends CollectionEntry {
     
     // Remove event listeners.
     this.deregisterEventListeners();
+  }
+
+  async afterRegister() {
+    // Set initial state based on the presence of the active class.
+    if (this.el.classList.contains(this.getSetting("stateActive"))) {
+      await this.open();
+    } else {
+      this.el.inert = true;
+    }
   }
 }

@@ -97,7 +97,7 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async beforeMount() {
+  async onMount() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = (dialog) ? dialog : this.el;
@@ -121,7 +121,7 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async beforeUnmount(close = true) {
+  async onUnmount(close = true) {
     // If entry is in the opened state, close it.
     if (close && this.state === "opened") {
       await this.close(false);

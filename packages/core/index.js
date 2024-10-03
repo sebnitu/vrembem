@@ -8,6 +8,7 @@ export * from "./src/js/helpers/getCustomProps";
 export * from "./src/js/helpers/getElement";
 export * from "./src/js/helpers/getPrefix";
 export * from "./src/js/helpers/getSetting";
+export * from "./src/js/helpers/isValidPlugin";
 export * from "./src/js/helpers/lifecycleHook";
 export * from "./src/js/helpers/transition";
 export * from "./src/js/helpers/setGlobalState";
@@ -19,4 +20,5 @@ export * from "./src/js/FocusTrap";
 export * from "./src/js/localStore";
 export * from "./src/js/themeStore";
 
+export * from "./src/js/plugins/debug";
 export * from "./src/js/plugins/teleport";

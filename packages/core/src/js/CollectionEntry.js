@@ -47,28 +47,16 @@ export class CollectionEntry {
 
     // On mount lifecycle hooks.
     for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin.entry, "beforeMount", this);
+      await lifecycleHook.call(plugin, "onMount", this);
     }
-    await lifecycleHook.call(this, "beforeMount");
-
-    // After mount lifecycle hooks.
-    for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin.entry, "afterMount", this);
-    }
-    await lifecycleHook.call(this, "afterMount");
+    await lifecycleHook.call(this, "onMount");
   }
 
   async unmount(reMount = false) {
     // Before mount lifecycle hooks.
     for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin.entry, "beforeUnmount", this);
+      await lifecycleHook.call(plugin, "onUnmount", this);
     }
-    await lifecycleHook.call(this, "beforeUnmount", reMount);
-
-    // After mount lifecycle hooks.
-    for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin.entry, "afterUnmount", this);
-    }
-    await lifecycleHook.call(this, "afterUnmount", reMount);
+    await lifecycleHook.call(this, "onUnmount", reMount);
   }
 }

@@ -27,7 +27,7 @@ export class ModalEntry extends CollectionEntry {
     return this.parent.deregister(this.id);
   }
 
-  async beforeMount() {
+  async onMount() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = (dialog) ? dialog : this.el;
@@ -46,6 +46,16 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
+  async onUnmount(reMount = false) {
+    // If entry is in the opened state, close it.
+    if (!reMount && this.state === "opened") {
+      await this.close(false);
+    } else {
+      // Remove modal from stack.
+      this.parent.stack.remove(this);
+    }
+  }
+
   async afterRegister() {
     // Setup initial state.
     if (this.el.classList.contains(this.getSetting("stateOpened"))) {
@@ -57,16 +67,6 @@ export class ModalEntry extends CollectionEntry {
       this.el.classList.remove(this.getSetting("stateClosing"));
       // Add closed state class.
       this.el.classList.add(this.getSetting("stateClosed"));
-    }
-  }
-
-  async beforeUnmount(reMount = false) {
-    // If entry is in the opened state, close it.
-    if (!reMount && this.state === "opened") {
-      await this.close(false);
-    } else {
-      // Remove modal from stack.
-      this.parent.stack.remove(this);
     }
   }
 }
