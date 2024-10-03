@@ -2,16 +2,23 @@ import { CollectionEntry, lifecycleHook } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
-    // TODO: Allow passing plugins through the constructor similar to float ui
     this.module = this.constructor.name;
     this.collection = [];
+    this.plugins = [];
+
+    const plugins = options?.plugins || [];
+    delete options.plugins;
+
+    // Create the settings object.
     this.settings = Object.assign({ 
       dataConfig: "config",
       customProps: [],
-      teleport: null,
-      teleportMethod: "append"
     }, options);
-    this.plugins = [];
+
+    // Register the plugins.
+    for (const plugin of plugins) {
+      this.registerPlugin(plugin);
+    }
   }
 
   get(value, key = "id") {
@@ -73,49 +80,60 @@ export class Collection {
   isValidPlugin(plugin) {
     if (typeof plugin != "object") {
       console.error("Plugin is not a valid object!");
-      return;
+      return false;
     };
 
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
-      return;
+      return false;
     };
 
     if (!("mount" in plugin) || typeof plugin.mount !== "function") {
       console.error("Plugin requires a mount function!");
-      return;
+      return false;
     };
 
     if (!("unmount" in plugin) || typeof plugin.unmount !== "function") {
       console.error("Plugin requires a unmount function!");
-      return;
+      return false;
     };
 
     return true;
   }
 
-  // TODO: Figure out where `plugin.mount()` should be called.
-  async registerPlugin(plugin) {
-    console.log("registerPlugin()");
+  registerPlugin(plugin) {
+    console.log("registerPlugin() for", this.module);
     if (this.isValidPlugin(plugin)) {
-      plugin.mount(this);
       this.plugins.push(plugin);
     }
   }
 
-  async deregisterPlugin(plugin) {
-    console.log("deregisterPlugin()");
+  deregisterPlugin(plugin) {
+    console.log("deregisterPlugin() for", this.module);
     const index = this.plugins.findIndex((entry) => entry === plugin);
     if (~index) {
-      plugin.unmount(this);
       this.plugins.splice(index, 1);
     }
   }
 
+  async mountPlugins() {
+    console.log("mountPlugins() for", this.module);
+    for (const plugin of this.plugins) {
+      plugin.mount(this);
+    }
+  }
+
+  async unmountPlugins() {
+    console.log("unmountPlugins() for", this.module);
+    for (const plugin of this.plugins) {
+      plugin.unmount(this);
+    }
+  }
+
   async mount(options = {}) {
-    // TODO: Maybe run plugin mount calls here? `mountPlugins()?`
     // Apply settings with passed options.
     this.applySettings(options);
+    this.mountPlugins();
     await lifecycleHook.call(this, "beforeMount");
     // Get all the selector elements and register them.
     const els = document.querySelectorAll(this.settings.selector);
@@ -127,7 +145,7 @@ export class Collection {
   }
 
   async unmount() {
-    // TODO: Maybe run plugin unmount calls here? `unmountPlugins()?`
+    this.unmountPlugins();
     await lifecycleHook.call(this, "beforeUnmount");
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {

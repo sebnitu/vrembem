@@ -1,10 +1,17 @@
-import { Modal } from "vrembem";
+import Modal from "@vrembem/modal";
+import { teleport } from "@vrembem/core";
+
 let modal = null;
 
 if (typeof window !== "undefined") {
   modal = new Modal({
     selectorInert: "main",
-    teleport: ".modals"
+    plugins: [
+      teleport({
+        where: ".modals",
+        how: "append"
+      })
+    ]
   });
   window["modal"] = await modal.mount();
 }

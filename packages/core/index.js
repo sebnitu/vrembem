@@ -17,5 +17,6 @@ export * from "./src/js/Collection";
 export * from "./src/js/CollectionEntry";
 export * from "./src/js/FocusTrap";
 export * from "./src/js/localStore";
-export * from "./src/js/teleport";
 export * from "./src/js/themeStore";
+
+export * from "./src/js/plugins/teleport";

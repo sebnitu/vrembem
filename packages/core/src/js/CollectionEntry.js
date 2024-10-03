@@ -3,7 +3,6 @@ import {
   getCustomProps,
   getElement,
   lifecycleHook,
-  teleport,
   getSetting,
 } from "@vrembem/core";
 
@@ -46,32 +45,18 @@ export class CollectionEntry {
     this.getDataConfig();
     this.getCustomProps();
 
-    await lifecycleHook.call(this, "beforeMount");
-
-    // Teleport entry if a reference has been set.
-    if (this.getSetting("teleport")) {
-      this.teleport();
+    for (const plugin of this.parent.plugins) {
+      await lifecycleHook.call(plugin.entry, "beforeMount", this);
     }
-
+    await lifecycleHook.call(this, "beforeMount");
     await lifecycleHook.call(this, "afterMount");
   }
 
   async unmount(reMount = false) {
+    for (const plugin of this.parent.plugins) {
+      await lifecycleHook.call(plugin.entry, "beforeUnmount", this);
+    }
     await lifecycleHook.call(this, "beforeUnmount", reMount);
-
-    // Return teleported entry if a reference has been set.
-    if (typeof this.teleportReturn === "function") {
-      this.teleportReturn();
-    }
-
     await lifecycleHook.call(this, "afterUnmount", reMount);
-  }
-
-  teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-    if (typeof this.teleportReturn === "function") {
-      this.teleportReturn();
-    }
-    this.teleportReturn = teleport(this.el, ref, method);
-    return this.el;
   }
 }
