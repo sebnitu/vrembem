@@ -1,9 +1,9 @@
 import { teleport as teleportUtility } from "../utilities/teleport";
 
 export function teleport(options = {}) {
-  const { where, how = "append" } = options;
   const plugin = {
     name: "teleport",
+    settings: { ...{ where: null, how: "append" }, ...options},
     mount() {
       console.log("Plugin mount():", this.name);
     },
@@ -14,27 +14,30 @@ export function teleport(options = {}) {
 
     entry: {
       beforeMount(entry) {
-        entry.teleport = () => {
-          if (typeof entry.teleportReturn === "function") {
-            entry.teleportReturn();
-          }
-          entry.teleportReturn = teleportUtility(
-            entry.el,
-            entry.getSetting("teleport", { fallback: where }),
-            entry.getSetting("teleportMethod", { fallback: how })
-          );
-        };
-        
+        entry.teleport = teleport.bind(null, entry);
         entry.teleport();
       },
 
       beforeUnmount(entry) {
-        if (typeof entry.teleportReturn === "function") {
-          entry.teleportReturn();
-        }
+        teleportReturn(entry);
       }
     }
   };
+
+  function teleport(entry) {
+    teleportReturn(entry);
+    entry.teleportReturn = teleportUtility(
+      entry.el,
+      entry.getSetting("teleport", { fallback: plugin.settings.where }),
+      entry.getSetting("teleportMethod", { fallback: plugin.settings.how })
+    );
+  }
+
+  function teleportReturn(entry) {
+    if (typeof entry.teleportReturn === "function") {
+      entry.teleportReturn();
+    }
+  }
 
   return plugin;
 };
