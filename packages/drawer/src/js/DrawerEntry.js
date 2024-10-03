@@ -121,9 +121,9 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async onUnmount(close = true) {
+  async onUnmount(reMount) {
     // If entry is in the opened state, close it.
-    if (close && this.state === "opened") {
+    if (!reMount && this.state === "opened") {
       await this.close(false);
     }
 

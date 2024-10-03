@@ -69,9 +69,9 @@ export class Collection {
 
       // beforeDeregister lifecycle hooks.
       for (const plugin of this.plugins) {
-        await lifecycleHook.call(plugin, "beforeDeregister", this);
+        await lifecycleHook.call(plugin, "beforeDeregister", this, reReg);
       }
-      await lifecycleHook.call(this, "beforeDeregister", entry);
+      await lifecycleHook.call(this, "beforeDeregister", entry, reReg);
       await lifecycleHook.call(entry, "beforeDeregister", reReg);
       
       // Remove all the owned properties from the entry.
@@ -86,10 +86,10 @@ export class Collection {
 
       // afterDeregister lifecycle hooks.
       for (const plugin of this.plugins) {
-        await lifecycleHook.call(plugin, "afterDeregister", this);
+        await lifecycleHook.call(plugin, "afterDeregister", this, reReg);
       }
       await lifecycleHook.call(entry, "afterDeregister", reReg);
-      await lifecycleHook.call(this, "afterDeregister", entry);
+      await lifecycleHook.call(this, "afterDeregister", entry, reReg);
     }
 
     return this.collection;
@@ -154,7 +154,7 @@ export class Collection {
       await lifecycleHook.call(plugin, "beforeUnmount", this);
     }
     await lifecycleHook.call(this, "beforeUnmount");
-    
+
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
       await this.deregister(this.collection[0].id);

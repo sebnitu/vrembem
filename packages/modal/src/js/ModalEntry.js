@@ -46,7 +46,7 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
-  async onUnmount(reMount = false) {
+  async onUnmount(reMount) {
     // If entry is in the opened state, close it.
     if (!reMount && this.state === "opened") {
       await this.close(false);

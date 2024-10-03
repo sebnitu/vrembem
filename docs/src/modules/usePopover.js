@@ -1,4 +1,5 @@
 import { Popover } from "vrembem";
+
 let popover = null;
 
 if (typeof window !== "undefined") {

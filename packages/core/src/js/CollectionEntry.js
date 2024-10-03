@@ -55,7 +55,7 @@ export class CollectionEntry {
   async unmount(reMount = false) {
     // Before mount lifecycle hooks.
     for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin, "onUnmount", this);
+      await lifecycleHook.call(plugin, "onUnmount", this, reMount);
     }
     await lifecycleHook.call(this, "onUnmount", reMount);
   }
