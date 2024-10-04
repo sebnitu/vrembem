@@ -6,6 +6,8 @@ export class Collection {
     this.collection = [];
     this.plugins = [];
 
+    // TODO: Allow passing plugins via mount function. Maybe add new 
+    // `processPlugins()` function?
     const plugins = options?.plugins || [];
     delete options.plugins;
 
@@ -101,10 +103,13 @@ export class Collection {
     }
   }
 
-  deregisterPlugin(plugin) {
-    const index = this.plugins.findIndex((entry) => entry === plugin);
+  async deregisterPlugin(name) {
+    const index = this.plugins.findIndex((plugin) => plugin.name === name);
     if (~index) {
+      await lifecycleHook.call(this.plugins[index], "unmount", this);
       this.plugins.splice(index, 1);
+    } else {
+      throw new Error(`Plugin does not exist: ${name}`);
     }
   }
 

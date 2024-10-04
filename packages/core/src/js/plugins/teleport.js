@@ -5,6 +5,16 @@ export function teleport(options = {}) {
     name: "teleport",
     settings: { ...{ where: null, how: "append" }, ...options},
 
+    unmount(context) {
+      context.collection.forEach((entry) => {
+        if (typeof entry.teleportReturn === "function") {
+          entry.teleportReturn();
+          delete entry.teleport;
+          delete entry.teleportReturn;
+        }
+      });
+    },
+
     onMount(entry) {
       entry.teleport = teleport.bind(this, entry);
       entry.teleport();
