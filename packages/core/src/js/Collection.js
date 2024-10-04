@@ -5,30 +5,30 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.plugins = [];
-
-    // TODO: Allow passing plugins via mount function. Maybe add new 
-    // `processPlugins()` function?
-    const plugins = options?.plugins || [];
-    delete options.plugins;
-
-    // Create the settings object.
-    this.settings = Object.assign({ 
+    this.settings = { 
       dataConfig: "config",
       customProps: [],
-    }, options);
-
-    // Register the plugins.
-    for (const plugin of plugins) {
-      this.registerPlugin(plugin);
-    }
+    };
+    this.applySettings(options);
   }
 
   get(value, key = "id") {
     return this.collection.find((entry) => entry[key] === value);
   }
 
-  applySettings(obj) {
-    return Object.assign(this.settings, obj);
+  applySettings(options) {
+    return Object.assign(this.settings, this.processOptions(options));
+  }
+
+  processOptions(options) {
+    // TODO: Maybe use a getter/setting fo applying plugins that automatically
+    // runs `registerPlugin` whenever the `this.plugins` array is added to.
+    const plugins = options?.plugins || [];
+    delete options.plugins;
+    for (const plugin of plugins) {
+      this.registerPlugin(plugin);
+    }
+    return options;
   }
 
   async createEntry(query, config) {
