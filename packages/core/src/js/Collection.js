@@ -1,10 +1,10 @@
-import { CollectionEntry, lifecycleHook, isValidPlugin } from "@vrembem/core";
+import { CollectionEntry, lifecycleHook, pluginsArray } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
     this.collection = [];
-    this.plugins = [];
+    this.plugins = new pluginsArray();
     this.settings = { 
       dataConfig: "config",
       customProps: [],
@@ -21,13 +21,8 @@ export class Collection {
   }
 
   processOptions(options) {
-    // TODO: Maybe use a getter/setting fo applying plugins that automatically
-    // runs `registerPlugin` whenever the `this.plugins` array is added to.
-    const plugins = options?.plugins || [];
+    this.plugins.add(options?.plugins || []);
     delete options.plugins;
-    for (const plugin of plugins) {
-      this.registerPlugin(plugin);
-    }
     return options;
   }
 
@@ -97,40 +92,14 @@ export class Collection {
     return this.collection;
   }
 
-  registerPlugin(plugin) {
-    if (isValidPlugin(plugin)) {
-      this.plugins.push(plugin);
-    }
-  }
-
-  async deregisterPlugin(name) {
-    const index = this.plugins.findIndex((plugin) => plugin.name === name);
-    if (~index) {
-      await lifecycleHook.call(this.plugins[index], "unmount", this);
-      this.plugins.splice(index, 1);
-    } else {
-      throw new Error(`Plugin does not exist: ${name}`);
-    }
-  }
-
-  async mountPlugins() {
-    for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "mount", this);
-    }
-  }
-
-  async unmountPlugins() {
-    for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "unmount", this);
-    }
-  }
-
   async mount(options = {}) {
     // Apply settings with passed options.
     this.applySettings(options);
 
-    // Mount the plugins.
-    this.mountPlugins();
+    // Mount plugins.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "mount", this);
+    }
 
     // beforeMount lifecycle hooks.
     for (const plugin of this.plugins) {
@@ -171,8 +140,11 @@ export class Collection {
     }
     await lifecycleHook.call(this, "afterUnmount");
 
-    // Unmount plugins and return this.
-    this.unmountPlugins();
+    // Unmount plugins.
+    for (const plugin of this.plugins) {
+      await lifecycleHook.call(plugin, "unmount", this);
+    }
+    
     return this;
   }
 }

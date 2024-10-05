@@ -1,10 +1,17 @@
 import { teleport as teleportUtility } from "../utilities/teleport";
 
-export function teleport(options = {}) {
-  const plugin = {
-    name: "teleport",
-    settings: { ...{ where: null, how: "append" }, ...options},
+const defaults = {
+  where: null,
+  how: "append"
+};
 
+export function teleport(options = {}) {
+  const props = {
+    name: "teleport",
+    settings: { ...defaults, ...options},
+  };
+
+  const methods = {
     unmount(context) {
       context.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
@@ -40,5 +47,5 @@ export function teleport(options = {}) {
     }
   }
 
-  return plugin;
+  return {...props, ...methods};
 };
