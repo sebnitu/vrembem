@@ -4,7 +4,7 @@ export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
     this.collection = [];
-    this.plugins = new pluginsArray();
+    this.plugins = new pluginsArray(this);
     this.settings = { 
       dataConfig: "config",
       customProps: [],
