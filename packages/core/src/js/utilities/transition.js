@@ -1,5 +1,5 @@
 // import { cssVar } from "./cssVar";
-import { toMilliseconds } from "../utilities/toMilliseconds";
+import { toMilliseconds } from "./toMilliseconds";
 
 /**
  * Get the value of a CSS custom property (variable).
