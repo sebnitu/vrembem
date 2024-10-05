@@ -7,9 +7,7 @@ document.body.innerHTML = `
 
 const defaultSettings = {
   dataConfig: "config",
-  customProps: [],
-  teleport: null,
-  teleportMethod: "append"
+  customProps: []
 };
 
 describe("constructor()", () => {

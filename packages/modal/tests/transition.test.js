@@ -116,6 +116,4 @@ test("should return modal config if set, otherwise should return global settings
   const entry = modal.get("modal-default");
   expect(entry.getSetting("transition")).toBe(false);
   expect(modal.settings.transition).toBe(true);
-  expect(entry.getSetting("teleport")).toBe(null);
-  expect(modal.settings.teleport).toBe(null);
 });

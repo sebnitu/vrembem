@@ -1,6 +1,10 @@
 import "./mocks/matchMedia.mock";
-import { resizeWindow } from "./helpers/resizeWindow";
 import { Breakpoint } from "../index";
+
+function resizeWindow(value) {
+  window.innerWidth = value;
+  window.dispatchEvent(new Event("resize"));
+}
 
 const bp = new Breakpoint();
 const handler = vi.fn();
