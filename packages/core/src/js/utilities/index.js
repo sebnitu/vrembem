@@ -1,3 +1,5 @@
+export * from "./Breakpoint";
+export * from "./FocusTrap";
 export * from "./getConfig";
 export * from "./getElement";
 export * from "./localStore";

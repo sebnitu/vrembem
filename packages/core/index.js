@@ -4,6 +4,4 @@ export * from "./src/js/plugins";
 
 export * from "./src/js/Collection";
 export * from "./src/js/CollectionEntry";
-export * from "./src/js/Breakpoint";
-export * from "./src/js/FocusTrap";
 export * from "./src/js/themeStore";
