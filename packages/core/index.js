@@ -10,6 +10,7 @@ export * from "./src/js/helpers/getCustomProps";
 export * from "./src/js/helpers/getElement";
 export * from "./src/js/helpers/getPrefix";
 export * from "./src/js/helpers/getSetting";
+export * from "./src/js/helpers/pluginsArray";
 export * from "./src/js/helpers/transition";
 export * from "./src/js/helpers/setGlobalState";
 
@@ -17,7 +18,6 @@ export * from "./src/js/Breakpoint";
 export * from "./src/js/Collection";
 export * from "./src/js/CollectionEntry";
 export * from "./src/js/FocusTrap";
-export * from "./src/js/pluginsArray";
 export * from "./src/js/themeStore";
 
 export * from "./src/js/plugins/debug";
