@@ -1,4 +1,4 @@
-import { lifecycleHook } from "@vrembem/core";
+import { maybeRunMethod } from "@vrembem/core";
 
 export class pluginsArray extends Array {
   constructor(parent) {
@@ -29,7 +29,7 @@ export class pluginsArray extends Array {
   async remove(name) {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
-      await lifecycleHook.call(this[index], "unmount", this.parent);
+      await maybeRunMethod.call(this[index], "unmount", this.parent);
       this.splice(index, 1);
     }
   }

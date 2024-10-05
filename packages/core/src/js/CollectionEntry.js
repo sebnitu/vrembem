@@ -2,7 +2,7 @@ import {
   getConfig,
   getCustomProps,
   getElement,
-  lifecycleHook,
+  maybeRunMethod,
   getSetting,
 } from "@vrembem/core";
 
@@ -47,16 +47,16 @@ export class CollectionEntry {
 
     // On mount lifecycle hooks.
     for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin, "onMount", this);
+      await maybeRunMethod.call(plugin, "onMount", this);
     }
-    await lifecycleHook.call(this, "onMount");
+    await maybeRunMethod.call(this, "onMount");
   }
 
   async unmount(reMount = false) {
     // Before mount lifecycle hooks.
     for (const plugin of this.parent.plugins) {
-      await lifecycleHook.call(plugin, "onUnmount", this, reMount);
+      await maybeRunMethod.call(plugin, "onUnmount", this, reMount);
     }
-    await lifecycleHook.call(this, "onUnmount", reMount);
+    await maybeRunMethod.call(this, "onUnmount", reMount);
   }
 }

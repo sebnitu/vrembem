@@ -1,4 +1,4 @@
-import { CollectionEntry, lifecycleHook, pluginsArray } from "@vrembem/core";
+import { CollectionEntry, maybeRunMethod, pluginsArray } from "@vrembem/core";
 
 export class Collection {
   constructor(options = {}) {
@@ -40,20 +40,20 @@ export class Collection {
 
     // beforeRegister lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "beforeRegister", this);
+      await maybeRunMethod.call(plugin, "beforeRegister", this);
     }
-    await lifecycleHook.call(this, "beforeRegister", entry);
-    await lifecycleHook.call(entry, "beforeRegister");
+    await maybeRunMethod.call(this, "beforeRegister", entry);
+    await maybeRunMethod.call(entry, "beforeRegister");
     
     // Add the entry to the collection.
     this.collection.push(entry);
 
     // afterRegister lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "afterRegister", this);
+      await maybeRunMethod.call(plugin, "afterRegister", this);
     }
-    await lifecycleHook.call(entry, "afterRegister");
-    await lifecycleHook.call(this, "afterRegister", entry);
+    await maybeRunMethod.call(entry, "afterRegister");
+    await maybeRunMethod.call(this, "afterRegister", entry);
     return entry;
   }
 
@@ -66,10 +66,10 @@ export class Collection {
 
       // beforeDeregister lifecycle hooks.
       for (const plugin of this.plugins) {
-        await lifecycleHook.call(plugin, "beforeDeregister", this, reReg);
+        await maybeRunMethod.call(plugin, "beforeDeregister", this, reReg);
       }
-      await lifecycleHook.call(this, "beforeDeregister", entry, reReg);
-      await lifecycleHook.call(entry, "beforeDeregister", reReg);
+      await maybeRunMethod.call(this, "beforeDeregister", entry, reReg);
+      await maybeRunMethod.call(entry, "beforeDeregister", reReg);
       
       // Remove all the owned properties from the entry.
       Object.getOwnPropertyNames(entry).forEach((prop) => {
@@ -83,10 +83,10 @@ export class Collection {
 
       // afterDeregister lifecycle hooks.
       for (const plugin of this.plugins) {
-        await lifecycleHook.call(plugin, "afterDeregister", this, reReg);
+        await maybeRunMethod.call(plugin, "afterDeregister", this, reReg);
       }
-      await lifecycleHook.call(entry, "afterDeregister", reReg);
-      await lifecycleHook.call(this, "afterDeregister", entry, reReg);
+      await maybeRunMethod.call(entry, "afterDeregister", reReg);
+      await maybeRunMethod.call(this, "afterDeregister", entry, reReg);
     }
 
     return this.collection;
@@ -98,14 +98,14 @@ export class Collection {
 
     // Mount plugins.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "mount", this);
+      await maybeRunMethod.call(plugin, "mount", this);
     }
 
     // beforeMount lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "beforeMount", this);
+      await maybeRunMethod.call(plugin, "beforeMount", this);
     }
-    await lifecycleHook.call(this, "beforeMount");
+    await maybeRunMethod.call(this, "beforeMount");
 
     // Get all the selector elements and register them.
     const els = document.querySelectorAll(this.settings.selector);
@@ -115,9 +115,9 @@ export class Collection {
 
     // afterMount lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "afterMount", this);
+      await maybeRunMethod.call(plugin, "afterMount", this);
     }
-    await lifecycleHook.call(this, "afterMount");
+    await maybeRunMethod.call(this, "afterMount");
 
     return this;
   }
@@ -125,9 +125,9 @@ export class Collection {
   async unmount() {
     // beforeUnmount lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "beforeUnmount", this);
+      await maybeRunMethod.call(plugin, "beforeUnmount", this);
     }
-    await lifecycleHook.call(this, "beforeUnmount");
+    await maybeRunMethod.call(this, "beforeUnmount");
 
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
@@ -136,13 +136,13 @@ export class Collection {
 
     // afterUnmount lifecycle hooks.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "afterUnmount", this);
+      await maybeRunMethod.call(plugin, "afterUnmount", this);
     }
-    await lifecycleHook.call(this, "afterUnmount");
+    await maybeRunMethod.call(this, "afterUnmount");
 
     // Unmount plugins.
     for (const plugin of this.plugins) {
-      await lifecycleHook.call(plugin, "unmount", this);
+      await maybeRunMethod.call(plugin, "unmount", this);
     }
     
     return this;
