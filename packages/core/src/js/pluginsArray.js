@@ -11,10 +11,17 @@ export class pluginsArray extends Array {
       console.error("Plugin is not a valid object!");
       return false;
     };
+
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
       return false;
     };
+
+    if (this.find((item) => item.name === plugin.name)) {
+      console.error(`Plugin with the name "${plugin.name}" is already being used!`);
+      return false;
+    };
+
     return true;
   }
 
