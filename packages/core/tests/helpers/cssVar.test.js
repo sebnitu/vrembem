@@ -1,4 +1,4 @@
-import { cssVar } from "../index";
+import { cssVar } from "../../index";
 
 document.body.style.setProperty("--background-color", "pink");
 document.body.style.setProperty("--vb-background-color", "green");

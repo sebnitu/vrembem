@@ -1,4 +1,4 @@
-import { toMilliseconds } from "../index";
+import { toMilliseconds } from "../../index";
 
 test("should return the input value if it is a number", () => {
   expect(toMilliseconds(1000)).toBe(1000);

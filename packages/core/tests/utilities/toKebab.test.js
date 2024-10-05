@@ -1,4 +1,4 @@
-import { toKebab } from "../index";
+import { toKebab } from "../../index";
 
 test("should convert a camel cased string to kebab case", () => {
   expect(toKebab("oneMoreTime")).toBe("one-more-time");

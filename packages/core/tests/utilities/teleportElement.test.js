@@ -1,4 +1,4 @@
-import { teleportElement } from "../index";
+import { teleportElement } from "../../index";
 
 const markup = `
   <div id="box-a"><span id="span-1"></span></div>
