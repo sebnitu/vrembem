@@ -1,3 +1,4 @@
+export * from "./src/js/utilities/localStore";
 export * from "./src/js/utilities/maybeRunMethod";
 export * from "./src/js/utilities/toCamel";
 export * from "./src/js/utilities/toKebab";
@@ -16,7 +17,6 @@ export * from "./src/js/Breakpoint";
 export * from "./src/js/Collection";
 export * from "./src/js/CollectionEntry";
 export * from "./src/js/FocusTrap";
-export * from "./src/js/localStore";
 export * from "./src/js/pluginsArray";
 export * from "./src/js/themeStore";
 

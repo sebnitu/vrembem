@@ -1,5 +1,4 @@
-import { localStore } from "@vrembem/core";
-import { cssVar } from "@vrembem/core";
+import { cssVar, localStore } from "@vrembem/core";
 
 export function themeStore(options) {
   // Setup the default settings object.
