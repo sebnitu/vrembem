@@ -1,4 +1,6 @@
-import { CollectionEntry, maybeRunMethod, pluginsArray } from "@vrembem/core";
+import { maybeRunMethod } from "./utilities";
+import { pluginsArray } from "./helpers";
+import { CollectionEntry } from "./CollectionEntry";
 
 export class Collection {
   constructor(options = {}) {

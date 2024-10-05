@@ -1,4 +1,4 @@
-import { teleport as teleportUtility } from "../utilities/teleport";
+import { teleport as teleportUtility } from "../utilities";
 
 const defaults = {
   where: null,

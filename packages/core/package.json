@@ -17,6 +17,7 @@
       "sass": "./index.scss",
       "style": "./dist/index.css"
     },
+    "./plugins": "./plugins.js",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./root": "./root.scss",

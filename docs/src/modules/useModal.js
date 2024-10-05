@@ -1,5 +1,5 @@
 import Modal from "@vrembem/modal";
-import { teleport } from "@vrembem/core";
+import { teleport } from "@vrembem/core/plugins";
 
 let modal = null;
 

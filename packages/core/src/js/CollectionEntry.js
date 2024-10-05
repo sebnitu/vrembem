@@ -1,10 +1,5 @@
-import { 
-  getConfig,
-  getCustomProps,
-  getElement,
-  maybeRunMethod,
-  getSetting,
-} from "@vrembem/core";
+import { getCustomProps, getSetting } from "./helpers";
+import { getConfig, getElement, maybeRunMethod } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {

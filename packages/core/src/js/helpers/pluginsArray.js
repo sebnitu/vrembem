@@ -1,4 +1,4 @@
-import { maybeRunMethod } from "@vrembem/core";
+import { maybeRunMethod } from "../utilities";
 
 export class pluginsArray extends Array {
   constructor(parent) {

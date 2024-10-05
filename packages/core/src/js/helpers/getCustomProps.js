@@ -1,4 +1,5 @@
-import { getPrefix, toKebab } from "@vrembem/core";
+import { toKebab } from "../utilities";
+import { getPrefix } from "../helpers";
 
 export function getCustomProps(entry) {
   // Get the computed styles of the element.

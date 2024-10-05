@@ -1,4 +1,4 @@
-import { toCamel, toKebab } from "@vrembem/core";
+import { toCamel, toKebab } from "../utilities";
 
 function maybeReturnSetting(prop, key, type = "camel") {
   // Convert the key case based on provided type.
