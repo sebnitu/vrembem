@@ -1,4 +1,4 @@
-import { teleport as teleportUtility } from "../utilities";
+import { teleportElement } from "../utilities";
 
 const defaults = {
   where: null,
@@ -34,7 +34,7 @@ export function teleport(options = {}) {
 
   function teleport(entry) {
     teleportReturn(entry);
-    entry.teleportReturn = teleportUtility(
+    entry.teleportReturn = teleportElement(
       entry.el,
       entry.getSetting("teleport", { fallback: this.settings.where }),
       entry.getSetting("teleportMethod", { fallback: this.settings.how })

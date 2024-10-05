@@ -7,7 +7,7 @@
  * @return {Function} The return function for returning the node back to its
  *   reference location.
  */
-export function teleport(what, where, how) {
+export function teleportElement(what, where, how) {
   // Check if ref is an element node.
   const isElement = (where.nodeType === Node.ELEMENT_NODE);
 

@@ -15,7 +15,6 @@
   </script>
   <script type="module">
     // Load JS and attach instance to window.
-    import { teleport } from "@vrembem/core/plugins";
     window["vb"] = await import("./index.js");
 
     // Get all the theme set button elements.
@@ -57,7 +56,7 @@
     
     const modal = new vb.Modal({
       plugins: [
-        teleport({
+        vb.core.teleport({
           where: ".modals"
         })
       ]
@@ -65,7 +64,7 @@
 
     const drawer = new vb.Drawer({
       plugins: [
-        teleport({
+        vb.core.teleport({
           where: ".drawer-main",
           how: "before"
         })
