@@ -8,17 +8,14 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <link rel="stylesheet" href="./index.scss">
   <script>
-    (function () {
-      // Make this script blocking to prevent flash of pre-themed content.
-      const local = localStorage.getItem("VB:Profile");
-      const store = local ? JSON.parse(local) : {};
-      document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
-    })();
+    // Make this script blocking to prevent flash of pre-themed content.
+    const local = localStorage.getItem("VB:Profile");
+    const store = local ? JSON.parse(local) : {};
+    document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
   </script>
   <script type="module">
     // Load JS and attach instance to window.
     window["vb"] = await import("./index.js");
-    console.log("Vrembem instance has been attached to window:", vb);
 
     // Get all the theme set button elements.
     const buttons = document.querySelectorAll("[data-set-theme]");
@@ -52,20 +49,30 @@
 
     // Attach themeStore to window for testing purposes. 
     window["themeStore"] = themeStore;
-    console.log("themeStore", themeStore);
 
     /**
      * Instantiate and mount Vrembem components
      */
     
-    const modal = new vb.Modal();
-    await modal.mount();
+    const modal = new vb.Modal({
+      plugins: [
+        vb.core.teleport({
+          where: ".modals"
+        })
+      ]
+    });
 
-    const drawer = new vb.Drawer();
-    await drawer.mount();
+    const drawer = new vb.Drawer({
+      plugins: [
+        vb.core.teleport({
+          where: ".drawer-main",
+          how: "before"
+        })
+      ]
+    });
 
-    window["modal"] = modal;
-    window["drawer"] = drawer;
+    window["modal"] = await modal.mount();
+    window["drawer"] = await drawer.mount();
 
     // Get the drawer entry and drawer from.
     const drawerEntry = drawer.get("drawer-dialog");
@@ -92,24 +99,6 @@
 <body>
 
 <div class="drawer-frame">
-
-  <aside id="drawer-dialog" class="drawer">
-    <div class="drawer__dialog dialog" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
-      <div class="dialog__header">
-        <h2 class="dialog__title" id="drawer-dialog-title">Drawer title</h2>
-        <button data-drawer-close class="button button_icon button_size_sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-      <div class="dialog__body">
-        <p id="drawer-dialog-description">...</p>
-      </div>
-      <div class="dialog__footer">
-        ...
-      </div>
-    </div>
-  </aside><!-- .drawer -->
-
   <div class="drawer-main">
 
     <header class="section background-dark">
@@ -211,6 +200,40 @@
             </div>
           </li>
         </ul>
+
+        <div id="modal-dialog" class="modal">
+          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
+            <div class="dialog__header">
+              <h2 class="dialog__title" id="modal-dialog-title">Modal title</h2>
+              <button data-modal-close class="button button_icon button_size_sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="dialog__body">
+              <p id="modal-dialog-description">...</p>
+            </div>
+            <div class="dialog__footer">
+              ...
+            </div>
+          </div>
+        </div><!-- .modal -->
+
+        <aside id="drawer-dialog" class="drawer">
+          <div class="drawer__dialog dialog" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
+            <div class="dialog__header">
+              <h2 class="dialog__title" id="drawer-dialog-title">Drawer title</h2>
+              <button data-drawer-close class="button button_icon button_size_sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="dialog__body">
+              <p id="drawer-dialog-description">...</p>
+            </div>
+            <div class="dialog__footer">
+              ...
+            </div>
+          </div>
+        </aside><!-- .drawer -->
 
         <!-- Form Controls (SM) -->
 
@@ -391,26 +414,7 @@
   </div><!-- .drawer-main -->
 </div><!-- .drawer-frame -->
 
-<div class="modals">
-
-  <div id="modal-dialog" class="modal">
-    <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
-      <div class="dialog__header">
-        <h2 class="dialog__title" id="modal-dialog-title">Modal title</h2>
-        <button data-modal-close class="button button_icon button_size_sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-      <div class="dialog__body">
-        <p id="modal-dialog-description">...</p>
-      </div>
-      <div class="dialog__footer">
-        ...
-      </div>
-    </div>
-  </div><!-- .modal -->
-
-</div><!-- .modals -->
+<div class="modals"></div><!-- .modals -->
 
 </body>
 </html>

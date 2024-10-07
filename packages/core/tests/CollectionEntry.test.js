@@ -87,33 +87,18 @@ describe("mount() & unmount()", () => {
     expect(entry.customProps.test).toBe("fdsa");
   });
 
-  it("should call before and after mount lifecycle hooks if set", async () => {
+  it("should call onMount lifecycle hooks if set", async () => {
     const entry = new CollectionEntry(obj, "four");
-    entry.beforeMount = vi.fn();
-    entry.afterMount = vi.fn();
+    entry.onMount = vi.fn();
     await entry.mount();
-    expect(entry.beforeMount).toHaveBeenCalled();
-    expect(entry.afterMount).toHaveBeenCalled();
+    expect(entry.onMount).toHaveBeenCalled();
   });
 
-  it("should call before and after unmount lifecycle hooks if set", async () => {
+  it("should call onUnmount lifecycle hooks if set", async () => {
     const entry = new CollectionEntry(obj, "four");
-    entry.beforeUnmount = vi.fn();
-    entry.afterUnmount = vi.fn();
+    entry.onUnmount = vi.fn();
     await entry.unmount();
-    expect(entry.beforeUnmount).toHaveBeenCalled();
-    expect(entry.afterUnmount).toHaveBeenCalled();
-  });
-
-  it("should run teleport methods if teleport setting has been set", async () => {
-    const entry = new CollectionEntry(obj, "one", { teleport: ".container" });
-    expect(entry.getSetting("teleport")).toBe(".container");
-    entry.teleport = vi.fn();
-    entry.teleportReturn = vi.fn();
-    await entry.mount();
-    expect(entry.teleport).toHaveBeenCalled();
-    await entry.unmount();
-    expect(entry.teleportReturn).toHaveBeenCalled();
+    expect(entry.onUnmount).toHaveBeenCalled();
   });
 
   it("should throw an error if an entry is mounted with no element", async () => {
@@ -121,48 +106,4 @@ describe("mount() & unmount()", () => {
     await expect(entry.mount()).rejects.toThrow("Collection element was not found with ID: \"asdf\"");
   });
 });
-
-describe("entry.teleport() & entry.teleportReturn()", () => {
-  let entry, div;
-
-  beforeAll(async () => {
-    document.body.innerHTML = `
-      <main>
-        <div id="entry"></div>
-      </main>
-      <div class="container"></div>
-    `;
-    console.error = vi.fn();
-    entry = new CollectionEntry(obj, "entry", { teleport: ".container" });
-    div = document.querySelector(".container");
-  });
-
-  it("should teleport a registered entry", () => {
-    expect(div.children.length).toBe(0);
-    entry.teleport();
-    expect(div.children.length).toBe(1);
-    expect(entry.returnRef.textContent).toBe("teleported #entry");
-  });
-
-  it("should log error if teleport is run on an entry that has already been teleported", () => {
-    expect(div.children.length).toBe(1);
-    entry.teleport(".container");
-    expect(console.error).toHaveBeenCalledWith("Element has already been teleported:", entry.el);
-    expect(div.children.length).toBe(1);
-  });
-
-  it("should return the teleported entry", () => {
-    expect(div.children.length).toBe(1);
-    entry.teleportReturn();
-    expect(div.children.length).toBe(0);
-    expect(entry.returnRef).toBe(null);
-  });
-
-  it("should log error if teleportReturn is run with no return reference", () => {
-    expect(entry.returnRef).toBe(null);
-    expect(div.children.length).toBe(0);
-    entry.teleportReturn();
-    expect(console.error).toHaveBeenCalledWith("No return reference found:", entry.el);
-    expect(div.children.length).toBe(0);
-  });
-});
+ 

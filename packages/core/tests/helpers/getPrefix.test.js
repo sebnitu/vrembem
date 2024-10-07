@@ -1,4 +1,4 @@
-import { getPrefix } from "../index";
+import { getPrefix } from "../../index";
 
 test("should return the vrembem prefix value", () => {
   const data = getPrefix();

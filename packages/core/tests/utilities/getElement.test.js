@@ -1,4 +1,4 @@
-import { getElement } from "../index";
+import { getElement } from "../../index";
 
 document.body.innerHTML = `
   <div id="asdf"></div>

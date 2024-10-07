@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { transition } from "../index";
+import { transition } from "../../index";
 
 document.body.innerHTML = "<div class='asdf'></div>";
 const el = document.querySelector("div");

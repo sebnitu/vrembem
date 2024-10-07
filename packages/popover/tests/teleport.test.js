@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
+import { teleport } from "@vrembem/core";
 
-console.error = vi.fn();
-
-const markup = `
+document.body.innerHTML = `
   <main>
     <button class="button" aria-describedby="popover-1">Left</button>
     <button class="button" aria-describedby="popover-2">Top</button>
@@ -19,24 +18,27 @@ const markup = `
   <div class="popovers"></div>
 `;
 
-describe("mount()", () => {
-  let popover, entry, div;
-  
+const popover = new Popover({ 
+  plugins: [
+    teleport({
+      where: ".popovers"
+    })
+  ] 
+});
+
+const div = document.querySelector(".popovers");
+
+describe("mount()", () => {  
   it("should teleport popovers to the provided reference selector using the default method", async () => {
-    document.body.innerHTML = markup;
-    popover = new Popover({ teleport: ".popovers" });
-    div = document.querySelector(".popovers");
     expect(div.children.length).toBe(0);
     await popover.mount();
     expect(div.children.length).toBe(2);
   });
 
   it("should return teleport when a popover is deregistered", async () => {
-    entry = popover.get("popover-1");
-    await entry.deregister();
+    await popover.get("popover-1").deregister();
     expect(div.children.length).toBe(1);
-    entry = popover.get("popover-2");
-    await entry.deregister();
+    await popover.get("popover-2").deregister();
     expect(div.children.length).toBe(0);
   });
 });

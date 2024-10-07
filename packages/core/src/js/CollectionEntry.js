@@ -1,11 +1,5 @@
-import { 
-  getConfig,
-  getCustomProps,
-  getElement,
-  lifecycleHook,
-  teleport,
-  getSetting,
-} from "@vrembem/core";
+import { getCustomProps, getSetting } from "./helpers";
+import { getConfig, getElement, maybeRunMethod } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {
@@ -15,7 +9,6 @@ export class CollectionEntry {
     this.settings = Object.assign({}, options);
     this.dataConfig = {};
     this.customProps = {};
-    this.returnRef = null;
   }
 
   applySettings(obj) {
@@ -47,44 +40,18 @@ export class CollectionEntry {
     this.getDataConfig();
     this.getCustomProps();
 
-    await lifecycleHook.call(this, "beforeMount");
-
-    // Teleport entry if a reference has been set.
-    if (this.getSetting("teleport")) {
-      this.teleport();
+    // On mount lifecycle hooks.
+    for (const plugin of this.parent.plugins) {
+      await maybeRunMethod.call(plugin, "onMount", this);
     }
-
-    await lifecycleHook.call(this, "afterMount");
+    await maybeRunMethod.call(this, "onMount");
   }
 
   async unmount(reMount = false) {
-    await lifecycleHook.call(this, "beforeUnmount", reMount);
-
-    // Return teleported entry if a reference has been set.
-    if (this.getSetting("teleport")) {
-      this.teleportReturn();
+    // Before mount lifecycle hooks.
+    for (const plugin of this.parent.plugins) {
+      await maybeRunMethod.call(plugin, "onUnmount", this, reMount);
     }
-
-    await lifecycleHook.call(this, "afterUnmount", reMount);
-  }
-
-  teleport(ref = this.getSetting("teleport"), method = this.getSetting("teleportMethod")) {
-    if (!this.returnRef) {
-      this.returnRef = teleport(this.el, ref, method);
-      return this.el;
-    } else {
-      console.error("Element has already been teleported:", this.el);
-      return false;
-    }
-  }
-
-  teleportReturn() {
-    if (this.returnRef) {
-      this.returnRef = teleport(this.el, this.returnRef);
-      return this.el;
-    } else {
-      console.error("No return reference found:", this.el);
-      return false;
-    }
+    await maybeRunMethod.call(this, "onUnmount", reMount);
   }
 }

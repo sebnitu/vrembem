@@ -1,4 +1,4 @@
-import { getCustomProps, getSetting } from "../index";
+import { getCustomProps, getSetting } from "../../index";
 
 document.body.innerHTML = `
   <div id="asdf">asdf</div>

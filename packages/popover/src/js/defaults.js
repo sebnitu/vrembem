@@ -23,9 +23,5 @@ export default {
   flipPadding: 0,
   shiftPadding: 0,
   arrowPadding: 0,
-  toggleDelay: 0,
-
-  // Feature settings
-  teleport: null,
-  teleportMethod: "append",
+  toggleDelay: 0
 };

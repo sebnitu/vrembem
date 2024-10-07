@@ -1,4 +1,4 @@
-import { getConfig } from "../index";
+import { getConfig } from "../../index";
 
 document.body.innerHTML = `
   <div id="div-1" data-config="{ 'one': '1111', 'two': true }"></div>

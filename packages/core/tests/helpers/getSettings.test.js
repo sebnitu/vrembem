@@ -1,4 +1,4 @@
-import { getSetting } from "../src/js/helpers/getSetting";
+import { getSetting } from "../../src/js/helpers/getSetting";
 
 const dataConfig = {
   dataConfig: {

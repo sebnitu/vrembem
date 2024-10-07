@@ -8,20 +8,19 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <link rel="stylesheet" href="./index.scss">
   <script type="module">
-    // Load CSS
     import "vrembem/dist/index.css";
-
-    // Load JS
     import Popover from "./index.js";
+    import { teleport } from "@vrembem/core";
 
-    // Instantiate the popover class and pass along the configuration.
-    const popover = new Popover({ teleport: ".popovers" });
+    const popover = new Popover({
+      plugins: [
+        teleport({
+          where: ".popovers"
+        })
+      ]
+    });
 
-    // Mount and attach popover to the window object.
     window["popover"] = await popover.mount();
-
-    // Post message to console
-    console.log("Popover instance has been attached to window:", popover);
   </script>
 </head>
 <body>

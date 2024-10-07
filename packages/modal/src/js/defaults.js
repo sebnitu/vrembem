@@ -25,8 +25,6 @@ export default {
   ],
   customEventPrefix: "modal:",
   setTabindex: true,
-  teleport: null,
-  teleportMethod: "append",
   transition: true,
   transitionDuration: 300
 };

@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
+import { teleport } from "@vrembem/core";
 
-console.error = vi.fn();
-
-const markup = `
+document.body.innerHTML = `
   <main>
     <div id="drawer-one" class="drawer">
       <div class="drawer__dialog">...</div>
@@ -17,8 +16,13 @@ const markup = `
 
 describe("mount()", () => {
   it("should teleport drawers to the provided reference selector using the default method", async () => {
-    document.body.innerHTML = markup;
-    const drawer = new Drawer({ teleport: ".drawers" });
+    const drawer = new Drawer({
+      plugins: [
+        teleport({
+          where: ".drawers"
+        })
+      ]
+    });
     const div = document.querySelector(".drawers");
     expect(div.children.length).toBe(0);
     await drawer.mount();

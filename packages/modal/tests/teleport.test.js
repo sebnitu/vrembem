@@ -1,9 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 import Modal from "../index";
+import { teleport } from "@vrembem/core";
 
-console.error = vi.fn();
-
-const markup = `
+document.body.innerHTML = `
   <main>
     <div id="modal-one" class="modal">
       <div class="modal__dialog">...</div>
@@ -17,8 +16,13 @@ const markup = `
 
 describe("mount()", () => {
   it("should teleport modals to the provided reference selector using the default method", async () => {
-    document.body.innerHTML = markup;
-    const modal = new Modal({ teleport: ".modals" });
+    const modal = new Modal({
+      plugins: [
+        teleport({
+          where: ".modals"
+        })
+      ]
+    });
     const div = document.querySelector(".modals");
     expect(div.children.length).toBe(0);
     await modal.mount();
