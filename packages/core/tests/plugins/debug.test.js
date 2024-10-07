@@ -1,17 +1,16 @@
-import { expect } from "vitest";
 import { Collection } from "../../src/js/Collection";
-import { debug } from "../../src/js/plugins/debug";
-
-const debugPlugin = debug({ asdf: "fdsa" });
-const collection = new Collection({
-  selector: ".entry"
-});
+import { debug } from "../../src/js/plugins";
 
 document.body.innerHTML = `
   <div class="entry" id="entry-1">One</div>
   <div class="entry" id="entry-2">Two</div>
   <div class="entry" id="entry-3">Three</div>
 `;
+
+const debugPlugin = debug({ asdf: "fdsa" });
+const collection = new Collection({
+  selector: ".entry"
+});
 
 console.log = vi.fn();
 
