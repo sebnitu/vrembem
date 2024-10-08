@@ -1,46 +1,63 @@
-export function debug(options = {}) {
-  return {
-    name: "debug",
-    settings: options,
+const defaults = {
+  color1: "color: hsl(152deg 60% 40%)",
+  color2: "color: hsl(152deg 60% 50%)"
+};
 
+export function debug(options = {}) {
+  const props = {
+    name: "debug",
+    settings: { ...defaults, ...options},
+  };
+
+  function log(string) {
+    console.log(
+      `%cDEBUG: %c${string}`, 
+      props.settings.color1,
+      props.settings.color2,
+    );
+  }
+
+  const methods = {
     // Mount lifecycle hooks...
     mount() {
-      console.log("DEBUG: mountPlugins()");
+      log("mountPlugins()");
     },
     beforeMount() {
-      console.log("DEBUG: beforeMount()");
+      log("beforeMount()");
     },
     onMount() {
-      console.log("DEBUG: onMount()");
+      log("onMount()");
     },
     beforeRegister() {
-      console.log("DEBUG: beforeRegister()");
+      log("beforeRegister()");
     },
     afterRegister() {
-      console.log("DEBUG: afterRegister()");
+      log("afterRegister()");
     },
     afterMount() {
-      console.log("DEBUG: afterMount()");
+      log("afterMount()");
     },
 
     // Unmount lifecycle hooks...
     beforeUnmount() {
-      console.log("DEBUG: beforeUnmount()");
+      log("beforeUnmount()");
     },
     onUnmount() {
-      console.log("DEBUG: onUnmount()");
+      log("onUnmount()");
     },
     beforeDeregister() {
-      console.log("DEBUG: beforeDeregister()");
+      log("beforeDeregister()");
     },
     afterDeregister() {
-      console.log("DEBUG: afterDeregister()");
+      log("afterDeregister()");
     },
     afterUnmount() {
-      console.log("DEBUG: afterUnmount()");
+      log("afterUnmount()");
     },
     unmount() {
-      console.log("DEBUG: unmountPlugins()");
+      log("unmountPlugins()");
     }
   };
+
+  return {...props, ...methods};
 }
