@@ -1,5 +1,6 @@
 import { getPrefix } from "@vrembem/core";
 
+// TODO: Refactor how we get breakpoints from an entry.
 export function getBreakpoint(drawer) {
   const prefix = getPrefix();
   const bp = drawer.getAttribute(`data-${this.settings.dataBreakpoint}`);

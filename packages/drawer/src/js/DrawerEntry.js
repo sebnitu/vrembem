@@ -1,4 +1,4 @@
-import { CollectionEntry, Breakpoint } from "@vrembem/core";
+import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { applyInitialState } from "./helpers";
 import { getBreakpoint } from "./helpers";
@@ -6,15 +6,11 @@ import { getBreakpoint } from "./helpers";
 export class DrawerEntry extends CollectionEntry {
   #mode;
   #state;
-  #breakpoint;
 
   constructor(parent, query, options = {}) {
     super(parent, query, options);
     this.dialog = null;
     this.trigger = null;
-    // Create an instance of the Breakpoint class.
-    this.#breakpoint = new Breakpoint();
-    // Set indeterminate values of mode, state and inlineState.
     this.#mode = "indeterminate";
     this.#state = "indeterminate";
     this.inlineState = "indeterminate";
@@ -33,6 +29,7 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   set mode(value) {
+    if (this.#mode === value) return;
     this.#mode = value;
     switchMode.call(this.parent, this);
   }
@@ -80,23 +77,6 @@ export class DrawerEntry extends CollectionEntry {
     return this.parent.deregister(this.id);
   }
 
-  mountBreakpoint() {
-    const value = this.breakpoint;
-    const handler = this.handleBreakpoint.bind(this);
-    this.#breakpoint.mount(value, handler);
-  }
-
-  unmountBreakpoint() {
-    this.#breakpoint.unmount();
-  }
-
-  handleBreakpoint(event) {
-    const bpMode = (event.matches) ? "inline" : "modal";
-    if (this.mode != bpMode) {
-      this.mode = bpMode;
-    }
-  }
-
   async onMount() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
@@ -115,10 +95,6 @@ export class DrawerEntry extends CollectionEntry {
 
     // Set the initial mode.
     this.mode = (this.el.classList.contains(this.getSetting("classModal"))) ? "modal" : "inline";
-
-    if (this.breakpoint) {
-      this.mountBreakpoint();
-    }
   }
 
   async onUnmount(reMount) {
@@ -129,8 +105,5 @@ export class DrawerEntry extends CollectionEntry {
 
     // Remove entry from local store.
     this.parent.store.set(this.id);
-
-    // Unmount the MatchMedia functionality.
-    this.unmountBreakpoint();
   }
 }

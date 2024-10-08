@@ -1,4 +1,7 @@
-const defaults = {};
+const defaults = {
+  value: null,
+  onChange: () => {}
+};
 
 export function breakpoint(options = {}) {
   const props = {
@@ -7,22 +10,36 @@ export function breakpoint(options = {}) {
   };
 
   const methods = {
-    mount(context) {
-      console.log(this.name, "> mount() >", context.module);
-    },
-
     unmount(context) {
-      console.log(this.name, "> ummount() >", context.module);
+      context.collection.forEach((entry) => {
+        removeMediaQueryList(entry);
+      });
     },
 
     onMount(entry) {
-      console.log(this.name, "> onMount() >", entry.id);
+      setupMediaQueryList(entry);
     },
 
-    onUnmount(entry, reMount) {
-      console.log(this.name, "> onUnmount() >", entry.id, reMount);
+    onUnmount(entry) {
+      removeMediaQueryList(entry);
     }
   };
+
+  function setupMediaQueryList(entry) {
+    const value = entry?.breakpoint || props.settings.value;
+    if (!value) return;
+    entry.mql = window.matchMedia(`(min-width: ${value})`);
+    entry.mql.onchange = (event) => {
+      props.settings.onChange(event, entry);
+    };
+    props.settings.onChange(entry.mql, entry);
+  }
+
+  function removeMediaQueryList(entry) {
+    if (!entry.mql) return;
+    entry.mql.onchange = null;
+    entry.mql = null;
+  }
 
   return {...props, ...methods};
 };

@@ -41,17 +41,17 @@ export class CollectionEntry {
     this.getCustomProps();
 
     // On mount lifecycle hooks.
+    await maybeRunMethod.call(this, "onMount");
     for (const plugin of this.parent.plugins) {
       await maybeRunMethod.call(plugin, "onMount", this);
     }
-    await maybeRunMethod.call(this, "onMount");
   }
 
   async unmount(reMount = false) {
     // Before mount lifecycle hooks.
+    await maybeRunMethod.call(this, "onUnmount", reMount);
     for (const plugin of this.parent.plugins) {
       await maybeRunMethod.call(plugin, "onUnmount", this, reMount);
     }
-    await maybeRunMethod.call(this, "onUnmount", reMount);
   }
 }
