@@ -1,10 +1,22 @@
 import { getPrefix } from "../helpers/getPrefix";
 
 const defaults = {
-  dataAttr: "breakpoint",
+  // The data attributes to query media query and breakpoint values from.
+  dataBreakpoint: "breakpoint",
+  dataMediaQuery: "media-query",
+  // The string to replace in mediaQueries.
+  token: "{{BP}}",
+  // Sets a global breakpoint. Should be overrode by presence of dataBreakpoint.
+  breakpoint: null,
+  mediaQuery: "(min-width: {{BP}})",
+  // Map entry ID or breakpoint key to breakpoint values.
+  breakpoints: {},
+  // Map entry ID's to a media query strings. Media query may contain a token.
+  mediaQueries: {},
   onChange: () => {}
 };
 
+// TODO: This should probably be renamed "mediaQuery".
 export function breakpoint(options = {}) {
   const props = {
     name: "breakpoint",
@@ -27,36 +39,66 @@ export function breakpoint(options = {}) {
     }
   };
 
-  function getBreakpointValue(entry) {
-    // Get the data attribute if it exists.
-    const value = entry.el.getAttribute(`data-${props.settings.dataAttr}`);
+  function getMediaQuery(entry) {
+    // Get the media query from the data attribute.
+    const value = entry.el.getAttribute(`data-${props.settings.dataMediaQuery}`);
 
-    // Did getAttribute return a value?
-    if (value) {
-      // Check if the value is a key to the breakpoints object.
-      const breakpoints = entry.getSetting("breakpoints", { fallback: null });
-      if (breakpoints && breakpoints[value]) return breakpoints[value];
-
-      // Check if the value is a key to a custom property.
-      const customProp = getComputedStyle(document.body).getPropertyValue(`--${getPrefix()}breakpoint-${value}`).trim();
-      if (customProp) return customProp;
-    } else {
-      // Check if a breakpoint setting exists.
-      const bp = entry.getSetting("breakpoint", { fallback: null });
-      if (bp) return bp;
+    // Check if a media query exists in mediaQueries object using entry ID.
+    if (!value && entry.id in props.settings.mediaQueries) {
+      return props.settings.mediaQueries[entry.id];
     }
-    
-    // This will return the value of getAttribute().
+
     return value;
   }
 
+  // Get the breakpoint value.
+  function getBreakpointValue(entry) {
+    // Get the breakpoint from the data attribute.
+    let value = entry.el.getAttribute(`data-${props.settings.dataBreakpoint}`);
+
+    // If no value was returned, is there a breakpoint mapped to the entry id?
+    if (!value && entry.id in props.settings.breakpoints) {
+      value = props.settings.breakpoints[entry.id];
+    }
+
+    // Check if a value exists is it a key mapped to a value in breakpoints?
+    if (value && value in props.settings.breakpoints) {
+      value = props.settings.breakpoints[value];
+    }
+
+    // Is the value a key of a breakpoint custom property?
+    if (value) {
+      const customProp = getComputedStyle(document.body).getPropertyValue(`--${getPrefix()}breakpoint-${value}`).trim();
+      value = customProp || value;
+    }
+
+    // Return the value or the default value.
+    return value || props.settings.breakpoint;
+  }
+
   function setupMediaQueryList(entry) {
-    const value = getBreakpointValue(entry);
-    if (!value) return;
-    entry.mql = window.matchMedia(`(min-width: ${value})`);
+    // Get the media query and breakpoint value.
+    let mq = getMediaQuery(entry);
+    const bp = getBreakpointValue(entry);
+
+    // If no breakpoint value or media query was found, return.
+    if (!bp && !mq) return;
+
+    // Use the default media query if a custom one wasn't found.
+    if (bp && !mq) {
+      mq = props.settings.mediaQuery;
+    }
+    
+    // Create the media query string.
+    const mqs = mq.replace(new RegExp(`${props.settings.token}`, "g"), bp);
+
+    // Setup MediaQueryList object and event listener.
+    entry.mql = window.matchMedia(mqs);
     entry.mql.onchange = (event) => {
       props.settings.onChange(event, entry);
     };
+
+    // Run the on change function for the initial match check.
     props.settings.onChange(entry.mql, entry);
   }
 
