@@ -1,5 +1,7 @@
+import { getPrefix } from "../helpers/getPrefix";
+
 const defaults = {
-  value: null,
+  dataAttr: "breakpoint",
   onChange: () => {}
 };
 
@@ -25,8 +27,31 @@ export function breakpoint(options = {}) {
     }
   };
 
+  function getBreakpointValue(entry) {
+    // Get the data attribute if it exists.
+    const value = entry.el.getAttribute(`data-${props.settings.dataAttr}`);
+
+    // Did getAttribute return a value?
+    if (value) {
+      // Check if the value is a key to the breakpoints object.
+      const breakpoints = entry.getSetting("breakpoints", { fallback: null });
+      if (breakpoints && breakpoints[value]) return breakpoints[value];
+
+      // Check if the value is a key to a custom property.
+      const customProp = getComputedStyle(document.body).getPropertyValue(`--${getPrefix()}breakpoint-${value}`).trim();
+      if (customProp) return customProp;
+    } else {
+      // Check if a breakpoint setting exists.
+      const bp = entry.getSetting("breakpoint", { fallback: null });
+      if (bp) return bp;
+    }
+    
+    // This will return the value of getAttribute().
+    return value;
+  }
+
   function setupMediaQueryList(entry) {
-    const value = entry?.breakpoint || props.settings.value;
+    const value = getBreakpointValue(entry);
     if (!value) return;
     entry.mql = window.matchMedia(`(min-width: ${value})`);
     entry.mql.onchange = (event) => {

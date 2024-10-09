@@ -1,7 +1,6 @@
 import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { applyInitialState } from "./helpers";
-import { getBreakpoint } from "./helpers";
 
 export class DrawerEntry extends CollectionEntry {
   #mode;
@@ -14,10 +13,6 @@ export class DrawerEntry extends CollectionEntry {
     this.#mode = "indeterminate";
     this.#state = "indeterminate";
     this.inlineState = "indeterminate";
-  }
-
-  get breakpoint() {
-    return getBreakpoint.call(this.parent, this.el);
   }
 
   get store() {

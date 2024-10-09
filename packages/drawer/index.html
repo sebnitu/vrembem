@@ -10,10 +10,15 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Drawer from "./index.js";
-    import { teleport } from "@vrembem/core";
+    import { breakpoint, teleport } from "@vrembem/core";
 
     const drawer = new Drawer({
       plugins: [
+        breakpoint({
+          onChange: (event, entry) => {
+            entry.mode = (event.matches) ? "inline" : "modal";
+          }
+        }),
         teleport({
           where: ".drawer-main",
           how: "before"
@@ -73,7 +78,7 @@
             </div>
           </div>
 
-          <div id="drawer-breakpoint" class="drawer is-closed" data-drawer-breakpoint="1200px">
+          <div id="drawer-breakpoint" class="drawer is-closed" data-breakpoint="md">
             <div class="drawer__dialog dialog">
               <div class="dialog__body">
                 drawer-breakpoint

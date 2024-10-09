@@ -8,6 +8,7 @@ if (typeof window !== "undefined") {
     selector: ".drawer",
     plugins: [
       breakpoint({
+        dataAttr: "drawer-breakpoint",
         onChange: (event, entry) => {
           entry.mode = (event.matches) ? "inline" : "modal";
         }
