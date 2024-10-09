@@ -3,7 +3,6 @@ export default {
   dataOpen: "drawer-open",
   dataClose: "drawer-close",
   dataToggle: "drawer-toggle",
-  dataBreakpoint: "drawer-breakpoint",
 
   // Selectors
   selector: ".drawer",
