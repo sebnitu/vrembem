@@ -1,4 +1,4 @@
-import { Breakpoint } from "../../index";
+import { mediaQuery } from "../../index";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -20,7 +20,7 @@ function resizeWindow(value) {
   window.dispatchEvent(new Event("resize"));
 }
 
-const bp = new Breakpoint();
+const bp = new mediaQuery();
 const handler = vi.fn();
 const handlerAlt = vi.fn();
 

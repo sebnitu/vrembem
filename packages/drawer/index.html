@@ -10,11 +10,11 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Drawer from "./index.js";
-    import { breakpoint, teleport } from "@vrembem/core";
+    import { mediaQuery, teleport } from "@vrembem/core";
 
     const drawer = new Drawer({
       plugins: [
-        breakpoint({
+        mediaQuery({
           onChange: (event, entry) => {
             entry.mode = (event.matches) ? "inline" : "modal";
           }

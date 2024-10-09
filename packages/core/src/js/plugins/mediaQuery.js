@@ -16,8 +16,7 @@ const defaults = {
   onChange: () => {}
 };
 
-// TODO: This should probably be renamed "mediaQuery".
-export function breakpoint(options = {}) {
+export function mediaQuery(options = {}) {
   const props = {
     name: "breakpoint",
     settings: { ...defaults, ...options},

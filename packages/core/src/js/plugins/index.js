@@ -1,3 +1,3 @@
 export * from "./debug";
-export * from "./breakpoint";
+export * from "./mediaQuery";
 export * from "./teleport";
