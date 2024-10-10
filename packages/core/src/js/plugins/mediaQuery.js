@@ -1,18 +1,26 @@
 import { getPrefix } from "../helpers/getPrefix";
 
 const defaults = {
-  // The data attributes to query media query and breakpoint values from.
+  // The data attributes to get the breakpoint values from.
   dataBreakpoint: "breakpoint",
+  // The data attributes to get the media query value from.
   dataMediaQuery: "media-query",
-  // The string to replace in mediaQueries.
+  // The string token to replace in the media query string.
   token: "{{BP}}",
-  // Sets a global breakpoint. Should be overrode by presence of dataBreakpoint.
+  // Sets a global breakpoint. Can be overridden by setting a data attribute
+  // value. Notice: setting this option will enable a media query breakpoint on all entries.
   breakpoint: null,
+  // The default media query string to use. Can be overridden by setting a data
+  // attribute value.
   mediaQuery: "(min-width: {{BP}})",
-  // Map entry ID or breakpoint key to breakpoint values.
+  // Maps entry ID or breakpoint key to breakpoint values. This is referenced
+  // when getting an entries breakpoint value.
   breakpoints: {},
-  // Map entry ID's to a media query strings. Media query may contain a token.
+  // Maps entry ID's to a media query strings. Media query may contain a token.
+  // This is referenced when getting an entries media query string.
   mediaQueries: {},
+  // The function to run when the MediaQueryList triggers a "change" event.
+  // This is run once on initial mount.
   onChange: () => {}
 };
 
