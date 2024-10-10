@@ -1,26 +1,68 @@
 import "@testing-library/jest-dom/vitest";
-import "./mocks/matchMedia.mock";
-import { resizeWindow } from "./helpers/resizeWindow";
-
 import Drawer from "../index";
+import { mediaQuery } from "@vrembem/core";
 
 document.body.innerHTML = `
   <div id="drawer-1" class="drawer">
     <div class="drawer__dialog">...</div>
   </div>
-  <div id="drawer-2" class="drawer" data-drawer-breakpoint="600px">
+  <div id="drawer-2" class="drawer" data-breakpoint="600px">
     <div class="drawer__dialog">...</div>
   </div>
-  <div id="drawer-3" class="drawer is-opened" data-drawer-breakpoint="1200px">
+  <div id="drawer-3" class="drawer is-opened" data-breakpoint="1200px">
     <div class="drawer__dialog">...</div>
   </div>
 `;
 
-window.innerWidth = 800;
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: vi.fn().mockImplementation(query => ({
+    get matches() {
+      return matches(query, window.innerWidth);
+    },
+    media: query,
+    onchange: null,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
 
-const drawer = new Drawer({ transition: false });
+function matches(query, value) {
+  let queryValue = query.match(/\d+/)[0];
+  if (query.includes("min")) return value > queryValue;
+  if (query.includes("max")) return value < queryValue;
+  return undefined;
+}
+
+function hasChanged(query, prev, next) {
+  return (matches(query, prev) !== matches(query, next));
+}
+
+function resizeWindow(value, collection) {
+  const prevValue = window.innerWidth;
+  window.innerWidth = value;
+  for (const entry of collection) {
+    if (entry.mql && hasChanged(entry.mql.media, prevValue, value)) {
+      entry.mql.onchange(entry.mql, entry);
+    }
+  }
+  window.dispatchEvent(new Event("resize"));
+}
+
+const drawer = new Drawer({ 
+  transition: false,
+  plugins: [
+    mediaQuery({
+      onChange: (event, entry) => {
+        entry.mode = (event.matches) ? "inline" : "modal";
+      }
+    })
+  ]
+});
 
 beforeEach(() => {
+  window.innerWidth = 800;
   vi.useFakeTimers();
 });
 
@@ -127,24 +169,18 @@ test("should store inline state when switching to modal", async () => {
 test("should throw an error when setting mode to an invalid value", async () => {
   const entry = await drawer.register("drawer-1");
   let result;
-
   try {
     entry.mode = "asdf";
   } catch (error) {
     result = error.message;
   }
-
   expect(result).toBe("\"asdf\" is not a valid drawer mode.");
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
   const entry = await drawer.register("drawer-2");
-  expect(entry.breakpoint).toBe("600px");
+  expect(entry.mql.media).toBe("(min-width: 600px)");
   expect(entry.mode).toBe("inline");
-
-  resizeWindow(400);
-  const mql = window.matchMedia(`(min-width: ${entry.breakpoint})`);
-  entry.handleBreakpoint(mql);
-
+  resizeWindow(400, drawer.collection);
   expect(entry.mode).toBe("modal");
 });
