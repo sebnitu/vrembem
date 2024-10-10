@@ -25,6 +25,10 @@ export class pluginsArray extends Array {
     return true;
   }
 
+  get(name) {
+    return this.find((plugin) => plugin.name === name);
+  }
+
   add(plugin) {
     if (Array.isArray(plugin)) {
       plugin.forEach((plugin) => this.add(plugin));
