@@ -20,10 +20,16 @@ test("should remove a plugin from the plugins array", async () => {
 test("should add an array of plugins at once", () => {
   expect(plugins.length).toBe(0);
   plugins.add([
-    { name: "one" },
-    { name: "two" }
+    { name: "one", settings: { a: "a" } },
+    { name: "two", settings: { b: "b" } }
   ]);
   expect(plugins.length).toBe(2);
+});
+
+test("should return a specific plugin when using the get method", () => {
+  expect(plugins.get("one")).toStrictEqual({ name: "one", settings: { a: "a" } });
+  expect(plugins.get("two")).toStrictEqual({ name: "two", settings: { b: "b" } });
+  expect(plugins.get("three")).toBe(undefined);
 });
 
 test("should log a console error if the plugin is not a valid object", () => {
