@@ -8,7 +8,7 @@ const defaults = {
 export function teleport(options = {}) {
   const props = {
     name: "teleport",
-    settings: { ...defaults, ...options},
+    settings: {...defaults, ...options}
   };
 
   const methods = {

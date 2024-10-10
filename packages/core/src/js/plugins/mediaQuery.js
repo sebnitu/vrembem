@@ -27,7 +27,7 @@ const defaults = {
 export function mediaQuery(options = {}) {
   const props = {
     name: "mediaQuery",
-    settings: { ...defaults, ...options},
+    settings: {...defaults, ...options}
   };
 
   const methods = {

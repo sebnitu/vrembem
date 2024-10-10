@@ -6,7 +6,7 @@ const defaults = {
 export function debug(options = {}) {
   const props = {
     name: "debug",
-    settings: { ...defaults, ...options},
+    settings: {...defaults, ...options}
   };
 
   function log(string) {
