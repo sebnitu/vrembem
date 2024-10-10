@@ -18,7 +18,7 @@ const defaults = {
 
 export function mediaQuery(options = {}) {
   const props = {
-    name: "breakpoint",
+    name: "mediaQuery",
     settings: { ...defaults, ...options},
   };
 
@@ -96,7 +96,6 @@ export function mediaQuery(options = {}) {
     entry.mql.onchange = (event) => {
       props.settings.onChange(event, entry);
     };
-
     // Run the on change function for the initial match check.
     props.settings.onChange(entry.mql, entry);
   }
