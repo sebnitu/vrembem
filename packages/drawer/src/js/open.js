@@ -8,7 +8,7 @@ export async function open(query, transitionOverride, focus = true) {
   // If drawer is closed or indeterminate.
   if (entry.state === "closed" || entry.state === "indeterminate") {
     // Update drawer state.
-    entry.state = "opening";
+    entry.setState("opening");
 
     // Run the open transition.
     if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
@@ -25,7 +25,7 @@ export async function open(query, transitionOverride, focus = true) {
     }
 
     // Update drawer state.
-    entry.state = "opened";
+    entry.setState("opened");
 
     // Update the global state if mode is modal.
     if (entry.mode === "modal") setGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));

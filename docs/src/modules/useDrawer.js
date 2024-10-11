@@ -1,5 +1,5 @@
 import { Drawer } from "vrembem";
-import { mediaQuery } from "@vrembem/core";
+import { localStorePlugin, mediaQuery } from "@vrembem/core";
 
 let drawer = null;
 
@@ -7,6 +7,14 @@ if (typeof window !== "undefined") {
   drawer = new Drawer({
     selector: ".drawer",
     plugins: [
+      localStorePlugin({
+        condition: (entry, value) => {
+          return entry.mode === "inline" && value != "indeterminate" && value != "opening" && value != "closing";
+        },
+        onChange: (entry, newValue, oldValue) => {
+          console.log("PLUGIN > onChange()", entry.id, newValue, oldValue);
+        }
+      }),
       mediaQuery({
         dataBreakpoint: "drawer-breakpoint",
         onChange: (event, entry) => {

@@ -4,20 +4,19 @@ import { applyInitialState } from "./helpers";
 
 export class DrawerEntry extends CollectionEntry {
   #mode;
-  #state;
 
   constructor(parent, query, options = {}) {
     super(parent, query, options);
     this.dialog = null;
     this.trigger = null;
-    this.#mode = "indeterminate";
-    this.#state = "indeterminate";
+    this.state = "indeterminate";
     this.inlineState = "indeterminate";
+    this.#mode = "indeterminate";
   }
 
-  get store() {
-    return this.parent.store.get(this.id);
-  }
+  // get store() {
+  //   return this.parent.store.get(this.id);
+  // }
 
   get mode() {
     return this.#mode;
@@ -29,12 +28,8 @@ export class DrawerEntry extends CollectionEntry {
     switchMode.call(this.parent, this);
   }
 
-  get state() {
-    return this.#state;
-  }
-
-  set state(value) {
-    this.#state = value;
+  setState(value) {
+    this.state = value;
 
     // If mode is inline and not in a transitioning state...
     if (this.mode === "inline" && value != "opening" && value != "closing") {
@@ -42,9 +37,9 @@ export class DrawerEntry extends CollectionEntry {
       this.inlineState = value;
 
       // Save the store state if enabled.
-      if (this.getSetting("store")) {
-        this.parent.store.set(this.id, value);
-      }
+      // if (this.getSetting("store")) {
+      //   this.parent.store.set(this.id, value);
+      // }
     }
 
     // If state is indeterminate, remove the state classes.
@@ -99,6 +94,6 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // Remove entry from local store.
-    this.parent.store.set(this.id);
+    // this.parent.store.set(this.id);
   }
 }

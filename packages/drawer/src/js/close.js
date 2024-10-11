@@ -8,7 +8,7 @@ export async function close(query, transitionOverride, focus = true) {
   // If drawer is opened or indeterminate.
   if (entry.state === "opened" || entry.state === "indeterminate") {
     // Update drawer state.
-    entry.state = "closing";
+    entry.setState("closing");
 
     // Remove focus from active element.
     document.activeElement.blur();
@@ -28,7 +28,7 @@ export async function close(query, transitionOverride, focus = true) {
     }
 
     // Update drawer state.
-    entry.state = "closed";
+    entry.setState("closed");
 
     // Update the global state if mode is modal.
     if (entry.mode === "modal") setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
