@@ -1,6 +1,6 @@
 // TODO: This needs to be refactored.
 export async function applyInlineState(entry) {
-  // console.log("applyInlineState()", entry.id);
+  console.log("applyInlineState()", entry.id);
   if (entry.store === "opened") {
     await entry.open(false, false);
   } else if (entry.store === "closed") {

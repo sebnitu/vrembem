@@ -27,11 +27,26 @@ export function localStorePlugin(options = {}) {
       // Store the initial property value.
       let _value = entry[props.settings.watch];
 
+      // Define a getter and setter for the property.
+      Object.defineProperty(entry, props.settings.watch, {
+        get() {
+          return _value;
+        },
+        set(newValue) {
+          // Guard if value hasn't changed.
+          if (_value === newValue) return;
+          const oldValue = _value;
+          _value = newValue;
+          // Conditionally store the value in local storage.
+          if (props.settings.condition(entry, newValue, oldValue)) {
+            props.store.set(entry.id, _value);
+          }
+          // Run the on change callback.
+          props.settings.onChange(entry, newValue, oldValue);
+        },
+      });
+
       // Attach the store object to entry for some reason.
-      // entry.store = props.store;
-      // get store() {
-      //   return this.parent.store.get(this.id);
-      // }
       Object.defineProperty(entry, "store", {
         get() {
           return props.store.get(entry.id);
@@ -48,24 +63,8 @@ export function localStorePlugin(options = {}) {
         } else if (restore === "closed") {
           await entry.close(false, false);
         }
+        entry.setState(restore);
       }
-
-      // Define a getter and setter for the property.
-      Object.defineProperty(entry, props.settings.watch, {
-        get() {
-          return _value;
-        },
-        set(newValue) {
-          const oldValue = _value;
-          _value = newValue;
-          // Conditionally store the value in local storage.
-          if (props.settings.condition(entry, newValue, oldValue)) {
-            props.store.set(entry.id, _value);
-          }
-          // Run the on change callback.
-          props.settings.onChange(entry, newValue, oldValue);
-        },
-      });
     },
 
     onUnmount(entry) {

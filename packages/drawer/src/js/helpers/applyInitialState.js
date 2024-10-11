@@ -1,6 +1,6 @@
 // TODO: This needs to be refactored.
 export async function applyInitialState(entry) {
-  // console.log("applyInitialState()", entry.id);
+  console.log("applyInitialState()", entry.id);
   if (entry.store === "opened") {
     await entry.open(false, false);
   } else if (entry.store === "closed") {
