@@ -16,8 +16,8 @@
       plugins: [
         localStorePlugin({
           condition: (entry) => {
-            const ignoreStates = ["opening", "closing", "indeterminate"];
-            return entry.mode === "inline" && !ignoreStates.includes(entry.state)
+            const saveStates = ["opened", "closed"];
+            return entry.mode === "inline" && saveStates.includes(entry.state);
           },
           onChange: (entry, newValue, oldValue) => {
             console.log("PLUGIN > onChange()", entry.id, newValue, oldValue);

@@ -12,7 +12,9 @@ export function localStorePlugin(options = {}) {
   const props = {
     name: "localStore",
     settings: {...defaults, ...options},
-    store: null, // TODO: Why is this value not updated in console on mount?
+    // TODO: Why is this value not updated in console on mount?
+    // Is it because the copy created no longer has access to the one in plugins?
+    store: null,
   };
 
   const methods = {
@@ -63,7 +65,6 @@ export function localStorePlugin(options = {}) {
         } else if (restore === "closed") {
           await entry.close(false, false);
         }
-        entry.setState(restore);
       }
     },
 

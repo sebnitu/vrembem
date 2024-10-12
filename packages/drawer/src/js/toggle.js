@@ -1,6 +1,6 @@
 import { open } from "./open";
 import { close } from "./close";
-import { getDrawer } from "./helpers";
+import { getDrawer } from "./helpers/getDrawer";
 
 export async function toggle(query, transition, focus) {
   // Get the drawer from collection.

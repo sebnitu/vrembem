@@ -1,4 +1,4 @@
-import { getDrawer } from "./helpers";
+import { getDrawer } from "./helpers/getDrawer";
 
 export async function handleClick(event) {
   // If an open, close or toggle button was clicked, handle the click event.

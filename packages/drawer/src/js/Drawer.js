@@ -17,9 +17,6 @@ export class Drawer extends Collection {
     this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
-
-    // Setup local store for inline drawer state management.
-    // this.store = localStore(this.settings.storeKey, this.settings.store);
   }
 
   get activeModal() {

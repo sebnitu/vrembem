@@ -8,8 +8,9 @@ if (typeof window !== "undefined") {
     selector: ".drawer",
     plugins: [
       localStorePlugin({
-        condition: (entry, value) => {
-          return entry.mode === "inline" && value != "indeterminate" && value != "opening" && value != "closing";
+        condition: (entry) => {
+          const saveStates = ["opened", "closed"];
+          return entry.mode === "inline" && saveStates.includes(entry.state);
         },
         onChange: (entry, newValue, oldValue) => {
           console.log("PLUGIN > onChange()", entry.id, newValue, oldValue);
