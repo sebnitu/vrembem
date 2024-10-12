@@ -1,4 +1,4 @@
-import { localStore } from "../utilities";
+import { localStore, maybeRunMethod } from "../utilities";
 
 const defaults = {
   watch: "state",
@@ -55,17 +55,8 @@ export function localStorePlugin(options = {}) {
         }
       });
 
-      // TODO: Is this the best way to restore the previous state?
-      // I think it's too coupled with drawer logic in this way.
-      // Restore the saved state if it exists.
-      const restore = props.store.get(entry.id);
-      if (restore) {
-        if (restore === "opened") {
-          await entry.open(false, false);
-        } else if (restore === "closed") {
-          await entry.close(false, false);
-        }
-      }
+      // Run the apply method for the watched property if it exists.
+      await maybeRunMethod.call(entry, getApplyMethodName());
     },
 
     onUnmount(entry) {
@@ -73,6 +64,10 @@ export function localStorePlugin(options = {}) {
       props.store.set(entry.id, null);
     }
   };
+
+  function getApplyMethodName() {
+    return `apply${props.settings.watch.charAt(0).toUpperCase() + props.settings.watch.slice(1)}`;
+  }
 
   function getKey(parent) {
     const prop = props.settings.watch.charAt(0).toUpperCase() + props.settings.watch.slice(1);
