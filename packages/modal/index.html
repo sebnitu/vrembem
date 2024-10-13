@@ -19,14 +19,15 @@
             return ["opened", "closed"].includes(entry.state);
           },
           onChange(entry) {
+            // Store the stack value of opened ID's.
             if (["opened", "closed"].includes(entry.state)) {
               const stackValue = entry.parent.stack.value.map((entry) => entry.id);
               this.set("stackValue", stackValue);
             }
           },
           async afterMount(parent) {
-            const stackValue = this.store.get("stackValue");
-            for (const entry of stackValue) {
+            // Apply the stack value.
+            for (const entry of this.store.get("stackValue", [])) {
               await parent.open(entry, false);
             }
           }

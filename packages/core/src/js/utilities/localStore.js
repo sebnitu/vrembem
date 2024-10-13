@@ -3,8 +3,9 @@ export function localStore(key, enable = true) {
   const store = (local) ? JSON.parse(local) : {};
 
   return {
-    get(prop) {
-      return (prop) ? store[prop] : store;
+    get(prop, fallback = undefined) {
+      if (!prop) return store;
+      return (prop in store) ? store[prop] : fallback;
     },
 
     set(prop, value) {
