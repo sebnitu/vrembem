@@ -19,18 +19,12 @@
             return ["opened", "closed"].includes(entry.state);
           },
           onChange(entry) {
-            console.log("onChange()");
             if (["opened", "closed"].includes(entry.state)) {
               const stackValue = entry.parent.stack.value.map((entry) => entry.id);
-              // Store the stack value.
               this.set("stackValue", stackValue);
             }
           },
           async afterMount(parent) {
-            // TODO: Apply open state/stack on load.
-            // console.log("localStorePlugin > afterMount()");
-            // console.log("- plugin:", this.store.get("stackValue"));
-            // console.log("- context:", parent);
             const stackValue = this.store.get("stackValue");
             for (const entry of stackValue) {
               await parent.open(entry, false);
