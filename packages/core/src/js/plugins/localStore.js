@@ -46,9 +46,9 @@ export function localStorePlugin(options = {}) {
         },
       });
 
-      // Attach the store object to entry for some reason.
+      // Attach the store object on entry for internal use.
       Object.defineProperty(entry, "store", {
-        get() {
+        get: () => {
           return this.store.get(entry.id);
         }
       });
