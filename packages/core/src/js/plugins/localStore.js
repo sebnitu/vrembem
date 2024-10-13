@@ -1,4 +1,5 @@
 import { localStore, maybeRunMethod } from "../utilities";
+import { applyLifecycleHooks } from "../helpers";
 
 const defaults = {
   watch: "state",
@@ -73,35 +74,5 @@ export function localStorePlugin(options = {}) {
     return props.settings.keyPrefix + key;
   }
 
-  // Setup array with all lifecycle hooks.
-  const hooks = [
-    "beforeMount",
-    "onMount",
-    "beforeRegister",
-    "afterRegister",
-    "afterMount",
-    "beforeUnmount",
-    "onUnmount",
-    "beforeDeregister",
-    "afterDeregister",
-    "afterUnmount",
-  ];
-
-  // Iterate over the hooks array.
-  hooks.forEach((hookName) => {
-    if (typeof props.settings[hookName] === "function") {
-      // Check that the hook doesn't already exist in methods.
-      // This is to prevent overriding core functionality.
-      if (typeof methods[hookName] !== "function") {
-        // Copy the method to the methods object.
-        methods[hookName] = props.settings[hookName];
-      } else {
-        console.error(`${props.name} plugin already has "${hookName}" lifecycle hook defined!`);
-      }
-      // Delete the method from the settings object.
-      delete props.settings[hookName];
-    }
-  });
-
-  return {...props, ...methods};
+  return applyLifecycleHooks(props, methods);
 }

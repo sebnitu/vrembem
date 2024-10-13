@@ -16,6 +16,7 @@
       plugins: [
         localStorePlugin({
           condition(entry) {
+            // The condition we want to store the state value in local store.
             return ["opened", "closed"].includes(entry.state);
           },
           onChange(entry) {

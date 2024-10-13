@@ -1,3 +1,4 @@
+export * from "./applyLifecycleHooks";
 export * from "./cssVar";
 export * from "./getCustomProps";
 export * from "./getPrefix";
