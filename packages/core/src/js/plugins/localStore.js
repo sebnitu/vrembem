@@ -12,46 +12,44 @@ export function localStorePlugin(options = {}) {
   const props = {
     name: "localStore",
     settings: {...defaults, ...options},
-    // TODO: Why is this value not updated in console on mount?
-    // Is it because the copy created no longer has access to the one in plugins?
     store: null,
   };
 
   const methods = {
     mount(parent) {
-      props.store = localStore(getKey(parent));
+      this.store = localStore(getKey(parent));
     },
 
     async onMount(entry) {
       // Guard if the property does not exist on entry.
-      if (!entry?.[props.settings.watch]) return;
+      if (!entry?.[this.settings.watch]) return;
 
       // Store the initial property value.
-      let _value = entry[props.settings.watch];
+      let _value = entry[this.settings.watch];
 
       // Define a getter and setter for the property.
-      Object.defineProperty(entry, props.settings.watch, {
+      Object.defineProperty(entry, this.settings.watch, {
         get() {
           return _value;
         },
-        set(newValue) {
+        set: (newValue) => {
           // Guard if value hasn't changed.
           if (_value === newValue) return;
           const oldValue = _value;
           _value = newValue;
           // Conditionally store the value in local storage.
-          if (props.settings.condition(entry, newValue, oldValue)) {
-            props.store.set(entry.id, _value);
+          if (this.settings.condition(entry, newValue, oldValue)) {
+            this.store.set(entry.id, _value);
           }
           // Run the on change callback.
-          props.settings.onChange(entry, newValue, oldValue);
+          this.settings.onChange.call(this.store, entry, newValue, oldValue);
         },
       });
 
       // Attach the store object to entry for some reason.
       Object.defineProperty(entry, "store", {
         get() {
-          return props.store.get(entry.id);
+          return this.store.get(entry.id);
         }
       });
 
@@ -74,6 +72,36 @@ export function localStorePlugin(options = {}) {
     const key = (props.settings.key || parent.module + prop);
     return props.settings.keyPrefix + key;
   }
+
+  // Setup array with all lifecycle hooks.
+  const hooks = [
+    "beforeMount",
+    "onMount",
+    "beforeRegister",
+    "afterRegister",
+    "afterMount",
+    "beforeUnmount",
+    "onUnmount",
+    "beforeDeregister",
+    "afterDeregister",
+    "afterUnmount",
+  ];
+
+  // Iterate over the hooks array.
+  hooks.forEach((hookName) => {
+    if (typeof props.settings[hookName] === "function") {
+      // Check that the hook doesn't already exist in methods.
+      // This is to prevent overriding core functionality.
+      if (typeof methods[hookName] !== "function") {
+        // Copy the method to the methods object.
+        methods[hookName] = props.settings[hookName];
+      } else {
+        console.error(`${props.name} plugin already has "${hookName}" lifecycle hook defined!`);
+      }
+      // Delete the method from the settings object.
+      delete props.settings[hookName];
+    }
+  });
 
   return {...props, ...methods};
 }

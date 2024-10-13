@@ -10,10 +10,33 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Modal from "./index.js";
-    import { teleport } from "@vrembem/core";
+    import { localStorePlugin, teleport } from "@vrembem/core";
 
     const modal = new Modal({
       plugins: [
+        localStorePlugin({
+          condition(entry) {
+            return ["opened", "closed"].includes(entry.state);
+          },
+          onChange(entry) {
+            console.log("onChange()");
+            if (["opened", "closed"].includes(entry.state)) {
+              const stackValue = entry.parent.stack.value.map((entry) => entry.id);
+              // Store the stack value.
+              this.set("stackValue", stackValue);
+            }
+          },
+          async afterMount(parent) {
+            // TODO: Apply open state/stack on load.
+            // console.log("localStorePlugin > afterMount()");
+            // console.log("- plugin:", this.store.get("stackValue"));
+            // console.log("- context:", parent);
+            const stackValue = this.store.get("stackValue");
+            for (const entry of stackValue) {
+              await parent.open(entry, false);
+            }
+          }
+        }),
         teleport({
           where: ".modals"
         })
@@ -151,11 +174,11 @@
       
       <div id="modal-pos-top" class="modal modal_pos_top">
         <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
           <div class="dialog__body">
-            <p>modal_pos_top</p>
+            <div class="flex justify-content-between">
+              <p>modal_pos_top</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
           </div>
           <div class="dialog__footer justify-content-between">
             <button class="link" data-modal-open="modal-pos-left">
@@ -173,11 +196,11 @@
       
       <div id="modal-pos-bottom" class="modal modal_pos_bottom">
         <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
           <div class="dialog__body">
-            <p>modal_pos_bottom</p>
+            <div class="flex justify-content-between">
+              <p>modal_pos_bottom</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
           </div>
           <div class="dialog__footer justify-content-between">
             <button class="link" data-modal-open="modal-pos-left">
@@ -195,11 +218,11 @@
       
       <div id="modal-pos-left" class="modal modal_pos_left">
         <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
           <div class="dialog__body">
-            <p>modal_pos_left</p>
+            <div class="flex justify-content-between">
+              <p>modal_pos_left</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
           </div>
           <div class="dialog__footer">
             <button class="link" data-modal-open="modal-pos-top">
@@ -221,11 +244,11 @@
       
       <div id="modal-pos-right" class="modal modal_pos_right">
         <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-          <button data-modal-close class="dialog__close link">
-            Close
-          </button>
           <div class="dialog__body">
-            <p>modal_pos_right</p>
+            <div class="flex justify-content-between">
+              <p>modal_pos_right</p>
+              <button data-modal-close class="link">Close</button>
+            </div>
           </div>
           <div class="dialog__footer">
             <button class="link" data-modal-open="modal-pos-top">
