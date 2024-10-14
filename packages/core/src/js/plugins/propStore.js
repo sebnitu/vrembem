@@ -1,5 +1,5 @@
 import { localStore, maybeRunMethod } from "../utilities";
-import { applyLifecycleHooks } from "../helpers";
+import { createPluginObject } from "../helpers";
 
 const defaults = {
   prop: "state",
@@ -11,7 +11,7 @@ const defaults = {
 
 export function propStore(options = {}) {
   const props = {
-    name: "localStore",
+    name: "propStore",
     settings: {...defaults, ...options},
     store: null,
   };
@@ -75,5 +75,5 @@ export function propStore(options = {}) {
     return props.settings.keyPrefix + key;
   }
 
-  return applyLifecycleHooks(props, methods);
+  return createPluginObject(props, methods);
 }

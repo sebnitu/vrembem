@@ -1,4 +1,4 @@
-export function applyLifecycleHooks(props, methods) {
+export function createPluginObject(props, methods) {
   // Setup array with all lifecycle hooks.
   const hooks = [
     "beforeMount",
@@ -32,6 +32,12 @@ export function applyLifecycleHooks(props, methods) {
       delete props.settings[hook];
     }
   };
+
+  // Apply new plugin name if one is provided.
+  if (props.settings.name) {
+    props.name = props.settings.name;
+    delete props.settings.name;
+  }
 
   // Return the plugin object.
   return {...props, ...methods};
