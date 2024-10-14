@@ -2,6 +2,7 @@ import { localStore, maybeRunMethod } from "../utilities";
 import { applyLifecycleHooks } from "../helpers";
 
 const defaults = {
+  // TODO: Rename watch to prop
   watch: "state",
   keyPrefix: "VB:",
   key: null,

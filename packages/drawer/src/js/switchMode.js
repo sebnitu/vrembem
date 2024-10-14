@@ -45,7 +45,6 @@ async function toModal(entry) {
   entry.dialog.setAttribute("aria-modal", "true");
 
   // Modal drawer defaults to closed state.
-  // await close.call(this, entry, false, false);
   await entry.close(false, false);
 
   // Dispatch custom switch event.

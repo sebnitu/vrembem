@@ -43,6 +43,9 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async applyState() {
+    // Only apply state if mode is not set to "modal".
+    if (this.mode === "modal") return;
+
     if (this.store === "opened" || this.inlineState === "opened") {
       return await this.open(false, false);
     }

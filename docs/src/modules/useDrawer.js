@@ -8,14 +8,14 @@ if (typeof window !== "undefined") {
     selector: ".drawer",
     plugins: [
       propStore({
-        condition: (entry) => {
+        condition(entry) {
           const saveStates = ["opened", "closed"];
           return entry.mode === "inline" && saveStates.includes(entry.state);
         }
       }),
       mediaQuery({
         dataBreakpoint: "drawer-breakpoint",
-        onChange: (event, entry) => {
+        onChange(event, entry) {
           entry.mode = (event.matches) ? "inline" : "modal";
         }
       })
