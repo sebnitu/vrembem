@@ -46,20 +46,28 @@ export class DrawerEntry extends CollectionEntry {
     // Only apply state if mode is not set to "modal".
     if (this.mode === "modal") return;
 
-    if (this.store === "opened" || this.inlineState === "opened") {
+    // Check the state stored in local storage.
+    if (this.store === "opened") {
       return await this.open(false, false);
     }
-    
-    if (this.store === "closed" || this.inlineState === "closed") {
+    if (this.store === "closed") {
       return await this.close(false, false);
     }
 
+    // Check the state stored in inline state.
+    if (this.inlineState === "opened") {
+      return await this.open(false, false);
+    }
+    if (this.inlineState === "closed") {
+      return await this.close(false, false);
+    }
+
+    // Determine the state based on the presence of a state class.
     // Handles initial state, the only time this.state should be `null`.
     if (this.state === null) {
       if (this.el.classList.contains(this.getSetting("stateOpened"))) {
         return await this.open(false, false);
       } 
-      
       if (this.el.classList.contains(this.getSetting("stateClosed"))) {
         return await this.close(false, false);
       }
