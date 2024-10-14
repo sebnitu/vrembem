@@ -10,11 +10,11 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Modal from "./index.js";
-    import { localStorePlugin, teleport } from "@vrembem/core";
+    import { propStore, teleport } from "@vrembem/core";
 
     const modal = new Modal({
       plugins: [
-        localStorePlugin({
+        propStore({
           condition(entry) {
             // The condition we want to store the state value in local store.
             return ["opened", "closed"].includes(entry.state);

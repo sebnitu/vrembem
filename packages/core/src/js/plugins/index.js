@@ -1,4 +1,4 @@
 export * from "./debug";
-export * from "./localStore";
 export * from "./mediaQuery";
+export * from "./propStore";
 export * from "./teleport";

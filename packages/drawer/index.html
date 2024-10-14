@@ -10,11 +10,11 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Drawer from "./index.js";
-    import { localStorePlugin, mediaQuery, teleport } from "@vrembem/core";
+    import { propStore, mediaQuery, teleport } from "@vrembem/core";
 
     const drawer = new Drawer({
       plugins: [
-        localStorePlugin({
+        propStore({
           condition: (entry) => {
             const saveStates = ["opened", "closed"];
             return entry.mode === "inline" && saveStates.includes(entry.state);

@@ -9,7 +9,7 @@ const defaults = {
   onChange: () => {}
 };
 
-export function localStorePlugin(options = {}) {
+export function propStore(options = {}) {
   const props = {
     name: "localStore",
     settings: {...defaults, ...options},
@@ -22,6 +22,7 @@ export function localStorePlugin(options = {}) {
     },
 
     async onMount(entry) {
+      // TODO: Allow passing a watch path, e.g: "parent.stack.value"
       // Guard if the property does not exist on entry.
       if (!entry?.[this.settings.watch]) return;
 
