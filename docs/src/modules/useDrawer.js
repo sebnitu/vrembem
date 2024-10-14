@@ -14,7 +14,6 @@ if (typeof window !== "undefined") {
         }
       }),
       mediaQuery({
-        dataBreakpoint: "drawer-breakpoint",
         onChange(event, entry) {
           entry.mode = (event.matches) ? "inline" : "modal";
         }
