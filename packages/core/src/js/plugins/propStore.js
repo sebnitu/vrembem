@@ -57,8 +57,7 @@ export function propStore(options = {}) {
         },
       });
       
-      // TODO: Make this an option for if we want to add the value as a prop.
-      // Attach the store object on entry for internal use.
+      // Attach the store get/set reference as an entry property.
       if (this.settings.ref) {
         let _inlineValue = entry.inlineState;
         defineNestedProperty(entry, this.settings.ref, {
