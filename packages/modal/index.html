@@ -33,6 +33,17 @@
             }
           }
         }),
+        propStore({
+          name: "customWatch",
+          prop: "test.asdf",
+          value: "asdf",
+          condition(entry) {
+            return true;
+          },
+          onChange(entry, value, oldValue) {
+            console.log("customWatch >", entry.id, value, oldValue);
+          }
+        }),
         teleport({
           where: ".modals"
         })

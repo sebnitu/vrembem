@@ -3,6 +3,8 @@ import { createPluginObject } from "../helpers";
 
 const defaults = {
   prop: "state",
+  value: undefined,
+  ref: null,
   keyPrefix: "VB:",
   key: null,
   condition: () => false,
@@ -21,16 +23,23 @@ export function propStore(options = {}) {
       this.store = localStore(getKey(parent));
     },
 
-    async onMount(entry) {
-      // TODO: Allow passing a prop path, e.g: "parent.stack.value"
+    async onMount(entry) {      
+      // Get the properties value.
+      let prop = this.settings.prop.split(".").reduce((entry, key) => entry?.[key], entry);
+
+      // If value doesn't exist and a fallback value is provided, set the property.
+      if (prop === undefined && this.settings.value !== undefined) {
+        prop = this.settings.value;
+      }
+      
       // Guard if the property does not exist on entry.
-      if (!entry?.[this.settings.prop]) return;
+      if (!prop) return;
 
       // Store the initial property value.
-      let _value = entry[this.settings.prop];
+      let _value = prop;
 
       // Define a getter and setter for the property.
-      Object.defineProperty(entry, this.settings.prop, {
+      defineNestedProperty(entry, this.settings.prop, {
         get() {
           return _value;
         },
@@ -47,13 +56,20 @@ export function propStore(options = {}) {
           this.settings.onChange.call(this.store, entry, newValue, oldValue);
         },
       });
-
+      
+      // TODO: Make this an option for if we want to add the value as a prop.
       // Attach the store object on entry for internal use.
-      Object.defineProperty(entry, "store", {
-        get: () => {
-          return this.store.get(entry.id);
-        }
-      });
+      if (this.settings.ref) {
+        let _inlineValue = entry.inlineState;
+        defineNestedProperty(entry, this.settings.ref, {
+          get: () => {
+            return this.store.get(entry.id) || _inlineValue;
+          },
+          set: (newValue) => {
+            this.store.set(entry.id, newValue);
+          }
+        });
+      }
 
       // Run the apply method for the watched property if it exists.
       await maybeRunMethod.call(entry, getApplyMethodName());
@@ -65,12 +81,23 @@ export function propStore(options = {}) {
     }
   };
 
+  function defineNestedProperty(obj, path, descriptor) {
+    const keys = path.split(".");
+    const lastKey = keys.pop();
+    const target = keys.reduce((obj, key) => {
+      // Create the nested object if it doesn't exist.
+      if (!obj[key]) { obj[key] = {}; }
+      return obj[key];
+    }, obj);
+    Object.defineProperty(target, lastKey, descriptor);
+  }
+
   function getApplyMethodName() {
     return `apply${props.settings.prop.charAt(0).toUpperCase() + props.settings.prop.slice(1)}`;
   }
 
   function getKey(parent) {
-    const prop = props.settings.prop.charAt(0).toUpperCase() + props.settings.prop.slice(1);
+    const prop = props.settings.prop.split(".").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join("");
     const key = (props.settings.key || parent.module + prop);
     return props.settings.keyPrefix + key;
   }

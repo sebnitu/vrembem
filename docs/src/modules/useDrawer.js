@@ -8,6 +8,7 @@ if (typeof window !== "undefined") {
     selector: ".drawer",
     plugins: [
       propStore({
+        ref: "inlineState",
         condition(entry) {
           const saveStates = ["opened", "closed"];
           return entry.mode === "inline" && saveStates.includes(entry.state);
