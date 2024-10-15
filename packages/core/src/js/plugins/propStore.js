@@ -1,6 +1,8 @@
 import { localStore, maybeRunMethod } from "../utilities";
 import { createPluginObject } from "../helpers";
 
+// TODO: Missing test coverage 32-33,82-84
+
 const defaults = {
   prop: "state",
   value: undefined,
@@ -23,7 +25,10 @@ export function propStore(options = {}) {
       this.store = localStore(getKey(parent));
     },
 
-    async onMount(entry) {      
+    // TODO: Add unmount and onUnmount methods for cleanup.
+
+    async onMount(entry) {     
+      // TODO: Move onMount logic into function to keep hooks cleaner. 
       // Get the properties value.
       let prop = this.settings.prop.split(".").reduce((entry, key) => entry?.[key], entry);
 
@@ -40,6 +45,7 @@ export function propStore(options = {}) {
 
       // Define a getter and setter for the property.
       defineNestedProperty(entry, this.settings.prop, {
+        configurable: true,
         get() {
           return _value;
         },
@@ -59,10 +65,11 @@ export function propStore(options = {}) {
       
       // Attach the store get/set reference as an entry property.
       if (this.settings.ref) {
-        let _inlineValue = entry.inlineState;
+        let _refValue = entry[this.settings.ref];
         defineNestedProperty(entry, this.settings.ref, {
+          configurable: true,
           get: () => {
-            return this.store.get(entry.id) || _inlineValue;
+            return this.store.get(entry.id) || _refValue;
           },
           set: (newValue) => {
             this.store.set(entry.id, newValue);
@@ -72,11 +79,6 @@ export function propStore(options = {}) {
 
       // Run the apply method for the watched property if it exists.
       await maybeRunMethod.call(entry, getApplyMethodName());
-    },
-
-    onUnmount(entry) {
-      // Remove the value from local storage when it's unmounted.
-      props.store.set(entry.id, null);
     }
   };
 
