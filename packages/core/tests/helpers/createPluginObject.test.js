@@ -1,4 +1,3 @@
-import { expect } from "vitest";
 import { createPluginObject } from "../../index";
 
 console.error = vi.fn();
