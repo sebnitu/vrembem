@@ -1,4 +1,5 @@
 import { teleportElement } from "../utilities";
+import { createPluginObject } from "../helpers";
 
 const defaults = {
   where: null,
@@ -47,5 +48,5 @@ export function teleport(options = {}) {
     }
   }
 
-  return {...props, ...methods};
+  return createPluginObject(props, methods);
 };

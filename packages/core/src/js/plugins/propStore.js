@@ -1,8 +1,6 @@
 import { localStore, maybeRunMethod } from "../utilities";
 import { createPluginObject } from "../helpers";
 
-// TODO: Missing test coverage 32-33,82-84
-
 const defaults = {
   prop: "state",
   value: undefined,
@@ -25,62 +23,89 @@ export function propStore(options = {}) {
       this.store = localStore(getKey(parent));
     },
 
-    // TODO: Add unmount and onUnmount methods for cleanup.
-
-    async onMount(entry) {     
-      // TODO: Move onMount logic into function to keep hooks cleaner. 
-      // Get the properties value.
-      let prop = this.settings.prop.split(".").reduce((entry, key) => entry?.[key], entry);
-
-      // If value doesn't exist and a fallback value is provided, set the property.
-      if (prop === undefined && this.settings.value !== undefined) {
-        prop = this.settings.value;
-      }
-      
-      // Guard if the property does not exist on entry.
-      if (!prop) return;
-
-      // Store the initial property value.
-      let _value = prop;
-
-      // Define a getter and setter for the property.
-      defineNestedProperty(entry, this.settings.prop, {
-        configurable: true,
-        get() {
-          return _value;
-        },
-        set: (newValue) => {
-          // Guard if value hasn't changed.
-          if (_value === newValue) return;
-          const oldValue = _value;
-          _value = newValue;
-          // Conditionally store the value in local storage.
-          if (this.settings.condition(entry, newValue, oldValue)) {
-            this.store.set(entry.id, _value);
-          }
-          // Run the on change callback.
-          this.settings.onChange.call(this.store, entry, newValue, oldValue);
-        },
+    unmount(context) {
+      context.collection.forEach((entry) => {
+        this.onUnmount(entry);
       });
-      
-      // Attach the store get/set reference as an entry property.
-      if (this.settings.ref) {
-        let _refValue = entry[this.settings.ref];
-        defineNestedProperty(entry, this.settings.ref, {
-          configurable: true,
-          get: () => {
-            return this.store.get(entry.id) || _refValue;
-          },
-          set: (newValue) => {
-            this.store.set(entry.id, newValue);
-          }
-        });
-      }
+    },
 
-      // Run the apply method for the watched property if it exists.
-      await maybeRunMethod.call(entry, getApplyMethodName());
+    async onMount(entry) {
+      await setupPropStore.call(this, entry);
+    },
+
+    onUnmount(entry) {
+      removePropStore.call(this, entry);
     }
   };
+
+  async function setupPropStore(entry) {
+    // Get the properties value.
+    let prop = this.settings.prop.split(".").reduce((entry, key) => entry?.[key], entry);
+
+    // If value doesn't exist and a fallback value is provided, set the property.
+    if (prop === undefined && this.settings.value !== undefined) {
+      prop = this.settings.value;
+    }
+    
+    // Guard if the property does not exist on entry.
+    if (!prop) return;
+
+    // Store the initial property value.
+    let _value = prop;
+
+    // Define a getter and setter for the property.
+    defineNestedProperty(entry, this.settings.prop, {
+      configurable: true,
+      get() {
+        return _value;
+      },
+      set: (newValue) => {
+        // Guard if value hasn't changed.
+        if (_value === newValue) return;
+        const oldValue = _value;
+        _value = newValue;
+        // Conditionally store the value in local storage.
+        if (this.settings.condition(entry, newValue, oldValue)) {
+          this.store.set(entry.id, _value);
+        }
+        // Run the on change callback.
+        this.settings.onChange.call(this.store, entry, newValue, oldValue);
+      },
+    });
+    
+    // Attach the store get/set reference as an entry property.
+    if (this.settings.ref) {
+      let _refValue = entry[this.settings.ref];
+      defineNestedProperty(entry, this.settings.ref, {
+        configurable: true,
+        get: () => {
+          return this.store.get(entry.id) || _refValue;
+        },
+        set: (newValue) => {
+          this.store.set(entry.id, newValue);
+        }
+      });
+    }
+
+    // Run the apply method for the watched property if it exists.
+    await maybeRunMethod.call(entry, getApplyMethodName());
+  }
+
+  async function removePropStore(entry) {
+    // Remove the getter/setters and restore properties to their current value.
+    clearGetterSetter(entry, this.settings.prop);
+    if (this.settings.ref) {
+      clearGetterSetter(entry, this.settings.ref);
+    }
+    // Remove value from local store.
+    this.store.set(entry.id, null);
+  }
+
+  function clearGetterSetter(obj, prop) {
+    const currentValue = obj[prop];
+    delete obj[prop];
+    obj[prop] = currentValue;
+  }
 
   function defineNestedProperty(obj, path, descriptor) {
     const keys = path.split(".");
