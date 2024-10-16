@@ -60,9 +60,7 @@ const drawer = new Drawer({
       condition(entry) {
         return ["opened", "closed", "indeterminate"].includes(entry.state);
       },
-      onChange(entry, value) {
-        entry.applyState(value);
-      }
+      onChange: (entry) => entry.applyState()
     }),
     mediaQuery({
       onChange(event, entry) {

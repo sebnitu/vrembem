@@ -15,10 +15,8 @@
     const modal = new Modal({
       plugins: [
         propStore({
-          condition(entry) {
-            return ["opened", "closed"].includes(entry.state);
-          },
           onChange(entry) {
+            if (["opening", "closing"].includes(entry.state)) return;
             const stackValue = entry.parent.stack.value.map((entry) => entry.id);
             this.store.set("stackValue", stackValue);
           },
