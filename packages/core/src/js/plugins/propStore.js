@@ -2,11 +2,18 @@ import { localStore } from "../utilities";
 import { createPluginObject } from "../helpers";
 
 const defaults = {
+  // The property on entry objects to watch.
   prop: "state",
+  // The default value or a function to compute the initial value.
   value: null,
-  key: null,
+  // The local storage key prefix.
   keyPrefix: "VB:",
+  // The local storage key to use. If not provided, module name and prop value
+  // will be used e.g: "VB:ModalState".
+  key: null,
+  // Condition to determine whether or not to store the value in local storage.
   condition: () => false,
+  // The function to run whenever the value changes.
   onChange() {}
 };
 
