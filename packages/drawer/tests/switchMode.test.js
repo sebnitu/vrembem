@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
 import { propStore, mediaQuery } from "@vrembem/core";
-import { beforeAll } from "vitest";
 
 document.body.innerHTML = `
   <div id="drawer-1" class="drawer">

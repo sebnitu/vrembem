@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
-import { describe, expect } from "vitest";
 
 const markup = `
   <div class="drawer-frame">
