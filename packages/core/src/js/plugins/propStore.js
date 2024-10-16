@@ -19,7 +19,7 @@ export function propStore(options = {}) {
 
   const methods = {
     mount(parent) {
-      this.store = localStore(getKey(parent));
+      this.store = localStore(getKey(parent.module));
     },
 
     unmount(context) {
@@ -88,9 +88,9 @@ export function propStore(options = {}) {
     this.store.set(entry.id, null);
   }
 
-  function getKey(parent) {
+  function getKey(moduleName) {
     const prop = props.settings.prop.charAt(0).toUpperCase() + props.settings.prop.slice(1);
-    const key = (props.settings.key || parent.module + prop);
+    const key = (props.settings.key || moduleName + prop);
     return props.settings.keyPrefix + key;
   }
 
