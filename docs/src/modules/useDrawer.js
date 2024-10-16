@@ -8,10 +8,13 @@ if (typeof window !== "undefined") {
     selector: ".drawer",
     plugins: [
       propStore({
-        ref: "inlineState",
+        prop: "inlineState",
+        value: (entry) => entry.store,
         condition(entry) {
-          const saveStates = ["opened", "closed"];
-          return entry.mode === "inline" && saveStates.includes(entry.state);
+          return ["opened", "closed"].includes(entry.state);
+        },
+        onChange(entry, value) {
+          entry.applyState(value);
         }
       }),
       mediaQuery({

@@ -95,7 +95,7 @@ export class DrawerEntry extends CollectionEntry {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
-    // Set both the initial state and inline state.
+    // Apply the initial state.
     await this.applyState();
 
     // Set the inline state.
