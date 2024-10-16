@@ -182,30 +182,12 @@ describe("register() & deregister()", () => {
     expect(entry.state).toBe("closed");
   });
 
-  it("should return drawer to state saved in local store", async () => {
-    drawer.store.set("drawer-4", "opened");
-    const entry = await drawer.register("drawer-4");
-    expect(entry.mode).toBe("inline");
-    expect(entry.state).toBe("opened");
-  });
-
   it("should deregister drawer using entry api", async () => {
-    expect(drawer.collection.length).toBe(4);
-
-    const entry = await drawer.register("drawer-4");
-    await entry.deregister();
     expect(drawer.collection.length).toBe(3);
-  });
 
-  it("should prioritize local store state over initial state class", async () => {
-    const el = document.querySelector("#drawer-4");
-    el.classList.add(drawer.settings.stateOpened);
-
-    drawer.store.set("drawer-4", "closed");
-    const entry = await drawer.register("drawer-4");
-
-    expect(entry.mode).toBe("inline");
-    expect(entry.state).toBe("closed");
+    const entry = await drawer.register("drawer-3");
+    await entry.deregister();
+    expect(drawer.collection.length).toBe(2);
   });
 
   it("should reject promise with error if register is called on non-existent drawer", async () => {
@@ -221,12 +203,11 @@ describe("register() & deregister()", () => {
 
 describe("data-config", () => {
   beforeAll(async () => {
-    document.body.innerHTML = markupInitState;
+    document.body.innerHTML = markupConfig;
     await drawer.unmount();
   });
 
   it("should override global drawer configs using drawer specific data configuration", async () => {
-    document.body.innerHTML = markupConfig;
     const entry1 = await drawer.register("drawer-1");
     const entry2 = await drawer.register("drawer-2");
 

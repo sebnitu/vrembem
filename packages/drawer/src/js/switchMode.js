@@ -1,5 +1,4 @@
 import { setGlobalState } from "@vrembem/core";
-import { applyInlineState } from "./helpers";
 
 export function switchMode(entry) {
   switch (entry.mode) {
@@ -26,7 +25,7 @@ async function toInline(entry) {
   this.focusTrap.unmount();
 
   // Apply the inline state.
-  await applyInlineState(entry);
+  entry.applyState();
 
   // Dispatch custom switch event.
   entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
@@ -46,7 +45,6 @@ async function toModal(entry) {
   entry.dialog.setAttribute("aria-modal", "true");
 
   // Modal drawer defaults to closed state.
-  // await close.call(this, entry, false, false);
   await entry.close(false, false);
 
   // Dispatch custom switch event.

@@ -1,14 +1,15 @@
 import { transition, setGlobalState } from "@vrembem/core";
-import { updateFocusState, getDrawer } from "./helpers";
+import { getDrawer } from "./helpers/getDrawer";
+import { updateFocusState } from "./helpers/updateFocusState";
 
 export async function open(query, transitionOverride, focus = true) {
   // Get the drawer from collection.
   const entry = getDrawer.call(this, query);
 
   // If drawer is closed or indeterminate.
-  if (entry.state === "closed" || entry.state === "indeterminate") {
+  if (entry.state === "closed" || entry.state === "indeterminate" || entry.state === null) {
     // Update drawer state.
-    entry.state = "opening";
+    entry.setState("opening");
 
     // Run the open transition.
     if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
@@ -25,7 +26,7 @@ export async function open(query, transitionOverride, focus = true) {
     }
 
     // Update drawer state.
-    entry.state = "opened";
+    entry.setState("opened");
 
     // Update the global state if mode is modal.
     if (entry.mode === "modal") setGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));

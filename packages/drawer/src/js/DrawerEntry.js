@@ -1,22 +1,16 @@
 import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
-import { applyInitialState } from "./helpers";
 
 export class DrawerEntry extends CollectionEntry {
   #mode;
-  #state;
 
   constructor(parent, query, options = {}) {
     super(parent, query, options);
     this.dialog = null;
     this.trigger = null;
+    this.state = null;
+    this.inlineState = null;
     this.#mode = "indeterminate";
-    this.#state = "indeterminate";
-    this.inlineState = "indeterminate";
-  }
-
-  get store() {
-    return this.parent.store.get(this.id);
   }
 
   get mode() {
@@ -29,31 +23,50 @@ export class DrawerEntry extends CollectionEntry {
     switchMode.call(this.parent, this);
   }
 
-  get state() {
-    return this.#state;
-  }
-
-  set state(value) {
-    this.#state = value;
+  setState(value) {
+    this.state = value;
 
     // If mode is inline and not in a transitioning state...
-    if (this.mode === "inline" && value != "opening" && value != "closing") {
+    const ignoreStates = ["opening", "closing"];
+    if (this.mode === "inline" && !ignoreStates.includes(value)) {
       // Save the inline state.
       this.inlineState = value;
-
-      // Save the store state if enabled.
-      if (this.getSetting("store")) {
-        this.parent.store.set(this.id, value);
-      }
     }
 
-    // If state is indeterminate, remove the state classes.
+    // If state is indeterminate, remove all state classes.
     if (value === "indeterminate") {
       this.el.classList.remove(this.getSetting("stateOpened"));
       this.el.classList.remove(this.getSetting("stateOpening"));
       this.el.classList.remove(this.getSetting("stateClosed"));
       this.el.classList.remove(this.getSetting("stateClosing"));
     }
+  }
+
+  async applyState() {
+    // Only apply state if mode is not set to "modal".
+    if (this.mode === "modal") return;
+
+    // Check the state stored in inline state.
+    if (this.inlineState === "opened") {
+      return await this.open(false, false);
+    }
+    if (this.inlineState === "closed") {
+      return await this.close(false, false);
+    }
+
+    // Determine the state based on the presence of a state class.
+    // Handles initial state, the only time this.state should be `null`.
+    if (this.state === null) {
+      if (this.el.classList.contains(this.getSetting("stateOpened"))) {
+        return await this.open(false, false);
+      } 
+      if (this.el.classList.contains(this.getSetting("stateClosed"))) {
+        return await this.close(false, false);
+      }
+    }
+
+    // If state cannot be determined, set it to indeterminate.
+    return this.setState("indeterminate");
   }
 
   async open(transition, focus) {
@@ -82,8 +95,8 @@ export class DrawerEntry extends CollectionEntry {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
-    // Set both the initial state and inline state.
-    applyInitialState(this);
+    // Apply the initial state.
+    await this.applyState();
 
     // Set the inline state.
     this.inlineState = this.state;
@@ -97,8 +110,5 @@ export class DrawerEntry extends CollectionEntry {
     if (!reMount && this.state === "opened") {
       await this.close(false);
     }
-
-    // Remove entry from local store.
-    this.parent.store.set(this.id);
   }
 }

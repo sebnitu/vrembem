@@ -1,14 +1,15 @@
 import { transition, setGlobalState } from "@vrembem/core";
-import { updateFocusState, getDrawer } from "./helpers";
+import { getDrawer } from "./helpers/getDrawer";
+import { updateFocusState } from "./helpers/updateFocusState";
 
 export async function close(query, transitionOverride, focus = true) {
   // Get the drawer from collection.
   const entry = getDrawer.call(this, query);
 
   // If drawer is opened or indeterminate.
-  if (entry.state === "opened" || entry.state === "indeterminate") {
+  if (entry.state === "opened" || entry.state === "indeterminate" || entry.state === null) {
     // Update drawer state.
-    entry.state = "closing";
+    entry.setState("closing");
 
     // Remove focus from active element.
     document.activeElement.blur();
@@ -28,7 +29,7 @@ export async function close(query, transitionOverride, focus = true) {
     }
 
     // Update drawer state.
-    entry.state = "closed";
+    entry.setState("closed");
 
     // Update the global state if mode is modal.
     if (entry.mode === "modal") setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));

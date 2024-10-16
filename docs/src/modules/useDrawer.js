@@ -1,5 +1,5 @@
 import { Drawer } from "vrembem";
-import { mediaQuery } from "@vrembem/core";
+import { propStore, mediaQuery } from "@vrembem/core";
 
 let drawer = null;
 
@@ -7,9 +7,14 @@ if (typeof window !== "undefined") {
   drawer = new Drawer({
     selector: ".drawer",
     plugins: [
+      propStore({
+        prop: "inlineState",
+        value: (entry) => entry.store,
+        condition: (entry) => ["opened", "closed"].includes(entry.state),
+        onChange: (entry) => entry.applyState()
+      }),
       mediaQuery({
-        dataBreakpoint: "drawer-breakpoint",
-        onChange: (event, entry) => {
+        onChange(event, entry) {
           entry.mode = (event.matches) ? "inline" : "modal";
         }
       })

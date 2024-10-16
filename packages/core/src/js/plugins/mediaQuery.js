@@ -1,4 +1,5 @@
 import { getPrefix } from "../helpers/getPrefix";
+import { createPluginObject } from "../helpers";
 
 const defaults = {
   // The data attributes to get the breakpoint values from.
@@ -27,7 +28,7 @@ const defaults = {
 export function mediaQuery(options = {}) {
   const props = {
     name: "mediaQuery",
-    settings: { ...defaults, ...options},
+    settings: {...defaults, ...options}
   };
 
   const methods = {
@@ -114,5 +115,5 @@ export function mediaQuery(options = {}) {
     entry.mql = null;
   }
 
-  return {...props, ...methods};
+  return createPluginObject(props, methods);
 };

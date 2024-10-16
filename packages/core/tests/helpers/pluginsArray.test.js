@@ -1,4 +1,3 @@
-import { expect } from "vitest";
 import { pluginsArray } from "../../src/js/helpers/pluginsArray";
 
 const plugins = new pluginsArray({});

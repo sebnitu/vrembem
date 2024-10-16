@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
-import { mediaQuery } from "@vrembem/core";
+import { propStore, mediaQuery } from "@vrembem/core";
 
 document.body.innerHTML = `
   <div id="drawer-1" class="drawer">
@@ -53,12 +53,24 @@ function resizeWindow(value, collection) {
 const drawer = new Drawer({ 
   transition: false,
   plugins: [
+    propStore({
+      prop: "inlineState",
+      value: (entry) => entry.store,
+      condition(entry) {
+        return ["opened", "closed", "indeterminate"].includes(entry.state);
+      },
+      onChange: (entry) => entry.applyState()
+    }),
     mediaQuery({
-      onChange: (event, entry) => {
+      onChange(event, entry) {
         entry.mode = (event.matches) ? "inline" : "modal";
       }
     })
   ]
+});
+
+beforeAll(async () => {
+  await drawer.mount();
 });
 
 beforeEach(() => {
@@ -67,7 +79,7 @@ beforeEach(() => {
 });
 
 test("should switch drawer to modal when entry.mode property is set to modal", async () => {
-  const entry = await drawer.register("drawer-1");
+  const entry = await drawer.get("drawer-1");
   expect(entry.el).not.toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe(null);
 
@@ -77,8 +89,16 @@ test("should switch drawer to modal when entry.mode property is set to modal", a
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 });
 
+test("running applyState on a modal drawer should not change its state", async () => {
+  const entry = await drawer.get("drawer-1");
+  expect(entry.mode).toBe("modal");
+  expect(entry.state).toBe("closed");
+  await entry.applyState();
+  expect(entry.state).toBe("closed");
+});
+
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
-  const entry = await drawer.register("drawer-1");
+  const entry = await drawer.get("drawer-1");
   expect(entry.el).toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 
@@ -90,77 +110,74 @@ test("should switch drawer to inline when entry.mode property is set to inline",
 
 test("should return local store state when switching modes", async () => {
   const entry = await drawer.register("drawer-1");
+  const plugin = drawer.plugins.get("propStore");
   await entry.open();
 
-  expect(drawer.store.get("drawer-1")).toBe("opened");
   expect(entry.mode).toBe("inline");
+  expect(plugin.store.get("drawer-1")).toBe("opened");
   expect(entry.state).toBe("opened");
+  expect(entry.inlineState).toBe("opened");
 
   entry.mode = "modal";
   await vi.runAllTimers();
-
-  expect(drawer.store.get("drawer-1")).toBe("opened");
-  expect(entry.mode).toBe("modal");
+  expect(plugin.store.get("drawer-1")).toBe("opened");
   expect(entry.state).toBe("closed");
+  expect(entry.inlineState).toBe("opened");
 
   await entry.open();
-
-  expect(drawer.store.get("drawer-1")).toBe("opened");
-  expect(entry.mode).toBe("modal");
+  expect(plugin.store.get("drawer-1")).toBe("opened");
   expect(entry.state).toBe("opened");
+  expect(entry.inlineState).toBe("opened");
 
   entry.mode = "inline";
   await vi.runAllTimers();
-
-  expect(drawer.store.get("drawer-1")).toBe("opened");
-  expect(entry.mode).toBe("inline");
+  expect(plugin.store.get("drawer-1")).toBe("opened");
   expect(entry.state).toBe("opened");
+  expect(entry.inlineState).toBe("opened");
 
   await entry.close();
-
-  expect(drawer.store.get("drawer-1")).toBe("closed");
-  expect(entry.mode).toBe("inline");
+  expect(plugin.store.get("drawer-1")).toBe("closed");
   expect(entry.state).toBe("closed");
+  expect(entry.inlineState).toBe("closed");
 });
 
 test("should apply indeterminate state when going to inline mode", async () => {
-  await drawer.deregister("drawer-1");
-  drawer.store.set("drawer-1", "indeterminate");
-  const entry = await drawer.register("drawer-1");
+  const entry = await drawer.get("drawer-1");
+  entry.setState("indeterminate");
 
   expect(entry.mode).toBe("inline");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
-
-  drawer.store.set("drawer-1");
+  expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "modal";
   await vi.runAllTimers();
-
-  expect(entry.mode).toBe("modal");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("closed");
   expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "inline";
   await vi.runAllTimers();
-
-  expect(entry.mode).toBe("inline");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
+  expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "modal";
   await vi.runAllTimers();
+  entry.setState("closed");
+  expect(entry.store).toBe("indeterminate");
+  expect(entry.state).toBe("closed");
+  expect(entry.inlineState).toBe("indeterminate");
 
-  // Restore inline state using store value.
-  drawer.store.set("drawer-1", "indeterminate");
-  entry.inlineState = "opened";
   entry.mode = "inline";
   await vi.runAllTimers();
-
-  expect(entry.mode).toBe("inline");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
+  expect(entry.inlineState).toBe("indeterminate");
 });
 
 test("should store inline state when switching to modal", async () => {
-  const entry = await drawer.register("drawer-3");
+  const entry = await drawer.get("drawer-3");
   expect(entry.mode).toBe("modal");
   expect(entry.state).toBe("closed");
   expect(drawer.get(entry.id).inlineState).toBe("opened");
@@ -178,7 +195,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
-  const entry = await drawer.register("drawer-2");
+  const entry = await drawer.get("drawer-2");
   expect(entry.mql.media).toBe("(min-width: 600px)");
   expect(entry.mode).toBe("inline");
   resizeWindow(400, drawer.collection);

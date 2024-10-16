@@ -39,7 +39,7 @@ Drawers are composed using classes and data attributes for their triggers. The b
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame">
-      <aside id="drawer-1" class="drawer">
+      <aside id="drawer-1" class="drawer is-closed">
         <div class="drawer__dialog padding">
           <div class="flex justify-content-between">
             <span>Drawer example</span>
@@ -94,7 +94,7 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 16rem;">
-      <aside id="drawer-2" class="drawer">
+      <aside id="drawer-2" class="drawer is-closed">
         <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
           <div class="dialog__header justify-content-between">
             <h2 id="dialog-title" class="dialog__title">Drawer title</h2>
@@ -143,7 +143,7 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
 <CodeExample tabs flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
-      <aside id="drawer-3" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-3" class="drawer drawer_modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__body">
             <div class="flex">
@@ -176,30 +176,30 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
   </Fragment>
 </CodeExample>
 
-In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-drawer-breakpoint` data attribute with either a width value or a breakpoint key.
+In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-breakpoint` data attribute with either a width value or a breakpoint key.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame">
-      <aside id="drawer-4" class="drawer" data-drawer-breakpoint="1200px" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-4" class="drawer is-closed" data-breakpoint="1200px" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
           <div class="dialog__body">
-            <code>data-drawer-breakpoint="1200px"</code>
+            <code>data-breakpoint="1200px"</code>
           </div>
         </div>
       </aside>
-      <aside id="drawer-5" class="drawer" data-drawer-breakpoint="md" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-5" class="drawer is-opened" data-breakpoint="md" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Drawer example</h2>
             <button class="link" data-drawer-close>Close</button>
           </div>
           <div class="dialog__body">
-            <code>data-drawer-breakpoint="md"</code>
+            <code>data-breakpoint="md"</code>
           </div>
         </div>
       </aside>
@@ -218,12 +218,12 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   </Fragment>
   ```html
   <!-- Switches to modal below 1200px viewports -->
-  <aside id="[unique-id]" class="drawer" data-drawer-breakpoint="1200px">
+  <aside id="[unique-id]" class="drawer" data-breakpoint="1200px">
     ...
   </aside>
 
   <!-- Switches to modal below "md" breakpoint viewports -->
-  <aside id="[unique-id]" class="drawer" data-drawer-breakpoint="md">
+  <aside id="[unique-id]" class="drawer" data-breakpoint="md">
     ...
   </aside>
   ```
@@ -266,7 +266,7 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
-      <aside id="drawer-6" class="drawer">
+      <aside id="drawer-6" class="drawer is-closed">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Drawer example</h2>
@@ -277,7 +277,7 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
           </div>
         </div>
       </aside>
-      <aside id="drawer-7" class="drawer">
+      <aside id="drawer-7" class="drawer is-closed">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Drawer example</h2>
@@ -363,7 +363,7 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 12rem;">
-      <aside id="drawer-8" class="drawer drawer_modal" data-drawer-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-8" class="drawer drawer_modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Modal drawer example</h2>
@@ -393,7 +393,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
-      <aside id="drawer-9" class="drawer drawer_switch">
+      <aside id="drawer-9" class="drawer drawer_switch is-closed">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <p class="flex-grow">Drawer example</p>
