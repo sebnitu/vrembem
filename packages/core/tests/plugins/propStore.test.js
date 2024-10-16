@@ -43,7 +43,6 @@ test("should be able to set a condition and onChange callback", async () => {
     plugins: [
       propStore({
         prop: "example",
-        value: "asdf",
         condition() {
           return true;
         },
@@ -52,52 +51,80 @@ test("should be able to set a condition and onChange callback", async () => {
     ]
   });
   const entry = collection.get("entry-1");
-  expect(entry.example).toBe("asdf");
   expect(spyFunction).toBeCalledTimes(0);
   entry.example = "fdsa";
   expect(entry.example).toBe("fdsa");
   expect(spyFunction).toBeCalledTimes(1);
 });
 
-test("should be able to set a prop path with nested properties", async () => {
+test("should not fire onChange callback if setting a value that isn't different", async () => {
+  const entry = collection.get("entry-2");
+  entry.example = "asdf";
+  expect(entry.example).toBe("asdf");
+  entry.example = "asdf";
+});
+
+test("should setup a store property for accessing the local storage value", async () => {
+  const entry = collection.get("entry-3");
+  entry.example = "test";
+  expect(entry.store).toBe("test");
+  entry.store = "new";
+  entry.example = "new";
+  expect(entry.store).toBe("new");
+});
+
+test("should be able to set an initial value for the property", async() => {
+  const spyFunction = vi.fn();
+  expect(collection.plugins.length).toBe(1);
   await collection.mount({
     plugins: [
       propStore({
-        name: "deepPropStore",
-        prop: "one.two.three",
-        value: "asdf",
-        ref: "easy",
-        condition() { return true; }
+        name: "newPropStore",
+        prop: "hello",
+        value: "world",
+        condition: () => true,
+        onChange: spyFunction
       })
     ]
   });
-  const entry = collection.get("entry-2");
-  const plugin = collection.plugins.get("deepPropStore");
-
-  console.log(plugin.store.get());
-  expect(entry.one.two.three).toBe("asdf");
-  expect(entry.easy).toBe(undefined);
-
-  entry.one.two.three = "1111";
-  expect(entry.one.two.three).toBe("1111");
-  expect(entry.easy).toBe("1111");
-
-  entry.easy = "2222";
-  expect(entry.one.two.three).toBe("1111");
-  expect(entry.easy).toBe("2222");
-
-  plugin.store.set("entry-2", "3333");
-  expect(entry.one.two.three).toBe("1111");
-  expect(entry.easy).toBe("3333");
-
-  entry.one.two.three = "1111";
-  expect(entry.one.two.three).toBe("1111");
-  expect(entry.easy).toBe("3333");
+  expect(collection.plugins.length).toBe(2);
+  const entry = collection.get("entry-1");
+  expect(entry.hello).toBe("world");
+  expect(spyFunction).toBeCalledTimes(3);
+  entry.hello = "buddy";
+  expect(spyFunction).toBeCalledTimes(4);
 });
 
-test("should not fire onChange callback if setting a value that isn't different", async () => {
-  const entry = collection.get("entry-2");
-  entry.one.two.three = "1111";
-  expect(entry.one.two.three).toBe("1111");
-  expect(entry.easy).toBe("3333");
+test("should be able to set an initial value using a function definition", async() => {
+  expect(collection.plugins.length).toBe(2);
+  await collection.mount({
+    plugins: [
+      propStore({
+        name: "anotherNewPropStore",
+        prop: "hello",
+        value: () => "my" + " " + "friend",
+        condition: () => true
+      })
+    ]
+  });
+  expect(collection.plugins.length).toBe(3);
+  const entry = collection.get("entry-1");
+  expect(entry.hello).toBe("my friend");
+});
+
+test("should default to the original property value if value function returns falsy", async() => {
+  expect(collection.plugins.length).toBe(3);
+  await collection.mount({
+    plugins: [
+      propStore({
+        name: "oneMorePropStore",
+        prop: "hello",
+        value: () => undefined,
+        condition: () => false
+      })
+    ]
+  });
+  expect(collection.plugins.length).toBe(4);
+  const entry = collection.get("entry-1");
+  expect(entry.hello).toBe("my friend");
 });

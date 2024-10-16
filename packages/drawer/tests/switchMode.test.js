@@ -55,10 +55,13 @@ const drawer = new Drawer({
   transition: false,
   plugins: [
     propStore({
-      ref: "inlineState",
+      prop: "inlineState",
+      value: (entry) => entry.store,
       condition(entry) {
-        const saveStates = ["opened", "closed"];
-        return entry.mode === "inline" && saveStates.includes(entry.state);
+        return ["opened", "closed", "indeterminate"].includes(entry.state);
+      },
+      onChange(entry, value) {
+        entry.applyState(value);
       }
     }),
     mediaQuery({
@@ -143,36 +146,35 @@ test("should return local store state when switching modes", async () => {
 
 test("should apply indeterminate state when going to inline mode", async () => {
   const entry = await drawer.get("drawer-1");
-  const plugin = drawer.plugins.get("propStore");
   entry.setState("indeterminate");
 
   expect(entry.mode).toBe("inline");
-  expect(plugin.store.get("drawer-1")).toBe("indeterminate");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
   expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "modal";
   await vi.runAllTimers();
-  expect(plugin.store.get("drawer-1")).toBe("indeterminate");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("closed");
   expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "inline";
   await vi.runAllTimers();
-  expect(plugin.store.get("drawer-1")).toBe("indeterminate");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
   expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "modal";
   await vi.runAllTimers();
   entry.setState("closed");
-  expect(plugin.store.get("drawer-1")).toBe("indeterminate");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("closed");
   expect(entry.inlineState).toBe("indeterminate");
 
   entry.mode = "inline";
   await vi.runAllTimers();
-  expect(plugin.store.get("drawer-1")).toBe("indeterminate");
+  expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
   expect(entry.inlineState).toBe("indeterminate");
 });
