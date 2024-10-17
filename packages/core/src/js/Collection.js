@@ -120,7 +120,7 @@ export class Collection {
     // afterMount lifecycle hooks.
     await maybeRunMethod.call(this, "afterMount");
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "afterMount", this);
+      await maybeRunMethod.call(plugin, "afterMount", { plugin, parent: this});
     }
 
     return this;
