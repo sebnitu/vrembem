@@ -25,21 +25,21 @@ export function propStore(options = {}) {
   };
 
   const methods = {
-    mount(parent) {
+    mount({ parent }) {
       this.store = localStore(getKey(parent.module));
     },
 
-    unmount(context) {
-      context.collection.forEach((entry) => {
+    unmount({ parent }) {
+      parent.collection.forEach((entry) => {
         this.onUnmount(entry);
       });
     },
 
-    async onMount(entry) {
+    async onMount({ entry }) {
       await setupPropStore.call(this, entry);
     },
 
-    onUnmount(entry) {
+    onUnmount({ entry }) {
       removePropStore.call(this, entry);
     }
   };

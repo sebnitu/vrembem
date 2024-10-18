@@ -13,8 +13,8 @@ export function teleport(options = {}) {
   };
 
   const methods = {
-    unmount(context) {
-      context.collection.forEach((entry) => {
+    unmount({ parent }) {
+      parent.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
           entry.teleportReturn();
           delete entry.teleport;
@@ -23,12 +23,12 @@ export function teleport(options = {}) {
       });
     },
 
-    onMount(entry) {
+    onMount({ entry }) {
       entry.teleport = teleport.bind(this, entry);
       entry.teleport();
     },
 
-    onUnmount(entry) {
+    onUnmount({ entry }) {
       teleportReturn(entry);
     }
   };

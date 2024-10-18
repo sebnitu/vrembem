@@ -10,10 +10,11 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Modal from "./index.js";
-    import { propStore, teleport } from "@vrembem/core";
+    import { debug, propStore, teleport } from "@vrembem/core";
 
     const modal = new Modal({
       plugins: [
+        debug(),
         propStore({
           onChange({ plugin, parent, entry }) {
             if (["opening", "closing"].includes(entry.state)) return;

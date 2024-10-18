@@ -10,10 +10,11 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Drawer from "./index.js";
-    import { propStore, mediaQuery, teleport } from "@vrembem/core";
+    import { debug, propStore, mediaQuery, teleport } from "@vrembem/core";
 
     const drawer = new Drawer({
       plugins: [
+        debug(),
         propStore({
           prop: "inlineState",
           value: ({ entry }) => entry.store,

@@ -11,53 +11,54 @@ export function debug(options = {}) {
     settings: {...defaults, ...options}
   };
 
-  function log(string) {
+  function log(string, args) {
     console.log(
-      `%cDEBUG: %c${string}`, 
+      `%c📡 DEBUG: %c${string} > Arguments:`,
       props.settings.color1,
       props.settings.color2,
+      ...args
     );
   }
 
   const methods = {
     // Mount lifecycle hooks...
     mount() {
-      log("mountPlugins()");
+      log("mountPlugins()", arguments);
     },
     beforeMount() {
-      log("beforeMount()");
+      log("beforeMount()", arguments);
     },
     onMount() {
-      log("onMount()");
+      log("onMount()", arguments);
     },
     beforeRegister() {
-      log("beforeRegister()");
+      log("beforeRegister()", arguments);
     },
     afterRegister() {
-      log("afterRegister()");
+      log("afterRegister()", arguments);
     },
     afterMount() {
-      log("afterMount()");
+      log("afterMount()", arguments);
     },
 
     // Unmount lifecycle hooks...
     beforeUnmount() {
-      log("beforeUnmount()");
+      log("beforeUnmount()", arguments);
     },
     onUnmount() {
-      log("onUnmount()");
+      log("onUnmount()", arguments);
     },
     beforeDeregister() {
-      log("beforeDeregister()");
+      log("beforeDeregister()", arguments);
     },
     afterDeregister() {
-      log("afterDeregister()");
+      log("afterDeregister()", arguments);
     },
     afterUnmount() {
-      log("afterUnmount()");
+      log("afterUnmount()", arguments);
     },
     unmount() {
-      log("unmountPlugins()");
+      log("unmountPlugins()", arguments);
     }
   };
 
