@@ -1,5 +1,4 @@
-import { getPrefix } from "../helpers/getPrefix";
-import { createPluginObject } from "../helpers";
+import { createPluginObject, getPrefix } from "../helpers";
 
 const defaults = {
   // The data attributes to get the breakpoint values from.
