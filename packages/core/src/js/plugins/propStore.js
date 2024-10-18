@@ -61,7 +61,7 @@ export function propStore(options = {}) {
         const oldValue = _value;
         _value = newValue;
         // Conditionally store the value in local storage.
-        const condition = await getValue(this.settings.condition, contextObj, newValue, oldValue);
+        const condition = getValue(this.settings.condition, contextObj, newValue, oldValue);
         if (condition) {
           this.store.set(entry.id, newValue);
         }
@@ -85,8 +85,8 @@ export function propStore(options = {}) {
     entry[this.settings.prop] = await getValue(this.settings.value, contextObj) || entry[this.settings.prop];
   }
 
-  async function getValue(obj, ...args) {
-    return (typeof obj === "function") ? await obj(...args) : obj;
+  function getValue(obj, ...args) {
+    return (typeof obj === "function") ? obj(...args) : obj;
   }
 
   async function removePropStore(entry) {

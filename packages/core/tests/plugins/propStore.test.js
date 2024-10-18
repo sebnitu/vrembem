@@ -25,9 +25,9 @@ test("should register and setup the propStore plugin on collection mount", async
   expect(typeof plugin.store.get).toBe("function");
   expect(typeof plugin.store.set).toBe("function");
   expect(typeof plugin.settings.onChange).toBe("function");
-  expect(typeof plugin.settings.condition).toBe("function");
+  expect(typeof plugin.settings.condition).toBe("boolean");
   plugin.settings.onChange();
-  expect(plugin.settings.condition()).toBe(false);
+  expect(plugin.settings.condition).toBe(false);
 });
 
 test("should remove the propStore plugin when the remove method is called", async () => {

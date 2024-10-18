@@ -17,7 +17,7 @@
         propStore({
           prop: "inlineState",
           value: ({ entry }) => entry.store,
-          condition: ({ entry }) => ["opened", "closed"].includes(entry.state),
+          condition: ({ entry }) => ["opened", "closed", "indeterminate"].includes(entry.state),
           onChange: ({ entry }) => entry.applyState()
         }),
         mediaQuery({
