@@ -137,9 +137,8 @@ test("should be able to apply settings in various ways", async () => {
   expect(collection.get("entry-3").mql.matches).toBe(false);
 });
 
-test("should unmount the plugin when the unmount method is called", () => {
-  const plugin = collection.plugins.find((plugin) => plugin.name === "mediaQuery");
-  plugin.unmount(collection);
+test("should unmount the plugin when the unmount method is called", async () => {
+  await collection.plugins.remove("mediaQuery");
   expect(collection.get("entry-1").mql).toBe(null);
   expect(collection.get("entry-2").mql).toBe(null);
   expect(collection.get("entry-3").mql).toBe(null);

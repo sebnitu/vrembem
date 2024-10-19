@@ -40,7 +40,7 @@ export class pluginsArray extends Array {
   async remove(name) {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
-      await maybeRunMethod(this[index], "unmount", this.parent);
+      await maybeRunMethod(this[index], "unmount", { parent: this.parent });
       this.splice(index, 1);
     }
   }

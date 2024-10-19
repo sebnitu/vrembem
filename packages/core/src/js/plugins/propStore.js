@@ -31,7 +31,7 @@ export function propStore(options = {}) {
 
     unmount({ parent }) {
       parent.collection.forEach((entry) => {
-        this.onUnmount(entry);
+        removePropStore.call(this, entry);
       });
     },
 
