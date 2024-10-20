@@ -2,7 +2,8 @@ import { createPluginObject } from "../helpers";
 
 const defaults = {
   color1: "color: hsl(152deg 60% 40%)",
-  color2: "color: hsl(152deg 60% 50%)"
+  color2: "color: hsl(152deg 60% 50%)",
+  condition: true
 };
 
 export function debug(options = {}) {
@@ -13,11 +14,15 @@ export function debug(options = {}) {
 
   function log(string, args) {
     console.log(
-      `%c📡 DEBUG: %c${string} > Arguments:`,
+      `%c📡 DEBUG: %c${string}`,
       props.settings.color1,
       props.settings.color2,
       ...args
     );
+  }
+
+  function getValue(obj, ...args) {
+    return (typeof obj === "function") ? obj(...args) : obj;
   }
 
   const methods = {
@@ -28,14 +33,23 @@ export function debug(options = {}) {
     beforeMount() {
       log("beforeMount()", arguments);
     },
-    onMount() {
-      log("onMount()", arguments);
+    onMount({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`onMount() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    beforeRegister() {
-      log("beforeRegister()", arguments);
+    beforeRegister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`beforeRegister() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    afterRegister() {
-      log("afterRegister()", arguments);
+    afterRegister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`afterRegister() > [${count}] #${entry.id}`, arguments);
+      }
     },
     afterMount() {
       log("afterMount()", arguments);
@@ -45,14 +59,17 @@ export function debug(options = {}) {
     beforeUnmount() {
       log("beforeUnmount()", arguments);
     },
-    onUnmount() {
-      log("onUnmount()", arguments);
+    onUnmount({ parent, entry }) {
+      const count = parent.collection.length - 1;
+      log(`onUnmount() > [${count}] #${entry.id}`, arguments);
     },
-    beforeDeregister() {
-      log("beforeDeregister()", arguments);
+    beforeDeregister({ parent, entry }) {
+      const count = parent.collection.length - 1;
+      log(`beforeDeregister() > [${count}] #${entry.id}`, arguments);
     },
-    afterDeregister() {
-      log("afterDeregister()", arguments);
+    afterDeregister({ parent, entry }) {
+      const count = parent.collection.length;
+      log(`afterDeregister() > [${count}] #${entry.id}`, arguments);
     },
     afterUnmount() {
       log("afterUnmount()", arguments);
