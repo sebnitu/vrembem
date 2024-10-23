@@ -2,7 +2,8 @@ import { createPluginObject } from "../helpers";
 
 const defaults = {
   color1: "color: hsl(152deg 60% 40%)",
-  color2: "color: hsl(152deg 60% 50%)"
+  color2: "color: hsl(152deg 60% 50%)",
+  condition: true
 };
 
 export function debug(options = {}) {
@@ -11,53 +12,76 @@ export function debug(options = {}) {
     settings: {...defaults, ...options}
   };
 
-  function log(string) {
+  function log(string, args) {
     console.log(
-      `%cDEBUG: %c${string}`, 
+      `%c📡 DEBUG: %c${string}`,
       props.settings.color1,
       props.settings.color2,
+      ...args
     );
+  }
+
+  function getValue(obj, ...args) {
+    return (typeof obj === "function") ? obj(...args) : obj;
   }
 
   const methods = {
     // Mount lifecycle hooks...
     mount() {
-      log("mountPlugins()");
+      log("mountPlugins()", arguments);
     },
     beforeMount() {
-      log("beforeMount()");
+      log("beforeMount()", arguments);
     },
-    onMount() {
-      log("onMount()");
+    onMount({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`onMount() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    beforeRegister() {
-      log("beforeRegister()");
+    beforeRegister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`beforeRegister() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    afterRegister() {
-      log("afterRegister()");
+    afterRegister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`afterRegister() > [${count}] #${entry.id}`, arguments);
+      }
     },
     afterMount() {
-      log("afterMount()");
+      log("afterMount()", arguments);
     },
 
     // Unmount lifecycle hooks...
     beforeUnmount() {
-      log("beforeUnmount()");
+      log("beforeUnmount()", arguments);
     },
-    onUnmount() {
-      log("onUnmount()");
+    onUnmount({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`onUnmount() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    beforeDeregister() {
-      log("beforeDeregister()");
+    beforeDeregister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`beforeDeregister() > [${count}] #${entry.id}`, arguments);
+      }
     },
-    afterDeregister() {
-      log("afterDeregister()");
+    afterDeregister({ parent, entry }) {
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`afterDeregister() > [${count}] #${entry.id}`, arguments);
+      }
     },
     afterUnmount() {
-      log("afterUnmount()");
+      log("afterUnmount()", arguments);
     },
     unmount() {
-      log("unmountPlugins()");
+      log("unmountPlugins()", arguments);
     }
   };
 

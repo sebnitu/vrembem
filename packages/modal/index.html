@@ -15,13 +15,13 @@
     const modal = new Modal({
       plugins: [
         propStore({
-          onChange(entry) {
+          onChange({ plugin, parent, entry }) {
             if (["opening", "closing"].includes(entry.state)) return;
-            const stackValue = entry.parent.stack.value.map((entry) => entry.id);
-            this.store.set("stackValue", stackValue);
+            const stackValue = parent.stack.value.map((item) => item.id);
+            plugin.store.set("stackValue", stackValue);
           },
-          afterMount(parent) {
-            for (const entry of this.store.get("stackValue", [])) {
+          afterMount({ plugin, parent}) {
+            for (const entry of plugin.store.get("stackValue", [])) {
               parent.open(entry, false);
             }
           }

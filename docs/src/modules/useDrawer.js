@@ -9,9 +9,9 @@ if (typeof window !== "undefined") {
     plugins: [
       propStore({
         prop: "inlineState",
-        value: (entry) => entry.store,
-        condition: (entry) => ["opened", "closed"].includes(entry.state),
-        onChange: (entry) => entry.applyState()
+        value: ({ entry }) => entry.store,
+        condition: ({ entry }) => ["opened", "closed"].includes(entry.state),
+        onChange: ({ entry }) => entry.applyState()
       }),
       mediaQuery({
         onChange(event, entry) {

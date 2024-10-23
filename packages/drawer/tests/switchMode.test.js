@@ -55,11 +55,11 @@ const drawer = new Drawer({
   plugins: [
     propStore({
       prop: "inlineState",
-      value: (entry) => entry.store,
-      condition(entry) {
+      value: ({ entry }) => entry.store,
+      condition({ entry }) {
         return ["opened", "closed", "indeterminate"].includes(entry.state);
       },
-      onChange: (entry) => entry.applyState()
+      onChange: ({ entry }) => entry.applyState()
     }),
     mediaQuery({
       onChange(event, entry) {
@@ -143,8 +143,8 @@ test("should return local store state when switching modes", async () => {
 
 test("should apply indeterminate state when going to inline mode", async () => {
   const entry = await drawer.get("drawer-1");
+  await entry.open();
   entry.setState("indeterminate");
-
   expect(entry.mode).toBe("inline");
   expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");

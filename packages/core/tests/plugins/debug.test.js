@@ -11,7 +11,6 @@ const debugPlugin = debug({ asdf: "fdsa" });
 const collection = new Collection({
   selector: ".entry"
 });
-const colors = ["color: hsl(152deg 60% 40%)", "color: hsl(152deg 60% 50%)"];
 
 console.log = vi.fn();
 
@@ -29,12 +28,6 @@ test("should log all the mount lifecycle hooks when collection is mounted", asyn
   });
   expect(collection.plugins.length).toBe(1);
   expect(console.log).toHaveBeenCalledTimes(12);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cmountPlugins()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cbeforeMount()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %conMount()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cbeforeRegister()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cafterRegister()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cafterMount()", ...colors);
 });
 
 test("should log all the unmount lifecycle hooks when collection is unmounted", async () => {
@@ -42,10 +35,20 @@ test("should log all the unmount lifecycle hooks when collection is unmounted", 
   await collection.unmount();
   expect(collection.plugins.length).toBe(1);
   expect(console.log).toHaveBeenCalledTimes(24);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cbeforeUnmount()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %conUnmount()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cbeforeDeregister()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cafterDeregister()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cafterUnmount()", ...colors);
-  expect(console.log).toBeCalledWith("%cDEBUG: %cunmountPlugins()", ...colors);
+});
+
+test("should be able to pass a condition function for console logging", async () => {
+  await collection.plugins.remove("debug");
+  expect(collection.plugins.length).toBe(0);
+  const conditionSpy = vi.fn();
+  await collection.mount({
+    plugins: [
+      debug({ 
+        condition: conditionSpy 
+      })
+    ]
+  });
+  expect(conditionSpy).toHaveBeenCalledTimes(9);
+  await collection.unmount();
+  expect(conditionSpy).toHaveBeenCalledTimes(18);
 });

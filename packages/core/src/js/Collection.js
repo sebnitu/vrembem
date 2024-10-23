@@ -41,20 +41,20 @@ export class Collection {
     await entry.mount();
 
     // beforeRegister lifecycle hooks.
-    await maybeRunMethod.call(this, "beforeRegister", entry);
-    await maybeRunMethod.call(entry, "beforeRegister");
+    await maybeRunMethod(this, "beforeRegister", { parent: this, entry});
+    await maybeRunMethod(entry, "beforeRegister", { parent: this, entry});
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "beforeRegister", entry);
+      await maybeRunMethod(plugin, "beforeRegister", { plugin, parent: this, entry});
     }
 
     // Add the entry to the collection.
     this.collection.push(entry);
 
     // afterRegister lifecycle hooks.
-    await maybeRunMethod.call(this, "afterRegister", entry);
-    await maybeRunMethod.call(entry, "afterRegister");
+    await maybeRunMethod(this, "afterRegister", { parent: this, entry});
+    await maybeRunMethod(entry, "afterRegister", { parent: this, entry});
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "afterRegister", entry);
+      await maybeRunMethod(plugin, "afterRegister", { plugin, parent: this, entry});
     }
 
     return entry;
@@ -68,10 +68,10 @@ export class Collection {
       await entry.unmount(reReg);
 
       // beforeDeregister lifecycle hooks.
-      await maybeRunMethod.call(this, "beforeDeregister", entry, reReg);
-      await maybeRunMethod.call(entry, "beforeDeregister", reReg);
+      await maybeRunMethod(this, "beforeDeregister", { parent: this, entry}, reReg);
+      await maybeRunMethod(entry, "beforeDeregister", { parent: this, entry}, reReg);
       for (const plugin of this.plugins) {
-        await maybeRunMethod.call(plugin, "beforeDeregister", entry, reReg);
+        await maybeRunMethod(plugin, "beforeDeregister", { plugin, parent: this, entry}, reReg);
       }
 
       // Remove all the owned properties from the entry.
@@ -85,10 +85,10 @@ export class Collection {
       this.collection.splice(index, 1);
 
       // afterDeregister lifecycle hooks.
-      await maybeRunMethod.call(this, "afterDeregister", entry, reReg);
-      await maybeRunMethod.call(entry, "afterDeregister", reReg);
+      await maybeRunMethod(this, "afterDeregister", { parent: this, entry}, reReg);
+      await maybeRunMethod(entry, "afterDeregister", { parent: this, entry}, reReg);
       for (const plugin of this.plugins) {
-        await maybeRunMethod.call(plugin, "afterDeregister", entry, reReg);
+        await maybeRunMethod(plugin, "afterDeregister", { plugin, parent: this, entry}, reReg);
       }
     }
 
@@ -101,14 +101,14 @@ export class Collection {
 
     // Mount plugins.
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "mount", this);
+      await maybeRunMethod(plugin, "mount", { plugin, parent: this});
     }
 
     // beforeMount lifecycle hooks.
     
-    await maybeRunMethod.call(this, "beforeMount");
+    await maybeRunMethod(this, "beforeMount");
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "beforeMount", this);
+      await maybeRunMethod(plugin, "beforeMount", { plugin, parent: this});
     }
 
     // Get all the selector elements and register them.
@@ -118,9 +118,9 @@ export class Collection {
     }
 
     // afterMount lifecycle hooks.
-    await maybeRunMethod.call(this, "afterMount");
+    await maybeRunMethod(this, "afterMount");
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "afterMount", this);
+      await maybeRunMethod(plugin, "afterMount", { plugin, parent: this});
     }
 
     return this;
@@ -128,9 +128,9 @@ export class Collection {
 
   async unmount() {
     // beforeUnmount lifecycle hooks.
-    await maybeRunMethod.call(this, "beforeUnmount");
+    await maybeRunMethod(this, "beforeUnmount");
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "beforeUnmount", this);
+      await maybeRunMethod(plugin, "beforeUnmount", { plugin, parent: this});
     }
 
     // Loop through the collection and deregister each entry.
@@ -139,14 +139,14 @@ export class Collection {
     }
 
     // afterUnmount lifecycle hooks.
-    await maybeRunMethod.call(this, "afterUnmount");
+    await maybeRunMethod(this, "afterUnmount");
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "afterUnmount", this);
+      await maybeRunMethod(plugin, "afterUnmount", { plugin, parent: this});
     }
 
     // Unmount plugins.
     for (const plugin of this.plugins) {
-      await maybeRunMethod.call(plugin, "unmount", this);
+      await maybeRunMethod(plugin, "unmount", { plugin, parent: this});
     }
     
     return this;

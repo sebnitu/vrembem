@@ -1,5 +1,4 @@
-import { getPrefix } from "../helpers/getPrefix";
-import { createPluginObject } from "../helpers";
+import { createPluginObject, getPrefix } from "../helpers";
 
 const defaults = {
   // The data attributes to get the breakpoint values from.
@@ -32,17 +31,17 @@ export function mediaQuery(options = {}) {
   };
 
   const methods = {
-    unmount(context) {
-      context.collection.forEach((entry) => {
+    unmount({ parent }) {
+      parent.collection.forEach((entry) => {
         removeMediaQueryList(entry);
       });
     },
 
-    onMount(entry) {
+    onMount({ entry }) {
       setupMediaQueryList(entry);
     },
 
-    onUnmount(entry) {
+    onUnmount({ entry }) {
       removeMediaQueryList(entry);
     }
   };
