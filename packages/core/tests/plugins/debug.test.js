@@ -36,3 +36,19 @@ test("should log all the unmount lifecycle hooks when collection is unmounted", 
   expect(collection.plugins.length).toBe(1);
   expect(console.log).toHaveBeenCalledTimes(24);
 });
+
+test("should be able to pass a condition function for console logging", async () => {
+  await collection.plugins.remove("debug");
+  expect(collection.plugins.length).toBe(0);
+  const conditionSpy = vi.fn();
+  await collection.mount({
+    plugins: [
+      debug({ 
+        condition: conditionSpy 
+      })
+    ]
+  });
+  expect(conditionSpy).toHaveBeenCalledTimes(9);
+  await collection.unmount();
+  expect(conditionSpy).toHaveBeenCalledTimes(18);
+});

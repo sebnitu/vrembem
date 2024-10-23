@@ -60,16 +60,22 @@ export function debug(options = {}) {
       log("beforeUnmount()", arguments);
     },
     onUnmount({ parent, entry }) {
-      const count = parent.collection.length - 1;
-      log(`onUnmount() > [${count}] #${entry.id}`, arguments);
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`onUnmount() > [${count}] #${entry.id}`, arguments);
+      }
     },
     beforeDeregister({ parent, entry }) {
-      const count = parent.collection.length - 1;
-      log(`beforeDeregister() > [${count}] #${entry.id}`, arguments);
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length - 1;
+        log(`beforeDeregister() > [${count}] #${entry.id}`, arguments);
+      }
     },
     afterDeregister({ parent, entry }) {
-      const count = parent.collection.length;
-      log(`afterDeregister() > [${count}] #${entry.id}`, arguments);
+      if (getValue(this.settings.condition, { parent, entry })) {
+        const count = parent.collection.length;
+        log(`afterDeregister() > [${count}] #${entry.id}`, arguments);
+      }
     },
     afterUnmount() {
       log("afterUnmount()", arguments);
