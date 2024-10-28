@@ -7,11 +7,50 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.plugins = new pluginsArray(this);
+    this.events = {};
     this.settings = {
       dataConfig: "config",
       customProps: [],
     };
     this.applySettings(options);
+  }
+
+  on(event, listener, ...args) {
+    // Initialize the event if it doesn't exist.
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+
+    // Check if this listener already exists to prevent duplicate listeners.
+    const listenerExists = this.events[event].some(
+      (entry) => entry.listener === listener
+    );
+    
+    // Add listener to the events array. 
+    if (!listenerExists) {
+      this.events[event].push({ listener, args });
+    }
+  }
+
+  off(event, listenerRef) {
+    // Guard incase the event doesn't exist.
+    if (!this.events[event]) return;
+
+    // Filter out the listener from the event array.
+    this.events[event] = this.events[event].filter(
+      (entry) => entry.listener !== listenerRef
+    );
+  }
+
+  async emit(event, data, ...emitArgs) {
+    // Guard incase the event doesn't exist.
+    if (!this.events[event]) return;
+
+    // Run all the listeners for the emitted event.
+    for (const { listener, args } of this.events[event]) {
+      // Await each listener in case it's a Promise
+      await listener(data, ...emitArgs, ...args);
+    }
   }
 
   get(value, key = "id") {
@@ -46,6 +85,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "beforeRegister", { plugin, parent: this, entry});
     }
+    // Emit the beforeRegister event.
+    await this.emit("beforeRegister", { parent: this, entry });
 
     // Add the entry to the collection.
     this.collection.push(entry);
@@ -56,6 +97,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "afterRegister", { plugin, parent: this, entry});
     }
+    // Emit the afterRegister event.
+    await this.emit("afterRegister", { parent: this, entry });
 
     return entry;
   }
@@ -73,6 +116,8 @@ export class Collection {
       for (const plugin of this.plugins) {
         await maybeRunMethod(plugin, "beforeDeregister", { plugin, parent: this, entry}, reReg);
       }
+      // Emit the beforeDeregister event.
+      await this.emit("beforeDeregister", { parent: this, entry}, reReg);
 
       // Remove all the owned properties from the entry.
       Object.getOwnPropertyNames(entry).forEach((prop) => {
@@ -90,6 +135,8 @@ export class Collection {
       for (const plugin of this.plugins) {
         await maybeRunMethod(plugin, "afterDeregister", { plugin, parent: this, entry}, reReg);
       }
+      // Emit the afterDeregister event.
+      await this.emit("afterDeregister", { parent: this, entry}, reReg);
     }
 
     return this.collection;
@@ -110,6 +157,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "beforeMount", { plugin, parent: this});
     }
+    // Emit the beforeMount event.
+    await this.emit("beforeMount");
 
     // Get all the selector elements and register them.
     const els = document.querySelectorAll(this.settings.selector);
@@ -122,6 +171,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "afterMount", { plugin, parent: this});
     }
+    // Emit the afterMount event.
+    await this.emit("afterMount");
 
     return this;
   }
@@ -132,6 +183,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "beforeUnmount", { plugin, parent: this});
     }
+    // Emit the beforeUnmount event.
+    await this.emit("beforeUnmount");
 
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
@@ -143,6 +196,8 @@ export class Collection {
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "afterUnmount", { plugin, parent: this});
     }
+    // Emit the mount event.
+    await this.emit("afterUnmount");
 
     // Unmount plugins.
     for (const plugin of this.plugins) {
