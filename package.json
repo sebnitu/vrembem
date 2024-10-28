@@ -42,7 +42,7 @@
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "vite": "^5.4.9",
+    "vite": "^5.4.10",
     "vitest": "^2.0.1"
   }
 }
