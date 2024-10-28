@@ -41,9 +41,11 @@ export async function open(query, transitionOverride = undefined, focus = true) 
 
   // Dispatch custom opened event.
   entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
-    detail: this,
-    bubbles: true
+    detail: { parent: entry.parent, entry }, bubbles: true 
   }));
+
+  // Emit the opened event.
+  await entry.parent.emit("opened", { parent: entry.parent, entry });
   
   // Return the modal.
   return entry;
