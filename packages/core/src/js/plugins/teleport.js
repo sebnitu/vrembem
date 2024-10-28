@@ -13,7 +13,14 @@ export function teleport(options = {}) {
   };
 
   const methods = {
+    mount({ plugin, parent }) {
+      parent.on("mount", teleport, plugin);
+      parent.on("unmount", teleportReturn, plugin);
+    },
+
     unmount({ parent }) {
+      parent.off("mount", teleport);
+      parent.off("unmount", teleportReturn);
       parent.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
           entry.teleportReturn();
@@ -22,30 +29,36 @@ export function teleport(options = {}) {
         }
       });
     },
-
-    onMount({ entry }) {
-      entry.teleport = teleport.bind(this, entry);
-      entry.teleport();
-    },
-
-    onUnmount({ entry }) {
-      teleportReturn(entry);
-    }
   };
 
-  function teleport(entry) {
-    teleportReturn(entry);
-    entry.teleportReturn = teleportElement(
-      entry.el,
-      entry.getSetting("teleport", { fallback: this.settings.where }),
-      entry.getSetting("teleportMethod", { fallback: this.settings.how })
-    );
+  function teleport({ parent, entry }, plugin) {
+    // Store the teleportElement function in entry.
+    entry.teleport = () => {
+      if (typeof entry.teleportReturn === "function") {
+        entry.teleportReturn();
+      }
+      entry.teleportReturn = teleportElement(
+        entry.el,
+        entry.getSetting("teleport", { fallback: plugin.settings.where }),
+        entry.getSetting("teleportMethod", { fallback: plugin.settings.how })
+      );
+    };
+
+    // Call the teleport function.
+    entry.teleport();
+
+    // Fire the teleport event.
+    parent.emit("teleport", { plugin, parent, entry });
   }
 
-  function teleportReturn(entry) {
+  function teleportReturn({ parent, entry }, plugin) {
+    // Return teleported element if the cleanup function exists.
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();
     }
+    
+    // Fire the teleport return event.
+    parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
   return createPluginObject(props, methods);
