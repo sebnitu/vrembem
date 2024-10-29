@@ -40,11 +40,11 @@ export async function close(query, transitionOverride, focus = true) {
 
     // Dispatch custom closed event.
     entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
-      detail: { parent: entry.parent, entry }, bubbles: true
+      detail: entry, bubbles: true
     }));
 
     // Emit the closed event.
-    await entry.parent.emit("closed", { parent: entry.parent, entry });
+    await entry.parent.emit("closed", entry);
   }
 
   // Return the modal.
