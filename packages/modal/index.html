@@ -19,17 +19,19 @@
             if (["opening", "closing"].includes(entry.state)) return;
             const stackValue = parent.stack.value.map((item) => item.id);
             plugin.store.set("stackValue", stackValue);
-          },
-          afterMount({ plugin, parent}) {
-            for (const entry of plugin.store.get("stackValue", [])) {
-              parent.open(entry, false);
-            }
           }
         }),
         teleport({
           where: ".modals"
         })
       ]
+    });
+
+    modal.on("afterMount", function () {
+      const plugin = modal.plugins.get("propStore");
+      for (const entry of plugin.store.get("stackValue", [])) {
+        modal.open(entry, false);
+      }
     });
 
     window["modal"] = await modal.mount();
