@@ -41,23 +41,21 @@ export class CollectionEntry {
     this.getCustomProps();
 
     // On mount lifecycle hooks.
-    await maybeRunMethod(this, "onMount", { parent: this.parent, entry: this });
+    await maybeRunMethod(this, "onMount");
     for (const plugin of this.parent.plugins) {
       await maybeRunMethod(plugin, "onMount", { plugin, parent: this.parent, entry: this });
     }
-
     // Emit the mount event.
-    await this.parent.emit("mount", { parent: this.parent, entry: this });
+    await this.parent.emit("mount", this);
   }
 
   async unmount(reMount = false) {
     // Before unmount lifecycle hooks.
-    await maybeRunMethod(this, "onUnmount", { parent: this.parent, entry: this }, reMount);
+    await maybeRunMethod(this, "onUnmount", reMount);
     for (const plugin of this.parent.plugins) {
       await maybeRunMethod(plugin, "onUnmount", { plugin, parent: this.parent, entry: this }, reMount);
     }
-
     // Emit the unmount event.
-    await this.parent.emit("unmount", { parent: this.parent, entry: this });
+    await this.parent.emit("unmount", this, reMount);
   }
 }

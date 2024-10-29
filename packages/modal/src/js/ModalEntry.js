@@ -46,17 +46,7 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
-  async onUnmount(_, reMount) {
-    // If entry is in the opened state, close it.
-    if (!reMount && this.state === "opened") {
-      await this.close(false);
-    } else {
-      // Remove modal from stack.
-      this.parent.stack.remove(this);
-    }
-  }
-
-  async afterRegister() {
+  async onRegister() {
     // Setup initial state.
     if (this.el.classList.contains(this.getSetting("stateOpened"))) {
       // Open entry with transitions disabled.
@@ -67,6 +57,16 @@ export class ModalEntry extends CollectionEntry {
       this.el.classList.remove(this.getSetting("stateClosing"));
       // Add closed state class.
       this.el.classList.add(this.getSetting("stateClosed"));
+    }
+  }
+
+  async onUnmount(reMount) {
+    // If entry is in the opened state, close it.
+    if (!reMount && this.state === "opened") {
+      await this.close(false);
+    } else {
+      // Remove modal from stack.
+      this.parent.stack.remove(this);
     }
   }
 }

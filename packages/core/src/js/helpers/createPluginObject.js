@@ -1,15 +1,16 @@
 export function createPluginObject(props, methods) {
   // Setup array with all lifecycle hooks.
   const hooks = [
+    // Setup
     "beforeMount",
     "onMount",
-    "beforeRegister",
-    "afterRegister",
+    "onRegister",
     "afterMount",
+    
+    // Teardown
     "beforeUnmount",
     "onUnmount",
-    "beforeDeregister",
-    "afterDeregister",
+    "onDeregister",
     "afterUnmount",
   ];
 

@@ -42,14 +42,14 @@ export class Collection {
     );
   }
 
-  async emit(event, data, ...emitArgs) {
+  async emit(event, data) {
     // Guard incase the event doesn't exist.
     if (!this.events[event]) return;
 
     // Run all the listeners for the emitted event.
     for (const { listener, args } of this.events[event]) {
       // Await each listener in case it's a Promise
-      await listener(data, ...emitArgs, ...args);
+      await listener(data, ...args);
     }
   }
 
@@ -79,26 +79,17 @@ export class Collection {
     const entry = await this.createEntry(query, config);
     await entry.mount();
 
-    // beforeRegister lifecycle hooks.
-    await maybeRunMethod(this, "beforeRegister", { parent: this, entry});
-    await maybeRunMethod(entry, "beforeRegister", { parent: this, entry});
-    for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "beforeRegister", { plugin, parent: this, entry});
-    }
-    // Emit the beforeRegister event.
-    await this.emit("beforeRegister", { parent: this, entry });
-
     // Add the entry to the collection.
     this.collection.push(entry);
 
     // afterRegister lifecycle hooks.
-    await maybeRunMethod(this, "afterRegister", { parent: this, entry});
-    await maybeRunMethod(entry, "afterRegister", { parent: this, entry});
+    await maybeRunMethod(this, "onRegister", entry);
+    await maybeRunMethod(entry, "onRegister");
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "afterRegister", { plugin, parent: this, entry});
+      await maybeRunMethod(plugin, "onRegister", { plugin, parent: this, entry});
     }
-    // Emit the afterRegister event.
-    await this.emit("afterRegister", { parent: this, entry });
+    // Emit the register event.
+    await this.emit("register", entry);
 
     return entry;
   }
@@ -110,18 +101,9 @@ export class Collection {
       const entry = this.collection[index];
       await entry.unmount(reReg);
 
-      // beforeDeregister lifecycle hooks.
-      await maybeRunMethod(this, "beforeDeregister", { parent: this, entry}, reReg);
-      await maybeRunMethod(entry, "beforeDeregister", { parent: this, entry}, reReg);
-      for (const plugin of this.plugins) {
-        await maybeRunMethod(plugin, "beforeDeregister", { plugin, parent: this, entry}, reReg);
-      }
-      // Emit the beforeDeregister event.
-      await this.emit("beforeDeregister", { parent: this, entry}, reReg);
-
       // Remove all the owned properties from the entry.
       Object.getOwnPropertyNames(entry).forEach((prop) => {
-        if (prop != "beforeDeregister" && prop != "afterDeregister") {
+        if (prop != "onDeregister") {
           delete entry[prop];
         }
       });
@@ -129,14 +111,14 @@ export class Collection {
       // Remove the entry from the collection.
       this.collection.splice(index, 1);
 
-      // afterDeregister lifecycle hooks.
-      await maybeRunMethod(this, "afterDeregister", { parent: this, entry}, reReg);
-      await maybeRunMethod(entry, "afterDeregister", { parent: this, entry}, reReg);
+      // onDeregister lifecycle hooks.
+      await maybeRunMethod(this, "onDeregister", entry, reReg);
+      await maybeRunMethod(entry, "onDeregister", reReg);
       for (const plugin of this.plugins) {
-        await maybeRunMethod(plugin, "afterDeregister", { plugin, parent: this, entry}, reReg);
+        await maybeRunMethod(plugin, "onDeregister", { plugin, parent: this, entry}, reReg);
       }
-      // Emit the afterDeregister event.
-      await this.emit("afterDeregister", { parent: this, entry}, reReg);
+      // Emit the deregister event.
+      await this.emit("deregister", entry, reReg);
     }
 
     return this.collection;

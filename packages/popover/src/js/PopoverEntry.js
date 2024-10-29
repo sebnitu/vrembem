@@ -151,6 +151,15 @@ export class PopoverEntry extends CollectionEntry {
     this.registerEventListeners();
   }
 
+  async onRegister() {
+    // Set initial state based on the presence of the active class.
+    if (this.el.classList.contains(this.getSetting("stateActive"))) {
+      await this.open();
+    } else {
+      this.el.inert = true;
+    }
+  }
+
   async onUnmount() {
     // If entry is in the opened state, close it.
     if (this.state === "opened") {
@@ -162,14 +171,5 @@ export class PopoverEntry extends CollectionEntry {
     
     // Remove event listeners.
     this.deregisterEventListeners();
-  }
-
-  async afterRegister() {
-    // Set initial state based on the presence of the active class.
-    if (this.el.classList.contains(this.getSetting("stateActive"))) {
-      await this.open();
-    } else {
-      this.el.inert = true;
-    }
   }
 }
