@@ -13,12 +13,12 @@ export function teleport(options = {}) {
   };
 
   const methods = {
-    mount({ plugin, parent }) {
+    setup({ plugin, parent }) {
       parent.on("mount", teleport, plugin);
       parent.on("unmount", teleportReturn, plugin);
     },
 
-    unmount({ parent }) {
+    teardown({ parent }) {
       parent.off("mount", teleport);
       parent.off("unmount", teleportReturn);
       parent.collection.forEach((entry) => {
@@ -31,7 +31,7 @@ export function teleport(options = {}) {
     },
   };
 
-  function teleport({ parent, entry }, plugin) {
+  function teleport(entry, plugin) {
     // Store the teleportElement function in entry.
     entry.teleport = () => {
       if (typeof entry.teleportReturn === "function") {
@@ -48,17 +48,17 @@ export function teleport(options = {}) {
     entry.teleport();
 
     // Fire the teleport event.
-    parent.emit("teleport", { plugin, parent, entry });
+    entry.parent.emit("teleport", { plugin, parent, entry });
   }
 
-  function teleportReturn({ parent, entry }, plugin) {
+  function teleportReturn(entry, plugin) {
     // Return teleported element if the cleanup function exists.
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();
     }
-    
+
     // Fire the teleport return event.
-    parent.emit("teleportReturn", { plugin, parent, entry });
+    entry.parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
   return createPluginObject(props, methods);

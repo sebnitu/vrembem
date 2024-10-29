@@ -130,7 +130,7 @@ export class Collection {
 
     // Mount plugins.
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "mount", { plugin, parent: this});
+      await maybeRunMethod(plugin, "setup", { plugin, parent: this});
     }
 
     // beforeMount lifecycle hooks.
@@ -183,7 +183,7 @@ export class Collection {
 
     // Unmount plugins.
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "unmount", { plugin, parent: this});
+      await maybeRunMethod(plugin, "teardown", { plugin, parent: this});
     }
     
     return this;
