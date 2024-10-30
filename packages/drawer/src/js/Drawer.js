@@ -14,6 +14,7 @@ export class Drawer extends Collection {
   constructor(options) {
     super({ ...defaults, ...options});
     this.module = "Drawer";
+    this.entryClass = DrawerEntry;
     this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
@@ -23,10 +24,6 @@ export class Drawer extends Collection {
     return this.collection.find((entry) => {
       return entry.state === "opened" && entry.mode === "modal";
     });
-  }
-
-  async createEntry(query, config) {
-    return new DrawerEntry(this, query, config);
   }
 
   async open(id, transition, focus) {

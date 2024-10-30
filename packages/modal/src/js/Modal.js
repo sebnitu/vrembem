@@ -17,6 +17,7 @@ export class Modal extends Collection {
   constructor(options) {
     super({ ...defaults, ...options});
     this.module = "Modal";
+    this.entryClass = ModalEntry;
     this.trigger = null;
     this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
@@ -28,10 +29,6 @@ export class Modal extends Collection {
 
   get active() {
     return this.stack.top;
-  }
-
-  async createEntry(query, config) {
-    return new ModalEntry(this, query, config);
   }
 
   async open(id, transition, focus) {

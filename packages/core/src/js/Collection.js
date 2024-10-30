@@ -6,6 +6,7 @@ export class Collection {
   constructor(options = {}) {
     this.module = this.constructor.name;
     this.collection = [];
+    this.entryClass = CollectionEntry;
     this.plugins = new pluginsArray(this);
     this.settings = {
       dataConfig: "config",
@@ -29,10 +30,11 @@ export class Collection {
     return options;
   }
 
+  // TODO: CollectionEntry should be a stored reference and configurable.
   // TODO: Create object should instantiate, initialize, and return the
   // collection entry object.
   async createEntry(query, config) {
-    return new CollectionEntry(this, query, config);
+    return new this.entryClass(this, query, config);
   }
 
   async mount(options = {}) {
