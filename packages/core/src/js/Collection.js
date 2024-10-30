@@ -1,4 +1,4 @@
-import { maybeRunMethod } from "./utilities";
+import { eventEmitter, extendObject, maybeRunMethod } from "./utilities";
 import { pluginsArray } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
@@ -7,50 +7,12 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.plugins = new pluginsArray(this);
-    this.events = {};
     this.settings = {
       dataConfig: "config",
       customProps: [],
     };
     this.applySettings(options);
-  }
-
-  on(event, listener, ...args) {
-    // Initialize the event if it doesn't exist.
-    if (!this.events[event]) {
-      this.events[event] = [];
-    }
-
-    // Check if this listener already exists to prevent duplicate listeners.
-    const listenerExists = this.events[event].some(
-      (entry) => entry.listener === listener
-    );
-    
-    // Add listener to the events array. 
-    if (!listenerExists) {
-      this.events[event].push({ listener, args });
-    }
-  }
-
-  off(event, listenerRef) {
-    // Guard incase the event doesn't exist.
-    if (!this.events[event]) return;
-
-    // Filter out the listener from the event array.
-    this.events[event] = this.events[event].filter(
-      (entry) => entry.listener !== listenerRef
-    );
-  }
-
-  async emit(event, data) {
-    // Guard incase the event doesn't exist.
-    if (!this.events[event]) return;
-
-    // Run all the listeners for the emitted event.
-    for (const { listener, args } of this.events[event]) {
-      // Await each listener in case it's a Promise
-      await listener(data, ...args);
-    }
+    extendObject(this, eventEmitter);
   }
 
   get(value, key = "id") {
