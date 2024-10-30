@@ -21,13 +21,9 @@ export class Collection {
   }
 
   applySettings(options) {
-    return Object.assign(this.settings, this.processOptions(options));
-  }
-
-  processOptions(options) {
     this.plugins.add(options?.plugins || []);
     delete options.plugins;
-    return options;
+    return Object.assign(this.settings, options);
   }
 
   // TODO: Rename hooks and/or this function name.
