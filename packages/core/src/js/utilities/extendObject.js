@@ -1,5 +1,5 @@
 export function extendObject(target, obj) {
-  // Run init if it exists and then remove it from the object.
+  // Run init method if it exists and then remove it from the object.
   if (typeof obj.init === "function") {
     obj.init();
     delete obj.init;
