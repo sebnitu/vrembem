@@ -27,6 +27,7 @@ export class CollectionEntry {
     return getSetting.call(this, key, options);
   }
 
+  // TODO: rename this to "init", "create", or "setup".
   async mount(options = {}) {
     // Throw an error if the element for this entry was not found.
     if (this.el === null) {
@@ -40,6 +41,7 @@ export class CollectionEntry {
     this.getDataConfig();
     this.getCustomProps();
 
+    // TODO: Move lifecycle hooks into parent.
     // On mount lifecycle hooks.
     await maybeRunMethod(this, "onMount");
     for (const plugin of this.parent.plugins) {
@@ -49,7 +51,9 @@ export class CollectionEntry {
     await this.parent.emit("mount", this);
   }
 
+  // Rename this to "destroy" or "teardown".
   async unmount(reMount = false) {
+    // TODO: Move lifecycle hooks into parent.
     // Before unmount lifecycle hooks.
     await maybeRunMethod(this, "onUnmount", reMount);
     for (const plugin of this.parent.plugins) {
