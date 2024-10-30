@@ -30,11 +30,19 @@ export class Collection {
     return options;
   }
 
-  // TODO: CollectionEntry should be a stored reference and configurable.
-  // TODO: Create object should instantiate, initialize, and return the
-  // collection entry object.
+  // TODO: Rename hooks and/or this function name.
   async createEntry(query, config) {
-    return new this.entryClass(this, query, config);
+    const entry = new this.entryClass(this, query, config);
+    if (typeof entry.init === "function") {
+      await entry.init();
+    }
+    await maybeRunMethod(this, "onCreateEntry", entry);
+    await maybeRunMethod(entry, "onCreateEntry");
+    for (const plugin of this.plugins) {
+      await maybeRunMethod(plugin, "onCreateEntry", { plugin, parent: this, entry});
+    }
+    await this.emit("createEntry", entry);
+    return entry;
   }
 
   async mount(options = {}) {
@@ -74,12 +82,13 @@ export class Collection {
   }
 
   async register(query, config = {}) {
+    // TODO: Actually check if entry already exist and handle the registration
+    // differently if it does instead of running deregister.
     // Deregister the element in case it has already been registered.
     await this.deregister(query?.id || query, true);
 
     // Create the collection entry object and mount it.
     const entry = await this.createEntry(query, config);
-    await entry.mount();
 
     // Add the entry to the collection.
     this.collection.push(entry);

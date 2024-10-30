@@ -27,8 +27,7 @@ export class CollectionEntry {
     return getSetting.call(this, key, options);
   }
 
-  // TODO: rename this to "init", "create", or "setup".
-  async mount(options = {}) {
+  async init(options = {}) {
     // Throw an error if the element for this entry was not found.
     if (this.el === null) {
       throw new Error(`${this.parent.module} element was not found with ID: "${this.id}"`);
@@ -51,8 +50,7 @@ export class CollectionEntry {
     await this.parent.emit("mount", this);
   }
 
-  // Rename this to "destroy" or "teardown".
-  async unmount(reMount = false) {
+  async destroy(reMount = false) {
     // TODO: Move lifecycle hooks into parent.
     // Before unmount lifecycle hooks.
     await maybeRunMethod(this, "onUnmount", reMount);
