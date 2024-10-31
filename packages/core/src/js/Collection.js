@@ -62,6 +62,7 @@ export class Collection {
     return entry;
   }
 
+  // TODO: Handle duplicate ID registration.
   async register(query, config = {}) {
     // Create the collection entry object and mount it.
     const entry = await this.createEntry(query, config);
