@@ -27,7 +27,7 @@ export class ModalEntry extends CollectionEntry {
     return this.parent.deregister(this.id);
   }
 
-  async onMount() {
+  async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = (dialog) ? dialog : this.el;
@@ -46,7 +46,7 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
-  async onRegister() {
+  async onRegisterEntry() {
     // Setup initial state.
     if (this.el.classList.contains(this.getSetting("stateOpened"))) {
       // Open entry with transitions disabled.

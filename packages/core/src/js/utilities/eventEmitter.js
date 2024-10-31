@@ -31,6 +31,14 @@ export const eventEmitter = {
   },
 
   async emit(event, data) {
+    // If the event starts with "on":
+    // - Get the third letter of the string and lowercase it.
+    // - Concatenate it with the rest of the string.
+    // e.g: "onMount" > "mount", "onRegister" > "register", etc.
+    event = event.startsWith("on")
+      ? event.slice(2, 3).toLowerCase() + event.slice(3)
+      : event;
+
     // Guard incase the event doesn't exist.
     if (!this.events[event]) return;
 

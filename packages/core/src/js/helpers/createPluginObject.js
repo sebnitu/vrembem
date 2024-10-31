@@ -3,14 +3,14 @@ export function createPluginObject(props, methods) {
   const hooks = [
     // Setup
     "beforeMount",
-    "onMount", // TODO: rename onMount to createEntry
-    "onRegister", // TODO: rename onRegister to registerEntry
+    "onCreateEntry",
+    "onRegisterEntry",
     "afterMount",
     
     // Teardown
     "beforeUnmount",
-    "onUnmount", // TODO: rename onUnmount to destroyEntry
-    "onDeregister", // TODO: rename onDeregister to deregisterEntry
+    "onDestroyEntry",
+    "onDeregisterEntry",
     "afterUnmount",
   ];
 

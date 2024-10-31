@@ -1,5 +1,5 @@
 import { getCustomProps, getSetting } from "./helpers";
-import { getConfig, getElement, maybeRunMethod } from "./utilities";
+import { getConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {
@@ -15,16 +15,18 @@ export class CollectionEntry {
     return Object.assign(this.settings, obj);
   }
 
+  getSetting(key, options = {}) {
+    return getSetting.call(this, key, options);
+  }
+
+  // TODO: Maybe rename this to "build" or something along with the helper function.
   getDataConfig() {
     return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
   }
-
+  
+  // TODO: Maybe rename this to "build" or something.
   getCustomProps() {
     return Object.assign(this.customProps, getCustomProps(this));
-  }
-
-  getSetting(key, options = {}) {
-    return getSetting.call(this, key, options);
   }
 
   async init(options = {}) {
@@ -39,25 +41,9 @@ export class CollectionEntry {
     // Build the data attribute and custom property setting objects.
     this.getDataConfig();
     this.getCustomProps();
-
-    // TODO: Move lifecycle hooks into parent.
-    // On mount lifecycle hooks.
-    await maybeRunMethod(this, "onMount");
-    for (const plugin of this.parent.plugins) {
-      await maybeRunMethod(plugin, "onMount", { plugin, parent: this.parent, entry: this });
-    }
-    // Emit the mount event.
-    await this.parent.emit("mount", this);
   }
 
-  async destroy(reMount = false) {
-    // TODO: Move lifecycle hooks into parent.
-    // Before unmount lifecycle hooks.
-    await maybeRunMethod(this, "onUnmount", reMount);
-    for (const plugin of this.parent.plugins) {
-      await maybeRunMethod(plugin, "onUnmount", { plugin, parent: this.parent, entry: this }, reMount);
-    }
-    // Emit the unmount event.
-    await this.parent.emit("unmount", this, reMount);
+  async destroy() {
+    // console.log("CollectionEntry > destroy()");
   }
 }
