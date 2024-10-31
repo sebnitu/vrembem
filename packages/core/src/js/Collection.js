@@ -36,31 +36,27 @@ export class Collection {
     }
 
     // Dispatch onCreateEntry lifecycle hooks.
-    await dispatchLifecycleHook("onCreateEntry", { parent: this, entry });
+    await dispatchLifecycleHook("onCreateEntry", this, entry);
 
     // Return the entry
     return entry;
   }
 
-  // TODO: Store and provide the entry ID to lifecycle hooks and as the return.
   async destroyEntry(entry) {
-    // Store the ID of the entry.
-    const id = entry.id;
-
     // Run the entry destroy() method if it exists.
     if (typeof entry.init === "function") {
       await entry.destroy();
     }
 
-    // Remove all the owned properties from the entry. except for the ""
+    // Remove all the owned properties from the entry.
     Object.getOwnPropertyNames(entry).forEach((prop) => {
-      if (prop != "onDeregister") {
+      if (!["id", "onDestroyEntry", "onDeregisterEntry", "afterUnmount"].includes(prop)) {
         delete entry[prop];
       }
     });
 
     // Dispatch onDestroyEntry lifecycle hooks.
-    await dispatchLifecycleHook("onDestroyEntry", { parent: this, entry }, id);
+    await dispatchLifecycleHook("onDestroyEntry", this, entry);
 
     // Return the entry.
     return entry;
@@ -74,10 +70,11 @@ export class Collection {
     this.collection.push(entry);
 
     // Dispatch onRegisterEntry lifecycle hooks.
-    await dispatchLifecycleHook("onRegisterEntry", { parent: this, entry });
+    await dispatchLifecycleHook("onRegisterEntry", this, entry);
+
+    return entry;
   }
 
-  // TODO: Store and provide the entry ID to lifecycle hooks and as the return.
   async deregister(id) {
     const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
@@ -88,8 +85,12 @@ export class Collection {
       this.collection.splice(index, 1);
 
       // Dispatch onDeregisterEntry lifecycle hooks.
-      await dispatchLifecycleHook("onDeregisterEntry", { parent: this, entry }, id);
+      await dispatchLifecycleHook("onDeregisterEntry", this, entry);
+
+      return entry;
     }
+
+    return null;
   }
 
   async mount(options = {}) {
@@ -102,7 +103,7 @@ export class Collection {
     }
 
     // Dispatch beforeMount lifecycle hooks.
-    await dispatchLifecycleHook("beforeMount", { parent: this });
+    await dispatchLifecycleHook("beforeMount", this);
 
     // Get all the selector elements and register them.
     const els = document.querySelectorAll(this.settings.selector);
@@ -111,14 +112,14 @@ export class Collection {
     }
 
     // Dispatch afterMount lifecycle hooks.
-    await dispatchLifecycleHook("afterMount", { parent: this });
+    await dispatchLifecycleHook("afterMount", this);
 
     return this;
   }
 
   async unmount() {
     // Dispatch beforeUnmount lifecycle hooks.
-    await dispatchLifecycleHook("beforeUnmount", { parent: this });
+    await dispatchLifecycleHook("beforeUnmount", this);
 
     // Loop through the collection and deregister each entry.
     while (this.collection.length > 0) {
@@ -126,7 +127,7 @@ export class Collection {
     }
 
     // Dispatch afterUnmount lifecycle hooks.
-    await dispatchLifecycleHook("afterUnmount", { parent: this });
+    await dispatchLifecycleHook("afterUnmount", this);
 
     // Unmount plugins.
     for (const plugin of this.plugins) {
