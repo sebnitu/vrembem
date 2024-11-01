@@ -131,7 +131,7 @@ export class PopoverEntry extends CollectionEntry {
     }
   }
 
-  async onMount() {
+  async onCreateEntry() {
     // Get the trigger element.
     this.trigger = document.querySelector(
       `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
@@ -151,7 +151,7 @@ export class PopoverEntry extends CollectionEntry {
     this.registerEventListeners();
   }
 
-  async onRegister() {
+  async onRegisterEntry() {
     // Set initial state based on the presence of the active class.
     if (this.el.classList.contains(this.getSetting("stateActive"))) {
       await this.open();

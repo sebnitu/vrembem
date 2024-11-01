@@ -85,7 +85,7 @@ export class DrawerEntry extends CollectionEntry {
     return this.parent.deregister(this.id);
   }
 
-  async onMount() {
+  async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = (dialog) ? dialog : this.el;

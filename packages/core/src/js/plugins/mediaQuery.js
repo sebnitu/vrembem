@@ -37,11 +37,11 @@ export function mediaQuery(options = {}) {
       });
     },
 
-    onMount({ entry }) {
+    onCreateEntry({ entry }) {
       setupMediaQueryList(entry);
     },
 
-    onUnmount({ entry }) {
+    onDestroyEntry({ entry }) {
       removeMediaQueryList(entry);
     }
   };

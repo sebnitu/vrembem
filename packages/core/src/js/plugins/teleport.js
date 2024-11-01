@@ -14,13 +14,13 @@ export function teleport(options = {}) {
 
   const methods = {
     setup({ plugin, parent }) {
-      parent.on("mount", teleport, plugin);
-      parent.on("unmount", teleportReturn, plugin);
+      parent.on("createEntry", teleport, plugin);
+      parent.on("destroyEntry", teleportReturn, plugin);
     },
 
     teardown({ parent }) {
-      parent.off("mount", teleport);
-      parent.off("unmount", teleportReturn);
+      parent.off("createEntry", teleport);
+      parent.off("destroyEntry", teleportReturn);
       parent.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
           entry.teleportReturn();

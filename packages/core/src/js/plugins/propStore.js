@@ -35,11 +35,11 @@ export function propStore(options = {}) {
       });
     },
 
-    async onMount({ entry }) {
+    async onCreateEntry({ entry }) {
       await setupPropStore.call(this, entry);
     },
 
-    onUnmount({ entry }) {
+    onDestroyEntry({ entry }) {
       removePropStore.call(this, entry);
     }
   };
