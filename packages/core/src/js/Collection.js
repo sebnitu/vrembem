@@ -65,13 +65,19 @@ export class Collection {
     return entry;
   }
 
-  // TODO: Handle duplicate ID registration.
   async register(query, config = {}) {
     // Create the collection entry object and mount it.
     const entry = await this.createEntry(query, config);
 
-    // Add the entry to the collection.
-    this.collection.push(entry);
+    // Check if an entry with the provided ID has already been registered.
+    const index = this.collection.findIndex(item => item.id === entry.id);
+    if (~index) {
+      // Replace the existing entry in the collection.
+      this.collection[index] = entry;
+    } else {
+      // Add the entry to the collection.
+      this.collection.push(entry);
+    }
 
     // Dispatch onRegisterEntry lifecycle hooks.
     await dispatchLifecycleHook("onRegisterEntry", this, entry);
