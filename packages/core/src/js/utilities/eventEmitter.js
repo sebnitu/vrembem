@@ -1,8 +1,4 @@
 export const eventEmitter = {
-  init() {
-    this.events = {};
-  },
-
   on(event, listener, ...args) {
     // Initialize the event if it doesn't exist.
     if (!this.events[event]) {

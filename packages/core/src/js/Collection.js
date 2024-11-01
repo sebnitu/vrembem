@@ -1,4 +1,4 @@
-import { eventEmitter, extendObject, maybeRunMethod } from "./utilities";
+import { eventEmitter, maybeRunMethod } from "./utilities";
 import { dispatchLifecycleHook, pluginsArray } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
@@ -13,7 +13,10 @@ export class Collection {
       customProps: [],
     };
     this.applySettings(options);
-    extendObject(this, eventEmitter);
+
+    // Add event emitter prop and methods.
+    this.events = {};
+    Object.assign(this, eventEmitter);
   }
 
   get(value, key = "id") {
