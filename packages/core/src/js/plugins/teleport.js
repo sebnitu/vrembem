@@ -13,14 +13,7 @@ export function teleport(options = {}) {
   };
 
   const methods = {
-    setup({ plugin, parent }) {
-      parent.on("createEntry", teleport, plugin);
-      parent.on("destroyEntry", teleportReturn, plugin);
-    },
-
     teardown({ parent }) {
-      parent.off("createEntry", teleport);
-      parent.off("destroyEntry", teleportReturn);
       parent.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
           entry.teleportReturn();
@@ -29,9 +22,17 @@ export function teleport(options = {}) {
         }
       });
     },
+
+    onCreateEntry({ plugin, entry }) {
+      teleport(plugin, entry);
+    },
+
+    onDestroyEntry({ plugin, entry }) {
+      teleportReturn(plugin, entry);
+    }
   };
 
-  function teleport(entry, plugin) {
+  function teleport(plugin, entry) {
     // Store the teleportElement function in entry.
     entry.teleport = () => {
       if (typeof entry.teleportReturn === "function") {
@@ -51,7 +52,7 @@ export function teleport(options = {}) {
     entry.parent.emit("teleport", { plugin, parent, entry });
   }
 
-  function teleportReturn(entry, plugin) {
+  function teleportReturn(plugin, entry) {
     // Return teleported element if the cleanup function exists.
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();
