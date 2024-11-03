@@ -46,6 +46,9 @@ export class Collection {
   }
 
   async destroyEntry(entry) {
+    // Dispatch onDestroyEntry lifecycle hooks.
+    await dispatchLifecycleHook("onDestroyEntry", this, entry);
+
     // Run the entry destroy() method if it exists.
     if (typeof entry.init === "function") {
       await entry.destroy();
@@ -53,13 +56,10 @@ export class Collection {
 
     // Remove all the owned properties from the entry.
     Object.getOwnPropertyNames(entry).forEach((prop) => {
-      if (!["id", "onDestroyEntry", "onDeregisterEntry", "afterUnmount"].includes(prop)) {
+      if (!["id", "afterUnmount"].includes(prop)) {
         delete entry[prop];
       }
     });
-
-    // Dispatch onDestroyEntry lifecycle hooks.
-    await dispatchLifecycleHook("onDestroyEntry", this, entry);
 
     // Return the entry.
     return entry;
@@ -88,14 +88,14 @@ export class Collection {
   async deregister(id) {
     const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
+      // Dispatch onDeregisterEntry lifecycle hooks.
+      await dispatchLifecycleHook("onDeregisterEntry", this, this.collection[index]);
+
       // Get the collection entry object from the collection and destroy it.
       const entry = await this.destroyEntry(this.collection[index]);
 
       // Remove the entry from the collection.
       this.collection.splice(index, 1);
-
-      // Dispatch onDeregisterEntry lifecycle hooks.
-      await dispatchLifecycleHook("onDeregisterEntry", this, entry);
 
       return entry;
     }
