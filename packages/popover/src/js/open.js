@@ -28,7 +28,7 @@ export async function open(query) {
   }
 
   // Get the custom property data before opening the popover.
-  popover.getCustomProps();
+  popover.buildCustomProps();
 
   // Get the middleware options for floating ui.
   const middlewareOptions = getMiddlewareOptions(popover);

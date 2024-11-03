@@ -1,4 +1,4 @@
-import { getCustomProps, getSetting } from "./helpers";
+import { buildCustomProps, getSetting } from "./helpers";
 import { getConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
@@ -19,14 +19,12 @@ export class CollectionEntry {
     return getSetting.call(this, key, options);
   }
 
-  // TODO: Maybe rename this to "build" or something along with the helper function.
-  getDataConfig() {
+  buildDataConfig() {
     return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
   }
   
-  // TODO: Maybe rename this to "build" or something.
-  getCustomProps() {
-    return Object.assign(this.customProps, getCustomProps(this));
+  buildCustomProps() {
+    return Object.assign(this.customProps, buildCustomProps(this));
   }
 
   async init(options = {}) {
@@ -39,8 +37,8 @@ export class CollectionEntry {
     this.applySettings(options);
 
     // Build the data attribute and custom property setting objects.
-    this.getDataConfig();
-    this.getCustomProps();
+    this.buildDataConfig();
+    this.buildCustomProps();
   }
 
   async destroy() {

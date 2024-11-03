@@ -1,7 +1,7 @@
 import { toKebab } from "../utilities";
-import { getPrefix } from "../helpers";
+import { getPrefix } from ".";
 
-export function getCustomProps(entry) {
+export function buildCustomProps(entry) {
   // Get the computed styles of the element.
   const styles = getComputedStyle(entry.el);
 

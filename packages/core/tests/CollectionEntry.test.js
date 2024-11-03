@@ -41,19 +41,19 @@ describe("applySettings()", () => {
   });
 });
 
-describe("getDataConfig()", () => {
+describe("buildDataConfig()", () => {
   it("should be able to use settings from data attributes", () => {
     const entry = new CollectionEntry(obj, "two");
-    entry.getDataConfig();
+    entry.buildDataConfig();
     expect(entry.getSetting("one")).toBe(111);
     expect(entry.getSetting("two")).toBe(222);
   });
 });
 
-describe("getCustomProps()", () => {
+describe("buildCustomProps()", () => {
   it("should be able to use settings from custom properties", () => {
     const entry = new CollectionEntry(obj, "three");
-    entry.getCustomProps();
+    entry.buildCustomProps();
     expect(entry.getSetting("test")).toBe("fdsa");
   });
 });
