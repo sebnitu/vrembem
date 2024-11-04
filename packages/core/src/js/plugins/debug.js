@@ -35,8 +35,9 @@ export function debug(options = {}) {
     setup({ parent }) {
       log("Plugin > setup()", arguments, ["secondary", "neutral"]);
 
+      // TODO: Apply `parent.off` to these functions on teardown to properly
+      // prevent duplication of event listeners.
       // Setup mount based event lifecycle listeners.
-
       parent.on("beforeMount", () => {
         log("Event > beforeMount()");
       });

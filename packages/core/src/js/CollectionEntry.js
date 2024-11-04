@@ -42,6 +42,6 @@ export class CollectionEntry {
   }
 
   async destroy() {
-    // console.log("CollectionEntry > destroy()");
+    // Teardown function to run on `destroyEntry()`.
   }
 }

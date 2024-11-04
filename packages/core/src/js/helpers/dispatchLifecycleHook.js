@@ -14,7 +14,6 @@ export async function dispatchLifecycleHook(name, parent, entry) {
     await maybeRunMethod(plugin, name, { plugin, parent, entry});
   }
 
-  // TODO: Handle duplicate lifecycle event hooks (mounting more than once).
   // Emit the lifecycle hook event.
   await parent.emit(name, entry);
 }
