@@ -30,63 +30,66 @@ export function debug(options = {}) {
     return (typeof obj === "function") ? obj(...args) : obj;
   }
 
+  // Create event listener references.
+  const refs = {
+    beforeMountRef: log.bind(null, "Event > beforeMount()"),
+    afterMountRef: log.bind(null, "Event > afterMount()"),
+    beforeUnmountRef: log.bind(null, "Event > beforeUnmount()", [], ["important", "neutral"]),
+    afterUnmountRef: log.bind(null, "Event > afterUnmount()", [], ["important", "neutral"]),
+    createEntryRef: (entry, { parent, plugin }) => {
+      if (getValue(plugin.settings.condition, entry)) {
+        const count = parent.collection.length;
+        log(`Event > createEntry() > [${count}] #${entry.id}`);
+      }
+    },
+    registerEntryRef: (entry, { parent, plugin }) => {
+      if (getValue(plugin.settings.condition, entry)) {
+        const count = parent.collection.length;
+        log(`Event > registerEntry() > [${count}] #${entry.id}`);
+      }
+    },
+    destroyEntryRef: (entry, { parent, plugin }) => {
+      if (getValue(plugin.settings.condition, entry)) {
+        const count = parent.collection.length;
+        log(`Event > destroyEntry() > [${count}] #${entry.id}`, [], ["important", "neutral"]);
+      }
+    },
+    deregisterEntryRef: (entry, { parent, plugin }) => {
+      if (getValue(plugin.settings.condition, entry)) {
+        const count = parent.collection.length;
+        log(`Event > deregisterEntry() > [${count}] #${entry.id}`, [], ["important", "neutral"]);
+      }
+    }
+  };
+
   const methods = {
     // Plugin setup/teardown methods.
     setup({ parent }) {
       log("Plugin > setup()", arguments, ["secondary", "neutral"]);
-
-      // TODO: Apply `parent.off` to these functions on teardown to properly
-      // prevent duplication of event listeners.
-      // Setup mount based event lifecycle listeners.
-      parent.on("beforeMount", () => {
-        log("Event > beforeMount()");
-      });
-
-      parent.on("createEntry", (entry) => {
-        if (getValue(this.settings.condition, entry)) {
-          const count = parent.collection.length;
-          log(`Event > createEntry() > [${count}] #${entry.id}`);
-        }
-      });
-
-      parent.on("registerEntry", (entry) => {
-        if (getValue(this.settings.condition, entry)) {
-          const count = parent.collection.length;
-          log(`Event > registerEntry() > [${count}] #${entry.id}`);
-        }
-      });
-
-      parent.on("afterMount", () => {
-        log("Event > afterMount()");
-      });
-
-      // Setup unmount based event lifecycle listeners.
-
-      parent.on("beforeUnmount", () => {
-        log("Event > beforeUnmount()", [], ["important", "neutral"]);
-      });
-
-      parent.on("destroyEntry", (entry) => {
-        if (getValue(this.settings.condition, entry)) {
-          const count = parent.collection.length;
-          log(`Event > destroyEntry() > [${count}] #${entry.id}`, [], ["important", "neutral"]);
-        }
-      });
-
-      parent.on("deregisterEntry", (entry) => {
-        if (getValue(this.settings.condition, entry)) {
-          const count = parent.collection.length;
-          log(`Event > deregisterEntry() > [${count}] #${entry.id}`, [], ["important", "neutral"]);
-        }
-      });
-
-      parent.on("afterUnmount", () => {
-        log("Event > afterUnmount()", [], ["important", "neutral"]);
-      });
+      // Mount event lifecycle hooks.
+      parent.on("beforeMount", refs.beforeMountRef);
+      parent.on("createEntry", refs.createEntryRef, { parent, plugin: this });
+      parent.on("registerEntry", refs.registerEntryRef, { parent, plugin: this });
+      parent.on("afterMount", refs.afterMountRef);
+      // Unmount event lifecycle hooks.
+      parent.on("beforeUnmount", refs.beforeUnmountRef);
+      parent.on("destroyEntry", refs.destroyEntryRef, { parent, plugin: this });
+      parent.on("deregisterEntry", refs.deregisterEntryRef, { parent, plugin: this });
+      parent.on("afterUnmount", refs.afterUnmountRef);
     },
 
-    teardown() {
+    teardown({ parent }) {
       log("Plugin > teardown()", arguments, ["secondary", "neutral"]);
+      // Mount event lifecycle hooks.
+      parent.off("beforeMount", refs.beforeMountRef);
+      parent.off("createEntry", refs.createEntryRef);
+      parent.off("registerEntry", refs.registerEntryRef);
+      parent.off("afterMount", refs.afterMountRef);
+      // Unmount event lifecycle hooks.
+      parent.off("beforeUnmount", refs.beforeUnmountRef);
+      parent.off("destroyEntry", refs.destroyEntryRef);
+      parent.off("deregisterEntry", refs.deregisterEntryRef);
+      parent.off("afterUnmount", refs.afterUnmountRef);
     },
     
     // Mount lifecycle hooks.
