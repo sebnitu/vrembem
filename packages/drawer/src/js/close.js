@@ -44,6 +44,9 @@ export async function close(query, transitionOverride, focus = true) {
       detail: this,
       bubbles: true
     }));
+
+    // Emit the closed event.
+    await entry.parent.emit("closed", entry);
   }
 
   // Return the drawer.

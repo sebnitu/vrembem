@@ -74,6 +74,14 @@ export async function open(query) {
     handleDocumentClick.call(this, popover);
   }
 
+  // Dispatch custom opened event.
+  popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "opened", {
+    detail: this, bubbles: true
+  }));
+
+  // Emit the opened event.
+  await popover.parent.emit("opened", popover);
+
   // Return the popover.
   return popover;
 }

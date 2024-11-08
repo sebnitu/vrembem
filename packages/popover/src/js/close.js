@@ -26,6 +26,14 @@ export async function close(query) {
     if (popover.trigger === this.trigger) {
       this.trigger = null;
     }
+
+    // Dispatch custom closed event.
+    popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "closed", {
+      detail: this, bubbles: true
+    }));
+
+    // Emit the closed event.
+    await popover.parent.emit("closed", popover);
   }
 
   // Return the popover.

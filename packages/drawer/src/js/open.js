@@ -41,6 +41,9 @@ export async function open(query, transitionOverride, focus = true) {
       detail: this,
       bubbles: true
     }));
+
+    // Emit the opened event.
+    await entry.parent.emit("opened", entry);
   }
 
   // Return the drawer.
