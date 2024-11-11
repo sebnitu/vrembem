@@ -105,9 +105,9 @@ export class DrawerEntry extends CollectionEntry {
     this.mode = (this.el.classList.contains(this.getSetting("classModal"))) ? "modal" : "inline";
   }
 
-  async onUnmount(reMount) {
-    // If entry is in the opened state, close it.
-    if (!reMount && this.state === "opened") {
+  async onDestroyEntry() {
+    // If entry is a modal and in the opened state, close it.
+    if (this.mode === "modal" && this.state === "opened") {
       await this.close(false);
     }
   }

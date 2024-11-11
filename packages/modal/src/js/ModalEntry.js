@@ -60,13 +60,10 @@ export class ModalEntry extends CollectionEntry {
     }
   }
 
-  async onUnmount(reMount) {
+  async onDestroyEntry() {
     // If entry is in the opened state, close it.
-    if (!reMount && this.state === "opened") {
+    if (this.state === "opened") {
       await this.close(false);
-    } else {
-      // Remove modal from stack.
-      this.parent.stack.remove(this);
     }
   }
 }

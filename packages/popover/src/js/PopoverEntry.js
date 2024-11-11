@@ -160,7 +160,7 @@ export class PopoverEntry extends CollectionEntry {
     }
   }
 
-  async onUnmount() {
+  async onDestroyEntry() {
     // If entry is in the opened state, close it.
     if (this.state === "opened") {
       await this.close();
