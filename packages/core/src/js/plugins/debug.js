@@ -18,7 +18,7 @@ export function debug(options = {}) {
   };
 
   function log(name, args = [], colorKeys = ["primary", "secondary"]) {
-    const colorStyles = colorKeys.map((key) => `color: ${colors[key] || colors.primary}`);
+    const colorStyles = colorKeys.map((key) => `color: ${colors[key]}`);
     console.log(
       `%c📡 DEBUG: %c${name}`,
       ...colorStyles,

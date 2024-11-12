@@ -114,6 +114,12 @@ describe("register() & deregister()", () => {
     expect(obj.collection.length).toBe(0);
   });
 
+  it("should return null when running deregister on an entry that doesn't exist", async () => {
+    const obj = new Collection();
+    const result = await obj.deregister("asdf");
+    expect(result).toBe(null);
+  });
+
   it("should call onCreateEntry and onRegisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
     obj.entryClass = exampleEntry;

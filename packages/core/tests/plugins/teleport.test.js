@@ -34,6 +34,16 @@ test("should register and setup the teleport plugin on collection mount", async 
   expect(container.children.length).toBe(3);
 });
 
+test("should be able to run teleport multiple times on an entry", async () => {
+  const entry = collection.get("entry-1");
+  expect(typeof entry.teleport).toBe("function");
+  expect(typeof entry.teleportReturn).toBe("function");
+  entry.teleport();
+  entry.teleport();
+  expect(main.children.length).toBe(0);
+  expect(container.children.length).toBe(3);
+});
+
 test("should return teleported entries when collection is unmounted", async () => {
   expect(main.children.length).toBe(0);
   expect(container.children.length).toBe(3);
