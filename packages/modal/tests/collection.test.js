@@ -46,8 +46,8 @@ describe("register() & entry.deregister()", () => {
     expect(modal.collection[1].id).toBe("modal-2");
     await modal.register("modal-1");
     expect(modal.collection.length).toBe(2);
-    expect(modal.collection[0].id).toBe("modal-2");
-    expect(modal.collection[1].id).toBe("modal-1");
+    expect(modal.collection[0].id).toBe("modal-1");
+    expect(modal.collection[1].id).toBe("modal-2");
   });
 
   it("should remove entry from collection when entry method deregister is run", async () => {

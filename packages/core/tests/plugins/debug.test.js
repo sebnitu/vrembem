@@ -27,14 +27,14 @@ test("should log all the mount lifecycle hooks when collection is mounted", asyn
     ]
   });
   expect(collection.plugins.length).toBe(1);
-  expect(console.log).toHaveBeenCalledTimes(12);
+  expect(console.log).toHaveBeenCalledTimes(17);
 });
 
 test("should log all the unmount lifecycle hooks when collection is unmounted", async () => {
   expect(collection.plugins.length).toBe(1);
   await collection.unmount();
   expect(collection.plugins.length).toBe(1);
-  expect(console.log).toHaveBeenCalledTimes(24);
+  expect(console.log).toHaveBeenCalledTimes(34);
 });
 
 test("should be able to pass a condition function for console logging", async () => {
@@ -48,7 +48,7 @@ test("should be able to pass a condition function for console logging", async ()
       })
     ]
   });
-  expect(conditionSpy).toHaveBeenCalledTimes(9);
+  expect(conditionSpy).toHaveBeenCalledTimes(12);
   await collection.unmount();
-  expect(conditionSpy).toHaveBeenCalledTimes(18);
+  expect(conditionSpy).toHaveBeenCalledTimes(24);
 });

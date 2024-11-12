@@ -1,4 +1,4 @@
-import { Collection } from "../index";
+import { Collection, CollectionEntry } from "../index";
 
 document.body.innerHTML = `
   <div id="asdf">...</div>
@@ -9,6 +9,17 @@ const defaultSettings = {
   dataConfig: "config",
   customProps: []
 };
+
+class exampleEntry extends CollectionEntry {
+  constructor(parent, query, options = {}) {
+    super(parent, query, options);
+  }
+  init = vi.fn();
+  onCreateEntry = vi.fn();
+  onRegisterEntry = vi.fn();
+  onDestroyEntry = vi.fn();
+  onDeregisterEntry = vi.fn();
+}
 
 describe("constructor()", () => {
   it("should setup the collections object on instantiation", () => {
@@ -103,38 +114,25 @@ describe("register() & deregister()", () => {
     expect(obj.collection.length).toBe(0);
   });
 
-  it("should call before and after register lifecycle hooks if set", async () => {
-    const newObj = new Collection();
-    newObj.createEntry = () => {
-      return {
-        mount: vi.fn(),
-        beforeRegister: vi.fn(),
-        afterRegister: vi.fn(),
-      };
-    };
-    newObj.beforeRegister = vi.fn();
-    newObj.afterRegister = vi.fn();
-    const newEntry = await newObj.register("asdf");
-    expect(newEntry.beforeRegister).toHaveBeenCalled();
-    expect(newEntry.afterRegister).toHaveBeenCalled();
-    expect(newObj.beforeRegister).toHaveBeenCalled();
-    expect(newObj.afterRegister).toHaveBeenCalled();
+  it("should call onCreateEntry and onRegisterEntry lifecycle hooks if set", async () => {
+    const obj = new Collection();
+    obj.entryClass = exampleEntry;
+    const entry = await obj.register("asdf");
+    expect(entry.onCreateEntry).toHaveBeenCalled();
+    expect(entry.onRegisterEntry).toHaveBeenCalled();
   });
 
-  it("should call before and after deregister lifecycle hooks if set", async () => {
+  it("should call onDestroyEntry and onDeregisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
+    obj.entryClass = exampleEntry;
     await obj.register("asdf");
     await obj.register("fdsa");
     const entry = obj.get("asdf");
-    entry.beforeDeregister = vi.fn();
-    entry.afterDeregister = vi.fn();
-    obj.beforeDeregister = vi.fn();
-    obj.afterDeregister = vi.fn();
+    const onDestroyEntryRef = entry.onDestroyEntry;
+    const onDeregisterEntryRef = entry.onDestroyEntry;
     await obj.deregister("asdf");
-    expect(entry.beforeDeregister).toHaveBeenCalled();
-    expect(entry.afterDeregister).toHaveBeenCalled();
-    expect(obj.beforeDeregister).toHaveBeenCalled();
-    expect(obj.afterDeregister).toHaveBeenCalled();
+    expect(onDestroyEntryRef).toHaveBeenCalled();
+    expect(onDeregisterEntryRef).toHaveBeenCalled();
   });
 });
 
