@@ -1,5 +1,5 @@
-export async function maybeRunMethod(obj, fun, ...args) {
-  if (fun in obj && typeof obj[fun] === "function") {
-    await obj[fun](...args);
+export async function maybeRunMethod(obj, name, ...args) {
+  if (name in obj && typeof obj[name] === "function") {
+    await obj[name](...args);
   }
 }

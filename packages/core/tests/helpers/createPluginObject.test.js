@@ -11,15 +11,15 @@ const props = {
 };
 
 const methods = {
-  onMount() {},
-  onUnmount() {}
+  beforeMount() {},
+  beforeUnmount() {}
 };
 
 test("should create and return a plugin object", () => {
   const plugin = createPluginObject(props, methods);
   expect(plugin.name).toBe("example");
-  expect(typeof plugin.onMount).toBe("function");
-  expect(typeof plugin.onUnmount).toBe("function");
+  expect(typeof plugin.beforeMount).toBe("function");
+  expect(typeof plugin.beforeUnmount).toBe("function");
   expect(plugin.settings.string).toBe("asdf");
   expect(plugin.settings.value).toBe(true);
 });
@@ -27,12 +27,12 @@ test("should create and return a plugin object", () => {
 test("should be able to pass lifecycle hooks and name through settings", () => {
   const settings = {
     name: "newExample",
-    beforeRegister() {}
+    onRegisterEntry() {}
   };
   props.settings = {...props.settings, ...settings};
   const plugin = createPluginObject(props, methods);
   expect(plugin.name).toBe("newExample");
-  expect(typeof plugin.beforeRegister).toBe("function");
+  expect(typeof plugin.onRegisterEntry).toBe("function");
 });
 
 test("should allow overriding lifecycle hooks that have already been defined if override is set to true", () => {
@@ -48,9 +48,9 @@ test("should allow overriding lifecycle hooks that have already been defined if 
 test("should log console error if setting a lifecycle hook that has already been defined", () => {
   const settings = {
     override: false,
-    onUnmount() {}
+    beforeMount() {}
   };
   props.settings = {...props.settings, ...settings};
   createPluginObject(props, methods);
-  expect(console.error).toBeCalledWith("newExample plugin already has \"onUnmount\" lifecycle hook defined!");
+  expect(console.error).toBeCalledWith("newExample plugin already has \"beforeMount\" lifecycle hook defined!");
 });

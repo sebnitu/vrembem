@@ -41,19 +41,19 @@ describe("applySettings()", () => {
   });
 });
 
-describe("getDataConfig()", () => {
+describe("buildDataConfig()", () => {
   it("should be able to use settings from data attributes", () => {
     const entry = new CollectionEntry(obj, "two");
-    entry.getDataConfig();
+    entry.buildDataConfig();
     expect(entry.getSetting("one")).toBe(111);
     expect(entry.getSetting("two")).toBe(222);
   });
 });
 
-describe("getCustomProps()", () => {
+describe("buildCustomProps()", () => {
   it("should be able to use settings from custom properties", () => {
     const entry = new CollectionEntry(obj, "three");
-    entry.getCustomProps();
+    entry.buildCustomProps();
     expect(entry.getSetting("test")).toBe("fdsa");
   });
 });
@@ -77,33 +77,19 @@ describe("getSetting()", () => {
   });
 });
 
-describe("mount() & unmount()", () => {
+describe("init() & destroy()", () => {
   it("should completely setup an entry when mounted", async () => {
     const entry = new CollectionEntry(obj, "four");
-    await entry.mount({ new: "asdf" });
+    await entry.init({ new: "asdf" });
     expect(entry.id).toBe("four");
     expect(entry.settings.new).toBe("asdf");
     expect(entry.dataConfig.data).toBe(111);
     expect(entry.customProps.test).toBe("fdsa");
   });
 
-  it("should call onMount lifecycle hooks if set", async () => {
-    const entry = new CollectionEntry(obj, "four");
-    entry.onMount = vi.fn();
-    await entry.mount();
-    expect(entry.onMount).toHaveBeenCalled();
-  });
-
-  it("should call onUnmount lifecycle hooks if set", async () => {
-    const entry = new CollectionEntry(obj, "four");
-    entry.onUnmount = vi.fn();
-    await entry.unmount();
-    expect(entry.onUnmount).toHaveBeenCalled();
-  });
-
-  it("should throw an error if an entry is mounted with no element", async () => {
+  it("should throw an error if an entry is initiated with no element", async () => {
     const entry = new CollectionEntry(obj, "asdf");
-    await expect(entry.mount()).rejects.toThrow("Collection element was not found with ID: \"asdf\"");
+    await expect(entry.init()).rejects.toThrow("Collection element was not found with ID: \"asdf\"");
   });
 });
  

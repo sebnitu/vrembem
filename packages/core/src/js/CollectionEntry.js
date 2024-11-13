@@ -1,5 +1,5 @@
-import { getCustomProps, getSetting } from "./helpers";
-import { getConfig, getElement, maybeRunMethod } from "./utilities";
+import { buildCustomProps, getSetting } from "./helpers";
+import { getConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {
@@ -15,19 +15,19 @@ export class CollectionEntry {
     return Object.assign(this.settings, obj);
   }
 
-  getDataConfig() {
-    return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
-  }
-
-  getCustomProps() {
-    return Object.assign(this.customProps, getCustomProps(this));
-  }
-
   getSetting(key, options = {}) {
     return getSetting.call(this, key, options);
   }
 
-  async mount(options = {}) {
+  buildDataConfig() {
+    return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
+  }
+  
+  buildCustomProps() {
+    return Object.assign(this.customProps, buildCustomProps(this));
+  }
+
+  async init(options = {}) {
     // Throw an error if the element for this entry was not found.
     if (this.el === null) {
       throw new Error(`${this.parent.module} element was not found with ID: "${this.id}"`);
@@ -37,21 +37,11 @@ export class CollectionEntry {
     this.applySettings(options);
 
     // Build the data attribute and custom property setting objects.
-    this.getDataConfig();
-    this.getCustomProps();
-
-    // On mount lifecycle hooks.
-    await maybeRunMethod(this, "onMount", { parent: this.parent, entry: this });
-    for (const plugin of this.parent.plugins) {
-      await maybeRunMethod(plugin, "onMount", { plugin, parent: this.parent, entry: this });
-    }
+    this.buildDataConfig();
+    this.buildCustomProps();
   }
 
-  async unmount(reMount = false) {
-    // Before mount lifecycle hooks.
-    await maybeRunMethod(this, "onUnmount", { parent: this.parent, entry: this }, reMount);
-    for (const plugin of this.parent.plugins) {
-      await maybeRunMethod(plugin, "onUnmount", { plugin, parent: this.parent, entry: this }, reMount);
-    }
+  async destroy() {
+    // Teardown function to run on `destroyEntry()`.
   }
 }

@@ -13,7 +13,7 @@ export function teleport(options = {}) {
   };
 
   const methods = {
-    unmount({ parent }) {
+    teardown({ parent }) {
       parent.collection.forEach((entry) => {
         if (typeof entry.teleportReturn === "function") {
           entry.teleportReturn();
@@ -23,29 +23,43 @@ export function teleport(options = {}) {
       });
     },
 
-    onMount({ entry }) {
-      entry.teleport = teleport.bind(this, entry);
-      entry.teleport();
+    onCreateEntry({ plugin, entry }) {
+      teleport(plugin, entry);
     },
 
-    onUnmount({ entry }) {
-      teleportReturn(entry);
+    onDestroyEntry({ plugin, entry }) {
+      teleportReturn(plugin, entry);
     }
   };
 
-  function teleport(entry) {
-    teleportReturn(entry);
-    entry.teleportReturn = teleportElement(
-      entry.el,
-      entry.getSetting("teleport", { fallback: this.settings.where }),
-      entry.getSetting("teleportMethod", { fallback: this.settings.how })
-    );
+  function teleport(plugin, entry) {
+    // Store the teleportElement function in entry.
+    entry.teleport = () => {
+      if (typeof entry.teleportReturn === "function") {
+        entry.teleportReturn();
+      }
+      entry.teleportReturn = teleportElement(
+        entry.el,
+        entry.getSetting("teleport", { fallback: plugin.settings.where }),
+        entry.getSetting("teleportMethod", { fallback: plugin.settings.how })
+      );
+    };
+
+    // Call the teleport function.
+    entry.teleport();
+
+    // Fire the teleport event.
+    entry.parent.emit("teleport", { plugin, parent, entry });
   }
 
-  function teleportReturn(entry) {
+  function teleportReturn(plugin, entry) {
+    // Return teleported element if the cleanup function exists.
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();
     }
+
+    // Fire the teleport return event.
+    entry.parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
   return createPluginObject(props, methods);

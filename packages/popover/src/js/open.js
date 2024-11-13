@@ -28,7 +28,7 @@ export async function open(query) {
   }
 
   // Get the custom property data before opening the popover.
-  popover.getCustomProps();
+  popover.buildCustomProps();
 
   // Get the middleware options for floating ui.
   const middlewareOptions = getMiddlewareOptions(popover);
@@ -73,6 +73,14 @@ export async function open(query) {
   if (popover.getSetting("event") === "click") {
     handleDocumentClick.call(this, popover);
   }
+
+  // Dispatch custom opened event.
+  popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "opened", {
+    detail: this, bubbles: true
+  }));
+
+  // Emit the opened event.
+  await popover.parent.emit("opened", popover);
 
   // Return the popover.
   return popover;

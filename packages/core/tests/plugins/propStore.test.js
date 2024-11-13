@@ -36,6 +36,22 @@ test("should remove the propStore plugin when the remove method is called", asyn
   expect(collection.plugins.length).toBe(0);
 });
 
+test("should remove propStore from an entry if it is deregistered", async () => {
+  await collection.mount({
+    plugins: [
+      propStore({
+        name: "quickPropStore"
+      })
+    ]
+  });
+  const entry = collection.get("entry-1");
+  await collection.deregister("entry-1");
+  expect(entry).toEqual({ "id": "entry-1" });
+  await collection.register("entry-1");
+  const el = document.getElementById("entry-1");
+  expect(collection.get("entry-1").el).toBe(el);
+});
+
 test("should be able to set a condition and onChange callback", async () => {
   const spyFunction = vi.fn();
   await collection.mount({
@@ -74,7 +90,7 @@ test("should setup a store property for accessing the local storage value", asyn
 
 test("should be able to set an initial value for the property", async() => {
   const spyFunction = vi.fn();
-  expect(collection.plugins.length).toBe(1);
+  expect(collection.plugins.length).toBe(2);
   await collection.mount({
     plugins: [
       propStore({
@@ -86,7 +102,7 @@ test("should be able to set an initial value for the property", async() => {
       })
     ]
   });
-  expect(collection.plugins.length).toBe(2);
+  expect(collection.plugins.length).toBe(3);
   const entry = collection.get("entry-1");
   expect(entry.hello).toBe("world");
   expect(spyFunction).toBeCalledTimes(3);
@@ -95,7 +111,7 @@ test("should be able to set an initial value for the property", async() => {
 });
 
 test("should be able to set an initial value using a function definition", async() => {
-  expect(collection.plugins.length).toBe(2);
+  expect(collection.plugins.length).toBe(3);
   await collection.mount({
     plugins: [
       propStore({
@@ -106,13 +122,13 @@ test("should be able to set an initial value using a function definition", async
       })
     ]
   });
-  expect(collection.plugins.length).toBe(3);
+  expect(collection.plugins.length).toBe(4);
   const entry = collection.get("entry-1");
   expect(entry.hello).toBe("my friend");
 });
 
 test("should default to the original property value if value function returns falsy", async() => {
-  expect(collection.plugins.length).toBe(3);
+  expect(collection.plugins.length).toBe(4);
   await collection.mount({
     plugins: [
       propStore({
@@ -123,7 +139,7 @@ test("should default to the original property value if value function returns fa
       })
     ]
   });
-  expect(collection.plugins.length).toBe(4);
+  expect(collection.plugins.length).toBe(5);
   const entry = collection.get("entry-1");
   expect(entry.hello).toBe("my friend");
 });

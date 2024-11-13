@@ -1,4 +1,4 @@
-import { getCustomProps, getSetting } from "../../index";
+import { buildCustomProps, getSetting } from "../../index";
 
 document.body.innerHTML = `
   <div id="asdf">asdf</div>
@@ -25,7 +25,7 @@ const mockEntry = {
 };
 
 test("should build a config object with the provided custom properties", () => {
-  const obj = getCustomProps(mockEntry);
+  const obj = buildCustomProps(mockEntry);
   expect(obj.background).toBe("pink");
   expect(obj.foreground).toBe("green");
 });

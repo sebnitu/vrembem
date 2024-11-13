@@ -33,6 +33,9 @@ async function toInline(entry) {
     bubbles: true
   }));
 
+  // Emit the switchMode event.
+  await entry.parent.emit("switchMode", entry);
+
   // Return the entry.
   return entry;
 }
@@ -52,6 +55,9 @@ async function toModal(entry) {
     detail: this,
     bubbles: true
   }));
+
+  // Emit the switchMode event.
+  await entry.parent.emit("switchMode", entry);
 
   // Return the entry.
   return entry;

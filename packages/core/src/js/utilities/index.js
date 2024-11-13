@@ -1,3 +1,4 @@
+export * from "./eventEmitter";
 export * from "./FocusTrap";
 export * from "./getConfig";
 export * from "./getElement";

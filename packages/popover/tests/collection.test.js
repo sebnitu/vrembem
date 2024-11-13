@@ -75,7 +75,7 @@ describe("register() & entry.deregister()", () => {
     const entry = popover.get("asdf");
     expect(entry.id).toBe("asdf");
     await entry.deregister();
-    expect(entry.id).toBe(undefined);
+    expect(entry.id).toBe("asdf");
   });
 });
 

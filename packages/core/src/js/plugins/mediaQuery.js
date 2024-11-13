@@ -31,17 +31,17 @@ export function mediaQuery(options = {}) {
   };
 
   const methods = {
-    unmount({ parent }) {
+    teardown({ parent }) {
       parent.collection.forEach((entry) => {
         removeMediaQueryList(entry);
       });
     },
 
-    onMount({ entry }) {
+    onCreateEntry({ entry }) {
       setupMediaQueryList(entry);
     },
 
-    onUnmount({ entry }) {
+    onDestroyEntry({ entry }) {
       removeMediaQueryList(entry);
     }
   };

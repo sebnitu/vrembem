@@ -12,6 +12,7 @@ export class Popover extends Collection {
   constructor(options = {}) {
     super({ ...defaults, ...options});
     this.module = "Popover";
+    this.entryClass = PopoverEntry;
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
   }
@@ -24,10 +25,6 @@ export class Popover extends Collection {
     return this.collection.find((popover) => {
       return popover.state == "opened" && popover.getSetting("event") == "hover";
     });
-  }
-
-  async createEntry(query, config) {
-    return new PopoverEntry(this, query, config);
   }
 
   async open(id) {

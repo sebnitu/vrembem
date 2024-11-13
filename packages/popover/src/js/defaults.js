@@ -17,6 +17,7 @@ export default {
     "arrow-padding",
     "toggle-delay"
   ],
+  customEventPrefix: "popover:",
   placement: "bottom",
   event: "click",
   offset: 0,

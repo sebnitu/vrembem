@@ -85,7 +85,7 @@ export class DrawerEntry extends CollectionEntry {
     return this.parent.deregister(this.id);
   }
 
-  async onMount() {
+  async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = (dialog) ? dialog : this.el;
@@ -105,9 +105,9 @@ export class DrawerEntry extends CollectionEntry {
     this.mode = (this.el.classList.contains(this.getSetting("classModal"))) ? "modal" : "inline";
   }
 
-  async onUnmount(_, reMount) {
-    // If entry is in the opened state, close it.
-    if (!reMount && this.state === "opened") {
+  async onDestroyEntry() {
+    // If entry is a modal and in the opened state, close it.
+    if (this.mode === "modal" && this.state === "opened") {
       await this.close(false);
     }
   }

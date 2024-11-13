@@ -6,7 +6,7 @@ export class pluginsArray extends Array {
     this.parent = parent;
   }
 
-  isValidPlugin(plugin) {
+  validate(plugin) {
     if (typeof plugin != "object") {
       console.error("Plugin is not a valid object!");
       return false;
@@ -32,7 +32,7 @@ export class pluginsArray extends Array {
   add(plugin) {
     if (Array.isArray(plugin)) {
       plugin.forEach((plugin) => this.add(plugin));
-    } else if (this.isValidPlugin(plugin)) {
+    } else if (this.validate(plugin)) {
       this.push(plugin);
     }
   }
@@ -40,7 +40,7 @@ export class pluginsArray extends Array {
   async remove(name) {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
-      await maybeRunMethod(this[index], "unmount", { parent: this.parent });
+      await maybeRunMethod(this[index], "teardown", { parent: this.parent });
       this.splice(index, 1);
     }
   }
