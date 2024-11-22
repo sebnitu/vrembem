@@ -1,4 +1,3 @@
-import { afterEach, beforeEach, describe, expect } from "vitest";
 import { Collection } from "../../src/js/Collection";
 import { propStore } from "../../src/js/plugins";
 
