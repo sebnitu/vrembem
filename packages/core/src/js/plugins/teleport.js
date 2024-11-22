@@ -1,15 +1,15 @@
 import { teleportElement } from "../utilities";
-import { createPluginObject } from "../helpers";
 
 const defaults = {
   where: null,
   how: "append"
 };
 
-export function teleport(options = {}) {
+export function teleport(config = {}) {
   const props = {
     name: "teleport",
-    settings: {...defaults, ...options}
+    defaults,
+    config
   };
 
   const methods = {
@@ -62,5 +62,5 @@ export function teleport(options = {}) {
     entry.parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
-  return createPluginObject(props, methods);
+  return {...props, ...methods};
 };

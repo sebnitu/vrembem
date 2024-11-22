@@ -1,4 +1,4 @@
-import { createPluginObject, getPrefix } from "../helpers";
+import { getPrefix } from "../helpers";
 
 const defaults = {
   // The data attributes to get the breakpoint values from.
@@ -24,10 +24,20 @@ const defaults = {
   onChange: () => {}
 };
 
-export function mediaQuery(options = {}) {
+const presets = {
+  drawer: {
+    onChange(event, entry) {
+      entry.mode = (event.matches) ? "inline" : "modal";
+    }
+  }
+};
+
+export function mediaQuery(config = {}) {
   const props = {
     name: "mediaQuery",
-    settings: {...defaults, ...options}
+    defaults,
+    presets,
+    config
   };
 
   const methods = {
@@ -38,7 +48,7 @@ export function mediaQuery(options = {}) {
     },
 
     onCreateEntry({ entry }) {
-      setupMediaQueryList(entry);
+      setupMediaQueryList.call(this, entry);
     },
 
     onDestroyEntry({ entry }) {
@@ -48,11 +58,11 @@ export function mediaQuery(options = {}) {
 
   function getMediaQuery(entry) {
     // Get the media query from the data attribute.
-    const value = entry.el.getAttribute(`data-${props.settings.dataMediaQuery}`);
+    const value = entry.el.getAttribute(`data-${this.settings.dataMediaQuery}`);
 
     // Check if a media query exists in mediaQueries object using entry ID.
-    if (!value && entry.id in props.settings.mediaQueries) {
-      return props.settings.mediaQueries[entry.id];
+    if (!value && entry.id in this.settings.mediaQueries) {
+      return this.settings.mediaQueries[entry.id];
     }
 
     return value;
@@ -61,16 +71,16 @@ export function mediaQuery(options = {}) {
   // Get the breakpoint value.
   function getBreakpointValue(entry) {
     // Get the breakpoint from the data attribute.
-    let value = entry.el.getAttribute(`data-${props.settings.dataBreakpoint}`);
+    let value = entry.el.getAttribute(`data-${this.settings.dataBreakpoint}`);
 
     // If no value was returned, is there a breakpoint mapped to the entry id?
-    if (!value && entry.id in props.settings.breakpoints) {
-      value = props.settings.breakpoints[entry.id];
+    if (!value && entry.id in this.settings.breakpoints) {
+      value = this.settings.breakpoints[entry.id];
     }
 
     // Check if a value exists is it a key mapped to a value in breakpoints?
-    if (value && value in props.settings.breakpoints) {
-      value = props.settings.breakpoints[value];
+    if (value && value in this.settings.breakpoints) {
+      value = this.settings.breakpoints[value];
     }
 
     // Is the value a key of a breakpoint custom property?
@@ -80,32 +90,32 @@ export function mediaQuery(options = {}) {
     }
 
     // Return the value or the default value.
-    return value || props.settings.breakpoint;
+    return value || this.settings.breakpoint;
   }
 
   function setupMediaQueryList(entry) {
     // Get the media query and breakpoint value.
-    let mq = getMediaQuery(entry);
-    const bp = getBreakpointValue(entry);
+    let mq = getMediaQuery.call(this, entry);
+    const bp = getBreakpointValue.call(this, entry);
 
     // If no breakpoint value or media query was found, return.
     if (!bp && !mq) return;
 
     // Use the default media query if a custom one wasn't found.
     if (bp && !mq) {
-      mq = props.settings.mediaQuery;
+      mq = this.settings.mediaQuery;
     }
     
     // Create the media query string.
-    const mqs = mq.replace(new RegExp(`${props.settings.token}`, "g"), bp);
+    const mqs = mq.replace(new RegExp(`${this.settings.token}`, "g"), bp);
 
     // Setup MediaQueryList object and event listener.
     entry.mql = window.matchMedia(mqs);
     entry.mql.onchange = (event) => {
-      props.settings.onChange(event, entry);
+      this.settings.onChange(event, entry);
     };
     // Run the on change function for the initial match check.
-    props.settings.onChange(entry.mql, entry);
+    this.settings.onChange(entry.mql, entry);
   }
 
   function removeMediaQueryList(entry) {
@@ -114,5 +124,5 @@ export function mediaQuery(options = {}) {
     entry.mql = null;
   }
 
-  return createPluginObject(props, methods);
+  return {...props, ...methods};
 };
