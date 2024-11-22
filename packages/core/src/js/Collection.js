@@ -1,4 +1,4 @@
-import { eventEmitter, maybeRunMethod } from "./utilities";
+import { eventEmitter, getElement, maybeRunMethod } from "./utilities";
 import { dispatchLifecycleHook, pluginsArray } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
@@ -66,23 +66,37 @@ export class Collection {
   }
 
   async register(query, config = {}) {
-    // Create the collection entry object and mount it.
-    const entry = await this.createEntry(query, config);
+    // Get the element to register.
+    const element = getElement(query);
 
-    // Check if an entry with the provided ID has already been registered.
-    const index = this.collection.findIndex(item => item.id === entry.id);
-    if (~index) {
-      // Replace the existing entry in the collection.
-      this.collection[index] = entry;
-    } else {
-      // Add the entry to the collection.
-      this.collection.push(entry);
+    // Throw an error if element wasn't found.
+    if (element === null) {
+      throw new Error(`${this.module} element was not found with ID: "${query?.id || query}"`);
     }
 
-    // Dispatch onRegisterEntry lifecycle hooks.
-    await dispatchLifecycleHook("onRegisterEntry", this, entry);
-
-    return entry;
+    // Check if the element with the provided ID has already been registered.
+    const index = this.collection.findIndex(item => item.id === element.id);
+    if (~index) {
+      // Get the entry from the collection.
+      const entry = this.collection[index];
+      // Override the element property with the provided element.
+      entry.el = element;
+      // Run the entry init() method if it exists.
+      if (typeof entry.init === "function") {
+        await entry.init(config);
+      }
+      // Return the registered entry.
+      return entry;
+    } else {
+      // Create the collection entry object.
+      const entry = await this.createEntry(element, config);
+      // Add the entry to the collection.
+      this.collection.push(entry);
+      // Dispatch onRegisterEntry lifecycle hooks.
+      await dispatchLifecycleHook("onRegisterEntry", this, entry);
+      // Return the registered entry.
+      return entry;
+    }
   }
 
   async deregister(id) {
