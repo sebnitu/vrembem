@@ -155,10 +155,15 @@ describe("register() & deregister()", () => {
   });
 
   it("should disable setting tabindex on drawer dialog", async () => {
+    // Disable tabindex before register.
     drawer.settings.setTabindex = false;
     let entry = await drawer.register("drawer-1");
     expect(entry.dialog.getAttribute("tabindex")).toBe(null);
 
+    // Deregister the entry before updating the setting and re-registering.
+    await drawer.deregister("drawer-1");
+
+    // Enable tabindex before register.
     drawer.settings.setTabindex = true;
     entry = await drawer.register("drawer-1");
     expect(entry.dialog.getAttribute("tabindex")).toBe("-1");
