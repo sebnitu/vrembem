@@ -1,4 +1,4 @@
-export function createPluginObject(props, methods) {
+export function createPluginObject(plugin, module) {
   // Setup array with all lifecycle hooks.
   const hooks = [
     // Setup
@@ -14,32 +14,38 @@ export function createPluginObject(props, methods) {
     "afterUnmount",
   ];
 
+  // Get the preset for this module if it exists. Otherwise set an empty object.
+  const preset = plugin.presets?.[module] || {};
+
+  // Merge plugin config with the defaults and preset if it exists.
+  plugin.settings = {...plugin.defaults, ...preset, ...plugin.config};
+
+  // Apply new plugin name if one is provided.
+  if (plugin.settings.name) {
+    plugin.name = plugin.settings.name;
+    delete plugin.settings.name;
+  }
+
   // Are we allowed to override existing hooks?
-  const override = props.settings.override;
+  const override = plugin.settings.override;
 
   // Iterate over the hooks array.
   for (const hook of hooks) {
-    if (typeof props.settings[hook] === "function") {
+    if (typeof plugin.settings[hook] === "function") {
       // Check we're allowed to override hooks or that the hook doesn't already 
       // exist in methods. This is to prevent overriding core functionality
       // unless explicitly allowed.
-      if (override || typeof methods[hook] !== "function") {
+      if (override || typeof plugin[hook] !== "function") {
         // Copy the method to the methods object.
-        methods[hook] = props.settings[hook];
+        plugin[hook] = plugin.settings[hook];
       } else {
-        console.error(`${props.name} plugin already has "${hook}" lifecycle hook defined!`);
+        console.error(`${plugin.name} plugin already has "${hook}" lifecycle hook defined!`);
       }
       // Delete the method from the settings object.
-      delete props.settings[hook];
+      delete plugin.settings[hook];
     }
   };
 
-  // Apply new plugin name if one is provided.
-  if (props.settings.name) {
-    props.name = props.settings.name;
-    delete props.settings.name;
-  }
-
   // Return the plugin object.
-  return {...props, ...methods};
+  return plugin;
 }

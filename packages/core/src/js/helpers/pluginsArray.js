@@ -1,4 +1,5 @@
 import { maybeRunMethod } from "../utilities";
+import { createPluginObject } from "../helpers";
 
 export class pluginsArray extends Array {
   constructor(parent) {
@@ -32,8 +33,13 @@ export class pluginsArray extends Array {
   add(plugin) {
     if (Array.isArray(plugin)) {
       plugin.forEach((plugin) => this.add(plugin));
-    } else if (this.validate(plugin)) {
-      this.push(plugin);
+    } else {
+      // Create the plugin object.
+      plugin = createPluginObject(plugin, this.parent.module.toLowerCase());
+      // Push to the array if the plugin is valid.
+      if (this.validate(plugin)) {
+        this.push(plugin);
+      }
     }
   }
 
