@@ -114,7 +114,7 @@ export class Collection {
     // Apply settings with passed options.
     this.applySettings(options);
 
-    // Mount plugins.
+    // Run setup methods on plugins.
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "setup", { plugin, parent: this});
     }
@@ -146,7 +146,7 @@ export class Collection {
     // Dispatch afterUnmount lifecycle hooks.
     await dispatchLifecycleHook("afterUnmount", this);
 
-    // Unmount plugins.
+    // Run teardown methods on plugins.
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "teardown", { plugin, parent: this});
     }
