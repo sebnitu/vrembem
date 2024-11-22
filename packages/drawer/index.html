@@ -14,17 +14,8 @@
 
     const drawer = new Drawer({
       plugins: [
-        propStore({
-          prop: "inlineState",
-          value: ({ entry }) => entry.store,
-          condition: ({ entry }) => ["opened", "closed", "indeterminate"].includes(entry.state),
-          onChange: ({ entry }) => entry.applyState()
-        }),
-        mediaQuery({
-          onChange(event, entry) {
-            entry.mode = (event.matches) ? "inline" : "modal";
-          }
-        }),
+        propStore(),
+        mediaQuery(),
         teleport({
           where: ".drawer-main",
           how: "before"
