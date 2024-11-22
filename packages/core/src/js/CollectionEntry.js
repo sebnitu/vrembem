@@ -42,6 +42,11 @@ export class CollectionEntry {
   }
 
   async destroy() {
-    // Teardown function to run on `destroyEntry()`.
+    // Remove all the owned properties from the entry except for the id.
+    Object.getOwnPropertyNames(this).forEach((prop) => {
+      if (prop !== "id") {
+        delete this[prop];
+      }
+    });
   }
 }
