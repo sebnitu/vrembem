@@ -15,10 +15,12 @@ export function createPluginObject(plugin, module) {
   ];
 
   // Get the preset for this module if it exists. Otherwise set an empty object.
-  const preset = plugin.presets?.[module] || {};
+  const defaults = plugin?.defaults || {};
+  const preset = plugin?.presets?.[module] || {};
+  const config = plugin?.config || {};
 
   // Merge plugin config with the defaults and preset if it exists.
-  plugin.settings = {...plugin.defaults, ...preset, ...plugin.config};
+  plugin.settings = {...defaults, ...preset, ...config};
 
   // Apply new plugin name if one is provided.
   if (plugin.settings.name) {
