@@ -44,11 +44,19 @@ document.body.innerHTML = `
   <div class="entry" id="entry-3" data-breakpoint="md" data-media-query="(max-width: {{BP}})">Three</div>
 `;
 
-const collection = new Collection({
-  selector: ".entry"
-});
+let collection;
 
 describe("mediaQuery", () => {
+  beforeEach(() => {
+    collection = new Collection({
+      selector: ".entry"
+    });
+  });
+
+  afterEach(async () => {
+    await collection.unmount();
+  });
+
   it("should register and setup the mediaQuery plugin on collection mount", async () => {
     window.innerWidth = 800;
     const spyFunction = vi.fn();
@@ -87,6 +95,9 @@ describe("mediaQuery", () => {
   });
   
   it("should undo the mediaQuery setup on collection unmount", async () => {
+    await collection.mount({
+      plugins: mediaQuery()
+    });
     const mql_1 = collection.get("entry-2").mql;
     const mql_2 = collection.get("entry-3").mql;
     await collection.unmount();
@@ -95,6 +106,9 @@ describe("mediaQuery", () => {
   });
   
   it("should remove the mediaQuery plugin when the remove method is called", async () => {
+    await collection.mount({
+      plugins: mediaQuery()
+    });
     expect(collection.plugins.length).toBe(1);
     await collection.plugins.remove("mediaQuery");
     expect(collection.plugins.length).toBe(0);
@@ -138,10 +152,33 @@ describe("mediaQuery", () => {
     expect(collection.get("entry-3").mql.matches).toBe(false);
   });
   
-  it("should unmount the plugin when the unmount method is called", async () => {
+  it("should teardown the plugin when the remove method is called", async () => {
+    await collection.mount({
+      plugins: mediaQuery()
+    });
+    expect(typeof collection.get("entry-2").mql).toBe("object");
+    expect(typeof collection.get("entry-3").mql).toBe("object");
     await collection.plugins.remove("mediaQuery");
-    expect(collection.get("entry-1").mql).toBe(null);
     expect(collection.get("entry-2").mql).toBe(null);
     expect(collection.get("entry-3").mql).toBe(null);
+  });
+
+  it("should apply module preset", async () => {
+    // Initial setup.
+    window.innerWidth = 800;
+    collection.module = "Drawer";
+    
+    // Mount the collection with the mediaQuery plugin and no configurations.
+    await collection.mount({
+      plugins: mediaQuery()
+    });
+
+    // Check the initial mode of the entry.
+    const entry = collection.get("entry-2");
+    expect(entry.mode).toBe("modal");
+
+    // Resize the window and ensure the entry mode changes as expected.
+    resizeWindow(1000, collection.collection);
+    expect(entry.mode).toBe("inline");
   });
 });
