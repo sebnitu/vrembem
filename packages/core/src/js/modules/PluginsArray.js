@@ -30,7 +30,7 @@ export class PluginsArray extends Array {
       plugin.forEach((plugin) => this.add(plugin));
     } else {
       // Create the plugin object.
-      plugin = setupPluginObject(plugin, this.parent.module.toLowerCase());
+      plugin = setupPluginObject(plugin, this.parent);
       // Push to the array if the plugin is valid.
       if (this.validate(plugin)) {
         this.push(plugin);

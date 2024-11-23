@@ -24,19 +24,10 @@ const defaults = {
   onChange: () => {}
 };
 
-const presets = {
-  drawer: {
-    onChange(event, entry) {
-      entry.mode = (event.matches) ? "inline" : "modal";
-    }
-  }
-};
-
 export function mediaQuery(config = {}) {
   const props = {
     name: "mediaQuery",
     defaults,
-    presets,
     config
   };
 

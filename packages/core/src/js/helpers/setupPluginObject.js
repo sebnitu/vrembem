@@ -1,8 +1,7 @@
-// TODO: Maybe move this into plugins array.
-export function setupPluginObject(plugin, module) {
+export function setupPluginObject(plugin, parent) {
   // Get the defaults, presets and provided configuration of the plugin.
   const defaults = plugin?.defaults || {};
-  const preset = plugin?.presets?.[module] || {};
+  const preset = parent?.presets?.[plugin.name] || {};
   const config = plugin?.config || {};
 
   // Create the settings property by merging the plugin defaults, presets and

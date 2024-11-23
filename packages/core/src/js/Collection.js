@@ -4,10 +4,11 @@ import { dispatchLifecycleHook } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
 export class Collection {
-  constructor(options = {}) {
+  constructor(options = {}, presets = {}) {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
+    this.presets = presets;
     this.plugins = new PluginsArray(this);
     this.settings = {
       dataConfig: "config",

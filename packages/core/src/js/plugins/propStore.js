@@ -16,20 +16,10 @@ const defaults = {
   onChange() {}
 };
 
-const presets = {
-  drawer: {
-    prop: "inlineState",
-    value: ({ entry }) => entry.store,
-    condition: ({ entry }) => ["opened", "closed", "indeterminate"].includes(entry.state),
-    onChange: ({ entry }) => entry.applyState()
-  }
-};
-
 export function propStore(config = {}) {
   const props = {
     name: "propStore",
     defaults,
-    presets,
     config,
     store: null,
   };
