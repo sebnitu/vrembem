@@ -1,7 +1,7 @@
 import { maybeRunMethod } from "../utilities";
 import { setupPluginObject } from "../helpers";
 
-export class pluginsArray extends Array {
+export class PluginsArray extends Array {
   constructor(parent) {
     super();
     this.parent = parent;

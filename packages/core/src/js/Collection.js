@@ -1,5 +1,6 @@
-import { eventEmitter, getElement, maybeRunMethod } from "./utilities";
-import { dispatchLifecycleHook, pluginsArray } from "./helpers";
+import { eventEmitter, PluginsArray } from "./modules";
+import { getElement, maybeRunMethod } from "./utilities";
+import { dispatchLifecycleHook } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
 export class Collection {
@@ -7,7 +8,7 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
-    this.plugins = new pluginsArray(this);
+    this.plugins = new PluginsArray(this);
     this.settings = {
       dataConfig: "config",
       customProps: [],

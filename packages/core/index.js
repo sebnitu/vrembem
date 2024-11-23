@@ -1,5 +1,6 @@
 export * from "./src/js/utilities";
 export * from "./src/js/helpers";
+export * from "./src/js/modules";
 export * from "./src/js/plugins";
 
 export * from "./src/js/Collection";

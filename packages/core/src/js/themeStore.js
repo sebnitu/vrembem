@@ -1,4 +1,4 @@
-import { localStore } from "./utilities";
+import { localStore } from "./modules";
 import { cssVar } from "./helpers";
 
 export function themeStore(options) {

@@ -1,8 +1,8 @@
-import { pluginsArray } from "../../src/js/helpers/pluginsArray";
+import { PluginsArray } from "../../src/js/modules";
 
 console.error = vi.fn();
 
-const plugins = new pluginsArray({
+const plugins = new PluginsArray({
   module: "Example"
 });
 

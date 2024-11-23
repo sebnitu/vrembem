@@ -1,4 +1,4 @@
-import { localStore } from "../../index";
+import { localStore } from "../../src/js/modules";
 
 let result;
 

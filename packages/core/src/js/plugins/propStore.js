@@ -1,4 +1,4 @@
-import { localStore } from "../utilities";
+import { localStore } from "../modules";
 
 const defaults = {
   // The property on entry objects to watch.

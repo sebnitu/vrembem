@@ -1,4 +1,4 @@
-import { eventEmitter } from "../../src/js/utilities/";
+import { eventEmitter } from "../../src/js/modules";
 
 // Create the base object to simulate a JavaScript plugin that the event emitter
 // module can be assigned onto.

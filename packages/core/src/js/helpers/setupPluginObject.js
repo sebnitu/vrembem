@@ -1,3 +1,4 @@
+// TODO: Maybe move this into plugins array.
 export function setupPluginObject(plugin, module) {
   // Get the defaults, presets and provided configuration of the plugin.
   const defaults = plugin?.defaults || {};
