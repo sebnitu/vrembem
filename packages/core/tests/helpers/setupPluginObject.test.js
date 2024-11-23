@@ -1,4 +1,4 @@
-import { createPluginObject } from "../../index";
+import { setupPluginObject } from "../../index";
 
 console.error = vi.fn();
 
@@ -12,9 +12,9 @@ const obj = {
   beforeUnmount() {}
 };
 
-describe("createPluginObject", () => {
+describe("setupPluginObject", () => {
   it("should create and return a plugin object", () => {
-    const plugin = createPluginObject(obj);
+    const plugin = setupPluginObject(obj);
     expect(plugin.name).toBe("example");
     expect(typeof plugin.beforeMount).toBe("function");
     expect(typeof plugin.beforeUnmount).toBe("function");
@@ -27,7 +27,7 @@ describe("createPluginObject", () => {
       name: "newExample",
       onRegisterEntry() {}
     };
-    const plugin = createPluginObject(obj);
+    const plugin = setupPluginObject(obj);
     expect(plugin.name).toBe("newExample");
     expect(typeof plugin.onRegisterEntry).toBe("function");
   });
@@ -37,7 +37,7 @@ describe("createPluginObject", () => {
       override: true,
       onMount() {}
     };
-    createPluginObject(obj);
+    setupPluginObject(obj);
     expect(console.error).not.toHaveBeenCalled();
   });
   
@@ -46,7 +46,7 @@ describe("createPluginObject", () => {
       override: false,
       beforeMount() {}
     };
-    createPluginObject(obj);
+    setupPluginObject(obj);
     expect(console.error).toBeCalledWith("newExample plugin already has \"beforeMount\" lifecycle hook defined!");
   });  
 });
