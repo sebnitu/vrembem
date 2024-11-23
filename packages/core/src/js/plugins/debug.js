@@ -1,5 +1,3 @@
-import { createPluginObject } from "../helpers";
-
 const defaults = {
   condition: true
 };
@@ -11,10 +9,11 @@ const colors = {
   important: "hsl(0deg 80% 50%)"
 };
 
-export function debug(options = {}) {
+export function debug(config = {}) {
   const props = {
     name: "debug",
-    settings: {...defaults, ...options}
+    defaults,
+    config
   };
 
   function log(name, args = [], colorKeys = ["primary", "secondary"]) {
@@ -142,5 +141,5 @@ export function debug(options = {}) {
     
   };
 
-  return createPluginObject(props, methods);
+  return {...props, ...methods};
 }

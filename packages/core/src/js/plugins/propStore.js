@@ -1,5 +1,4 @@
 import { localStore } from "../utilities";
-import { createPluginObject } from "../helpers";
 
 const defaults = {
   // The property on entry objects to watch.
@@ -17,16 +16,27 @@ const defaults = {
   onChange() {}
 };
 
-export function propStore(options = {}) {
+const presets = {
+  drawer: {
+    prop: "inlineState",
+    value: ({ entry }) => entry.store,
+    condition: ({ entry }) => ["opened", "closed", "indeterminate"].includes(entry.state),
+    onChange: ({ entry }) => entry.applyState()
+  }
+};
+
+export function propStore(config = {}) {
   const props = {
     name: "propStore",
-    settings: {...defaults, ...options},
+    defaults,
+    presets,
+    config,
     store: null,
   };
 
   const methods = {
     setup({ parent }) {
-      this.store = localStore(getKey(parent.module));
+      this.store = localStore(getKey.call(this, parent.module));
     },
 
     teardown({ parent }) {
@@ -100,10 +110,10 @@ export function propStore(options = {}) {
   }
 
   function getKey(moduleName) {
-    const prop = props.settings.prop.charAt(0).toUpperCase() + props.settings.prop.slice(1);
-    const key = (props.settings.key || moduleName + prop);
-    return props.settings.keyPrefix + key;
+    const prop = this.settings.prop.charAt(0).toUpperCase() + this.settings.prop.slice(1);
+    const key = (this.settings.key || moduleName + prop);
+    return this.settings.keyPrefix + key;
   }
 
-  return createPluginObject(props, methods);
+  return {...props, ...methods};
 }

@@ -182,4 +182,49 @@ describe("propStore", () => {
     const entry = collection.get("entry-1");
     expect(entry.hello).toBe("my friend");
   });
+
+  it("should set an anonymous empty function by default", async () => {
+    await collection.mount({ plugins: propStore() });
+    // Get the plugin from the plugins array.
+    const plugin = collection.plugins.get("propStore");
+    // Ensure that onChange is a function.
+    expect(typeof plugin.settings.onChange).toBe("function");
+    // Ensure that onChange does not throw when called.
+    expect(() => plugin.settings.onChange()).not.toThrow();
+  });
+
+  it("should apply module preset", async () => {
+    // Initial setup.
+    collection.module = "Drawer";
+    
+    // Mount the collection with the propStore plugin and no configurations.
+    await collection.mount({
+      plugins: propStore()
+    });
+
+    // Initial setup of mock drawer entry.
+    const entry = collection.get("entry-1");
+    entry.applyState = vi.fn();
+
+    // Set conditions for onChange to be called which fires `applyState`.
+    entry.state = "indeterminate";
+    entry.inlineState = "indeterminate";
+    expect(entry.inlineState).toBe("indeterminate");
+    expect(entry.store).toBe("indeterminate");
+    expect(entry.applyState).toBeCalledTimes(1);
+
+    // Ensure that other valid state is also stored in local storage.
+    entry.state = "opened";
+    entry.inlineState = "opened";
+    expect(entry.inlineState).toBe("opened");
+    expect(entry.store).toBe("opened");
+    expect(entry.applyState).toBeCalledTimes(2);
+
+    // Ensure that a non-valid state is not stored in local storage.
+    entry.state = "closing";
+    entry.inlineState = "closing";
+    expect(entry.inlineState).toBe("closing");
+    expect(entry.store).toBe("opened");
+    expect(entry.applyState).toBeCalledTimes(3);
+  });
 });

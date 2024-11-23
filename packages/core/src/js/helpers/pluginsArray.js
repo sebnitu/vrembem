@@ -1,4 +1,5 @@
 import { maybeRunMethod } from "../utilities";
+import { setupPluginObject } from "../helpers";
 
 export class pluginsArray extends Array {
   constructor(parent) {
@@ -7,11 +8,6 @@ export class pluginsArray extends Array {
   }
 
   validate(plugin) {
-    if (typeof plugin != "object") {
-      console.error("Plugin is not a valid object!");
-      return false;
-    };
-
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
       return false;
@@ -32,8 +28,13 @@ export class pluginsArray extends Array {
   add(plugin) {
     if (Array.isArray(plugin)) {
       plugin.forEach((plugin) => this.add(plugin));
-    } else if (this.validate(plugin)) {
-      this.push(plugin);
+    } else {
+      // Create the plugin object.
+      plugin = setupPluginObject(plugin, this.parent.module.toLowerCase());
+      // Push to the array if the plugin is valid.
+      if (this.validate(plugin)) {
+        this.push(plugin);
+      }
     }
   }
 
