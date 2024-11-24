@@ -29,12 +29,6 @@ export function propStore(options = {}) {
       this.store = localStore(getKey.call(this, parent.module));
     },
 
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        removePropStore.call(this, entry);
-      });
-    },
-
     async onCreateEntry({ entry }) {
       await setupPropStore.call(this, entry);
     },

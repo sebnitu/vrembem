@@ -1,3 +1,4 @@
+import { expect } from "vitest";
 import { Collection } from "../../src/js/Collection";
 import { mediaQuery } from "../../src/js/plugins";
 

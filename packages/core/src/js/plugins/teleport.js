@@ -13,16 +13,6 @@ export function teleport(options = {}) {
   };
 
   const methods = {
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        if (typeof entry.teleportReturn === "function") {
-          entry.teleportReturn();
-          delete entry.teleport;
-          delete entry.teleportReturn;
-        }
-      });
-    },
-
     onCreateEntry({ plugin, entry }) {
       teleport(plugin, entry);
     },

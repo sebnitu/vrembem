@@ -32,12 +32,6 @@ export function mediaQuery(options = {}) {
   };
 
   const methods = {
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        removeMediaQueryList(entry);
-      });
-    },
-
     onCreateEntry({ entry }) {
       setupMediaQueryList.call(this, entry);
     },
