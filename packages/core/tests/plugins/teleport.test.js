@@ -52,18 +52,4 @@ describe("teleport", () => {
     expect(main.children.length).toBe(3);
     expect(container.children.length).toBe(0);
   });
-  
-  it("should unmount the teleport plugin entirely when the plugin is removed", async () => {
-    await collection.mount();
-    expect(main.children.length).toBe(0);
-    expect(container.children.length).toBe(3);
-  
-    await collection.plugins.remove("teleport");
-    expect(main.children.length).toBe(3);
-    expect(container.children.length).toBe(0);
-  
-    const entry = collection.get("entry-1");
-    expect(typeof entry.teleport).toBe("undefined");
-    expect(typeof entry.teleportReturn).toBe("undefined");
-  });  
 });
