@@ -4,7 +4,7 @@ export class PluginsArray extends Array {
     this.presets = presets;
   }
 
-  process(plugin) {
+  applySettings(plugin) {
     // Get the defaults, presets and provided configuration of the plugin.
     const defaults = plugin?.defaults || {};
     const preset = this.presets?.[plugin.name] || {};
@@ -13,12 +13,6 @@ export class PluginsArray extends Array {
     // Create the settings property by merging the plugin defaults, preset and
     // any provided options.
     plugin.settings = {...defaults, ...preset, ...options};
-
-    // Apply custom plugin name if one is provided via settings.
-    if (plugin.settings.name) {
-      plugin.name = plugin.settings.name;
-      delete plugin.settings.name;
-    }
   }
 
   validate(plugin) {
@@ -39,7 +33,7 @@ export class PluginsArray extends Array {
       plugin.forEach((plugin) => this.add(plugin));
     } else {
       // Process the plugin object.
-      this.process(plugin);
+      this.applySettings(plugin);
       // Ensure the plugin is valid.
       if (this.validate(plugin)) {
         // Either replace the plugin if it already exists in the array,
