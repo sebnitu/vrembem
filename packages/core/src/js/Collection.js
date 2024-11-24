@@ -4,7 +4,7 @@ import { dispatchLifecycleHook } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
 export class Collection {
-  constructor(options = {}, presets = {}) {
+  constructor(options = {}) {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
@@ -18,13 +18,14 @@ export class Collection {
       "onDeregisterEntry",
       "afterUnmount"
     ];
-    this.presets = presets;
-    this.plugins = new PluginsArray(this);
     this.settings = {
       dataConfig: "config",
       customProps: [],
     };
     this.applySettings(options);
+
+    // Add the plugins using plugins array.
+    this.plugins = new PluginsArray(this);
 
     // Add event emitter prop and methods.
     this.events = {};
@@ -36,8 +37,6 @@ export class Collection {
   }
 
   applySettings(options) {
-    this.plugins.add(options?.plugins || []);
-    delete options.plugins;
     return Object.assign(this.settings, options);
   }
 

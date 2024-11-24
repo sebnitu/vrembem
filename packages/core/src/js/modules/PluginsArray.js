@@ -3,13 +3,22 @@ import { maybeRunMethod } from "../utilities";
 export class PluginsArray extends Array {
   constructor(parent) {
     super();
+    // Save a reference to the parent module.
     this.parent = parent;
+
+    // Get the presets and remove them from the parent settings object.
+    this.presets = parent.settings?.presets || {};
+    delete parent.settings.presets;
+
+    // Add the provided plugins and delete them from the parent settings object.
+    this.add(parent.settings?.plugins || []);
+    delete parent.settings.plugins;
   }
 
   process(plugin) {
-    maybeInitSettings(plugin, this.parent);
+    maybeInitSettings.call(this, plugin);
     maybeOverrideName(plugin);
-    maybeApplyHooks(plugin, this.parent);
+    maybeApplyHooks.call(this, plugin);
   }
 
   validate(plugin) {
@@ -52,12 +61,12 @@ export class PluginsArray extends Array {
   }
 }
 
-function maybeInitSettings(plugin, parent) {
+function maybeInitSettings(plugin) {
   // If settings has not been defined...
   if (!plugin.settings) {
     // Get the defaults, presets and provided configuration of the plugin.
     const defaults = plugin?.defaults || {};
-    const preset = parent?.presets?.[plugin.name] || {};
+    const preset = this.presets?.[plugin.name] || {};
     const config = plugin?.config || {};
 
     // Create the settings property by merging the plugin defaults, presets and
@@ -74,9 +83,9 @@ function maybeOverrideName(plugin) {
   }
 }
 
-function maybeApplyHooks(plugin, parent) {
+function maybeApplyHooks(plugin) {
   // Iterate over the hooks array.
-  for (const hook of parent.hooks) {
+  for (const hook of this.parent.hooks) {
     if (typeof plugin.settings[hook] === "function") {
       // Check we're allowed to override hooks or that the hook doesn't already 
       // exist in methods. This is to prevent overriding core functionality

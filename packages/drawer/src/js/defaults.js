@@ -1,4 +1,9 @@
+import presets from "./presets";
+
 export default {
+  // Plugin presets
+  presets,
+
   // Data attributes
   dataOpen: "drawer-open",
   dataClose: "drawer-close",

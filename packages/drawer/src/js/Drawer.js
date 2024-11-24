@@ -1,7 +1,6 @@
 import { Collection, FocusTrap } from "@vrembem/core";
 
 import defaults from "./defaults";
-import presets from "./presets";
 import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";
 import { open } from "./open";
@@ -13,7 +12,7 @@ export class Drawer extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super({ ...defaults, ...options}, presets);
+    super({ ...defaults, ...options});
     this.module = "Drawer";
     this.entryClass = DrawerEntry;
     this.focusTrap = new FocusTrap();
