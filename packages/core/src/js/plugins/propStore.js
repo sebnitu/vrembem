@@ -16,11 +16,11 @@ const defaults = {
   onChange() {}
 };
 
-export function propStore(config = {}) {
+export function propStore(options = {}) {
   const props = {
     name: "propStore",
     defaults,
-    config,
+    options,
     store: null,
   };
 

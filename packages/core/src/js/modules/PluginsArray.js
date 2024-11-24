@@ -67,11 +67,11 @@ function maybeInitSettings(plugin) {
     // Get the defaults, presets and provided configuration of the plugin.
     const defaults = plugin?.defaults || {};
     const preset = this.presets?.[plugin.name] || {};
-    const config = plugin?.config || {};
+    const options = plugin?.options || {};
 
     // Create the settings property by merging the plugin defaults, presets and
     // any passed configurations.
-    plugin.settings = {...defaults, ...preset, ...config};
+    plugin.settings = {...defaults, ...preset, ...options};
   }
 }
 

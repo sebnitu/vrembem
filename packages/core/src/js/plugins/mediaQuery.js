@@ -24,11 +24,11 @@ const defaults = {
   onChange: () => {}
 };
 
-export function mediaQuery(config = {}) {
+export function mediaQuery(options = {}) {
   const props = {
     name: "mediaQuery",
     defaults,
-    config
+    options
   };
 
   const methods = {

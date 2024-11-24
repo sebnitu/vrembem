@@ -5,11 +5,11 @@ const defaults = {
   how: "append"
 };
 
-export function teleport(config = {}) {
+export function teleport(options = {}) {
   const props = {
     name: "teleport",
     defaults,
-    config
+    options
   };
 
   const methods = {
