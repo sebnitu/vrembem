@@ -1,18 +1,8 @@
-import { maybeRunMethod } from "../utilities";
-
 export class PluginsArray extends Array {
-  constructor(parent) {
+  constructor(options) {
     super();
-    // Save a reference to the parent module.
-    this.parent = parent;
-
-    // Get the presets and remove them from the parent settings object.
-    this.presets = parent.settings?.presets || {};
-    delete parent.settings.presets;
-
-    // Add the provided plugins and delete them from the parent settings object.
-    this.add(parent.settings?.plugins || []);
-    delete parent.settings.plugins;
+    this.presets = options?.presets || {};
+    this.hooks = options?.hooks || [];
   }
 
   process(plugin) {
@@ -24,11 +14,6 @@ export class PluginsArray extends Array {
   validate(plugin) {
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
-      return false;
-    };
-
-    if (this.find((item) => item.name === plugin.name)) {
-      console.error(`Plugin with the name "${plugin.name}" is already being used!`);
       return false;
     };
 
@@ -45,17 +30,23 @@ export class PluginsArray extends Array {
     } else {
       // Process the plugin object.
       this.process(plugin);
-      // Push to the array if the plugin is valid.
+      // Ensure the plugin is valid.
       if (this.validate(plugin)) {
-        this.push(plugin);
+        // Either replace the plugin if it already exists in the array,
+        // otherwise push the new plugin to the array.
+        const index = this.findIndex((item) => item.name === plugin.name);
+        if (~index) {
+          this[index] = plugin;
+        } else {
+          this.push(plugin);
+        }
       }
     }
   }
 
-  async remove(name) {
+  remove(name) {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
-      await maybeRunMethod(this[index], "teardown", { parent: this.parent });
       this.splice(index, 1);
     }
   }
@@ -85,7 +76,7 @@ function maybeOverrideName(plugin) {
 
 function maybeApplyHooks(plugin) {
   // Iterate over the hooks array.
-  for (const hook of this.parent.hooks) {
+  for (const hook of this.hooks) {
     if (typeof plugin.settings[hook] === "function") {
       // Check we're allowed to override hooks or that the hook doesn't already 
       // exist in methods. This is to prevent overriding core functionality

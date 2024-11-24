@@ -1,3 +1,4 @@
+import defaults from "../src/js/defaults";
 import { Collection, CollectionEntry } from "../index";
 
 document.body.innerHTML = `
@@ -5,12 +6,7 @@ document.body.innerHTML = `
   <div id="fdsa">...</div>
 `;
 
-const defaultSettings = {
-  dataConfig: "config",
-  customProps: []
-};
-
-class exampleEntry extends CollectionEntry {
+class ExampleEntry extends CollectionEntry {
   constructor(parent, query, options = {}) {
     super(parent, query, options);
   }
@@ -27,7 +23,7 @@ describe("constructor()", () => {
     expect(obj.module).toBe("Collection");
     expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
-    expect(obj.settings).toEqual(defaultSettings);
+    expect(obj.settings).toEqual(defaults);
   });
 
   it("should be able to pass options through the instantiation", () => {
@@ -61,7 +57,7 @@ describe("applySettings()", () => {
   it("should be able to modify the settings object", async () => {
     const obj = new Collection();
     await obj.mount();
-    expect(obj.settings).toEqual(defaultSettings);
+    expect(obj.settings).toEqual(defaults);
     obj.applySettings({
       selector: "div",
       test: "asdf"
@@ -122,7 +118,7 @@ describe("register() & deregister()", () => {
 
   it("should call onCreateEntry and onRegisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
-    obj.entryClass = exampleEntry;
+    obj.entryClass = ExampleEntry;
     const entry = await obj.register("asdf");
     expect(entry.onCreateEntry).toHaveBeenCalled();
     expect(entry.onRegisterEntry).toHaveBeenCalled();
@@ -130,7 +126,7 @@ describe("register() & deregister()", () => {
 
   it("should call onDestroyEntry and onDeregisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
-    obj.entryClass = exampleEntry;
+    obj.entryClass = ExampleEntry;
     await obj.register("asdf");
     await obj.register("fdsa");
     const entry = obj.get("asdf");

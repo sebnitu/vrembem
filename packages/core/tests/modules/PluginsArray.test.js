@@ -22,8 +22,8 @@ describe("pluginsArray", () => {
   it("should add an array of plugins at once", () => {
     expect(plugins.length).toBe(0);
     plugins.add([
-      { name: "one", config: { a: "a" } },
-      { name: "two", config: { b: "b" } }
+      { name: "one", options: { a: "a" } },
+      { name: "two", options: { b: "b" } }
     ]);
     expect(plugins.length).toBe(2);
   });
@@ -42,19 +42,13 @@ describe("pluginsArray", () => {
     plugins.add({});
     expect(console.error).toBeCalledWith("Plugin requires a name!");
   });
-  
-  it("should log a console error if the plugin name is already used", () => {
-    plugins.add({ name: "asdf" });
-    plugins.add({ name: "asdf" });
-    expect(console.error).toBeCalledWith("Plugin with the name \"asdf\" is already being used!");
-  });  
 });
 
 // console.error = vi.fn();
 
 // const obj = {
 //   name: "example",
-//   config: {
+//   options: {
 //     value: true,
 //     string: "asdf"
 //   },
@@ -73,7 +67,7 @@ describe("pluginsArray", () => {
 //   });
   
 //   it("should be able to pass lifecycle hooks and name through settings", () => {
-//     obj.config = {
+//     obj.options = {
 //       name: "newExample",
 //       onRegisterEntry() {}
 //     };
@@ -83,7 +77,7 @@ describe("pluginsArray", () => {
 //   });
   
 //   it("should allow overriding lifecycle hooks that have already been defined if override is set to true", () => {
-//     obj.config = {
+//     obj.options = {
 //       override: true,
 //       onMount() {}
 //     };
@@ -92,7 +86,7 @@ describe("pluginsArray", () => {
 //   });
   
 //   it("should log console error if setting a lifecycle hook that has already been defined", () => {
-//     obj.config = {
+//     obj.options = {
 //       override: false,
 //       beforeMount() {}
 //     };
