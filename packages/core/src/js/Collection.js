@@ -8,6 +8,16 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
+    this.hooks = [
+      "beforeMount",
+      "onCreateEntry",
+      "onRegisterEntry",
+      "afterMount",
+      "beforeUnmount",
+      "onDestroyEntry",
+      "onDeregisterEntry",
+      "afterUnmount"
+    ];
     this.presets = presets;
     this.plugins = new PluginsArray(this);
     this.settings = {

@@ -4,4 +4,3 @@ export * from "./buildCustomProps";
 export * from "./getPrefix";
 export * from "./getSetting";
 export * from "./setGlobalState";
-export * from "./setupPluginObject";
