@@ -11,11 +11,8 @@ export class Collection {
     this.entryClass = CollectionEntry;
     this.settings = { ...defaults, ...options };
 
-    // Add the plugins using plugins array.
-    this.plugins = new PluginsArray({
-      hooks: this.settings.hooks,
-      presets: this.settings.presets
-    });
+    // Create the plugins array and provide any presets.
+    this.plugins = new PluginsArray(this.settings.presets);
 
     // Add event emitter prop and methods.
     this.events = {};

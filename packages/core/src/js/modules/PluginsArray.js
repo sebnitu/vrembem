@@ -1,14 +1,24 @@
 export class PluginsArray extends Array {
-  constructor(options) {
+  constructor(presets = {}) {
     super();
-    this.presets = options?.presets || {};
-    this.hooks = options?.hooks || [];
+    this.presets = presets;
   }
 
   process(plugin) {
-    maybeInitSettings.call(this, plugin);
-    maybeOverrideName(plugin);
-    maybeApplyHooks.call(this, plugin);
+    // Get the defaults, presets and provided configuration of the plugin.
+    const defaults = plugin?.defaults || {};
+    const preset = this.presets?.[plugin.name] || {};
+    const options = plugin?.options || {};
+
+    // Create the settings property by merging the plugin defaults, preset and
+    // any provided options.
+    plugin.settings = {...defaults, ...preset, ...options};
+
+    // Apply custom plugin name if one is provided via settings.
+    if (plugin.settings.name) {
+      plugin.name = plugin.settings.name;
+      delete plugin.settings.name;
+    }
   }
 
   validate(plugin) {
@@ -50,45 +60,4 @@ export class PluginsArray extends Array {
       this.splice(index, 1);
     }
   }
-}
-
-function maybeInitSettings(plugin) {
-  // If settings has not been defined...
-  if (!plugin.settings) {
-    // Get the defaults, presets and provided configuration of the plugin.
-    const defaults = plugin?.defaults || {};
-    const preset = this.presets?.[plugin.name] || {};
-    const options = plugin?.options || {};
-
-    // Create the settings property by merging the plugin defaults, presets and
-    // any passed configurations.
-    plugin.settings = {...defaults, ...preset, ...options};
-  }
-}
-
-function maybeOverrideName(plugin) {
-  // Apply custom plugin name if one is provided.
-  if (plugin.settings.name) {
-    plugin.name = plugin.settings.name;
-    delete plugin.settings.name;
-  }
-}
-
-function maybeApplyHooks(plugin) {
-  // Iterate over the hooks array.
-  for (const hook of this.hooks) {
-    if (typeof plugin.settings[hook] === "function") {
-      // Check we're allowed to override hooks or that the hook doesn't already 
-      // exist in methods. This is to prevent overriding core functionality
-      // unless explicitly allowed.
-      if (plugin.settings.override || typeof plugin[hook] !== "function") {
-        // Copy the method to the methods object.
-        plugin[hook] = plugin.settings[hook];
-      } else {
-        console.error(`${plugin.name} plugin already has "${hook}" lifecycle hook defined!`);
-      }
-      // Delete the method from the settings object.
-      delete plugin.settings[hook];
-    }
-  };
 }
