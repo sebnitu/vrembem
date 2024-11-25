@@ -24,29 +24,14 @@ const defaults = {
   onChange: () => {}
 };
 
-const presets = {
-  drawer: {
-    onChange(event, entry) {
-      entry.mode = (event.matches) ? "inline" : "modal";
-    }
-  }
-};
-
-export function mediaQuery(config = {}) {
+export function mediaQuery(options = {}) {
   const props = {
     name: "mediaQuery",
     defaults,
-    presets,
-    config
+    options
   };
 
   const methods = {
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        removeMediaQueryList(entry);
-      });
-    },
-
     onCreateEntry({ entry }) {
       setupMediaQueryList.call(this, entry);
     },

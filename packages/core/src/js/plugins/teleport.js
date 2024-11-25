@@ -5,24 +5,14 @@ const defaults = {
   how: "append"
 };
 
-export function teleport(config = {}) {
+export function teleport(options = {}) {
   const props = {
     name: "teleport",
     defaults,
-    config
+    options
   };
 
   const methods = {
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        if (typeof entry.teleportReturn === "function") {
-          entry.teleportReturn();
-          delete entry.teleport;
-          delete entry.teleportReturn;
-        }
-      });
-    },
-
     onCreateEntry({ plugin, entry }) {
       teleport(plugin, entry);
     },

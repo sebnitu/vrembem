@@ -1,4 +1,4 @@
-import { getPrefix } from "../helpers";
+import { getPrefix } from "./";
 
 /**
  * Get the value of a CSS custom property (variable).

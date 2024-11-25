@@ -1,8 +1,8 @@
-import { pluginsArray } from "../../src/js/helpers/pluginsArray";
+import { PluginsArray } from "../../src/js/modules";
 
 console.error = vi.fn();
 
-const plugins = new pluginsArray({
+const plugins = new PluginsArray({
   module: "Example"
 });
 
@@ -12,18 +12,28 @@ describe("pluginsArray", () => {
     plugins.add({ name: "asdf" });
     expect(plugins.length).toBe(1);
   });
+
+  it("should override existing plugins when added with the same name", () => {
+    expect(plugins.length).toBe(1);
+    plugins.add({ name: "fdsa" });
+    expect(plugins.length).toBe(2);
+    plugins.add({ name: "fdsa" });
+    expect(plugins.length).toBe(2);
+  });
   
   it("should remove a plugin from the plugins array", async () => {
+    expect(plugins.length).toBe(2);
+    plugins.remove("asdf");
     expect(plugins.length).toBe(1);
-    await plugins.remove("asdf");
+    plugins.remove("fdsa");
     expect(plugins.length).toBe(0);
   });
   
   it("should add an array of plugins at once", () => {
     expect(plugins.length).toBe(0);
     plugins.add([
-      { name: "one", config: { a: "a" } },
-      { name: "two", config: { b: "b" } }
+      { name: "one", options: { a: "a" } },
+      { name: "two", options: { b: "b" } }
     ]);
     expect(plugins.length).toBe(2);
   });
@@ -42,10 +52,4 @@ describe("pluginsArray", () => {
     plugins.add({});
     expect(console.error).toBeCalledWith("Plugin requires a name!");
   });
-  
-  it("should log a console error if the plugin name is already used", () => {
-    plugins.add({ name: "asdf" });
-    plugins.add({ name: "asdf" });
-    expect(console.error).toBeCalledWith("Plugin with the name \"asdf\" is already being used!");
-  });  
 });

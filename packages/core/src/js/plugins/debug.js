@@ -9,11 +9,11 @@ const colors = {
   important: "hsl(0deg 80% 50%)"
 };
 
-export function debug(config = {}) {
+export function debug(options = {}) {
   const props = {
     name: "debug",
     defaults,
-    config
+    options
   };
 
   function log(name, args = [], colorKeys = ["primary", "secondary"]) {

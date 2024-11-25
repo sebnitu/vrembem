@@ -1,5 +1,7 @@
-import { eventEmitter, getElement, maybeRunMethod } from "./utilities";
-import { dispatchLifecycleHook, pluginsArray } from "./helpers";
+import defaults from "./defaults";
+import { eventEmitter, PluginsArray } from "./modules";
+import { getElement, maybeRunMethod } from "./utilities";
+import { dispatchLifecycleHook } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
 
 export class Collection {
@@ -7,12 +9,10 @@ export class Collection {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
-    this.plugins = new pluginsArray(this);
-    this.settings = {
-      dataConfig: "config",
-      customProps: [],
-    };
-    this.applySettings(options);
+    this.settings = { ...defaults, ...options };
+
+    // Create the plugins array and provide any presets.
+    this.plugins = new PluginsArray(this.settings.presets);
 
     // Add event emitter prop and methods.
     this.events = {};
@@ -24,8 +24,6 @@ export class Collection {
   }
 
   applySettings(options) {
-    this.plugins.add(options?.plugins || []);
-    delete options.plugins;
     return Object.assign(this.settings, options);
   }
 
@@ -114,6 +112,11 @@ export class Collection {
     // Apply settings with passed options.
     this.applySettings(options);
 
+    // Add plugins.
+    for (const plugin of this.settings?.plugins || []) {
+      this.plugins.add(plugin);
+    }
+
     // Run setup methods on plugins.
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "setup", { plugin, parent: this});
@@ -149,6 +152,11 @@ export class Collection {
     // Run teardown methods on plugins.
     for (const plugin of this.plugins) {
       await maybeRunMethod(plugin, "teardown", { plugin, parent: this});
+    }
+
+    // Remove plugins.
+    for (const plugin of this.plugins) {
+      this.plugins.remove(plugin.name);
     }
 
     return this;

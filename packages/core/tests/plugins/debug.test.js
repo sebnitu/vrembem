@@ -15,9 +15,9 @@ const collection = new Collection({
 });
 
 describe("debug", () => {
-  it("should return a plugin object with custom configuration", () => {
+  it("should return a plugin object with custom options", () => {
     expect(debugPlugin.name).toBe("debug");
-    expect(debugPlugin.config.asdf).toBe("fdsa");
+    expect(debugPlugin.options.asdf).toBe("fdsa");
   });
   
   it("should log all the mount lifecycle hooks when collection is mounted", async () => {
@@ -34,7 +34,7 @@ describe("debug", () => {
   it("should log all the unmount lifecycle hooks when collection is unmounted", async () => {
     expect(collection.plugins.length).toBe(1);
     await collection.unmount();
-    expect(collection.plugins.length).toBe(1);
+    expect(collection.plugins.length).toBe(0);
     expect(console.log).toHaveBeenCalledTimes(34);
   });
   

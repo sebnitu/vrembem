@@ -1,4 +1,4 @@
-import { localStore } from "../utilities";
+import { localStore } from "../modules";
 
 const defaults = {
   // The property on entry objects to watch.
@@ -16,33 +16,17 @@ const defaults = {
   onChange() {}
 };
 
-const presets = {
-  drawer: {
-    prop: "inlineState",
-    value: ({ entry }) => entry.store,
-    condition: ({ entry }) => ["opened", "closed", "indeterminate"].includes(entry.state),
-    onChange: ({ entry }) => entry.applyState()
-  }
-};
-
-export function propStore(config = {}) {
+export function propStore(options = {}) {
   const props = {
     name: "propStore",
     defaults,
-    presets,
-    config,
+    options,
     store: null,
   };
 
   const methods = {
     setup({ parent }) {
       this.store = localStore(getKey.call(this, parent.module));
-    },
-
-    teardown({ parent }) {
-      parent.collection.forEach((entry) => {
-        removePropStore.call(this, entry);
-      });
     },
 
     async onCreateEntry({ entry }) {
