@@ -3,12 +3,13 @@ import { FocusableArray } from "./";
 export class FocusTrap {
   constructor(el = null) {
     this.el = el;
+    this.focusable = new FocusableArray();
     this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
   mount(el = this.el) {
     // Get the focusable elements.
-    this.focusable = new FocusableArray(el);
+    this.focusable.set(el);
 
     // Either focus trap or lock depending on focusable length.
     (this.focusable.length) ?
@@ -17,11 +18,8 @@ export class FocusTrap {
   }
 
   unmount() {
-    // Set element to null.
-    this.el = null;
-
-    // Apply empty array to focusable.
-    this.focusable = [];
+    // Clear the focusable elements.
+    this.focusable.clear();
 
     // Remove event listeners
     document.removeEventListener("keydown", this.handleFocusTrap);
