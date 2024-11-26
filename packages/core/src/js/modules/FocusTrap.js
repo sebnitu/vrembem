@@ -68,34 +68,7 @@ export class FocusTrap {
   }
 
   getFocusable(el = this.el) {
-    // Create the focusable array.
-    const focusable = [];
-
-    // Store the initial focus and scroll position.
-    const initFocus = document.activeElement;
-    const initScrollTop = el.scrollTop;
-
-    // Query for all the focusable elements.
-    const selector = focusableSelectors.join(",");
-    const els = el.querySelectorAll(selector);
-
-    // Loop through all focusable elements.
-    els.forEach((el) => {
-      // Set them to focus and check 
-      el.focus();
-      // Test that the element took focus.
-      if (document.activeElement === el) {
-        // Add element to the focusable array.
-        focusable.push(el);
-      }
-    });
-
-    // Restore the initial scroll position and focus.
-    el.scrollTop = initScrollTop;
-    initFocus.focus();
-
-    // Return the focusable array.
-    return focusable;
+    return el.querySelectorAll(focusableSelectors.join(","));
   }
 }
 
