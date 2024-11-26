@@ -3,13 +3,11 @@ import { focusableSelectors } from "../utilities";
 export class FocusTrap {
   #focusable;
   #handleFocusTrap;
-  #handleFocusLock;
 
   constructor(el = null, selectorFocus = "[data-focus]") {
     this.el = el;
     this.selectorFocus = selectorFocus;
     this.#handleFocusTrap = handleFocusTrap.bind(this);
-    this.#handleFocusLock = handleFocusLock.bind(this);
   }
 
   get focusable() {
@@ -22,11 +20,11 @@ export class FocusTrap {
 
     // Apply event listeners based on new focusable array length.
     if (this.#focusable.length) {
-      document.removeEventListener("keydown", this.#handleFocusLock);
+      document.removeEventListener("keydown", handleFocusLock);
       document.addEventListener("keydown", this.#handleFocusTrap);
     } else {
       document.removeEventListener("keydown", this.#handleFocusTrap);
-      document.addEventListener("keydown", this.#handleFocusLock);
+      document.addEventListener("keydown", handleFocusLock);
     }
   }
 
@@ -59,7 +57,7 @@ export class FocusTrap {
 
     // Remove event listeners
     document.removeEventListener("keydown", this.#handleFocusTrap);
-    document.removeEventListener("keydown", this.#handleFocusLock);
+    document.removeEventListener("keydown", handleFocusLock);
   }
 
   focus(el = this.el, selectorFocus = this.selectorFocus) {
@@ -101,37 +99,27 @@ export class FocusTrap {
   }
 }
 
-function handleFocusTrap(event) {
-  // Check if the click was a tab and return if not.
-  const isTab = (event.key === "Tab" || event.keyCode === 9);
-  if (!isTab) return;
-
-  // If the shift key is pressed.
-  if (event.shiftKey) {
-    // If the active element is either the root el or first focusable.
-    if (
-      document.activeElement === this.focusableFirst ||
-      document.activeElement === this.el
-    ) {
-      // Prevent default and focus the last focusable element instead.
-      event.preventDefault();
-      this.focusableLast.focus();
-    }
-  } else {
-    // If the active element is either the root el or last focusable.
-    if (
-      document.activeElement === this.focusableLast ||
-      document.activeElement === this.el
-    ) {
-      // Prevent default and focus the first focusable element instead.
-      event.preventDefault();
-      this.focusableFirst.focus();
-    }
-  }
-}
-
 function handleFocusLock(event) {
   // Ignore the tab key by preventing default.
-  const isTab = (event.key === "Tab" || event.keyCode === 9);
-  if (isTab) event.preventDefault();
+  if (event.key === "Tab" || event.keyCode === 9) event.preventDefault();
+}
+
+function handleFocusTrap(event) {  
+  // Check if the click was a tab and return if not.
+  if (event.key !== "Tab" && event.keyCode !== 9) return;
+
+  // Destructure variables for brevity.
+  const { activeElement } = document;
+  const { el, focusableFirst, focusableLast } = this;
+
+  // Set variables of conditionals.
+  const isShiftTab = event.shiftKey;
+  const isFirstOrRoot = activeElement === focusableFirst || activeElement === el;
+  const isLastOrRoot = activeElement === focusableLast || activeElement === el;
+
+  if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {
+    event.preventDefault();
+    // Loop next tab focus based on direction (shift).
+    (isShiftTab ? focusableLast : focusableFirst).focus();
+  }
 }

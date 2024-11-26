@@ -64,6 +64,7 @@
 
       <ul class="list">
         <li><button class="link" data-modal-open="modal-default">default</button></li>
+        <li><button class="link" data-modal-open="modal-focus-lock">focus lock</button></li>
         <li><button class="link" data-modal-open="modal-dialog">dialog</button></li>
         <li><button class="link" data-modal-open="modal-focus-dialog">focus dialog</button></li>
         <li><button class="link" data-modal-open="modal-focus-inner">focus element</button></li>
@@ -75,6 +76,14 @@
           <div class="dialog__body flex justify-content-between">
             <p>This is a basic modal</p>
             <button data-modal-close class="link">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-focus-lock" class="modal">
+        <div class="modal__dialog dialog" role="dialog" aria-modal="true">
+          <div class="dialog__body flex justify-content-between">
+            <p>This is a basic modal with nothing focusable inside.</p>
           </div>
         </div>
       </div>
