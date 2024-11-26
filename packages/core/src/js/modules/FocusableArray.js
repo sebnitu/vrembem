@@ -3,7 +3,8 @@ import { focusableSelectors } from "../utilities";
 export class FocusableArray extends Array {
   constructor(el = null) {
     super();
-    if (el) this.set(el);
+    this.el = el;
+    if (this.el) this.set();
   }
 
   get first() {
@@ -14,7 +15,7 @@ export class FocusableArray extends Array {
     return this[this.length - 1];
   }
 
-  set(el) {
+  set(el = this.el) {
     this.length = 0;
     this.push(...el.querySelectorAll(focusableSelectors.join(",")));
   }
