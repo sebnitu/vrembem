@@ -1,4 +1,4 @@
-import { Collection, FocusTrap } from "@vrembem/core";
+import { Collection, FocusTrap, StackArray, setGlobalState } from "@vrembem/core";
 
 import defaults from "./defaults";
 import { ModalEntry } from "./ModalEntry";
@@ -7,7 +7,6 @@ import { open } from "./open";
 import { close } from "./close";
 import { closeAll } from "./closeAll";
 import { replace } from "./replace";
-import { stack } from "./stack";
 import { updateFocusState } from "./helpers";
 
 export class Modal extends Collection {
@@ -23,8 +22,16 @@ export class Modal extends Collection {
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
 
-    // Setup stack module.
-    this.stack = stack(this.settings);
+    // Setup stack property using StackArray.
+    this.stack = new StackArray({ 
+      onChange: () => {
+        setGlobalState(
+          this.stack.top,
+          this.settings.selectorInert,
+          this.settings.selectorOverflow
+        );
+      } 
+    });
   }
 
   get active() {

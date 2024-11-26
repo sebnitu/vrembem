@@ -270,7 +270,7 @@ describe("replace()", () => {
       await vi.runAllTimers();
     }));
 
-    expect(modal.stack.value.length).toBe(4);
+    expect(modal.stack.length).toBe(4);
     expect(modal.get("modal-1").state).toBe("opened");
     expect(modal.get("modal-2").state).toBe("opened");
     expect(modal.get("modal-3").state).toBe("opened");
@@ -282,7 +282,7 @@ describe("replace()", () => {
       await vi.runAllTimers();
     }));
 
-    expect(modal.stack.value.length).toBe(1);
+    expect(modal.stack.length).toBe(1);
     expect(modal.get("modal-1").state).toBe("closed");
     expect(modal.get("modal-2").state).toBe("opened");
     expect(modal.get("modal-3").state).toBe("closed");
