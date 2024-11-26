@@ -1,13 +1,12 @@
 import { FocusableArray } from "./";
 
 export class FocusTrap {
-  constructor(el = null, selectorFocus = "[data-focus]") {
+  constructor(el = null) {
     this.el = el;
-    this.selectorFocus = selectorFocus;
     this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
-  mount(el = this.el, selectorFocus = this.selectorFocus) {
+  mount(el = this.el) {
     // Get the focusable elements.
     this.focusable = new FocusableArray(el);
 
@@ -15,9 +14,6 @@ export class FocusTrap {
     (this.focusable.length) ?
       document.addEventListener("keydown", this.handleFocusTrap):
       document.addEventListener("keydown", handleFocusLock);
-
-    // Set focus on the initial element.
-    (el.querySelector(selectorFocus) || el).focus();
   }
 
   unmount() {
@@ -53,7 +49,7 @@ function handleFocusTrap(event) {
 
   if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {
     event.preventDefault();
-    // Loop next tab focus based on direction (shift).
+    // Loop to next tab focus based on direction (shift).
     (isShiftTab ? focusable.last : focusable.first).focus();
   }
 }
