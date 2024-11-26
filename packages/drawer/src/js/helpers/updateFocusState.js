@@ -5,7 +5,7 @@ export function updateFocusState(entry) {
     if (entry.mode === "modal") {
       this.focusTrap.mount(entry.dialog, this.settings.selectorFocus);
     } else {
-      this.focusTrap.focus(entry.dialog, this.settings.selectorFocus);
+      (entry.dialog.querySelector(this.settings.selectorFocus) || entry.dialog).focus();
     }
   } else {
     // Set focus to root trigger and unmount the focus trap.
