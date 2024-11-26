@@ -7,26 +7,17 @@ export class FocusTrap {
     this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
-  mount(el, selectorFocus) {
-    // Update passed params.
-    if (el) this.el = el;
-    if (selectorFocus) this.selectorFocus = selectorFocus;
-
+  mount(el = this.el, selectorFocus = this.selectorFocus) {
     // Get the focusable elements.
-    this.focusable = new FocusableArray(this.el);
+    this.focusable = new FocusableArray(el);
 
-    if (this.focusable.length) {
-      document.removeEventListener("keydown", handleFocusLock);
-      document.addEventListener("keydown", this.handleFocusTrap);
-    } else {
-      document.removeEventListener("keydown", this.handleFocusTrap);
+    // Either focus trap or lock depending on focusable length.
+    (this.focusable.length) ?
+      document.addEventListener("keydown", this.handleFocusTrap):
       document.addEventListener("keydown", handleFocusLock);
-    }
 
-    // Query for the focus selector, otherwise return this element.
-    const result = this.el.querySelector(this.selectorFocus) || this.el;
-    // Give the returned element focus.
-    result.focus();
+    // Set focus on the initial element.
+    (el.querySelector(selectorFocus) || el).focus();
   }
 
   unmount() {
