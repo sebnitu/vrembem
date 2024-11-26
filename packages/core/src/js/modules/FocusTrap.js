@@ -1,39 +1,10 @@
-import { focusableSelectors } from "../utilities";
+import { FocusableArray } from "./";
 
 export class FocusTrap {
-  #focusable;
-  #handleFocusTrap;
-
   constructor(el = null, selectorFocus = "[data-focus]") {
     this.el = el;
     this.selectorFocus = selectorFocus;
-    this.#handleFocusTrap = handleFocusTrap.bind(this);
-  }
-
-  get focusable() {
-    return this.#focusable;
-  }
-
-  set focusable(value) {
-    // Update the focusable value.
-    this.#focusable = value;
-
-    // Apply event listeners based on new focusable array length.
-    if (this.#focusable.length) {
-      document.removeEventListener("keydown", handleFocusLock);
-      document.addEventListener("keydown", this.#handleFocusTrap);
-    } else {
-      document.removeEventListener("keydown", this.#handleFocusTrap);
-      document.addEventListener("keydown", handleFocusLock);
-    }
-  }
-
-  get focusableFirst() {
-    return this.focusable[0];
-  }
-
-  get focusableLast() {
-    return this.focusable[this.focusable.length - 1];
+    this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
   mount(el, selectorFocus) {
@@ -42,10 +13,20 @@ export class FocusTrap {
     if (selectorFocus) this.selectorFocus = selectorFocus;
 
     // Get the focusable elements.
-    this.focusable = this.getFocusable();
+    this.focusable = new FocusableArray(this.el);
 
-    // Set the focus on the element.
-    this.focus();
+    if (this.focusable.length) {
+      document.removeEventListener("keydown", handleFocusLock);
+      document.addEventListener("keydown", this.handleFocusTrap);
+    } else {
+      document.removeEventListener("keydown", this.handleFocusTrap);
+      document.addEventListener("keydown", handleFocusLock);
+    }
+
+    // Query for the focus selector, otherwise return this element.
+    const result = this.el.querySelector(this.selectorFocus) || this.el;
+    // Give the returned element focus.
+    result.focus();
   }
 
   unmount() {
@@ -56,19 +37,8 @@ export class FocusTrap {
     this.focusable = [];
 
     // Remove event listeners
-    document.removeEventListener("keydown", this.#handleFocusTrap);
+    document.removeEventListener("keydown", this.handleFocusTrap);
     document.removeEventListener("keydown", handleFocusLock);
-  }
-
-  focus(el = this.el, selectorFocus = this.selectorFocus) {
-    // Query for the focus selector, otherwise return this element.
-    const result = el.querySelector(selectorFocus) || el;
-    // Give the returned element focus.
-    result.focus();
-  }
-
-  getFocusable(el = this.el) {
-    return el.querySelectorAll(focusableSelectors.join(","));
   }
 }
 
@@ -83,16 +53,16 @@ function handleFocusTrap(event) {
 
   // Destructure variables for brevity.
   const { activeElement } = document;
-  const { el, focusableFirst, focusableLast } = this;
+  const { el, focusable } = this;
 
   // Set variables of conditionals.
   const isShiftTab = event.shiftKey;
-  const isFirstOrRoot = activeElement === focusableFirst || activeElement === el;
-  const isLastOrRoot = activeElement === focusableLast || activeElement === el;
+  const isFirstOrRoot = activeElement === focusable.first || activeElement === el;
+  const isLastOrRoot = activeElement === focusable.last || activeElement === el;
 
   if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {
     event.preventDefault();
     // Loop next tab focus based on direction (shift).
-    (isShiftTab ? focusableLast : focusableFirst).focus();
+    (isShiftTab ? focusable.last : focusable.first).focus();
   }
 }

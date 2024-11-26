@@ -43,8 +43,8 @@ test("mount() should mount the focus trap setup", () => {
 
   expect(el).toHaveFocus();
   expect(focusTrap.focusable.length).toBe(3);
-  expect(focusTrap.focusableFirst).toBe(child_1);
-  expect(focusTrap.focusableLast).toBe(child_3);
+  expect(focusTrap.focusable.first).toBe(child_1);
+  expect(focusTrap.focusable.last).toBe(child_3);
 });
 
 test("should correctly cycle through focusable elements on tab", async () => {
@@ -87,33 +87,20 @@ test("unmount() should unmount the focus trap setup", () => {
   expect(focusTrap.focusableLast).toBe(undefined);
 });
 
-test("focus() should set focus to preferred focus element", () => {
+test("mount() should set focus to preferred focus element", () => {
   el = document.querySelector(".container-2");
   child_1 = el.querySelector(".child-1");
   child_2 = el.querySelector(".child-2");
   child_3 = el.querySelector(".child-3");
 
-  focusTrap.focus(el);
+  focusTrap.mount(el);
   expect(child_1).toHaveFocus();
 
-  focusTrap.focus(el, ".child-2");
+  focusTrap.mount(el, ".child-2");
   expect(child_2).toHaveFocus();
 
   focusTrap.mount(el, ".child-3");
   expect(child_3).toHaveFocus();
-});
-
-test("getFocusable() should return focusable elements array", () => {
-  el = document.querySelector(".container-2");
-  child_1 = el.querySelector(".child-1");
-  child_2 = el.querySelector(".child-2");
-  child_3 = el.querySelector(".child-3");
-
-  const result = focusTrap.getFocusable(el);
-  expect(result.length).toBe(3);
-  expect(result[0]).toBe(child_1);
-  expect(result[1]).toBe(child_2);
-  expect(result[2]).toBe(child_3);
 });
 
 test("should correctly setup focus lock when there are no focusable elements", async () => {
