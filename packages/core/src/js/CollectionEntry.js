@@ -1,30 +1,30 @@
-import { buildCustomProps, getSetting } from "./helpers";
-import { getConfig, getElement } from "./utilities";
+import { getCustomProps, getSetting } from "./helpers";
+import { getDataConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {
     this.parent = parent;
     this.id = query?.id || query;
     this.el = getElement(query);
-    this.settings = Object.assign({}, options);
+    this.settings = { ...options };
     this.dataConfig = {};
     this.customProps = {};
   }
 
-  applySettings(obj) {
-    return Object.assign(this.settings, obj);
+  applySettings(options) {
+    return Object.assign(this.settings, options);
   }
 
-  getSetting(key, options = {}) {
+  getSetting(key, options) {
     return getSetting.call(this, key, options);
   }
 
   buildDataConfig() {
-    return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
+    return Object.assign(this.dataConfig, getDataConfig(this.el, this.getSetting("dataConfig")));
   }
   
   buildCustomProps() {
-    return Object.assign(this.customProps, buildCustomProps(this));
+    return Object.assign(this.customProps, getCustomProps(this));
   }
 
   async init(options = {}) {

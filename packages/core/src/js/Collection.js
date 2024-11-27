@@ -1,8 +1,8 @@
 import defaults from "./defaults";
-import { eventEmitter, PluginsArray } from "./modules";
-import { getElement, maybeRunMethod } from "./utilities";
-import { dispatchLifecycleHook } from "./helpers";
 import { CollectionEntry } from "./CollectionEntry";
+import { eventEmitter, PluginsArray } from "./modules";
+import { dispatchLifecycleHook } from "./helpers";
+import { getElement, maybeRunMethod } from "./utilities";
 
 export class Collection {
   constructor(options = {}) {

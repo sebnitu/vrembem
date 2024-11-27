@@ -1,4 +1,4 @@
-import { getModal } from "./helpers";
+import { getModal } from "./helpers/getModal";
 
 export async function handleClick(event) {
   // If an open, close or replace button was clicked, handle the click event.

@@ -1,6 +1,7 @@
 import { open } from "./open";
 import { closeAll } from "./closeAll";
-import { updateFocusState, getModal } from "./helpers";
+import { getModal } from "./helpers/getModal";
+import { updateFocusState } from "./helpers/updateFocusState";
 
 export async function replace(query, transition, focus = true) {
   // Get the modal from collection.

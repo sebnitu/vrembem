@@ -7,7 +7,7 @@ import { open } from "./open";
 import { close } from "./close";
 import { closeAll } from "./closeAll";
 import { replace } from "./replace";
-import { updateFocusState } from "./helpers";
+import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection {
   #handleClick;
