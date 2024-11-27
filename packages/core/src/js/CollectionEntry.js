@@ -1,4 +1,4 @@
-import { buildCustomProps, getSetting } from "./helpers";
+import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
@@ -24,7 +24,7 @@ export class CollectionEntry {
   }
   
   buildCustomProps() {
-    return Object.assign(this.customProps, buildCustomProps(this));
+    return Object.assign(this.customProps, getCustomProps(this));
   }
 
   async init(options = {}) {
