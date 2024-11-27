@@ -7,7 +7,7 @@ export class FocusTrap {
     this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
-  mount(el = this.el) {
+  on(el = this.el) {
     // Get the focusable elements.
     this.focusable.set(el);
 
@@ -17,7 +17,7 @@ export class FocusTrap {
       document.addEventListener("keydown", handleFocusLock);
   }
 
-  unmount() {
+  off() {
     // Clear the focusable elements.
     this.focusable.clear();
 

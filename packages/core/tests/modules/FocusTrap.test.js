@@ -39,7 +39,7 @@ let child_2 = el.querySelector(".child-2");
 let child_3 = el.querySelector(".child-3");
 
 test("mount() should mount the focus trap setup", () => {
-  focusTrap.mount(el);
+  focusTrap.on(el);
   el.focus();
 
   expect(focusTrap.focusable.length).toBe(3);
@@ -48,7 +48,7 @@ test("mount() should mount the focus trap setup", () => {
 });
 
 test("should correctly cycle through focusable elements on tab", async () => {
-  focusTrap.mount(el);
+  focusTrap.on(el);
   el.focus();
 
   await user.keyboard("{Tab}");
@@ -79,7 +79,7 @@ test("should correctly cycle through focusable elements on shift-tab", async () 
 });
 
 test("unmount() should unmount the focus trap setup", () => {
-  focusTrap.unmount();
+  focusTrap.off();
 
   expect(focusTrap.focusable.length).toBe(0);
   expect(focusTrap.focusable.first).toBe(undefined);
@@ -89,7 +89,7 @@ test("unmount() should unmount the focus trap setup", () => {
 test("should correctly setup focus lock when there are no focusable elements", async () => {
   el = document.querySelector(".container-3");
   focusTrap = new FocusTrap(el);
-  focusTrap.mount();
+  focusTrap.on();
   el.focus();
 
   expect(focusTrap.focusable.length).toBe(0);

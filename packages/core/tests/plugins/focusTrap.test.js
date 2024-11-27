@@ -1,120 +1,107 @@
-import { FocusTrap } from "../../src/js/modules";
+import { Collection } from "../../src/js/Collection";
 import { focusTrap } from "../../src/js/plugins";
+import { FocusTrap } from "../../src/js/modules";
+import { expect } from "vitest";
 
-vi.mock("../../src/js/modules", () => ({
-  FocusTrap: vi.fn().mockImplementation(() => ({
-    mount: vi.fn(),
-    unmount: vi.fn(),
-  })),
-}));
+document.body.innerHTML = `
+  <div class="entry" id="entry-1">
+    <button id="btn">Button 1</button>
+    <a id="link" href="#">Link 1</a>
+    <input id="input" type="text" />
+    <div id="nonFocusable">Non-focusable</div>
+  </div>
+  <div class="entry" id="entry-2">Two</div>
+`;
 
-describe("focusTrap Plugin", () => {
-  let plugin;
-  let parentMock;
-  let entryMock;
+let collection;
 
+describe("focusTrap", () => {
   beforeEach(() => {
-    FocusTrap.mockClear();
-
-    plugin = focusTrap();
-
-    parentMock = {
-      on: vi.fn(),
-      off: vi.fn(),
-    };
-
-    entryMock = {
-      parent: parentMock,
-      dialog: document.createElement("div"),
-      focusTrap: null,
-    };
-  });
-
-  it("returns a plugin object with default properties", () => {
-    expect(plugin.name).toBe("focusTrap");
-    expect(plugin.defaults).toEqual({ condition: true });
-    expect(typeof plugin.setup).toBe("function");
-    expect(typeof plugin.teardown).toBe("function");
-    expect(typeof plugin.onCreateEntry).toBe("function");
-  });
-
-  describe("setup", () => {
-    it("attaches 'opened' and 'closed' event listeners to the parent", () => {
-      plugin.setup({ parent: parentMock });
-      expect(parentMock.on).toHaveBeenCalledWith("opened", expect.any(Function), plugin);
-      expect(parentMock.on).toHaveBeenCalledWith("closed", expect.any(Function), plugin);
+    collection = new Collection({
+      selector: ".entry"
     });
   });
-
-  describe("teardown", () => {
-    it("removes 'opened' and 'closed' event listeners from the parent", () => {
-      plugin.teardown({ parent: parentMock });
-      expect(parentMock.off).toHaveBeenCalledWith("opened", expect.any(Function));
-      expect(parentMock.off).toHaveBeenCalledWith("closed", expect.any(Function));
-    });
+  
+  afterEach(async () => {
+    await collection.unmount();
   });
 
-  describe("setupFocusTrap", () => {
-    it("mounts the focus trap if condition evaluates to true", () => {
-      const mockPlugin = {
-        settings: { condition: true },
-      };
-
-      plugin.setup({ parent: parentMock });
-
-      entryMock.focusTrap = new FocusTrap();
-      const setupFocusTrap = parentMock.on.mock.calls[0][1];
-
-      setupFocusTrap(entryMock, mockPlugin);
-
-      expect(entryMock.focusTrap.mount).toHaveBeenCalledWith(entryMock.dialog);
-    });
-
-    it("does not mount the focus trap if condition evaluates to false", () => {
-      const mockPlugin = {
-        settings: { condition: false },
-      };
-
-      plugin.setup({ parent: parentMock });
-
-      entryMock.focusTrap = new FocusTrap();
-      const setupFocusTrap = parentMock.on.mock.calls[0][1];
-
-      setupFocusTrap(entryMock, mockPlugin);
-
-      expect(entryMock.focusTrap.mount).not.toHaveBeenCalled();
-    });
+  it("should run plugin setup method when collection unmounts", async () => {
+    expect(collection.plugins.length).toBe(0);
+    await collection.mount({ plugins: [focusTrap()] });
+    expect(collection.plugins.length).toBe(1);
+    expect(typeof collection.plugins.get("focusTrap")).toBe("object");
+    expect(collection.events.opened.length).toBe(1);
+    expect(collection.events.closed.length).toBe(1);
   });
 
-  describe("teardownFocusTrap", () => {
-    it("unmounts the focus trap if condition evaluates to true", () => {
-      const mockPlugin = {
-        settings: { condition: true },
-      };
+  it("should run plugin teardown method when collection unmounts", async () => {
+    expect(collection.plugins.length).toBe(0);
+    await collection.mount({ plugins: [focusTrap()] });
+    expect(collection.plugins.length).toBe(1);
+    await collection.unmount();
+    expect(typeof collection.plugins.get("focusTrap")).toBe("undefined");
+    expect(collection.events.opened.length).toBe(0);
+    expect(collection.events.closed.length).toBe(0);
+  });
 
-      plugin.setup({ parent: parentMock });
-
-      entryMock.focusTrap = new FocusTrap();
-      const teardownFocusTrap = parentMock.on.mock.calls[1][1];
-
-      teardownFocusTrap(entryMock, mockPlugin);
-
-      expect(entryMock.focusTrap.unmount).toHaveBeenCalled();
+  it("should create focusTrap property on create entry lifecycle hook", async () => {
+    await collection.mount({ plugins: [focusTrap()] });
+    collection.collection.forEach((entry) => {
+      expect(entry.focusTrap).toBeInstanceOf(FocusTrap);
     });
 
-    it("does not unmount the focus trap if condition evaluates to false", () => {
-      const mockPlugin = {
-        settings: { condition: false },
-      };
+    // Get the HTML elements for checks later.
+    const entry = collection.get("entry-1");
+    const btn = document.getElementById("btn");
+    const input = document.getElementById("input");
 
-      plugin.setup({ parent: parentMock });
+    // Mock the missing entry properties.
+    entry.dialog = entry.el;
 
-      entryMock.focusTrap = new FocusTrap();
-      const teardownFocusTrap = parentMock.on.mock.calls[1][1];
+    // Should toggle focus trap when opened event is fired.
+    collection.emit("opened", entry);
+    expect(entry.focusTrap.focusable.length).toBe(3);
+    expect(entry.focusTrap.focusable.first).toBe(btn);
+    expect(entry.focusTrap.focusable.last).toBe(input);
 
-      teardownFocusTrap(entryMock, mockPlugin);
+    // Fire the closed event and check the results.
+    collection.emit("closed", entry);
+    expect(entry.focusTrap.focusable.length).toBe(0);
+    expect(entry.focusTrap.focusable.first).toBe(undefined);
+    expect(entry.focusTrap.focusable.last).toBe(undefined);
+  });
 
-      expect(entryMock.focusTrap.unmount).not.toHaveBeenCalled();
+  it("should toggle the focus trap based on the provided condition", async () => {
+    await collection.mount({ 
+      plugins: [
+        focusTrap({
+          condition: ({ entry }) => {
+            return (entry.mode === "modal");
+          }
+        })
+      ] 
     });
+
+    // Get the HTML elements for checks later.
+    const entry = collection.get("entry-1");
+    const btn = document.getElementById("btn");
+    const input = document.getElementById("input");
+
+    // Mock the missing entry properties.
+    entry.dialog = entry.el;
+    entry.mode = "modal";
+    
+    // Fire the opened event and check the results.
+    collection.emit("opened", entry);
+    expect(entry.focusTrap.focusable.length).toBe(3);
+    expect(entry.focusTrap.focusable.first).toBe(btn);
+    expect(entry.focusTrap.focusable.last).toBe(input);
+
+    // Fire the closed event and check the results.
+    collection.emit("closed", entry);
+    expect(entry.focusTrap.focusable.length).toBe(0);
+    expect(entry.focusTrap.focusable.first).toBe(undefined);
+    expect(entry.focusTrap.focusable.last).toBe(undefined);
   });
 });

@@ -13,13 +13,13 @@ export function focusTrap(options = {}) {
 
   const methods = {
     setup({ parent }) {
-      parent.on("opened", setupFocusTrap, this);
-      parent.on("closed", teardownFocusTrap, this);
+      parent.on("opened", enableFocusTrap, this);
+      parent.on("closed", disableFocusTrap, this);
     },
 
     teardown({ parent }) {
-      parent.off("opened", setupFocusTrap);
-      parent.off("closed", teardownFocusTrap);
+      parent.off("opened", enableFocusTrap);
+      parent.off("closed", disableFocusTrap);
     },
 
     onCreateEntry({ entry }) {
@@ -31,17 +31,17 @@ export function focusTrap(options = {}) {
     return (typeof obj === "function") ? obj(...args) : obj;
   }
 
-  function setupFocusTrap(entry, plugin) {
+  function enableFocusTrap(entry, plugin) {
     const contextObj = { plugin, parent: entry.parent, entry };
     if (getValue(plugin.settings.condition, contextObj)) {
-      entry.focusTrap?.mount(entry.dialog);
+      entry.focusTrap?.on(entry.dialog);
     }
   }
 
-  function teardownFocusTrap(entry, plugin) {
+  function disableFocusTrap(entry, plugin) {
     const contextObj = { plugin, parent: entry.parent, entry };
     if (getValue(plugin.settings.condition, contextObj)) {
-      entry.focusTrap?.unmount();
+      entry.focusTrap?.off();
     }
   }
 
