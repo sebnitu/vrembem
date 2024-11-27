@@ -6,16 +6,16 @@ export class CollectionEntry {
     this.parent = parent;
     this.id = query?.id || query;
     this.el = getElement(query);
-    this.settings = Object.assign({}, options);
+    this.settings = { ...options };
     this.dataConfig = {};
     this.customProps = {};
   }
 
-  applySettings(obj) {
-    return Object.assign(this.settings, obj);
+  applySettings(options) {
+    return Object.assign(this.settings, options);
   }
 
-  getSetting(key, options = {}) {
+  getSetting(key, options) {
     return getSetting.call(this, key, options);
   }
 
