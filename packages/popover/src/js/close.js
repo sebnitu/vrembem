@@ -66,9 +66,6 @@ export function closeCheck(popover) {
       `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
     );
 
-    // If a focused element was returned, ensure that it is focus-visible.
-    isFocused = (isFocused) ? isFocused.matches(":focus-visible") : false;
-
     // Close if the trigger and element are not currently hovered or focused.
     if (!isHovered && !isFocused) {
       popover.close();

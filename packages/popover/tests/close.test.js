@@ -68,23 +68,23 @@ describe("closeCheck()", () => {
     expect(popover.collection[0].el).not.toHaveClass("is-active");
   });
 
-  it("should close popover if closeCheck detects a focus but not focus-visible on trigger elements", async () => {
+  it("should keep popover open if closeCheck detects trigger element is focused", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await popover.mount();
     popover.collection[0].trigger.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
-    expect(popover.collection[0].el).not.toHaveClass("is-active");
+    expect(popover.collection[0].el).toHaveClass("is-active");
   });
 
-  it("should close popover if closeCheck detects a focus but not focus-visible on popover elements", async () => {
+  it("should keep popover open if closeCheck detects popover element or its children are focused", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await popover.mount();
     popover.collection[0].el.focus();
     closeCheck.call(popover, popover.collection[0]);
     vi.advanceTimersByTime(100);
-    expect(popover.collection[0].el).not.toHaveClass("is-active");
+    expect(popover.collection[0].el).toHaveClass("is-active");
   });
 });
