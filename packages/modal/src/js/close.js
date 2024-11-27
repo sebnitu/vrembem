@@ -1,5 +1,6 @@
 import { transition } from "@vrembem/core";
-import { updateFocusState, getModal } from "./helpers";
+import { getModal } from "./helpers/getModal";
+import { updateFocusState } from "./helpers/updateFocusState";
 
 export async function close(query, transitionOverride, focus = true) {
   // Get the modal from collection, or top modal in stack if no query is provided.
