@@ -11,7 +11,7 @@ interface Props {
 
 const { classes = "", inline = false } = Astro.props;
 
-const cp = currentPage(new URL(Astro.request.url).pathname, {
+const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active",
   classParent: "is-active",

@@ -9,7 +9,7 @@ interface Props {
 
 const { entries, collection } = Astro.props;
 const pagi = { prev: null, next: null };
-const cp = currentPage(new URL(Astro.request.url).pathname);
+const cp = currentPage(Astro.url.pathname);
 
 entries.find((entry, index) => {
   if (cp.isCurrent(`/${collection}/${entry.slug}`)) {
