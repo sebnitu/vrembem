@@ -1,4 +1,4 @@
-import { Collection, FocusTrap, StackArray, setGlobalState } from "@vrembem/core";
+import { Collection, StackArray, setGlobalState } from "@vrembem/core";
 
 import defaults from "./defaults";
 import { ModalEntry } from "./ModalEntry";
@@ -18,7 +18,6 @@ export class Modal extends Collection {
     this.module = "Modal";
     this.entryClass = ModalEntry;
     this.trigger = null;
-    this.focusTrap = new FocusTrap();
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
 

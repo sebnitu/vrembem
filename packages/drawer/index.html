@@ -10,12 +10,13 @@
   <script type="module">
     import "vrembem/dist/index.css";
     import Drawer from "./index.js";
-    import { propStore, mediaQuery, teleport } from "@vrembem/core";
+    import { focusTrap, mediaQuery, propStore, teleport } from "@vrembem/core";
 
     const drawer = new Drawer({
       plugins: [
-        propStore(),
+        focusTrap(),
         mediaQuery(),
+        propStore(),
         teleport({
           where: ".drawer-main",
           how: "before"
@@ -69,8 +70,9 @@
           
           <div id="drawer-modal" class="drawer drawer_modal is-closed">
             <div class="drawer__dialog dialog">
-              <div class="dialog__body">
-                drawer-modal
+              <div class="dialog__header flex justify-content-between">
+                <p>drawer-modal</p>
+                <button data-drawer-close class="link">Close</button>
               </div>
             </div>
           </div>
