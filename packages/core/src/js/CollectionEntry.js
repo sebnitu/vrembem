@@ -1,5 +1,5 @@
 import { buildCustomProps, getSetting } from "./helpers";
-import { getConfig, getElement } from "./utilities";
+import { getDataConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
   constructor(parent, query, options = {}) {
@@ -20,7 +20,7 @@ export class CollectionEntry {
   }
 
   buildDataConfig() {
-    return Object.assign(this.dataConfig, getConfig(this.el, this.getSetting("dataConfig")));
+    return Object.assign(this.dataConfig, getDataConfig(this.el, this.getSetting("dataConfig")));
   }
   
   buildCustomProps() {
