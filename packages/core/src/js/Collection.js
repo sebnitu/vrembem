@@ -155,7 +155,7 @@ export class Collection {
     }
 
     // Remove plugins.
-    for (const plugin of this.plugins) {
+    for (const plugin of [...this.plugins]) {
       this.plugins.remove(plugin.name);
     }
 

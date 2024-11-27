@@ -1,4 +1,9 @@
 export default {
+  focusTrap: {
+    condition: ({entry}) => {
+      return entry.state === "closed" || (entry.state === "opened" && entry.mode === "modal");
+    }
+  },
   mediaQuery: {
     onChange(event, entry) {
       entry.mode = (event.matches) ? "inline" : "modal";

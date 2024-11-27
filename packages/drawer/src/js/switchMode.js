@@ -21,9 +21,6 @@ async function toInline(entry) {
   // Update the global state.
   setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
 
-  // Remove any focus traps.
-  this.focusTrap.unmount();
-
   // Apply the inline state.
   entry.applyState();
 
