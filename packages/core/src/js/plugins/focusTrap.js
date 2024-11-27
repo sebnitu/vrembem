@@ -17,7 +17,7 @@ export function focusTrap(options = {}) {
       parent.on("closed", teardownFocusTrap, this);
     },
 
-    teardown() {
+    teardown({ parent }) {
       parent.off("opened", setupFocusTrap);
       parent.off("closed", teardownFocusTrap);
     },

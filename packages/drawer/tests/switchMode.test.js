@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import Drawer from "../index";
-import { propStore, mediaQuery } from "@vrembem/core";
+import { focusTrap, mediaQuery, propStore } from "@vrembem/core";
+import { expect } from "vitest";
 
 document.body.innerHTML = `
   <div id="drawer-1" class="drawer">
@@ -53,8 +54,9 @@ function resizeWindow(value, collection) {
 const drawer = new Drawer({ 
   transition: false,
   plugins: [
-    propStore(),
-    mediaQuery()
+    focusTrap(),
+    mediaQuery(),
+    propStore()
   ]
 });
 
@@ -189,4 +191,9 @@ test("should setup match media breakpoint for drawer on register", async () => {
   expect(entry.mode).toBe("inline");
   resizeWindow(400, drawer.collection);
   expect(entry.mode).toBe("modal");
+});
+
+test("should run teardown methods of all plugins when unmounted", async () => {
+  await drawer.unmount();
+  expect(drawer.plugins.length).toBe(0);
 });
