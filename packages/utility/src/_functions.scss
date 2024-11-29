@@ -15,7 +15,9 @@
   }
   $class: '.#{config.get("prefix-utility")}#{$name}';
   @each $arg in $args {
-    $class: '#{$class}-#{$arg}';
+    @if $arg != "" {
+      $class: '#{$class}-#{$arg}';
+    }
   }
   @return $class;
 }

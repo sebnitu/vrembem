@@ -1,41 +1,33 @@
-@use "@vrembem/core";
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-border-radius;
+@use "../functions" as fun;
 
 @if (var.$output-border-radius) {
   @each $key, $value in var.$border-radius-map {
-    // Initialize selector
-    $_s: #{$_u}#{$_c};
-
-    // Add the key to selector if one exists
-    @if $key != "" {
-      $_s: #{$_s}-#{$key};
-    }
-
-    // Output border-radius utilities
-    .#{$_s} {
+    #{fun.utility("border-radius", $key)} {
       border-radius: $value !important;
     }
-    .#{$_s}-top,
-    .#{$_s}-left,
-    .#{$_s}-top-left {
+    
+    #{fun.utility("border-radius", $key, "top")},
+    #{fun.utility("border-radius", $key, "left")},
+    #{fun.utility("border-radius", $key, "top-left")} {
       border-top-left-radius: $value !important;
     }
-    .#{$_s}-top,
-    .#{$_s}-right,
-    .#{$_s}-top-right {
+
+    #{fun.utility("border-radius", $key, "top")},
+    #{fun.utility("border-radius", $key, "right")},
+    #{fun.utility("border-radius", $key, "top-right")} {
       border-top-right-radius: $value !important;
     }
-    .#{$_s}-bottom,
-    .#{$_s}-right,
-    .#{$_s}-bottom-right {
+
+    #{fun.utility("border-radius", $key, "bottom")},
+    #{fun.utility("border-radius", $key, "right")},
+    #{fun.utility("border-radius", $key, "bottom-right")} {
       border-bottom-right-radius: $value !important;
     }
-    .#{$_s}-bottom,
-    .#{$_s}-left,
-    .#{$_s}-bottom-left {
+
+    #{fun.utility("border-radius", $key, "bottom")},
+    #{fun.utility("border-radius", $key, "left")},
+    #{fun.utility("border-radius", $key, "bottom-left")} {
       border-bottom-left-radius: $value !important;
     }
   }

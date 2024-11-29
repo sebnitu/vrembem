@@ -24,7 +24,10 @@ $output-spacing: $output !default;
 $output-text: $output !default;
 $output-transition: $output !default;
 
-$classes: () !default;
+$classes: (
+  "border-radius": "radius",
+  "box-shadow": "shadow",
+) !default;
 
 // TODO: Delete these once `$classes` is fully implemented.
 $class-background: "background" !default;
