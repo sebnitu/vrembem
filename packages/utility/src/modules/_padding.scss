@@ -1,68 +1,66 @@
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-padding;
+@use "../functions" as fun;
 
 @if (var.$output-padding) {
-  .#{$_u}#{$_c} {
+  #{fun.utility("padding")} {
     padding: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-top {
+  #{fun.utility("padding", "top")} {
     padding-top: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-bottom {
+  #{fun.utility("padding", "bottom")} {
     padding-bottom: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-left {
+  #{fun.utility("padding", "left")} {
     padding-left: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-right {
+  #{fun.utility("padding", "right")} {
     padding-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-#{$key} {
+    #{fun.utility("padding", $key)} {
       padding: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-top-#{$key} {
+    #{fun.utility("padding", "top", $key)} {
       padding-top: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-bottom-#{$key} {
+    #{fun.utility("padding", "bottom", $key)} {
       padding-bottom: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-left-#{$key} {
+    #{fun.utility("padding", "left", $key)} {
       padding-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-right-#{$key} {
+    #{fun.utility("padding", "right", $key)} {
       padding-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-x-#{$key} {
+    #{fun.utility("padding", "x", $key)} {
       padding-right: $value !important;
       padding-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-y-#{$key} {
+    #{fun.utility("padding", "y", $key)} {
       padding-top: $value !important;
       padding-bottom: $value !important;
     }

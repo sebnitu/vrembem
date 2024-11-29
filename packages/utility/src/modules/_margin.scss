@@ -1,99 +1,97 @@
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-margin;
+@use "../functions" as fun;
 
 @if (var.$output-margin) {
-  .#{$_u}#{$_c} {
+  #{fun.utility("margin")} {
     margin: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-top {
+  #{fun.utility("margin", "top")} {
     margin-top: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-bottom {
+  #{fun.utility("margin", "bottom")} {
     margin-bottom: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-left {
+  #{fun.utility("margin", "left")} {
     margin-left: var.$gap !important;
   }
 
-  .#{$_u}#{$_c}-right {
+  #{fun.utility("margin", "right")} {
     margin-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-#{$key} {
+    #{fun.utility("margin", $key)} {
       margin: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-top-#{$key} {
+    #{fun.utility("margin", "top", $key)} {
       margin-top: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-bottom-#{$key} {
+    #{fun.utility("margin", "bottom", $key)} {
       margin-bottom: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-left-#{$key} {
+    #{fun.utility("margin", "left", $key)} {
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-right-#{$key} {
+    #{fun.utility("margin", "right", $key)} {
       margin-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-x-#{$key} {
+    #{fun.utility("margin", "x", $key)} {
       margin-right: $value !important;
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .#{$_u}#{$_c}-y-#{$key} {
+    #{fun.utility("margin", "y", $key)} {
       margin-top: $value !important;
       margin-bottom: $value !important;
     }
   }
 
-  .#{$_u}#{$_c}-auto {
+  #{fun.utility("margin", "auto")} {
     margin: auto !important;
   }
 
-  .#{$_u}#{$_c}-top-auto {
+  #{fun.utility("margin", "top", "auto")} {
     margin-top: auto !important;
   }
 
-  .#{$_u}#{$_c}-bottom-auto {
+  #{fun.utility("margin", "bottom", "auto")} {
     margin-bottom: auto !important;
   }
 
-  .#{$_u}#{$_c}-left-auto {
+  #{fun.utility("margin", "left", "auto")} {
     margin-left: auto !important;
   }
 
-  .#{$_u}#{$_c}-right-auto {
+  #{fun.utility("margin", "right", "auto")} {
     margin-right: auto !important;
   }
 
-  .#{$_u}#{$_c}-x-auto {
+  #{fun.utility("margin", "x", "auto")} {
     margin-right: auto !important;
     margin-left: auto !important;
   }
 
-  .#{$_u}#{$_c}-y-auto {
+  #{fun.utility("margin", "y", "auto")} {
     margin-top: auto !important;
     margin-bottom: auto !important;
   }
