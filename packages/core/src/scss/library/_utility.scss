@@ -1,0 +1,16 @@
+@use "../modules/config";
+
+/// Generate a utility class selector with a core prefix and optional modifiers.
+/// @param {string} $name
+///   The base name of the utility.
+/// @param {string} $args...
+///   Additional strings appended as modifiers to the class name.
+/// @return {selector}
+///   A valid utility CSS selector.
+@function utility($name, $args...) {
+  $class: '.#{config.get("prefix-utility")}#{$name}';
+  @each $arg in $args {
+    $class: '#{$class}-#{$arg}';
+  }
+  @return $class;
+}

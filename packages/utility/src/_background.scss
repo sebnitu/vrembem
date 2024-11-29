@@ -1,55 +1,56 @@
 @use "sass:map";
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_u: var.$prefix-utility;
-$_c: var.$class-background;
-
 @if (var.$output-background) {
-  .#{$_u}#{$_c}-clip-border {
+  #{core.utility(var.$class-background, "clip-border")} {
     background-clip: border-box !important;
   }
 
-  .#{$_u}#{$_c}-clip-content {
+  #{core.utility(var.$class-background, "clip-content")} {
     background-clip: content-box !important;
   }
 
-  .#{$_u}#{$_c}-clip-padding {
+  #{core.utility(var.$class-background, "clip-padding")} {
     background-clip: padding-box !important;
   }
 
-  .#{$_u}#{$_c} {
-    background-color: css.get("background") !important;
-  }
-
-  .#{$_u}#{$_c}-dark {
-    background-color: css.get("background-dark") !important;
-  }
-
-  .#{$_u}#{$_c}-darker {
-    background-color: css.get("background-darker") !important;
-  }
-
-  .#{$_u}#{$_c}-black {
+  #{core.utility(var.$class-background, "black")} {
     background-color: black !important;
   }
 
-  .#{$_u}#{$_c}-white {
+  #{core.utility(var.$class-background, "white")} {
     background-color: white !important;
   }
 
-  .#{$_u}#{$_c}-transparent {
+  #{core.utility(var.$class-background, "transparent")} {
     background-color: transparent !important;
   }
 
+  // Theme CSS Variable output.
+
+  #{core.utility(var.$class-background)} {
+    background-color: css.get("background") !important;
+  }
+
+  #{core.utility(var.$class-background, "dark")} {
+    background-color: css.get("background-dark") !important;
+  }
+
+  #{core.utility(var.$class-background, "darker")} {
+    background-color: css.get("background-darker") !important;
+  }
+
+  // Palette CSS Variable output.
+
   @each $name in map.keys(palette.get("seeds")) {
-    .#{$_u}#{$_c}-#{$name} {
+    #{core.utility(var.$class-background, $name)} {
       background-color: palette.get($name) !important;
     }
     @each $value in palette.$lightness-range {
-      .#{$_u}#{$_c}-#{$name}-#{$value} {
+      #{core.utility(var.$class-background, $name, $value)} {
         background-color: palette.get($name, $value) !important;
       }
     }

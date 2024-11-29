@@ -1,43 +1,44 @@
 @use "sass:map";
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-$_v: var.$prefix-variable;
-$_u: var.$prefix-utility;
-$_c: var.$class-foreground;
-
 @if (var.$output-foreground) {
-  .#{$_u}#{$_c} {
-    color: css.get("foreground") !important;
-  }
-
-  .#{$_u}#{$_c}-light {
-    color: css.get("foreground-light") !important;
-  }
-
-  .#{$_u}#{$_c}-lighter {
-    color: css.get("foreground-lighter") !important;
-  }
-
-  .#{$_u}#{$_c}-black {
+  #{core.utility(var.$class-foreground, "black")} {
     color: black !important;
   }
 
-  .#{$_u}#{$_c}-white {
+  #{core.utility(var.$class-foreground, "white")} {
     color: white !important;
   }
 
-  .#{$_u}#{$_c}-transparent {
+  #{core.utility(var.$class-foreground, "transparent")} {
     color: transparent !important;
   }
 
+  // Theme CSS Variable output.
+  
+  #{core.utility(var.$class-foreground)} {
+    color: css.get("foreground") !important;
+  }
+
+  #{core.utility(var.$class-foreground, "light")} {
+    color: css.get("foreground-light") !important;
+  }
+
+  #{core.utility(var.$class-foreground, "lighter")} {
+    color: css.get("foreground-lighter") !important;
+  }
+
+  // Palette CSS Variable output.
+
   @each $name in map.keys(palette.get("seeds")) {
-    .#{$_u}#{$_c}-#{$name} {
+    #{core.utility(var.$class-foreground, $name)} {
       color: palette.get($name) !important;
     }
     @each $value in palette.$lightness-range {
-      .#{$_u}#{$_c}-#{$name}-#{$value} {
+      #{core.utility(var.$class-foreground, $name, $value)} {
         color: palette.get($name, $value) !important;
       }
     }
