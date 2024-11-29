@@ -18,6 +18,32 @@
 
     // Override Vrembem with this component's styles.
     import "./index.scss";
+
+    const colors = ["primary", "secondary", "neutral", "important"];
+    const lightnessRange = [0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100];
+    let container;
+
+    // Build the background swatches.
+    container = document.getElementById("background-swatches");
+    colors.forEach(color => {
+      lightnessRange.forEach(lightness => {
+        const div = document.createElement("div");
+        div.className = `swatch background-${color}-${lightness}`;
+        container.appendChild(div);
+      });
+    });
+
+    // Build the foreground swatches
+    container = document.getElementById("foreground-swatches");
+    colors.forEach(color => {
+      lightnessRange.forEach(lightness => {
+        const div = document.createElement("div");
+        div.innerText = `foreground-${color}-${lightness}`;
+        div.className = `foreground-${color}-${lightness}`;
+        container.appendChild(div);
+      });
+    });
+
   </script>
   <style>
     .swatch {
@@ -26,6 +52,14 @@
       height: 64px;
       border: var(--vb-border);
       border-radius: var(--vb-border-radius);
+    }
+
+    .swatch-clip {
+      display: inline-block;
+      padding: .5em .75em;
+      border: 4px solid var(--vb-border-color);
+      border-radius: var(--vb-border-radius);
+      background-color: var(--vb-primary);
     }
   </style>
 </head>
@@ -54,58 +88,33 @@
       
       <h2>background</h2>
 
-      <div class="flex flex-wrap">
+      <div id="background-swatches" class="flex flex-wrap">
         <div class="swatch background-black"></div>
         <div class="swatch background-white"></div>
         <div class="swatch background-transparent"></div>
         <div class="swatch background"></div>
         <div class="swatch background-dark"></div>
         <div class="swatch background-darker"></div>
-        <!-- 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 -->
-        <div class="swatch background-primary-0"></div>
-        <div class="swatch background-primary-5"></div>
-        <div class="swatch background-primary-10"></div>
-        <div class="swatch background-primary-12"></div>
-        <div class="swatch background-primary-15"></div>
-        <div class="swatch background-primary-20"></div>
-        <div class="swatch background-primary-30"></div>
-        <div class="swatch background-primary-40"></div>
-        <div class="swatch background-primary-50"></div>
-        <div class="swatch background-primary-60"></div>
-        <div class="swatch background-primary-70"></div>
-        <div class="swatch background-primary-80"></div>
-        <div class="swatch background-primary-90"></div>
-        <div class="swatch background-primary-95"></div>
-        <div class="swatch background-primary-98"></div>
-        <div class="swatch background-primary-100"></div>
       </div>
 
-      <h2>foreground</h2>
+      <h2>background-clip</h2>
 
       <div class="flex flex-wrap">
-        <p>foreground-black: <span class="foreground-black">example</span></p>
-        <p>foreground-white: <span class="foreground-white">example</span></p>
-        <p>foreground-transparent: <span class="foreground-transparent">example</span></p>
-        <p>foreground: <span class="foreground">example</span></p>
-        <p>foreground-light: <span class="foreground-light">example</span></p>
-        <p>foreground-lighter: <span class="foreground-lighter">example</span></p>
-        <!-- 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 -->
-        <p>foreground-primary-0: <span class="foreground-primary-0">example</span></p>
-        <p>foreground-primary-5: <span class="foreground-primary-5">example</span></p>
-        <p>foreground-primary-10: <span class="foreground-primary-10">example</span></p>
-        <p>foreground-primary-12: <span class="foreground-primary-12">example</span></p>
-        <p>foreground-primary-15: <span class="foreground-primary-15">example</span></p>
-        <p>foreground-primary-20: <span class="foreground-primary-20">example</span></p>
-        <p>foreground-primary-30: <span class="foreground-primary-30">example</span></p>
-        <p>foreground-primary-40: <span class="foreground-primary-40">example</span></p>
-        <p>foreground-primary-50: <span class="foreground-primary-50">example</span></p>
-        <p>foreground-primary-60: <span class="foreground-primary-60">example</span></p>
-        <p>foreground-primary-70: <span class="foreground-primary-70">example</span></p>
-        <p>foreground-primary-80: <span class="foreground-primary-80">example</span></p>
-        <p>foreground-primary-90: <span class="foreground-primary-90">example</span></p>
-        <p>foreground-primary-95: <span class="foreground-primary-95">example</span></p>
-        <p>foreground-primary-98: <span class="foreground-primary-98">example</span></p>
-        <p>foreground-primary-100: <span class="foreground-primary-100">example</span></p>
+        <div class="swatch-clip background-clip-border">background-clip-border</div>
+        <div class="swatch-clip background-clip-padding">background-clip-padding</div>
+        <div class="swatch-clip background-clip-content">background-clip-content</div>
+        <div class="swatch-clip background-clip-text foreground-transparent">background-clip-text</div>
+      </div>
+      
+      <h2>foreground</h2>
+
+      <div id="foreground-swatches" class="flex flex-wrap">
+        <div class="foreground-black">foreground-black</div>
+        <div class="foreground-white">foreground-white</div>
+        <div class="foreground-transparent">foreground-transparent</div>
+        <div class="foreground">foreground</div>
+        <div class="foreground-light">foreground-light</div>
+        <div class="foreground-lighter">foreground-lighter</div>
       </div>
 
     </div>

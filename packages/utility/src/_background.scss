@@ -17,6 +17,10 @@
     background-clip: padding-box !important;
   }
 
+  #{core.utility(var.$class-background, "clip-text")} {
+    background-clip: text !important;
+  }
+
   #{core.utility(var.$class-background, "black")} {
     background-color: black !important;
   }
