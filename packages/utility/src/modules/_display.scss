@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "../variables" as var;
 
 $_u: var.$prefix-utility;
 $_c: var.$class-display;

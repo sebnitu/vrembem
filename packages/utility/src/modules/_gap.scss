@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "../variables" as var;
 
 .gap {
   gap: var.$gap !important;

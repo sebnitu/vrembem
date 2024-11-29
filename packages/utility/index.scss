@@ -1,28 +1,28 @@
 @forward "./src/variables";
 @forward "./src/functions";
 
-@forward "./src/background";
-@forward "./src/foreground";
-@forward "./src/border";
-@forward "./src/border-radius";
-@forward "./src/shadow";
+@forward "./src/modules/background";
+@forward "./src/modules/foreground";
+@forward "./src/modules/border";
+@forward "./src/modules/border-radius";
+@forward "./src/modules/shadow";
 
-@forward "./src/display";
-@forward "./src/margin";
-@forward "./src/padding";
-@forward "./src/spacing";
+@forward "./src/modules/display";
+@forward "./src/modules/margin";
+@forward "./src/modules/padding";
+@forward "./src/modules/spacing";
 
-@forward "./src/gap";
-@forward "./src/justify";
-@forward "./src/align";
-@forward "./src/place";
-@forward "./src/order";
+@forward "./src/modules/gap";
+@forward "./src/modules/justify";
+@forward "./src/modules/align";
+@forward "./src/modules/place";
+@forward "./src/modules/order";
 
-@forward "./src/position";
-@forward "./src/overflow";
-@forward "./src/max-width";
+@forward "./src/modules/position";
+@forward "./src/modules/overflow";
+@forward "./src/modules/max-width";
 
-@forward "./src/font";
-@forward "./src/text";
+@forward "./src/modules/font";
+@forward "./src/modules/text";
 
-@forward "./src/transition";
+@forward "./src/modules/transition";

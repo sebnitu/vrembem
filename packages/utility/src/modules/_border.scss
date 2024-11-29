@@ -1,6 +1,6 @@
 @use "@vrembem/core/css";
-@use "./variables" as var;
-@use "./functions" as fun;
+@use "../variables" as var;
+@use "../functions" as fun;
 
 @if (var.$output-border) {
   #{fun.utility("border")} {

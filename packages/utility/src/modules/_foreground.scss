@@ -1,8 +1,8 @@
 @use "sass:map";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
-@use "./functions" as fun;
+@use "../variables" as var;
+@use "../functions" as fun;
 
 @if (var.$output-foreground) {
   #{fun.utility("foreground", "black")} {

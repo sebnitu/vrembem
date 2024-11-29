@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "../variables" as var;
 
 $_u: var.$prefix-utility;
 $_c: var.$class-shadow;
