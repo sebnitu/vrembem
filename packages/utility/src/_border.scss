@@ -1,59 +1,57 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-border;
+@use "./functions" as fun;
 
 @if (var.$output-border) {
-  .#{$_u}#{$_c} {
+  #{fun.utility("border")} {
     border: css.get("border") !important;
   }
 
-  .#{$_u}#{$_c}-top {
+  #{fun.utility("border", "top")} {
     border-top: css.get("border") !important;
   }
 
-  .#{$_u}#{$_c}-bottom {
+  #{fun.utility("border", "bottom")} {
     border-bottom: css.get("border") !important;
   }
 
-  .#{$_u}#{$_c}-left {
+  #{fun.utility("border", "left")} {
     border-left: css.get("border") !important;
   }
 
-  .#{$_u}#{$_c}-right {
+  #{fun.utility("border", "right")} {
     border-right: css.get("border") !important;
   }
 
-  .#{$_u}#{$_c}-none {
+  #{fun.utility("border", "none")} {
     border: 0 !important;
   }
 
-  .#{$_u}#{$_c}-top-none {
+  #{fun.utility("border", "top-none")} {
     border-top: 0 !important;
   }
 
-  .#{$_u}#{$_c}-bottom-none {
+  #{fun.utility("border", "bottom-none")} {
     border-bottom: 0 !important;
   }
 
-  .#{$_u}#{$_c}-left-none {
+  #{fun.utility("border", "left-none")} {
     border-left: 0 !important;
   }
 
-  .#{$_u}#{$_c}-right-none {
+  #{fun.utility("border", "right-none")} {
     border-right: 0 !important;
   }
 
-  .#{$_u}#{$_c}-color-dark {
+  #{fun.utility("border", "color-dark")} {
     border-color: css.get("border-color-dark") !important;
   }
 
-  .#{$_u}#{$_c}-color-darker {
+  #{fun.utility("border", "color-darker")} {
     border-color: css.get("border-color-darker") !important;
   }
 
-  .#{$_u}#{$_c}-color-transparent {
+  #{fun.utility("border", "color-transparent")} {
     border-color: transparent !important;
   }
 }

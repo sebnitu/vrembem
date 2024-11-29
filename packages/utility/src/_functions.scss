@@ -1,13 +1,18 @@
-@use "../modules/config";
+@use "sass:map";
+@use "@vrembem/core/config";
+@use "./variables" as var;
 
 /// Generate a utility class selector with a core prefix and optional modifiers.
 /// @param {string} $name
-///   The base name of the utility.
+///   The base name of the utility. Will search for a shorthand in `var.$classes`.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class name.
 /// @return {selector}
 ///   A valid utility CSS selector.
 @function utility($name, $args...) {
+  @if map.has-key(var.$classes, $name) {
+    $name: map.get(var.$classes, $name);
+  }
   $class: '.#{config.get("prefix-utility")}#{$name}';
   @each $arg in $args {
     $class: '#{$class}-#{$arg}';

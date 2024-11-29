@@ -1,44 +1,44 @@
 @use "sass:map";
-@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "./variables" as var;
+@use "./functions" as fun;
 
 @if (var.$output-foreground) {
-  #{core.utility(var.$class-foreground, "black")} {
+  #{fun.utility("foreground", "black")} {
     color: black !important;
   }
 
-  #{core.utility(var.$class-foreground, "white")} {
+  #{fun.utility("foreground", "white")} {
     color: white !important;
   }
 
-  #{core.utility(var.$class-foreground, "transparent")} {
+  #{fun.utility("foreground", "transparent")} {
     color: transparent !important;
   }
 
   // Theme CSS Variable output.
   
-  #{core.utility(var.$class-foreground)} {
+  #{fun.utility("foreground")} {
     color: css.get("foreground") !important;
   }
 
-  #{core.utility(var.$class-foreground, "light")} {
+  #{fun.utility("foreground", "light")} {
     color: css.get("foreground-light") !important;
   }
 
-  #{core.utility(var.$class-foreground, "lighter")} {
+  #{fun.utility("foreground", "lighter")} {
     color: css.get("foreground-lighter") !important;
   }
 
   // Palette CSS Variable output.
 
   @each $name in map.keys(palette.get("seeds")) {
-    #{core.utility(var.$class-foreground, $name)} {
+    #{fun.utility("foreground", $name)} {
       color: palette.get($name) !important;
     }
     @each $value in palette.$lightness-range {
-      #{core.utility(var.$class-foreground, $name, $value)} {
+      #{fun.utility("foreground", $name, $value)} {
         color: palette.get($name, $value) !important;
       }
     }
