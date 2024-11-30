@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-spacing) {
+@if (fun.maybe-output("spacing")) {
   #{fun.utility("spacing")} {
     > * + * {
       margin-top: var.$gap !important;

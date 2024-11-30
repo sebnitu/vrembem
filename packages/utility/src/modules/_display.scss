@@ -2,7 +2,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-display) {
+@if (fun.maybe-output("display")) {
   @each $property in var.$display-properties {
     #{fun.utility("display", $property)} {
       display: $property !important;

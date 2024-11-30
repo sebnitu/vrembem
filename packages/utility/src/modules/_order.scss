@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-order) {
+@if (fun.maybe-output("order")) {
   #{fun.utility("order", "first")} {
     order: -99 !important;
   }

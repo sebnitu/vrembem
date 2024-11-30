@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:string";
 @use "sass:map";
 @use "@vrembem/core";
@@ -8,7 +9,8 @@
 /// @param {string} $name
 ///   The base name of the utility. Will search for a shorthand in `var.$classes`.
 /// @param {string} $args...
-///   Additional strings appended as modifiers to the class name.
+///   Additional strings appended as modifiers to the class name. Add a ":" for
+///   a prepended modifier such as breakpoints, e.g: "md:".
 /// @return {selector}
 ///   A valid utility CSS selector.
 @function utility($name, $args...) {
@@ -40,4 +42,17 @@
 
   // Return the class.
   @return ".#{$class}";
+}
+
+/// Conditional logic for when to output the utilities of a specific module.
+/// @param {string} $module
+///   The module name to conditionally toggle output.
+/// @return {boolean}
+///   The resolved condition boolean.
+@function maybe-output($module) {
+  @if list.index(var.$output-exceptions, $module) {
+    @return not var.$output;
+  } @else {
+    @return var.$output;
+  }
 }

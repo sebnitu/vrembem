@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-padding) {
+@if (fun.maybe-output("padding")) {
   #{fun.utility("padding")} {
     padding: var.$gap !important;
   }

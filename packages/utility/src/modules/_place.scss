@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-place) {
+@if (fun.maybe-output("place")) {
   #{fun.utility("place", "content", "start")} {
     place-content: start !important;
   }

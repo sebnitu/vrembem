@@ -3,7 +3,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (var.$output-font) {
+@if (fun.maybe-output("font")) {
   #{fun.utility("font", "family", "sans")} {
     font-family: css.get("font-family-sans") !important;
   }
