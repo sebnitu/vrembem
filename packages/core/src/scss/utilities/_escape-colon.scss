@@ -1,0 +1,5 @@
+@use "./string-replace" as *;
+
+@function escape-colon($string) {
+  @return string-replace($string, ":", "\\:");
+}

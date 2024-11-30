@@ -1,5 +1,6 @@
 @use "../modules/config";
 
+/// TODO: Add support for breakpoint prefixes `md:` similar to utility function.
 /// Output a valid BEM class selector using core prefixes and the provided
 /// parameters; block, element, modifier and modifier-value.
 /// @param {string} $b
