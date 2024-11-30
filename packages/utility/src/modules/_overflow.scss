@@ -1,19 +1,17 @@
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-overflow;
+@use "../functions" as fun;
 
 @if (var.$output-overflow) {
   @each $property in var.$overflow-properties {
-    .#{$_u}#{$_c}-#{$property} {
+    #{fun.utility("overflow", $property)} {
       overflow: $property !important;
     }
 
-    .#{$_u}#{$_c}-x-#{$property} {
+    #{fun.utility("overflow", "x", $property)} {
       overflow-x: $property !important;
     }
 
-    .#{$_u}#{$_c}-y-#{$property} {
+    #{fun.utility("overflow", "y", $property)} {
       overflow-y: $property !important;
     }
   }

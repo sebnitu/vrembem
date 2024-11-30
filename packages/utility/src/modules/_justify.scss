@@ -1,59 +1,64 @@
-.justify-content-start {
-  justify-content: start !important;
-}
+@use "../variables" as var;
+@use "../functions" as fun;
 
-.justify-content-center {
-  justify-content: center !important;
-}
+@if (var.$output-justify) {
+  #{fun.utility("justify", "content", "start")} {
+    justify-content: start !important;
+  }
 
-.justify-content-end {
-  justify-content: end !important;
-}
+  #{fun.utility("justify", "content", "center")} {
+    justify-content: center !important;
+  }
 
-.justify-content-between {
-  justify-content: space-between !important;
-}
+  #{fun.utility("justify", "content", "end")} {
+    justify-content: end !important;
+  }
 
-.justify-content-around {
-  justify-content: space-around !important;
-}
+  #{fun.utility("justify", "content", "between")} {
+    justify-content: space-between !important;
+  }
 
-.justify-content-evenly {
-  justify-content: space-evenly !important;
-}
+  #{fun.utility("justify", "content", "around")} {
+    justify-content: space-around !important;
+  }
 
-.justify-content-stretch {
-  justify-content: stretch !important;
-}
+  #{fun.utility("justify", "content", "evenly")} {
+    justify-content: space-evenly !important;
+  }
 
-.justify-items-start {
-  justify-items: start !important;
-}
+  #{fun.utility("justify", "content", "stretch")} {
+    justify-content: stretch !important;
+  }
 
-.justify-items-center {
-  justify-items: center !important;
-}
+  #{fun.utility("justify", "items", "start")} {
+    justify-items: start !important;
+  }
 
-.justify-items-end {
-  justify-items: end !important;
-}
+  #{fun.utility("justify", "items", "center")} {
+    justify-items: center !important;
+  }
 
-.justify-items-stretch {
-  justify-items: stretch !important;
-}
+  #{fun.utility("justify", "items", "end")} {
+    justify-items: end !important;
+  }
 
-.justify-self-start {
-  justify-self: start !important;
-}
+  #{fun.utility("justify", "items", "stretch")} {
+    justify-items: stretch !important;
+  }
 
-.justify-self-center {
-  justify-self: center !important;
-}
+  #{fun.utility("justify", "self", "start")} {
+    justify-self: start !important;
+  }
 
-.justify-self-end {
-  justify-self: end !important;
-}
+  #{fun.utility("justify", "self", "center")} {
+    justify-self: center !important;
+  }
 
-.justify-self-stretch {
-  justify-self: stretch !important;
+  #{fun.utility("justify", "self", "end")} {
+    justify-self: end !important;
+  }
+
+  #{fun.utility("justify", "self", "stretch")} {
+    justify-self: stretch !important;
+  }
 }

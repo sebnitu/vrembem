@@ -1,61 +1,58 @@
-@use "@vrembem/core";
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-text;
+@use "../functions" as fun;
 
 @if (var.$output-text) {
-  .#{$_u}#{$_c}-capitalize {
+  #{fun.utility("text", "capitalize")} {
     text-transform: capitalize !important;
   }
 
-  .#{$_u}#{$_c}-lowercase {
+  #{fun.utility("text", "lowercase")} {
     text-transform: lowercase !important;
   }
 
-  .#{$_u}#{$_c}-uppercase {
+  #{fun.utility("text", "uppercase")} {
     text-transform: uppercase !important;
   }
 
-  .#{$_u}#{$_c}-align-left {
+  #{fun.utility("text", "align", "left")} {
     text-align: left !important;
   }
 
-  .#{$_u}#{$_c}-align-center {
+  #{fun.utility("text", "align", "center")} {
     text-align: center !important;
   }
 
-  .#{$_u}#{$_c}-align-right {
+  #{fun.utility("text", "align", "right")} {
     text-align: right !important;
   }
 
-  .#{$_u}#{$_c}-strike {
+  #{fun.utility("text", "strike")} {
     text-decoration: line-through !important;
   }
 
-  .#{$_u}#{$_c}-underline {
+  #{fun.utility("text", "underline")} {
     text-decoration: underline !important;
   }
 
-  .#{$_u}#{$_c}-underline-dotted {
+  #{fun.utility("text", "underline", "dotted")} {
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
   }
 
-  .#{$_u}#{$_c}-underline-dashed {
+  #{fun.utility("text", "underline", "dashed")} {
     text-decoration: underline !important;
     text-decoration-style: dashed !important;
   }
 
-  .#{$_u}#{$_c}-wrap {
+  #{fun.utility("text", "wrap")} {
     white-space: normal !important;
   }
 
-  .#{$_u}#{$_c}-nowrap {
+  #{fun.utility("text", "nowrap")} {
     white-space: nowrap !important;
   }
 
-  .#{$_u}#{$_c}-overflow-ellipsis {
+  #{fun.utility("text", "overflow", "ellipsis")} {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;

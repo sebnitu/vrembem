@@ -1,26 +1,24 @@
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-position;
+@use "../functions" as fun;
 
 @if (var.$output-position) {
-  .#{$_u}#{$_c}-absolute {
+  #{fun.utility("position", "absolute")} {
     position: absolute !important;
   }
 
-  .#{$_u}#{$_c}-fixed {
+  #{fun.utility("position", "fixed")} {
     position: fixed !important;
   }
 
-  .#{$_u}#{$_c}-relative {
+  #{fun.utility("position", "relative")} {
     position: relative !important;
   }
 
-  .#{$_u}#{$_c}-static {
+  #{fun.utility("position", "static")} {
     position: static !important;
   }
 
-  .#{$_u}#{$_c}-sticky {
+  #{fun.utility("position", "sticky")} {
     position: sticky !important;
   }
 }

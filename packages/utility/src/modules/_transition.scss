@@ -1,15 +1,13 @@
 @use "@vrembem/core/css";
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-transition;
+@use "../functions" as fun;
 
 @if (var.$output-transition) {
-  .#{$_u}#{$_c}-none {
+  #{fun.utility("transition", "none")} {
     transition: none !important;
   }
 
-  .#{$_u}#{$_c}-all {
+  #{fun.utility("transition", "all")} {
     transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
   }
 }

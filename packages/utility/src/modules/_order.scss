@@ -1,15 +1,18 @@
 @use "../variables" as var;
+@use "../functions" as fun;
 
-.order-first {
-  order: -99 !important;
-}
+@if (var.$output-order) {
+  #{fun.utility("order", "first")} {
+    order: -99 !important;
+  }
 
-.order-last {
-  order: 99 !important;
-}
+  #{fun.utility("order", "last")} {
+    order: 99 !important;
+  }
 
-@for $i from 0 through var.$order-count {
-  .order-#{$i} {
-    order: $i !important;
+  @for $i from 0 through var.$order-count {
+    #{fun.utility("order", $i)} {
+      order: $i !important;
+    }
   }
 }

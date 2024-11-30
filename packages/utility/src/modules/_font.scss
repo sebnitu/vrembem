@@ -1,70 +1,56 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "../variables" as var;
-
-$_u: var.$prefix-utility;
-$_c: var.$class-font;
+@use "../functions" as fun;
 
 @if (var.$output-font) {
-  .#{$_u}#{$_c}-family-sans {
-    font-family: core.$font-family-sans !important;
+  #{fun.utility("font", "family", "sans")} {
+    font-family: css.get("font-family-sans") !important;
   }
 
-  .#{$_u}#{$_c}-family-serif {
-    font-family: core.$font-family-serif !important;
+  #{fun.utility("font", "family", "serif")} {
+    font-family: css.get("font-family-serif") !important;
   }
 
-  .#{$_u}#{$_c}-family-mono {
-    font-family: core.$font-family-mono !important;
+  #{fun.utility("font", "family", "mono")} {
+    font-family: css.get("font-family-mono") !important;
   }
 
-  .#{$_u}#{$_c}-size-base {
+  #{fun.utility("font", "size", "base")} {
     font-size: 1rem !important;
   }
 
-  .#{$_u}#{$_c}-size-sm {
-    font-size: core.$font-size-sm !important;
+  #{fun.utility("font", "size", "sm")} {
+    font-size: css.get("font-size-sm") !important;
   }
 
-  .#{$_u}#{$_c}-size-lg {
-    font-size: core.$font-size-lg !important;
+  #{fun.utility("font", "size", "lg")} {
+    font-size: css.get("font-size-lg") !important;
   }
 
-  .#{$_u}#{$_c}-leading-base {
+  #{fun.utility("font", "leading", "base")} {
     line-height: css.get("line-height") !important;
   }
 
-  .#{$_u}#{$_c}-kerning-0 {
-    letter-spacing: 0 !important;
-  }
-
-  .#{$_u}#{$_c}-kerning-1 {
-    letter-spacing: 0.1em !important;
-  }
-
-  .#{$_u}#{$_c}-kerning-2 {
-    letter-spacing: 0.2em !important;
-  }
-
   @each $key, $value in core.$font-weight-map {
-    .#{$_u}#{$_c}-weight-#{$key} {
+    #{fun.utility("font", "weight", $key)} {
       font-weight: $value !important;
     }
   }
 
-  .#{$_u}#{$_c}-weight-lighter {
+  #{fun.utility("font", "weight", "lighter")} {
     font-weight: lighter !important;
   }
 
-  .#{$_u}#{$_c}-weight-bolder {
+  #{fun.utility("font", "weight", "bolder")} {
     font-weight: bolder !important;
   }
 
-  .#{$_u}#{$_c}-style-normal {
+  #{fun.utility("font", "style", "normal")} {
     font-style: normal !important;
   }
 
-  .#{$_u}#{$_c}-style-italic {
+  #{fun.utility("font", "style", "italic")} {
     font-style: italic !important;
   }
 }
