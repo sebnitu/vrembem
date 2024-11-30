@@ -1,61 +1,64 @@
 @use "@vrembem/core";
 @use "../variables" as var;
+@use "../functions" as fun;
 
-.gap {
-  gap: var.$gap !important;
-}
-
-.gap-x {
-  column-gap: var.$gap !important;
-}
-
-.gap-y {
-  row-gap: var.$gap !important;
-}
-
-@each $key, $value in var.$gap-map {
-  .gap-#{$key} {
-    gap: $value !important;
-  }
-}
-
-@each $key, $value in var.$gap-map {
-  .gap-x-#{$key} {
-    column-gap: $value !important;
+@if (var.$output-gap) {
+  #{fun.utility("gap")} {
+    gap: var.$gap !important;
   }
 
-  .gap-y-#{$key} {
-    row-gap: $value !important;
+  #{fun.utility("gap", "x")} {
+    column-gap: var.$gap !important;
   }
-}
 
-@each $bp, $value in var.$breakpoints {
-  @include core.media-min($value) {
-    .#{$bp}\:gap {
-      gap: var.$gap !important;
+  #{fun.utility("gap", "y")} {
+    row-gap: var.$gap !important;
+  }
+
+  @each $key, $value in var.$gap-map {
+    #{fun.utility("gap", $key)} {
+      gap: $value !important;
     }
-    
-    .#{$bp}\:gap-x {
-      column-gap: var.$gap !important;
+  }
+
+  @each $key, $value in var.$gap-map {
+    #{fun.utility("gap", "x", $key)} {
+      column-gap: $value !important;
     }
-    
-    .#{$bp}\:gap-y {
-      row-gap: var.$gap !important;
+
+    #{fun.utility("gap", "y", $key)} {
+      row-gap: $value !important;
     }
-    
-    @each $key, $value in var.$gap-map {
-      .#{$bp}\:gap-#{$key} {
-        gap: $value !important;
+  }
+
+  @each $bp, $value in var.$breakpoints {
+    @include core.media-min($value) {
+      #{fun.utility("gap", "#{$bp}:")} {
+        gap: var.$gap !important;
       }
-    }
-    
-    @each $key, $value in var.$gap-map {
-      .#{$bp}\:gap-x-#{$key} {
-        column-gap: $value !important;
+      
+      #{fun.utility("gap", "x", "#{$bp}:")} {
+        column-gap: var.$gap !important;
       }
-    
-      .#{$bp}\:gap-y-#{$key} {
-        row-gap: $value !important;
+      
+      #{fun.utility("gap", "y", "#{$bp}:")} {
+        row-gap: var.$gap !important;
+      }
+      
+      @each $key, $value in var.$gap-map {
+        #{fun.utility("gap", $key, "#{$bp}:")} {
+          gap: $value !important;
+        }
+      }
+      
+      @each $key, $value in var.$gap-map {
+        #{fun.utility("gap", "x", $key, "#{$bp}:")} {
+          column-gap: $value !important;
+        }
+      
+        #{fun.utility("gap", "y", $key, "#{$bp}:")} {
+          row-gap: $value !important;
+        }
       }
     }
   }

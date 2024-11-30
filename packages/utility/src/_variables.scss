@@ -13,14 +13,18 @@ $output-foreground: $output !default;
 $output-border: $output !default;
 $output-border-radius: $output !default;
 $output-shadow: $output !default;
+
 $output-display: $output !default;
-$output-font: $output !default;
 $output-margin: $output !default;
+$output-padding: $output !default;
+$output-spacing: $output !default;
+
+$output-gap: $output !default;
+
+$output-font: $output !default;
 $output-max-width: $output !default;
 $output-overflow: $output !default;
-$output-padding: $output !default;
 $output-position: $output !default;
-$output-spacing: $output !default;
 $output-text: $output !default;
 $output-transition: $output !default;
 

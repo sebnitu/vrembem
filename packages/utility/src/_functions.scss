@@ -1,4 +1,6 @@
+@use "sass:string";
 @use "sass:map";
+@use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "./variables" as var;
 
@@ -10,14 +12,32 @@
 /// @return {selector}
 ///   A valid utility CSS selector.
 @function utility($name, $args...) {
+  // Check if there's a shortname for the class name.
   @if map.has-key(var.$classes, $name) {
     $name: map.get(var.$classes, $name);
   }
-  $class: '.#{config.get("prefix-utility")}#{$name}';
+
+  // Setup the base utility class name with prefix.
+  $class: '#{config.get("prefix-utility")}#{$name}';
+
+  // Apply all the arguments to class.
   @each $arg in $args {
+    // Convert arg to a string.
+    $arg: "" + $arg;
+    // Ensure that it's not an empty string.
     @if $arg != "" {
-      $class: '#{$class}-#{$arg}';
+      // If $arg contains a colon, escape it and prepend it to $class.
+      @if string.index($arg, ":") {
+        $arg: core.escape-colon($arg);
+        $class: '#{$arg}#{$class}';
+      }
+      // Otherwise, append $arg to $class with a dash delimiter.
+      @else {
+        $class: '#{$class}-#{$arg}';
+      }
     }
   }
-  @return $class;
+
+  // Return the class.
+  @return ".#{$class}";
 }
