@@ -17,10 +17,9 @@
 
     const colors = ["primary", "secondary", "neutral", "important"];
     const lightnessRange = [0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100];
-    let container;
 
     // Build the background swatches.
-    container = document.getElementById("background-swatches");
+    let container = document.getElementById("background-swatches");
     colors.forEach(color => {
       lightnessRange.forEach(lightness => {
         const div = document.createElement("div");
