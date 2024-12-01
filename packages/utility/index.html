@@ -9,15 +9,17 @@
   <link rel="stylesheet" href="./index.scss">
   <script type="module">
     // Import Vrembem styles.
-    import "vrembem/dist/index.css";
+    // import "vrembem/dist/index.css";
     // Why doesn't this work?
     // import "core/dist/index.css";
 
-    // import "../core/root.scss";
-    // import "../base/index.scss";
+    import "../core/dist/index.css";
+    import "../base/dist/index.css";
+    import "../section/dist/index.css";
+    import "../flex/dist/index.css";
 
     // Override Vrembem with this component's styles.
-    import "./index.scss";
+    // import "./index.scss";
 
     const colors = ["primary", "secondary", "neutral", "important"];
     const lightnessRange = [0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100];
@@ -61,6 +63,13 @@
       border-radius: var(--vb-border-radius);
       background-color: var(--vb-primary);
     }
+
+    .box {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      background-color: var(--vb-background-dark);
+    }
   </style>
 </head>
 <body>
@@ -85,20 +94,8 @@
 
   <section class="section">
     <div class="section__container max-width-xs spacing">
-      
-      <h2>gap</h2>
 
-      <div class="display-none sm:display-flex flex-wrap gap-xs md:gap-xl">
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-        <div class="swatch background-darker"></div>
-      </div>
-
-      <h2>background</h2>
+      <h2 id="background"><a href="#background">background</a></h2>
 
       <div id="background-swatches" class="flex flex-wrap">
         <div class="swatch background-black"></div>
@@ -109,7 +106,7 @@
         <div class="swatch background-darker"></div>
       </div>
 
-      <h2>background-clip</h2>
+      <h3 class="font-weight-regular">background-clip</h3>
 
       <div class="flex flex-wrap">
         <div class="swatch-clip background-clip-border">background-clip-border</div>
@@ -118,7 +115,7 @@
         <div class="swatch-clip background-clip-text foreground-transparent">background-clip-text</div>
       </div>
       
-      <h2>foreground</h2>
+      <h2 id="foreground"><a href="#foreground">foreground</a></h2>
 
       <div id="foreground-swatches" class="flex flex-wrap">
         <div class="foreground-black">foreground-black</div>
@@ -128,6 +125,96 @@
         <div class="foreground-light">foreground-light</div>
         <div class="foreground-lighter">foreground-lighter</div>
       </div>
+
+      <h2 id="border"><a href="#border">border</a></h2>
+
+      <div class="flex flex-wrap">
+        <div class="box border"></div>
+        <div class="box border-top"></div>
+        <div class="box border-bottom"></div>
+        <div class="box border-left"></div>
+        <div class="box border-right"></div>
+        <div class="box border-none"></div>
+        <div class="box border border-top-none"></div>
+        <div class="box border border-bottom-none"></div>
+        <div class="box border border-left-none"></div>
+        <div class="box border border-right-none"></div>
+        <div class="box border border-color-dark"></div>
+        <div class="box border border-color-darker"></div>
+        <div class="box border border-color-transparent"></div>
+      </div>
+
+      <h2 id="border-radius"><a href="#border-radius">border-radius</a></h2>
+
+      <div class="flex flex-wrap">
+        <div class="box background-neutral-60 radius"></div>
+        <div class="box background-neutral-60 radius-top"></div>
+        <div class="box background-neutral-60 radius-right"></div>
+        <div class="box background-neutral-60 radius-bottom"></div>
+        <div class="box background-neutral-60 radius-left"></div>
+        <div class="box background-neutral-60 radius-top-left"></div>
+        <div class="box background-neutral-60 radius-top-right"></div>
+        <div class="box background-neutral-60 radius-bottom-right"></div>
+        <div class="box background-neutral-60 radius-bottom-left"></div>
+
+        <div class="box background-neutral-60 radius-lg"></div>
+        <div class="box background-neutral-60 radius-lg-top"></div>
+        <div class="box background-neutral-60 radius-lg-right"></div>
+        <div class="box background-neutral-60 radius-lg-bottom"></div>
+        <div class="box background-neutral-60 radius-lg-left"></div>
+        <div class="box background-neutral-60 radius-lg-top-left"></div>
+        <div class="box background-neutral-60 radius-lg-top-right"></div>
+        <div class="box background-neutral-60 radius-lg-bottom-right"></div>
+        <div class="box background-neutral-60 radius-lg-bottom-left"></div>
+
+        <div class="box background-neutral-60 radius-circle"></div>
+        <div class="box background-neutral-60 radius-circle-top"></div>
+        <div class="box background-neutral-60 radius-circle-right"></div>
+        <div class="box background-neutral-60 radius-circle-bottom"></div>
+        <div class="box background-neutral-60 radius-circle-left"></div>
+        <div class="box background-neutral-60 radius-circle-top-left"></div>
+        <div class="box background-neutral-60 radius-circle-top-right"></div>
+        <div class="box background-neutral-60 radius-circle-bottom-right"></div>
+        <div class="box background-neutral-60 radius-circle-bottom-left"></div>
+
+        <div class="box background-neutral-60 radius-square"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-top"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-right"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-bottom"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-left"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-top-left"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-top-right"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-bottom-right"></div>
+        <div class="box background-neutral-60 radius-circle radius-square-bottom-left"></div>
+      </div>
+
+      <h2 id="box-shadow"><a href="#box-shadow">box-shadow</a></h2>
+
+      <div class="flex flex-wrap">
+        <div class="box shadow"></div>
+        <div class="box shadow-flat"></div>
+        <div class="box shadow-1"></div>
+        <div class="box shadow-2"></div>
+        <div class="box shadow-3"></div>
+        <div class="box shadow-4"></div>
+        <div class="box shadow-5"></div>
+      </div>
+
+      <h2 id="display"><a href="#display">display</a></h2>
+      <h2 id="margin"><a href="#margin">margin</a></h2>
+      <h2 id="padding"><a href="#padding">padding</a></h2>
+      <h2 id="spacing"><a href="#spacing">spacing</a></h2>
+      <h2 id="gap"><a href="#gap">gap</a></h2>
+      <h2 id="justify"><a href="#justify">justify</a></h2>
+      <h2 id="align"><a href="#align">align</a></h2>
+      <h2 id="place"><a href="#place">place</a></h2>
+      <h2 id="order"><a href="#order">order</a></h2>
+      <h2 id="position"><a href="#position">position</a></h2>
+      <h2 id="overflow"><a href="#overflow">overflow</a></h2>
+      <h2 id="max-width"><a href="#max-width">max-width</a></h2>
+      <h2 id="font"><a href="#font">font</a></h2>
+      <h2 id="text"><a href="#text">text</a></h2>
+      <h2 id="transition"><a href="#transition">transition</a></h2>
 
     </div>
   </section>
