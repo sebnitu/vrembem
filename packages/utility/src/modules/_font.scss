@@ -28,7 +28,7 @@
     font-size: css.get("font-size-lg") !important;
   }
 
-  #{fun.utility("font", "leading", "base")} {
+  #{fun.utility("font", "line-height")} {
     line-height: css.get("line-height") !important;
   }
 
