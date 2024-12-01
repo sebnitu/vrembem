@@ -3,11 +3,11 @@
 @use "../functions" as fun;
 
 @if (fun.maybe-output("transition")) {
-  #{fun.utility("transition", "none")} {
-    transition: none !important;
+  #{fun.utility("transition")} {
+    transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
   }
 
-  #{fun.utility("transition", "all")} {
-    transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
+  #{fun.utility("transition", "none")} {
+    transition: none !important;
   }
 }
