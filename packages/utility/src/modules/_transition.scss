@@ -10,4 +10,12 @@
   #{fun.utility("transition", "none")} {
     transition: none !important;
   }
+
+  #{fun.utility("transition", "duration-short")} {
+    transition-duration: css.get("transition-duration-short") !important;
+  }
+
+  #{fun.utility("transition", "duration-long")} {
+    transition-duration: css.get("transition-duration-long") !important;
+  }
 }
