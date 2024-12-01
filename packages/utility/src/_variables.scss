@@ -11,6 +11,7 @@ $classes: (
 
 $breakpoints: core.$breakpoints !default;
 
+// TODO: Use CSS variables for the values of border-radius.
 $border-radius-map: (
   "": core.$border-radius,
   "lg": core.$border-radius-lg,
