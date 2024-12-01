@@ -1,0 +1,21 @@
+@use "@vrembem/core/css";
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("transition")) {
+  #{fun.utility("transition")} {
+    transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
+  }
+
+  #{fun.utility("transition", "none")} {
+    transition: none !important;
+  }
+
+  #{fun.utility("transition", "duration-short")} {
+    transition-duration: css.get("transition-duration-short") !important;
+  }
+
+  #{fun.utility("transition", "duration-long")} {
+    transition-duration: css.get("transition-duration-long") !important;
+  }
+}

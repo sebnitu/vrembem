@@ -1,0 +1,24 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("position")) {
+  #{fun.utility("position", "absolute")} {
+    position: absolute !important;
+  }
+
+  #{fun.utility("position", "fixed")} {
+    position: fixed !important;
+  }
+
+  #{fun.utility("position", "relative")} {
+    position: relative !important;
+  }
+
+  #{fun.utility("position", "static")} {
+    position: static !important;
+  }
+
+  #{fun.utility("position", "sticky")} {
+    position: sticky !important;
+  }
+}

@@ -1,0 +1,18 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("order")) {
+  #{fun.utility("order", "first")} {
+    order: -99 !important;
+  }
+
+  #{fun.utility("order", "last")} {
+    order: 99 !important;
+  }
+
+  @for $i from 0 through var.$order-count {
+    #{fun.utility("order", $i)} {
+      order: $i !important;
+    }
+  }
+}

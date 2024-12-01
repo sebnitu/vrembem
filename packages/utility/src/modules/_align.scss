@@ -1,0 +1,64 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("align")) {
+  #{fun.utility("align", "content", "start")} {
+    align-content: start !important;
+  }
+
+  #{fun.utility("align", "content", "center")} {
+    align-content: center !important;
+  }
+
+  #{fun.utility("align", "content", "end")} {
+    align-content: end !important;
+  }
+
+  #{fun.utility("align", "content", "between")} {
+    align-content: space-between !important;
+  }
+
+  #{fun.utility("align", "content", "around")} {
+    align-content: space-around !important;
+  }
+
+  #{fun.utility("align", "content", "evenly")} {
+    align-content: space-evenly !important;
+  }
+
+  #{fun.utility("align", "content", "stretch")} {
+    align-content: stretch !important;
+  }
+
+  #{fun.utility("align", "items", "start")} {
+    align-items: start !important;
+  }
+
+  #{fun.utility("align", "items", "center")} {
+    align-items: center !important;
+  }
+
+  #{fun.utility("align", "items", "end")} {
+    align-items: end !important;
+  }
+
+  #{fun.utility("align", "items", "stretch")} {
+    align-items: stretch !important;
+  }
+
+  #{fun.utility("align", "self", "start")} {
+    align-self: start !important;
+  }
+
+  #{fun.utility("align", "self", "center")} {
+    align-self: center !important;
+  }
+
+  #{fun.utility("align", "self", "end")} {
+    align-self: end !important;
+  }
+
+  #{fun.utility("align", "self", "stretch")} {
+    align-self: stretch !important;
+  }
+}

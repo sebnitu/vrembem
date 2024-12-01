@@ -1,36 +1,33 @@
-@use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "../variables" as var;
+@use "../functions" as fun;
 
-$_u: var.$prefix-utility;
-$_c: var.$class-shadow;
-
-@if (var.$output-shadow) {
-  .#{$_u}#{$_c} {
+@if (fun.maybe-output("box-shadow")) {
+  #{fun.utility("box-shadow")} {
     box-shadow: css.get("box-shadow") !important;
   }
 
-  .#{$_u}#{$_c}-flat {
+  #{fun.utility("box-shadow", "flat")} {
     box-shadow: 0 0 0 0 transparent !important;
   }
 
-  .#{$_u}#{$_c}-1 {
+  #{fun.utility("box-shadow", "1")} {
     box-shadow: css.get("box-shadow-1") !important;
   }
 
-  .#{$_u}#{$_c}-2 {
+  #{fun.utility("box-shadow", "2")} {
     box-shadow: css.get("box-shadow-2") !important;
   }
 
-  .#{$_u}#{$_c}-3 {
+  #{fun.utility("box-shadow", "3")} {
     box-shadow: css.get("box-shadow-3") !important;
   }
 
-  .#{$_u}#{$_c}-4 {
+  #{fun.utility("box-shadow", "4")} {
     box-shadow: css.get("box-shadow-4") !important;
   }
 
-  .#{$_u}#{$_c}-5 {
+  #{fun.utility("box-shadow", "5")} {
     box-shadow: css.get("box-shadow-5") !important;
   }
 }

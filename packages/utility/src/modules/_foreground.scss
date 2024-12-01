@@ -1,0 +1,46 @@
+@use "sass:map";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("foreground")) {
+  #{fun.utility("foreground", "black")} {
+    color: black !important;
+  }
+
+  #{fun.utility("foreground", "white")} {
+    color: white !important;
+  }
+
+  #{fun.utility("foreground", "transparent")} {
+    color: transparent !important;
+  }
+
+  // Theme CSS Variable output.
+  
+  #{fun.utility("foreground")} {
+    color: css.get("foreground") !important;
+  }
+
+  #{fun.utility("foreground", "light")} {
+    color: css.get("foreground-light") !important;
+  }
+
+  #{fun.utility("foreground", "lighter")} {
+    color: css.get("foreground-lighter") !important;
+  }
+
+  // Palette CSS Variable output.
+
+  @each $name in map.keys(palette.get("seeds")) {
+    #{fun.utility("foreground", $name)} {
+      color: palette.get($name) !important;
+    }
+    @each $value in palette.$lightness-range {
+      #{fun.utility("foreground", $name, $value)} {
+        color: palette.get($name, $value) !important;
+      }
+    }
+  }
+}

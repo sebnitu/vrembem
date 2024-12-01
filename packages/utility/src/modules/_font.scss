@@ -1,0 +1,56 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("font")) {
+  #{fun.utility("font", "family", "sans")} {
+    font-family: css.get("font-family-sans") !important;
+  }
+
+  #{fun.utility("font", "family", "serif")} {
+    font-family: css.get("font-family-serif") !important;
+  }
+
+  #{fun.utility("font", "family", "mono")} {
+    font-family: css.get("font-family-mono") !important;
+  }
+
+  #{fun.utility("font", "size", "base")} {
+    font-size: 1rem !important;
+  }
+
+  #{fun.utility("font", "size", "sm")} {
+    font-size: css.get("font-size-sm") !important;
+  }
+
+  #{fun.utility("font", "size", "lg")} {
+    font-size: css.get("font-size-lg") !important;
+  }
+
+  #{fun.utility("font", "line-height")} {
+    line-height: css.get("line-height") !important;
+  }
+
+  @each $key, $value in core.$font-weight-map {
+    #{fun.utility("font", "weight", $key)} {
+      font-weight: $value !important;
+    }
+  }
+
+  #{fun.utility("font", "weight", "lighter")} {
+    font-weight: lighter !important;
+  }
+
+  #{fun.utility("font", "weight", "bolder")} {
+    font-weight: bolder !important;
+  }
+
+  #{fun.utility("font", "style", "normal")} {
+    font-style: normal !important;
+  }
+
+  #{fun.utility("font", "style", "italic")} {
+    font-style: italic !important;
+  }
+}

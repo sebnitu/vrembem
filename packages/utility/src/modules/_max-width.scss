@@ -1,0 +1,14 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("max-width")) {
+  #{fun.utility("max-width")} {
+    max-width: var.$max-width !important;
+  }
+
+  @each $key, $value in var.$max-width-scale {
+    #{fun.utility("max-width", $key)} {
+      max-width: $value !important;
+    }
+  }
+}

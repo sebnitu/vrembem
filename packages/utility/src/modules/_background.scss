@@ -1,0 +1,62 @@
+@use "sass:map";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("background")) {
+  #{fun.utility("background", "clip-border")} {
+    background-clip: border-box !important;
+  }
+
+  #{fun.utility("background", "clip-content")} {
+    background-clip: content-box !important;
+  }
+
+  #{fun.utility("background", "clip-padding")} {
+    background-clip: padding-box !important;
+  }
+
+  #{fun.utility("background", "clip-text")} {
+    background-clip: text !important;
+  }
+
+  #{fun.utility("background", "black")} {
+    background-color: black !important;
+  }
+
+  #{fun.utility("background", "white")} {
+    background-color: white !important;
+  }
+
+  #{fun.utility("background", "transparent")} {
+    background-color: transparent !important;
+  }
+
+  // Theme CSS Variable output.
+
+  #{fun.utility("background")} {
+    background-color: css.get("background") !important;
+  }
+
+  #{fun.utility("background", "dark")} {
+    background-color: css.get("background-dark") !important;
+  }
+
+  #{fun.utility("background", "darker")} {
+    background-color: css.get("background-darker") !important;
+  }
+
+  // Palette CSS Variable output.
+
+  @each $name in map.keys(palette.get("seeds")) {
+    #{fun.utility("background", $name)} {
+      background-color: palette.get($name) !important;
+    }
+    @each $value in palette.$lightness-range {
+      #{fun.utility("background", $name, $value)} {
+        background-color: palette.get($name, $value) !important;
+      }
+    }
+  }
+}

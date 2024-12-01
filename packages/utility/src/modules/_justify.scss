@@ -1,0 +1,64 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("justify")) {
+  #{fun.utility("justify", "content", "start")} {
+    justify-content: start !important;
+  }
+
+  #{fun.utility("justify", "content", "center")} {
+    justify-content: center !important;
+  }
+
+  #{fun.utility("justify", "content", "end")} {
+    justify-content: end !important;
+  }
+
+  #{fun.utility("justify", "content", "between")} {
+    justify-content: space-between !important;
+  }
+
+  #{fun.utility("justify", "content", "around")} {
+    justify-content: space-around !important;
+  }
+
+  #{fun.utility("justify", "content", "evenly")} {
+    justify-content: space-evenly !important;
+  }
+
+  #{fun.utility("justify", "content", "stretch")} {
+    justify-content: stretch !important;
+  }
+
+  #{fun.utility("justify", "items", "start")} {
+    justify-items: start !important;
+  }
+
+  #{fun.utility("justify", "items", "center")} {
+    justify-items: center !important;
+  }
+
+  #{fun.utility("justify", "items", "end")} {
+    justify-items: end !important;
+  }
+
+  #{fun.utility("justify", "items", "stretch")} {
+    justify-items: stretch !important;
+  }
+
+  #{fun.utility("justify", "self", "start")} {
+    justify-self: start !important;
+  }
+
+  #{fun.utility("justify", "self", "center")} {
+    justify-self: center !important;
+  }
+
+  #{fun.utility("justify", "self", "end")} {
+    justify-self: end !important;
+  }
+
+  #{fun.utility("justify", "self", "stretch")} {
+    justify-self: stretch !important;
+  }
+}

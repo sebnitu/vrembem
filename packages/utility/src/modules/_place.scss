@@ -1,0 +1,64 @@
+@use "../variables" as var;
+@use "../functions" as fun;
+
+@if (fun.maybe-output("place")) {
+  #{fun.utility("place", "content", "start")} {
+    place-content: start !important;
+  }
+
+  #{fun.utility("place", "content", "center")} {
+    place-content: center !important;
+  }
+
+  #{fun.utility("place", "content", "end")} {
+    place-content: end !important;
+  }
+
+  #{fun.utility("place", "content", "between")} {
+    place-content: space-between !important;
+  }
+
+  #{fun.utility("place", "content", "around")} {
+    place-content: space-around !important;
+  }
+
+  #{fun.utility("place", "content", "evenly")} {
+    place-content: space-evenly !important;
+  }
+
+  #{fun.utility("place", "content", "stretch")} {
+    place-content: stretch !important;
+  }
+
+  #{fun.utility("place", "items", "start")} {
+    place-items: start !important;
+  }
+
+  #{fun.utility("place", "items", "center")} {
+    place-items: center !important;
+  }
+
+  #{fun.utility("place", "items", "end")} {
+    place-items: end !important;
+  }
+
+  #{fun.utility("place", "items", "stretch")} {
+    place-items: stretch !important;
+  }
+
+  #{fun.utility("place", "self", "start")} {
+    place-self: start !important;
+  }
+
+  #{fun.utility("place", "self", "center")} {
+    place-self: center !important;
+  }
+
+  #{fun.utility("place", "self", "end")} {
+    place-self: end !important;
+  }
+
+  #{fun.utility("place", "self", "stretch")} {
+    place-self: stretch !important;
+  }
+}

@@ -1,16 +1,15 @@
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "./variables" as var;
+@use "../variables" as var;
+@use "../functions" as fun;
 
-@if (var.$output-spacing) {
-  .spacing {
+@if (fun.maybe-output("spacing")) {
+  #{fun.utility("spacing")} {
     > * + * {
       margin-top: var.$gap !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    .spacing-#{$key} {
+    #{fun.utility("spacing", $key)} {
       > * + * {
         margin-top: $value !important;
       }

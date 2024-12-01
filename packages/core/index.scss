@@ -8,6 +8,14 @@
 @forward "./src/scss/variables/form-control";
 @forward "./src/scss/variables/screen";
 
+@forward "./src/scss/utilities/debug-map";
+@forward "./src/scss/utilities/empty-map";
+@forward "./src/scss/utilities/escape-colon";
+@forward "./src/scss/utilities/get-hs";
+@forward "./src/scss/utilities/remove-nth";
+@forward "./src/scss/utilities/reverse";
+@forward "./src/scss/utilities/string-replace";
+
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css-query";
 @forward "./src/scss/library/focus-ring";
