@@ -8,18 +8,17 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <link rel="stylesheet" href="./index.scss">
   <script type="module">
-    // Import Vrembem styles.
+    // Why does this work:
     // import "vrembem/dist/index.css";
-    // Why doesn't this work?
+    // But this doesn't:
     // import "core/dist/index.css";
 
+    // Import only the components needed for rendering the vite demo markup.
     import "../core/dist/index.css";
     import "../base/dist/index.css";
     import "../section/dist/index.css";
     import "../flex/dist/index.css";
-
-    // Override Vrembem with this component's styles.
-    // import "./index.scss";
+    import "../grid/dist/index.css";
 
     const colors = ["primary", "secondary", "neutral", "important"];
     const lightnessRange = [0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100];
@@ -35,19 +34,36 @@
       });
     });
 
-    // Build the foreground swatches
+    // Build the foreground swatches.
     container = document.getElementById("foreground-swatches");
     colors.forEach(color => {
       lightnessRange.forEach(lightness => {
-        const div = document.createElement("div");
-        div.innerText = `foreground-${color}-${lightness}`;
-        div.className = `foreground-${color}-${lightness}`;
-        container.appendChild(div);
+        const code = document.createElement("code");
+        code.classList.add("code");
+        code.innerText = `foreground-${color}-${lightness}`;
+        container.appendChild(code);
       });
+    });
+
+    // Apply classes from code elements.
+    const codeEls = document.querySelectorAll(".code-demo .code");
+    codeEls.forEach((el) => {
+      el.classList.add(el.innerText);
     });
 
   </script>
   <style>
+    .code-demo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      gap: 0.5em;
+    }
+
+    .code-demo .code {
+      margin-block: 0;
+    }
+
     .swatch {
       display: inline-block;
       width: 64px;
@@ -69,6 +85,26 @@
       width: 64px;
       height: 64px;
       background-color: var(--vb-background-dark);
+    }
+
+    .row {
+      display: block;
+      padding: 0.5em 0.75em;
+      border-radius: var(--vb-border-radius);
+      background-color: var(--vb-secondary-90);
+    }
+
+    .transition-demo {
+      padding: .5em .75em;
+      border: 4px solid var(--vb-border-color);
+      border-radius: var(--vb-border-radius);
+      color: var(--vb-primary-100);
+      background-color: var(--vb-primary-0);
+    }
+
+    .transition-demo:hover {
+      color: var(--vb-primary-0);
+      background-color: var(--vb-primary-100);
     }
   </style>
 </head>
@@ -97,7 +133,7 @@
 
       <h2 id="background"><a href="#background">background</a></h2>
 
-      <div id="background-swatches" class="flex flex-wrap">
+      <div id="background-swatches" class="flex">
         <div class="swatch background-black"></div>
         <div class="swatch background-white"></div>
         <div class="swatch background-transparent"></div>
@@ -108,7 +144,7 @@
 
       <h3 class="font-weight-regular">background-clip</h3>
 
-      <div class="flex flex-wrap">
+      <div class="grid grid_cols_1 sm:grid_cols_2 grid_gap_xs">
         <div class="swatch-clip background-clip-border">background-clip-border</div>
         <div class="swatch-clip background-clip-padding">background-clip-padding</div>
         <div class="swatch-clip background-clip-content">background-clip-content</div>
@@ -117,18 +153,18 @@
       
       <h2 id="foreground"><a href="#foreground">foreground</a></h2>
 
-      <div id="foreground-swatches" class="flex flex-wrap">
-        <div class="foreground-black">foreground-black</div>
-        <div class="foreground-white">foreground-white</div>
-        <div class="foreground-transparent">foreground-transparent</div>
-        <div class="foreground">foreground</div>
-        <div class="foreground-light">foreground-light</div>
-        <div class="foreground-lighter">foreground-lighter</div>
+      <div id="foreground-swatches" class="code-demo">
+        <code class="code">foreground-black</code>
+        <code class="code">foreground-white</code>
+        <code class="code">foreground-transparent</code>
+        <code class="code">foreground</code>
+        <code class="code">foreground-light</code>
+        <code class="code">foreground-lighter</code>
       </div>
 
       <h2 id="border"><a href="#border">border</a></h2>
 
-      <div class="flex flex-wrap">
+      <div class="flex">
         <div class="box border"></div>
         <div class="box border-top"></div>
         <div class="box border-bottom"></div>
@@ -146,7 +182,7 @@
 
       <h2 id="border-radius"><a href="#border-radius">border-radius</a></h2>
 
-      <div class="flex flex-wrap">
+      <div class="flex">
         <div class="box background-neutral-60 radius"></div>
         <div class="box background-neutral-60 radius-top"></div>
         <div class="box background-neutral-60 radius-right"></div>
@@ -190,7 +226,7 @@
 
       <h2 id="box-shadow"><a href="#box-shadow">box-shadow</a></h2>
 
-      <div class="flex flex-wrap">
+      <div class="flex">
         <div class="box shadow"></div>
         <div class="box shadow-flat"></div>
         <div class="box shadow-1"></div>
@@ -201,20 +237,517 @@
       </div>
 
       <h2 id="display"><a href="#display">display</a></h2>
+
+      <!-- Breakpoint modifiers (xs:, sm:, md:, lg:, xl:) -->
+    
+      <div class="code-demo">
+        <code class="code">display-inline</code>
+        <code class="code">display-flex</code>
+        <code class="code">display-inline-flex</code>
+        <code class="code">display-grid</code>
+        <code class="code">display-inline-grid</code>
+        <code class="code">display-block</code>
+        <code class="code">display-inline-block</code>
+        <code class="code">display-none</code>
+      </div>
+
       <h2 id="margin"><a href="#margin">margin</a></h2>
+
+      <div class="code-demo">
+        <code class="code">margin</code>
+        <code class="code">margin-top</code>
+        <code class="code">margin-bottom</code>
+        <code class="code">margin-left</code>
+        <code class="code">margin-right</code>
+        <code class="code">margin-none</code>
+        <code class="code">margin-xs</code>
+        <code class="code">margin-sm</code>
+        <code class="code">margin-md</code>
+        <code class="code">margin-lg</code>
+        <code class="code">margin-xl</code>
+
+        <code class="code">margin-top-none</code>
+        <code class="code">margin-top-xs</code>
+        <code class="code">margin-top-sm</code>
+        <code class="code">margin-top-md</code>
+        <code class="code">margin-top-lg</code>
+        <code class="code">margin-top-xl</code>
+
+        <code class="code">margin-bottom-none</code>
+        <code class="code">margin-bottom-xs</code>
+        <code class="code">margin-bottom-sm</code>
+        <code class="code">margin-bottom-md</code>
+        <code class="code">margin-bottom-lg</code>
+        <code class="code">margin-bottom-xl</code>
+
+        <code class="code">margin-left-none</code>
+        <code class="code">margin-left-xs</code>
+        <code class="code">margin-left-sm</code>
+        <code class="code">margin-left-md</code>
+        <code class="code">margin-left-lg</code>
+        <code class="code">margin-left-xl</code>
+
+        <code class="code">margin-right-none</code>
+        <code class="code">margin-right-xs</code>
+        <code class="code">margin-right-sm</code>
+        <code class="code">margin-right-md</code>
+        <code class="code">margin-right-lg</code>
+        <code class="code">margin-right-xl</code>
+
+        <code class="code">margin-x-none</code>
+        <code class="code">margin-x-xs</code>
+        <code class="code">margin-x-sm</code>
+        <code class="code">margin-x-md</code>
+        <code class="code">margin-x-lg</code>
+        <code class="code">margin-x-xl</code>
+
+        <code class="code">margin-y-none</code>
+        <code class="code">margin-y-xs</code>
+        <code class="code">margin-y-sm</code>
+        <code class="code">margin-y-md</code>
+        <code class="code">margin-y-lg</code>
+        <code class="code">margin-y-xl</code>
+
+        <code class="code">margin-auto</code>
+        <code class="code">margin-top-auto</code>
+        <code class="code">margin-bottom-auto</code>
+        <code class="code">margin-left-auto</code>
+        <code class="code">margin-right-auto</code>
+        <code class="code">margin-x-auto</code>
+        <code class="code">margin-y-auto</code>
+      </div>
+
       <h2 id="padding"><a href="#padding">padding</a></h2>
+
+      <div class="code-demo">
+        <code class="code">padding</code>
+        <code class="code">padding-top</code>
+        <code class="code">padding-bottom</code>
+        <code class="code">padding-left</code>
+        <code class="code">padding-right</code>
+        <code class="code">padding-none</code>
+        <code class="code">padding-xs</code>
+        <code class="code">padding-sm</code>
+        <code class="code">padding-md</code>
+        <code class="code">padding-lg</code>
+        <code class="code">padding-xl</code>
+
+        <code class="code">padding-top-none</code>
+        <code class="code">padding-top-xs</code>
+        <code class="code">padding-top-sm</code>
+        <code class="code">padding-top-md</code>
+        <code class="code">padding-top-lg</code>
+        <code class="code">padding-top-xl</code>
+
+        <code class="code">padding-bottom-none</code>
+        <code class="code">padding-bottom-xs</code>
+        <code class="code">padding-bottom-sm</code>
+        <code class="code">padding-bottom-md</code>
+        <code class="code">padding-bottom-lg</code>
+        <code class="code">padding-bottom-xl</code>
+
+        <code class="code">padding-left-none</code>
+        <code class="code">padding-left-xs</code>
+        <code class="code">padding-left-sm</code>
+        <code class="code">padding-left-md</code>
+        <code class="code">padding-left-lg</code>
+        <code class="code">padding-left-xl</code>
+
+        <code class="code">padding-right-none</code>
+        <code class="code">padding-right-xs</code>
+        <code class="code">padding-right-sm</code>
+        <code class="code">padding-right-md</code>
+        <code class="code">padding-right-lg</code>
+        <code class="code">padding-right-xl</code>
+
+        <code class="code">padding-x-none</code>
+        <code class="code">padding-x-xs</code>
+        <code class="code">padding-x-sm</code>
+        <code class="code">padding-x-md</code>
+        <code class="code">padding-x-lg</code>
+        <code class="code">padding-x-xl</code>
+
+        <code class="code">padding-y-none</code>
+        <code class="code">padding-y-xs</code>
+        <code class="code">padding-y-sm</code>
+        <code class="code">padding-y-md</code>
+        <code class="code">padding-y-lg</code>
+        <code class="code">padding-y-xl</code>
+      </div>
+
       <h2 id="spacing"><a href="#spacing">spacing</a></h2>
+
+      <div class="grid grid_cols_3 grid_gap_sm">
+        <div class="items spacing">
+          <div class="row">spacing</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-none order-last">
+          <div class="row">spacing-none</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-xs">
+          <div class="row">spacing-xs</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-sm">
+          <div class="row">spacing-sm</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-md">
+          <div class="row">spacing-md</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-lg">
+          <div class="row">spacing-lg</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+        <div class="items spacing-xl">
+          <div class="row">spacing-xl</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+      </div>
+
       <h2 id="gap"><a href="#gap">gap</a></h2>
+
+      <!-- Breakpoint modifiers (xs:, sm:, md:, lg:, xl:) -->
+
+      <div class="flex">
+        <div class="grid grid_cols_2 grid_gap_none gap">
+          <div class="row">gap</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x">
+          <div class="row">gap-x</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y">
+          <div class="row">gap-y</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 gap-none">
+          <div class="row">gap-none</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-xs">
+          <div class="row">gap-xs</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-sm">
+          <div class="row">gap-sm</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-md">
+          <div class="row">gap-md</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-lg">
+          <div class="row">gap-lg</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-xl">
+          <div class="row">gap-xl</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 gap-x-none">
+          <div class="row">gap-x-none</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 gap-y-none">
+          <div class="row">gap-y-none</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x-xs">
+          <div class="row">gap-x-xs</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y-xs">
+          <div class="row">gap-y-xs</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x-sm">
+          <div class="row">gap-x-sm</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y-sm">
+          <div class="row">gap-y-sm</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x-md">
+          <div class="row">gap-x-md</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y-md">
+          <div class="row">gap-y-md</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x-lg">
+          <div class="row">gap-x-lg</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y-lg">
+          <div class="row">gap-y-lg</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-x-xl">
+          <div class="row">gap-x-xl</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+
+        <div class="grid grid_cols_2 grid_gap_none gap-y-xl">
+          <div class="row">gap-y-xl</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+          <div class="row">...</div>
+        </div>
+      </div>
+
       <h2 id="justify"><a href="#justify">justify</a></h2>
+
+      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+        <code class="code">justify-content-start</code>
+        <code class="code">justify-content-center</code>
+        <code class="code">justify-content-end</code>
+        <code class="code">justify-content-between</code>
+        <code class="code">justify-content-around</code>
+        <code class="code">justify-content-evenly</code>
+        <code class="code">justify-content-stretch</code>
+
+        <code class="code">justify-items-start</code>
+        <code class="code">justify-items-center</code>
+        <code class="code">justify-items-end</code>
+        <code class="code">justify-items-stretch</code>
+
+        <code class="code">justify-self-start</code>
+        <code class="code">justify-self-center</code>
+        <code class="code">justify-self-end</code>
+        <code class="code">justify-self-stretch</code>
+      </div>
+
       <h2 id="align"><a href="#align">align</a></h2>
+
+      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+        <code class="code">align-content-start</code>
+        <code class="code">align-content-center</code>
+        <code class="code">align-content-end</code>
+        <code class="code">align-content-between</code>
+        <code class="code">align-content-around</code>
+        <code class="code">align-content-evenly</code>
+        <code class="code">align-content-stretch</code>
+
+        <code class="code">align-items-start</code>
+        <code class="code">align-items-center</code>
+        <code class="code">align-items-end</code>
+        <code class="code">align-items-stretch</code>
+
+        <code class="code">align-self-start</code>
+        <code class="code">align-self-center</code>
+        <code class="code">align-self-end</code>
+        <code class="code">align-self-stretch</code>
+      </div>
+
       <h2 id="place"><a href="#place">place</a></h2>
+
+      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+        <code class="code">place-content-start</code>
+        <code class="code">place-content-center</code>
+        <code class="code">place-content-end</code>
+        <code class="code">place-content-between</code>
+        <code class="code">place-content-around</code>
+        <code class="code">place-content-evenly</code>
+        <code class="code">place-content-stretch</code>
+
+        <code class="code">place-items-start</code>
+        <code class="code">place-items-center</code>
+        <code class="code">place-items-end</code>
+        <code class="code">place-items-stretch</code>
+
+        <code class="code">place-self-start</code>
+        <code class="code">place-self-center</code>
+        <code class="code">place-self-end</code>
+        <code class="code">place-self-stretch</code>
+      </div>
+
       <h2 id="order"><a href="#order">order</a></h2>
+
+      <div class="code-demo grid grid_cols_4 grid_gap_xs">
+        <code class="code">order-last</code>
+        <code class="code">order-6</code>
+        <code class="code">order-5</code>
+        <code class="code">order-4</code>
+        <code class="code">order-3</code>
+        <code class="code">order-2</code>
+        <code class="code">order-1</code>
+        <code class="code">order-0</code>
+        <code class="code">order-first</code>
+      </div>
+
       <h2 id="position"><a href="#position">position</a></h2>
+
+      <div class="code-demo position-relative">
+        <code class="code">position-absolute</code>
+        <code class="code">position-fixed</code>
+        <code class="code">position-relative</code>
+        <code class="code">position-static</code>
+        <code class="code">position-sticky</code>
+      </div>
+
       <h2 id="overflow"><a href="#overflow">overflow</a></h2>
+
+      <div class="code-demo">
+        <code class="code">overflow-visible</code>
+        <code class="code">overflow-x-visible</code>
+        <code class="code">overflow-y-visible</code>
+        <code class="code">overflow-hidden</code>
+        <code class="code">overflow-x-hidden</code>
+        <code class="code">overflow-y-hidden</code>
+        <code class="code">overflow-clip</code>
+        <code class="code">overflow-x-clip</code>
+        <code class="code">overflow-y-clip</code>
+        <code class="code">overflow-scroll</code>
+        <code class="code">overflow-x-scroll</code>
+        <code class="code">overflow-y-scroll</code>
+        <code class="code">overflow-auto</code>
+        <code class="code">overflow-x-auto</code>
+        <code class="code">overflow-y-auto</code>
+      </div>
+
       <h2 id="max-width"><a href="#max-width">max-width</a></h2>
+
+      <div class="spacing">
+        <div class="row max-width">max-width</div>
+        <div class="row max-width-none">max-width-none</div>
+        <div class="row max-width-xs">max-width-xs</div>
+        <div class="row max-width-sm">max-width-sm</div>
+        <div class="row max-width-md">max-width-md</div>
+        <div class="row max-width-lg">max-width-lg</div>
+        <div class="row max-width-xl">max-width-xl</div>
+        <div class="row max-width-full">max-width-full</div>
+      </div>
+
       <h2 id="font"><a href="#font">font</a></h2>
+
+      <div class="code-demo">
+        <code class="code">font-family-sans</code>
+        <code class="code">font-family-serif</code>
+        <code class="code">font-family-mono</code>
+        <code class="code">font-size-base</code>
+        <code class="code">font-size-sm</code>
+        <code class="code">font-size-lg</code>
+        <code class="code">font-line-height</code>
+        <code class="code font-family-sans">font-weight-thin</code>
+        <code class="code font-family-sans">font-weight-extra-light</code>
+        <code class="code font-family-sans">font-weight-light</code>
+        <code class="code font-family-sans">font-weight-regular</code>
+        <code class="code font-family-sans">font-weight-medium</code>
+        <code class="code font-family-sans">font-weight-semi-bold</code>
+        <code class="code font-family-sans">font-weight-bold</code>
+        <code class="code font-family-sans">font-weight-extra-bold</code>
+        <code class="code font-family-sans">font-weight-black</code>
+        <code class="code font-family-sans">font-weight-lighter</code>
+        <code class="code font-family-sans">font-weight-bolder</code>
+        <code class="code">font-style-normal</code>
+        <code class="code">font-style-italic</code>
+      </div>
+
       <h2 id="text"><a href="#text">text</a></h2>
+
+      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+        <code class="code">text-capitalize</code>
+        <code class="code">text-lowercase</code>
+        <code class="code">text-uppercase</code>
+        <code class="code">text-align-left</code>
+        <code class="code">text-align-center</code>
+        <code class="code">text-align-right</code>
+      </div>
+
+      <div class="code-demo grid grid_cols_2 grid_gap_xs">
+        <code class="code">text-strike</code>
+        <code class="code">text-underline</code>
+        <code class="code">text-underline-dotted</code>
+        <code class="code">text-underline-dashed</code>
+      </div>
+
+      <div class="grid grid_cols_3 grid_gap_xs overflow-auto">
+        <code class="code text-overflow-ellipsis">text-overflow-ellipsis: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
+        <code class="code text-wrap">text-wrap: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
+        <code class="code text-nowrap">text-nowrap: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
+      </div>
+
       <h2 id="transition"><a href="#transition">transition</a></h2>
+
+      <div class="grid grid_cols_2 grid_gap_xs">
+        <div class="transition-demo transition"><code>transition</code></div>
+        <div class="transition-demo transition-none"><code>transition-none</code></div>
+        <div class="transition-demo transition transition-duration-short"><code>transition-duration-short</code></div>
+        <div class="transition-demo transition transition-duration-long"><code>transition-duration-long</code></div>
+      </div>
 
     </div>
   </section>
