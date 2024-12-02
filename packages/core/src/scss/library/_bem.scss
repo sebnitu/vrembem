@@ -1,6 +1,7 @@
+@use "sass:string";
+@use "../utilities/escape-colon" as *;
 @use "../modules/config";
 
-/// TODO: Add support for breakpoint prefixes `md:` similar to utility function.
 /// Output a valid BEM class selector using core prefixes and the provided
 /// parameters; block, element, modifier and modifier-value.
 /// @param {string} $b
@@ -11,10 +12,12 @@
 ///   The modifier name.
 /// @param {string} $v [null]
 ///   The modifier value name.
+/// @param {string} $bp [bull]
+///   A breakpoint modifier to prepend to class, e.g: `md:`.
 /// @return {selector}
 ///   A valid BEM CSS selector using the provided parameters.
-@function bem($b, $e: null, $m: null, $v: null) {
-  $class: '.#{config.get("prefix-blocks")}#{$b}';
+@function bem($b, $e: null, $m: null, $v: null, $bp: null) {
+  $class: '#{config.get("prefix-blocks")}#{$b}';
   @if ($e) {
     $class: '#{$class}#{config.get("prefix-elements")}#{$e}';
   }
@@ -24,5 +27,19 @@
   @if ($v) {
     $class: '#{$class}#{config.get("prefix-modifier-values")}#{$v}';
   }
-  @return $class;
+  @if ($bp) {
+    // Add the colon if it doesn't exist.
+    @if not string.index($bp, ":") {
+      $bp: '#{$bp}:';
+    }
+
+    // Escape the colon.
+    $bp: escape-colon($bp);
+
+    // Prepend the breakpoint modifier to class.
+    $class: '#{$bp}#{$class}';
+  }
+
+  // Return class with as a class selector.
+  @return '.#{$class}';
 }
