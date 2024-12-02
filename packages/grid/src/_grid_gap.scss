@@ -21,17 +21,17 @@
 @each $bp, $value in var.$breakpoints {
   @include core.media-min($value) {
     @each $key, $value in var.$gap-map {
-      #{core.bem("#{$bp}\\:grid", null, "gap", $key)} {
+      #{core.bem("grid", null, "gap", $key, $bp)} {
         @include css.override("grid", "gap", $value);
       }
     }
     
     @each $key, $value in var.$gap-map {
-      #{core.bem("#{$bp}\\:grid", null, "gap-x", $key)} {
+      #{core.bem("grid", null, "gap-x", $key, $bp)} {
         @include css.override("grid", "gap-x", $value);
       }
     
-      #{core.bem("#{$bp}\\:grid", null, "gap-y", $key)} {
+      #{core.bem("grid", null, "gap-y", $key, $bp)} {
         @include css.override("grid", "gap-y", $value);
       }
     }

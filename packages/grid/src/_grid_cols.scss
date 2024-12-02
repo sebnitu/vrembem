@@ -8,10 +8,10 @@
   }
 }
 
-@each $key, $value in var.$breakpoints {
+@each $bp, $value in var.$breakpoints {
   @include core.media-min($value) {
     @for $i from 1 through var.$cols {
-      #{core.bem("#{$key}\\:grid", null, "cols", $i)} {
+      #{core.bem("grid", null, "cols", $i, $bp)} {
         @include css.override("grid", "cols", $i);
       }
     }

@@ -2,52 +2,52 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-.row-auto {
+#{core.bem("row-auto")} {
   grid-row: auto;
 }
 
-.row-full {
+#{core.bem("row-full")} {
   grid-row: span css.get("grid", "rows");
 }
 
 @for $i from 1 through var.$rows {
-  .row-#{$i} {
+  #{core.bem("row-#{$i}")} {
     grid-row: span $i;
   }
 }
 
 @for $i from 1 through (var.$rows + 1) {
-  .row-start-#{$i} {
+  #{core.bem("row-start-#{$i}")} {
     grid-row-start: $i;
   }
 
-  .row-end-#{$i} {
+  #{core.bem("row-end-#{$i}")} {
     grid-row-end: $i;
   }
 }
 
-@each $key, $value in var.$breakpoints {
+@each $bp, $value in var.$breakpoints {
   @include core.media-min($value) {
-    .#{$key}\:row-auto {
+    #{core.bem("row-auto", $bp: $bp)} {
       grid-row: auto;
     }
 
-    .#{$key}\:row-full {
+    #{core.bem("row-full", $bp: $bp)} {
       grid-row: span css.get("grid", "rows");
     }
 
     @for $i from 1 through var.$rows {
-      .#{$key}\:row-#{$i} {
+      #{core.bem("row-#{$i}", $bp: $bp)} {
         grid-row: span $i;
       }
     }
 
     @for $i from 1 through (var.$rows + 1) {
-      .#{$key}\:row-start-#{$i} {
+      #{core.bem("row-start-#{$i}", $bp: $bp)} {
         grid-row-start: $i;
       }
 
-      .#{$key}\:row-end-#{$i} {
+      #{core.bem("row-end-#{$i}", $bp: $bp)} {
         grid-row-end: $i;
       }
     }
