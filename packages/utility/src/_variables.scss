@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/css";
 
 $output: true !default;
 $output-exceptions: () !default;
@@ -11,11 +12,10 @@ $classes: (
 
 $breakpoints: core.$breakpoints !default;
 
-// TODO: Use CSS variables for the values of border-radius.
 $border-radius-map: (
-  "": core.$border-radius,
-  "lg": core.$border-radius-lg,
-  "circle": core.$border-radius-circle,
+  "": css.get("border-radius"),
+  "lg": css.get("border-radius-lg"),
+  "circle": css.get("border-radius-circle"),
   "square": 0
 ) !default;
 
