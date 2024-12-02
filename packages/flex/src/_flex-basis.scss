@@ -1,11 +1,13 @@
-.flex-basis-0 {
+@use "@vrembem/core";
+
+#{core.bem("flex-basis-0")} {
   flex-basis: 0;
 }
 
-.flex-basis-auto {
+#{core.bem("flex-basis-auto")} {
   flex-basis: auto;
 }
 
-.flex-basis-full {
+#{core.bem("flex-basis-full")} {
   flex-basis: 100%;
 }

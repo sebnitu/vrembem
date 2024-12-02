@@ -17,21 +17,21 @@
   flex-direction: column-reverse;
 }
 
-@each $key, $value in var.$breakpoints {
+@each $bp, $value in var.$breakpoints {
   @include core.media-min($value) {
-    #{core.bem("#{$key}\\:flex", null, "direction", "row")} {
+    #{core.bem("flex", null, "direction", "row", $bp)} {
       flex-direction: row;
     }
     
-    #{core.bem("#{$key}\\:flex", null, "direction", "row-reverse")} {
+    #{core.bem("flex", null, "direction", "row-reverse", $bp)} {
       flex-direction: row-reverse;
     }
     
-    #{core.bem("#{$key}\\:flex", null, "direction", "col")} {
+    #{core.bem("flex", null, "direction", "col", $bp)} {
       flex-direction: column;
     }
     
-    #{core.bem("#{$key}\\:flex", null, "direction", "col-reverse")} {
+    #{core.bem("flex", null, "direction", "col-reverse", $bp)} {
       flex-direction: column-reverse;
     }
   }
