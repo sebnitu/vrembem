@@ -1,5 +1,5 @@
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "../variables" as var;
 
 @if (var.$output-normalize) {
 

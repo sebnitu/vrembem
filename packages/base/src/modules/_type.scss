@@ -1,5 +1,5 @@
-@use "./variables" as var;
-@use "./mixins" as mix;
+@use "../variables" as var;
+@use "../mixins" as mix;
 
 $_b: var.$prefix-block;
 $_m: var.$prefix-modifier;

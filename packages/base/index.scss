@@ -1,15 +1,15 @@
 @forward "./src/variables";
 @forward "./src/mixins";
-@forward "./src/normalize";
 
-@forward "./src/arrow";
-@forward "./src/blockquote";
-@forward "./src/code";
-@forward "./src/heading";
-@forward "./src/link";
-@forward "./src/list";
-@forward "./src/pre";
-@forward "./src/scroll-box";
-@forward "./src/separator";
-@forward "./src/sr-only";
-@forward "./src/type";
+@forward "./src/modules/normalize";
+@forward "./src/modules/arrow";
+@forward "./src/modules/blockquote";
+@forward "./src/modules/code";
+@forward "./src/modules/heading";
+@forward "./src/modules/link";
+@forward "./src/modules/list";
+@forward "./src/modules/pre";
+@forward "./src/modules/scroll-box";
+@forward "./src/modules/separator";
+@forward "./src/modules/sr-only";
+@forward "./src/modules/type";

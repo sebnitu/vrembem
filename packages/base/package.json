@@ -16,7 +16,6 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
-    "./root": "./root.scss",
     "./*": "./src/*"
   },
   "scripts": {
