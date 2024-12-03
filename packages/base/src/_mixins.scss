@@ -5,43 +5,6 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-// Arrow
-// ---
-
-@mixin arrow(
-  $dir: null,
-  $color: var.$arrow-color,
-  $size: var.$arrow-size,
-  $radius: var.$arrow-radius
-) {
-  $size-pointer: $size;
-  @if (meta.type-of($size) == list) {
-    $size-pointer: list.nth($size, 2);
-    $size: list.nth($size, 1);
-  }
-  display: inline-block;
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 0;
-  height: 0;
-  transform-origin: center;
-  border-top: $size-pointer solid $color;
-  border-right: ($size * 0.5) solid transparent;
-  border-left: ($size * 0.5) solid transparent;
-  border-radius: $radius;
-  pointer-events: none;
-
-  @if $dir == "up" {
-    transform: rotate(180deg);
-  }
-  @else if $dir == "left" {
-    transform: rotate(90deg);
-  }
-  @else if $dir == "right" {
-    transform: rotate(-90deg);
-  }
-}
-
 // Blockquote
 // ---
 

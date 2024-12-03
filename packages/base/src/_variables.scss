@@ -3,18 +3,12 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-// Prefixes
-// ---
-
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
-
 // Output options
 // ---
 
 $output: true !default;
+$output-exceptions: () !default;
+
 $output-normalize: $output !default;
 $output-arrow: $output !default;
 $output-blockquote: $output !default;
@@ -30,6 +24,10 @@ $output-type: $output !default;
 
 // Base component classes
 // ---
+
+$classes: (
+  "separator": "sep"
+) !default;
 
 $class-arrow: "arrow" !default;
 $class-blockquote: "blockquote" !default;
@@ -60,7 +58,8 @@ $box-sizing: border-box !default;
 // ---
 
 $arrow-color: currentcolor !default;
-$arrow-size: 8px 6px !default;
+$arrow-size-height: 6px !default;
+$arrow-size-width: 8px !default;
 $arrow-radius: 2px !default;
 
 // Blockquote

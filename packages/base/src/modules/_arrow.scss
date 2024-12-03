@@ -1,27 +1,34 @@
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-$_b: var.$prefix-block;
-$_c: var.$class-arrow;
-
-@if (var.$output-arrow) {
-  .#{$_b}#{$_c},
-  .#{$_b}#{$_c}-up,
-  .#{$_b}#{$_c}-down,
-  .#{$_b}#{$_c}-left,
-  .#{$_b}#{$_c}-right {
-    @include mix.arrow();
+@if (fun.maybe-output("arrow")) {
+  #{fun.selector("arrow")},
+  #{fun.selector("arrow", "up")},
+  #{fun.selector("arrow", "down")},
+  #{fun.selector("arrow", "left")},
+  #{fun.selector("arrow", "right")} {
+    display: inline-block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 0;
+    height: 0;
+    transform-origin: center;
+    border-top: var.$arrow-size-height solid var.$arrow-color;
+    border-right: (var.$arrow-size-width * 0.5) solid transparent;
+    border-left: (var.$arrow-size-width * 0.5) solid transparent;
+    border-radius: var.$arrow-radius;
+    pointer-events: none;
   }
 
-  .#{$_b}#{$_c}-up {
+  #{fun.selector("arrow", "up")} {
     transform: rotate(180deg);
   }
 
-  .#{$_b}#{$_c}-left {
+  #{fun.selector("arrow", "left")} {
     transform: rotate(90deg);
   }
 
-  .#{$_b}#{$_c}-right {
+  #{fun.selector("arrow", "right")} {
     transform: rotate(-90deg);
   }
 }
