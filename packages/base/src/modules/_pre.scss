@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "../variables" as var;
 @use "../functions" as fun;
 
@@ -9,7 +10,7 @@
     border-radius: var.$pre-border-radius;
     background: var.$pre-background;
     color: var.$pre-foreground;
-    font-family: var.$font-family-mono;
+    font-family: css.get("font-family-mono");
 
     code {
       padding: 0;

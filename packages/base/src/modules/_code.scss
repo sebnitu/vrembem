@@ -1,4 +1,5 @@
 @use "sass:list";
+@use "@vrembem/core/css";
 @use "../variables" as var;
 @use "../functions" as fun;
 
@@ -10,7 +11,7 @@
     border-radius: var.$code-border-radius;
     background: var.$code-background;
     color: var.$code-foreground;
-    font-family: var.$font-family-mono;
+    font-family: css.get("font-family-mono");
     font-size: var.$code-font-size;
     word-break: break-word;
   }

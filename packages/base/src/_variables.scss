@@ -3,6 +3,8 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
+@include css.register("base");
+
 $output: true !default;
 $output-exceptions: () !default;
 
@@ -10,19 +12,9 @@ $classes: (
   "separator": "sep"
 ) !default;
 
-// Normalize
-// ---
-
-$root-height: 100% !default;
-$body-background: css.get("background") !default;
-$body-foreground: css.get("foreground") !default;
-$color-caption: css.get("foreground-lighter") !default;
-$font-family: core.$font-family !default;
-$font-family-mono: core.$font-family-mono !default;
-$font-size: core.$font-size !default;
-$font-size-sm: core.$font-size-sm !default;
-$line-height: css.get("line-height") !default;
-$box-sizing: border-box !default;
+$height: 100% !default;
+$background: css.get("background") !default;
+$foreground: css.get("foreground") !default;
 
 // Arrow
 // ---
