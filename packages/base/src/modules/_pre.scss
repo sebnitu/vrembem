@@ -1,8 +1,22 @@
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-@if (var.$output-pre) {
-  .#{var.$prefix-block}#{var.$class-pre} {
-    @include mix.pre();
+@if fun.maybe-output("pre") {
+  #{fun.selector("pre")} {
+    padding: var.$pre-padding;
+    overflow: auto;
+    border: var.$pre-border;
+    border-radius: var.$pre-border-radius;
+    background: var.$pre-background;
+    color: var.$pre-foreground;
+    font-family: var.$font-family-mono;
+
+    code {
+      padding: 0;
+      border: none;
+      background: none;
+      color: inherit;
+      font-size: var.$pre-font-size;
+    }
   }
 }

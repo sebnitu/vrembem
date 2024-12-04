@@ -5,21 +5,6 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-// Code
-// ---
-
-@mixin code() {
-  margin-block: -(list.nth(var.$code-padding, 1));
-  padding: var.$code-padding;
-  border: var.$code-border;
-  border-radius: var.$code-border-radius;
-  background: var.$code-background;
-  color: var.$code-foreground;
-  font-family: var.$font-family-mono;
-  font-size: var.$code-font-size;
-  word-break: break-word;
-}
-
 // Heading
 // ---
 
@@ -98,27 +83,6 @@
   }
 }
 
-// Pre
-// ---
-
-@mixin pre() {
-  padding: var.$pre-padding;
-  overflow: auto;
-  border: var.$pre-border;
-  border-radius: var.$pre-border-radius;
-  background: var.$pre-background;
-  color: var.$pre-foreground;
-  font-family: var.$font-family-mono;
-
-  code {
-    padding: 0;
-    border: none;
-    background: none;
-    color: inherit;
-    font-size: var.$pre-font-size;
-  }
-}
-
 // Scroll-box
 // ---
 
@@ -178,29 +142,4 @@
   > {
     @include heading-levels();
   }
-
-  // :not(div) > a {
-  //   @include link();
-  // }
-
-  // :not(pre) > code {
-  //   @include code();
-  // }
-
-  // > hr {
-  //   @include separator(var.$separator-border);
-  // }
-
-  // > ul,
-  // > ol {
-  //   @include list();
-  // }
-
-  // > blockquote {
-  //   @include blockquote();
-  // }
-
-  // > pre {
-  //   @include pre();
-  // }
 }

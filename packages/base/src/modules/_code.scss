@@ -1,8 +1,17 @@
+@use "sass:list";
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-@if (var.$output-code) {
-  .#{var.$prefix-block}#{var.$class-code} {
-    @include mix.code();
+@if fun.maybe-output("code") {
+  #{fun.selector("code")} {
+    margin-block: -(list.nth(var.$code-padding, 1));
+    padding: var.$code-padding;
+    border: var.$code-border;
+    border-radius: var.$code-border-radius;
+    background: var.$code-background;
+    color: var.$code-foreground;
+    font-family: var.$font-family-mono;
+    font-size: var.$code-font-size;
+    word-break: break-word;
   }
 }
