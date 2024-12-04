@@ -1,21 +1,9 @@
 @use "sass:list";
-@use "sass:map";
 @use "sass:meta";
-@use "@vrembem/core";
-@use "@vrembem/core/palette";
 @use "./variables" as var;
 
-// Heading
-// ---
-
-@mixin heading-base($heading-color: var.$heading-color) {
-  color: $heading-color;
-  font-family: var.$heading-font-family;
-  font-weight: var.$heading-font-weight;
-  line-height: var.$heading-line-height;
-}
-
-@mixin heading-levels($map: var.$heading-scale, $prefix: null) {
+/// Output the styles for heading levels based on the values of `$map`.
+@mixin heading-levels($map: var.$heading-scale, $prefix: ".") {
   @each $key, $value in $map {
     $font-size: $value;
     $line-height: null;
@@ -28,24 +16,6 @@
       line-height: $line-height;
     }
   }
-}
-
-@mixin heading($level, $map: var.$heading-scale) {
-  $value: null;
-  @if meta.type-of($level) == number {
-    $value: list.nth(map.values($map), $level);
-  }
-  @else if meta.type-of($level) == string {
-    $value: map.get($map, $level);
-  }
-  $font-size: $value;
-  $line-height: null;
-  @if meta.type-of($value) == list {
-    $font-size: list.nth($value, 1);
-    $line-height: list.nth($value, 2);
-  }
-  font-size: $font-size;
-  line-height: $line-height;
 }
 
 /// Styles for creating a scrollable container.
@@ -66,31 +36,4 @@
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
-}
-
-// Type
-// ---
-
-@mixin type() {
-  color: var.$type-color;
-  font-family: var.$type-font-family;
-  font-size: var.$type-font-size;
-  line-height: var.$type-line-height;
-
-  > * + * {
-    margin-top: var.$type-gap;
-  }
-
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    @include heading-base(var.$type-heading-color);
-  }
-
-  > {
-    @include heading-levels();
-  }
 }

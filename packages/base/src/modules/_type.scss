@@ -1,12 +1,27 @@
 @use "../variables" as var;
+@use "../functions" as fun;
 @use "../mixins" as mix;
 
-$_b: var.$prefix-block;
-$_m: var.$prefix-modifier;
-$_c: var.$class-type;
+@if fun.maybe-output("type") {
+  #{fun.selector("type")} {
+    color: var.$type-color;
+    font-family: var.$type-font-family;
+    font-size: var.$type-font-size;
+    line-height: var.$type-line-height;
 
-@if (var.$output-type) {
-  .#{$_b}#{$_c} {
-    @include mix.type();
+    > * + * {
+      margin-top: var.$type-gap;
+    }
+
+    > {
+      h1, h2, h3, h4, h5, h6 {
+        color: var.$type-heading-color;
+        font-family: var.$heading-font-family;
+        font-weight: var.$heading-font-weight;
+        line-height: var.$heading-line-height;
+      }
+
+      @include mix.heading-levels($prefix: null);
+    }
   }
 }

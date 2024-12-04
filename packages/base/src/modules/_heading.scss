@@ -1,23 +1,14 @@
 @use "../variables" as var;
+@use "../functions" as fun;
 @use "../mixins" as mix;
 
-$_b: var.$prefix-block;
-$_c: var.$class-type;
-
-@if (var.$output-heading) {
-  .#{$_b}h1,
-  .#{$_b}h2,
-  .#{$_b}h3,
-  .#{$_b}h4,
-  .#{$_b}h5,
-  .#{$_b}h6 {
-    @include mix.heading-base();
+@if fun.maybe-output("heading") {
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var.$heading-color;
+    font-family: var.$heading-font-family;
+    font-weight: var.$heading-font-weight;
+    line-height: var.$heading-line-height;
   }
-  @include mix.heading-levels($prefix: ".#{$_b}");
-}
 
-@if (var.$output-type) {
-  .#{$_b}#{$_c} {
-    @include mix.heading-levels($prefix: ".#{$_b}");
-  }
+  @include mix.heading-levels();
 }
