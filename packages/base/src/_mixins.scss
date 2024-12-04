@@ -48,41 +48,6 @@
   line-height: $line-height;
 }
 
-// Link
-// ---
-
-@mixin link() {
-  color: var.$link-color;
-  text-decoration: var.$link-decoration;
-  text-decoration-thickness: var.$link-decoration-thickness;
-  text-underline-offset: var.$link-underline-offset;
-
-  code {
-    background-color: palette.get("primary", 50%, 10%);
-    color: var.$link-color;
-  }
-
-  &:hover {
-    color: var.$link-color-hover;
-    text-decoration: var.$link-decoration-hover;
-
-    code {
-      color: var.$link-color-hover;
-    }
-  }
-
-  &:focus {
-    outline: var.$link-outline-focus;
-    outline-offset: var.$link-outline-focus-offset;
-    color: var.$link-color-hover;
-    text-decoration: var.$link-decoration-hover;
-
-    code {
-      color: var.$link-color-hover;
-    }
-  }
-}
-
 // Scroll-box
 // ---
 

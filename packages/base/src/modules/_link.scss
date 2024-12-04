@@ -1,11 +1,37 @@
+@use "@vrembem/core/palette";
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-$_b: var.$prefix-block;
-$_c: var.$class-link;
+@if fun.maybe-output("link") {
+  #{fun.selector("link")} {
+    color: var.$link-color;
+    text-decoration: var.$link-decoration;
+    text-decoration-thickness: var.$link-decoration-thickness;
+    text-underline-offset: var.$link-underline-offset;
 
-@if (var.$output-link) {
-  .#{$_b}#{$_c} {
-    @include mix.link();
+    code {
+      background-color: palette.get("primary", 50%, 10%);
+      color: var.$link-color;
+    }
+
+    &:hover {
+      color: var.$link-color-hover;
+      text-decoration: var.$link-decoration-hover;
+
+      code {
+        color: var.$link-color-hover;
+      }
+    }
+
+    &:focus {
+      outline: var.$link-outline-focus;
+      outline-offset: var.$link-outline-focus-offset;
+      color: var.$link-color-hover;
+      text-decoration: var.$link-decoration-hover;
+
+      code {
+        color: var.$link-color-hover;
+      }
+    }
   }
 }
