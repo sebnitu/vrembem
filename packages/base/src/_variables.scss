@@ -20,20 +20,15 @@ $base-foreground: css.get("foreground") !default;
 $arrow-size: 6px 4px !default;
 $arrow-radius: 2px !default;
 
-// Blockquote
-
 $blockquote-padding: 1.5em !default;
 $blockquote-gap: 1em !default;
 $blockquote-background: null !default;
 $blockquote-foreground: inherit !default;
-$blockquote-border: core.$border !default;
+$blockquote-border: css.get("border") !default;
 $blockquote-border-radius: null !default;
 $blockquote-accent-width: 4px !default;
-$blockquote-accent-offset: -1px !default;
+$blockquote-accent-offset: calc(css.get("border-width") * -1) !default;
 $blockquote-accent-color: palette.get("primary") !default;
-
-// Code
-// ---
 
 $code-padding: 0.125rem 0.375rem !default;
 $code-background: css.get("background-alt") !default;
@@ -42,9 +37,6 @@ $code-border: null !default;
 $code-border-radius: core.$border-radius !default;
 $code-font-family: core.$font-family-mono !default;
 $code-font-size: core.$font-size-sm !default;
-
-// Heading
-// ---
 
 $heading-font-family: inherit !default;
 $heading-line-height: null !default;
@@ -59,9 +51,6 @@ $heading-scale: (
   "h6": 1em inherit
 ) !default;
 
-// Link
-// ---
-
 $link-color: palette.get("primary") !default;
 $link-color-hover: palette.get("primary", 40) !default;
 $link-decoration: underline !default;
@@ -71,14 +60,8 @@ $link-underline-offset: 2px !default;
 $link-outline-focus: currentcolor dotted 1px !default;
 $link-outline-focus-offset: 0.125rem !default;
 
-// List
-// ---
-
 $list-indent: 1.5em !default;
 $list-item-gap: 0.5em !default;
-
-// Pre
-// ---
 
 $pre-padding: 1em !default;
 $pre-background: css.get("background-dark") !default;
@@ -87,13 +70,7 @@ $pre-border: null !default;
 $pre-border-radius: core.$border-radius !default;
 $pre-font-size: core.$font-size !default;
 
-// Separator
-// ---
-
 $separator-border: 1px solid css.get("border-color") !default;
-
-// Type
-// ---
 
 $type-selectors: (
   "blockquote": "> blockquote",
@@ -103,7 +80,6 @@ $type-selectors: (
   "pre": "> pre",
   "separator": "> hr"
 ) !default;
-
 $type-heading-color: css.get("foreground") !default;
 $type-color: css.get("foreground-light") !default;
 $type-font-family: null !default;
