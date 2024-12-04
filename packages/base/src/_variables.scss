@@ -4,6 +4,7 @@
 @use "@vrembem/core/palette";
 
 @include css.register("base");
+@include css.register("arrow");
 
 $output: true !default;
 $output-exceptions: () !default;
@@ -16,16 +17,10 @@ $height: 100% !default;
 $background: css.get("background") !default;
 $foreground: css.get("foreground") !default;
 
-// Arrow
-// ---
-
-$arrow-color: currentcolor !default;
-$arrow-size-height: 6px !default;
-$arrow-size-width: 8px !default;
+$arrow-size: 6px 4px !default;
 $arrow-radius: 2px !default;
 
 // Blockquote
-// ---
 
 $blockquote-padding: 1.5em !default;
 $blockquote-gap: 1em !default;

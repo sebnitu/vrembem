@@ -1,3 +1,4 @@
+@use "@vrembem/core/css";
 @use "../variables" as var;
 @use "../functions" as fun;
 
@@ -13,10 +14,11 @@
     width: 0;
     height: 0;
     transform-origin: center;
-    border-top: var.$arrow-size-height solid var.$arrow-color;
-    border-right: (var.$arrow-size-width * 0.5) solid transparent;
-    border-left: (var.$arrow-size-width * 0.5) solid transparent;
-    border-radius: var.$arrow-radius;
+    border-width: css.get("arrow", "size", var.$arrow-size);
+    border-bottom-width: 0;
+    border-style: solid;
+    border-radius: css.get("arrow", "radius", var.$arrow-radius);
+    border-color: css.get("arrow", "color", currentcolor) transparent transparent;
     pointer-events: none;
   }
 
