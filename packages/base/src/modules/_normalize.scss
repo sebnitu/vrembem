@@ -1,7 +1,8 @@
 @use "@vrembem/core/css";
 @use "../variables" as var;
+@use "../functions" as fun;
 
-@if (var.$output-normalize) {
+@if fun.maybe-output("normalize") {
 
   // Remove margin, padding and inherit box-sizing on everything
   *,
@@ -33,12 +34,7 @@
   }
 
   // Reset font-size for headings
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
   }
 

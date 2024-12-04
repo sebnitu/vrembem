@@ -3,42 +3,12 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-// Output options
-// ---
-
 $output: true !default;
 $output-exceptions: () !default;
-
-$output-normalize: $output !default;
-$output-arrow: $output !default;
-$output-blockquote: $output !default;
-$output-code: $output !default;
-$output-heading: $output !default;
-$output-link: $output !default;
-$output-list: $output !default;
-$output-pre: $output !default;
-$output-scroll-box: $output !default;
-$output-separator: $output !default;
-$output-sr-only: $output !default;
-$output-type: $output !default;
-
-// Base component classes
-// ---
 
 $classes: (
   "separator": "sep"
 ) !default;
-
-$class-arrow: "arrow" !default;
-$class-blockquote: "blockquote" !default;
-$class-code: "code" !default;
-$class-link: "link" !default;
-$class-list: "list" !default;
-$class-pre: "pre" !default;
-$class-scroll-box: "scroll-box" !default;
-$class-separator: "sep" !default;
-$class-sr-only: "sr-only" !default;
-$class-type: "type" !default;
 
 // Normalize
 // ---
