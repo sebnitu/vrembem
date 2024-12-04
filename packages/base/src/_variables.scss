@@ -13,9 +13,9 @@ $classes: (
   "separator": "sep"
 ) !default;
 
-$height: 100% !default;
-$background: css.get("background") !default;
-$foreground: css.get("foreground") !default;
+$base-height: 100% !default;
+$base-background: css.get("background") !default;
+$base-foreground: css.get("foreground") !default;
 
 $arrow-size: 6px 4px !default;
 $arrow-radius: 2px !default;
