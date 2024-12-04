@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("text")) {
+@if fun.maybe-output("text") {
   #{fun.utility("text", "capitalize")} {
     text-transform: capitalize !important;
   }

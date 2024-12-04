@@ -4,7 +4,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("foreground")) {
+@if fun.maybe-output("foreground") {
   #{fun.utility("foreground", "black")} {
     color: black !important;
   }

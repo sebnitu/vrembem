@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("overflow")) {
+@if fun.maybe-output("overflow") {
   @each $property in var.$overflow-properties {
     #{fun.utility("overflow", $property)} {
       overflow: $property !important;

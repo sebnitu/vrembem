@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("border-radius")) {
+@if fun.maybe-output("border-radius") {
   @each $key, $value in var.$border-radius-map {
     #{fun.utility("border-radius", $key)} {
       border-radius: $value !important;

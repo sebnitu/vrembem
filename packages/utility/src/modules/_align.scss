@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("align")) {
+@if fun.maybe-output("align") {
   #{fun.utility("align", "content", "start")} {
     align-content: start !important;
   }

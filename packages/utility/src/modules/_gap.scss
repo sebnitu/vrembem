@@ -2,7 +2,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("gap")) {
+@if fun.maybe-output("gap") {
   #{fun.utility("gap")} {
     gap: var.$gap !important;
   }

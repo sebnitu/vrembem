@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("position")) {
+@if fun.maybe-output("position") {
   #{fun.utility("position", "absolute")} {
     position: absolute !important;
   }
