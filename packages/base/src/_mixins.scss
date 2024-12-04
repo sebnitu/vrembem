@@ -48,9 +48,7 @@
   line-height: $line-height;
 }
 
-// Scroll-box
-// ---
-
+/// Styles for creating a scrollable container.
 @mixin scroll-box() {
   display: block;
   width: 100%;
@@ -58,19 +56,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-// Separator
-// ---
-
-@mixin separator($border) {
-  display: block;
-  height: 0;
-  border: none;
-  border-top: $border;
-}
-
-// Screen reader only content
-// ---
-
+/// Styles for displaying content meant only for screen readers.
 @mixin sr-only {
   position: absolute;
   width: 1px;

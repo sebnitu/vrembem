@@ -1,11 +1,11 @@
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-$_b: var.$prefix-block;
-$_c: var.$class-separator;
-
-@if (var.$output-separator) {
-  .#{$_b}#{$_c} {
-    @include mix.separator(var.$separator-border);
+@if fun.maybe-output("separator") {
+  #{fun.selector("separator")} {
+    display: block;
+    height: 0;
+    border: none;
+    border-top: var.$separator-border;
   }
 }
