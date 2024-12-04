@@ -387,15 +387,7 @@ $_variables: (
 /// to be available for later use but without setting any custom properties.
 /// @param {string} $module
 ///   The module to be registered.
-/// @param {list} $args...
-///   The arguments to pass to `usage.set()`. Can be a list containing an action
-///   and any additional flags to log for the property.
-@mixin register($module, $args...) {
-  // Only call `usage.set` if arguments are passed.
-  @if (list.length($args) > 0) {
-    // TODO: Where is `$prop` comping from?
-    @include usage.set($module, $prop, $args...);
-  }
+@mixin register($module) {
   $_variables: map.set($_variables, $module, "register", true) !global;
 }
 
