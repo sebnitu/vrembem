@@ -5,34 +5,6 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-// Blockquote
-// ---
-
-@mixin blockquote() {
-  position: relative;
-  padding: var.$blockquote-padding;
-  border: var.$blockquote-border;
-  border-radius: var.$blockquote-border-radius;
-  background: var.$blockquote-background;
-  color: var.$blockquote-foreground;
-
-  > * + * {
-    margin-top: var.$blockquote-gap;
-  }
-
-  @if var.$blockquote-accent-color {
-    &::before {
-      content: "";
-      position: absolute;
-      top: var.$blockquote-accent-offset;
-      bottom: var.$blockquote-accent-offset;
-      left: var.$blockquote-accent-offset;
-      width: var.$blockquote-accent-width;
-      background-color: var.$blockquote-accent-color;
-    }
-  }
-}
-
 // Code
 // ---
 
@@ -224,28 +196,28 @@
     @include heading-levels();
   }
 
-  :not(div) > a {
-    @include link();
-  }
+  // :not(div) > a {
+  //   @include link();
+  // }
 
-  :not(pre) > code {
-    @include code();
-  }
+  // :not(pre) > code {
+  //   @include code();
+  // }
 
-  > hr {
-    @include separator(var.$separator-border);
-  }
+  // > hr {
+  //   @include separator(var.$separator-border);
+  // }
 
-  > ul,
-  > ol {
-    @include list();
-  }
+  // > ul,
+  // > ol {
+  //   @include list();
+  // }
 
-  > blockquote {
-    @include blockquote();
-  }
+  // > blockquote {
+  //   @include blockquote();
+  // }
 
-  > pre {
-    @include pre();
-  }
+  // > pre {
+  //   @include pre();
+  // }
 }

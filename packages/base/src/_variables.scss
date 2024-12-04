@@ -138,6 +138,15 @@ $separator-border: 1px solid css.get("border-color") !default;
 // Type
 // ---
 
+$type-selectors: (
+  "blockquote": "> blockquote",
+  "code": ":not(pre) > code",
+  "link": ":not(div) > a",
+  "list": "> ul, > ol",
+  "pre": "> pre",
+  "separator": "> hr"
+) !default;
+
 $type-heading-color: css.get("foreground") !default;
 $type-color: css.get("foreground-light") !default;
 $type-font-family: null !default;

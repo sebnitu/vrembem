@@ -1,8 +1,29 @@
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-@if (var.$output-blockquote) {
-  .#{var.$prefix-block}#{var.$class-blockquote} {
-    @include mix.blockquote();
+@if (fun.maybe-output("blockquote")) {
+  #{fun.selector("blockquote")} {
+    position: relative;
+    padding: var.$blockquote-padding;
+    border: var.$blockquote-border;
+    border-radius: var.$blockquote-border-radius;
+    background: var.$blockquote-background;
+    color: var.$blockquote-foreground;
+
+    > * + * {
+      margin-top: var.$blockquote-gap;
+    }
+
+    @if var.$blockquote-accent-color {
+      &::before {
+        content: "";
+        position: absolute;
+        top: var.$blockquote-accent-offset;
+        bottom: var.$blockquote-accent-offset;
+        left: var.$blockquote-accent-offset;
+        width: var.$blockquote-accent-width;
+        background-color: var.$blockquote-accent-color;
+      }
+    }
   }
 }
