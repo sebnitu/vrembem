@@ -393,6 +393,7 @@ $_variables: (
 @mixin register($module, $args...) {
   // Only call `usage.set` if arguments are passed.
   @if (list.length($args) > 0) {
+    // TODO: Where is `$prop` comping from?
     @include usage.set($module, $prop, $args...);
   }
   $_variables: map.set($_variables, $module, "register", true) !global;
