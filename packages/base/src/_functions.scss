@@ -63,7 +63,10 @@
     // Apply the block prefix to the root type class.
     $type: '#{config.get("prefix-block")}#{$type}';
     // Create the type selector using the type module selector.
-    $type-selector: ", .#{$type} #{map.get(var.$type-selectors, $module)}";
+    $list: string.split(map.get(var.$type-selectors, $module), ",");
+    @each $item in $list {
+      $type-selector: "#{$type-selector}, .#{$type} #{$item}";
+    }
   }
 
   // Return the type selector.

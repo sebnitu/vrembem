@@ -98,23 +98,6 @@
   }
 }
 
-// List
-// ---
-
-@mixin list() {
-  margin-left: var.$list-indent;
-
-  ul,
-  ol {
-    margin-left: var.$list-indent;
-  }
-
-  li li,
-  li + li {
-    margin-top: var.$list-item-gap;
-  }
-}
-
 // Pre
 // ---
 

@@ -1,12 +1,22 @@
 @use "../variables" as var;
-@use "../mixins" as mix;
+@use "../functions" as fun;
 
-@if (var.$output-list) {
-  .#{var.$prefix-block}#{var.$class-list} {
-    @include mix.list();
+@if fun.maybe-output("list") {
+  #{fun.selector("list")} {
+    margin-left: var.$list-indent;
+
+    ul,
+    ol {
+      margin-left: var.$list-indent;
+    }
+
+    li li,
+    li + li {
+      margin-top: var.$list-item-gap;
+    }
   }
 
-  .list-style-none {
+  #{fun.selector("list", "style-none")} {
     list-style: none !important;
   }
 }
