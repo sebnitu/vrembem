@@ -1,29 +1,19 @@
-@use "../variables" as var;
+@use "@vrembem/core/css";
 @use "../functions" as fun;
 
 @if (fun.maybe-output("blockquote")) {
+  @include css.register("blockquote");
+
   #{fun.selector("blockquote")} {
     position: relative;
-    padding: var.$blockquote-padding;
-    border: var.$blockquote-border;
-    border-radius: var.$blockquote-border-radius;
-    background: var.$blockquote-background;
-    color: var.$blockquote-foreground;
+    padding: css.get("blockquote", "padding", 1em);
+    border: css.get("blockquote", "border", css.get("border"));
+    border-radius: css.get("blockquote", "border-radius", css.get("border-radius"));
+    background: css.get("blockquote", "background", transparent);
+    color: css.get("blockquote", "foreground", currentcolor);
 
     > * + * {
-      margin-top: var.$blockquote-gap;
-    }
-
-    @if var.$blockquote-accent-color {
-      &::before {
-        content: "";
-        position: absolute;
-        top: var.$blockquote-accent-offset;
-        bottom: var.$blockquote-accent-offset;
-        left: var.$blockquote-accent-offset;
-        width: var.$blockquote-accent-width;
-        background-color: var.$blockquote-accent-color;
-      }
+      margin-top: css.get("blockquote", "gap", 1em);
     }
   }
 }

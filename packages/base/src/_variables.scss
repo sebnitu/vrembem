@@ -4,7 +4,6 @@
 @use "@vrembem/core/palette";
 
 @include css.register("base");
-@include css.register("arrow");
 
 $output: true !default;
 $output-exceptions: () !default;
@@ -16,16 +15,6 @@ $classes: (
 $base-height: 100% !default;
 $base-background: css.get("background") !default;
 $base-foreground: css.get("foreground") !default;
-
-$blockquote-padding: 1.5em !default;
-$blockquote-gap: 1em !default;
-$blockquote-background: null !default;
-$blockquote-foreground: inherit !default;
-$blockquote-border: css.get("border") !default;
-$blockquote-border-radius: null !default;
-$blockquote-accent-width: 4px !default;
-$blockquote-accent-offset: calc(css.get("border-width") * -1) !default;
-$blockquote-accent-color: palette.get("primary") !default;
 
 $code-padding: 0.125rem 0.375rem !default;
 $code-background: css.get("background-alt") !default;
