@@ -29,9 +29,6 @@ $heading-scale: (
   "h6": 1em inherit
 ) !default;
 
-$list-indent: 1.5em !default;
-$list-item-gap: 0.5em !default;
-
 $pre-padding: 1em !default;
 $pre-background: css.get("background-dark") !default;
 $pre-foreground: css.get("foreground") !default;
