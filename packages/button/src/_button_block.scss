@@ -1,20 +1,16 @@
 @use "@vrembem/core";
+@use "./variables" as var;
 
 #{core.bem("button", null, "block")} {
   display: flex;
   width: 100%;
 }
 
-@each $key, $value in core.$breakpoints {
-  #{core.bem("button", null, "block", $key)} {
-    display: flex;
-    width: 100%;
-  }
-
-  @include core.media-min($value) {
-    #{core.bem("button", null, "block", $key)} {
-      display: inline-flex;
-      width: auto;
+@each $bp, $value in var.$breakpoints {
+  @include core.media-max($value) {
+    #{core.bem("button", null, "block", $bp: $bp)} {
+      display: flex;
+      width: 100%;
     }
   }
 }

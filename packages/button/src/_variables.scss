@@ -2,6 +2,8 @@
 @use "@vrembem/core/css";
 
 @include css.register("button");
+
+$breakpoints: core.$breakpoints !default;
 $accent: css.get("button", "accent", css.get("form-control-accent")) !default;
 $gap: 0.5rem !default;
 
