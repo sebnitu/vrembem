@@ -1,11 +1,13 @@
-@use "../variables" as var;
+@use "@vrembem/core/css";
 @use "../functions" as fun;
 
 @if fun.maybe-output("separator") {
+  @include css.register("separator");
+
   #{fun.selector("separator")} {
     display: block;
     height: 0;
     border: none;
-    border-top: var.$separator-border;
+    border-top: css.get("separator", "border", css.get("border"));
   }
 }

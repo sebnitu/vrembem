@@ -1,24 +1,28 @@
+@use "@vrembem/core/css";
 @use "../variables" as var;
 @use "../functions" as fun;
 @use "../mixins" as mix;
 
 @if fun.maybe-output("type") {
+  @include css.register("type");
+  @include css.register("heading");
+
   #{fun.selector("type")} {
-    color: var.$type-color;
-    font-family: var.$type-font-family;
-    font-size: var.$type-font-size;
-    line-height: var.$type-line-height;
+    color: css.get("type", "color", css.get("foreground-light"));
+    font-family: css.get("type", "font-family", null);
+    font-size: css.get("type", "font-size", css.get("font-size-lg"));
+    line-height: css.get("type", "line-height", 1.7778);
 
     > * + * {
-      margin-top: var.$type-gap;
+      margin-top: css.get("type", "gap", null);
     }
 
     > {
       h1, h2, h3, h4, h5, h6 {
-        color: var.$type-heading-color;
-        font-family: var.$heading-font-family;
-        font-weight: var.$heading-font-weight;
-        line-height: var.$heading-line-height;
+        color: css.get("heading", "color", css.get("foreground"));
+        font-family: css.get("heading", "font-family", inherit);
+        font-weight: css.get("heading", "font-weight", css.get("font-weight-semi-bold"));
+        line-height: css.get("heading", "line-height", null);
       }
 
       @include mix.heading-levels($prefix: null);

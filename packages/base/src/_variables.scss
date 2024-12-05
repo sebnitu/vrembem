@@ -16,10 +16,6 @@ $base-height: 100% !default;
 $base-background: css.get("background") !default;
 $base-foreground: css.get("foreground") !default;
 
-$heading-font-family: inherit !default;
-$heading-line-height: null !default;
-$heading-color: inherit !default;
-$heading-font-weight: css.get("font-weight-semi-bold") !default;
 $heading-scale: (
   "h1": 2.75em,
   "h2": 2em,
@@ -29,8 +25,6 @@ $heading-scale: (
   "h6": 1em inherit
 ) !default;
 
-$separator-border: 1px solid css.get("border-color") !default;
-
 $type-selectors: (
   "blockquote": "> blockquote",
   "code": ":not(pre) > code",
@@ -39,9 +33,3 @@ $type-selectors: (
   "pre": "> pre",
   "separator": "> hr"
 ) !default;
-$type-heading-color: css.get("foreground") !default;
-$type-color: css.get("foreground-light") !default;
-$type-font-family: null !default;
-$type-font-size: core.$font-size-lg !default; // Computed: 18px
-$type-line-height: 1.7778 !default; // Computed: 32px
-$type-gap: null !default;
