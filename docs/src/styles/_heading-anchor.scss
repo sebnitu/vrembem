@@ -5,7 +5,7 @@
 @use "@vrembem/button";
 @use "./variables" as var;
 
-.header-anchor {
+.heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
   display: inline-flex;
   align-items: center;
@@ -44,7 +44,7 @@
 
   @include core.media-min(var.$bp-code) {
     position: absolute;
-    top: calc(50% - calc(css.get("form-control-size") / 2));
+    top: calc(58% - calc(css.get("form-control-size") / 2));
     right: calc(100% + calc(css.get("form-control-size") / 2));
   }
 }

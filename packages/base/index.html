@@ -3,49 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@vrembem/base</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <title>%VITE_NAME%</title>
+  <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
+  <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
+  <script type="module">
+    // Import required vite demo styles.
+    import "../core/dist/index.css";
+    import "../base/dist/index.css";
+    import "../utility/dist/index.css";
+    import "../section/dist/index.css";
+    import "../flex/dist/index.css";
+    import "../grid/dist/index.css";
+
+    // Import local styles.
+    import "./index.scss"
+  </script>
+  <style></style>
 </head>
 <body>
-  <main>
-    <header class="section background-dark">
-      <div class="section__container max-width-xs spacing">
-        <h1>@vrembem/base</h1>
-        <p>Includes useful default styles and base modules for common HTML elements.</p>
-        <div class="flex align-items-center foreground-lighter">
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem">
-              <span>vrembem</span>
-            </a>
-          </div>
-          <span>/</span>
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem/tree/main/packages/base#readme">
-              <span>base</span>
-            </a>
-          </div>
-        </div>
+
+  <header class="section background-dark">
+    <div class="section__container max-width-xs spacing-sm">
+      <h1 class="text-size-lg">%VITE_NAME%</h1>
+      <p class="foreground-light">%VITE_DESCRIPTION%</p>
+      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
+        </li>
+        <li class="foreground-neutral-80">/</li>
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__container max-width-xs spacing">
+      
+      <h2 id="blockquote"><a href="#blockquote">blockquote</a></h2>
+
+      <blockquote class="blockquote">
+        <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
+        <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
+      </blockquote>
+
+      <h2 id="code"><a href="#code">code</a></h2>
+
+      <code class="code">$code: "example";</code>
+      
+      <h2 id="heading"><a href="#heading">heading</a></h2>
+      
+      <h1 class="h1">H1 Heading</h1>
+      <h2 class="h2">H2 Heading</h2>
+      <h3 class="h3">H3 Heading</h3>
+      <h4 class="h4">H4 Heading</h4>
+      <h5 class="h5">H5 Heading</h5>
+      <h6 class="h6">H6 Heading</h6>
+
+      <h2 id="link"><a href="#link">link</a></h2>
+
+      <p><a class="link" href="#">This is a link</a></p>
+
+      <h2 id="list"><a href="#list">list</a></h2>
+
+      <div class="grid grid_cols_2">
+        <ul class="list">
+          <li>One</li>
+          <li>Two</li>
+          <li>
+            Three
+            <ol class="list">
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+            </ol>
+          </li>
+        </ul>
+        <ol class="list">
+          <li>One</li>
+          <li>Two</li>
+          <li>
+            Three
+            <ul class="list">
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+            </ul>
+          </li>
+        </ol>
       </div>
-    </header>
 
-    <section class="section">
-      <div class="section__container max-width-xs spacing">
+      <h2 id="pre"><a href="#pre">pre</a></h2>
 
-        <p>...</p>
+      <pre class="pre"><code>npm install @vrembem/base</code></pre>
+
+      <h2 id="separator"><a href="#separator">separator</a></h2>
+
+      <hr class="sep" />
+      
+      <h2 id="type"><a href="#type">type</a></h2>
+
+      <div class="type spacing">
+        <p>This content is wrapped in the type module allowing typographic and HTML elements to receive more comprehensive default styles without the need for adding additional element specific classes.</p>
+
+        <h1>H1 Heading</h1>
+        <h2>H2 Heading</h2>
+        <h3>H3 Heading</h3>
+        <h4>H4 Heading</h4>
+        <h5>H5 Heading</h5>
+        <h6>H6 Heading</h6>
+
+        <blockquote class="spacing">
+          <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
+          <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
+        </blockquote>
+  
+        <p><code>$code: "example";</code></p>
+
+        <p><a href="#">This is a link</a></p>
+
+        <ul>
+          <li>One</li>
+          <li>Two</li>
+          <li>
+            Three
+            <ol>
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+            </ol>
+          </li>
+        </ul>
+        <ol>
+          <li>One</li>
+          <li>Two</li>
+          <li>
+            Three
+            <ul>
+              <li>One</li>
+              <li>Two</li>
+              <li>Three</li>
+            </ul>
+          </li>
+        </ol>
+
+        <pre><code>npm install @vrembem/base</code></pre>
+
+        <hr />
 
       </div>
-    </section>
-  </main>
 
-  <script type="module">
-    import 'vrembem/scss';
-  </script>
+      <h2 id="arrow"><a href="#arrow">arrow</a></h2>
+
+      <div class="flex flex-wrap">
+        <span class="arrow"></span>
+        <span class="arrow-up"></span>
+        <span class="arrow-down"></span>
+        <span class="arrow-left"></span>
+        <span class="arrow-right"></span>
+      </div>
+
+      <h2 id="loading-spinner"><a href="#loading-spinner">loading-spinner</a></h2>
+
+      <div class="flex align-items-center">
+        <span class="loading-spinner"></span>
+        <span>Loading text here...</span>
+      </div>
+
+      <h2 id="scroll-box"><a href="#scroll-box">scroll-box</a></h2>
+
+      <div class="scroll-box padding border radius">
+        <p class="text-nowrap">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quaerat doloribus ab minus ad amet repellendus. Dolore aliquam corrupti, omnis recusandae soluta minima, tempora eligendi, explicabo suscipit maiores reprehenderit illum!</p>
+      </div>
+
+      <h2 id="sr-only"><a href="#sr-only">sr-only</a></h2>
+
+      <p>The following content is for screen readers only: <span class="sr-only">Hello, screen readers!</span></p>
+      
+    </div>
+  </section>
 
 </body>
 </html>

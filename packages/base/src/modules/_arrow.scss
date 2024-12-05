@@ -1,0 +1,24 @@
+@use "@vrembem/core";
+@use "../functions" as fun;
+
+@if fun.maybe-output("arrow") {
+  #{fun.selector("arrow")},
+  #{fun.selector("arrow", "up")},
+  #{fun.selector("arrow", "down")},
+  #{fun.selector("arrow", "left")},
+  #{fun.selector("arrow", "right")} {
+    @include core.arrow();
+  }
+
+  #{fun.selector("arrow", "up")} {
+    transform: rotate(180deg);
+  }
+
+  #{fun.selector("arrow", "left")} {
+    transform: rotate(90deg);
+  }
+
+  #{fun.selector("arrow", "right")} {
+    transform: rotate(-90deg);
+  }
+}

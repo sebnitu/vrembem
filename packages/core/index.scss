@@ -16,6 +16,7 @@
 @forward "./src/scss/utilities/reverse";
 @forward "./src/scss/utilities/string-replace";
 
+@forward "./src/scss/library/arrow";
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css-query";
 @forward "./src/scss/library/focus-ring";
@@ -24,7 +25,9 @@
 @forward "./src/scss/library/loading-spinner";
 @forward "./src/scss/library/media-max";
 @forward "./src/scss/library/media-min";
+@forward "./src/scss/library/scroll-box";
 @forward "./src/scss/library/size";
+@forward "./src/scss/library/sr-only";
 
 @forward "./src/scss/modules/config" as config-*;
 @forward "./src/scss/modules/usage" as usage-*;

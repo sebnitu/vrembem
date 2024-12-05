@@ -1,0 +1,24 @@
+@use "@vrembem/core/css";
+@use "../functions" as fun;
+
+@if fun.maybe-output("list") {
+  @include css.register("list");
+
+  #{fun.selector("list")} {
+    margin-left: css.get("list", "indent", 1.5em);
+
+    ul,
+    ol {
+      margin-left: css.get("list", "indent", 1.5em);
+    }
+
+    li li,
+    li + li {
+      margin-top: css.get("list", "gap", 0.5em);
+    }
+  }
+
+  #{fun.selector("list-style-none")} {
+    list-style: none !important;
+  }
+}

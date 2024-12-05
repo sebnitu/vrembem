@@ -1,8 +1,0 @@
-@use "./variables" as var;
-@use "./mixins" as mix;
-
-@if (var.$output-code) {
-  .#{var.$prefix-block}#{var.$class-code} {
-    @include mix.code();
-  }
-}

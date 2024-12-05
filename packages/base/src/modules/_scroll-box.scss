@@ -1,0 +1,8 @@
+@use "@vrembem/core";
+@use "../functions" as fun;
+
+@if fun.maybe-output("scroll-box") {
+  #{fun.selector("scroll-box")} {
+    @include core.scroll-box();
+  }
+}

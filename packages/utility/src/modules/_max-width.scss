@@ -1,7 +1,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("max-width")) {
+@if fun.maybe-output("max-width") {
   #{fun.utility("max-width")} {
     max-width: var.$max-width !important;
   }

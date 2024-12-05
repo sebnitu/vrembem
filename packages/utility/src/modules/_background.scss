@@ -4,7 +4,7 @@
 @use "../variables" as var;
 @use "../functions" as fun;
 
-@if (fun.maybe-output("background")) {
+@if fun.maybe-output("background") {
   #{fun.utility("background", "clip-border")} {
     background-clip: border-box !important;
   }

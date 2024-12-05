@@ -1,8 +1,0 @@
-@use "./variables" as var;
-@use "./mixins" as mix;
-
-@if (var.$output-scroll-box) {
-  .#{var.$prefix-block}#{var.$class-scroll-box} {
-    @include mix.scroll-box();
-  }
-}

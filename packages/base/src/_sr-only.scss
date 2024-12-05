@@ -1,8 +1,0 @@
-@use "./variables" as var;
-@use "./mixins" as mix;
-
-@if (var.$output-sr-only) {
-  .#{var.$prefix-block}#{var.$class-sr-only} {
-    @include mix.sr-only();
-  }
-}

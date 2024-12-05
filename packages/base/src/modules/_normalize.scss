@@ -1,7 +1,8 @@
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "../variables" as var;
+@use "../functions" as fun;
 
-@if (var.$output-normalize) {
+@if fun.maybe-output("normalize") {
 
   // Remove margin, padding and inherit box-sizing on everything
   *,
@@ -15,11 +16,11 @@
   // Default html (root) and body styles
   html,
   body {
-    height: var.$root-height;
+    height: css.get("base", "height", var.$base-height);
   }
 
   html {
-    box-sizing: var.$box-sizing;
+    box-sizing: border-box;
     font-size: css.get("font-size");
     line-height: css.get("line-height");
     -moz-osx-font-smoothing: grayscale;
@@ -27,18 +28,13 @@
   }
 
   body {
-    background: var.$body-background;
-    color: var.$body-foreground;
-    font-family: var.$font-family;
+    background: css.get("base", "background", var.$base-background);
+    color: css.get("base", "foreground", var.$base-foreground);
+    font-family: css.get("font-family");
   }
 
   // Reset font-size for headings
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
   }
 
@@ -70,13 +66,13 @@
   // Default font family and font size for code and pre elements
   code,
   pre {
-    font-family: var.$font-family-mono;
+    font-family: css.get("font-family-mono");
     font-size: 1em;
   }
 
   // Default small element font-size
   small {
-    font-size: var.$font-size-sm;
+    font-size: css.get("font-size-sm");
   }
 
   // Better default table styles
@@ -87,7 +83,7 @@
   // Better default caption styles
   caption {
     caption-side: bottom;
-    color: var.$color-caption;
+    color: css.get("foreground-lighter");
     text-align: left;
   }
 

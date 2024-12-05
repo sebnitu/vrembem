@@ -1,99 +1,19 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
 
-// Prefixes
-// ---
-
-$prefix-block: config.get("prefix-blocks") !default;
-$prefix-element: config.get("prefix-elements") !default;
-$prefix-modifier: config.get("prefix-modifiers") !default;
-$prefix-modifier-value: config.get("prefix-modifier-values") !default;
-
-// Output options
-// ---
+@include css.register("base");
 
 $output: true !default;
-$output-normalize: $output !default;
-$output-arrow: $output !default;
-$output-blockquote: $output !default;
-$output-code: $output !default;
-$output-heading: $output !default;
-$output-link: $output !default;
-$output-list: $output !default;
-$output-pre: $output !default;
-$output-scroll-box: $output !default;
-$output-separator: $output !default;
-$output-sr-only: $output !default;
-$output-type: $output !default;
+$output-exceptions: () !default;
 
-// Base component classes
-// ---
+$classes: (
+  "separator": "sep"
+) !default;
 
-$class-arrow: "arrow" !default;
-$class-blockquote: "blockquote" !default;
-$class-code: "code" !default;
-$class-link: "link" !default;
-$class-list: "list" !default;
-$class-pre: "pre" !default;
-$class-scroll-box: "scroll-box" !default;
-$class-separator: "sep" !default;
-$class-sr-only: "sr-only" !default;
-$class-type: "type" !default;
+$base-height: 100% !default;
+$base-background: css.get("background") !default;
+$base-foreground: css.get("foreground") !default;
 
-// Normalize
-// ---
-
-$root-height: 100% !default;
-$body-background: css.get("background") !default;
-$body-foreground: css.get("foreground") !default;
-$color-caption: css.get("foreground-lighter") !default;
-$font-family: core.$font-family !default;
-$font-family-mono: core.$font-family-mono !default;
-$font-size: core.$font-size !default;
-$font-size-sm: core.$font-size-sm !default;
-$line-height: css.get("line-height") !default;
-$box-sizing: border-box !default;
-
-// Arrow
-// ---
-
-$arrow-color: currentcolor !default;
-$arrow-size: 8px 6px !default;
-$arrow-radius: 2px !default;
-
-// Blockquote
-// ---
-
-$blockquote-padding: 1.5em !default;
-$blockquote-gap: 1em !default;
-$blockquote-background: null !default;
-$blockquote-foreground: inherit !default;
-$blockquote-border: core.$border !default;
-$blockquote-border-radius: null !default;
-$blockquote-accent-width: 4px !default;
-$blockquote-accent-offset: -1px !default;
-$blockquote-accent-color: palette.get("primary") !default;
-
-// Code
-// ---
-
-$code-padding: 0.125rem 0.375rem !default;
-$code-background: css.get("background-alt") !default;
-$code-foreground: css.get("foreground-alt") !default;
-$code-border: null !default;
-$code-border-radius: core.$border-radius !default;
-$code-font-family: core.$font-family-mono !default;
-$code-font-size: core.$font-size-sm !default;
-
-// Heading
-// ---
-
-$heading-font-family: inherit !default;
-$heading-line-height: null !default;
-$heading-color: inherit !default;
-$heading-font-weight: css.get("font-weight-semi-bold") !default;
 $heading-scale: (
   "h1": 2.75em,
   "h2": 2em,
@@ -103,45 +23,11 @@ $heading-scale: (
   "h6": 1em inherit
 ) !default;
 
-// Link
-// ---
-
-$link-color: palette.get("primary") !default;
-$link-color-hover: palette.get("primary", 40) !default;
-$link-decoration: underline !default;
-$link-decoration-hover: none !default;
-$link-decoration-thickness: 1px !default;
-$link-underline-offset: 2px !default;
-$link-outline-focus: currentcolor dotted 1px !default;
-$link-outline-focus-offset: 0.125rem !default;
-
-// List
-// ---
-
-$list-indent: 1.5em !default;
-$list-item-gap: 0.5em !default;
-
-// Pre
-// ---
-
-$pre-padding: 1em !default;
-$pre-background: css.get("background-dark") !default;
-$pre-foreground: css.get("foreground") !default;
-$pre-border: null !default;
-$pre-border-radius: core.$border-radius !default;
-$pre-font-size: core.$font-size !default;
-
-// Separator
-// ---
-
-$separator-border: 1px solid css.get("border-color") !default;
-
-// Type
-// ---
-
-$type-heading-color: css.get("foreground") !default;
-$type-color: css.get("foreground-light") !default;
-$type-font-family: null !default;
-$type-font-size: core.$font-size-lg !default; // Computed: 18px
-$type-line-height: 1.7778 !default; // Computed: 32px
-$type-gap: null !default;
+$type-selectors: (
+  "blockquote": "> blockquote",
+  "code": ":not(pre) > code",
+  "link": ":not(div) > a",
+  "list": "> ul, > ol",
+  "pre": "> pre",
+  "separator": "> hr"
+) !default;

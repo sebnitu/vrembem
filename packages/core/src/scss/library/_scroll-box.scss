@@ -1,0 +1,7 @@
+/// Styles for creating a scrollable container.
+@mixin scroll-box() {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
