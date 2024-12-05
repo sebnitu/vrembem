@@ -12,14 +12,16 @@ $_output-spin-animation: true;
 ));
 
 /// Output the styles for a loading spinner.
-/// TODO: Add position strategy as an option.
-@mixin loading-spinner() {
+/// @param {keyword} $position
+///   The value of the position property to use.
+@mixin loading-spinner($position: absolute) {
   @include size(css.get("loading", "size"));
-  content: "";
-  position: absolute;
-  top: calc(50% - calc(css.get("loading", "size") * 0.5));
-  left: calc(50% - calc(css.get("loading", "size") * 0.5));
-  display: inline-flex;
+  @if $position == absolute or $position == fixed {
+    top: calc(50% - calc(css.get("loading", "size") * 0.5));
+    left: calc(50% - calc(css.get("loading", "size") * 0.5));
+  }
+  position: $position;
+  display: inline-block;
   animation: spin css.get("loading", "duration") infinite linear;
   border: css.get("loading", "border");
   border-radius: $border-radius-circle;

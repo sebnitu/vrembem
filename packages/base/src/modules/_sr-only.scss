@@ -1,9 +1,8 @@
-@use "../variables" as var;
+@use "@vrembem/core";
 @use "../functions" as fun;
-@use "../mixins" as mix;
 
 @if fun.maybe-output("sr-only") {
   #{fun.selector("sr-only")} {
-    @include mix.sr-only();
+    @include core.sr-only();
   }
 }

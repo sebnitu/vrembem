@@ -52,6 +52,7 @@
     &::after {
       @include css.override("loading", "color", css.get("button", "foreground", var.$foreground));
       @include core.loading-spinner();
+      content: "";
     }
   }
 }

@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/base";
 @use "./variables" as var;
 
 .code-example {
@@ -53,7 +52,7 @@
 }
 
 .code-example__output {
-  @include base.scroll-box();
+  @include core.scroll-box();
 
   &.updated {
     animation: .6s linear updated;

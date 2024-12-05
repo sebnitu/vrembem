@@ -12,7 +12,7 @@
 @forward "./src/modules/separator";
 @forward "./src/modules/type";
 
-// TODO: maybe move these into core as mixins similar to loading-spinner?
 @forward "./src/modules/arrow";
+@forward "./src/modules/loading-spinner";
 @forward "./src/modules/scroll-box";
 @forward "./src/modules/sr-only";
