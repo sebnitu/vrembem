@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "../functions" as fun;
 
-@if (fun.maybe-output("arrow")) {
+@if fun.maybe-output("arrow") {
   #{fun.selector("arrow")},
   #{fun.selector("arrow", "up")},
   #{fun.selector("arrow", "down")},
