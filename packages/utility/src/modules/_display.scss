@@ -9,10 +9,10 @@
     }
   }
 
-  @each $key, $value in var.$breakpoints {
+  @each $bp, $value in var.$breakpoints {
     @include core.media-min($value) {
       @each $property in var.$display-properties {
-        #{fun.utility("display", $property, "#{$key}:")} {
+        #{fun.utility("display", $property, "#{$bp}:")} {
           display: $property !important;
         }
       }
