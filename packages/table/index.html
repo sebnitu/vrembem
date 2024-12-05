@@ -3,49 +3,370 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@vrembem/table</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <title>%VITE_NAME%</title>
+  <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
+  <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
+  <script type="module">
+    // Import required vite demo styles.
+    import "../core/dist/index.css";
+    import "../base/dist/index.css";
+    import "../utility/dist/index.css";
+    import "../section/dist/index.css";
+    import "../flex/dist/index.css";
+    import "../grid/dist/index.css";
+
+    // Import local styles.
+    import "./index.scss";
+    import "./root.scss";
+  </script>
+  <style></style>
 </head>
 <body>
-  <main>
-    <header class="section background-dark">
-      <div class="section__container max-width-xs spacing">
-        <h1>@vrembem/table</h1>
-        <p>A table component for displaying HTML tables.</p>
-        <div class="flex align-items-center foreground-lighter">
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem">
-              <span>vrembem</span>
-            </a>
-          </div>
-          <span>/</span>
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem/tree/main/packages/table#readme">
-              <span>table</span>
-            </a>
-          </div>
-        </div>
+
+  <header class="section background-dark">
+    <div class="section__container max-width-xs spacing-sm">
+      <h1 class="text-size-lg">%VITE_NAME%</h1>
+      <p class="foreground-light">%VITE_DESCRIPTION%</p>
+      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
+        </li>
+        <li class="foreground-neutral-80">/</li>
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+      </ol>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section__container max-width-xs spacing">
+
+      <h2 id="table"><a href="#table">table</a></h2>
+
+      <table class="table">
+        <caption>Example of a table caption.</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Locust</td>
+            <td>20t</td>
+            <td>Light</td>
+            <td>LCT-1V</td>
+          </tr>
+          <tr>
+            <td>Shadow Hawk</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>SHD-2H</td>
+          </tr>
+          <tr>
+            <td>Thunderbolt</td>
+            <td>65t</td>
+            <td>Heavy</td>
+            <td>TDR-5S</td>
+          </tr>
+          <tr>
+            <td>BattleMaster</td>
+            <td>85t</td>
+            <td>Assault</td>
+            <td>BLR-1G</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="scroll-box">
+        <table class="table" style="width: 64rem">
+          <thead>
+            <tr>
+              <th>Book</th>
+              <th>Pages</th>
+              <th>Quote</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-nowrap">The Hobbit</td>
+              <td>272</td>
+              <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+            </tr>
+            <tr>
+              <td class="text-nowrap">The Fellowship of the Ring</td>
+              <td>377</td>
+              <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+            </tr>
+            <tr>
+              <td class="text-nowrap">The Two Towers</td>
+              <td>322</td>
+              <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+            </tr>
+            <tr>
+              <td class="text-nowrap">The Return of the King</td>
+              <td>277</td>
+              <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </header>
 
-    <section class="section">
-      <div class="section__container max-width-xs spacing">
+      <h2 id="table_ellipsis"><a href="#table_ellipsis">table_ellipsis</a></h2>
 
-        <p>...</p>
+      <table class="table table_ellipsis">
+        <thead>
+          <tr>
+            <th>Book</th>
+            <th>Pages</th>
+            <th>Quote</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-nowrap">The Hobbit</td>
+            <td>272</td>
+            <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Fellowship of the Ring</td>
+            <td>377</td>
+            <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Two Towers</td>
+            <td>322</td>
+            <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+          </tr>
+          <tr>
+            <td class="text-nowrap">The Return of the King</td>
+            <td>277</td>
+            <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+          </tr>
+        </tbody>
+      </table>
 
-      </div>
-    </section>
-  </main>
+      <h2 id="table_hover"><a href="#table_hover">table_hover</a></h2>
 
-  <script type="module">
-    import 'vrembem/scss';
-  </script>
+      <table class="table table_hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jenner</td>
+            <td>35t</td>
+            <td>Light</td>
+            <td>JR7-D</td>
+          </tr>
+          <tr>
+            <td>Hunchback</td>
+            <td>50t</td>
+            <td>Medium</td>
+            <td>HBK-4G</td>
+          </tr>
+          <tr>
+            <td>Catapult</td>
+            <td>65t</td>
+            <td>Heavy</td>
+            <td>CPLT-C1</td>
+          </tr>
+          <tr>
+            <td>Atlas</td>
+            <td>100t</td>
+            <td>Assault</td>
+            <td>AS7-D</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_responsive"><a href="#table_responsive">table_responsive</a></h2>
+
+      <table class="table table_responsive table_style_bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-mobile-label="Name">Jenner</td>
+            <td data-mobile-label="Mass">35t</td>
+            <td data-mobile-label="Class">Light</td>
+            <td data-mobile-label="Variant">JR7-F</td>
+          </tr>
+          <tr>
+            <td data-mobile-label="Name">Hunchback</td>
+            <td data-mobile-label="Mass">50t</td>
+            <td data-mobile-label="Class">Medium</td>
+            <td data-mobile-label="Variant">HBK-4P</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_size_sm"><a href="#table_size_sm">table_size_sm</a></h2>
+      
+      <table class="table table_size_sm table_style_bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Griffin</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>GRF-1N</td>
+          </tr>
+          <tr>
+            <td>Wolverine</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>WVR-6R</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_size_lg"><a href="#table_size_lg">table_size_lg</a></h2>
+      
+      <table class="table table_size_lg table_style_bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Griffin</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>GRF-1N</td>
+          </tr>
+          <tr>
+            <td>Wolverine</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>WVR-6R</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_style_rowed"><a href="#table_style_rowed">table_style_rowed</a></h2>
+
+      <table class="table table_style_rowed">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Griffin</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>GRF-2N</td>
+          </tr>
+          <tr>
+            <td>Wolverine</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>WVR-7K</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_style_bordered"><a href="#table_style_bordered">table_style_bordered</a></h2>
+
+      <table class="table table_style_bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Griffin</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>GRF-2N</td>
+          </tr>
+          <tr>
+            <td>Wolverine</td>
+            <td>55t</td>
+            <td>Medium</td>
+            <td>WVR-7K</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="table_zebra"><a href="#table_zebra">table_zebra</a></h2>
+
+      <table class="table table_zebra">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Mass</th>
+            <th>Class</th>
+            <th>Variant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Firestarter</td>
+            <td>35t</td>
+            <td>Light</td>
+            <td>FS9-A</td>
+          </tr>
+          <tr>
+            <td>Uziel</td>
+            <td>50t</td>
+            <td>Medium</td>
+            <td>UZL-6P</td>
+          </tr>
+          <tr>
+            <td>Crusader</td>
+            <td>65t</td>
+            <td>Heavy</td>
+            <td>CRD-6T</td>
+          </tr>
+          <tr>
+            <td>Cyclops</td>
+            <td>90t</td>
+            <td>Assault</td>
+            <td>CP-11-P</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
 
 </body>
 </html>
