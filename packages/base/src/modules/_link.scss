@@ -1,36 +1,38 @@
 @use "@vrembem/core/palette";
-@use "../variables" as var;
+@use "@vrembem/core/css";
 @use "../functions" as fun;
 
 @if fun.maybe-output("link") {
+  @include css.register("link");
+
   #{fun.selector("link")} {
-    color: var.$link-color;
-    text-decoration: var.$link-decoration;
-    text-decoration-thickness: var.$link-decoration-thickness;
-    text-underline-offset: var.$link-underline-offset;
+    color: css.get("link", "color", palette.get("primary"));
+    text-decoration: css.get("link", "decoration", underline);
+    text-decoration-thickness: css.get("link", "decoration", "thickness", 1px);
+    text-underline-offset: css.get("link", "underline", "offset", 2px);
 
     code {
       background-color: palette.get("primary", 50%, 10%);
-      color: var.$link-color;
+      color: css.get("link", "color", palette.get("primary"));
     }
 
     &:hover {
-      color: var.$link-color-hover;
-      text-decoration: var.$link-decoration-hover;
+      color: css.get("link", "color", "hover", palette.get("primary", 40));
+      text-decoration: css.get("link", "decoration", "hover", none);
 
       code {
-        color: var.$link-color-hover;
+        color: css.get("link", "color", "hover", palette.get("primary", 40));
       }
     }
 
     &:focus {
-      outline: var.$link-outline-focus;
-      outline-offset: var.$link-outline-focus-offset;
-      color: var.$link-color-hover;
-      text-decoration: var.$link-decoration-hover;
+      outline: css.get("link", "focus-ring", currentcolor dotted 1px);
+      outline-offset: css.get("link", "focus-ring-offset", 0.125rem);
+      color: css.get("link", "color", "hover", palette.get("primary", 40));
+      text-decoration: css.get("link", "decoration", "hover", none);
 
       code {
-        color: var.$link-color-hover;
+        color: css.get("link", "color", "hover", palette.get("primary", 40));
       }
     }
   }
