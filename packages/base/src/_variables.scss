@@ -29,13 +29,6 @@ $heading-scale: (
   "h6": 1em inherit
 ) !default;
 
-$pre-padding: 1em !default;
-$pre-background: css.get("background-dark") !default;
-$pre-foreground: css.get("foreground") !default;
-$pre-border: null !default;
-$pre-border-radius: core.$border-radius !default;
-$pre-font-size: core.$font-size !default;
-
 $separator-border: 1px solid css.get("border-color") !default;
 
 $type-selectors: (

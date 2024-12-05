@@ -1,15 +1,16 @@
 @use "@vrembem/core/css";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("pre") {
+  @include css.register("pre");
+
   #{fun.selector("pre")} {
-    padding: var.$pre-padding;
+    padding: css.get("pre", "padding", 1em);
     overflow: auto;
-    border: var.$pre-border;
-    border-radius: var.$pre-border-radius;
-    background: var.$pre-background;
-    color: var.$pre-foreground;
+    border: css.get("pre", "padding", null);
+    border-radius: css.get("pre", "padding", css.get("border-radius"));
+    background: css.get("pre", "background", css.get("background-dark"));
+    color: css.get("pre", "foreground", css.get("foreground"));
     font-family: css.get("font-family-mono");
 
     code {
@@ -17,7 +18,7 @@
       border: none;
       background: none;
       color: inherit;
-      font-size: var.$pre-font-size;
+      font-size: css.get("pre", "font-size", css.get("font-size"));
     }
   }
 }
