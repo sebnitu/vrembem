@@ -1,7 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
 
 @include css.register("base");
 
