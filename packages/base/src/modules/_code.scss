@@ -1,18 +1,17 @@
-@use "sass:list";
 @use "@vrembem/core/css";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("code") {
+  @include css.register("code");
+
   #{fun.selector("code")} {
-    margin-block: -(list.nth(var.$code-padding, 1));
-    padding: var.$code-padding;
-    border: var.$code-border;
-    border-radius: var.$code-border-radius;
-    background: var.$code-background;
-    color: var.$code-foreground;
+    padding: css.get("code", "padding", 0.125rem 0.375rem);
+    border: css.get("code", "border", null);
+    border-radius: css.get("code", "border-radius", css.get("border-radius"));
+    background: css.get("code", "background", css.get("background-alt"));
+    color: css.get("code", "foreground", css.get("foreground-alt"));
     font-family: css.get("font-family-mono");
-    font-size: var.$code-font-size;
+    font-size: css.get("code", "font-size", css.get("font-size-sm"));
     word-break: break-word;
   }
 }

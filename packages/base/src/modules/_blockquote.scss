@@ -1,7 +1,7 @@
 @use "@vrembem/core/css";
 @use "../functions" as fun;
 
-@if (fun.maybe-output("blockquote")) {
+@if fun.maybe-output("blockquote") {
   @include css.register("blockquote");
 
   #{fun.selector("blockquote")} {
