@@ -302,7 +302,7 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
   ```
 </CodeExample>
 
-## table_responsive_[key]
+## table_responsive
 
 When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
 
@@ -356,23 +356,11 @@ The mobile label value will be truncated if it exceeds the width set by `$mobile
 **Available variants**
 
 - `table_responsive`
-- `table_responsive_xs`
-- `table_responsive_sm`
-- `table_responsive_md`
-- `table_responsive_lg`
-- `table_responsive_xl`
-
-### `@mixin table-responsive-styles()`
-
-Output responsive table styles. This is used to generate the styles for the `table_responsive_[key]` modifier.
-
-**Example**
-
-```scss
-.table_custom_modifier {
-  @include table-responsive-styles();
-}
-```
+- `xs:table_responsive`
+- `sm:table_responsive`
+- `md:table_responsive`
+- `lg:table_responsive`
+- `xl:table_responsive`
 
 ## table_size_[value]
 
