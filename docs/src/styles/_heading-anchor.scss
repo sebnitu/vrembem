@@ -5,8 +5,7 @@
 @use "@vrembem/button";
 @use "./variables" as var;
 
-// TODO: Rename this to "heading-anchor" to be more accurate.
-.header-anchor {
+.heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
   display: inline-flex;
   align-items: center;

@@ -10,7 +10,7 @@ const svg = feather.icons.hash.toSvg({
   role: "img"
 });
 
-const headerAnchor = {
+const headingAnchor = {
   mount() {
     settings.headings.forEach((heading) => {
       const els = document.querySelectorAll(`${settings.prefix} ${heading}`);
@@ -26,7 +26,7 @@ const headerAnchor = {
         const elText = el.innerHTML;
         const elId = el.getAttribute("id");
         const anchor = document.createElement("a");
-        anchor.setAttribute("class", "header-anchor");
+        anchor.setAttribute("class", "heading-anchor");
         anchor.setAttribute("href", "#" + elId);
         anchor.setAttribute("aria-label", `Permalink to '${elText}'`);
         anchor.innerHTML = svg;
@@ -36,4 +36,4 @@ const headerAnchor = {
   }
 };
 
-export { headerAnchor };
+export { headingAnchor };
