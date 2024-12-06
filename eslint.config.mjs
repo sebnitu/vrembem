@@ -37,7 +37,7 @@ export default [
   },
   {
     name: "vb/config",
-    files: ["**/*.config.js"],
+    files: ["**/*.config.js", "**/*.config.mjs"],
     languageOptions: {
       globals: {
         ...globals.node
