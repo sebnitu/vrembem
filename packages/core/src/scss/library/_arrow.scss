@@ -1,9 +1,12 @@
 @use "../modules/css";
 @include css.register("arrow");
 
-/// Output the styles for an arrow or caret.
-/// @param {string} $direction
-///   The direction the arrow should point (e.g: "up", "down", "left", "right").
+/// Outputs the styles for an arrow or caret.
+///
+/// @param {string} $direction ("down")
+///   The direction the arrow should point.
+///   Valid options: "up", "down", "left", "right".
+///
 @mixin arrow($direction: "down") {
   border-width: css.get("arrow", "size", 6px 4px);
   border-bottom-width: 0;

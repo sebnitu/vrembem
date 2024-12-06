@@ -6,9 +6,12 @@
 /// key to the `$breakpoints` maps to access that value, or pass a value to
 /// create your media query. This mixin will shave a pixel off your breakpoint
 /// values so that it never overlaps with a min-width usage.
+///
 /// @content Content to output in media query.
-/// @param {number | string} $point
+///
+/// @param {number|string} $point
 ///   A breakpoint screen width or `$breakpoint` map key.
+///
 @mixin media-max($point) {
   @if map.has-key($breakpoints, $point) {
     @media (max-width: (map.get($breakpoints, $point) - 1)) {

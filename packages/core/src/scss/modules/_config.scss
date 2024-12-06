@@ -18,24 +18,29 @@ $-options: (
 );
 
 /// Returns the value of an option in the configuration map.
+///
 /// @param {string} $keys...
 ///   A key or list of keys to follow in the `$-options` map and return.
+///
 @function get($keys...) {
   @return map.get($-options, $keys...);
 }
 
 /// Set an option in the configuration map.
+///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs. E.g:
 ///   - ("key": "value"), null
 ///   - ("key": ("key": "value")), null
-/// @param {any} $value [null]
+///
+/// @param {any} $value (null)
 ///   The value to be stored. Can be passed a map of key/value pairs where key
 ///   will be prefixed with the provided value keys. E.g:
 ///   - "key", "value"
 ///   - "key", ("key": "value")
+///
 @mixin set($key, $value: null) {
-  // Initialize the options map to our result.
+  // Initialize the options map to our result
   $result: $-options;
 
   @if meta.type-of($key) == "map" {
@@ -71,8 +76,10 @@ $-options: (
 }
 
 /// Remove an option from the configuration map.
+///
 /// @param {string} $keys...
 ///   The list of keys to follow and remove from the configuration map.
+///
 @mixin remove($keys...) {
   $-options: map.deep-remove($-options, $keys...) !global;
 }

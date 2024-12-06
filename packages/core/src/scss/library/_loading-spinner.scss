@@ -7,8 +7,10 @@ $-output-spin-animation: true;
 @include css.register("loading");
 
 /// Output the styles for a loading spinner.
+///
 /// @param {keyword} $position
 ///   The value of the position property to use.
+///
 @mixin loading-spinner($position: absolute) {
   @include size(css.get("loading", "size", 1em));
 
@@ -24,7 +26,7 @@ $-output-spin-animation: true;
   display: inline-block;
   position: $position;
 
-  // Only output the spin animation once.
+  // Only output the spin animation once
   @if $-output-spin-animation {
     @keyframes spin {
       from {

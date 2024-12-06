@@ -20,14 +20,19 @@ $-variables: (
 
 /// Function to check whether a module has been set in the `$-variables` map.
 /// Will throw an error if the module was not found and is required.
+///
 /// @param {string} $module
 ///   The module to check for its existence.
-/// @param {boolean} $required [true]
+///
+/// @param {boolean} $required (true)
 ///   Whether or not the module is required. If set to `true`, will throw an
 ///   error when it's not found, otherwise will return false.
-/// @return {boolean | error}
+///
+/// @return {boolean|error}
 ///   If module exists in map, returns true. Otherwise, will throw error.
+///
 /// @access private
+///
 @function -module-exists($module, $required: true) {
   @if not map.has-key($-variables, $module) {
     @if $required {
@@ -45,12 +50,16 @@ $-variables: (
 ///   - Applies "vb-" vrembem prefix.
 ///   - Applies "[module]" string. Omitted for "core" or "palette" modules.
 ///   - Result: "--vb-[module]-"
+///
 /// @param {string} $module
 ///   The module name to use as part of the prefix. The "core" and "palette"
 ///   modules are not prefixed with their module names.
+///
 /// @return {string}
 ///   The custom property prefix string.
+///
 /// @access private
+///
 @function -prefix($module) {
   @if $module and $module != "core" and $module != "palette" {
     @return "--#{config.get("prefix-variables")}#{$module}-";
@@ -62,13 +71,15 @@ $-variables: (
 /// Function to create reference to a custom property using the provided module
 /// name, property and optional fallback. Automatically applies the necessary
 /// custom property prefix and module name.
+///
 /// @param {string} $module
 ///   The module name to use as part of the prefix. The "core" and "palette"
 ///   modules are not prefixed with their module names.
 /// @param {string} $prop
 ///   The custom property name to use in the reference.
-/// @param {any} $fallback [null]
+/// @param {any} $fallback (null)
 ///   The fallback value to use in the var() declaration.
+///
 /// @return {function}
 ///   Custom property variable reference using var().
 ///
@@ -94,14 +105,15 @@ $-variables: (
 
 /// Mixin to define custom property using the provided property name and value.
 /// Automatically applies with prefix and module name if provided.
+///
 /// @param {string} $module
 ///   The module name to use as part of the prefix. The "core" and "palette"
 ///   modules are not prefixed with their module names.
 /// @param {string} $prop
 ///   The custom property name to use in the definition.
-/// @param {any} $value [null]
+/// @param {any} $value (null)
 ///   The value of the custom property.
-/// @param {list} $args... ["def"]
+/// @param {list} $args... ("def")
 ///   The action being taken and any additional flags to be passed to
 ///   `usage.set()`. Defaults to "def".
 ///
@@ -117,20 +129,20 @@ $-variables: (
 ///
 @mixin define($module, $prop, $value: null, $args...) {
   @if $value {
-    // If args is empty, set "def" as the default action.
+    // If args is empty, set "def" as the default action
     @if list.length($args) == 0 {
       $args: "def";
     }
 
-    // Set the usage before outputting the custom property.
+    // Set the usage before outputting the custom property
     @if usage.set($module, $prop, $args...) {
-      // Check if the value has been deferred.
+      // Check if the value has been deferred
       @if meta.type-of($value) == "list" and list.nth($value, 1) == "defer" {
-        // Create the reference using the deferred value list.
+        // Create the reference using the deferred value list
         $value: reference(list.nth($value, 2), list.nth($value, 3));
       }
 
-      // Define the custom property.
+      // Define the custom property
       #{-prefix($module)}#{$prop}: #{$value};
     }
   }
@@ -139,10 +151,13 @@ $-variables: (
 /// Used in place of `set` for when a custom property is dependent on another.
 /// This allows the property to be omitted if the original definition is never
 /// actually referenced.
+///
 /// @param {string} $module
 ///   The module name to store the custom property under.
-/// @param {string | map} $prop
+///
+/// @param {string|map} $prop
 ///   The custom property name to store.
+///
 @function defer($module, $prop: null) {
   @if not $prop {
     $prop: $module;
@@ -155,13 +170,15 @@ $-variables: (
 /// Function to return a custom property reference that has been stored in the
 /// `$-variables` map using set(). Can also return the entire `$-variables` map
 /// or one of the stored module maps.
+///
 /// @param {string} $module
 ///   The module name to get the stored custom property from. Can be omitted if
 ///   searching a property in the core module.
 /// @param {string} $props...
 ///   The custom property name to return. Can be a list of props for returning
 ///   var() with fallbacks. Set to "*" to return the entire module map.
-/// @return {function | error}
+///
+/// @return {function|error}
 ///   Custom property variable reference using var().
 ///
 /// @example scss
@@ -185,14 +202,14 @@ $-variables: (
 ///   var(--vb-button-background-hover, var(--vb-button-background, pink));
 ///
 @function get($module, $props...) {
-  // Return `$-variables` map if module is set to "*" value.
+  // Return `$-variables` map if module is set to "*" value
   @if $module == "*" or $module == "all" {
     @return $-variables;
   }
 
-  // Return a nested map in `$-variables` if props contains "*" value.
+  // Return a nested map in `$-variables` if props contains "*" value
   @if list.index($props, "*") {
-    // Throw error if the module doesn't exist in the map.
+    // Throw error if the module doesn't exist in the map
     @if -module-exists($module) {
       $props: remove-nth($props, list.index($props, "*"));
 
@@ -200,54 +217,54 @@ $-variables: (
     }
   }
 
-  // If no props are provided, shift the values and set module to "core".
+  // If no props are provided, shift the values and set module to "core"
   @if list.length($props) == 0 {
     $props: $module;
     $module: "core";
   }
 
-  // Check if module exists.
+  // Check if module exists
   @if -module-exists($module) {
-    // Reverse the props list and initialize our result.
+    // Reverse the props list and initialize our result
     $props: reverse($props);
     $result: null;
 
-    // Get the props count.
+    // Get the props count
     $count: list.length($props);
 
-    // Loop through the props and append them to results as nested fallbacks.
+    // Loop through the props and append them to results as nested fallbacks
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
       $value: map.get($-variables, $module, $prop);
 
-      // Check if the value is a deferred property.
+      // Check if the value is a deferred property
       @if meta.type-of($value) == "list" and list.nth($value, 1) == "defer" {
-        // Create the reference using the stored value list.
+        // Create the reference using the stored value list
         $ref: reference(list.nth($value, 2), list.nth($value, 3));
 
-        // Update the variables map with the value of the reference.
+        // Update the variables map with the value of the reference
         $-variables: map.set($-variables, $module, $prop, $ref) !global;
 
-        // Store the reference in our result.
+        // Store the reference in our result
         $result: reference($module, $prop);
       }
 
-      // Check if the property exists in the module or its default theme.
+      // Check if the property exists in the module or its default theme
       @else if map.has-key($-variables, $module, $prop) or map.has-key($-variables, $module, config.get("default-theme"), $prop) {
-        // store the reference in our result.
+        // store the reference in our result
         $result: reference($module, $prop, $result);
       }
 
-      // All other cases depend on the property count and its position.
+      // All other cases depend on the property count and its position
       @else {
         @if $count > 1 and $i == 1 {
-          // First prop of the props list, store the raw value as our fallback.
+          // First prop of the props list, store the raw value as our fallback
           $result: $prop;
         } @else if $count > 1 {
-          // If there are more than one props, reference the undefined variable.
+          // If there are more than one props, reference the undefined variable
           $result: reference($module, $prop, $result);
         } @else {
-          // Else, it should exist in our module map, throw error.
+          // Else, it should exist in our module map, throw error
           @error "Property `#{$prop}` does not exist in `#{$module}` variables map.";
         }
       }
@@ -260,15 +277,16 @@ $-variables: (
 /// Mixin to store custom properties for later definition and reference. Can
 /// also update the entire `$-variables` map or a stored module map by passing
 /// "*" value to `$module` or `$prop` respectively.
+///
 /// @param {string} $module
 ///   The module name to store the custom property under. Set to "*" to replace
 ///   the entire `$-variables` map with the value of `$prop` (must be a map).
-/// @param {string | map} $prop
+/// @param {string|map} $prop
 ///   The custom property name to store. Can be a map containing property and
 ///   value pairs. Values can also contain map of property/value pairs. Set to
 ///   "*" to merge a module map with the value of `$value` (must be a map).
 ///   Pass "merge" to `$args` to merge the map, else it is deep-merged.
-/// @param {any} $value [null]
+/// @param {any} $value (null)
 ///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
 /// @param {list} $args...
@@ -318,12 +336,12 @@ $-variables: (
 ///   );
 ///
 @mixin set($module, $prop, $value: null, $args...) {
-  // If module is set to "*", update the entire `$-variables` map.
+  // If module is set to "*", update the entire `$-variables` map
   @if $module == "*" or $module == "all" {
     $-variables: $prop !global;
   }
 
-  // If prop is set to "*", update the module map in `$-variables` map.
+  // If prop is set to "*", update the module map in `$-variables` map
   @else if $prop == "*" or $prop == "all" {
     @if list.index($args, "merge") {
       $-variables: map.merge(
@@ -344,17 +362,17 @@ $-variables: (
 
   // If the provided prop is a map.
   @else if meta.type-of($prop) == "map" {
-    // Add value to args if one exists.
+    // Add value to args if one exists
     @if $value {
       $args: list.append($args, $value);
     }
 
-    // Loop through the prop map.
+    // Loop through the prop map
     @each $propKey, $propValue in $prop {
       // Scenario: ("prop": ("prop": "value"))
       @if meta.type-of($propValue) == "map" {
         @each $key, $value in $propValue {
-          // Only call `usage.set` if arguments are passed.
+          // Only call `usage.set` if arguments are passed
           @if list.length($args) > 0 {
             @include usage.set($module, "#{$propKey}-#{$key}", $args...);
           }
@@ -365,7 +383,7 @@ $-variables: (
 
       // Scenario: ("prop": "value")
       @else {
-        // Only call `usage.set` if arguments are passed.
+        // Only call `usage.set` if arguments are passed
         @if list.length($args) > 0 {
           @include usage.set($module, $propKey, $args...);
         }
@@ -378,7 +396,7 @@ $-variables: (
   // Scenario: "prop", ("prop": "value")
   @else if meta.type-of($value) == "map" {
     @each $key, $value in $value {
-      // Only call `usage.set` if arguments are passed.
+      // Only call `usage.set` if arguments are passed
       @if list.length($args) > 0 {
         @include usage.set($module, "#{$prop}-#{$key}", $args...);
       }
@@ -389,7 +407,7 @@ $-variables: (
 
   // Scenario: "prop", "value"
   @else {
-    // Only call `usage.set` if arguments are passed.
+    // Only call `usage.set` if arguments are passed
     @if list.length($args) > 0 {
       @include usage.set($module, $prop, $args...);
     }
@@ -400,15 +418,19 @@ $-variables: (
 
 /// Register a module in the variables map. This is used when a module is needed
 /// to be available for later use but without setting any custom properties.
+///
 /// @param {string} $module
 ///   The module to be registered.
+///
 @mixin register($module) {
   $-variables: map.set($-variables, $module, "register", true) !global;
 }
 
 /// Mixin to remove items from the `$-variables` custom properties map.
+///
 /// @param {string} $keys...
 ///   The list of keys to follow and remove from the custom properties map.
+///
 @mixin remove($keys...) {
   @if usage.remove($keys...) {
     $-variables: map.deep-remove($-variables, $keys...) !global;
@@ -418,12 +440,13 @@ $-variables: (
 /// Mixin to override a previously defined custom property. This is primarily
 /// used in the context of a modifier. Provided module and property must exist
 /// in the `$-variables` custom properties map.
+///
 /// @param {string} $module
 ///   The module name to check the custom property under.
-/// @param {string | map} $prop
+/// @param {string|map} $prop
 ///   The custom property name to override. Can be a map containing property and
 ///   value pairs
-/// @param {any} $value [null]
+/// @param {any} $value (null)
 ///   The property value to override with.
 ///
 /// @example scss
@@ -466,10 +489,11 @@ $-variables: (
 
 /// Output all the stored custom properties of a provided module or of all
 /// modules. Provided module must exist in the `$-variables` map.
-/// @param {string} $module ["*"]
+///
+/// @param {string} $module ("*")
 ///   The module to output all custom properties from. If no module is passed or
 ///   set to "*" or "all", will output all custom properties for all modules.
-/// @param {string} $strategy ["used"]
+/// @param {string} $strategy ("used")
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
@@ -498,14 +522,14 @@ $-variables: (
 ///
 @mixin output($module: "*", $strategy: config.get("output-strategy")) {
   @if $module == "*" or $module == "all" {
-    // Call output() for every module in $-variables.
+    // Call output() for every module in $-variables
     @each $module in map.keys($-variables) {
       @include output($module, $strategy);
     }
   } @else if -module-exists($module, false) {
     $module-map: map.get($-variables, $module);
 
-    // Output custom properties via usage output.
+    // Output custom properties via usage output
     @include usage.output(meta.get-mixin("define"), $module, $module-map, $strategy);
   }
 }
@@ -513,9 +537,11 @@ $-variables: (
 /// Log to console either the entire `$-variables` custom properties map, a
 /// module map or module theme. Provided module must exist in the  `$-variables`
 /// custom properties map.
-/// @param {string} $module ["*"]
+///
+/// @param {string} $module ("*")
 ///   A module within the custom properties map to log. Leaving as `null` will
 ///   log the entire map.
+///
 @mixin log($module: "*", $props...) {
   @if $module == "*" or $module == "all" {
     @include debug-map($-variables, 'Custom properties of "*"');

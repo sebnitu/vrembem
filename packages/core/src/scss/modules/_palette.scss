@@ -26,12 +26,16 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
 
 /// Builds a palette map using values set in `$-seeds` and `$lightness-range`.
 /// Is run automatically whenever seeds map is modified.
-/// @param {map} $seeds [$-seeds]
+///
+/// @param {map} $seeds ($-seeds)
 ///   The seeds to generate a palette map from.
-/// @param {list} $range [$lightness-range]
+///
+/// @param {list} $range ($lightness-range)
 ///   A list of lightness values to generate the palette map from.
-/// @param {number} $default [$lightness-default]
+///
+/// @param {number} $default ($lightness-default)
 ///   The default lightness value. Used to generate the shorthand property.
+///
 @function build($seeds: $-seeds, $range: $lightness-range, $default: $lightness-default) {
   @if usage.remove("palette") {
     $result: ();
@@ -64,43 +68,46 @@ $-palette: build();
 ///     palette map.
 ///   $lightness: Percentage - Return the hsl value of the color.
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
-/// @param {string} $name [null]
+///
+/// @param {string} $name (null)
 ///   The color name to return a value for.
-/// @param {any} $query [$lightness-default]
+/// @param {any} $query ($lightness-default)
 ///   The type of value to return. Can be "seed" to return the initial seed
 ///   value or a specific lightness value.
-/// @param {number (alpha-value)} $alpha [null]
+/// @param {number (alpha-value)} $alpha (null)
 ///   The alpha value of the requested color.
+///
 /// @return {Color}
 ///   Return format depends on the requested value.
+///
 @function get($name: null, $query: $lightness-default, $alpha: null) {
-  // Return the palette map if no name is provided.
+  // Return the palette map if no name is provided
   @if not($name) {
-    // Build the `$-palette` map before output.
+    // Build the `$-palette` map before output
     @return $-palette;
   }
 
-  // If query is passed as "seed", return the seed value.
+  // If query is passed as "seed", return the seed value
   @else if $name == "seeds" {
     @return $-seeds;
   }
 
-  // If query is passed as "seed", return the seed value.
+  // If query is passed as "seed", return the seed value
   @else if $query == "seed" {
     @return map.get($-seeds, $name);
   }
 
-  // If an alpha value is passed, return hsl with the alpha.
+  // If an alpha value is passed, return hsl with the alpha
   @else if $alpha {
     @return hsl(#{css.reference("palette", "#{$name}-hs") $query + " / " + $alpha});
   }
 
-  // If the specified query value exists in the palette map, return its value.
+  // If the specified query value exists in the palette map, return its value
   @else if map.has-key($-palette, "#{$name}-#{$query}") {
     @return css.reference("palette", "#{$name}-#{$query}");
   }
 
-  // Else return hsl using the provided query value.
+  // Else return hsl using the provided query value
   @else {
     @return hsl(#{css.reference("palette", "#{$name}-hs") $query});
   }
@@ -108,11 +115,13 @@ $-palette: build();
 
 /// Set a color to the `$-seeds` map. Can receive single entries of key/value color
 /// pairs or a map containing multiple key/value pairs.
-/// @param {string | map} $name
+///
+/// @param {string|map} $name
 ///   A name to associate with the provided color, or a map containing key/value
 ///   color pairs.
-/// @param {color} $value [null]
+/// @param {color} $value (null)
 ///   The color to associate with the provided key.
+///
 @mixin set($name, $value: null) {
   @if meta.type-of($name) == "map" {
     $-seeds: map.merge($-seeds, $name) !global;
@@ -120,17 +129,19 @@ $-palette: build();
     $-seeds: map.set($-seeds, $name, $value) !global;
   }
 
-  // Run build since `$-seeds` has been modified.
+  // Run build since `$-seeds` has been modified
   $-palette: build() !global;
 }
 
 /// Removes colors from the `$-seeds` map.
+///
 /// @param {string} $names...
 ///   A string or list of strings to remove from `$-seeds` map.
+///
 @mixin remove($names...) {
   $-seeds: map.remove($-seeds, $names...) !global;
 
-  // Run build since `$-seeds` has been modified.
+  // Run build since `$-seeds` has been modified
   $-palette: build() !global;
 }
 
@@ -140,10 +151,12 @@ $-palette: build();
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.
+///
 /// @param {map} $strategy
 ///   The output strategy to apply.
+///
 @mixin output($strategy: config.get("output-strategy")) {
-  // Output custom properties via usage output.
+  // Output custom properties via usage output
   @include usage.output(meta.get-mixin("define", "css"), "palette", $-palette, $strategy);
 }
 

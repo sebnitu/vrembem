@@ -2,10 +2,13 @@
 @use "sass:math";
 
 /// Output the hue and saturation values of a provided color.
+///
 /// @param {color} $color
 ///   The color variable to pull hue and saturation values from.
+///
 /// @return {list}
 ///   The hue and saturation values of the provided color.
+///
 @function get-hs($color) {
   @return math.round(color.channel($color, "hue", $space: hsl)) math.round(color.channel($color, "saturation", $space: hsl));
 }

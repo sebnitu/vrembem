@@ -3,10 +3,6 @@
 @use "@vrembem/core/palette";
 @use "./variables" as var;
 
-/**
- * Modal
- */
-
 #{core.bem("modal")} {
   align-items: center;
   display: flex;
@@ -43,10 +39,6 @@
   transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
   width: css.get("modal", "width", var.$width);
 }
-
-/**
- * State classes
- */
 
 #{core.bem("modal")}.is-closed {
   visibility: hidden;

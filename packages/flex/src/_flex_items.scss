@@ -3,19 +3,19 @@
 
 #{core.bem("flex", null, "items", "initial")} {
   > * {
-    flex: initial; // Equivalent to setting flex: 0 1 auto.
+    flex: initial; // Equivalent to setting flex: 0 1 auto
   }
 }
 
 #{core.bem("flex", null, "items", "auto")} {
   > * {
-    flex: auto; // Equivalent to setting flex: 1 1 auto.
+    flex: auto; // Equivalent to setting flex: 1 1 auto
   }
 }
 
 #{core.bem("flex", null, "items", "none")} {
   > * {
-    flex: none; // Equivalent to setting flex: 0 0 auto.
+    flex: none; // Equivalent to setting flex: 0 0 auto
   }
 }
 
@@ -43,19 +43,19 @@
   @include core.media-min($value) {
     #{core.bem("flex", null, "items", "initial", $bp)} {
       > * {
-        flex: initial; // Equivalent to setting flex: 0 1 auto.
+        flex: initial; // Equivalent to setting flex: 0 1 auto
       }
     }
 
     #{core.bem("flex", null, "items", "auto", $bp)} {
       > * {
-        flex: auto; // Equivalent to setting flex: 1 1 auto.
+        flex: auto; // Equivalent to setting flex: 1 1 auto
       }
     }
 
     #{core.bem("flex", null, "items", "none", $bp)} {
       > * {
-        flex: none; // Equivalent to setting flex: 0 0 auto.
+        flex: none; // Equivalent to setting flex: 0 0 auto
       }
     }
 
@@ -82,15 +82,15 @@
 }
 
 #{core.bem("flex-initial")} {
-  flex: initial; // Equivalent to setting flex: 0 1 auto.
+  flex: initial; // Equivalent to setting flex: 0 1 auto
 }
 
 #{core.bem("flex-auto")} {
-  flex: auto; // Equivalent to setting flex: 1 1 auto.
+  flex: auto; // Equivalent to setting flex: 1 1 auto
 }
 
 #{core.bem("flex-none")} {
-  flex: none; // Equivalent to setting flex: 0 0 auto.
+  flex: none; // Equivalent to setting flex: 0 0 auto
 }
 
 #{core.bem("flex-equal")} {
@@ -108,15 +108,15 @@
 @each $bp, $value in var.$breakpoints {
   @include core.media-min($value) {
     #{core.bem("flex-initial", $bp: $bp)} {
-      flex: initial; // Equivalent to setting flex: 0 1 auto.
+      flex: initial; // Equivalent to setting flex: 0 1 auto
     }
 
     #{core.bem("flex-auto", $bp: $bp)} {
-      flex: auto; // Equivalent to setting flex: 1 1 auto.
+      flex: auto; // Equivalent to setting flex: 1 1 auto
     }
 
     #{core.bem("flex-none", $bp: $bp)} {
-      flex: none; // Equivalent to setting flex: 0 0 auto.
+      flex: none; // Equivalent to setting flex: 0 0 auto
     }
 
     #{core.bem("flex-equal", $bp: $bp)} {

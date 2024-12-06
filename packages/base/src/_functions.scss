@@ -6,40 +6,43 @@
 @use "./variables" as var;
 
 /// Generate a base module selector with a core prefix and optional modifiers.
+///
 /// @param {string} $module
 ///   The base module name. Will search for a shorthand in `var.$classes`.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class selector.
+///
 /// @return {selector}
 ///   A valid base module CSS selector.
+///
 @function selector(
   $module,
   $args...
 ) {
-  // Initialize the name variable.
+  // Initialize the name variable
   $name: $module;
 
-  // Check if there's a shortname for the provided module name.
+  // Check if there's a shortname for the provided module name
   @if map.has-key(var.$classes, $name) {
     $name: map.get(var.$classes, $name);
   }
 
-  // Setup the base module class name with prefix.
+  // Setup the base module class name with prefix
   $class: '#{config.get("prefix-block")}#{$name}';
 
-  // Apply all the arguments to class.
+  // Apply all the arguments to class
   @each $arg in $args {
-    // Convert arg to a string.
+    // Convert arg to a string
     $arg: "" + $arg;
 
-    // Ensure that it's not an empty string.
+    // Ensure that it's not an empty string
     @if $arg != "" {
-      // Append $arg to $class with a dash delimiter.
+      // Append $arg to $class with a dash delimiter
       $class: "#{$class}-#{$arg}";
     }
   }
 
-  // Get the type selector if one is required.
+  // Get the type selector if one is required
   $type-selector: get-type-selector($module);
 
   // Return the class.
@@ -47,29 +50,32 @@
 }
 
 /// Creates a type selector for a base module if configured in `$type-include`.
+///
 /// @param {string} $module
 ///   The base module to check if type selector should be included.
+///
 /// @return {selector}
 ///   A partial CSS selector starting with ", " meant to be appended to an
 ///   existing selector. Will return an empty string if not configured.
+///
 @function get-type-selector($module) {
-  // Initialize the type selector as an empty string.
+  // Initialize the type selector as an empty string
   $type-selector: "";
 
-  // Check if we should include this module in type styles.
+  // Check if we should include this module in type styles
   @if map.has-key(var.$type-selectors, $module) {
-    // Initialize the type class selector.
+    // Initialize the type class selector
     $type: "type";
 
-    // Check if there's a shortname for the type module.
+    // Check if there's a shortname for the type module
     @if map.has-key(var.$classes, "type") {
       $type: map.get(var.$classes, "type");
     }
 
-    // Apply the block prefix to the root type class.
+    // Apply the block prefix to the root type class
     $type: '#{config.get("prefix-block")}#{$type}';
 
-    // Create the type selector using the type module selector.
+    // Create the type selector using the type module selector
     $list: string.split(map.get(var.$type-selectors, $module), ",");
 
     @each $item in $list {
@@ -77,15 +83,18 @@
     }
   }
 
-  // Return the type selector.
+  // Return the type selector
   @return $type-selector;
 }
 
 /// Conditional logic for when to output a base module.
+///
 /// @param {string} $module
 ///   The module name to conditionally toggle output.
+///
 /// @return {boolean}
 ///   The resolved condition boolean.
+///
 @function maybe-output($module) {
   @if list.index(var.$output-exceptions, $module) {
     @return not var.$output;

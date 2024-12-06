@@ -4,7 +4,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-// Register the dialog component for overrides later.
+// Register the dialog component for overrides later
 @include css.register("dialog");
 
 $z-index: 1000 !default;
@@ -14,8 +14,7 @@ $travel: 5em !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
-// Dialog override map
-// This is used to override `dialog` custom properties.
+// Dialog override map is used to override `dialog` custom properties.
 $dialog-override: () !default;
 
 // modal_pos_[value]
@@ -48,5 +47,5 @@ $size-scale: (
   "required"
 );
 
-// Required custom properties for JavaScript.
+// Required custom properties for JavaScript
 @include usage.set("core", "prefix", "required");

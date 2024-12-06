@@ -38,14 +38,14 @@ $-theme-keys: "light", "dark";
 
 /// Set a new or modify an existing module theme property. These are stored as
 /// theme maps in `css.$_variables`.
-/// @param {string} $module ["core"]
+/// @param {string} $module ("core")
 ///   The module to set a property value for.
 /// @param {string} $theme
 ///   The theme to set a property value for.
-/// @param {string | map} $prop [null]
+/// @param {string|map} $prop (null)
 ///   The property value to set for the respective module > theme. Can be a map
 ///   containing prop/value pairs.
-/// @param {any} $value [null]
+/// @param {any} $value (null)
 ///   The value to set for the respective module > theme > property.
 ///
 /// @example scss
@@ -117,7 +117,7 @@ $-theme-keys: "light", "dark";
 ///   The module theme to search under or remove. Set to "*" to remove all
 ///   themes from the specified module or if a `$prop` is provided, all the
 ///   property from all module themes.
-/// @param {string} $prop [null]
+/// @param {string} $prop (null)
 ///   The property name to remove. Set to "*" to remove the entire theme from
 ///   the specified module.
 ///
@@ -186,11 +186,11 @@ $-theme-keys: "light", "dark";
 /// Output all the custom properties and values of a module theme or output a
 /// specific theme from all modules. The root selector or theme class is not
 /// included in the output.
-/// @param {string} $module ["*"]
+/// @param {string} $module ("*")
 ///   The module to output. Use "*" or "all" to output a theme from all modules.
-/// @param {string} $theme [config.get("default-theme")]
+/// @param {string} $theme (config.get("default-theme"))
 ///   The theme to output.
-/// @param {string} $strategy [config.get("output-strategy")]
+/// @param {string} $strategy (config.get("output-strategy"))
 ///   The output strategy to apply.
 /// @param {list} $args...
 ///   The action being taken and any additional flags to be passed to
@@ -246,10 +246,10 @@ $-theme-keys: "light", "dark";
 /// Output all the themes for a specific module. Each theme will be wrapped in
 /// their own appropriate root selector and theme class. Themes named "light" or
 /// "dark" will have a `prefers-color-scheme` media query applied.
-/// @param {string} $module ["*"]
+/// @param {string} $module ("*")
 ///   The module to output all applied themes. If no module is passed or set to
 ///   "*" or "all", will output all applied themes for all modules.
-/// @param {string} $strategy [config.get("output-strategy")]
+/// @param {string} $strategy (config.get("output-strategy"))
 ///   The output strategy to apply.
 ///
 /// @example scss

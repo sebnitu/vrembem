@@ -1,8 +1,8 @@
 export function getDrawer(query) {
-  // Get the entry from collection.
+  // Get the entry from collection
   const entry = typeof query === "string" ? this.get(query) : query;
 
-  // Return entry if it was resolved, otherwise throw error.
+  // Return entry if it was resolved, otherwise throw error
   if (entry) {
     return entry;
   } else {

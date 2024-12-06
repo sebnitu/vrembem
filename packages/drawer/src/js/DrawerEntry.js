@@ -29,11 +29,11 @@ export class DrawerEntry extends CollectionEntry {
     // If mode is inline and not in a transitioning state...
     const ignoreStates = ["opening", "closing"];
     if (this.mode === "inline" && !ignoreStates.includes(value)) {
-      // Save the inline state.
+      // Save the inline state
       this.inlineState = value;
     }
 
-    // If state is indeterminate, remove all state classes.
+    // If state is indeterminate, remove all state classes
     if (value === "indeterminate") {
       this.el.classList.remove(this.getSetting("stateOpened"));
       this.el.classList.remove(this.getSetting("stateOpening"));
@@ -43,10 +43,10 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async applyState() {
-    // Only apply state if mode is not set to "modal".
+    // Only apply state if mode is not set to "modal"
     if (this.mode === "modal") return;
 
-    // Check the state stored in inline state.
+    // Check the state stored in inline state
     if (this.inlineState === "opened") {
       return await this.open(false, false);
     }
@@ -54,8 +54,8 @@ export class DrawerEntry extends CollectionEntry {
       return await this.close(false, false);
     }
 
-    // Determine the state based on the presence of a state class.
-    // Handles initial state, the only time this.state should be `null`.
+    // Determine the state based on the presence of a state class. This handles
+    // the initial state which is the only time `this.state` should be `null`.
     if (this.state === null) {
       if (this.el.classList.contains(this.getSetting("stateOpened"))) {
         return await this.open(false, false);
@@ -65,7 +65,7 @@ export class DrawerEntry extends CollectionEntry {
       }
     }
 
-    // If state cannot be determined, set it to indeterminate.
+    // If state cannot be determined, set it to indeterminate
     return this.setState("indeterminate");
   }
 
@@ -86,29 +86,29 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async onCreateEntry() {
-    // Set the dialog element. If none is found, use the root element.
+    // Set the dialog element. If none is found, use the root element
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
     this.dialog = dialog ? dialog : this.el;
 
-    // Set tabindex="-1" so dialog is focusable via JS or click.
+    // Set tabindex="-1" so dialog is focusable via JS or click
     if (this.getSetting("setTabindex")) {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
-    // Apply the initial state.
+    // Apply the initial state
     await this.applyState();
 
-    // Set the inline state.
+    // Set the inline state
     this.inlineState = this.state;
 
-    // Set the initial mode.
+    // Set the initial mode
     this.mode = this.el.classList.contains(this.getSetting("classModal"))
       ? "modal"
       : "inline";
   }
 
   async onDestroyEntry() {
-    // If entry is a modal and in the opened state, close it.
+    // If entry is a modal and in the opened state, close it
     if (this.mode === "modal" && this.state === "opened") {
       await this.close(false);
     }

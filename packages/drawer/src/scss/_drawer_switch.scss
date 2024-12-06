@@ -2,10 +2,6 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/**
- * Drawer slide transition
- */
-
 #{core.bem("drawer")} {
   left: 0;
   transform: translateX(-100%);
@@ -24,10 +20,6 @@
   transform: translateX(-100%);
 }
 
-/**
- * Drawer switched slide transition
- */
-
 #{core.bem("drawer", null, "switch")} {
   left: auto;
   right: 0;
@@ -41,10 +33,6 @@
 #{core.bem("drawer", null, "switch")}.is-closing {
   transform: translateX(100%);
 }
-
-/**
- * Drawer main margins
- */
 
 // IS .drawer NOT .drawer_switch OR .drawer_modal
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}, #{core.bem("drawer", null, "modal")}) {

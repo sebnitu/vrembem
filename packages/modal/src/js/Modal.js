@@ -21,7 +21,7 @@ export class Modal extends Collection {
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
 
-    // Setup stack property using StackArray.
+    // Setup stack property using StackArray
     this.stack = new StackArray({
       onChange: () => {
         setGlobalState(
@@ -51,7 +51,7 @@ export class Modal extends Collection {
 
   async closeAll(exclude = false, transition, focus = true) {
     const result = await closeAll.call(this, exclude, transition);
-    // Update focus if the focus param is true.
+    // Update focus if the focus param is true
     if (focus) {
       updateFocusState.call(this);
     }

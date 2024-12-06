@@ -1,6 +1,10 @@
 @use "sass:map";
 
-/// Returns an empty map.
+/// Creates and returns an empty map.
+///
+/// @return {map}
+///   Returns an empty map.
+///
 @function empty-map() {
   @return map.remove(
     (

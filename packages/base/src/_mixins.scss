@@ -3,6 +3,12 @@
 @use "./variables" as var;
 
 /// Output the styles for heading levels based on the values of `$map`.
+///
+/// @param {map} $map (var.$heading-scale)
+///   The map of heading levels to loop through.
+/// @param {string} $prefix (".")
+///   The string to prefix each map key with.
+///
 @mixin heading-levels($map: var.$heading-scale, $prefix: ".") {
   @each $key, $value in $map {
     $font-size: $value;

@@ -4,7 +4,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-// Register the dialog component since we will be providing overrides.
+// Register the dialog component since we will be providing overrides
 @include css.register("dialog");
 
 $class-frame: "drawer-frame" !default;
@@ -16,18 +16,17 @@ $max-width: 80% !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
-// Dialog override map
-// This is used to override `dialog` custom properties.
-// Applies to both inline and modal drawer dialogs.
+// Dialog override map is used to override `dialog` custom properties. Applies
+// to both inline and modal drawer dialogs.
 $dialog-override: () !default;
 
-// Only applies to inline drawer dialogs.
+// Only applies to inline drawer dialogs
 $inline-dialog-override: (
   "background": css.get("background-darker"),
   "box-shadow": none
 ) !default;
 
-// Only applies to modal drawer dialogs.
+// Only applies to modal drawer dialogs
 $modal-dialog-override: () !default;
 
 // drawer_modal
@@ -43,7 +42,7 @@ $modal-z-index: 950 !default;
   "required"
 );
 
-// Required custom properties for JavaScript.
+// Required custom properties for JavaScript
 @include usage.set("core", "prefix", "required");
 
 @each $key, $value in core.$breakpoints {

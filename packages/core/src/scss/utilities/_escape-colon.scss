@@ -1,8 +1,13 @@
 @use "./string-replace" as *;
 
 /// Escapes the colons in a string.
-/// @param {String} $string - String to replace colons in
-/// @return {String} - The updated string
+///
+/// @param {String} $string
+///   String to replace colons in.
+///
+/// @return {String}
+///   The updated string.
+///
 @function escape-colon($string) {
   @return string-replace($string, ":", "\\:");
 }

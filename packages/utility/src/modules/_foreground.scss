@@ -17,7 +17,7 @@
     color: transparent !important;
   }
 
-  // Theme CSS Variable output.
+  // Theme CSS Variable output
 
   #{fun.utility("foreground")} {
     color: css.get("foreground") !important;
@@ -31,7 +31,7 @@
     color: css.get("foreground-lighter") !important;
   }
 
-  // Palette CSS Variable output.
+  // Palette CSS Variable output
 
   @each $name in map.keys(palette.get("seeds")) {
     #{fun.utility("foreground", $name)} {

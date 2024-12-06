@@ -33,7 +33,7 @@
     background-color: transparent !important;
   }
 
-  // Theme CSS Variable output.
+  // Theme CSS Variable output
 
   #{fun.utility("background")} {
     background-color: css.get("background") !important;
@@ -47,7 +47,7 @@
     background-color: css.get("background-darker") !important;
   }
 
-  // Palette CSS Variable output.
+  // Palette CSS Variable output
 
   @each $name in map.keys(palette.get("seeds")) {
     #{fun.utility("background", $name)} {

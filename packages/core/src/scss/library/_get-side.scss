@@ -3,12 +3,15 @@
 
 /// Return the top/right/bottom/right value on a padding, margin, etc. property,
 /// no matter how many values were passed in.
-/// @param {list | number} $value
+///
+/// @param {list|number} $value
 ///   Value to analyze. Should be shorthand sizing property, e.g. "1em 2em 1em".
 /// @param {keyword} $side
 ///   Side to return. Should be `top`, `right`, `bottom`, or `left`.
+///
 /// @returns {number}
 ///   A single value based on `$value` and `$side`.
+///
 @function get-side($value, $side) {
   $-length: list.length($value);
 

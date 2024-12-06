@@ -2,10 +2,6 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/**
- * Required structure styles
- */
-
 #{core.bem(var.$class-frame)} {
   display: flex;
   height: css.get("drawer", "frame-height", var.$frame-height);
@@ -20,10 +16,6 @@
   -webkit-overflow-scrolling: touch;
   position: relative;
 }
-
-/**
- * Drawer
- */
 
 #{core.bem("drawer")} {
   bottom: 0;
@@ -57,15 +49,11 @@
   transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
   width: css.get("drawer", "width", var.$width);
 
-  // Only target inline (not modal) drawer dialogs.
+  // Only target inline (not modal) drawer dialogs
   #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
     @include css.override("dialog", var.$inline-dialog-override);
   }
 }
-
-/**
- * State classes
- */
 
 #{core.bem("drawer")}.is-closed {
   visibility: hidden;

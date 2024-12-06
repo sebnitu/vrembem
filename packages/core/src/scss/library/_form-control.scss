@@ -6,8 +6,10 @@ $-set-custom-property: true;
 
 /// Get the form-control-size calculation using the line-height, padding and
 /// border-width values.
+///
 /// @return {value}
 ///   The CSS value in the form of a calc function.
+///
 @function form-control-get-size() {
   $line-height: css.get("form-control-line-height");
   $padding: css.get("form-control-padding-y");
@@ -30,10 +32,12 @@ $-set-custom-property: true;
 /// Set the width and height with the form-control-size custom property value.
 /// This can optionally be provided a module name to allow component specific
 /// overrides as well as optionally setting min/max width/height instead.
-/// @param {string} $module [null]
+///
+/// @param {string} $module (null)
 ///   The module to allow component specific overrides for.
-/// @param {string} $prefix [null]
+/// @param {string} $prefix (null)
 ///   The prefix to apply to the width/height css property.
+///
 @mixin form-control-size($module: null, $prefix: null) {
   @include form-control-set-size;
 
@@ -46,8 +50,10 @@ $-set-custom-property: true;
 
 /// Set the shared form-control properties with the component specific custom
 /// property and the form-control custom property as the fallback.
+///
 /// @param {string} $module
 ///   The module to pass to `css.get` calls.
+///
 @mixin form-control-properties($module) {
   @if $module != "menu" {
     font-size: css.get($module, "font-size", css.get("form-control-font-size"));

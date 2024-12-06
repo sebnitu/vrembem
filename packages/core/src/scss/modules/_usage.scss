@@ -11,6 +11,7 @@ $-meta: ();
 /// Checks the values for a property in the `$-meta` map to see if the custom
 /// property is valid for output. Properties can only be output once unless the
 /// "override" action is used.
+///
 /// @param {string} $module
 ///   The module name who's custom property is being stored under.
 /// @param {string} $prop
@@ -21,9 +22,12 @@ $-meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
+///
 /// @return {boolean}
 ///   Returns `true` if meta checks allow output and `false` if not.
+///
 /// @access private
+///
 @function -meta-check($module, $prop, $args...) {
   $meta: get($module, $prop) or ();
 
@@ -36,11 +40,15 @@ $-meta: ();
 
 /// Checks whether a provided value is an action or a flag. Actions in the
 /// `$-meta` map are incremented while flags are set as a boolean value.
+///
 /// @param {string} $value
 ///   The string value to evaluate.
+///
 /// @return {boolean}
 ///   Returns `true` if the value is an action and `false` if it is a flag.
+///
 /// @access private
+///
 @function -is-action($value) {
   $actions: "def", "ref", "override";
 
@@ -53,15 +61,19 @@ $-meta: ();
 
 /// Setup initial data for a new property in the usage `$-meta` map. The args
 /// parameter will increment the value of an action and set any flags.
+///
 /// @param {list} $args...
 ///   The action being taken and any additional flags. Options include:
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
+///
 /// @return {map}
 ///   The initial data map for storing as property value in `$-meta` map.
+///
 /// @access private
+///
 @function -init-data($args...) {
   $result: (
     "def": 0,
@@ -85,15 +97,19 @@ $-meta: ();
 
 /// Update an existing data map for a property in the usage `$-meta` map. The
 /// args parameter will increment the value of an action and set any flags.
+///
 /// @param {list} $args...
 ///   The action being taken and any additional flags. Options include:
 ///   - "ref": The property is being referenced.
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
+///
 /// @return {map}
 ///   The updated `$-meta` map.
+///
 /// @access private
+///
 @function -update-data($module, $prop, $args...) {
   $result: $-meta;
 
@@ -114,11 +130,14 @@ $-meta: ();
 }
 
 /// Return a value from the usage `$-meta` map.
+///
 /// @param {string} $keys...
 ///   The keys to follow in the `$-meta` map and return its value. Leave empty
 ///   to return the entire `$-meta` map.
+///
 /// @return {map}
 ///   Returns value from `$-meta` or the entire map.
+///
 @function get($keys...) {
   @if list.length($keys) == 0 {
     @return $-meta;
@@ -128,6 +147,7 @@ $-meta: ();
 }
 
 /// Set the meta data for a module's property based on the action being taken.
+///
 /// @param {string} $module
 ///   The module name who's custom property is being stored under.
 /// @param {string} $prop
@@ -138,8 +158,10 @@ $-meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
+///
 /// @return {map}
 ///   Returns the updated `$-meta` map.
+///
 @function set($module, $prop, $args...) {
   @if map.has-key($-meta, $module, $prop) {
     $-meta: -update-data($module, $prop, $args...) !global;
@@ -157,10 +179,13 @@ $-meta: ();
 }
 
 /// Remove a property from the usage `$-meta` map.
+///
 /// @param {string} $keys...
 ///   The keys to follow in the `$-meta` map and remove.
+///
 /// @return {map}
 ///   Returns the updated `$-meta` map.
+///
 @function remove($keys...) {
   $-meta: map.deep-remove($-meta, $keys...) !global;
 
@@ -170,6 +195,7 @@ $-meta: ();
 /// Output custom properties based on the provided strategy. This can either be
 /// all (via "*" or "all" values) or "used" meaning only the custom properties
 /// that have been referenced get output.
+///
 /// @param {mixin value} $mixin
 ///   The mixin to call with params in the output loop.
 ///   Value should come from `meta.get-mixin()` usage.
@@ -187,16 +213,17 @@ $-meta: ();
 ///   - "def": The property is being defined.
 ///   - "override": The property is being overrode.
 ///   - "required": Flag to indicate a property is required to output.
+///
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
   @each $prop, $value in $moduleMap {
-    // Check if the property is valid for output.
+    // Check if the property is valid for output
     @if meta.type-of($value) != "map" and -meta-check($module, $prop, $args...) {
-      // If strategy is set to all, output all custom properties in the map.
+      // If strategy is set to all, output all custom properties in the map
       @if $strategy == "*" or $strategy == "all" {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
       }
 
-      // Else, only output custom properties that were referenced.
+      // Else, only output custom properties that were referenced
       @else if map.has-key($-meta, $module, $prop) {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
       }
@@ -206,10 +233,11 @@ $-meta: ();
 
 /// Log to console data from the `$-meta` custom properties map. The log can be
 /// filtered using a module name and further with a specific data map to match.
-/// @param {string} $module
+///
+/// @param {string} $module (null)
 ///   The module name to filter the meta map's data by. Can be set to null, "*"
 ///   or "all" to return the values of all modules.
-/// @param {mao} $filters
+/// @param {mao} $filters (())
 ///   A filters map containing the values that should match and be returned.
 ///
 /// @example scss
@@ -225,10 +253,10 @@ $-meta: ();
     $module: null;
   }
 
-  // Initial filtered map is just inherited from meta map.
+  // Initial filtered map is just inherited from meta map
   $filtered: $-meta;
 
-  // Do a module check and error if one is passed that hasn't been set.
+  // Do a module check and error if one is passed that hasn't been set
   @if $module {
     @if map.has-key($filtered, $module) {
       $filtered: map.get($filtered, $module);
@@ -239,7 +267,7 @@ $-meta: ();
 
   // Loop through the provided filters
   @each $filterKey, $filterValue in $filters {
-    // If a module was passed.
+    // If a module was passed
     @if $module {
       @each $prop, $meta in $filtered {
         @if not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue) {
@@ -248,14 +276,14 @@ $-meta: ();
       }
     }
 
-    // If a module was not passed.
+    // If a module was not passed
     @else {
       @each $module, $props in $filtered {
         @each $prop, $meta in $props {
           @if not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue) {
             $filtered: map.deep-remove($filtered, $module, $prop);
 
-            // Remove empty maps if they exist.
+            // Remove empty maps if they exist
             @if map.get($filtered, $module) == () {
               $filtered: map.remove($filtered, $module);
             }
@@ -265,7 +293,7 @@ $-meta: ();
     }
   }
 
-  // Log the filtered map.
+  // Log the filtered map
   @if $module {
     @include debug-map($filtered, 'Filtered custom properties of "#{$module}"');
   } @else if $filters != () {

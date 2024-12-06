@@ -7,21 +7,21 @@ export async function open(
   transitionOverride = undefined,
   focus = true
 ) {
-  // Get the modal from collection.
+  // Get the modal from collection
   const entry = getModal.call(this, query);
 
-  // Maybe add modal to top of stack.
+  // Maybe add modal to top of stack
   this.stack.moveToTop(entry);
 
-  // If modal is closed.
+  // If modal is closed
   if (entry.state === "closed") {
-    // Update modal state.
+    // Update modal state
     entry.state = "opening";
 
-    // Add modal to stack.
+    // Add modal to stack
     this.stack.add(entry);
 
-    // Run the open transition.
+    // Run the open transition
     if (
       transitionOverride != undefined
         ? transitionOverride
@@ -39,16 +39,16 @@ export async function open(
       entry.el.classList.remove(entry.getSetting("stateClosed"));
     }
 
-    // Update modal state.
+    // Update modal state
     entry.state = "opened";
   }
 
-  // Update focus if the focus param is true.
+  // Update focus if the focus param is true
   if (focus) {
     updateFocusState.call(this);
   }
 
-  // Dispatch custom opened event.
+  // Dispatch custom opened event
   entry.el.dispatchEvent(
     new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
       detail: entry,
@@ -56,9 +56,9 @@ export async function open(
     })
   );
 
-  // Emit the opened event.
+  // Emit the opened event
   await entry.parent.emit("opened", entry);
 
-  // Return the modal.
+  // Return the modal
   return entry;
 }

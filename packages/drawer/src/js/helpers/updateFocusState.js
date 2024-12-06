@@ -5,7 +5,7 @@ export function updateFocusState(entry) {
       entry.dialog.querySelector(this.settings.selectorFocus) || entry.dialog
     ).focus();
   } else {
-    // Set focus to root trigger and unmount the focus trap.
+    // Set focus to root trigger and unmount the focus trap
     if (entry.trigger) {
       entry.trigger.focus();
       entry.trigger = null;

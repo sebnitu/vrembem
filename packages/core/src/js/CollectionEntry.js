@@ -31,23 +31,23 @@ export class CollectionEntry {
   }
 
   async init(options = {}) {
-    // Throw an error if the element for this entry was not found.
+    // Throw an error if the element for this entry was not found
     if (this.el === null) {
       throw new Error(
         `${this.parent.module} element was not found with ID: "${this.id}"`
       );
     }
 
-    // Apply settings with passed options.
+    // Apply settings with passed options
     this.applySettings(options);
 
-    // Build the data attribute and custom property setting objects.
+    // Build the data attribute and custom property setting objects
     this.buildDataConfig();
     this.buildCustomProps();
   }
 
   async destroy() {
-    // Remove all the owned properties from the entry except for the id.
+    // Remove all the owned properties from the entry except for the id
     Object.getOwnPropertyNames(this).forEach((prop) => {
       if (prop !== "id") {
         delete this[prop];

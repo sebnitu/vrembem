@@ -2,10 +2,6 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/**
- * Drawer modal styles
- */
-
 #{core.bem("drawer", null, "modal")} {
   @include css.override("drawer", "z-index", var.$modal-z-index);
 
@@ -49,10 +45,6 @@
     }
   }
 }
-
-/**
- * Drawer modal transition
- */
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-opened,
