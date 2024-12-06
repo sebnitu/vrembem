@@ -2,11 +2,7 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-$_thumb-size: calc(
-  css.get("switch", "track-size", var.$track-size) - calc(
-      css.get("switch", "border-width", var.$border-width) * 2
-    )
-);
+$_thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.get("switch", "border-width", var.$border-width) * 2));
 
 #{core.bem("switch")} {
   position: relative;
@@ -33,33 +29,10 @@ $_thumb-size: calc(
     content: "";
     position: absolute;
     top: 0;
-    left: calc(
-      calc(css.get("switch", "size", css.get("form-control-size")) * 0.25) * -1
-    );
-    transition: left
-      css.get(
-        "switch",
-        "transition-duration",
-        css.get("form-control-transition-duration")
-      )
-      css.get(
-        "switch",
-        "transition-timing-function",
-        css.get("form-control-transition-timing-function")
-      );
-    border-radius: css.get(
-      "switch",
-      "background-border-radius",
-      css.get("form-control-background-border-radius")
-    );
-    background-color: hsl(
-      from var.$accent h s l /
-        css.get(
-          "switch",
-          "background-opacity",
-          css.get("form-control-background-opacity")
-        )
-    );
+    left: calc(calc(css.get("switch", "size", css.get("form-control-size")) * 0.25) * -1);
+    transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
+    border-radius: css.get("switch", "background-border-radius", css.get("form-control-background-border-radius"));
+    background-color: hsl(from var.$accent h s l / css.get("switch", "background-opacity", css.get("form-control-background-opacity")));
   }
 }
 
@@ -67,8 +40,7 @@ $_thumb-size: calc(
   @include core.size(100%, css.get("switch", "track-size", var.$track-size));
   position: relative;
   display: block;
-  border: css.get("switch", "border-width", var.$border-width) solid
-    var.$foreground;
+  border: css.get("switch", "border-width", var.$border-width) solid var.$foreground;
   border-radius: css.get("switch", "border-radius", var.$border-radius);
   background-color: hsl(from var.$foreground h s l / 20%);
 }
@@ -80,21 +52,10 @@ $_thumb-size: calc(
   top: 0;
   left: 0;
   display: block;
-  transition: left
-    css.get(
-      "switch",
-      "transition-duration",
-      css.get("form-control-transition-duration")
-    )
-    css.get(
-      "switch",
-      "transition-timing-function",
-      css.get("form-control-transition-timing-function")
-    );
+  transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   border-radius: css.get("switch", "border-radius", var.$border-radius);
   background-color: css.get("switch", "background", var.$background);
-  box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width)
-    var.$foreground;
+  box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) var.$foreground;
 }
 
 #{core.bem("switch", "native")} {
@@ -108,66 +69,38 @@ $_thumb-size: calc(
 
   &:hover + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(
-        from var.$accent h s l /
-          css.get(
-            "switch",
-            "background-opacity-hover",
-            css.get("form-control-background-opacity-hover")
-          )
-      );
+      background-color: hsl(from var.$accent h s l / css.get("switch", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width)
-        css.get("switch", "accent", var.$accent);
+      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) css.get("switch", "accent", var.$accent);
     }
   }
 
   &:focus + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(
-        from var.$accent h s l /
-          css.get(
-            "switch",
-            "background-opacity-focus",
-            css.get("form-control-background-opacity-focus")
-          )
-      );
+      background-color: hsl(from var.$accent h s l / css.get("switch", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width)
-        css.get("switch", "accent", var.$accent);
+      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) css.get("switch", "accent", var.$accent);
     }
   }
 
   &:focus-visible + #{core.bem("switch", "background")},
   &:active + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(
-        from var.$accent h s l /
-          css.get(
-            "switch",
-            "background-opacity-active",
-            css.get("form-control-background-opacity-active")
-          )
-      );
+      background-color: hsl(from var.$accent h s l / css.get("switch", "background-opacity-active", css.get("form-control-background-opacity-active")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width)
-        css.get("switch", "accent", var.$accent);
+      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) css.get("switch", "accent", var.$accent);
     }
   }
 
   &:checked + #{core.bem("switch", "background")} {
     &::after {
-      left: calc(
-        100% - calc(
-            css.get("switch", "size", css.get("form-control-size")) * 0.75
-          )
-      );
+      left: calc(100% - calc(css.get("switch", "size", css.get("form-control-size")) * 0.75));
     }
 
     #{core.bem("switch", "track")} {
@@ -177,8 +110,7 @@ $_thumb-size: calc(
 
     #{core.bem("switch", "thumb")} {
       left: calc(100% - #{$_thumb-size});
-      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width)
-        css.get("switch", "accent", var.$accent);
+      box-shadow: 0 0 0 css.get("switch", "border-width", var.$border-width) css.get("switch", "accent", var.$accent);
     }
   }
 }

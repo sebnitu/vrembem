@@ -4,9 +4,7 @@
 
 @if fun.maybe-output("transition") {
   #{fun.utility("transition")} {
-    transition: all
-      css.get("transition-duration")
-      css.get("transition-timing-function") !important;
+    transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
   }
 
   #{fun.utility("transition", "none")} {

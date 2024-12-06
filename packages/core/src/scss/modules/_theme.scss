@@ -207,12 +207,7 @@ $_theme-keys: "light", "dark";
 ///     @include theme.output-theme("*", "light");
 ///   }
 ///
-@mixin output-theme(
-  $module: "*",
-  $theme: config.get("default-theme"),
-  $strategy: config.get("output-strategy"),
-  $args...
-) {
+@mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
   @if ($module == "*") or ($module == "all") {
     // Call output() for every module in `css.$_variables`.
     @each $module in map.keys(css.get("*")) {
@@ -233,20 +228,11 @@ $_theme-keys: "light", "dark";
 
       // Merge the values of the default theme with all other themes.
       @if ($theme != config.get("default-theme")) {
-        $moduleThemeMap: map.merge(
-          map.get($moduleMap, config.get("default-theme")),
-          $moduleThemeMap
-        );
+        $moduleThemeMap: map.merge(map.get($moduleMap, config.get("default-theme")), $moduleThemeMap);
       }
 
       // Output custom properties via usage output.
-      @include usage.output(
-        meta.get-mixin("define", "css"),
-        $module,
-        $moduleThemeMap,
-        $strategy,
-        $args...
-      );
+      @include usage.output(meta.get-mixin("define", "css"), $module, $moduleThemeMap, $strategy, $args...);
 
       // If a color scheme was stored, output it below everything else.
       @if $color-scheme {

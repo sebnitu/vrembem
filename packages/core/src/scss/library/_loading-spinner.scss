@@ -20,8 +20,7 @@ $_output-spin-animation: true;
   animation: spin css.get("loading", "duration", 0.6s) infinite linear;
   border: css.get("loading", "border", 2px solid);
   border-radius: $border-radius-circle;
-  border-color: css.get("loading", "color", currentcolor)
-    css.get("loading", "color", currentcolor) transparent transparent;
+  border-color: css.get("loading", "color", currentcolor) css.get("loading", "color", currentcolor) transparent transparent;
 
   // Only output the spin animation once.
   @if ($_output-spin-animation) {

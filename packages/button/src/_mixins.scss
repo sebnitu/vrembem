@@ -27,11 +27,7 @@
 /// @param {Color} $color-darker [hsl(from $color h s 30%)]
 ///   The darkest version of the color, used on active state.
 /// @output Override button custom properties using the provided color values.
-@mixin button-variant(
-  $color,
-  $color-dark: hsl(from $color h s 40%),
-  $color-darker: hsl(from $color h s 30%)
-) {
+@mixin button-variant($color, $color-dark: hsl(from $color h s 40%), $color-darker: hsl(from $color h s 30%)) {
   @include css.override(
     "button",
     (

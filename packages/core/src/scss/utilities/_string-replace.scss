@@ -10,12 +10,7 @@
   $index: string.index($string, $search);
 
   @if $index {
-    @return string.slice($string, 1, $index - 1) + $replace +
-      string-replace(
-        string.slice($string, $index + string.length($search)),
-        $search,
-        $replace
-      );
+    @return string.slice($string, 1, $index - 1) + $replace + string-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;

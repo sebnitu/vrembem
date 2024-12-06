@@ -12,124 +12,32 @@
   color: css.get("button", "foreground", var.$foreground);
 
   &:hover {
-    border-color: css.get(
-      "button",
-      "border-color-hover",
-      "border-color",
-      var.$border-color-hover
-    );
-    background-color: css.get(
-      "button",
-      "background-hover",
-      "background",
-      var.$background-hover
-    );
-    box-shadow: css.get(
-      "button",
-      "box-shadow-hover",
-      "box-shadow",
-      var.$box-shadow-hover
-    );
-    color: css.get(
-      "button",
-      "foreground-hover",
-      "foreground",
-      var.$foreground-hover
-    );
+    border-color: css.get("button", "border-color-hover", "border-color", var.$border-color-hover);
+    background-color: css.get("button", "background-hover", "background", var.$background-hover);
+    box-shadow: css.get("button", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
+    color: css.get("button", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
   &:focus {
-    border-color: css.get(
-      "button",
-      "border-color-focus",
-      "border-color-hover",
-      "border-color",
-      var.$border-color-focus
-    );
-    background-color: css.get(
-      "button",
-      "background-focus",
-      "background-hover",
-      "background",
-      var.$background-focus
-    );
-    box-shadow: css.get(
-      "button",
-      "box-shadow-focus",
-      "box-shadow-hover",
-      "box-shadow",
-      var.$box-shadow-focus
-    );
-    color: css.get(
-      "button",
-      "foreground-focus",
-      "foreground-hover",
-      "foreground",
-      var.$foreground-focus
-    );
+    border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
+    background-color: css.get("button", "background-focus", "background-hover", "background", var.$background-focus);
+    box-shadow: css.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
+    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:focus-visible {
     @include core.focus-ring("button", var.$accent);
-    border-color: css.get(
-      "button",
-      "border-color-focus-visible",
-      "border-color-focus",
-      "border-color-hover",
-      "border-color",
-      var.$border-color-focus-visible
-    );
-    background-color: css.get(
-      "button",
-      "background-focus-visible",
-      "background-focus",
-      "background-hover",
-      "background",
-      var.$background-focus-visible
-    );
-    box-shadow: css.get(
-      "button",
-      "box-shadow-focus-visible",
-      "box-shadow-focus",
-      "box-shadow-hover",
-      "box-shadow",
-      var.$box-shadow-focus-visible
-    );
-    color: css.get(
-      "button",
-      "foreground-focus-visible",
-      "foreground-focus",
-      "foreground-hover",
-      "foreground",
-      var.$foreground-focus-visible
-    );
+    border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
+    background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
+    box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
+    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
 
   &:active {
-    border-color: css.get(
-      "button",
-      "border-color-active",
-      "border-color",
-      var.$border-color-active
-    );
-    background-color: css.get(
-      "button",
-      "background-active",
-      "background",
-      var.$background-active
-    );
-    box-shadow: css.get(
-      "button",
-      "box-shadow-active",
-      "box-shadow",
-      var.$box-shadow-active
-    );
-    color: css.get(
-      "button",
-      "foreground-active",
-      "foreground",
-      var.$foreground-active
-    );
+    border-color: css.get("button", "border-color-active", "border-color", var.$border-color-active);
+    background-color: css.get("button", "background-active", "background", var.$background-active);
+    box-shadow: css.get("button", "box-shadow-active", "box-shadow", var.$box-shadow-active);
+    color: css.get("button", "foreground-active", "foreground", var.$foreground-active);
   }
 
   &:disabled:not(.is-loading) {
@@ -143,11 +51,7 @@
 
     &::after {
       content: "";
-      @include css.override(
-        "loading",
-        "color",
-        css.get("button", "foreground", var.$foreground)
-      );
+      @include css.override("loading", "color", css.get("button", "foreground", var.$foreground));
       @include core.loading-spinner();
     }
   }

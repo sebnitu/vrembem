@@ -25,14 +25,6 @@
   )
 );
 
-@include theme.set(
-  "light",
-  "background-glass",
-  palette.get("neutral", 100%, 90%)
-);
+@include theme.set("light", "background-glass", palette.get("neutral", 100%, 90%));
 
-@include theme.set(
-  "dark",
-  "background-glass",
-  palette.get("neutral", 10%, 90%)
-);
+@include theme.set("dark", "background-glass", palette.get("neutral", 10%, 90%));

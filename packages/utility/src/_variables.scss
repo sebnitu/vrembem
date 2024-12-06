@@ -19,16 +19,7 @@ $border-radius-map: (
   "square": 0
 ) !default;
 
-$display-properties: (
-  inline,
-  flex,
-  inline-flex,
-  grid,
-  inline-grid,
-  block,
-  inline-block,
-  none
-) !default;
+$display-properties: (inline, flex, inline-flex, grid, inline-grid, block, inline-block, none) !default;
 
 $max-width: 70rem !default;
 $max-width-scale: (

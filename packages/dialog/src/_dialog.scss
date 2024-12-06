@@ -9,16 +9,8 @@
   flex-direction: column;
   overflow: auto;
   transition-property: outline, border-color;
-  transition-duration: css.get(
-    "dialog",
-    "transition-duration",
-    var.$transition-duration
-  );
-  transition-timing-function: css.get(
-    "dialog",
-    "transition-timing-function",
-    var.$transition-timing-function
-  );
+  transition-duration: css.get("dialog", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("dialog", "transition-timing-function", var.$transition-timing-function);
   border: css.get("dialog", "border", var.$border);
   border-radius: css.get("dialog", "border-radius", var.$border-radius);
   background: css.get("dialog", "background", var.$background);
@@ -29,20 +21,12 @@
 
   &:focus-visible,
   &[role="alertdialog"] {
-    @include core.focus-ring(
-      "dialog",
-      var.$focus-ring-color,
-      var.$focus-ring-opacity
-    );
+    @include core.focus-ring("dialog", var.$focus-ring-color, var.$focus-ring-opacity);
     border-color: core.focus-ring-color("dialog", var.$focus-ring-color);
   }
 
   &[role="alertdialog"] {
-    @include css.override(
-      "dialog",
-      "focus-ring-color",
-      var.$focus-ring-color-alert
-    );
+    @include css.override("dialog", "focus-ring-color", var.$focus-ring-color-alert);
   }
 }
 

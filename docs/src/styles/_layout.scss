@@ -17,9 +17,7 @@
   position: relative;
   box-sizing: content-box;
   width: 100%;
-  max-width: calc(
-    css.get("layout", "width") - css.get("layout", "drawer-width")
-  );
+  max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
 
   * > * {
     box-sizing: border-box;
@@ -74,9 +72,7 @@
   max-width: css.get("layout", "content-width");
 
   @include core.media-min(var.$bp-aside) {
-    width: calc(
-      100% - (css.get("layout", "aside-width") + css.get("layout", "gap"))
-    );
+    width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
   }
 
   h1,

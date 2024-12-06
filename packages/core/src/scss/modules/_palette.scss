@@ -33,28 +33,16 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
 ///   A list of lightness values to generate the palette map from.
 /// @param {number} $default [$lightness-default]
 ///   The default lightness value. Used to generate the shorthand property.
-@function build(
-  $seeds: $_seeds,
-  $range: $lightness-range,
-  $default: $lightness-default
-) {
+@function build($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
   @if usage.remove("palette") {
     $result: ();
     @each $name, $value in $seeds {
       $result: map.set($result, "#{$name}-hs", get-hs($value));
       @if ($default) {
-        $result: map.set(
-          $result,
-          "#{$name}",
-          css.reference("palette", "#{$name}-#{$default}")
-        );
+        $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$default}"));
       }
       @each $value in $range {
-        $result: map.set(
-          $result,
-          "#{$name}-#{$value}",
-          hsl(#{css.reference("palette", "#{$name}-hs") $value + "%"})
-        );
+        $result: map.set($result, "#{$name}-#{$value}", hsl(#{css.reference("palette", "#{$name}-hs") $value + "%"}));
       }
     }
     @return $result;
@@ -101,9 +89,7 @@ $_palette: build();
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(
-      #{css.reference("palette", "#{$name}-hs") $query + " / " + $alpha}
-    );
+    @return hsl(#{css.reference("palette", "#{$name}-hs") $query + " / " + $alpha});
   }
 
   // If the specified query value exists in the palette map, return its value.
@@ -153,12 +139,7 @@ $_palette: build();
 ///   The output strategy to apply.
 @mixin output($strategy: config.get("output-strategy")) {
   // Output custom properties via usage output.
-  @include usage.output(
-    meta.get-mixin("define", "css"),
-    "palette",
-    $_palette,
-    $strategy
-  );
+  @include usage.output(meta.get-mixin("define", "css"), "palette", $_palette, $strategy);
 }
 
 /// Log to console the entire `$_palette` map.

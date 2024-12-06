@@ -125,8 +125,7 @@ $_variables: (
     // Set the usage before outputting the custom property.
     @if usage.set($module, $prop, $args...) {
       // Check if the value has been deferred.
-      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer")
-      {
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
         // Create the reference using the deferred value list.
         $value: reference(list.nth($value, 2), list.nth($value, 3));
       }
@@ -218,8 +217,7 @@ $_variables: (
       $value: map.get($_variables, $module, $prop);
 
       // Check if the value is a deferred property.
-      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer")
-      {
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
         // Create the reference using the stored value list.
         $_ref: reference(list.nth($value, 2), list.nth($value, 3));
         // Update the variables map with the value of the reference.
@@ -229,10 +227,7 @@ $_variables: (
       }
 
       // Check if the property exists in the module or its default theme.
-      @else if
-        map.has-key($_variables, $module, $prop) or
-        map.has-key($_variables, $module, config.get("default-theme"), $prop)
-      {
+      @else if map.has-key($_variables, $module, $prop) or map.has-key($_variables, $module, config.get("default-theme"), $prop) {
         // store the reference in our result.
         $result: reference($module, $prop, $result);
       }
@@ -357,12 +352,7 @@ $_variables: (
           @if (list.length($args) > 0) {
             @include usage.set($module, "#{$propKey}-#{$key}", $args...);
           }
-          $_variables: map.set(
-            $_variables,
-            $module,
-            "#{$propKey}-#{$key}",
-            $value
-          ) !global;
+          $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       }
 
@@ -372,12 +362,7 @@ $_variables: (
         @if (list.length($args) > 0) {
           @include usage.set($module, $propKey, $args...);
         }
-        $_variables: map.set(
-          $_variables,
-          $module,
-          $propKey,
-          $propValue
-        ) !global;
+        $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
       }
     }
   }
@@ -389,12 +374,7 @@ $_variables: (
       @if (list.length($args) > 0) {
         @include usage.set($module, "#{$prop}-#{$key}", $args...);
       }
-      $_variables: map.set(
-        $_variables,
-        $module,
-        "#{$prop}-#{$key}",
-        $value
-      ) !global;
+      $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
@@ -515,12 +495,7 @@ $_variables: (
   } @else if _module-exists($module, false) {
     $moduleMap: map.get($_variables, $module);
     // Output custom properties via usage output.
-    @include usage.output(
-      meta.get-mixin("define"),
-      $module,
-      $moduleMap,
-      $strategy
-    );
+    @include usage.output(meta.get-mixin("define"), $module, $moduleMap, $strategy);
   }
 }
 
@@ -535,15 +510,9 @@ $_variables: (
     @include debug-map($_variables, 'Custom properties of "*"');
   } @else if _module-exists($module) {
     @if (list.length($props) > 0) {
-      @include debug-map(
-        map.get($_variables, $module, $props...),
-        'Custom properties of "#{$module}" > "#{$props}"'
-      );
+      @include debug-map(map.get($_variables, $module, $props...), 'Custom properties of "#{$module}" > "#{$props}"');
     } @else {
-      @include debug-map(
-        map.get($_variables, $module),
-        'Custom properties of "#{$module}"'
-      );
+      @include debug-map(map.get($_variables, $module), 'Custom properties of "#{$module}"');
     }
   }
 }

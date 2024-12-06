@@ -7,16 +7,8 @@
   td,
   caption {
     @include css.override("table", "padding", var.$size-sm-padding);
-    @include css.override(
-      "table",
-      "mobile-label-width",
-      var.$size-sm-mobile-label-width
-    );
-    @include css.override(
-      "table",
-      "mobile-label-spacing",
-      var.$size-sm-mobile-label-spacing
-    );
+    @include css.override("table", "mobile-label-width", var.$size-sm-mobile-label-width);
+    @include css.override("table", "mobile-label-spacing", var.$size-sm-mobile-label-spacing);
   }
 }
 
@@ -25,15 +17,7 @@
   td,
   caption {
     @include css.override("table", "padding", var.$size-lg-padding);
-    @include css.override(
-      "table",
-      "mobile-label-width",
-      var.$size-lg-mobile-label-width
-    );
-    @include css.override(
-      "table",
-      "mobile-label-spacing",
-      var.$size-lg-mobile-label-spacing
-    );
+    @include css.override("table", "mobile-label-width", var.$size-lg-mobile-label-width);
+    @include css.override("table", "mobile-label-spacing", var.$size-lg-mobile-label-spacing);
   }
 }

@@ -21,10 +21,7 @@
 
   [#{var.$mobile-label-attr}] {
     position: relative;
-    padding-left: calc(
-      css.get("table", "mobile-label-width") +
-        css.get("table", "mobile-label-spacing")
-    );
+    padding-left: calc(css.get("table", "mobile-label-width") + css.get("table", "mobile-label-spacing"));
     white-space: normal;
 
     &::before {

@@ -26,11 +26,7 @@ $_meta: ();
 /// @access private
 @function _meta-check($module, $prop, $args...) {
   $meta: get($module, $prop) or ();
-  @if ($prop == "register") or
-    (not list.index($args, "override")) and
-    (map.has-key($meta, "def")) and
-    (map.get($meta, "def") > 0)
-  {
+  @if ($prop == "register") or (not list.index($args, "override")) and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
     @return false;
   } @else {
     @return true;
@@ -184,9 +180,7 @@ $_meta: ();
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
   @each $prop, $value in $moduleMap {
     // Check if the property is valid for output.
-    @if (meta.type-of($value) != "map") and
-      (_meta-check($module, $prop, $args...))
-    {
+    @if (meta.type-of($value) != "map") and (_meta-check($module, $prop, $args...)) {
       // If strategy is set to all, output all custom properties in the map.
       @if ($strategy == "*" or $strategy == "all") {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
@@ -237,11 +231,7 @@ $_meta: ();
     // If a module was passed.
     @if ($module) {
       @each $prop, $meta in $filtered {
-        @if (
-          not
-            map.has-key($meta, $filterKey) or
-            (map.get($meta, $filterKey) != $filterValue)
-        ) {
+        @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
           $filtered: map.remove($filtered, $module, $prop);
         }
       }
@@ -250,11 +240,7 @@ $_meta: ();
     @else {
       @each $module, $props in $filtered {
         @each $prop, $meta in $props {
-          @if (
-            not
-              map.has-key($meta, $filterKey) or
-              (map.get($meta, $filterKey) != $filterValue)
-          ) {
+          @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
             $filtered: map.deep-remove($filtered, $module, $prop);
             // Remove empty maps if they exist.
             @if (map.get($filtered, $module) == ()) {

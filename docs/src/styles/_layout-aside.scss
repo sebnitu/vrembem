@@ -69,9 +69,7 @@
     top: 0;
     width: css.get("layout", "aside-width");
     height: 100vh;
-    padding: calc(css.get("layout", "navibar-height") + 2rem)
-      css.get("layout", "aside-padding")
-      calc(css.get("layout", "footer-height") + 8rem);
+    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
     overflow: hidden auto;
     scroll-behavior: smooth;
   }
