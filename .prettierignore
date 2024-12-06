@@ -5,6 +5,7 @@ dev
 dist
 node_modules
 
-# Ignore all HTML and MDX files:
+# Ignore markup/down files:
 **/*.html
+**/*.md
 **/*.mdx
