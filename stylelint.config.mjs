@@ -1,8 +1,9 @@
 export default {
   extends: ["stylelint-config-standard-scss"],
-  plugins: ["stylelint-order"],
+  plugins: ["stylelint-prettier", "stylelint-order"],
   ignoreFiles: ["**/dev/**/*", "**/dist/**/*"],
   rules: {
+    "prettier/prettier": true,
     "scss/at-else-closing-brace-newline-after": null,
     "scss/at-else-closing-brace-space-after": null,
     "scss/at-else-empty-line-before": null,
