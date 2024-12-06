@@ -6,8 +6,8 @@ export default {
     "stylelint-order"
   ],
   "ignoreFiles": [
-    "dev",
-    "dist"
+    "**/dev/**/*",
+    "**/dist/**/*"
   ],
   "rules": {
     "scss/at-else-closing-brace-newline-after": null,
