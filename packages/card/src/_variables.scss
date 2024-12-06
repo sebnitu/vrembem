@@ -68,7 +68,6 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
     "screen-opacity": 0.9
   )
 );
-
 @include theme.set(
   "card",
   "dark",

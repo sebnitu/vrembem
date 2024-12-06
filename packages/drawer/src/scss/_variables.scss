@@ -9,9 +9,7 @@
 
 $class-frame: "drawer-frame" !default;
 $class-main: "drawer-main" !default;
-
 $frame-height: 100vh !default;
-
 $z-index: 900 !default;
 $width: 18em !default;
 $max-width: 80% !default;
@@ -47,6 +45,7 @@ $modal-z-index: 950 !default;
 
 // Required custom properties for JavaScript.
 @include usage.set("core", "prefix", "required");
+
 @each $key, $value in core.$breakpoints {
   @include usage.set("core", "breakpoint-#{$key}", "required");
 }

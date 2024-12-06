@@ -6,11 +6,11 @@
 /// @param {string} $prefix [null]
 ///   The prefix to apply to the width/height css property.
 @mixin size($width, $height: $width, $prefix: null) {
-  @if ($prefix) {
-    #{$prefix}-width: $width;
+  @if $prefix {
     #{$prefix}-height: $height;
+    #{$prefix}-width: $width;
   } @else {
-    width: $width;
     height: $height;
+    width: $width;
   }
 }

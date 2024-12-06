@@ -1,7 +1,6 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
-
 @use "../variables/breakpoints" as *;
 @use "../modules/css";
 @use "./media-min" as *;
@@ -18,16 +17,19 @@
   @if meta.type-of($value) != "map" {
     @include css.override($module, $prop, $value);
   }
+
   // Else padding is a map, loop through the breakpoints and output CSS var.
   @else {
     // Get the first item from breakpoints.
-    $_firstKey: list.nth(list.nth($value, 1), 1);
+    $first-key: list.nth(list.nth($value, 1), 1);
+
     // Output the fist padding value in the map as the base CSS var.
-    @include css.override($module, $prop, map.get($value, $_firstKey));
+    @include css.override($module, $prop, map.get($value, $first-key));
+
     // Loop through the breakpoints.
     @each $key, $bpValue in $breakpoints {
       // If key matches padding first key, skip it. We already output it.
-      @if $key != $_firstKey {
+      @if $key != $first-key {
         // If the breakpoint key exists in the padding map...
         @if map.has-key($value, $key) {
           // Output the media query with new CSS variable value.

@@ -7,7 +7,7 @@
   #{fun.selector("arrow", "down")},
   #{fun.selector("arrow", "left")},
   #{fun.selector("arrow", "right")} {
-    @include core.arrow();
+    @include core.arrow;
   }
 
   #{fun.selector("arrow", "up")} {

@@ -4,14 +4,14 @@
 @use "./variables" as var;
 
 .doc-block {
-  margin: 2rem 0 !important;
-  transition: core.$transition-duration core.$transition-timing-function;
-  transition-property: border-color, box-shadow;
   border: core.$border;
   border-radius: core.$border-radius;
   box-shadow: 0 0 0 0 palette.get("primary", 90);
   font-size: core.$font-size;
   line-height: css.get("line-height");
+  margin: 2rem 0 !important;
+  transition: core.$transition-duration core.$transition-timing-function;
+  transition-property: border-color, box-shadow;
 
   & + & {
     margin-top: -1rem !important;
@@ -23,10 +23,10 @@
   }
 
   @include core.media-max(var.$bp-code) {
-    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
-    border-right: none;
     border-left: none;
     border-radius: 0;
+    border-right: none;
+    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
 
     .doc-block__file .pre {
       margin: 0;
@@ -49,14 +49,14 @@
 }
 
 .doc-block__content {
-  position: relative;
   border-top: core.$border;
+  position: relative;
 }
 
 .doc-block__meta {
   display: flex;
-  gap: 0.5rem 2rem;
   flex-wrap: wrap;
+  gap: 0.5rem 2rem;
 }
 
 .doc-block__intro,

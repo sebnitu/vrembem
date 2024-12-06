@@ -2,12 +2,12 @@
 @use "@vrembem/core/css";
 
 #{core.bem("notice")} {
-  padding: css.get("notice", "padding");
+  background: css.get("notice", "background");
   border: css.get("notice", "border");
   border-radius: css.get("notice", "border-radius");
-  background: css.get("notice", "background");
   box-shadow: css.get("notice", "box-shadow");
   color: css.get("notice", "foreground");
+  padding: css.get("notice", "padding");
 
   > * + * {
     margin-top: css.get("notice", "gap");

@@ -2,25 +2,27 @@
 @use "../variables/form-control" as *;
 @use "./size" as mix;
 
-$_set-custom-property: true;
+$-set-custom-property: true;
 
 /// Get the form-control-size calculation using the line-height, padding and
 /// border-width values.
 /// @return {value}
 ///   The CSS value in the form of a calc function.
 @function form-control-get-size() {
-  $_line-height: css.get("form-control-line-height");
-  $_padding: css.get("form-control-padding-y");
-  $_border-width: css.get("form-control-border-width");
-  $result: calc(calc(1em * $_line-height) + calc(calc($_padding + $_border-width) * 2));
+  $line-height: css.get("form-control-line-height");
+  $padding: css.get("form-control-padding-y");
+  $border-width: css.get("form-control-border-width");
+  $result: calc(calc(1em * $line-height) + calc(calc($padding + $border-width) * 2));
+
   @return $result;
 }
 
 /// Set the form-control-size custom property. This mixin contains a check to
 /// ensure the property is only set once.
 @mixin form-control-set-size() {
-  @if ($_set-custom-property) {
-    $_set-custom-property: false !global;
+  @if $-set-custom-property {
+    $-set-custom-property: false !global;
+
     @include css.set("core", "form-control-size", form-control-get-size());
   }
 }
@@ -33,8 +35,9 @@ $_set-custom-property: true;
 /// @param {string} $prefix [null]
 ///   The prefix to apply to the width/height css property.
 @mixin form-control-size($module: null, $prefix: null) {
-  @include form-control-set-size();
-  @if ($module) {
+  @include form-control-set-size;
+
+  @if $module {
     @include mix.size(css.get($module, "size", css.get("form-control-size")), css.get($module, "size", css.get("form-control-size")), $prefix);
   } @else {
     @include mix.size(css.get("form-control-size"), css.get("form-control-size"), $prefix);
@@ -46,18 +49,20 @@ $_set-custom-property: true;
 /// @param {string} $module
 ///   The module to pass to `css.get` calls.
 @mixin form-control-properties($module) {
-  @if ($module != "menu") {
+  @if $module != "menu" {
     font-size: css.get($module, "font-size", css.get("form-control-font-size"));
     line-height: css.get($module, "line-height", css.get("form-control-line-height"));
   }
-  @if ($module == "input") {
+
+  @if $module == "input" {
     padding: css.get($module, "padding", css.get("form-control-padding-y"));
   } @else {
     padding: css.get($module, "padding", css.get("form-control-padding"));
   }
-  transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));
-  transition-duration: css.get($module, "transition-duration", css.get("form-control-transition-duration"));
-  transition-timing-function: css.get($module, "transition-timing-function", css.get("form-control-transition-timing-function"));
-  border-width: css.get($module, "border-width", css.get("form-control-border-width"));
+
   border-radius: css.get($module, "border-radius", css.get("form-control-border-radius"));
+  border-width: css.get($module, "border-width", css.get("form-control-border-width"));
+  transition-duration: css.get($module, "transition-duration", css.get("form-control-transition-duration"));
+  transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));
+  transition-timing-function: css.get($module, "transition-timing-function", css.get("form-control-transition-timing-function"));
 }

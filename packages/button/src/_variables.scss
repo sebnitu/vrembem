@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-
 @include css.register("button");
 
 $breakpoints: core.$breakpoints !default;
@@ -13,19 +12,16 @@ $background-hover: $background !default;
 $background-focus: $background !default;
 $background-focus-visible: $background !default;
 $background-active: $background !default;
-
 $foreground: css.get("foreground") !default;
 $foreground-hover: $foreground !default;
 $foreground-focus: $foreground !default;
 $foreground-focus-visible: $foreground !default;
 $foreground-active: $foreground !default;
-
 $border-color: css.get("border-color-dark") !default;
 $border-color-hover: css.get("border-color-darker") !default;
 $border-color-focus: $border-color-hover !default;
 $border-color-focus-visible: $accent !default;
 $border-color-active: $foreground-active !default;
-
 $box-shadow: none !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;

@@ -2,30 +2,30 @@
 @use "@vrembem/core/css";
 
 #{core.bem("card")} {
-  position: relative;
+  background: css.get("card", "background");
+  background-clip: padding-box;
+  border: css.get("card", "border");
+  border-radius: css.get("card", "border-radius");
+  box-shadow: css.get("card", "box-shadow");
+  color: css.get("card", "foreground");
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition-property: css.get("card", "transition-property");
+  position: relative;
   transition-duration: css.get("card", "transition-duration");
+  transition-property: css.get("card", "transition-property");
   transition-timing-function: css.get("card", "transition-timing-function");
-  border: css.get("card", "border");
-  border-radius: css.get("card", "border-radius");
-  background: css.get("card", "background");
-  background-clip: padding-box;
-  box-shadow: css.get("card", "box-shadow");
-  color: css.get("card", "foreground");
 }
 
 a#{core.bem("card")} {
-  transform: translate(0, 0);
   box-shadow: css.get("card", "link-box-shadow");
+  transform: translate(0, 0);
 
   &:hover,
   &:focus,
   &:focus-within {
-    transform: translate(0, css.get("card", "link-offset"));
     box-shadow: css.get("card", "link-box-shadow-hover");
+    transform: translate(0, css.get("card", "link-offset"));
   }
 }
 
@@ -71,13 +71,13 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "image")} {
   flex: 0 1 auto;
-  width: 100%;
   height: auto;
+  width: 100%;
 }
 
 #{core.bem("card", "title")} {
-  flex-grow: 1;
   color: css.get("card", "title-color");
+  flex-grow: 1;
   font-size: css.get("card", "title-font-size");
   font-weight: css.get("card", "title-font-weight");
   line-height: css.get("card", "title-line-height");
@@ -86,12 +86,13 @@ a#{core.bem("card")} {
 #{core.bem("card", "background")},
 #{core.bem("card", "screen")} {
   @include core.size(100%);
-  position: absolute;
-  inset: 0;
-  transition-property: css.get("card", "transition-property");
-  transition-duration: css.get("card", "transition-duration");
-  transition-timing-function: css.get("card", "transition-timing-function");
+
   border-radius: css.get("card", "border-radius");
+  inset: 0;
+  position: absolute;
+  transition-duration: css.get("card", "transition-duration");
+  transition-property: css.get("card", "transition-property");
+  transition-timing-function: css.get("card", "transition-timing-function");
 }
 
 #{core.bem("card", "background")} {
@@ -100,7 +101,7 @@ a#{core.bem("card")} {
 }
 
 #{core.bem("card", "screen")} {
-  z-index: 2;
   background: css.get("card", "screen-background");
   opacity: css.get("card", "screen-opacity");
+  z-index: 2;
 }

@@ -5,11 +5,12 @@
 
 #{core.bem("icon")} {
   @include mix.icon-style(var.$style);
-  display: inline-block;
+
   box-sizing: content-box;
+  display: inline-block;
   flex-shrink: 0;
-  width: 1em;
-  height: 1em;
   font-size: css.get("icon", "size");
+  height: 1em;
   vertical-align: top;
+  width: 1em;
 }

@@ -1,15 +1,15 @@
 @use "@vrembem/core";
 
 .slide-up {
+  opacity: 0;
   position: relative;
   transform: translateY(1rem);
   transition: transform, opacity;
   transition-duration: core.$transition-duration;
   transition-timing-function: core.$transition-timing-function;
-  opacity: 0;
 
   &.is-active {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }

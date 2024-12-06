@@ -1,11 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-
 @include css.register("radio");
+
 $accent: css.get("radio", "accent", css.get("form-control-accent")) !default;
 $background: css.get("radio", "background", css.get("form-control-background")) !default;
 $foreground: css.get("radio", "foreground", css.get("form-control-foreground")) !default;
-
 $circle-size: 1.25em !default;
 $dot-size: 0.5em !default;
 $border-width: 2px !default;

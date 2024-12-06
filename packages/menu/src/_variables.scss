@@ -1,8 +1,8 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-
 @include css.register("menu");
+
 $accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
 $gap: 1px !default;
 $action-gap: 0.5em !default;
@@ -13,19 +13,16 @@ $background-hover: css.get("background-hover") !default;
 $background-focus: $background-hover !default;
 $background-focus-visible: $background-hover !default;
 $background-active: css.get("background-active") !default;
-
 $foreground: css.get("foreground") !default;
 $foreground-hover: $foreground !default;
 $foreground-focus: $foreground !default;
 $foreground-focus-visible: $foreground !default;
 $foreground-active: $foreground !default;
-
 $border-color: transparent !default;
 $border-color-hover: $border-color !default;
 $border-color-focus: $border-color !default;
 $border-color-focus-visible: $accent !default;
 $border-color-active: $border-color !default;
-
 $box-shadow: none !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: $box-shadow !default;

@@ -54,15 +54,15 @@
 
   @each $key, $value in var.$gap-map {
     #{fun.utility("margin", "x", $key)} {
-      margin-right: $value !important;
       margin-left: $value !important;
+      margin-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
     #{fun.utility("margin", "y", $key)} {
-      margin-top: $value !important;
       margin-bottom: $value !important;
+      margin-top: $value !important;
     }
   }
 
@@ -87,12 +87,12 @@
   }
 
   #{fun.utility("margin", "x", "auto")} {
-    margin-right: auto !important;
     margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   #{fun.utility("margin", "y", "auto")} {
-    margin-top: auto !important;
     margin-bottom: auto !important;
+    margin-top: auto !important;
   }
 }

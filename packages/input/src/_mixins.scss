@@ -2,12 +2,13 @@
 
 /// Output the base styles for an input component.
 @mixin input-base() {
-  @include core.focus-ring-base();
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  border-style: solid;
-  font-family: inherit;
+  @include core.focus-ring-base;
+
   appearance: none;
+  border-style: solid;
+  display: block;
+  font-family: inherit;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
 }

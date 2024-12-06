@@ -5,9 +5,9 @@
 .test-1,
 .test-2,
 .test-3 {
-  padding: 0.5em 1em;
   border: 1px solid transparent;
   border-radius: 0.25em;
+  padding: 0.5em 1em;
 }
 
 // TEST 1
@@ -15,8 +15,8 @@
 // Using core theme properties directly.
 
 .test-1 {
-  border-color: css.get("border-color");
   background: css.get("background");
+  border-color: css.get("border-color");
   color: css.get("foreground");
 }
 
@@ -36,8 +36,8 @@
 );
 
 .test-2 {
-  border-color: css.get("test-2", "border-color");
   background: css.get("test-2", "background");
+  border-color: css.get("test-2", "border-color");
   color: css.get("test-2", "foreground");
 }
 
@@ -54,11 +54,10 @@
     "border-color": css.get("border-color")
   )
 );
-
 @include theme.set("test-3", "dark");
 
 .test-3 {
-  border-color: css.get("test-3", "border-color");
   background: css.get("test-3", "background");
+  border-color: css.get("test-3", "border-color");
   color: css.get("test-3", "foreground");
 }

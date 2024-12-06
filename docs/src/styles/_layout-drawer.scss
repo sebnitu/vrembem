@@ -7,33 +7,33 @@
  */
 
 .layout-drawer {
-  position: fixed;
-  z-index: 100;
-  visibility: hidden;
-  width: calc(100% - 4rem);
+  background-color: css.get("background-darker");
+  box-shadow: css.get("box-shadow-5");
+  inset: 0 auto 0 0;
   max-width: css.get("layout", "drawer-width");
-  padding: css.get("layout", "drawer-padding");
+  opacity: 0;
+  outline: none;
   overflow: hidden auto;
+  overscroll-behavior: contain;
+  padding: css.get("layout", "drawer-padding");
+  position: fixed;
+  scroll-behavior: smooth;
   transform: translate(-100%);
   transition:
     opacity 0.5s,
     transform 0.25s ease;
-  outline: none;
-  background-color: css.get("background-darker");
-  box-shadow: css.get("box-shadow-5");
-  opacity: 0;
-  inset: 0 auto 0 0;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  visibility: hidden;
+  width: calc(100% - 4rem);
+  z-index: 100;
 
   &.is-opened,
   &.is-opening {
-    visibility: visible;
+    opacity: 1;
     transform: translate(0);
     transition:
       opacity 0.25s,
       transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    opacity: 1;
+    visibility: visible;
   }
 
   &.is-closing {
@@ -51,16 +51,16 @@
 
 @include core.media-min(var.$bp-drawer) {
   .layout-drawer {
-    z-index: 2;
-    visibility: visible;
+    box-shadow: none;
     box-sizing: content-box;
-    width: 100%;
     max-width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
+    opacity: 1;
     padding: calc(css.get("layout", "drawer-padding") + css.get("layout", "navibar-height")) css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
     padding-left: max(css.get("layout", "drawer-padding"), calc((100% - css.get("layout", "width")) / 2));
     transform: translate(0);
-    box-shadow: none;
-    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    z-index: 2;
 
     * > * {
       box-sizing: border-box;
@@ -68,30 +68,30 @@
 
     // Fold shadow
     &::after {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      width: 2rem;
-      height: 100%;
       background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
+      content: "";
+      height: 100%;
       inset: 0 0 auto auto;
+      position: absolute;
+      width: 2rem;
+      z-index: 2;
     }
   }
 
   .layout-drawer__mask {
-    position: sticky;
-    z-index: 2;
-    top: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1);
+    background-color: css.get("background-darker");
     height: css.get("layout", "navibar-height");
     margin: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1) calc(css.get("layout", "drawer-padding") * -1) css.get("layout", "drawer-padding") calc(css.get("layout", "drawer-padding") * -1);
-    background-color: css.get("background-darker");
+    position: sticky;
+    top: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1);
+    z-index: 2;
 
     &::after {
-      content: "";
-      position: absolute;
-      margin: 0 css.get("layout", "drawer-padding");
       border-bottom: 1px solid css.get("border-color");
+      content: "";
       inset: 100% 0 auto;
+      margin: 0 css.get("layout", "drawer-padding");
+      position: absolute;
     }
   }
 }

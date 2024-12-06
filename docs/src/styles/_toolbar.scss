@@ -3,16 +3,16 @@
 @use "./variables" as var;
 
 .toolbar {
-  position: sticky;
-  z-index: 4;
-  top: -1px;
-  display: block;
-  padding: css.get("layout", "padding");
-  border-top: 1px solid css.get("border-color");
-  border-bottom: 1px solid css.get("border-color");
-  background-color: css.get("background-glass");
   backdrop-filter: blur(8px);
   background-clip: padding-box;
+  background-color: css.get("background-glass");
+  border-bottom: 1px solid css.get("border-color");
+  border-top: 1px solid css.get("border-color");
+  display: block;
+  padding: css.get("layout", "padding");
+  position: sticky;
+  top: -1px;
+  z-index: 4;
 
   @include core.media-min(var.$bp-drawer) {
     display: none;
@@ -25,25 +25,25 @@
  */
 
 .toolbar-mini {
+  opacity: 0;
   position: fixed;
-  top: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
   right: css.get("layout", "padding");
-  visibility: hidden;
+  top: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
   transform: translate(100%);
   transition:
     opacity 0.5s,
     transform 0.25s ease;
-  opacity: 0;
+  visibility: hidden;
 
   @include core.media-min(var.$bp-drawer) {
-    visibility: visible;
-    transform: translate(0);
     opacity: 1;
+    transform: translate(0);
+    visibility: visible;
   }
 
   @include core.media-min(var.$bp-aside) {
-    visibility: hidden;
-    transform: translate(100%);
     opacity: 0;
+    transform: translate(100%);
+    visibility: hidden;
   }
 }

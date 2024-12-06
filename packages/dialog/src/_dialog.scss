@@ -3,25 +3,27 @@
 @use "./variables" as var;
 
 #{core.bem("dialog")} {
-  @include core.focus-ring-base();
-  position: relative;
+  @include core.focus-ring-base;
+
+  background: css.get("dialog", "background", var.$background);
+  background-clip: padding-box;
+  border: css.get("dialog", "border", var.$border);
+  border-radius: css.get("dialog", "border-radius", var.$border-radius);
+  box-shadow: css.get("dialog", "box-shadow", var.$box-shadow);
+  color: css.get("dialog", "foreground", var.$foreground);
   display: flex;
   flex-direction: column;
   overflow: auto;
-  transition-property: outline, border-color;
-  transition-duration: css.get("dialog", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("dialog", "transition-timing-function", var.$transition-timing-function);
-  border: css.get("dialog", "border", var.$border);
-  border-radius: css.get("dialog", "border-radius", var.$border-radius);
-  background: css.get("dialog", "background", var.$background);
-  background-clip: padding-box;
-  box-shadow: css.get("dialog", "box-shadow", var.$box-shadow);
-  color: css.get("dialog", "foreground", var.$foreground);
   -webkit-overflow-scrolling: touch;
+  position: relative;
+  transition-duration: css.get("dialog", "transition-duration", var.$transition-duration);
+  transition-property: outline, border-color;
+  transition-timing-function: css.get("dialog", "transition-timing-function", var.$transition-timing-function);
 
   &:focus-visible,
   &[role="alertdialog"] {
     @include core.focus-ring("dialog", var.$focus-ring-color, var.$focus-ring-opacity);
+
     border-color: core.focus-ring-color("dialog", var.$focus-ring-color);
   }
 
@@ -39,18 +41,18 @@
 
 #{core.bem("dialog", "header")},
 #{core.bem("dialog", "footer")} {
-  position: sticky;
-  z-index: 1;
-  display: flex;
   align-items: center;
   background: css.get("dialog", "background", var.$background);
-  vertical-align: middle;
+  display: flex;
   gap: css.get("dialog", "gap", var.$gap);
+  position: sticky;
+  vertical-align: middle;
+  z-index: 1;
 }
 
 #{core.bem("dialog", "header")} {
-  top: 0;
   border-bottom: css.get("dialog", "sep-border", var.$sep-border);
+  top: 0;
 }
 
 #{core.bem("dialog", "body")} {
@@ -62,8 +64,8 @@
 }
 
 #{core.bem("dialog", "footer")} {
-  bottom: 0;
   border-top: css.get("dialog", "sep-border", var.$sep-border);
+  bottom: 0;
 }
 
 #{core.bem("dialog", "title")} {

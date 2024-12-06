@@ -5,22 +5,23 @@
 
 #{core.bem("input")} {
   @include core.form-control-properties("input");
-  @include mix.input-base();
-  border-color: css.get("input", "border-color", var.$border-color);
+  @include mix.input-base;
+
   background-color: css.get("input", "background", var.$background);
+  border-color: css.get("input", "border-color", var.$border-color);
   box-shadow: css.get("input", "box-shadow", var.$box-shadow);
   color: css.get("input", "foreground", var.$foreground);
 
   &:hover {
-    border-color: css.get("input", "border-color-hover", "border-color", var.$border-color-hover);
     background-color: css.get("input", "background-hover", "background", var.$background-hover);
+    border-color: css.get("input", "border-color-hover", "border-color", var.$border-color-hover);
     box-shadow: css.get("input", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
     color: css.get("input", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
   &:focus {
-    border-color: css.get("input", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
     background-color: css.get("input", "background-focus", "background-hover", "background", var.$background-focus);
+    border-color: css.get("input", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
     box-shadow: css.get("input", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
     color: css.get("input", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }

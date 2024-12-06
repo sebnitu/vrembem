@@ -26,6 +26,7 @@
   @each $arg in $args {
     // Convert arg to a string.
     $arg: "" + $arg;
+
     // Ensure that it's not an empty string.
     @if $arg != "" {
       // If $arg contains a colon, escape it and prepend it to $class.
@@ -33,6 +34,7 @@
         $arg: core.escape-colon($arg);
         $class: "#{$arg}#{$class}";
       }
+
       // Otherwise, append $arg to $class with a dash delimiter.
       @else {
         $class: "#{$class}-#{$arg}";

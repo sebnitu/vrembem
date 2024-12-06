@@ -17,5 +17,5 @@
     line-height: css.get("heading", "line-height", null);
   }
 
-  @include mix.heading-levels();
+  @include mix.heading-levels;
 }

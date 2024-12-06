@@ -31,6 +31,7 @@
   @each $arg in $args {
     // Convert arg to a string.
     $arg: "" + $arg;
+
     // Ensure that it's not an empty string.
     @if $arg != "" {
       // Append $arg to $class with a dash delimiter.
@@ -59,14 +60,18 @@
   @if map.has-key(var.$type-selectors, $module) {
     // Initialize the type class selector.
     $type: "type";
+
     // Check if there's a shortname for the type module.
     @if map.has-key(var.$classes, "type") {
       $type: map.get(var.$classes, "type");
     }
+
     // Apply the block prefix to the root type class.
     $type: '#{config.get("prefix-block")}#{$type}';
+
     // Create the type selector using the type module selector.
     $list: string.split(map.get(var.$type-selectors, $module), ",");
+
     @each $item in $list {
       $type-selector: "#{$type-selector}, .#{$type} #{$item}";
     }

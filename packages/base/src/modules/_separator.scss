@@ -5,9 +5,9 @@
   @include css.register("separator");
 
   #{fun.selector("separator")} {
-    display: block;
-    height: 0;
     border: none;
     border-top: css.get("separator", "border", css.get("border"));
+    display: block;
+    height: 0;
   }
 }

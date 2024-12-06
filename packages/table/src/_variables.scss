@@ -65,7 +65,6 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
     "foreground-hover": null
   )
 );
-
 @include theme.set(
   "table",
   "dark",

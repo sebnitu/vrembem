@@ -5,9 +5,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-
 @include config.set("output-strategy", "used");
-
 @include css.set(
   "layout",
   (
@@ -24,7 +22,5 @@
     "content-width": 42rem
   )
 );
-
 @include theme.set("light", "background-glass", palette.get("neutral", 100%, 90%));
-
 @include theme.set("dark", "background-glass", palette.get("neutral", 10%, 90%));

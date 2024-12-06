@@ -25,6 +25,7 @@
   #{core.bem("modal", "dialog")} {
     @include css.override("modal", "width", var.$aside-width);
     @include css.override("modal", "max-width", var.$aside-max-width);
+
     height: 100%;
   }
 }

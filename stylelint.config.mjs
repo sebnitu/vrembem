@@ -4,6 +4,7 @@ export default {
   ignoreFiles: ["**/dev/**/*", "**/dist/**/*"],
   rules: {
     "prettier/prettier": true,
-    "order/properties-alphabetical-order": true
+    "order/properties-alphabetical-order": true,
+    "selector-class-pattern": null
   }
 };

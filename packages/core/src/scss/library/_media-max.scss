@@ -15,7 +15,7 @@
       @content;
     }
   } @else {
-    @if (meta.type-of($point) == number) {
+    @if meta.type-of($point) == number {
       @media (max-width: ($point - 1)) {
         @content;
       }

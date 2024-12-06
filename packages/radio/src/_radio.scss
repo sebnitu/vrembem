@@ -3,59 +3,63 @@
 @use "./variables" as var;
 
 #{core.bem("radio")} {
-  position: relative;
+  align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
   font-size: css.get("radio", "font-size", css.get("form-control-font-size"));
+  justify-content: center;
+  position: relative;
   vertical-align: middle;
 }
 
 #{core.bem("radio", "background")} {
   @include core.form-control-size("radio");
+
+  align-items: center;
+  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
+  border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
+  display: flex;
+  justify-content: center;
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
-  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
   @include core.size(css.get("radio", "circle-size", var.$circle-size));
-  display: flex;
+
   align-items: center;
-  justify-content: center;
+  background-color: css.get("radio", "background", var.$background);
   border: css.get("radio", "border-width", var.$border-width) solid var.$foreground;
   border-radius: css.get("radio", "circle-size", var.$circle-size);
-  background-color: css.get("radio", "background", var.$background);
   color: transparent;
+  display: flex;
+  justify-content: center;
 }
 
 #{core.bem("radio", "dot")} {
   @include core.size(0);
-  border-radius: css.get("radio", "dot-size", var.$dot-size);
+
   background-color: css.get("radio", "background", var.$background);
+  border-radius: css.get("radio", "dot-size", var.$dot-size);
   opacity: 0;
 }
 
 #{core.bem("radio", "native")} {
   @include core.size(100%);
-  position: absolute;
-  z-index: 2;
-  top: 0;
+
+  cursor: pointer;
   left: 0;
   opacity: 0;
-  cursor: pointer;
+  position: absolute;
+  top: 0;
+  z-index: 2;
 
   &:hover + #{core.bem("radio", "background")} {
     background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "accent", var.$accent);
       background-color: css.get("radio", "background", var.$background);
+      border-color: css.get("radio", "accent", var.$accent);
     }
   }
 
@@ -63,8 +67,8 @@
     background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "accent", var.$accent);
       background-color: css.get("radio", "background", var.$background);
+      border-color: css.get("radio", "accent", var.$accent);
     }
   }
 
@@ -73,24 +77,25 @@
     background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "accent", var.$accent);
       background-color: css.get("radio", "background", var.$background);
+      border-color: css.get("radio", "accent", var.$accent);
     }
   }
 
   &:checked + #{core.bem("radio", "background")} {
     #{core.bem("radio", "circle")} {
-      border-color: css.get("radio", "accent", var.$accent);
       background-color: css.get("radio", "accent", var.$accent);
+      border-color: css.get("radio", "accent", var.$accent);
     }
 
     #{core.bem("radio", "dot")} {
       @include core.size(css.get("radio", "dot-size", var.$dot-size));
-      transition-property: opacity, width, height;
-      transition-duration: css.get("radio", "transition-duration", css.get("form-control-transition-duration"));
-      transition-timing-function: css.get("radio", "transition-timing-function", css.get("form-control-transition-timing-function"));
+
       background-position: center center;
       opacity: 1;
+      transition-duration: css.get("radio", "transition-duration", css.get("form-control-transition-duration"));
+      transition-property: opacity, width, height;
+      transition-timing-function: css.get("radio", "transition-timing-function", css.get("form-control-transition-timing-function"));
     }
   }
 }

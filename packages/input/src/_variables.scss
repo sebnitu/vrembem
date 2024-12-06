@@ -1,23 +1,20 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-
 @include css.register("input");
+
 $accent: css.get("input", "accent", css.get("form-control-accent")) !default;
 
 // Appearance
 $background: css.get("background") !default;
 $background-hover: $background !default;
 $background-focus: $background !default;
-
 $foreground: css.get("foreground") !default;
 $foreground-hover: $foreground !default;
 $foreground-focus: $foreground !default;
-
 $border-color: css.get("border-color-dark") !default;
 $border-color-hover: css.get("border-color-darker") !default;
 $border-color-focus: $accent !default;
-
 $box-shadow: inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%) !default;
 $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: none !default;
@@ -45,7 +42,6 @@ $size-lg-font-size: css.get("form-control-font-size-lg") !default;
     "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
   )
 );
-
 @include theme.set(
   "input",
   "dark",

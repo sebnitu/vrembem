@@ -29,8 +29,8 @@
  */
 
 #{core.bem("drawer", null, "switch")} {
-  right: 0;
   left: auto;
+  right: 0;
   transform: translateX(100%);
 
   #{core.bem("drawer", "dialog")} {

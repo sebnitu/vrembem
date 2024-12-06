@@ -9,8 +9,8 @@
 
   tbody tr:hover,
   tbody tr:focus {
-    z-index: 2;
     background-color: css.get("table", "background-hover");
     color: css.get("table", "foreground-hover");
+    z-index: 2;
   }
 }

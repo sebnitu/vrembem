@@ -7,6 +7,7 @@
   @each $key, $value in $map {
     $font-size: $value;
     $line-height: null;
+
     @if meta.type-of($value) == list {
       $font-size: list.nth($value, 1);
       $line-height: list.nth($value, 2);

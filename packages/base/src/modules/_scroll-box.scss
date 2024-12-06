@@ -3,6 +3,6 @@
 
 @if fun.maybe-output("scroll-box") {
   #{fun.selector("scroll-box")} {
-    @include core.scroll-box();
+    @include core.scroll-box;
   }
 }

@@ -2,5 +2,6 @@
 
 .swatch {
   @include core.size(4rem);
+
   display: inline-block;
 }

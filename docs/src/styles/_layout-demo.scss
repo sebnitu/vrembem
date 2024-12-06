@@ -1,6 +1,5 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-
 @include theme.set(
   "layout",
   "light",
@@ -9,7 +8,6 @@
     "background-stripe": hsl(from magenta h s l / 10%)
   )
 );
-
 @include theme.set(
   "layout",
   "dark",

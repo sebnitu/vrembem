@@ -18,16 +18,20 @@
 ///   A valid BEM CSS selector using the provided parameters.
 @function bem($b, $e: null, $m: null, $v: null, $bp: null) {
   $class: '#{config.get("prefix-blocks")}#{$b}';
-  @if ($e) {
+
+  @if $e {
     $class: '#{$class}#{config.get("prefix-elements")}#{$e}';
   }
-  @if ($m) {
+
+  @if $m {
     $class: '#{$class}#{config.get("prefix-modifiers")}#{$m}';
   }
-  @if ($v) {
+
+  @if $v {
     $class: '#{$class}#{config.get("prefix-modifier-values")}#{$v}';
   }
-  @if ($bp) {
+
+  @if $bp {
     // Add the colon if it doesn't exist.
     @if not string.index($bp, ":") {
       $bp: "#{$bp}:";

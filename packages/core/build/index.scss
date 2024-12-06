@@ -1,8 +1,8 @@
 @use "@vrembem/core";
 
 :root {
-  @include core.palette-output();
-  @include core.css-output();
+  @include core.palette-output;
+  @include core.css-output;
 }
 
-@include core.theme-output();
+@include core.theme-output;

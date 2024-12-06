@@ -3,12 +3,12 @@
 @use "./variables" as var;
 
 #{core.bem("input", null, "type", "select")} {
-  position: relative;
-  padding-right: 2em;
   background-image: css.get("input", "select-icon");
-  background-repeat: no-repeat;
   background-position: 100% center;
+  background-repeat: no-repeat;
   cursor: pointer;
+  padding-right: 2em;
+  position: relative;
 
   &:read-only {
     background-color: css.get("input", "background", var.$background);

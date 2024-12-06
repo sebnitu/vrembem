@@ -1,7 +1,6 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-
 @include css.set(
   "box",
   (
@@ -9,7 +8,6 @@
     "border": 2px solid transparent
   )
 );
-
 @include theme.set(
   "box",
   "light",
@@ -20,7 +18,6 @@
     "background-alt": palette.get("secondary", 90)
   )
 );
-
 @include theme.set(
   "box",
   "dark",
@@ -34,17 +31,17 @@
 
 .box,
 .box-alt {
-  padding: css.get("box", "padding");
   border: css.get("box", "border");
   color: css.get("foreground");
+  padding: css.get("box", "padding");
 }
 
 .box {
-  border-color: css.get("box", "border-color");
   background: css.get("box", "background");
+  border-color: css.get("box", "border-color");
 }
 
 .box-alt {
-  border-color: css.get("box", "border-color-alt");
   background: css.get("box", "background-alt");
+  border-color: css.get("box", "border-color-alt");
 }

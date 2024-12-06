@@ -4,15 +4,15 @@
 @use "./variables" as var;
 
 .code-block {
-  position: relative;
   font-size: core.$font-size;
   line-height: css.get("line-height");
+  position: relative;
   text-align: left;
 
   .pre {
-    padding-right: 4em;
-    border: core.$border;
     background-color: css.get("background-dark");
+    border: core.$border;
+    padding-right: 4em;
   }
 
   .popover {
@@ -30,10 +30,10 @@
 
   @include core.media-max(var.$bp-code) {
     .pre {
-      margin: auto calc(css.get("layout", "padding") * -1);
-      border-right: none;
       border-left: none;
       border-radius: 0;
+      border-right: none;
+      margin: auto calc(css.get("layout", "padding") * -1);
     }
   }
 }
@@ -42,12 +42,12 @@
 
 .code-block__prompt,
 .code-block__copy-button {
-  position: absolute;
-  top: 0.8rem;
+  background-color: css.get("background-dark");
+  border-radius: core.$border-radius;
   display: flex;
   padding: 0.5rem;
-  border-radius: core.$border-radius;
-  background-color: css.get("background-dark");
+  position: absolute;
+  top: 0.8rem;
 }
 
 .code-block__prompt {
@@ -55,8 +55,8 @@
 }
 
 .code-block__copy-button {
-  right: 1rem;
   color: css.get("foreground-lighter");
+  right: 1rem;
 
   &:hover {
     color: css.get("foreground-light");
@@ -93,9 +93,9 @@
 
   @include core.media-max(var.$bp-code) {
     .pre {
-      margin: 0;
       border: core.$border;
       border-radius: css.get("border-radius");
+      margin: 0;
     }
 
     .code-block__copy-button {

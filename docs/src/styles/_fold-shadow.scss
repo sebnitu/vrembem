@@ -1,8 +1,8 @@
 .fold-shadow::after {
+  background: linear-gradient(178deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
   content: "";
+  height: 2rem;
+  inset: auto 0 -2rem;
   position: absolute;
   width: 100%;
-  height: 2rem;
-  background: linear-gradient(178deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
-  inset: auto 0 -2rem;
 }

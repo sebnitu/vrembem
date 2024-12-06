@@ -1,6 +1,5 @@
 @use "sass:map";
 @use "sass:meta";
-
 @use "../utilities/get-hs" as *;
 @use "../utilities/debug-map" as *;
 @use "./config";
@@ -10,11 +9,11 @@
 /// The map of colors used to build the palette.
 /// @type map
 /// @access private
-$_seeds: (
-  "primary": hsl(152 60% 50%),
-  "secondary": hsl(214 50% 50%),
-  "neutral": hsl(214 20% 50%),
-  "important": hsl(0 80% 50%)
+$-seeds: (
+  "primary": hsl(152deg 60% 50%),
+  "secondary": hsl(214deg 50% 50%),
+  "neutral": hsl(214deg 20% 50%),
+  "important": hsl(0deg 80% 50%)
 );
 
 /// The default color lightness to use when referencing a color.
@@ -25,26 +24,30 @@ $lightness-default: 50 !default;
 /// @type list
 $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 !default;
 
-/// Builds a palette map using values set in `$_seeds` and `$lightness-range`.
+/// Builds a palette map using values set in `$-seeds` and `$lightness-range`.
 /// Is run automatically whenever seeds map is modified.
-/// @param {map} $seeds [$_seeds]
+/// @param {map} $seeds [$-seeds]
 ///   The seeds to generate a palette map from.
 /// @param {list} $range [$lightness-range]
 ///   A list of lightness values to generate the palette map from.
 /// @param {number} $default [$lightness-default]
 ///   The default lightness value. Used to generate the shorthand property.
-@function build($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
+@function build($seeds: $-seeds, $range: $lightness-range, $default: $lightness-default) {
   @if usage.remove("palette") {
     $result: ();
+
     @each $name, $value in $seeds {
       $result: map.set($result, "#{$name}-hs", get-hs($value));
-      @if ($default) {
+
+      @if $default {
         $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$default}"));
       }
+
       @each $value in $range {
         $result: map.set($result, "#{$name}-#{$value}", hsl(#{css.reference("palette", "#{$name}-hs") $value + "%"}));
       }
     }
+
     @return $result;
   }
 }
@@ -52,7 +55,7 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
 /// The palette variable map where all color variants are stored.
 /// @type map
 /// @access private
-$_palette: build();
+$-palette: build();
 
 /// Function to return a palette color. If called with no color name, the entire
 /// palette map is returned. The following lightness formats are accepted:
@@ -73,27 +76,27 @@ $_palette: build();
 @function get($name: null, $query: $lightness-default, $alpha: null) {
   // Return the palette map if no name is provided.
   @if not($name) {
-    // Build the `$_palette` map before output.
-    @return $_palette;
+    // Build the `$-palette` map before output.
+    @return $-palette;
   }
 
   // If query is passed as "seed", return the seed value.
-  @else if ($name == "seeds") {
-    @return $_seeds;
+  @else if $name == "seeds" {
+    @return $-seeds;
   }
 
   // If query is passed as "seed", return the seed value.
-  @else if ($query == "seed") {
-    @return map.get($_seeds, $name);
+  @else if $query == "seed" {
+    @return map.get($-seeds, $name);
   }
 
   // If an alpha value is passed, return hsl with the alpha.
-  @else if ($alpha) {
+  @else if $alpha {
     @return hsl(#{css.reference("palette", "#{$name}-hs") $query + " / " + $alpha});
   }
 
   // If the specified query value exists in the palette map, return its value.
-  @else if (map.has-key($_palette, "#{$name}-#{$query}")) {
+  @else if map.has-key($-palette, "#{$name}-#{$query}") {
     @return css.reference("palette", "#{$name}-#{$query}");
   }
 
@@ -103,7 +106,7 @@ $_palette: build();
   }
 }
 
-/// Set a color to the `$_seeds` map. Can receive single entries of key/value color
+/// Set a color to the `$-seeds` map. Can receive single entries of key/value color
 /// pairs or a map containing multiple key/value pairs.
 /// @param {string | map} $name
 ///   A name to associate with the provided color, or a map containing key/value
@@ -111,27 +114,29 @@ $_palette: build();
 /// @param {color} $value [null]
 ///   The color to associate with the provided key.
 @mixin set($name, $value: null) {
-  @if (meta.type-of($name) == "map") {
-    $_seeds: map.merge($_seeds, $name) !global;
+  @if meta.type-of($name) == "map" {
+    $-seeds: map.merge($-seeds, $name) !global;
   } @else {
-    $_seeds: map.set($_seeds, $name, $value) !global;
+    $-seeds: map.set($-seeds, $name, $value) !global;
   }
-  // Run build since `$_seeds` has been modified.
-  $_palette: build() !global;
+
+  // Run build since `$-seeds` has been modified.
+  $-palette: build() !global;
 }
 
-/// Removes colors from the `$_seeds` map.
+/// Removes colors from the `$-seeds` map.
 /// @param {string} $names...
-///   A string or list of strings to remove from `$_seeds` map.
+///   A string or list of strings to remove from `$-seeds` map.
 @mixin remove($names...) {
-  $_seeds: map.remove($_seeds, $names...) !global;
-  // Run build since `$_seeds` has been modified.
-  $_palette: build() !global;
+  $-seeds: map.remove($-seeds, $names...) !global;
+
+  // Run build since `$-seeds` has been modified.
+  $-palette: build() !global;
 }
 
-/// Update the `$_palette` map by running build() with passed params.
+/// Update the `$-palette` map by running build() with passed params.
 @mixin update() {
-  $_palette: build($_seeds, $lightness-range, $lightness-default) !global;
+  $-palette: build($-seeds, $lightness-range, $lightness-default) !global;
 }
 
 /// Outputs custom properties built from the provided seeds and lightness range.
@@ -139,10 +144,10 @@ $_palette: build();
 ///   The output strategy to apply.
 @mixin output($strategy: config.get("output-strategy")) {
   // Output custom properties via usage output.
-  @include usage.output(meta.get-mixin("define", "css"), "palette", $_palette, $strategy);
+  @include usage.output(meta.get-mixin("define", "css"), "palette", $-palette, $strategy);
 }
 
-/// Log to console the entire `$_palette` map.
+/// Log to console the entire `$-palette` map.
 @mixin log() {
-  @include debug-map($_palette, "Palette custom properties");
+  @include debug-map($-palette, "Palette custom properties");
 }

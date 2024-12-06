@@ -10,11 +10,11 @@
 /// @returns {number}
 ///   A single value based on `$value` and `$side`.
 @function get-side($value, $side) {
-  $_length: list.length($value);
+  $-length: list.length($value);
 
-  @if $_length == 1 {
+  @if $-length == 1 {
     @return $value;
-  } @else if $_length == 2 {
+  } @else if $-length == 2 {
     @return map.get(
       (
         top: list.nth($value, 1),
@@ -24,7 +24,7 @@
       ),
       $side
     );
-  } @else if $_length == 3 {
+  } @else if $-length == 3 {
     @return map.get(
       (
         top: list.nth($value, 1),
@@ -34,7 +34,7 @@
       ),
       $side
     );
-  } @else if $_length == 4 {
+  } @else if $-length == 4 {
     @return map.get(
       (
         top: list.nth($value, 1),

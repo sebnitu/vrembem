@@ -31,7 +31,6 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
     )
   )
 );
-
 @include theme.set(
   "notice",
   "light",
@@ -40,7 +39,6 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
     "foreground": palette.get("neutral", 20)
   )
 );
-
 @include theme.set(
   "notice",
   "dark",

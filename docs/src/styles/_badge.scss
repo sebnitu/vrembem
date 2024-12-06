@@ -1,10 +1,10 @@
 @use "@vrembem/core/css";
 
 .badge {
-  display: inline-block;
-  padding: 0 0.75em;
-  border-radius: css.get("border-radius-circle");
   background-color: css.get("background-darker");
+  border-radius: css.get("border-radius-circle");
   color: css.get("foreground-lighter");
+  display: inline-block;
   font-size: css.get("font-size-sm");
+  padding: 0 0.75em;
 }

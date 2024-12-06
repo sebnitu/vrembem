@@ -4,19 +4,20 @@
 
 /// Output the base styles for a button component.
 @mixin button-base() {
-  @include core.focus-ring-base();
-  position: relative;
-  display: inline-flex;
-  gap: css.get("button", "gap", var.$gap);
+  @include core.focus-ring-base;
+
   align-items: center;
-  justify-content: center;
-  border-style: solid;
   background-clip: border-box;
+  border-style: solid;
+  cursor: pointer;
+  display: inline-flex;
   font-family: inherit;
   font-weight: inherit;
+  gap: css.get("button", "gap", var.$gap);
+  justify-content: center;
+  position: relative;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
 }
 
 /// Creates a button variant using custom properties and hsl relative values.
