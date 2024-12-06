@@ -1,18 +1,10 @@
 import globals from "globals";
 import js from "@eslint/js";
-
-const formattingRules = {
-  rules: {
-    "indent": ["error", 2, {"SwitchCase": 1}],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-  }
-};
+import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
   js.configs.recommended,
-  formattingRules,
+  eslintConfigPrettier,
   {
     ignores: [
       "**/dev/**/*",
