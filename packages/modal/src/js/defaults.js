@@ -8,7 +8,7 @@ export default {
   selector: ".modal",
   selectorDialog: ".modal__dialog",
   selectorScreen: ".modal",
-  selectorRequired: "[role=\"alertdialog\"]",
+  selectorRequired: '[role="alertdialog"]',
   selectorFocus: "[data-focus]",
   selectorInert: null,
   selectorOverflow: "body",
@@ -20,9 +20,7 @@ export default {
   stateClosed: "is-closed",
 
   // Feature settings
-  customProps: [
-    "transition-duration"
-  ],
+  customProps: ["transition-duration"],
   customEventPrefix: "modal:",
   setTabindex: true,
   transition: true,

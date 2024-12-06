@@ -8,7 +8,11 @@
     position: relative;
     padding: css.get("blockquote", "padding", 1em);
     border: css.get("blockquote", "border", css.get("border"));
-    border-radius: css.get("blockquote", "border-radius", css.get("border-radius"));
+    border-radius: css.get(
+      "blockquote",
+      "border-radius",
+      css.get("border-radius")
+    );
     background: css.get("blockquote", "background", transparent);
     color: css.get("blockquote", "foreground", currentcolor);
 

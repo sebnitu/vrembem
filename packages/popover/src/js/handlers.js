@@ -38,7 +38,7 @@ export function handleMouseEnter(popover, event) {
   if (isExpanded && isExpanded == "true") return;
 
   // Remove the open delay if a hover popover is already active.
-  const delay = (this.activeHover) ? 0 : getDelay(popover, 0);
+  const delay = this.activeHover ? 0 : getDelay(popover, 0);
 
   // Close any active hover popovers.
   if (this.activeHover) this.activeHover.close();
@@ -65,9 +65,12 @@ export function handleMouseLeave(popover, event) {
     }
 
     // Set the toggle delay before closing the popover.
-    popover.toggleDelayId = setTimeout(() => {
-      closeCheck.call(this, popover);
-    }, getDelay(popover, 1));
+    popover.toggleDelayId = setTimeout(
+      () => {
+        closeCheck.call(this, popover);
+      },
+      getDelay(popover, 1)
+    );
   }, 1);
 }
 
@@ -102,13 +105,18 @@ export function handleDocumentClick(popover) {
     // If popover or popover trigger was clicked...
     if (wasClicked) {
       // If popover element exists and is not active...
-      if (popover.el && !popover.el.classList.contains(root.settings.stateActive)) {
+      if (
+        popover.el &&
+        !popover.el.classList.contains(root.settings.stateActive)
+      ) {
         this.removeEventListener("click", _f);
       }
-
     } else {
       // If popover element exists and is active...
-      if (popover.el && popover.el.classList.contains(root.settings.stateActive)) {
+      if (
+        popover.el &&
+        popover.el.classList.contains(root.settings.stateActive)
+      ) {
         popover.close();
       }
       this.removeEventListener("click", _f);

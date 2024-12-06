@@ -31,11 +31,11 @@
       // If $arg contains a colon, escape it and prepend it to $class.
       @if string.index($arg, ":") {
         $arg: core.escape-colon($arg);
-        $class: '#{$arg}#{$class}';
+        $class: "#{$arg}#{$class}";
       }
       // Otherwise, append $arg to $class with a dash delimiter.
       @else {
-        $class: '#{$class}-#{$arg}';
+        $class: "#{$class}-#{$arg}";
       }
     }
   }

@@ -31,37 +31,48 @@ $size-lg-mobile-label-width: $mobile-label-width !default;
 $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
 
 // Custom properties
-@include css.set("table", (
-  "padding": $padding,
-  "background": $background,
-  "background-zebra": $background-zebra,
-  "background-hover": $background-hover,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "border": $border,
-  "border-alt": $border-alt,
-  "mobile-label": (
-    "width": $mobile-label-width,
-    "spacing": $mobile-label-spacing,
-    "background": $mobile-label-background,
-    "foreground": $mobile-label-foreground,
+@include css.set(
+  "table",
+  (
+    "padding": $padding,
+    "background": $background,
+    "background-zebra": $background-zebra,
+    "background-hover": $background-hover,
+    "foreground": $foreground,
+    "foreground-hover": $foreground-hover,
+    "border": $border,
+    "border-alt": $border-alt,
+    "mobile-label": (
+      "width": $mobile-label-width,
+      "spacing": $mobile-label-spacing,
+      "background": $mobile-label-background,
+      "foreground": $mobile-label-foreground
+    )
   )
-));
+);
 
 // Themes
-@include theme.set("table", "light", (
-  "background": css.get("background"),
-  "background-zebra": palette.get("neutral", 50%, 6%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid css.get("border-color"),
-  "border-alt": 1px dotted css.get("border-color"),
-  "foreground": css.get("foreground"),
-  "foreground-hover": null
-));
+@include theme.set(
+  "table",
+  "light",
+  (
+    "background": css.get("background"),
+    "background-zebra": palette.get("neutral", 50%, 6%),
+    "background-hover": palette.get("primary", 50%, 20%),
+    "border": 1px solid css.get("border-color"),
+    "border-alt": 1px dotted css.get("border-color"),
+    "foreground": css.get("foreground"),
+    "foreground-hover": null
+  )
+);
 
-@include theme.set("table", "dark", (
-  "background-zebra": palette.get("neutral", 50%, 10%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid css.get("border-color-dark"),
-  "border-alt": 1px dotted css.get("border-color-dark"),
-));
+@include theme.set(
+  "table",
+  "dark",
+  (
+    "background-zebra": palette.get("neutral", 50%, 10%),
+    "background-hover": palette.get("primary", 50%, 20%),
+    "border": 1px solid css.get("border-color-dark"),
+    "border-alt": 1px dotted css.get("border-color-dark")
+  )
+);

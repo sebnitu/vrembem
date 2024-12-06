@@ -14,7 +14,10 @@
 
   @for $i from list.length($list) * -1 through -1 {
     @if meta.type-of(list.nth($list, math.abs($i))) == list and $recursive {
-      $result: list.append($result, reverse(list.nth($list, math.abs($i)), $recursive));
+      $result: list.append(
+        $result,
+        reverse(list.nth($list, math.abs($i)), $recursive)
+      );
     } @else {
       $result: list.append($result, list.nth($list, math.abs($i)));
     }

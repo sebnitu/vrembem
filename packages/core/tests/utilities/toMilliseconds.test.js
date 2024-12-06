@@ -22,8 +22,16 @@ test("should handle float values as input", () => {
 });
 
 test("should throw an error for invalid inputs", () => {
-  expect(() => toMilliseconds("abc")).toThrow("Could not convert value to milliseconds: abc");
-  expect(() => toMilliseconds("")).toThrow("Could not convert value to milliseconds: ");
-  expect(() => toMilliseconds(null)).toThrow("Could not convert value to milliseconds: null");
-  expect(() => toMilliseconds(undefined)).toThrow("Could not convert value to milliseconds: undefined");
+  expect(() => toMilliseconds("abc")).toThrow(
+    "Could not convert value to milliseconds: abc"
+  );
+  expect(() => toMilliseconds("")).toThrow(
+    "Could not convert value to milliseconds: "
+  );
+  expect(() => toMilliseconds(null)).toThrow(
+    "Could not convert value to milliseconds: null"
+  );
+  expect(() => toMilliseconds(undefined)).toThrow(
+    "Could not convert value to milliseconds: undefined"
+  );
 });

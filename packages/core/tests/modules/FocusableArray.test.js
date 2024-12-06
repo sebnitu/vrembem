@@ -56,7 +56,7 @@ describe("FocusableArray", () => {
 
     const focusableArray = new FocusableArray(container);
     expect(focusableArray).toHaveLength(3);
-    
+
     focusableArray.set(newContainer);
     expect(focusableArray).toHaveLength(2);
     expect(focusableArray.first).toBe(document.getElementById("btn2"));

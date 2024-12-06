@@ -3,7 +3,6 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("normalize") {
-
   // Remove margin, padding and inherit box-sizing on everything
   *,
   *::before,
@@ -34,7 +33,12 @@
   }
 
   // Reset font-size for headings
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: inherit;
   }
 

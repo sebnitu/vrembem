@@ -7,14 +7,22 @@ export async function open(query, transitionOverride, focus = true) {
   const entry = getDrawer.call(this, query);
 
   // If drawer is closed or indeterminate.
-  if (entry.state === "closed" || entry.state === "indeterminate" || entry.state === null) {
+  if (
+    entry.state === "closed" ||
+    entry.state === "indeterminate" ||
+    entry.state === null
+  ) {
     // Update drawer state.
     entry.setState("opening");
 
     // Run the open transition.
-    if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
+    if (
+      transitionOverride != undefined
+        ? transitionOverride
+        : entry.getSetting("transition")
+    ) {
       await transition(
-        entry.el, 
+        entry.el,
         entry.getSetting("stateClosed"),
         entry.getSetting("stateOpening"),
         entry.getSetting("stateOpened"),
@@ -29,7 +37,12 @@ export async function open(query, transitionOverride, focus = true) {
     entry.setState("opened");
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") setGlobalState(true, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+    if (entry.mode === "modal")
+      setGlobalState(
+        true,
+        entry.getSetting("selectorInert"),
+        entry.getSetting("selectorOverflow")
+      );
 
     // Set focus to the drawer element if the focus param is true.
     if (focus) {
@@ -37,10 +50,12 @@ export async function open(query, transitionOverride, focus = true) {
     }
 
     // Dispatch custom opened event.
-    entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
-      detail: this,
-      bubbles: true
-    }));
+    entry.el.dispatchEvent(
+      new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
+        detail: this,
+        bubbles: true
+      })
+    );
 
     // Emit the opened event.
     await entry.parent.emit("opened", entry);

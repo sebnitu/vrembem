@@ -8,8 +8,8 @@
 /// @access private
 $_meta: ();
 
-/// Checks the values for a property in the `$_meta` map to see if the custom 
-/// property is valid for output. Properties can only be output once unless the 
+/// Checks the values for a property in the `$_meta` map to see if the custom
+/// property is valid for output. Properties can only be output once unless the
 /// "override" action is used.
 /// @param {string} $module
 ///   The module name who's custom property is being stored under.
@@ -26,14 +26,18 @@ $_meta: ();
 /// @access private
 @function _meta-check($module, $prop, $args...) {
   $meta: get($module, $prop) or ();
-  @if ($prop == "register") or (not list.index($args, "override")) and (map.has-key($meta, "def")) and (map.get($meta, "def") > 0) {
+  @if ($prop == "register") or
+    (not list.index($args, "override")) and
+    (map.has-key($meta, "def")) and
+    (map.get($meta, "def") > 0)
+  {
     @return false;
   } @else {
     @return true;
   }
 }
 
-/// Checks whether a provided value is an action or a flag. Actions in the 
+/// Checks whether a provided value is an action or a flag. Actions in the
 /// `$_meta` map are incremented while flags are set as a boolean value.
 /// @param {string} $value
 ///   The string value to evaluate.
@@ -61,7 +65,10 @@ $_meta: ();
 ///   The initial data map for storing as property value in `$_meta` map.
 /// @access private
 @function _init-data($args...) {
-  $result: ("def": 0, "ref": 0);
+  $result: (
+    "def": 0,
+    "ref": 0
+  );
   @each $arg in $args {
     // Handle the action
     @if (_is-action($arg)) {
@@ -75,7 +82,7 @@ $_meta: ();
   @return $result;
 }
 
-/// Update an existing data map for a property in the usage `$_meta` map. The 
+/// Update an existing data map for a property in the usage `$_meta` map. The
 /// args parameter will increment the value of an action and set any flags.
 /// @param {list} $args...
 ///   The action being taken and any additional flags. Options include:
@@ -104,7 +111,7 @@ $_meta: ();
 
 /// Return a value from the usage `$_meta` map.
 /// @param {string} $keys...
-///   The keys to follow in the `$_meta` map and return its value. Leave empty 
+///   The keys to follow in the `$_meta` map and return its value. Leave empty
 ///   to return the entire `$_meta` map.
 /// @return {map}
 ///   Returns value from `$_meta` or the entire map.
@@ -158,7 +165,7 @@ $_meta: ();
 /// all (via "*" or "all" values) or "used" meaning only the custom properties
 /// that have been referenced get output.
 /// @param {mixin value} $mixin
-///   The mixin to call with params in the output loop. 
+///   The mixin to call with params in the output loop.
 ///   Value should come from `meta.get-mixin()` usage.
 /// @param {string} $module
 ///   The name of the module being output.
@@ -177,7 +184,9 @@ $_meta: ();
 @mixin output($mixin, $module, $moduleMap, $strategy, $args...) {
   @each $prop, $value in $moduleMap {
     // Check if the property is valid for output.
-    @if (meta.type-of($value) != "map") and (_meta-check($module, $prop, $args...)) {
+    @if (meta.type-of($value) != "map") and
+      (_meta-check($module, $prop, $args...))
+    {
       // If strategy is set to all, output all custom properties in the map.
       @if ($strategy == "*" or $strategy == "all") {
         @include meta.apply($mixin, $module, $prop, $value, $args...);
@@ -190,18 +199,18 @@ $_meta: ();
   }
 }
 
-/// Log to console data from the `$_meta` custom properties map. The log can be 
+/// Log to console data from the `$_meta` custom properties map. The log can be
 /// filtered using a module name and further with a specific data map to match.
 /// @param {string} $module
 ///   The module name to filter the meta map's data by. Can be set to null, "*"
 ///   or "all" to return the values of all modules.
 /// @param {mao} $filters
 ///   A filters map containing the values that should match and be returned.
-/// 
+///
 /// @example scss
 ///   // Log all properties in the button module that were never referenced.
 ///   @include usage.log("button", ("ref": 0));
-/// 
+///
 /// @example scss
 ///   // Log all properties of every module that are required,
 ///   @include usage.log("core", ("required": 1));
@@ -210,7 +219,7 @@ $_meta: ();
   @if ($module == "*" or $module == "all") {
     $module: null;
   }
-  
+
   // Initial filtered map is just inherited from meta map.
   $filtered: $_meta;
 
@@ -228,7 +237,11 @@ $_meta: ();
     // If a module was passed.
     @if ($module) {
       @each $prop, $meta in $filtered {
-        @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
+        @if (
+          not
+            map.has-key($meta, $filterKey) or
+            (map.get($meta, $filterKey) != $filterValue)
+        ) {
           $filtered: map.remove($filtered, $module, $prop);
         }
       }
@@ -237,7 +250,11 @@ $_meta: ();
     @else {
       @each $module, $props in $filtered {
         @each $prop, $meta in $props {
-          @if (not map.has-key($meta, $filterKey) or (map.get($meta, $filterKey) != $filterValue)) {
+          @if (
+            not
+              map.has-key($meta, $filterKey) or
+              (map.get($meta, $filterKey) != $filterValue)
+          ) {
             $filtered: map.deep-remove($filtered, $module, $prop);
             // Remove empty maps if they exist.
             @if (map.get($filtered, $module) == ()) {
@@ -251,7 +268,7 @@ $_meta: ();
 
   // Log the filtered map.
   @if ($module) {
-    @include debug-map($filtered, "Filtered custom properties of \"#{$module}\"");
+    @include debug-map($filtered, 'Filtered custom properties of "#{$module}"');
   } @else if ($filters != ()) {
     @include debug-map($filtered, "Filtered custom properties");
   } @else {

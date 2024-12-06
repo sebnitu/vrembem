@@ -52,5 +52,5 @@ export function teleport(options = {}) {
     entry.parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
-  return {...props, ...methods};
-};
+  return { ...props, ...methods };
+}

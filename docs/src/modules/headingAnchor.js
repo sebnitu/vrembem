@@ -17,7 +17,7 @@ const headingAnchor = {
       els.forEach((el) => {
         // Return if heading has the `no-anchor` class.
         if (el.classList.contains("no-anchor")) return;
-        
+
         // Return if heading is in a code example.
         if (el.closest(".code-example")) return;
 

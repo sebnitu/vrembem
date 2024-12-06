@@ -9,7 +9,7 @@ document.body.innerHTML = `
 
 const obj = new Collection({
   customProps: ["test"],
-  test: "asdf" 
+  test: "asdf"
 });
 
 describe("constructor()", () => {
@@ -73,7 +73,9 @@ describe("getSetting()", () => {
 
   it("should throw an error if a setting doesn't exist", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(() => entry.getSetting("asdf")).toThrowError("Collection setting does not exist: asdf");
+    expect(() => entry.getSetting("asdf")).toThrowError(
+      "Collection setting does not exist: asdf"
+    );
   });
 });
 
@@ -89,7 +91,8 @@ describe("init() & destroy()", () => {
 
   it("should throw an error if an entry is initiated with no element", async () => {
     const entry = new CollectionEntry(obj, "asdf");
-    await expect(entry.init()).rejects.toThrow("Collection element was not found with ID: \"asdf\"");
+    await expect(entry.init()).rejects.toThrow(
+      'Collection element was not found with ID: "asdf"'
+    );
   });
 });
- 

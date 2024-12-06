@@ -2,7 +2,7 @@
 @use "@vrembem/core/css";
 
 :root {
- // Shiki light theme
+  // Shiki light theme
   --astro-code-color-text: #{css.get("foreground")};
   --astro-code-token-comment: #{css.get("foreground-lighter")};
   --astro-code-token-constant: #1b6bc6;
@@ -18,13 +18,13 @@
   &.#{config.get("prefix-themes")}dark {
     --astro-code-color-text: #{css.get("foreground")};
     --astro-code-token-comment: #{css.get("foreground-lighter")};
-    --astro-code-token-constant: #79B8FF;
-    --astro-code-token-string: #79B8FF;
+    --astro-code-token-constant: #79b8ff;
+    --astro-code-token-string: #79b8ff;
     --astro-code-token-keyword: #{css.get("foreground")};
-    --astro-code-token-parameter: #FFAB70;
-    --astro-code-token-function: #B392F0;
-    --astro-code-token-string-expression: #85E89D;
-    --astro-code-token-punctuation: #F97583;
-    --astro-code-token-link: #F97583;
+    --astro-code-token-parameter: #ffab70;
+    --astro-code-token-function: #b392f0;
+    --astro-code-token-string-expression: #85e89d;
+    --astro-code-token-punctuation: #f97583;
+    --astro-code-token-link: #f97583;
   }
 }

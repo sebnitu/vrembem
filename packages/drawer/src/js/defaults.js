@@ -27,9 +27,7 @@ export default {
   classModal: "drawer_modal",
 
   // Feature toggles
-  customProps: [
-    "transition-duration"
-  ],
+  customProps: ["transition-duration"],
   breakpoints: null,
   customEventPrefix: "drawer:",
   setTabindex: true,

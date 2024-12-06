@@ -1,7 +1,11 @@
 import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index";
-import { handleClick, handleMouseEnter, handleMouseLeave } from "../src/js/handlers";
+import {
+  handleClick,
+  handleMouseEnter,
+  handleMouseLeave
+} from "../src/js/handlers";
 
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
@@ -108,7 +112,7 @@ describe("handleClick()", () => {
     handleMouseEnter.bind(popover, entry2, event)();
     trigger.click();
     await delay(100);
-    
+
     expect(trigger.getAttribute("aria-expanded")).toBe("true");
     expect(entry1.state).toBe("opened");
     expect(entry2.state).toBe("closed");

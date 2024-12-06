@@ -55,7 +55,7 @@
   @include core.scroll-box();
 
   &.updated {
-    animation: .6s linear updated;
+    animation: 0.6s linear updated;
   }
 
   .drawer-frame {
@@ -73,7 +73,8 @@
   }
 
   > *:not(.popover) {
-    transition: all css.get("transition-duration") css.get("transition-timing-function");
+    transition: all css.get("transition-duration")
+      css.get("transition-timing-function");
   }
 }
 

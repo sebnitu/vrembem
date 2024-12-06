@@ -12,14 +12,14 @@ export class PluginsArray extends Array {
 
     // Create the settings property by merging the plugin defaults, preset and
     // any provided options.
-    plugin.settings = {...defaults, ...preset, ...options};
+    plugin.settings = { ...defaults, ...preset, ...options };
   }
 
   validate(plugin) {
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
       return false;
-    };
+    }
 
     return true;
   }

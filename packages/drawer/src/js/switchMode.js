@@ -19,16 +19,22 @@ async function toInline(entry) {
   entry.dialog.removeAttribute("aria-modal");
 
   // Update the global state.
-  setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+  setGlobalState(
+    false,
+    entry.getSetting("selectorInert"),
+    entry.getSetting("selectorOverflow")
+  );
 
   // Apply the inline state.
   entry.applyState();
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-    detail: this,
-    bubbles: true
-  }));
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
+      detail: this,
+      bubbles: true
+    })
+  );
 
   // Emit the switchMode event.
   await entry.parent.emit("switchMode", entry);
@@ -48,10 +54,12 @@ async function toModal(entry) {
   await entry.close(false, false);
 
   // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-    detail: this,
-    bubbles: true
-  }));
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
+      detail: this,
+      bubbles: true
+    })
+  );
 
   // Emit the switchMode event.
   await entry.parent.emit("switchMode", entry);

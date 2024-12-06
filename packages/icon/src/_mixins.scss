@@ -5,15 +5,11 @@
     stroke: css.get("icon", "color");
     stroke-width: css.get("icon", "stroke-width");
     fill: none;
-  }
-
-  @else if ($style == "fill") {
+  } @else if ($style == "fill") {
     stroke: none;
     stroke-width: 0;
     fill: css.get("icon", "color");
-  }
-
-  @else {
+  } @else {
     stroke: css.get("icon", "color");
     stroke-width: css.get("icon", "stroke-width");
     fill: css.get("icon", "color");

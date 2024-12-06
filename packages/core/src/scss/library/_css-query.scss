@@ -15,7 +15,7 @@
 ///   A valid breakpoints map (e.g: core.$breakpoints).
 @mixin css-query($module, $prop, $value, $breakpoints: $breakpoints) {
   // If padding is not a map, set the CSS var.
-  @if meta.type-of($value) != 'map' {
+  @if meta.type-of($value) != "map" {
     @include css.override($module, $prop, $value);
   }
   // Else padding is a map, loop through the breakpoints and output CSS var.

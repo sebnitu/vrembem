@@ -1,6 +1,6 @@
 import { getPadding } from "./getPadding";
 
-export function getMiddlewareOptions(popover) {  
+export function getMiddlewareOptions(popover) {
   return {
     offset: Number(popover.getSetting("offset")),
     flip: {

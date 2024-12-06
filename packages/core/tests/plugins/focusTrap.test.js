@@ -21,7 +21,7 @@ describe("focusTrap", () => {
       selector: ".entry"
     });
   });
-  
+
   afterEach(async () => {
     await collection.unmount();
   });
@@ -73,14 +73,14 @@ describe("focusTrap", () => {
   });
 
   it("should toggle the focus trap based on the provided condition", async () => {
-    await collection.mount({ 
+    await collection.mount({
       plugins: [
         focusTrap({
           condition: ({ entry }) => {
-            return (entry.mode === "modal");
+            return entry.mode === "modal";
           }
         })
-      ] 
+      ]
     });
 
     // Get the HTML elements for checks later.
@@ -91,7 +91,7 @@ describe("focusTrap", () => {
     // Mock the missing entry properties.
     entry.dialog = entry.el;
     entry.mode = "modal";
-    
+
     // Fire the opened event and check the results.
     collection.emit("opened", entry);
     expect(entry.focusTrap.focusable.length).toBe(3);

@@ -11,8 +11,16 @@ $z-index: 1000 !default;
 $width: 36em !default;
 $max-width: 100% !default;
 $travel: 5em !default;
-$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
-$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
+$transition-duration: css.get(
+  "dialog",
+  "transition-duration",
+  css.get("transition-duration")
+) !default;
+$transition-timing-function: css.get(
+  "dialog",
+  "transition-timing-function",
+  css.get("transition-timing-function")
+) !default;
 
 // Dialog override map
 // This is used to override `dialog` custom properties.
@@ -27,18 +35,26 @@ $full-scale: 0.75 !default;
 
 // modal_size_[key]
 $size-scale: (
-  "xs": 20em, // 288px
-  "sm": 24em, // 384px
-  "md": 36em, // 576px
-  "lg": 48em, // 768px
-  "xl": 60em  // 960px
+  "xs": 20em,
+  // 288px
+  "sm": 24em,
+  // 384px
+  "md": 36em,
+  // 576px
+  "lg": 48em,
+  // 768px
+  "xl": 60em // 960px
 ) !default;
 
 // Custom properties
-@include css.set("modal", (
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-), "required");
+@include css.set(
+  "modal",
+  (
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function
+  ),
+  "required"
+);
 
 // Required custom properties for JavaScript.
 @include usage.set("core", "prefix", "required");

@@ -70,7 +70,9 @@ export function mediaQuery(options = {}) {
 
     // Is the value a key of a breakpoint custom property?
     if (value) {
-      const customProp = getComputedStyle(document.body).getPropertyValue(`--${getPrefix()}breakpoint-${value}`).trim();
+      const customProp = getComputedStyle(document.body)
+        .getPropertyValue(`--${getPrefix()}breakpoint-${value}`)
+        .trim();
       value = customProp || value;
     }
 
@@ -90,7 +92,7 @@ export function mediaQuery(options = {}) {
     if (bp && !mq) {
       mq = this.settings.mediaQuery;
     }
-    
+
     // Create the media query string.
     const mqs = mq.replace(new RegExp(`${this.settings.token}`, "g"), bp);
 
@@ -109,5 +111,5 @@ export function mediaQuery(options = {}) {
     entry.mql = null;
   }
 
-  return {...props, ...methods};
-};
+  return { ...props, ...methods };
+}

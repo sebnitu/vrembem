@@ -25,12 +25,12 @@
         @include css.override("grid", "gap", $value);
       }
     }
-    
+
     @each $key, $value in var.$gap-map {
       #{core.bem("grid", null, "gap-x", $key, $bp)} {
         @include css.override("grid", "gap-x", $value);
       }
-    
+
       #{core.bem("grid", null, "gap-y", $key, $bp)} {
         @include css.override("grid", "gap-y", $value);
       }

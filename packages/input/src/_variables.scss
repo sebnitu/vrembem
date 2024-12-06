@@ -38,10 +38,20 @@ $size-sm-font-size: css.get("form-control-font-size-sm") !default;
 $size-lg-font-size: css.get("form-control-font-size-lg") !default;
 
 // Themes
-@include theme.set("input", "light", (
-  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
-));
+@include theme.set(
+  "input",
+  "light",
+  (
+    "select-icon":
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="black"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
+  )
+);
 
-@include theme.set("input", "dark", (
-  "select-icon": url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
-));
+@include theme.set(
+  "input",
+  "dark",
+  (
+    "select-icon":
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="12" fill="white"><polyline points="0 8 3.5 12 7 8"></polyline><polyline points="0 4 3.5 0 7 4"></polyline></svg>')
+  )
+);

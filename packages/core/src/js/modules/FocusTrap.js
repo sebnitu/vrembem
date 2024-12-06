@@ -12,9 +12,9 @@ export class FocusTrap {
     this.focusable.set(el);
 
     // Either focus trap or lock depending on focusable length.
-    (this.focusable.length) ?
-      document.addEventListener("keydown", this.handleFocusTrap):
-      document.addEventListener("keydown", handleFocusLock);
+    this.focusable.length
+      ? document.addEventListener("keydown", this.handleFocusTrap)
+      : document.addEventListener("keydown", handleFocusLock);
   }
 
   off() {
@@ -32,7 +32,7 @@ function handleFocusLock(event) {
   if (event.key === "Tab" || event.keyCode === 9) event.preventDefault();
 }
 
-function handleFocusTrap(event) {  
+function handleFocusTrap(event) {
   // Check if the click was a tab and return if not.
   if (event.key !== "Tab" && event.keyCode !== 9) return;
 
@@ -42,7 +42,8 @@ function handleFocusTrap(event) {
 
   // Set variables of conditionals.
   const isShiftTab = event.shiftKey;
-  const isFirstOrRoot = activeElement === focusable.first || activeElement === el;
+  const isFirstOrRoot =
+    activeElement === focusable.first || activeElement === el;
   const isLastOrRoot = activeElement === focusable.last || activeElement === el;
 
   if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {

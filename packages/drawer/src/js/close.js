@@ -7,7 +7,11 @@ export async function close(query, transitionOverride, focus = true) {
   const entry = getDrawer.call(this, query);
 
   // If drawer is opened or indeterminate.
-  if (entry.state === "opened" || entry.state === "indeterminate" || entry.state === null) {
+  if (
+    entry.state === "opened" ||
+    entry.state === "indeterminate" ||
+    entry.state === null
+  ) {
     // Update drawer state.
     entry.setState("closing");
 
@@ -15,9 +19,13 @@ export async function close(query, transitionOverride, focus = true) {
     document.activeElement.blur();
 
     // Run the close transition.
-    if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
+    if (
+      transitionOverride != undefined
+        ? transitionOverride
+        : entry.getSetting("transition")
+    ) {
       await transition(
-        entry.el, 
+        entry.el,
         entry.getSetting("stateOpened"),
         entry.getSetting("stateClosing"),
         entry.getSetting("stateClosed"),
@@ -32,7 +40,12 @@ export async function close(query, transitionOverride, focus = true) {
     entry.setState("closed");
 
     // Update the global state if mode is modal.
-    if (entry.mode === "modal") setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+    if (entry.mode === "modal")
+      setGlobalState(
+        false,
+        entry.getSetting("selectorInert"),
+        entry.getSetting("selectorOverflow")
+      );
 
     // Set focus to the trigger element if the focus param is true.
     if (focus) {
@@ -40,10 +53,12 @@ export async function close(query, transitionOverride, focus = true) {
     }
 
     // Dispatch custom closed event.
-    entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
-      detail: this,
-      bubbles: true
-    }));
+    entry.el.dispatchEvent(
+      new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
+        detail: this,
+        bubbles: true
+      })
+    );
 
     // Emit the closed event.
     await entry.parent.emit("closed", entry);

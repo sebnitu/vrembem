@@ -51,7 +51,10 @@
   opacity: 0;
 
   &:focus {
-    top: calc(calc(css.get("layout", "navibar-height") - css.get("form-control-size")) / 2);
+    top: calc(
+      calc(css.get("layout", "navibar-height") - css.get("form-control-size")) /
+        2
+    );
     opacity: 1;
   }
 }
@@ -81,7 +84,7 @@
 
 .navibar-spacer {
   height: 0;
-  
+
   @include core.media-min(var.$bp-drawer) {
     height: css.get("layout", "navibar-height");
   }

@@ -65,9 +65,9 @@ test("should prioritize customProps over settings", () => {
 
 test("should prioritize dataConfig over customProps", () => {
   const mockData = {
-    ...dataConfig, 
-    ...customProps, 
-    ...settings, 
+    ...dataConfig,
+    ...customProps,
+    ...settings,
     ...parentSettings
   };
   const result = getSetting.call(mockData, "someSetting");
@@ -76,19 +76,21 @@ test("should prioritize dataConfig over customProps", () => {
 
 test("should throw an error if a setting doesn't exist anywhere", () => {
   const mockData = {
-    ...dataConfig, 
-    ...customProps, 
-    ...settings, 
+    ...dataConfig,
+    ...customProps,
+    ...settings,
     ...parentSettings
   };
-  expect(() => getSetting.call(mockData, "asdf")).toThrow("MyModule setting does not exist: asdf");
+  expect(() => getSetting.call(mockData, "asdf")).toThrow(
+    "MyModule setting does not exist: asdf"
+  );
 });
 
 test("should be able to provide a fallback if a setting isn't found", () => {
   const mockData = {
-    ...dataConfig, 
-    ...customProps, 
-    ...settings, 
+    ...dataConfig,
+    ...customProps,
+    ...settings,
     ...parentSettings
   };
   const result = getSetting.call(mockData, "color", {
@@ -99,9 +101,9 @@ test("should be able to provide a fallback if a setting isn't found", () => {
 
 test("should be able to change the properties and the order they are checked", () => {
   const mockData = {
-    ...dataConfig, 
-    ...customProps, 
-    ...settings, 
+    ...dataConfig,
+    ...customProps,
+    ...settings,
     ...parentSettings
   };
   const result = getSetting.call(mockData, "someSetting", {

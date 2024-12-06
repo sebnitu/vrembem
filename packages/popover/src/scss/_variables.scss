@@ -30,14 +30,18 @@ $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
 
 // Custom properties
-@include css.set("popover", (
-  "event": $event,
-  "placement": $placement,
-  "offset": $offset,
-  "flip-padding": $flip-padding,
-  "shift-padding": $shift-padding,
-  "arrow-padding": $arrow-padding
-), "required");
+@include css.set(
+  "popover",
+  (
+    "event": $event,
+    "placement": $placement,
+    "offset": $offset,
+    "flip-padding": $flip-padding,
+    "shift-padding": $shift-padding,
+    "arrow-padding": $arrow-padding
+  ),
+  "required"
+);
 
 // Required custom properties for JavaScript.
 @include usage.set("core", "prefix", "required");

@@ -20,9 +20,12 @@ export class CollectionEntry {
   }
 
   buildDataConfig() {
-    return Object.assign(this.dataConfig, getDataConfig(this.el, this.getSetting("dataConfig")));
+    return Object.assign(
+      this.dataConfig,
+      getDataConfig(this.el, this.getSetting("dataConfig"))
+    );
   }
-  
+
   buildCustomProps() {
     return Object.assign(this.customProps, getCustomProps(this));
   }
@@ -30,7 +33,9 @@ export class CollectionEntry {
   async init(options = {}) {
     // Throw an error if the element for this entry was not found.
     if (this.el === null) {
-      throw new Error(`${this.parent.module} element was not found with ID: "${this.id}"`);
+      throw new Error(
+        `${this.parent.module} element was not found with ID: "${this.id}"`
+      );
     }
 
     // Apply settings with passed options.

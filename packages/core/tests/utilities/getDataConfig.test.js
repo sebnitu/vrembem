@@ -13,13 +13,13 @@ describe("getDataConfig", () => {
     expect(data.one).toBe("1111");
     expect(data.two).toBe(true);
   });
-  
+
   it("should return an empty data config object if no data is found", () => {
     const el = document.querySelector("#div-2");
     const data = getDataConfig(el, "config");
     expect(data).toEqual({});
   });
-  
+
   it("should return an empty data config object if no data attribute is found", () => {
     const el = document.querySelector("#div-3");
     const data = getDataConfig(el, "config");

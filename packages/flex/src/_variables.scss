@@ -6,18 +6,21 @@ $gap: 1em !default;
 $gap-map: (
   "none": 0,
   "xs": 1px,
-  "sm": .5em,
+  "sm": 0.5em,
   "md": 1em,
   "lg": 1.5em,
-  "xl": 2em,
+  "xl": 2em
 ) !default;
 $wrap: wrap !default;
 $grow-count: 6 !default;
 $shrink-count: 6 !default;
 
-@include css.set("flex", (
-  "gap": $gap,
-  "gap-x": null,
-  "gap-y": null,
-  "wrap": $wrap,
-));
+@include css.set(
+  "flex",
+  (
+    "gap": $gap,
+    "gap-x": null,
+    "gap-y": null,
+    "wrap": $wrap
+  )
+);

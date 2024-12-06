@@ -6,7 +6,7 @@
     #{fun.utility("border-radius", $key)} {
       border-radius: $value !important;
     }
-    
+
     #{fun.utility("border-radius", $key, "top")},
     #{fun.utility("border-radius", $key, "left")},
     #{fun.utility("border-radius", $key, "top-left")} {

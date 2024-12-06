@@ -32,13 +32,16 @@
   $color-dark: hsl(from $color h s 40%),
   $color-darker: hsl(from $color h s 30%)
 ) {
-  @include css.override("button", (
-    "accent": $color,
-    "background": $color,
-    "background-hover": $color-dark,
-    "background-active": $color-darker,
-    "foreground": white,
-    "border-color": transparent,
-    "loading-border-color": white
-  ));
+  @include css.override(
+    "button",
+    (
+      "accent": $color,
+      "background": $color,
+      "background-hover": $color-dark,
+      "background-active": $color-darker,
+      "foreground": white,
+      "border-color": transparent,
+      "loading-border-color": white
+    )
+  );
 }

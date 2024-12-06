@@ -37,7 +37,7 @@ function getFormClasses(form, classes = "") {
     if (form.elements[i].value) {
       classes += ` ${form.elements[i].value}`;
     }
-  };
+  }
   // Return the trimmed classes string.
   return classes.trim();
 }
@@ -52,16 +52,17 @@ function updateDemo(demo, input, output, baseClasses) {
   // Add new classes (as array) with base classes to output.
   output.classList.add(...`${baseClasses} ${classes}`.trim().split(" "));
   // Add new classes to input.
-  input.innerHTML = input.innerHTML.replace(
-    `"${prevClasses}"`, `"${classes}"`
-  );
+  input.innerHTML = input.innerHTML.replace(`"${prevClasses}"`, `"${classes}"`);
 }
 
 function handleInput(demo, input, output) {
   // Set the default selection.
   for (let i = 0; i < demo.options.length; i++) {
     let classes = demo.options[i].value.split(" ");
-    if (demo.options[i].text != "None" && output.classList.contains(classes.at(-1))) {
+    if (
+      demo.options[i].text != "None" &&
+      output.classList.contains(classes.at(-1))
+    ) {
       demo.selectedIndex = i;
       break;
     }
@@ -81,11 +82,9 @@ function handleInput(demo, input, output) {
 
       // Store the old value if it exists in the input html.
       if (input.innerHTML.includes(demo.options[i].value)) {
-        oldValue = new RegExp(
-          String.raw`\b(${demo.options[i].value})\b`, "g"
-        );
+        oldValue = new RegExp(String.raw`\b(${demo.options[i].value})\b`, "g");
       }
-    };
+    }
 
     // Update the output and input with new values.
     output.classList.add(...demo.value.split(" "));

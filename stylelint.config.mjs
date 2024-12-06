@@ -1,15 +1,8 @@
 export default {
-  "extends": [
-    "stylelint-config-standard-scss"
-  ],
-  "plugins": [
-    "stylelint-order"
-  ],
-  "ignoreFiles": [
-    "**/dev/**/*",
-    "**/dist/**/*"
-  ],
-  "rules": {
+  extends: ["stylelint-config-standard-scss"],
+  plugins: ["stylelint-order"],
+  ignoreFiles: ["**/dev/**/*", "**/dist/**/*"],
+  rules: {
     "scss/at-else-closing-brace-newline-after": null,
     "scss/at-else-closing-brace-space-after": null,
     "scss/at-else-empty-line-before": null,
@@ -29,9 +22,12 @@ export default {
     "color-function-notation": "modern",
     "color-hex-length": null,
     "custom-property-pattern": null,
-    "declaration-empty-line-before": ["never", {
-      "ignore": "after-comment"
-    }],
+    "declaration-empty-line-before": [
+      "never",
+      {
+        ignore: "after-comment"
+      }
+    ],
     "hue-degree-notation": null,
     "media-feature-name-no-vendor-prefix": null,
     "media-feature-range-notation": "prefix",
@@ -43,12 +39,7 @@ export default {
     "selector-max-id": 0,
     "selector-no-qualifying-type": true,
     "selector-no-vendor-prefix": null,
-    "order/order": [
-      [
-        "custom-properties",
-        "declarations"
-      ]
-    ],
+    "order/order": [["custom-properties", "declarations"]],
     "order/properties-order": [
       "content",
       "quotes",

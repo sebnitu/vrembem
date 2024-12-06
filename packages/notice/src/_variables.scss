@@ -14,27 +14,38 @@ $title-font-size: css.get("font-size-lg") !default;
 $title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
 
-@include css.set("notice", (
-  "gap": $gap,
-  "padding": $padding,
-  "background": $background,
-  "foreground": $foreground,
-  "border": $border,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "title": (
-    "font-size": $title-font-size,
-    "line-height": $title-line-height,
-    "font-weight": $title-font-weight
+@include css.set(
+  "notice",
+  (
+    "gap": $gap,
+    "padding": $padding,
+    "background": $background,
+    "foreground": $foreground,
+    "border": $border,
+    "border-radius": $border-radius,
+    "box-shadow": $box-shadow,
+    "title": (
+      "font-size": $title-font-size,
+      "line-height": $title-line-height,
+      "font-weight": $title-font-weight
+    )
   )
-));
+);
 
-@include theme.set("notice", "light", (
-  "background": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20)
-));
+@include theme.set(
+  "notice",
+  "light",
+  (
+    "background": palette.get("neutral", 95),
+    "foreground": palette.get("neutral", 20)
+  )
+);
 
-@include theme.set("notice", "dark", (
-  "background": palette.get("neutral", 20),
-  "foreground": palette.get("neutral", 95)
-));
+@include theme.set(
+  "notice",
+  "dark",
+  (
+    "background": palette.get("neutral", 20),
+    "foreground": palette.get("neutral", 95)
+  )
+);

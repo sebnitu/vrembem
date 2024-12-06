@@ -18,7 +18,7 @@ export function getDelay(popover, index) {
   if (Array.isArray(value)) {
     value = value[index];
   }
-  
+
   // Convert the value to a number if possible.
   const number = Number(value);
 
@@ -26,6 +26,6 @@ export function getDelay(popover, index) {
   if (!Number.isNaN(number)) {
     return number;
   } else {
-    throw(new Error(`Provided delay value is not a number: "${value}"`));
+    throw new Error(`Provided delay value is not a number: "${value}"`);
   }
 }

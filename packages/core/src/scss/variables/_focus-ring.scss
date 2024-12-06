@@ -5,8 +5,12 @@ $focus-ring-style: solid !default;
 $focus-ring-offset: 0 !default;
 $focus-ring-opacity: 40% !default;
 
-@include css.set("core", "focus-ring", (
-  "width": $focus-ring-width,
-  "style": $focus-ring-style,
-  "offset": $focus-ring-offset,
-));
+@include css.set(
+  "core",
+  "focus-ring",
+  (
+    "width": $focus-ring-width,
+    "style": $focus-ring-style,
+    "offset": $focus-ring-offset
+  )
+);

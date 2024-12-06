@@ -5,8 +5,12 @@ $screen-color: palette.get("neutral", 10) !default;
 $screen-opacity: 0.8 !default;
 $screen-padding: 1em !default;
 
-@include css.set("core", "screen", (
-  "color": $screen-color,
-  "opacity": $screen-opacity,
-  "padding": $screen-padding,
-));
+@include css.set(
+  "core",
+  "screen",
+  (
+    "color": $screen-color,
+    "opacity": $screen-opacity,
+    "padding": $screen-padding
+  )
+);

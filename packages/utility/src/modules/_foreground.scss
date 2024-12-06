@@ -18,7 +18,7 @@
   }
 
   // Theme CSS Variable output.
-  
+
   #{fun.utility("foreground")} {
     color: css.get("foreground") !important;
   }

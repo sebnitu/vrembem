@@ -14,15 +14,18 @@
     border: core.$border;
     background-color: css.get("background-dark");
   }
-  
+
   .popover {
-    @include css.override("popover", (
-      "placement": left,
-      "width": auto,
-      "padding": 0.5rem 0.75rem,
-      "background": palette.get("primary"),
-      "foreground": white
-    ));
+    @include css.override(
+      "popover",
+      (
+        "placement": left,
+        "width": auto,
+        "padding": 0.5rem 0.75rem,
+        "background": palette.get("primary"),
+        "foreground": white
+      )
+    );
   }
 
   @include core.media-max(var.$bp-code) {
@@ -68,7 +71,7 @@
  * Modifier: inline
  */
 
-.code-block_inline {  
+.code-block_inline {
   .pre {
     padding: 0.75em 4em 0.75em 2.5em;
   }
@@ -79,10 +82,13 @@
   }
 
   .popover {
-    @include css.override("popover", (
-      "offset": 24,
-      "placement": bottom,
-    ));
+    @include css.override(
+      "popover",
+      (
+        "offset": 24,
+        "placement": bottom
+      )
+    );
   }
 
   @include core.media-max(var.$bp-code) {

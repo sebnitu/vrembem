@@ -14,8 +14,7 @@
     @media (max-width: (map.get($breakpoints, $point) - 1)) {
       @content;
     }
-  }
-  @else {
+  } @else {
     @if (meta.type-of($point) == number) {
       @media (max-width: ($point - 1)) {
         @content;

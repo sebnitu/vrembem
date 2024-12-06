@@ -26,11 +26,14 @@
 // completely to the values set in :root of these custom property definitions
 // and do not change based on the presence of theme classes.
 
-@include css.set("test-2", (
-  "background": css.get("background"),
-  "foreground": css.get("foreground"),
-  "border-color": css.get("border-color")
-));
+@include css.set(
+  "test-2",
+  (
+    "background": css.get("background"),
+    "foreground": css.get("foreground"),
+    "border-color": css.get("border-color")
+  )
+);
 
 .test-2 {
   border-color: css.get("test-2", "border-color");
@@ -42,11 +45,15 @@
 // ---
 // Using core theme properties as values of new themes.
 
-@include theme.set("test-3", "default", (
-  "background": css.get("background"),
-  "foreground": css.get("foreground"),
-  "border-color": css.get("border-color"),
-));
+@include theme.set(
+  "test-3",
+  "default",
+  (
+    "background": css.get("background"),
+    "foreground": css.get("foreground"),
+    "border-color": css.get("border-color")
+  )
+);
 
 @include theme.set("test-3", "dark");
 

@@ -44,5 +44,9 @@
 /// @param {number} $opacity
 ///   The value to set for the opacity of the color.
 @mixin focus-ring($module, $color, $opacity: var.$focus-ring-opacity) {
-  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from focus-ring-color($module, $color) h s l / focus-ring-opacity($module, $opacity));
+  outline: css.get("focus-ring-width") css.get("focus-ring-style")
+    hsl(
+      from focus-ring-color($module, $color) h s l /
+        focus-ring-opacity($module, $opacity)
+    );
 }

@@ -173,4 +173,3 @@ describe("mount() & unmount()", () => {
     expect(obj.afterUnmount).toHaveBeenCalled();
   });
 });
-

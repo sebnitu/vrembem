@@ -23,9 +23,12 @@ export class PopoverEntry extends CollectionEntry {
     };
     this.floatingCleanup = () => {};
   }
-  
+
   get isTooltip() {
-    return !!this.el.closest(this.getSetting("selectorTooltip")) || this.el.getAttribute("role") == "tooltip";
+    return (
+      !!this.el.closest(this.getSetting("selectorTooltip")) ||
+      this.el.getAttribute("role") == "tooltip"
+    );
   }
 
   get isHovered() {
@@ -34,7 +37,12 @@ export class PopoverEntry extends CollectionEntry {
 
   set isHovered(event) {
     // The state can either be true, false or undefined based on event type.
-    const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
+    const state =
+      event.type == "mouseenter"
+        ? true
+        : event.type == "mouseleave"
+          ? false
+          : undefined;
     // Guard in case the event type is not "mouseenter" or "mouseleave".
     if (state == undefined) return;
     // Store the hover state if the event target matches the el or trigger.
@@ -47,7 +55,7 @@ export class PopoverEntry extends CollectionEntry {
         break;
     }
   }
-  
+
   async open() {
     return this.parent.open(this);
   }
@@ -55,7 +63,7 @@ export class PopoverEntry extends CollectionEntry {
   async close() {
     return this.parent.close(this);
   }
-  
+
   async deregister() {
     return this.parent.deregister(this.id);
   }
@@ -65,24 +73,28 @@ export class PopoverEntry extends CollectionEntry {
     if (!this.#eventListeners) {
       // Add event listeners based on event type.
       const eventType = this.getSetting("event");
-  
+
       // If the event type is hover.
       if (eventType === "hover") {
         // Setup event listeners object for hover.
-        this.#eventListeners = [{
-          el: ["el", "trigger"],
-          type: ["mouseenter", "focus"],
-          listener: handleMouseEnter.bind(this.parent, this)
-        }, {
-          el: ["el", "trigger"],
-          type: ["mouseleave", "focusout"],
-          listener: handleMouseLeave.bind(this.parent, this)
-        }, {
-          el: ["trigger"],
-          type: ["click"],
-          listener: handleTooltipClick.bind(this.parent, this)
-        }];
-  
+        this.#eventListeners = [
+          {
+            el: ["el", "trigger"],
+            type: ["mouseenter", "focus"],
+            listener: handleMouseEnter.bind(this.parent, this)
+          },
+          {
+            el: ["el", "trigger"],
+            type: ["mouseleave", "focusout"],
+            listener: handleMouseLeave.bind(this.parent, this)
+          },
+          {
+            el: ["trigger"],
+            type: ["click"],
+            listener: handleTooltipClick.bind(this.parent, this)
+          }
+        ];
+
         // Loop through listeners and apply to the appropriate elements.
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
@@ -92,16 +104,18 @@ export class PopoverEntry extends CollectionEntry {
           });
         });
       }
-  
+
       // Else the event type is click.
       else {
         // Setup event listeners object for click.
-        this.#eventListeners = [{
-          el: ["trigger"],
-          type: ["click"],
-          listener: handleClick.bind(this.parent, this)
-        }];
-  
+        this.#eventListeners = [
+          {
+            el: ["trigger"],
+            type: ["click"],
+            listener: handleClick.bind(this.parent, this)
+          }
+        ];
+
         // Loop through listeners and apply to the appropriate elements.
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
@@ -113,7 +127,7 @@ export class PopoverEntry extends CollectionEntry {
       }
     }
   }
-  
+
   deregisterEventListeners() {
     // If event listeners have been setup.
     if (this.#eventListeners) {
@@ -125,7 +139,7 @@ export class PopoverEntry extends CollectionEntry {
           });
         });
       });
-  
+
       // Remove eventListeners object from collection.
       this.#eventListeners = null;
     }
@@ -168,7 +182,7 @@ export class PopoverEntry extends CollectionEntry {
 
     // Clean up the floating UI instance.
     this.floatingCleanup();
-    
+
     // Remove event listeners.
     this.deregisterEventListeners();
   }

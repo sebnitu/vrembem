@@ -15,8 +15,16 @@ $frame-height: 100vh !default;
 $z-index: 900 !default;
 $width: 18em !default;
 $max-width: 80% !default;
-$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
-$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
+$transition-duration: css.get(
+  "dialog",
+  "transition-duration",
+  css.get("transition-duration")
+) !default;
+$transition-timing-function: css.get(
+  "dialog",
+  "transition-timing-function",
+  css.get("transition-timing-function")
+) !default;
 
 // Dialog override map
 // This is used to override `dialog` custom properties.
@@ -36,10 +44,14 @@ $modal-dialog-override: () !default;
 $modal-z-index: 950 !default;
 
 // Custom properties
-@include css.set("drawer", (
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-), "required");
+@include css.set(
+  "drawer",
+  (
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function
+  ),
+  "required"
+);
 
 // Required custom properties for JavaScript.
 @include usage.set("core", "prefix", "required");

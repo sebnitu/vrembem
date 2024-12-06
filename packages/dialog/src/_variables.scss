@@ -21,7 +21,11 @@ $focus-ring-color: palette.get("primary") !default;
 $focus-ring-color-alert: palette.get("important") !default;
 $focus-ring-opacity: 1 !default;
 
-@include css.set("dialog", (
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-), "required");
+@include css.set(
+  "dialog",
+  (
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function
+  ),
+  "required"
+);

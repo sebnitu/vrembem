@@ -9,14 +9,15 @@
  */
 export function teleportElement(what, where, how) {
   // Check if ref is an element node.
-  const isElement = (where.nodeType === Node.ELEMENT_NODE);
+  const isElement = where.nodeType === Node.ELEMENT_NODE;
 
   // Get the reference element.
-  where = (isElement) ? where : document.querySelector(where);
+  where = isElement ? where : document.querySelector(where);
 
   // Must be a valid reference element and method.
   if (!where) throw new Error(`Not a valid teleport reference: '${where}'`);
-  if (typeof where[how] != "function") throw new Error(`Not a valid teleport method: '${how}'`);
+  if (typeof where[how] != "function")
+    throw new Error(`Not a valid teleport method: '${how}'`);
 
   // If the return element isn't already a return reference comment create a
   // return reference comment and add it before the `what` node.

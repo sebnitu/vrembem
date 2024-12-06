@@ -6,7 +6,7 @@ import { getPrefix } from "./";
  *   The CSS custom property to query for.
  * @param {Object} options
  *   An options object with optional configuration.
- * @return {String || Error} 
+ * @return {String || Error}
  *   Return the CSS value, a provided fallback or an error if none is found.
  */
 export function cssVar(property, options) {
@@ -31,13 +31,15 @@ export function cssVar(property, options) {
   }
 
   // Get the CSS value.
-  const cssValue = getComputedStyle(settings.element).getPropertyValue(property).trim();
+  const cssValue = getComputedStyle(settings.element)
+    .getPropertyValue(property)
+    .trim();
 
   // If a CSS value was found, return the CSS value.
   if (cssValue) {
     return cssValue;
   }
-  
+
   // Else, return the fallback or a blocking error.
   else {
     if (settings.fallback) {

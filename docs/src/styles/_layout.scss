@@ -17,7 +17,9 @@
   position: relative;
   box-sizing: content-box;
   width: 100%;
-  max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
+  max-width: calc(
+    css.get("layout", "width") - css.get("layout", "drawer-width")
+  );
 
   * > * {
     box-sizing: border-box;
@@ -48,7 +50,7 @@
   @include core.media-min(var.$bp-drawer) {
     gap: 3rem;
     padding: 3rem 0 0;
-    
+
     .has-drawer & {
       padding: 3rem 3.5rem 0 4.5rem;
     }
@@ -72,10 +74,17 @@
   max-width: css.get("layout", "content-width");
 
   @include core.media-min(var.$bp-aside) {
-    width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
+    width: calc(
+      100% - (css.get("layout", "aside-width") + css.get("layout", "gap"))
+    );
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     position: relative;
     scroll-margin-top: calc(css.get("layout", "navibar-height") + 1rem);
   }
@@ -139,7 +148,7 @@
 .layout__screen {
   position: fixed;
   z-index: 99;
-  transition: background-color .25s;
+  transition: background-color 0.25s;
   background-color: palette.get("neutral", 10%, 0%);
   inset: auto;
 

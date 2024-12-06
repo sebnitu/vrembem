@@ -22,15 +22,15 @@
     #{core.bem("flex", null, "direction", "row", $bp)} {
       flex-direction: row;
     }
-    
+
     #{core.bem("flex", null, "direction", "row-reverse", $bp)} {
       flex-direction: row-reverse;
     }
-    
+
     #{core.bem("flex", null, "direction", "col", $bp)} {
       flex-direction: column;
     }
-    
+
     #{core.bem("flex", null, "direction", "col-reverse", $bp)} {
       flex-direction: column-reverse;
     }

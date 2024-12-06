@@ -3,8 +3,16 @@
 
 @include css.register("checkbox");
 $accent: css.get("checkbox", "accent", css.get("form-control-accent")) !default;
-$background: css.get("checkbox", "background", css.get("form-control-background")) !default;
-$foreground: css.get("checkbox", "foreground", css.get("form-control-foreground")) !default;
+$background: css.get(
+  "checkbox",
+  "background",
+  css.get("form-control-background")
+) !default;
+$foreground: css.get(
+  "checkbox",
+  "foreground",
+  css.get("form-control-foreground")
+) !default;
 
 $box-size: 1.2em !default;
 $icon-size: 0.8em !default;

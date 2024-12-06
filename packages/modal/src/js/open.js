@@ -2,10 +2,14 @@ import { transition } from "@vrembem/core";
 import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export async function open(query, transitionOverride = undefined, focus = true) {
+export async function open(
+  query,
+  transitionOverride = undefined,
+  focus = true
+) {
   // Get the modal from collection.
   const entry = getModal.call(this, query);
-  
+
   // Maybe add modal to top of stack.
   this.stack.moveToTop(entry);
 
@@ -18,9 +22,13 @@ export async function open(query, transitionOverride = undefined, focus = true) 
     this.stack.add(entry);
 
     // Run the open transition.
-    if ((transitionOverride != undefined) ? transitionOverride : entry.getSetting("transition")) {
+    if (
+      transitionOverride != undefined
+        ? transitionOverride
+        : entry.getSetting("transition")
+    ) {
       await transition(
-        entry.el, 
+        entry.el,
         entry.getSetting("stateClosed"),
         entry.getSetting("stateOpening"),
         entry.getSetting("stateOpened"),
@@ -41,13 +49,16 @@ export async function open(query, transitionOverride = undefined, focus = true) 
   }
 
   // Dispatch custom opened event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
-    detail: entry, bubbles: true 
-  }));
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
+      detail: entry,
+      bubbles: true
+    })
+  );
 
   // Emit the opened event.
   await entry.parent.emit("opened", entry);
-  
+
   // Return the modal.
   return entry;
 }

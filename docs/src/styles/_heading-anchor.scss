@@ -12,7 +12,9 @@
   justify-content: center;
   margin-left: 1rem;
   padding: css.get("form-control-padding-y");
-  transition: color 0.25s, opacity 0.25s;
+  transition:
+    color 0.25s,
+    opacity 0.25s;
   border-radius: core.$border-radius-circle;
   background-color: palette.get("primary", 50%, 0%);
   opacity: 0;

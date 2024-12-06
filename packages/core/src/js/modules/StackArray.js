@@ -10,7 +10,7 @@ export class StackArray extends Array {
 
   get top() {
     const result = this[this.length - 1];
-    return (result) ? result : null;
+    return result ? result : null;
   }
 
   updateIndex() {

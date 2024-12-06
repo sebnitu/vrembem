@@ -41,7 +41,6 @@ $_options: (
 
   @if (meta.type-of($key) == "map") {
     @each $keyKey, $keyValue in $key {
-
       // Scenario: ("key": ("key": "value")), null
       @if (meta.type-of($keyValue) == "map") {
         @each $key, $value in $keyValue {

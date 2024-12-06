@@ -47,7 +47,10 @@
  */
 
 // IS .drawer NOT .drawer_switch OR .drawer_modal
-#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}, #{core.bem("drawer", null, "modal")}) {
+#{core.bem("drawer")}:not(
+    #{core.bem("drawer", null, "switch")},
+    #{core.bem("drawer", null, "modal")}
+  ) {
   &.is-opening ~ #{core.bem(var.$class-main)},
   &.is-opened ~ #{core.bem(var.$class-main)} {
     margin-left: css.get("drawer", "width", var.$width);
@@ -55,7 +58,9 @@
 }
 
 // IS .drawer AND .drawer_switch NOT .drawer_modal
-#{core.bem("drawer")}#{core.bem("drawer", null, "switch")}:not(#{core.bem("drawer", null, "modal")}) {
+#{core.bem("drawer")}#{core.bem("drawer", null, "switch")}:not(
+    #{core.bem("drawer", null, "modal")}
+  ) {
   &.is-opening ~ #{core.bem(var.$class-main)},
   &.is-opened ~ #{core.bem(var.$class-main)} {
     margin-right: css.get("drawer", "width", var.$width);

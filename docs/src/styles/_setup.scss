@@ -8,18 +8,22 @@
 
 @include config.set("output-strategy", "used");
 
-@include css.set("layout", (
-  "width": 80rem,
-  "padding": 1rem,
-  "navibar-height": 5.25rem,
-  "footer-height": 6rem,
-  "drawer-width": 16rem,
-  "drawer-padding": 1rem,
-  "gap": 6rem,
-  "aside-width": 12rem,
-  "aside-padding": 0.25rem, // Used to prevent cutoff of focus outline styles.
-  "content-width": 42rem
-));
+@include css.set(
+  "layout",
+  (
+    "width": 80rem,
+    "padding": 1rem,
+    "navibar-height": 5.25rem,
+    "footer-height": 6rem,
+    "drawer-width": 16rem,
+    "drawer-padding": 1rem,
+    "gap": 6rem,
+    "aside-width": 12rem,
+    "aside-padding": 0.25rem,
+    // Used to prevent cutoff of focus outline styles.
+    "content-width": 42rem
+  )
+);
 
 @include theme.set(
   "light",

@@ -14,7 +14,7 @@ export class Modal extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super({ ...defaults, ...options});
+    super({ ...defaults, ...options });
     this.module = "Modal";
     this.entryClass = ModalEntry;
     this.trigger = null;
@@ -22,14 +22,14 @@ export class Modal extends Collection {
     this.#handleKeydown = handleKeydown.bind(this);
 
     // Setup stack property using StackArray.
-    this.stack = new StackArray({ 
+    this.stack = new StackArray({
       onChange: () => {
         setGlobalState(
           this.stack.top,
           this.settings.selectorInert,
           this.settings.selectorOverflow
         );
-      } 
+      }
     });
   }
 

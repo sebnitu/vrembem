@@ -20,7 +20,7 @@ $_theme-keys: "light", "dark";
 ///   The name of the key to add.
 /// @access private
 @mixin _add-theme-key($theme) {
-  @if not (list.index($_theme-keys, $theme)) {
+  @if not(list.index($_theme-keys, $theme)) {
     $_theme-keys: list.append($_theme-keys, $theme) !global;
   }
 }
@@ -47,11 +47,11 @@ $_theme-keys: "light", "dark";
 ///   containing prop/value pairs.
 /// @param {any} $value [null]
 ///   The value to set for the respective module > theme > property.
-/// 
+///
 /// @example scss
 ///   // Set the foreground custom property for the card dark theme.
 ///   @include theme.set("card", "dark", "foreground", blue);
-/// 
+///
 /// @example scss
 ///   // Set the background and foreground custom properties for the card light
 ///   // theme using a map of property/value pairs.
@@ -59,7 +59,7 @@ $_theme-keys: "light", "dark";
 ///     "background": blue,
 ///     "foreground": white,
 ///   ));
-/// 
+///
 /// @example scss
 ///   // Create an empty theme by not passing a property or value. This will
 ///   // take the properties of the default theme once output.
@@ -73,7 +73,7 @@ $_theme-keys: "light", "dark";
 
   // Shift the values of arguments if module was not passed and sets module to
   // "core" as the default.
-  @if not ($value) and ($prop) and (meta.type-of($prop) != "map") {
+  @if not($value) and ($prop) and (meta.type-of($prop) != "map") {
     $value: $prop;
     $prop: $theme;
     $theme: $module;
@@ -85,14 +85,21 @@ $_theme-keys: "light", "dark";
 
   // If the value is a map, apply it with deep-merge.
   @if (meta.type-of($prop) == "map") {
-    $result: map.deep-merge($result, ($module: ($theme: $prop)));
+    $result: map.deep-merge(
+      $result,
+      (
+        $module: (
+            $theme: $prop
+          )
+      )
+    );
   }
 
   // If no property or value are provided, create a theme with an empty map.
   @else if not ($prop) and not ($value) {
     $result: map.set($result, $module, $theme, empty-map());
   }
-  
+
   // Otherwise, just set the value directly.
   @else {
     $result: map.set($result, $module, $theme, $prop, $value);
@@ -104,7 +111,7 @@ $_theme-keys: "light", "dark";
 
 /// Remove a custom property from themes in a variety of ways.
 /// @param {string} $module
-///   The module name to search under. Set to "*" for the following `$theme` and 
+///   The module name to search under. Set to "*" for the following `$theme` and
 ///   `$prop` arguments to apply to all module themes.
 /// @param {string} $theme
 ///   The module theme to search under or remove. Set to "*" to remove all
@@ -113,7 +120,7 @@ $_theme-keys: "light", "dark";
 /// @param {string} $prop [null]
 ///   The property name to remove. Set to "*" to remove the entire theme from
 ///   the specified module.
-/// 
+///
 /// @example scss
 ///   // Remove the dark theme from buttons module.
 ///   @include theme.remove("button", "dark");
@@ -121,11 +128,11 @@ $_theme-keys: "light", "dark";
 /// @example scss
 ///   // Remove the border-color property from all button themes.
 ///   @include theme.remove("button", "*", "border-color");
-/// 
+///
 /// @example scss
 ///   // Remove the background property from the button light theme.
 ///   @include theme.remove("button", "light", "border-color");
-/// 
+///
 /// @example scss
 ///   // Remove all themes from all modules.
 ///   @include theme.remove("*", "*");
@@ -149,7 +156,7 @@ $_theme-keys: "light", "dark";
         $result: map.remove($result, $key);
       }
     }
-    
+
     // Remove the theme from module.
     // Example: theme.remove("module", "light", "*")
     @else if ($theme != "*") and ($prop == "*") {
@@ -185,22 +192,27 @@ $_theme-keys: "light", "dark";
 /// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
 /// @param {list} $args...
-///   The action being taken and any additional flags to be passed to 
+///   The action being taken and any additional flags to be passed to
 ///   `usage.output()`.
-/// 
+///
 /// @example scss
 ///   // Output the custom properties for the button light theme.
 ///   .vb-theme-light {
 ///     @include theme.output-theme("button", "light");
 ///   }
-/// 
+///
 /// @example scss
 ///   // Output the custom properties for the light theme from all modules.
 ///   .vb-theme-light {
 ///     @include theme.output-theme("*", "light");
 ///   }
 ///
-@mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
+@mixin output-theme(
+  $module: "*",
+  $theme: config.get("default-theme"),
+  $strategy: config.get("output-strategy"),
+  $args...
+) {
   @if ($module == "*") or ($module == "all") {
     // Call output() for every module in `css.$_variables`.
     @each $module in map.keys(css.get("*")) {
@@ -211,7 +223,7 @@ $_theme-keys: "light", "dark";
     $moduleMap: css.get($module, "*");
 
     // Check if the theme exists for the module in variables map.
-    @if map.has-key($moduleMap, $theme) {    
+    @if map.has-key($moduleMap, $theme) {
       // Save a copy of the module map from variables.
       $moduleThemeMap: map.get($moduleMap, $theme);
 
@@ -221,12 +233,19 @@ $_theme-keys: "light", "dark";
 
       // Merge the values of the default theme with all other themes.
       @if ($theme != config.get("default-theme")) {
-        $moduleThemeMap: map.merge(map.get($moduleMap, config.get("default-theme")), $moduleThemeMap);
+        $moduleThemeMap: map.merge(
+          map.get($moduleMap, config.get("default-theme")),
+          $moduleThemeMap
+        );
       }
 
       // Output custom properties via usage output.
       @include usage.output(
-        meta.get-mixin("define", "css"), $module, $moduleThemeMap, $strategy, $args...
+        meta.get-mixin("define", "css"),
+        $module,
+        $moduleThemeMap,
+        $strategy,
+        $args...
       );
 
       // If a color scheme was stored, output it below everything else.
@@ -241,7 +260,7 @@ $_theme-keys: "light", "dark";
 /// their own appropriate root selector and theme class. Themes named "light" or
 /// "dark" will have a `prefers-color-scheme` media query applied.
 /// @param {string} $module ["*"]
-///   The module to output all applied themes. If no module is passed or set to 
+///   The module to output all applied themes. If no module is passed or set to
 ///   "*" or "all", will output all applied themes for all modules.
 /// @param {string} $strategy [config.get("output-strategy")]
 ///   The output strategy to apply.
@@ -253,7 +272,8 @@ $_theme-keys: "light", "dark";
 @mixin output($module: "*", $strategy: config.get("output-strategy")) {
   // Output the default theme and system preference media query under the using
   // the root selector. This should come before the theme class output.
-  :root, .#{config.get("prefix-themes")}root {
+  :root,
+  .#{config.get("prefix-themes")}root {
     // Output the default theme.
     @include output-theme($module, config.get("default-theme"), $strategy);
 
@@ -281,41 +301,49 @@ $_theme-keys: "light", "dark";
 }
 
 /// Initialize the core light theme.
-@include set("core", "light", (
-  "background": palette.get("neutral", 100),
-  "background-dark": palette.get("neutral", 98),
-  "background-darker": palette.get("neutral", 95),
-  "background-alt": palette.get("secondary", 60%, 10%),
-  "background-hover": rgb(0 0 0 / 5%),
-  "background-focus": rgb(0 0 0 / 5%),
-  "background-active": rgb(0 0 0 / 10%),
-  "foreground": palette.get("neutral", 20),
-  "foreground-light": palette.get("neutral", 40),
-  "foreground-lighter": palette.get("neutral", 60),
-  "foreground-alt": palette.get("secondary", 50),
-  "border-color": rgb(0 0 0 / 10%),
-  "border-color-dark": rgb(0 0 0 / 20%),
-  "border-color-darker": rgb(0 0 0 / 30%),
-  "shadow-color": palette.get("neutral", 20%, 20%),
-  "color-scheme": light
-));
+@include set(
+  "core",
+  "light",
+  (
+    "background": palette.get("neutral", 100),
+    "background-dark": palette.get("neutral", 98),
+    "background-darker": palette.get("neutral", 95),
+    "background-alt": palette.get("secondary", 60%, 10%),
+    "background-hover": rgb(0 0 0 / 5%),
+    "background-focus": rgb(0 0 0 / 5%),
+    "background-active": rgb(0 0 0 / 10%),
+    "foreground": palette.get("neutral", 20),
+    "foreground-light": palette.get("neutral", 40),
+    "foreground-lighter": palette.get("neutral", 60),
+    "foreground-alt": palette.get("secondary", 50),
+    "border-color": rgb(0 0 0 / 10%),
+    "border-color-dark": rgb(0 0 0 / 20%),
+    "border-color-darker": rgb(0 0 0 / 30%),
+    "shadow-color": palette.get("neutral", 20%, 20%),
+    "color-scheme": light
+  )
+);
 
 /// Initialize the core dark theme.
-@include set("core", "dark", (
-  "background": palette.get("neutral", 10),
-  "background-dark": palette.get("neutral", 12),
-  "background-darker": palette.get("neutral", 15),
-  "background-alt": palette.get("secondary", 70%, 10%),
-  "background-hover": rgb(255 255 255 / 5%),
-  "background-focus": rgb(255 255 255 / 5%),
-  "background-active": rgb(255 255 255 / 1%),
-  "foreground": palette.get("neutral", 90),
-  "foreground-light": palette.get("neutral", 70),
-  "foreground-lighter": palette.get("neutral", 50),
-  "foreground-alt": palette.get("secondary", 60),
-  "border-color": rgb(255 255 255 / 10%),
-  "border-color-dark": rgb(255 255 255 / 20%),
-  "border-color-darker": rgb(255 255 255 / 30%),
-  "shadow-color": palette.get("neutral", 0%, 20%),
-  "color-scheme": dark
-));
+@include set(
+  "core",
+  "dark",
+  (
+    "background": palette.get("neutral", 10),
+    "background-dark": palette.get("neutral", 12),
+    "background-darker": palette.get("neutral", 15),
+    "background-alt": palette.get("secondary", 70%, 10%),
+    "background-hover": rgb(255 255 255 / 5%),
+    "background-focus": rgb(255 255 255 / 5%),
+    "background-active": rgb(255 255 255 / 1%),
+    "foreground": palette.get("neutral", 90),
+    "foreground-light": palette.get("neutral", 70),
+    "foreground-lighter": palette.get("neutral", 50),
+    "foreground-alt": palette.get("secondary", 60),
+    "border-color": rgb(255 255 255 / 10%),
+    "border-color-dark": rgb(255 255 255 / 20%),
+    "border-color-darker": rgb(255 255 255 / 30%),
+    "shadow-color": palette.get("neutral", 0%, 20%),
+    "color-scheme": dark
+  )
+);

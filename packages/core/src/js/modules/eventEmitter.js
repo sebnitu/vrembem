@@ -9,8 +9,8 @@ export const eventEmitter = {
     const listenerExists = this.events[event].some(
       (entry) => entry.listener === listener
     );
-    
-    // Add listener to the events array. 
+
+    // Add listener to the events array.
     if (!listenerExists) {
       this.events[event].push({ listener, args });
     }

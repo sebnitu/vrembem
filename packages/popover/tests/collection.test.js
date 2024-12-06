@@ -43,7 +43,9 @@ describe("register() & entry.deregister()", () => {
   it("should return an error if the provided id has no associated popover", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
-    await expect(popover.register("missing")).rejects.toThrow("Popover element was not found with ID: \"missing\"");
+    await expect(popover.register("missing")).rejects.toThrow(
+      'Popover element was not found with ID: "missing"'
+    );
   });
 
   it("should attach hover event listeners when registered", async () => {

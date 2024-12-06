@@ -25,7 +25,7 @@ $_variables: (
 ///   The module to check for its existence.
 /// @param {boolean} $required [true]
 ///   Whether or not the module is required. If set to `true`, will throw an
-///   error when it's not found, otherwise will return false. 
+///   error when it's not found, otherwise will return false.
 /// @return {boolean | error}
 ///   If module exists in map, returns true. Otherwise, will throw error.
 /// @access private
@@ -49,7 +49,7 @@ $_variables: (
 /// @param {string} $module
 ///   The module name to use as part of the prefix. The "core" and "palette"
 ///   modules are not prefixed with their module names.
-/// @return {string} 
+/// @return {string}
 ///   The custom property prefix string.
 /// @access private
 @function _prefix($module) {
@@ -61,7 +61,7 @@ $_variables: (
 }
 
 /// Function to create reference to a custom property using the provided module
-/// name, property and optional fallback. Automatically applies the necessary 
+/// name, property and optional fallback. Automatically applies the necessary
 /// custom property prefix and module name.
 /// @param {string} $module
 ///   The module name to use as part of the prefix. The "core" and "palette"
@@ -70,14 +70,14 @@ $_variables: (
 ///   The custom property name to use in the reference.
 /// @param {any} $fallback [null]
 ///   The fallback value to use in the var() declaration.
-/// @return {function} 
+/// @return {function}
 ///   Custom property variable reference using var().
-/// 
+///
 /// @example scss
 ///   css.reference("core", "background");
 ///   // CSS Output
 ///   var(--vb-background);
-/// 
+///
 /// @example scss
 ///   css.reference("button", "background-hover", "background");
 ///   // CSS Output
@@ -103,14 +103,14 @@ $_variables: (
 /// @param {any} $value [null]
 ///   The value of the custom property.
 /// @param {list} $args... ["def"]
-///   The action being taken and any additional flags to be passed to 
+///   The action being taken and any additional flags to be passed to
 ///   `usage.set()`. Defaults to "def".
-/// 
+///
 /// @example scss
 ///   css.define("core", "background", #000);
 ///   // CSS Output
 ///   --vb-background: #000;
-/// 
+///
 /// @example scss
 ///   css.define("button", "background", #fff);
 ///   // CSS Output
@@ -125,7 +125,8 @@ $_variables: (
     // Set the usage before outputting the custom property.
     @if usage.set($module, $prop, $args...) {
       // Check if the value has been deferred.
-      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer")
+      {
         // Create the reference using the deferred value list.
         $value: reference(list.nth($value, 2), list.nth($value, 3));
       }
@@ -150,33 +151,33 @@ $_variables: (
   @return "defer", $module, $prop;
 }
 
-/// Function to return a custom property reference that has been stored in the 
+/// Function to return a custom property reference that has been stored in the
 /// `$_variables` map using set(). Can also return the entire `$_variables` map
 /// or one of the stored module maps.
 /// @param {string} $module
 ///   The module name to get the stored custom property from. Can be omitted if
 ///   searching a property in the core module.
 /// @param {string} $props...
-///   The custom property name to return. Can be a list of props for returning 
+///   The custom property name to return. Can be a list of props for returning
 ///   var() with fallbacks. Set to "*" to return the entire module map.
-/// @return {function | error} 
+/// @return {function | error}
 ///   Custom property variable reference using var().
-/// 
+///
 /// @example scss
 ///   css.get("background");
 ///   // CSS Output
 ///   var(--vb-background);
-/// 
+///
 /// @example scss
 ///   css.get("button", "background");
 ///   // CSS Output
 ///   var(--vb-button-background);
-/// 
+///
 /// @example scss
 ///   css.get("button", "background-hover", "background");
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
-/// 
+///
 /// @example scss
 ///   css.get("button", "background-hover", "background", pink);
 ///   // CSS Output
@@ -217,7 +218,8 @@ $_variables: (
       $value: map.get($_variables, $module, $prop);
 
       // Check if the value is a deferred property.
-      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer") {
+      @if (meta.type-of($value) == "list") and (list.nth($value, 1) == "defer")
+      {
         // Create the reference using the stored value list.
         $_ref: reference(list.nth($value, 2), list.nth($value, 3));
         // Update the variables map with the value of the reference.
@@ -227,13 +229,13 @@ $_variables: (
       }
 
       // Check if the property exists in the module or its default theme.
-      @else if 
+      @else if
         map.has-key($_variables, $module, $prop) or
         map.has-key($_variables, $module, config.get("default-theme"), $prop)
       {
         // store the reference in our result.
         $result: reference($module, $prop, $result);
-      } 
+      }
 
       // All other cases depend on the property count and its position.
       @else {
@@ -249,7 +251,7 @@ $_variables: (
         }
       }
     }
-    
+
     @return $result;
   }
 }
@@ -261,33 +263,33 @@ $_variables: (
 ///   The module name to store the custom property under. Set to "*" to replace
 ///   the entire `$_variables` map with the value of `$prop` (must be a map).
 /// @param {string | map} $prop
-///   The custom property name to store. Can be a map containing property and 
-///   value pairs. Values can also contain map of property/value pairs. Set to 
+///   The custom property name to store. Can be a map containing property and
+///   value pairs. Values can also contain map of property/value pairs. Set to
 ///   "*" to merge a module map with the value of `$value` (must be a map).
 ///   Pass "merge" to `$args` to merge the map, else it is deep-merged.
 /// @param {any} $value [null]
-///   The custom property value to store. Can be a map containing property and 
+///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
 /// @param {list} $args...
 ///   The arguments to pass to `usage.set()`. Can be a list containing an action
 ///   and any additional flags to log for the property.
-/// 
+///
 /// @example scss
 ///   @include css.set("button", "background", #000);
-/// 
+///
 ///   // Result in `$_variables` map:
 ///   $_variables: (
 ///     "button": (
 ///       "background": #000
 ///     )
 ///   );
-/// 
+///
 /// @example scss
 ///   @include css.set("button", (
 ///     "background": #000,
 ///     "foreground": #fff,
 ///   ));
-/// 
+///
 ///   // Result in `$_variables` map:
 ///   $_variables: (
 ///     "button": (
@@ -295,7 +297,7 @@ $_variables: (
 ///       "foreground": #fff
 ///     )
 ///   );
-/// 
+///
 /// @example scss
 ///   @include css.set("button", (
 ///     "background": (
@@ -304,7 +306,7 @@ $_variables: (
 ///       "active": #fff,
 ///     )
 ///   ));
-/// 
+///
 ///   // Result in `$_variables` map:
 ///   $_variables: (
 ///     "button": (
@@ -323,15 +325,24 @@ $_variables: (
   // If prop is set to "*", update the module map in `$_variables` map.
   @else if ($prop == "*") or ($prop == "all") {
     @if (list.index($args, "merge")) {
-      $_variables: map.merge($_variables, ($module: $value)) !global;
+      $_variables: map.merge(
+        $_variables,
+        (
+          $module: $value
+        )
+      ) !global;
     } @else {
-      $_variables: map.deep-merge($_variables, ($module: $value)) !global;
+      $_variables: map.deep-merge(
+        $_variables,
+        (
+          $module: $value
+        )
+      ) !global;
     }
   }
 
   // If the provided prop is a map.
   @else if (meta.type-of($prop) == "map") {
-    
     // Add value to args if one exists.
     @if ($value) {
       $args: list.append($args, $value);
@@ -339,7 +350,6 @@ $_variables: (
 
     // Loop through the prop map.
     @each $propKey, $propValue in $prop {
-
       // Scenario: ("prop": ("prop": "value"))
       @if (meta.type-of($propValue) == "map") {
         @each $key, $value in $propValue {
@@ -347,7 +357,12 @@ $_variables: (
           @if (list.length($args) > 0) {
             @include usage.set($module, "#{$propKey}-#{$key}", $args...);
           }
-          $_variables: map.set($_variables, $module, "#{$propKey}-#{$key}", $value) !global;
+          $_variables: map.set(
+            $_variables,
+            $module,
+            "#{$propKey}-#{$key}",
+            $value
+          ) !global;
         }
       }
 
@@ -357,7 +372,12 @@ $_variables: (
         @if (list.length($args) > 0) {
           @include usage.set($module, $propKey, $args...);
         }
-        $_variables: map.set($_variables, $module, $propKey, $propValue) !global;
+        $_variables: map.set(
+          $_variables,
+          $module,
+          $propKey,
+          $propValue
+        ) !global;
       }
     }
   }
@@ -369,7 +389,12 @@ $_variables: (
       @if (list.length($args) > 0) {
         @include usage.set($module, "#{$prop}-#{$key}", $args...);
       }
-      $_variables: map.set($_variables, $module, "#{$prop}-#{$key}", $value) !global;
+      $_variables: map.set(
+        $_variables,
+        $module,
+        "#{$prop}-#{$key}",
+        $value
+      ) !global;
     }
   }
 
@@ -400,35 +425,35 @@ $_variables: (
   }
 }
 
-/// Mixin to override a previously defined custom property. This is primarily 
+/// Mixin to override a previously defined custom property. This is primarily
 /// used in the context of a modifier. Provided module and property must exist
 /// in the `$_variables` custom properties map.
 /// @param {string} $module
 ///   The module name to check the custom property under.
 /// @param {string | map} $prop
-///   The custom property name to override. Can be a map containing property and 
+///   The custom property name to override. Can be a map containing property and
 ///   value pairs
 /// @param {any} $value [null]
 ///   The property value to override with.
-/// 
+///
 /// @example scss
 ///   @include css.override("core", "background", #000);
-/// 
+///
 ///   // CSS Output
 ///   --vb-background: #000;
-/// 
+///
 /// @example scss
 ///   @include css.override("button", "background", #fff);
-/// 
+///
 ///   // CSS Output
 ///   --vb-button-background: #fff;
-/// 
+///
 /// @example scss
 ///   @include css.override("button", (
 ///     "background": #000,
 ///     "foreground": #fff
 ///   ));
-/// 
+///
 ///   // CSS Output
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
@@ -449,7 +474,7 @@ $_variables: (
   }
 }
 
-/// Output all the stored custom properties of a provided module or of all 
+/// Output all the stored custom properties of a provided module or of all
 /// modules. Provided module must exist in the `$_variables` map.
 /// @param {string} $module ["*"]
 ///   The module to output all custom properties from. If no module is passed or
@@ -458,7 +483,7 @@ $_variables: (
 ///   The output strategy to apply. Available options: "*", "all" or "used".
 ///   - "*" and "all" will output all stored custom properties.
 ///   - "used" will only output custom properties that have been referenced.
-/// 
+///
 /// @example scss
 ///   // Example value in `$_variables` map:
 ///   $_variables: (
@@ -468,12 +493,12 @@ $_variables: (
 ///       "border": 1px solid #000
 ///     )
 ///   );
-///   
+///
 ///   // SCSS input
 ///   :root {
 ///     @include css.output("button");
 ///   }
-/// 
+///
 ///   // CSS output
 ///   :root {
 ///     --vb-button-background: #555;
@@ -491,12 +516,15 @@ $_variables: (
     $moduleMap: map.get($_variables, $module);
     // Output custom properties via usage output.
     @include usage.output(
-      meta.get-mixin("define"), $module, $moduleMap, $strategy
+      meta.get-mixin("define"),
+      $module,
+      $moduleMap,
+      $strategy
     );
   }
 }
 
-/// Log to console either the entire `$_variables` custom properties map, a 
+/// Log to console either the entire `$_variables` custom properties map, a
 /// module map or module theme. Provided module must exist in the  `$_variables`
 /// custom properties map.
 /// @param {string} $module ["*"]
@@ -504,19 +532,17 @@ $_variables: (
 ///   log the entire map.
 @mixin log($module: "*", $props...) {
   @if ($module == "*") or ($module == "all") {
-    @include debug-map($_variables, "Custom properties of \"*\"");
-  }
-  
-  @else if _module-exists($module) {
+    @include debug-map($_variables, 'Custom properties of "*"');
+  } @else if _module-exists($module) {
     @if (list.length($props) > 0) {
       @include debug-map(
-        map.get($_variables, $module, $props...), 
-        "Custom properties of \"#{$module}\" > \"#{$props}\""
+        map.get($_variables, $module, $props...),
+        'Custom properties of "#{$module}" > "#{$props}"'
       );
     } @else {
       @include debug-map(
-        map.get($_variables, $module), 
-        "Custom properties of \"#{$module}\""
+        map.get($_variables, $module),
+        'Custom properties of "#{$module}"'
       );
     }
   }

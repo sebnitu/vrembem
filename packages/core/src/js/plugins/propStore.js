@@ -21,7 +21,7 @@ export function propStore(options = {}) {
     name: "propStore",
     defaults,
     options,
-    store: null,
+    store: null
   };
 
   const methods = {
@@ -55,13 +55,18 @@ export function propStore(options = {}) {
         const oldValue = _value;
         _value = newValue;
         // Conditionally store the value in local storage.
-        const condition = getValue(this.settings.condition, contextObj, newValue, oldValue);
+        const condition = getValue(
+          this.settings.condition,
+          contextObj,
+          newValue,
+          oldValue
+        );
         if (condition) {
           this.store.set(entry.id, newValue);
         }
         // Run the on change callback.
         await this.settings.onChange(contextObj, newValue, oldValue);
-      },
+      }
     });
 
     // Create the store object for binding entry to its local store value.
@@ -72,15 +77,17 @@ export function propStore(options = {}) {
       },
       set: (value) => {
         entry[this.settings.prop] = value;
-      },
+      }
     });
 
     // Conditionally set the initial value. Must be a truthy value.
-    entry[this.settings.prop] = await getValue(this.settings.value, contextObj) || entry[this.settings.prop];
+    entry[this.settings.prop] =
+      (await getValue(this.settings.value, contextObj)) ||
+      entry[this.settings.prop];
   }
 
   function getValue(obj, ...args) {
-    return (typeof obj === "function") ? obj(...args) : obj;
+    return typeof obj === "function" ? obj(...args) : obj;
   }
 
   async function removePropStore(entry) {
@@ -94,10 +101,11 @@ export function propStore(options = {}) {
   }
 
   function getKey(moduleName) {
-    const prop = this.settings.prop.charAt(0).toUpperCase() + this.settings.prop.slice(1);
-    const key = (this.settings.key || moduleName + prop);
+    const prop =
+      this.settings.prop.charAt(0).toUpperCase() + this.settings.prop.slice(1);
+    const key = this.settings.key || moduleName + prop;
     return this.settings.keyPrefix + key;
   }
 
-  return {...props, ...methods};
+  return { ...props, ...methods };
 }

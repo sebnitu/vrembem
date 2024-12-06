@@ -4,8 +4,16 @@
 @include core.form-control-set-size();
 @include css.register("switch");
 $accent: css.get("switch", "accent", css.get("form-control-accent")) !default;
-$background: css.get("switch", "background", css.get("form-control-background")) !default;
-$foreground: css.get("switch", "foreground", css.get("form-control-foreground")) !default;
+$background: css.get(
+  "switch",
+  "background",
+  css.get("form-control-background")
+) !default;
+$foreground: css.get(
+  "switch",
+  "foreground",
+  css.get("form-control-foreground")
+) !default;
 $size: css.get("switch", "size", css.get("form-control-size")) !default;
 
 $track-size: 1.25em !default;

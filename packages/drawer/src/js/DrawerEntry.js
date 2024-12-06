@@ -59,7 +59,7 @@ export class DrawerEntry extends CollectionEntry {
     if (this.state === null) {
       if (this.el.classList.contains(this.getSetting("stateOpened"))) {
         return await this.open(false, false);
-      } 
+      }
       if (this.el.classList.contains(this.getSetting("stateClosed"))) {
         return await this.close(false, false);
       }
@@ -88,7 +88,7 @@ export class DrawerEntry extends CollectionEntry {
   async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element.
     const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
-    this.dialog = (dialog) ? dialog : this.el;
+    this.dialog = dialog ? dialog : this.el;
 
     // Set tabindex="-1" so dialog is focusable via JS or click.
     if (this.getSetting("setTabindex")) {
@@ -102,7 +102,9 @@ export class DrawerEntry extends CollectionEntry {
     this.inlineState = this.state;
 
     // Set the initial mode.
-    this.mode = (this.el.classList.contains(this.getSetting("classModal"))) ? "modal" : "inline";
+    this.mode = this.el.classList.contains(this.getSetting("classModal"))
+      ? "modal"
+      : "inline";
   }
 
   async onDestroyEntry() {

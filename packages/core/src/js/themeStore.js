@@ -6,7 +6,7 @@ export function themeStore(options) {
   const settings = {
     prefix: cssVar("prefix-themes", { fallback: "vb-theme-" }),
     themes: ["root", "light", "dark"],
-    storeKey: "VB:Profile",
+    storeKey: "VB:Profile"
   };
 
   // Override all settings values with provided options.
@@ -19,7 +19,7 @@ export function themeStore(options) {
   // Setup the default callbacks object.
   const callbacks = {
     onInit() {},
-    onChange() {},
+    onChange() {}
   };
 
   // Override all callback values with provided options.
@@ -43,7 +43,7 @@ export function themeStore(options) {
     },
     remove(value) {
       const index = settings.themes.indexOf(value);
-      (~index && settings.themes.splice(index, 1));
+      ~index && settings.themes.splice(index, 1);
     },
     callback(name) {
       callbacks[name].call(this);
@@ -82,7 +82,7 @@ export function themeStore(options) {
         // Throw a console error if the theme doesn't exist as an option.
         console.error(`Not a valid theme value: "${value}"`);
       }
-    },
+    }
   };
 
   // Run the on initialization callback.

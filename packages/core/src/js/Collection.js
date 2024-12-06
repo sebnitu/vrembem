@@ -62,11 +62,13 @@ export class Collection {
 
     // Throw an error if element wasn't found.
     if (element === null) {
-      throw new Error(`${this.module} element was not found with ID: "${query?.id || query}"`);
+      throw new Error(
+        `${this.module} element was not found with ID: "${query?.id || query}"`
+      );
     }
 
     // Check if the element with the provided ID has already been registered.
-    const index = this.collection.findIndex(item => item.id === element.id);
+    const index = this.collection.findIndex((item) => item.id === element.id);
     if (~index) {
       // Get the entry from the collection.
       const entry = this.collection[index];
@@ -97,7 +99,11 @@ export class Collection {
       const entry = await this.destroyEntry(this.collection[index]);
 
       // Dispatch onDeregisterEntry lifecycle hooks.
-      await dispatchLifecycleHook("onDeregisterEntry", this, this.collection[index]);
+      await dispatchLifecycleHook(
+        "onDeregisterEntry",
+        this,
+        this.collection[index]
+      );
 
       // Remove the entry from the collection.
       this.collection.splice(index, 1);

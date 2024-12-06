@@ -14,7 +14,10 @@ export async function handleClick(event) {
 
     // If it's a toggle trigger...
     if (trigger.matches(`[data-${this.settings.dataToggle}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataToggle}`).trim().split(" ");
+      const selectors = trigger
+        .getAttribute(`data-${this.settings.dataToggle}`)
+        .trim()
+        .split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
         const entry = getDrawer.call(this, selector);
@@ -27,7 +30,10 @@ export async function handleClick(event) {
 
     // If it's a open trigger...
     if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim().split(" ");
+      const selectors = trigger
+        .getAttribute(`data-${this.settings.dataOpen}`)
+        .trim()
+        .split(" ");
       selectors.forEach((selector) => {
         // Get the entry from collection using the attribute value.
         const entry = getDrawer.call(this, selector);
@@ -40,7 +46,10 @@ export async function handleClick(event) {
 
     // If it's a close trigger...
     if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
-      const selectors = trigger.getAttribute(`data-${this.settings.dataClose}`).trim().split(" ");
+      const selectors = trigger
+        .getAttribute(`data-${this.settings.dataClose}`)
+        .trim()
+        .split(" ");
       selectors.forEach((selector) => {
         if (selector) {
           // Get the entry from collection using the attribute value.

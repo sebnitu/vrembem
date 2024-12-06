@@ -6,19 +6,18 @@ export default [
   js.configs.recommended,
   eslintConfigPrettier,
   {
-    ignores: [
-      "**/dev/**/*",
-      "**/dist/**/*"
-    ]
-  }, {
+    ignores: ["**/dev/**/*", "**/dist/**/*"]
+  },
+  {
     name: "vb/src",
     files: ["**/src/**/*"],
     languageOptions: {
       globals: {
         ...globals.browser
       }
-    },
-  }, {
+    }
+  },
+  {
     name: "vb/tests",
     files: ["**/tests/**/*"],
     languageOptions: {
@@ -34,14 +33,15 @@ export default [
         beforeEach: "readonly",
         afterEach: "readonly"
       }
-    },
-  }, {
+    }
+  },
+  {
     name: "vb/config",
     files: ["**/*.config.js"],
     languageOptions: {
       globals: {
         ...globals.node
       }
-    },
+    }
   }
 ];

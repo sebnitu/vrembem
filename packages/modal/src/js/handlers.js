@@ -14,7 +14,9 @@ export async function handleClick(event) {
 
     // If it's a open trigger...
     if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataOpen}`).trim();
+      const selector = trigger
+        .getAttribute(`data-${this.settings.dataOpen}`)
+        .trim();
       // Get the entry from collection using the attribute value.
       const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
@@ -26,7 +28,9 @@ export async function handleClick(event) {
 
     // If it's a replace trigger...
     if (trigger.matches(`[data-${this.settings.dataReplace}]`)) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataReplace}`).trim();
+      const selector = trigger
+        .getAttribute(`data-${this.settings.dataReplace}`)
+        .trim();
       // Get the entry from collection using the attribute value.
       const entry = getModal.call(this, selector);
       // Store the trigger on the entry if it's not from inside a modal.
@@ -37,8 +41,10 @@ export async function handleClick(event) {
     }
 
     if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
-      const selector = trigger.getAttribute(`data-${this.settings.dataClose}`).trim();
-      return (selector === "*") ? this.closeAll() : this.close(selector);
+      const selector = trigger
+        .getAttribute(`data-${this.settings.dataClose}`)
+        .trim();
+      return selector === "*" ? this.closeAll() : this.close(selector);
     }
   }
 
@@ -57,7 +63,10 @@ export function handleKeydown(event) {
   // If escape key was pressed.
   if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal.
-    if (this.active && !this.active.dialog.matches(this.settings.selectorRequired)) {
+    if (
+      this.active &&
+      !this.active.dialog.matches(this.settings.selectorRequired)
+    ) {
       return this.close();
     }
   }

@@ -11,10 +11,10 @@
 /// @type map
 /// @access private
 $_seeds: (
-  "primary":   hsl(152 60% 50%),
+  "primary": hsl(152 60% 50%),
   "secondary": hsl(214 50% 50%),
-  "neutral":   hsl(214 20% 50%),
-  "important": hsl(0 80% 50%),
+  "neutral": hsl(214 20% 50%),
+  "important": hsl(0 80% 50%)
 );
 
 /// The default color lightness to use when referencing a color.
@@ -33,16 +33,28 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
 ///   A list of lightness values to generate the palette map from.
 /// @param {number} $default [$lightness-default]
 ///   The default lightness value. Used to generate the shorthand property.
-@function build($seeds: $_seeds, $range: $lightness-range, $default: $lightness-default) {
+@function build(
+  $seeds: $_seeds,
+  $range: $lightness-range,
+  $default: $lightness-default
+) {
   @if usage.remove("palette") {
     $result: ();
     @each $name, $value in $seeds {
       $result: map.set($result, "#{$name}-hs", get-hs($value));
       @if ($default) {
-        $result: map.set($result, "#{$name}", css.reference("palette", "#{$name}-#{$default}"));
+        $result: map.set(
+          $result,
+          "#{$name}",
+          css.reference("palette", "#{$name}-#{$default}")
+        );
       }
       @each $value in $range {
-        $result: map.set($result, "#{$name}-#{$value}", hsl(#{css.reference("palette", "#{$name}-hs") $value + '%'}));
+        $result: map.set(
+          $result,
+          "#{$name}-#{$value}",
+          hsl(#{css.reference("palette", "#{$name}-hs") $value + "%"})
+        );
       }
     }
     @return $result;
@@ -57,7 +69,7 @@ $_palette: build();
 /// Function to return a palette color. If called with no color name, the entire
 /// palette map is returned. The following lightness formats are accepted:
 ///   $lightness: "seed" - Return the seed value.
-///   $lightness: Number - Return the specified lightness CSS var from the 
+///   $lightness: Number - Return the specified lightness CSS var from the
 ///     palette map.
 ///   $lightness: Percentage - Return the hsl value of the color.
 ///   $alpha: Number - Return the hsl value with an alpha channel of the color.
@@ -72,7 +84,7 @@ $_palette: build();
 ///   Return format depends on the requested value.
 @function get($name: null, $query: $lightness-default, $alpha: null) {
   // Return the palette map if no name is provided.
-  @if not ($name) {
+  @if not($name) {
     // Build the `$_palette` map before output.
     @return $_palette;
   }
@@ -89,7 +101,9 @@ $_palette: build();
 
   // If an alpha value is passed, return hsl with the alpha.
   @else if ($alpha) {
-    @return hsl(#{css.reference("palette", "#{$name}-hs") $query + ' / ' + $alpha});
+    @return hsl(
+      #{css.reference("palette", "#{$name}-hs") $query + " / " + $alpha}
+    );
   }
 
   // If the specified query value exists in the palette map, return its value.
@@ -113,8 +127,7 @@ $_palette: build();
 @mixin set($name, $value: null) {
   @if (meta.type-of($name) == "map") {
     $_seeds: map.merge($_seeds, $name) !global;
-  }
-  @else {
+  } @else {
     $_seeds: map.set($_seeds, $name, $value) !global;
   }
   // Run build since `$_seeds` has been modified.
@@ -141,7 +154,10 @@ $_palette: build();
 @mixin output($strategy: config.get("output-strategy")) {
   // Output custom properties via usage output.
   @include usage.output(
-    meta.get-mixin("define", "css"), "palette", $_palette, $strategy
+    meta.get-mixin("define", "css"),
+    "palette",
+    $_palette,
+    $strategy
   );
 }
 

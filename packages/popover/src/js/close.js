@@ -2,11 +2,12 @@ import { getPopover } from "./helpers";
 
 export async function close(query) {
   // Get the popover from collection.
-  const popover = (query) ? getPopover.call(this, query) : await closeAll.call(this);
+  const popover = query
+    ? getPopover.call(this, query)
+    : await closeAll.call(this);
 
   // If a modal exists and its state is opened.
   if (popover && popover.state === "opened") {
-
     // Update inert state and state class.
     popover.el.inert = true;
     popover.el.classList.remove(this.settings.stateActive);
@@ -28,9 +29,12 @@ export async function close(query) {
     }
 
     // Dispatch custom closed event.
-    popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "closed", {
-      detail: this, bubbles: true
-    }));
+    popover.el.dispatchEvent(
+      new CustomEvent(popover.getSetting("customEventPrefix") + "closed", {
+        detail: this,
+        bubbles: true
+      })
+    );
 
     // Emit the closed event.
     await popover.parent.emit("closed", popover);
@@ -42,11 +46,13 @@ export async function close(query) {
 
 export async function closeAll() {
   const result = [];
-  await Promise.all(this.collection.map(async (popover) => {
-    if (popover.state === "opened") {
-      result.push(await close.call(this, popover));
-    }
-  }));
+  await Promise.all(
+    this.collection.map(async (popover) => {
+      if (popover.state === "opened") {
+        result.push(await close.call(this, popover));
+      }
+    })
+  );
   return result;
 }
 

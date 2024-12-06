@@ -123,8 +123,10 @@ describe("open(), close() & toggle()", () => {
   });
 
   it("should throw if trying to open unregistered drawer", async () => {
-    const result = await drawer.open("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Drawer not found in collection with id of \"asdf\".");
+    const result = await drawer.open("asdf").catch((error) => {
+      return error.message;
+    });
+    expect(result).toBe('Drawer not found in collection with id of "asdf".');
   });
 });
 
@@ -196,8 +198,10 @@ describe("register() & deregister()", () => {
   });
 
   it("should reject promise with error if register is called on non-existent drawer", async () => {
-    const result = await drawer.register("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Drawer element was not found with ID: \"asdf\"");
+    const result = await drawer.register("asdf").catch((error) => {
+      return error.message;
+    });
+    expect(result).toBe('Drawer element was not found with ID: "asdf"');
   });
 
   it("should use the root drawer element as dialog if selector returned null", async () => {

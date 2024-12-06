@@ -12,7 +12,10 @@
 ///   Additional strings appended as modifiers to the class selector.
 /// @return {selector}
 ///   A valid base module CSS selector.
-@function selector($module, $args...) {
+@function selector(
+  $module,
+  $args...
+) {
   // Initialize the name variable.
   $name: $module;
 
@@ -31,7 +34,7 @@
     // Ensure that it's not an empty string.
     @if $arg != "" {
       // Append $arg to $class with a dash delimiter.
-      $class: '#{$class}-#{$arg}';
+      $class: "#{$class}-#{$arg}";
     }
   }
 

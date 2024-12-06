@@ -49,7 +49,9 @@ export async function open(query) {
       ]
     }).then(({ x, y, placement, middlewareData }) => {
       // Guard in case there is no popover element.
-      if (!popover.el) { return; }
+      if (!popover.el) {
+        return;
+      }
 
       // Apply popover left and top position.
       applyPositionStyle(popover.el, x, y);
@@ -75,9 +77,12 @@ export async function open(query) {
   }
 
   // Dispatch custom opened event.
-  popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "opened", {
-    detail: this, bubbles: true
-  }));
+  popover.el.dispatchEvent(
+    new CustomEvent(popover.getSetting("customEventPrefix") + "opened", {
+      detail: this,
+      bubbles: true
+    })
+  );
 
   // Emit the opened event.
   await popover.parent.emit("opened", popover);

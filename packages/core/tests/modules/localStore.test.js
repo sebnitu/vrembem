@@ -21,7 +21,7 @@ test("should restore the state of an existing local storage object", () => {
 
 test("should return the store object when get is not provided a param", () => {
   const store = localStore("asdf");
-  expect(store.get()).toEqual({ "asdf": "fdsa" });
+  expect(store.get()).toEqual({ asdf: "fdsa" });
 });
 
 test("should disable saving local storage if enable param is set to false", () => {

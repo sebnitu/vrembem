@@ -21,13 +21,9 @@
 
   @if $direction == "up" {
     transform: rotate(180deg);
-  }
-
-  @else if $direction == "left" {
+  } @else if $direction == "left" {
     transform: rotate(90deg);
-  }
-
-  @else if $direction == "right" {
+  } @else if $direction == "right" {
     transform: rotate(-90deg);
   }
 }

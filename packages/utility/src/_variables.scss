@@ -7,7 +7,7 @@ $output-exceptions: () !default;
 
 $classes: (
   "border-radius": "radius",
-  "box-shadow": "shadow",
+  "box-shadow": "shadow"
 ) !default;
 
 $breakpoints: core.$breakpoints !default;
@@ -43,13 +43,7 @@ $max-width-scale: (
 
 $order-count: 6 !default;
 
-$overflow-properties: (
-  visible,
-  hidden,
-  clip,
-  scroll,
-  auto
-) !default;
+$overflow-properties: (visible, hidden, clip, scroll, auto) !default;
 
 $gap: core.$gap !default;
 $gap-map: core.$gap-map !default;

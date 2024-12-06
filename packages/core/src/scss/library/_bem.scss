@@ -30,16 +30,16 @@
   @if ($bp) {
     // Add the colon if it doesn't exist.
     @if not string.index($bp, ":") {
-      $bp: '#{$bp}:';
+      $bp: "#{$bp}:";
     }
 
     // Escape the colon.
     $bp: escape-colon($bp);
 
     // Prepend the breakpoint modifier to class.
-    $class: '#{$bp}#{$class}';
+    $class: "#{$bp}#{$class}";
   }
 
   // Return class with as a class selector.
-  @return '.#{$class}';
+  @return ".#{$class}";
 }

@@ -33,7 +33,7 @@
 
 #{core.bem("flex", null, "items", "full")} {
   flex-wrap: wrap;
-  
+
   > * {
     flex: 1 0 100%;
   }
@@ -46,34 +46,34 @@
         flex: initial; // Equivalent to setting flex: 0 1 auto.
       }
     }
-    
+
     #{core.bem("flex", null, "items", "auto", $bp)} {
       > * {
         flex: auto; // Equivalent to setting flex: 1 1 auto.
       }
     }
-    
+
     #{core.bem("flex", null, "items", "none", $bp)} {
       > * {
         flex: none; // Equivalent to setting flex: 0 0 auto.
       }
     }
-    
+
     #{core.bem("flex", null, "items", "equal", $bp)} {
       > * {
         flex: 1 1 0;
       }
     }
-    
+
     #{core.bem("flex", null, "items", "fill", $bp)} {
       > * {
         flex: 1 0 auto;
       }
     }
-    
+
     #{core.bem("flex", null, "items", "full", $bp)} {
       flex-wrap: wrap;
-      
+
       > * {
         flex: 1 0 100%;
       }
@@ -110,23 +110,23 @@
     #{core.bem("flex-initial", $bp: $bp)} {
       flex: initial; // Equivalent to setting flex: 0 1 auto.
     }
-    
+
     #{core.bem("flex-auto", $bp: $bp)} {
       flex: auto; // Equivalent to setting flex: 1 1 auto.
     }
-    
+
     #{core.bem("flex-none", $bp: $bp)} {
       flex: none; // Equivalent to setting flex: 0 0 auto.
     }
-    
+
     #{core.bem("flex-equal", $bp: $bp)} {
       flex: 1 1 0;
     }
-    
+
     #{core.bem("flex-fill", $bp: $bp)} {
       flex: 1 0 auto;
     }
-    
+
     #{core.bem("flex-full", $bp: $bp)} {
       flex: 1 0 100%;
     }

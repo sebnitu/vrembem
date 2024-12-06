@@ -1,6 +1,8 @@
 function selectTab(active, tabs) {
   tabs.forEach((tab) => {
-    const tabpanel = document.querySelector(`#${tab.getAttribute("aria-controls")}`);
+    const tabpanel = document.querySelector(
+      `#${tab.getAttribute("aria-controls")}`
+    );
     if (active === tab) {
       tab.setAttribute("aria-selected", "true");
       tab.removeAttribute("tabindex");
@@ -51,9 +53,9 @@ function handlerKeydown(tabs, event) {
 const tabs = {
   mount() {
     // Get all the tablists.
-    const tablists = document.querySelectorAll("[role=\"tablist\"]");
+    const tablists = document.querySelectorAll('[role="tablist"]');
     tablists.forEach((tablist) => {
-      const tabs = tablist.querySelectorAll("[role=\"tab\"]");
+      const tabs = tablist.querySelectorAll('[role="tab"]');
 
       // Select the first tab.
       selectTab(tabs[0], tabs);

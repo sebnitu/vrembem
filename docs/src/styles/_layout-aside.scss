@@ -15,7 +15,9 @@
   padding: css.get("layout", "drawer-padding");
   overflow: hidden auto;
   transform: translate(100%);
-  transition: opacity .5s, transform .25s ease;
+  transition:
+    opacity 0.5s,
+    transform 0.25s ease;
   outline: none;
   background-color: css.get("background-darker");
   box-shadow: css.get("box-shadow-5");
@@ -28,7 +30,9 @@
   &.is-opening {
     visibility: visible;
     transform: translate(0);
-    transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition:
+      opacity 0.25s,
+      transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 1;
   }
 
@@ -59,13 +63,15 @@
     opacity: 1;
     inset: 0 auto auto;
   }
-  
+
   .layout-aside__container {
     position: fixed;
     top: 0;
     width: css.get("layout", "aside-width");
     height: 100vh;
-    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
+    padding: calc(css.get("layout", "navibar-height") + 2rem)
+      css.get("layout", "aside-padding")
+      calc(css.get("layout", "footer-height") + 8rem);
     overflow: hidden auto;
     scroll-behavior: smooth;
   }

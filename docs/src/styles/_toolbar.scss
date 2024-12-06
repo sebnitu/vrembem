@@ -30,7 +30,9 @@
   right: css.get("layout", "padding");
   visibility: hidden;
   transform: translate(100%);
-  transition: opacity .5s, transform .25s ease;
+  transition:
+    opacity 0.5s,
+    transform 0.25s ease;
   opacity: 0;
 
   @include core.media-min(var.$bp-drawer) {

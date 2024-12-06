@@ -32,10 +32,10 @@ beforeAll(async () => {
   modal2 = modal.get("modal-2");
   modal3 = modal.get("modal-3");
 
-  btn1 = document.querySelector("[data-modal-open=\"modal-1\"]");
-  btn2 = document.querySelector("[data-modal-open=\"modal-2\"]");
-  btn3 = document.querySelector("[data-modal-open=\"modal-3\"]");
-  btn4 = document.querySelector("#modal-3 [data-modal-open=\"modal-2\"]");
+  btn1 = document.querySelector('[data-modal-open="modal-1"]');
+  btn2 = document.querySelector('[data-modal-open="modal-2"]');
+  btn3 = document.querySelector('[data-modal-open="modal-3"]');
+  btn4 = document.querySelector('#modal-3 [data-modal-open="modal-2"]');
   btnCloseAll = document.querySelector("[data-modal-close]");
 });
 

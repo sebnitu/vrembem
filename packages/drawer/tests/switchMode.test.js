@@ -17,7 +17,7 @@ document.body.innerHTML = `
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: vi.fn().mockImplementation(query => ({
+  value: vi.fn().mockImplementation((query) => ({
     get matches() {
       return matches(query, window.innerWidth);
     },
@@ -25,8 +25,8 @@ Object.defineProperty(window, "matchMedia", {
     onchange: null,
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+    dispatchEvent: vi.fn()
+  }))
 });
 
 function matches(query, value) {
@@ -37,7 +37,7 @@ function matches(query, value) {
 }
 
 function hasChanged(query, prev, next) {
-  return (matches(query, prev) !== matches(query, next));
+  return matches(query, prev) !== matches(query, next);
 }
 
 function resizeWindow(value, collection) {
@@ -51,13 +51,9 @@ function resizeWindow(value, collection) {
   window.dispatchEvent(new Event("resize"));
 }
 
-const drawer = new Drawer({ 
+const drawer = new Drawer({
   transition: false,
-  plugins: [
-    focusTrap(),
-    mediaQuery(),
-    propStore()
-  ]
+  plugins: [focusTrap(), mediaQuery(), propStore()]
 });
 
 beforeAll(async () => {
@@ -182,7 +178,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
   } catch (error) {
     result = error.message;
   }
-  expect(result).toBe("\"asdf\" is not a valid drawer mode.");
+  expect(result).toBe('"asdf" is not a valid drawer mode.');
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {

@@ -4,13 +4,13 @@ import { toMilliseconds } from "./toMilliseconds";
 /**
  * Get the value of a CSS custom property (variable).
  * @param {Node} el - The element to transition.
- * @param {String} init - The initial state class. 
+ * @param {String} init - The initial state class.
  * @param {String} interim - The interim state class.
  * @param {String} final - The final state class.
- * @param {Number || String} [duration=0] - Either a CSS 
- *   custom property to get a duration value from or a millisecond value used 
+ * @param {Number || String} [duration=0] - Either a CSS
+ *   custom property to get a duration value from or a millisecond value used
  *   for the transition duration.
- * @return {Promise} Return a promise that resolves when the transition 
+ * @return {Promise} Return a promise that resolves when the transition
  *   has finished.
  */
 export function transition(el, init, interim, final, duration = 0) {

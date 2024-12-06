@@ -25,7 +25,9 @@ function onThisPage(options = {}) {
   function register(anchor) {
     // Get the heading using the menu action's href.
     const href = anchor.getAttribute("href");
-    const heading = document.querySelector(`${settings.selectorHeadings} ${href}`);
+    const heading = document.querySelector(
+      `${settings.selectorHeadings} ${href}`
+    );
 
     // Guard if there is no heading returned.
     if (!heading) return;
@@ -55,12 +57,12 @@ function onThisPage(options = {}) {
     // Filter out entries that have a positive top value.
     const pos = collection.filter((entry) => entry.top <= 0);
     // Find the entry with a negative top value that is closest to zero.
-    const min = Math.max(...pos.map(entry => entry.top));
-    const result = collection.filter(entry => entry.top === min);
+    const min = Math.max(...pos.map((entry) => entry.top));
+    const result = collection.filter((entry) => entry.top === min);
 
     // Set the active state of entries by comparing them with the result.
     collection.forEach((entry) => {
-      entry.active = (entry === result[0]);
+      entry.active = entry === result[0];
     });
 
     // Close the modal drawer if open.
