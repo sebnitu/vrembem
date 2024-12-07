@@ -14,7 +14,7 @@ $travel: 5em !default;
 $transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
 $transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
 
-// Dialog override map is used to override `dialog` custom properties.
+// Dialog override map is used to override `dialog` custom properties
 $dialog-override: () !default;
 
 // modal_pos_[value]

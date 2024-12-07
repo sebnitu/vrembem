@@ -52,15 +52,15 @@ function handlerKeydown(tabs, event) {
 
 const tabs = {
   mount() {
-    // Get all the tablists.
+    // Get all the tablists
     const tablists = document.querySelectorAll('[role="tablist"]');
     tablists.forEach((tablist) => {
       const tabs = tablist.querySelectorAll('[role="tab"]');
 
-      // Select the first tab.
+      // Select the first tab
       selectTab(tabs[0], tabs);
 
-      // Setup event listeners for tabs.
+      // Setup event listeners for tabs
       tabs.forEach((tab) => {
         const __handlerKeydown = handlerKeydown.bind(null, tabs);
 

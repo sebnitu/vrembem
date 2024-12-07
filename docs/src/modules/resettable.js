@@ -1,7 +1,7 @@
 const saves = [];
 const btns = document.querySelectorAll("[data-reset]");
 
-// Build the saves array.
+// Build the saves array
 btns.forEach((btn) => {
   const value = btn.getAttribute("data-reset");
   const result = document.getElementById(`${value}`);
@@ -14,7 +14,7 @@ btns.forEach((btn) => {
   }
 });
 
-// Add event listener for reset button clicks.
+// Add event listener for reset button clicks
 document.addEventListener(
   "click",
   (event) => {

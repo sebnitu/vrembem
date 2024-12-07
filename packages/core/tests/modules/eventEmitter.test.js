@@ -9,7 +9,7 @@ Object.assign(baseObj, eventEmitter);
 
 describe("eventEmitter", () => {
   afterEach(() => {
-    // Clear events after each test.
+    // Clear events after each test
     baseObj.events = {};
   });
 
@@ -25,7 +25,7 @@ describe("eventEmitter", () => {
   it("should prevent duplicate listeners for the same event", () => {
     const mockListener = vi.fn();
     baseObj.on("testEvent", mockListener);
-    baseObj.on("testEvent", mockListener); // Attempt to add a duplicate.
+    baseObj.on("testEvent", mockListener); // Attempt to add a duplicate
 
     expect(baseObj.events["testEvent"]).toHaveLength(1);
   });

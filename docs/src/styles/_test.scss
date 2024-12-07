@@ -12,7 +12,7 @@
 
 // TEST 1
 // ---
-// Using core theme properties directly.
+// Using core theme properties directly
 
 .test-1 {
   background: css.get("background");
@@ -43,7 +43,7 @@
 
 // TEST 3
 // ---
-// Using core theme properties as values of new themes.
+// Using core theme properties as values of new themes
 
 @include theme.set(
   "test-3",

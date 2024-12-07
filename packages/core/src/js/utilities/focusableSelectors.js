@@ -1,5 +1,5 @@
 // This has been copied over from focusable-selectors package and modified.
-// https://github.com/KittyGiraudel/focusable-selectors
+// Source: https://github.com/KittyGiraudel/focusable-selectors
 const notInert = ":not([inert])"; // Previously `:not([inert]):not([inert] *)`
 const notNegTabIndex = ':not([tabindex^="-"])';
 const notDisabled = ":not(:disabled)";

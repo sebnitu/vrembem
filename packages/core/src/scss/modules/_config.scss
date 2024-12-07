@@ -71,7 +71,7 @@ $-options: (
     $result: map.set($result, $key, $value);
   }
 
-  // Save our updated map.
+  // Save our updated map
   $-options: $result !global;
 }
 

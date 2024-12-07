@@ -44,7 +44,7 @@ export function propStore(options = {}) {
   };
 
   async function setupPropStore(entry) {
-    // Store the initial property value. Set to null if property doesn't exist.
+    // Store the initial property value. Set to null if property doesn't exist
     let _value = entry[this.settings.prop] || null;
     const contextObj = { plugin: this, parent: entry.parent, entry };
 

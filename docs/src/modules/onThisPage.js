@@ -23,16 +23,16 @@ function onThisPage(options = {}) {
   }
 
   function register(anchor) {
-    // Get the heading using the menu action's href.
+    // Get the heading using the menu action's href
     const href = anchor.getAttribute("href");
     const heading = document.querySelector(
       `${settings.selectorHeadings} ${href}`
     );
 
-    // Guard if there is no heading returned.
+    // Guard if there is no heading returned
     if (!heading) return;
 
-    // Build the entry object.
+    // Build the entry object
     const entry = {
       anchor: anchor,
       heading: heading,
@@ -49,23 +49,23 @@ function onThisPage(options = {}) {
       }
     };
 
-    // Push entry into otp array.
+    // Push entry into otp array
     collection.push(entry);
   }
 
   function setActive() {
-    // Filter out entries that have a positive top value.
+    // Filter out entries that have a positive top value
     const pos = collection.filter((entry) => entry.top <= 0);
-    // Find the entry with a negative top value that is closest to zero.
+    // Find the entry with a negative top value that is closest to zero
     const min = Math.max(...pos.map((entry) => entry.top));
     const result = collection.filter((entry) => entry.top === min);
 
-    // Set the active state of entries by comparing them with the result.
+    // Set the active state of entries by comparing them with the result
     collection.forEach((entry) => {
       entry.active = entry === result[0];
     });
 
-    // Close the modal drawer if open.
+    // Close the modal drawer if open
     if (drawer.activeModal && drawer.activeModal.id === "layout-aside") {
       drawer.activeModal.close();
     }

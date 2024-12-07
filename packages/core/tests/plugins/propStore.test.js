@@ -44,7 +44,7 @@ describe("propStore", () => {
   });
 
   it("should remove propStore from an entry if it is deregistered", async () => {
-    // Initial setup for propStore.
+    // Initial setup for propStore
     await collection.mount({
       plugins: [
         propStore({
@@ -55,24 +55,24 @@ describe("propStore", () => {
       ]
     });
 
-    // Get a reference to the plugin's local store object.
+    // Get a reference to the plugin's local store object
     const store = collection.plugins.get("propStore").store;
 
     const entry = collection.get("entry-1");
-    // Check that the property and initial value has been added to entry.
+    // Check that the property and initial value has been added to entry
     expect(entry.example).toBe("asdf");
-    // Check that the value of entry has been stored in local storage.
+    // Check that the value of entry has been stored in local storage
     expect(store.get("entry-1")).toBe("asdf");
 
-    // Deregister the entry from the collection.
+    // Deregister the entry from the collection
     await collection.deregister("entry-1");
 
-    // Check that the property has been removed.
+    // Check that the property has been removed
     expect(entry.example).toBe(undefined);
-    // Check that the value of entry has been removed from local storage.
+    // Check that the value of entry has been removed from local storage
     expect(store.get("entry-1")).toBe(undefined);
 
-    // Ensure that the other entries still have their values stored in local storage.
+    // Ensure that the other entries still have their values stored in local storage
     expect(store.get("entry-2")).toBe("asdf");
     expect(store.get("entry-3")).toBe("asdf");
   });
@@ -112,18 +112,18 @@ describe("propStore", () => {
     });
     const entry = collection.get("entry-1");
 
-    // Ensure onChange has not been called.
+    // Ensure onChange has not been called
     expect(spyFunction).toBeCalledTimes(0);
 
-    // Set the value of the prop and ensure onChange is called once.
+    // Set the value of the prop and ensure onChange is called once
     entry.example = "asdf";
     expect(spyFunction).toBeCalledTimes(1);
 
-    // Set the value again but ensure onChange is NOT called again since the value has not changed.
+    // Set the value again but ensure onChange is NOT called again since the value has not changed
     entry.example = "asdf";
     expect(spyFunction).toBeCalledTimes(1);
 
-    // Ensure that setting the prop to a different value does fire onChange.
+    // Ensure that setting the prop to a different value does fire onChange
     entry.example = "fdsa";
     expect(spyFunction).toBeCalledTimes(2);
   });
@@ -139,12 +139,12 @@ describe("propStore", () => {
     });
     const entry = collection.get("entry-3");
 
-    // Setting the property directly should update store.
+    // Setting the property directly should update store
     entry.example = "test";
     expect(entry.store).toBe("test");
     expect(entry.example).toBe("test");
 
-    // Setting the store value directly should update the property.
+    // Setting the store value directly should update the property
     entry.store = "new";
     expect(entry.store).toBe("new");
     expect(entry.example).toBe("new");
@@ -185,11 +185,11 @@ describe("propStore", () => {
 
   it("should set an anonymous empty function by default", async () => {
     await collection.mount({ plugins: [propStore()] });
-    // Get the plugin from the plugins array.
+    // Get the plugin from the plugins array
     const plugin = collection.plugins.get("propStore");
-    // Ensure that onChange is a function.
+    // Ensure that onChange is a function
     expect(typeof plugin.settings.onChange).toBe("function");
-    // Ensure that onChange does not throw when called.
+    // Ensure that onChange does not throw when called
     expect(() => plugin.settings.onChange()).not.toThrow();
   });
 });

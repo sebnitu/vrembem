@@ -66,7 +66,7 @@ $-theme-keys: "light", "dark";
 ///   @include theme.set("card", "dark");
 ///
 @mixin set($module, $theme, $prop: null, $value: null) {
-  // Set theme to default if the value "default" is passed.
+  // Set theme to default if the value "default" is passed
   @if $theme == "default" {
     $theme: config.get("default-theme");
   }
@@ -80,10 +80,10 @@ $-theme-keys: "light", "dark";
     $module: "core";
   }
 
-  // Initialize the results var with the variables module map.
+  // Initialize the results var with the variables module map
   $result: css.get("*");
 
-  // If the value is a map, apply it with deep-merge.
+  // If the value is a map, apply it with deep-merge
   @if meta.type-of($prop) == "map" {
     $result: map.deep-merge(
       $result,
@@ -95,12 +95,12 @@ $-theme-keys: "light", "dark";
     );
   }
 
-  // If no property or value are provided, create a theme with an empty map.
+  // If no property or value are provided, create a theme with an empty map
   @else if not ($prop) and not ($value) {
     $result: map.set($result, $module, $theme, empty-map());
   }
 
-  // Otherwise, just set the value directly.
+  // Otherwise, just set the value directly
   @else {
     $result: map.set($result, $module, $theme, $prop, $value);
   }
@@ -139,15 +139,15 @@ $-theme-keys: "light", "dark";
 ///
 @mixin remove($module, $theme, $prop: "*") {
   @if $module == "*" or $module == "all" {
-    // Call output() for every module in `css.$_variables`.
+    // Call output() for every module in `css.$_variables`
     @each $module in map.keys(css.get("*")) {
       @include remove($module, $theme, $prop);
     }
 
-    // Remove the theme from theme-keys.
+    // Remove the theme from theme-keys
     @include -remove-theme-key($theme);
   } @else {
-    // Initialize the result with the module map.
+    // Initialize the result with the module map
     $result: css.get($module, "*");
 
     // Remove all themes from module
@@ -158,7 +158,7 @@ $-theme-keys: "light", "dark";
       }
     }
 
-    // Remove the theme from module.
+    // Remove the theme from module
     // Example: theme.remove("module", "light", "*")
     @else if $theme != "*" and $prop == "*" {
       $result: map.deep-remove($result, $theme);
@@ -172,13 +172,13 @@ $-theme-keys: "light", "dark";
       }
     }
 
-    // Remove the prop from the module theme.
+    // Remove the prop from the module theme
     // Example: theme.remove("module", "dark", "prop")
     @else {
       $result: map.deep-remove($result, $theme, $prop);
     }
 
-    // Save the results to `css.$_variables`.
+    // Save the results to `css.$_variables`
     @include css.set($module, "*", $result, "merge");
   }
 }
@@ -210,32 +210,32 @@ $-theme-keys: "light", "dark";
 ///
 @mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
   @if $module == "*" or $module == "all" {
-    // Call output() for every module in `css.$_variables`.
+    // Call output() for every module in `css.$_variables`
     @each $module in map.keys(css.get("*")) {
       @include output-theme($module, $theme, $strategy, $args...);
     }
   } @else {
-    // Initialize the module map.
+    // Initialize the module map
     $module-map: css.get($module, "*");
 
-    // Check if the theme exists for the module in variables map.
+    // Check if the theme exists for the module in variables map
     @if map.has-key($module-map, $theme) {
-      // Save a copy of the module map from variables.
+      // Save a copy of the module map from variables
       $module-theme-map: map.get($module-map, $theme);
 
-      // Get a reference of the color scheme property and remove it from the map.
+      // Get a reference of the color scheme property and remove it from the map
       $color-scheme: map.get($module-theme-map, "color-scheme");
       $module-theme-map: map.remove($module-theme-map, "color-scheme");
 
-      // Merge the values of the default theme with all other themes.
+      // Merge the values of the default theme with all other themes
       @if $theme != config.get("default-theme") {
         $module-theme-map: map.merge(map.get($module-map, config.get("default-theme")), $module-theme-map);
       }
 
-      // Output custom properties via usage output.
+      // Output custom properties via usage output
       @include usage.output(meta.get-mixin("define", "css"), $module, $module-theme-map, $strategy, $args...);
 
-      // If a color scheme was stored, output it below everything else.
+      // If a color scheme was stored, output it below everything else
       @if $color-scheme {
         color-scheme: #{$color-scheme};
       }
@@ -261,17 +261,17 @@ $-theme-keys: "light", "dark";
   // the root selector. This should come before the theme class output.
   :root,
   .#{config.get("prefix-themes")}root {
-    // Output the default theme.
+    // Output the default theme
     @include output-theme($module, config.get("default-theme"), $strategy);
 
-    // If the default them is not light mode, output the prefers light media query.
+    // If the default them is not light mode, output the prefers light media query
     @if config.get("default-theme") != "light" {
       @media (prefers-color-scheme: light) {
         @include output-theme($module, "light", $strategy, "override");
       }
     }
 
-    // If the default them is not dark mode, output the prefers dark media query.
+    // If the default them is not dark mode, output the prefers dark media query
     @if config.get("default-theme") != "dark" {
       @media (prefers-color-scheme: dark) {
         @include output-theme($module, "dark", $strategy, "override");
@@ -279,7 +279,7 @@ $-theme-keys: "light", "dark";
     }
   }
 
-  // This outputs all custom themes using their theme class.
+  // This outputs all custom themes using their theme class
   @each $key in $-theme-keys {
     .#{config.get("prefix-themes")}#{$key} {
       @include output-theme($module, $key, $strategy, "override");

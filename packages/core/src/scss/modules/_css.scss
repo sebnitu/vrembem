@@ -360,7 +360,7 @@ $-variables: (
     }
   }
 
-  // If the provided prop is a map.
+  // If the provided prop is a map
   @else if meta.type-of($prop) == "map" {
     // Add value to args if one exists
     @if $value {

@@ -131,17 +131,17 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
   </Fragment>
   <Fragment slot="tab-js">
     ```js
-    // Get the button elements.
+    // Get the button elements
     const btns = document.querySelectorAll("[data-dismiss]");
 
-    // Loop through them and add click event listeners.
+    // Loop through them and add click event listeners
     btns.forEach((btn) => {
       btn.addEventListener("click", (event) => {
-        // Get the value of data-dismiss and select the nearest matching element.
+        // Get the value of data-dismiss and select the nearest matching element
         const selector = btn.getAttribute("data-dismiss");
         const result = event.target.closest(selector);
 
-        // Hide the notice if it exists.
+        // Hide the notice if it exists
         if (result) result.classList.add("display-none");
       });
     });

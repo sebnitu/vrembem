@@ -8,25 +8,25 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <link rel="stylesheet" href="./index.scss">
   <script>
-    // Make this script blocking to prevent flash of pre-themed content.
+    // Make this script blocking to prevent flash of pre-themed content
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
     document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
   </script>
   <script type="module">
-    // Load JS and attach instance to window.
+    // Load JS and attach instance to window
     window["vb"] = await import("./index.js");
 
-    // Get all the theme set button elements.
+    // Get all the theme set button elements
     const buttons = document.querySelectorAll("[data-set-theme]");
 
-    // Setup theme switching functionality.
+    // Setup theme switching functionality
     const themeStore = vb.core.themeStore({
       onInit() {
         buttons.forEach((btn) => {
-          // Set current menu item active.
+          // Set current menu item active
           toggleState.call(this, btn);
-          // Add click event listener for changing the current theme.
+          // Add click event listener for changing the current theme
           btn.addEventListener(("click"), () => {
             this.theme = btn.getAttribute("data-set-theme");
           });
@@ -34,20 +34,20 @@
       },
       onChange() {
         buttons.forEach((btn) => {
-          // Set current menu item active.
+          // Set current menu item active
           toggleState.call(this, btn);
         });
       }
     });
 
-    // Function to toggle the state class for a theme set button.
+    // Function to toggle the state class for a theme set button
     function toggleState(btn) {
       btn.getAttribute("data-set-theme") === this.theme 
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
 
-    // Attach themeStore to window for testing purposes. 
+    // Attach themeStore to window for testing purposes
     window["themeStore"] = themeStore;
 
     /**
@@ -74,23 +74,23 @@
     window["modal"] = await modal.mount();
     window["drawer"] = await drawer.mount();
 
-    // Get the drawer entry and drawer from.
+    // Get the drawer entry and drawer from
     const drawerEntry = drawer.get("drawer-dialog");
     const drawerForm = document.getElementById("form-drawer-state");
 
-    // Function to handle the form data of drawer state form.
+    // Function to handle the form data of drawer state form
     function updateDrawerState() {
-      // Get the form data.
+      // Get the form data
       const formData = new FormData(drawerForm);
-      // Update the drawer mode state.
+      // Update the drawer mode state
       drawerEntry.mode = (formData.get("toggle-drawer-modal")) ? "modal" : "inline";
-      // Update the drawer switch state.
+      // Update the drawer switch state
       (formData.get("toggle-drawer-switch")) ?
         drawerEntry.el.classList.add("drawer_switch"):
         drawerEntry.el.classList.remove("drawer_switch");
     }
 
-    // Run update drawer state and also run it any time the form changes.
+    // Run update drawer state and also run it any time the form changes
     updateDrawerState();
     drawerForm.addEventListener("change", updateDrawerState);
 

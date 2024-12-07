@@ -15,17 +15,17 @@ import { toMilliseconds } from "./toMilliseconds";
  */
 export function transition(el, init, interim, final, duration = 0) {
   return new Promise((resolve) => {
-    // Toggle classes for start of transition.
+    // Toggle classes for start of transition
     el.classList.remove(init);
     el.classList.add(interim);
 
-    // Setup the transition timing.
+    // Setup the transition timing
     setTimeout(() => {
-      // Toggle classes for end of transition.
+      // Toggle classes for end of transition
       el.classList.add(final);
       el.classList.remove(interim);
 
-      // Resolve the promise.
+      // Resolve the promise
       resolve(el);
     }, toMilliseconds(duration));
   });

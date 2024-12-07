@@ -67,12 +67,12 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
   </Fragment>
   <Fragment slot="tab-js">
     ```js
-    // Get checkboxes with "mixed" status.
+    // Get checkboxes with "mixed" status
     const checkboxes = document.querySelectorAll(
       "input[type='checkbox'][aria-checked='mixed']"
     );
 
-    // Apply the indeterminate state.
+    // Apply the indeterminate state
     checkboxes.forEach((checkbox) => checkbox.indeterminate = true);
     ```
   </Fragment>

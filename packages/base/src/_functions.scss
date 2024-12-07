@@ -45,7 +45,7 @@
   // Get the type selector if one is required
   $type-selector: get-type-selector($module);
 
-  // Return the class.
+  // Return the class
   @return ".#{$class}#{$type-selector}";
 }
 

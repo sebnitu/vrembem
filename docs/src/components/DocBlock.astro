@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 import { makeSafeForCSS } from "../modules/makeSafeForCSS";
 
 interface Props {
@@ -12,17 +12,24 @@ interface Props {
   open?: boolean;
 }
 
-const { name, type = "file", returns, src, line, args, open = false } = Astro.props;
+const {
+  name,
+  type = "file",
+  returns,
+  src,
+  line,
+  args,
+  open = false
+} = Astro.props;
 const id = makeSafeForCSS(`${name}-${type}`);
-const isFile = (type === "file");
-
+const isFile = type === "file";
 ---
 
 <article class="doc-block">
   <div class="doc-block__header">
     <div class="flex align-items-center">
       <button
-        type="button" 
+        type="button"
         id={"toggle-" + id + "-trigger"}
         data-toggle={"toggle-" + id}
         aria-controls={"toggle-" + id}
@@ -35,31 +42,27 @@ const isFile = (type === "file");
       <div class="flex-grow flex align-items-center">
         <h3 id={id} class="doc-block__title flex flex_gap_sm no-anchor">
           <a class="link font-family-mono font-size-sm" href={`#${id}`}>
-            { isFile ? src : name }
+            {isFile ? src : name}
           </a>
-          { 
-            !isFile && type && (
-              <span class="badge">{type}</span>
-            )
-          }
+          {!isFile && type && <span class="badge">{type}</span>}
         </h3>
-        <a class="link flex flex_gap_xs" target="_blank" href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${(line) ? `#L${line}` : ''}`}>
+        <a
+          class="link flex flex_gap_xs"
+          target="_blank"
+          href={`https://github.com/sebnitu/vrembem/blob/next/packages/${src}${line ? `#L${line}` : ""}`}
+        >
           Source
-          <Icon
-            name="arrow-up-right"
-            classes="icon_external"
-          />
+          <Icon name="arrow-up-right" classes="icon_external" />
         </a>
       </div>
     </div>
   </div>
-  <div 
+  <div
     id={"toggle-" + id}
     aria-labelledby={"toggle-" + id + "-trigger"}
-    aria-hidden={open ? "false" : "true"}  
+    aria-hidden={open ? "false" : "true"}
     class="toggle-content doc-block__content"
   >
-
     {
       isFile ? (
         <div class="doc-block__file">
@@ -68,17 +71,19 @@ const isFile = (type === "file");
       ) : (
         <div class="doc-block__intro">
           <div class="doc-block__meta">
-            <span>Name: <code>{name}</code></span>
-            { 
-              type && (
-                <span>Type: <code>{type}</code></span>
-              )
-            }
-            { 
-              returns && (
-                <span>Returns: <code>{returns}</code></span>
-              )
-            }
+            <span>
+              Name: <code>{name}</code>
+            </span>
+            {type && (
+              <span>
+                Type: <code>{type}</code>
+              </span>
+            )}
+            {returns && (
+              <span>
+                Returns: <code>{returns}</code>
+              </span>
+            )}
           </div>
           <hr class="sep" />
           <div class="type spacing">
@@ -91,22 +96,26 @@ const isFile = (type === "file");
     {
       args && (
         <div class="doc-block__arguments">
-          <h4 id={id + '-arguments'} class="font-size-lg no-anchor">Arguments</h4>
+          <h4 id={id + "-arguments"} class="font-size-lg no-anchor">
+            Arguments
+          </h4>
           <table class="table table_style_rowed">
             <tr>
               <th>Name</th>
               <th>Type</th>
               <th>Description</th>
             </tr>
-            {
-              args.map((arg) => (
-                <tr>
-                  <td><code class="text-nowrap">{arg[0]}</code></td>
-                  <td><code class="text-nowrap">{arg[1]}</code></td>
-                  <td>{arg[2]}</td>
-                </tr>
-              ))
-            }
+            {args.map((arg) => (
+              <tr>
+                <td>
+                  <code class="text-nowrap">{arg[0]}</code>
+                </td>
+                <td>
+                  <code class="text-nowrap">{arg[1]}</code>
+                </td>
+                <td>{arg[2]}</td>
+              </tr>
+            ))}
           </table>
         </div>
       )
@@ -115,42 +124,43 @@ const isFile = (type === "file");
     {
       Astro.slots.has("example") && (
         <div class="doc-block__example">
-          <h4 id={id + '-example'} class="font-size-lg no-anchor">Example</h4>
+          <h4 id={id + "-example"} class="font-size-lg no-anchor">
+            Example
+          </h4>
           <slot name="example" />
         </div>
       )
     }
-
   </div>
 </article>
 
 <script>
-  import { toggle } from '../modules/toggle';
+  import { toggle } from "../modules/toggle";
 
-  // Build the docBlock array.
+  // Build the docBlock array
   const docBlock = [];
-  const els = document.querySelectorAll('.doc-block');
+  const els = document.querySelectorAll(".doc-block");
   els.forEach((el) => {
-    const id = el.querySelector('h3').id;
+    const id = el.querySelector("h3").id;
     docBlock.push({
       id: id,
       el: el
     });
   });
-  
-  // Check for active block function.
+
+  // Check for active block function
   function checkActiveBlock() {
     const result = docBlock.find((el) => {
       return `#${el.id}` === window.location.hash;
     });
 
     docBlock.forEach((item) => {
-      item.el.classList.remove('is-active')
+      item.el.classList.remove("is-active");
     });
 
     if (result) {
       toggle.open(result.id);
-      result.el.classList.add('is-active');
+      result.el.classList.add("is-active");
 
       // Scroll to the element after it's open. This is needed to ensure the
       // element's toggled height is factored into the scroll position.
@@ -159,10 +169,10 @@ const isFile = (type === "file");
     }
   }
 
-  // Setup event listener for hash change and
-  // check for active block on load and change.
+  // Setup event listener for hash change and check for active block on load
+  // and change.
   checkActiveBlock();
-  window.addEventListener('hashchange', () => {
+  window.addEventListener("hashchange", () => {
     checkActiveBlock();
   });
 </script>

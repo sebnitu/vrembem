@@ -51,21 +51,21 @@ describe("focusTrap", () => {
       expect(entry.focusTrap).toBeInstanceOf(FocusTrap);
     });
 
-    // Get the HTML elements for checks later.
+    // Get the HTML elements for checks later
     const entry = collection.get("entry-1");
     const btn = document.getElementById("btn");
     const input = document.getElementById("input");
 
-    // Mock the missing entry properties.
+    // Mock the missing entry properties
     entry.dialog = entry.el;
 
-    // Should toggle focus trap when opened event is fired.
+    // Should toggle focus trap when opened event is fired
     collection.emit("opened", entry);
     expect(entry.focusTrap.focusable.length).toBe(3);
     expect(entry.focusTrap.focusable.first).toBe(btn);
     expect(entry.focusTrap.focusable.last).toBe(input);
 
-    // Fire the closed event and check the results.
+    // Fire the closed event and check the results
     collection.emit("closed", entry);
     expect(entry.focusTrap.focusable.length).toBe(0);
     expect(entry.focusTrap.focusable.first).toBe(undefined);
@@ -83,22 +83,22 @@ describe("focusTrap", () => {
       ]
     });
 
-    // Get the HTML elements for checks later.
+    // Get the HTML elements for checks later
     const entry = collection.get("entry-1");
     const btn = document.getElementById("btn");
     const input = document.getElementById("input");
 
-    // Mock the missing entry properties.
+    // Mock the missing entry properties
     entry.dialog = entry.el;
     entry.mode = "modal";
 
-    // Fire the opened event and check the results.
+    // Fire the opened event and check the results
     collection.emit("opened", entry);
     expect(entry.focusTrap.focusable.length).toBe(3);
     expect(entry.focusTrap.focusable.first).toBe(btn);
     expect(entry.focusTrap.focusable.last).toBe(input);
 
-    // Fire the closed event and check the results.
+    // Fire the closed event and check the results
     collection.emit("closed", entry);
     expect(entry.focusTrap.focusable.length).toBe(0);
     expect(entry.focusTrap.focusable.first).toBe(undefined);
