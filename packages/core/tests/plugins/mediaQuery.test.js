@@ -3,7 +3,7 @@ import { mediaQuery } from "../../src/js/plugins";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: vi.fn().mockImplementation(query => ({
+  value: vi.fn().mockImplementation((query) => ({
     get matches() {
       return matches(query, window.innerWidth);
     },
@@ -11,8 +11,8 @@ Object.defineProperty(window, "matchMedia", {
     onchange: null,
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+    dispatchEvent: vi.fn()
+  }))
 });
 
 function matches(query, value) {
@@ -23,7 +23,7 @@ function matches(query, value) {
 }
 
 function hasChanged(query, prev, next) {
-  return (matches(query, prev) !== matches(query, next));
+  return matches(query, prev) !== matches(query, next);
 }
 
 function resizeWindow(value, collection) {
@@ -70,30 +70,30 @@ describe("mediaQuery", () => {
     });
     expect(collection.plugins.length).toBe(1);
     expect(typeof collection.get("entry-1").mql).toBe("undefined");
-  
+
     expect(collection.get("entry-2").mql.media).toBe("(min-width: 900px)");
     expect(typeof collection.get("entry-2").mql.onchange).toBe("function");
     expect(collection.get("entry-2").mql.matches).toBe(false);
-  
+
     expect(collection.get("entry-3").mql.media).toBe("(max-width: 600px)");
     expect(typeof collection.get("entry-3").mql.onchange).toBe("function");
     expect(collection.get("entry-3").mql.matches).toBe(false);
-  
+
     expect(spyFunction).toBeCalledTimes(2);
-  
+
     resizeWindow(960, collection.collection);
     expect(collection.get("entry-2").mql.matches).toBe(true);
     expect(collection.get("entry-3").mql.matches).toBe(false);
-  
+
     expect(spyFunction).toBeCalledTimes(3);
-  
+
     resizeWindow(340, collection.collection);
     expect(collection.get("entry-2").mql.matches).toBe(false);
     expect(collection.get("entry-3").mql.matches).toBe(true);
-  
+
     expect(spyFunction).toBeCalledTimes(5);
   });
-  
+
   it("should undo the mediaQuery setup on collection unmount", async () => {
     await collection.mount({
       plugins: [mediaQuery()]
@@ -102,9 +102,9 @@ describe("mediaQuery", () => {
     const mql_2 = collection.get("entry-3").mql;
     await collection.unmount();
     expect(mql_1.onchange).toBe(null);
-    expect(mql_2.onchange).toBe(null);  
+    expect(mql_2.onchange).toBe(null);
   });
-  
+
   it("should remove the mediaQuery plugin when the remove method is called", async () => {
     await collection.mount({
       plugins: [mediaQuery()]
@@ -113,7 +113,7 @@ describe("mediaQuery", () => {
     await collection.plugins.remove("mediaQuery");
     expect(collection.plugins.length).toBe(0);
   });
-  
+
   it("should be able to apply settings in various ways", async () => {
     window.innerWidth = 500;
     const spyFunction = vi.fn();
@@ -122,7 +122,7 @@ describe("mediaQuery", () => {
         mediaQuery({
           breakpoints: {
             "entry-1": "333px",
-            "md": "444px"
+            md: "444px"
           },
           mediaQueries: {
             "entry-2": "(max-width: {{BP}})"
@@ -131,21 +131,21 @@ describe("mediaQuery", () => {
         })
       ]
     });
-  
+
     expect(spyFunction).toBeCalledTimes(3);
     expect(collection.get("entry-1").mql.media).toBe("(min-width: 333px)");
     expect(collection.get("entry-2").mql.media).toBe("(max-width: 900px)");
     expect(collection.get("entry-3").mql.media).toBe("(max-width: 444px)");
-  
+
     expect(collection.get("entry-1").mql.matches).toBe(true);
     expect(collection.get("entry-2").mql.matches).toBe(true);
     expect(collection.get("entry-3").mql.matches).toBe(false);
-  
+
     resizeWindow(200, collection.collection);
     expect(collection.get("entry-1").mql.matches).toBe(false);
     expect(collection.get("entry-2").mql.matches).toBe(true);
     expect(collection.get("entry-3").mql.matches).toBe(true);
-  
+
     resizeWindow(1000, collection.collection);
     expect(collection.get("entry-1").mql.matches).toBe(true);
     expect(collection.get("entry-2").mql.matches).toBe(false);

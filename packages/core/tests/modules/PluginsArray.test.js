@@ -20,7 +20,7 @@ describe("pluginsArray", () => {
     plugins.add({ name: "fdsa" });
     expect(plugins.length).toBe(2);
   });
-  
+
   it("should remove a plugin from the plugins array", async () => {
     expect(plugins.length).toBe(2);
     plugins.remove("asdf");
@@ -28,7 +28,7 @@ describe("pluginsArray", () => {
     plugins.remove("fdsa");
     expect(plugins.length).toBe(0);
   });
-  
+
   it("should add an array of plugins at once", () => {
     expect(plugins.length).toBe(0);
     plugins.add([
@@ -37,7 +37,7 @@ describe("pluginsArray", () => {
     ]);
     expect(plugins.length).toBe(2);
   });
-  
+
   it("should return a specific plugin when using the get method", () => {
     const pluginOne = plugins.get("one");
     expect(pluginOne.settings).toStrictEqual({ a: "a" });
@@ -47,7 +47,7 @@ describe("pluginsArray", () => {
 
     expect(plugins.get("three")).toBe(undefined);
   });
-  
+
   it("should log a console error if the plugin is missing a name property", () => {
     plugins.add({});
     expect(console.error).toBeCalledWith("Plugin requires a name!");

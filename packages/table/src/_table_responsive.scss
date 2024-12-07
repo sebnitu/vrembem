@@ -3,13 +3,13 @@
 @use "./mixins";
 
 #{core.bem("table", null, "responsive")} {
-  @include mixins.table-responsive-styles();
+  @include mixins.table-responsive-styles;
 }
 
 @each $bp, $value in var.$breakpoints {
   #{core.bem("table", null, "responsive", $bp: $bp)} {
     @include core.media-max($value) {
-      @include mixins.table-responsive-styles();
+      @include mixins.table-responsive-styles;
     }
   }
 }

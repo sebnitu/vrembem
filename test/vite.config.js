@@ -6,10 +6,10 @@ export default defineConfig({
     sourcemap: true
   },
   css: {
-    preprocessorOptions : {
+    preprocessorOptions: {
       scss: {
-        api: "modern",
-      }        
-    } 
+        api: "modern"
+      }
+    }
   }
 });

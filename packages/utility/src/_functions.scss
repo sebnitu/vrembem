@@ -6,49 +6,57 @@
 @use "./variables" as var;
 
 /// Generate a utility class selector with a core prefix and optional modifiers.
+///
 /// @param {string} $name
-///   The base name of the utility. Will search for a shorthand in `var.$classes`.
+///   Name of the utility. Will search for a shorthand in `var.$classes`.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class name. Add a ":" for
 ///   a prepended modifier such as breakpoints, e.g: "md:".
+///
 /// @return {selector}
 ///   A valid utility CSS selector.
+///
 @function utility($name, $args...) {
-  // Check if there's a shortname for the class name.
+  // Check if there's a shortname for the class name
   @if map.has-key(var.$classes, $name) {
     $name: map.get(var.$classes, $name);
   }
 
-  // Setup the base utility class name with prefix.
+  // Setup the base utility class name with prefix
   $class: '#{config.get("prefix-utility")}#{$name}';
 
-  // Apply all the arguments to class.
+  // Apply all the arguments to class
   @each $arg in $args {
-    // Convert arg to a string.
+    // Convert arg to a string
     $arg: "" + $arg;
-    // Ensure that it's not an empty string.
+
+    // Ensure that it's not an empty string
     @if $arg != "" {
-      // If $arg contains a colon, escape it and prepend it to $class.
+      // If $arg contains a colon, escape it and prepend it to $class
       @if string.index($arg, ":") {
         $arg: core.escape-colon($arg);
-        $class: '#{$arg}#{$class}';
+        $class: "#{$arg}#{$class}";
       }
-      // Otherwise, append $arg to $class with a dash delimiter.
+
+      // Otherwise, append $arg to $class with a dash delimiter
       @else {
-        $class: '#{$class}-#{$arg}';
+        $class: "#{$class}-#{$arg}";
       }
     }
   }
 
-  // Return the class.
+  // Return the class
   @return ".#{$class}";
 }
 
 /// Conditional logic for when to output the utilities of a specific module.
+///
 /// @param {string} $module
 ///   The module name to conditionally toggle output.
+///
 /// @return {boolean}
 ///   The resolved condition boolean.
+///
 @function maybe-output($module) {
   @if list.index(var.$output-exceptions, $module) {
     @return not var.$output;

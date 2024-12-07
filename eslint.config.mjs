@@ -1,32 +1,23 @@
 import globals from "globals";
 import js from "@eslint/js";
-
-const formattingRules = {
-  rules: {
-    "indent": ["error", 2, {"SwitchCase": 1}],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
-  }
-};
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default [
   js.configs.recommended,
-  formattingRules,
+  eslintPluginPrettierRecommended,
   {
-    ignores: [
-      "**/dev/**/*",
-      "**/dist/**/*"
-    ]
-  }, {
+    ignores: ["**/dev/**/*", "**/dist/**/*"]
+  },
+  {
     name: "vb/src",
     files: ["**/src/**/*"],
     languageOptions: {
       globals: {
         ...globals.browser
       }
-    },
-  }, {
+    }
+  },
+  {
     name: "vb/tests",
     files: ["**/tests/**/*"],
     languageOptions: {
@@ -42,14 +33,15 @@ export default [
         beforeEach: "readonly",
         afterEach: "readonly"
       }
-    },
-  }, {
+    }
+  },
+  {
     name: "vb/config",
-    files: ["**/*.config.js"],
+    files: ["**/*.config.js", "**/*.config.mjs"],
     languageOptions: {
       globals: {
         ...globals.node
       }
-    },
+    }
   }
 ];

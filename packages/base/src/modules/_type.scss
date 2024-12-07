@@ -17,7 +17,12 @@
     }
 
     > {
-      h1, h2, h3, h4, h5, h6 {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         color: css.get("heading", "color", css.get("foreground"));
         font-family: css.get("heading", "font-family", inherit);
         font-weight: css.get("heading", "font-weight", css.get("font-weight-semi-bold"));

@@ -2,19 +2,26 @@
 
 /// Removes the item of $list at index $n. If $n is negative, it counts from the
 /// end of $list.
+///
 /// @param {list} $list
 ///   The list to have an item removed from.
 /// @param {number} $n
 ///   The position (index) in the list to have removed.
+///
 /// @return {list}
 ///   A new list with the item removed.
+///
 @function remove-nth($list, $n) {
   $result: ();
   $n: if($n < 0, list.length($list) + $n + 1, $n);
   $bracketed: list.is-bracketed($list);
   $separator: list.separator($list);
-  @for $i from 1 through list.length($list){
-    @if $i != $n { $result: list.append($result, list.nth($list, $i)); }
+
+  @for $i from 1 through list.length($list) {
+    @if $i != $n {
+      $result: list.append($result, list.nth($list, $i));
+    }
   }
+
   @return list.join((), $result, $separator, $bracketed);
 }

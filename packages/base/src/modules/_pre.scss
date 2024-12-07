@@ -5,20 +5,20 @@
   @include css.register("pre");
 
   #{fun.selector("pre")} {
-    padding: css.get("pre", "padding", 1em);
-    overflow: auto;
+    background: css.get("pre", "background", css.get("background-dark"));
     border: css.get("pre", "padding", null);
     border-radius: css.get("pre", "padding", css.get("border-radius"));
-    background: css.get("pre", "background", css.get("background-dark"));
     color: css.get("pre", "foreground", css.get("foreground"));
     font-family: css.get("font-family-mono");
+    overflow: auto;
+    padding: css.get("pre", "padding", 1em);
 
     code {
-      padding: 0;
-      border: none;
       background: none;
+      border: none;
       color: inherit;
       font-size: css.get("pre", "font-size", css.get("font-size"));
+      padding: 0;
     }
   }
 }

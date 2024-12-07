@@ -26,9 +26,9 @@
     }
 
     &:focus {
+      color: css.get("link", "color", "hover", palette.get("primary", 40));
       outline: css.get("link", "focus-ring", currentcolor dotted 1px);
       outline-offset: css.get("link", "focus-ring-offset", 0.125rem);
-      color: css.get("link", "color", "hover", palette.get("primary", 40));
       text-decoration: css.get("link", "decoration", "hover", none);
 
       code {

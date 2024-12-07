@@ -34,10 +34,14 @@ describe("teleportElement()", () => {
   });
 
   it("should throw an error if not a valid teleportElement reference element", () => {
-    expect(() => teleportElement(el, "asdf")).toThrow("Not a valid teleport reference: 'null'");
+    expect(() => teleportElement(el, "asdf")).toThrow(
+      "Not a valid teleport reference: 'null'"
+    );
   });
 
   it("should throw an error if not a valid teleportElement method", () => {
-    expect(() => teleportElement(el, boxB, "asdf")).toThrow("Not a valid teleport method: 'asdf'");
+    expect(() => teleportElement(el, boxB, "asdf")).toThrow(
+      "Not a valid teleport method: 'asdf'"
+    );
   });
 });

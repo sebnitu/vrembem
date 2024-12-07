@@ -18,17 +18,17 @@ document.body.innerHTML = `
   <div class="popovers"></div>
 `;
 
-const popover = new Popover({ 
+const popover = new Popover({
   plugins: [
     teleport({
       where: ".popovers"
     })
-  ] 
+  ]
 });
 
 const div = document.querySelector(".popovers");
 
-describe("mount()", () => {  
+describe("mount()", () => {
   it("should teleport popovers to the provided reference selector using the default method", async () => {
     expect(div.children.length).toBe(0);
     await popover.mount();

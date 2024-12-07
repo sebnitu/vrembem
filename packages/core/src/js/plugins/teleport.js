@@ -23,7 +23,7 @@ export function teleport(options = {}) {
   };
 
   function teleport(plugin, entry) {
-    // Store the teleportElement function in entry.
+    // Store the teleportElement function in entry
     entry.teleport = () => {
       if (typeof entry.teleportReturn === "function") {
         entry.teleportReturn();
@@ -35,22 +35,22 @@ export function teleport(options = {}) {
       );
     };
 
-    // Call the teleport function.
+    // Call the teleport function
     entry.teleport();
 
-    // Fire the teleport event.
+    // Fire the teleport event
     entry.parent.emit("teleport", { plugin, parent, entry });
   }
 
   function teleportReturn(plugin, entry) {
-    // Return teleported element if the cleanup function exists.
+    // Return teleported element if the cleanup function exists
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();
     }
 
-    // Fire the teleport return event.
+    // Fire the teleport return event
     entry.parent.emit("teleportReturn", { plugin, parent, entry });
   }
 
-  return {...props, ...methods};
-};
+  return { ...props, ...methods };
+}

@@ -15,7 +15,7 @@ describe("propStore", () => {
       selector: ".entry"
     });
   });
-  
+
   afterEach(async () => {
     await collection.unmount();
   });
@@ -129,7 +129,7 @@ describe("propStore", () => {
   });
 
   it("should setup a store property for accessing the local storage value", async () => {
-    await collection.mount({ 
+    await collection.mount({
       plugins: [
         propStore({
           prop: "example",
@@ -150,7 +150,7 @@ describe("propStore", () => {
     expect(entry.example).toBe("new");
   });
 
-  it("should be able to set an initial value for the property", async() => {
+  it("should be able to set an initial value for the property", async () => {
     const spyFunction = vi.fn();
     await collection.mount({
       plugins: [
@@ -169,7 +169,7 @@ describe("propStore", () => {
     expect(spyFunction).toBeCalledTimes(4);
   });
 
-  it("should be able to set an initial value using a function definition", async() => {
+  it("should be able to set an initial value using a function definition", async () => {
     await collection.mount({
       plugins: [
         propStore({

@@ -2,20 +2,20 @@
 
 .menu_otp {
   .menu__action {
-    position: relative;
     display: block;
     overflow: hidden;
+    position: relative;
     text-overflow: ellipsis;
 
     &.is-active::before {
+      background: palette.get("primary");
+      border-radius: 1rem;
       content: "";
+      height: 6px;
+      left: 0;
       position: absolute;
       top: calc(50% - 3px);
-      left: 0;
       width: 6px;
-      height: 6px;
-      border-radius: 1rem;
-      background: palette.get("primary");
     }
   }
 

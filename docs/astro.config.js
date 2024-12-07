@@ -8,15 +8,15 @@ export default defineConfig({
     shikiConfig: {
       theme: "css-variables"
     },
-    extendDefaultPlugins: true,
+    extendDefaultPlugins: true
   },
   vite: {
     css: {
-      preprocessorOptions : {
+      preprocessorOptions: {
         scss: {
-          api: "modern",
-        }        
-      } 
+          api: "modern"
+        }
+      }
     }
   }
 });

@@ -1,77 +1,83 @@
 import { getPopover } from "./helpers";
 
 export async function close(query) {
-  // Get the popover from collection.
-  const popover = (query) ? getPopover.call(this, query) : await closeAll.call(this);
+  // Get the popover from collection
+  const popover = query
+    ? getPopover.call(this, query)
+    : await closeAll.call(this);
 
-  // If a modal exists and its state is opened.
+  // If a modal exists and its state is opened
   if (popover && popover.state === "opened") {
-
-    // Update inert state and state class.
+    // Update inert state and state class
     popover.el.inert = true;
     popover.el.classList.remove(this.settings.stateActive);
 
-    // Update accessibility attribute(s).
+    // Update accessibility attribute(s)
     if (!popover.isTooltip) {
       popover.trigger.setAttribute("aria-expanded", "false");
     }
 
-    // Clean up the floating UI instance.
+    // Clean up the floating UI instance
     popover.floatingCleanup();
 
-    // Update popover state.
+    // Update popover state
     popover.state = "closed";
 
-    // Clear root trigger if popover trigger matches.
+    // Clear root trigger if popover trigger matches
     if (popover.trigger === this.trigger) {
       this.trigger = null;
     }
 
-    // Dispatch custom closed event.
-    popover.el.dispatchEvent(new CustomEvent(popover.getSetting("customEventPrefix") + "closed", {
-      detail: this, bubbles: true
-    }));
+    // Dispatch custom closed event
+    popover.el.dispatchEvent(
+      new CustomEvent(popover.getSetting("customEventPrefix") + "closed", {
+        detail: this,
+        bubbles: true
+      })
+    );
 
-    // Emit the closed event.
+    // Emit the closed event
     await popover.parent.emit("closed", popover);
   }
 
-  // Return the popover.
+  // Return the popover
   return popover;
 }
 
 export async function closeAll() {
   const result = [];
-  await Promise.all(this.collection.map(async (popover) => {
-    if (popover.state === "opened") {
-      result.push(await close.call(this, popover));
-    }
-  }));
+  await Promise.all(
+    this.collection.map(async (popover) => {
+      if (popover.state === "opened") {
+        result.push(await close.call(this, popover));
+      }
+    })
+  );
   return result;
 }
 
 export function closeCheck(popover) {
-  // Only run closeCheck if provided popover is currently open.
+  // Only run closeCheck if provided popover is currently open
   if (popover.state != "opened") return;
 
-  // Needed to correctly check which element is currently being focused.
+  // Needed to correctly check which element is currently being focused
   setTimeout(() => {
-    // Check if trigger or element are being hovered.
+    // Check if trigger or element are being hovered
     const isHovered =
       popover.el.matches(":hover") === popover.el ||
       popover.trigger.matches(":hover") === popover.trigger;
 
-    // Check if trigger or element are being focused.
+    // Check if trigger or element are being focused
     let isFocused = document.activeElement.closest(
       `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
     );
 
-    // Close if the trigger and element are not currently hovered or focused.
+    // Close if the trigger and element are not currently hovered or focused
     if (!isHovered && !isFocused) {
       popover.close();
     }
 
-    // Return the popover.
+    // Return the popover
     return popover;
   }, 1);
 }

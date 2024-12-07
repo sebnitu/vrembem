@@ -3,13 +3,13 @@
 @use "./variables" as var;
 
 #{core.bem("menu", null, "inline")} {
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
 
   #{core.bem("menu", "sep")} {
-    width: css.get("menu", "sep-size", var.$sep-size);
     height: auto;
     margin: 0 css.get("menu", "sep-gap", var.$sep-gap);
+    width: css.get("menu", "sep-size", var.$sep-size);
   }
 
   #{core.bem("menu", "action")} {

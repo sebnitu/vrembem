@@ -3,6 +3,6 @@
 
 @if fun.maybe-output("sr-only") {
   #{fun.selector("sr-only")} {
-    @include core.sr-only();
+    @include core.sr-only;
   }
 }

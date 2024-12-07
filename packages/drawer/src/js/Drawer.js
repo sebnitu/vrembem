@@ -12,7 +12,7 @@ export class Drawer extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super({ ...defaults, ...options});
+    super({ ...defaults, ...options });
     this.module = "Drawer";
     this.entryClass = DrawerEntry;
     this.#handleClick = handleClick.bind(this);

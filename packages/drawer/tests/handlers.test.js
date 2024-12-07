@@ -30,7 +30,7 @@ document.body.innerHTML = `
 const drawerEl = document.querySelector("#drawer");
 const btnToggle = document.querySelector("[data-drawer-toggle]");
 const btnOpen = document.querySelector("[data-drawer-open]");
-const btnClose = document.querySelector("[data-drawer-close=\"drawer\"]");
+const btnClose = document.querySelector('[data-drawer-close="drawer"]');
 const btnCloseInner = document.querySelector(".drawer [data-drawer-close]");
 const btnCloseEmpty = document.querySelector(".empty");
 

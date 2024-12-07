@@ -4,8 +4,8 @@
 
 #{core.bem("flex")} {
   display: flex;
-  gap: css.get("flex", "gap-y", "gap") css.get("flex", "gap-x", "gap");
   flex-wrap: css.get("flex", "wrap");
+  gap: css.get("flex", "gap-y", "gap") css.get("flex", "gap-x", "gap");
 }
 
 #{core.bem("flex", null, "inline")} {

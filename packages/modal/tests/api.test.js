@@ -91,13 +91,15 @@ describe("register() & deregister()", () => {
     expect(modal.collection.length).toBe(1);
     const result = await modal.deregister("modal-default");
     expect(modal.collection.length).toBe(0);
-    expect(entry).toEqual({ "id": "modal-default" });
+    expect(entry).toEqual({ id: "modal-default" });
     expect(result).toBe(entry);
-  }); 
+  });
 
   it("should reject promise with error if register is called on non-existent modal", async () => {
-    const result = await modal.register("asdf").catch((error) => { return error.message; });
-    expect(result).toBe("Modal element was not found with ID: \"asdf\"");
+    const result = await modal.register("asdf").catch((error) => {
+      return error.message;
+    });
+    expect(result).toBe('Modal element was not found with ID: "asdf"');
   });
 
   it("should open and update global state if modal already has opened class", async () => {
@@ -139,7 +141,9 @@ describe("open() & close()", () => {
 
   beforeAll(async () => {
     document.body.innerHTML = markup;
-    document.querySelector("#modal-default").style.setProperty("--modal-transition-duration", "0.3s");
+    document
+      .querySelector("#modal-default")
+      .style.setProperty("--modal-transition-duration", "0.3s");
     modal = new Modal();
     await modal.mount();
     el = document.querySelector(".modal");
@@ -211,7 +215,7 @@ describe("open() & close()", () => {
     await modal.open("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe("Modal not found in collection with id of \"asdf\".");
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
 
   it("should reject promise with error if close is called on non-existent modal", async () => {
@@ -219,7 +223,7 @@ describe("open() & close()", () => {
     await modal.close("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe("Modal not found in collection with id of \"asdf\".");
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
 });
 
@@ -266,9 +270,11 @@ describe("replace()", () => {
     modal.open("modal-3");
     modal.open("modal-4");
 
-    await Promise.all(modal.collection.map(async () => {
-      await vi.runAllTimers();
-    }));
+    await Promise.all(
+      modal.collection.map(async () => {
+        await vi.runAllTimers();
+      })
+    );
 
     expect(modal.stack.length).toBe(4);
     expect(modal.get("modal-1").state).toBe("opened");
@@ -278,9 +284,11 @@ describe("replace()", () => {
 
     modal.replace("modal-2");
 
-    await Promise.all(modal.collection.map(async () => {
-      await vi.runAllTimers();
-    }));
+    await Promise.all(
+      modal.collection.map(async () => {
+        await vi.runAllTimers();
+      })
+    );
 
     expect(modal.stack.length).toBe(1);
     expect(modal.get("modal-1").state).toBe("closed");
@@ -312,7 +320,7 @@ describe("replace()", () => {
     await modal.replace("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe("Modal not found in collection with id of \"asdf\".");
+    expect(result).toBe('Modal not found in collection with id of "asdf".');
   });
 });
 

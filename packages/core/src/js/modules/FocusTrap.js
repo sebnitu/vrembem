@@ -8,17 +8,17 @@ export class FocusTrap {
   }
 
   on(el = this.el) {
-    // Get the focusable elements.
+    // Get the focusable elements
     this.focusable.set(el);
 
-    // Either focus trap or lock depending on focusable length.
-    (this.focusable.length) ?
-      document.addEventListener("keydown", this.handleFocusTrap):
-      document.addEventListener("keydown", handleFocusLock);
+    // Either focus trap or lock depending on focusable length
+    this.focusable.length
+      ? document.addEventListener("keydown", this.handleFocusTrap)
+      : document.addEventListener("keydown", handleFocusLock);
   }
 
   off() {
-    // Clear the focusable elements.
+    // Clear the focusable elements
     this.focusable.clear();
 
     // Remove event listeners
@@ -28,26 +28,27 @@ export class FocusTrap {
 }
 
 function handleFocusLock(event) {
-  // Ignore the tab key by preventing default.
+  // Ignore the tab key by preventing default
   if (event.key === "Tab" || event.keyCode === 9) event.preventDefault();
 }
 
-function handleFocusTrap(event) {  
-  // Check if the click was a tab and return if not.
+function handleFocusTrap(event) {
+  // Check if the click was a tab and return if not
   if (event.key !== "Tab" && event.keyCode !== 9) return;
 
-  // Destructure variables for brevity.
+  // Destructure variables for brevity
   const { activeElement } = document;
   const { el, focusable } = this;
 
-  // Set variables of conditionals.
+  // Set variables of conditionals
   const isShiftTab = event.shiftKey;
-  const isFirstOrRoot = activeElement === focusable.first || activeElement === el;
+  const isFirstOrRoot =
+    activeElement === focusable.first || activeElement === el;
   const isLastOrRoot = activeElement === focusable.last || activeElement === el;
 
   if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {
     event.preventDefault();
-    // Loop to next tab focus based on direction (shift).
+    // Loop to next tab focus based on direction (shift)
     (isShiftTab ? focusable.last : focusable.first).focus();
   }
 }

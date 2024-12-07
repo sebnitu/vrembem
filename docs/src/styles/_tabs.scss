@@ -2,17 +2,17 @@
 @use "@vrembem/core/palette";
 
 [role="tab"] {
-  position: relative;
+  color: css.get("foreground-lighter");
   margin: -0.5rem 0;
   padding: 0.5rem;
-  color: css.get("foreground-lighter");
+  position: relative;
 
   &::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 -1px;
-    height: 3px;
     background: transparent;
+    content: "";
+    height: 3px;
+    inset: auto 0 -1px;
+    position: absolute;
   }
 
   &:hover {

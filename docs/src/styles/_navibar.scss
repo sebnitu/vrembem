@@ -3,34 +3,34 @@
 @use "./variables" as var;
 
 .navibar {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  padding: 0 css.get("layout", "padding");
-  background-color: css.get("background-glass");
   backdrop-filter: blur(8px);
+  background-color: css.get("background-glass");
+  padding: 0 css.get("layout", "padding");
+  position: relative;
+  width: 100%;
+  z-index: 5;
 
   @include core.media-min(var.$bp-drawer) {
     position: fixed;
 
     .has-drawer & {
-      background-color: transparent;
       backdrop-filter: unset;
+      background-color: transparent;
     }
   }
 }
 
 .navibar__container {
   display: flex;
-  width: 100%;
-  max-width: css.get("layout", "width");
   margin: auto;
+  max-width: css.get("layout", "width");
+  width: 100%;
 }
 
 .navibar__title,
 .navibar__menu {
-  display: flex;
   align-items: center;
+  display: flex;
   height: css.get("layout", "navibar-height");
 }
 
@@ -40,19 +40,19 @@
 }
 
 .navibar__skip {
-  position: absolute;
-  z-index: 100;
-  top: -100%;
-  width: calc(100% - 1em);
   margin-right: 1em;
-  transition-property: top, opacity;
-  transition-duration: css.get("transition-duration");
-  transition-timing-function: css.get("transition-timing-function");
   opacity: 0;
+  position: absolute;
+  top: -100%;
+  transition-duration: css.get("transition-duration");
+  transition-property: top, opacity;
+  transition-timing-function: css.get("transition-timing-function");
+  width: calc(100% - 1em);
+  z-index: 100;
 
   &:focus {
-    top: calc(calc(css.get("layout", "navibar-height") - css.get("form-control-size")) / 2);
     opacity: 1;
+    top: calc(calc(css.get("layout", "navibar-height") - css.get("form-control-size")) / 2);
   }
 }
 
@@ -73,15 +73,15 @@
 
   @include core.media-min(var.$bp-drawer) {
     .has-drawer & {
-      background-color: css.get("background-glass");
       backdrop-filter: blur(8px);
+      background-color: css.get("background-glass");
     }
   }
 }
 
 .navibar-spacer {
   height: 0;
-  
+
   @include core.media-min(var.$bp-drawer) {
     height: css.get("layout", "navibar-height");
   }

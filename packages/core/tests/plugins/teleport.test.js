@@ -34,7 +34,7 @@ describe("teleport", () => {
     expect(main.children.length).toBe(0);
     expect(container.children.length).toBe(3);
   });
-  
+
   it("should be able to run teleport multiple times on an entry", async () => {
     const entry = collection.get("entry-1");
     expect(typeof entry.teleport).toBe("function");
@@ -44,7 +44,7 @@ describe("teleport", () => {
     expect(main.children.length).toBe(0);
     expect(container.children.length).toBe(3);
   });
-  
+
   it("should return teleported entries when collection is unmounted", async () => {
     expect(main.children.length).toBe(0);
     expect(container.children.length).toBe(3);

@@ -2,55 +2,63 @@
 
 /// Debug output a more readable version of a scss map in the console.
 /// Currently this mixin only supports debugging maps up to 3 levels deep.
+///
 /// @param {map} $map
 ///   The map to output using @debug.
 /// @param {string} $label
 ///   A label to add before the map contents.
+///
 @mixin debug-map($map, $label: "Debug Map") {
-  // Indent variable.
-  $i: "  "; 
+  // Indent variable
+  $i: "  ";
 
-  // New line variable.
+  // New line variable
   $n: "\A";
 
-  // Initialize output variable.
+  // Initialize output variable
   $output: "#{$n}#{$label}: (";
 
-  // First level map loop.
+  // First level map loop
   @each $key, $value in $map {
     @if meta.type-of($value) == "map" {
-      // Open the map output.
-      $output: "#{$output}#{$n}#{$i}\"#{$key}\": (";
-        // Second level map loop.
-        @each $key, $value in $value {
-          @if meta.type-of($value) == "map" {
-            // Open the map output.
-            $output: "#{$output}#{$n}#{$i}#{$i}\"#{$key}\": (";
-              // Third level map loop.
-              @each $key, $value in $value {
-                // Set Level 3 output.
-                $output: "#{$output}#{$n}#{$i}#{$i}#{$i}\"#{$key}\": #{$value},";
-              }
-            // Close level 3 map output.
-            $output: "#{$output}#{$n}#{$i}#{$i}),";
+      // Open the map output
+      $output: '#{$output}#{$n}#{$i}"#{$key}": (';
+
+      // Second level map loop
+      @each $key, $value in $value {
+        @if meta.type-of($value) == "map" {
+          // Open the map output
+          $output: '#{$output}#{$n}#{$i}#{$i}"#{$key}": (';
+
+          // Third level map loop
+          @each $key, $value in $value {
+            // Set Level 3 output
+            $output: '#{$output}#{$n}#{$i}#{$i}#{$i}"#{$key}": #{$value},';
           }
-          // Set Level 2 output.
-          @else {
-            $output: "#{$output}#{$n}#{$i}#{$i}\"#{$key}\": #{$value},";
-          }
+
+          // Close level 3 map output
+          $output: "#{$output}#{$n}#{$i}#{$i}),";
         }
-      // Close level 2 map output.
+
+        // Set Level 2 output
+        @else {
+          $output: '#{$output}#{$n}#{$i}#{$i}"#{$key}": #{$value},';
+        }
+      }
+
+      // Close level 2 map output
       $output: "#{$output}#{$n}#{$i}),";
     }
-    // Set Level 1 output.
+
+    // Set Level 1 output
     @else {
-      $output: "#{$output}#{$n}#{$i}\"#{$key}\": #{$value},";
+      $output: '#{$output}#{$n}#{$i}"#{$key}": #{$value},';
     }
   }
 
-  // Close the output variable.
+  // Close the output variable
   $output: "#{$output}#{$n})";
 
-  // Debug the output.
+  // Debug the output
   @debug $output;
 }

@@ -29,41 +29,51 @@ $title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Custom properties
-@include css.set("card", (
-  "padding": $padding,
-  "background": $background,
-  "foreground": $foreground,
-  "border": $border,
-  "sep-border": $sep-border,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "screen-background": $screen-background,
-  "screen-opacity": $screen-opacity,
-  "link-box-shadow": $link-box-shadow,
-  "link-box-shadow-hover": $link-box-shadow-hover,
-  "link-offset": $link-offset,
-  "title-color": $title-color,
-  "title-font-size": $title-font-size,
-  "title-line-height": $title-line-height,
-  "title-font-weight": $title-font-weight,
-  "transition-property": $transition-property,
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-));
+@include css.set(
+  "card",
+  (
+    "padding": $padding,
+    "background": $background,
+    "foreground": $foreground,
+    "border": $border,
+    "sep-border": $sep-border,
+    "border-radius": $border-radius,
+    "box-shadow": $box-shadow,
+    "screen-background": $screen-background,
+    "screen-opacity": $screen-opacity,
+    "link-box-shadow": $link-box-shadow,
+    "link-box-shadow-hover": $link-box-shadow-hover,
+    "link-offset": $link-offset,
+    "title-color": $title-color,
+    "title-font-size": $title-font-size,
+    "title-line-height": $title-line-height,
+    "title-font-weight": $title-font-weight,
+    "transition-property": $transition-property,
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function
+  )
+);
 
 // Themes
-@include theme.set("card", "light", (
-  "background": css.get("background"),
-  "foreground": css.get("foreground-light"),
-  "border": 1px solid css.get("border-color"),
-  "sep-border": 1px solid css.get("border-color"),
-  "title-color": css.get("foreground"),
-  "screen-background": css.get("background"),
-  "screen-opacity": 0.9
-));
-
-@include theme.set("card", "dark", (
-  "background": css.get("background-darker"),
-  "screen-background": css.get("background-darker"),
-  "screen-opacity": 0.8
-));
+@include theme.set(
+  "card",
+  "light",
+  (
+    "background": css.get("background"),
+    "foreground": css.get("foreground-light"),
+    "border": 1px solid css.get("border-color"),
+    "sep-border": 1px solid css.get("border-color"),
+    "title-color": css.get("foreground"),
+    "screen-background": css.get("background"),
+    "screen-opacity": 0.9
+  )
+);
+@include theme.set(
+  "card",
+  "dark",
+  (
+    "background": css.get("background-darker"),
+    "screen-background": css.get("background-darker"),
+    "screen-opacity": 0.8
+  )
+);

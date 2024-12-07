@@ -17,10 +17,10 @@ export default defineConfig({
     "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
   },
   css: {
-    preprocessorOptions : {
+    preprocessorOptions: {
       scss: {
-        api: "modern",
-      }        
-    } 
+        api: "modern"
+      }
+    }
   }
 });

@@ -3,38 +3,40 @@
 @use "./variables" as var;
 
 #{core.bem("section")} {
-  position: relative;
+  background: css.get("section", "background");
+  color: css.get("section", "foreground");
   display: flex;
   flex-direction: column;
   padding: css.get("section", "padding");
-  background: css.get("section", "background");
-  color: css.get("section", "foreground");
+  position: relative;
+
   @include core.css-query("section", "padding", var.$padding, var.$breakpoints);
 }
 
 #{core.bem("section", "container")} {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: css.get("section", "max-width");
   margin: auto;
+  max-width: css.get("section", "max-width");
+  position: relative;
+  width: 100%;
+  z-index: 3;
 }
 
 #{core.bem("section", "image")},
 #{core.bem("section", "screen")} {
   @include core.size(100%);
-  position: absolute;
+
   inset: 0;
+  position: absolute;
 }
 
 #{core.bem("section", "image")} {
   object-fit: cover;
-  z-index: 1;
   opacity: css.get("section", "image-opacity");
+  z-index: 1;
 }
 
 #{core.bem("section", "screen")} {
-  z-index: 2;
   background: css.get("section", "screen-background");
   opacity: css.get("section", "screen-opacity");
+  z-index: 2;
 }

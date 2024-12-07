@@ -6,33 +6,33 @@
 }
 
 .theme-icon {
+  left: 0.5rem;
+  opacity: 0;
   position: absolute;
   top: 0.5rem;
-  left:  0.5rem;
   transform: translateY(calc(100% + 0.5rem));
-  transition-property: transform, opacity;
   transition-duration: 0.5s;
+  transition-property: transform, opacity;
   transition-timing-function: ease;
-  opacity: 0;
 }
 
 .#{config.get("prefix-themes")}root {
   .theme-icon_root {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .#{config.get("prefix-themes")}light {
   .theme-icon_light {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .#{config.get("prefix-themes")}dark {
   .theme-icon_dark {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }

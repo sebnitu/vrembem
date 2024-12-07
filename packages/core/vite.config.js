@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "index.js"),
       name: "vrembem.core",
-      fileName: "index",
+      fileName: "index"
     },
     emptyOutDir: false,
     sourcemap: true

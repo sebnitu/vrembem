@@ -3,7 +3,8 @@ import { getCollection } from "astro:content";
 const statusSort = ["settings", "layers", "layout", "check-square", "circle"];
 
 function packageOrder(a, b) {
-  let result = 0, count = 0;
+  let result = 0,
+    count = 0;
   while (count < statusSort.length && result == 0) {
     result = checkString(a, b, statusSort[count]);
     count++;

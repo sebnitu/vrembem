@@ -7,29 +7,33 @@
  */
 
 .layout-aside {
-  position: fixed;
-  z-index: 100;
-  visibility: hidden;
-  width: calc(100% - 4rem);
-  max-width: css.get("layout", "drawer-width");
-  padding: css.get("layout", "drawer-padding");
-  overflow: hidden auto;
-  transform: translate(100%);
-  transition: opacity .5s, transform .25s ease;
-  outline: none;
   background-color: css.get("background-darker");
   box-shadow: css.get("box-shadow-5");
-  opacity: 0;
   inset: 0 0 0 auto;
+  max-width: css.get("layout", "drawer-width");
+  opacity: 0;
+  outline: none;
+  overflow: hidden auto;
   overscroll-behavior: contain;
+  padding: css.get("layout", "drawer-padding");
+  position: fixed;
   scroll-behavior: smooth;
+  transform: translate(100%);
+  transition:
+    opacity 0.5s,
+    transform 0.25s ease;
+  visibility: hidden;
+  width: calc(100% - 4rem);
+  z-index: 100;
 
   &.is-opened,
   &.is-opening {
-    visibility: visible;
-    transform: translate(0);
-    transition: opacity .25s, transform .5s cubic-bezier(0.19, 1, 0.22, 1);
     opacity: 1;
+    transform: translate(0);
+    transition:
+      opacity 0.25s,
+      transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    visibility: visible;
   }
 
   &.is-closing {
@@ -47,26 +51,26 @@
 
 @include core.media-min(var.$bp-aside) {
   .layout-aside {
-    position: fixed;
-    z-index: 2;
-    visibility: visible;
-    width: css.get("layout", "aside-width");
-    height: 100vh;
-    padding: 0;
-    transform: translate(0);
     background-color: transparent;
     box-shadow: none;
-    opacity: 1;
+    height: 100vh;
     inset: 0 auto auto;
-  }
-  
-  .layout-aside__container {
+    opacity: 1;
+    padding: 0;
     position: fixed;
+    transform: translate(0);
+    visibility: visible;
+    width: css.get("layout", "aside-width");
+    z-index: 2;
+  }
+
+  .layout-aside__container {
+    height: 100vh;
+    overflow: hidden auto;
+    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
+    position: fixed;
+    scroll-behavior: smooth;
     top: 0;
     width: css.get("layout", "aside-width");
-    height: 100vh;
-    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
-    overflow: hidden auto;
-    scroll-behavior: smooth;
   }
 }

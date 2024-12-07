@@ -14,30 +14,30 @@
 
   thead,
   [rowspan] {
+    left: -9999px;
     position: absolute;
     top: -9999px;
-    left: -9999px;
   }
 
   [#{var.$mobile-label-attr}] {
-    position: relative;
     padding-left: calc(css.get("table", "mobile-label-width") + css.get("table", "mobile-label-spacing"));
+    position: relative;
     white-space: normal;
 
     &::before {
-      content: attr(#{var.$mobile-label-attr});
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: css.get("table", "mobile-label-width");
-      padding: css.get("table", "padding");
-      overflow: hidden;
       background-color: css.get("table", "mobile-label-background");
+      bottom: 0;
       color: css.get("table", "mobile-label-foreground");
+      content: attr(#{var.$mobile-label-attr});
       font-weight: css.get("font-weight-bold");
+      left: 0;
+      overflow: hidden;
+      padding: css.get("table", "padding");
+      position: absolute;
       text-overflow: ellipsis;
+      top: 0;
       white-space: nowrap;
+      width: css.get("table", "mobile-label-width");
     }
   }
 

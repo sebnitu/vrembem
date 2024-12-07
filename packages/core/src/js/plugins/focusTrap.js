@@ -28,7 +28,7 @@ export function focusTrap(options = {}) {
   };
 
   function getValue(obj, ...args) {
-    return (typeof obj === "function") ? obj(...args) : obj;
+    return typeof obj === "function" ? obj(...args) : obj;
   }
 
   function enableFocusTrap(entry, plugin) {
@@ -45,5 +45,5 @@ export function focusTrap(options = {}) {
     }
   }
 
-  return {...props, ...methods};
+  return { ...props, ...methods };
 }

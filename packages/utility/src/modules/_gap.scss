@@ -36,26 +36,26 @@
       #{fun.utility("gap", "#{$bp}:")} {
         gap: var.$gap !important;
       }
-      
+
       #{fun.utility("gap", "x", "#{$bp}:")} {
         column-gap: var.$gap !important;
       }
-      
+
       #{fun.utility("gap", "y", "#{$bp}:")} {
         row-gap: var.$gap !important;
       }
-      
+
       @each $key, $value in var.$gap-map {
         #{fun.utility("gap", $key, "#{$bp}:")} {
           gap: $value !important;
         }
       }
-      
+
       @each $key, $value in var.$gap-map {
         #{fun.utility("gap", "x", $key, "#{$bp}:")} {
           column-gap: $value !important;
         }
-      
+
         #{fun.utility("gap", "y", $key, "#{$bp}:")} {
           row-gap: $value !important;
         }

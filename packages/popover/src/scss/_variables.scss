@@ -7,7 +7,6 @@ $placement: null !default;
 $offset: 8 !default;
 $flip-padding: 10 !default;
 $shift-padding: 10 !default;
-
 $z-index: 10 !default;
 $width: 16em !default;
 $max-width: calc(100vw - 20px) !default;
@@ -22,22 +21,24 @@ $line-height: null !default;
 $transition-property: opacity !default;
 $transition-duration: css.get("transition-duration-short") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
-
 $arrow-size: 8px !default;
 $arrow-padding: 10 !default;
-
 $size-sm-width: 12em !default;
 $size-lg-width: 20em !default;
 
 // Custom properties
-@include css.set("popover", (
-  "event": $event,
-  "placement": $placement,
-  "offset": $offset,
-  "flip-padding": $flip-padding,
-  "shift-padding": $shift-padding,
-  "arrow-padding": $arrow-padding
-), "required");
+@include css.set(
+  "popover",
+  (
+    "event": $event,
+    "placement": $placement,
+    "offset": $offset,
+    "flip-padding": $flip-padding,
+    "shift-padding": $shift-padding,
+    "arrow-padding": $arrow-padding
+  ),
+  "required"
+);
 
-// Required custom properties for JavaScript.
+// Required custom properties for JavaScript
 @include usage.set("core", "prefix", "required");

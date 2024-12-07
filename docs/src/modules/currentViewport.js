@@ -2,7 +2,7 @@ const els = document.querySelectorAll("[data-vp-width]");
 
 if (els.length) {
   update(els);
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function () {
     update(els);
   });
 }

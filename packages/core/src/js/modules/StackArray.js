@@ -10,7 +10,7 @@ export class StackArray extends Array {
 
   get top() {
     const result = this[this.length - 1];
-    return (result) ? result : null;
+    return result ? result : null;
   }
 
   updateIndex() {
@@ -29,34 +29,30 @@ export class StackArray extends Array {
   }
 
   add(entry) {
-    // Push the entry to the stack array.
     this.push(entry);
-    // Run the onChange callback.
     this.onChange();
   }
 
   remove(entry) {
-    // Get the index of the entry.
+    // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
-    // If entry is in the stack...
     if (~index) {
-      // Remove the z-index styles from the entry.
+      // Remove the z-index styles from the entry
       entry.el.style.zIndex = null;
-      // Splice the entry from the stack array.
+      // Splice the entry from the stack array
       this.splice(index, 1);
-      // Run the onChange callback.
+      // Run the onChange callback
       this.onChange();
     }
   }
 
   moveToTop(entry) {
-    // Get the index of the entry.
+    // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
-    // If entry is in the stack...
     if (~index) {
-      // Splice the entry from the stack array.
+      // Splice the entry from the stack array
       this.splice(index, 1);
-      // Add entry back to the stack array.
+      // Add entry back to the stack array
       this.add(entry);
     }
   }

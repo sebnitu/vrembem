@@ -8,11 +8,11 @@ function currentPage(pathname, options = {}) {
   };
 
   function isCurrent(path) {
-    return (pathname === path);
+    return pathname === path;
   }
 
   function isParent(path) {
-    return (pathname.includes(path));
+    return pathname.includes(path);
   }
 
   function classes(path, base = settings.classBase) {

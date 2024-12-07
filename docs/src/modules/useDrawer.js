@@ -6,11 +6,7 @@ let drawer = null;
 if (typeof window !== "undefined") {
   drawer = new Drawer({
     selector: ".drawer",
-    plugins: [
-      focusTrap(),
-      mediaQuery(),
-      propStore()
-    ]
+    plugins: [focusTrap(), mediaQuery(), propStore()]
   });
   window["drawer"] = await drawer.mount();
 }

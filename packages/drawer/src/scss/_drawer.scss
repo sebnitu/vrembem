@@ -2,69 +2,58 @@
 @use "@vrembem/core/css";
 @use "./variables" as var;
 
-/**
- * Required structure styles
- */
-
 #{core.bem(var.$class-frame)} {
-  position: relative;
   display: flex;
   height: css.get("drawer", "frame-height", var.$frame-height);
   overflow: hidden auto;
+  position: relative;
 }
 
 #{core.bem(var.$class-main)} {
-  position: relative;
   flex: 1 1 auto;
   height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
-/**
- * Drawer
- */
-
 #{core.bem("drawer")} {
-  position: absolute;
-  z-index: css.get("drawer", "z-index", var.$z-index);
-  top: 0;
   bottom: 0;
-  visibility: hidden;
   flex: 0 0 0;
-  width: 0;
   height: 0;
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 0;
+  z-index: css.get("drawer", "z-index", var.$z-index);
 }
 
 #{core.bem("drawer", "dialog")} {
   @include css.override("dialog", var.$dialog-override);
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  width: css.get("drawer", "width", var.$width);
-  max-width: 100%;
-  height: 100%;
-  overflow: auto;
-  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
-  border-top: none;
+
+  background-clip: border-box;
   border-bottom: none;
   border-radius: 0;
-  background-clip: border-box;
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
   opacity: 0;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
+  position: absolute;
+  top: 0;
+  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
+  width: css.get("drawer", "width", var.$width);
 
-  // Only target inline (not modal) drawer dialogs.
+  // Only target inline (not modal) drawer dialogs
   #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
     @include css.override("dialog", var.$inline-dialog-override);
   }
 }
-
-/**
- * State classes
- */
 
 #{core.bem("drawer")}.is-closed {
   visibility: hidden;
@@ -73,18 +62,18 @@
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-opened,
 #{core.bem("drawer")}.is-closing {
-  visibility: visible;
   flex: 0 0 auto;
-  width: css.get("drawer", "width", var.$width);
-  max-width: css.get("drawer", "max-width", var.$max-width);
   height: 100%;
+  max-width: css.get("drawer", "max-width", var.$max-width);
   overflow: visible;
+  visibility: visible;
+  width: css.get("drawer", "width", var.$width);
 }
 
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-closing {
-  transition-property: background-color, opacity, transform;
   transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+  transition-property: background-color, opacity, transform;
   transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
 
   #{core.bem("drawer", "dialog")} {

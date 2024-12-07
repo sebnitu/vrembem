@@ -4,57 +4,59 @@
 @use "./mixins" as mix;
 
 #{core.bem("menu")} {
-  display: flex;
-  gap: css.get("menu", "gap", var.$gap);
-  flex-direction: column;
   align-items: stretch;
+  display: flex;
+  flex-direction: column;
   font-size: css.get("menu", "font-size", css.get("form-control-font-size"));
+  gap: css.get("menu", "gap", var.$gap);
   line-height: css.get("menu", "line-height", css.get("form-control-line-height"));
   list-style: none;
 }
 
 #{core.bem("menu", "sep")} {
-  flex: 0 0 auto;
   align-self: stretch;
-  width: auto;
+  background: css.get("menu", "sep-background", var.$sep-background);
+  flex: 0 0 auto;
   height: css.get("menu", "sep-size", var.$sep-size);
   margin: css.get("menu", "sep-gap", var.$sep-gap) 0;
-  background: css.get("menu", "sep-background", var.$sep-background);
+  width: auto;
 }
 
 #{core.bem("menu", "action")} {
   @include core.form-control-properties("menu");
-  @include mix.menu-action-base();
-  border-color: css.get("menu", "border-color", var.$border-color);
+  @include mix.menu-action-base;
+
   background-color: css.get("menu", "background", var.$background);
+  border-color: css.get("menu", "border-color", var.$border-color);
   box-shadow: css.get("menu", "box-shadow", var.$box-shadow);
   color: css.get("menu", "foreground", var.$foreground);
 
   &:hover {
-    border-color: css.get("menu", "border-color-hover", "border-color", var.$border-color-hover);
     background-color: css.get("menu", "background-hover", "background", var.$background-hover);
+    border-color: css.get("menu", "border-color-hover", "border-color", var.$border-color-hover);
     box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
     color: css.get("menu", "foreground-hover", "foreground", var.$foreground-hover);
   }
 
   &:focus {
-    border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
     background-color: css.get("menu", "background-focus", "background-hover", "background", var.$background-focus);
+    border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
     box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
     color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
   }
 
   &:focus-visible {
     @include core.focus-ring("menu", var.$accent);
-    border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
+
     background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
+    border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
     box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
     color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
 
   &:active {
-    border-color: css.get("menu", "border-color-active", "border-color", var.$border-color-active);
     background-color: css.get("menu", "background-active", "background", var.$background-active);
+    border-color: css.get("menu", "border-color-active", "border-color", var.$border-color-active);
     box-shadow: css.get("menu", "box-shadow-active", "box-shadow", var.$box-shadow-active);
     color: css.get("menu", "foreground-active", "foreground", var.$foreground-active);
   }

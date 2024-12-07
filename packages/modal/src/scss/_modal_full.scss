@@ -4,9 +4,9 @@
 
 #{core.bem("modal", null, "full")} {
   #{core.bem("modal", "dialog")} {
-    width: 100%;
     height: 100%;
     transform: scale(css.get("modal", "full-scale", var.$full-scale));
+    width: 100%;
   }
 
   &.is-opened #{core.bem("modal", "dialog")},

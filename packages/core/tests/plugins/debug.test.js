@@ -19,38 +19,36 @@ describe("debug", () => {
     expect(debugPlugin.name).toBe("debug");
     expect(debugPlugin.options.asdf).toBe("fdsa");
   });
-  
+
   it("should log all the mount lifecycle hooks when collection is mounted", async () => {
     expect(collection.plugins.length).toBe(0);
     await collection.mount({
-      plugins: [
-        debug({ asdf: "fdsa" })
-      ]
+      plugins: [debug({ asdf: "fdsa" })]
     });
     expect(collection.plugins.length).toBe(1);
     expect(console.log).toHaveBeenCalledTimes(17);
   });
-  
+
   it("should log all the unmount lifecycle hooks when collection is unmounted", async () => {
     expect(collection.plugins.length).toBe(1);
     await collection.unmount();
     expect(collection.plugins.length).toBe(0);
     expect(console.log).toHaveBeenCalledTimes(34);
   });
-  
+
   it("should be able to pass a condition function for console logging", async () => {
     await collection.plugins.remove("debug");
     expect(collection.plugins.length).toBe(0);
     const conditionSpy = vi.fn();
     await collection.mount({
       plugins: [
-        debug({ 
-          condition: conditionSpy 
+        debug({
+          condition: conditionSpy
         })
       ]
     });
     expect(conditionSpy).toHaveBeenCalledTimes(12);
     await collection.unmount();
     expect(conditionSpy).toHaveBeenCalledTimes(24);
-  });  
+  });
 });

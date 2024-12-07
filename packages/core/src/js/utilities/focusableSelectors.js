@@ -1,7 +1,7 @@
 // This has been copied over from focusable-selectors package and modified.
 // https://github.com/KittyGiraudel/focusable-selectors
 const notInert = ":not([inert])"; // Previously `:not([inert]):not([inert] *)`
-const notNegTabIndex = ":not([tabindex^=\"-\"])";
+const notNegTabIndex = ':not([tabindex^="-"])';
 const notDisabled = ":not(:disabled)";
 
 export const focusableSelectors = [
@@ -17,5 +17,5 @@ export const focusableSelectors = [
   `audio[controls]${notInert}${notNegTabIndex}`,
   `video[controls]${notInert}${notNegTabIndex}`,
   `[contenteditable]${notInert}${notNegTabIndex}`,
-  `[tabindex]${notInert}${notNegTabIndex}`,
+  `[tabindex]${notInert}${notNegTabIndex}`
 ];

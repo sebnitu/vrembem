@@ -7,35 +7,55 @@ $form-control-font-size: css.defer("font-size") !default;
 $form-control-font-size-sm: css.defer("font-size-sm") !default;
 $form-control-font-size-lg: css.defer("font-size-lg") !default;
 $form-control-line-height: css.defer("line-height") !default;
-@include css.set("core", "form-control", (
-  "font-size": $form-control-font-size,
-  "font-size-sm": $form-control-font-size-sm,
-  "font-size-lg": $form-control-font-size-lg,
-  "line-height": $form-control-line-height,
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "font-size": $form-control-font-size,
+    "font-size-sm": $form-control-font-size-sm,
+    "font-size-lg": $form-control-font-size-lg,
+    "line-height": $form-control-line-height
+  )
+);
 
 $form-control-border-width: css.defer("border-width") !default;
 $form-control-border-radius: css.defer("border-radius") !default;
-@include css.set("core", "form-control", (
-  "border-width": $form-control-border-width,
-  "border-radius": $form-control-border-radius,
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "border-width": $form-control-border-width,
+    "border-radius": $form-control-border-radius
+  )
+);
 
 $form-control-padding-x: 1em !default;
 $form-control-padding-y: 0.5em !default;
 $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
-@include css.set("core", "form-control", (
-  "padding-x": $form-control-padding-x,
-  "padding-y": $form-control-padding-y,
-  "padding": $form-control-padding
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "padding-x": $form-control-padding-x,
+    "padding-y": $form-control-padding-y,
+    "padding": $form-control-padding
+  )
+);
 
 $form-control-accent: palette.get("primary") !default;
 $form-control-background: css.defer("background") !default;
-@include css.set("core", "form-control", (
-  "accent": $form-control-accent,
-  "background": $form-control-background,
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "accent": $form-control-accent,
+    "background": $form-control-background
+  )
+);
 @include theme.set("core", "light", "form-control-foreground", palette.get("neutral"));
 @include theme.set("core", "dark", "form-control-foreground", palette.get("neutral", 80));
 
@@ -44,19 +64,29 @@ $background-opacity: 0% !default;
 $background-opacity-hover: 20% !default;
 $background-opacity-focus: 20% !default;
 $background-opacity-active: 30% !default;
-@include css.set("core", "form-control", (
-  "background-border-radius": $background-border-radius,
-  "background-opacity": $background-opacity,
-  "background-opacity-hover": $background-opacity-hover,
-  "background-opacity-focus": $background-opacity-focus,
-  "background-opacity-active": $background-opacity-active
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "background-border-radius": $background-border-radius,
+    "background-opacity": $background-opacity,
+    "background-opacity-hover": $background-opacity-hover,
+    "background-opacity-focus": $background-opacity-focus,
+    "background-opacity-active": $background-opacity-active
+  )
+);
 
 $form-control-transition-property: box-shadow, outline !default;
 $form-control-transition-duration: css.defer("transition-duration-short") !default;
 $form-control-transition-timing-function: css.defer("transition-timing-function") !default;
-@include css.set("core", "form-control", (
-  "transition-property": $form-control-transition-property,
-  "transition-duration": $form-control-transition-duration,
-  "transition-timing-function": $form-control-transition-timing-function
-));
+
+@include css.set(
+  "core",
+  "form-control",
+  (
+    "transition-property": $form-control-transition-property,
+    "transition-duration": $form-control-transition-duration,
+    "transition-timing-function": $form-control-transition-timing-function
+  )
+);

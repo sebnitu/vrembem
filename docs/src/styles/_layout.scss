@@ -4,20 +4,20 @@
 @use "./variables" as var;
 
 .layout {
-  position: relative;
   display: flex;
   justify-content: center;
-  width: 100%;
-  padding-right: css.get("layout", "padding");
-  padding-left: css.get("layout", "padding");
   overflow-x: hidden;
+  padding-left: css.get("layout", "padding");
+  padding-right: css.get("layout", "padding");
+  position: relative;
+  width: 100%;
 }
 
 .layout__main {
-  position: relative;
   box-sizing: content-box;
-  width: 100%;
   max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
+  position: relative;
+  width: 100%;
 
   * > * {
     box-sizing: border-box;
@@ -27,18 +27,18 @@
     padding-top: css.get("layout", "navibar-height");
 
     .has-drawer & {
-      width: calc(100% - css.get("layout", "drawer-width"));
       padding-left: css.get("layout", "drawer-width");
+      width: calc(100% - css.get("layout", "drawer-width"));
     }
   }
 }
 
 .layout__grid {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 2rem;
+  justify-content: center;
   padding: 2rem 0 0;
 
   @include core.media-min(var.$bp-code) {
@@ -48,15 +48,15 @@
   @include core.media-min(var.$bp-drawer) {
     gap: 3rem;
     padding: 3rem 0 0;
-    
+
     .has-drawer & {
       padding: 3rem 3.5rem 0 4.5rem;
     }
   }
 
   @include core.media-min(var.$bp-aside) {
-    flex-flow: row wrap;
     align-items: flex-start;
+    flex-flow: row wrap;
     gap: css.get("layout", "gap");
     padding: 4rem 0 0;
 
@@ -67,15 +67,20 @@
 }
 
 .layout__content {
+  max-width: css.get("layout", "content-width");
   order: 1;
   width: 100%;
-  max-width: css.get("layout", "content-width");
 
   @include core.media-min(var.$bp-aside) {
     width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     position: relative;
     scroll-margin-top: calc(css.get("layout", "navibar-height") + 1rem);
   }
@@ -115,13 +120,13 @@
 }
 
 .layout__footer {
-  position: relative;
-  z-index: 2;
-  order: 3;
-  width: 100%;
-  padding: 2rem 0;
-  border-top: 1px solid css.get("border-color");
   background-color: css.get("background");
+  border-top: 1px solid css.get("border-color");
+  order: 3;
+  padding: 2rem 0;
+  position: relative;
+  width: 100%;
+  z-index: 2;
 
   @include core.media-min(var.$bp-drawer) {
     padding: 3rem 0;
@@ -137,11 +142,11 @@
  */
 
 .layout__screen {
-  position: fixed;
-  z-index: 99;
-  transition: background-color .25s;
   background-color: palette.get("neutral", 10%, 0%);
   inset: auto;
+  position: fixed;
+  transition: background-color 0.25s;
+  z-index: 99;
 
   .is-opened ~ &,
   .is-opening ~ & {

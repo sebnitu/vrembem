@@ -1,0 +1,11 @@
+# Ignore artifacts:
+_site
+coverage
+dev
+dist
+node_modules
+
+# Ignore markup/down files:
+**/*.html
+**/*.md
+**/*.mdx

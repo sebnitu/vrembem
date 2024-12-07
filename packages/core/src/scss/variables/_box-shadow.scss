@@ -8,11 +8,14 @@ $box-shadow-4: 0 8px 18px css.get("shadow-color") !default;
 $box-shadow-5: 0 12px 24px css.get("shadow-color") !default;
 $box-shadow: $box-shadow-2 !default;
 
-@include css.set("core", (
-  "box-shadow": $box-shadow,
-  "box-shadow-1": $box-shadow-1,
-  "box-shadow-2": $box-shadow-2,
-  "box-shadow-3": $box-shadow-3,
-  "box-shadow-4": $box-shadow-4,
-  "box-shadow-5": $box-shadow-5
-));
+@include css.set(
+  "core",
+  (
+    "box-shadow": $box-shadow,
+    "box-shadow-1": $box-shadow-1,
+    "box-shadow-2": $box-shadow-2,
+    "box-shadow-3": $box-shadow-3,
+    "box-shadow-4": $box-shadow-4,
+    "box-shadow-5": $box-shadow-5
+  )
+);

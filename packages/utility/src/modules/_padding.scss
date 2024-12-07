@@ -54,15 +54,15 @@
 
   @each $key, $value in var.$gap-map {
     #{fun.utility("padding", "x", $key)} {
-      padding-right: $value !important;
       padding-left: $value !important;
+      padding-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
     #{fun.utility("padding", "y", $key)} {
-      padding-top: $value !important;
       padding-bottom: $value !important;
+      padding-top: $value !important;
     }
   }
 }

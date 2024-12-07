@@ -1,16 +1,16 @@
 export function getPadding(value) {
-  // Initialize the padding var.
+  // Initialize the padding var
   let padding;
 
-  // Split the value by spaces if it's a string.
-  const array = (typeof value === "string") ? value.trim().split(" ") : [value];
+  // Split the value by spaces if it's a string
+  const array = typeof value === "string" ? value.trim().split(" ") : [value];
 
-  // Convert individual values to integers.
+  // Convert individual values to integers
   for (let index = 0; index < array.length; index++) {
     array[index] = Number(array[index]);
   }
 
-  // Build the padding object based on the number of values passed.
+  // Build the padding object based on the number of values passed
   switch (array.length) {
     case 1:
       padding = array[0];
@@ -44,6 +44,6 @@ export function getPadding(value) {
       break;
   }
 
-  // Return the padding object.
+  // Return the padding object
   return padding;
 }

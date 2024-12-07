@@ -1,16 +1,18 @@
 /// A utility mixin for quickly setting the width and height of an element.
+///
 /// @param {number} $width
 ///   Width size unit.
-/// @param {number} $height [$width]
+/// @param {number} $height ($width)
 ///   Height size unit.
-/// @param {string} $prefix [null]
+/// @param {string} $prefix (null)
 ///   The prefix to apply to the width/height css property.
+///
 @mixin size($width, $height: $width, $prefix: null) {
-  @if ($prefix) {
-    #{$prefix}-width: $width;
+  @if $prefix {
     #{$prefix}-height: $height;
+    #{$prefix}-width: $width;
   } @else {
-    width: $width;
     height: $height;
+    width: $width;
   }
 }

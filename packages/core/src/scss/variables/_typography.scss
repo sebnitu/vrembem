@@ -1,6 +1,14 @@
 @use "../modules/css";
 
-$font-family-sans: blinkmacsystemfont, -apple-system, system-ui, "Segoe UI", "Roboto", "Helvetica Neue", arial, sans-serif !default;
+$font-family-sans:
+  blinkmacsystemfont,
+  -apple-system,
+  system-ui,
+  "Segoe UI",
+  "Roboto",
+  "Helvetica Neue",
+  arial,
+  sans-serif !default;
 $font-family-serif: constantia, "Lucida Bright", lucidabright, "Lucida Serif", lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", georgia, serif !default;
 $font-family-mono: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family: $font-family-sans !default;
@@ -17,17 +25,20 @@ $font-weight-map: (
   "semi-bold": 600,
   "bold": 700,
   "extra-bold": 800,
-  "black": 900,
+  "black": 900
 ) !default;
 
-@include css.set("core", (
-  "font-family": $font-family,
-  "font-family-sans": $font-family-sans,
-  "font-family-serif": $font-family-serif,
-  "font-family-mono": $font-family-mono,
-  "font-size": $font-size,
-  "font-size-sm": $font-size-sm,
-  "font-size-lg": $font-size-lg,
-  "line-height": $line-height,
-  "font-weight": $font-weight-map
-));
+@include css.set(
+  "core",
+  (
+    "font-family": $font-family,
+    "font-family-sans": $font-family-sans,
+    "font-family-serif": $font-family-serif,
+    "font-family-mono": $font-family-mono,
+    "font-size": $font-size,
+    "font-size-sm": $font-size-sm,
+    "font-size-lg": $font-size-lg,
+    "line-height": $line-height,
+    "font-weight": $font-weight-map
+  )
+);

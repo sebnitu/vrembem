@@ -12,50 +12,58 @@ export function switchMode(entry) {
 }
 
 async function toInline(entry) {
-  // Remove the modal class.
+  // Remove the modal class
   entry.el.classList.remove(entry.getSetting("classModal"));
 
-  // Remove the aria-modal attribute.
+  // Remove the aria-modal attribute
   entry.dialog.removeAttribute("aria-modal");
 
-  // Update the global state.
-  setGlobalState(false, entry.getSetting("selectorInert"), entry.getSetting("selectorOverflow"));
+  // Update the global state
+  setGlobalState(
+    false,
+    entry.getSetting("selectorInert"),
+    entry.getSetting("selectorOverflow")
+  );
 
-  // Apply the inline state.
+  // Apply the inline state
   entry.applyState();
 
-  // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-    detail: this,
-    bubbles: true
-  }));
+  // Dispatch custom switch event
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
+      detail: this,
+      bubbles: true
+    })
+  );
 
-  // Emit the switchMode event.
+  // Emit the switchMode event
   await entry.parent.emit("switchMode", entry);
 
-  // Return the entry.
+  // Return the entry
   return entry;
 }
 
 async function toModal(entry) {
-  // Add the modal class.
+  // Add the modal class
   entry.el.classList.add(entry.getSetting("classModal"));
 
-  // Set aria-modal attribute to true.
+  // Set aria-modal attribute to true
   entry.dialog.setAttribute("aria-modal", "true");
 
-  // Modal drawer defaults to closed state.
+  // Modal drawer defaults to closed state
   await entry.close(false, false);
 
-  // Dispatch custom switch event.
-  entry.el.dispatchEvent(new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-    detail: this,
-    bubbles: true
-  }));
+  // Dispatch custom switch event
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
+      detail: this,
+      bubbles: true
+    })
+  );
 
-  // Emit the switchMode event.
+  // Emit the switchMode event
   await entry.parent.emit("switchMode", entry);
 
-  // Return the entry.
+  // Return the entry
   return entry;
 }

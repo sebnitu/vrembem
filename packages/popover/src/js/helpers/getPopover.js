@@ -1,8 +1,9 @@
 export function getPopover(query) {
-  // Get the entry from collection.
-  const entry = (typeof query === "string") ? this.get(query) : this.get(query.id);
+  // Get the entry from collection
+  const entry =
+    typeof query === "string" ? this.get(query) : this.get(query.id);
 
-  // Return entry if it was resolved, otherwise throw error.
+  // Return entry if it was resolved, otherwise throw error
   if (entry) {
     return entry;
   } else {

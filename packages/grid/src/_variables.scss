@@ -15,11 +15,14 @@ $gap-map: (
   "xl": 4em
 ) !default;
 
-@include css.set("grid", (
-  "cols": 1,
-  "rows": 1,
-  "flow": $flow,
-  "gap": $gap,
-  "gap-x": null,
-  "gap-y": null,
-));
+@include css.set(
+  "grid",
+  (
+    "cols": 1,
+    "rows": 1,
+    "flow": $flow,
+    "gap": $gap,
+    "gap-x": null,
+    "gap-y": null
+  )
+);

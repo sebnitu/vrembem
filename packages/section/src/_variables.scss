@@ -8,7 +8,7 @@ $max-width: 70rem !default;
 $padding: (
   "sm": 1.5em,
   "md": 2em 1.5em,
-  "lg": 3em 1.5em,
+  "lg": 3em 1.5em
 ) !default;
 $background: null !default;
 $foreground: null !default;
@@ -37,24 +37,34 @@ $size-xl-padding: (
 ) !default;
 
 // Custom properties
-@include css.set("section", (
-  "max-width": $max-width,
-  "padding": map.get($padding, "sm"),
-  "background": $background,
-  "foreground": $foreground,
-  "image-opacity": $image-opacity,
-  "screen-background": $screen-background,
-  "screen-opacity": $screen-opacity
-));
+@include css.set(
+  "section",
+  (
+    "max-width": $max-width,
+    "padding": map.get($padding, "sm"),
+    "background": $background,
+    "foreground": $foreground,
+    "image-opacity": $image-opacity,
+    "screen-background": $screen-background,
+    "screen-opacity": $screen-opacity
+  )
+);
 
 // Themes
-@include theme.set("section", "light", (
-  "background": transparent,
-  "foreground": css.get("foreground"),
-  "screen-background": css.get("background"),
-  "screen-opacity": 0.8
-));
-
-@include theme.set("section", "dark", (
-  "screen-opacity": 0.7
-));
+@include theme.set(
+  "section",
+  "light",
+  (
+    "background": transparent,
+    "foreground": css.get("foreground"),
+    "screen-background": css.get("background"),
+    "screen-opacity": 0.8
+  )
+);
+@include theme.set(
+  "section",
+  "dark",
+  (
+    "screen-opacity": 0.7
+  )
+);

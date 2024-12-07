@@ -14,22 +14,22 @@ export class Modal extends Collection {
   #handleKeydown;
 
   constructor(options) {
-    super({ ...defaults, ...options});
+    super({ ...defaults, ...options });
     this.module = "Modal";
     this.entryClass = ModalEntry;
     this.trigger = null;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
 
-    // Setup stack property using StackArray.
-    this.stack = new StackArray({ 
+    // Setup stack property using StackArray
+    this.stack = new StackArray({
       onChange: () => {
         setGlobalState(
           this.stack.top,
           this.settings.selectorInert,
           this.settings.selectorOverflow
         );
-      } 
+      }
     });
   }
 
@@ -51,7 +51,7 @@ export class Modal extends Collection {
 
   async closeAll(exclude = false, transition, focus = true) {
     const result = await closeAll.call(this, exclude, transition);
-    // Update focus if the focus param is true.
+    // Update focus if the focus param is true
     if (focus) {
       updateFocusState.call(this);
     }

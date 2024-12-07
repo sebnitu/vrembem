@@ -23,9 +23,12 @@ export class PopoverEntry extends CollectionEntry {
     };
     this.floatingCleanup = () => {};
   }
-  
+
   get isTooltip() {
-    return !!this.el.closest(this.getSetting("selectorTooltip")) || this.el.getAttribute("role") == "tooltip";
+    return (
+      !!this.el.closest(this.getSetting("selectorTooltip")) ||
+      this.el.getAttribute("role") == "tooltip"
+    );
   }
 
   get isHovered() {
@@ -33,11 +36,16 @@ export class PopoverEntry extends CollectionEntry {
   }
 
   set isHovered(event) {
-    // The state can either be true, false or undefined based on event type.
-    const state = (event.type == "mouseenter") ? true : (event.type == "mouseleave") ? false : undefined;
-    // Guard in case the event type is not "mouseenter" or "mouseleave".
+    // The state can either be true, false or undefined based on event type
+    const state =
+      event.type == "mouseenter"
+        ? true
+        : event.type == "mouseleave"
+          ? false
+          : undefined;
+    // Guard in case the event type is not "mouseenter" or "mouseleave"
     if (state == undefined) return;
-    // Store the hover state if the event target matches the el or trigger.
+    // Store the hover state if the event target matches the el or trigger
     switch (event.target) {
       case this.el:
         this.#isHovered.el = state;
@@ -47,7 +55,7 @@ export class PopoverEntry extends CollectionEntry {
         break;
     }
   }
-  
+
   async open() {
     return this.parent.open(this);
   }
@@ -55,35 +63,39 @@ export class PopoverEntry extends CollectionEntry {
   async close() {
     return this.parent.close(this);
   }
-  
+
   async deregister() {
     return this.parent.deregister(this.id);
   }
 
   registerEventListeners() {
-    // If event listeners aren't already setup.
+    // If event listeners aren't already setup
     if (!this.#eventListeners) {
-      // Add event listeners based on event type.
+      // Add event listeners based on event type
       const eventType = this.getSetting("event");
-  
-      // If the event type is hover.
+
+      // If the event type is hover
       if (eventType === "hover") {
-        // Setup event listeners object for hover.
-        this.#eventListeners = [{
-          el: ["el", "trigger"],
-          type: ["mouseenter", "focus"],
-          listener: handleMouseEnter.bind(this.parent, this)
-        }, {
-          el: ["el", "trigger"],
-          type: ["mouseleave", "focusout"],
-          listener: handleMouseLeave.bind(this.parent, this)
-        }, {
-          el: ["trigger"],
-          type: ["click"],
-          listener: handleTooltipClick.bind(this.parent, this)
-        }];
-  
-        // Loop through listeners and apply to the appropriate elements.
+        // Setup event listeners object for hover
+        this.#eventListeners = [
+          {
+            el: ["el", "trigger"],
+            type: ["mouseenter", "focus"],
+            listener: handleMouseEnter.bind(this.parent, this)
+          },
+          {
+            el: ["el", "trigger"],
+            type: ["mouseleave", "focusout"],
+            listener: handleMouseLeave.bind(this.parent, this)
+          },
+          {
+            el: ["trigger"],
+            type: ["click"],
+            listener: handleTooltipClick.bind(this.parent, this)
+          }
+        ];
+
+        // Loop through listeners and apply to the appropriate elements
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
@@ -92,17 +104,19 @@ export class PopoverEntry extends CollectionEntry {
           });
         });
       }
-  
-      // Else the event type is click.
+
+      // Else the event type is click
       else {
-        // Setup event listeners object for click.
-        this.#eventListeners = [{
-          el: ["trigger"],
-          type: ["click"],
-          listener: handleClick.bind(this.parent, this)
-        }];
-  
-        // Loop through listeners and apply to the appropriate elements.
+        // Setup event listeners object for click
+        this.#eventListeners = [
+          {
+            el: ["trigger"],
+            type: ["click"],
+            listener: handleClick.bind(this.parent, this)
+          }
+        ];
+
+        // Loop through listeners and apply to the appropriate elements
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
@@ -113,11 +127,11 @@ export class PopoverEntry extends CollectionEntry {
       }
     }
   }
-  
+
   deregisterEventListeners() {
-    // If event listeners have been setup.
+    // If event listeners have been setup
     if (this.#eventListeners) {
-      // Loop through listeners and remove from the appropriate elements.
+      // Loop through listeners and remove from the appropriate elements
       this.#eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
@@ -125,34 +139,34 @@ export class PopoverEntry extends CollectionEntry {
           });
         });
       });
-  
-      // Remove eventListeners object from collection.
+
+      // Remove eventListeners object from collection
       this.#eventListeners = null;
     }
   }
 
   async onCreateEntry() {
-    // Get the trigger element.
+    // Get the trigger element
     this.trigger = document.querySelector(
       `[aria-controls="${this.id}"], [aria-describedby="${this.id}"]`
     );
 
     // If it's a tooltip...
     if (this.isTooltip) {
-      // Set the event to hover role="tooltip" attribute.
+      // Set the event to hover role="tooltip" attribute
       this.settings.event = "hover";
       this.el.setAttribute("role", "tooltip");
     } else {
-      // Set aria-expanded to false if trigger has aria-controls attribute.
+      // Set aria-expanded to false if trigger has aria-controls attribute
       this.trigger.setAttribute("aria-expanded", "false");
     }
 
-    // Setup event listeners.
+    // Setup event listeners
     this.registerEventListeners();
   }
 
   async onRegisterEntry() {
-    // Set initial state based on the presence of the active class.
+    // Set initial state based on the presence of the active class
     if (this.el.classList.contains(this.getSetting("stateActive"))) {
       await this.open();
     } else {
@@ -161,15 +175,15 @@ export class PopoverEntry extends CollectionEntry {
   }
 
   async onDestroyEntry() {
-    // If entry is in the opened state, close it.
+    // If entry is in the opened state, close it
     if (this.state === "opened") {
       await this.close();
     }
 
-    // Clean up the floating UI instance.
+    // Clean up the floating UI instance
     this.floatingCleanup();
-    
-    // Remove event listeners.
+
+    // Remove event listeners
     this.deregisterEventListeners();
   }
 }

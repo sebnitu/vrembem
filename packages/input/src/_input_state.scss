@@ -3,15 +3,21 @@
 @use "@vrembem/core/palette";
 
 #{core.bem("input", null, "state", "success")} {
-  @include css.override("input", (
-    "accent": palette.get("primary"),
-    "border-color": palette.get("primary")
-  ));
+  @include css.override(
+    "input",
+    (
+      "accent": palette.get("primary"),
+      "border-color": palette.get("primary")
+    )
+  );
 }
 
 #{core.bem("input", null, "state", "error")} {
-  @include css.override("input", (
-    "accent": palette.get("important"),
-    "border-color": palette.get("important")
-  ));
+  @include css.override(
+    "input",
+    (
+      "accent": palette.get("important"),
+      "border-color": palette.get("important")
+    )
+  );
 }

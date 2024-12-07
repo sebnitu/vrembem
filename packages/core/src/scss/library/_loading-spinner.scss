@@ -2,37 +2,42 @@
 @use "../variables/border" as *;
 @use "./size" as *;
 
-$_output-spin-animation: true;
+$-output-spin-animation: true;
 
 @include css.register("loading");
 
 /// Output the styles for a loading spinner.
+///
 /// @param {keyword} $position
 ///   The value of the position property to use.
+///
 @mixin loading-spinner($position: absolute) {
   @include size(css.get("loading", "size", 1em));
+
   @if $position == absolute or $position == fixed {
-    top: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
     left: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
+    top: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
   }
-  position: $position;
-  display: inline-block;
+
   animation: spin css.get("loading", "duration", 0.6s) infinite linear;
   border: css.get("loading", "border", 2px solid);
-  border-radius: $border-radius-circle;
   border-color: css.get("loading", "color", currentcolor) css.get("loading", "color", currentcolor) transparent transparent;
+  border-radius: $border-radius-circle;
+  display: inline-block;
+  position: $position;
 
-  // Only output the spin animation once.
-  @if ($_output-spin-animation) {
+  // Only output the spin animation once
+  @if $-output-spin-animation {
     @keyframes spin {
       from {
         transform: rotate(0deg);
       }
-    
+
       to {
         transform: rotate(360deg);
       }
     }
-    $_output-spin-animation: false !global;
+
+    $-output-spin-animation: false !global;
   }
 }

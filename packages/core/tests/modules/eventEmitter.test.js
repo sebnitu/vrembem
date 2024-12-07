@@ -64,7 +64,9 @@ describe("eventEmitter", () => {
   });
 
   it("should not fail when emitting a non-existent event", async () => {
-    await expect(baseObj.emit("nonExistentEvent", "testData")).resolves.toBeUndefined();
+    await expect(
+      baseObj.emit("nonExistentEvent", "testData")
+    ).resolves.toBeUndefined();
   });
 
   it("should normalize event name and call correct listeners for each variant", async () => {

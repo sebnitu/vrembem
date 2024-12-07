@@ -2,15 +2,19 @@ import { getCustomProps, getSetting } from "../../index";
 
 document.body.innerHTML = "<div id='asdf'>asdf</div>";
 document.body.style.setProperty("--vb-prefix", "vb-");
-document.getElementById("asdf").style.setProperty("--vb-asdf-background", "pink");
-document.getElementById("asdf").style.setProperty("--vb-asdf-foreground", "green");
+document
+  .getElementById("asdf")
+  .style.setProperty("--vb-asdf-background", "pink");
+document
+  .getElementById("asdf")
+  .style.setProperty("--vb-asdf-foreground", "green");
 
 const mockEntry = {
   el: document.getElementById("asdf"),
   settings: {
-    customProps: ["background", "foreground"],
+    customProps: ["background", "foreground"]
   },
-  parent: { 
+  parent: {
     module: "asdf",
     settings: {
       background: "black",

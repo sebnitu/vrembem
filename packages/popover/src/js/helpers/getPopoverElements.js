@@ -9,11 +9,21 @@ export function getPopoverElements(query) {
       document.querySelector(`[aria-describedby="${id}"]`);
 
     if (!trigger && !popover) {
-      return { error: new Error(`No popover elements found using the ID: "${id}".`) };
+      return {
+        error: new Error(`No popover elements found using the ID: "${id}".`)
+      };
     } else if (!trigger) {
-      return { error: new Error(`No popover trigger associated with the provided popover: "${id}".`) };
+      return {
+        error: new Error(
+          `No popover trigger associated with the provided popover: "${id}".`
+        )
+      };
     } else if (!popover) {
-      return { error: new Error(`No popover associated with the provided popover trigger: "${id}".`) };
+      return {
+        error: new Error(
+          `No popover associated with the provided popover trigger: "${id}".`
+        )
+      };
     } else {
       return { popover, trigger };
     }

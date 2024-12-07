@@ -2,10 +2,10 @@
 @use "@vrembem/core/css";
 
 #{core.bem("table")} {
-  width: 100%;
   background-color: css.get("table", "background");
   color: css.get("table", "foreground");
   text-align: left;
+  width: 100%;
 
   th,
   td,
@@ -20,6 +20,6 @@
 }
 
 #{core.bem("table", "auto")} {
-  width: 0;
   white-space: nowrap;
+  width: 0;
 }

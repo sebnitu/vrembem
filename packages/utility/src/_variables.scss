@@ -4,32 +4,18 @@
 
 $output: true !default;
 $output-exceptions: () !default;
-
 $classes: (
   "border-radius": "radius",
-  "box-shadow": "shadow",
+  "box-shadow": "shadow"
 ) !default;
-
 $breakpoints: core.$breakpoints !default;
-
 $border-radius-map: (
   "": css.get("border-radius"),
   "lg": css.get("border-radius-lg"),
   "circle": css.get("border-radius-circle"),
   "square": 0
 ) !default;
-
-$display-properties: (
-  inline,
-  flex,
-  inline-flex,
-  grid,
-  inline-grid,
-  block,
-  inline-block,
-  none
-) !default;
-
+$display-properties: (inline, flex, inline-flex, grid, inline-grid, block, inline-block, none) !default;
 $max-width: 70rem !default;
 $max-width-scale: (
   "none": none,
@@ -40,16 +26,7 @@ $max-width-scale: (
   "xl": 90rem,
   "full": 100%
 ) !default;
-
 $order-count: 6 !default;
-
-$overflow-properties: (
-  visible,
-  hidden,
-  clip,
-  scroll,
-  auto
-) !default;
-
+$overflow-properties: (visible, hidden, clip, scroll, auto) !default;
 $gap: core.$gap !default;
 $gap-map: core.$gap-map !default;

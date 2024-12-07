@@ -5,17 +5,18 @@
 #{core.bem("popover", "arrow")},
 #{core.bem("popover", "arrow")}::after {
   @include core.size(css.get("popover", "arrow-size", var.$arrow-size));
-  position: absolute;
-  z-index: -1;
-  visibility: hidden;
+
   background-color: inherit;
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
 }
 
 #{core.bem("popover", "arrow")}::after {
-  content: "";
-  visibility: visible;
-  transform: rotate(45deg);
   background-clip: padding-box;
+  content: "";
+  transform: rotate(45deg);
+  visibility: visible;
 }
 
 [data-floating-placement^="top"] > #{core.bem("popover", "arrow")} {

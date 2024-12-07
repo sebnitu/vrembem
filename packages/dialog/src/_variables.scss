@@ -16,12 +16,15 @@ $title-line-height: null !default;
 $title-font-weight: css.get("font-weight-semi-bold") !default;
 $transition-duration: css.get("transition-duration") !default;
 $transition-timing-function: css.get("transition-timing-function") !default;
-
 $focus-ring-color: palette.get("primary") !default;
 $focus-ring-color-alert: palette.get("important") !default;
 $focus-ring-opacity: 1 !default;
 
-@include css.set("dialog", (
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-), "required");
+@include css.set(
+  "dialog",
+  (
+    "transition-duration": $transition-duration,
+    "transition-timing-function": $transition-timing-function
+  ),
+  "required"
+);

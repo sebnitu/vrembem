@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "index.js"),
       name: "vrembem.Modal",
-      fileName: "index",
+      fileName: "index"
     },
     emptyOutDir: false,
     sourcemap: true
@@ -21,10 +21,10 @@ export default defineConfig({
     "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
   },
   css: {
-    preprocessorOptions : {
+    preprocessorOptions: {
       scss: {
-        api: "modern",
-      }        
-    } 
+        api: "modern"
+      }
+    }
   }
 });

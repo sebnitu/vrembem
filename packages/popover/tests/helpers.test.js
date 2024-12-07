@@ -87,17 +87,32 @@ describe("getPadding()", () => {
 
   it("should return a padding object if a string of two numbers are passed", () => {
     const value = "64 32";
-    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 64, left: 32 });
+    expect(getPadding(value)).toEqual({
+      top: 64,
+      right: 32,
+      bottom: 64,
+      left: 32
+    });
   });
 
   it("should return a padding object if a string of three numbers are passed", () => {
     const value = "64 32 16";
-    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 16, left: 32 });
+    expect(getPadding(value)).toEqual({
+      top: 64,
+      right: 32,
+      bottom: 16,
+      left: 32
+    });
   });
 
   it("should return a padding object if a string of four numbers are passed", () => {
     const value = "64 32 16 8";
-    expect(getPadding(value)).toEqual({ top: 64, right: 32, bottom: 16, left: 8 });
+    expect(getPadding(value)).toEqual({
+      top: 64,
+      right: 32,
+      bottom: 16,
+      left: 8
+    });
   });
 
   it("should return false if more than four numbers exist in the string", () => {
@@ -118,7 +133,7 @@ describe("getPopoverID()", () => {
   it("should return the popover id using a popover trigger", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const el = document.querySelector("[aria-controls=\"pop-2\"]");
+    const el = document.querySelector('[aria-controls="pop-2"]');
     const result = getPopoverID.call(popover, el);
     expect(result).toBe("pop-2");
   });
@@ -126,7 +141,7 @@ describe("getPopoverID()", () => {
   it("should return the popover id using a popover tooltip trigger", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const el = document.querySelector("[aria-describedby=\"pop-3\"]");
+    const el = document.querySelector('[aria-describedby="pop-3"]');
     const result = getPopoverID.call(popover, el);
     expect(result).toBe("pop-3");
   });
@@ -150,7 +165,7 @@ describe("getPopoverID()", () => {
 describe("getPopoverElements()", () => {
   it("should return popover element and trigger elements when found using ID", () => {
     document.body.innerHTML = markup;
-    const trigger = document.querySelector("[aria-controls=\"pop-1\"]");
+    const trigger = document.querySelector('[aria-controls="pop-1"]');
     const target = document.querySelector("#pop-1");
     popover = new Popover();
     const result = getPopoverElements.call(popover, "pop-1");
@@ -162,15 +177,19 @@ describe("getPopoverElements()", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const func = getPopoverElements.call(popover, "pop-4");
-    expect(func.error.message).toBe("No popover elements found using the ID: \"pop-4\".");
+    expect(func.error.message).toBe(
+      'No popover elements found using the ID: "pop-4".'
+    );
   });
 
   it("should throw error if no popover is found using a trigger element", () => {
     document.body.innerHTML = markup;
-    const trigger = document.querySelector("[aria-controls=\"asdf\"]");
+    const trigger = document.querySelector('[aria-controls="asdf"]');
     popover = new Popover();
     const func = getPopoverElements.call(popover, trigger);
-    expect(func.error.message).toBe("No popover associated with the provided popover trigger: \"asdf\".");
+    expect(func.error.message).toBe(
+      'No popover associated with the provided popover trigger: "asdf".'
+    );
   });
 
   it("should throw error if no popover trigger is found using a popover", () => {
@@ -178,7 +197,9 @@ describe("getPopoverElements()", () => {
     const target = document.querySelector("#fdsa");
     popover = new Popover();
     const func = getPopoverElements.call(popover, target);
-    expect(func.error.message).toBe("No popover trigger associated with the provided popover: \"fdsa\".");
+    expect(func.error.message).toBe(
+      'No popover trigger associated with the provided popover: "fdsa".'
+    );
   });
 
   it("should throw error if unable to resolve a popover ID with provided query", () => {
@@ -224,6 +245,8 @@ describe("getDelay()", () => {
       toggleDelay: "asdf"
     });
     const entry1 = await popover.register("pop-1");
-    expect(() => getDelay(entry1, 0)).toThrow("Provided delay value is not a number: \"asdf\"");
+    expect(() => getDelay(entry1, 0)).toThrow(
+      'Provided delay value is not a number: "asdf"'
+    );
   });
 });

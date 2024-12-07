@@ -7,44 +7,47 @@
 
 .heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
-  display: inline-flex;
+
   align-items: center;
-  justify-content: center;
-  margin-left: 1rem;
-  padding: css.get("form-control-padding-y");
-  transition: color 0.25s, opacity 0.25s;
-  border-radius: core.$border-radius-circle;
   background-color: palette.get("primary", 50%, 0%);
-  opacity: 0;
+  border-radius: core.$border-radius-circle;
+  display: inline-flex;
   font-size: 1rem;
   font-weight: 500;
+  justify-content: center;
+  margin-left: 1rem;
+  opacity: 0;
+  padding: css.get("form-control-padding-y");
   text-decoration: none !important;
+  transition:
+    color 0.25s,
+    opacity 0.25s;
   user-select: none;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     background-color: palette.get("primary", 50%, 20%);
   }
 
-  h1:hover &,
-  h2:hover &,
-  h3:hover &,
-  h4:hover &,
-  h5:hover &,
-  h6:hover &,
+  &:focus,
   h1:focus &,
   h2:focus &,
   h3:focus &,
   h4:focus &,
   h5:focus &,
   h6:focus &,
-  &:focus {
+  h1:hover &,
+  h2:hover &,
+  h3:hover &,
+  h4:hover &,
+  h5:hover &,
+  h6:hover & {
     opacity: 1;
   }
 
   @include core.media-min(var.$bp-code) {
     position: absolute;
-    top: calc(58% - calc(css.get("form-control-size") / 2));
     right: calc(100% + calc(css.get("form-control-size") / 2));
+    top: calc(58% - calc(css.get("form-control-size") / 2));
   }
 }

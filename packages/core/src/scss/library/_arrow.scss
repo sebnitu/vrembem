@@ -1,33 +1,31 @@
 @use "../modules/css";
-
 @include css.register("arrow");
 
-/// Output the styles for an arrow or caret.
-/// @param {string} $direction
-///   The direction the arrow should point (e.g: "up", "down", "left", "right").
+/// Outputs the styles for an arrow or caret.
+///
+/// @param {string} $direction ("down")
+///   The direction the arrow should point.
+///   Valid options: "up", "down", "left", "right".
+///
 @mixin arrow($direction: "down") {
+  border-width: css.get("arrow", "size", 6px 4px);
+  border-bottom-width: 0;
+  border-color: css.get("arrow", "color", currentcolor) transparent transparent;
+  border-radius: css.get("arrow", "radius", 2px);
+  border-style: solid;
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 0;
   height: 0;
-  transform-origin: center;
-  border-width: css.get("arrow", "size", 6px 4px);
-  border-bottom-width: 0;
-  border-style: solid;
-  border-radius: css.get("arrow", "radius", 2px);
-  border-color: css.get("arrow", "color", currentcolor) transparent transparent;
   pointer-events: none;
+  transform-origin: center;
+  width: 0;
 
   @if $direction == "up" {
     transform: rotate(180deg);
-  }
-
-  @else if $direction == "left" {
+  } @else if $direction == "left" {
     transform: rotate(90deg);
-  }
-
-  @else if $direction == "right" {
+  } @else if $direction == "right" {
     transform: rotate(-90deg);
   }
 }

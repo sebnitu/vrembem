@@ -10,7 +10,7 @@ export class Popover extends Collection {
   #handleKeydown;
 
   constructor(options = {}) {
-    super({ ...defaults, ...options});
+    super({ ...defaults, ...options });
     this.module = "Popover";
     this.entryClass = PopoverEntry;
     this.trigger = null;
@@ -23,7 +23,9 @@ export class Popover extends Collection {
 
   get activeHover() {
     return this.collection.find((popover) => {
-      return popover.state == "opened" && popover.getSetting("event") == "hover";
+      return (
+        popover.state == "opened" && popover.getSetting("event") == "hover"
+      );
     });
   }
 
