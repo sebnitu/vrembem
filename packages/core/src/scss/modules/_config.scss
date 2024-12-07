@@ -29,13 +29,13 @@ $-options: (
 /// Set an option in the configuration map.
 ///
 /// @param {string} $key
-///   The key in the map to set. Can be passed a map of key/value pairs. E.g:
+///   The key in the map to set. Can be passed a map of key/value pairs.
 ///   - ("key": "value"), null
 ///   - ("key": ("key": "value")), null
 ///
 /// @param {any} $value (null)
 ///   The value to be stored. Can be passed a map of key/value pairs where key
-///   will be prefixed with the provided value keys. E.g:
+///   will be prefixed with the provided value keys.
 ///   - "key", "value"
 ///   - "key", ("key": "value")
 ///

@@ -11,7 +11,7 @@ const defaults = {
   keyPrefix: "VB:",
 
   // The local storage key to use. If not provided, module name and prop value
-  // will be used e.g: "VB:ModalState".
+  // will be used e.g., "VB:ModalState".
   key: null,
 
   // Condition to determine whether or not to store the value in local storage.

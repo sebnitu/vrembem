@@ -13,7 +13,7 @@
 ///   The value of the custom property or a map of valid variables with
 ///   breakpoints as the key.
 /// @param {map} $breakpoints
-///   A breakpoints map (e.g: core.$breakpoints).
+///   A breakpoints map (e.g., core.$breakpoints).
 ///
 @mixin css-query($module, $prop, $value, $breakpoints: $breakpoints) {
   // If padding is not a map, set the CSS var
