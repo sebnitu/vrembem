@@ -1,4 +1,4 @@
-export function toMilliseconds(value) {
+export function toMilliseconds(value: string | number): number {
   // Return the value directly if it's a number
   if (typeof value === "number") {
     return value;

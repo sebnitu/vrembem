@@ -13,7 +13,13 @@ import { toMilliseconds } from "./toMilliseconds";
  *
  * @return {Promise} - Promise that resolves when the transition has finished
  */
-export function transition(el, init, interim, final, duration = 0) {
+export function transition(
+  el: HTMLElement,
+  init: string,
+  interim: string,
+  final: string,
+  duration: number = 0
+): Promise<HTMLElement> {
   return new Promise((resolve) => {
     // Toggle classes for start of transition
     el.classList.remove(init);
