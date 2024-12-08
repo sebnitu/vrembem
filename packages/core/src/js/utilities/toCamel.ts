@@ -1,4 +1,4 @@
-export function toCamel(value) {
+export function toCamel(value: string): string {
   return value
     .split("-")
     .map((word, index) =>
