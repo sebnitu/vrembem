@@ -11,7 +11,7 @@ import { toMilliseconds } from "./toMilliseconds";
  *   Either a CSS custom property to get a duration value from or a millisecond
  *   value used for the transition duration.
  *
- * @return {Promise} - Promise that resolves when the transition has finished
+ * @return {Promise} Promise that resolves when the transition has finished.
  */
 export function transition(
   el: HTMLElement,
