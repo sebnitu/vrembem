@@ -1,5 +1,3 @@
-type howOptions = "after" | "before" | "append" | "prepend";
-
 /**
  * Teleports an element in the DOM based on a reference and teleport method.
  *
@@ -14,7 +12,7 @@ type howOptions = "after" | "before" | "append" | "prepend";
 export function teleportElement(
   what: HTMLElement,
   where: HTMLElement | string,
-  how: howOptions
+  how: "after" | "before" | "append" | "prepend"
 ): Function {
   // If `where` is a string, ensure that it returns an HTML element
   if (typeof where === "string") {

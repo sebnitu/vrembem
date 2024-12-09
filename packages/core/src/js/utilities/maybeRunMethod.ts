@@ -9,8 +9,8 @@
  *   A promise that resolves when the method (if called) completes, or
  *   immediately if no method is called.
  */
-export async function maybeRunMethod<T extends Record<string, any>>(
-  obj: T,
+export async function maybeRunMethod(
+  obj: Record<string, any>,
   name: string,
   ...args: unknown[]
 ): Promise<void> {
