@@ -4,7 +4,7 @@ const notInert = ":not([inert])"; // Previously `:not([inert]):not([inert] *)`
 const notNegTabIndex = ':not([tabindex^="-"])';
 const notDisabled = ":not(:disabled)";
 
-export const focusableSelectors = [
+export const focusableSelectors: Array<string> = [
   `a[href]${notInert}${notNegTabIndex}`,
   `area[href]${notInert}${notNegTabIndex}`,
   `input:not([type="hidden"]):not([type="radio"])${notInert}${notNegTabIndex}${notDisabled}`,
