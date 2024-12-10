@@ -33,9 +33,15 @@ describe("teleportElement()", () => {
     expect(boxA.nextSibling).toBe(el);
   });
 
-  it("should throw an error if not a valid teleportElement reference element", () => {
+  it("should throw an error if no teleport reference is found with the provided selector", () => {
     expect(() => teleportElement(el, "asdf")).toThrow(
-      "Not a valid teleport reference: 'null'"
+      "No teleport reference found for selector: asdf"
+    );
+  });
+
+  it("should throw an error if the teleport element provided is not valid", () => {
+    expect(() => teleportElement(el, {})).toThrow(
+      "Not a valid teleport reference: '[object Object]'"
     );
   });
 

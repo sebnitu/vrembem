@@ -52,7 +52,7 @@ test("should properly show content when modal drawer is closed", async () => {
   btn.click();
   await vi.runAllTimers();
 
-  expect(main.inert).toBe(null);
+  expect(main.inert).toBe(false);
   expect(main.hasAttribute("aria-hidden")).toBe(false);
   expect(main).not.toHaveStyle({ overflow: "hidden" });
 });
