@@ -4,6 +4,7 @@ coverage
 dev
 dist
 node_modules
+.astro
 
 # Ignore markup/down files:
 **/*.html
