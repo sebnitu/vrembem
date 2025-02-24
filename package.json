@@ -48,6 +48,6 @@
     "stylelint-prettier": "^5.0.3",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
-    "vitest": "^3.0.4"
+    "vitest": "^3.0.7"
   }
 }
