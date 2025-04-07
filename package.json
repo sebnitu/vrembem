@@ -35,7 +35,7 @@
     "babel-jest": "^29.7.0",
     "concurrently": "^9.1.2",
     "del-cli": "^6.0.0",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "eslint-plugin-jest": "^28.11.0",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
