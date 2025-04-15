@@ -34,7 +34,7 @@
     "concurrently": "^9.1.2",
     "del-cli": "^6.0.0",
     "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.1",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
     "jsdom": "^26.1.0",
     "lerna": "^8.2.2",
