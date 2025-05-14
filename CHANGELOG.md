@@ -32,12 +32,70 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.30 to CHANGELOG.md
+chore(release): add v4.0.0-next.31 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+## v4.0.0-next.31 (2025-05-14)
+
+### :tada: New Feature
+* `core`, `flex`, `grid`
+  * [#2135](https://github.com/sebnitu/vrembem/pull/2135) Add breakpoint modifier support to bem function
+* `core`, `utility`, `vrembem`
+  * [#2133](https://github.com/sebnitu/vrembem/pull/2133) Refactor utilities and improve output and naming customization
+* `core`, `drawer`, `modal`
+  * [#2129](https://github.com/sebnitu/vrembem/pull/2129) Create new focusTrap plugin
+  * [#2081](https://github.com/sebnitu/vrembem/pull/2081) Create new propStore plugin
+* `core`, `drawer`
+  * [#2125](https://github.com/sebnitu/vrembem/pull/2125) Create the ability to add plugin presets for specific modules
+  * [#2067](https://github.com/sebnitu/vrembem/pull/2067) Create new mediaQuery plugin to replace Breakpoint class
+* `core`, `drawer`, `modal`, `popover`
+  * [#2099](https://github.com/sebnitu/vrembem/pull/2099) Add event emitter to core Collection and refactor lifecycle hooks
+* `core`
+  * [#2068](https://github.com/sebnitu/vrembem/pull/2068) Add a get method to pluginsArray
+* `core`, `drawer`, `modal`, `popover`, `vrembem`
+  * [#2056](https://github.com/sebnitu/vrembem/pull/2056) Create a plugin system for collections and entries
+
+### :bug: Bug Fix
+* `button`, `core`, `drawer`, `modal`, `popover`, `vrembem`
+  * [#2145](https://github.com/sebnitu/vrembem/pull/2145) Fix export order of packages
+* `utility`
+  * [#2134](https://github.com/sebnitu/vrembem/pull/2134) Use CSS variables for the values of border-radius
+* `popover`
+  * [#2132](https://github.com/sebnitu/vrembem/pull/2132) Fix closing popovers when tabbing into them
+
+### :house: Refactor
+* `core`, `drawer`, `modal`
+  * [#2152](https://github.com/sebnitu/vrembem/pull/2152) Initial implementation and migration to TypeScript
+  * [#2090](https://github.com/sebnitu/vrembem/pull/2090) Provide context object as an argument in lifecycle hooks
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2147](https://github.com/sebnitu/vrembem/pull/2147) Add prettier and simplify linting rules
+* `base`, `button`, `table`, `utility`
+  * [#2146](https://github.com/sebnitu/vrembem/pull/2146) Apply new breakpoint modifier methodology to all components
+* `base`, `button`, `core`, `utility`, `vrembem`
+  * [#2144](https://github.com/sebnitu/vrembem/pull/2144) Refactor and standardize base component
+* `core`, `modal`
+  * [#2131](https://github.com/sebnitu/vrembem/pull/2131) General collection refactor and cleanup
+  * [#2128](https://github.com/sebnitu/vrembem/pull/2128) Refactor modal stack into StackArray class that extends Array
+* `core`, `drawer`
+  * [#2126](https://github.com/sebnitu/vrembem/pull/2126) Refactor and simplify PluginsArray and decouple from Collections logic
+  * [#2123](https://github.com/sebnitu/vrembem/pull/2123) Better handle multiple calls to mount
+* `core`
+  * [#2124](https://github.com/sebnitu/vrembem/pull/2124) Move entry destroy logic into collection entry class
+* `core`, `drawer`, `modal`, `popover`
+  * [#2055](https://github.com/sebnitu/vrembem/pull/2055) Refactor collection and entry props
+
+### :books: Documentation
+* [#2130](https://github.com/sebnitu/vrembem/pull/2130) Use Astro.url.pathname instead of Astro.request.url
+
+### :hammer: Chore
+* `core`
+  * [#2211](https://github.com/sebnitu/vrembem/pull/2211) Bump vitest and coverage dependencies
+* Other
+  * [#2166](https://github.com/sebnitu/vrembem/pull/2166) Bump year to 2025
 
 
 ## v4.0.0-next.30 (2024-09-30)
