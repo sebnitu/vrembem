@@ -177,7 +177,7 @@ input::-moz-placeholder {
   color: #e91e63;
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .h1,
@@ -412,7 +412,7 @@ input::-moz-placeholder {
   color: #e91e63;
   font-family: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .type > hr {
   display: block;
