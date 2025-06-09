@@ -5,7 +5,15 @@ import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
 export class Collection {
-  constructor(options = {}) {
+  module: string;
+  collection: any[];
+  entryClass: any;
+  settings: Record<string, any>;
+  plugins: PluginsArray;
+  events: Record<string, any>;
+  emit: (name: string, entry?: CollectionEntry) => Promise<void>;
+
+  constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
@@ -19,28 +27,28 @@ export class Collection {
     Object.assign(this, eventEmitter);
   }
 
-  get(value, key = "id") {
+  get(value: any, key: string = "id") {
     return this.collection.find((entry) => entry[key] === value);
   }
 
-  applySettings(options) {
+  applySettings(options: Record<string, any>) {
     return Object.assign(this.settings, options);
   }
 
-  async createEntry(query, config) {
+  async createEntry(query: any, config: any) {
     const entry = new this.entryClass(this, query, config);
     await maybeRunMethod(entry, "init");
-    await dispatchLifecycleHook("onCreateEntry", this, entry);
+    await dispatchLifecycleHook("onCreateEntry", this as any, entry as any);
     return entry;
   }
 
-  async destroyEntry(entry) {
-    await dispatchLifecycleHook("onDestroyEntry", this, entry);
+  async destroyEntry(entry: any) {
+    await dispatchLifecycleHook("onDestroyEntry", this as any, entry as any);
     await maybeRunMethod(entry, "destroy");
     return entry;
   }
 
-  async register(query, config = {}) {
+  async register(query: any, config: any = {}) {
     // Get the element to register
     const element = getElement(query);
 
@@ -75,14 +83,14 @@ export class Collection {
       this.collection.push(entry);
 
       // Dispatch onRegisterEntry lifecycle hooks
-      await dispatchLifecycleHook("onRegisterEntry", this, entry);
+      await dispatchLifecycleHook("onRegisterEntry", this as any, entry as any);
 
       // Return the registered entry
       return entry;
     }
   }
 
-  async deregister(id) {
+  async deregister(id: any) {
     const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
       // Get the collection entry object from the collection and destroy it
@@ -91,8 +99,8 @@ export class Collection {
       // Dispatch onDeregisterEntry lifecycle hooks
       await dispatchLifecycleHook(
         "onDeregisterEntry",
-        this,
-        this.collection[index]
+        this as any,
+        this.collection[index] as any
       );
 
       // Remove the entry from the collection
@@ -104,7 +112,7 @@ export class Collection {
     return null;
   }
 
-  async mount(options = {}) {
+  async mount(options: Record<string, any> = {}) {
     // Apply settings with passed options
     this.applySettings(options);
 
@@ -119,7 +127,7 @@ export class Collection {
     }
 
     // Dispatch beforeMount lifecycle hooks
-    await dispatchLifecycleHook("beforeMount", this);
+    await dispatchLifecycleHook("beforeMount", this as any);
 
     // Get all the selector elements and register them
     const els = document.querySelectorAll(this.settings.selector);
@@ -128,14 +136,14 @@ export class Collection {
     }
 
     // Dispatch afterMount lifecycle hooks
-    await dispatchLifecycleHook("afterMount", this);
+    await dispatchLifecycleHook("afterMount", this as any);
 
     return this;
   }
 
   async unmount() {
     // Dispatch beforeUnmount lifecycle hooks
-    await dispatchLifecycleHook("beforeUnmount", this);
+    await dispatchLifecycleHook("beforeUnmount", this as any);
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
@@ -143,7 +151,7 @@ export class Collection {
     }
 
     // Dispatch afterUnmount lifecycle hooks
-    await dispatchLifecycleHook("afterUnmount", this);
+    await dispatchLifecycleHook("afterUnmount", this as any);
 
     // Run teardown methods on plugins
     for (const plugin of this.plugins) {
