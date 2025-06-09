@@ -1,3 +1,5 @@
+import type { Plugin } from "../modules/PluginsArray";
+
 const defaults = {
   condition: true
 };
@@ -9,20 +11,24 @@ const colors = {
   important: "hsl(0deg 80% 50%)"
 };
 
-export function debug(options = {}) {
+export function debug(options: Record<string, any> = {}): Plugin {
   const props = {
     name: "debug",
     defaults,
     options
   };
 
-  function log(name, args = [], colorKeys = ["primary", "secondary"]) {
+  function log(
+    name: string,
+    args: any[] = [],
+    colorKeys: Array<keyof typeof colors> = ["primary", "secondary"]
+  ) {
     const colorStyles = colorKeys.map((key) => `color: ${colors[key]}`);
     console.log(`%c📡 DEBUG: %c${name}`, ...colorStyles, ...args);
   }
 
-  function getValue(obj, ...args) {
-    return typeof obj === "function" ? obj(...args) : obj;
+  function getValue<T>(obj: T | ((...args: any[]) => T), ...args: any[]): T {
+    return typeof obj === "function" ? (obj as Function)(...args) : obj;
   }
 
   // Create event listener references
@@ -41,19 +47,19 @@ export function debug(options = {}) {
       [],
       ["important", "neutral"]
     ),
-    createEntryRef: (entry, { parent, plugin }) => {
+    createEntryRef: (entry: any, { parent, plugin }: any) => {
       if (getValue(plugin.settings.condition, entry)) {
         const count = parent.collection.length;
         log(`Event > createEntry() > [${count}] #${entry.id}`);
       }
     },
-    registerEntryRef: (entry, { parent, plugin }) => {
+    registerEntryRef: (entry: any, { parent, plugin }: any) => {
       if (getValue(plugin.settings.condition, entry)) {
         const count = parent.collection.length;
         log(`Event > registerEntry() > [${count}] #${entry.id}`);
       }
     },
-    destroyEntryRef: (entry, { parent, plugin }) => {
+    destroyEntryRef: (entry: any, { parent, plugin }: any) => {
       if (getValue(plugin.settings.condition, entry)) {
         const count = parent.collection.length;
         log(
@@ -63,7 +69,7 @@ export function debug(options = {}) {
         );
       }
     },
-    deregisterEntryRef: (entry, { parent, plugin }) => {
+    deregisterEntryRef: (entry: any, { parent, plugin }: any) => {
       if (getValue(plugin.settings.condition, entry)) {
         const count = parent.collection.length;
         log(
@@ -77,8 +83,9 @@ export function debug(options = {}) {
 
   const methods = {
     // Plugin setup/teardown methods
-    setup({ parent }) {
-      log("Plugin > setup()", arguments, ["secondary", "neutral"]);
+    setup(this: any, { parent }: any) {
+      log("Plugin > setup()", Array.from(arguments), ["secondary", "neutral"]);
+
       // Mount event lifecycle hooks
       parent.on("beforeMount", refs.beforeMountRef);
       parent.on("createEntry", refs.createEntryRef, { parent, plugin: this });
@@ -87,6 +94,7 @@ export function debug(options = {}) {
         plugin: this
       });
       parent.on("afterMount", refs.afterMountRef);
+
       // Unmount event lifecycle hooks
       parent.on("beforeUnmount", refs.beforeUnmountRef);
       parent.on("destroyEntry", refs.destroyEntryRef, { parent, plugin: this });
@@ -97,13 +105,18 @@ export function debug(options = {}) {
       parent.on("afterUnmount", refs.afterUnmountRef);
     },
 
-    teardown({ parent }) {
-      log("Plugin > teardown()", arguments, ["secondary", "neutral"]);
+    teardown(this: any, { parent }: any) {
+      log("Plugin > teardown()", Array.from(arguments), [
+        "secondary",
+        "neutral"
+      ]);
+
       // Mount event lifecycle hooks
       parent.off("beforeMount", refs.beforeMountRef);
       parent.off("createEntry", refs.createEntryRef);
       parent.off("registerEntry", refs.registerEntryRef);
       parent.off("afterMount", refs.afterMountRef);
+
       // Unmount event lifecycle hooks
       parent.off("beforeUnmount", refs.beforeUnmountRef);
       parent.off("destroyEntry", refs.destroyEntryRef);
@@ -112,57 +125,63 @@ export function debug(options = {}) {
     },
 
     // Mount lifecycle hooks
-
     beforeMount() {
-      log("Hook > beforeMount()", arguments);
+      log("Hook > beforeMount()", Array.from(arguments));
     },
-
-    onCreateEntry({ parent, entry }) {
+    onCreateEntry(this: any, { parent, entry }: any) {
       if (getValue(this.settings.condition, entry)) {
         const count = parent.collection.length;
-        log(`Hook > onCreateEntry() > [${count}] #${entry.id}`, arguments);
+        log(
+          `Hook > onCreateEntry() > [${count}] #${entry.id}`,
+          Array.from(arguments)
+        );
       }
     },
-
-    onRegisterEntry({ parent, entry }) {
+    onRegisterEntry(this: any, { parent, entry }: any) {
       if (getValue(this.settings.condition, entry)) {
         const count = parent.collection.length - 1;
-        log(`Hook > onRegisterEntry() > [${count}] #${entry.id}`, arguments);
+        log(
+          `Hook > onRegisterEntry() > [${count}] #${entry.id}`,
+          Array.from(arguments)
+        );
       }
     },
-
     afterMount() {
-      log("Hook > afterMount()", arguments);
+      log("Hook > afterMount()", Array.from(arguments));
     },
 
     // Unmount lifecycle hooks
-
     beforeUnmount() {
-      log("Hook > beforeUnmount()", arguments, ["important", "neutral"]);
+      log("Hook > beforeUnmount()", Array.from(arguments), [
+        "important",
+        "neutral"
+      ]);
     },
-
-    onDestroyEntry({ parent, entry }) {
+    onDestroyEntry(this: any, { parent, entry }: any) {
       if (getValue(this.settings.condition, entry)) {
         const count = parent.collection.length - 1;
-        log(`Hook > onDestroyEntry() > [${count}] #${entry.id}`, arguments, [
-          "important",
-          "neutral"
-        ]);
+        log(
+          `Hook > onDestroyEntry() > [${count}] #${entry.id}`,
+          Array.from(arguments),
+          ["important", "neutral"]
+        );
       }
     },
-
-    onDeregisterEntry({ parent, entry }) {
+    onDeregisterEntry(this: any, { parent, entry }: any) {
       if (getValue(this.settings.condition, entry)) {
         const count = parent.collection.length;
-        log(`Hook > onDeregisterEntry() > [${count}] #${entry.id}`, arguments, [
-          "important",
-          "neutral"
-        ]);
+        log(
+          `Hook > onDeregisterEntry() > [${count}] #${entry.id}`,
+          Array.from(arguments),
+          ["important", "neutral"]
+        );
       }
     },
-
     afterUnmount() {
-      log("Hook > afterUnmount()", arguments, ["important", "neutral"]);
+      log("Hook > afterUnmount()", Array.from(arguments), [
+        "important",
+        "neutral"
+      ]);
     }
   };
 

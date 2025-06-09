@@ -1,8 +1,18 @@
-type Plugin = {
+export type Plugin = {
   name: string;
   defaults?: Record<string, any>;
   options?: Record<string, any>;
   settings?: Record<string, any>;
+  setup?: (context: any) => void;
+  teardown?: (context: any) => void;
+  onCreateEntry?: (context: any) => void;
+  onDestroyEntry?: (context: any) => void;
+  onRegisterEntry?: (context: any) => void;
+  onDeregisterEntry?: (context: any) => void;
+  beforeMount?: (...args: any[]) => void;
+  afterMount?: (...args: any[]) => void;
+  beforeUnmount?: (...args: any[]) => void;
+  afterUnmount?: (...args: any[]) => void;
   [key: string]: any;
 };
 
