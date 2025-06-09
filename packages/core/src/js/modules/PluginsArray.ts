@@ -1,10 +1,22 @@
-export class PluginsArray extends Array {
-  constructor(presets = {}) {
+type Plugin = {
+  name: string;
+  defaults?: Record<string, any>;
+  options?: Record<string, any>;
+  settings?: Record<string, any>;
+  [key: string]: any;
+};
+
+type Presets = Record<string, Record<string, any>>;
+
+export class PluginsArray extends Array<Plugin> {
+  presets: Presets;
+
+  constructor(presets: Presets = {}) {
     super();
     this.presets = presets;
   }
 
-  applySettings(plugin) {
+  applySettings(plugin: Plugin): void {
     // Get the defaults, presets and provided configuration of the plugin
     const defaults = plugin?.defaults || {};
     const preset = this.presets?.[plugin.name] || {};
@@ -15,22 +27,21 @@ export class PluginsArray extends Array {
     plugin.settings = { ...defaults, ...preset, ...options };
   }
 
-  validate(plugin) {
+  validate(plugin: Plugin): boolean {
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
       return false;
     }
-
     return true;
   }
 
-  get(name) {
+  get(name: string): Plugin | undefined {
     return this.find((plugin) => plugin.name === name);
   }
 
-  add(plugin) {
+  add(plugin: Plugin | Plugin[]): void {
     if (Array.isArray(plugin)) {
-      plugin.forEach((plugin) => this.add(plugin));
+      plugin.forEach((p) => this.add(p));
     } else {
       // Process the plugin object
       this.applySettings(plugin);
@@ -48,7 +59,7 @@ export class PluginsArray extends Array {
     }
   }
 
-  remove(name) {
+  remove(name: string): void {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
       this.splice(index, 1);

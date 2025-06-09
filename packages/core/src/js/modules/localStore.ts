@@ -1,14 +1,16 @@
-export function localStore(key, enable = true) {
+export function localStore<T extends Record<string, any> = Record<string, any>>(
+  key: string,
+  enable: boolean = true
+) {
   const local = localStorage.getItem(key);
-  const store = local ? JSON.parse(local) : {};
+  const store: T = local ? JSON.parse(local) : {};
 
   return {
-    get(prop, fallback = undefined) {
+    get<K extends keyof T>(prop?: K, fallback?: T[K]): T[K] | T | undefined {
       if (!prop) return store;
       return prop in store ? store[prop] : fallback;
     },
-
-    set(prop, value) {
+    set<K extends keyof T>(prop: K, value?: T[K]): T {
       if (value) {
         store[prop] = value;
       } else {
