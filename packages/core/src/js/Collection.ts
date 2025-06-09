@@ -3,15 +3,18 @@ import { CollectionEntry } from "./CollectionEntry";
 import { eventEmitter, PluginsArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
+import type { EventEmitter } from "./modules";
 
-export class Collection {
+export class Collection implements EventEmitter {
   module: string;
   collection: any[];
   entryClass: any;
   settings: Record<string, any>;
   plugins: PluginsArray;
-  events: Record<string, any>;
-  emit: (name: string, entry?: CollectionEntry) => Promise<void>;
+  events: EventEmitter["events"];
+  on: EventEmitter["on"];
+  off: EventEmitter["off"];
+  emit: EventEmitter["emit"];
 
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
@@ -38,12 +41,12 @@ export class Collection {
   async createEntry(query: any, config: any) {
     const entry = new this.entryClass(this, query, config);
     await maybeRunMethod(entry, "init");
-    await dispatchLifecycleHook("onCreateEntry", this as any, entry as any);
+    await dispatchLifecycleHook("onCreateEntry", this, entry);
     return entry;
   }
 
   async destroyEntry(entry: any) {
-    await dispatchLifecycleHook("onDestroyEntry", this as any, entry as any);
+    await dispatchLifecycleHook("onDestroyEntry", this, entry);
     await maybeRunMethod(entry, "destroy");
     return entry;
   }
@@ -83,7 +86,7 @@ export class Collection {
       this.collection.push(entry);
 
       // Dispatch onRegisterEntry lifecycle hooks
-      await dispatchLifecycleHook("onRegisterEntry", this as any, entry as any);
+      await dispatchLifecycleHook("onRegisterEntry", this, entry);
 
       // Return the registered entry
       return entry;
@@ -99,8 +102,8 @@ export class Collection {
       // Dispatch onDeregisterEntry lifecycle hooks
       await dispatchLifecycleHook(
         "onDeregisterEntry",
-        this as any,
-        this.collection[index] as any
+        this,
+        this.collection[index]
       );
 
       // Remove the entry from the collection
@@ -127,7 +130,7 @@ export class Collection {
     }
 
     // Dispatch beforeMount lifecycle hooks
-    await dispatchLifecycleHook("beforeMount", this as any);
+    await dispatchLifecycleHook("beforeMount", this);
 
     // Get all the selector elements and register them
     const els = document.querySelectorAll(this.settings.selector);
@@ -136,14 +139,14 @@ export class Collection {
     }
 
     // Dispatch afterMount lifecycle hooks
-    await dispatchLifecycleHook("afterMount", this as any);
+    await dispatchLifecycleHook("afterMount", this);
 
     return this;
   }
 
   async unmount() {
     // Dispatch beforeUnmount lifecycle hooks
-    await dispatchLifecycleHook("beforeUnmount", this as any);
+    await dispatchLifecycleHook("beforeUnmount", this);
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
@@ -151,7 +154,7 @@ export class Collection {
     }
 
     // Dispatch afterUnmount lifecycle hooks
-    await dispatchLifecycleHook("afterUnmount", this as any);
+    await dispatchLifecycleHook("afterUnmount", this);
 
     // Run teardown methods on plugins
     for (const plugin of this.plugins) {

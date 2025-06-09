@@ -9,6 +9,13 @@ interface EventMap {
   [event: string]: EventEntry[];
 }
 
+export interface EventEmitter {
+  events: EventMap;
+  on(event: string, listener: EventListener, ...args: any[]): void;
+  off(event: string, listenerRef: EventListener): void;
+  emit(event: string, data?: any): Promise<void>;
+}
+
 export const eventEmitter = {
   events: {} as EventMap,
 
