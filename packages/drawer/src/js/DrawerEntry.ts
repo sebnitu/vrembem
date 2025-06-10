@@ -2,9 +2,13 @@ import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 
 export class DrawerEntry extends CollectionEntry {
-  #mode;
+  #mode: string;
+  dialog: HTMLElement | null;
+  trigger: HTMLElement | null;
+  state: string | null;
+  inlineState: string | null;
 
-  constructor(parent, query, options = {}) {
+  constructor(parent: any, query: any, options: Record<string, any> = {}) {
     super(parent, query, options);
     this.dialog = null;
     this.trigger = null;
@@ -13,28 +17,28 @@ export class DrawerEntry extends CollectionEntry {
     this.#mode = "indeterminate";
   }
 
-  get mode() {
+  get mode(): string {
     return this.#mode;
   }
 
-  set mode(value) {
+  set mode(value: string) {
     if (this.#mode === value) return;
     this.#mode = value;
     switchMode.call(this.parent, this);
   }
 
-  setState(value) {
+  setState(value: string) {
     this.state = value;
-
     // If mode is inline and not in a transitioning state...
     const ignoreStates = ["opening", "closing"];
+
     if (this.mode === "inline" && !ignoreStates.includes(value)) {
       // Save the inline state
       this.inlineState = value;
     }
 
     // If state is indeterminate, remove all state classes
-    if (value === "indeterminate") {
+    if (value === "indeterminate" && this.el) {
       this.el.classList.remove(this.getSetting("stateOpened"));
       this.el.classList.remove(this.getSetting("stateOpening"));
       this.el.classList.remove(this.getSetting("stateClosed"));
@@ -56,7 +60,7 @@ export class DrawerEntry extends CollectionEntry {
 
     // Determine the state based on the presence of a state class. This handles
     // the initial state which is the only time `this.state` should be `null`.
-    if (this.state === null) {
+    if (this.state === null && this.el) {
       if (this.el.classList.contains(this.getSetting("stateOpened"))) {
         return await this.open(false, false);
       }
@@ -69,15 +73,15 @@ export class DrawerEntry extends CollectionEntry {
     return this.setState("indeterminate");
   }
 
-  async open(transition, focus) {
+  async open(transition?: boolean, focus?: boolean) {
     return this.parent.open(this, transition, focus);
   }
 
-  async close(transition, focus) {
+  async close(transition?: boolean, focus?: boolean) {
     return this.parent.close(this, transition, focus);
   }
 
-  async toggle(transition, focus) {
+  async toggle(transition?: boolean, focus?: boolean) {
     return this.parent.toggle(this, transition, focus);
   }
 
@@ -87,11 +91,13 @@ export class DrawerEntry extends CollectionEntry {
 
   async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element
-    const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
-    this.dialog = dialog ? dialog : this.el;
+    const dialog = this.el
+      ? this.el.querySelector(this.getSetting("selectorDialog"))
+      : null;
+    this.dialog = dialog ? (dialog as HTMLElement) : this.el;
 
     // Set tabindex="-1" so dialog is focusable via JS or click
-    if (this.getSetting("setTabindex")) {
+    if (this.getSetting("setTabindex") && this.dialog) {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
@@ -102,9 +108,10 @@ export class DrawerEntry extends CollectionEntry {
     this.inlineState = this.state;
 
     // Set the initial mode
-    this.mode = this.el.classList.contains(this.getSetting("classModal"))
-      ? "modal"
-      : "inline";
+    this.mode =
+      this.el && this.el.classList.contains(this.getSetting("classModal"))
+        ? "modal"
+        : "inline";
   }
 
   async onDestroyEntry() {
