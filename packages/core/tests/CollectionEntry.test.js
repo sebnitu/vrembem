@@ -48,6 +48,13 @@ describe("buildDataConfig()", () => {
     expect(entry.getSetting("one")).toBe(111);
     expect(entry.getSetting("two")).toBe(222);
   });
+
+  it("should not throw if el is null in buildDataConfig", () => {
+    const entry = new CollectionEntry(obj, "nonexistent");
+    entry.el = null;
+    expect(() => entry.buildDataConfig()).not.toThrow();
+    expect(entry.dataConfig).toEqual({});
+  });
 });
 
 describe("buildCustomProps()", () => {
@@ -55,15 +62,6 @@ describe("buildCustomProps()", () => {
     const entry = new CollectionEntry(obj, "three");
     entry.buildCustomProps();
     expect(entry.getSetting("test")).toBe("fdsa");
-  });
-});
-
-describe("buildDataConfig() and buildCustomProps() edge cases", () => {
-  it("should not throw if el is null in buildDataConfig", () => {
-    const entry = new CollectionEntry(obj, "nonexistent");
-    entry.el = null;
-    expect(() => entry.buildDataConfig()).not.toThrow();
-    expect(entry.dataConfig).toEqual({});
   });
 
   it("should not throw if el is null in buildCustomProps", () => {

@@ -147,15 +147,14 @@ describe("register() error handling and re-registration", () => {
   });
 
   it("should re-init and update el if registering an already-registered id", async () => {
-    document.body.innerHTML += '<div id="dupe">...</div>';
     const obj = new Collection();
-    await obj.register("dupe");
+    await obj.register("asdf");
     // Simulate a new element with same id
     const newEl = document.createElement("div");
-    newEl.id = "dupe";
+    newEl.id = "asdf";
     document.body.appendChild(newEl);
+    const entry = obj.get("asdf");
     // Spy on init
-    const entry = obj.get("dupe");
     entry.init = vi.fn();
     await obj.register(newEl);
     expect(entry.el).toBe(newEl);
@@ -173,7 +172,7 @@ describe("mount() & unmount()", () => {
   it("should register all elements using the provided selector on mount", async () => {
     await obj.mount();
     expect(obj.settings.selector).toBe("div");
-    expect(obj.collection.length).toBe(3);
+    expect(obj.collection.length).toBe(2);
   });
 
   it("should deregister all elements using the provided selector on mount", async () => {
