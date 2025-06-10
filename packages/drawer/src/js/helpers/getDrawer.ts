@@ -9,7 +9,7 @@ export function getDrawer(
     return entry;
   } else {
     throw new Error(
-      `Drawer not found in collection with id of "${(query as any).id || query}."`
+      `Drawer not found in collection with id of "${(query as any).id || query}"`
     );
   }
 }

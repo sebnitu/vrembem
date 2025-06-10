@@ -126,7 +126,7 @@ describe("open(), close() & toggle()", () => {
     const result = await drawer.open("asdf").catch((error) => {
       return error.message;
     });
-    expect(result).toBe('Drawer not found in collection with id of "asdf".');
+    expect(result).toBe('Drawer not found in collection with id of "asdf"');
   });
 });
 
