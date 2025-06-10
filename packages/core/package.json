@@ -44,7 +44,8 @@
   ],
   "scripts": {
     "serve": "vite",
-    "build": "npm-run-all clean styles scripts",
+    "build": "npm-run-all clean styles scripts build:types",
+    "build:types": "tsc --project tsconfig.build.json",
     "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist",
     "scripts:dev": "vite build --outDir dev --minify false",
