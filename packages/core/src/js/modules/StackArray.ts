@@ -30,7 +30,7 @@ export class StackArray extends Array<StackArrayEntry> {
     this.forEach((entry, index) => {
       entry.el.style.zIndex = "";
       const value = getComputedStyle(entry.el)["z-index"];
-      entry.el.style.zIndex = String(parseInt(value) + index + 1);
+      entry.el.style.zIndex = String(parseInt(value, 10) + index + 1);
     });
   }
 
