@@ -58,6 +58,22 @@ describe("buildCustomProps()", () => {
   });
 });
 
+describe("buildDataConfig() and buildCustomProps() edge cases", () => {
+  it("should not throw if el is null in buildDataConfig", () => {
+    const entry = new CollectionEntry(obj, "nonexistent");
+    entry.el = null;
+    expect(() => entry.buildDataConfig()).not.toThrow();
+    expect(entry.dataConfig).toEqual({});
+  });
+
+  it("should not throw if el is null in buildCustomProps", () => {
+    const entry = new CollectionEntry(obj, "nonexistent");
+    entry.el = null;
+    expect(() => entry.buildCustomProps()).not.toThrow();
+    expect(entry.customProps).toEqual({});
+  });
+});
+
 describe("getSetting()", () => {
   it("should get a settings value from the entry parent", () => {
     const entry = new CollectionEntry(obj, "one");
