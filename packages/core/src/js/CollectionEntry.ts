@@ -2,7 +2,14 @@ import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
 
 export class CollectionEntry {
-  constructor(parent, query, options = {}) {
+  parent: any;
+  id: string;
+  el: HTMLElement | null;
+  settings: Record<string, any>;
+  dataConfig: Record<string, any>;
+  customProps: Record<string, any>;
+
+  constructor(parent: any, query: any, options: Record<string, any> = {}) {
     this.parent = parent;
     this.id = query?.id || query;
     this.el = getElement(query);
@@ -11,26 +18,29 @@ export class CollectionEntry {
     this.customProps = {};
   }
 
-  applySettings(options) {
+  applySettings(options: Record<string, any>) {
     return Object.assign(this.settings, options);
   }
 
-  getSetting(key, options) {
+  getSetting(key: string, options?: any) {
     return getSetting.call(this, key, options);
   }
 
   buildDataConfig() {
     return Object.assign(
       this.dataConfig,
-      getDataConfig(this.el, this.getSetting("dataConfig"))
+      this.el ? getDataConfig(this.el, this.getSetting("dataConfig")) : {}
     );
   }
 
   buildCustomProps() {
-    return Object.assign(this.customProps, getCustomProps(this));
+    return Object.assign(
+      this.customProps,
+      this.el ? getCustomProps(this as any) : {}
+    );
   }
 
-  async init(options = {}) {
+  async init(options: Record<string, any> = {}) {
     // Throw an error if the element for this entry was not found
     if (this.el === null) {
       throw new Error(
@@ -50,7 +60,7 @@ export class CollectionEntry {
     // Remove all the owned properties from the entry except for the id
     Object.getOwnPropertyNames(this).forEach((prop) => {
       if (prop !== "id") {
-        delete this[prop];
+        delete (this as any)[prop];
       }
     });
   }

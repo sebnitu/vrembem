@@ -1,26 +1,23 @@
 import { maybeRunMethod } from "../utilities";
-
-type Parent = {
-  plugins: Record<string, any>[];
-  emit: (name: string, entry?: object) => Promise<void>;
-};
+import type { Collection } from "../Collection";
+import type { CollectionEntry } from "../CollectionEntry";
 
 /**
  * Dispatches a lifecycle hook to the parent, entry, and its plugins.
  *
  * @param {string} name
  *   The name of the lifecycle hook to dispatch.
- * @param {Parent} parent
+ * @param {Collection} parent
  *   The parent object that contains a plugins array and an `emit` function.
- * @param {object} entry
+ * @param {CollectionEntry} entry
  *   (Optional) An entry object to run the lifecycle hook on.
  *
  * @returns A promise that resolves once all hooks and emissions are completed.
  */
 export async function dispatchLifecycleHook(
   name: string,
-  parent: Parent,
-  entry?: object
+  parent: Collection,
+  entry?: CollectionEntry
 ): Promise<void> {
   // Run the lifecycle hook on the parent object
   await maybeRunMethod(parent, name, entry);

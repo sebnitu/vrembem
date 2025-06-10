@@ -3,9 +3,20 @@ import { CollectionEntry } from "./CollectionEntry";
 import { eventEmitter, PluginsArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
+import type { EventEmitter } from "./modules";
 
-export class Collection {
-  constructor(options = {}) {
+export class Collection implements EventEmitter {
+  module: string;
+  collection: any[];
+  entryClass: any;
+  settings: Record<string, any>;
+  plugins: PluginsArray;
+  events: EventEmitter["events"];
+  on: EventEmitter["on"];
+  off: EventEmitter["off"];
+  emit: EventEmitter["emit"];
+
+  constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry;
@@ -19,28 +30,28 @@ export class Collection {
     Object.assign(this, eventEmitter);
   }
 
-  get(value, key = "id") {
+  get(value: any, key: string = "id") {
     return this.collection.find((entry) => entry[key] === value);
   }
 
-  applySettings(options) {
+  applySettings(options: Record<string, any>) {
     return Object.assign(this.settings, options);
   }
 
-  async createEntry(query, config) {
+  async createEntry(query: any, config: any) {
     const entry = new this.entryClass(this, query, config);
     await maybeRunMethod(entry, "init");
     await dispatchLifecycleHook("onCreateEntry", this, entry);
     return entry;
   }
 
-  async destroyEntry(entry) {
+  async destroyEntry(entry: any) {
     await dispatchLifecycleHook("onDestroyEntry", this, entry);
     await maybeRunMethod(entry, "destroy");
     return entry;
   }
 
-  async register(query, config = {}) {
+  async register(query: any, config: any = {}) {
     // Get the element to register
     const element = getElement(query);
 
@@ -82,7 +93,7 @@ export class Collection {
     }
   }
 
-  async deregister(id) {
+  async deregister(id: any) {
     const index = this.collection.findIndex((entry) => entry.id === id);
     if (~index) {
       // Get the collection entry object from the collection and destroy it
@@ -104,7 +115,7 @@ export class Collection {
     return null;
   }
 
-  async mount(options = {}) {
+  async mount(options: Record<string, any> = {}) {
     // Apply settings with passed options
     this.applySettings(options);
 

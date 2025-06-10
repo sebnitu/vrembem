@@ -1,5 +1,18 @@
-export class StackArray extends Array {
-  constructor(settings = {}) {
+type StackArraySettings = {
+  onChange?: () => void;
+  [key: string]: any;
+};
+
+type StackArrayEntry = {
+  id: string;
+  el: HTMLElement;
+  [key: string]: any;
+};
+
+export class StackArray extends Array<StackArrayEntry> {
+  settings: StackArraySettings;
+
+  constructor(settings: StackArraySettings = {}) {
     super();
     this.settings = settings;
   }
@@ -15,9 +28,9 @@ export class StackArray extends Array {
 
   updateIndex() {
     this.forEach((entry, index) => {
-      entry.el.style.zIndex = null;
+      entry.el.style.zIndex = "";
       const value = getComputedStyle(entry.el)["z-index"];
-      entry.el.style.zIndex = parseInt(value) + index + 1;
+      entry.el.style.zIndex = String(parseInt(value, 10) + index + 1);
     });
   }
 
@@ -28,17 +41,17 @@ export class StackArray extends Array {
     }
   }
 
-  add(entry) {
+  add(entry: StackArrayEntry) {
     this.push(entry);
     this.onChange();
   }
 
-  remove(entry) {
+  remove(entry: StackArrayEntry) {
     // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
     if (~index) {
       // Remove the z-index styles from the entry
-      entry.el.style.zIndex = null;
+      entry.el.style.zIndex = "";
       // Splice the entry from the stack array
       this.splice(index, 1);
       // Run the onChange callback
@@ -46,7 +59,7 @@ export class StackArray extends Array {
     }
   }
 
-  moveToTop(entry) {
+  moveToTop(entry: StackArrayEntry) {
     // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
     if (~index) {

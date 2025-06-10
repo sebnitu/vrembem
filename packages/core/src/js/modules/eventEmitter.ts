@@ -1,5 +1,25 @@
+type EventListener = (data?: any, ...args: any[]) => void | Promise<void>;
+
+interface EventEntry {
+  listener: EventListener;
+  args: any[];
+}
+
+interface EventMap {
+  [event: string]: EventEntry[];
+}
+
+export interface EventEmitter {
+  events: EventMap;
+  on(event: string, listener: EventListener, ...args: any[]): void;
+  off(event: string, listenerRef: EventListener): void;
+  emit(event: string, data?: any): Promise<void>;
+}
+
 export const eventEmitter = {
-  on(event, listener, ...args) {
+  events: {} as EventMap,
+
+  on(event: string, listener: EventListener, ...args: any[]): void {
     // Initialize the event if it doesn't exist
     if (!this.events[event]) {
       this.events[event] = [];
@@ -16,7 +36,7 @@ export const eventEmitter = {
     }
   },
 
-  off(event, listenerRef) {
+  off(event: string, listenerRef: EventListener): void {
     // Guard incase the event doesn't exist
     if (!this.events[event]) return;
 
@@ -26,7 +46,7 @@ export const eventEmitter = {
     );
   },
 
-  async emit(event, data) {
+  async emit(event: string, data?: any): Promise<void> {
     // If the event starts with "on":
     // - Get the third letter of the string and lowercase it
     // - Concatenate it with the rest of the string

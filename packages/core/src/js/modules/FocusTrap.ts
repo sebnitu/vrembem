@@ -1,13 +1,17 @@
 import { FocusableArray } from "./";
 
 export class FocusTrap {
-  constructor(el = null) {
+  el: Element | null;
+  focusable: FocusableArray;
+  handleFocusTrap: (event: KeyboardEvent) => void;
+
+  constructor(el: Element | null = null) {
     this.el = el;
     this.focusable = new FocusableArray();
     this.handleFocusTrap = handleFocusTrap.bind(this);
   }
 
-  on(el = this.el) {
+  on(el: Element | null = this.el): void {
     // Get the focusable elements
     this.focusable.set(el);
 
@@ -17,7 +21,7 @@ export class FocusTrap {
       : document.addEventListener("keydown", handleFocusLock);
   }
 
-  off() {
+  off(): void {
     // Clear the focusable elements
     this.focusable.clear();
 
@@ -27,13 +31,13 @@ export class FocusTrap {
   }
 }
 
-function handleFocusLock(event) {
+function handleFocusLock(event: KeyboardEvent): void {
   // Ignore the tab key by preventing default
   if (event.key === "Tab" || event.keyCode === 9) event.preventDefault();
 }
 
-function handleFocusTrap(event) {
-  // Check if the click was a tab and return if not
+function handleFocusTrap(this: FocusTrap, event: KeyboardEvent): void {
+  // Check if the key was a tab and return if not
   if (event.key !== "Tab" && event.keyCode !== 9) return;
 
   // Destructure variables for brevity
@@ -49,6 +53,9 @@ function handleFocusTrap(event) {
   if ((isShiftTab && isFirstOrRoot) || (!isShiftTab && isLastOrRoot)) {
     event.preventDefault();
     // Loop to next tab focus based on direction (shift)
-    (isShiftTab ? focusable.last : focusable.first).focus();
+    const target = isShiftTab ? focusable.last : focusable.first;
+    if (target && typeof (target as HTMLElement).focus === "function") {
+      (target as HTMLElement).focus();
+    }
   }
 }
