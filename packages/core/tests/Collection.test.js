@@ -138,6 +138,31 @@ describe("register() & deregister()", () => {
   });
 });
 
+describe("register() error handling and re-registration", () => {
+  it("should throw an error if element is not found", async () => {
+    const obj = new Collection();
+    await expect(obj.register("nonexistent-id")).rejects.toThrow(
+      'Collection element was not found with ID: "nonexistent-id"'
+    );
+  });
+
+  it("should re-init and update el if registering an already-registered id", async () => {
+    document.body.innerHTML += '<div id="dupe">...</div>';
+    const obj = new Collection();
+    await obj.register("dupe");
+    // Simulate a new element with same id
+    const newEl = document.createElement("div");
+    newEl.id = "dupe";
+    document.body.appendChild(newEl);
+    // Spy on init
+    const entry = obj.get("dupe");
+    entry.init = vi.fn();
+    await obj.register(newEl);
+    expect(entry.el).toBe(newEl);
+    expect(entry.init).toHaveBeenCalled();
+  });
+});
+
 describe("mount() & unmount()", () => {
   let obj;
 
@@ -148,7 +173,7 @@ describe("mount() & unmount()", () => {
   it("should register all elements using the provided selector on mount", async () => {
     await obj.mount();
     expect(obj.settings.selector).toBe("div");
-    expect(obj.collection.length).toBe(2);
+    expect(obj.collection.length).toBe(3);
   });
 
   it("should deregister all elements using the provided selector on mount", async () => {
