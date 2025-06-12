@@ -7,8 +7,12 @@ import type { EventEmitter } from "./modules";
 
 export class Collection implements EventEmitter {
   module: string;
-  collection: any[];
-  entryClass: any;
+  collection: CollectionEntry[];
+  entryClass: new (
+    parent: Collection,
+    query: string | HTMLElement,
+    options?: Record<string, any>
+  ) => CollectionEntry;
   settings: Record<string, any>;
   plugins: PluginsArray;
   events: EventEmitter["events"];

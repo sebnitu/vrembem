@@ -1,21 +1,28 @@
 import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
+import type { Collection } from "./Collection";
 
 export class CollectionEntry {
-  parent: any;
-  id: string;
-  el: HTMLElement | null;
+  parent: Collection;
+  el: HTMLElement;
   settings: Record<string, any>;
   dataConfig: Record<string, any>;
   customProps: Record<string, any>;
 
-  constructor(parent: any, query: any, options: Record<string, any> = {}) {
+  constructor(
+    parent: Collection,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     this.parent = parent;
-    this.id = query?.id || query;
     this.el = getElement(query);
     this.settings = { ...options };
     this.dataConfig = {};
     this.customProps = {};
+  }
+
+  get id(): string {
+    return this.el.id;
   }
 
   applySettings(options: Record<string, any>) {

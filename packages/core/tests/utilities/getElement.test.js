@@ -9,11 +9,19 @@ test("should return an HTML element with the provided ID", () => {
   expect(el instanceof HTMLElement).toBe(true);
 });
 
-test("should return an HTML element if an HTML element is provided", () => {
-  const el = document.getElementById("asdf");
-  expect(getElement(el)).toEqual(el);
+test("should throw if the element is not found with the provided ID", () => {
+  expect(() => getElement("does-not-exist")).toThrow(
+    'Element not found with ID: "does-not-exist"'
+  );
 });
 
-test("should return undefined if the provided argument isn't valid", () => {
-  expect(getElement(64)).toBe(null);
+test("should throw if an HTMLElement is provided without an id", () => {
+  const el = document.createElement("div");
+  expect(() => getElement(el)).toThrow("HTMLElement must have an id");
+});
+
+test("should throw if the provided argument isn't valid", () => {
+  expect(() => getElement(64)).toThrow(
+    "Invalid argument: query must be a string or HTMLElement"
+  );
 });
