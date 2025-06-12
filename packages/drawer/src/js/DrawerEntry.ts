@@ -1,16 +1,25 @@
 import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
+import type { Drawer } from "./Drawer";
 
 export class DrawerEntry extends CollectionEntry {
   #mode: string;
-  dialog: HTMLElement | null;
+  dialog: HTMLElement;
   trigger: HTMLElement | null;
   state: string | null;
   inlineState: string | null;
 
-  constructor(parent: any, query: any, options: Record<string, any> = {}) {
+  constructor(
+    parent: Drawer,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     super(parent, query, options);
-    this.dialog = null;
+
+    // Set the dialog element. If none is found, use the root element
+    this.dialog =
+      this.el.querySelector(this.getSetting("selectorDialog")) || this.el;
+
     this.trigger = null;
     this.state = null;
     this.inlineState = null;
@@ -90,12 +99,6 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async onCreateEntry() {
-    // Set the dialog element. If none is found, use the root element
-    const dialog = this.el
-      ? this.el.querySelector(this.getSetting("selectorDialog"))
-      : null;
-    this.dialog = dialog ? (dialog as HTMLElement) : this.el;
-
     // Set tabindex="-1" so dialog is focusable via JS or click
     if (this.getSetting("setTabindex") && this.dialog) {
       this.dialog.setAttribute("tabindex", "-1");
