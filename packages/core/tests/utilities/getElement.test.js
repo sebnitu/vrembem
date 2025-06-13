@@ -17,7 +17,7 @@ test("should throw if the element is not found with the provided ID", () => {
 
 test("should throw if an HTMLElement is provided without an id", () => {
   const el = document.createElement("div");
-  expect(() => getElement(el)).toThrow("HTMLElement must have an id");
+  expect(() => getElement(el)).toThrow("HTMLElement must have an ID");
 });
 
 test("should throw if the provided argument isn't valid", () => {

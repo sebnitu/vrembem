@@ -201,7 +201,7 @@ describe("register() & deregister()", () => {
     const result = await drawer.register("asdf").catch((error) => {
       return error.message;
     });
-    expect(result).toBe('Drawer element was not found with ID: "asdf"');
+    expect(result).toBe('Element not found with ID: "asdf"');
   });
 
   it("should use the root drawer element as dialog if selector returned null", async () => {

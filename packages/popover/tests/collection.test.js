@@ -44,7 +44,7 @@ describe("register() & entry.deregister()", () => {
     document.body.innerHTML = markup;
     const popover = new Popover();
     await expect(popover.register("missing")).rejects.toThrow(
-      'Popover element was not found with ID: "missing"'
+      'Element not found with ID: "missing"'
     );
   });
 
