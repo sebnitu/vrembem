@@ -5,9 +5,8 @@ import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 import type { EventEmitter } from "./modules";
 
-export class Collection<
-  TEntry extends CollectionEntry<any> = CollectionEntry<any>
-> implements EventEmitter
+export class Collection<TEntry extends CollectionEntry<any>>
+  implements EventEmitter
 {
   module: string;
   collection: TEntry[];

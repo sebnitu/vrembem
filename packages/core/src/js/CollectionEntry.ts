@@ -2,9 +2,7 @@ import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
 import type { Collection } from "./Collection";
 
-export class CollectionEntry<
-  TParent extends Collection<any> = Collection<any>
-> {
+export class CollectionEntry<TParent extends Collection<any>> {
   parent: TParent;
   el: HTMLElement;
   settings: Record<string, any>;
