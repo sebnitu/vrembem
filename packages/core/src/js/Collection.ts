@@ -5,14 +5,17 @@ import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 import type { EventEmitter } from "./modules";
 
-export class Collection implements EventEmitter {
+export class Collection<
+  TEntry extends CollectionEntry<any> = CollectionEntry<any>
+> implements EventEmitter
+{
   module: string;
-  collection: CollectionEntry[];
+  collection: TEntry[];
   entryClass: new (
-    parent: Collection,
+    parent: Collection<TEntry>,
     query: string | HTMLElement,
     options?: Record<string, any>
-  ) => CollectionEntry;
+  ) => TEntry;
   settings: Record<string, any>;
   plugins: PluginsArray;
   events: EventEmitter["events"];
@@ -23,7 +26,11 @@ export class Collection implements EventEmitter {
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
     this.collection = [];
-    this.entryClass = CollectionEntry;
+    this.entryClass = CollectionEntry as new (
+      parent: Collection<TEntry>,
+      query: string | HTMLElement,
+      options?: Record<string, any>
+    ) => TEntry;
     this.settings = { ...defaults, ...options };
 
     // Create the plugins array and provide any presets

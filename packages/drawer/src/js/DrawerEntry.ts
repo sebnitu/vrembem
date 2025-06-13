@@ -33,7 +33,7 @@ export class DrawerEntry extends CollectionEntry {
   set mode(value: string) {
     if (this.#mode === value) return;
     this.#mode = value;
-    switchMode.call(this.parent, this);
+    switchMode.call(this.parent as Drawer, this);
   }
 
   setState(value: string) {
@@ -83,19 +83,19 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async open(transition?: boolean, focus?: boolean) {
-    return this.parent.open(this, transition, focus);
+    return (this.parent as Drawer).open(this.id, transition, focus);
   }
 
   async close(transition?: boolean, focus?: boolean) {
-    return this.parent.close(this, transition, focus);
+    return (this.parent as Drawer).close(this.id, transition, focus);
   }
 
   async toggle(transition?: boolean, focus?: boolean) {
-    return this.parent.toggle(this, transition, focus);
+    return (this.parent as Drawer).toggle(this.id, transition, focus);
   }
 
   async deregister() {
-    return this.parent.deregister(this.id);
+    return (this.parent as Drawer).deregister(this.id);
   }
 
   async onCreateEntry() {

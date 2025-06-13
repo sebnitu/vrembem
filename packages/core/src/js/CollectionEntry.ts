@@ -2,15 +2,17 @@ import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
 import type { Collection } from "./Collection";
 
-export class CollectionEntry {
-  parent: Collection;
+export class CollectionEntry<
+  TParent extends Collection<any> = Collection<any>
+> {
+  parent: TParent;
   el: HTMLElement;
   settings: Record<string, any>;
   dataConfig: Record<string, any>;
   customProps: Record<string, any>;
 
   constructor(
-    parent: Collection,
+    parent: TParent,
     query: string | HTMLElement,
     options: Record<string, any> = {}
   ) {
@@ -51,7 +53,7 @@ export class CollectionEntry {
     // Throw an error if the element for this entry was not found
     if (this.el === null) {
       throw new Error(
-        `${this.parent.module} element was not found with ID: "${this.id}"`
+        `${(this.parent as any).module ?? "Unknown"} element was not found with ID: "${this.id}"`
       );
     }
 
