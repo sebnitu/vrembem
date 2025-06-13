@@ -43,17 +43,14 @@ export class CollectionEntry<
   }
 
   buildCustomProps() {
-    return Object.assign(
-      this.customProps,
-      this.el ? getCustomProps(this as any) : {}
-    );
+    return Object.assign(this.customProps, this.el ? getCustomProps(this) : {});
   }
 
   async init(options: Record<string, any> = {}) {
     // Throw an error if the element for this entry was not found
     if (this.el === null) {
       throw new Error(
-        `${(this.parent as any).module ?? "Unknown"} element was not found with ID: "${this.id}"`
+        `${this.parent.module ?? "Unknown"} element was not found with ID: "${this.id}"`
       );
     }
 
