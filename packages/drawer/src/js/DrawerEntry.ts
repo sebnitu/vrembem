@@ -15,6 +15,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     options: Record<string, any> = {}
   ) {
     super(parent, query, options);
+    this.#mode = "indeterminate";
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
@@ -23,7 +24,6 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     this.trigger = null;
     this.state = null;
     this.inlineState = null;
-    this.#mode = "indeterminate";
   }
 
   get mode(): string {
