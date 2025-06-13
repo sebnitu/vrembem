@@ -16,7 +16,7 @@ function maybeReturnSetting(
   prop: string,
   key: string,
   type: "camel" | "kebab" = "camel"
-): unknown {
+): any {
   // Convert the key case based on provided type
   key = type === "camel" ? toCamel(key) : toKebab(key);
   // Return the setting if it exists, otherwise return undefined
@@ -33,7 +33,7 @@ function maybeReturnSetting(
  *
  * @param {string} key - The key of the setting to retrieve.
  * @param {object} options - Options for fallback and the props array.
- * @param {unknown} options.fallback - The fallback value to return if the
+ * @param {any} options.fallback - The fallback value to return if the
  *   setting is not found.
  * @param {string} options.props - An array of properties to search for the
  *   setting.
@@ -45,10 +45,10 @@ export function getSetting(
   this: Record<string, any>,
   key: string,
   options: {
-    fallback?: unknown;
+    fallback?: any;
     props?: string[];
   } = {}
-): unknown {
+): any {
   // Get the initial props to query and the fallback if provided
   const {
     fallback,
