@@ -15,8 +15,8 @@ import type { CollectionEntry } from "../CollectionEntry";
  * @returns A promise that resolves once all hooks and emissions are completed.
  */
 export async function dispatchLifecycleHook<
-  TParent extends Collection<any> = Collection<any>,
-  TEntry extends CollectionEntry<any> = CollectionEntry<any>
+  TParent extends Collection<any>,
+  TEntry extends CollectionEntry<any>
 >(name: string, parent: TParent, entry?: TEntry): Promise<void> {
   // Run the lifecycle hook on the parent object
   await maybeRunMethod(parent, name, entry);
