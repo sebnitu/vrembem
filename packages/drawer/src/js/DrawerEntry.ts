@@ -2,7 +2,7 @@ import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import type { Drawer } from "./Drawer";
 
-export class DrawerEntry extends CollectionEntry {
+export class DrawerEntry extends CollectionEntry<Drawer> {
   #mode: string;
   dialog: HTMLElement;
   trigger: HTMLElement | null;
@@ -33,7 +33,7 @@ export class DrawerEntry extends CollectionEntry {
   set mode(value: string) {
     if (this.#mode === value) return;
     this.#mode = value;
-    switchMode.call(this.parent as Drawer, this);
+    switchMode.call(this.parent, this);
   }
 
   setState(value: string) {
@@ -83,19 +83,19 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async open(transition?: boolean, focus?: boolean) {
-    return (this.parent as Drawer).open(this.id, transition, focus);
+    return this.parent.open(this.id, transition, focus);
   }
 
   async close(transition?: boolean, focus?: boolean) {
-    return (this.parent as Drawer).close(this.id, transition, focus);
+    return this.parent.close(this.id, transition, focus);
   }
 
   async toggle(transition?: boolean, focus?: boolean) {
-    return (this.parent as Drawer).toggle(this.id, transition, focus);
+    return this.parent.toggle(this.id, transition, focus);
   }
 
   async deregister() {
-    return (this.parent as Drawer).deregister(this.id);
+    return this.parent.deregister(this.id);
   }
 
   async onCreateEntry() {
