@@ -1,6 +1,6 @@
 import { Collection } from "@vrembem/core";
 
-import defaults from "./defaults";
+import { config } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";
 import { open } from "./open";
@@ -12,7 +12,7 @@ export class Drawer extends Collection<DrawerEntry> {
   #handleKeydown: (event: KeyboardEvent) => void;
 
   constructor(options: Record<string, any>) {
-    super({ ...defaults, ...options });
+    super({ ...config, ...options });
     this.module = "Drawer";
     this.entryClass = DrawerEntry as new (
       parent: Collection<DrawerEntry>,
