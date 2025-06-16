@@ -23,7 +23,7 @@ export class Drawer extends Collection<DrawerEntry> {
     this.#handleKeydown = handleKeydown.bind(this);
   }
 
-  get activeModal() {
+  get activeModal(): DrawerEntry | undefined {
     return this.collection.find((entry: DrawerEntry) => {
       return entry.state === "opened" && entry.mode === "modal";
     });

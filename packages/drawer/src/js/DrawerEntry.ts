@@ -55,7 +55,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     }
   }
 
-  async applyState() {
+  async applyState(): Promise<DrawerEntry | void> {
     // Only apply state if mode is not set to "modal"
     if (this.mode === "modal") return;
 
@@ -82,15 +82,15 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     return this.setState("indeterminate");
   }
 
-  async open(transition?: boolean, focus?: boolean) {
+  async open(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
     return this.parent.open(this.id, transition, focus);
   }
 
-  async close(transition?: boolean, focus?: boolean) {
+  async close(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
     return this.parent.close(this.id, transition, focus);
   }
 
-  async toggle(transition?: boolean, focus?: boolean) {
+  async toggle(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
     return this.parent.toggle(this.id, transition, focus);
   }
 
