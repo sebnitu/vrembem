@@ -1,10 +1,17 @@
 import { transition, setGlobalState } from "@vrembem/core";
 import { getDrawer } from "./helpers/getDrawer";
 import { updateFocusState } from "./helpers/updateFocusState";
+import type { Drawer } from "./Drawer";
+import type { DrawerEntry } from "./DrawerEntry";
 
-export async function open(query, transitionOverride, focus = true) {
+export async function open(
+  this: Drawer,
+  query: string | HTMLElement,
+  transitionOverride?: boolean,
+  focus: boolean = true
+): Promise<DrawerEntry> {
   // Get the drawer from collection
-  const entry = getDrawer.call(this, query);
+  const entry: DrawerEntry = getDrawer.call(this, query);
 
   // If drawer is closed or indeterminate
   if (
