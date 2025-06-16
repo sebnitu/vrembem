@@ -1,3 +1,5 @@
+// TODO: Add type for drawer config object
+
 import presets from "./presets";
 
 export default {

@@ -1,6 +1,6 @@
-export function getDrawer(
-  query: string | HTMLElement | { id: string; [key: string]: any }
-): any {
+import type { DrawerEntry } from "../DrawerEntry";
+
+export function getDrawer(query: string | HTMLElement): DrawerEntry {
   // Get the entry from collection
   const entry = typeof query === "string" ? this.get(query) : query;
 

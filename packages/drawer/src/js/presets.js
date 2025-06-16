@@ -1,3 +1,5 @@
+// TODO: Add types for plugin config objects
+
 export default {
   focusTrap: {
     condition: ({ entry }) => {

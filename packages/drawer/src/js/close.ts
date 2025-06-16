@@ -1,10 +1,17 @@
 import { transition, setGlobalState } from "@vrembem/core";
 import { getDrawer } from "./helpers/getDrawer";
 import { updateFocusState } from "./helpers/updateFocusState";
+import type { Drawer } from "./Drawer";
+import type { DrawerEntry } from "./DrawerEntry";
 
-export async function close(query, transitionOverride, focus = true) {
+export async function close(
+  this: Drawer,
+  query: string | HTMLElement,
+  transitionOverride?: boolean,
+  focus: boolean = true
+): Promise<DrawerEntry> {
   // Get the drawer from collection
-  const entry = getDrawer.call(this, query);
+  const entry: DrawerEntry = getDrawer.call(this, query);
 
   // If drawer is opened or indeterminate
   if (
@@ -16,7 +23,12 @@ export async function close(query, transitionOverride, focus = true) {
     entry.setState("closing");
 
     // Remove focus from active element
-    document.activeElement.blur();
+    if (
+      document.activeElement &&
+      document.activeElement instanceof HTMLElement
+    ) {
+      document.activeElement.blur();
+    }
 
     // Run the close transition
     if (
