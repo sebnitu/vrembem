@@ -29,15 +29,27 @@ export class Drawer extends Collection<DrawerEntry> {
     });
   }
 
-  async open(id: string, transition?: boolean, focus?: boolean) {
+  async open(
+    id: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<DrawerEntry> {
     return open.call(this, id, transition, focus);
   }
 
-  async close(id: string, transition?: boolean, focus?: boolean) {
+  async close(
+    id: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<DrawerEntry> {
     return close.call(this, id, transition, focus);
   }
 
-  async toggle(id: string, transition?: boolean, focus?: boolean) {
+  async toggle(
+    id: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<DrawerEntry> {
     return toggle.call(this, id, transition, focus);
   }
 

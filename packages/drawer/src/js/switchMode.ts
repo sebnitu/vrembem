@@ -2,7 +2,10 @@ import { setGlobalState } from "@vrembem/core";
 import type { Drawer } from "./Drawer";
 import type { DrawerEntry } from "./DrawerEntry";
 
-export function switchMode(entry: DrawerEntry): Promise<DrawerEntry> {
+export function switchMode(
+  this: Drawer,
+  entry: DrawerEntry
+): Promise<DrawerEntry> {
   switch (entry.mode) {
     case "inline":
       return toInline.call(this, entry);
