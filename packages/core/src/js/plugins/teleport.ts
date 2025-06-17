@@ -1,17 +1,17 @@
 import { teleportElement } from "../utilities";
 import type { Plugin } from "../modules/PluginsArray";
 
-interface TeleportPluginOptions {
+export interface TeleportConfig {
   where?: string | null;
   how?: string;
 }
 
-const defaults: Required<TeleportPluginOptions> = {
+const defaults: Required<TeleportConfig> = {
   where: null,
   how: "append"
 };
 
-export function teleport(options: TeleportPluginOptions = {}): Plugin {
+export function teleport(options: TeleportConfig = {}): Plugin {
   const props = {
     name: "teleport",
     defaults,

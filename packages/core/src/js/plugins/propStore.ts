@@ -1,7 +1,7 @@
 import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
 
-interface PropStorePluginOptions {
+export interface PropStoreConfig {
   prop?: string;
   value?: any;
   keyPrefix?: string;
@@ -16,7 +16,7 @@ interface PropStorePluginOptions {
   ) => void | Promise<void>;
 }
 
-const defaults: Required<PropStorePluginOptions> = {
+const defaults: Required<PropStoreConfig> = {
   // The property on entry objects to watch
   prop: "state",
 
@@ -37,7 +37,7 @@ const defaults: Required<PropStorePluginOptions> = {
   onChange() {}
 };
 
-export function propStore(options: PropStorePluginOptions = {}): Plugin {
+export function propStore(options: PropStoreConfig = {}): Plugin {
   const props = {
     name: "propStore",
     defaults,

@@ -1,7 +1,7 @@
 import { getPrefix } from "../helpers";
 import type { Plugin } from "../modules/PluginsArray";
 
-interface MediaQueryPluginOptions {
+export interface MediaQueryConfig {
   dataBreakpoint?: string;
   dataMediaQuery?: string;
   token?: string;
@@ -22,7 +22,7 @@ interface MediaQueryEntry {
   [key: string]: any;
 }
 
-const defaults: Required<MediaQueryPluginOptions> = {
+const defaults: Required<MediaQueryConfig> = {
   // The data attributes to get the breakpoint values from
   dataBreakpoint: "breakpoint",
 
@@ -54,7 +54,7 @@ const defaults: Required<MediaQueryPluginOptions> = {
   onChange: () => {}
 };
 
-export function mediaQuery(options: MediaQueryPluginOptions = {}): Plugin {
+export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   const props = {
     name: "mediaQuery",
     defaults,

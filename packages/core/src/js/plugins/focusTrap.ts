@@ -1,10 +1,10 @@
 import { FocusTrap } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
 
-interface FocusTrapPluginOptions {
+export interface FocusTrapConfig {
   condition?:
     | boolean
-    | ((context: { plugin: any; parent: any; entry: any }) => boolean);
+    | ((context: { plugin: Plugin; parent: any; entry: any }) => boolean);
 }
 
 interface FocusTrapEntry {
@@ -21,11 +21,11 @@ interface FocusTrapPluginContext {
   };
 }
 
-const defaults: Required<FocusTrapPluginOptions> = {
+const defaults: Required<FocusTrapConfig> = {
   condition: true
 };
 
-export function focusTrap(options: FocusTrapPluginOptions = {}): Plugin {
+export function focusTrap(options: FocusTrapConfig = {}): Plugin {
   const props = {
     name: "focusTrap",
     defaults,
