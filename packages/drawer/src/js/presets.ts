@@ -4,7 +4,11 @@ import type {
   PropStoreConfig
 } from "@vrembem/core";
 
-export default {
+const presets: {
+  focusTrap: FocusTrapConfig;
+  mediaQuery: MediaQueryConfig;
+  propStore: PropStoreConfig;
+} = {
   focusTrap: {
     condition: ({ entry }) => {
       return (
@@ -12,17 +16,19 @@ export default {
         (entry.state === "opened" && entry.mode === "modal")
       );
     }
-  } as FocusTrapConfig,
+  },
   mediaQuery: {
     onChange(event, entry) {
       entry.mode = event.matches ? "inline" : "modal";
     }
-  } as MediaQueryConfig,
+  },
   propStore: {
     prop: "inlineState",
     value: ({ entry }) => entry.store,
     condition: ({ entry }) =>
       ["opened", "closed", "indeterminate"].includes(entry.state),
     onChange: ({ entry }) => entry.applyState()
-  } as PropStoreConfig
+  }
 };
+
+export default presets;
