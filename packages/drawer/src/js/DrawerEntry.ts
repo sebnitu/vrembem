@@ -1,5 +1,8 @@
 import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
+import { open } from "./open";
+import { close } from "./close";
+import { toggle } from "./toggle";
 import type { Drawer } from "./Drawer";
 
 export class DrawerEntry extends CollectionEntry<Drawer> {
@@ -83,15 +86,15 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
   }
 
   async open(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
-    return this.parent.open(this.id, transition, focus);
+    return open(this, transition, focus);
   }
 
   async close(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
-    return this.parent.close(this.id, transition, focus);
+    return close(this, transition, focus);
   }
 
   async toggle(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
-    return this.parent.toggle(this.id, transition, focus);
+    return toggle(this, transition, focus);
   }
 
   async deregister() {

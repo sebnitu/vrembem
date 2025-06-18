@@ -1,18 +1,12 @@
 import { transition, setGlobalState } from "@vrembem/core";
-import { getDrawer } from "./helpers/getDrawer";
 import { updateFocusState } from "./helpers/updateFocusState";
-import type { Drawer } from "./Drawer";
 import type { DrawerEntry } from "./DrawerEntry";
 
 export async function close(
-  this: Drawer,
-  query: string | HTMLElement,
+  entry: DrawerEntry,
   transitionOverride?: boolean,
   focus: boolean = true
 ): Promise<DrawerEntry> {
-  // Get the drawer from collection
-  const entry: DrawerEntry = getDrawer.call(this, query);
-
   // If drawer is opened or indeterminate
   if (
     entry.state === "opened" ||
@@ -61,13 +55,13 @@ export async function close(
 
     // Set focus to the trigger element if the focus param is true
     if (focus) {
-      updateFocusState.call(this, entry);
+      updateFocusState(entry);
     }
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(
       new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
-        detail: this,
+        detail: entry.parent,
         bubbles: true
       })
     );
