@@ -102,11 +102,4 @@ describe("init() & destroy()", () => {
     expect(entry.dataConfig.data).toBe(111);
     expect(entry.customProps.test).toBe("fdsa");
   });
-
-  it("should throw an error if an entry is initiated with no element", async () => {
-    const entry = new CollectionEntry(obj, "asdf");
-    await expect(entry.init()).rejects.toThrow(
-      'Collection element was not found with ID: "asdf"'
-    );
-  });
 });

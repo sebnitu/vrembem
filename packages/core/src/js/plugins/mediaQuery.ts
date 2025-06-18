@@ -62,12 +62,14 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   };
 
   const methods = {
-    // Run when an entry is created. Sets up the MediaQueryList and event listener
-    onCreateEntry({ entry }: { entry: MediaQueryEntry }) {
+    // Run when an entry is registered
+    // Sets up the MediaQueryList and event listener
+    onRegisterEntry({ entry }: { entry: MediaQueryEntry }) {
       setupMediaQueryList.call(this, entry);
     },
 
-    // Run when an entry is destroyed. Removes the MediaQueryList and event listener
+    // Run when an entry is destroyed
+    // Removes the MediaQueryList and event listener
     onDestroyEntry({ entry }: { entry: MediaQueryEntry }) {
       removeMediaQueryList(entry);
     }

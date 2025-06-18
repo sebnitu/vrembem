@@ -37,7 +37,7 @@ describe("debug", () => {
   });
 
   it("should be able to pass a condition function for console logging", async () => {
-    await collection.plugins.remove("debug");
+    collection.plugins.remove("debug");
     expect(collection.plugins.length).toBe(0);
     const conditionSpy = vi.fn();
     await collection.mount({
