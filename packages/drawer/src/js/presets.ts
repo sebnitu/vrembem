@@ -1,4 +1,14 @@
-export default {
+import type {
+  FocusTrapConfig,
+  MediaQueryConfig,
+  PropStoreConfig
+} from "@vrembem/core";
+
+const presets: {
+  focusTrap: FocusTrapConfig;
+  mediaQuery: MediaQueryConfig;
+  propStore: PropStoreConfig;
+} = {
   focusTrap: {
     condition: ({ entry }) => {
       return (
@@ -20,3 +30,5 @@ export default {
     onChange: ({ entry }) => entry.applyState()
   }
 };
+
+export default presets;

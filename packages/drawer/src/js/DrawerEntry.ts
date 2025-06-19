@@ -1,33 +1,49 @@
 import { CollectionEntry } from "@vrembem/core";
 import { switchMode } from "./switchMode";
+import { open } from "./open";
+import { close } from "./close";
+import { toggle } from "./toggle";
+import type { Drawer } from "./Drawer";
 
-export class DrawerEntry extends CollectionEntry {
-  #mode;
+export class DrawerEntry extends CollectionEntry<Drawer> {
+  #mode: string;
+  dialog: HTMLElement;
+  trigger: HTMLElement | null;
+  state: string | null;
+  inlineState: string | null;
 
-  constructor(parent, query, options = {}) {
+  constructor(
+    parent: Drawer,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     super(parent, query, options);
-    this.dialog = null;
+    this.#mode = "indeterminate";
+
+    // Set the dialog element. If none is found, use the root element
+    this.dialog =
+      this.el.querySelector(this.getSetting("selectorDialog")) || this.el;
+
     this.trigger = null;
     this.state = null;
     this.inlineState = null;
-    this.#mode = "indeterminate";
   }
 
-  get mode() {
+  get mode(): string {
     return this.#mode;
   }
 
-  set mode(value) {
+  set mode(value: string) {
     if (this.#mode === value) return;
     this.#mode = value;
-    switchMode.call(this.parent, this);
+    switchMode(this);
   }
 
-  setState(value) {
+  setState(value: string): void {
     this.state = value;
-
     // If mode is inline and not in a transitioning state...
     const ignoreStates = ["opening", "closing"];
+
     if (this.mode === "inline" && !ignoreStates.includes(value)) {
       // Save the inline state
       this.inlineState = value;
@@ -42,14 +58,15 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async applyState() {
+  async applyState(): Promise<DrawerEntry> {
     // Only apply state if mode is not set to "modal"
-    if (this.mode === "modal") return;
+    if (this.mode === "modal") return this;
 
     // Check the state stored in inline state
     if (this.inlineState === "opened") {
       return await this.open(false, false);
     }
+
     if (this.inlineState === "closed") {
       return await this.close(false, false);
     }
@@ -66,19 +83,22 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // If state cannot be determined, set it to indeterminate
-    return this.setState("indeterminate");
+    this.setState("indeterminate");
+
+    // Return the entry for chaining
+    return this;
   }
 
-  async open(transition, focus) {
-    return this.parent.open(this, transition, focus);
+  async open(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
+    return open(this, transition, focus);
   }
 
-  async close(transition, focus) {
-    return this.parent.close(this, transition, focus);
+  async close(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
+    return close(this, transition, focus);
   }
 
-  async toggle(transition, focus) {
-    return this.parent.toggle(this, transition, focus);
+  async toggle(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
+    return toggle(this, transition, focus);
   }
 
   async deregister() {
@@ -86,12 +106,8 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async onCreateEntry() {
-    // Set the dialog element. If none is found, use the root element
-    const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
-    this.dialog = dialog ? dialog : this.el;
-
     // Set tabindex="-1" so dialog is focusable via JS or click
-    if (this.getSetting("setTabindex")) {
+    if (this.getSetting("setTabindex") && this.dialog) {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
@@ -102,9 +118,10 @@ export class DrawerEntry extends CollectionEntry {
     this.inlineState = this.state;
 
     // Set the initial mode
-    this.mode = this.el.classList.contains(this.getSetting("classModal"))
-      ? "modal"
-      : "inline";
+    this.mode =
+      this.el && this.el.classList.contains(this.getSetting("classModal"))
+        ? "modal"
+        : "inline";
   }
 
   async onDestroyEntry() {

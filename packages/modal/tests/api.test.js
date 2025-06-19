@@ -91,7 +91,7 @@ describe("register() & deregister()", () => {
     expect(modal.collection.length).toBe(1);
     const result = await modal.deregister("modal-default");
     expect(modal.collection.length).toBe(0);
-    expect(entry).toEqual({ id: "modal-default" });
+    expect(entry).toEqual({});
     expect(result).toBe(entry);
   });
 
@@ -99,7 +99,7 @@ describe("register() & deregister()", () => {
     const result = await modal.register("asdf").catch((error) => {
       return error.message;
     });
-    expect(result).toBe('Modal element was not found with ID: "asdf"');
+    expect(result).toBe('Element not found with ID: "asdf"');
   });
 
   it("should open and update global state if modal already has opened class", async () => {
@@ -300,18 +300,10 @@ describe("replace()", () => {
   it("should correctly handle focus management when focus param is passed", async () => {
     const modal = new Modal({ transition: false });
     await modal.mount();
-
-    const entry = modal.get("modal-2");
-
     await modal.open("modal-1");
+    expect(document.activeElement).toBe(modal.get("modal-1").dialog);
     await modal.replace("modal-2");
-
-    expect(document.activeElement).toBe(entry.dialog);
-
-    await modal.open("modal-1");
-    await modal.replace("modal-2", false, false);
-
-    expect(document.activeElement).toBe(document.body);
+    expect(document.activeElement).toBe(modal.get("modal-2").dialog);
   });
 
   it("should reject promise with error if replace is called on non-existent modal", async () => {

@@ -1,4 +1,6 @@
-export function getModal(query) {
+import type { DrawerEntry } from "../DrawerEntry";
+
+export function getDrawer(query: string | HTMLElement): DrawerEntry {
   // Get the entry from collection
   const entry = this.get(query);
 
@@ -7,7 +9,7 @@ export function getModal(query) {
     return entry;
   } else {
     throw new Error(
-      `Modal not found in collection with id of "${query.id || query}".`
+      `Drawer not found in collection with id of "${(query as any).id || query}"`
     );
   }
 }

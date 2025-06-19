@@ -1,4 +1,6 @@
 import { CollectionEntry } from "@vrembem/core";
+import { open } from "./open";
+import { close } from "./close";
 
 import {
   handleClick,
@@ -57,11 +59,11 @@ export class PopoverEntry extends CollectionEntry {
   }
 
   async open() {
-    return this.parent.open(this);
+    return open(this);
   }
 
   async close() {
-    return this.parent.close(this);
+    return close(this);
   }
 
   async deregister() {

@@ -1,17 +1,18 @@
 import { setGlobalState } from "@vrembem/core";
+import type { DrawerEntry } from "./DrawerEntry";
 
-export function switchMode(entry) {
+export function switchMode(entry: DrawerEntry): Promise<DrawerEntry> {
   switch (entry.mode) {
     case "inline":
-      return toInline.call(this, entry);
+      return toInline(entry);
     case "modal":
-      return toModal.call(this, entry);
+      return toModal(entry);
     default:
       throw new Error(`"${entry.mode}" is not a valid drawer mode.`);
   }
 }
 
-async function toInline(entry) {
+async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
   // Remove the modal class
   entry.el.classList.remove(entry.getSetting("classModal"));
 
@@ -31,7 +32,7 @@ async function toInline(entry) {
   // Dispatch custom switch event
   entry.el.dispatchEvent(
     new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-      detail: this,
+      detail: entry.parent,
       bubbles: true
     })
   );
@@ -43,7 +44,7 @@ async function toInline(entry) {
   return entry;
 }
 
-async function toModal(entry) {
+async function toModal(entry: DrawerEntry): Promise<DrawerEntry> {
   // Add the modal class
   entry.el.classList.add(entry.getSetting("classModal"));
 
@@ -56,7 +57,7 @@ async function toModal(entry) {
   // Dispatch custom switch event
   entry.el.dispatchEvent(
     new CustomEvent(entry.getSetting("customEventPrefix") + "switchMode", {
-      detail: this,
+      detail: entry.parent,
       bubbles: true
     })
   );

@@ -142,7 +142,7 @@ describe("register() error handling and re-registration", () => {
   it("should throw an error if element is not found", async () => {
     const obj = new Collection();
     await expect(obj.register("nonexistent-id")).rejects.toThrow(
-      'Collection element was not found with ID: "nonexistent-id"'
+      'Element not found with ID: "nonexistent-id"'
     );
   });
 

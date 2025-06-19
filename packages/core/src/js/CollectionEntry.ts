@@ -1,21 +1,28 @@
 import { getCustomProps, getSetting } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
+import type { Collection } from "./Collection";
 
-export class CollectionEntry {
-  parent: any;
-  id: string;
-  el: HTMLElement | null;
+export class CollectionEntry<TParent extends Collection<any>> {
+  parent: TParent;
+  el: HTMLElement;
   settings: Record<string, any>;
   dataConfig: Record<string, any>;
   customProps: Record<string, any>;
 
-  constructor(parent: any, query: any, options: Record<string, any> = {}) {
+  constructor(
+    parent: TParent,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     this.parent = parent;
-    this.id = query?.id || query;
     this.el = getElement(query);
     this.settings = { ...options };
     this.dataConfig = {};
     this.customProps = {};
+  }
+
+  get id(): string {
+    return this.el.id;
   }
 
   applySettings(options: Record<string, any>) {
@@ -29,25 +36,15 @@ export class CollectionEntry {
   buildDataConfig() {
     return Object.assign(
       this.dataConfig,
-      this.el ? getDataConfig(this.el, this.getSetting("dataConfig")) : {}
+      getDataConfig(this.el, this.getSetting("dataConfig"))
     );
   }
 
   buildCustomProps() {
-    return Object.assign(
-      this.customProps,
-      this.el ? getCustomProps(this as any) : {}
-    );
+    return Object.assign(this.customProps, getCustomProps(this));
   }
 
   async init(options: Record<string, any> = {}) {
-    // Throw an error if the element for this entry was not found
-    if (this.el === null) {
-      throw new Error(
-        `${this.parent.module} element was not found with ID: "${this.id}"`
-      );
-    }
-
     // Apply settings with passed options
     this.applySettings(options);
 
@@ -57,11 +54,9 @@ export class CollectionEntry {
   }
 
   async destroy() {
-    // Remove all the owned properties from the entry except for the id
+    // Remove all the owned properties from the entry
     Object.getOwnPropertyNames(this).forEach((prop) => {
-      if (prop !== "id") {
-        delete (this as any)[prop];
-      }
+      delete (this as any)[prop];
     });
   }
 }

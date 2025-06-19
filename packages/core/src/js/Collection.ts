@@ -5,10 +5,16 @@ import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 import type { EventEmitter } from "./modules";
 
-export class Collection implements EventEmitter {
+export class Collection<TEntry extends CollectionEntry<any>>
+  implements EventEmitter
+{
   module: string;
-  collection: any[];
-  entryClass: any;
+  collection: TEntry[];
+  entryClass: new (
+    parent: Collection<TEntry>,
+    query: string | HTMLElement,
+    options?: Record<string, any>
+  ) => TEntry;
   settings: Record<string, any>;
   plugins: PluginsArray;
   events: EventEmitter["events"];
@@ -19,7 +25,11 @@ export class Collection implements EventEmitter {
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
     this.collection = [];
-    this.entryClass = CollectionEntry;
+    this.entryClass = CollectionEntry as new (
+      parent: Collection<TEntry>,
+      query: string | HTMLElement,
+      options?: Record<string, any>
+    ) => TEntry;
     this.settings = { ...defaults, ...options };
 
     // Create the plugins array and provide any presets
@@ -54,13 +64,6 @@ export class Collection implements EventEmitter {
   async register(query: any, config: any = {}) {
     // Get the element to register
     const element = getElement(query);
-
-    // Throw an error if element wasn't found
-    if (element === null) {
-      throw new Error(
-        `${this.module} element was not found with ID: "${query?.id || query}"`
-      );
-    }
 
     // Check if the element with the provided ID has already been registered
     const index = this.collection.findIndex((item) => item.id === element.id);

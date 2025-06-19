@@ -48,13 +48,6 @@ describe("buildDataConfig()", () => {
     expect(entry.getSetting("one")).toBe(111);
     expect(entry.getSetting("two")).toBe(222);
   });
-
-  it("should not throw if el is null in buildDataConfig", () => {
-    const entry = new CollectionEntry(obj, "nonexistent");
-    entry.el = null;
-    expect(() => entry.buildDataConfig()).not.toThrow();
-    expect(entry.dataConfig).toEqual({});
-  });
 });
 
 describe("buildCustomProps()", () => {
@@ -62,13 +55,6 @@ describe("buildCustomProps()", () => {
     const entry = new CollectionEntry(obj, "three");
     entry.buildCustomProps();
     expect(entry.getSetting("test")).toBe("fdsa");
-  });
-
-  it("should not throw if el is null in buildCustomProps", () => {
-    const entry = new CollectionEntry(obj, "nonexistent");
-    entry.el = null;
-    expect(() => entry.buildCustomProps()).not.toThrow();
-    expect(entry.customProps).toEqual({});
   });
 });
 
@@ -101,12 +87,5 @@ describe("init() & destroy()", () => {
     expect(entry.settings.new).toBe("asdf");
     expect(entry.dataConfig.data).toBe(111);
     expect(entry.customProps.test).toBe("fdsa");
-  });
-
-  it("should throw an error if an entry is initiated with no element", async () => {
-    const entry = new CollectionEntry(obj, "asdf");
-    await expect(entry.init()).rejects.toThrow(
-      'Collection element was not found with ID: "asdf"'
-    );
   });
 });
