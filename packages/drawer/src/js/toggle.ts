@@ -4,8 +4,8 @@ import type { DrawerEntry } from "./DrawerEntry";
 
 export async function toggle(
   entry: DrawerEntry,
-  transition: boolean,
-  focus: boolean
+  transition?: boolean,
+  focus?: boolean
 ): Promise<DrawerEntry> {
   // Open or close the drawer based on its current state
   if (entry.state === "closed") {
