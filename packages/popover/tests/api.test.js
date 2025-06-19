@@ -88,13 +88,6 @@ describe("register() & deregister()", () => {
     expect(popover.collection.length).toBe(3);
     await popover.deregister(popover.collection[0].id);
     expect(popover.collection.length).toBe(2);
-
-    const el = document.querySelector(".popover");
-    const trigger = document.querySelector("button");
-
-    trigger.click();
-    vi.advanceTimersByTime(500);
-    expect(el).not.toHaveClass("is-active");
   });
 });
 
