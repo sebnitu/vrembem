@@ -1,15 +1,15 @@
-export function updateFocusState() {
+export function updateFocusState(parent) {
   // Check if there's an active modal
-  if (this.active) {
+  if (parent.active) {
     (
-      this.active.dialog.querySelector(this.settings.selectorFocus) ||
-      this.active.dialog
+      parent.active.dialog.querySelector(parent.settings.selectorFocus) ||
+      parent.active.dialog
     ).focus();
   } else {
     // Set focus to root trigger and unmount the focus trap
-    if (this.trigger) {
-      this.trigger.focus();
-      this.trigger = null;
+    if (parent.trigger) {
+      parent.trigger.focus();
+      parent.trigger = null;
     }
   }
 }

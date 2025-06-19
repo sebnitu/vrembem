@@ -1,17 +1,13 @@
 import { transition } from "@vrembem/core";
-import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export async function open(
-  query,
+  entry,
   transitionOverride = undefined,
   focus = true
 ) {
-  // Get the modal from collection
-  const entry = getModal.call(this, query);
-
   // Maybe add modal to top of stack
-  this.stack.moveToTop(entry);
+  entry.parent.stack.moveToTop(entry);
 
   // If modal is closed
   if (entry.state === "closed") {
@@ -19,7 +15,7 @@ export async function open(
     entry.state = "opening";
 
     // Add modal to stack
-    this.stack.add(entry);
+    entry.parent.stack.add(entry);
 
     // Run the open transition
     if (
@@ -45,13 +41,13 @@ export async function open(
 
   // Update focus if the focus param is true
   if (focus) {
-    updateFocusState.call(this);
+    updateFocusState(entry.parent);
   }
 
   // Dispatch custom opened event
   entry.el.dispatchEvent(
     new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
-      detail: entry,
+      detail: entry.parent,
       bubbles: true
     })
   );

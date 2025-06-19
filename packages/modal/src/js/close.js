@@ -1,11 +1,7 @@
 import { transition } from "@vrembem/core";
-import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export async function close(query, transitionOverride, focus = true) {
-  // Get the modal from collection or top modal in stack if no query is provided
-  const entry = query ? getModal.call(this, query) : this.active;
-
+export async function close(entry, transitionOverride, focus = true) {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update modal state
@@ -33,20 +29,20 @@ export async function close(query, transitionOverride, focus = true) {
     }
 
     // Remove modal from stack
-    this.stack.remove(entry);
+    entry.parent.stack.remove(entry);
 
     // Update modal state
     entry.state = "closed";
 
     // Update focus if the focus param is true
     if (focus) {
-      updateFocusState.call(this);
+      updateFocusState(entry.parent);
     }
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(
       new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
-        detail: entry,
+        detail: entry.parent,
         bubbles: true
       })
     );

@@ -1,4 +1,7 @@
 import { CollectionEntry } from "@vrembem/core";
+import { open } from "./open";
+import { close } from "./close";
+import { replace } from "./replace";
 
 export class ModalEntry extends CollectionEntry {
   constructor(parent, query, options = {}) {
@@ -12,15 +15,15 @@ export class ModalEntry extends CollectionEntry {
   }
 
   async open(transition, focus) {
-    return this.parent.open(this, transition, focus);
+    return open(this, transition, focus);
   }
 
   async close(transition, focus) {
-    return this.parent.close(this, transition, focus);
+    return close(this, transition, focus);
   }
 
   async replace(transition, focus) {
-    return this.parent.replace(this, transition, focus);
+    return replace(this, transition, focus);
   }
 
   async deregister() {

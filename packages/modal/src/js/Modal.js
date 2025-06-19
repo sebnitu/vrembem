@@ -7,6 +7,7 @@ import { open } from "./open";
 import { close } from "./close";
 import { closeAll } from "./closeAll";
 import { replace } from "./replace";
+import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection {
@@ -38,22 +39,25 @@ export class Modal extends Collection {
   }
 
   async open(id, transition, focus) {
-    return open.call(this, id, transition, focus);
+    const entry = getModal.call(this, id);
+    return open(entry, transition, focus);
   }
 
   async close(id, transition, focus) {
-    return close.call(this, id, transition, focus);
+    const entry = id ? getModal.call(this, id) : this.active;
+    return close(entry, transition, focus);
   }
 
   async replace(id, transition, focus) {
-    return replace.call(this, id, transition, focus);
+    const entry = getModal.call(this, id);
+    return replace(entry, transition, focus);
   }
 
   async closeAll(exclude = false, transition, focus = true) {
     const result = await closeAll.call(this, exclude, transition);
     // Update focus if the focus param is true
     if (focus) {
-      updateFocusState.call(this);
+      updateFocusState(this);
     }
     return result;
   }
