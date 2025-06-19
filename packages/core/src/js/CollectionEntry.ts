@@ -21,8 +21,8 @@ export class CollectionEntry<TParent extends Collection<any>> {
     this.customProps = {};
   }
 
-  get id(): string {
-    return this.el.id;
+  get id(): string | undefined {
+    return this.el?.id;
   }
 
   applySettings(options: Record<string, any>) {
@@ -61,11 +61,9 @@ export class CollectionEntry<TParent extends Collection<any>> {
   }
 
   async destroy() {
-    // Remove all the owned properties from the entry except for the id
+    // Remove all the owned properties from the entry
     Object.getOwnPropertyNames(this).forEach((prop) => {
-      if (prop !== "id") {
-        delete (this as any)[prop];
-      }
+      delete (this as any)[prop];
     });
   }
 }
