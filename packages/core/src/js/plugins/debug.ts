@@ -73,7 +73,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
       if (getValue(plugin.settings.condition, entry)) {
         const count = parent.collection.length;
         log(
-          `Event > deregisterEntry() > [${count}] #${entry.id}`,
+          `Event > deregisterEntry() > [${count}]`,
           [],
           ["important", "neutral"]
         );
@@ -170,11 +170,10 @@ export function debug(options: Record<string, any> = {}): Plugin {
     onDeregisterEntry(this: any, { parent, entry }: any) {
       if (getValue(this.settings.condition, entry)) {
         const count = parent.collection.length;
-        log(
-          `Hook > onDeregisterEntry() > [${count}] #${entry.id}`,
-          Array.from(arguments),
-          ["important", "neutral"]
-        );
+        log(`Hook > onDeregisterEntry() > [${count}]`, Array.from(arguments), [
+          "important",
+          "neutral"
+        ]);
       }
     },
     afterUnmount() {
