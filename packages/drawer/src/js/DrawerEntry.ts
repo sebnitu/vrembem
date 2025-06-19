@@ -39,7 +39,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     switchMode.call(this.parent, this);
   }
 
-  setState(value: string) {
+  setState(value: string): void {
     this.state = value;
     // If mode is inline and not in a transitioning state...
     const ignoreStates = ["opening", "closing"];
@@ -50,7 +50,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     }
 
     // If state is indeterminate, remove all state classes
-    if (value === "indeterminate" && this.el) {
+    if (value === "indeterminate") {
       this.el.classList.remove(this.getSetting("stateOpened"));
       this.el.classList.remove(this.getSetting("stateOpening"));
       this.el.classList.remove(this.getSetting("stateClosed"));
@@ -58,21 +58,22 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     }
   }
 
-  async applyState(): Promise<DrawerEntry | void> {
+  async applyState(): Promise<DrawerEntry> {
     // Only apply state if mode is not set to "modal"
-    if (this.mode === "modal") return;
+    if (this.mode === "modal") return this;
 
     // Check the state stored in inline state
     if (this.inlineState === "opened") {
       return await this.open(false, false);
     }
+
     if (this.inlineState === "closed") {
       return await this.close(false, false);
     }
 
     // Determine the state based on the presence of a state class. This handles
     // the initial state which is the only time `this.state` should be `null`.
-    if (this.state === null && this.el) {
+    if (this.state === null) {
       if (this.el.classList.contains(this.getSetting("stateOpened"))) {
         return await this.open(false, false);
       }
@@ -82,7 +83,10 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     }
 
     // If state cannot be determined, set it to indeterminate
-    return this.setState("indeterminate");
+    this.setState("indeterminate");
+
+    // Return the entry for chaining
+    return this;
   }
 
   async open(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
