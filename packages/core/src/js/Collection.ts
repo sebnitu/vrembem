@@ -65,13 +65,6 @@ export class Collection<TEntry extends CollectionEntry<any>>
     // Get the element to register
     const element = getElement(query);
 
-    // Throw an error if element wasn't found
-    if (element === null) {
-      throw new Error(
-        `${this.module} element was not found with ID: "${query?.id || query}"`
-      );
-    }
-
     // Check if the element with the provided ID has already been registered
     const index = this.collection.findIndex((item) => item.id === element.id);
     if (~index) {

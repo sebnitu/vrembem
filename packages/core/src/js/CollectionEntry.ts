@@ -45,13 +45,6 @@ export class CollectionEntry<TParent extends Collection<any>> {
   }
 
   async init(options: Record<string, any> = {}) {
-    // Throw an error if the element for this entry was not found
-    if (this.el === null) {
-      throw new Error(
-        `${this.parent.module ?? "Unknown"} element was not found with ID: "${this.id}"`
-      );
-    }
-
     // Apply settings with passed options
     this.applySettings(options);
 
