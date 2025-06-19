@@ -36,12 +36,12 @@ export class CollectionEntry<TParent extends Collection<any>> {
   buildDataConfig() {
     return Object.assign(
       this.dataConfig,
-      this.el ? getDataConfig(this.el, this.getSetting("dataConfig")) : {}
+      getDataConfig(this.el, this.getSetting("dataConfig"))
     );
   }
 
   buildCustomProps() {
-    return Object.assign(this.customProps, this.el ? getCustomProps(this) : {});
+    return Object.assign(this.customProps, getCustomProps(this));
   }
 
   async init(options: Record<string, any> = {}) {
