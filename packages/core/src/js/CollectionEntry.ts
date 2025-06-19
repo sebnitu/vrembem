@@ -21,8 +21,8 @@ export class CollectionEntry<TParent extends Collection<any>> {
     this.customProps = {};
   }
 
-  get id(): string | undefined {
-    return this.el?.id;
+  get id(): string {
+    return this.el.id;
   }
 
   applySettings(options: Record<string, any>) {
