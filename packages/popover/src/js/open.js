@@ -7,40 +7,33 @@ import {
   offset,
   arrow
 } from "@floating-ui/dom";
-import {
-  applyPositionStyle,
-  getMiddlewareOptions,
-  getPopover
-} from "./helpers";
+import { applyPositionStyle, getMiddlewareOptions } from "./helpers";
 import { handleDocumentClick } from "./handlers";
 
-export async function open(query) {
-  // Get the popover from collection
-  const popover = getPopover.call(this, query);
-
+export async function open(entry) {
   // Update inert state and state class
-  popover.el.inert = false;
-  popover.el.classList.add(this.settings.stateActive);
+  entry.el.inert = false;
+  entry.el.classList.add(entry.parent.settings.stateActive);
 
   // Update accessibility attribute(s)
-  if (!popover.isTooltip) {
-    popover.trigger.setAttribute("aria-expanded", "true");
+  if (!entry.isTooltip) {
+    entry.trigger.setAttribute("aria-expanded", "true");
   }
 
   // Get the custom property data before opening the popover
-  popover.buildCustomProps();
+  entry.buildCustomProps();
 
   // Get the middleware options for floating ui
-  const middlewareOptions = getMiddlewareOptions(popover);
+  const middlewareOptions = getMiddlewareOptions(entry);
 
   // Get the arrow element
-  const arrowEl = popover.el.querySelector(middlewareOptions.arrow.element);
+  const arrowEl = entry.el.querySelector(middlewareOptions.arrow.element);
   middlewareOptions.arrow.element = arrowEl ? arrowEl : undefined;
 
   // Setup the autoUpdate of popover positioning and store the cleanup function
-  popover.floatingCleanup = autoUpdate(popover.trigger, popover.el, () => {
-    computePosition(popover.trigger, popover.el, {
-      placement: popover.getSetting("placement"),
+  entry.floatingCleanup = autoUpdate(entry.trigger, entry.el, () => {
+    computePosition(entry.trigger, entry.el, {
+      placement: entry.getSetting("placement"),
       middleware: [
         flip(middlewareOptions.flip),
         shift({ ...middlewareOptions.shift, limiter: limitShift() }),
@@ -49,12 +42,12 @@ export async function open(query) {
       ]
     }).then(({ x, y, placement, middlewareData }) => {
       // Guard in case there is no popover element
-      if (!popover.el) {
+      if (!entry.el) {
         return;
       }
 
       // Apply popover left and top position
-      applyPositionStyle(popover.el, x, y);
+      applyPositionStyle(entry.el, x, y);
 
       // Maybe apply arrow left or top position
       if (middlewareOptions.arrow.element && middlewareData.arrow) {
@@ -64,29 +57,29 @@ export async function open(query) {
 
       // Apply the current placement as a data attribute. This is used in our
       // CSS to determine the vertical position of arrows.
-      popover.el.setAttribute("data-floating-placement", placement);
+      entry.el.setAttribute("data-floating-placement", placement);
     });
   });
 
   // Update popover state
-  popover.state = "opened";
+  entry.state = "opened";
 
   // Apply document click handler
-  if (popover.getSetting("event") === "click") {
-    handleDocumentClick.call(this, popover);
+  if (entry.getSetting("event") === "click") {
+    handleDocumentClick.call(entry.parent, entry);
   }
 
   // Dispatch custom opened event
-  popover.el.dispatchEvent(
-    new CustomEvent(popover.getSetting("customEventPrefix") + "opened", {
-      detail: this,
+  entry.el.dispatchEvent(
+    new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
+      detail: entry.parent,
       bubbles: true
     })
   );
 
   // Emit the opened event
-  await popover.parent.emit("opened", popover);
+  await entry.parent.emit("opened", entry);
 
   // Return the popover
-  return popover;
+  return entry;
 }
