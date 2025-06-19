@@ -2,7 +2,7 @@ import type { DrawerEntry } from "../DrawerEntry";
 
 export function getDrawer(query: string | HTMLElement): DrawerEntry {
   // Get the entry from collection
-  const entry = typeof query === "string" ? this.get(query) : query;
+  const entry = this.get(query);
 
   // Return entry if it was resolved, otherwise throw error
   if (entry) {
