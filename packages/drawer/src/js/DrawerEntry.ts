@@ -36,7 +36,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
   set mode(value: string) {
     if (this.#mode === value) return;
     this.#mode = value;
-    switchMode.call(this.parent, this);
+    switchMode(this);
   }
 
   setState(value: string): void {
