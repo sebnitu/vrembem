@@ -80,7 +80,7 @@ export function handleKeydown(event) {
       if (this.trigger) {
         this.trigger.focus();
       }
-      closeAll.call(this);
+      closeAll(this);
       return;
 
     case "Tab":

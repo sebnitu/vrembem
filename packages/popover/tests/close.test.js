@@ -51,7 +51,7 @@ describe("closeAll()", () => {
     expect(popover.collection.length).toBe(3);
     expect(popover.collection[0].el).toHaveClass("is-active");
     expect(popover.collection[1].el).toHaveClass("is-active");
-    await closeAll.call(popover);
+    await closeAll(popover);
     expect(popover.collection[0].el).not.toHaveClass("is-active");
     expect(popover.collection[1].el).not.toHaveClass("is-active");
   });

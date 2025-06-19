@@ -1,9 +1,4 @@
 export async function close(entry) {
-  // Close all popovers if no entry is provided
-  if (!entry) {
-    await closeAll.call(entry.parent);
-  }
-
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update inert state and state class
@@ -42,10 +37,10 @@ export async function close(entry) {
   return entry;
 }
 
-export async function closeAll() {
+export async function closeAll(parent) {
   const result = [];
   await Promise.all(
-    this.collection.map(async (entry) => {
+    parent.collection.map(async (entry) => {
       if (entry.state === "opened") {
         result.push(await entry.close());
       }

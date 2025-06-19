@@ -4,7 +4,7 @@ import defaults from "./defaults";
 import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown } from "./handlers";
 import { open } from "./open";
-import { close } from "./close";
+import { close, closeAll } from "./close";
 import { getPopover } from "./helpers";
 
 export class Popover extends Collection {
@@ -36,8 +36,12 @@ export class Popover extends Collection {
   }
 
   async close(id) {
-    const entry = getPopover.call(this, id);
-    return close(entry);
+    const entry = id ? getPopover.call(this, id) : undefined;
+    if (entry) {
+      return close(entry);
+    } else {
+      return closeAll(this);
+    }
   }
 
   async afterMount() {
