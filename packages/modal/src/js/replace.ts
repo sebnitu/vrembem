@@ -17,9 +17,9 @@ export async function replace(
   } else {
     // If modal is closed, close all and open replacement at the same time
     // Await both promises and destructure the results
-    [resultOpened, resultClosed] = await Promise.all([
-      open(entry, transition, false),
-      entry.parent.closeAll("", transition)
+    [resultClosed, resultOpened] = await Promise.all([
+      entry.parent.closeAll("", transition),
+      open(entry, transition, false)
     ]);
   }
 
