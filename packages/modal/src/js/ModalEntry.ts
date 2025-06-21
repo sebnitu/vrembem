@@ -45,10 +45,6 @@ export class ModalEntry extends CollectionEntry<Modal> {
   }
 
   async onCreateEntry() {
-    // Set the dialog element. If none is found, use the root element
-    // const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
-    // this.dialog = dialog ? dialog : this.el;
-
     // Set aria-modal attribute to true
     this.dialog.setAttribute("aria-modal", "true");
 
