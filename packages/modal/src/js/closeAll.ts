@@ -4,7 +4,7 @@ import type { ModalEntry } from "./ModalEntry";
 
 export async function closeAll(
   this: Modal,
-  exclude: string,
+  exclude: string = "",
   transition?: boolean
 ): Promise<ModalEntry[]> {
   const result: ModalEntry[] = [];

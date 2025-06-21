@@ -54,7 +54,7 @@ export class Modal extends Collection<ModalEntry> {
   }
 
   async close(
-    id: string,
+    id?: string,
     transition?: boolean,
     focus?: boolean
   ): Promise<ModalEntry> {
@@ -72,7 +72,7 @@ export class Modal extends Collection<ModalEntry> {
   }
 
   async closeAll(
-    exclude: string,
+    exclude?: string,
     transition?: boolean,
     focus: boolean = true
   ): Promise<ModalEntry[]> {
