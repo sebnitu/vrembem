@@ -1,15 +1,13 @@
+import type { CollectionEntry } from "../CollectionEntry";
+
 type StackArraySettings = {
   onChange?: () => void;
   [key: string]: any;
 };
 
-type StackArrayEntry = {
-  id: string;
-  el: HTMLElement;
-  [key: string]: any;
-};
-
-export class StackArray extends Array<StackArrayEntry> {
+export class StackArray<
+  TEntry extends CollectionEntry<any>
+> extends Array<TEntry> {
   settings: StackArraySettings;
 
   constructor(settings: StackArraySettings = {}) {
@@ -17,11 +15,11 @@ export class StackArray extends Array<StackArrayEntry> {
     this.settings = settings;
   }
 
-  get copy(): StackArrayEntry[] {
+  get copy(): TEntry[] {
     return [...this];
   }
 
-  get top(): StackArrayEntry | null {
+  get top(): TEntry | null {
     const result = this[this.length - 1];
     return result ? result : null;
   }
@@ -41,12 +39,12 @@ export class StackArray extends Array<StackArrayEntry> {
     }
   }
 
-  add(entry: StackArrayEntry) {
+  add(entry: TEntry) {
     this.push(entry);
     this.onChange();
   }
 
-  remove(entry: StackArrayEntry) {
+  remove(entry: TEntry) {
     // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
     if (~index) {
@@ -59,7 +57,7 @@ export class StackArray extends Array<StackArrayEntry> {
     }
   }
 
-  moveToTop(entry: StackArrayEntry) {
+  moveToTop(entry: TEntry) {
     // Get the index of the entry
     const index = this.findIndex((item) => item.id === entry.id);
     if (~index) {

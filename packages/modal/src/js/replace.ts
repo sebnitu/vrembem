@@ -19,7 +19,7 @@ export async function replace(
     // Await both promises and destructure the results
     [resultOpened, resultClosed] = await Promise.all([
       open(entry, transition, false),
-      entry.parent.closeAll(false, transition)
+      entry.parent.closeAll("", transition)
     ]);
   }
 

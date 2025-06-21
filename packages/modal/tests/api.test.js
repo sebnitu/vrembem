@@ -398,7 +398,7 @@ describe("closeAll()", () => {
       expect(entry.state).toBe("opened");
     });
 
-    await modal.closeAll(false, false, false);
+    await modal.closeAll("", false, false);
 
     expect(document.activeElement).toBe(document.body);
   });

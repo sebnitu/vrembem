@@ -14,7 +14,7 @@ export class Modal extends Collection<ModalEntry> {
   #handleClick: (event: Event) => void;
   #handleKeydown: (event: KeyboardEvent) => void;
   trigger: HTMLElement | null;
-  stack: StackArray;
+  stack: StackArray<ModalEntry>;
 
   constructor(options: ModalConfig) {
     super({ ...config, ...options });
@@ -72,7 +72,7 @@ export class Modal extends Collection<ModalEntry> {
   }
 
   async closeAll(
-    exclude: string | boolean = false,
+    exclude: string,
     transition?: boolean,
     focus: boolean = true
   ): Promise<ModalEntry[]> {
