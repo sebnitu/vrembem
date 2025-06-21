@@ -12,7 +12,6 @@ export async function closeAll(
     this.stack.copy.map(async (entry) => {
       if (exclude && exclude === entry.id) return;
       result.push(await close(entry, transition, false));
-      this.trigger = null;
     })
   );
   return result;
