@@ -1,9 +1,20 @@
-export function getPadding(value) {
+export type PaddingObject = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+};
+
+export function getPadding(
+  value: string | number
+): PaddingObject | number | false {
   // Initialize the padding var
-  let padding;
+  let padding: PaddingObject | number | false;
 
   // Split the value by spaces if it's a string
-  const array = typeof value === "string" ? value.trim().split(" ") : [value];
+  const array = (
+    typeof value === "string" ? value.trim().split(" ") : [value]
+  ) as number[];
 
   // Convert individual values to integers
   for (let index = 0; index < array.length; index++) {
@@ -44,6 +55,5 @@ export function getPadding(value) {
       break;
   }
 
-  // Return the padding object
   return padding;
 }
