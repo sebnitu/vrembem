@@ -1,6 +1,6 @@
 import { Collection, StackArray, setGlobalState } from "@vrembem/core";
 
-import defaults from "./defaults";
+import { config, ModalConfig } from "./config";
 import { ModalEntry } from "./ModalEntry";
 import { handleClick, handleKeydown } from "./handlers";
 import { open } from "./open";
@@ -16,8 +16,8 @@ export class Modal extends Collection<ModalEntry> {
   trigger: HTMLElement | null;
   stack: StackArray;
 
-  constructor(options: Record<string, any>) {
-    super({ ...defaults, ...options });
+  constructor(options: ModalConfig) {
+    super({ ...config, ...options });
     this.module = "Modal";
     this.entryClass = ModalEntry as new (
       parent: Collection<ModalEntry>,

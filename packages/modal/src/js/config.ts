@@ -1,4 +1,26 @@
-export default {
+export interface ModalConfig {
+  dataOpen: string;
+  dataClose: string;
+  dataReplace: string;
+  selector: string;
+  selectorDialog: string;
+  selectorScreen: string;
+  selectorRequired: string;
+  selectorFocus: string;
+  selectorInert: string | null;
+  selectorOverflow: string;
+  stateOpened: string;
+  stateOpening: string;
+  stateClosing: string;
+  stateClosed: string;
+  customProps: string[];
+  customEventPrefix: string;
+  setTabindex: boolean;
+  transition: boolean;
+  transitionDuration: number;
+}
+
+export const config: ModalConfig = {
   // Data attributes
   dataOpen: "modal-open",
   dataClose: "modal-close",
