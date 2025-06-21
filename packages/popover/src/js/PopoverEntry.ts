@@ -1,19 +1,36 @@
 import { CollectionEntry } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
-
 import {
   handleClick,
   handleTooltipClick,
   handleMouseEnter,
   handleMouseLeave
 } from "./handlers";
+import type { Popover } from "./Popover";
 
-export class PopoverEntry extends CollectionEntry {
-  #eventListeners;
-  #isHovered;
+export class PopoverEntry extends CollectionEntry<Popover> {
+  #eventListeners:
+    | {
+        el: string[];
+        type: string[];
+        listener: (event: Event) => void;
+      }[]
+    | null;
+  #isHovered: {
+    el: boolean;
+    trigger: boolean;
+  };
+  state: string;
+  trigger: HTMLElement | null;
+  toggleDelayId: number | null;
+  floatingCleanup: () => void;
 
-  constructor(parent, query, options = {}) {
+  constructor(
+    parent: Popover,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     super(parent, query, options);
     this.state = "closed";
     this.toggleDelayId = null;
@@ -26,18 +43,18 @@ export class PopoverEntry extends CollectionEntry {
     this.floatingCleanup = () => {};
   }
 
-  get isTooltip() {
+  get isTooltip(): boolean {
     return (
       !!this.el.closest(this.getSetting("selectorTooltip")) ||
       this.el.getAttribute("role") == "tooltip"
     );
   }
 
-  get isHovered() {
+  get isHovered(): boolean {
     return this.#isHovered.el || this.#isHovered.trigger;
   }
 
-  set isHovered(event) {
+  set isHovered(event: MouseEvent | FocusEvent) {
     // The state can either be true, false or undefined based on event type
     const state =
       event.type == "mouseenter"
@@ -58,11 +75,11 @@ export class PopoverEntry extends CollectionEntry {
     }
   }
 
-  async open() {
+  async open(): Promise<PopoverEntry> {
     return open(this);
   }
 
-  async close() {
+  async close(): Promise<PopoverEntry> {
     return close(this);
   }
 
@@ -159,8 +176,11 @@ export class PopoverEntry extends CollectionEntry {
       this.settings.event = "hover";
       this.el.setAttribute("role", "tooltip");
     } else {
-      // Set aria-expanded to false if trigger has aria-controls attribute
-      this.trigger.setAttribute("aria-expanded", "false");
+      // Check that trigger isn't null and is an HTMLElement
+      if (this.trigger && this.trigger instanceof HTMLElement) {
+        // Set aria-expanded to false if trigger has aria-controls attribute
+        this.trigger.setAttribute("aria-expanded", "false");
+      }
     }
 
     // Setup event listeners

@@ -1,28 +1,33 @@
 import { Collection } from "@vrembem/core";
 
-import defaults from "./defaults";
+import { config, PopoverConfig } from "./config";
 import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
 import { getPopover } from "./helpers";
 
-export class Popover extends Collection {
-  #handleKeydown;
+export class Popover extends Collection<PopoverEntry> {
+  #handleKeydown: (event: KeyboardEvent) => void;
+  trigger: HTMLElement | null;
 
-  constructor(options = {}) {
-    super({ ...defaults, ...options });
+  constructor(options: PopoverConfig) {
+    super({ ...config, ...options });
     this.module = "Popover";
-    this.entryClass = PopoverEntry;
+    this.entryClass = PopoverEntry as new (
+      parent: Collection<PopoverEntry>,
+      query: string | HTMLElement,
+      options?: Record<string, any>
+    ) => PopoverEntry;
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
   }
 
-  get active() {
+  get active(): PopoverEntry | undefined {
     return this.get("opened", "state");
   }
 
-  get activeHover() {
+  get activeHover(): PopoverEntry | undefined {
     return this.collection.find((popover) => {
       return (
         popover.state == "opened" && popover.getSetting("event") == "hover"
@@ -30,12 +35,12 @@ export class Popover extends Collection {
     });
   }
 
-  async open(id) {
+  async open(id: string): Promise<PopoverEntry> {
     const entry = getPopover.call(this, id);
     return open(entry);
   }
 
-  async close(id) {
+  async close(id: string): Promise<PopoverEntry | PopoverEntry[]> {
     const entry = id ? getPopover.call(this, id) : undefined;
     if (entry) {
       return close(entry);
