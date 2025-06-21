@@ -1,4 +1,7 @@
-export async function close(entry) {
+import type { Popover } from "./Popover";
+import type { PopoverEntry } from "./PopoverEntry";
+
+export async function close(entry: PopoverEntry) {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update inert state and state class
@@ -7,7 +10,7 @@ export async function close(entry) {
 
     // Update accessibility attribute(s)
     if (!entry.isTooltip) {
-      entry.trigger.setAttribute("aria-expanded", "false");
+      entry.trigger?.setAttribute("aria-expanded", "false");
     }
 
     // Clean up the floating UI instance
@@ -37,10 +40,10 @@ export async function close(entry) {
   return entry;
 }
 
-export async function closeAll(parent) {
-  const result = [];
+export async function closeAll(parent: Popover) {
+  const result: PopoverEntry[] = [];
   await Promise.all(
-    parent.collection.map(async (entry) => {
+    parent.collection.map(async (entry: PopoverEntry) => {
       if (entry.state === "opened") {
         result.push(await entry.close());
       }
@@ -61,7 +64,7 @@ export function closeCheck(entry) {
       entry.trigger.matches(":hover") === entry.trigger;
 
     // Check if trigger or element are being focused
-    let isFocused = document.activeElement.closest(
+    let isFocused = document.activeElement?.closest(
       `#${entry.id}, [aria-controls="${entry.id}"], [aria-describedby="${entry.id}"]`
     );
 

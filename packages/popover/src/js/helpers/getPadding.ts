@@ -7,9 +7,9 @@ export type PaddingObject = {
 
 export function getPadding(
   value: string | number
-): PaddingObject | number | false {
+): PaddingObject | number | undefined {
   // Initialize the padding var
-  let padding: PaddingObject | number | false;
+  let padding: PaddingObject | number | undefined;
 
   // Split the value by spaces if it's a string
   const array = (
@@ -51,7 +51,7 @@ export function getPadding(
       };
       break;
     default:
-      padding = false;
+      padding = undefined;
       break;
   }
 

@@ -23,7 +23,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
   };
   state: string;
   trigger: HTMLElement | null;
-  toggleDelayId: number | null;
+  toggleDelayId: NodeJS.Timeout | null;
   floatingCleanup: () => void;
 
   constructor(

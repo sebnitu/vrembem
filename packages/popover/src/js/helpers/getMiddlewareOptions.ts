@@ -4,14 +4,15 @@ import type { PopoverEntry } from "../PopoverEntry";
 type getMiddlewareOptions = {
   offset: number;
   flip: {
-    padding: PaddingObject | number | false;
+    padding: PaddingObject | number | undefined;
   };
   shift: {
-    padding: PaddingObject | number | false;
+    padding: PaddingObject | number | undefined;
   };
   arrow: {
+    selector: string;
     element: HTMLElement | null;
-    padding: PaddingObject | number | false;
+    padding: PaddingObject | number | undefined;
   };
 };
 
@@ -27,7 +28,8 @@ export function getMiddlewareOptions(
       padding: getPadding(popover.getSetting("shift-padding"))
     },
     arrow: {
-      element: popover.getSetting("selectorArrow"),
+      selector: popover.getSetting("selectorArrow"),
+      element: null,
       padding: getPadding(popover.getSetting("arrow-padding"))
     }
   };
