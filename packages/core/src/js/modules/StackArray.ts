@@ -17,11 +17,11 @@ export class StackArray extends Array<StackArrayEntry> {
     this.settings = settings;
   }
 
-  get copy() {
+  get copy(): StackArrayEntry[] {
     return [...this];
   }
 
-  get top() {
+  get top(): StackArrayEntry | null {
     const result = this[this.length - 1];
     return result ? result : null;
   }

@@ -2,27 +2,41 @@ import { CollectionEntry } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
 import { replace } from "./replace";
+import type { Modal } from "./Modal";
 
-export class ModalEntry extends CollectionEntry {
-  constructor(parent, query, options = {}) {
+export class ModalEntry extends CollectionEntry<Modal> {
+  state: string;
+  dialog: HTMLElement;
+
+  constructor(
+    parent: Modal,
+    query: string | HTMLElement,
+    options: Record<string, any> = {}
+  ) {
     super(parent, query, options);
     this.state = "closed";
-    this.dialog = null;
+
+    // Set the dialog element. If none is found, use the root element
+    this.dialog =
+      this.el.querySelector(this.getSetting("selectorDialog")) || this.el;
   }
 
   get isRequired() {
     return this.dialog.matches(this.getSetting("selectorRequired"));
   }
 
-  async open(transition, focus) {
+  async open(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
     return open(this, transition, focus);
   }
 
-  async close(transition, focus) {
+  async close(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
     return close(this, transition, focus);
   }
 
-  async replace(transition, focus) {
+  async replace(
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
     return replace(this, transition, focus);
   }
 
@@ -32,8 +46,8 @@ export class ModalEntry extends CollectionEntry {
 
   async onCreateEntry() {
     // Set the dialog element. If none is found, use the root element
-    const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
-    this.dialog = dialog ? dialog : this.el;
+    // const dialog = this.el.querySelector(this.getSetting("selectorDialog"));
+    // this.dialog = dialog ? dialog : this.el;
 
     // Set aria-modal attribute to true
     this.dialog.setAttribute("aria-modal", "true");
