@@ -14,7 +14,8 @@
     ".": {
       "sass": "./index.scss",
       "style": "./dist/index.css",
-      "import": "./index.js",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
       "require": "./dist/index.umd.cjs"
     },
     "./dev/*": "./dev/*",
@@ -26,7 +27,7 @@
     "dev",
     "dist",
     "src",
-    "index.js",
+    "index.ts",
     "index.scss",
     "root.scss"
   ],
@@ -34,9 +35,10 @@
     "serve": "vite",
     "build": "npm-run-all clean styles scripts",
     "clean": "del dev && del dist",
-    "scripts": "npm-run-all scripts:dev scripts:dist",
+    "scripts": "npm-run-all scripts:dev scripts:dist scripts:types",
     "scripts:dev": "vite build --outDir dev --minify false",
     "scripts:dist": "vite build --outDir dist",
+    "scripts:types": "tsc --project tsconfig.build.json",
     "styles": "npm-run-all styles:dev styles:dist",
     "styles:dev": "sass build:dev --load-path=../../node_modules",
     "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
