@@ -1,6 +1,6 @@
 import { Collection, StackArray, setGlobalState } from "@vrembem/core";
 
-import defaults from "./defaults";
+import { config, ModalConfig } from "./config";
 import { ModalEntry } from "./ModalEntry";
 import { handleClick, handleKeydown } from "./handlers";
 import { open } from "./open";
@@ -10,14 +10,20 @@ import { replace } from "./replace";
 import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export class Modal extends Collection {
-  #handleClick;
-  #handleKeydown;
+export class Modal extends Collection<ModalEntry> {
+  #handleClick: (event: Event) => void;
+  #handleKeydown: (event: KeyboardEvent) => void;
+  trigger: HTMLElement | null;
+  stack: StackArray<ModalEntry>;
 
-  constructor(options) {
-    super({ ...defaults, ...options });
+  constructor(options: ModalConfig) {
+    super({ ...config, ...options });
     this.module = "Modal";
-    this.entryClass = ModalEntry;
+    this.entryClass = ModalEntry as new (
+      parent: Collection<ModalEntry>,
+      query: string | HTMLElement,
+      options?: Record<string, any>
+    ) => ModalEntry;
     this.trigger = null;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
@@ -26,7 +32,7 @@ export class Modal extends Collection {
     this.stack = new StackArray({
       onChange: () => {
         setGlobalState(
-          this.stack.top,
+          !!this.stack.top,
           this.settings.selectorInert,
           this.settings.selectorOverflow
         );
@@ -38,22 +44,38 @@ export class Modal extends Collection {
     return this.stack.top;
   }
 
-  async open(id, transition, focus) {
+  async open(
+    id: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<ModalEntry> {
     const entry = getModal.call(this, id);
     return open(entry, transition, focus);
   }
 
-  async close(id, transition, focus) {
+  async close(
+    id?: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<ModalEntry> {
     const entry = id ? getModal.call(this, id) : this.active;
     return close(entry, transition, focus);
   }
 
-  async replace(id, transition, focus) {
+  async replace(
+    id: string,
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
     const entry = getModal.call(this, id);
     return replace(entry, transition, focus);
   }
 
-  async closeAll(exclude = false, transition, focus = true) {
+  async closeAll(
+    exclude?: string,
+    transition?: boolean,
+    focus: boolean = true
+  ): Promise<ModalEntry[]> {
     const result = await closeAll.call(this, exclude, transition);
     // Update focus if the focus param is true
     if (focus) {

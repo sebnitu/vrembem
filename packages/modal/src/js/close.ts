@@ -1,14 +1,24 @@
 import { transition } from "@vrembem/core";
 import { updateFocusState } from "./helpers/updateFocusState";
+import type { ModalEntry } from "./ModalEntry";
 
-export async function close(entry, transitionOverride, focus = true) {
+export async function close(
+  entry: ModalEntry,
+  transitionOverride?: boolean,
+  focus: boolean = true
+): Promise<ModalEntry> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update modal state
     entry.state = "closing";
 
     // Remove focus from active element
-    document.activeElement.blur();
+    if (
+      document.activeElement &&
+      document.activeElement instanceof HTMLElement
+    ) {
+      document.activeElement.blur();
+    }
 
     // Run the close transition
     if (

@@ -78,7 +78,7 @@ test("should remember initial trigger when opening modal through another modal",
   expect(elOne).toHaveClass("is-opened");
   expect(elTwo).toHaveClass("is-opened");
 
-  await modal.closeAll(false, false);
+  await modal.closeAll("", false);
 
   expect(btnOpen).toHaveFocus();
 });
