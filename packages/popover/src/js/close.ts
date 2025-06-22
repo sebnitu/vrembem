@@ -56,18 +56,13 @@ export function closeCheck(entry: PopoverEntry): void {
 
   // Needed to correctly check which element is currently being focused
   setTimeout(() => {
-    // Check if trigger or element are being hovered
-    const isHovered =
-      entry.el.matches(":hover") === entry.el ||
-      entry.trigger.matches(":hover") === entry.trigger;
-
     // Check if trigger or element are being focused
     let isFocused = document.activeElement?.closest(
       `#${entry.id}, [aria-controls="${entry.id}"], [aria-describedby="${entry.id}"]`
     );
 
     // Close if the trigger and element are not currently hovered or focused
-    if (!isHovered && !isFocused) {
+    if (!isFocused) {
       entry.close();
     }
 
