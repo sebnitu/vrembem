@@ -9,14 +9,14 @@ import {
 } from "./handlers";
 import type { Popover } from "./Popover";
 
+type EventObject = {
+  el: string[];
+  type: string[];
+  listener: (event: Event) => void;
+};
+
 export class PopoverEntry extends CollectionEntry<Popover> {
-  #eventListeners:
-    | {
-        el: string[];
-        type: string[];
-        listener: (event: Event) => void;
-      }[]
-    | null;
+  #eventListeners: EventObject[] | null;
   #isHovered: {
     el: boolean;
     trigger: boolean;
