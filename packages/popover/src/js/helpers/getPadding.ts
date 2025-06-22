@@ -11,9 +11,15 @@ export function getPadding(
   // Initialize the padding var
   let padding: PaddingObject | number | undefined;
 
-  // Split the value by spaces if it's a string
+  // Split the value by spaces if it's a string and convert it into an array of numbers
   const array = (
-    typeof value === "string" ? value.trim().split(" ") : [value]
+    typeof value === "string"
+      ? value
+          .trim()
+          .split(" ")
+          .map((str) => parseFloat(str))
+          .filter((num) => !isNaN(num))
+      : [value]
   ) as number[];
 
   // Convert individual values to integers
