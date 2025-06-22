@@ -67,10 +67,8 @@ export async function open(entry: PopoverEntry) {
 
         // Maybe apply arrow left or top position
         if (middlewareOptions.arrow.element && middlewareData.arrow) {
-          const { x, y } = middlewareData.arrow;
-          if (typeof x === "number" && typeof y === "number") {
-            applyPositionStyle(middlewareOptions.arrow.element, x, y);
-          }
+          const { x, y }: Record<string, number> = middlewareData.arrow;
+          applyPositionStyle(middlewareOptions.arrow.element, x, y);
         }
 
         // Apply the current placement as a data attribute. This is used in our
