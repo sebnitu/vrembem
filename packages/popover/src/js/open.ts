@@ -11,7 +11,7 @@ import { applyPositionStyle, getMiddlewareOptions } from "./helpers";
 import { handleDocumentClick } from "./handlers";
 import type { PopoverEntry } from "./PopoverEntry";
 
-export async function open(entry: PopoverEntry) {
+export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
   // Update inert state and state class
   entry.el.inert = false;
   entry.el.classList.add(entry.parent.settings.stateActive);

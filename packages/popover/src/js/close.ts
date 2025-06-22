@@ -1,7 +1,7 @@
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
-export async function close(entry: PopoverEntry) {
+export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update inert state and state class
@@ -40,7 +40,7 @@ export async function close(entry: PopoverEntry) {
   return entry;
 }
 
-export async function closeAll(parent: Popover) {
+export async function closeAll(parent: Popover): Promise<PopoverEntry[]> {
   const result: PopoverEntry[] = [];
   for (const entry of parent.collection) {
     if (entry.state === "opened") {
@@ -50,7 +50,7 @@ export async function closeAll(parent: Popover) {
   return result;
 }
 
-export function closeCheck(entry) {
+export function closeCheck(entry: PopoverEntry): void {
   // Only run closeCheck if provided popover is currently open
   if (entry.state != "opened") return;
 
