@@ -71,9 +71,7 @@ export function handleMouseLeave(popover: PopoverEntry, event: MouseEvent) {
 
     // Set the toggle delay before closing the popover
     popover.toggleDelayId = setTimeout(
-      () => {
-        closeCheck.call(this, popover);
-      },
+      () => closeCheck(popover),
       getDelay(popover, 1)
     );
   }, 1);
@@ -90,7 +88,7 @@ export function handleKeydown(event: KeyboardEvent) {
 
     case "Tab":
       this.collection.forEach((popover: PopoverEntry) => {
-        closeCheck.call(this, popover);
+        closeCheck(popover);
       });
       return;
 

@@ -63,7 +63,7 @@ describe("closeCheck()", () => {
     const popover = new Popover();
     await popover.mount();
     expect(popover.collection.length).toBe(3);
-    closeCheck.call(popover, popover.collection[0]);
+    closeCheck(popover.collection[0]);
     vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).not.toHaveClass("is-active");
   });
@@ -73,7 +73,7 @@ describe("closeCheck()", () => {
     const popover = new Popover();
     await popover.mount();
     popover.collection[0].trigger.focus();
-    closeCheck.call(popover, popover.collection[0]);
+    closeCheck(popover.collection[0]);
     vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).toHaveClass("is-active");
   });
@@ -83,7 +83,7 @@ describe("closeCheck()", () => {
     const popover = new Popover();
     await popover.mount();
     popover.collection[0].el.focus();
-    closeCheck.call(popover, popover.collection[0]);
+    closeCheck(popover.collection[0]);
     vi.advanceTimersByTime(100);
     expect(popover.collection[0].el).toHaveClass("is-active");
   });

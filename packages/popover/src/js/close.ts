@@ -61,7 +61,7 @@ export function closeCheck(entry: PopoverEntry): void {
       `#${entry.id}, [aria-controls="${entry.id}"], [aria-describedby="${entry.id}"]`
     );
 
-    // Close if the trigger and element are not currently hovered or focused
+    // Close if the trigger and element are not currently focused
     if (!isFocused) {
       entry.close();
     }
