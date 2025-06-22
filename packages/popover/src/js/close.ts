@@ -42,13 +42,11 @@ export async function close(entry: PopoverEntry) {
 
 export async function closeAll(parent: Popover) {
   const result: PopoverEntry[] = [];
-  await Promise.all(
-    parent.collection.map(async (entry: PopoverEntry) => {
-      if (entry.state === "opened") {
-        result.push(await entry.close());
-      }
-    })
-  );
+  for (const entry of parent.collection) {
+    if (entry.state === "opened") {
+      result.push(await entry.close());
+    }
+  }
   return result;
 }
 
