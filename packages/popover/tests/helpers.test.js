@@ -7,6 +7,7 @@ import {
   getPopoverID,
   getPopoverElements
 } from "../src/js/helpers";
+import { expect } from "vitest";
 
 let popover;
 
@@ -115,9 +116,9 @@ describe("getPadding()", () => {
     });
   });
 
-  it("should return false if more than four numbers exist in the string", () => {
+  it("should return undefined if more than four numbers exist in the string", () => {
     const value = "64 32 16 8 4";
-    expect(getPadding(value)).toEqual(false);
+    expect(getPadding(value)).toEqual(undefined);
   });
 });
 
@@ -146,19 +147,19 @@ describe("getPopoverID()", () => {
     expect(result).toBe("pop-3");
   });
 
-  it("should return false if html element does not have the correct attributes", () => {
+  it("should return null if html element does not have the correct attributes", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const trigger = document.querySelector("#missing-attribute");
     const result = getPopoverID.call(popover, trigger);
-    expect(result).toBe(false);
+    expect(result).toBe(null);
   });
 
-  it("should return false if passed object does not resolve an ID", () => {
+  it("should return null if passed object does not resolve an ID", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
     const result = getPopoverID.call(popover, true);
-    expect(result).toBe(false);
+    expect(result).toBe(null);
   });
 });
 
@@ -176,8 +177,7 @@ describe("getPopoverElements()", () => {
   it("should throw error if no popover elements are found using an ID", () => {
     document.body.innerHTML = markup;
     popover = new Popover();
-    const func = getPopoverElements.call(popover, "pop-4");
-    expect(func.error.message).toBe(
+    expect(() => getPopoverElements.call(popover, "pop-4")).toThrow(
       'No popover elements found using the ID: "pop-4".'
     );
   });
@@ -186,8 +186,7 @@ describe("getPopoverElements()", () => {
     document.body.innerHTML = markup;
     const trigger = document.querySelector('[aria-controls="asdf"]');
     popover = new Popover();
-    const func = getPopoverElements.call(popover, trigger);
-    expect(func.error.message).toBe(
+    expect(() => getPopoverElements.call(popover, trigger)).toThrow(
       'No popover associated with the provided popover trigger: "asdf".'
     );
   });
@@ -196,8 +195,7 @@ describe("getPopoverElements()", () => {
     document.body.innerHTML = markup;
     const target = document.querySelector("#fdsa");
     popover = new Popover();
-    const func = getPopoverElements.call(popover, target);
-    expect(func.error.message).toBe(
+    expect(() => getPopoverElements.call(popover, target)).toThrow(
       'No popover trigger associated with the provided popover: "fdsa".'
     );
   });
@@ -206,8 +204,9 @@ describe("getPopoverElements()", () => {
     document.body.innerHTML = markup;
     const trigger = document.querySelector("#missing-attribute");
     popover = new Popover();
-    const func = getPopoverElements.call(popover, trigger);
-    expect(func.error.message).toBe("Could not resolve the popover ID.");
+    expect(() => getPopoverElements.call(popover, trigger)).toThrow(
+      "Could not resolve the popover ID."
+    );
   });
 });
 

@@ -1,4 +1,7 @@
-export async function close(entry) {
+import type { Popover } from "./Popover";
+import type { PopoverEntry } from "./PopoverEntry";
+
+export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update inert state and state class
@@ -7,7 +10,7 @@ export async function close(entry) {
 
     // Update accessibility attribute(s)
     if (!entry.isTooltip) {
-      entry.trigger.setAttribute("aria-expanded", "false");
+      entry.trigger?.setAttribute("aria-expanded", "false");
     }
 
     // Clean up the floating UI instance
@@ -37,36 +40,29 @@ export async function close(entry) {
   return entry;
 }
 
-export async function closeAll(parent) {
-  const result = [];
-  await Promise.all(
-    parent.collection.map(async (entry) => {
-      if (entry.state === "opened") {
-        result.push(await entry.close());
-      }
-    })
-  );
+export async function closeAll(parent: Popover): Promise<PopoverEntry[]> {
+  const result: PopoverEntry[] = [];
+  for (const entry of parent.collection) {
+    if (entry.state === "opened") {
+      result.push(await entry.close());
+    }
+  }
   return result;
 }
 
-export function closeCheck(entry) {
+export function closeCheck(entry: PopoverEntry): void {
   // Only run closeCheck if provided popover is currently open
   if (entry.state != "opened") return;
 
   // Needed to correctly check which element is currently being focused
   setTimeout(() => {
-    // Check if trigger or element are being hovered
-    const isHovered =
-      entry.el.matches(":hover") === entry.el ||
-      entry.trigger.matches(":hover") === entry.trigger;
-
     // Check if trigger or element are being focused
-    let isFocused = document.activeElement.closest(
+    let isFocused = document.activeElement?.closest(
       `#${entry.id}, [aria-controls="${entry.id}"], [aria-describedby="${entry.id}"]`
     );
 
-    // Close if the trigger and element are not currently hovered or focused
-    if (!isHovered && !isFocused) {
+    // Close if the trigger and element are not currently focused
+    if (!isFocused) {
       entry.close();
     }
 

@@ -1,4 +1,4 @@
-export function getPopoverID(obj) {
+export function getPopoverID(obj: string | HTMLElement): string | null {
   // If it's a string, return the string
   if (typeof obj === "string") {
     return obj;
@@ -7,9 +7,9 @@ export function getPopoverID(obj) {
   // If it's an HTML element
   else if (typeof obj.hasAttribute === "function") {
     // If it's a popover element, return the id
-    if (obj.closest(this.settings.selector)) {
-      obj = obj.closest(this.settings.selector);
-      return obj.id;
+    const el = obj.closest(this.settings.selector);
+    if (el && el.id) {
+      return el.id;
     }
 
     // If it's a popover trigger, return value of aria-controls
@@ -23,9 +23,9 @@ export function getPopoverID(obj) {
     }
 
     // Return false if no id was found
-    else return false;
+    else return null;
   }
 
   // Return false if no id was found
-  else return false;
+  else return null;
 }

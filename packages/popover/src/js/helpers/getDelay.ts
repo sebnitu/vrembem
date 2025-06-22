@@ -1,4 +1,6 @@
-export function getDelay(popover, index) {
+import type { PopoverEntry } from "../PopoverEntry";
+
+export function getDelay(popover: PopoverEntry, index: number): number {
   // Get the initial toggle delay value from settings
   let value = popover.getSetting("toggle-delay");
 

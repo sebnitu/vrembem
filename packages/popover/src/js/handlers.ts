@@ -1,7 +1,8 @@
 import { getDelay } from "./helpers";
 import { closeAll, closeCheck } from "./close";
+import type { PopoverEntry } from "./PopoverEntry";
 
-export function handleClick(popover) {
+export function handleClick(popover: PopoverEntry) {
   if (popover.state === "opened") {
     popover.close();
   } else {
@@ -10,7 +11,7 @@ export function handleClick(popover) {
   }
 }
 
-export function handleTooltipClick(popover) {
+export function handleTooltipClick(popover: PopoverEntry) {
   if (popover.isTooltip) {
     if (popover.toggleDelayId) {
       clearTimeout(popover.toggleDelayId);
@@ -19,12 +20,16 @@ export function handleTooltipClick(popover) {
   }
 }
 
-export function handleMouseEnter(popover, event) {
+export function handleMouseEnter(popover: PopoverEntry, event: MouseEvent) {
   // Store our hover state
   popover.isHovered = event;
 
   // Guard to ensure only focus-visible triggers the tooltip on focus events
-  if (event.type == "focus" && !popover.trigger.matches(":focus-visible")) {
+  if (
+    event.type == "focus" &&
+    popover.trigger &&
+    !popover.trigger.matches(":focus-visible")
+  ) {
     return;
   }
 
@@ -34,7 +39,7 @@ export function handleMouseEnter(popover, event) {
   }
 
   // Guard to ensure a popover is not already open for this trigger
-  const isExpanded = popover.trigger.getAttribute("aria-expanded");
+  const isExpanded = popover.trigger?.getAttribute("aria-expanded");
   if (isExpanded && isExpanded == "true") return;
 
   // Remove the open delay if a hover popover is already active
@@ -50,7 +55,7 @@ export function handleMouseEnter(popover, event) {
   }, delay);
 }
 
-export function handleMouseLeave(popover, event) {
+export function handleMouseLeave(popover: PopoverEntry, event: MouseEvent) {
   // Add a tiny delay to ensure hover isn't being moved to the popover element
   setTimeout(() => {
     // Update our hover state
@@ -66,15 +71,13 @@ export function handleMouseLeave(popover, event) {
 
     // Set the toggle delay before closing the popover
     popover.toggleDelayId = setTimeout(
-      () => {
-        closeCheck.call(this, popover);
-      },
+      () => closeCheck(popover),
       getDelay(popover, 1)
     );
   }, 1);
 }
 
-export function handleKeydown(event) {
+export function handleKeydown(event: KeyboardEvent) {
   switch (event.key) {
     case "Escape":
       if (this.trigger) {
@@ -84,8 +87,8 @@ export function handleKeydown(event) {
       return;
 
     case "Tab":
-      this.collection.forEach((popover) => {
-        closeCheck.call(this, popover);
+      this.collection.forEach((popover: PopoverEntry) => {
+        closeCheck(popover);
       });
       return;
 
@@ -94,32 +97,36 @@ export function handleKeydown(event) {
   }
 }
 
-export function handleDocumentClick(popover) {
+export function handleDocumentClick(popover: PopoverEntry) {
   const root = this;
   document.addEventListener("click", function _f(event) {
-    // Check if a popover or its trigger was clicked
-    const wasClicked = event.target.closest(
-      `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
-    );
+    // Guard if event target property is null
+    const target = event.target as HTMLElement | null;
+    if (target) {
+      // Check if a popover or its trigger was clicked
+      const wasClicked = target.closest(
+        `#${popover.id}, [aria-controls="${popover.id}"], [aria-describedby="${popover.id}"]`
+      );
 
-    // If popover or popover trigger was clicked...
-    if (wasClicked) {
-      // If popover element exists and is not active...
-      if (
-        popover.el &&
-        !popover.el.classList.contains(root.settings.stateActive)
-      ) {
+      // If popover or popover trigger was clicked...
+      if (wasClicked) {
+        // If popover element exists and is not active...
+        if (
+          popover.el &&
+          !popover.el.classList.contains(root.settings.stateActive)
+        ) {
+          this.removeEventListener("click", _f);
+        }
+      } else {
+        // If popover element exists and is active...
+        if (
+          popover.el &&
+          popover.el.classList.contains(root.settings.stateActive)
+        ) {
+          popover.close();
+        }
         this.removeEventListener("click", _f);
       }
-    } else {
-      // If popover element exists and is active...
-      if (
-        popover.el &&
-        popover.el.classList.contains(root.settings.stateActive)
-      ) {
-        popover.close();
-      }
-      this.removeEventListener("click", _f);
     }
   });
 }
