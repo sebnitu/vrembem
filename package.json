@@ -37,7 +37,7 @@
     "del-cli": "^6.0.0",
     "eslint": "^9.30.0",
     "eslint-plugin-jest": "^29.0.1",
-    "globals": "^16.2.0",
+    "globals": "^16.3.0",
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.2",
     "lerna": "^8.2.3",
