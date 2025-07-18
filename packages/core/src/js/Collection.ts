@@ -44,6 +44,17 @@ export class Collection<TEntry extends CollectionEntry<any>>
     return this.collection.find((entry) => entry[key] === value);
   }
 
+  getOrThrow(value: any, key: string = "id") {
+    const entry = this.get(value, key);
+    if (entry) {
+      return entry;
+    } else {
+      throw new Error(
+        `Entry not found in ${this.module} collection with ${key} of "${value}"`
+      );
+    }
+  }
+
   applySettings(options: Record<string, any>) {
     return Object.assign(this.settings, options);
   }
