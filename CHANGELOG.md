@@ -32,12 +32,27 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.31 to CHANGELOG.md
+chore(release): add v4.0.0-next.32 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.32 (2025-07-17)
+
+### :tada: New Feature
+* `core`, `drawer`, `modal`, `popover`
+  * [#2377](https://github.com/sebnitu/vrembem/pull/2377) Convert the popover package to typescript
+  * [#2374](https://github.com/sebnitu/vrembem/pull/2374) Convert the drawer package to TypeScript
+* `core`, `drawer`, `modal`
+  * [#2375](https://github.com/sebnitu/vrembem/pull/2375) Convert the modal package to TypeScript
+* `core`
+  * [#2365](https://github.com/sebnitu/vrembem/pull/2365) Fully convert the core package to TypeScript
+
+### :hammer: Chore
+* [#2376](https://github.com/sebnitu/vrembem/pull/2376) Remove learna-changelog as a package dependency
 
 
 ## v4.0.0-next.31 (2025-05-14)
