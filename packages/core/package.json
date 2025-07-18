@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/core",
   "description": "Shared variables, functions and mixins for Vrembem components.",
-  "version": "4.0.0-next.31",
+  "version": "4.0.0-next.32",
   "license": "MIT",
   "type": "module",
   "types": "./dist/index.d.ts",
