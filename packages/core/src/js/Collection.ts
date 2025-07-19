@@ -50,7 +50,7 @@ export class Collection<TEntry extends CollectionEntry<any>>
       return entry;
     } else {
       throw new Error(
-        `Entry not found in ${this.module} collection with ${key} of "${value}"`
+        `${this.module} entry not found in collection with ${key} of "${value}"`
       );
     }
   }
