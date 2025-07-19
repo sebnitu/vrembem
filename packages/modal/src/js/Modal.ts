@@ -7,7 +7,6 @@ import { open } from "./open";
 import { close } from "./close";
 import { closeAll } from "./closeAll";
 import { replace } from "./replace";
-import { getModal } from "./helpers/getModal";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection<ModalEntry> {
@@ -49,7 +48,7 @@ export class Modal extends Collection<ModalEntry> {
     transition?: boolean,
     focus?: boolean
   ): Promise<ModalEntry> {
-    const entry = getModal.call(this, id);
+    const entry = this.getOrThrow(id);
     return open(entry, transition, focus);
   }
 
@@ -57,8 +56,8 @@ export class Modal extends Collection<ModalEntry> {
     id?: string,
     transition?: boolean,
     focus?: boolean
-  ): Promise<ModalEntry> {
-    const entry = id ? getModal.call(this, id) : this.active;
+  ): Promise<ModalEntry | null> {
+    const entry = id ? this.getOrThrow(id) : this.active;
     return close(entry, transition, focus);
   }
 
@@ -67,7 +66,7 @@ export class Modal extends Collection<ModalEntry> {
     transition?: boolean,
     focus?: boolean
   ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
-    const entry = getModal.call(this, id);
+    const entry = this.getOrThrow(id);
     return replace(entry, transition, focus);
   }
 

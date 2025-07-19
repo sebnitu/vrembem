@@ -215,7 +215,9 @@ describe("open() & close()", () => {
     await modal.open("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe('Modal not found in collection with id of "asdf".');
+    expect(result).toBe(
+      'Modal entry not found in collection with id of "asdf"'
+    );
   });
 
   it("should reject promise with error if close is called on non-existent modal", async () => {
@@ -223,7 +225,9 @@ describe("open() & close()", () => {
     await modal.close("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe('Modal not found in collection with id of "asdf".');
+    expect(result).toBe(
+      'Modal entry not found in collection with id of "asdf"'
+    );
   });
 });
 
@@ -312,7 +316,9 @@ describe("replace()", () => {
     await modal.replace("asdf").catch((error) => {
       result = error.message;
     });
-    expect(result).toBe('Modal not found in collection with id of "asdf".');
+    expect(result).toBe(
+      'Modal entry not found in collection with id of "asdf"'
+    );
   });
 });
 
