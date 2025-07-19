@@ -5,7 +5,6 @@ import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
-import { getPopover } from "./helpers";
 
 export class Popover extends Collection<PopoverEntry> {
   #handleKeydown: (event: KeyboardEvent) => void;
@@ -36,12 +35,12 @@ export class Popover extends Collection<PopoverEntry> {
   }
 
   async open(id: string): Promise<PopoverEntry> {
-    const entry = getPopover.call(this, id);
+    const entry = this.getOrThrow(id);
     return open(entry);
   }
 
   async close(id: string): Promise<PopoverEntry | PopoverEntry[]> {
-    const entry = id ? getPopover.call(this, id) : undefined;
+    const entry = id ? this.getOrThrow(id) : undefined;
     if (entry) {
       return close(entry);
     } else {

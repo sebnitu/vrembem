@@ -146,7 +146,7 @@ describe("open() & close()", () => {
     let catchError = false;
     await popover.open("missing").catch((error) => {
       expect(error.message).toBe(
-        'Popover not found in collection with id of "missing".'
+        'Popover entry not found in collection with id of "missing"'
       );
       catchError = true;
     });
@@ -161,7 +161,7 @@ describe("open() & close()", () => {
     let catchError = false;
     await popover.close("missing").catch((error) => {
       expect(error.message).toBe(
-        'Popover not found in collection with id of "missing".'
+        'Popover entry not found in collection with id of "missing"'
       );
       catchError = true;
     });
