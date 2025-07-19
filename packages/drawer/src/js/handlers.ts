@@ -1,4 +1,3 @@
-import { getDrawer } from "./helpers/getDrawer";
 import type { Drawer } from "./Drawer";
 import type { DrawerEntry } from "./DrawerEntry";
 
@@ -14,7 +13,7 @@ export async function handleClick(
       [data-${this.settings.dataOpen}],
       [data-${this.settings.dataToggle}],
       [data-${this.settings.dataClose}]
-    `);
+    `) as HTMLElement | null;
 
     if (trigger) {
       // Prevent the default behavior of the trigger
@@ -28,7 +27,7 @@ export async function handleClick(
           .split(" ");
         selectors?.forEach((selector: string) => {
           // Get the entry from collection using the attribute value
-          const entry = getDrawer.call(this, selector);
+          const entry = this.getOrThrow(selector);
           // Store the trigger on the entry
           entry.trigger = trigger;
           // Toggle the drawer
@@ -44,7 +43,7 @@ export async function handleClick(
           .split(" ");
         selectors?.forEach((selector: string) => {
           // Get the entry from collection using the attribute value
-          const entry = getDrawer.call(this, selector);
+          const entry = this.getOrThrow(selector);
           // Store the trigger on the entry
           entry.trigger = trigger;
           // Open the drawer
@@ -61,7 +60,7 @@ export async function handleClick(
         selectors?.forEach((selector: string) => {
           if (selector) {
             // Get the entry from collection using the attribute value
-            const entry = getDrawer.call(this, selector);
+            const entry = this.getOrThrow(selector);
             // Store the trigger on the entry
             entry.trigger = trigger;
             // Close the drawer

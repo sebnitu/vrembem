@@ -3,7 +3,6 @@ import { Collection } from "@vrembem/core";
 import { config, DrawerConfig } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";
-import { getDrawer } from "./helpers/getDrawer";
 import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
@@ -35,7 +34,7 @@ export class Drawer extends Collection<DrawerEntry> {
     transition?: boolean,
     focus?: boolean
   ): Promise<DrawerEntry> {
-    const entry = getDrawer.call(this, id);
+    const entry = this.getOrThrow(id);
     return open(entry, transition, focus);
   }
 
@@ -44,7 +43,7 @@ export class Drawer extends Collection<DrawerEntry> {
     transition?: boolean,
     focus?: boolean
   ): Promise<DrawerEntry> {
-    const entry = getDrawer.call(this, id);
+    const entry = this.getOrThrow(id);
     return close(entry, transition, focus);
   }
 
@@ -53,7 +52,7 @@ export class Drawer extends Collection<DrawerEntry> {
     transition?: boolean,
     focus?: boolean
   ): Promise<DrawerEntry> {
-    const entry = getDrawer.call(this, id);
+    const entry = this.getOrThrow(id);
     return toggle(entry, transition, focus);
   }
 
