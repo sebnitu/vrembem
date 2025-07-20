@@ -3,10 +3,10 @@ import { updateFocusState } from "./helpers/updateFocusState";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function close(
-  entry: ModalEntry,
+  entry: ModalEntry | null,
   transitionOverride?: boolean,
   focus: boolean = true
-): Promise<ModalEntry> {
+): Promise<ModalEntry | null> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update modal state

@@ -1,11 +1,16 @@
-import { getModal } from "./helpers/getModal";
 import type { Modal } from "./Modal";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function handleClick(
   this: Modal,
   event: MouseEvent
-): Promise<ModalEntry | ModalEntry[] | void> {
+): Promise<
+  | ModalEntry
+  | ModalEntry[]
+  | { opened: ModalEntry; closed: ModalEntry[] }
+  | null
+  | void
+> {
   // Guard if event target property is null
   const target = event.target as HTMLElement | null;
   if (target) {
@@ -26,7 +31,7 @@ export async function handleClick(
           .getAttribute(`data-${this.settings.dataOpen}`)
           ?.trim();
         // Get the entry from collection using the attribute value
-        const entry = getModal.call(this, selector);
+        const entry = this.getOrThrow(selector);
         // Store the trigger on the entry if it's not from inside a modal
         const fromModal = target.closest(this.settings.selector);
         if (!fromModal) this.trigger = trigger;
@@ -40,7 +45,7 @@ export async function handleClick(
           .getAttribute(`data-${this.settings.dataReplace}`)
           ?.trim();
         // Get the entry from collection using the attribute value
-        const entry = getModal.call(this, selector);
+        const entry = this.getOrThrow(selector);
         // Store the trigger on the entry if it's not from inside a modal
         const fromModal = target.closest(this.settings.selector);
         if (!fromModal) this.trigger = trigger;
@@ -71,7 +76,7 @@ export async function handleClick(
 export function handleKeydown(
   this: Modal,
   event: KeyboardEvent
-): Promise<ModalEntry> | void {
+): Promise<ModalEntry | null> | void {
   // If escape key was pressed
   if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal

@@ -53,6 +53,26 @@ describe("get()", () => {
   });
 });
 
+describe("getOrTrow()", () => {
+  it("should return an element from the collection based on it's ID value", async () => {
+    const obj = new Collection({ selector: "div" });
+    await obj.mount();
+    const entry = obj.getOrThrow("asdf");
+    expect(entry.id).toBe("asdf");
+    expect(entry.el).toBe(document.getElementById("asdf"));
+  });
+
+  it("should throw an error if the element is not found", async () => {
+    const obj = new Collection({ selector: "div" });
+    await obj.mount();
+    expect(() => {
+      obj.getOrThrow("nonexistent-id");
+    }).toThrow(
+      'Collection entry not found in collection with id of "nonexistent-id"'
+    );
+  });
+});
+
 describe("applySettings()", () => {
   it("should be able to modify the settings object", async () => {
     const obj = new Collection();
