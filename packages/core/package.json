@@ -21,6 +21,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./sass": "./index.scss",
     "./root": "./root.scss",
     "./config": "./src/scss/modules/config.scss",
     "./usage": "./src/scss/modules/usage.scss",
