@@ -13,6 +13,8 @@ export default defineConfig({
     sourcemap: true
   },
   define: {
+    "import.meta.env.VITE_ROOT": "vrembem",
+    "import.meta.env.VITE_PACKAGE": "vrembem",
     "import.meta.env.VITE_NAME": JSON.stringify(data.name),
     "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
   }
