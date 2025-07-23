@@ -15,12 +15,5 @@ export default defineConfig({
   define: {
     "import.meta.env.VITE_NAME": JSON.stringify(data.name),
     "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: "modern"
-      }
-    }
   }
 });
