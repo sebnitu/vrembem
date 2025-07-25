@@ -9,6 +9,20 @@
   <script type="module">
     import 'vrembem/sass';
   </script>
+  <style>
+    .demo {
+      background-color: hsl(from magenta h s l / 5%);
+      background-image: linear-gradient(135deg, hsl(from magenta h s l / 10%) 10%, rgb(0 0 0 / 0%) 0, rgb(0 0 0 / 0%) 50%, hsl(from magenta h s l / 10%) 0, hsl(from magenta h s l / 10%) 60%, rgb(0 0 0 / 0%) 0, rgb(0 0 0 / 0%));
+      background-size: 8px 8px;
+    }
+
+    .box {
+      border: 2px solid transparent;
+      padding: calc(0.75em - 2px) calc(1em - 2px);
+      background: var(--vb-primary-90);
+      border-color: var(--vb-primary-70);
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +47,29 @@
   <section class="section">
     <div class="section__container max-width-xs spacing">
 
-      <p>...</p>
+      <h2 id="flex"><a href="#flex">flex</a></h2>
+
+      <div class="demo flex">
+        <div class="box">One</div>
+        <div class="box">Two</div>
+        <div class="box">Three</div>
+        <div class="box">Four</div>
+        <div class="box">Five</div>
+        <div class="box">Six</div>
+        <div class="box">Seven</div>
+        <div class="box">Eight</div>
+        <div class="box">Nine</div>
+        <div class="box">Ten</div>
+      </div>
+
+      <h2 id="flex_inline"><a href="#flex_inline">flex_inline</a></h2>
+
+      <div class="demo flex flex_inline">
+        <div class="box">One</div>
+        <div class="box">Two</div>
+        <div class="box">Three</div>
+        <div class="box">Four</div>
+      </div>
 
     </div>
   </section>
