@@ -8,6 +8,9 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import 'vrembem/sass';
+    document.querySelectorAll(
+      "input[type='checkbox'][aria-checked='mixed']"
+    ).forEach((checkbox) => checkbox.indeterminate = true);
   </script>
 </head>
 <body>
@@ -33,7 +36,101 @@
   <section class="section">
     <div class="section__container max-width-xs spacing">
 
-      <p>...</p>
+      <h2 id="checkbox"><a href="#checkbox">checkbox</a></h2>
+
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+
+      <h2 id="checkbox-with-labels"><a href="#checkbox-with-labels">checkbox with labels</a></h2>
+
+      <label class="flex flex_inline flex_gap_sm align-items-center">
+        <span class="checkbox">
+          <input class="checkbox__native" type="checkbox" checked />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
+            </span>
+          </span>
+        </span>
+        <span>Checkbox with a label</span>
+      </label>
+      <br />
+      <label class="flex flex_inline flex_gap_sm align-items-center">
+        <span class="checkbox">
+          <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
+            </span>
+          </span>
+        </span>
+        <span>Checkbox with a label</span>
+      </label>
+      <br />
+      <label class="flex flex_inline flex_gap_sm align-items-center">
+        <span class="checkbox">
+          <input class="checkbox__native" type="checkbox" />
+          <span class="checkbox__background">
+            <span class="checkbox__box">
+              <span class="checkbox__icon"></span>
+            </span>
+          </span>
+        </span>
+        <span>Checkbox with a label</span>
+      </label>
+
+      <h2 id="checkbox_size_value"><a href="#checkbox_size_value">checkbox_size_[value]</a></h2>
+
+      <span class="checkbox checkbox_size_sm">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+      
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+
+      <span class="checkbox checkbox_size_lg">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
 
     </div>
   </section>
