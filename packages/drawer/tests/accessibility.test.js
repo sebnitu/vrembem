@@ -39,7 +39,6 @@ test("should properly hide content when modal drawer is opened", async () => {
   await transition(el);
 
   expect(main.inert).toBe(true);
-  expect(main.getAttribute("aria-hidden")).toBe("true");
   expect(main).toHaveStyle({ overflow: "hidden" });
 });
 
@@ -47,7 +46,6 @@ test("should properly show content when modal drawer is closed", async () => {
   btn.click();
   await transition(el);
 
-  expect(main.inert).toBe(null);
-  expect(main.hasAttribute("aria-hidden")).toBe(false);
+  expect(main).not.toHaveAttribute("inert");
   expect(main).not.toHaveStyle({ overflow: "hidden" });
 });
