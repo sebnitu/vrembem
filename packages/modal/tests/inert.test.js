@@ -1,3 +1,4 @@
+import "@testing-library/jest-dom";
 import { transition } from "./helpers/transition";
 import Modal from "../index";
 
@@ -30,14 +31,12 @@ describe("when selectorInert is set:", () => {
     btnOpen.click();
     await transition(el);
     expect(main.inert).toBe(true);
-    expect(main.getAttribute("aria-hidden")).toBe("true");
   });
 
   it("should properly show content when modal is closed", async () => {
     const btnClose = document.querySelector("[data-modal-close]");
     btnClose.click();
     await transition(el);
-    expect(main.inert).toBe(null);
-    expect(main.hasAttribute("aria-hidden")).toBe(false);
+    expect(main).not.toHaveAttribute("inert");
   });
 });

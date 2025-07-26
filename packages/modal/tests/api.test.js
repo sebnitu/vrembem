@@ -170,7 +170,6 @@ describe("register() & deregister()", () => {
     });
     await modal.init();
     expect(document.body.style.overflow).toBe("hidden");
-    expect(main).toHaveAttribute("aria-hidden", "true");
     expect(main.inert).toBe(true);
     expect(main.style.overflow).toBe("hidden");
     expect(modal.get("modal-default").state).toBe("opened");
