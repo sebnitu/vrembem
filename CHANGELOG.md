@@ -22,12 +22,19 @@ Publish flow for `main` branch
 - Run `npx lerna publish` (use `--force-publish` to force a bump on all packages)
 
 Commit message template:
-chore(release): add v3.0.20 to CHANGELOG.md
+chore(release): add v3.0.21 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v3.0.0 -->
+
+
+## v3.0.21 (2025-07-26)
+
+### :bug: Bug Fix
+* `core`, `drawer`, `modal`
+  * [#2420](https://github.com/sebnitu/vrembem/pull/2420) Remove aria-hidden from updateGlobalState module
 
 
 ## v3.0.20 (2024-09-22)
