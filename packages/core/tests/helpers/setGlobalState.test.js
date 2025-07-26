@@ -15,30 +15,22 @@ describe("setGlobalState()", () => {
   it("should apply inert and aria hidden to passed selectors", () => {
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
-    expect(main).not.toHaveAttribute("aria-hidden");
-    expect(header).not.toHaveAttribute("aria-hidden");
 
     setGlobalState(true, ".main, .header", "body, .main");
     expect(main.inert).toBe(true);
     expect(header.inert).toBe(true);
-    expect(main).toHaveAttribute("aria-hidden", "true");
-    expect(header).toHaveAttribute("aria-hidden", "true");
   });
 
   it("should remove inert and aria hidden when set to false", () => {
     setGlobalState(false, ".main, .header", "body, .main");
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
-    expect(main).not.toHaveAttribute("aria-hidden");
-    expect(header).not.toHaveAttribute("aria-hidden");
   });
 
   it("should do nothing if selector is not passed", () => {
     setGlobalState(true, null, null);
     expect(main.inert).not.toBe(true);
     expect(header.inert).not.toBe(true);
-    expect(main).not.toHaveAttribute("aria-hidden");
-    expect(header).not.toHaveAttribute("aria-hidden");
   });
 
   it("should apply overflow hidden to passed selectors", () => {

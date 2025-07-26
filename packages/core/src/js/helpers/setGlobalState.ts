@@ -18,22 +18,16 @@ function setOverflowHidden(state: boolean, selector: string): void {
 }
 
 /**
- * Sets the `inert` and `aria-hidden` attributes on elements based on the state.
+ * Sets the `inert` attributes on elements based on the state.
  *
- * @param {boolean} state - Whether to set or remove `inert` and `aria-hidden`.
+ * @param {boolean} state - Whether to set or remove `inert`.
  * @param {string} selector - A CSS selector to query the elements.
  */
 function setInert(state: boolean, selector: string): void {
   if (selector) {
     const els = document.querySelectorAll<HTMLElement>(selector);
     els.forEach((el) => {
-      if (state) {
-        (el as HTMLElement & { inert?: boolean }).inert = true;
-        el.setAttribute("aria-hidden", "true");
-      } else {
-        (el as HTMLElement & { inert?: boolean }).inert = false;
-        el.removeAttribute("aria-hidden");
-      }
+      (el as HTMLElement & { inert?: boolean }).inert = state;
     });
   }
 }

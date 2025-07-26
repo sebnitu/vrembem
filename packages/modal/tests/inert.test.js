@@ -28,8 +28,6 @@ describe("when selectorInert is set:", () => {
     btnOpen.click();
     await vi.runAllTimers();
     expect(main.inert).toBe(true);
-    expect(main.hasAttribute("aria-hidden")).toBe(true);
-    expect(main.getAttribute("aria-hidden")).toBe("true");
   });
 
   it("should properly show content when modal is closed", async () => {
@@ -37,6 +35,5 @@ describe("when selectorInert is set:", () => {
     btnClose.click();
     await vi.runAllTimers();
     expect(main.inert).toBe(false);
-    expect(main.hasAttribute("aria-hidden")).toBe(false);
   });
 });
