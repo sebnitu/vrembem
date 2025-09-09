@@ -154,14 +154,14 @@ input::-moz-placeholder {
   transform: rotate(-90deg);
 }
 
+.blockquote > * + * {
+  margin-top: 1em;
+}
 .blockquote {
   position: relative;
   padding: 1.5em;
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
-}
-.blockquote > * + * {
-  margin-top: 1em;
 }
 .blockquote::before {
   content: "";
@@ -436,14 +436,14 @@ input::-moz-placeholder {
 .type > ol li + li {
   margin-top: 0.5em;
 }
+.type > blockquote > * + * {
+  margin-top: 1em;
+}
 .type > blockquote {
   position: relative;
   padding: 1.5em;
   border: 1px solid rgba(0, 0, 0, 0.05);
   color: inherit;
-}
-.type > blockquote > * + * {
-  margin-top: 1em;
 }
 .type > blockquote::before {
   content: "";
@@ -553,6 +553,9 @@ input::-moz-placeholder {
   color: #fff;
 }
 
+.button > * + * {
+  margin-left: 0.5rem;
+}
 .button {
   position: relative;
   display: inline-flex;
@@ -578,9 +581,6 @@ input::-moz-placeholder {
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-}
-.button > * + * {
-  margin-left: 0.5rem;
 }
 .button:disabled:not(.is-loading) {
   opacity: 0.6;
@@ -922,13 +922,15 @@ input::-moz-placeholder {
 .button-group {
   margin-top: -0.5em;
   margin-left: -0.5em;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
 }
 .button-group > * {
   margin-top: 0.5em;
   margin-left: 0.5em;
+}
+.button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .button-group + .button-group {
   margin-top: 0;
@@ -1742,12 +1744,14 @@ input::-moz-placeholder {
 .grid {
   margin-top: -2em;
   margin-left: -2em;
-  display: flex;
-  flex-wrap: wrap;
 }
 .grid > * {
   padding-top: 2em;
   padding-left: 2em;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
 }
 .grid + .grid {
   margin-top: 0;
@@ -2737,13 +2741,15 @@ input::-moz-placeholder {
 .level {
   margin-top: -0.5em;
   margin-left: -0.5em;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
 }
 .level > * {
   margin-top: 0.5em;
   margin-left: 0.5em;
+}
+.level {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 .level + .level {
   margin-top: 0;
@@ -3756,13 +3762,13 @@ input::-moz-placeholder {
   width: 60em;
 }
 
+.notice > * + * {
+  margin-top: 0.5em;
+}
 .notice {
   padding: 1em;
   border-radius: 0.25rem;
   background: #f5f5f5;
-}
-.notice > * + * {
-  margin-top: 0.5em;
 }
 
 .notice__title {
