@@ -1,6 +1,5 @@
 /// Styles for displaying content meant only for screen readers.
 @mixin sr-only {
-  clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   height: 1px;
   margin: -1px;
