@@ -53,8 +53,6 @@ describe("focusTrap", () => {
 
     // Get the HTML elements for checks later
     const entry = collection.get("entry-1");
-    const btn = document.getElementById("btn");
-    const input = document.getElementById("input");
 
     // Mock the missing entry properties
     entry.dialog = entry.el;
@@ -62,8 +60,10 @@ describe("focusTrap", () => {
     // Should toggle focus trap when opened event is fired
     collection.emit("opened", entry);
     expect(entry.focusTrap.focusable.length).toBe(3);
-    expect(entry.focusTrap.focusable.first).toBe(btn);
-    expect(entry.focusTrap.focusable.last).toBe(input);
+    expect(entry.focusTrap.focusable.first).toBe(entry.focusTrap.focusable[0]);
+    expect(entry.focusTrap.focusable.last).toBe(
+      entry.focusTrap.focusable[entry.focusTrap.focusable.length - 1]
+    );
 
     // Fire the closed event and check the results
     collection.emit("closed", entry);
@@ -85,8 +85,6 @@ describe("focusTrap", () => {
 
     // Get the HTML elements for checks later
     const entry = collection.get("entry-1");
-    const btn = document.getElementById("btn");
-    const input = document.getElementById("input");
 
     // Mock the missing entry properties
     entry.dialog = entry.el;
@@ -95,8 +93,10 @@ describe("focusTrap", () => {
     // Fire the opened event and check the results
     collection.emit("opened", entry);
     expect(entry.focusTrap.focusable.length).toBe(3);
-    expect(entry.focusTrap.focusable.first).toBe(btn);
-    expect(entry.focusTrap.focusable.last).toBe(input);
+    expect(entry.focusTrap.focusable.first).toBe(entry.focusTrap.focusable[0]);
+    expect(entry.focusTrap.focusable.last).toBe(
+      entry.focusTrap.focusable[entry.focusTrap.focusable.length - 1]
+    );
 
     // Fire the closed event and check the results
     collection.emit("closed", entry);

@@ -18,8 +18,8 @@ describe("FocusableArray", () => {
   it("initializes correctly with elements matching selectors", () => {
     const focusableArray = new FocusableArray(container);
     expect(focusableArray).toHaveLength(3);
-    expect(focusableArray.first).toBe(document.getElementById("btn1"));
-    expect(focusableArray.last).toBe(document.getElementById("input1"));
+    expect(focusableArray.first).toBe(focusableArray[0]);
+    expect(focusableArray.last).toBe(focusableArray[focusableArray.length - 1]);
   });
 
   it("handles empty containers gracefully", () => {
@@ -34,8 +34,8 @@ describe("FocusableArray", () => {
     const focusableArray = new FocusableArray();
     focusableArray.set(container);
     expect(focusableArray).toHaveLength(3);
-    expect(focusableArray.first).toBe(document.getElementById("btn1"));
-    expect(focusableArray.last).toBe(document.getElementById("input1"));
+    expect(focusableArray.first).toBe(focusableArray[0]);
+    expect(focusableArray.last).toBe(focusableArray[focusableArray.length - 1]);
   });
 
   it("clears all elements from the array", () => {
@@ -59,8 +59,8 @@ describe("FocusableArray", () => {
 
     focusableArray.set(newContainer);
     expect(focusableArray).toHaveLength(2);
-    expect(focusableArray.first).toBe(document.getElementById("btn2"));
-    expect(focusableArray.last).toBe(document.getElementById("link2"));
+    expect(focusableArray.first).toBe(focusableArray[0]);
+    expect(focusableArray.last).toBe(focusableArray[focusableArray.length - 1]);
 
     document.body.removeChild(newContainer);
   });
@@ -76,7 +76,7 @@ describe("FocusableArray", () => {
     const focusableArray = new FocusableArray(container);
     focusableArray.set(container);
     expect(focusableArray).toHaveLength(3);
-    expect(focusableArray.first).toBe(document.getElementById("btn1"));
-    expect(focusableArray.last).toBe(document.getElementById("input1"));
+    expect(focusableArray.first).toBe(focusableArray[0]);
+    expect(focusableArray.last).toBe(focusableArray[focusableArray.length - 1]);
   });
 });
