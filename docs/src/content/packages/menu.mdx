@@ -111,15 +111,15 @@ Adding the `is-active` class will provide visual indication that the action is c
   ```
 </CodeExample>
 
-### is-disabled
+### disabled
 
-Adding the boolean `disabled` attribute or `is-disabled` class will provide visual indication that the user should not be able to interact with the action.
+Adding the boolean `disabled` attribute will provide visual indication that the user should not be able to interact with the action.
 
 <CodeExample>
   <Fragment slot="output">
     <ul class="menu menu_inline">
       <li class="menu__item">
-        <button class="menu__action is-disabled" disabled>One</button>
+        <button class="menu__action" disabled>One</button>
       </li>
       <li class="menu__item">
         <button class="menu__action">Two</button>
@@ -132,7 +132,7 @@ Adding the boolean `disabled` attribute or `is-disabled` class will provide visu
   ```html
   <ul class="menu menu_inline">
     <li class="menu__item">
-      <button class="menu__action is-disabled" disabled>
+      <button class="menu__action" disabled>
         ...
       </button>
     </li>
@@ -282,7 +282,7 @@ $sep-background: theme.get("border-color") !default;
 $active-background: none !default;
 $active-foreground: palette.get("primary") !default;
 
-// is-disabled
+// disabled
 $disabled-background: none !default;
 $disabled-foreground: theme.get("foreground-lighter") !default;
 
