@@ -20,6 +20,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./sass": "./index.scss",
     "./base": "./base.scss",
     "./root": "./root.scss"
   },

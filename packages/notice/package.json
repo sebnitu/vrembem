@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/notice",
-  "description": "A component for highlighting (optionally dismissible) messages to the user.",
+  "description": "A component for highlighting messages to the user.",
   "version": "4.0.0-next.32",
   "license": "MIT",
   "keywords": [
@@ -16,6 +16,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./sass": "./index.scss",
     "./root": "./root.scss",
     "./*": "./src/*"
   },

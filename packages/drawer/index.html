@@ -6,9 +6,8 @@
   <title>%VITE_NAME%</title>
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
-  <link rel="stylesheet" href="./index.scss">
   <script type="module">
-    import "vrembem/dist/index.css";
+    import 'vrembem/sass';
     import Drawer from "./index.ts";
     import { focusTrap, mediaQuery, propStore, teleport } from "@vrembem/core";
 
@@ -52,7 +51,7 @@
       <section class="section">
         <div class="section__container max-width-xs spacing">
           
-          <h2>drawer</h2>
+          <h2 id="drawer"><a href="#drawer">drawer</a></h2>
 
           <ul class="list">
             <li><button class="link" data-drawer-toggle="drawer-default">default</button></li>

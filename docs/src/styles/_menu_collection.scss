@@ -1,6 +1,8 @@
 @use "@vrembem/core/css";
 
 .menu_collection {
+  @include css.override("menu", "gap", 0);
+
   margin-top: 0.5rem;
 
   .menu__action.is-active {

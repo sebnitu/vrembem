@@ -3,49 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@vrembem/menu</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://sebnitu.com/dist/favicon.png">
+  <title>%VITE_NAME%</title>
+  <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
+  <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
+  <script type="module">
+    import 'vrembem/sass';
+  </script>
 </head>
 <body>
-  <main>
-    <header class="section background-dark">
-      <div class="section__container max-width-xs spacing">
-        <h1>@vrembem/menu</h1>
-        <p>Menus represent groups of links, actions or tools that a user can interact with.</p>
-        <div class="flex align-items-center foreground-lighter">
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem">
-              <span>vrembem</span>
-            </a>
-          </div>
-          <span>/</span>
-          <div class="flex flex_gap_sm align-items-center">
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <a class="link" href="https://github.com/sebnitu/vrembem/tree/main/packages/menu#readme">
-              <span>menu</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
 
-    <section class="section">
-      <div class="section__container max-width-xs spacing">
+  <header class="section background-dark">
+    <div class="section__container max-width-xs spacing-sm">
+      <h1 class="text-size-lg">%VITE_NAME%</h1>
+      <p class="foreground-light">%VITE_DESCRIPTION%</p>
+      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
+        </li>
+        <li class="foreground-neutral-80">/</li>
+        <li class="flex flex_gap_sm align-items-center">
+          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+      </ol>
+    </div>
+  </header>
 
-        <p>...</p>
+  <section class="section">
+    <div class="section__container max-width-xs spacing">
 
-      </div>
-    </section>
-  </main>
+      <h2 id="menu"><a href="#menu">menu</a></h2>
 
-  <script type="module">
-    import 'vrembem/scss';
-  </script>
+      <ul class="menu">
+        <li class="menu__item">
+          <button class="menu__action">
+            <span class="flex-grow">Undo</span>
+            <span class="foreground-lighter">⌘Z</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" disabled>
+            <span class="flex-grow">Redo</span>
+            <span class="foreground-lighter">⌘Y</span>
+          </button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action is-active">
+            <span class="flex-grow">Cut</span>
+            <span class="foreground-lighter">⌘X</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">
+            <span class="flex-grow">Copy</span>
+            <span class="foreground-lighter">⌘C</span>
+          </button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">
+            <span class="flex-grow">Paste</span>
+            <span class="foreground-lighter">⌘V</span>
+          </button>
+        </li>
+      </ul>
+
+      <h2 id="menu_inline"><a href="#menu_inline">menu_inline</a></h2>
+
+      <ul class="menu menu_inline">
+        <li class="menu__item">
+          <button class="menu__action">Undo</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" disabled>Redo</button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action is-active">Cut</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Copy</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Paste</button>
+        </li>
+      </ul>
+
+      <h2 id="menu_full"><a href="#menu_full">menu_full</a></h2>
+
+      <ul class="menu menu_inline menu_full">
+        <li class="menu__item">
+          <button class="menu__action">Undo</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" disabled>Redo</button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action is-active">Cut</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Copy</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Paste</button>
+        </li>
+      </ul>
+
+      <h2 id="menu_size_value"><a href="#menu_size_value">menu_size_[value]</a></h2>
+
+      <ul class="menu menu_inline menu_size_sm">
+        <li class="menu__item">
+          <button class="menu__action">Undo</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" disabled>Redo</button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action is-active">Cut</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Copy</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Paste</button>
+        </li>
+      </ul>
+
+      <ul class="menu menu_inline menu_size_lg">
+        <li class="menu__item">
+          <button class="menu__action">Undo</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" disabled>Redo</button>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action is-active">Cut</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Copy</button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action">Paste</button>
+        </li>
+      </ul>
+
+    </div>
+  </section>
 
 </body>
 </html>

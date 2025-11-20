@@ -16,6 +16,7 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
+    "./sass": "./index.scss",
     "./*": "./src/*"
   },
   "scripts": {
