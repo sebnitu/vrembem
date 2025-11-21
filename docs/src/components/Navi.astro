@@ -14,9 +14,8 @@ const { classes = "", inline = false } = Astro.props;
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active",
-  classParent: "is-active",
+  classParent: "is-active"
 });
-
 ---
 
 <ul class={`menu ${inline ? "menu_inline" : ""} ${classes}`.trim()}>
@@ -26,7 +25,7 @@ const cp = currentPage(Astro.url.pathname, {
     >
   </li>
   <li class="menu__item">
-    <a class={cp.classes("/packages")} href="/packages">Docs</a>
+    <a class={cp.classes("/packages")} href="/packages">Packages</a>
   </li>
   <li class="menu__item">
     <a
@@ -35,19 +34,13 @@ const cp = currentPage(Astro.url.pathname, {
       target="_blank"
     >
       GitHub
-      <Icon
-        name="arrow-up-right"
-        classes="icon_external"
-      />
+      <Icon name="arrow-up-right" classes="icon_external" />
     </a>
   </li>
   <li class="menu__item">
     <a class="menu__action" href="#" target="_blank">
       Sponsor
-      <Icon
-        name="arrow-up-right"
-        classes="icon_external"
-      />
+      <Icon name="arrow-up-right" classes="icon_external" />
     </a>
   </li>
   {
