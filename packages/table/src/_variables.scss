@@ -58,7 +58,7 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   (
     "background": css.get("background"),
     "background-zebra": palette.get("neutral", 50%, 6%),
-    "background-hover": palette.get("primary", 50%, 20%),
+    "background-hover": palette.get("primary", 50%, 10%),
     "border": 1px solid css.get("border-color"),
     "border-alt": 1px dotted css.get("border-color"),
     "foreground": css.get("foreground"),
