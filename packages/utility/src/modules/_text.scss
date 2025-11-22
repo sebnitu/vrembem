@@ -45,16 +45,28 @@
   }
 
   #{fun.utility("text", "wrap")} {
-    white-space: normal !important;
+    text-wrap: normal !important;
   }
 
   #{fun.utility("text", "nowrap")} {
-    white-space: nowrap !important;
+    text-wrap: nowrap !important;
+  }
+
+  #{fun.utility("text", "wrap", "balance")} {
+    text-wrap: balance !important;
+  }
+
+  #{fun.utility("text", "wrap", "pretty")} {
+    text-wrap: pretty !important;
+  }
+
+  #{fun.utility("text", "wrap", "stable")} {
+    text-wrap: stable !important;
   }
 
   #{fun.utility("text", "overflow", "ellipsis")} {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-    white-space: nowrap !important;
+    text-wrap: nowrap !important;
   }
 }
