@@ -1,0 +1,85 @@
+---
+layout: ../../../layouts/Page.astro
+title: CSS
+description: "A core Sass module for managing design tokens."
+collection: packages
+---
+
+import CodeExample from '../../../components/CodeExample.astro';
+import Pre from "../../../components/Pre.astro";
+
+export const components = { pre: Pre }
+
+<div>
+  <a href="../core" class="badge">&larr; Core</a>
+  <h1 class="h1">core.css</h1>
+</div>
+
+A core Sass module for managing global and component design tokens. This is done by creating CSS custom properties that can be referenced and output to the stylesheet.
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/css";
+  ```
+</CodeExample>
+
+## Basic usage
+
+To get started with the `core.css` module, import it from the core package. Then you can create your first namespaced custom properties using the `set` mixin.
+
+<CodeExample lang="scss">
+  ```scss
+  @include css.set("example", (
+    "background": blue,
+    "foreground": green
+  ));
+  ```
+</CodeExample>
+
+These stored CSS custom properties can then be used in your component styles by using the `get` function.
+
+<CodeExample lang="scss">
+  ```scss
+  .element {
+    background: css.get("example", "background");
+    color: css.get("example", "foreground");
+  }
+  ```
+</CodeExample>
+
+Finally, at the end of your stylesheets, we can output all of our used CSS properties using the `output` mixin in a `:root` selector.
+
+<CodeExample lang="scss">
+  ```scss
+  :root {
+    @include css.output("example");
+  }
+  ```
+</CodeExample>
+
+It's possible to `get` a CSS variable when it hasn't been `set` as long as a fallback value is provided. If there are no values set for a specific component, that component's namespace must be registered before it can be referenced.
+
+<CodeExample lang="scss">
+  ```scss
+  // Register the component's namespace if there are no properties set.
+  @include css.register("example");
+
+  // Provide a fallback if a specific property has not been set.
+  .element {
+    padding: css.get("example", "padding", 1em);
+  }
+  ```
+</CodeExample>
+
+**core.css API**
+
+- ~~set~~
+- ~~get~~
+- ~~output~~
+- ~~register~~
+- defer
+- define
+- reference
+- override
+- remove
+- log
