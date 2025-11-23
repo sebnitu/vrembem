@@ -26,3 +26,15 @@ npm install @vrembem/core
   import * as core from "@vrembem/core";
   ```
 </CodeExample>
+
+## Basic usage
+
+Vrembem's core package is the common denominator for all components. Its main purpose is to set the base systems that all other components are built upon. Core also provides useful one-off mixins, functions, and styles that can be applied as needed.
+
+Sass modules and their purpose:
+
+- [core.config](/packages/core/config): This module is used to setup the global configuration object. This is used across all components to set things like prefixes, BEM naming syntax and default themes.
+- [core.usage](/packages/core/usage): Used to enable features such as output-strategy and provides usage information for CSS variables.
+- [core.css](/packages/core/css): This module manages CSS custom properties (variables) by providing tools such as set, get, and output for properties defined under a component name.
+- [core.palette](/packages/core/palette): Defines the design system's color palette. This takes in a map of key and color seed values and builds a variety of usable color values for your project.
+- [core.theme](/packages/core/theme): Themes are how and where the design system's palette are applied. It also manages a projects light and dark mode color values.
