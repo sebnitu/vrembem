@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 
 $event: null !default;
@@ -39,6 +38,3 @@ $size-lg-width: 20em !default;
   ),
   "required"
 );
-
-// Required custom properties for JavaScript
-@include usage.set("core", "prefix", "required");
