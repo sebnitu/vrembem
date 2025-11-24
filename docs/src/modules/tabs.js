@@ -55,26 +55,29 @@ const tabs = {
     // Get all the tablists
     const tablists = document.querySelectorAll('[role="tablist"]');
     tablists.forEach((tablist) => {
-      const tabs = tablist.querySelectorAll('[role="tab"]');
+      this.register(tablist);
+    });
+  },
+  register(tablist) {
+    const tabs = tablist.querySelectorAll('[role="tab"]');
 
-      // Select the first tab
-      selectTab(tabs[0], tabs);
+    // Select the first tab
+    selectTab(tabs[0], tabs);
 
-      // Setup event listeners for tabs
-      tabs.forEach((tab) => {
-        const __handlerKeydown = handlerKeydown.bind(null, tabs);
+    // Setup event listeners for tabs
+    tabs.forEach((tab) => {
+      const __handlerKeydown = handlerKeydown.bind(null, tabs);
 
-        tab.addEventListener("click", () => {
-          selectTab(tab, tabs);
-        });
+      tab.addEventListener("click", () => {
+        selectTab(tab, tabs);
+      });
 
-        tab.addEventListener("focus", () => {
-          document.addEventListener("keydown", __handlerKeydown);
-        });
+      tab.addEventListener("focus", () => {
+        document.addEventListener("keydown", __handlerKeydown);
+      });
 
-        tab.addEventListener("blur", () => {
-          document.removeEventListener("keydown", __handlerKeydown);
-        });
+      tab.addEventListener("blur", () => {
+        document.removeEventListener("keydown", __handlerKeydown);
       });
     });
   }
