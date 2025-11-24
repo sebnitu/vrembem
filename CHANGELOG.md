@@ -26,18 +26,34 @@ Publish flow for `next` branch
 - Run `npm run sink`
 - Run `npx lerna-changelog`
 - Copy/paste output from changelog into this file
-- Fix heading levels `####` > `###`
+- Fix heading levels `###` > `###`
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.32 to CHANGELOG.md
+chore(release): add v4.0.0-next.33 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.33 (2025-11-24)
+
+### :bug: Bug Fix
+* `core`, `drawer`, `modal`
+  * [#2419](https://github.com/sebnitu/vrembem/pull/2419) Remove aria-hidden from setGlobalState module
+
+### :house: Refactor
+* `core`, `drawer`, `modal`, `popover`
+  * [#2554](https://github.com/sebnitu/vrembem/pull/2554) Removed usage module and simplify custom property management
+  * [#2411](https://github.com/sebnitu/vrembem/pull/2411) Create new getOrThrow method on base Collection class
+
+### :books: Documentation
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2553](https://github.com/sebnitu/vrembem/pull/2553) Create component demo pages for each package
 
 
 ## v4.0.0-next.32 (2025-07-17)
