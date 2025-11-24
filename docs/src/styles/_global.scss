@@ -4,6 +4,7 @@ astro-island {
 
 html {
   scroll-behavior: smooth;
+  text-wrap: pretty;
 
   @media screen and (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
