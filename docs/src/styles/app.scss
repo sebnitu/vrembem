@@ -27,20 +27,7 @@
 @use "./tabs";
 @use "./theme-icons";
 @use "./toggle";
-@use "./test";
 
 // Important!
 // Include this last to catch all custom property references.
 @forward "vrembem/root";
-
-// Module logs
-// @include vrembem.core-config-log();
-// @include vrembem.core-css-log();
-// @include vrembem.core-palette-log();
-// @include vrembem.core-theme-log();
-
-// Usage logs
-// - ("ref": 0) Display custom properties that haven't been referenced.
-// - ("def": 0) Display custom properties that haven't been defined.
-// - ("required": 1) Display all required custom properties.
-// @include vrembem.core-usage-log();

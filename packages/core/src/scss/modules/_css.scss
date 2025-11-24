@@ -2,10 +2,10 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
-@use "./usage";
 
 /// The variables map where all custom properties are stored. These are stored
 /// under module keys with maps of their custom property key/value pairs.
@@ -18,8 +18,8 @@ $-variables: (
   )
 );
 
-/// Function to check whether a module has been set in the `$-variables` map.
-/// Will throw an error if the module was not found and is required.
+/// Function to check whether a module has been registered in the `$-variables`
+/// map. Will throw an error if the module was not found and is required.
 ///
 /// @param {string} $module
 ///   The module to check for its existence.
@@ -68,6 +68,27 @@ $-variables: (
   }
 }
 
+/// Function to check if `$-variables` has a specific module property.
+///
+/// @param {string} $module
+///   The module name to check the property under.
+/// @param {string} $prop
+///   The custom property to check in the module map.
+///
+@function has($args...) {
+  @return map.has-key($-variables, $args...);
+}
+
+/// Register a module in the variables map. This is used when a module is needed
+/// to be available for later use but without setting any custom properties.
+///
+/// @param {string} $module
+///   The module to be registered.
+///
+@mixin register($module) {
+  $-variables: map.set($-variables, $module, empty-map()) !global;
+}
+
 /// Function to create reference to a custom property using the provided module
 /// name, property and optional fallback. Automatically applies the necessary
 /// custom property prefix and module name.
@@ -94,12 +115,10 @@ $-variables: (
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
 @function reference($module, $prop, $fallback: null) {
-  @if usage.set($module, $prop, "ref") {
-    @if $fallback {
-      @return var(#{-prefix($module)}#{$prop}, $fallback);
-    } @else {
-      @return var(#{-prefix($module)}#{$prop});
-    }
+  @if $fallback {
+    @return var(#{-prefix($module)}#{$prop}, $fallback);
+  } @else {
+    @return var(#{-prefix($module)}#{$prop});
   }
 }
 
@@ -113,9 +132,6 @@ $-variables: (
 ///   The custom property name to use in the definition.
 /// @param {any} $value (null)
 ///   The value of the custom property.
-/// @param {list} $args... ("def")
-///   The action being taken and any additional flags to be passed to
-///   `usage.set()`. Defaults to "def".
 ///
 /// @example scss
 ///   css.define("core", "background", #000);
@@ -127,44 +143,10 @@ $-variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-@mixin define($module, $prop, $value: null, $args...) {
-  @if $value {
-    // If args is empty, set "def" as the default action
-    @if list.length($args) == 0 {
-      $args: "def";
-    }
-
-    // Set the usage before outputting the custom property
-    @if usage.set($module, $prop, $args...) {
-      // Check if the value has been deferred
-      @if meta.type-of($value) == "list" and list.nth($value, 1) == "defer" {
-        // Create the reference using the deferred value list
-        $value: reference(list.nth($value, 2), list.nth($value, 3));
-      }
-
-      // Define the custom property
-      #{-prefix($module)}#{$prop}: #{$value};
-    }
+@mixin define($module, $prop, $value: null) {
+  @if $value and meta.type-of($value) != "map" {
+    #{-prefix($module)}#{$prop}: #{$value};
   }
-}
-
-/// Used in place of `set` for when a custom property is dependent on another.
-/// This allows the property to be omitted if the original definition is never
-/// actually referenced.
-///
-/// @param {string} $module
-///   The module name to store the custom property under.
-///
-/// @param {string|map} $prop
-///   The custom property name to store.
-///
-@function defer($module, $prop: null) {
-  @if not $prop {
-    $prop: $module;
-    $module: "core";
-  }
-
-  @return "defer", $module, $prop;
 }
 
 /// Function to return a custom property reference that has been stored in the
@@ -237,20 +219,8 @@ $-variables: (
       $prop: list.nth($props, $i);
       $value: map.get($-variables, $module, $prop);
 
-      // Check if the value is a deferred property
-      @if meta.type-of($value) == "list" and list.nth($value, 1) == "defer" {
-        // Create the reference using the stored value list
-        $ref: reference(list.nth($value, 2), list.nth($value, 3));
-
-        // Update the variables map with the value of the reference
-        $-variables: map.set($-variables, $module, $prop, $ref) !global;
-
-        // Store the reference in our result
-        $result: reference($module, $prop);
-      }
-
       // Check if the property exists in the module or its default theme
-      @else if map.has-key($-variables, $module, $prop) or map.has-key($-variables, $module, config.get("default-theme"), $prop) {
+      @if map.has-key($-variables, $module, $prop) or map.has-key($-variables, $module, config.get("default-theme"), $prop) {
         // store the reference in our result
         $result: reference($module, $prop, $result);
       }
@@ -290,7 +260,7 @@ $-variables: (
 ///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
 /// @param {list} $args...
-///   The arguments to pass to `usage.set()`. Can be a list containing an action
+///   Can be a list containing an action
 ///   and any additional flags to log for the property.
 ///
 /// @example scss
@@ -372,22 +342,12 @@ $-variables: (
       // Scenario: ("prop": ("prop": "value"))
       @if meta.type-of($propValue) == "map" {
         @each $key, $value in $propValue {
-          // Only call `usage.set` if arguments are passed
-          @if list.length($args) > 0 {
-            @include usage.set($module, "#{$propKey}-#{$key}", $args...);
-          }
-
           $-variables: map.set($-variables, $module, "#{$propKey}-#{$key}", $value) !global;
         }
       }
 
       // Scenario: ("prop": "value")
       @else {
-        // Only call `usage.set` if arguments are passed
-        @if list.length($args) > 0 {
-          @include usage.set($module, $propKey, $args...);
-        }
-
         $-variables: map.set($-variables, $module, $propKey, $propValue) !global;
       }
     }
@@ -396,34 +356,14 @@ $-variables: (
   // Scenario: "prop", ("prop": "value")
   @else if meta.type-of($value) == "map" {
     @each $key, $value in $value {
-      // Only call `usage.set` if arguments are passed
-      @if list.length($args) > 0 {
-        @include usage.set($module, "#{$prop}-#{$key}", $args...);
-      }
-
       $-variables: map.set($-variables, $module, "#{$prop}-#{$key}", $value) !global;
     }
   }
 
   // Scenario: "prop", "value"
   @else {
-    // Only call `usage.set` if arguments are passed
-    @if list.length($args) > 0 {
-      @include usage.set($module, $prop, $args...);
-    }
-
     $-variables: map.set($-variables, $module, $prop, $value) !global;
   }
-}
-
-/// Register a module in the variables map. This is used when a module is needed
-/// to be available for later use but without setting any custom properties.
-///
-/// @param {string} $module
-///   The module to be registered.
-///
-@mixin register($module) {
-  $-variables: map.set($-variables, $module, "register", true) !global;
 }
 
 /// Mixin to remove items from the `$-variables` custom properties map.
@@ -432,14 +372,12 @@ $-variables: (
 ///   The list of keys to follow and remove from the custom properties map.
 ///
 @mixin remove($keys...) {
-  @if usage.remove($keys...) {
-    $-variables: map.deep-remove($-variables, $keys...) !global;
-  }
+  $-variables: map.deep-remove($-variables, $keys...) !global;
 }
 
 /// Mixin to override a previously defined custom property. This is primarily
-/// used in the context of a modifier. Provided module and property must exist
-/// in the `$-variables` custom properties map.
+/// used in the context of a modifier. Provided module must exist in the
+/// `$-variables` custom properties map.
 ///
 /// @param {string} $module
 ///   The module name to check the custom property under.
@@ -476,12 +414,12 @@ $-variables: (
     @if meta.type-of($prop) == "map" {
       @each $key, $value in $prop {
         @if $value {
-          @include define($module, $key, $value, "override");
+          @include define($module, $key, $value);
         }
       }
     } @else {
       @if $value {
-        @include define($module, $prop, $value, "override");
+        @include define($module, $prop, $value);
       }
     }
   }
@@ -493,10 +431,6 @@ $-variables: (
 /// @param {string} $module ("*")
 ///   The module to output all custom properties from. If no module is passed or
 ///   set to "*" or "all", will output all custom properties for all modules.
-/// @param {string} $strategy ("used")
-///   The output strategy to apply. Available options: "*", "all" or "used".
-///   - "*" and "all" will output all stored custom properties.
-///   - "used" will only output custom properties that have been referenced.
 ///
 /// @example scss
 ///   // Example value in `$-variables` map:
@@ -520,17 +454,20 @@ $-variables: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-@mixin output($module: "*", $strategy: config.get("output-strategy")) {
+@mixin output($module: "*") {
   @if $module == "*" or $module == "all" {
     // Call output() for every module in $-variables
     @each $module in map.keys($-variables) {
-      @include output($module, $strategy);
+      @include output($module);
     }
   } @else if -module-exists($module, false) {
-    $module-map: map.get($-variables, $module);
+    // Get the module's property map
+    $property-map: map.get($-variables, $module);
 
-    // Output custom properties via usage output
-    @include usage.output(meta.get-mixin("define"), $module, $module-map, $strategy);
+    // Loop through the property map
+    @each $prop, $value in $property-map {
+      @include define($module, $prop, $value);
+    }
   }
 }
 

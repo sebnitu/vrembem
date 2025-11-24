@@ -5,7 +5,6 @@
 @use "../utilities/empty-map" as *;
 @use "../utilities/remove-nth" as *;
 @use "./config";
-@use "./usage";
 @use "./css";
 @use "./palette";
 
@@ -178,7 +177,7 @@ $-theme-keys: "light", "dark";
       $result: map.deep-remove($result, $theme, $prop);
     }
 
-    // Save the results to `css.$_variables`
+    // Save the results to `css.$-variables`
     @include css.set($module, "*", $result, "merge");
   }
 }
@@ -190,11 +189,6 @@ $-theme-keys: "light", "dark";
 ///   The module to output. Use "*" or "all" to output a theme from all modules.
 /// @param {string} $theme (config.get("default-theme"))
 ///   The theme to output.
-/// @param {string} $strategy (config.get("output-strategy"))
-///   The output strategy to apply.
-/// @param {list} $args...
-///   The action being taken and any additional flags to be passed to
-///   `usage.output()`.
 ///
 /// @example scss
 ///   // Output the custom properties for the button light theme.
@@ -208,11 +202,11 @@ $-theme-keys: "light", "dark";
 ///     @include theme.output-theme("*", "light");
 ///   }
 ///
-@mixin output-theme($module: "*", $theme: config.get("default-theme"), $strategy: config.get("output-strategy"), $args...) {
+@mixin output-theme($module: "*", $theme: config.get("default-theme")) {
   @if $module == "*" or $module == "all" {
     // Call output() for every module in `css.$_variables`
     @each $module in map.keys(css.get("*")) {
-      @include output-theme($module, $theme, $strategy, $args...);
+      @include output-theme($module, $theme);
     }
   } @else {
     // Initialize the module map
@@ -232,8 +226,10 @@ $-theme-keys: "light", "dark";
         $module-theme-map: map.merge(map.get($module-map, config.get("default-theme")), $module-theme-map);
       }
 
-      // Output custom properties via usage output
-      @include usage.output(meta.get-mixin("define", "css"), $module, $module-theme-map, $strategy, $args...);
+      // Output custom properties
+      @each $prop, $value in $module-theme-map {
+        @include css.define($module, $prop, $value);
+      }
 
       // If a color scheme was stored, output it below everything else
       @if $color-scheme {
@@ -249,32 +245,30 @@ $-theme-keys: "light", "dark";
 /// @param {string} $module ("*")
 ///   The module to output all applied themes. If no module is passed or set to
 ///   "*" or "all", will output all applied themes for all modules.
-/// @param {string} $strategy (config.get("output-strategy"))
-///   The output strategy to apply.
 ///
 /// @example scss
 ///   // Output all themes of the notice module.
 ///   @include theme.output("notice");
 ///
-@mixin output($module: "*", $strategy: config.get("output-strategy")) {
+@mixin output($module: "*") {
   // Output the default theme and system preference media query under the using
   // the root selector. This should come before the theme class output.
   :root,
   .#{config.get("prefix-themes")}root {
     // Output the default theme
-    @include output-theme($module, config.get("default-theme"), $strategy);
+    @include output-theme($module, config.get("default-theme"));
 
     // If the default them is not light mode, output the prefers light media query
     @if config.get("default-theme") != "light" {
       @media (prefers-color-scheme: light) {
-        @include output-theme($module, "light", $strategy, "override");
+        @include output-theme($module, "light");
       }
     }
 
     // If the default them is not dark mode, output the prefers dark media query
     @if config.get("default-theme") != "dark" {
       @media (prefers-color-scheme: dark) {
-        @include output-theme($module, "dark", $strategy, "override");
+        @include output-theme($module, "dark");
       }
     }
   }
@@ -282,7 +276,7 @@ $-theme-keys: "light", "dark";
   // This outputs all custom themes using their theme class
   @each $key in $-theme-keys {
     .#{config.get("prefix-themes")}#{$key} {
-      @include output-theme($module, $key, $strategy, "override");
+      @include output-theme($module, $key);
     }
   }
 }

@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/usage";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
@@ -41,10 +40,3 @@ $modal-z-index: 950 !default;
   ),
   "required"
 );
-
-// Required custom properties for JavaScript
-@include usage.set("core", "prefix", "required");
-
-@each $key, $value in core.$breakpoints {
-  @include usage.set("core", "breakpoint-#{$key}", "required");
-}
