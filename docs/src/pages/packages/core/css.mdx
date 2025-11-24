@@ -25,61 +25,110 @@ A core Sass module for managing global and component design tokens. This is done
 
 ## Basic usage
 
-To get started with the `core.css` module, import it from the core package. Then you can create your first namespaced custom properties using the `set` mixin.
+Once imported, create your first namespaced custom properties using the `set` mixin.
 
 <CodeExample lang="scss">
   ```scss
-  @include css.set("example", (
+  @include css.set("block", (
     "background": blue,
     "foreground": green
   ));
   ```
 </CodeExample>
 
-These stored CSS custom properties can then be used in your component styles by using the `get` function.
+Stored CSS custom properties can then be used in your component styles by calling the `get` function along with the component name and property you'd like to reference.
 
-<CodeExample lang="scss">
-  ```scss
-  .element {
-    background: css.get("example", "background");
-    color: css.get("example", "foreground");
-  }
-  ```
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      background: css.get("block", "background");
+      color: css.get("block", "foreground");
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      background: var(--vb-block-background);
+      color: var(--vb-block-foreground);
+    }
+    ```
+  </Fragment>
 </CodeExample>
 
-Finally, at the end of your stylesheets, we can output all of our used CSS properties using the `output` mixin in a `:root` selector.
+Output your custom property definitions by running the `output` mixin in a `:root` selector block.
 
-<CodeExample lang="scss">
-  ```scss
-  :root {
-    @include css.output("example");
-  }
-  ```
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    :root {
+      @include css.output("block");
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    :root {
+      --vb-block-background: blue;
+      --vb-block-foreground: green;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+When writing modifiers for your components, it's common to practice to customize them by overriding existing custom property values. This can be done using the `override` mixin.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block_modifier {
+      @include css.override("block", (
+        "background": darkGreen,
+        "foreground": lightPink
+      ));
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block_modifier {
+      --vb-block-background: darkGreen;
+      --vb-block-foreground: lightPink;
+    }
+    ```
+  </Fragment>
 </CodeExample>
 
 It's possible to `get` a CSS variable when it hasn't been `set` as long as a fallback value is provided. If there are no values set for a specific component, that component's namespace must be registered before it can be referenced.
 
-<CodeExample lang="scss">
-  ```scss
-  // Register the component's namespace if there are no properties set.
-  @include css.register("example");
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    // Register the component's namespace if there are no properties set.
+    @include css.register("block");
 
-  // Provide a fallback if a specific property has not been set.
-  .element {
-    padding: css.get("example", "padding", 1em);
-  }
-  ```
+    // Provide a fallback if a specific property has not been set.
+    .block {
+      padding: css.get("block", "padding", 1em);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      padding: var(--vb-block-padding, 1em);
+    }
+    ```
+  </Fragment>
 </CodeExample>
 
-**core.css API**
+## Advanced Usage
 
-1. ~~set~~
-1. ~~get~~
-1. ~~output~~
-1. ~~register~~
-1. override
-1. has
-1. define
-1. reference
-1. remove
-1. log
+There are some additional tools available for more advanced usage of custom properties. These include
+
+- `css.has()`
+- `css.define()`
+- `css.reference()`
+- `css.remove()`
+- `css.log()`
