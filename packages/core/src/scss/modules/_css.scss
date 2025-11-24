@@ -75,8 +75,8 @@ $-variables: (
 /// @param {string} $prop
 ///   The custom property to check in the module map.
 ///
-@function has($module, $prop) {
-  @return map.has-key($-variables, $module, $prop);
+@function has($args...) {
+  @return map.has-key($-variables, $args...);
 }
 
 /// Register a module in the variables map. This is used when a module is needed
@@ -132,9 +132,6 @@ $-variables: (
 ///   The custom property name to use in the definition.
 /// @param {any} $value (null)
 ///   The value of the custom property.
-/// @param {list} $args... ("def")
-///   The action being taken and any additional flags to be passed to
-///   `usage.set()`. Defaults to "def".
 ///
 /// @example scss
 ///   css.define("core", "background", #000);
@@ -379,8 +376,8 @@ $-variables: (
 }
 
 /// Mixin to override a previously defined custom property. This is primarily
-/// used in the context of a modifier. Provided module and property must exist
-/// in the `$-variables` custom properties map.
+/// used in the context of a modifier. Provided module must exist in the
+/// `$-variables` custom properties map.
 ///
 /// @param {string} $module
 ///   The module name to check the custom property under.
