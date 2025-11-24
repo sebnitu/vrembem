@@ -1,4 +1,5 @@
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 
 .badge {
   background-color: css.get("background-darker");
@@ -7,4 +8,15 @@
   display: inline-block;
   font-size: css.get("font-size-sm");
   padding: 0 0.75em;
+  position: relative;
+  z-index: 1;
+
+  + h1 {
+    margin-top: -1rem;
+  }
+}
+
+a.badge:hover {
+  color: palette.get("primary", 30);
+  background-color: palette.get("primary", 90);
 }
