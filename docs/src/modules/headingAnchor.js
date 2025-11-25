@@ -2,7 +2,7 @@ import feather from "feather-icons";
 
 const settings = {
   prefix: ".layout__content",
-  headings: ["h1", "h2", "h3", "h4", "h5", "h6"]
+  headings: ["h1", "h2", "h3"]
 };
 
 const svg = feather.icons.hash.toSvg({
