@@ -15,7 +15,7 @@ export const components = { pre: Pre }
   <h1 class="h1">core/config</h1>
 </div>
 
-This module is used to setup the global configuration options. This is used across all components to set things like prefixes, BEM naming syntax and default themes.
+A core Sass module for managing global configuration options. This is used across all components to set things like prefixes, BEM naming syntax and default themes.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,7 +25,74 @@ This module is used to setup the global configuration options. This is used acro
 
 ## Basic usage
 
-- `config.get()`
-- `config.set()`
-- `config.remove()`
-- `config.log()`
+The primary purpose of `core/config` is to provide a straightforward API for managing global configuration options. You can set, get, remove, and log configuration values that affect all components.
+
+### config.set()
+
+Mixin to set or update configuration options. Accepts a key and value, or a map of key/value pairs. Can also update nested values by passing a map as the value.
+
+<CodeExample lang="scss">
+  ```scss
+  // Set a single option
+  @include config.set("default-theme", "dark");
+
+  // Set multiple options at once
+  @include config.set((
+    "prefix-variables": "custom-",
+    "default-theme": "light"
+  ));
+
+  // Set nested options
+  @include config.set("prefix", (
+    "variables": "custom-",
+    "themes": "custom-theme-"
+  ));
+  ```
+</CodeExample>
+
+### config.get()
+
+Function to retrieve the value of a configuration option from the internal options map. Accepts a key or a list of keys to access nested values.
+
+<CodeExample lang="scss">
+  ```scss
+  // Get the value for the default theme
+  $theme: config.get("default-theme");
+
+  // Get the prefix for variables
+  $prefix: config.get("prefix-variables");
+  ```
+</CodeExample>
+
+### config.remove()
+
+Mixin to remove an option from the configuration map. Accepts a key or a list of keys to remove nested values.
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove the default theme option
+  @include config.remove("default-theme");
+  ```
+</CodeExample>
+
+### config.log()
+
+Mixin to log the entire configuration map to the console for debugging purposes.
+
+<CodeExample lang="scss">
+  ```scss
+  @include config.log();
+
+  // Debug output:
+  // Config options map: (
+  //   "prefix-variables": vb-,
+  //   "prefix-themes": vb-theme-,
+  //   "prefix-blocks": ,
+  //   "prefix-elements": __,
+  //   "prefix-modifiers": _,
+  //   "prefix-modifier-values": _,
+  //   "prefix-utility": ,
+  //   "default-theme": light,
+  // )
+  ```
+</CodeExample>
