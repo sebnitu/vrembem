@@ -15,7 +15,7 @@ export const components = { pre: Pre }
   <h1 class="h1">core/theme</h1>
 </div>
 
-Themes are how and where the design system's palette are applied. It also manages a projects light and dark mode color values.
+This module manages theme-specific custom properties for components, allowing you to define, modify, and output light, dark, or custom themes.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,10 +25,73 @@ Themes are how and where the design system's palette are applied. It also manage
 
 ## Basic usage
 
+The most common use-case for themes is providing a light and dark mode but also any custom theme can be created and used. This module provides mixins for setting, removing, and rendering theme values, supporting dynamic theming and system color scheme preferences.
+
 ### theme.set()
+
+Mixin to set or modify theme-specific custom properties for a module and theme. Accepts a module name, theme name, property name (or map of properties), and value. If no property or value is provided, creates an empty theme that inherits from the default theme when output.
+
+<CodeExample lang="scss">
+  ```scss
+  // Set the foreground property for the card dark theme
+  @include theme.set("card", "dark", "foreground", blue);
+
+  // Set multiple properties for the card light theme
+  @include theme.set("card", "light", (
+    "background": blue,
+    "foreground": white,
+  ));
+
+  // Create an empty theme for card dark
+  @include theme.set("card", "dark");
+  ```
+</CodeExample>
 
 ### theme.remove()
 
+Mixin to remove theme properties in a variety of ways. Accepts a module name, theme name, and property name. Supports removing a theme from a module, a property from all themes, or all themes from all modules.
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove the dark theme from the button module
+  @include theme.remove("button", "dark");
+
+  // Remove the border-color property from all button themes
+  @include theme.remove("button", "*", "border-color");
+
+  // Remove the background property from the button light theme
+  @include theme.remove("button", "light", "background");
+
+  // Remove all themes from all modules
+  @include theme.remove("*", "*");
+  ```
+</CodeExample>
+
 ### theme.output-theme()
 
+Mixin to output all custom properties and values for a specific module theme, or for a theme across all modules. Does not include the root selector or theme class in the output. Merges default theme values with custom themes and outputs the color scheme property if present.
+
+<CodeExample lang="scss">
+  ```scss
+  // Output the custom properties for the button light theme
+  .vb-theme-light {
+    @include theme.output-theme("button", "light");
+  }
+
+  // Output the custom properties for the light theme from all modules
+  .vb-theme-light {
+    @include theme.output-theme("*", "light");
+  }
+  ```
+</CodeExample>
+
 ### theme.output()
+
+Mixin to output all themes for a specific module, or for all modules. Each theme is wrapped in its own root selector and theme class. Themes named "light" or "dark" will have a `prefers-color-scheme` media query applied for system color scheme support.
+
+<CodeExample lang="scss">
+  ```scss
+  // Output all themes for the notice module
+  @include theme.output("notice");
+  ```
+</CodeExample>
