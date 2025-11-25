@@ -1,7 +1,7 @@
 ---
 layout: ../../../layouts/Page.astro
 title: CSS
-description: "A core Sass module for managing design tokens."
+description: "A core Sass module for managing global and component custom properties."
 collection: packages
 ---
 
@@ -12,10 +12,10 @@ export const components = { pre: Pre }
 
 <div>
   <a href="../core#sass-modules" class="badge">&larr; Core</a>
-  <h1 class="h1">core.css</h1>
+  <h1 class="h1">core/css</h1>
 </div>
 
-A core Sass module for managing global and component design tokens. This is done by creating CSS custom properties that can be referenced and output to the stylesheet.
+A core Sass module for managing global and component custom properties. This is done by creating CSS custom properties that can be referenced and output to the stylesheet.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,7 +25,11 @@ A core Sass module for managing global and component design tokens. This is done
 
 ## Basic usage
 
-Once imported, create your first namespaced custom properties using the `set` mixin.
+For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties either globally or on a per component basis.
+
+### css.set()
+
+Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored module map by passing `"*"` value to `$module` or `$prop` respectively.
 
 <CodeExample lang="scss">
   ```scss
@@ -36,7 +40,9 @@ Once imported, create your first namespaced custom properties using the `set` mi
   ```
 </CodeExample>
 
-Stored CSS custom properties can then be used in your component styles by calling the `get` function along with the component name and property you'd like to reference.
+### css.get()
+
+Function to return a custom property reference that has been stored in the custom properties map using set(). Can also return the entire custom properties map or one of the stored module maps.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -57,7 +63,9 @@ Stored CSS custom properties can then be used in your component styles by callin
   </Fragment>
 </CodeExample>
 
-Output your custom property definitions by running the `output` mixin in a `:root` selector block.
+### css.output()
+
+Output all the stored custom properties of a provided module or of all modules. Provided module must exist in the custom properties map.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -77,7 +85,9 @@ Output your custom property definitions by running the `output` mixin in a `:roo
   </Fragment>
 </CodeExample>
 
-When writing modifiers for your components, it's common to practice to customize them by overriding existing custom property values. This can be done using the `override` mixin.
+### css.override()
+
+Mixin to override a previously defined custom property. This is primarily used in the context of a modifier. Provided module must exist in the custom properties map.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -100,7 +110,13 @@ When writing modifiers for your components, it's common to practice to customize
   </Fragment>
 </CodeExample>
 
-It's possible to `get` a CSS variable when it hasn't been `set` as long as a fallback value is provided. If there are no values set for a specific component, that component's namespace must be registered before it can be referenced.
+## Advanced usage
+
+For more advanced use-cases, `core/css` provides a more primitive API for more fine grained custom property management.
+
+### css.register()
+
+Register a module in the variables map. This is used when a module is needed to be available for later use but without setting any custom properties.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -123,12 +139,67 @@ It's possible to `get` a CSS variable when it hasn't been `set` as long as a fal
   </Fragment>
 </CodeExample>
 
-## Advanced Usage
+### css.define()
 
-There are some additional tools available for more advanced usage of custom properties. These include
+Mixin to define a custom property using the provided property name and value. Automatically applies with prefix and module name if provided. This is used internally by `css.output` and `css.override`.
 
-- `css.has()`
-- `css.define()`
-- `css.reference()`
-- `css.remove()`
-- `css.log()`
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      @include css.define("block", "accent", orange);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      --vb-block-accent: orange;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+### css.reference()
+
+Function to create reference to a custom property using the provided module name, property and optional fallback. Automatically applies the necessary custom property prefix and module name.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      background: css.reference("block", "accent", orange);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      background: var(--vb-block-accent, orange);
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+### css.has()
+
+Function used to check if a custom property has been set.
+
+<CodeExample lang="scss">
+  <Fragment>
+    ```scss
+    @include css.set("block", "background", darkGreen);
+
+    @debug css.has("block", "background"); // Returns true
+    @debug css.has("block", "border"); // Returns false
+    ```
+  </Fragment>
+</CodeExample>
+
+### css.remove()
+
+Mixin used to remove a previously set custom property.
+
+### css.log()
+
+Log to console either all set custom properties, a module map or module theme. Provided module must exist in the stored custom properties map.
