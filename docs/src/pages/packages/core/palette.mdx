@@ -1,0 +1,31 @@
+---
+layout: ../../../layouts/Page.astro
+title: Palette
+description: "A core Sass module for managing color palette design tokens."
+collection: packages
+---
+
+import CodeExample from '../../../components/CodeExample.astro';
+import Pre from "../../../components/Pre.astro";
+
+export const components = { pre: Pre }
+
+<div>
+  <a href="../core#sass-modules" class="badge">&larr; Core</a>
+  <h1 class="h1">core.palette</h1>
+</div>
+
+Defines the design system's color palette. This takes in a map of key and color seed values and builds a variety of usable color values for your project.
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/palette";
+  ```
+</CodeExample>
+
+## Basic usage
+
+- `palette.build()`
+- `palette.get()`
+- `palette.set()`
+- `palette.remove()`
