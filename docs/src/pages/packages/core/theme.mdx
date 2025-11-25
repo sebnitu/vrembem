@@ -1,0 +1,31 @@
+---
+layout: ../../../layouts/Page.astro
+title: Theme
+description: "A core Sass module for managing theme based design tokens."
+collection: packages
+---
+
+import CodeExample from '../../../components/CodeExample.astro';
+import Pre from "../../../components/Pre.astro";
+
+export const components = { pre: Pre }
+
+<div>
+  <a href="../core#sass-modules" class="badge">&larr; Core</a>
+  <h1 class="h1">core.theme</h1>
+</div>
+
+Themes are how and where the design system's palette are applied. It also manages a projects light and dark mode color values.
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/palette";
+  ```
+</CodeExample>
+
+## Basic usage
+
+- `theme.set()`
+- `theme.remove()`
+- `theme.output-theme()`
+- `theme.output()`

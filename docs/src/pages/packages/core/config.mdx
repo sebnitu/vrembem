@@ -1,0 +1,31 @@
+---
+layout: ../../../layouts/Page.astro
+title: Config
+description: "A core Sass module for managing global configuration options."
+collection: packages
+---
+
+import CodeExample from '../../../components/CodeExample.astro';
+import Pre from "../../../components/Pre.astro";
+
+export const components = { pre: Pre }
+
+<div>
+  <a href="../core#sass-modules" class="badge">&larr; Core</a>
+  <h1 class="h1">core.config</h1>
+</div>
+
+This module is used to setup the global configuration options. This is used across all components to set things like prefixes, BEM naming syntax and default themes.
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/config";
+  ```
+</CodeExample>
+
+## Basic usage
+
+- `config.get()`
+- `config.set()`
+- `config.remove()`
+- `config.log()`
