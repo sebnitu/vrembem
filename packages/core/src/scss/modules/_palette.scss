@@ -55,8 +55,7 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
   }
 }
 
-/// Function to return a palette color. If called with no color name, the entire
-/// palette map is returned.
+/// Function to return a palette color.
 ///
 /// @param {string} $name (null)
 ///   The color name to return a value for.
@@ -69,14 +68,9 @@ $lightness-range: 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100 
 /// @return {Color}
 ///   Return format depends on the requested value.
 ///
-@function get($name: null, $query: $lightness-default, $alpha: null) {
-  // Return the palette map if no name is provided
-  @if not($name) {
-    @return css.get("palette", "*");
-  }
-
-  // If name is passed as "seeds", return the seed value
-  @else if $name == "seeds" {
+@function get($name, $query: $lightness-default, $alpha: null) {
+  // If name is passed as "seeds", return the $-seeds map
+  @if $name == "seeds" {
     @return $-seeds;
   }
 
