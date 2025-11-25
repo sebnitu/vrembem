@@ -17,6 +17,6 @@
 }
 
 a.badge:hover {
-  color: palette.get("primary", 30);
   background-color: palette.get("primary", 90);
+  color: palette.get("primary", 30);
 }
