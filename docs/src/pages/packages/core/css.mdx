@@ -33,9 +33,22 @@ Mixin to store custom properties for later definition and reference. Can also up
 
 <CodeExample lang="scss">
   ```scss
+  // Set a single option
+  @include css.set("block", "accent", teal);
+
+  // Set multiple options at once
   @include css.set("block", (
-    "background": blue,
-    "foreground": green
+    "background": darkGreen,
+    "foreground": lightPink
+  ));
+
+  // Set nested options
+  @include css.set("block", (
+    "focus-ring", (
+      "width": 2px,
+      "style": solid,
+      "offset": 1px
+    )
   ));
   ```
 </CodeExample>
@@ -65,7 +78,7 @@ Function to return a custom property reference that has been stored in the custo
 
 ### css.output()
 
-Output all the stored custom properties of a provided module or of all modules. Provided module must exist in the custom properties map.
+Output all the stored custom properties of a provided module or of all modules. Provided module must be registered in the custom properties map.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -87,7 +100,7 @@ Output all the stored custom properties of a provided module or of all modules. 
 
 ### css.override()
 
-Mixin to override a previously defined custom property. This is primarily used in the context of a modifier. Provided module must exist in the custom properties map.
+Mixin to override a previously defined custom property. This is primarily used in the context of a modifier. Provided module must be registered in the custom properties map.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -186,20 +199,37 @@ Function to create reference to a custom property using the provided module name
 Function used to check if a custom property has been set.
 
 <CodeExample lang="scss">
-  <Fragment>
-    ```scss
-    @include css.set("block", "background", darkGreen);
+  ```scss
+  @include css.set("block", "background", darkGreen);
 
-    @debug css.has("block", "background"); // Returns true
-    @debug css.has("block", "border"); // Returns false
-    ```
-  </Fragment>
+  @debug css.has("block", "background"); // Returns true
+  @debug css.has("block", "border"); // Returns false
+  ```
 </CodeExample>
 
 ### css.remove()
 
 Mixin used to remove a previously set custom property.
 
+<CodeExample lang="scss">
+  ```scss
+  // Remove the "background" property from the "block" component.
+  @include css.remove("block", "background");
+  ```
+</CodeExample>
+
 ### css.log()
 
-Log to console either all set custom properties, a module map or module theme. Provided module must exist in the stored custom properties map.
+Log to console either all set custom properties, a module map or module theme. Provided module must be registered in the custom properties map.
+
+<CodeExample lang="scss">
+  ```scss
+  @include css.log("block");
+
+  // Debug output:
+  // Custom properties of "block": (
+  //   "background": blue,
+  //   "foreground": green,
+  // )
+  ```
+</CodeExample>
