@@ -15,7 +15,7 @@ export const components = { pre: Pre }
   <h1 class="h1">core/palette</h1>
 </div>
 
-Defines the design system's color palette. This takes in a map of key and color seed values and builds a variety of usable color values for your project.
+Defines the design system's color palette. Using a color seed map of key and color pairs, it builds a variety of color palette custom properties under the `palette` namespace.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,7 +25,69 @@ Defines the design system's color palette. This takes in a map of key and color 
 
 ## Basic usage
 
-- `palette.build()`
-- `palette.get()`
-- `palette.set()`
-- `palette.remove()`
+This module is an extension to `core/css` by creating color palette custom properties map under the `palette` namespace. This is done using a seeds map that contains name and color pairs, a range list with lightness values to create and the default lightness value to use.
+
+### palette.set()
+
+Mixin to add or update colors in the palette. Accepts a single key/value pair or a map of multiple color seeds. Automatically rebuilds the palette and updates all related custom properties.
+
+<CodeExample lang="scss">
+  ```scss
+  // Set a single color seed
+  @include palette.set("primary", hsl(152deg 60% 50%));
+
+  // Set multiple color seeds at once
+  @include palette.set((
+    "secondary": hsl(214deg 50% 50%),
+    "neutral": hsl(214deg 20% 50%)
+  ));
+  ```
+</CodeExample>
+
+### palette.get()
+
+Function to retrieve a color from the palette. You can get a color by name, specify a lightness value, request the original seed, or return the entire palette map.
+
+<CodeExample lang="scss">
+  ```scss
+  // Get the default value for a color
+  @debug palette.get("primary");
+  // Debug: var(--vb-primary-50)
+
+  // Get a color at a specific lightness
+  @debug palette.get("primary", 80);
+  // Debug: var(--vb-primary-80)
+
+  // Get a color at a specific lightness and alpha channel
+  @debug palette.get("primary", 80, 20%);
+  // Debug: hsl(var(--vb-primary-hs) 80 / 20%)
+  ```
+</CodeExample>
+
+It's also possible to return the seeds map or a specific seed value directly.
+
+<CodeExample lang="scss">
+  ```scss
+  // Get the entire seeds map
+  @debug palette.get("seeds");
+  // Debug: ("primary": hsl(152, 60%, 50%), "secondary": hsl(214, 50%, 50%), "neutral": hsl(214, 20%, 50%), "important": hsl(0, 80%, 50%))
+
+  // Get the original seed value
+  @debug palette.get("primary", "seed");
+  // Debug: Debug: hsl(152, 60%, 50%)
+  ```
+</CodeExample>
+
+### palette.remove()
+
+Mixin to remove one or more colors from the palette. Accepts a single name or a list of names. Automatically rebuilds the palette after removal.
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove a single color
+  @include palette.remove("primary");
+
+  // Remove multiple colors
+  @include palette.remove("secondary", "neutral");
+  ```
+</CodeExample>
