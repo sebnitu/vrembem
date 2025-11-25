@@ -15,7 +15,7 @@ export const components = { pre: Pre }
   <h1 class="h1">core/palette</h1>
 </div>
 
-Defines the design system's color palette. Using a color seed map of key and color pairs, it builds a variety of color palette custom properties under the `palette` namespace.
+Defines the design system's color palette. Using a map of color seeds, it builds a variety of color palette custom properties under the `palette` namespace.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,11 +25,11 @@ Defines the design system's color palette. Using a color seed map of key and col
 
 ## Basic usage
 
-This module is an extension to `core/css` by creating color palette custom properties map under the `palette` namespace. This is done using a seeds map that contains name and color pairs, a range list with lightness values to create and the default lightness value to use.
+This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, a list of lightness values to generate variations, and a default lightness value.
 
 ### palette.set()
 
-Mixin to add or update colors in the palette. Accepts a single key/value pair or a map of multiple color seeds. Automatically rebuilds the palette and updates all related custom properties.
+Mixin to add or update colors in the palette. Accepts a single key/value pair or a map of multiple color seeds. After setting or updating colors, the palette is automatically rebuilt and all related custom property values are updated.
 
 <CodeExample lang="scss">
   ```scss
@@ -46,7 +46,7 @@ Mixin to add or update colors in the palette. Accepts a single key/value pair or
 
 ### palette.get()
 
-Function to retrieve a color from the palette. You can get a color by name, specify a lightness value, request the original seed, or return the entire palette map.
+Function to retrieve a color from the palette. You can get a color by name, specify a lightness value, and include an alpha channel.
 
 <CodeExample lang="scss">
   ```scss
@@ -74,13 +74,13 @@ It's also possible to return the seeds map or a specific seed value directly.
 
   // Get the original seed value
   @debug palette.get("primary", "seed");
-  // Debug: Debug: hsl(152, 60%, 50%)
+  // Debug: hsl(152, 60%, 50%)
   ```
 </CodeExample>
 
 ### palette.remove()
 
-Mixin to remove one or more colors from the palette. Accepts a single name or a list of names. Automatically rebuilds the palette after removal.
+Mixin to remove one or more colors from the palette. Accepts a single name or a list of names. After removing colors, the palette is automatically rebuilt to reflect the changes.
 
 <CodeExample lang="scss">
   ```scss
