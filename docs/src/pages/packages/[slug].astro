@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
@@ -16,14 +17,14 @@ interface Props {
 export async function getStaticPaths() {
   const packages = await getPackages();
   return packages.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { id: entry.id, slug: entry.id },
     props: { entry }
   }));
 }
 
 const entries = await getPackages();
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 
 const layout = {
   hasDrawer: true,
