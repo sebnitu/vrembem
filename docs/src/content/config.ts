@@ -15,5 +15,14 @@ const packages = defineCollection({
   })
 });
 
+const modules = defineCollection({
+  loader: glob({ base: "./src/content/packages", pattern: "*/*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    parent: z.string()
+  })
+});
+
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { packages };
+export const collections = { packages, modules };
