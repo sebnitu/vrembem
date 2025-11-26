@@ -1,7 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
+import { getModules } from "../../modules/getModules";
 import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
@@ -17,7 +18,7 @@ interface Props {
 
 export async function getStaticPaths() {
   const packages = await getPackages();
-  const modules = await getCollection("modules");
+  const modules = await getModules();
 
   const entries = [
     ...packages.map((entry) => ({
@@ -33,7 +34,9 @@ export async function getStaticPaths() {
   return entries;
 }
 
-const entries = await getPackages();
+const packages = await getPackages();
+const modules = await getModules();
+
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
@@ -45,7 +48,7 @@ const layout = {
 
 <Base title={entry.data.title} {layout}>
   <div slot="drawer">
-    <Navi {entries} collection="packages" />
+    <Navi entries={packages} collection="packages" />
   </div>
   <div slot="aside">
     <OnThisPage {headings} />
@@ -54,7 +57,8 @@ const layout = {
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
     <hr class="sep" />
-    <Pagi {entries} collection="packages" />
+    {entry.data.package && <Pagi entries={packages} />}
+    {entry.data.parent && <Pagi entries={modules} />}
   </div>
 </Base>
 
