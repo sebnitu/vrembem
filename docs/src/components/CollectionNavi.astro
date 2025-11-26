@@ -32,8 +32,8 @@ const cp = currentPage(Astro.url.pathname, {
       entries.map((entry) => (
         <li class="menu__item">
           <a
-            class={cp.classes(`/${collection}/${entry.slug}`)}
-            href={`/${collection}/${entry.slug}`}
+            class={cp.classes(`/${collection}/${entry.id}`)}
+            href={`/${collection}/${entry.id}`}
           >
             <span class="flex-grow">{entry.data.title}</span>
             {entry.data.status && (
