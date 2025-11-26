@@ -1,21 +1,22 @@
 ---
 layout: ../../../layouts/Page.astro
 title: CSS
-description: "A core Sass module for managing global and component custom properties."
+description: "Used to define, manage, and output global and component-level custom properties."
 collection: packages
 ---
 
 import CodeExample from '../../../components/CodeExample.astro';
 import Pre from "../../../components/Pre.astro";
+import Table from "../../../components/Table.astro";
 
-export const components = { pre: Pre }
+export const components = { pre: Pre, table: Table }
 
 <div>
   <a href="../core#sass-modules" class="badge">&larr; Core</a>
   <h1 class="h1">core/css</h1>
 </div>
 
-A core Sass module for managing global and component custom properties. This is done by creating CSS custom properties that can be referenced and output to the stylesheet.
+Used to define, manage, and output global and component-level custom properties.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,11 +26,55 @@ A core Sass module for managing global and component custom properties. This is 
 
 ## Basic usage
 
-For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties either globally or on a per component basis.
+For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
+
+### css.get()
+
+Function to return a custom property reference that has been stored in the custom properties map using `set()`. Can also return the entire custom properties map or one of the stored component maps.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to get the stored custom property from. |
+| `$props...` | string | The custom property name to return. Can be a list of props for returning `var()` with fallbacks. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      background: css.get("block", "background");
+      color: css.get("block", "foreground-hover", "foreground");
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      background: var(--vb-block-background);
+      color: var(--vb-block-foreground-hover, var(--vb-block-foreground));
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
 
 ### css.set()
 
-Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored module map by passing `"*"` value to `$module` or `$prop` respectively.
+Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to store the custom property under. |
+| `$prop` | string/map | The custom property name to store. Can be a map containing property and value pairs. |
+| `$value` | any | The custom property value to store. |
+| `$deep` | boolean | Whether or not to use `merge` or `deep-merge` when combining maps. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
@@ -41,44 +86,21 @@ Mixin to store custom properties for later definition and reference. Can also up
     "background": darkGreen,
     "foreground": lightPink
   ));
-
-  // Set nested options
-  @include css.set("block", (
-    "focus-ring", (
-      "width": 2px,
-      "style": solid,
-      "offset": 1px
-    )
-  ));
   ```
 </CodeExample>
 
-### css.get()
-
-Function to return a custom property reference that has been stored in the custom properties map using set(). Can also return the entire custom properties map or one of the stored module maps.
-
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
-    ```scss
-    .block {
-      background: css.get("block", "background");
-      color: css.get("block", "foreground");
-    }
-    ```
-  </Fragment>
-  <Fragment slot="tab-css">
-    ```css
-    .block {
-      background: var(--vb-block-background);
-      color: var(--vb-block-foreground);
-    }
-    ```
-  </Fragment>
-</CodeExample>
 
 ### css.output()
 
-Output all the stored custom properties of a provided module or of all modules. Provided module must be registered in the custom properties map.
+Output all custom properties of a provided component. Or output all custom properties from all components by passing `"*"` as the argument.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to output all custom properties from. |
+
+#### Example
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -98,9 +120,20 @@ Output all the stored custom properties of a provided module or of all modules. 
   </Fragment>
 </CodeExample>
 
+
 ### css.override()
 
-Mixin to override a previously defined custom property. This is primarily used in the context of a modifier. Provided module must be registered in the custom properties map.
+Mixin to override previously defined custom properties. This is primarily used in the context of a modifier. Provided component must be registered in the custom properties map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to override. |
+| `$prop` | string/map | The custom property name to override. Can be a map containing property and value pairs. |
+| `$value` | any | The property value to override with. |
+
+#### Example
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -123,13 +156,23 @@ Mixin to override a previously defined custom property. This is primarily used i
   </Fragment>
 </CodeExample>
 
+
 ## Advanced usage
 
-For more advanced use-cases, `core/css` provides a more primitive API for more fine grained custom property management.
+For more advanced use-cases, `core/css` provides a more primitive API for fine grained custom property management.
+
 
 ### css.register()
 
-Register a module in the variables map. This is used when a module is needed to be available for later use but without setting any custom properties.
+Register a component in the custom properties map. This is used when a component is needed to be available for later use but without setting any custom properties.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to register. |
+
+#### Example
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -152,9 +195,20 @@ Register a module in the variables map. This is used when a module is needed to 
   </Fragment>
 </CodeExample>
 
+
 ### css.define()
 
-Mixin to define a custom property using the provided property name and value. Automatically applies with prefix and module name if provided. This is used internally by `css.output` and `css.override`.
+Mixin to define a custom property using the provided property name and value. Automatically applies with prefix and component name if provided. This is used internally by `css.output` and `css.override`.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to use as part of the prefix. |
+| `$prop` | string | The custom property name to use in the definition. |
+| `$value` | any | The value of the custom property. |
+
+#### Example
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -173,9 +227,20 @@ Mixin to define a custom property using the provided property name and value. Au
   </Fragment>
 </CodeExample>
 
+
 ### css.reference()
 
-Function to create reference to a custom property using the provided module name, property and optional fallback. Automatically applies the necessary custom property prefix and module name.
+Function to create reference to a custom property using the provided component name, property and optional fallback. Automatically applies the necessary custom property prefix and component name.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to use as part of the prefix. |
+| `$prop` | string | The custom property name to use in the reference. |
+| `$fallback` | any | The fallback value to use in the `var()` declaration. |
+
+#### Example
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
@@ -194,9 +259,18 @@ Function to create reference to a custom property using the provided module name
   </Fragment>
 </CodeExample>
 
+
 ### css.has()
 
 Function used to check if a custom property has been set.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The keys to traverse in the custom properties map. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
@@ -207,9 +281,18 @@ Function used to check if a custom property has been set.
   ```
 </CodeExample>
 
+
 ### css.remove()
 
 Mixin used to remove a previously set custom property.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The list of keys to follow and remove from the custom properties map. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
@@ -218,9 +301,18 @@ Mixin used to remove a previously set custom property.
   ```
 </CodeExample>
 
+
 ### css.log()
 
-Log to console either all set custom properties, a module map or module theme. Provided module must be registered in the custom properties map.
+Log to console all custom properties, a component map or component theme. Provided component must be registered in the custom properties map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | A component within the custom properties map to log. Leaving as `null` will log the entire map. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss

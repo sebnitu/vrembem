@@ -1,21 +1,22 @@
 ---
 layout: ../../../layouts/Page.astro
 title: Palette
-description: "A core Sass module for managing color palette design tokens."
+description: "Used to define, manage, and output a color palette powered by custom properties."
 collection: packages
 ---
 
 import CodeExample from '../../../components/CodeExample.astro';
 import Pre from "../../../components/Pre.astro";
+import Table from "../../../components/Table.astro";
 
-export const components = { pre: Pre }
+export const components = { pre: Pre, table: Table }
 
 <div>
   <a href="../core#sass-modules" class="badge">&larr; Core</a>
   <h1 class="h1">core/palette</h1>
 </div>
 
-Defines the design system's color palette. Using a map of color seeds, it builds a variety of color palette custom properties under the `palette` namespace.
+Used to define, manage, and output a color palette powered by custom properties.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,69 +26,90 @@ Defines the design system's color palette. Using a map of color seeds, it builds
 
 ## Basic usage
 
-This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, a list of lightness values to generate variations, and a default lightness value.
-
-### palette.set()
-
-Mixin to add or update colors in the palette. Accepts a single key/value pair or a map of multiple color seeds. After setting or updating colors, the palette is automatically rebuilt and all related custom property values are updated.
-
-<CodeExample lang="scss">
-  ```scss
-  // Set a single color seed
-  @include palette.set("primary", hsl(152deg 60% 50%));
-
-  // Set multiple color seeds at once
-  @include palette.set((
-    "secondary": hsl(214deg 50% 50%),
-    "neutral": hsl(214deg 20% 50%)
-  ));
-  ```
-</CodeExample>
+This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, and a list of lightness values to generate custom properties.
 
 ### palette.get()
 
-Function to retrieve a color from the palette. You can get a color by name, specify a lightness value, and include an alpha channel.
+Returns a color value from the palette in various formats, based on the provided name, lightness, and optional alpha.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$name (null)` | string | The color name to return a value for. |
+| `$query (50)` | number/string | Specifies either a lightness value or `"seed"` to return the corresponding color value. |
+| `$alpha (null)` | number (alpha-value) | Optional alpha (opacity) value to apply to the returned color. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Get the default value for a color
-  @debug palette.get("primary");
-  // Debug: var(--vb-primary-50)
+  // Return the entire seeds map
+  $value: palette.get("seeds");
 
-  // Get a color at a specific lightness
-  @debug palette.get("primary", 80);
-  // Debug: var(--vb-primary-80)
+  // Return the seed of a stored color
+  $value: palette.get("primary", "seed");
 
-  // Get a color at a specific lightness and alpha channel
-  @debug palette.get("primary", 80, 20%);
-  // Debug: hsl(var(--vb-primary-hs) 80 / 20%)
+  // Return a color with the default lightness value
+  $value: palette.get("primary");
+  // Returns: var(--vb-primary-50)
+
+  // Return a color with a specified lightness value
+  $value: palette.get("primary", 20);
+  // Returns: var(--vb-primary-20)
+
+  // Return a color with a specified lightness value
+  $value: palette.get("primary", 23);
+  // Returns: hsl(var(--vb-primary-hs) 23)
+
+  // Return a color with a specified lightness and alpha value
+  $value: palette.get("primary", 20, 30%);
+  // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
   ```
 </CodeExample>
 
-It's also possible to return the seeds map or a specific seed value directly.
+### palette.set()
+
+Set a color to the seeds map. Can receive single entries of key/value color pairs or a map containing multiple key/value pairs.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$name` | string/map | A name to associate with the provided color, or a map containing key/value color pairs. |
+| `$value (null)` | color | The color to associate with the provided key. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Get the entire seeds map
-  @debug palette.get("seeds");
-  // Debug: ("primary": hsl(152, 60%, 50%), "secondary": hsl(214, 50%, 50%), "neutral": hsl(214, 20%, 50%), "important": hsl(0, 80%, 50%))
+  // Set a single color
+  @include palette.set("primary", blue);
 
-  // Get the original seed value
-  @debug palette.get("primary", "seed");
-  // Debug: hsl(152, 60%, 50%)
+  // Set multiple values using a map
+  @include palette.set((
+    "secondary": green,
+    "neutral": yellow
+  ));
   ```
 </CodeExample>
 
 ### palette.remove()
 
-Mixin to remove one or more colors from the palette. Accepts a single name or a list of names. After removing colors, the palette is automatically rebuilt to reflect the changes.
+Removes colors from the seeds map.
 
 <CodeExample lang="scss">
   ```scss
-  // Remove a single color
+  // Remove a single color from seeds map
   @include palette.remove("primary");
 
-  // Remove multiple colors
+  // Remove multiple colors from seeds map
   @include palette.remove("secondary", "neutral");
   ```
 </CodeExample>
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | A string or list of strings to remove. |

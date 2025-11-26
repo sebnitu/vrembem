@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "../variables" as var;
@@ -38,7 +39,7 @@
       color: palette.get($name) !important;
     }
 
-    @each $value in palette.$lightness-range {
+    @each $value in config.get("lightness-range") {
       #{fun.utility("foreground", $name, $value)} {
         color: palette.get($name, $value) !important;
       }

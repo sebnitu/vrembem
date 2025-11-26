@@ -1,21 +1,22 @@
 ---
 layout: ../../../layouts/Page.astro
 title: Config
-description: "A core Sass module for managing global configuration options."
+description: "Used to setup global configuration options. This is available across all components to set things like prefixes, BEM naming syntax and default themes."
 collection: packages
 ---
 
 import CodeExample from '../../../components/CodeExample.astro';
 import Pre from "../../../components/Pre.astro";
+import Table from "../../../components/Table.astro";
 
-export const components = { pre: Pre }
+export const components = { pre: Pre, table: Table }
 
 <div>
   <a href="../core#sass-modules" class="badge">&larr; Core</a>
   <h1 class="h1">core/config</h1>
 </div>
 
-A core Sass module for managing global configuration options. This is used across all components to set things like prefixes, BEM naming syntax and default themes.
+Used to setup global configuration options. This is available across all components to set things like prefixes, BEM naming syntax and default themes.
 
 <CodeExample lang="scss">
   ```scss
@@ -25,11 +26,42 @@ A core Sass module for managing global configuration options. This is used acros
 
 ## Basic usage
 
-The primary purpose of `core/config` is to provide a straightforward API for managing global configuration options. You can set, get, remove, and log configuration values that affect all components.
+The primary purpose of `core/config` is to provide a straightforward API for managing library wide configuration options. You can set, get, remove, and log configuration values that affect all components.
+
+### config.get()
+
+Returns the value of an option in the configuration map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | A key or list of keys to follow in the configuration map and return. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  @debug config.get("default-theme");
+  // Debug: light
+
+  @debug config.get("prefix-variables");
+  // Debug: vb-
+  ```
+</CodeExample>
 
 ### config.set()
 
-Mixin to set or update configuration options. Accepts a key and value, or a map of key/value pairs. Can also update nested values by passing a map as the value.
+Set an option in the configuration map in various ways.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$key` | string/map | The key in the map to set. Can be passed a map of key/value pairs. |
+| `$value` | any | The value to be stored. Can be passed a map of key/value pairs where key will be prefixed with the provided value keys. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
@@ -50,23 +82,17 @@ Mixin to set or update configuration options. Accepts a key and value, or a map 
   ```
 </CodeExample>
 
-### config.get()
-
-Function to retrieve the value of a configuration option from the internal options map. Accepts a key or a list of keys to access nested values.
-
-<CodeExample lang="scss">
-  ```scss
-  // Get the value for the default theme
-  $theme: config.get("default-theme");
-
-  // Get the prefix for variables
-  $prefix: config.get("prefix-variables");
-  ```
-</CodeExample>
-
 ### config.remove()
 
-Mixin to remove an option from the configuration map. Accepts a key or a list of keys to remove nested values.
+Remove an option from the configuration map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The list of keys to follow and remove from the configuration map. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
@@ -77,22 +103,12 @@ Mixin to remove an option from the configuration map. Accepts a key or a list of
 
 ### config.log()
 
-Mixin to log the entire configuration map to the console for debugging purposes.
+Log to console the entire configuration map.
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
   @include config.log();
-
-  // Debug output:
-  // Config options map: (
-  //   "prefix-variables": vb-,
-  //   "prefix-themes": vb-theme-,
-  //   "prefix-blocks": ,
-  //   "prefix-elements": __,
-  //   "prefix-modifiers": _,
-  //   "prefix-modifier-values": _,
-  //   "prefix-utility": ,
-  //   "default-theme": light,
-  // )
   ```
 </CodeExample>
