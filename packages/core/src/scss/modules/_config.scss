@@ -12,20 +12,19 @@ $-options: (
   "prefix-elements": "__",
   "prefix-modifiers": "_",
   "prefix-modifier-values": "_",
-  "prefix-utility": null,
-  "default-theme": "light"
+  "prefix-utility": null
 );
 
 /// Returns the value of an option in the configuration map.
 ///
 /// @param {string} $keys...
-///   A key or list of keys to follow in the `$-options` map and return.
+///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
   @return map.get($-options, $keys...);
 }
 
-/// Set an option in the configuration map.
+/// Set an option in the configuration map in various ways.
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
@@ -83,7 +82,7 @@ $-options: (
   $-options: map.deep-remove($-options, $keys...) !global;
 }
 
-/// Log to console the entire `$-options` configuration map.
+/// Log to console the entire configuration map.
 @mixin log() {
   @include debug-map($-options, "Config options map");
 }

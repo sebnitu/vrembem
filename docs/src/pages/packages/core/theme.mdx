@@ -1,25 +1,26 @@
 ---
 layout: ../../../layouts/Page.astro
 title: Theme
-description: "A core Sass module for managing theme based design tokens."
+description: "Used to define, manage, and output global and component-level themes powered by custom properties."
 collection: packages
 ---
 
 import CodeExample from '../../../components/CodeExample.astro';
 import Pre from "../../../components/Pre.astro";
+import Table from "../../../components/Table.astro";
 
-export const components = { pre: Pre }
+export const components = { pre: Pre, table: Table }
 
 <div>
   <a href="../core#sass-modules" class="badge">&larr; Core</a>
   <h1 class="h1">core/theme</h1>
 </div>
 
-This module manages theme-specific custom properties for components, allowing you to define, modify, and output light, dark, or custom themes.
+Used to define, manage, and output global and component-level themes powered by custom properties.
 
 <CodeExample lang="scss">
   ```scss
-  @use "@vrembem/core/palette";
+  @use "@vrembem/core/theme";
   ```
 </CodeExample>
 
@@ -29,56 +30,86 @@ The most common use-case for themes is providing a light and dark mode but also 
 
 ### theme.set()
 
-Mixin to set or modify theme-specific custom properties for a module and theme. Accepts a module name, theme name, property name (or map of properties), and value. If no property or value is provided, creates an empty theme that inherits from the default theme when output.
+Set a new or modify existing theme properties. These are stored as custom properties in the `core/css` module.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to set a property value for. |
+| `$theme` | string | The theme to set a property value for. |
+| `$prop (null)` | string/map | The property value to set for the theme. Can be a map containing prop/value pairs. |
+| `$value (null)` | any | The value to set for the respective property. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Set the foreground property for the card dark theme
+  // Set the foreground custom property for the card dark theme.
   @include theme.set("card", "dark", "foreground", blue);
 
-  // Set multiple properties for the card light theme
+  // Set the background and foreground custom properties for the card light theme using a map of property/value pairs.
   @include theme.set("card", "light", (
     "background": blue,
     "foreground": white,
   ));
 
-  // Create an empty theme for card dark
+  // Create an empty theme by not passing a property or value. This will take the properties of the default theme once output.
   @include theme.set("card", "dark");
   ```
 </CodeExample>
 
 ### theme.remove()
 
-Mixin to remove theme properties in a variety of ways. Accepts a module name, theme name, and property name. Supports removing a theme from a module, a property from all themes, or all themes from all modules.
+Remove a custom property from themes in a variety of ways.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to search under. Set to "*" for the following `$theme` and `$prop` arguments to apply to all component themes. |
+| `$theme` | string | The component theme to search under or remove. Set to "*" to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes. |
+| `$prop ("*")` | string | The property name to remove. Set to "*" to remove the entire theme from the specified component. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Remove the dark theme from the button module
+  // Remove the dark theme from buttons component
   @include theme.remove("button", "dark");
 
   // Remove the border-color property from all button themes
   @include theme.remove("button", "*", "border-color");
 
   // Remove the background property from the button light theme
-  @include theme.remove("button", "light", "background");
+  @include theme.remove("button", "light", "border-color");
 
-  // Remove all themes from all modules
+  // Remove all themes from all components
   @include theme.remove("*", "*");
   ```
 </CodeExample>
 
 ### theme.output-theme()
 
-Mixin to output all custom properties and values for a specific module theme, or for a theme across all modules. Does not include the root selector or theme class in the output. Merges default theme values with custom themes and outputs the color scheme property if present.
+Output all the custom properties and values of a component theme or output a specific theme from all components. The root selector or theme class is not included in the output.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component ("*")` | string | The component to output. Use "*" or "all" to output a theme from all components. |
+| `$theme ("light")` | string | The theme to output. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Output the custom properties for the button light theme
+  // Output the custom properties for the button light theme.
   .vb-theme-light {
     @include theme.output-theme("button", "light");
   }
 
-  // Output the custom properties for the light theme from all modules
+  // Output the custom properties for the light theme from all components.
   .vb-theme-light {
     @include theme.output-theme("*", "light");
   }
@@ -87,11 +118,22 @@ Mixin to output all custom properties and values for a specific module theme, or
 
 ### theme.output()
 
-Mixin to output all themes for a specific module, or for all modules. Each theme is wrapped in its own root selector and theme class. Themes named "light" or "dark" will have a `prefers-color-scheme` media query applied for system color scheme support.
+Output all the themes for a specific component. Each theme will be wrapped in its own appropriate root selector and theme class. Themes named "light" or "dark" will have a `prefers-color-scheme` media query applied.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component ("*")` | string | The component to output all applied themes. If no component is passed or set to "*" or "all", will output all applied themes for all components. |
+
+#### Example
 
 <CodeExample lang="scss">
   ```scss
-  // Output all themes for the notice module
+  // Output all themes of all components.
+  @include theme.output();
+
+  // Output all themes of the notice component.
   @include theme.output("notice");
   ```
 </CodeExample>
