@@ -1,12 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import Base from "../../layouts/Base.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
 import LinkEditPage from "../../components/LinkEditPage.astro";
+import CodeExample from "../../components/CodeExample.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
 
@@ -16,10 +17,20 @@ interface Props {
 
 export async function getStaticPaths() {
   const packages = await getPackages();
-  return packages.map((entry) => ({
-    params: { id: entry.id, slug: entry.id },
-    props: { entry }
-  }));
+  const modules = await getCollection("modules");
+
+  const entries = [
+    ...packages.map((entry) => ({
+      params: { id: entry.id, slug: entry.id },
+      props: { entry }
+    })),
+    ...modules.map((entry) => ({
+      params: { id: entry.id, slug: entry.id },
+      props: { entry }
+    }))
+  ];
+
+  return entries;
 }
 
 const entries = await getPackages();
@@ -39,7 +50,7 @@ const layout = {
   <div slot="aside">
     <OnThisPage {headings} />
   </div>
-  <Content components={{ pre: Pre, table: Table }} />
+  <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
     <hr class="sep" />
