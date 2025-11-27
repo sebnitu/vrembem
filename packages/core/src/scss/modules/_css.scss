@@ -7,6 +7,10 @@
 @use "../utilities/reverse" as *;
 @use "./config";
 
+/// Set value to prefix all custom properties with.
+/// @type string
+@include config.set-default("prefix-variable", "vb-");
+
 /// The custom properties map where all custom properties are stored. These are
 /// stored under component keys with maps of their custom property.
 /// @type map
