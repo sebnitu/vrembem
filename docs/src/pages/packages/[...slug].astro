@@ -57,17 +57,19 @@ const layout = {
   {
     entry.data.parent && (
       <div>
-        <a href={`../${entry.data.parent}`} class="badge">
-          &larr; {entry.data.parent}
-        </a>
-        {entry.data.group && (
-          <a
-            href={`../${entry.data.parent}#${entry.data.group}`}
-            class="badge"
-          >
-            {entry.data.group}
+        <div class="flex gap-sm">
+          <a href={`../${entry.data.parent}`} class="badge">
+            &larr; {entry.data.parent}
           </a>
-        )}
+          {entry.data.group && (
+            <a
+              href={`../${entry.data.parent}#${entry.data.group}`}
+              class="badge"
+            >
+              {entry.data.group}
+            </a>
+          )}
+        </div>
         <h1 class="h1">{entry.data.title}</h1>
       </div>
       <p>{entry.data.description}</p>
