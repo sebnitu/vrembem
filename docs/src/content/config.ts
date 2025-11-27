@@ -20,7 +20,8 @@ const modules = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    parent: z.string()
+    parent: z.string(),
+    group: z.string().optional()
   })
 });
 

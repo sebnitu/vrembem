@@ -10,8 +10,11 @@ function moduleOrder(a, b) {
   return 0;
 }
 
-export async function getModules() {
-  const entries = await getCollection("modules");
+export async function getModules(group) {
+  let entries = await getCollection("modules");
+  if (group) {
+    entries = entries.filter((entry) => entry.data.group === group);
+  }
   entries.reverse().sort(moduleOrder);
   return entries;
 }

@@ -34,11 +34,11 @@ export async function getStaticPaths() {
   return entries;
 }
 
-const packages = await getPackages();
-const modules = await getModules();
-
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+const packages = await getPackages();
+const modules = await getModules(entry.data.group);
 
 const layout = {
   hasDrawer: true,
@@ -53,6 +53,27 @@ const layout = {
   <div slot="aside">
     <OnThisPage {headings} />
   </div>
+
+  {
+    entry.data.parent && (
+      <div>
+        <a href={`../${entry.data.parent}`} class="badge">
+          &larr; {entry.data.parent}
+        </a>
+        {entry.data.group && (
+          <a
+            href={`../${entry.data.parent}#${entry.data.group}`}
+            class="badge"
+          >
+            {entry.data.group}
+          </a>
+        )}
+        <h1 class="h1">{entry.data.title}</h1>
+      </div>
+      <p>{entry.data.description}</p>
+    )
+  }
+
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
