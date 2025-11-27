@@ -21,18 +21,18 @@
 ///   A valid BEM CSS selector using the provided parameters.
 ///
 @function bem($b, $e: null, $m: null, $v: null, $bp: null) {
-  $class: '#{config.get("prefix-blocks")}#{$b}';
+  $class: '#{config.get("prefix-block")}#{$b}';
 
   @if $e {
-    $class: '#{$class}#{config.get("prefix-elements")}#{$e}';
+    $class: '#{$class}#{config.get("prefix-element")}#{$e}';
   }
 
   @if $m {
-    $class: '#{$class}#{config.get("prefix-modifiers")}#{$m}';
+    $class: '#{$class}#{config.get("prefix-modifier")}#{$m}';
   }
 
   @if $v {
-    $class: '#{$class}#{config.get("prefix-modifier-values")}#{$v}';
+    $class: '#{$class}#{config.get("prefix-modifier-value")}#{$v}';
   }
 
   @if $bp {

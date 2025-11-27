@@ -15,22 +15,101 @@ group: sass-modules
 
 The primary purpose of `core/config` is to provide a straightforward API for managing library wide configuration options. You can set, get, remove, and log configuration values that affect all components.
 
-Configuration options are stored in a flat map of key/value pairs.
+Configuration options are stored in a flat map of key/value pairs. These can be changed using the `config.set` mixin or new configurations can be set as needed. The values that are predefined by core modules are used internally by the entire Vrembem library.
 
 <CodeExample lang="scss">
   ```scss
   $-config: (
-    "prefix-variables": "vb-",
-    "prefix-blocks": null,
-    "prefix-elements": "__",
-    "prefix-modifiers": "_",
-    "prefix-modifier-values": "_",
+    "prefix-variable": "vb-",
+    "prefix-block": null,
+    "prefix-element": "__",
+    "prefix-modifier": "_",
+    "prefix-modifier-value": "_",
     "prefix-utility": null,
     "palette-default": 50,
     "palette-range": 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100,
     "theme-prefix": "vb-theme-",
     "theme-default": "light",
   );
+  ```
+</CodeExample>
+
+Values from the configuration map can be used by first importing the configuration module and then calling the `config.get` function with the key of the configuration value to return.
+
+<CodeExample lang="scss" tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    @use "@vrembem/core/config";
+
+    .box {
+      background: #ddd;
+      color: #333;
+    }
+
+    .#{config.get("theme-prefix")}high-contrast {
+      .box {
+        background: #fff;
+        color: #000;
+      }
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .box {
+      background: #ddd;
+      color: #333;
+    }
+
+    .vb-theme-high-contrast .box {
+      background: #fff;
+      color: #000;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+### Prefixes
+
+Vrembem utilises the BEM naming convention but also allows the ability to adjust the specific syntax using the config module. If you prefer a modifier prefix of `"--"` instead of the default `"_"`, you could do that using `config.set`:
+
+<CodeExample lang="scss">
+  ```scss
+  // Inside a _setup.scss file
+  // Import our configuration module
+  @use "@vrembem/core/config";
+
+  // Override the default prefix modifier configuration
+  @include config.set("prefix-modifier", "--");
+  ```
+</CodeExample>
+
+Now all subsequent important Vrembem components would use the `"--"` modifier prefix:
+
+<CodeExample lang="scss">
+  ```scss
+  // The default block modifier prefix uses "_"
+  .button_block {
+    // ...
+  }
+
+  // If we change the block modifier prefix to "--"
+  .button--block {
+    // ...
+  }
+  ```
+</CodeExample>
+
+It's important to keep in mind that all changes to the global config should be done in a setup file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
+
+<CodeExample lang="scss">
+  ```scss
+  // Inside an app.scss manifest file
+  // This is where me make all our configuration changes
+  @use "_setup.scss";
+
+  // Import the entire Vrembem library
+  @use "vrembem";
   ```
 </CodeExample>
 
@@ -52,10 +131,10 @@ Returns the value of an option in the configuration map.
 
 <CodeExample lang="scss">
   ```scss
-  @debug config.get("default-theme");
+  @debug config.get("theme-default");
   // Debug: light
 
-  @debug config.get("prefix-variables");
+  @debug config.get("prefix-variable");
   // Debug: vb-
   ```
 </CodeExample>
@@ -80,7 +159,7 @@ Set an option in the configuration map in various ways.
 
   // Set multiple options at once
   @include config.set((
-    "prefix-variables": "custom-",
+    "prefix-variable": "custom-",
     "default-theme": "light"
   ));
 
