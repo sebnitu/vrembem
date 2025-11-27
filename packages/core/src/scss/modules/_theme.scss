@@ -10,11 +10,11 @@
 
 /// Set value to prefix all themes with.
 /// @type string
-@include config.set("theme-prefix", "vb-theme-");
+@include config.set-default("theme-prefix", "vb-theme-");
 
 /// Set the default theme option.
 /// @type string
-@include config.set("theme-default", "light");
+@include config.set-default("theme-default", "light");
 
 // Add to custom properties map for output as a config output
 @include css.set(
