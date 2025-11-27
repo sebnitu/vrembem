@@ -5,9 +5,8 @@
 /// Stores all library wide configuration options.
 /// @type map
 /// @access private
-$-options: (
+$-config: (
   "prefix-variables": "vb-",
-  "prefix-themes": "vb-theme-",
   "prefix-blocks": null,
   "prefix-elements": "__",
   "prefix-modifiers": "_",
@@ -21,7 +20,7 @@ $-options: (
 ///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
-  @return map.get($-options, $keys...);
+  @return map.get($-config, $keys...);
 }
 
 /// Set an option in the configuration map in various ways.
@@ -39,7 +38,7 @@ $-options: (
 ///
 @mixin set($key, $value: null) {
   // Initialize the options map to our result
-  $result: $-options;
+  $result: $-config;
 
   @if meta.type-of($key) == "map" {
     @each $keyKey, $keyValue in $key {
@@ -70,7 +69,7 @@ $-options: (
   }
 
   // Save our updated map
-  $-options: $result !global;
+  $-config: $result !global;
 }
 
 /// Remove an option from the configuration map.
@@ -79,10 +78,10 @@ $-options: (
 ///   The list of keys to follow and remove from the configuration map.
 ///
 @mixin remove($keys...) {
-  $-options: map.deep-remove($-options, $keys...) !global;
+  $-config: map.deep-remove($-config, $keys...) !global;
 }
 
 /// Log to console the entire configuration map.
 @mixin log() {
-  @include debug-map($-options, "Config options map");
+  @include debug-map($-config, "Config options map");
 }

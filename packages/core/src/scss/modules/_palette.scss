@@ -7,11 +7,11 @@
 
 /// The default color lightness to use when referencing a color.
 /// @type number
-@include config.set("lightness-default", 50);
+@include config.set("palette-default", 50);
 
 /// The range of lightness values to build for each color in the palette.
 /// @type list
-@include config.set("lightness-range", (0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100));
+@include config.set("palette-range", (0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100));
 
 /// The map of colors used to build the palette.
 /// @type map
@@ -23,19 +23,19 @@ $-seeds: (
   "important": hsl(0deg 80% 50%)
 );
 
-/// Builds a palette map using values set in `$-seeds` and `$lightness-range`.
+/// Builds a palette map using values set in `$-seeds` and `$palette-range`.
 /// Is run automatically whenever seeds map is modified.
 ///
 /// @param {map} $seeds ($-seeds)
 ///   The seeds to generate a palette map from.
-/// @param {list} $range (config.get("lightness-range"))
+/// @param {list} $range (config.get("palette-range"))
 ///   A list of lightness values to generate the palette map from.
-/// @param {number} $default (config.get("lightness-default"))
+/// @param {number} $default (config.get("palette-default"))
 ///   The default lightness value. Used to generate the shorthand property.
 ///
 /// @access private
 ///
-@mixin -build($seeds: $-seeds, $range: config.get("lightness-range"), $default: config.get("lightness-default")) {
+@mixin -build($seeds: $-seeds, $range: config.get("palette-range"), $default: config.get("palette-default")) {
   // Remove the palette component before building
   @include css.remove("palette");
 
@@ -58,7 +58,7 @@ $-seeds: (
 ///
 /// @param {string} $name
 ///   The color name to return a value for.
-/// @param {number|string} $query (config.get("lightness-default"))
+/// @param {number|string} $query (config.get("palette-default"))
 ///   Specifies either a lightness value or "seed" to return the corresponding
 ///   color value.
 /// @param {number (alpha-value)} $alpha (null)
@@ -95,7 +95,7 @@ $-seeds: (
 ///   $value: palette.get("primary", 20, 30%);
 ///   // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
 ///
-@function get($name, $query: config.get("lightness-default"), $alpha: null) {
+@function get($name, $query: config.get("palette-default"), $alpha: null) {
   // If name is passed as "seeds", return the $-seeds map
   @if $name == "seeds" {
     @return $-seeds;

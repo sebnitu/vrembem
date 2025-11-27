@@ -16,21 +16,21 @@
   transition-timing-function: ease;
 }
 
-.#{config.get("prefix-themes")}root {
+.#{config.get("theme-prefix")}root {
   .theme-icon_root {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.#{config.get("prefix-themes")}light {
+.#{config.get("theme-prefix")}light {
   .theme-icon_light {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.#{config.get("prefix-themes")}dark {
+.#{config.get("theme-prefix")}dark {
   .theme-icon_dark {
     opacity: 1;
     transform: translateY(0);

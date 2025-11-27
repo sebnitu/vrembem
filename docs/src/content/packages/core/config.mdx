@@ -15,6 +15,29 @@ group: sass-modules
 
 The primary purpose of `core/config` is to provide a straightforward API for managing library wide configuration options. You can set, get, remove, and log configuration values that affect all components.
 
+Configuration options are stored in a flat map of key/value pairs.
+
+<CodeExample lang="scss">
+  ```scss
+  $-config: (
+    "prefix-variables": "vb-",
+    "prefix-blocks": null,
+    "prefix-elements": "__",
+    "prefix-modifiers": "_",
+    "prefix-modifier-values": "_",
+    "prefix-utility": null,
+    "palette-default": 50,
+    "palette-range": 0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100,
+    "theme-prefix": "vb-theme-",
+    "theme-default": "light",
+  );
+  ```
+</CodeExample>
+
+## Reference
+
+This reference details the available configuration API, their arguments, and usage examples so you can customize and control global settings across all Vrembem components.
+
 ### config.get()
 
 Returns the value of an option in the configuration map.

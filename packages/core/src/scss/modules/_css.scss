@@ -13,8 +13,9 @@
 /// @access private
 $-custom-properties: (
   "core": (
-    "prefix": config.get("prefix-variables"),
-    "prefix-themes": config.get("prefix-themes")
+    "prefix": (
+      "config": "prefix-variables"
+    )
   )
 );
 
@@ -146,8 +147,15 @@ $-custom-properties: (
 ///   --vb-button-background: #fff;
 ///
 @mixin define($component, $prop, $value: null) {
-  @if $value and meta.type-of($value) != "map" {
-    #{-prefix($component)}#{$prop}: #{$value};
+  @if $value {
+    // If the value is not a map, output the custom property
+    @if meta.type-of($value) != "map" {
+      #{-prefix($component)}#{$prop}: #{$value};
+    }
+    // If the make has a key of config, get the value from config directly
+    @if meta.type-of($value) == "map" and map.has-key($value, "config") {
+      #{-prefix($component)}#{$prop}: config.get(map.get($value, "config"));
+    }
   }
 }
 
@@ -222,7 +230,7 @@ $-custom-properties: (
       $value: map.get($-custom-properties, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-custom-properties, $component, $prop) or map.has-key($-custom-properties, $component, config.get("default-theme"), $prop) {
+      @if map.has-key($-custom-properties, $component, $prop) or map.has-key($-custom-properties, $component, config.get("theme-default"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
@@ -351,7 +359,22 @@ $-custom-properties: (
   // Scenario: "prop", ("prop": "value")
   @else if meta.type-of($value) == "map" {
     @each $key, $value in $value {
-      $-custom-properties: map.set($-custom-properties, $component, "#{$prop}-#{$key}", $value) !global;
+      // If the map has the value of "config", store the entire map directly
+      @if ($component == "core" and $key == "config") {
+        $-custom-properties: map.set(
+          $-custom-properties,
+          $component,
+          $prop,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+
+      // Else, suffix the custom property with the key
+      @else {
+        $-custom-properties: map.set($-custom-properties, $component, "#{$prop}-#{$key}", $value) !global;
+      }
     }
   }
 
@@ -459,6 +482,10 @@ $-custom-properties: (
   } @else if -component-exists($component, false) {
     // Get the component's property map
     $property-map: map.get($-custom-properties, $component);
+
+    @if $component == "config" {
+      @debug $component;
+    }
 
     // Loop through the property map
     @each $prop, $value in $property-map {
