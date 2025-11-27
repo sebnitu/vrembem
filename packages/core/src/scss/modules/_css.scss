@@ -14,7 +14,7 @@
 $-custom-properties: (
   "core": (
     "prefix": (
-      "config": "prefix-variables"
+      "config": "prefix-variable"
     )
   )
 );
@@ -65,9 +65,9 @@ $-custom-properties: (
 ///
 @function -prefix($component) {
   @if $component and $component != "core" and $component != "palette" {
-    @return "--#{config.get("prefix-variables")}#{$component}-";
+    @return "--#{config.get("prefix-variable")}#{$component}-";
   } @else {
-    @return "--#{config.get("prefix-variables")}";
+    @return "--#{config.get("prefix-variable")}";
   }
 }
 
