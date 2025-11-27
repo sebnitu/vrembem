@@ -39,7 +39,7 @@
       color: palette.get($name) !important;
     }
 
-    @each $value in config.get("lightness-range") {
+    @each $value in config.get("palette-range") {
       #{fun.utility("foreground", $name, $value)} {
         color: palette.get($name, $value) !important;
       }

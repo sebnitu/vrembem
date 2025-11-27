@@ -15,7 +15,7 @@
   --astro-code-token-link: #ce3b4a;
 
   // Shiki dark theme
-  &.#{config.get("prefix-themes")}dark {
+  &.#{config.get("theme-prefix")}dark {
     --astro-code-color-text: #{css.get("foreground")};
     --astro-code-token-comment: #{css.get("foreground-lighter")};
     --astro-code-token-constant: #79b8ff;

@@ -32,7 +32,7 @@ interface ThemeStoreCallbacks {
 export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   // Setup the default settings object
   const settings = {
-    prefix: cssVar("prefix-themes", { fallback: "vb-theme-" }),
+    prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
     themes: ["root", "light", "dark"],
     storeKey: "VB:Profile"
   };
