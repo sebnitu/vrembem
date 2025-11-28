@@ -1,0 +1,26 @@
+---
+title: themeStore
+description: "A JavaScript utility that manages theme state for your application or website."
+parent: core
+group: theme-state
+slug: core/themeStore
+---
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+  ```
+</CodeExample>
+
+<CodeExample lang="js">
+  ```js
+  (function () {
+    // Make this script blocking to prevent flash of pre-themed content
+    const local = localStorage.getItem("VB:Profile");
+    const store = local ? JSON.parse(local) : {};
+    document.documentElement.classList.add(
+      `vb-theme-${store.theme || "root"}`
+    );
+  })();
+  ```
+</CodeExample>
