@@ -45,17 +45,15 @@ $-config: (
   @return map.get($-config, $keys...);
 }
 
-/// Set an option in the configuration map in various ways.
+/// Set an option in the configuration map by providing a key and value to
+/// store, or pass a map to store multiple key/value pairs.
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
 ///   - ("key": "value"), null
 ///   - ("key": ("key": "value")), null
 /// @param {any} $value (null)
-///   The value to be stored. Can be passed a map of key/value pairs where key
-///   will be suffixed with the provided map keys.
-///   - "key", "value"
-///   - "key", ("key": "value")
+///   The value to be stored.
 /// @param {boolean} $default (false)
 ///   Whether or not the value being set is a default value.
 ///
@@ -63,18 +61,8 @@ $-config: (
   $result: $-config;
 
   @if meta.type-of($key) == "map" {
-    @each $keyKey, $keyValue in $key {
-      @if meta.type-of($keyValue) == "map" {
-        @each $subKey, $subValue in $keyValue {
-          $result: -maybe-set($result, "#{$keyKey}-#{$subKey}", $subValue, $default);
-        }
-      } @else {
-        $result: -maybe-set($result, $keyKey, $keyValue, $default);
-      }
-    }
-  } @else if meta.type-of($value) == "map" {
-    @each $valueKey, $subValue in $value {
-      $result: -maybe-set($result, "#{$key}-#{$valueKey}", $subValue, $default);
+    @each $key, $value in $key {
+      $result: -maybe-set($result, $key, $value, $default);
     }
   } @else {
     $result: -maybe-set($result, $key, $value, $default);
@@ -91,10 +79,7 @@ $-config: (
 ///   - ("key": "value"), null
 ///   - ("key": ("key": "value")), null
 /// @param {any} $value (null)
-///   The value to be stored. Can be passed a map of key/value pairs where key
-///   will be suffixed with the provided map keys.
-///   - "key", "value"
-///   - "key", ("key": "value")
+///   The value to be stored.
 ///
 @mixin set-default($key, $value: null) {
   @include set($key, $value, $default: true);
