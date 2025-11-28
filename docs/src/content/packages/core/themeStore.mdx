@@ -14,13 +14,10 @@ slug: core/themeStore
 
 <CodeExample lang="js">
   ```js
-  (function () {
-    // Make this script blocking to prevent flash of pre-themed content
-    const local = localStorage.getItem("VB:Profile");
-    const store = local ? JSON.parse(local) : {};
-    document.documentElement.classList.add(
-      `vb-theme-${store.theme || "root"}`
-    );
-  })();
+  // Make this script blocking to prevent flash of pre-themed content
+  const local = localStorage.getItem("VB:Profile");
+  const store = local ? JSON.parse(local) : {};
+  const class = `vb-theme-${store.theme || "root"}`;
+  document.documentElement.classList.add(class);
   ```
 </CodeExample>
