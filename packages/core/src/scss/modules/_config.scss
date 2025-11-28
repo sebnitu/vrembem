@@ -53,10 +53,9 @@ $-config: (
 ///   - ("key": ("key": "value")), null
 /// @param {any} $value (null)
 ///   The value to be stored. Can be passed a map of key/value pairs where key
-///   will be prefixed with the provided value keys.
+///   will be suffixed with the provided map keys.
 ///   - "key", "value"
 ///   - "key", ("key": "value")
-///
 /// @param {boolean} $default (false)
 ///   Whether or not the value being set is a default value.
 ///
@@ -85,7 +84,7 @@ $-config: (
 }
 
 /// An alias mixin for `config.set()` that predefines the default argument to
-/// `true`. Running this will not override a previously existing value.
+/// `true`. Running this will not override a previously set value.
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
@@ -93,7 +92,7 @@ $-config: (
 ///   - ("key": ("key": "value")), null
 /// @param {any} $value (null)
 ///   The value to be stored. Can be passed a map of key/value pairs where key
-///   will be prefixed with the provided value keys.
+///   will be suffixed with the provided map keys.
 ///   - "key", "value"
 ///   - "key", ("key": "value")
 ///
