@@ -128,6 +128,60 @@ By default, Vrembem does not prefix its component class names. If you'd like to 
   </Fragment>
 </CodeExample>
 
+You can use the `core.bem` function to generate class names with the correct prefixes, without setting them manually.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    @use "@vrembem/core";
+
+    // Generate selector for block
+    .#{core.bem("menu")} {
+      // ...
+    }
+
+    // Generate selector for element
+    .#{core.bem("menu", "item")} {
+      // ...
+    }
+
+    // Generate selector for modifier
+    .#{core.bem("menu", null, "stack")} {
+      // ...
+    }
+
+    // Generate selector for modifier value
+    .#{core.bem("menu", null, "size", "lg")} {
+      // ...
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```scss
+    // Generate selector for block
+    .menu {
+      // ...
+    }
+
+    // Generate selector for element
+    .menu__item {
+      // ...
+    }
+
+    // Generate selector for modifier
+    .menu_stack {
+      // ...
+    }
+
+    // Generate selector for modifier value
+    .menu_size_lg {
+      // ...
+    }
+    ```
+  </Fragment>
+  
+</CodeExample>
+
 ## Reference
 
 This reference details the available configuration API, their arguments, and usage examples so you can customize and control global settings across all Vrembem components.
@@ -223,7 +277,7 @@ Remove an option from the configuration map.
 
 <CodeExample lang="scss">
   ```scss
-  // Remove the default theme option
+  // Remove the theme default option
   @include config.remove("theme-default");
   ```
 </CodeExample>
