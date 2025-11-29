@@ -157,9 +157,9 @@ $-custom-properties: (
       #{-prefix($component)}#{$prop}: #{$value};
     }
 
-    // If the make has a key of config, get the value from config directly
+    // If the map has a key of config, get the value from config directly
     @if meta.type-of($value) == "map" and map.has-key($value, "config") {
-      #{-prefix($component)}#{$prop}: config.get(map.get($value, "config"));
+      #{-prefix($component)}#{$prop}: #{config.get(map.get($value, "config"))};
     }
   }
 }
