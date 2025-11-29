@@ -44,20 +44,6 @@ After defining themes using Vrembem's core theme module, users should be able to
 
 [Getting started with themeStore](/packages/core/themeStore)
 
-### Custom properties
-
-Vrembem core defines a set of global custom properties that are accessible to all components, helping establish a consistent design language across your project.
-
-- `_border.scss`
-- `_box-shadow.scss`
-- `_breakpoints.scss`
-- `_focus-ring.scss`
-- `_form-control.scss`
-- `_screen.scss`
-- `_spacing.scss`
-- `_transition.scss`
-- `_typography.scss`
-
 ## Collections
 
 Collection and CollectionEntry are base classes designed to manage groups of related component instances, such as modals, drawers, or popovers. Each Collection acts as a controller, handling registration, lifecycle events, and plugin integration for its entries.
@@ -75,24 +61,18 @@ Vrembem provides plugins designed to extend the features of components managed b
 - [`propStore`](/packages/core/propStore): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
 - [`teleport`](/packages/core/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
 
-## Needs documentation
+## Reference
 
-### Functions
+Outside of core systems, Vrembem also makes available a number of variables, functions and mixins that can be used throughout your project as needed.
 
-- `_bem.scss`
-- `_get-side.scss`
+### Variables
 
-### Mixins
+Vrembem core defines a set of global variables via CSS custom properties that are accessible to all components, helping establish a consistent design language across your project. These are stored under the `core` module and are not prefixed with the module name when output.
 
-- `_arrow.scss`
-- `_css-query.scss`
-- `_focus-ring.scss`*
-- `_form-control.scss`*
-- `_loading-spinner.scss`
-- `_media-max.scss`
-- `_media-min.scss`
-- `_scroll-box.scss`
-- `_size.scss`
-- `_sr-only.scss`
+[Custom properties reference](/packages/core/variables)
 
-\**Contains mixins and functions.*
+### Utilities
+
+Vrembem core provides a number of helpful Sass functions and mixin utilities. Some of which are used internally by components to apply consistent design patterns (such as focus rings) and others are helpful stand-off utilities like drawing CSS arrows or loading spinners.
+
+[Function and mixin reference](/packages/core/utilities)
