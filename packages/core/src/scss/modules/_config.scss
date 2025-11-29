@@ -33,6 +33,7 @@ $-config: (
   @if not $default or not map.has-key($map, $key) {
     @return map.set($map, $key, $value);
   }
+
   @return $map;
 }
 
