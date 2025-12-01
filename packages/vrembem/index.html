@@ -18,6 +18,10 @@
     // Load JS and attach instance to window
     window["vb"] = await import("./index.ts");
 
+    /**
+     * Setup themeStore functionality
+     */
+
     // Get all the theme set button elements
     const buttons = document.querySelectorAll("[data-set-theme]");
 

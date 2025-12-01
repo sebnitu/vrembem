@@ -12,12 +12,96 @@ slug: core/themeStore
   ```
 </CodeExample>
 
-<CodeExample lang="js">
-  ```js
-  // Make this script blocking to prevent flash of pre-themed content
-  const local = localStorage.getItem("VB:Profile");
-  const store = local ? JSON.parse(local) : {};
-  const class = `vb-theme-${store.theme || "root"}`;
-  document.documentElement.classList.add(class);
+## Basic Usage
+
+Once you've defined set of themes for your project, the next step is to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module.
+
+The first step is to create a UI for users to select a theme. This can be anything from a dropdown to a simple set of buttons. To keep things simple, we'll use a set of buttons.
+
+<CodeExample lang="html">
+  ```html
+  <button type="button" data-set-theme="root">Auto</button>
+  <button type="button" data-set-theme="light">Light</button>
+  <button type="button" data-set-theme="dark">Dark</button>
   ```
 </CodeExample>
+
+Now, in our JavaScript, we initialize `themeStore` and pass a callback function for the `onInit` lifecycle hook. This will add event listeners to all theme selection buttons.
+
+<CodeExample lang="js">
+  ```js
+  // Import the themeStore module
+  import { themeStore } from "@vrembem/core";
+
+  // Get all the theme set button elements
+  const buttons = document.querySelectorAll("[data-set-theme]");
+
+  // Setup theme switching functionality
+  const themeStore = themeStore({
+    onInit() {
+      // Loop through the theme set buttons
+      buttons.forEach((btn) => {
+        // Add click event listener for changing the current theme
+        btn.addEventListener(("click"), () => {
+          this.theme = btn.getAttribute("data-set-theme");
+        });
+      });
+    }
+  });
+  ```
+</CodeExample>
+
+We can further improve this UI by adding a function to toggle the state of our buttons, and running it both on initialization and whenever the theme changes, using the `onChange` lifecycle hook.
+
+<CodeExample lang="js">
+  ```js
+  // Import the themeStore module
+  import { themeStore } from "@vrembem/core";
+
+  // Get all the theme set button elements
+  const buttons = document.querySelectorAll("[data-set-theme]");
+
+  // Setup theme switching functionality
+  const themeStore = themeStore({
+    onInit() {
+      buttons.forEach((btn) => {
+        // Set current menu item active
+        toggleState.call(this, btn);
+        // Add click event listener for changing the current theme
+        btn.addEventListener(("click"), () => {
+          this.theme = btn.getAttribute("data-set-theme");
+        });
+      });
+    },
+    onChange() {
+      buttons.forEach((btn) => {
+        // Set current menu item active
+        toggleState.call(this, btn);
+      });
+    }
+  });
+
+  // Function to toggle the state class for a theme set button
+  function toggleState(btn) {
+    btn.getAttribute("data-set-theme") === this.theme 
+      ? btn.classList.add("is-active")
+      : btn.classList.remove("is-active");
+  }
+  ```
+</CodeExample>
+
+The last aspect to handle when persisting a user's preferred theme is avoiding the flash of pre-themed content. This can be done by adding a render-blocking script in the `<head>` element of your HTML.
+
+<CodeExample lang="html">
+  ```html
+  <script>
+    // Make this script blocking to prevent flash of pre-themed content
+    const local = localStorage.getItem("VB:Profile");
+    const store = local ? JSON.parse(local) : {};
+    const class = `vb-theme-${store.theme || "root"}`;
+    document.documentElement.classList.add(class);
+  </script>
+  ```
+</CodeExample>
+
+This script simply gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
