@@ -124,6 +124,7 @@ The following is a reference of the `themeStore` API which is designed to be bot
     prefix?: string;
     themes?: string[];
     storeKey?: string;
+    fallback?: string;
     onInit?: () => void;
     onChange?: () => void;
   }
@@ -139,10 +140,10 @@ The following is a reference of the `themeStore` API which is designed to be bot
       prefix: string;
       themes: string[];
       storeKey: string;
+      fallback: string;
     };
     add: (value: string) => void;
     remove: (value: string) => void;
-    callback: (name: keyof ThemeStoreCallbacks) => void;
     readonly class: string;
     readonly classes: string[];
     readonly themes: string[];
@@ -153,16 +154,50 @@ The following is a reference of the `themeStore` API which is designed to be bot
 
 ### themeStore.settings
 
+**Type:** object
+
+An object to store the values of `themeStore`'s settings. These include:
+
+- `prefix: string`
+- `themes: string[]`
+- `storeKey: string`
+- `fallback: string`
+
 ### themeStore.theme
+
+**Type:** string
+
+The `theme` property acts as both a getter and setter for the current theme.
+
+- **Getter:** When accessed, `theme` returns the most recent value set in local storage under the key `"theme"`. If no value exists, it returns the value of `settings.fallback`.
+- **Setter:** When a new value is assigned to `theme`, it first checks that the value is a valid theme and that it is not already the current theme. If valid, it updates local storage with the new value, updates the root HTML element with the appropriate theme class, and finally runs the `onChange` callback function.
 
 ### themeStore.class
 
-### themeStore.themes[]
+**Type:** string
 
-### themeStore.classes[]
+Returns the current theme class name, including the configured prefix. This property is read-only.
+
+### themeStore.themes
+
+**Type:** string[]
+
+An array containing all available theme names. This property is read-only.
+
+### themeStore.classes
+
+**Type:** string[]
+
+An array containing all possible theme class names, each with the configured prefix. This property is read-only.
 
 ### themeStore.add()
 
+**Type:** method
+
+Adds a new theme name to the list of available themes. The new theme will be included in the `themes` array and reflected in `classes`.
+
 ### themeStore.remove()
 
-### themeStore.callback()
+**Type:** method
+
+Removes a theme name from the list of available themes. The theme will be removed from the `themes` array and its class will no longer be included in `classes`.
