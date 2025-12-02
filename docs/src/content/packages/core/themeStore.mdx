@@ -14,7 +14,7 @@ slug: core/themeStore
 
 ## Basic Usage
 
-Once you've defined set of themes for your project, the next step is to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module.
+Once you've defined set of themes for your project, you'll want to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
 
 The first step is to create a UI for users to select a theme. This can be anything from a dropdown to a simple set of buttons. To keep things simple, we'll use a set of buttons.
 
@@ -37,7 +37,7 @@ Now, in our JavaScript, we initialize `themeStore` and pass a callback function 
   const buttons = document.querySelectorAll("[data-set-theme]");
 
   // Setup theme switching functionality
-  const themeStore = themeStore({
+  const myTheme = themeStore({
     onInit() {
       // Loop through the theme set buttons
       buttons.forEach((btn) => {
@@ -51,6 +51,10 @@ Now, in our JavaScript, we initialize `themeStore` and pass a callback function 
   ```
 </CodeExample>
 
+<div class="notice notice_color_secondary font-size-base">
+  A lifecycle hook is a callback function that runs at a specific event, such as initialization (`onInit`) or when the theme changes (`onChange`).
+</div>
+
 We can further improve this UI by adding a function to toggle the state of our buttons, and running it both on initialization and whenever the theme changes, using the `onChange` lifecycle hook.
 
 <CodeExample lang="js">
@@ -62,10 +66,11 @@ We can further improve this UI by adding a function to toggle the state of our b
   const buttons = document.querySelectorAll("[data-set-theme]");
 
   // Setup theme switching functionality
-  const themeStore = themeStore({
+  const myTheme = themeStore({
     onInit() {
+      // Loop through the theme set buttons
       buttons.forEach((btn) => {
-        // Set current menu item active
+        // Toggle the state of our button set
         toggleState.call(this, btn);
         // Add click event listener for changing the current theme
         btn.addEventListener(("click"), () => {
@@ -75,7 +80,7 @@ We can further improve this UI by adding a function to toggle the state of our b
     },
     onChange() {
       buttons.forEach((btn) => {
-        // Set current menu item active
+        // Toggle the state of our button set
         toggleState.call(this, btn);
       });
     }
@@ -90,12 +95,13 @@ We can further improve this UI by adding a function to toggle the state of our b
   ```
 </CodeExample>
 
-The last aspect to handle when persisting a user's preferred theme is avoiding the flash of pre-themed content. This can be done by adding a render-blocking script in the `<head>` element of your HTML.
+We use [`.call(this, btn)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) on `toggleState` inside our callback functions so the function can access the current theme from the themeStore instance by providing `this` context.
+
+The last aspect to handle when persisting a user's preferred theme is avoiding the flash of pre-themed content. This can be done by adding a render-blocking script in the `<head>` element of your HTML before other script and style tags.
 
 <CodeExample lang="html">
   ```html
   <script>
-    // Make this script blocking to prevent flash of pre-themed content
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
     const class = `vb-theme-${store.theme || "root"}`;
@@ -104,4 +110,59 @@ The last aspect to handle when persisting a user's preferred theme is avoiding t
   ```
 </CodeExample>
 
-This script simply gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
+This script gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
+
+## Reference
+
+The following is a reference of the `themeStore` API which is designed to be both simple and fit most use cases of theme management.
+
+### Arguments
+
+<CodeExample lang="js">
+  ```js
+  interface ThemeStoreOptions {
+    prefix?: string;
+    themes?: string[];
+    storeKey?: string;
+    onInit?: () => void;
+    onChange?: () => void;
+  }
+  ```
+</CodeExample>
+
+### API
+
+<CodeExample lang="js">
+  ```js
+  interface ThemeStoreApi {
+    settings: {
+      prefix: string;
+      themes: string[];
+      storeKey: string;
+    };
+    add: (value: string) => void;
+    remove: (value: string) => void;
+    callback: (name: keyof ThemeStoreCallbacks) => void;
+    readonly class: string;
+    readonly classes: string[];
+    readonly themes: string[];
+    theme: string;
+  }
+  ```
+</CodeExample>
+
+### themeStore.settings
+
+### themeStore.theme
+
+### themeStore.class
+
+### themeStore.themes[]
+
+### themeStore.classes[]
+
+### themeStore.add()
+
+### themeStore.remove()
+
+### themeStore.callback()
