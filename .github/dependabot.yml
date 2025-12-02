@@ -17,6 +17,11 @@ updates:
       stylelint:
         patterns:
           - "stylelint*"
+      testing:
+        patterns:
+          - "vitest*"
+          - "@vitest*"
+          - "jsdom"
   - package-ecosystem: npm
     directory: "/"
     schedule:
