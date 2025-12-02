@@ -5,6 +5,7 @@ interface ThemeStoreOptions {
   prefix?: string;
   themes?: string[];
   storeKey?: string;
+  fallback?: string;
   onInit?: () => void;
   onChange?: () => void;
 }
@@ -14,10 +15,10 @@ interface ThemeStoreApi {
     prefix: string;
     themes: string[];
     storeKey: string;
+    fallback: string;
   };
   add: (value: string) => void;
   remove: (value: string) => void;
-  callback: (name: keyof ThemeStoreCallbacks) => void;
   readonly class: string;
   readonly classes: string[];
   readonly themes: string[];
@@ -34,7 +35,8 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   const settings = {
     prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
     themes: ["root", "light", "dark"],
-    storeKey: "VB:Profile"
+    storeKey: "VB:Profile",
+    fallback: "root"
   };
 
   // Override all settings values with provided options
@@ -61,6 +63,11 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
     }
   }
 
+  // Private callback function
+  function callback(name: keyof ThemeStoreCallbacks) {
+    callbacks[name].call(api);
+  }
+
   // Get the local storage profile
   const profile = localStore(settings.storeKey);
 
@@ -77,9 +84,6 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
       const index = settings.themes.indexOf(value);
       ~index && settings.themes.splice(index, 1);
     },
-    callback(name: keyof ThemeStoreCallbacks) {
-      callbacks[name].call(this);
-    },
 
     // Getters
     get class() {
@@ -94,7 +98,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
 
     // Setup the theme get and set methods
     get theme() {
-      return profile.get("theme") || "root";
+      return profile.get("theme") || settings.fallback;
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
@@ -111,7 +115,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
           document.documentElement.classList.add(`${settings.prefix}${value}`);
 
           // Run the on change callback
-          this.callback("onChange");
+          callback("onChange");
         }
       } else {
         // Throw a console error if the theme doesn't exist as an option
@@ -121,7 +125,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   };
 
   // Run the on initialization callback
-  api.callback("onInit");
+  callback("onInit");
 
   // Return the API
   return api;
