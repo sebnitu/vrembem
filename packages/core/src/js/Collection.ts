@@ -36,21 +36,23 @@ export class Collection<TEntry extends CollectionEntry<any>>
     this.plugins = new PluginsArray(this.settings.presets);
 
     // Add event emitter prop and methods
-    this.events = {};
-    Object.assign(this, eventEmitter);
+    this.events = eventEmitter.events;
+    this.on = eventEmitter.on;
+    this.off = eventEmitter.off;
+    this.emit = eventEmitter.emit;
   }
 
-  get(value: any, key: string = "id") {
+  get(value: any, key: keyof TEntry = "id") {
     return this.collection.find((entry) => entry[key] === value);
   }
 
-  getOrThrow(value: any, key: string = "id") {
+  getOrThrow(value: any, key: keyof TEntry = "id") {
     const entry = this.get(value, key);
     if (entry) {
       return entry;
     } else {
       throw new Error(
-        `${this.module} entry not found in collection with ${key} of "${value}"`
+        `${this.module} entry not found in collection with ${String(key)} of "${value}"`
       );
     }
   }
