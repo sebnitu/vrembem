@@ -7,8 +7,34 @@
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
-    import 'vrembem/sass';
+    import "vrembem/sass";
+
+    window["core"] = await import("./index.ts");
+
+    class Box extends core.Collection {
+      constructor(options) {
+        super(options);
+        this.module = "Box";
+      }
+    }
+
+    const ticTacToe = new Box();
+
+    window["ticTacToe"] = ticTacToe;
+    console.log(ticTacToe);
   </script>
+  <style lang="scss">
+    @use "@vrembem/core";
+
+    .tic-tac-toe {
+      display: flex;
+    }
+    
+    .box {
+      @include core.size(3em);
+      background-color: pink;
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +59,21 @@
   <section class="section">
     <div class="section__container max-width-xs spacing">
 
-      <p>...</p>
+      <h2>Collections example</h2>
+
+      <p>Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
+
+      <div class="tic-tac-toe">
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+        <span class="box"></span>
+      </div>
 
     </div>
   </section>
