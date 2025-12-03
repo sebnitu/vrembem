@@ -173,6 +173,30 @@ An object to store the values of `themeStore`'s settings. These include:
 - `storeKey (string)` - Local storage key for saving theme state.
 - `fallback (string)` - Default theme if none is set in local storage.
 
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore({
+    prefix: "theme-",
+    storeKey: "Profile",
+    fallback: "default"
+  });
+
+  console.log(myTheme.settings);
+  // Output: {
+  //   "prefix": "theme-",
+  //   "storeKey": "Profile",
+  //   "fallback": "default"
+  // }
+
+  console.log(myTheme.class);
+  // Output: "theme-default"
+  ```
+</CodeExample>
+
 ### themeStore.theme
 
 **Type:** `string`
@@ -182,11 +206,39 @@ The `theme` property acts as both a getter and setter for the current theme.
 - **Getter:** When accessed, `theme` returns the most recent value set in local storage under the key `"theme"`. If no value exists, it returns the value of `settings.fallback`.
 - **Setter:** When a new value is assigned to `theme`, it first checks that the value is a valid theme and that it is not already the current theme. If valid, it updates local storage with the new value, updates the root HTML element with the appropriate theme class, and finally runs the `onChange` callback function.
 
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.theme); // Output: "root"
+
+  myTheme.theme = "light";
+
+  console.log(myTheme.theme); // Output: "light"
+  ```
+</CodeExample>
+
 ### themeStore.class
 
 **Type:** `string`
 
 Returns the current theme class name, including the configured prefix. This property is read-only.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.class); // Output: "vb-theme-root"
+  ```
+</CodeExample>
 
 ### themeStore.themes
 
@@ -194,11 +246,37 @@ Returns the current theme class name, including the configured prefix. This prop
 
 An array containing all available theme names. This property is read-only.
 
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.themes);
+  // Output: ["root", "light", "dark"]
+  ```
+</CodeExample>
+
 ### themeStore.classes
 
 **Type:** `string[]`
 
 An array containing all possible theme class names, each with the configured prefix. This property is read-only.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.classes);
+  // Output: ["vb-theme-root", "vb-theme-light", "vb-theme-dark"]
+  ```
+</CodeExample>
 
 ### themeStore.add()
 
@@ -206,8 +284,55 @@ An array containing all possible theme class names, each with the configured pre
 
 Adds a new theme name to the list of available themes. The new theme will be included in the `themes` array and reflected in `classes`.
 
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `value` | string | The name of the theme to add. |
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  // Add a new theme
+  myTheme.add("contrast");
+
+  // Set our new theme
+  myTheme.theme = "contrast";
+
+  console.log(myTheme.class);
+  // Output: "vb-theme-contrast"
+  ```
+</CodeExample>
+
 ### themeStore.remove()
 
 **Type:** `method`
 
 Removes a theme name from the list of available themes. The theme will be removed from the `themes` array and its class will no longer be included in `classes`.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `value` | string | The name of the theme to remove. |
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  // Remove the light theme
+  myTheme.remove("light");
+
+  console.log(myTheme.themes);
+  // Output: ["root", "dark"]
+  ```
+</CodeExample>
