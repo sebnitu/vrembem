@@ -23,9 +23,10 @@ html {
 
 .argument-list {
   > li {
-    padding: 0.5em 0;
     border-top: css.get("border");
+    padding: 0.5em 0;
   }
+
   > li:first-child {
     border-top: none;
   }
