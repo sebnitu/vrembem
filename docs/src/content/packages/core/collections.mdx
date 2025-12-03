@@ -5,10 +5,27 @@ parent: core
 group: collections
 ---
 
+Collections are used to create the scaffolding and shared systems that all Vrembem JavaScript components inherit. These systems include configuration, events, lifecycle hooks, and plugins.
+
 <CodeExample lang="js">
-  ```js
-  import { Collection, CollectionEntry } from "@vrembem/core";
-  ```
+```js
+import { Collection, CollectionEntry } from "@vrembem/core";
+```
 </CodeExample>
 
-Collections are used to create the scaffolding and shared systems that all Vrembem JavaScript components inherit. These systems include configuration, events, lifecycle hooks, and plugins.
+## Basic usage
+
+The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create a simple component and explore how collections work in practice.
+
+<CodeExample lang="js">
+```js
+import { Collection } from "@vrembem/core";
+
+export class Box extends Collection {
+  constructor(options) {
+    super(options);
+    this.module = "Box";
+  }
+}
+```
+</CodeExample>
