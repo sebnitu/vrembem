@@ -3,8 +3,8 @@ import { cssVar } from "./helpers";
 
 interface ThemeStoreOptions {
   prefix?: string;
-  themes?: string[];
   storeKey?: string;
+  themes?: string[];
   fallback?: string;
   onInit?: () => void;
   onChange?: () => void;
