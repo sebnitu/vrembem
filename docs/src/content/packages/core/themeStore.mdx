@@ -118,39 +118,57 @@ The following is a reference of the `themeStore` API which is designed to be bot
 
 ### Arguments
 
-<CodeExample lang="js">
-  ```js
-  interface ThemeStoreOptions {
-    prefix?: string;
-    themes?: string[];
-    storeKey?: string;
-    fallback?: string;
-    onInit?: () => void;
-    onChange?: () => void;
-  }
-  ```
-</CodeExample>
+<div class="padding-bottom margin-left border-bottom">
+  #### prefix
+  The class prefix for theme names.
+  <div class="flex">
+    <span>**Type:** `string`</span>
+    <span>**Default:** `"vb-theme-"`</span>
+  </div>
+</div>
 
-### API
+<div class="padding-bottom margin-left border-bottom">
+  #### themes
+  An array of default theme names to make available.
+  <div class="flex">
+    <span>**Type:** `string[]`</span>
+    <span>**Default:** `["root", "light", "dark"]`</span>
+  </div>
+</div>
 
-<CodeExample lang="js">
-  ```js
-  interface ThemeStoreApi {
-    settings: {
-      prefix: string;
-      themes: string[];
-      storeKey: string;
-      fallback: string;
-    };
-    add: (value: string) => void;
-    remove: (value: string) => void;
-    readonly class: string;
-    readonly classes: string[];
-    readonly themes: string[];
-    theme: string;
-  }
-  ```
-</CodeExample>
+<div class="padding-bottom margin-left border-bottom">
+  #### storeKey
+  Local storage key for saving theme state.
+  <div class="flex">
+    <span>**Type:** `string`</span>
+    <span>**Default:** `"VB:Profile"`</span>
+  </div>
+</div>
+
+<div class="padding-bottom margin-left border-bottom">
+  #### fallback
+  Default theme if none is set in local storage.
+  <div class="flex">
+    <span>**Type:** `string`</span>
+    <span>**Default:** `"root"`</span>
+  </div>
+</div>
+
+<div class="padding-bottom margin-left border-bottom">
+  #### onInit
+  Callback run on initialization.
+  <div class="flex">
+    <span>**Type:** `function`</span>
+  </div>
+</div>
+
+<div class="padding-bottom margin-left border-bottom">
+  #### onChange
+  Callback run when the theme changes.
+  <div class="flex">
+    <span>**Type:** `function`</span>
+  </div>
+</div>
 
 ### themeStore.settings
 
@@ -158,10 +176,9 @@ The following is a reference of the `themeStore` API which is designed to be bot
 
 An object to store the values of `themeStore`'s settings. These include:
 
-- `prefix: string`
-- `themes: string[]`
-- `storeKey: string`
-- `fallback: string`
+- `prefix (string)` - The class prefix for theme names.
+- `storeKey (string)` - Local storage key for saving theme state.
+- `fallback (string)` - Default theme if none is set in local storage.
 
 ### themeStore.theme
 

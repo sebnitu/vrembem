@@ -13,7 +13,6 @@ interface ThemeStoreOptions {
 interface ThemeStoreApi {
   settings: {
     prefix: string;
-    themes: string[];
     storeKey: string;
     fallback: string;
   };
@@ -34,7 +33,6 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   // Setup the default settings object
   const settings = {
     prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
-    themes: ["root", "light", "dark"],
     storeKey: "VB:Profile",
     fallback: "root"
   };
@@ -71,6 +69,9 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   // Get the local storage profile
   const profile = localStore(settings.storeKey);
 
+  // Setup the private themes array
+  const themesArray = options.themes || ["root", "light", "dark"];
+
   // Setup the API object
   const api: ThemeStoreApi = {
     // Store our settings in the API
@@ -78,11 +79,11 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
 
     // Actions
     add(value: string) {
-      settings.themes.push(value);
+      themesArray.push(value);
     },
     remove(value: string) {
-      const index = settings.themes.indexOf(value);
-      ~index && settings.themes.splice(index, 1);
+      const index = themesArray.indexOf(value);
+      ~index && themesArray.splice(index, 1);
     },
 
     // Getters
@@ -90,10 +91,10 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
       return `${settings.prefix}${this.theme}`;
     },
     get classes() {
-      return settings.themes.map((theme) => `${settings.prefix}${theme}`);
+      return themesArray.map((theme) => `${settings.prefix}${theme}`);
     },
     get themes() {
-      return settings.themes;
+      return themesArray;
     },
 
     // Setup the theme get and set methods
@@ -102,7 +103,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
-      if (settings.themes.includes(value)) {
+      if (themesArray.includes(value)) {
         // Check if the value is actually different from the one currently set
         if (this.theme != value) {
           // Save the theme value to local storage
