@@ -66,12 +66,44 @@
         this.emit("reset", this);
       }
 
+      checkWin() {
+        // Map cell references to their values
+        const cells = {};
+        this.collection.forEach(entry => {
+          cells[entry.el.getAttribute("data-cell")] = entry.el.innerText;
+        });
+
+        // All possible win lines
+        const winLines = [
+          ["A1", "B1", "C1"], // Row 1
+          ["A2", "B2", "C2"], // Row 2
+          ["A3", "B3", "C3"], // Row 3
+          ["A1", "A2", "A3"], // Col A
+          ["B1", "B2", "B3"], // Col B
+          ["C1", "C2", "C3"], // Col C
+          ["A1", "B2", "C3"], // Diagonal
+          ["C1", "B2", "A3"]  // Diagonal
+        ];
+
+        for (const line of winLines) {
+          const [a, b, c] = line;
+          if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
+            return cells[a]; // "X" or "O"
+          }
+        }
+        return null; // No winner
+      }
+
       afterMount() {
         const resetButton = document.querySelector(this.settings.selectorReset);
         resetButton.addEventListener("click", this.reset.bind(this));
         this.on("afterTurn", () => {
-          console.log("Check win condition...");
-          console.log(`${this.currentPlayer}'s turn...`);
+          const hasWon = this.checkWin();
+          if (!hasWon) {
+            console.log(`${this.currentPlayer}'s turn...`);
+          } else {
+            console.log(`${hasWon} WINS!`);
+          }
         });
         this.on("reset", () => {
           console.log("Game has been reset...");
