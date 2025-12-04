@@ -17,15 +17,82 @@ import { Collection, CollectionEntry } from "@vrembem/core";
 
 The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create a simple component and explore how collections work in practice.
 
+<CodeExample tabs>
+<div slot="output" class="tictactoe">
+  <span id="cell-1" class="tictactoe_cell"></span>
+  <span id="cell-2" class="tictactoe_cell"></span>
+  <span id="cell-3" class="tictactoe_cell"></span>
+  <span id="cell-4" class="tictactoe_cell"></span>
+  <span id="cell-5" class="tictactoe_cell"></span>
+  <span id="cell-6" class="tictactoe_cell"></span>
+  <span id="cell-7" class="tictactoe_cell"></span>
+  <span id="cell-8" class="tictactoe_cell"></span>
+  <span id="cell-9" class="tictactoe_cell"></span>
+</div>
+<Fragment slot="tab-html">
+```html
+<div class="tictactoe">
+  <span id="cell-1" class="tictactoe_cell"></span>
+  <span id="cell-2" class="tictactoe_cell"></span>
+  <span id="cell-3" class="tictactoe_cell"></span>
+  <span id="cell-4" class="tictactoe_cell"></span>
+  <span id="cell-5" class="tictactoe_cell"></span>
+  <span id="cell-6" class="tictactoe_cell"></span>
+  <span id="cell-7" class="tictactoe_cell"></span>
+  <span id="cell-8" class="tictactoe_cell"></span>
+  <span id="cell-9" class="tictactoe_cell"></span>
+</div>
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.tictactoe {
+  display: inline-grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25em;
+  background-color: hsl(0 0 0 / 10%);
+}
+
+.tictactoe_cell {
+  width: 3em;
+  height: 3em;
+  background-color: white;
+}
+```
+</Fragment>
+</CodeExample>
+
+Next in our JavaScript we can import `Collection` and define a TicTacToe class which extends Collection.
+
 <CodeExample lang="js">
 ```js
 import { Collection } from "@vrembem/core";
 
-export class Box extends Collection {
+class TicTacToe extends core.Collection {
   constructor(options) {
     super(options);
-    this.module = "Box";
   }
 }
+
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe_cell"
+});
+
+await ticTacToe.mount();
 ```
 </CodeExample>
+
+<style>{`
+.tictactoe {
+  display: inline-grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25em;
+  background-color: hsl(0 0 0 / 10%);
+}
+
+.tictactoe_cell {
+  width: 3em;
+  height: 3em;
+  background-color: white;
+}
+`}</style>

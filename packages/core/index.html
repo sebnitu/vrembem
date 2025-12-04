@@ -8,31 +8,101 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-
     window["core"] = await import("./index.ts");
 
-    class Box extends core.Collection {
-      constructor(options) {
-        super(options);
-        this.module = "Box";
+    /**
+     * Custom collection component example
+     */
+
+    class TicTacToeCell extends core.CollectionEntry {
+      constructor(...args) {
+        super(...args);
+        this.empty = true;
+      }
+
+      toggle() {
+        if (this.empty) {
+          this.empty = false;
+          this.el.innerText = this.parent.currentPlayer;
+          this.parent.turnPlayer();
+          this.parent.emit("afterTurn", this);
+        }
+      }
+
+      reset() {
+        this.el.innerText = "";
+        this.parent.currentPlayer = "X";
+        this.empty = true;
+      }
+
+      onCreateEntry() {
+        const index = [...this.el.parentNode.children].indexOf(this.el);
+        const cols = ["A", "B", "C"];
+        const col = cols[index % 3];
+        const row = Math.floor(index / 3) + 1;
+        this.el.setAttribute("data-cell", `${col}${row}`);
+      }
+
+      onRegisterEntry() {
+        this.el.addEventListener("click", this.toggle.bind(this));
       }
     }
 
-    const ticTacToe = new Box();
+    class TicTacToe extends core.Collection {
+      constructor(options) {
+        super(options);
+        this.entryClass = TicTacToeCell;
+        this.currentPlayer = "X";
+      }
 
-    window["ticTacToe"] = ticTacToe;
-    console.log(ticTacToe);
-  </script>
-  <style lang="scss">
-    @use "@vrembem/core";
+      turnPlayer() {
+        this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+      }
 
-    .tic-tac-toe {
-      display: flex;
+      reset() {
+        this.collection.forEach((entry) => {
+          entry.reset()
+        });
+        this.emit("reset", this);
+      }
+
+      afterMount() {
+        const resetButton = document.querySelector(this.settings.selectorReset);
+        resetButton.addEventListener("click", this.reset.bind(this));
+        this.on("afterTurn", () => {
+          console.log("Check win condition...");
+          console.log(`${this.currentPlayer}'s turn...`);
+        });
+        this.on("reset", () => {
+          console.log("Game has been reset...");
+        });
+      }
     }
-    
-    .box {
-      @include core.size(3em);
-      background-color: pink;
+
+    const ticTacToe = new TicTacToe({
+      selector: ".tictactoe_cell",
+      selectorReset: ".tictactoe-reset"
+    });
+
+    // Mount and attack the result to window object
+    window["ticTacToe"] = await ticTacToe.mount();
+
+  </script>
+  <style>
+    .tictactoe {
+      display: inline-grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.25em;
+      background-color: hsl(0 0 0 / 10%);
+    }
+
+    .tictactoe_cell {
+      width: 3em;
+      height: 3em;
+      background-color: white;
+      text-align: center;
+      line-height: 3em;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -63,17 +133,21 @@
 
       <p>Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
 
-      <div class="tic-tac-toe">
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
-        <span class="box"></span>
+      <div class="tictactoe">
+        <span id="cell-1" class="tictactoe_cell"></span>
+        <span id="cell-2" class="tictactoe_cell"></span>
+        <span id="cell-3" class="tictactoe_cell"></span>
+        <span id="cell-4" class="tictactoe_cell"></span>
+        <span id="cell-5" class="tictactoe_cell"></span>
+        <span id="cell-6" class="tictactoe_cell"></span>
+        <span id="cell-7" class="tictactoe_cell"></span>
+        <span id="cell-8" class="tictactoe_cell"></span>
+        <span id="cell-9" class="tictactoe_cell"></span>
       </div>
+
+      <p>
+        <button type="button" class="tictactoe-reset link">Reset</button>
+      </p>
 
     </div>
   </section>
