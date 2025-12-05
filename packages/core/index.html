@@ -18,6 +18,7 @@
       constructor(...args) {
         super(...args);
         this.empty = true;
+        this.cellRef = "";
       }
 
       toggle() {
@@ -30,16 +31,13 @@
       }
 
       reset() {
+        this.el.classList.remove("is-winner");
         this.el.innerText = "";
         this.empty = true;
       }
 
       onCreateEntry() {
-        const index = this.parent.collection.length;
-        const cols = ["A", "B", "C"];
-        const col = cols[index % 3];
-        const row = Math.floor(index / 3) + 1;
-        this.el.setAttribute("data-cell", `${col}${row}`);
+        this.cellRef = this.el.getAttribute("data-cell");
       }
 
       onRegisterEntry() {
@@ -90,12 +88,19 @@
         for (const line of winLines) {
           const [a, b, c] = line;
           if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
+            this.setWinningCells(line);
             return cells[a]; // "X" or "O"
           }
         }
 
         // No winner
         return null;
+      }
+
+      setWinningCells(cells) {
+        cells.forEach((cell) => {
+          this.get(cell, "cellRef").el.classList.add("is-winner");
+        });
       }
 
       switchPlayer() {
@@ -131,6 +136,11 @@
             this.maybeSetTitle(`${this.currentPlayer} Turn`);
           }
         }
+        if (this.isStart) {
+          this.resetButton.classList.add("display-none");
+        } else {
+          this.resetButton.classList.remove("display-none");
+        }
       }
 
       afterMount() {
@@ -152,8 +162,8 @@
 
     const ticTacToe = new TicTacToe({
       selector: ".tictactoe__cell",
-      selectorTitle: ".tictactoe__title",
-      selectorReset: ".tictactoe__reset"
+      selectorTitle: ".tictactoe-title",
+      selectorReset: ".tictactoe-reset"
     });
 
     // Mount and attack the result to window object
@@ -161,29 +171,35 @@
 
   </script>
   <style>
-    .tictactoe {
-      text-align: center;
-    }
-    
-    .tictactoe__title,
-    .tictactoe__footer {
-      padding: 1em 0.5em;
-    }
-
-    .tictactoe__board {
-      display: inline-grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.25em;
-      background-color: hsl(0 0 0 / 10%);
-    }
-
     .tictactoe__cell {
+      --ttt-border: 0.25em solid var(--vb-neutral-95);
+      font-size: 1.8em;
       width: 3em;
       height: 3em;
-      background-color: white;
       text-align: center;
-      line-height: 3em;
       cursor: pointer;
+      box-shadow: inset 0 0 0 0.25em white;
+
+      &.is-winner {
+        background-color: var(--vb-primary-90);
+        color: var(--vb-primary-20);
+      }
+
+      &:first-child {
+        border-right: var(--ttt-border);
+      }
+
+      &:last-child {
+        border-left: var(--ttt-border);
+      }
+
+      tr:first-child & {
+        border-bottom: var(--ttt-border);
+      }
+
+      tr:last-child & {
+        border-top: var(--ttt-border);
+      }
     }
   </style>
 </head>
@@ -210,27 +226,34 @@
   <section class="section">
     <div class="section__container max-width-xs spacing">
 
-      <h2>Collections example</h2>
+      <h2>Collections</h2>
+      <p class="text-wrap-pretty">Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
 
-      <p>Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
-
-      <section class="tictactoe">
-        <h2 class="tictactoe__title">TicTacToe</h2>
-        <div class="tictactoe__board">
-          <span id="cell-1" class="tictactoe__cell"></span>
-          <span id="cell-2" class="tictactoe__cell"></span>
-          <span id="cell-3" class="tictactoe__cell"></span>
-          <span id="cell-4" class="tictactoe__cell"></span>
-          <span id="cell-5" class="tictactoe__cell"></span>
-          <span id="cell-6" class="tictactoe__cell"></span>
-          <span id="cell-7" class="tictactoe__cell"></span>
-          <span id="cell-8" class="tictactoe__cell"></span>
-          <span id="cell-9" class="tictactoe__cell"></span>
+      <dialog class="dialog">
+        <div class="dialog__header">
+          <h2 class="dialog__title tictactoe-title">TicTacToe</h2>
+          <button type="button" class="tictactoe-reset link">Reset</button>
         </div>
-        <div class="tictactoe__footer">
-          <button type="button" class="tictactoe__reset link">Reset</button>
+        <div class="dialog__body">
+          <table class="tictactoe">
+            <tr>
+              <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+              <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+              <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+            </tr>
+            <tr>
+              <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+              <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+              <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+            </tr>
+            <tr>
+              <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+              <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+              <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+            </tr>
+          </table>
         </div>
-      </section>
+      </dialog>
 
     </div>
   </section>
