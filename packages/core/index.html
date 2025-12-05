@@ -15,16 +15,29 @@
      */
 
     class TicTacToeCell extends core.CollectionEntry {
+      #state = "";
+
       constructor(...args) {
         super(...args);
-        this.empty = true;
         this.cellRef = "";
       }
 
+      get state() {
+        return this.#state;
+      }
+
+      set state(value) {
+        this.#state = value;
+        this.el.innerText = value;
+      }
+
+      get isEmpty() {
+        return this.state === "";
+      }
+
       toggle() {
-        if (this.empty && !this.parent.gameOver) {
-          this.empty = false;
-          this.el.innerText = this.parent.currentPlayer;
+        if (this.isEmpty && !this.parent.gameOver) {
+          this.state = this.parent.currentPlayer;
           this.parent.switchPlayer();
           this.parent.emit("afterTurn", this);
         }
@@ -32,8 +45,7 @@
 
       reset() {
         this.el.classList.remove("is-winner");
-        this.el.innerText = "";
-        this.empty = true;
+        this.state = "";
       }
 
       onCreateEntry() {
@@ -56,12 +68,12 @@
       }
 
       get isDraw() {
-        const anyMoves = !!this.get(true, "empty");
+        const anyMoves = !!this.get("", "state");
         return anyMoves ? false : true;
       }
 
       get isStart() {
-        const movesMade = !!this.get(false, "empty");
+        const movesMade = this.get("X", "state") || this.get("O", "state");
         return movesMade ? false : true;
       }
 
@@ -69,7 +81,7 @@
         // Map cell references to their values
         const cells = {};
         this.collection.forEach(entry => {
-          cells[entry.el.getAttribute("data-cell")] = entry.el.innerText;
+          cells[entry.el.getAttribute("data-cell")] = entry.state;
         });
 
         // All possible win lines
