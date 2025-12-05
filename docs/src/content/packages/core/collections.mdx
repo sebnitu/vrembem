@@ -113,24 +113,29 @@ While the main focus of this example is the Collections API, it's important to s
 </Fragment>
 </CodeExample>
 
-### Defining a collection
+Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
 
-In our JavaScript we can import `Collection` and define a TicTacToe class which extends Collection.
+### Creating a collection
+
+In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a selector option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
 
 <CodeExample lang="js">
 ```js
 import { Collection } from "@vrembem/core";
 
+// Define our custom collection class
 class TicTacToe extends Collection {
   constructor(options) {
     super(options);
   }
 }
 
+// Instantiate the collection and provide a collection selector
 const ticTacToe = new TicTacToe({
   selector: ".tictactoe_cell"
 });
 
+// Mount the collection
 await ticTacToe.mount();
 ```
 </CodeExample>
