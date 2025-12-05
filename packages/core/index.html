@@ -141,10 +141,12 @@
         this.resetButton.classList.toggle("display-none", this.isStart);
       }
 
-      afterMount() {
+      beforeMount() {
         this.title = document.querySelector(this.settings.selectorTitle);
         this.resetButton = document.querySelector(this.settings.selectorReset);
+      }
 
+      afterMount() {
         this.updateState()
         this.resetButton?.addEventListener("click", this.reset.bind(this));
 
