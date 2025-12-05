@@ -127,20 +127,18 @@
         if (hasWon) {
           this.gameOver = true;
           this.maybeSetTitle(`${hasWon} Winner`);
+        } else if (this.isDraw) {
+          this.gameOver = true;
+          this.maybeSetTitle("Draw");
+        } else if (this.isStart) {
+          this.gameOver = false;
+          this.maybeSetTitle(`${this.currentPlayer} Start`);
         } else {
-          if (this.isDraw) {
-            this.gameOver = true;
-            this.maybeSetTitle("Draw");
-          } else {
-            this.gameOver = false;
-            this.maybeSetTitle(`${this.currentPlayer} Turn`);
-          }
+          this.gameOver = false;
+          this.maybeSetTitle(`${this.currentPlayer} Turn`);
         }
-        if (this.isStart) {
-          this.resetButton.classList.add("display-none");
-        } else {
-          this.resetButton.classList.remove("display-none");
-        }
+
+        this.resetButton.classList.toggle("display-none", this.isStart);
       }
 
       afterMount() {
@@ -229,12 +227,12 @@
       <h2>Collections</h2>
       <p class="text-wrap-pretty">Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
 
-      <dialog class="dialog">
-        <div class="dialog__header">
-          <h2 class="dialog__title tictactoe-title">TicTacToe</h2>
-          <button type="button" class="tictactoe-reset link">Reset</button>
-        </div>
-        <div class="dialog__body">
+      <div class="section" style="--vb-section-max-width: fit-content">
+        <div class="section__container">
+          <div class="flex padding-bottom-lg">
+            <h2 class="flex-grow-1 tictactoe-title">X Start</h2>
+            <button type="button" class="tictactoe-reset display-none link">Reset</button>
+          </div>
           <table class="tictactoe">
             <tr>
               <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
@@ -253,7 +251,7 @@
             </tr>
           </table>
         </div>
-      </dialog>
+      </div>
 
     </div>
   </section>
