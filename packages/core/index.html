@@ -150,7 +150,7 @@
           this.maybeSetTitle(`${this.currentPlayer} Turn`);
         }
 
-        this.resetButton.classList.toggle("display-none", this.isStart);
+        this.resetButton?.classList.toggle("display-none", this.isStart);
       }
 
       beforeMount() {
@@ -179,7 +179,7 @@
     });
 
     // Mount and attack the result to window object
-    window["ticTacToe"] = await ticTacToe.mount();
+    window["ttt"] = await ticTacToe.mount();
 
   </script>
   <style>

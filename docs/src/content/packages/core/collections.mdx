@@ -13,62 +13,115 @@ import { Collection, CollectionEntry } from "@vrembem/core";
 ```
 </CodeExample>
 
-## Basic usage
+## Example usage
 
-The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create a simple component and explore how collections work in practice.
+The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create an example component and explore the collections API in practice.
+
+In this example component, we will cover the following concepts:
+
+- Instantiating and configuring a custom Collection and CollectionEntry.
+- Managing a group of related elements as a collection.
+- Emitting and listening for custom events between entries and the collection.
+- Implementing lifecycle hooks such as `onCreateEntry`, `onRegisterEntry`, `beforeMount`, `afterMount`, etc.
+- Querying and updating the collection using the `Collection.get` method.
+- Demonstrating separation of concerns between collection and entry logic.
+
+This example provides a practical, end-to-end demonstration of how to use the Collections API to build interactive, stateful UI components.
+
+### Markup and styles
+
+While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. We'll also add a title and reset button later that we can integrate into our collection's state.
 
 <CodeExample tabs>
-<div slot="output" class="tictactoe">
-  <span id="cell-1" class="tictactoe__cell"></span>
-  <span id="cell-2" class="tictactoe__cell"></span>
-  <span id="cell-3" class="tictactoe__cell"></span>
-  <span id="cell-4" class="tictactoe__cell"></span>
-  <span id="cell-5" class="tictactoe__cell"></span>
-  <span id="cell-6" class="tictactoe__cell"></span>
-  <span id="cell-7" class="tictactoe__cell"></span>
-  <span id="cell-8" class="tictactoe__cell"></span>
-  <span id="cell-9" class="tictactoe__cell"></span>
+<div slot="output" class="tictactoe-wrapper">
+  <div class="flex padding-bottom-lg">
+    <h2 class="flex-grow-1 tictactoe-title">X Start</h2>
+    <button type="button" class="tictactoe-reset display-none link">Reset</button>
+  </div>
+  <table class="tictactoe">
+    <tr>
+      <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+      <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+      <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+      <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+      <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+      <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+      <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+    </tr>
+  </table>
 </div>
 <Fragment slot="tab-html">
 ```html
-<div class="tictactoe">
-  <span id="cell-1" class="tictactoe__cell"></span>
-  <span id="cell-2" class="tictactoe__cell"></span>
-  <span id="cell-3" class="tictactoe__cell"></span>
-  <span id="cell-4" class="tictactoe__cell"></span>
-  <span id="cell-5" class="tictactoe__cell"></span>
-  <span id="cell-6" class="tictactoe__cell"></span>
-  <span id="cell-7" class="tictactoe__cell"></span>
-  <span id="cell-8" class="tictactoe__cell"></span>
-  <span id="cell-9" class="tictactoe__cell"></span>
-</div>
+<table class="tictactoe">
+  <tr>
+    <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+    <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+    <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+  </tr>
+  <tr>
+    <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+    <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+    <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+  </tr>
+  <tr>
+    <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+    <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+    <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+  </tr>
+</table>
 ```
 </Fragment>
 <Fragment slot="tab-css">
 ```css
-.tictactoe {
-  display: inline-grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.25em;
-  background-color: hsl(0 0 0 / 10%);
-}
-
 .tictactoe__cell {
+  --ttt-border: 0.25em solid var(--vb-neutral-95);
+  font-size: 1.8em;
   width: 3em;
   height: 3em;
-  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.25em white;
+
+  &.is-winner {
+    background-color: var(--vb-primary-90);
+    color: var(--vb-primary-20);
+  }
+
+  &:first-child {
+    border-right: var(--ttt-border);
+  }
+
+  &:last-child {
+    border-left: var(--ttt-border);
+  }
+
+  tr:first-child & {
+    border-bottom: var(--ttt-border);
+  }
+
+  tr:last-child & {
+    border-top: var(--ttt-border);
+  }
 }
 ```
 </Fragment>
 </CodeExample>
 
-Next in our JavaScript we can import `Collection` and define a TicTacToe class which extends Collection.
+### Defining a collection
+
+In our JavaScript we can import `Collection` and define a TicTacToe class which extends Collection.
 
 <CodeExample lang="js">
 ```js
 import { Collection } from "@vrembem/core";
 
-class TicTacToe extends core.Collection {
+class TicTacToe extends Collection {
   constructor(options) {
     super(options);
   }
@@ -83,16 +136,39 @@ await ticTacToe.mount();
 </CodeExample>
 
 <style>{`
-.tictactoe {
-  display: inline-grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.25em;
-  background-color: hsl(0 0 0 / 10%);
+.tictactoe-wrapper {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .tictactoe__cell {
+  --ttt-border: 0.25em solid var(--vb-neutral-95);
+  font-size: 1.8em;
   width: 3em;
   height: 3em;
-  background-color: white;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.25em white;
+
+  &.is-winner {
+    background-color: var(--vb-primary-90);
+    color: var(--vb-primary-20);
+  }
+
+  &:first-child {
+    border-right: var(--ttt-border);
+  }
+
+  &:last-child {
+    border-left: var(--ttt-border);
+  }
+
+  tr:first-child & {
+    border-bottom: var(--ttt-border);
+  }
+
+  tr:last-child & {
+    border-top: var(--ttt-border);
+  }
 }
 `}</style>
