@@ -160,3 +160,23 @@ class TicTacToe extends Collection {
 }
 ```
 </CodeExample>
+
+### Lifecycle hooks
+
+Lifecycle hooks are special methods in `Collection` and `CollectionEntry` that are automatically called at specific points during its existence—such as mount, creation, or registration. They allow you to run custom logic in response to these events, making it easier to manage state, resources, and side effects.
+
+All hooks are run in the context of the collection, but only create and register hooks are run in the context of entries.
+
+Lifecycle hooks that are run when `mount` is called:
+
+- `beforeMount`
+- `onCreateEntry`
+- `onRegisterEntry`
+- `afterMount`
+
+Lifecycle hooks that are run when `unmount` is called:
+
+- `beforeUnmount`
+- `onDestroyEntry`
+- `onDeregisterEntry`
+- `afterUnmount`
