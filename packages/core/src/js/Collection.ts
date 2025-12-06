@@ -68,7 +68,7 @@ export class Collection<TEntry extends CollectionEntry<any>>
     return entry;
   }
 
-  async destroyEntry(entry: any) {
+  async destroyEntry(entry: TEntry) {
     await dispatchLifecycleHook("onDestroyEntry", this, entry);
     await maybeRunMethod(entry, "destroy");
     return entry;
