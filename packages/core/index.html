@@ -11,7 +11,7 @@
     window["core"] = await import("./index.ts");
 
     /**
-     * Custom collection component example
+     * Custom CollectionEntry example
      */
 
     class TicTacToeCell extends core.CollectionEntry {
@@ -19,7 +19,7 @@
 
       constructor(...args) {
         super(...args);
-        this.cellRef = "";
+        this.cellRef = this.el.getAttribute("data-cell");
       }
 
       get state() {
@@ -48,14 +48,14 @@
         this.state = "";
       }
 
-      onCreateEntry() {
-        this.cellRef = this.el.getAttribute("data-cell");
-      }
-
       onRegisterEntry() {
         this.el.addEventListener("click", this.toggle.bind(this));
       }
     }
+
+    /**
+     * Custom Collection example
+     */
 
     class TicTacToe extends core.Collection {
       constructor(options) {
@@ -172,13 +172,17 @@
       }
     }
 
+    /**
+     * Instantiate and mount
+     */
+
     const ticTacToe = new TicTacToe({
       selector: ".tictactoe__cell",
       selectorTitle: ".tictactoe-title",
       selectorReset: ".tictactoe-reset"
     });
 
-    // Mount and attack the result to window object
+    // Mount and attach the result to window object
     window["ttt"] = await ticTacToe.mount();
 
   </script>
