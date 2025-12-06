@@ -117,6 +117,7 @@ In our JavaScript we can import `Collection` and define a `TicTacToe` class whic
 
 <CodeExample lang="js">
 ```js
+// Import Collection from core
 import { Collection } from "@vrembem/core";
 
 // Define our custom collection class
@@ -133,5 +134,29 @@ const ticTacToe = new TicTacToe({
 
 // Mount the collection
 await ticTacToe.mount();
+```
+</CodeExample>
+
+By default, each entry in a collection is an instance of the `CollectionEntry` class. For simple use cases, this is often sufficient. However, if your entries need custom logic or state, you can create your own entry class by extending `CollectionEntry` and assigning it to the `entryClass` property of your collection.
+
+<CodeExample lang="js">
+```js
+// Import CollectionEntry from core
+import { Collection, CollectionEntry } from "@vrembem/core";
+
+// Define a custom collection entry class
+class TicTacToeCell extends CollectionEntry {
+  constructor(...args) {
+    super(...args);
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+    // Assign our custom entry class to the `entryClass` property
+    this.entryClass = TicTacToeCell;
+  }
+}
 ```
 </CodeExample>
