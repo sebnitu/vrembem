@@ -1,0 +1,35 @@
+.tictactoe-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.tictactoe__cell {
+  --ttt-border: 0.25em solid var(--vb-neutral-95);
+  font-size: 1.6em;
+  width: 3em;
+  height: 3em;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0.25em white;
+
+  &.is-winner {
+    background-color: var(--vb-primary-90);
+    color: var(--vb-primary-20);
+  }
+
+  &:first-child {
+    border-right: var(--ttt-border);
+  }
+
+  &:last-child {
+    border-left: var(--ttt-border);
+  }
+
+  tr:first-child & {
+    border-bottom: var(--ttt-border);
+  }
+
+  tr:last-child & {
+    border-top: var(--ttt-border);
+  }
+}

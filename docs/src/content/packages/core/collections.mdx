@@ -34,10 +34,6 @@ While the main focus of this example is the Collections API, it's important to s
 
 <CodeExample tabs>
 <div slot="output" class="tictactoe-wrapper">
-  <div class="flex padding-bottom-lg">
-    <h2 class="flex-grow-1 tictactoe-title">X Start</h2>
-    <button type="button" class="tictactoe-reset display-none link">Reset</button>
-  </div>
   <table class="tictactoe">
     <tr>
       <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
@@ -81,9 +77,9 @@ While the main focus of this example is the Collections API, it's important to s
 ```css
 .tictactoe__cell {
   --ttt-border: 0.25em solid var(--vb-neutral-95);
-  font-size: 1.8em;
   width: 3em;
   height: 3em;
+  font-size: 1.6em;
   text-align: center;
   cursor: pointer;
   box-shadow: inset 0 0 0 0.25em white;
@@ -132,48 +128,10 @@ class TicTacToe extends Collection {
 
 // Instantiate the collection and provide a collection selector
 const ticTacToe = new TicTacToe({
-  selector: ".tictactoe_cell"
+  selector: ".tictactoe__cell"
 });
 
 // Mount the collection
 await ticTacToe.mount();
 ```
 </CodeExample>
-
-<style>{`
-.tictactoe-wrapper {
-  width: fit-content;
-  margin: 0 auto;
-}
-
-.tictactoe__cell {
-  --ttt-border: 0.25em solid var(--vb-neutral-95);
-  font-size: 1.8em;
-  width: 3em;
-  height: 3em;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 0.25em white;
-
-  &.is-winner {
-    background-color: var(--vb-primary-90);
-    color: var(--vb-primary-20);
-  }
-
-  &:first-child {
-    border-right: var(--ttt-border);
-  }
-
-  &:last-child {
-    border-left: var(--ttt-border);
-  }
-
-  tr:first-child & {
-    border-bottom: var(--ttt-border);
-  }
-
-  tr:last-child & {
-    border-top: var(--ttt-border);
-  }
-}
-`}</style>
