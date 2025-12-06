@@ -28,6 +28,7 @@
 
       set state(value) {
         this.#state = value;
+        this.parent.boardState[this.cellRef] = value;
         this.el.innerText = value;
       }
 
@@ -61,6 +62,17 @@
         this.gameOver = false;
         this.title = null;
         this.resetButton = null;
+        this.boardState = {};
+        this.winConditions = [
+          ["A1", "B1", "C1"], // Row 1
+          ["A2", "B2", "C2"], // Row 2
+          ["A3", "B3", "C3"], // Row 3
+          ["A1", "A2", "A3"], // Col A
+          ["B1", "B2", "B3"], // Col B
+          ["C1", "C2", "C3"], // Col C
+          ["A1", "B2", "C3"], // Diagonal
+          ["C1", "B2", "A3"]  // Diagonal
+        ];
       }
 
       get isDraw() {
@@ -74,36 +86,15 @@
       }
 
       get hasWon() {
-        // Map cell references to their values
-        // TODO: move this into a collection property and update it from entry
-        const cells = Object.fromEntries(
-          this.collection.map(entry => [entry.cellRef, entry.state])
-        );
-
-        // All possible win lines
-        // TODO: move this to its own property elsewhere
-        const winLines = [
-          ["A1", "B1", "C1"], // Row 1
-          ["A2", "B2", "C2"], // Row 2
-          ["A3", "B3", "C3"], // Row 3
-          ["A1", "A2", "A3"], // Col A
-          ["B1", "B2", "B3"], // Col B
-          ["C1", "C2", "C3"], // Col C
-          ["A1", "B2", "C3"], // Diagonal
-          ["C1", "B2", "A3"]  // Diagonal
-        ];
-
         // Check for a win condition
-        for (const line of winLines) {
-          const [a, b, c] = line;
-          if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
-            this.setWinningCells(line);
-            return cells[a]; // "X" or "O"
+        for (const cells of this.winConditions) {
+          const [a, b, c] = cells;
+          if (this.boardState[a] && this.boardState[a] === this.boardState[b] && this.boardState[b] === this.boardState[c]) {
+            this.setWinningCells(cells);
+            return this.boardState[a]; // "X" or "O"
           }
         }
-
-        // No winner
-        return null;
+        return null; // No winner
       }
 
       setWinningCells(cells) {
@@ -155,6 +146,11 @@
       }
 
       afterMount() {
+        // Build the current board state
+        this.collection.forEach((entry) => {
+          this.boardState[entry.cellRef] = entry.state;
+        });
+
         this.updateState()
         this.resetButton?.addEventListener("click", this.reset.bind(this));
 
