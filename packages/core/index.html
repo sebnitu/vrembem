@@ -86,10 +86,13 @@
       }
 
       get hasWon() {
-        // Check for a win condition
         for (const cells of this.winConditions) {
           const [a, b, c] = cells;
-          if (this.boardState[a] && this.boardState[a] === this.boardState[b] && this.boardState[b] === this.boardState[c]) {
+          if (
+            this.boardState[a] && 
+            this.boardState[a] === this.boardState[b] && 
+            this.boardState[b] === this.boardState[c]
+          ) {
             this.setWinningCells(cells);
             return this.boardState[a]; // "X" or "O"
           }
