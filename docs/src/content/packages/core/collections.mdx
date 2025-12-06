@@ -21,8 +21,8 @@ In this example component, we will cover the following concepts:
 
 - Instantiating and configuring a custom Collection and CollectionEntry.
 - Managing a group of related elements as a collection.
-- Emitting and listening for custom events between entries and the collection.
 - Implementing lifecycle hooks such as `onCreateEntry`, `onRegisterEntry`, `beforeMount`, `afterMount`, etc.
+- Emitting and listening for custom events between entries and the collection.
 - Querying and updating the collection using the `Collection.get` method.
 - Demonstrating separation of concerns between collection and entry logic.
 
@@ -111,7 +111,7 @@ While the main focus of this example is the Collections API, it's important to s
 
 Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
 
-### Creating a collection
+### Collection classes
 
 In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a selector option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
 
@@ -161,6 +161,54 @@ class TicTacToe extends Collection {
 ```
 </CodeExample>
 
+Next, we'll need to manage state for both the collection and its entries. Each cell entry should track whether it's empty, marked with an `X`, or marked with an `O`. The collection itself should track which player's turn it is—either `X` or `O`.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // Add a private property to track our state. It starts empty
+  #state = "";
+
+  constructor(...args) {
+    super(...args);
+  }
+
+  // Create a getter that returns the value of our private property
+  get state() {
+    return this.#state;
+  }
+
+  // Create a setter that updates the state private property value and the 
+  // inner text of the table cell
+  set state(value) {
+    this.#state = value;
+    this.el.innerText = value;
+  }
+
+  // Create a getter that returns a boolean whether or not the cell is empty
+  get isEmpty() {
+    return this.state === "";
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+    this.entryClass = TicTacToeCell;
+    // Add a new property to track the current player
+    this.currentPlayer = "X";
+  }
+
+  // Add a method to switch players. This should be called after a turn is made
+  switchPlayer() {
+    this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+  }
+}
+```
+</CodeExample>
+
+With our initial states in place (current player and cell state), we can now implement the feature that lets players take turns. To achieve this, we'll make use of lifecycle hooks.
+
 ### Lifecycle hooks
 
 Lifecycle hooks are special methods in `Collection` and `CollectionEntry` that are automatically called at specific points during its existence—such as mount, creation, or registration. They allow you to run custom logic in response to these events, making it easier to manage state, resources, and side effects.
@@ -180,3 +228,19 @@ Lifecycle hooks that are run when `unmount` is called:
 - `onDestroyEntry`
 - `onDeregisterEntry`
 - `afterUnmount`
+
+<CodeExample lang="js">
+```js
+
+```
+</CodeExample>
+
+### Event system
+
+The event system API implemented in collections provides a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
+
+- `Collection.on()`
+- `Collection.off()`
+- `Collection.emit()`
+
+Lifecycle hooks also fire their own custom events. This enables other parts of your project to react to key moments in a component's lifecycle, promotes loose coupling between modules, and makes it easy to extend or customize behavior without modifying core logic.

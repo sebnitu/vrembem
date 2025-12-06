@@ -2,8 +2,23 @@ import { Collection, CollectionEntry } from "@vrembem/core";
 
 // Define a custom collection entry class
 class TicTacToeCell extends CollectionEntry {
+  #state = "";
+
   constructor(...args) {
     super(...args);
+  }
+
+  get state() {
+    return this.#state;
+  }
+
+  set state(value) {
+    this.#state = value;
+    this.el.innerText = value;
+  }
+
+  get isEmpty() {
+    return this.state === "";
   }
 }
 
@@ -12,6 +27,11 @@ class TicTacToe extends Collection {
   constructor(options) {
     super(options);
     this.entryClass = TicTacToeCell;
+    this.currentPlayer = "X";
+  }
+
+  switchPlayer() {
+    this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
   }
 }
 
