@@ -184,11 +184,6 @@ class TicTacToeCell extends CollectionEntry {
     this.#state = value;
     this.el.innerText = value;
   }
-
-  // Create a getter that returns a boolean whether or not the cell is empty
-  get isEmpty() {
-    return this.state === "";
-  }
 }
 
 class TicTacToe extends Collection {
@@ -229,11 +224,31 @@ Lifecycle hooks that are run when `unmount` is called:
 - `onDeregisterEntry`
 - `afterUnmount`
 
+With this setup, we can add a `toggle` method to each cell and attach a click event listener using the `onRegisterEntry` lifecycle hook. Entries also have access to their parent collection via the `this.parent` alias, allowing them to interact with collection methods and properties directly.
+
 <CodeExample lang="js">
 ```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
 
+  // Create a toggle method that allows the current player to select a cell if
+  // it is empty, then calls the collection's switch player method
+  toggle() {
+    if (this.state === "") {
+      this.state = this.parent.currentPlayer;
+      this.parent.switchPlayer();
+    }
+  }
+
+  // Add a lifecycle hook to attach a click event with the toggle method
+  onRegisterEntry() {
+    this.el.addEventListener("click", this.toggle.bind(this));
+  }
+}
 ```
 </CodeExample>
+
+Players can now take turns selecting cells, but we still need to track when a player wins or the game ends in a draw. To handle these states, we'll add custom events using the collection's event system.
 
 ### Event system
 

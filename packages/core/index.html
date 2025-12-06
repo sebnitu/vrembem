@@ -31,12 +31,8 @@
         this.el.innerText = value;
       }
 
-      get isEmpty() {
-        return this.state === "";
-      }
-
       toggle() {
-        if (this.isEmpty && !this.parent.gameOver) {
+        if (this.state === "" && !this.parent.gameOver) {
           this.state = this.parent.currentPlayer;
           this.parent.switchPlayer();
           this.parent.emit("afterTurn", this);
@@ -79,12 +75,13 @@
 
       get hasWon() {
         // Map cell references to their values
-        const cells = {};
-        this.collection.forEach(entry => {
-          cells[entry.el.getAttribute("data-cell")] = entry.state;
-        });
+        // TODO: move this into a collection property and update it from entry
+        const cells = Object.fromEntries(
+          this.collection.map(entry => [entry.cellRef, entry.state])
+        );
 
         // All possible win lines
+        // TODO: move this to its own property elsewhere
         const winLines = [
           ["A1", "B1", "C1"], // Row 1
           ["A2", "B2", "C2"], // Row 2
@@ -124,7 +121,6 @@
           entry.reset()
         });
         this.currentPlayer = "X";
-        this.gameOver = false;
         this.emit("reset", this);
       }
 

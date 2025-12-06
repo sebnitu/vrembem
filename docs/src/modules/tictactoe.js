@@ -17,8 +17,15 @@ class TicTacToeCell extends CollectionEntry {
     this.el.innerText = value;
   }
 
-  get isEmpty() {
-    return this.state === "";
+  toggle() {
+    if (this.state === "") {
+      this.state = this.parent.currentPlayer;
+      this.parent.switchPlayer();
+    }
+  }
+
+  onRegisterEntry() {
+    this.el.addEventListener("click", this.toggle.bind(this));
   }
 }
 
