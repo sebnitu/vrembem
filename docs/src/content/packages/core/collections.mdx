@@ -5,7 +5,7 @@ parent: core
 group: collections
 ---
 
-Collections are used to create the scaffolding and shared systems that all Vrembem JavaScript components inherit. These systems include configuration, events, lifecycle hooks, and plugins.
+Collections are used to create the scaffolding and shared systems that all Vrembem JavaScript components inherit. These systems include configuration, lifecycle hooks, custom events, and plugins.
 
 <CodeExample lang="js">
 ```js
@@ -17,20 +17,18 @@ import { Collection, CollectionEntry } from "@vrembem/core";
 
 The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create an example component and explore the collections API in practice.
 
-In this example component, we will cover the following concepts:
+In the following example, we'll build a tic-tac-toe game that demonstrates the following concepts:
 
 - Instantiating and configuring a custom Collection and CollectionEntry.
 - Managing a group of related elements as a collection.
 - Implementing lifecycle hooks such as `onCreateEntry`, `onRegisterEntry`, `beforeMount`, `afterMount`, etc.
 - Emitting and listening for custom events between entries and the collection.
-- Querying and updating the collection using the `Collection.get` method.
+- Querying and updating the collection using various method.
 - Demonstrating separation of concerns between collection and entry logic.
-
-This example provides a practical, end-to-end demonstration of how to use the Collections API to build interactive, stateful UI components.
 
 ### Markup and styles
 
-While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element.
+While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. Below is a working demo for what we'll build.
 
 <CodeExample tabs>
 <div slot="output" class="tictactoe-wrapper">
@@ -119,10 +117,9 @@ In our JavaScript we can import `Collection` and define a `TicTacToe` class whic
 
 <CodeExample lang="js">
 ```js
-// Import Collection from core
 import { Collection } from "@vrembem/core";
 
-// Define our custom collection class
+// Define our custom component class by extending Collection
 class TicTacToe extends Collection {
   constructor(options) {
     super(options);
@@ -143,10 +140,9 @@ By default, each entry in a collection is an instance of the `CollectionEntry` c
 
 <CodeExample lang="js">
 ```js
-// Import CollectionEntry from core
 import { Collection, CollectionEntry } from "@vrembem/core";
 
-// Define a custom collection entry class
+// Define our custom entry class by extending CollectionEntry
 class TicTacToeCell extends CollectionEntry {
   constructor(...args) {
     super(...args);
@@ -250,17 +246,17 @@ class TicTacToeCell extends CollectionEntry {
 ```
 </CodeExample>
 
-Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the event system.
+Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the custom events system.
 
 ### Event system
 
-The event system API implemented in collections provides a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
+The event system API available in collections provide a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
 
 - `Collection.on()`
 - `Collection.off()`
 - `Collection.emit()`
 
-Lets use events to let tic-tac-toe cells notify the board when a turn is made. By emitting an `afterTurn` event in the `TicTacToeCell` toggle method and listening for it in the collection's `afterMount` lifecycle hook, we move the `switchPlayer` logic into the parent collection—resulting in better separation of concerns.
+Lets use events to let tic-tac-toe cells notify the board when a turn is made. By emitting an `afterTurn` event in the entry toggle method and listening for it in the collection's `afterMount` lifecycle hook, we can move the `switchPlayer` call into the parent collection—resulting in better separation of concerns.
 
 <CodeExample lang="js">
 ```js
@@ -317,9 +313,168 @@ class TicTacToe extends Collection {
     resetBtn?.addEventListener("click", this.reset.bind(this));
   }
 }
+
+// Make sure to pass a `selectorReset` value in the config object to ensure 
+// it's made available in our settings object.
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe__cell",
+  selectorReset: ".tictactoe-reset"
+});
 ```
 </CodeExample>
 
 The final step in our tic-tac-toe example is to handle the winning state. To do this, we'll explore how collections can query and manage entry data.
 
 ### Querying entries
+
+To finish our tic-tac-toe example, let's look at different ways to access and manage data between collection entries and the collection's global state. We'll begin by adding a few additional state properties to both the collection and entry classes.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  constructor(...args) {
+    // ...
+    // Create a cellRef property for quick access to our cell reference value
+    this.cellRef = this.el.getAttribute("data-cell");
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    // ...
+    // Add a property to track if a win condition has been reached
+    this.winner = false;
+    // Add an object that we can use to track the entire state of the board
+    this.boardState = {};
+    // Add an array with all possible win conditions
+    this.winConditions = [
+      ["A1", "B1", "C1"], // Row 1
+      ["A2", "B2", "C2"], // Row 2
+      ["A3", "B3", "C3"], // Row 3
+      ["A1", "A2", "A3"], // Col A
+      ["B1", "B2", "B3"], // Col B
+      ["C1", "C2", "C3"], // Col C
+      ["A1", "B2", "C3"], // Diagonal "\"
+      ["C1", "B2", "A3"]  // Diagonal "/"
+    ];
+  }
+}
+```
+</CodeExample>
+
+With these new state properties, we need to update the `boardState` object each time a cell is selected, and initialize `boardState` when the component mounts. We also want to check if a win condition has been reached before we allow a player to take a turn.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  set state(value) {
+    // ...
+    // Whenever a cell state changes, we also want to update the boardState obj
+    this.parent.boardState[this.cellRef] = value;
+  }
+
+  toggle() {
+    // Add the winner state to our toggle condition. This prevents a player 
+    // taking a turn after the game has ended
+    if (this.state === "" && !this.parent.winner) {
+      // ...
+    }
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  afterMount() {
+    // Set the initial board state using each entry cellRef property and state
+    this.collection.forEach((entry) => {
+      this.boardState[entry.cellRef] = entry.state;
+    });
+  }
+}
+```
+</CodeExample>
+
+Now that `boardState` is synced with our cell states, we can check for a win condition. Create a `checkWinConditions` method that compares `boardState` to the `winConditions` array, and call it after every turn using the `"afterTurn"` event.
+
+<CodeExample lang="js">
+```js
+class TicTacToe extends Collection {
+  // ...
+  // Method that checks if a win condition has been met
+  checkWinConditions() {
+    for (const cells of this.winConditions) {
+      const [a, b, c] = cells;
+      if (
+        this.boardState[a] &&
+        this.boardState[a] === this.boardState[b] &&
+        this.boardState[b] === this.boardState[c]
+      ) {
+        // Set the winning player to the winner property
+        this.winner = this.currentPlayer;
+      }
+    }
+  }
+
+  afterMount() {
+    // ...
+    this.on("afterTurn", () => {
+      // ...
+      // Check for a win condition after every turn is made
+      this.checkWinConditions();
+    });
+  }
+}
+```
+</CodeExample>
+
+Let's also improve the UI for when a win condition has been reached. We'll add an `is-winner` class to each cell that is part of the winning combination. You can do this by using the `get` method to query each cell by its `cellRef` value.
+
+<CodeExample lang="js">
+```js
+class TicTacToe extends Collection {
+  // ...
+  checkWinConditions() {
+    // ..
+    // If a win condition has been reached, run the setWinningCells method
+    this.setWinningCells(cells);
+  }
+
+  // Will the winning cells, query each cell entry and add the winner class
+  setWinningCells(cells) {
+    cells.forEach((cell) => {
+      this.get(cell, "cellRef").el.classList.add("is-winner");
+    });
+  }
+
+  // ...
+}
+```
+</CodeExample>
+
+As a final cleanup, be sure to remove the `is-winner` class from all cells and reset the global `winner` property whenever the board is reset.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  reset() {
+    // Remove the win state class from cells
+    this.el.classList.remove("is-winner");
+    // ...
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  async reset() {
+    // ...
+    // Reset the winner property to false
+    this.winner = false;
+  }
+}
+```
+</CodeExample>
+
+### Conclusion
+
+...
