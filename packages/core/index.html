@@ -28,14 +28,13 @@
 
       set state(value) {
         this.#state = value;
-        this.parent.boardState[this.cellRef] = value;
         this.el.innerText = value;
+        this.parent.boardState[this.cellRef] = value;
       }
 
       toggle() {
-        if (this.state === "" && !this.parent.gameOver) {
+        if (this.state === "" && !this.parent.winner) {
           this.state = this.parent.currentPlayer;
-          this.parent.switchPlayer();
           this.parent.emit("afterTurn", this);
         }
       }
@@ -59,9 +58,7 @@
         super(options);
         this.entryClass = TicTacToeCell;
         this.currentPlayer = "X";
-        this.gameOver = false;
-        this.title = null;
-        this.resetButton = null;
+        this.winner = false;
         this.boardState = {};
         this.winConditions = [
           ["A1", "B1", "C1"], // Row 1
@@ -75,17 +72,7 @@
         ];
       }
 
-      get isDraw() {
-        const anyMoves = !!this.get("", "state");
-        return anyMoves ? false : true;
-      }
-
-      get isStart() {
-        const movesMade = this.get("X", "state") || this.get("O", "state");
-        return movesMade ? false : true;
-      }
-
-      get hasWon() {
+      checkWinConditions() {
         for (const cells of this.winConditions) {
           const [a, b, c] = cells;
           if (
@@ -94,10 +81,9 @@
             this.boardState[b] === this.boardState[c]
           ) {
             this.setWinningCells(cells);
-            return this.boardState[a]; // "X" or "O"
+            this.winner = this.currentPlayer;
           }
         }
-        return null; // No winner
       }
 
       setWinningCells(cells) {
@@ -112,57 +98,25 @@
 
       reset() {
         this.collection.forEach((entry) => {
-          entry.reset()
+          entry.reset();
         });
         this.currentPlayer = "X";
-        this.emit("reset", this);
-      }
-
-      maybeSetTitle(value) {
-        if (this.title) {
-          this.title.innerText = value;
-        }
-      }
-
-      updateState() {
-        const hasWon = this.hasWon;
-        if (hasWon) {
-          this.gameOver = true;
-          this.maybeSetTitle(`${hasWon} Winner`);
-        } else if (this.isDraw) {
-          this.gameOver = true;
-          this.maybeSetTitle("Draw");
-        } else if (this.isStart) {
-          this.gameOver = false;
-          this.maybeSetTitle(`${this.currentPlayer} Start`);
-        } else {
-          this.gameOver = false;
-          this.maybeSetTitle(`${this.currentPlayer} Turn`);
-        }
-
-        this.resetButton?.classList.toggle("display-none", this.isStart);
+        this.winner = false;
       }
 
       beforeMount() {
-        this.title = document.querySelector(this.settings.selectorTitle);
-        this.resetButton = document.querySelector(this.settings.selectorReset);
+        const resetBtn = document.querySelector(this.settings.selectorReset);
+        resetBtn?.addEventListener("click", this.reset.bind(this));
       }
 
       afterMount() {
-        // Build the current board state
         this.collection.forEach((entry) => {
           this.boardState[entry.cellRef] = entry.state;
         });
 
-        this.updateState()
-        this.resetButton?.addEventListener("click", this.reset.bind(this));
-
         this.on("afterTurn", () => {
-          this.updateState()
-        });
-
-        this.on("reset", () => {
-          this.updateState()
+          this.checkWinConditions();
+          this.switchPlayer();
         });
       }
     }
@@ -173,7 +127,6 @@
 
     const ticTacToe = new TicTacToe({
       selector: ".tictactoe__cell",
-      selectorTitle: ".tictactoe-title",
       selectorReset: ".tictactoe-reset"
     });
 
@@ -242,10 +195,6 @@
 
       <div class="section" style="--vb-section-max-width: fit-content">
         <div class="section__container">
-          <div class="flex padding-bottom-lg">
-            <h2 class="flex-grow-1 tictactoe-title">X Start</h2>
-            <button type="button" class="tictactoe-reset display-none link">Reset</button>
-          </div>
           <table class="tictactoe">
             <tr>
               <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
@@ -263,6 +212,9 @@
               <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
             </tr>
           </table>
+          <div class="padding-top-lg">
+            <button type="button" class="tictactoe-reset link">Reset</button>
+          </div>
         </div>
       </div>
 
