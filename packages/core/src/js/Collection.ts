@@ -1,13 +1,11 @@
 import defaults from "./defaults";
 import { CollectionEntry } from "./CollectionEntry";
-import { eventEmitter, PluginsArray } from "./modules";
+import { EventEmitter, PluginsArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
-import type { EventEmitter } from "./modules";
 
-export class Collection<TEntry extends CollectionEntry<any>>
-  implements EventEmitter
-{
+export class Collection<TEntry extends CollectionEntry<any>> {
+  #eventsEmitter = new EventEmitter();
   module: string;
   collection: TEntry[];
   entryClass: new (
@@ -17,10 +15,6 @@ export class Collection<TEntry extends CollectionEntry<any>>
   ) => TEntry;
   settings: Record<string, any>;
   plugins: PluginsArray;
-  events: EventEmitter["events"];
-  on: EventEmitter["on"];
-  off: EventEmitter["off"];
-  emit: EventEmitter["emit"];
 
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
@@ -34,13 +28,13 @@ export class Collection<TEntry extends CollectionEntry<any>>
 
     // Create the plugins array and provide any presets
     this.plugins = new PluginsArray(this.settings.presets);
-
-    // Add event emitter prop and methods
-    this.events = eventEmitter.events;
-    this.on = eventEmitter.on;
-    this.off = eventEmitter.off;
-    this.emit = eventEmitter.emit;
   }
+
+  // Assign the event emitter API directly on the Collection instance
+  readonly events = this.#eventsEmitter.events;
+  on = this.#eventsEmitter.on.bind(this.#eventsEmitter);
+  off = this.#eventsEmitter.off.bind(this.#eventsEmitter);
+  emit = this.#eventsEmitter.emit.bind(this.#eventsEmitter);
 
   get(value: any, key: keyof TEntry = "id") {
     return this.collection.find((entry) => entry[key] === value);
