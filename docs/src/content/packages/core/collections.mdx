@@ -31,7 +31,7 @@ In the following example, we'll build a tic-tac-toe game that demonstrates the f
 While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. Below is a working demo for what we'll build.
 
 <CodeExample tabs>
-<div slot="output" class="tictactoe-wrapper">
+<div slot="output" id="ttt-1" class="tictactoe-wrapper">
   <table class="tictactoe">
     <tr>
       <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
@@ -477,4 +477,154 @@ class TicTacToe extends Collection {
 
 ### Conclusion
 
-...
+The Collections API provides a powerful foundation for building interactive, stateful UI components in JavaScript. By leveraging configuration, lifecycle hooks, custom events, and flexible querying, you can efficiently manage groups of related elements and their shared logic.
+
+The tic-tac-toe example demonstrates how to separate concerns between collections and entries, handle state transitions, and implement event-driven communication. With these patterns, you can extend and adapt collections for a wide range of component architectures and interactive behaviors.
+
+<CodeExample tabs>
+<div slot="output" id="ttt-2" class="tictactoe-wrapper">
+  <table class="tictactoe">
+    <tr>
+      <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+      <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+      <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+      <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+      <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+      <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+      <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+    </tr>
+  </table>
+  <button type="button" class="tictactoe-reset link">Reset</button>
+</div>
+<Fragment slot="tab-js">
+```js
+import { TicTacToe } from "./TicTacToe";
+
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe__cell",
+  selectorReset: ".tictactoe-reset"
+});
+
+await ticTacToe.mount();
+```
+</Fragment>
+<Fragment slot="file-1">
+```js
+import { Collection } from "@vrembem/core";
+import { TicTacToeCell } from "./TicTacToeCell";
+
+export class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+    this.entryClass = TicTacToeCell;
+    this.currentPlayer = "X";
+    this.winner = false;
+    this.boardState = {};
+    this.winConditions = [
+      ["A1", "B1", "C1"], // Row 1
+      ["A2", "B2", "C2"], // Row 2
+      ["A3", "B3", "C3"], // Row 3
+      ["A1", "A2", "A3"], // Col A
+      ["B1", "B2", "B3"], // Col B
+      ["C1", "C2", "C3"], // Col C
+      ["A1", "B2", "C3"], // Diagonal
+      ["C1", "B2", "A3"] // Diagonal
+    ];
+  }
+
+  checkWinConditions() {
+    for (const cells of this.winConditions) {
+      const [a, b, c] = cells;
+      if (
+        this.boardState[a] &&
+        this.boardState[a] === this.boardState[b] &&
+        this.boardState[b] === this.boardState[c]
+      ) {
+        this.setWinningCells(cells);
+        this.winner = this.currentPlayer;
+      }
+    }
+  }
+
+  setWinningCells(cells) {
+    cells.forEach((cell) => {
+      this.get(cell, "cellRef").el.classList.add("is-winner");
+    });
+  }
+
+  switchPlayer() {
+    this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+  }
+
+  async reset() {
+    await this.emit("reset");
+    this.currentPlayer = "X";
+    this.winner = false;
+  }
+
+  beforeMount() {
+    const resetBtn = document.querySelector(this.settings.selectorReset);
+    resetBtn?.addEventListener("click", this.reset.bind(this));
+  }
+
+  afterMount() {
+    this.collection.forEach((entry) => {
+      this.boardState[entry.cellRef] = entry.state;
+    });
+
+    this.on("afterTurn", () => {
+      this.checkWinConditions();
+      this.switchPlayer();
+    });
+  }
+}
+```
+</Fragment>
+<Fragment slot="file-2">
+```js
+import { CollectionEntry } from "@vrembem/core";
+
+export class TicTacToeCell extends CollectionEntry {
+  #state = "";
+
+  constructor(...args) {
+    super(...args);
+    this.cellRef = this.el.getAttribute("data-cell");
+  }
+
+  get state() {
+    return this.#state;
+  }
+
+  set state(value) {
+    this.#state = value;
+    this.el.innerText = value;
+    this.parent.boardState[this.cellRef] = value;
+  }
+
+  toggle() {
+    if (this.state === "" && !this.parent.winner) {
+      this.state = this.parent.currentPlayer;
+      this.parent.emit("afterTurn", this);
+    }
+  }
+
+  reset() {
+    this.el.classList.remove("is-winner");
+    this.state = "";
+  }
+
+  onRegisterEntry() {
+    this.el.addEventListener("click", this.toggle.bind(this));
+    this.parent.on("reset", this.reset.bind(this));
+  }
+}
+```
+</Fragment>
+</CodeExample>
