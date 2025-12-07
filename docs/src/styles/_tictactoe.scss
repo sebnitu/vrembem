@@ -1,7 +1,7 @@
 .tictactoe-wrapper {
-  width: fit-content;
   margin: 0 auto;
   text-align: center;
+  width: fit-content;
 
   > * + * {
     margin-top: 2em;
@@ -10,12 +10,13 @@
 
 .tictactoe__cell {
   --ttt-border: 0.25em solid var(--vb-neutral-95);
+
+  box-shadow: inset 0 0 0 0.25em white;
+  cursor: pointer;
   font-size: 1.6em;
-  width: 3em;
   height: 3em;
   text-align: center;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 0.25em white;
+  width: 3em;
 
   &.is-winner {
     background-color: var(--vb-primary-90);
