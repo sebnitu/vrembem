@@ -135,9 +135,20 @@
 
   </script>
   <style>
+    .tictactoe-wrapper {
+      width: fit-content;
+      margin: 0 auto;
+      padding: 3em 0;
+      text-align: center;
+
+      > * + * {
+        margin-top: 2em;
+      }
+    }
+
     .tictactoe__cell {
       --ttt-border: 0.25em solid var(--vb-neutral-95);
-      font-size: 1.8em;
+      font-size: 1.6em;
       width: 3em;
       height: 3em;
       text-align: center;
@@ -193,29 +204,25 @@
       <h2>Collections</h2>
       <p class="text-wrap-pretty">Below is an example of using the Collection and CollectionEntry classes to create a custom component.</p>
 
-      <div class="section" style="--vb-section-max-width: fit-content">
-        <div class="section__container">
-          <table class="tictactoe">
-            <tr>
-              <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
-              <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
-              <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
-            </tr>
-            <tr>
-              <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
-              <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
-              <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
-            </tr>
-            <tr>
-              <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
-              <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
-              <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
-            </tr>
-          </table>
-          <div class="padding-top-lg">
-            <button type="button" class="tictactoe-reset link">Reset</button>
-          </div>
-        </div>
+      <div class="tictactoe-wrapper">
+        <table class="tictactoe">
+          <tr>
+            <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+            <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+            <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+            <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+            <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+            <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+            <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+          </tr>
+        </table>
+        <button type="button" class="tictactoe-reset link">Reset</button>
       </div>
 
     </div>
