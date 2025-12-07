@@ -5,7 +5,16 @@ import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
 export class Collection<TEntry extends CollectionEntry<any>> {
+  // Private fields
   #eventsEmitter = new EventEmitter();
+
+  // Assign the event emitter API directly on the Collection instance
+  readonly events = this.#eventsEmitter.events;
+  on = this.#eventsEmitter.on.bind(this.#eventsEmitter);
+  off = this.#eventsEmitter.off.bind(this.#eventsEmitter);
+  emit = this.#eventsEmitter.emit.bind(this.#eventsEmitter);
+
+  // Public fields assigned in constructor
   module: string;
   collection: TEntry[];
   entryClass: new (
@@ -25,16 +34,8 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       options?: Record<string, any>
     ) => TEntry;
     this.settings = { ...defaults, ...options };
-
-    // Create the plugins array and provide any presets
     this.plugins = new PluginsArray(this.settings.presets);
   }
-
-  // Assign the event emitter API directly on the Collection instance
-  readonly events = this.#eventsEmitter.events;
-  on = this.#eventsEmitter.on.bind(this.#eventsEmitter);
-  off = this.#eventsEmitter.off.bind(this.#eventsEmitter);
-  emit = this.#eventsEmitter.emit.bind(this.#eventsEmitter);
 
   get(value: any, key: keyof TEntry = "id") {
     return this.collection.find((entry) => entry[key] === value);
