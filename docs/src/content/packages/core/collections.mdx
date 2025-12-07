@@ -51,6 +51,7 @@ While the main focus of this example is the Collections API, it's important to s
       <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
     </tr>
   </table>
+  <button type="button" class="tictactoe-reset link">Reset</button>
 </div>
 <Fragment slot="tab-html">
 ```html
@@ -71,6 +72,7 @@ While the main focus of this example is the Collections API, it's important to s
     <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
   </tr>
 </table>
+<button type="button" class="tictactoe-reset link">Reset</button>
 ```
 </Fragment>
 <Fragment slot="tab-css">
@@ -248,7 +250,7 @@ class TicTacToeCell extends CollectionEntry {
 ```
 </CodeExample>
 
-Players can now take turns selecting cells, but we still need to track when a player wins or the game ends in a draw. To handle these states, we'll add custom events using the collection's event system.
+Players can now take turns selecting cells, but we still need to track when a player wins or the game ends in a draw. To help manage these states, we'll add custom events using the collection's event system.
 
 ### Event system
 
@@ -259,3 +261,27 @@ The event system API implemented in collections provides a flexible way for diff
 - `Collection.emit()`
 
 Lifecycle hooks also fire their own custom events. This enables other parts of your project to react to key moments in a component's lifecycle, promotes loose coupling between modules, and makes it easy to extend or customize behavior without modifying core logic.
+
+Lets use events to allow entries to communicate with their parent collection. We'll do this by emitting an `afterTurn` event in the `TicTacToeCell` toggle method that we then listen for in the collection's `afterMount` lifecycle hook. This allows us to move the `switchPlayer` call from the entries logic into the parent collection itself.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  toggle() {
+    // Emit the afterTurn event
+    this.parent.emit("afterTurn", this);
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  afterMount() {
+    // Add an event listener to switch players after a turn is made
+    this.on("afterTurn", () => {
+      this.switchPlayer();
+    });
+  }
+}
+```
+</CodeExample>
