@@ -250,7 +250,7 @@ class TicTacToeCell extends CollectionEntry {
 ```
 </CodeExample>
 
-Players can now take turns selecting cells, but we still need to track when a player wins or the game ends in a draw. To help manage these states, we'll add custom events using the collection's event system.
+Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the event system.
 
 ### Event system
 
@@ -260,16 +260,14 @@ The event system API implemented in collections provides a flexible way for diff
 - `Collection.off()`
 - `Collection.emit()`
 
-Lifecycle hooks also fire their own custom events. This enables other parts of your project to react to key moments in a component's lifecycle, promotes loose coupling between modules, and makes it easy to extend or customize behavior without modifying core logic.
-
-Lets use events to allow entries to communicate with their parent collection. We'll do this by emitting an `afterTurn` event in the `TicTacToeCell` toggle method that we then listen for in the collection's `afterMount` lifecycle hook. This allows us to move the `switchPlayer` call from the entries logic into the parent collection itself.
+Lets use events to let tic-tac-toe cells notify the board when a turn is made. By emitting an `afterTurn` event in the `TicTacToeCell` toggle method and listening for it in the collection's `afterMount` lifecycle hook, we move the `switchPlayer` logic into the parent collection—resulting in better separation of concerns.
 
 <CodeExample lang="js">
 ```js
 class TicTacToeCell extends CollectionEntry {
   // ...
   toggle() {
-    // Emit the afterTurn event
+    // Emit an event after a turn is made
     this.parent.emit("afterTurn", this);
   }
 }
@@ -281,6 +279,42 @@ class TicTacToe extends Collection {
     this.on("afterTurn", () => {
       this.switchPlayer();
     });
+  }
+}
+```
+</CodeExample>
+
+The collection can also emit events that entries listen for and respond to. We'll use this pattern to reset the entire board.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  // Create a method to reset the cell
+  reset() {
+    this.state = "";
+  }
+
+  onRegisterEntry() {
+    // ...
+    // Listen for the reset event and run the entry's reset method
+    this.parent.on("reset", this.reset.bind(this));
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  async reset() {
+    // Emit the reset event and wait for listeners to finish running
+    await this.emit("reset");
+    // Reset the current player
+    this.currentPlayer = "X";
+  }
+
+  // Add a lifecycle hook to attach a click event for the reset button
+  beforeMount() {
+    const resetBtn = document.querySelector(this.settings.selectorReset);
+    resetBtn?.addEventListener("click", this.reset.bind(this));
   }
 }
 ```

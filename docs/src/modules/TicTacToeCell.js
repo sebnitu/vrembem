@@ -32,5 +32,6 @@ export class TicTacToeCell extends CollectionEntry {
 
   onRegisterEntry() {
     this.el.addEventListener("click", this.toggle.bind(this));
+    this.parent.on("reset", this.reset.bind(this));
   }
 }

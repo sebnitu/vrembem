@@ -44,10 +44,8 @@ export class TicTacToe extends Collection {
     this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
   }
 
-  reset() {
-    this.collection.forEach((entry) => {
-      entry.reset();
-    });
+  async reset() {
+    await this.emit("reset");
     this.currentPlayer = "X";
     this.winner = false;
   }
