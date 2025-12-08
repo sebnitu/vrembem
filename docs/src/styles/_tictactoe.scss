@@ -1,14 +1,12 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-
 @include css.set(
   "tictactoe",
   (
     "border": 0.25em solid css.reference("tictactoe", "border-color")
   )
 );
-
 @include theme.set(
   "tictactoe",
   "light",
@@ -19,7 +17,6 @@
     "box-shadow-color": palette.get("neutral", 100)
   )
 );
-
 @include theme.set(
   "tictactoe",
   "dark",
