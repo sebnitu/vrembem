@@ -1,3 +1,36 @@
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+@include css.set(
+  "tictactoe",
+  (
+    "border": 0.25em solid css.reference("tictactoe", "border-color")
+  )
+);
+
+@include theme.set(
+  "tictactoe",
+  "light",
+  (
+    "background-winner": palette.get("primary", 90),
+    "foreground-winner": palette.get("primary", 30),
+    "border-color": palette.get("neutral", 90),
+    "box-shadow-color": palette.get("neutral", 100)
+  )
+);
+
+@include theme.set(
+  "tictactoe",
+  "dark",
+  (
+    "background-winner": palette.get("primary", 15),
+    "foreground-winner": palette.get("primary", 70),
+    "border-color": palette.get("neutral", 30),
+    "box-shadow-color": palette.get("neutral", 10)
+  )
+);
+
 .tictactoe-wrapper {
   margin: 0 auto;
   text-align: center;
@@ -9,9 +42,7 @@
 }
 
 .tictactoe__cell {
-  --ttt-border: 0.25em solid var(--vb-neutral-95);
-
-  box-shadow: inset 0 0 0 0.25em white;
+  box-shadow: inset 0 0 0 0.25em css.get("tictactoe", "box-shadow-color");
   cursor: pointer;
   font-size: 1.6em;
   height: 3em;
@@ -19,23 +50,23 @@
   width: 3em;
 
   &.is-winner {
-    background-color: var(--vb-primary-90);
-    color: var(--vb-primary-20);
+    background-color: css.get("tictactoe", "background-winner");
+    color: css.get("tictactoe", "foreground-winner");
   }
 
   &:first-child {
-    border-right: var(--ttt-border);
+    border-right: css.get("tictactoe", "border");
   }
 
   &:last-child {
-    border-left: var(--ttt-border);
+    border-left: css.get("tictactoe", "border");
   }
 
   tr:first-child & {
-    border-bottom: var(--ttt-border);
+    border-bottom: css.get("tictactoe", "border");
   }
 
   tr:last-child & {
-    border-top: var(--ttt-border);
+    border-top: css.get("tictactoe", "border");
   }
 }
