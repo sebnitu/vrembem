@@ -1,12 +1,10 @@
 import { getCollection } from "astro:content";
 
 function moduleOrder(a, b) {
-  if (a.id < b.id) {
-    return -1;
-  }
-  if (a.id > b.id) {
-    return 1;
-  }
+  if (a.id === "core/plugins") return 1;
+  if (b.id === "core/plugins") return -1;
+  if (a.id < b.id) return -1;
+  if (a.id > b.id) return 1;
   return 0;
 }
 
