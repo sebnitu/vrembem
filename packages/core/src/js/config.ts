@@ -1,6 +1,4 @@
-const defaults = {
+export const config = {
   dataConfig: "config",
   customProps: [] as string[]
 };
-
-export default defaults;

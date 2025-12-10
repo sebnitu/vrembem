@@ -1,4 +1,4 @@
-import defaults from "./defaults";
+import { config } from "./config";
 import { CollectionEntry } from "./CollectionEntry";
 import { EventEmitter, PluginsArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
@@ -33,7 +33,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       query: string | HTMLElement,
       options?: Record<string, any>
     ) => TEntry;
-    this.settings = { ...defaults, ...options };
+    this.settings = { ...config, ...options };
     this.plugins = new PluginsArray(this.settings.presets);
   }
 
