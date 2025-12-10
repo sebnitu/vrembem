@@ -1,7 +1,7 @@
 import { getDataConfig } from "@vrembem/core";
 
 function scrollSpy(options = {}) {
-  const settings = {
+  const config = {
     selector: ".scroll-spy",
     dataConfig: "scroll-config",
     value: 0,
@@ -13,7 +13,7 @@ function scrollSpy(options = {}) {
   const collection = [];
 
   function mount() {
-    const els = document.querySelectorAll(settings.selector);
+    const els = document.querySelectorAll(config.selector);
     els.forEach((el) => {
       register(el);
     });
@@ -25,10 +25,10 @@ function scrollSpy(options = {}) {
   }
 
   function register(el) {
-    const config = getDataConfig(el, settings.dataConfig);
+    const data = getDataConfig(el, config.dataConfig);
     const entry = {
       el: el,
-      ...{ ...settings, ...config }
+      ...{ ...config, ...data }
     };
     collection.push(entry);
   }
@@ -57,7 +57,7 @@ function scrollSpy(options = {}) {
   }
 
   return {
-    settings,
+    config,
     collection,
     mount,
     register

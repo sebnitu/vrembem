@@ -157,7 +157,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     await popover.mount();
 
     const entry = popover.get("popover");
-    expect(entry.getSetting("event")).toBe("hover");
+    expect(entry.getConfig("event")).toBe("hover");
 
     const eventEnter = new Event("mouseenter");
     const eventLeave = new Event("mouseleave");
@@ -212,8 +212,8 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     const entry1 = popover.get("popover");
     const entry2 = popover.get("tooltip");
 
-    expect(entry1.getSetting("event")).toBe("click");
-    expect(entry2.getSetting("event")).toBe("hover");
+    expect(entry1.getConfig("event")).toBe("click");
+    expect(entry2.getConfig("event")).toBe("hover");
 
     trigger.click();
     await delay(100);

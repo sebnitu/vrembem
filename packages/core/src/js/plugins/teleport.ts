@@ -36,8 +36,8 @@ export function teleport(options: TeleportConfig = {}): Plugin {
       }
       entry.teleportReturn = teleportElement(
         entry.el,
-        entry.getSetting("teleport", { fallback: plugin.settings.where }),
-        entry.getSetting("teleportMethod", { fallback: plugin.settings.how })
+        entry.getConfig("teleport", { fallback: plugin.config.where }),
+        entry.getConfig("teleportMethod", { fallback: plugin.config.how })
       );
     };
 

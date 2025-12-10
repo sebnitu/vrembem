@@ -1,7 +1,7 @@
 import { drawer } from "./useDrawer.js";
 
 function onThisPage(options = {}) {
-  const settings = {
+  const config = {
     selectorAnchors: "",
     selectorHeadings: ".layout__content",
     classActive: "is-active",
@@ -11,7 +11,7 @@ function onThisPage(options = {}) {
   const collection = [];
 
   function mount() {
-    const els = document.querySelectorAll(settings.selectorAnchors);
+    const els = document.querySelectorAll(config.selectorAnchors);
     els.forEach((el) => {
       register(el);
     });
@@ -26,7 +26,7 @@ function onThisPage(options = {}) {
     // Get the heading using the menu action's href
     const href = anchor.getAttribute("href");
     const heading = document.querySelector(
-      `${settings.selectorHeadings} ${href}`
+      `${config.selectorHeadings} ${href}`
     );
 
     // Guard if there is no heading returned
@@ -37,10 +37,10 @@ function onThisPage(options = {}) {
       anchor: anchor,
       heading: heading,
       get active() {
-        return this.anchor.classList.contains(settings.classActive);
+        return this.anchor.classList.contains(config.classActive);
       },
       set active(value) {
-        this.anchor.classList.toggle(settings.classActive, value);
+        this.anchor.classList.toggle(config.classActive, value);
       },
       get top() {
         const rect = heading.getBoundingClientRect();
@@ -72,7 +72,7 @@ function onThisPage(options = {}) {
   }
 
   return {
-    settings,
+    config,
     collection,
     mount,
     register

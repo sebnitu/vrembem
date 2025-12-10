@@ -40,10 +40,10 @@ describe("pluginsArray", () => {
 
   it("should return a specific plugin when using the get method", () => {
     const pluginOne = plugins.get("one");
-    expect(pluginOne.settings).toStrictEqual({ a: "a" });
+    expect(pluginOne.config).toStrictEqual({ a: "a" });
 
     const pluginTwo = plugins.get("two");
-    expect(pluginTwo.settings).toStrictEqual({ b: "b" });
+    expect(pluginTwo.config).toStrictEqual({ b: "b" });
 
     expect(plugins.get("three")).toBe(undefined);
   });

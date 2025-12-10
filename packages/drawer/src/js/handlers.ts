@@ -10,9 +10,9 @@ export async function handleClick(
   if (target) {
     // If an open, close or toggle button was clicked, handle the click event
     const trigger = target.closest(`
-      [data-${this.settings.dataOpen}],
-      [data-${this.settings.dataToggle}],
-      [data-${this.settings.dataClose}]
+      [data-${this.config.dataOpen}],
+      [data-${this.config.dataToggle}],
+      [data-${this.config.dataClose}]
     `) as HTMLElement | null;
 
     if (trigger) {
@@ -20,9 +20,9 @@ export async function handleClick(
       event.preventDefault();
 
       // If it's a toggle trigger...
-      if (trigger.matches(`[data-${this.settings.dataToggle}]`)) {
+      if (trigger.matches(`[data-${this.config.dataToggle}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.settings.dataToggle}`)
+          .getAttribute(`data-${this.config.dataToggle}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {
@@ -36,9 +36,9 @@ export async function handleClick(
       }
 
       // If it's a open trigger...
-      if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
+      if (trigger.matches(`[data-${this.config.dataOpen}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.settings.dataOpen}`)
+          .getAttribute(`data-${this.config.dataOpen}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {
@@ -52,9 +52,9 @@ export async function handleClick(
       }
 
       // If it's a close trigger...
-      if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
+      if (trigger.matches(`[data-${this.config.dataClose}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.settings.dataClose}`)
+          .getAttribute(`data-${this.config.dataClose}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {
@@ -67,7 +67,7 @@ export async function handleClick(
             return entry.close();
           } else {
             // If no value is set on close trigger, get the parent drawer
-            const parent = target.closest(this.settings.selector);
+            const parent = target.closest(this.config.selector);
             // If a parent drawer was found, close it
             if (parent) return this.close(parent.id);
           }
@@ -78,7 +78,7 @@ export async function handleClick(
     }
 
     // If there is an active modal drawer and the screen was clicked...
-    if (this.activeModal && target.matches(this.settings.selectorScreen)) {
+    if (this.activeModal && target.matches(this.config.selectorScreen)) {
       // Close the modal drawer
       return this.close(this.activeModal.id);
     }

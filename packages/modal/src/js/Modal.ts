@@ -32,8 +32,8 @@ export class Modal extends Collection<ModalEntry> {
       onChange: () => {
         setGlobalState(
           !!this.stack.top,
-          this.settings.selectorInert,
-          this.settings.selectorOverflow
+          this.config.selectorInert,
+          this.config.selectorOverflow
         );
       }
     });

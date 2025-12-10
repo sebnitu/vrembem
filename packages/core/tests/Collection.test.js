@@ -1,4 +1,3 @@
-import { config } from "../src/js/config";
 import { Collection, CollectionEntry } from "../index";
 
 document.body.innerHTML = `
@@ -23,14 +22,13 @@ describe("constructor()", () => {
     expect(obj.module).toBe("Collection");
     expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
-    expect(obj.settings).toEqual(config);
   });
 
   it("should be able to pass options through the instantiation", () => {
     const obj = new Collection({
       test: "asdf"
     });
-    expect(obj.settings.test).toEqual("asdf");
+    expect(obj.config.test).toEqual("asdf");
   });
 });
 
@@ -73,17 +71,16 @@ describe("getOrTrow()", () => {
   });
 });
 
-describe("applySettings()", () => {
-  it("should be able to modify the settings object", async () => {
+describe("applyConfig()", () => {
+  it("should be able to modify the config object", async () => {
     const obj = new Collection();
     await obj.mount();
-    expect(obj.settings).toEqual(config);
-    obj.applySettings({
+    obj.applyConfig({
       selector: "div",
       test: "asdf"
     });
-    expect(obj.settings.selector).toBe("div");
-    expect(obj.settings.test).toBe("asdf");
+    expect(obj.config.selector).toBe("div");
+    expect(obj.config.test).toBe("asdf");
   });
 });
 
@@ -93,15 +90,15 @@ describe("createEntry()", () => {
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.getSetting("dataConfig")).toBe("config");
+    expect(entry.getConfig("dataConfig")).toBe("config");
   });
 
-  it("should be able to pass a settings object", async () => {
+  it("should be able to pass a config object", async () => {
     const obj = new Collection();
     const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
     expect(entry.id).toBe("fdsa");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.getSetting("dataConfig")).toBe("test");
+    expect(entry.getConfig("dataConfig")).toBe("test");
   });
 });
 
@@ -191,13 +188,13 @@ describe("mount() & unmount()", () => {
 
   it("should register all elements using the provided selector on mount", async () => {
     await obj.mount();
-    expect(obj.settings.selector).toBe("div");
+    expect(obj.config.selector).toBe("div");
     expect(obj.collection.length).toBe(2);
   });
 
   it("should deregister all elements using the provided selector on mount", async () => {
     await obj.unmount();
-    expect(obj.settings.selector).toBe("div");
+    expect(obj.config.selector).toBe("div");
     expect(obj.collection.length).toBe(0);
   });
 

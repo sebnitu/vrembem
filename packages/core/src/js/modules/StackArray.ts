@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "../CollectionEntry";
 
-type StackArraySettings = {
+type StackArrayconfig = {
   onChange?: () => void;
   [key: string]: any;
 };
@@ -8,11 +8,11 @@ type StackArraySettings = {
 export class StackArray<
   TEntry extends CollectionEntry<any>
 > extends Array<TEntry> {
-  settings: StackArraySettings;
+  config: StackArrayconfig;
 
-  constructor(settings: StackArraySettings = {}) {
+  constructor(config: StackArrayconfig = {}) {
     super();
-    this.settings = settings;
+    this.config = config;
   }
 
   get copy(): TEntry[] {
@@ -34,8 +34,8 @@ export class StackArray<
 
   onChange() {
     this.updateIndex();
-    if (typeof this.settings.onChange === "function") {
-      this.settings.onChange();
+    if (typeof this.config.onChange === "function") {
+      this.config.onChange();
     }
   }
 

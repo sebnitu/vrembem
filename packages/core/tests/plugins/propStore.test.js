@@ -29,10 +29,10 @@ describe("propStore", () => {
     expect(entry.id).toBe("entry-1");
     expect(typeof plugin.store.get).toBe("function");
     expect(typeof plugin.store.set).toBe("function");
-    expect(typeof plugin.settings.onChange).toBe("function");
-    expect(typeof plugin.settings.condition).toBe("boolean");
-    await plugin.settings.onChange();
-    expect(plugin.settings.condition).toBe(false);
+    expect(typeof plugin.config.onChange).toBe("function");
+    expect(typeof plugin.config.condition).toBe("boolean");
+    await plugin.config.onChange();
+    expect(plugin.config.condition).toBe(false);
   });
 
   it("should remove the propStore plugin when the remove method is called", async () => {
@@ -188,8 +188,8 @@ describe("propStore", () => {
     // Get the plugin from the plugins array
     const plugin = collection.plugins.get("propStore");
     // Ensure that onChange is a function
-    expect(typeof plugin.settings.onChange).toBe("function");
+    expect(typeof plugin.config.onChange).toBe("function");
     // Ensure that onChange does not throw when called
-    expect(() => plugin.settings.onChange()).not.toThrow();
+    expect(() => plugin.config.onChange()).not.toThrow();
   });
 });

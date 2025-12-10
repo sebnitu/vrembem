@@ -61,11 +61,11 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
 
   async function setupPropStore(this: any, entry: any) {
     // Store the initial property value. Set to null if property doesn't exist
-    let _value = entry[this.settings.prop] || null;
+    let _value = entry[this.config.prop] || null;
     const contextObj = { plugin: this, parent: entry.parent, entry };
 
     // Define a getter and setter for the property
-    Object.defineProperty(entry, this.settings.prop, {
+    Object.defineProperty(entry, this.config.prop, {
       configurable: true,
       get() {
         return _value;
@@ -78,7 +78,7 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
 
         // Conditionally store the value in local storage
         const condition = getValue(
-          this.settings.condition,
+          this.config.condition,
           contextObj,
           newValue,
           oldValue
@@ -89,7 +89,7 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
         }
 
         // Run the on change callback
-        await this.settings.onChange(contextObj, newValue, oldValue);
+        await this.config.onChange(contextObj, newValue, oldValue);
       }
     });
 
@@ -100,14 +100,14 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
         return this.store.get(entry.id);
       },
       set: (value) => {
-        entry[this.settings.prop] = value;
+        entry[this.config.prop] = value;
       }
     });
 
     // Conditionally set the initial value (must be truthy)
-    entry[this.settings.prop] =
-      (await getValue(this.settings.value, contextObj)) ||
-      entry[this.settings.prop];
+    entry[this.config.prop] =
+      (await getValue(this.config.value, contextObj)) ||
+      entry[this.config.prop];
   }
 
   function getValue(obj: any, ...args: any[]): any {
@@ -116,9 +116,9 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
 
   async function removePropStore(this: any, entry: any) {
     // Remove the getter/setters and restore properties to its current value
-    const currentValue = entry[this.settings.prop];
-    delete entry[this.settings.prop];
-    entry[this.settings.prop] = currentValue;
+    const currentValue = entry[this.config.prop];
+    delete entry[this.config.prop];
+    entry[this.config.prop] = currentValue;
 
     // Remove value from local store
     this.store.set(entry.id, null);
@@ -126,9 +126,9 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
 
   function getKey(this: any, moduleName: string): string {
     const prop =
-      this.settings.prop.charAt(0).toUpperCase() + this.settings.prop.slice(1);
-    const key = this.settings.key || moduleName + prop;
-    return this.settings.keyPrefix + key;
+      this.config.prop.charAt(0).toUpperCase() + this.config.prop.slice(1);
+    const key = this.config.key || moduleName + prop;
+    return this.config.keyPrefix + key;
   }
 
   return { ...props, ...methods };

@@ -28,9 +28,7 @@ export class Popover extends Collection<PopoverEntry> {
 
   get activeHover(): PopoverEntry | undefined {
     return this.collection.find((popover) => {
-      return (
-        popover.state == "opened" && popover.getSetting("event") == "hover"
-      );
+      return popover.state == "opened" && popover.getConfig("event") == "hover";
     });
   }
 

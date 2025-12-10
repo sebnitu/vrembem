@@ -1,11 +1,11 @@
-import { getCustomProps, getSetting } from "./helpers";
+import { getCustomProps, getConfig } from "./helpers";
 import { getDataConfig, getElement } from "./utilities";
 import type { Collection } from "./Collection";
 
 export class CollectionEntry<TParent extends Collection<any>> {
   parent: TParent;
   el: HTMLElement;
-  settings: Record<string, any>;
+  config: Record<string, any>;
   dataConfig: Record<string, any>;
   customProps: Record<string, any>;
 
@@ -16,7 +16,7 @@ export class CollectionEntry<TParent extends Collection<any>> {
   ) {
     this.parent = parent;
     this.el = getElement(query);
-    this.settings = { ...options };
+    this.config = { ...options };
     this.dataConfig = {};
     this.customProps = {};
   }
@@ -25,24 +25,24 @@ export class CollectionEntry<TParent extends Collection<any>> {
     return this.el.id;
   }
 
-  applySettings(options: Record<string, any>) {
-    return Object.assign(this.settings, options);
+  applyConfig(options: Record<string, any>) {
+    return Object.assign(this.config, options);
   }
 
-  getSetting(
+  getConfig(
     key: string,
     options?: {
       fallback?: any;
       props?: string[];
     }
   ) {
-    return getSetting.call(this, key, options);
+    return getConfig.call(this, key, options);
   }
 
   buildDataConfig() {
     return Object.assign(
       this.dataConfig,
-      getDataConfig(this.el, this.getSetting("dataConfig"))
+      getDataConfig(this.el, this.getConfig("dataConfig"))
     );
   }
 
@@ -51,10 +51,10 @@ export class CollectionEntry<TParent extends Collection<any>> {
   }
 
   async init(options: Record<string, any> = {}) {
-    // Apply settings with passed options
-    this.applySettings(options);
+    // Apply config with passed options
+    this.applyConfig(options);
 
-    // Build the data attribute and custom property setting objects
+    // Build the data attribute and custom property config objects
     this.buildDataConfig();
     this.buildCustomProps();
   }

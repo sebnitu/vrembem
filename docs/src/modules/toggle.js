@@ -1,11 +1,11 @@
-const settings = {
+const config = {
   attr: "data-toggle"
 };
 
 const toggle = {
   open(id) {
     const trigger = document.querySelector(`#toggle-${id}-trigger`);
-    const targetId = trigger.getAttribute(settings.attr);
+    const targetId = trigger.getAttribute(config.attr);
     const target = document.getElementById(targetId);
 
     trigger.setAttribute("aria-expanded", "true");
@@ -14,7 +14,7 @@ const toggle = {
 
   close(id) {
     const trigger = document.querySelector(`#toggle-${id}-trigger`);
-    const targetId = trigger.getAttribute(settings.attr);
+    const targetId = trigger.getAttribute(config.attr);
     const target = document.getElementById(targetId);
 
     trigger.setAttribute("aria-expanded", "false");
@@ -23,10 +23,10 @@ const toggle = {
 
   mount() {
     // Get all the file reference toggle buttons
-    const toggles = document.querySelectorAll(`[${settings.attr}]`);
+    const toggles = document.querySelectorAll(`[${config.attr}]`);
     toggles.forEach((trigger) => {
       // Get the target element
-      const targetId = trigger.getAttribute(settings.attr);
+      const targetId = trigger.getAttribute(config.attr);
       const target = document.getElementById(targetId);
 
       // Set the event listener

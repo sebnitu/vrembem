@@ -24,57 +24,57 @@ describe("constructor()", () => {
     const entry = new CollectionEntry(obj, "one", {
       test: "asdf"
     });
-    expect(entry.settings.test).toEqual("asdf");
+    expect(entry.config.test).toEqual("asdf");
   });
 });
 
-describe("applySettings()", () => {
-  it("should be able to modify the settings object", async () => {
+describe("applyConfig()", () => {
+  it("should be able to modify the config object", async () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(entry.settings).toEqual({});
-    entry.applySettings({
+    expect(entry.config).toEqual({});
+    entry.applyConfig({
       selector: "div",
       test: "asdf"
     });
-    expect(entry.settings.selector).toBe("div");
-    expect(entry.settings.test).toBe("asdf");
+    expect(entry.config.selector).toBe("div");
+    expect(entry.config.test).toBe("asdf");
   });
 });
 
 describe("buildDataConfig()", () => {
-  it("should be able to use settings from data attributes", () => {
+  it("should be able to use config from data attributes", () => {
     const entry = new CollectionEntry(obj, "two");
     entry.buildDataConfig();
-    expect(entry.getSetting("one")).toBe(111);
-    expect(entry.getSetting("two")).toBe(222);
+    expect(entry.getConfig("one")).toBe(111);
+    expect(entry.getConfig("two")).toBe(222);
   });
 });
 
 describe("buildCustomProps()", () => {
-  it("should be able to use settings from custom properties", () => {
+  it("should be able to use config from custom properties", () => {
     const entry = new CollectionEntry(obj, "three");
     entry.buildCustomProps();
-    expect(entry.getSetting("test")).toBe("fdsa");
+    expect(entry.getConfig("test")).toBe("fdsa");
   });
 });
 
-describe("getSetting()", () => {
-  it("should get a settings value from the entry parent", () => {
+describe("getConfig()", () => {
+  it("should get a config value from the entry parent", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(entry.getSetting("test")).toBe("asdf");
+    expect(entry.getConfig("test")).toBe("asdf");
   });
 
-  it("should get a settings value from the entry", () => {
+  it("should get a config value from the entry", () => {
     const entry = new CollectionEntry(obj, "one", {
       test: "new"
     });
-    expect(entry.getSetting("test")).toBe("new");
+    expect(entry.getConfig("test")).toBe("new");
   });
 
   it("should throw an error if a setting doesn't exist", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(() => entry.getSetting("asdf")).toThrowError(
-      "Collection setting does not exist: asdf"
+    expect(() => entry.getConfig("asdf")).toThrowError(
+      "Collection config does not exist: asdf"
     );
   });
 });
@@ -84,7 +84,7 @@ describe("init() & destroy()", () => {
     const entry = new CollectionEntry(obj, "four");
     await entry.init({ new: "asdf" });
     expect(entry.id).toBe("four");
-    expect(entry.settings.new).toBe("asdf");
+    expect(entry.config.new).toBe("asdf");
     expect(entry.dataConfig.data).toBe(111);
     expect(entry.customProps.test).toBe("fdsa");
   });

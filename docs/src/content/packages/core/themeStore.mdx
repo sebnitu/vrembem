@@ -163,11 +163,11 @@ Below are the available options you can pass to `themeStore` when initializing a
   </li>
 </ul>
 
-### themeStore.settings
+### themeStore.config
 
 **Type:** `object`
 
-An object to store the values of `themeStore`'s settings. These include:
+An object to store the values of `themeStore`'s configurations. These include:
 
 - `prefix (string)` - The class prefix for theme names.
 - `storeKey (string)` - Local storage key for saving theme state.
@@ -185,7 +185,7 @@ An object to store the values of `themeStore`'s settings. These include:
     fallback: "default"
   });
 
-  console.log(myTheme.settings);
+  console.log(myTheme.config);
   // Output: {
   //   "prefix": "theme-",
   //   "storeKey": "Profile",
@@ -203,7 +203,7 @@ An object to store the values of `themeStore`'s settings. These include:
 
 The `theme` property acts as both a getter and setter for the current theme.
 
-- **Getter:** When accessed, `theme` returns the most recent value set in local storage under the key `"theme"`. If no value exists, it returns the value of `settings.fallback`.
+- **Getter:** When accessed, `theme` returns the most recent value set in local storage under the key `"theme"`. If no value exists, it returns the value of `config.fallback`.
 - **Setter:** When a new value is assigned to `theme`, it first checks that the value is a valid theme and that it is not already the current theme. If valid, it updates local storage with the new value, updates the root HTML element with the appropriate theme class, and finally runs the `onChange` callback function.
 
 #### Example

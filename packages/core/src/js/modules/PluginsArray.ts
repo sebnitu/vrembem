@@ -2,7 +2,7 @@ export type Plugin = {
   name: string;
   defaults?: Record<string, any>;
   options?: Record<string, any>;
-  settings?: Record<string, any>;
+  config?: Record<string, any>;
   setup?: (context: any) => void;
   teardown?: (context: any) => void;
   onCreateEntry?: (context: any) => void;
@@ -26,15 +26,15 @@ export class PluginsArray extends Array<Plugin> {
     this.presets = presets;
   }
 
-  applySettings(plugin: Plugin): void {
+  applyConfig(plugin: Plugin): void {
     // Get the defaults, presets and provided configuration of the plugin
     const defaults = plugin?.defaults || {};
     const preset = this.presets?.[plugin.name] || {};
     const options = plugin?.options || {};
 
-    // Create the settings property by merging the plugin defaults, preset and
+    // Create the config property by merging the plugin defaults, preset and
     // any provided options.
-    plugin.settings = { ...defaults, ...preset, ...options };
+    plugin.config = { ...defaults, ...preset, ...options };
   }
 
   validate(plugin: Plugin): boolean {
@@ -54,7 +54,7 @@ export class PluginsArray extends Array<Plugin> {
       plugin.forEach((p) => this.add(p));
     } else {
       // Process the plugin object
-      this.applySettings(plugin);
+      this.applyConfig(plugin);
       // Ensure the plugin is valid
       if (this.validate(plugin)) {
         // Either replace the plugin if it already exists in the array,

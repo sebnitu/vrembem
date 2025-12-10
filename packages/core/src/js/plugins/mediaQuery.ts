@@ -80,10 +80,10 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     this: any,
     entry: MediaQueryEntry
   ): string | undefined {
-    const value = entry.el.getAttribute(`data-${this.settings.dataMediaQuery}`);
+    const value = entry.el.getAttribute(`data-${this.config.dataMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
-    if (!value && entry.id in this.settings.mediaQueries) {
-      return this.settings.mediaQueries[entry.id];
+    if (!value && entry.id in this.config.mediaQueries) {
+      return this.config.mediaQueries[entry.id];
     }
     return value || undefined;
   }
@@ -93,14 +93,14 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     this: any,
     entry: MediaQueryEntry
   ): string | null {
-    let value = entry.el.getAttribute(`data-${this.settings.dataBreakpoint}`);
+    let value = entry.el.getAttribute(`data-${this.config.dataBreakpoint}`);
     // If no value was returned, is there a breakpoint mapped to the entry id?
-    if (!value && entry.id in this.settings.breakpoints) {
-      value = this.settings.breakpoints[entry.id];
+    if (!value && entry.id in this.config.breakpoints) {
+      value = this.config.breakpoints[entry.id];
     }
     // If a value exists is it a key mapped to a value in breakpoints?
-    if (value && value in this.settings.breakpoints) {
-      value = this.settings.breakpoints[value];
+    if (value && value in this.config.breakpoints) {
+      value = this.config.breakpoints[value];
     }
     // Is the value a key of a breakpoint custom property?
     if (value) {
@@ -110,7 +110,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
       value = customProp || value;
     }
     // Return the value or the default value
-    return value || this.settings.breakpoint;
+    return value || this.config.breakpoint;
   }
 
   // Sets up the MediaQueryList and event listener for an entry
@@ -122,17 +122,17 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     if (!bp && !mq) return;
     // Use the default media query if a custom one wasn't found
     if (bp && !mq) {
-      mq = this.settings.mediaQuery;
+      mq = this.config.mediaQuery;
     }
     // Create the media query string
-    const mqs = mq.replace(new RegExp(`${this.settings.token}`, "g"), bp);
+    const mqs = mq.replace(new RegExp(`${this.config.token}`, "g"), bp);
     // Setup MediaQueryList object and event listener
     entry.mql = window.matchMedia(mqs);
     entry.mql.onchange = (event: MediaQueryListEvent) => {
-      this.settings.onChange(event, entry);
+      this.config.onChange(event, entry);
     };
     // Run the on change function for the initial match check
-    this.settings.onChange(entry.mql, entry);
+    this.config.onChange(entry.mql, entry);
   }
 
   // Removes the MediaQueryList and event listener for an entry

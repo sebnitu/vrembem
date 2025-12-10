@@ -1,4 +1,4 @@
-import { getCustomProps, getSetting } from "../../index";
+import { getCustomProps, getConfig } from "../../index";
 
 document.body.innerHTML = "<div id='asdf'>asdf</div>";
 document.body.style.setProperty("--vb-prefix", "vb-");
@@ -11,18 +11,18 @@ document
 
 const mockEntry = {
   el: document.getElementById("asdf"),
-  settings: {
+  config: {
     customProps: ["background", "foreground"]
   },
   parent: {
     module: "asdf",
-    settings: {
+    config: {
       background: "black",
       foreground: "white"
     }
   },
-  getSetting(key) {
-    return getSetting.call(this, key);
+  getConfig(key) {
+    return getConfig.call(this, key);
   }
 };
 

@@ -114,7 +114,7 @@ describe("mediaQuery", () => {
     expect(collection.plugins.length).toBe(0);
   });
 
-  it("should be able to apply settings in various ways", async () => {
+  it("should be able to apply configurations in various ways", async () => {
     window.innerWidth = 500;
     const spyFunction = vi.fn();
     await collection.mount({

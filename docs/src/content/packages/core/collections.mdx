@@ -312,13 +312,13 @@ class TicTacToe extends Collection {
 
   // Add a lifecycle hook to attach a click event for the reset button
   beforeMount() {
-    const resetBtn = document.querySelector(this.settings.selectorReset);
+    const resetBtn = document.querySelector(this.config.selectorReset);
     resetBtn?.addEventListener("click", this.reset.bind(this));
   }
 }
 
 // Make sure to pass a `selectorReset` value in the config object to ensure 
-// it's made available in our settings object.
+// it's made available in our configuration object.
 const ticTacToe = new TicTacToe({
   selector: ".tictactoe__cell",
   selectorReset: ".tictactoe-reset"

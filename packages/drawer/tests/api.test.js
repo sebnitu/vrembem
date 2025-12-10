@@ -60,10 +60,10 @@ describe("mount() & unmount()", () => {
     expect(drawer.collection.length).toBe(0);
   });
 
-  it("should mount with custom settings passed on mount", async () => {
+  it("should mount with custom config passed on mount", async () => {
     await drawer.mount({ eventListeners: false });
     expect(drawer.collection.length).toBe(2);
-    expect(drawer.settings.eventListeners).toBe(false);
+    expect(drawer.config.eventListeners).toBe(false);
     await drawer.unmount();
     expect(drawer.collection.length).toBe(0);
   });
@@ -160,7 +160,7 @@ describe("register() & deregister()", () => {
 
   it("should disable setting tabindex on drawer dialog", async () => {
     // Disable tabindex before register
-    drawer.settings.setTabindex = false;
+    drawer.config.setTabindex = false;
     let entry = await drawer.register("drawer-1");
     expect(entry.dialog.getAttribute("tabindex")).toBe(null);
 
@@ -168,7 +168,7 @@ describe("register() & deregister()", () => {
     await drawer.deregister("drawer-1");
 
     // Enable tabindex before register
-    drawer.settings.setTabindex = true;
+    drawer.config.setTabindex = true;
     entry = await drawer.register("drawer-1");
     expect(entry.dialog.getAttribute("tabindex")).toBe("-1");
   });
@@ -222,9 +222,9 @@ describe("data-config", () => {
     const entry1 = await drawer.register("drawer-1");
     const entry2 = await drawer.register("drawer-2");
 
-    expect(entry1.getSetting("transition")).toBe(false);
-    expect(entry1.getSetting("selectorOverflow")).toBe("body");
-    expect(entry2.getSetting("transition")).toBe(true);
-    expect(entry2.getSetting("selectorOverflow")).toBe("main");
+    expect(entry1.getConfig("transition")).toBe(false);
+    expect(entry1.getConfig("selectorOverflow")).toBe("body");
+    expect(entry2.getConfig("transition")).toBe(true);
+    expect(entry2.getConfig("selectorOverflow")).toBe("main");
   });
 });

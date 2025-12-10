@@ -45,7 +45,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
 
   get isTooltip(): boolean {
     return (
-      !!this.el.closest(this.getSetting("selectorTooltip")) ||
+      !!this.el.closest(this.getConfig("selectorTooltip")) ||
       this.el.getAttribute("role") == "tooltip"
     );
   }
@@ -91,7 +91,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
     // If event listeners aren't already setup
     if (!this.#eventListeners) {
       // Add event listeners based on event type
-      const eventType = this.getSetting("event");
+      const eventType = this.getConfig("event");
 
       // If the event type is hover
       if (eventType === "hover") {
@@ -173,7 +173,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
     // If it's a tooltip...
     if (this.isTooltip) {
       // Set the event to hover role="tooltip" attribute
-      this.settings.event = "hover";
+      this.config.event = "hover";
       this.el.setAttribute("role", "tooltip");
     } else {
       // Check that trigger isn't null and is an HTMLElement
@@ -189,7 +189,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
 
   async onRegisterEntry() {
     // Set initial state based on the presence of the active class
-    if (this.el.classList.contains(this.getSetting("stateActive"))) {
+    if (this.el.classList.contains(this.getConfig("stateActive"))) {
       await this.open();
     } else {
       this.el.inert = true;

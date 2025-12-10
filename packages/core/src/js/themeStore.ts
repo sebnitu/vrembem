@@ -11,7 +11,7 @@ interface ThemeStoreOptions {
 }
 
 interface ThemeStoreApi {
-  settings: {
+  config: {
     prefix: string;
     storeKey: string;
     fallback: string;
@@ -30,17 +30,17 @@ interface ThemeStoreCallbacks {
 }
 
 export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
-  // Setup the default settings object
-  const settings = {
+  // Setup the default config object
+  const config = {
     prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
     storeKey: "VB:Profile",
     fallback: "root"
   };
 
-  // Override all settings values with provided options
-  for (const [key] of Object.entries(settings)) {
+  // Override all config values with provided options
+  for (const [key] of Object.entries(config)) {
     if (options && options[key as keyof ThemeStoreOptions]) {
-      settings[key as keyof typeof settings] = options[
+      config[key as keyof typeof config] = options[
         key as keyof ThemeStoreOptions
       ] as any;
     }
@@ -67,15 +67,15 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   }
 
   // Get the local storage profile
-  const profile = localStore(settings.storeKey);
+  const profile = localStore(config.storeKey);
 
   // Setup the private themes array
   const themesArray = options.themes || ["root", "light", "dark"];
 
   // Setup the API object
   const api: ThemeStoreApi = {
-    // Store our settings in the API
-    settings,
+    // Store our config in the API
+    config,
 
     // Actions
     add(value: string) {
@@ -88,10 +88,10 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
 
     // Getters
     get class() {
-      return `${settings.prefix}${this.theme}`;
+      return `${config.prefix}${this.theme}`;
     },
     get classes() {
-      return themesArray.map((theme) => `${settings.prefix}${theme}`);
+      return themesArray.map((theme) => `${config.prefix}${theme}`);
     },
     get themes() {
       return themesArray;
@@ -99,7 +99,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
 
     // Setup the theme get and set methods
     get theme() {
-      return profile.get("theme") || settings.fallback;
+      return profile.get("theme") || config.fallback;
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
@@ -113,7 +113,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
           document.documentElement.classList.remove(...this.classes);
 
           // Add the new theme class to the html element
-          document.documentElement.classList.add(`${settings.prefix}${value}`);
+          document.documentElement.classList.add(`${config.prefix}${value}`);
 
           // Run the on change callback
           callback("onChange");

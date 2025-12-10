@@ -7,7 +7,7 @@ export function getPopoverID(obj: string | HTMLElement): string | null {
   // If it's an HTML element
   else if (typeof obj.hasAttribute === "function") {
     // If it's a popover element, return the id
-    const el = obj.closest(this.settings.selector);
+    const el = obj.closest(this.config.selector);
     if (el && el.id) {
       return el.id;
     }

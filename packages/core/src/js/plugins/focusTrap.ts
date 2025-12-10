@@ -54,14 +54,14 @@ export function focusTrap(options: FocusTrapConfig = {}): Plugin {
 
   function enableFocusTrap(entry: FocusTrapEntry, plugin: any) {
     const contextObj = { plugin, parent: entry.parent, entry };
-    if (getValue(plugin.settings.condition, contextObj)) {
+    if (getValue(plugin.config.condition, contextObj)) {
       entry.focusTrap?.on(entry.dialog);
     }
   }
 
   function disableFocusTrap(entry: FocusTrapEntry, plugin: any) {
     const contextObj = { plugin, parent: entry.parent, entry };
-    if (getValue(plugin.settings.condition, contextObj)) {
+    if (getValue(plugin.config.condition, contextObj)) {
       entry.focusTrap?.off();
     }
   }

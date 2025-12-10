@@ -11,7 +11,7 @@ import { toCamel, toKebab } from "../utilities";
  *
  * @returns The value of the property if found, or `undefined` if not found.
  */
-function maybeReturnSetting(
+function maybeReturnConfig(
   this: Record<string, any>,
   prop: string,
   key: string,
@@ -19,7 +19,7 @@ function maybeReturnSetting(
 ): any {
   // Convert the key case based on provided type
   key = type === "camel" ? toCamel(key) : toKebab(key);
-  // Return the setting if it exists, otherwise return undefined
+  // Return the config if it exists, otherwise return undefined
   return prop
     .split(".")
     .concat(key)
@@ -27,21 +27,21 @@ function maybeReturnSetting(
 }
 
 /**
- * Retrieves a setting from the context (`this`) object, searching through
+ * Retrieves a config from the context (`this`) object, searching through
  * multiple properties (`props`) in the context. Optionally returns a fallback
- * if the setting is not found or throws an error if no fallback is provided.
+ * if the config is not found or throws an error if no fallback is provided.
  *
- * @param {string} key - The key of the setting to retrieve.
+ * @param {string} key - The key of the config to retrieve.
  * @param {object} options - Options for fallback and the props array.
  * @param {any} options.fallback - The fallback value to return if the
- *   setting is not found.
+ *   config is not found.
  * @param {string} options.props - An array of properties to search for the
- *   setting.
+ *   config.
  *
- * @returns The value of the setting if found, or the fallback if provided.
- * @throws An error if the setting is not found and no fallback is provided.
+ * @returns The value of the config if found, or the fallback if provided.
+ * @throws An error if the config is not found and no fallback is provided.
  */
-export function getSetting(
+export function getConfig(
   this: Record<string, any>,
   key: string,
   options: {
@@ -52,13 +52,13 @@ export function getSetting(
   // Get the initial props to query and the fallback if provided
   const {
     fallback,
-    props = ["dataConfig", "customProps", "settings", "parent.settings"]
+    props = ["dataConfig", "customProps", "config", "parent.config"]
   } = options;
 
-  // Loop through the props for the setting and return if found
+  // Loop through the props for the config and return if found
   for (const prop of props) {
     const type = prop !== "customProps" ? "camel" : "kebab";
-    const result = maybeReturnSetting.call(this, prop, key, type);
+    const result = maybeReturnConfig.call(this, prop, key, type);
     if (result !== undefined) {
       return result;
     }
@@ -70,5 +70,5 @@ export function getSetting(
   }
 
   // Otherwise, throw an error
-  throw new Error(`${this.parent.module} setting does not exist: ${key}`);
+  throw new Error(`${this.parent.module} config does not exist: ${key}`);
 }

@@ -41,7 +41,7 @@ export const config: ModalConfig = {
   stateClosing: "is-closing",
   stateClosed: "is-closed",
 
-  // Feature settings
+  // Feature configurations
   customProps: ["transition-duration"],
   customEventPrefix: "modal:",
   setTabindex: true,

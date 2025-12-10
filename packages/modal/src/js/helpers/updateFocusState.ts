@@ -4,7 +4,7 @@ export function updateFocusState(parent: Modal): void {
   // Check if there's an active modal
   if (parent.active) {
     (
-      parent.active.dialog.querySelector(parent.settings.selectorFocus) ||
+      parent.active.dialog.querySelector(parent.config.selectorFocus) ||
       parent.active.dialog
     ).focus();
   } else {

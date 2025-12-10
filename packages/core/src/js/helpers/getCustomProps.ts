@@ -6,14 +6,14 @@ type Entry = {
   parent: {
     module: string;
   };
-  getSetting: (key: string) => string[];
+  getConfig: (key: string) => string[];
 };
 
 /**
- * Extracts CSS custom properties for a given entry based on its settings.
+ * Extracts CSS custom properties for a given entry based on its config.
  *
  * @param {Entry} entry - An object representing the entry with its associated
- *   settings and element.
+ *   config and element.
  *
  * @returns {object} A key/value object of custom property names (in kebab-case)
  *   to their corresponding CSS values.
@@ -23,10 +23,10 @@ export function getCustomProps(entry: Entry): Record<string, string> {
   const styles = getComputedStyle(entry.el);
 
   // Initialize the results object for storing custom property key/value pairs
-  const result = {};
+  const result: Record<string, string> = {};
 
   // Get the custom property keys
-  const keys = entry.getSetting("customProps");
+  const keys = entry.getConfig("customProps");
 
   // Loop through the custom properties object
   for (let i = 0; i < keys.length; i++) {

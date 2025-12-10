@@ -23,7 +23,7 @@ type cssVarOptions = {
  *   the property is not found and no fallback is provided.
  */
 export function cssVar(property: string, options: cssVarOptions = {}): string {
-  const settings = {
+  const config = {
     fallback: null,
     element: document.body,
     ...options
@@ -44,7 +44,7 @@ export function cssVar(property: string, options: cssVarOptions = {}): string {
   }
 
   // Get the CSS value
-  const cssValue = getComputedStyle(settings.element)
+  const cssValue = getComputedStyle(config.element)
     .getPropertyValue(property)
     .trim();
 
@@ -55,8 +55,8 @@ export function cssVar(property: string, options: cssVarOptions = {}): string {
 
   // Else, return the fallback or a blocking error
   else {
-    if (settings.fallback) {
-      return settings.fallback;
+    if (config.fallback) {
+      return config.fallback;
     } else {
       throw new Error(`CSS variable "${property}" was not found!`);
     }

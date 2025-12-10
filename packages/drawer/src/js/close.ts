@@ -28,18 +28,18 @@ export async function close(
     if (
       transitionOverride != undefined
         ? transitionOverride
-        : entry.getSetting("transition")
+        : entry.getConfig("transition")
     ) {
       await transition(
         entry.el,
-        entry.getSetting("stateOpened"),
-        entry.getSetting("stateClosing"),
-        entry.getSetting("stateClosed"),
-        entry.getSetting("transitionDuration")
+        entry.getConfig("stateOpened"),
+        entry.getConfig("stateClosing"),
+        entry.getConfig("stateClosed"),
+        entry.getConfig("transitionDuration")
       );
     } else {
-      entry.el.classList.add(entry.getSetting("stateClosed"));
-      entry.el.classList.remove(entry.getSetting("stateOpened"));
+      entry.el.classList.add(entry.getConfig("stateClosed"));
+      entry.el.classList.remove(entry.getConfig("stateOpened"));
     }
 
     // Update drawer state
@@ -49,8 +49,8 @@ export async function close(
     if (entry.mode === "modal")
       setGlobalState(
         false,
-        entry.getSetting("selectorInert"),
-        entry.getSetting("selectorOverflow")
+        entry.getConfig("selectorInert"),
+        entry.getConfig("selectorOverflow")
       );
 
     // Set focus to the trigger element if the focus param is true
@@ -60,7 +60,7 @@ export async function close(
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(
-      new CustomEvent(entry.getSetting("customEventPrefix") + "closed", {
+      new CustomEvent(entry.getConfig("customEventPrefix") + "closed", {
         detail: entry.parent,
         bubbles: true
       })

@@ -34,7 +34,7 @@ describe("register() & entry.deregister()", () => {
   });
 
   it("should register modal without tabindex if setTabindex is disabled", async () => {
-    modal.settings.setTabindex = false;
+    modal.config.setTabindex = false;
     entry2 = await modal.register("modal-2");
     expect(entry1.dialog.getAttribute("tabindex")).toBe("-1");
     expect(entry2.el).toBe(el2);
