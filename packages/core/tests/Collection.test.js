@@ -1,4 +1,4 @@
-import defaults from "../src/js/defaults";
+import { config } from "../src/js/config";
 import { Collection, CollectionEntry } from "../index";
 
 document.body.innerHTML = `
@@ -23,7 +23,7 @@ describe("constructor()", () => {
     expect(obj.module).toBe("Collection");
     expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
-    expect(obj.settings).toEqual(defaults);
+    expect(obj.settings).toEqual(config);
   });
 
   it("should be able to pass options through the instantiation", () => {
@@ -77,7 +77,7 @@ describe("applySettings()", () => {
   it("should be able to modify the settings object", async () => {
     const obj = new Collection();
     await obj.mount();
-    expect(obj.settings).toEqual(defaults);
+    expect(obj.settings).toEqual(config);
     obj.applySettings({
       selector: "div",
       test: "asdf"
