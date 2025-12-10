@@ -1,0 +1,106 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import { getPackages } from "../../modules/getPackages";
+import { getModules } from "../../modules/getModules";
+import Base from "../../layouts/Base.astro";
+import Navi from "../../components/CollectionNavi.astro";
+import Pagi from "../../components/CollectionPagi.astro";
+import OnThisPage from "../../components/OnThisPage.astro";
+import LinkEditPage from "../../components/LinkEditPage.astro";
+import CodeExample from "../../components/CodeExample.astro";
+import Pre from "../../components/Pre.astro";
+import Table from "../../components/Table.astro";
+
+interface Props {
+  entry: CollectionEntry<"packages">;
+}
+
+export async function getStaticPaths() {
+  const packages = await getPackages();
+  const modules = await getModules();
+
+  const entries = [
+    ...packages.map((entry) => ({
+      params: { id: entry.id, slug: entry.id },
+      props: { entry }
+    })),
+    ...modules.map((entry) => ({
+      params: { id: entry.id, slug: entry.id },
+      props: { entry }
+    }))
+  ];
+
+  return entries;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+const packages = await getPackages();
+const modules = await getModules(entry.data.group);
+
+const layout = {
+  hasDrawer: true,
+  hasAside: true
+};
+---
+
+<Base title={entry.data.title} {layout}>
+  <div slot="drawer">
+    <Navi entries={packages} collection="packages" />
+  </div>
+  <div slot="aside">
+    <OnThisPage {headings} />
+  </div>
+
+  {
+    entry.data.parent && (
+      <div>
+        <div class="flex gap-sm">
+          <a href={`../${entry.data.parent}`} class="badge">
+            &larr; {entry.data.parent}
+          </a>
+          {entry.data.group && (
+            <a
+              href={`../${entry.data.parent}#${entry.data.group}`}
+              class="badge"
+            >
+              {entry.data.group}
+            </a>
+          )}
+        </div>
+        <h1 class="h1">{entry.data.title}</h1>
+      </div>
+      <p>{entry.data.description}</p>
+    )
+  }
+
+  <Content components={{ CodeExample, pre: Pre, table: Table }} />
+  <div slot="append" class="spacing-xl">
+    <LinkEditPage />
+    <hr class="sep" />
+    {entry.data.package && <Pagi entries={packages} />}
+    {entry.data.parent && <Pagi entries={modules} />}
+  </div>
+</Base>
+
+<script>
+  // @ts-nocheck
+  import { headingAnchor } from "../../modules/headingAnchor";
+  import { toggle } from "../../modules/toggle";
+  import "../../modules/currentViewport";
+  import "../../modules/dismissible";
+  import "../../modules/resettable";
+  import "../../modules/demo";
+  import "../../modules/useTicTacToe";
+
+  headingAnchor.mount();
+  toggle.mount();
+
+  // Checkboxes
+  const checkboxes = document.querySelectorAll(
+    "input[type='checkbox'][aria-checked='mixed']"
+  );
+  checkboxes.forEach((checkbox) => (checkbox.indeterminate = true));
+</script>

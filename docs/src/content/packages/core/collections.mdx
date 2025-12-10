@@ -1,0 +1,523 @@
+---
+title: Collections
+description: "Collection and CollectionEntry are base classes designed to manage component instances and implement shared systems."
+parent: core
+group: collections
+---
+
+import fs from 'fs/promises';
+import path from 'path';
+
+Collections are used to create the scaffolding and shared systems that all Vrembem JavaScript components inherit. These systems include configuration, lifecycle hooks, custom events, and plugins.
+
+<CodeExample lang="js">
+```js
+import { Collection, CollectionEntry } from "@vrembem/core";
+```
+</CodeExample>
+
+## Example usage
+
+The best way to understand collections and the systems they offer is to create a component and use them directly. In this documentation, we'll create an example component and explore the collections API in practice.
+
+In the following example, we'll build a tic-tac-toe game that demonstrates the following concepts:
+
+- Instantiating and configuring a custom Collection and CollectionEntry.
+- Managing a group of related elements as a collection.
+- Implementing lifecycle hooks such as `onCreateEntry`, `onRegisterEntry`, `beforeMount`, `afterMount`, etc.
+- Emitting and listening for custom events between entries and the collection.
+- Querying and updating the collection using various method.
+- Demonstrating separation of concerns between collection and entry logic.
+
+### Markup and styles
+
+While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. Below is a working demo for what we'll build.
+
+<CodeExample tabs>
+<div slot="output" id="ttt-1" class="tictactoe-wrapper">
+  <table class="tictactoe">
+    <tr>
+      <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+      <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+      <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+      <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+      <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+      <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+      <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+    </tr>
+  </table>
+  <button type="button" class="tictactoe-reset link">Reset</button>
+</div>
+<Fragment slot="tab-html">
+```html
+<table class="tictactoe">
+  <tr>
+    <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+    <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+    <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+  </tr>
+  <tr>
+    <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+    <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+    <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+  </tr>
+  <tr>
+    <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+    <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+    <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+  </tr>
+</table>
+<button type="button" class="tictactoe-reset link">Reset</button>
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.tictactoe__cell {
+  --ttt-border: 0.25em solid var(--vb-neutral-95);
+  box-shadow: inset 0 0 0 0.25em white;
+  cursor: pointer;
+  font-size: 1.6em;
+  text-align: center;
+  height: 3em;
+  width: 3em;
+
+  &.is-winner {
+    background-color: var(--vb-primary-90);
+    color: var(--vb-primary-20);
+  }
+
+  &:first-child {
+    border-right: var(--ttt-border);
+  }
+
+  &:last-child {
+    border-left: var(--ttt-border);
+  }
+
+  tr:first-child & {
+    border-bottom: var(--ttt-border);
+  }
+
+  tr:last-child & {
+    border-top: var(--ttt-border);
+  }
+}
+```
+</Fragment>
+</CodeExample>
+
+Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
+
+### Collection classes
+
+In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a `selector` option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
+
+<CodeExample lang="js">
+```js
+import { Collection } from "@vrembem/core";
+
+// Define our custom component class by extending Collection
+class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+  }
+}
+
+// Instantiate the collection and provide a collection selector
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe__cell"
+});
+
+// Mount the collection
+await ticTacToe.mount();
+```
+</CodeExample>
+
+By default, each entry in a collection is an instance of the `CollectionEntry` class. For simple use cases, this is often sufficient. However, if your entries need custom logic or state, you can create your own entry class by extending `CollectionEntry` and assigning it to the `entryClass` property of your collection.
+
+<CodeExample lang="js">
+```js
+import { Collection, CollectionEntry } from "@vrembem/core";
+
+// Define our custom entry class by extending CollectionEntry
+class TicTacToeCell extends CollectionEntry {
+  constructor(...args) {
+    super(...args);
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+    // Assign our custom entry class to the `entryClass` property
+    this.entryClass = TicTacToeCell;
+  }
+}
+```
+</CodeExample>
+
+Next, we'll need to manage state for both the collection and its entries. Each cell entry should track whether it's empty, marked with an `X`, or marked with an `O`. The collection itself should track which player's turn it is—either `X` or `O`.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // Add a private property to track our state. It starts empty
+  #state = "";
+
+  constructor(...args) {
+    super(...args);
+  }
+
+  // Create a getter that returns the value of our private property
+  get state() {
+    return this.#state;
+  }
+
+  // Create a setter that updates the state private property value and the 
+  // inner text of the table cell
+  set state(value) {
+    this.#state = value;
+    this.el.innerText = value;
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    super(options);
+    this.entryClass = TicTacToeCell;
+    // Add a new property to track the current player
+    this.currentPlayer = "X";
+  }
+
+  // Add a method to switch players. This should be called after a turn is made
+  switchPlayer() {
+    this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+  }
+}
+```
+</CodeExample>
+
+With our initial states in place (current player and cell state), we can now implement the feature that lets players take turns. To achieve this, we'll make use of lifecycle hooks.
+
+### Lifecycle hooks
+
+Lifecycle hooks are special methods in `Collection` and `CollectionEntry` that are automatically called at specific points during its existence—such as mount, creation, or registration. They allow you to run custom logic in response to these events, making it easier to manage state, resources, and side effects.
+
+All hooks are run in the context of the collection, but only create and register hooks are run in the context of entries.
+
+Lifecycle hooks that are run when `mount` is called:
+
+- `beforeMount`
+- `onCreateEntry`
+- `onRegisterEntry`
+- `afterMount`
+
+Lifecycle hooks that are run when `unmount` is called:
+
+- `beforeUnmount`
+- `onDestroyEntry`
+- `onDeregisterEntry`
+- `afterUnmount`
+
+With this setup, we can add a `toggle` method to each cell and attach a click event listener using the `onRegisterEntry` lifecycle hook. Entries also have access to their parent collection via the `this.parent` alias, allowing them to interact with collection methods and properties directly.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+
+  // Create a toggle method that allows the current player to select a cell if
+  // it is empty, then calls the collection's switch player method
+  toggle() {
+    if (this.state === "") {
+      this.state = this.parent.currentPlayer;
+      this.parent.switchPlayer();
+    }
+  }
+
+  // Add a lifecycle hook to attach a click event with the toggle method
+  onRegisterEntry() {
+    this.el.addEventListener("click", this.toggle.bind(this));
+  }
+}
+```
+</CodeExample>
+
+Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the custom events system.
+
+### Event system
+
+The event system API available in collections provide a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
+
+- `Collection.on()`
+- `Collection.off()`
+- `Collection.emit()`
+
+Lets use events to let tic-tac-toe cells notify the board when a turn is made. By emitting an `afterTurn` event in the entry toggle method and listening for it in the collection's `afterMount` lifecycle hook, we can move the `switchPlayer` call into the parent collection—resulting in better separation of concerns.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  toggle() {
+    // Emit an event after a turn is made
+    this.parent.emit("afterTurn", this);
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  afterMount() {
+    // Add an event listener to switch players after a turn is made
+    this.on("afterTurn", () => {
+      this.switchPlayer();
+    });
+  }
+}
+```
+</CodeExample>
+
+The collection can also emit events that entries listen for and respond to. We'll use this pattern to reset the entire board.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  // Create a method to reset the cell
+  reset() {
+    this.state = "";
+  }
+
+  onRegisterEntry() {
+    // ...
+    // Listen for the reset event and run the entry's reset method
+    this.parent.on("reset", this.reset.bind(this));
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  async reset() {
+    // Emit the reset event and wait for listeners to finish running
+    await this.emit("reset");
+    // Reset the current player
+    this.currentPlayer = "X";
+  }
+
+  // Add a lifecycle hook to attach a click event for the reset button
+  beforeMount() {
+    const resetBtn = document.querySelector(this.settings.selectorReset);
+    resetBtn?.addEventListener("click", this.reset.bind(this));
+  }
+}
+
+// Make sure to pass a `selectorReset` value in the config object to ensure 
+// it's made available in our settings object.
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe__cell",
+  selectorReset: ".tictactoe-reset"
+});
+```
+</CodeExample>
+
+The final step in our tic-tac-toe example is to handle the winning state. To do this, we'll explore how collections can query and manage entry data.
+
+### Querying entries
+
+To finish our tic-tac-toe example, let's look at different ways to access and manage data between collection entries and the collection's global state. We'll begin by adding a few additional state properties to both the collection and entry classes.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  constructor(...args) {
+    // ...
+    // Create a cellRef property for quick access to our cell reference value
+    this.cellRef = this.el.getAttribute("data-cell");
+  }
+}
+
+class TicTacToe extends Collection {
+  constructor(options) {
+    // ...
+    // Add a property to track if a win condition has been reached
+    this.winner = false;
+    // Add an object that we can use to track the entire state of the board
+    this.boardState = {};
+    // Add an array with all possible win conditions
+    this.winConditions = [
+      ["A1", "B1", "C1"], // Row 1
+      ["A2", "B2", "C2"], // Row 2
+      ["A3", "B3", "C3"], // Row 3
+      ["A1", "A2", "A3"], // Col A
+      ["B1", "B2", "B3"], // Col B
+      ["C1", "C2", "C3"], // Col C
+      ["A1", "B2", "C3"], // Diagonal "\"
+      ["C1", "B2", "A3"]  // Diagonal "/"
+    ];
+  }
+}
+```
+</CodeExample>
+
+With these new state properties, we need to update the `boardState` object each time a cell is selected, and initialize `boardState` when the component mounts. We also want to check if a win condition has been reached before we allow a player to take a turn.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  set state(value) {
+    // ...
+    // Whenever a cell state changes, we also want to update the boardState obj
+    this.parent.boardState[this.cellRef] = value;
+  }
+
+  toggle() {
+    // Add the winner state to our toggle condition. This prevents a player 
+    // taking a turn after the game has ended
+    if (this.state === "" && !this.parent.winner) {
+      // ...
+    }
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  afterMount() {
+    // Set the initial board state using each entry cellRef property and state
+    this.collection.forEach((entry) => {
+      this.boardState[entry.cellRef] = entry.state;
+    });
+  }
+}
+```
+</CodeExample>
+
+Now that `boardState` is synced with our cell states, we can check for a win condition. Create a `checkWinConditions` method that compares `boardState` to the `winConditions` array, and call it after every turn using the `"afterTurn"` event.
+
+<CodeExample lang="js">
+```js
+class TicTacToe extends Collection {
+  // ...
+  // Method that checks if a win condition has been met
+  checkWinConditions() {
+    for (const cells of this.winConditions) {
+      const [a, b, c] = cells;
+      if (
+        this.boardState[a] &&
+        this.boardState[a] === this.boardState[b] &&
+        this.boardState[b] === this.boardState[c]
+      ) {
+        // Set the winning player to the winner property
+        this.winner = this.currentPlayer;
+      }
+    }
+  }
+
+  afterMount() {
+    // ...
+    this.on("afterTurn", () => {
+      // ...
+      // Check for a win condition after every turn is made
+      this.checkWinConditions();
+    });
+  }
+}
+```
+</CodeExample>
+
+Let's also improve the UI for when a win condition has been reached. We'll add an `is-winner` class to each cell that is part of the winning combination. You can do this by using the `get` method to query each cell by its `cellRef` value.
+
+<CodeExample lang="js">
+```js
+class TicTacToe extends Collection {
+  // ...
+  checkWinConditions() {
+    // ..
+    // If a win condition has been reached, run the setWinningCells method
+    this.setWinningCells(cells);
+  }
+
+  // Will the winning cells, query each cell entry and add the winner class
+  setWinningCells(cells) {
+    cells.forEach((cell) => {
+      this.get(cell, "cellRef").el.classList.add("is-winner");
+    });
+  }
+
+  // ...
+}
+```
+</CodeExample>
+
+As a final cleanup, be sure to remove the `is-winner` class from all cells and reset the global `winner` property whenever the board is reset.
+
+<CodeExample lang="js">
+```js
+class TicTacToeCell extends CollectionEntry {
+  // ...
+  reset() {
+    // Remove the win state class from cells
+    this.el.classList.remove("is-winner");
+    // ...
+  }
+}
+
+class TicTacToe extends Collection {
+  // ...
+  async reset() {
+    // ...
+    // Reset the winner property to false
+    this.winner = false;
+  }
+}
+```
+</CodeExample>
+
+### Conclusion
+
+The Collections API provides a powerful foundation for building interactive, stateful UI components in JavaScript. By leveraging configuration, lifecycle hooks, custom events, and flexible querying, you can efficiently manage groups of related elements and their shared logic.
+
+The tic-tac-toe example demonstrates how to separate concerns between collections and entries, handle state transitions, and implement event-driven communication. With these patterns, you can extend and adapt collections for a wide range of component architectures and interactive behaviors.
+
+<CodeExample tabs files={[
+  { name: 'TicTacToe.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToe.js'), 'utf-8') },
+  { name: 'TicTacToeCell.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToeCell.js'), 'utf-8') }
+]}>
+<div slot="output" id="ttt-2" class="tictactoe-wrapper">
+  <table class="tictactoe">
+    <tr>
+      <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+      <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+      <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+      <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+      <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+    </tr>
+    <tr>
+      <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+      <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+      <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+    </tr>
+  </table>
+  <button type="button" class="tictactoe-reset link">Reset</button>
+</div>
+<Fragment slot="tab-js">
+```js
+import { TicTacToe } from "./TicTacToe";
+
+const ticTacToe = new TicTacToe({
+  selector: ".tictactoe__cell",
+  selectorReset: ".tictactoe-reset"
+});
+
+await ticTacToe.mount();
+```
+</Fragment>
+</CodeExample>

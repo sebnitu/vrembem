@@ -7,8 +7,172 @@
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
-    import 'vrembem/sass';
+    import "vrembem/sass";
+    window["core"] = await import("./index.ts");
+
+    class TicTacToeCell extends core.CollectionEntry {
+      #state = "";
+
+      constructor(...args) {
+        super(...args);
+        this.cellRef = this.el.getAttribute("data-cell");
+      }
+
+      get state() {
+        return this.#state;
+      }
+
+      set state(value) {
+        this.#state = value;
+        this.el.innerText = value;
+        this.parent.boardState[this.cellRef] = value;
+      }
+
+      toggle() {
+        if (this.state === "" && !this.parent.winner) {
+          this.state = this.parent.currentPlayer;
+          this.parent.emit("afterTurn", this);
+        }
+      }
+
+      reset() {
+        this.el.classList.remove("is-winner");
+        this.state = "";
+      }
+
+      onRegisterEntry() {
+        this.el.addEventListener("click", this.toggle.bind(this));
+        this.parent.on("reset", this.reset.bind(this));
+      }
+    }
+
+    class TicTacToe extends core.Collection {
+      constructor(options) {
+        super(options);
+        this.entryClass = TicTacToeCell;
+        this.currentPlayer = "X";
+        this.winner = false;
+        this.boardState = {};
+        this.winConditions = [
+          ["A1", "B1", "C1"], // Row 1
+          ["A2", "B2", "C2"], // Row 2
+          ["A3", "B3", "C3"], // Row 3
+          ["A1", "A2", "A3"], // Col A
+          ["B1", "B2", "B3"], // Col B
+          ["C1", "C2", "C3"], // Col C
+          ["A1", "B2", "C3"], // Diagonal
+          ["C1", "B2", "A3"] // Diagonal
+        ];
+      }
+
+      checkWinConditions() {
+        for (const cells of this.winConditions) {
+          const [a, b, c] = cells;
+          if (
+            this.boardState[a] &&
+            this.boardState[a] === this.boardState[b] &&
+            this.boardState[b] === this.boardState[c]
+          ) {
+            this.setWinningCells(cells);
+            this.winner = this.currentPlayer;
+          }
+        }
+      }
+
+      setWinningCells(cells) {
+        cells.forEach((cell) => {
+          this.get(cell, "cellRef").el.classList.add("is-winner");
+        });
+      }
+
+      switchPlayer() {
+        this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
+      }
+
+      async reset() {
+        await this.emit("reset");
+        this.currentPlayer = "X";
+        this.winner = false;
+      }
+
+      beforeMount() {
+        const resetBtn = document.querySelector(this.settings.selectorReset);
+        resetBtn?.addEventListener("click", this.reset.bind(this));
+      }
+
+      afterMount() {
+        this.collection.forEach((entry) => {
+          this.boardState[entry.cellRef] = entry.state;
+        });
+
+        this.on("afterTurn", () => {
+          this.checkWinConditions();
+          this.switchPlayer();
+        });
+      }
+    }
+
+    const ticTacToe1 = new TicTacToe({
+      selector: "#ttt-1 .tictactoe__cell",
+      selectorReset: "#ttt-1 .tictactoe-reset"
+    });
+
+    const ticTacToe2 = new TicTacToe({
+      selector: "#ttt-2 .tictactoe__cell",
+      selectorReset: "#ttt-2 .tictactoe-reset"
+    });
+
+    const ticTacToe3 = new TicTacToe({
+      selector: "#ttt-3 .tictactoe__cell",
+      selectorReset: "#ttt-3 .tictactoe-reset"
+    });
+
+    window["ttt1"] = await ticTacToe1.mount();
+    window["ttt2"] = await ticTacToe2.mount();
+    window["ttt3"] = await ticTacToe3.mount();
   </script>
+  <style>
+    .tictactoe-wrapper {
+      width: fit-content;
+      margin: 0 auto;
+      text-align: center;
+
+      > * + * {
+        margin-top: 2em;
+      }
+    }
+
+    .tictactoe__cell {
+      --ttt-border: 0.25em solid var(--vb-neutral-95);
+      font-size: 1.6em;
+      width: 3em;
+      height: 3em;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 0.25em white;
+
+      &.is-winner {
+        background-color: var(--vb-primary-90);
+        color: var(--vb-primary-20);
+      }
+
+      &:first-child {
+        border-right: var(--ttt-border);
+      }
+
+      &:last-child {
+        border-left: var(--ttt-border);
+      }
+
+      tr:first-child & {
+        border-bottom: var(--ttt-border);
+      }
+
+      tr:last-child & {
+        border-top: var(--ttt-border);
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -31,9 +195,70 @@
   </header>
 
   <section class="section">
-    <div class="section__container max-width-xs spacing">
+    <div class="section__container max-width-xs grid grid_cols_3">
+      
+      <div id="ttt-1" class="tictactoe-wrapper">
+        <table class="tictactoe">
+          <tr>
+            <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+            <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+            <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+            <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+            <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+            <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+            <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+          </tr>
+        </table>
+        <button type="button" class="tictactoe-reset link">Reset</button>
+      </div>
 
-      <p>...</p>
+      <div id="ttt-2" class="tictactoe-wrapper">
+        <table class="tictactoe">
+          <tr>
+            <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+            <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+            <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+            <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+            <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+            <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+            <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+          </tr>
+        </table>
+        <button type="button" class="tictactoe-reset link">Reset</button>
+      </div>
+
+      <div id="ttt-3" class="tictactoe-wrapper">
+        <table class="tictactoe">
+          <tr>
+            <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
+            <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+            <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A2" class="tictactoe__cell" data-cell="A2" role="button" tabindex="0"></td>
+            <td id="cell-B2" class="tictactoe__cell" data-cell="B2" role="button" tabindex="0"></td>
+            <td id="cell-C2" class="tictactoe__cell" data-cell="C2" role="button" tabindex="0"></td>
+          </tr>
+          <tr>
+            <td id="cell-A3" class="tictactoe__cell" data-cell="A3" role="button" tabindex="0"></td>
+            <td id="cell-B3" class="tictactoe__cell" data-cell="B3" role="button" tabindex="0"></td>
+            <td id="cell-C3" class="tictactoe__cell" data-cell="C3" role="button" tabindex="0"></td>
+          </tr>
+        </table>
+        <button type="button" class="tictactoe-reset link">Reset</button>
+      </div>
 
     </div>
   </section>

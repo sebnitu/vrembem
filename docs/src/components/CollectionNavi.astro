@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { currentPage } from "../modules/currentPage";
-import Icon from './Icon.astro';
+import Icon from "./Icon.astro";
 
 interface Props {
   entries: CollectionEntry<"packages">[];
@@ -13,9 +13,8 @@ const { entries, collection, menuClass = "" } = Astro.props;
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
-  classCurrent: "is-active",
+  classCurrent: "is-active"
 });
-
 ---
 
 <nav>
@@ -23,7 +22,7 @@ const cp = currentPage(Astro.url.pathname, {
   <ul class={`menu menu_collection ${menuClass}`.trim()}>
     <li class="menu__item">
       <a
-        class={cp.classes(`/${collection}`)} 
+        class={cp.classes(`/${collection}`).replace("is-parent", "")}
         href={`/${collection}`}
       >
         <strong>{title}</strong>
@@ -33,15 +32,16 @@ const cp = currentPage(Astro.url.pathname, {
       entries.map((entry) => (
         <li class="menu__item">
           <a
-            class={cp.classes(`/${collection}/${entry.slug}`)}
-            href={`/${collection}/${entry.slug}`}
+            class={cp.classes(`/${collection}/${entry.id}`)}
+            href={`/${collection}/${entry.id}`}
           >
             <span class="flex-grow">{entry.data.title}</span>
-            {
-              entry.data.status && (
-                <Icon name={entry.data.status} classes="icon_size_sm foreground-primary" />
-              )
-            }
+            {entry.data.status && (
+              <Icon
+                name={entry.data.status}
+                classes="icon_size_sm foreground-primary"
+              />
+            )}
           </a>
         </li>
       ))

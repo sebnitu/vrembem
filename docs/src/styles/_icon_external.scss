@@ -6,4 +6,9 @@
   position: relative;
   right: -0.25em;
   stroke-width: 2.5;
+  transition: transform css.get("transition-duration-short") css.get("transition-timing-function");
+}
+
+a:hover > .icon_external {
+  transform: translate(2px, -2px);
 }

@@ -3,8 +3,9 @@ import { cssVar } from "./helpers";
 
 interface ThemeStoreOptions {
   prefix?: string;
-  themes?: string[];
   storeKey?: string;
+  themes?: string[];
+  fallback?: string;
   onInit?: () => void;
   onChange?: () => void;
 }
@@ -12,12 +13,11 @@ interface ThemeStoreOptions {
 interface ThemeStoreApi {
   settings: {
     prefix: string;
-    themes: string[];
     storeKey: string;
+    fallback: string;
   };
   add: (value: string) => void;
   remove: (value: string) => void;
-  callback: (name: keyof ThemeStoreCallbacks) => void;
   readonly class: string;
   readonly classes: string[];
   readonly themes: string[];
@@ -32,9 +32,9 @@ interface ThemeStoreCallbacks {
 export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   // Setup the default settings object
   const settings = {
-    prefix: cssVar("prefix-themes", { fallback: "vb-theme-" }),
-    themes: ["root", "light", "dark"],
-    storeKey: "VB:Profile"
+    prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
+    storeKey: "VB:Profile",
+    fallback: "root"
   };
 
   // Override all settings values with provided options
@@ -61,8 +61,16 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
     }
   }
 
+  // Private callback function
+  function callback(name: keyof ThemeStoreCallbacks) {
+    callbacks[name].call(api);
+  }
+
   // Get the local storage profile
   const profile = localStore(settings.storeKey);
+
+  // Setup the private themes array
+  const themesArray = options.themes || ["root", "light", "dark"];
 
   // Setup the API object
   const api: ThemeStoreApi = {
@@ -71,14 +79,11 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
 
     // Actions
     add(value: string) {
-      settings.themes.push(value);
+      themesArray.push(value);
     },
     remove(value: string) {
-      const index = settings.themes.indexOf(value);
-      ~index && settings.themes.splice(index, 1);
-    },
-    callback(name: keyof ThemeStoreCallbacks) {
-      callbacks[name].call(this);
+      const index = themesArray.indexOf(value);
+      ~index && themesArray.splice(index, 1);
     },
 
     // Getters
@@ -86,19 +91,19 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
       return `${settings.prefix}${this.theme}`;
     },
     get classes() {
-      return settings.themes.map((theme) => `${settings.prefix}${theme}`);
+      return themesArray.map((theme) => `${settings.prefix}${theme}`);
     },
     get themes() {
-      return settings.themes;
+      return themesArray;
     },
 
     // Setup the theme get and set methods
     get theme() {
-      return profile.get("theme") || "root";
+      return profile.get("theme") || settings.fallback;
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
-      if (settings.themes.includes(value)) {
+      if (themesArray.includes(value)) {
         // Check if the value is actually different from the one currently set
         if (this.theme != value) {
           // Save the theme value to local storage
@@ -111,7 +116,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
           document.documentElement.classList.add(`${settings.prefix}${value}`);
 
           // Run the on change callback
-          this.callback("onChange");
+          callback("onChange");
         }
       } else {
         // Throw a console error if the theme doesn't exist as an option
@@ -121,7 +126,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
   };
 
   // Run the on initialization callback
-  api.callback("onInit");
+  callback("onInit");
 
   // Return the API
   return api;

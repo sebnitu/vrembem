@@ -3,6 +3,8 @@
 
 :root {
   // Shiki light theme
+  --astro-code-background: #{css.get("background-dark")};
+  --astro-code-foreground: #{css.get("foreground")};
   --astro-code-color-text: #{css.get("foreground")};
   --astro-code-token-comment: #{css.get("foreground-lighter")};
   --astro-code-token-constant: #1b6bc6;
@@ -15,7 +17,9 @@
   --astro-code-token-link: #ce3b4a;
 
   // Shiki dark theme
-  &.#{config.get("prefix-themes")}dark {
+  &.#{config.get("theme-prefix")}dark {
+    --astro-code-background: #{css.get("background-dark")};
+    --astro-code-foreground: #{css.get("foreground")};
     --astro-code-color-text: #{css.get("foreground")};
     --astro-code-token-comment: #{css.get("foreground-lighter")};
     --astro-code-token-constant: #79b8ff;

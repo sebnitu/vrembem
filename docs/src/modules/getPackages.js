@@ -16,22 +16,14 @@ function packageOrder(a, b) {
 }
 
 function checkString(a, b, s) {
-  if (a.data.status == s) {
-    return -1;
-  }
-  if (b.data.status == s) {
-    return 1;
-  }
+  if (a.data.status == s) return -1;
+  if (b.data.status == s) return 1;
   return 0;
 }
 
 function checkTitle(a, b) {
-  if (a.data.title < b.data.title) {
-    return -1;
-  }
-  if (a.data.title > b.data.title) {
-    return 1;
-  }
+  if (a.data.title < b.data.title) return -1;
+  if (a.data.title > b.data.title) return 1;
   return 0;
 }
 

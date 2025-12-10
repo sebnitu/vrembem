@@ -1,7 +1,17 @@
 ---
+import CodeBlock from "./CodeBlock.astro";
+// @ts-expect-error
+import { Code } from "astro:components";
+
+interface FileTab {
+  name: string;
+  content: string;
+}
+
 interface Props {
   lang?: string;
   tabs?: boolean;
+  files?: FileTab[];
   flush?: boolean;
   resettable?: boolean;
 }
@@ -9,6 +19,7 @@ interface Props {
 const { 
   lang = "html",
   tabs = false,
+  files = [],
   flush = false,
   resettable = false
 } = Astro.props;
@@ -98,6 +109,20 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
               tabindex="-1">JS</button>
             )
           }
+          {
+            files.map((file, i) => (
+              <button
+                class="tab"
+                id={`tab-${i}-${uid}`}
+                role="tab"
+                aria-controls={`tabpanel-${i}-${uid}`}
+                aria-selected="false"
+                tabindex="-1"
+              >
+                {file.name}
+              </button>
+            ))
+          }
         </div>
         {
           resettable && (
@@ -158,5 +183,29 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
       </div>
     )
   }
+  {
+    files.map((file: FileTab, i: number) => (
+      <div
+        class="code-example__input"
+        id={`tabpanel-${i}-${uid}`}
+        role="tabpanel"
+        aria-labelledby={`tab-${i}-${uid}`}
+      >
+        <CodeBlock nopre>
+          <Code
+            code={file.content}
+            lang="js"
+            theme="css-variables"
+            class="pre"
+          />
+        </CodeBlock>
+      </div>
+    ))
+  }
 
 </div>
+
+<script>
+  import { tabs } from "../modules/tabs";
+  tabs.mount();
+</script>

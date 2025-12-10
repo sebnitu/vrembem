@@ -4,15 +4,18 @@ import Popover from "./Popover.astro";
 
 interface Props {
   inline?: boolean;
+  nopre?: boolean;
 }
 
-const { inline = false } = Astro.props;
+const { inline = false, nopre = false } = Astro.props;
 
 ---
 
 <div class={`code-block ${inline ? "code-block_inline" : ""}`.trim()}>
   {
-    inline ? (
+    nopre ? (
+      <slot />
+    ) : inline ? (
       <Icon name="chevron-right" classes="code-block__prompt icon_size_sm foreground-lighter" />
       <pre tabindex="0" class="pre"><code><slot /></code></pre>
     ) : (

@@ -1,15 +1,13 @@
 ---
 title: Core
-description: "Shared variables, functions and mixins for Vrembem components."
+description: "Provides the base systems and utilities that all Vrembem components are built upon."
 package: "@vrembem/core"
 status: "settings"
 ---
 
-import CodeExample from '../../components/CodeExample.astro';
-
 # Core
 
-Shared variables, functions and mixins for Vrembem components.
+Provides the base systems and utilities that all Vrembem components are built upon.
 
 ```sh
 npm install @vrembem/core
@@ -26,3 +24,59 @@ npm install @vrembem/core
   import * as core from "@vrembem/core";
   ```
 </CodeExample>
+
+## Basic usage
+
+Vrembem's core package is the common denominator for all components. Its main purpose is to set the base systems that all other components are built upon. Core also provides useful one-off mixins, functions, and styles that can be applied as needed.
+
+### Sass modules
+
+Vrembem uses Sass modules to manage global configuration and custom properties throughout the library.
+
+- [`@vrembem/core/config`](/packages/core/config): Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and theme defaults.
+- [`@vrembem/core/css`](/packages/core/css): Used to define, manage, and output global and component-level custom properties.
+- [`@vrembem/core/palette`](/packages/core/palette): Used to define, manage, and output a color palette powered by custom properties.
+- [`@vrembem/core/theme`](/packages/core/theme): Used to define, manage, and output global and component-level themes powered by custom properties.
+
+### Theme state
+
+After defining themes using Vrembem's core theme module, users should be able to select their preferred theme and have that choice persist. Vrembem provides `themeStore`, a JavaScript utility that manages theme state for your application or website.
+
+[Getting started with themeStore](/packages/core/themeStore)
+
+## Collections
+
+Collection and CollectionEntry are base classes designed to manage component instances—such as modals, drawers, or popovers. Each Collection acts as a controller, handling registration, events, lifecycle hooks, and plugin integration.
+
+CollectionEntry represent an individual component instance within a collection, storing its state, configuration, and DOM reference. By extending these classes, Vrembem components inherit shared systems and APIs that can also be leveraged by custom components or plugins.
+
+[Getting started with collections](/packages/core/collections)
+
+### Plugins
+
+Vrembem provides plugins designed to extend the features of components managed by collections, adding advanced behaviors and integrations to your JavaScript components.
+
+- [`focusTrap`](/packages/core/focusTrap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
+- [`mediaQuery`](/packages/core/mediaQuery): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
+- [`propStore`](/packages/core/propStore): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
+- [`teleport`](/packages/core/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
+
+It's also possible to write your own custom plugins. Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements.
+
+[Writing a custom plugin](/packages/core/plugins)
+
+## Reference
+
+Outside of core systems, Vrembem also makes available a number of variables, functions and mixins that can be used throughout your project as needed.
+
+### Variables
+
+Vrembem core defines a set of global variables via CSS custom properties that are accessible to all components, helping establish a consistent design language across your project. These are stored under the `core` module and are not prefixed with the module name when output.
+
+[Custom properties reference](/packages/core/variables)
+
+### Utilities
+
+Vrembem core provides a number of helpful Sass functions and mixin utilities. Some of which are used internally by components to apply consistent design patterns (such as focus rings) and others are helpful stand-off utilities like drawing CSS arrows or loading spinners.
+
+[Function and mixin reference](/packages/core/utilities)

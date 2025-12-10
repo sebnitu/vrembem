@@ -1,0 +1,314 @@
+---
+title: core/css
+description: "Used to define, manage, and output global and component-level custom properties."
+parent: core
+group: sass-modules
+---
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/css";
+  ```
+</CodeExample>
+
+## Basic usage
+
+For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
+
+### css.get()
+
+Function to return a custom property reference that has been stored in the custom properties map using `set()`. Can also return the entire custom properties map or one of the stored component maps.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to get the stored custom property from. |
+| `$props...` | string | The custom property name to return. Can be a list of props for returning `var()` with fallbacks. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      background: css.get("block", "background");
+      color: css.get("block", "foreground-hover", "foreground");
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      background: var(--vb-block-background);
+      color: var(--vb-block-foreground-hover, var(--vb-block-foreground));
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+### css.set()
+
+Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to store the custom property under. |
+| `$prop` | string/map | The custom property name to store. Can be a map containing property and value pairs. |
+| `$value` | any | The custom property value to store. |
+| `$deep` | boolean | Whether or not to use `merge` or `deep-merge` when combining maps. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Set a single option
+  @include css.set("block", "accent", teal);
+
+  // Set multiple options at once
+  @include css.set("block", (
+    "background": darkGreen,
+    "foreground": lightPink
+  ));
+  ```
+</CodeExample>
+
+
+### css.output()
+
+Output all custom properties of a provided component. Or output all custom properties from all components by passing `"*"` as the argument.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to output all custom properties from. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    :root {
+      @include css.output("block");
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    :root {
+      --vb-block-background: blue;
+      --vb-block-foreground: green;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+### css.override()
+
+Mixin to override previously defined custom properties. This is primarily used in the context of a modifier. Provided component must be registered in the custom properties map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to override. |
+| `$prop` | string/map | The custom property name to override. Can be a map containing property and value pairs. |
+| `$value` | any | The property value to override with. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block_modifier {
+      @include css.override("block", (
+        "background": darkGreen,
+        "foreground": lightPink
+      ));
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block_modifier {
+      --vb-block-background: darkGreen;
+      --vb-block-foreground: lightPink;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+## Advanced usage
+
+For more advanced use-cases, `core/css` provides a more primitive API for fine grained custom property management.
+
+
+### css.register()
+
+Register a component in the custom properties map. This is used when a component is needed to be available for later use but without setting any custom properties.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component to register. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    // Register the component's namespace if there are no properties set.
+    @include css.register("block");
+
+    // Provide a fallback if a specific property has not been set.
+    .block {
+      padding: css.get("block", "padding", 1em);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      padding: var(--vb-block-padding, 1em);
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+### css.define()
+
+Mixin to define a custom property using the provided property name and value. Automatically applies with prefix and component name if provided. This is used internally by `css.output` and `css.override`.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to use as part of the prefix. |
+| `$prop` | string | The custom property name to use in the definition. |
+| `$value` | any | The value of the custom property. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      @include css.define("block", "accent", orange);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      --vb-block-accent: orange;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+### css.reference()
+
+Function to create reference to a custom property using the provided component name, property and optional fallback. Automatically applies the necessary custom property prefix and component name.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | The component name to use as part of the prefix. |
+| `$prop` | string | The custom property name to use in the reference. |
+| `$fallback` | any | The fallback value to use in the `var()` declaration. |
+
+#### Example
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    .block {
+      background: css.reference("block", "accent", orange);
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .block {
+      background: var(--vb-block-accent, orange);
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+
+### css.has()
+
+Function used to check if a custom property has been set.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The keys to traverse in the custom properties map. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  @include css.set("block", "background", darkGreen);
+
+  @debug css.has("block", "background"); // Returns true
+  @debug css.has("block", "border"); // Returns false
+  ```
+</CodeExample>
+
+
+### css.remove()
+
+Mixin used to remove a previously set custom property.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The list of keys to follow and remove from the custom properties map. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove the "background" property from the "block" component.
+  @include css.remove("block", "background");
+  ```
+</CodeExample>
+
+
+### css.log()
+
+Log to console all custom properties, a component map or component theme. Provided component must be registered in the custom properties map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$component` | string | A component within the custom properties map to log. Leaving as `null` will log the entire map. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  @include css.log("block");
+
+  // Debug output:
+  // Custom properties of "block": (
+  //   "background": blue,
+  //   "foreground": green,
+  // )
+  ```
+</CodeExample>

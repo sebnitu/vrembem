@@ -29,7 +29,13 @@ export class CollectionEntry<TParent extends Collection<any>> {
     return Object.assign(this.settings, options);
   }
 
-  getSetting(key: string, options?: any) {
+  getSetting(
+    key: string,
+    options?: {
+      fallback?: any;
+      props?: string[];
+    }
+  ) {
     return getSetting.call(this, key, options);
   }
 

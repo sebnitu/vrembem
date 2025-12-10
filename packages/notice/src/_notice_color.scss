@@ -3,21 +3,21 @@
 @use "@vrembem/core/palette";
 
 #{core.bem("notice", null, "color", "primary")} {
-  @include css.override("notice", "background", palette.get("primary", 90));
+  @include css.override("notice", "background", palette.get("primary", 95));
   @include css.override("notice", "foreground", palette.get("primary", 30));
 }
 
 #{core.bem("notice", null, "color", "secondary")} {
-  @include css.override("notice", "background", palette.get("secondary", 90));
+  @include css.override("notice", "background", palette.get("secondary", 95));
   @include css.override("notice", "foreground", palette.get("secondary", 30));
 }
 
 #{core.bem("notice", null, "color", "neutral")} {
-  @include css.override("notice", "background", palette.get("neutral", 90));
+  @include css.override("notice", "background", palette.get("neutral", 95));
   @include css.override("notice", "foreground", palette.get("neutral", 30));
 }
 
 #{core.bem("notice", null, "color", "important")} {
-  @include css.override("notice", "background", palette.get("important", 90));
+  @include css.override("notice", "background", palette.get("important", 95));
   @include css.override("notice", "foreground", palette.get("important", 30));
 }

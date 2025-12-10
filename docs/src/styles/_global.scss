@@ -1,9 +1,12 @@
+@use "@vrembem/core/css";
+
 astro-island {
   display: block !important;
 }
 
 html {
   scroll-behavior: smooth;
+  text-wrap: pretty;
 
   @media screen and (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
@@ -16,4 +19,15 @@ html {
 
 [tabindex="-1"] {
   outline: none;
+}
+
+.argument-list {
+  > li {
+    border-top: css.get("border");
+    padding: 0.5em 0;
+  }
+
+  > li:first-child {
+    border-top: none;
+  }
 }

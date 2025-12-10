@@ -1,0 +1,338 @@
+---
+title: themeStore
+description: "A JavaScript utility that manages theme state for your application or website."
+parent: core
+group: theme-state
+slug: core/themeStore
+---
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+  ```
+</CodeExample>
+
+## Basic usage
+
+Once you've defined set of themes for your project, you'll want to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
+
+The first step is to create a UI for users to select a theme. This can be anything from a dropdown to a simple set of buttons. To keep things simple, we'll use a set of buttons.
+
+<CodeExample lang="html">
+  ```html
+  <button type="button" data-set-theme="root">Auto</button>
+  <button type="button" data-set-theme="light">Light</button>
+  <button type="button" data-set-theme="dark">Dark</button>
+  ```
+</CodeExample>
+
+Now, in our JavaScript, we initialize `themeStore` and pass a callback function for the `onInit` lifecycle hook. This will add event listeners to all theme selection buttons.
+
+<CodeExample lang="js">
+  ```js
+  // Import the themeStore module
+  import { themeStore } from "@vrembem/core";
+
+  // Get all the theme set button elements
+  const buttons = document.querySelectorAll("[data-set-theme]");
+
+  // Setup theme switching functionality
+  const myTheme = themeStore({
+    onInit() {
+      // Loop through the theme set buttons
+      buttons.forEach((btn) => {
+        // Add click event listener for changing the current theme
+        btn.addEventListener(("click"), () => {
+          this.theme = btn.getAttribute("data-set-theme");
+        });
+      });
+    }
+  });
+  ```
+</CodeExample>
+
+<div class="notice notice_color_secondary font-size-base">
+  A lifecycle hook is a callback function that runs at a specific event, such as initialization (`onInit`) or when the theme changes (`onChange`).
+</div>
+
+We can further improve this UI by adding a function to toggle the state of our buttons, and running it both on initialization and whenever the theme changes, using the `onChange` lifecycle hook.
+
+<CodeExample lang="js">
+  ```js
+  // Import the themeStore module
+  import { themeStore } from "@vrembem/core";
+
+  // Get all the theme set button elements
+  const buttons = document.querySelectorAll("[data-set-theme]");
+
+  // Setup theme switching functionality
+  const myTheme = themeStore({
+    onInit() {
+      // Loop through the theme set buttons
+      buttons.forEach((btn) => {
+        // Toggle the state of our button set
+        toggleState.call(this, btn);
+        // Add click event listener for changing the current theme
+        btn.addEventListener(("click"), () => {
+          this.theme = btn.getAttribute("data-set-theme");
+        });
+      });
+    },
+    onChange() {
+      buttons.forEach((btn) => {
+        // Toggle the state of our button set
+        toggleState.call(this, btn);
+      });
+    }
+  });
+
+  // Function to toggle the state class for a theme set button
+  function toggleState(btn) {
+    btn.getAttribute("data-set-theme") === this.theme 
+      ? btn.classList.add("is-active")
+      : btn.classList.remove("is-active");
+  }
+  ```
+</CodeExample>
+
+We use [`.call(this, btn)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call) on `toggleState` inside our callback functions so the function can access the current theme from the themeStore instance by providing `this` context.
+
+The last aspect to handle when persisting a user's preferred theme is avoiding the flash of pre-themed content. This can be done by adding a render-blocking script in the `<head>` element of your HTML before other script and style tags.
+
+<CodeExample lang="html">
+  ```html
+  <script>
+    const local = localStorage.getItem("VB:Profile");
+    const store = local ? JSON.parse(local) : {};
+    const class = `vb-theme-${store.theme || "root"}`;
+    document.documentElement.classList.add(class);
+  </script>
+  ```
+</CodeExample>
+
+This script gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
+
+## Reference
+
+The following is a reference of the `themeStore` API which is designed to be both simple and fit most use cases of theme management.
+
+### Arguments
+
+Below are the available options you can pass to `themeStore` when initializing a new instance:
+
+<ul class="argument-list">
+  <li>
+    `prefix` - The class prefix for theme names.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `string`</span>
+      <span>**Default:** `"vb-theme-"`</span>
+    </div>
+  </li>
+  <li>
+    `storeKey` - Local storage key for saving theme state.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `string`</span>
+      <span>**Default:** `"VB:Profile"`</span>
+    </div>
+  </li>
+  <li>
+    `themes` - An array of default theme names to make available.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `string[]`</span>
+      <span>**Default:** `["root", "light", "dark"]`</span>
+    </div>
+  </li>
+  <li>
+    `fallback` - The default theme if none is set in local storage. Must be an existing theme in `themes` array.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `string`</span>
+      <span>**Default:** `"root"`</span>
+    </div>
+  </li>
+  <li>
+    `onInit` - Callback run on initialization.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `function`</span>
+    </div>
+  </li>
+  <li>
+    `onChange` - Callback run when the theme changes.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `function`</span>
+    </div>
+  </li>
+</ul>
+
+### themeStore.settings
+
+**Type:** `object`
+
+An object to store the values of `themeStore`'s settings. These include:
+
+- `prefix (string)` - The class prefix for theme names.
+- `storeKey (string)` - Local storage key for saving theme state.
+- `fallback (string)` - Default theme if none is set in local storage.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore({
+    prefix: "theme-",
+    storeKey: "Profile",
+    fallback: "default"
+  });
+
+  console.log(myTheme.settings);
+  // Output: {
+  //   "prefix": "theme-",
+  //   "storeKey": "Profile",
+  //   "fallback": "default"
+  // }
+
+  console.log(myTheme.class);
+  // Output: "theme-default"
+  ```
+</CodeExample>
+
+### themeStore.theme
+
+**Type:** `string`
+
+The `theme` property acts as both a getter and setter for the current theme.
+
+- **Getter:** When accessed, `theme` returns the most recent value set in local storage under the key `"theme"`. If no value exists, it returns the value of `settings.fallback`.
+- **Setter:** When a new value is assigned to `theme`, it first checks that the value is a valid theme and that it is not already the current theme. If valid, it updates local storage with the new value, updates the root HTML element with the appropriate theme class, and finally runs the `onChange` callback function.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.theme); // Output: "root"
+
+  myTheme.theme = "light";
+
+  console.log(myTheme.theme); // Output: "light"
+  ```
+</CodeExample>
+
+### themeStore.class
+
+**Type:** `string`
+
+Returns the current theme class name, including the configured prefix. This property is read-only.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.class); // Output: "vb-theme-root"
+  ```
+</CodeExample>
+
+### themeStore.themes
+
+**Type:** `string[]`
+
+An array containing all available theme names. This property is read-only.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.themes);
+  // Output: ["root", "light", "dark"]
+  ```
+</CodeExample>
+
+### themeStore.classes
+
+**Type:** `string[]`
+
+An array containing all possible theme class names, each with the configured prefix. This property is read-only.
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  console.log(myTheme.classes);
+  // Output: ["vb-theme-root", "vb-theme-light", "vb-theme-dark"]
+  ```
+</CodeExample>
+
+### themeStore.add()
+
+**Type:** `method`
+
+Adds a new theme name to the list of available themes. The new theme will be included in the `themes` array and reflected in `classes`.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `value` | string | The name of the theme to add. |
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  // Add a new theme
+  myTheme.add("contrast");
+
+  // Set our new theme
+  myTheme.theme = "contrast";
+
+  console.log(myTheme.class);
+  // Output: "vb-theme-contrast"
+  ```
+</CodeExample>
+
+### themeStore.remove()
+
+**Type:** `method`
+
+Removes a theme name from the list of available themes. The theme will be removed from the `themes` array and its class will no longer be included in `classes`.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `value` | string | The name of the theme to remove. |
+
+#### Example
+
+<CodeExample lang="js">
+  ```js
+  import { themeStore } from "@vrembem/core";
+
+  const myTheme = themeStore();
+
+  // Remove the light theme
+  myTheme.remove("light");
+
+  console.log(myTheme.themes);
+  // Output: ["root", "dark"]
+  ```
+</CodeExample>

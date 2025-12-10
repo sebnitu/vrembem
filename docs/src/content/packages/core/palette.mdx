@@ -1,0 +1,102 @@
+---
+title: core/palette
+description: "Used to define, manage, and output a color palette powered by custom properties."
+parent: core
+group: sass-modules
+---
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/palette";
+  ```
+</CodeExample>
+
+## Basic usage
+
+This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, and a list of lightness values to generate custom properties.
+
+### palette.get()
+
+Returns a color value from the palette in various formats, based on the provided name, lightness, and optional alpha.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$name (null)` | string | The color name to return a value for. |
+| `$query (50)` | number/string | Specifies either a lightness value or `"seed"` to return the corresponding color value. |
+| `$alpha (null)` | number (alpha-value) | Optional alpha (opacity) value to apply to the returned color. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Return the entire seeds map
+  $value: palette.get("seeds");
+
+  // Return the seed of a stored color
+  $value: palette.get("primary", "seed");
+
+  // Return a color with the default lightness value
+  $value: palette.get("primary");
+  // Returns: var(--vb-primary-50)
+
+  // Return a color with a specified lightness value
+  $value: palette.get("primary", 20);
+  // Returns: var(--vb-primary-20)
+
+  // Return a color with a specified lightness value
+  $value: palette.get("primary", 23);
+  // Returns: hsl(var(--vb-primary-hs) 23)
+
+  // Return a color with a specified lightness and alpha value
+  $value: palette.get("primary", 20, 30%);
+  // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
+  ```
+</CodeExample>
+
+### palette.set()
+
+Set a color to the seeds map. Can receive single entries of key/value color pairs or a map containing multiple key/value pairs.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$name` | string/map | A name to associate with the provided color, or a map containing key/value color pairs. |
+| `$value (null)` | color | The color to associate with the provided key. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Set a single color
+  @include palette.set("primary", blue);
+
+  // Set multiple values using a map
+  @include palette.set((
+    "secondary": green,
+    "neutral": yellow
+  ));
+  ```
+</CodeExample>
+
+### palette.remove()
+
+Removes colors from the seeds map.
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove a single color from seeds map
+  @include palette.remove("primary");
+
+  // Remove multiple colors from seeds map
+  @include palette.remove("secondary", "neutral");
+  ```
+</CodeExample>
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | A string or list of strings to remove. |

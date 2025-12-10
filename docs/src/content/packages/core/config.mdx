@@ -1,0 +1,303 @@
+---
+title: core/config
+description: "Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and theme defaults."
+parent: core
+group: sass-modules
+---
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/config";
+  ```
+</CodeExample>
+
+## Basic usage
+
+The purpose of `core/config` is to provide a straightforward API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
+
+- [`config.get`](#configget)
+- [`config.set`](#configset)
+- [`config.set-default`](#configset-default)
+- [`config.remove`](#configremove)
+- [`config.log`](#configlog)
+
+To get started with the configuration system, first import the configuration module. Once imorted, set a value using the `config.set` mixin.
+
+<CodeExample lang="scss">
+  <Fragment>
+    ```scss
+    // 1. Import the module
+    @use "@vrembem/core/config";
+
+    // 2. Set a custom configuration
+    @include config.set("theme-prefix", "theme-");
+    ```
+  </Fragment>
+</CodeExample>
+
+To use values from the configuration map, call the `config.get` function with the key of the desired configuration value.
+
+<CodeExample lang="scss" tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    // 1. Import the module
+    @use "@vrembem/core/config";
+
+    .box {
+      background: #ddd;
+      color: #333;
+    }
+
+    // 2. Get the custom value
+    .#{config.get("theme-prefix")}high-contrast {
+      .box {
+        background: #fff;
+        color: #000;
+      }
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    .box {
+      background: #ddd;
+      color: #333;
+    }
+
+    .theme-high-contrast .box {
+      background: #fff;
+      color: #000;
+    }
+    ```
+  </Fragment>
+</CodeExample>
+
+It's important to keep in mind that all changes to the global config should be done in a setup file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
+
+<CodeExample lang="scss">
+  ```scss
+  // Inside an app.scss manifest file
+  // 1. Make all your custom configurations
+  @use "_setup.scss";
+
+  // 2. Import other files that use your custom configurations
+  @use "_box.scss";
+
+  // 3. Import the Vrembem library or specific components as needed
+  @use "vrembem";
+  ```
+</CodeExample>
+
+## Default values
+
+The values predefined by core modules are used internally by the Vrembem library. The configuration module defines several prefix values related to the BEM naming syntax.
+
+<CodeExample lang="scss">
+  ```scss
+  $-config: (
+    // Prefix for block class names
+    // Example: .block { ... }
+    "prefix-block": null,
+
+    // Prefix for element class names
+    // Example: .block__element { ... }
+    "prefix-element": "__",
+
+    // Prefix for modifier class names
+    // Example: .block_modifier { ... }
+    "prefix-modifier": "_",
+
+    // Prefix for modifier value class names
+    // Example: .block_modifier_value { ... }
+    "prefix-modifier-value": "_",
+
+    // Prefix for utility class names
+    // Example: .display-block { ... }
+    "prefix-utility": null
+  );
+  ```
+</CodeExample>
+
+By default, Vrembem does not prefix its component class names. If you'd like to prefix component class names to help avoid conflicts in existing projects, set a value for `"prefix-block"` (such as `"vb-"`) before importing Vrembem components.
+
+<CodeExample lang="scss">
+  <Fragment>
+    ```scss
+    @include config.set("prefix-block", "vb-");
+    ```
+  </Fragment>
+</CodeExample>
+
+You can use the `core.bem` function to generate class names with the correct prefixes, without setting them manually.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    @use "@vrembem/core";
+
+    // Generate selector for block
+    .#{core.bem("menu")} {
+      // ...
+    }
+
+    // Generate selector for element
+    .#{core.bem("menu", "item")} {
+      // ...
+    }
+
+    // Generate selector for modifier
+    .#{core.bem("menu", null, "stack")} {
+      // ...
+    }
+
+    // Generate selector for modifier value
+    .#{core.bem("menu", null, "size", "lg")} {
+      // ...
+    }
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```scss
+    // Generate selector for block
+    .menu {
+      // ...
+    }
+
+    // Generate selector for element
+    .menu__item {
+      // ...
+    }
+
+    // Generate selector for modifier
+    .menu_stack {
+      // ...
+    }
+
+    // Generate selector for modifier value
+    .menu_size_lg {
+      // ...
+    }
+    ```
+  </Fragment>
+  
+</CodeExample>
+
+## Reference
+
+This reference details the available configuration API, their arguments, and usage examples so you can customize and control global settings across all Vrembem components.
+
+### config.get()
+
+Returns the value of an option in the configuration map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | A key or list of keys to follow in the configuration map and return. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  @debug config.get("theme-default");
+  // Debug: light
+
+  @debug config.get("prefix-variable");
+  // Debug: vb-
+  ```
+</CodeExample>
+
+### config.set()
+
+Set an option in the configuration map by providing a key and value to store, or pass a map to store multiple key/value pairs.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$key` | string/map | The key in the map to set. Can be passed a map of key/value pairs. |
+| `$value` (null) | any | The value to be stored. |
+| `$default (false)` | boolean | Whether or not the value being set is a default value. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Set a single option
+  @include config.set("theme-default", "dark");
+
+  // Set multiple options using a map
+  @include config.set((
+    "prefix-variable": "custom-",
+    "theme-default": "light"
+  ));
+  ```
+</CodeExample>
+
+### config.set-default()
+
+An alias mixin for `config.set()` that predefines the default argument to `true`. Running this will not override a previously set value.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$key` | string/map | The key in the map to set. Can be passed a map of key/value pairs. |
+| `$value` (null) | any | The value to be stored. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Set the default value of the provided key
+  @include config.set-default("theme-default", "light");
+
+  // This set call will override the default value of "light"
+  @include config.set("theme-default", "dark");
+
+  // This will have no effect since "theme-default" has already been set
+  @include config.set-default("theme-default", "high-contrast");
+
+  @debug config.get("theme-default"); // Debug: dark
+  ```
+</CodeExample>
+
+### config.remove()
+
+Remove an option from the configuration map.
+
+#### Arguments
+
+| Name | Type | Description |
+|------|------|-------------|
+| `$keys...` | string | The list of keys to follow and remove from the configuration map. |
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove the theme default option
+  @include config.remove("theme-default");
+  ```
+</CodeExample>
+
+### config.log()
+
+Log to console the entire configuration map.
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  @include config.log();
+  // Debug: 
+  // Config options map: (
+  //   "prefix-block": ,
+  //   "prefix-element": __,
+  //   "prefix-modifier": _,
+  //   "prefix-modifier-value": _,
+  //   "prefix-utility": ,
+  // )
+  ```
+</CodeExample>

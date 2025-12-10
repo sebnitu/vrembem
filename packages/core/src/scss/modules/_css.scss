@@ -7,36 +7,42 @@
 @use "../utilities/reverse" as *;
 @use "./config";
 
-/// The variables map where all custom properties are stored. These are stored
-/// under module keys with maps of their custom property key/value pairs.
+/// Set value to prefix all custom properties with.
+/// @type string
+@include config.set-default("prefix-variable", "vb-");
+
+/// The custom properties map where all custom properties are stored. These are
+/// stored under component keys with maps of their custom property.
 /// @type map
 /// @access private
-$-variables: (
+$-custom-properties: (
   "core": (
-    "prefix": config.get("prefix-variables"),
-    "prefix-themes": config.get("prefix-themes")
+    "prefix": (
+      "config": "prefix-variable"
+    )
   )
 );
 
-/// Function to check whether a module has been registered in the `$-variables`
-/// map. Will throw an error if the module was not found and is required.
+/// Function to check whether a component has been registered in the custom
+/// properties map. Will throw an error if the component was not found and is
+/// required.
 ///
-/// @param {string} $module
-///   The module to check for its existence.
+/// @param {string} $component
+///   The component to check for its existence.
 ///
 /// @param {boolean} $required (true)
-///   Whether or not the module is required. If set to `true`, will throw an
+///   Whether or not the component is required. If set to `true`, will throw an
 ///   error when it's not found, otherwise will return false.
 ///
 /// @return {boolean|error}
-///   If module exists in map, returns true. Otherwise, will throw error.
+///   If component exists in map, returns true. Otherwise, will throw error.
 ///
 /// @access private
 ///
-@function -module-exists($module, $required: true) {
-  @if not map.has-key($-variables, $module) {
+@function -component-exists($component, $required: true) {
+  @if not map.has-key($-custom-properties, $component) {
     @if $required {
-      @error "Module `#{$module}` has not been registered in variables map.";
+      @error "Component `#{$component}` has not been registered in custom properties map.";
     } @else {
       @return false;
     }
@@ -48,54 +54,55 @@ $-variables: (
 /// Function for setting the prefix on custom properties (CSS variables).
 ///   - Applies "--" prefix.
 ///   - Applies "vb-" vrembem prefix.
-///   - Applies "[module]" string. Omitted for "core" or "palette" modules.
-///   - Result: "--vb-[module]-"
+///   - Applies "[component]" string. Omitted for "core" or "palette"
+///     components.
+///   - Result: "--vb-[component]-"
 ///
-/// @param {string} $module
-///   The module name to use as part of the prefix. The "core" and "palette"
-///   modules are not prefixed with their module names.
+/// @param {string} $component
+///   The component name to use as part of the prefix. The "core" and
+///   "palette" components are not prefixed with their component names.
 ///
 /// @return {string}
 ///   The custom property prefix string.
 ///
 /// @access private
 ///
-@function -prefix($module) {
-  @if $module and $module != "core" and $module != "palette" {
-    @return "--#{config.get("prefix-variables")}#{$module}-";
+@function -prefix($component) {
+  @if $component and $component != "core" and $component != "palette" {
+    @return "--#{config.get("prefix-variable")}#{$component}-";
   } @else {
-    @return "--#{config.get("prefix-variables")}";
+    @return "--#{config.get("prefix-variable")}";
   }
 }
 
-/// Function to check if `$-variables` has a specific module property.
+/// Function to check if custom properties map has a specific component
+/// property.
 ///
-/// @param {string} $module
-///   The module name to check the property under.
-/// @param {string} $prop
-///   The custom property to check in the module map.
+/// @param {string} $keys...
+///   The keys to traverse in the custom properties map.
 ///
-@function has($args...) {
-  @return map.has-key($-variables, $args...);
+@function has($keys...) {
+  @return map.has-key($-custom-properties, $keys...);
 }
 
-/// Register a module in the variables map. This is used when a module is needed
-/// to be available for later use but without setting any custom properties.
+/// Register a component in the custom properties map. This is used when a
+/// component is needed to be available for later use but without setting any
+/// custom properties.
 ///
-/// @param {string} $module
-///   The module to be registered.
+/// @param {string} $component
+///   The component to register.
 ///
-@mixin register($module) {
-  $-variables: map.set($-variables, $module, empty-map()) !global;
+@mixin register($component) {
+  $-custom-properties: map.set($-custom-properties, $component, empty-map()) !global;
 }
 
-/// Function to create reference to a custom property using the provided module
-/// name, property and optional fallback. Automatically applies the necessary
-/// custom property prefix and module name.
+/// Function to create reference to a custom property using the provided
+/// component name, property and optional fallback. Automatically applies the
+/// necessary custom property prefix and component name.
 ///
-/// @param {string} $module
-///   The module name to use as part of the prefix. The "core" and "palette"
-///   modules are not prefixed with their module names.
+/// @param {string} $component
+///   The component name to use as part of the prefix. The "core" and "palette"
+///   components are not prefixed with their component names.
 /// @param {string} $prop
 ///   The custom property name to use in the reference.
 /// @param {any} $fallback (null)
@@ -114,20 +121,20 @@ $-variables: (
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
-@function reference($module, $prop, $fallback: null) {
+@function reference($component, $prop, $fallback: null) {
   @if $fallback {
-    @return var(#{-prefix($module)}#{$prop}, $fallback);
+    @return var(#{-prefix($component)}#{$prop}, $fallback);
   } @else {
-    @return var(#{-prefix($module)}#{$prop});
+    @return var(#{-prefix($component)}#{$prop});
   }
 }
 
 /// Mixin to define custom property using the provided property name and value.
-/// Automatically applies with prefix and module name if provided.
+/// Automatically applies with prefix and component name if provided.
 ///
-/// @param {string} $module
-///   The module name to use as part of the prefix. The "core" and "palette"
-///   modules are not prefixed with their module names.
+/// @param {string} $component
+///   The component name to use as part of the prefix. The "core" and "palette"
+///   components are not prefixed with their component names.
 /// @param {string} $prop
 ///   The custom property name to use in the definition.
 /// @param {any} $value (null)
@@ -143,22 +150,30 @@ $-variables: (
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
-@mixin define($module, $prop, $value: null) {
-  @if $value and meta.type-of($value) != "map" {
-    #{-prefix($module)}#{$prop}: #{$value};
+@mixin define($component, $prop, $value: null) {
+  @if $value {
+    // If the value is not a map, output the custom property
+    @if meta.type-of($value) != "map" {
+      #{-prefix($component)}#{$prop}: #{$value};
+    }
+
+    // If the map has a key of config, get the value from config directly
+    @if meta.type-of($value) == "map" and map.has-key($value, "config") {
+      #{-prefix($component)}#{$prop}: #{config.get(map.get($value, "config"))};
+    }
   }
 }
 
 /// Function to return a custom property reference that has been stored in the
-/// `$-variables` map using set(). Can also return the entire `$-variables` map
-/// or one of the stored module maps.
+/// custom properties map using set(). Can also return the entire custom
+/// properties map or one of the stored component maps.
 ///
-/// @param {string} $module
-///   The module name to get the stored custom property from. Can be omitted if
-///   searching a property in the core module.
+/// @param {string} $component
+///   The component name to get the stored custom property from. Can be omitted
+///   if searching a property in the core component.
 /// @param {string} $props...
 ///   The custom property name to return. Can be a list of props for returning
-///   var() with fallbacks. Set to "*" to return the entire module map.
+///   var() with fallbacks. Set to "*" to return the entire component map.
 ///
 /// @return {function|error}
 ///   Custom property variable reference using var().
@@ -183,30 +198,30 @@ $-variables: (
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background, pink));
 ///
-@function get($module, $props...) {
-  // Return `$-variables` map if module is set to "*" value
-  @if $module == "*" or $module == "all" {
-    @return $-variables;
+@function get($component, $props...) {
+  // Return custom properties map if component is set to "*" value
+  @if $component == "*" or $component == "all" {
+    @return $-custom-properties;
   }
 
-  // Return a nested map in `$-variables` if props contains "*" value
+  // Return a nested map in custom properties map if props contains "*" value
   @if list.index($props, "*") {
-    // Throw error if the module doesn't exist in the map
-    @if -module-exists($module) {
+    // Throw error if the component doesn't exist in the map
+    @if -component-exists($component) {
       $props: remove-nth($props, list.index($props, "*"));
 
-      @return map.get($-variables, $module, $props...);
+      @return map.get($-custom-properties, $component, $props...);
     }
   }
 
-  // If no props are provided, shift the values and set module to "core"
+  // If no props are provided, shift the values and set component to "core"
   @if list.length($props) == 0 {
-    $props: $module;
-    $module: "core";
+    $props: $component;
+    $component: "core";
   }
 
-  // Check if module exists
-  @if -module-exists($module) {
+  // Check if component exists
+  @if -component-exists($component) {
     // Reverse the props list and initialize our result
     $props: reverse($props);
     $result: null;
@@ -217,12 +232,12 @@ $-variables: (
     // Loop through the props and append them to results as nested fallbacks
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
-      $value: map.get($-variables, $module, $prop);
+      $value: map.get($-custom-properties, $component, $prop);
 
-      // Check if the property exists in the module or its default theme
-      @if map.has-key($-variables, $module, $prop) or map.has-key($-variables, $module, config.get("default-theme"), $prop) {
+      // Check if the property exists in the component or its default theme
+      @if map.has-key($-custom-properties, $component, $prop) or map.has-key($-custom-properties, $component, config.get("theme-default"), $prop) {
         // store the reference in our result
-        $result: reference($module, $prop, $result);
+        $result: reference($component, $prop, $result);
       }
 
       // All other cases depend on the property count and its position
@@ -232,10 +247,10 @@ $-variables: (
           $result: $prop;
         } @else if $count > 1 {
           // If there are more than one props, reference the undefined variable
-          $result: reference($module, $prop, $result);
+          $result: reference($component, $prop, $result);
         } @else {
-          // Else, it should exist in our module map, throw error
-          @error "Property `#{$prop}` does not exist in `#{$module}` variables map.";
+          // Else, it should exist in our component map, throw error
+          @error "Property `#{$prop}` does not exist in `#{$component}` custom properties map.";
         }
       }
     }
@@ -245,29 +260,27 @@ $-variables: (
 }
 
 /// Mixin to store custom properties for later definition and reference. Can
-/// also update the entire `$-variables` map or a stored module map by passing
-/// "*" value to `$module` or `$prop` respectively.
+/// also update the entire custom properties map or a stored component map by
+/// passing "*" value to `$component` or `$prop` respectively.
 ///
-/// @param {string} $module
-///   The module name to store the custom property under. Set to "*" to replace
-///   the entire `$-variables` map with the value of `$prop` (must be a map).
+/// @param {string} $component
+///   The component name to store the custom property under. Set to "*" to
+///   replace the entire map with the value of `$prop` (must be a map).
 /// @param {string|map} $prop
 ///   The custom property name to store. Can be a map containing property and
 ///   value pairs. Values can also contain map of property/value pairs. Set to
-///   "*" to merge a module map with the value of `$value` (must be a map).
-///   Pass "merge" to `$args` to merge the map, else it is deep-merged.
+///   "*" to merge a component map with the value of `$value` (must be a map).
 /// @param {any} $value (null)
 ///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
-/// @param {list} $args...
-///   Can be a list containing an action
-///   and any additional flags to log for the property.
+/// @param {boolean} $deep (true)
+///   Whether or not to use `merge` or `deep-merge` when combining maps.
 ///
 /// @example scss
 ///   @include css.set("button", "background", #000);
 ///
-///   // Result in `$-variables` map:
-///   $-variables: (
+///   // Result in custom properties map:
+///   $-custom-properties: (
 ///     "button": (
 ///       "background": #000
 ///     )
@@ -279,8 +292,8 @@ $-variables: (
 ///     "foreground": #fff,
 ///   ));
 ///
-///   // Result in `$-variables` map:
-///   $-variables: (
+///   // Result in custom properties map:
+///   $-custom-properties: (
 ///     "button": (
 ///       "background": #000,
 ///       "foreground": #fff
@@ -296,8 +309,8 @@ $-variables: (
 ///     )
 ///   ));
 ///
-///   // Result in `$-variables` map:
-///   $-variables: (
+///   // Result in custom properties map:
+///   $-custom-properties: (
 ///     "button": (
 ///       "background-hover": #000,
 ///       "background-focus": #555,
@@ -305,26 +318,26 @@ $-variables: (
 ///     )
 ///   );
 ///
-@mixin set($module, $prop, $value: null, $args...) {
-  // If module is set to "*", update the entire `$-variables` map
-  @if $module == "*" or $module == "all" {
-    $-variables: $prop !global;
+@mixin set($component, $prop, $value: null, $deep: true) {
+  // If component is set to "*", update the entire custom properties map
+  @if $component == "*" or $component == "all" {
+    $-custom-properties: $prop !global;
   }
 
-  // If prop is set to "*", update the module map in `$-variables` map
+  // If prop is set to "*", update the component map in custom properties map
   @else if $prop == "*" or $prop == "all" {
-    @if list.index($args, "merge") {
-      $-variables: map.merge(
-        $-variables,
+    @if $deep != true {
+      $-custom-properties: map.merge(
+        $-custom-properties,
         (
-          $module: $value
+          $component: $value
         )
       ) !global;
     } @else {
-      $-variables: map.deep-merge(
-        $-variables,
+      $-custom-properties: map.deep-merge(
+        $-custom-properties,
         (
-          $module: $value
+          $component: $value
         )
       ) !global;
     }
@@ -332,23 +345,18 @@ $-variables: (
 
   // If the provided prop is a map
   @else if meta.type-of($prop) == "map" {
-    // Add value to args if one exists
-    @if $value {
-      $args: list.append($args, $value);
-    }
-
     // Loop through the prop map
     @each $propKey, $propValue in $prop {
       // Scenario: ("prop": ("prop": "value"))
       @if meta.type-of($propValue) == "map" {
         @each $key, $value in $propValue {
-          $-variables: map.set($-variables, $module, "#{$propKey}-#{$key}", $value) !global;
+          $-custom-properties: map.set($-custom-properties, $component, "#{$propKey}-#{$key}", $value) !global;
         }
       }
 
       // Scenario: ("prop": "value")
       @else {
-        $-variables: map.set($-variables, $module, $propKey, $propValue) !global;
+        $-custom-properties: map.set($-custom-properties, $component, $propKey, $propValue) !global;
       }
     }
   }
@@ -356,34 +364,49 @@ $-variables: (
   // Scenario: "prop", ("prop": "value")
   @else if meta.type-of($value) == "map" {
     @each $key, $value in $value {
-      $-variables: map.set($-variables, $module, "#{$prop}-#{$key}", $value) !global;
+      // If the map has the value of "config", store the entire map directly
+      @if $component == "core" and $key == "config" {
+        $-custom-properties: map.set(
+          $-custom-properties,
+          $component,
+          $prop,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+
+      // Else, suffix the custom property with the key
+      @else {
+        $-custom-properties: map.set($-custom-properties, $component, "#{$prop}-#{$key}", $value) !global;
+      }
     }
   }
 
   // Scenario: "prop", "value"
   @else {
-    $-variables: map.set($-variables, $module, $prop, $value) !global;
+    $-custom-properties: map.set($-custom-properties, $component, $prop, $value) !global;
   }
 }
 
-/// Mixin to remove items from the `$-variables` custom properties map.
+/// Mixin to remove items from the custom properties map.
 ///
 /// @param {string} $keys...
 ///   The list of keys to follow and remove from the custom properties map.
 ///
 @mixin remove($keys...) {
-  $-variables: map.deep-remove($-variables, $keys...) !global;
+  $-custom-properties: map.deep-remove($-custom-properties, $keys...) !global;
 }
 
-/// Mixin to override a previously defined custom property. This is primarily
-/// used in the context of a modifier. Provided module must exist in the
-/// `$-variables` custom properties map.
+/// Mixin to override previously defined custom properties. This is primarily
+/// used in the context of a modifier. Provided component must exist in the
+/// custom properties map.
 ///
-/// @param {string} $module
-///   The module name to check the custom property under.
+/// @param {string} $component
+///   The component to override.
 /// @param {string|map} $prop
 ///   The custom property name to override. Can be a map containing property and
-///   value pairs
+///   value pairs.
 /// @param {any} $value (null)
 ///   The property value to override with.
 ///
@@ -409,32 +432,33 @@ $-variables: (
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
-@mixin override($module, $prop, $value: null) {
-  @if -module-exists($module) {
+@mixin override($component, $prop, $value: null) {
+  @if -component-exists($component) {
     @if meta.type-of($prop) == "map" {
       @each $key, $value in $prop {
         @if $value {
-          @include define($module, $key, $value);
+          @include define($component, $key, $value);
         }
       }
     } @else {
       @if $value {
-        @include define($module, $prop, $value);
+        @include define($component, $prop, $value);
       }
     }
   }
 }
 
-/// Output all the stored custom properties of a provided module or of all
-/// modules. Provided module must exist in the `$-variables` map.
+/// Output all custom properties of a provided component. Or output all custom
+/// properties from all components by passing "*" as the argument.
 ///
-/// @param {string} $module ("*")
-///   The module to output all custom properties from. If no module is passed or
-///   set to "*" or "all", will output all custom properties for all modules.
+/// @param {string} $component ("*")
+///   The component to output all custom properties from. If no component is
+///   passed or set to "*" or "all", will output all custom properties for all
+///   components.
 ///
 /// @example scss
-///   // Example value in `$-variables` map:
-///   $-variables: (
+///   // Example value in custom properties map:
+///   $-custom-properties: (
 ///     "button": (
 ///       "background": #555,
 ///       "foreground": #fff,
@@ -454,39 +478,42 @@ $-variables: (
 ///     --vb-button-border: 1px solid #000;
 ///   }
 ///
-@mixin output($module: "*") {
-  @if $module == "*" or $module == "all" {
-    // Call output() for every module in $-variables
-    @each $module in map.keys($-variables) {
-      @include output($module);
+@mixin output($component: "*") {
+  @if $component == "*" or $component == "all" {
+    // Call output() for every component in $-custom-properties
+    @each $component in map.keys($-custom-properties) {
+      @include output($component);
     }
-  } @else if -module-exists($module, false) {
-    // Get the module's property map
-    $property-map: map.get($-variables, $module);
+  } @else if -component-exists($component, false) {
+    // Get the component's property map
+    $property-map: map.get($-custom-properties, $component);
+
+    @if $component == "config" {
+      @debug $component;
+    }
 
     // Loop through the property map
     @each $prop, $value in $property-map {
-      @include define($module, $prop, $value);
+      @include define($component, $prop, $value);
     }
   }
 }
 
-/// Log to console either the entire `$-variables` custom properties map, a
-/// module map or module theme. Provided module must exist in the  `$-variables`
-/// custom properties map.
+/// Log to console all custom properties, a component map or component theme.
+/// Provided component must be registered in the custom properties map.
 ///
-/// @param {string} $module ("*")
-///   A module within the custom properties map to log. Leaving as `null` will
-///   log the entire map.
+/// @param {string} $component ("*")
+///   A component within the custom properties map to log. Leaving as `null`
+///   will log the entire map.
 ///
-@mixin log($module: "*", $props...) {
-  @if $module == "*" or $module == "all" {
-    @include debug-map($-variables, 'Custom properties of "*"');
-  } @else if -module-exists($module) {
+@mixin log($component: "*", $props...) {
+  @if $component == "*" or $component == "all" {
+    @include debug-map($-custom-properties, 'Custom properties of "*"');
+  } @else if -component-exists($component) {
     @if list.length($props) > 0 {
-      @include debug-map(map.get($-variables, $module, $props...), 'Custom properties of "#{$module}" > "#{$props}"');
+      @include debug-map(map.get($-custom-properties, $component, $props...), 'Custom properties of "#{$component}" > "#{$props}"');
     } @else {
-      @include debug-map(map.get($-variables, $module), 'Custom properties of "#{$module}"');
+      @include debug-map(map.get($-custom-properties, $component), 'Custom properties of "#{$component}"');
     }
   }
 }

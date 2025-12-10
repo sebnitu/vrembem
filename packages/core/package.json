@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/core",
-  "description": "Shared variables, functions and mixins for Vrembem components.",
+  "description": "Provides the base systems and utilities that all Vrembem components are built upon.",
   "version": "4.0.0-next.33",
   "license": "MIT",
   "type": "module",
@@ -24,7 +24,6 @@
     "./sass": "./index.scss",
     "./root": "./root.scss",
     "./config": "./src/scss/modules/config.scss",
-    "./usage": "./src/scss/modules/usage.scss",
     "./css": "./src/scss/modules/css.scss",
     "./palette": "./src/scss/modules/palette.scss",
     "./theme": "./src/scss/modules/theme.scss",
@@ -37,7 +36,6 @@
     "index.ts",
     "index.scss",
     "config.scss",
-    "usage.scss",
     "css.scss",
     "palette.scss",
     "theme.scss",

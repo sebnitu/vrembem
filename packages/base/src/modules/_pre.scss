@@ -17,7 +17,7 @@
       background: none;
       border: none;
       color: inherit;
-      font-size: css.get("pre", "font-size", css.get("font-size"));
+      font-size: css.get("pre", "font-size", css.get("font-size-sm"));
       padding: 0;
     }
   }
