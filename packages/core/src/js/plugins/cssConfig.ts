@@ -9,16 +9,13 @@ export function cssConfig(): Plugin {
   };
 
   const methods = {
-    onCreateEntry({
-      entry,
-      parent
-    }: {
-      entry: CollectionEntry<any>;
-      parent: Collection<any>;
-    }) {
+    setup({ parent }: { parent: Collection<any> }) {
+      parent.on("updateCustomProps", update);
+    },
+
+    onCreateEntry({ entry }: { entry: CollectionEntry<any> }) {
       const data = getCustomProps(entry);
       entry.config.addConfigSource("css", data);
-      parent.on("updateCustomProps", update, entry);
     },
 
     onDestroyEntry({
