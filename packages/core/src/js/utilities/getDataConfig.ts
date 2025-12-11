@@ -3,7 +3,7 @@
  *
  * @param el
  *   Element to get the data from.
- * @param dataConfig
+ * @param attr
  *   The name of the data attribute to get. Defaults to "config".
  *
  * @returns
@@ -12,9 +12,9 @@
  */
 export function getDataConfig(
   el: HTMLElement,
-  dataConfig: string = "config"
+  attr: string = "config"
 ): Record<string, any> {
-  const string = el.getAttribute(`data-${dataConfig}`) || "";
+  const string = el.getAttribute(`data-${attr}`) || "";
   const json = string.replace(/'/g, '"');
   return json ? JSON.parse(json) : {};
 }
