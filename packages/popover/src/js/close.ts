@@ -6,7 +6,7 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
   if (entry && entry.state === "opened") {
     // Update inert state and state class
     entry.el.inert = true;
-    entry.el.classList.remove(entry.getConfig("stateActive"));
+    entry.el.classList.remove(entry.config.get("stateActive"));
 
     // Update accessibility attribute(s)
     if (!entry.isTooltip) {
@@ -26,7 +26,7 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(
-      new CustomEvent(entry.getConfig("customEventPrefix") + "closed", {
+      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
         detail: entry.parent,
         bubbles: true
       })

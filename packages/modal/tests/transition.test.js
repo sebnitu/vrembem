@@ -114,6 +114,6 @@ test("should return modal config if set, otherwise should return global config",
   await modal.mount();
 
   const entry = modal.get("modal-default");
-  expect(entry.getConfig("transition")).toBe(false);
+  expect(entry.config.get("transition")).toBe(false);
   expect(modal.config.transition).toBe(true);
 });

@@ -1,4 +1,4 @@
-import { getCustomProps, getConfig } from "../../index";
+import { getCustomProps } from "../../index";
 
 document.body.innerHTML = "<div id='asdf'>asdf</div>";
 document.body.style.setProperty("--vb-prefix", "vb-");
@@ -20,9 +20,6 @@ const mockEntry = {
       background: "black",
       foreground: "white"
     }
-  },
-  getConfig(key) {
-    return getConfig.call(this, key);
   }
 };
 

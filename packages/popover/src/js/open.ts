@@ -14,7 +14,7 @@ import type { PopoverEntry } from "./PopoverEntry";
 export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
   // Update inert state and state class
   entry.el.inert = false;
-  entry.el.classList.add(entry.getConfig("stateActive"));
+  entry.el.classList.add(entry.config.get("stateActive"));
 
   // Update accessibility attribute(s)
   if (!entry.isTooltip) {
@@ -54,7 +54,7 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
 
       // Non-null assertion (entry.trigger!) since we already check that entry.trigger is not null
       computePosition(entry.trigger!, entry.el, {
-        placement: entry.getConfig("placement"),
+        placement: entry.config.get("placement"),
         middleware
       }).then(({ x, y, placement, middlewareData }) => {
         // Guard in case there is no popover element
@@ -82,13 +82,13 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
   entry.state = "opened";
 
   // Apply document click handler
-  if (entry.getConfig("event") === "click") {
+  if (entry.config.get("event") === "click") {
     handleDocumentClick.call(entry.parent, entry);
   }
 
   // Dispatch custom opened event
   entry.el.dispatchEvent(
-    new CustomEvent(entry.getConfig("customEventPrefix") + "opened", {
+    new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
       detail: entry.parent,
       bubbles: true
     })

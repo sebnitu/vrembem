@@ -90,7 +90,7 @@ describe("createEntry()", () => {
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.getConfig("dataConfig")).toBe("config");
+    expect(entry.config.get("dataConfig")).toBe("config");
   });
 
   it("should be able to pass a config object", async () => {
@@ -98,7 +98,7 @@ describe("createEntry()", () => {
     const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
     expect(entry.id).toBe("fdsa");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.getConfig("dataConfig")).toBe("test");
+    expect(entry.config.get("dataConfig")).toBe("test");
   });
 });
 

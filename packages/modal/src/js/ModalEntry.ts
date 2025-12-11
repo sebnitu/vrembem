@@ -18,11 +18,11 @@ export class ModalEntry extends CollectionEntry<Modal> {
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
-      this.el.querySelector(this.getConfig("selectorDialog")) || this.el;
+      this.el.querySelector(this.config.get("selectorDialog")) || this.el;
   }
 
   get isRequired() {
-    return this.dialog.matches(this.getConfig("selectorRequired"));
+    return this.dialog.matches(this.config.get("selectorRequired"));
   }
 
   async open(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
@@ -54,22 +54,22 @@ export class ModalEntry extends CollectionEntry<Modal> {
     }
 
     // Set tabindex="-1" so dialog is focusable via JS or click
-    if (this.getConfig("setTabindex")) {
+    if (this.config.get("setTabindex")) {
       this.dialog.setAttribute("tabindex", "-1");
     }
   }
 
   async onRegisterEntry() {
     // Setup initial state
-    if (this.el.classList.contains(this.getConfig("stateOpened"))) {
+    if (this.el.classList.contains(this.config.get("stateOpened"))) {
       // Open entry with transitions disabled
       await this.open(false);
     } else {
       // Remove transition state classes
-      this.el.classList.remove(this.getConfig("stateOpening"));
-      this.el.classList.remove(this.getConfig("stateClosing"));
+      this.el.classList.remove(this.config.get("stateOpening"));
+      this.el.classList.remove(this.config.get("stateClosing"));
       // Add closed state class
-      this.el.classList.add(this.getConfig("stateClosed"));
+      this.el.classList.add(this.config.get("stateClosed"));
     }
   }
 

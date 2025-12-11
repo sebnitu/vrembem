@@ -28,11 +28,10 @@ describe("constructor()", () => {
   });
 });
 
-describe("applyConfig()", () => {
+describe("config.apply()", () => {
   it("should be able to modify the config object", async () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(entry.config).toEqual({});
-    entry.applyConfig({
+    entry.config.apply({
       selector: "div",
       test: "asdf"
     });
@@ -41,39 +40,22 @@ describe("applyConfig()", () => {
   });
 });
 
-describe("buildDataConfig()", () => {
-  it("should be able to use config from data attributes", () => {
-    const entry = new CollectionEntry(obj, "two");
-    entry.buildDataConfig();
-    expect(entry.getConfig("one")).toBe(111);
-    expect(entry.getConfig("two")).toBe(222);
-  });
-});
-
-describe("buildCustomProps()", () => {
-  it("should be able to use config from custom properties", () => {
-    const entry = new CollectionEntry(obj, "three");
-    entry.buildCustomProps();
-    expect(entry.getConfig("test")).toBe("fdsa");
-  });
-});
-
-describe("getConfig()", () => {
+describe("config.get()", () => {
   it("should get a config value from the entry parent", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(entry.getConfig("test")).toBe("asdf");
+    expect(entry.config.get("test")).toBe("asdf");
   });
 
   it("should get a config value from the entry", () => {
     const entry = new CollectionEntry(obj, "one", {
       test: "new"
     });
-    expect(entry.getConfig("test")).toBe("new");
+    expect(entry.config.get("test")).toBe("new");
   });
 
   it("should throw an error if a setting doesn't exist", () => {
     const entry = new CollectionEntry(obj, "one");
-    expect(() => entry.getConfig("asdf")).toThrowError(
+    expect(() => entry.config.get("asdf")).toThrowError(
       "Collection config does not exist: asdf"
     );
   });

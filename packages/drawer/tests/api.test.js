@@ -222,9 +222,9 @@ describe("data-config", () => {
     const entry1 = await drawer.register("drawer-1");
     const entry2 = await drawer.register("drawer-2");
 
-    expect(entry1.getConfig("transition")).toBe(false);
-    expect(entry1.getConfig("selectorOverflow")).toBe("body");
-    expect(entry2.getConfig("transition")).toBe(true);
-    expect(entry2.getConfig("selectorOverflow")).toBe("main");
+    expect(entry1.config.get("transition")).toBe(false);
+    expect(entry1.config.get("selectorOverflow")).toBe("body");
+    expect(entry2.config.get("transition")).toBe(true);
+    expect(entry2.config.get("selectorOverflow")).toBe("main");
   });
 });

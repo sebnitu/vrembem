@@ -14,7 +14,7 @@ export function switchMode(entry: DrawerEntry): Promise<DrawerEntry> {
 
 async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
   // Remove the modal class
-  entry.el.classList.remove(entry.getConfig("classModal"));
+  entry.el.classList.remove(entry.config.get("classModal"));
 
   // Remove the aria-modal attribute
   entry.dialog.removeAttribute("aria-modal");
@@ -22,8 +22,8 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
   // Update the global state
   setGlobalState(
     false,
-    entry.getConfig("selectorInert"),
-    entry.getConfig("selectorOverflow")
+    entry.config.get("selectorInert"),
+    entry.config.get("selectorOverflow")
   );
 
   // Apply the inline state
@@ -31,7 +31,7 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
 
   // Dispatch custom switch event
   entry.el.dispatchEvent(
-    new CustomEvent(entry.getConfig("customEventPrefix") + "switchMode", {
+    new CustomEvent(entry.config.get("customEventPrefix") + "switchMode", {
       detail: entry.parent,
       bubbles: true
     })
@@ -46,7 +46,7 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
 
 async function toModal(entry: DrawerEntry): Promise<DrawerEntry> {
   // Add the modal class
-  entry.el.classList.add(entry.getConfig("classModal"));
+  entry.el.classList.add(entry.config.get("classModal"));
 
   // Set aria-modal attribute to true
   entry.dialog.setAttribute("aria-modal", "true");
@@ -56,7 +56,7 @@ async function toModal(entry: DrawerEntry): Promise<DrawerEntry> {
 
   // Dispatch custom switch event
   entry.el.dispatchEvent(
-    new CustomEvent(entry.getConfig("customEventPrefix") + "switchMode", {
+    new CustomEvent(entry.config.get("customEventPrefix") + "switchMode", {
       detail: entry.parent,
       bubbles: true
     })

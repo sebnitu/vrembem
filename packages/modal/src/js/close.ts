@@ -24,18 +24,18 @@ export async function close(
     if (
       transitionOverride != undefined
         ? transitionOverride
-        : entry.getConfig("transition")
+        : entry.config.get("transition")
     ) {
       await transition(
         entry.el,
-        entry.getConfig("stateOpened"),
-        entry.getConfig("stateClosing"),
-        entry.getConfig("stateClosed"),
-        entry.getConfig("transitionDuration")
+        entry.config.get("stateOpened"),
+        entry.config.get("stateClosing"),
+        entry.config.get("stateClosed"),
+        entry.config.get("transitionDuration")
       );
     } else {
-      entry.el.classList.add(entry.getConfig("stateClosed"));
-      entry.el.classList.remove(entry.getConfig("stateOpened"));
+      entry.el.classList.add(entry.config.get("stateClosed"));
+      entry.el.classList.remove(entry.config.get("stateOpened"));
     }
 
     // Remove modal from stack
@@ -51,7 +51,7 @@ export async function close(
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(
-      new CustomEvent(entry.getConfig("customEventPrefix") + "closed", {
+      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
         detail: entry.parent,
         bubbles: true
       })
