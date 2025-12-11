@@ -9,10 +9,11 @@
   <script type="module">
     import "vrembem/sass";
     import Popover from "./index.ts";
-    import { teleport } from "@vrembem/core";
+    import { teleport, cssConfig } from "@vrembem/core";
 
     const popover = new Popover({
       plugins: [
+        cssConfig(),
         teleport({
           where: ".popovers"
         })
