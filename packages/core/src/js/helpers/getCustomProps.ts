@@ -1,4 +1,4 @@
-import { toKebab } from "../utilities";
+import { toKebab, toCamel } from "../utilities";
 import { getPrefix } from "./";
 import type { CollectionEntry } from "../CollectionEntry";
 
@@ -32,7 +32,7 @@ export function getCustomProps(
     const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
     // If a value was found, add it to our results object
     if (value) {
-      result[key] = value;
+      result[toCamel(key)] = value;
     }
   }
 
