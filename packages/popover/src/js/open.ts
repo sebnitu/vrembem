@@ -22,7 +22,7 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
   }
 
   // Get the custom property data before opening the popover
-  entry.buildCustomProps();
+  await entry.parent.emit("updateCustomProps", entry);
 
   // Get the middleware options for floating ui
   const middlewareOptions = getMiddlewareOptions(entry);
