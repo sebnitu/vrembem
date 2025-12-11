@@ -173,7 +173,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
     // If it's a tooltip...
     if (this.isTooltip) {
       // Set the event to hover role="tooltip" attribute
-      this.config.event = "hover";
+      this.config.apply({ event: "hover" });
       this.el.setAttribute("role", "tooltip");
     } else {
       // Check that trigger isn't null and is an HTMLElement
