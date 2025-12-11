@@ -1,13 +1,6 @@
 import { toKebab } from "../utilities";
 import { getPrefix } from "./";
-
-type Entry = {
-  el: HTMLElement;
-  parent: {
-    module: string;
-  };
-  getConfig: (key: string) => string[];
-};
+import type { CollectionEntry } from "../CollectionEntry";
 
 /**
  * Extracts CSS custom properties for a given entry based on its config.
@@ -18,7 +11,9 @@ type Entry = {
  * @returns {object} A key/value object of custom property names (in kebab-case)
  *   to their corresponding CSS values.
  */
-export function getCustomProps(entry: Entry): Record<string, string> {
+export function getCustomProps(
+  entry: CollectionEntry<any>
+): Record<string, string> {
   // Get the computed styles of the element
   const styles = getComputedStyle(entry.el);
 
@@ -26,7 +21,7 @@ export function getCustomProps(entry: Entry): Record<string, string> {
   const result: Record<string, string> = {};
 
   // Get the custom property keys
-  const keys = entry.getConfig("customProps");
+  const keys = entry.config.get("customProps");
 
   // Loop through the custom properties object
   for (let i = 0; i < keys.length; i++) {
