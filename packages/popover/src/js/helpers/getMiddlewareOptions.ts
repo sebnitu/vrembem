@@ -22,15 +22,15 @@ export function getMiddlewareOptions(
   return {
     offset: Number(popover.config.get("offset")),
     flip: {
-      padding: getPadding(popover.config.get("flip-padding"))
+      padding: getPadding(popover.config.get("flipPadding"))
     },
     shift: {
-      padding: getPadding(popover.config.get("shift-padding"))
+      padding: getPadding(popover.config.get("shiftPadding"))
     },
     arrow: {
       selector: popover.config.get("selectorArrow"),
       element: null,
-      padding: getPadding(popover.config.get("arrow-padding"))
+      padding: getPadding(popover.config.get("arrowPadding"))
     }
   };
 }

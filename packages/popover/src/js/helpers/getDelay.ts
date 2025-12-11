@@ -2,7 +2,7 @@ import type { PopoverEntry } from "../PopoverEntry";
 
 export function getDelay(popover: PopoverEntry, index: number): number {
   // Get the initial toggle delay value from config
-  let value = popover.config.get("toggle-delay");
+  let value = popover.config.get("toggleDelay");
 
   // Check if value is a string
   if (typeof value == "string") {
