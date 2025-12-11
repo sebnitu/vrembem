@@ -182,12 +182,12 @@ export class PopoverEntry extends CollectionEntry<Popover> {
         this.trigger.setAttribute("aria-expanded", "false");
       }
     }
-
-    // Setup event listeners
-    this.registerEventListeners();
   }
 
   async onRegisterEntry() {
+    // Setup event listeners
+    this.registerEventListeners();
+
     // Set initial state based on the presence of the active class
     if (this.el.classList.contains(this.config.get("stateActive"))) {
       await this.open();
