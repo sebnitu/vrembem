@@ -28,11 +28,20 @@ export class ConfigManager {
     }
   }
 
-  get(key: string, fallback?: any) {
-    for (const src of this.#sourceOrder) {
-      const result = this.#source?.[src]?.[key];
+  get(key: string, options?: { fallback?: any; source?: string }) {
+    const { fallback, source } = options ?? {};
+
+    if (source) {
+      const result = this.#source?.[source]?.[key];
       if (result !== undefined) {
         return result;
+      }
+    } else {
+      for (const src of this.#sourceOrder) {
+        const result = this.#source?.[src]?.[key];
+        if (result !== undefined) {
+          return result;
+        }
       }
     }
 
