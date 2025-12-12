@@ -32,13 +32,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       query: string | HTMLElement,
       options?: Record<string, any>
     ) => TEntry;
-    this.config = {
-      ...{
-        dataConfig: "config",
-        customProps: []
-      },
-      ...options
-    };
+    this.config = { ...options };
     this.plugins = new PluginsArray(this.config.presets);
   }
 

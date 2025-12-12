@@ -90,7 +90,6 @@ describe("createEntry()", () => {
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.config.get("dataConfig")).toBe("config");
   });
 
   it("should be able to pass a config object", async () => {
