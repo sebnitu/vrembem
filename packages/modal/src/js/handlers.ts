@@ -16,9 +16,9 @@ export async function handleClick(
   if (target) {
     // If an open, close or replace button was clicked, handle the click event
     const trigger = target.closest(`
-      [data-${this.config.dataOpen}],
-      [data-${this.config.dataReplace}],
-      [data-${this.config.dataClose}]
+      [data-${this.config.attrOpen}],
+      [data-${this.config.attrReplace}],
+      [data-${this.config.attrClose}]
     `) as HTMLElement | null;
 
     if (trigger) {
@@ -26,9 +26,9 @@ export async function handleClick(
       event.preventDefault();
 
       // If it's a open trigger...
-      if (trigger.matches(`[data-${this.config.dataOpen}]`)) {
+      if (trigger.matches(`[data-${this.config.attrOpen}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.config.dataOpen}`)
+          .getAttribute(`data-${this.config.attrOpen}`)
           ?.trim();
         // Get the entry from collection using the attribute value
         const entry = this.getOrThrow(selector);
@@ -40,9 +40,9 @@ export async function handleClick(
       }
 
       // If it's a replace trigger...
-      if (trigger.matches(`[data-${this.config.dataReplace}]`)) {
+      if (trigger.matches(`[data-${this.config.attrReplace}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.config.dataReplace}`)
+          .getAttribute(`data-${this.config.attrReplace}`)
           ?.trim();
         // Get the entry from collection using the attribute value
         const entry = this.getOrThrow(selector);
@@ -53,9 +53,9 @@ export async function handleClick(
         return entry.replace();
       }
 
-      if (trigger.matches(`[data-${this.config.dataClose}]`)) {
+      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.config.dataClose}`)
+          .getAttribute(`data-${this.config.attrClose}`)
           ?.trim();
         return selector === "*" ? this.closeAll() : this.close(selector || "");
       }

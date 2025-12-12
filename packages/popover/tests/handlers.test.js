@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index";
-import { dataConfig } from "@vrembem/core";
+import { attrConfig } from "@vrembem/core";
 import {
   handleClick,
   handleMouseEnter,
@@ -126,7 +126,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
     await popover.mount({
-      plugins: [dataConfig()]
+      plugins: [attrConfig()]
     });
 
     const entry = popover.get("tooltip-1");
@@ -143,7 +143,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
     await popover.mount({
-      plugins: [dataConfig()]
+      plugins: [attrConfig()]
     });
 
     const entry = popover.get("tooltip-2");
@@ -161,7 +161,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
     await popover.mount({
-      plugins: [dataConfig()]
+      plugins: [attrConfig()]
     });
 
     const entry = popover.get("popover");
@@ -188,7 +188,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
     await popover.mount({
-      plugins: [dataConfig()]
+      plugins: [attrConfig()]
     });
 
     const entry1 = popover.get("tooltip-1");

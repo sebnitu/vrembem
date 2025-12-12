@@ -10,9 +10,9 @@ export async function handleClick(
   if (target) {
     // If an open, close or toggle button was clicked, handle the click event
     const trigger = target.closest(`
-      [data-${this.config.dataOpen}],
-      [data-${this.config.dataToggle}],
-      [data-${this.config.dataClose}]
+      [data-${this.config.attrOpen}],
+      [data-${this.config.attrToggle}],
+      [data-${this.config.attrClose}]
     `) as HTMLElement | null;
 
     if (trigger) {
@@ -20,9 +20,9 @@ export async function handleClick(
       event.preventDefault();
 
       // If it's a toggle trigger...
-      if (trigger.matches(`[data-${this.config.dataToggle}]`)) {
+      if (trigger.matches(`[data-${this.config.attrToggle}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.config.dataToggle}`)
+          .getAttribute(`data-${this.config.attrToggle}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {
@@ -36,9 +36,9 @@ export async function handleClick(
       }
 
       // If it's a open trigger...
-      if (trigger.matches(`[data-${this.config.dataOpen}]`)) {
+      if (trigger.matches(`[data-${this.config.attrOpen}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.config.dataOpen}`)
+          .getAttribute(`data-${this.config.attrOpen}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {
@@ -52,9 +52,9 @@ export async function handleClick(
       }
 
       // If it's a close trigger...
-      if (trigger.matches(`[data-${this.config.dataClose}]`)) {
+      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
         const selectors = trigger
-          .getAttribute(`data-${this.config.dataClose}`)
+          .getAttribute(`data-${this.config.attrClose}`)
           ?.trim()
           .split(" ");
         selectors?.forEach((selector: string) => {

@@ -1,7 +1,7 @@
 export interface ModalConfig {
-  dataOpen: string;
-  dataClose: string;
-  dataReplace: string;
+  attrOpen: string;
+  attrClose: string;
+  attrReplace: string;
   selector: string;
   selectorDialog: string;
   selectorScreen: string;
@@ -22,9 +22,9 @@ export interface ModalConfig {
 
 export const config: ModalConfig = {
   // Data attributes
-  dataOpen: "modal-open",
-  dataClose: "modal-close",
-  dataReplace: "modal-replace",
+  attrOpen: "modal-open",
+  attrClose: "modal-close",
+  attrReplace: "modal-replace",
 
   // Selectors
   selector: ".modal",

@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Modal from "../index";
-import { dataConfig } from "@vrembem/core";
+import { attrConfig } from "@vrembem/core";
 
 vi.useFakeTimers();
 
@@ -98,7 +98,7 @@ test("should open and close modal while using the data modal config attribute", 
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
   await modal.mount({
-    plugins: [dataConfig()]
+    plugins: [attrConfig()]
   });
 
   const entry = modal.get("modal-default");
@@ -115,7 +115,7 @@ test("should return modal config if set, otherwise should return global config",
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
   await modal.mount({
-    plugins: [dataConfig()]
+    plugins: [attrConfig()]
   });
 
   const entry = modal.get("modal-default");

@@ -94,10 +94,10 @@ describe("createEntry()", () => {
 
   it("should be able to pass a config object", async () => {
     const obj = new Collection();
-    const entry = await obj.createEntry("fdsa", { dataConfig: "test" });
+    const entry = await obj.createEntry("fdsa", { attrConfig: "test" });
     expect(entry.id).toBe("fdsa");
     expect(entry.parent.module).toBe("Collection");
-    expect(entry.config.get("dataConfig")).toBe("test");
+    expect(entry.config.get("attrConfig")).toBe("test");
   });
 });
 

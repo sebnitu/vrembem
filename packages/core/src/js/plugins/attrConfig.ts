@@ -1,24 +1,24 @@
-import { getDataConfig } from "../utilities/getDataConfig";
+import { getAttrConfig } from "../utilities/getAttrConfig";
 import type { Plugin } from "../modules/PluginsArray";
 
-export interface DataConfig {
+export interface AttrConfig {
   attr?: string;
 }
 
-const defaults: Required<DataConfig> = {
+const defaults: Required<AttrConfig> = {
   attr: "config"
 };
 
-export function dataConfig(options: DataConfig = {}): Plugin {
+export function attrConfig(options: AttrConfig = {}): Plugin {
   const props = {
-    name: "dataConfig",
+    name: "attrConfig",
     defaults,
     options
   };
 
   const methods = {
     onCreateEntry({ entry, plugin }: { entry: any; plugin: any }) {
-      const data = getDataConfig(entry.el, plugin.config.attr);
+      const data = getAttrConfig(entry.el, plugin.config.attr);
       entry.config.addConfigSource("attr", data);
     },
 

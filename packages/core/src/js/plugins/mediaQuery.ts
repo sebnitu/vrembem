@@ -2,8 +2,8 @@ import { getPrefix } from "../helpers";
 import type { Plugin } from "../modules/PluginsArray";
 
 export interface MediaQueryConfig {
-  dataBreakpoint?: string;
-  dataMediaQuery?: string;
+  attrBreakpoint?: string;
+  attrMediaQuery?: string;
   token?: string;
   breakpoint?: string | null;
   mediaQuery?: string;
@@ -24,10 +24,10 @@ interface MediaQueryEntry {
 
 const defaults: Required<MediaQueryConfig> = {
   // The data attributes to get the breakpoint values from
-  dataBreakpoint: "breakpoint",
+  attrBreakpoint: "breakpoint",
 
   // The data attributes to get the media query value from
-  dataMediaQuery: "media-query",
+  attrMediaQuery: "media-query",
 
   // The string token to replace in the media query string
   token: "{{BP}}",
@@ -80,7 +80,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     this: any,
     entry: MediaQueryEntry
   ): string | undefined {
-    const value = entry.el.getAttribute(`data-${this.config.dataMediaQuery}`);
+    const value = entry.el.getAttribute(`data-${this.config.attrMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
     if (!value && entry.id in this.config.mediaQueries) {
       return this.config.mediaQueries[entry.id];
@@ -93,7 +93,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     this: any,
     entry: MediaQueryEntry
   ): string | null {
-    let value = entry.el.getAttribute(`data-${this.config.dataBreakpoint}`);
+    let value = entry.el.getAttribute(`data-${this.config.attrBreakpoint}`);
     // If no value was returned, is there a breakpoint mapped to the entry id?
     if (!value && entry.id in this.config.breakpoints) {
       value = this.config.breakpoints[entry.id];
