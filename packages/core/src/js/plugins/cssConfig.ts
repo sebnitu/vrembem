@@ -3,15 +3,15 @@ import type { Plugin } from "../modules/PluginsArray";
 import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export interface AttrConfig {
+export interface CSSConfig {
   key?: string;
 }
 
-const defaults: Required<AttrConfig> = {
+const defaults: Required<CSSConfig> = {
   key: "css"
 };
 
-export function cssConfig(options: AttrConfig = {}): Plugin {
+export function cssConfig(options: CSSConfig = {}): Plugin {
   const props = {
     name: "cssConfig",
     defaults,
@@ -23,24 +23,32 @@ export function cssConfig(options: AttrConfig = {}): Plugin {
       parent.on("updateCustomProps", update);
     },
 
-    onCreateEntry({ entry }: { entry: CollectionEntry<any> }) {
+    onCreateEntry({
+      entry,
+      plugin
+    }: {
+      entry: CollectionEntry<any>;
+      plugin: Plugin;
+    }) {
       const data = getCustomProps(entry);
-      entry.config.addConfigSource(this.config.key, data);
+      entry.config.addConfigSource(plugin.config.key, data);
     },
 
     onDestroyEntry({
       entry,
-      parent
+      parent,
+      plugin
     }: {
       entry: CollectionEntry<any>;
       parent: Collection<any>;
+      plugin: Plugin;
     }) {
-      entry.config.removeConfigSource(this.config.key);
+      entry.config.removeConfigSource(plugin.config.key);
       parent.off("updateCustomProps", update);
     }
   };
 
-  function update(entry: CollectionEntry<any>) {
+  function update(this: Plugin, entry: CollectionEntry<any>) {
     const data = getCustomProps(entry);
     entry.config.apply(data, this.config.key);
   }

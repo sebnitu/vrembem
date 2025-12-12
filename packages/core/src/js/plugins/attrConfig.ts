@@ -20,13 +20,25 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
   };
 
   const methods = {
-    onCreateEntry({ entry }: { entry: CollectionEntry<any> }) {
-      const data = getAttrConfig(entry.el, this.config.attr);
-      entry.config.addConfigSource(this.config.key, data);
+    onCreateEntry({
+      entry,
+      plugin
+    }: {
+      entry: CollectionEntry<any>;
+      plugin: Plugin;
+    }) {
+      const data = getAttrConfig(entry.el, plugin.config.attr);
+      entry.config.addConfigSource(plugin.config.key, data);
     },
 
-    onDestroyEntry({ entry }: { entry: CollectionEntry<any> }) {
-      entry.config.removeConfigSource(this.config.key);
+    onDestroyEntry({
+      entry,
+      plugin
+    }: {
+      entry: CollectionEntry<any>;
+      plugin: Plugin;
+    }) {
+      entry.config.removeConfigSource(plugin.config.key);
     }
   };
 
