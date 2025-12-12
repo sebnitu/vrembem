@@ -3,9 +3,19 @@ import type { Plugin } from "../modules/PluginsArray";
 import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export function cssConfig(): Plugin {
+export interface AttrConfig {
+  key?: string;
+}
+
+const defaults: Required<AttrConfig> = {
+  key: "css"
+};
+
+export function cssConfig(options: AttrConfig = {}): Plugin {
   const props = {
-    name: "cssConfig"
+    name: "cssConfig",
+    defaults,
+    options
   };
 
   const methods = {
@@ -15,7 +25,7 @@ export function cssConfig(): Plugin {
 
     onCreateEntry({ entry }: { entry: CollectionEntry<any> }) {
       const data = getCustomProps(entry);
-      entry.config.addConfigSource("css", data);
+      entry.config.addConfigSource(this.config.key, data);
     },
 
     onDestroyEntry({
@@ -25,14 +35,14 @@ export function cssConfig(): Plugin {
       entry: CollectionEntry<any>;
       parent: Collection<any>;
     }) {
-      entry.config.removeConfigSource("css");
+      entry.config.removeConfigSource(this.config.key);
       parent.off("updateCustomProps", update);
     }
   };
 
   function update(entry: CollectionEntry<any>) {
     const data = getCustomProps(entry);
-    entry.config.apply(data, "css");
+    entry.config.apply(data, this.config.key);
   }
 
   return { ...props, ...methods };

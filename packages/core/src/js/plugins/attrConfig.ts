@@ -1,11 +1,14 @@
 import { getAttrConfig } from "../utilities/getAttrConfig";
 import type { Plugin } from "../modules/PluginsArray";
+import type { CollectionEntry } from "../CollectionEntry";
 
 export interface AttrConfig {
+  key?: string;
   attr?: string;
 }
 
 const defaults: Required<AttrConfig> = {
+  key: "attr",
   attr: "config"
 };
 
@@ -17,13 +20,13 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
   };
 
   const methods = {
-    onCreateEntry({ entry, plugin }: { entry: any; plugin: any }) {
-      const data = getAttrConfig(entry.el, plugin.config.attr);
-      entry.config.addConfigSource("attr", data);
+    onCreateEntry({ entry }: { entry: CollectionEntry<any> }) {
+      const data = getAttrConfig(entry.el, this.config.attr);
+      entry.config.addConfigSource(this.config.key, data);
     },
 
-    onDestroyEntry({ entry }: { entry: any }) {
-      entry.config.removeConfigSource("attr");
+    onDestroyEntry({ entry }: { entry: CollectionEntry<any> }) {
+      entry.config.removeConfigSource(this.config.key);
     }
   };
 
