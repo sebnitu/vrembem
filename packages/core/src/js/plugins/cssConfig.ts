@@ -19,8 +19,8 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
   };
 
   const methods = {
-    setup({ parent }: { parent: Collection<any> }) {
-      parent.on("updateCustomProps", update);
+    setup({ parent, plugin }: { parent: Collection<any>; plugin: Plugin }) {
+      parent.on("updateCustomProps", update.bind(plugin));
     },
 
     onCreateEntry({
@@ -44,7 +44,7 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
       plugin: Plugin;
     }) {
       entry.config.removeConfigSource(plugin.config.key);
-      parent.off("updateCustomProps", update);
+      parent.off("updateCustomProps", update.bind(plugin));
     }
   };
 
