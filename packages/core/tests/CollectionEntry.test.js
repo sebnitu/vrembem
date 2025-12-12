@@ -24,7 +24,7 @@ describe("constructor()", () => {
     const entry = new CollectionEntry(obj, "one", {
       test: "asdf"
     });
-    expect(entry.config.test).toEqual("asdf");
+    expect(entry.config.get("test")).toEqual("asdf");
   });
 });
 
@@ -35,8 +35,8 @@ describe("config.apply()", () => {
       selector: "div",
       test: "asdf"
     });
-    expect(entry.config.selector).toBe("div");
-    expect(entry.config.test).toBe("asdf");
+    expect(entry.config.get("selector")).toBe("div");
+    expect(entry.config.get("test")).toBe("asdf");
   });
 });
 
@@ -56,7 +56,7 @@ describe("config.get()", () => {
   it("should throw an error if a setting doesn't exist", () => {
     const entry = new CollectionEntry(obj, "one");
     expect(() => entry.config.get("asdf")).toThrowError(
-      "Collection config does not exist: asdf"
+      "Config does not exist: asdf"
     );
   });
 });
@@ -66,8 +66,6 @@ describe("init() & destroy()", () => {
     const entry = new CollectionEntry(obj, "four");
     await entry.init({ new: "asdf" });
     expect(entry.id).toBe("four");
-    expect(entry.config.new).toBe("asdf");
-    expect(entry.dataConfig.data).toBe(111);
-    expect(entry.customProps.test).toBe("fdsa");
+    expect(entry.config.get("new")).toBe("asdf");
   });
 });

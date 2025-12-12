@@ -36,15 +36,6 @@ const markupInitState = `
   <div id="drawer-5" class="drawer"></div>
 `;
 
-const markupConfig = `
-  <div id="drawer-1" class="drawer" data-config="{ 'transition': false }">
-    <div class="drawer__dialog">...</div>
-  </div>
-  <div id="drawer-2" class="drawer" data-config="{ 'selectorOverflow': 'main' }">
-    <div class="drawer__dialog">...</div>
-  </div>
-`;
-
 document.body.innerHTML = markup;
 
 const drawer = new Drawer({ transitionDuration: 300 });
@@ -209,22 +200,5 @@ describe("register() & deregister()", () => {
   it("should use the root drawer element as dialog if selector returned null", async () => {
     const entry = drawer.register("drawer-5");
     expect(entry.el).toBe(entry.dialog);
-  });
-});
-
-describe("data-config", () => {
-  beforeAll(async () => {
-    document.body.innerHTML = markupConfig;
-    await drawer.unmount();
-  });
-
-  it("should override global drawer configs using drawer specific data configuration", async () => {
-    const entry1 = await drawer.register("drawer-1");
-    const entry2 = await drawer.register("drawer-2");
-
-    expect(entry1.config.get("transition")).toBe(false);
-    expect(entry1.config.get("selectorOverflow")).toBe("body");
-    expect(entry2.config.get("transition")).toBe(true);
-    expect(entry2.config.get("selectorOverflow")).toBe("main");
   });
 });

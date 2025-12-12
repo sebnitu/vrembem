@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Modal from "../index";
+import { dataConfig } from "@vrembem/core";
 
 vi.useFakeTimers();
 
@@ -96,7 +97,9 @@ test("should not apply transition classes when transitions are disabled", async 
 test("should open and close modal while using the data modal config attribute", async () => {
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
-  await modal.mount();
+  await modal.mount({
+    plugins: [dataConfig()]
+  });
 
   const entry = modal.get("modal-default");
   await entry.open();
@@ -111,7 +114,9 @@ test("should open and close modal while using the data modal config attribute", 
 test("should return modal config if set, otherwise should return global config", async () => {
   document.body.innerHTML = markupConfig;
   const modal = new Modal();
-  await modal.mount();
+  await modal.mount({
+    plugins: [dataConfig()]
+  });
 
   const entry = modal.get("modal-default");
   expect(entry.config.get("transition")).toBe(false);

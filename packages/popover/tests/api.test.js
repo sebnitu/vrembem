@@ -121,21 +121,21 @@ describe("open() & close()", () => {
     const popover = new Popover();
     await popover.mount();
 
-    popover.collection.forEach(async (item) => {
+    for (const item of popover.collection) {
       await popover.open(item.id);
-    });
+    }
 
-    popover.collection.forEach((item) => {
+    for (const item of popover.collection) {
       expect(item.state).toBe("opened");
       expect(item.el).toHaveClass("is-active");
-    });
+    }
 
     await popover.close();
 
-    popover.collection.forEach((item) => {
+    for (const item of popover.collection) {
       expect(item.state).toBe("closed");
       expect(item.el).not.toHaveClass("is-active");
-    });
+    }
   });
 
   it("should reject promise with error when open is run on popover it could not find", async () => {

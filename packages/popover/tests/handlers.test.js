@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import { delay } from "./helpers/delay";
 import Popover from "../index";
+import { dataConfig } from "@vrembem/core";
 import {
   handleClick,
   handleMouseEnter,
@@ -93,6 +94,7 @@ describe("handleClick()", () => {
     handleClick.bind(popover, popover.collection[0])();
     expect(popover.get("asdf").el).toHaveClass("is-active");
     expect(popover.get("fdsa").el).toHaveClass("is-active");
+    await delay();
     document.querySelector("#app").click();
     await delay();
     expect(popover.get("asdf").el).not.toHaveClass("is-active");
@@ -123,7 +125,9 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should open tooltip when handleMouseEnter() is run", async () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
-    await popover.mount();
+    await popover.mount({
+      plugins: [dataConfig()]
+    });
 
     const entry = popover.get("tooltip-1");
     expect(entry.isTooltip).toBe(true);
@@ -138,7 +142,9 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should close tooltip when handleMouseLeave() is run", async () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
-    await popover.mount();
+    await popover.mount({
+      plugins: [dataConfig()]
+    });
 
     const entry = popover.get("tooltip-2");
     expect(entry.isTooltip).toBe(true);
@@ -154,7 +160,9 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should not close popover if either the popover element or trigger are hovered", async () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
-    await popover.mount();
+    await popover.mount({
+      plugins: [dataConfig()]
+    });
 
     const entry = popover.get("popover");
     expect(entry.config.get("event")).toBe("hover");
@@ -179,7 +187,9 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should correctly clear timeout when multiple enter/leave events are run", async () => {
     document.body.innerHTML = hoverMarkup;
     const popover = new Popover();
-    await popover.mount();
+    await popover.mount({
+      plugins: [dataConfig()]
+    });
 
     const entry1 = popover.get("tooltip-1");
     const entry2 = popover.get("tooltip-2");
@@ -284,6 +294,7 @@ describe("handlerKeydown()", () => {
     button.focus();
     expect(document.activeElement).toBe(button);
 
+    await delay();
     document.dispatchEvent(keyEsc);
     await delay();
 
