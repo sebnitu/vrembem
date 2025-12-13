@@ -3,13 +3,11 @@ import { getPrefix } from "./";
 import type { CollectionEntry } from "../CollectionEntry";
 
 /**
- * Extracts CSS custom properties for a given entry based on its config.
+ * Extracts CSS custom properties from a given entry based on its config.
  *
- * @param {Entry} entry - An object representing the entry with its associated
- *   config and element.
+ * @param {Entry} entry - An object representing the entry of a collection.
  *
- * @returns {object} A key/value object of custom property names (in kebab-case)
- *   to their corresponding CSS values.
+ * @returns {object} A key/value object of custom properties.
  */
 export function getCustomProps(
   entry: CollectionEntry<any>
