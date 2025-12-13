@@ -3,11 +3,11 @@ import type { Plugin } from "../modules/PluginsArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
 export interface CSSConfig {
-  key?: string;
+  sourceKey?: string;
 }
 
 const defaults: Required<CSSConfig> = {
-  key: "css"
+  sourceKey: "css"
 };
 
 export function cssConfig(options: CSSConfig = {}): Plugin {
@@ -24,18 +24,18 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
 
     onCreateEntry({ entry }) {
       const data = getCustomProps(entry);
-      entry.config.addConfigSource(this.config.key, data);
+      entry.config.addConfigSource(this.config.sourceKey, data);
     },
 
     onDestroyEntry({ parent, entry }) {
-      entry.config.removeConfigSource(this.config.key);
+      entry.config.removeConfigSource(this.config.sourceKey);
       parent.off("updateCustomProps", update.bind(this));
     }
   };
 
   function update(this: Plugin, entry: CollectionEntry<any>) {
     const data = getCustomProps(entry);
-    entry.config.apply(data, this.config.key);
+    entry.config.apply(data, this.config.sourceKey);
   }
 
   return { ...props, ...methods };

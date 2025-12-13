@@ -2,13 +2,13 @@ import { getAttrData } from "../utilities/getAttrData";
 import type { Plugin } from "../modules/PluginsArray";
 
 export interface AttrConfig {
-  key?: string;
   attr?: string;
+  sourceKey?: string;
 }
 
 const defaults: Required<AttrConfig> = {
-  key: "attr",
-  attr: "config"
+  attr: "config",
+  sourceKey: "attr"
 };
 
 export function attrConfig(options: AttrConfig = {}): Plugin {
@@ -21,11 +21,11 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
   const methods: Partial<Plugin> = {
     onCreateEntry({ entry }) {
       const data = getAttrData(entry.el, this.config.attr);
-      entry.config.addConfigSource(this.config.key, data);
+      entry.config.addConfigSource(this.config.sourceKey, data);
     },
 
     onDestroyEntry({ entry }) {
-      entry.config.removeConfigSource(this.config.key);
+      entry.config.removeConfigSource(this.config.sourceKey);
     }
   };
 
