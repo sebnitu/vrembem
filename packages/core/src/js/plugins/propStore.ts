@@ -1,6 +1,5 @@
 import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
-import type { CollectionEntry } from "../CollectionEntry";
 
 export interface PropStorePlugin extends Plugin {
   store: ReturnType<typeof localStore> | null;

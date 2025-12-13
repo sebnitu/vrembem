@@ -19,7 +19,11 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
 
   const methods: Partial<Plugin> = {
     setup(parent) {
-      parent.on("updateCustomProps", update.bind(this));
+      parent.on("updateCustomProps", update, this);
+    },
+
+    teardown(parent) {
+      parent.off("updateCustomProps", update);
     },
 
     onCreateEntry({ entry }) {
@@ -27,15 +31,14 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
       entry.config.addConfigSource(this.config.sourceKey, data);
     },
 
-    onDestroyEntry({ parent, entry }) {
+    onDestroyEntry({ entry }) {
       entry.config.removeConfigSource(this.config.sourceKey);
-      parent.off("updateCustomProps", update.bind(this));
     }
   };
 
-  function update(this: Plugin, entry: CollectionEntry<any>) {
+  function update(entry: CollectionEntry<any>, plugin: Plugin) {
     const data = getCustomProps(entry);
-    entry.config.apply(data, this.config.sourceKey);
+    entry.config.apply(data, plugin.config.sourceKey);
   }
 
   return { ...props, ...methods };
