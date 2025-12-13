@@ -114,6 +114,59 @@ While the main focus of this example is the Collections API, it's important to s
 
 Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
 
+### Configuration
+
+Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation, mount, or manually using the `applyConfig` method.
+
+<CodeExample lang="js">
+```js
+// Provide a config object via instantiation
+const myCollection = new Collection({
+  selector: "CSS_SELECTOR"
+});
+
+// Provide a config object via `mount` method
+await myCollection.mount({
+  selector: "CSS_SELECTOR"
+});
+
+// Apply a config object manually via `applyConfig` method
+myCollection.applyConfig({
+  selector: "CSS_SELECTOR"
+});
+```
+</CodeExample>
+
+Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is initialized under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
+
+- The parent collection's config (as the `"parent"` source).
+- Entry-specific options (as the `"entry"` source).
+
+When an entries `init()` method is called, new options can be applied to the `"entry"` source, allowing for per-entry overrides. The `entry.config.get` method resolves configuration values by checking the most specific source first (entry), then falling back to the parent collection config if not found. This layered approach ensures that:
+
+- Global settings are defined at the collection level.
+- Individual entries can override or extend these settings as needed.
+- Config lookups always prioritize the most specific (entry) config, then fall back to broader (parent) config.
+
+To provide an entry with a custom configuration object, use the `entry.config.apply` method:
+
+<CodeExample lang="js">
+```js
+// Get an entry from your collection
+const myEntry = myCollection.get("ENTRY_ID");
+
+// Apply a config object manually via `config.apply` method
+myEntry.config.apply({
+  selector: "CSS_SELECTOR"
+});
+```
+</CodeExample>
+
+Entries can have additional config sources defined using `config.addConfigSource` where you pass a `sourceKey` and config object as arguments. The order of presidence can be updated using `config.setSourceOrder` and providing an array of `sourceKey` values to set a specific order. Lastly, you can use plugins to expand the configurability of entries:
+
+- [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
+- [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.
+
 ### Collection classes
 
 In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a `selector` option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
