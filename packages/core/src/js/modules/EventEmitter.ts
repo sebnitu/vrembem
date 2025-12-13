@@ -1,7 +1,4 @@
-export type EventListener = (
-  data?: any,
-  ...args: any[]
-) => void | Promise<void>;
+export type EventListener = (...args: any[]) => void | Promise<void>;
 
 export interface EventEntry {
   listener: EventListener;
@@ -34,13 +31,13 @@ export class EventEmitter {
     );
   }
 
-  async emit(event: string, data?: any): Promise<void> {
+  async emit(event: string, ...args: any[]): Promise<void> {
     event = event.startsWith("on")
       ? event.slice(2, 3).toLowerCase() + event.slice(3)
       : event;
     if (!this.events[event]) return;
-    for (const { listener, args } of this.events[event]) {
-      await listener(data, ...args);
+    for (const { listener, args: listenerArgs } of this.events[event]) {
+      await listener(...args, ...listenerArgs);
     }
   }
 }
