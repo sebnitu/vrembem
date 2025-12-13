@@ -1,5 +1,5 @@
 export * from "./focusableSelectors";
-export * from "./getAttrConfig";
+export * from "./getAttrData";
 export * from "./getElement";
 export * from "./maybeRunMethod";
 export * from "./teleportElement";

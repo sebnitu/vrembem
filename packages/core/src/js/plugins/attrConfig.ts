@@ -1,4 +1,4 @@
-import { getAttrConfig } from "../utilities/getAttrConfig";
+import { getAttrData } from "../utilities/getAttrData";
 import type { Plugin } from "../modules/PluginsArray";
 
 export interface AttrConfig {
@@ -20,7 +20,7 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
 
   const methods: Partial<Plugin> = {
     onCreateEntry({ entry }) {
-      const data = getAttrConfig(entry.el, this.config.attr);
+      const data = getAttrData(entry.el, this.config.attr);
       entry.config.addConfigSource(this.config.key, data);
     },
 

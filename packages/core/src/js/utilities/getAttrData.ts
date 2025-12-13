@@ -10,7 +10,7 @@
  *   A parsed object from the `data-*` attribute, or an empty object
  *   if the attribute is not found or invalid.
  */
-export function getAttrConfig(
+export function getAttrData(
   el: HTMLElement,
   attr: string = "config"
 ): Record<string, any> {

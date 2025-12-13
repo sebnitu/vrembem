@@ -1,4 +1,4 @@
-import { getAttrConfig } from "@vrembem/core";
+import { getAttrData } from "@vrembem/core";
 
 function scrollSpy(options = {}) {
   const config = {
@@ -25,7 +25,7 @@ function scrollSpy(options = {}) {
   }
 
   function register(el) {
-    const data = getAttrConfig(el, config.attrConfig);
+    const data = getAttrData(el, config.attrConfig);
     const entry = {
       el: el,
       ...{ ...config, ...data }
