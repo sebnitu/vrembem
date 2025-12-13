@@ -1,44 +1,43 @@
 import { FocusTrap } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
+import type { Collection } from "../Collection";
+import type { CollectionEntry } from "../CollectionEntry";
+
+export type FocusTrapEntry = CollectionEntry<any> & {
+  focusTrap: FocusTrap;
+  dialog: HTMLElement;
+};
 
 export interface FocusTrapConfig {
   condition?:
     | boolean
-    | ((context: { plugin: Plugin; parent: any; entry: any }) => boolean);
-}
-
-interface FocusTrapEntry {
-  dialog?: HTMLElement;
-  parent?: any;
-  focusTrap?: FocusTrap;
-  [key: string]: any;
-}
-
-interface FocusTrapPluginContext {
-  parent: {
-    on: (event: string, handler: Function, context?: any) => void;
-    off: (event: string, handler: Function) => void;
-  };
+    | ((context: {
+        plugin: Plugin;
+        parent: Collection<any>;
+        entry: FocusTrapEntry;
+      }) => boolean);
 }
 
 const defaults: Required<FocusTrapConfig> = {
   condition: true
 };
 
-export function focusTrap(options: FocusTrapConfig = {}): Plugin {
-  const props = {
+export function focusTrap(
+  options: FocusTrapConfig = {}
+): Plugin<Collection<any>, FocusTrapEntry> {
+  const props: Plugin<Collection<any>, FocusTrapEntry> = {
     name: "focusTrap",
-    defaults,
+    config: defaults,
     options
   };
 
-  const methods = {
-    setup(this: any, { parent }: FocusTrapPluginContext) {
+  const methods: Partial<Plugin<Collection<any>, FocusTrapEntry>> = {
+    setup(parent) {
       parent.on("opened", enableFocusTrap, this);
       parent.on("closed", disableFocusTrap, this);
     },
 
-    teardown(this: any, { parent }: FocusTrapPluginContext) {
+    teardown(parent) {
       parent.off("opened", enableFocusTrap);
       parent.off("closed", disableFocusTrap);
     },
@@ -52,17 +51,17 @@ export function focusTrap(options: FocusTrapConfig = {}): Plugin {
     return typeof obj === "function" ? (obj as Function)(...args) : obj;
   }
 
-  function enableFocusTrap(entry: FocusTrapEntry, plugin: any) {
+  function enableFocusTrap(entry: FocusTrapEntry, plugin: Plugin) {
     const contextObj = { plugin, parent: entry.parent, entry };
-    if (getValue(plugin.config.condition, contextObj)) {
-      entry.focusTrap?.on(entry.dialog);
+    if (entry.focusTrap && getValue(plugin.config.condition, contextObj)) {
+      entry.focusTrap.on(entry.dialog);
     }
   }
 
-  function disableFocusTrap(entry: FocusTrapEntry, plugin: any) {
+  function disableFocusTrap(entry: FocusTrapEntry, plugin: Plugin) {
     const contextObj = { plugin, parent: entry.parent, entry };
-    if (getValue(plugin.config.condition, contextObj)) {
-      entry.focusTrap?.off();
+    if (entry.focusTrap && getValue(plugin.config.condition, contextObj)) {
+      entry.focusTrap.off();
     }
   }
 

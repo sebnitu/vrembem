@@ -1,5 +1,10 @@
 import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
+import type { CollectionEntry } from "../CollectionEntry";
+
+export interface PropStorePlugin extends Plugin {
+  store: ReturnType<typeof localStore> | null;
+}
 
 export interface PropStoreConfig {
   prop?: string;
@@ -37,29 +42,29 @@ const defaults: Required<PropStoreConfig> = {
   onChange() {}
 };
 
-export function propStore(options: PropStoreConfig = {}): Plugin {
-  const props = {
+export function propStore(options: PropStoreConfig = {}): PropStorePlugin {
+  const props: PropStorePlugin = {
     name: "propStore",
-    defaults,
+    config: defaults,
     options,
     store: null
   };
 
-  const methods = {
-    setup({ parent }: { parent: any }) {
+  const methods: Partial<PropStorePlugin> = {
+    setup(this: PropStorePlugin, parent) {
       this.store = localStore(getKey.call(this, parent.module));
     },
 
-    async onCreateEntry({ entry }: { entry: any }) {
+    async onCreateEntry({ entry }) {
       await setupPropStore.call(this, entry);
     },
 
-    onDestroyEntry({ entry }: { entry: any }) {
+    onDestroyEntry({ entry }) {
       removePropStore.call(this, entry);
     }
   };
 
-  async function setupPropStore(this: any, entry: any) {
+  async function setupPropStore(this: PropStorePlugin, entry: any) {
     // Store the initial property value. Set to null if property doesn't exist
     let _value = entry[this.config.prop] || null;
     const contextObj = { plugin: this, parent: entry.parent, entry };
@@ -85,7 +90,7 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
         );
 
         if (condition) {
-          this.store.set(entry.id, newValue);
+          this.store?.set(entry.id, newValue);
         }
 
         // Run the on change callback
@@ -97,7 +102,7 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
     Object.defineProperty(entry, "store", {
       configurable: true,
       get: () => {
-        return this.store.get(entry.id);
+        return this.store?.get(entry.id);
       },
       set: (value) => {
         entry[this.config.prop] = value;
@@ -114,17 +119,17 @@ export function propStore(options: PropStoreConfig = {}): Plugin {
     return typeof obj === "function" ? obj(...args) : obj;
   }
 
-  async function removePropStore(this: any, entry: any) {
+  async function removePropStore(this: PropStorePlugin, entry: any) {
     // Remove the getter/setters and restore properties to its current value
     const currentValue = entry[this.config.prop];
     delete entry[this.config.prop];
     entry[this.config.prop] = currentValue;
 
     // Remove value from local store
-    this.store.set(entry.id, null);
+    this.store?.set(entry.id, null);
   }
 
-  function getKey(this: any, moduleName: string): string {
+  function getKey(this: PropStorePlugin, moduleName: string): string {
     const prop =
       this.config.prop.charAt(0).toUpperCase() + this.config.prop.slice(1);
     const key = this.config.key || moduleName + prop;

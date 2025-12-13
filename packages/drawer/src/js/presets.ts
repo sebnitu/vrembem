@@ -10,7 +10,7 @@ const presets: {
   propStore: PropStoreConfig;
 } = {
   focusTrap: {
-    condition: ({ entry }) => {
+    condition: ({ entry }: { entry: any }) => {
       return (
         entry.state === "closed" ||
         (entry.state === "opened" && entry.mode === "modal")
@@ -18,13 +18,13 @@ const presets: {
     }
   },
   mediaQuery: {
-    onChange(event, entry) {
+    onChange(event, entry: any) {
       entry.mode = event.matches ? "inline" : "modal";
     }
   },
   propStore: {
     prop: "inlineState",
-    value: ({ entry }) => entry.store,
+    value: ({ entry }: { entry: any }) => entry.store,
     condition: ({ entry }) =>
       ["opened", "closed", "indeterminate"].includes(entry.state),
     onChange: ({ entry }) => entry.applyState()

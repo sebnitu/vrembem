@@ -1,5 +1,11 @@
 import { teleportElement } from "../utilities";
 import type { Plugin } from "../modules/PluginsArray";
+import type { CollectionEntry } from "../CollectionEntry";
+
+type TeleportEntry = CollectionEntry<any> & {
+  teleport: () => void;
+  teleportReturn: () => void;
+};
 
 export interface TeleportConfig {
   where?: string | null;
@@ -12,23 +18,23 @@ const defaults: Required<TeleportConfig> = {
 };
 
 export function teleport(options: TeleportConfig = {}): Plugin {
-  const props = {
+  const props: Plugin = {
     name: "teleport",
-    defaults,
+    config: defaults,
     options
   };
 
-  const methods = {
-    onCreateEntry({ plugin, entry }: { plugin: any; entry: any }) {
-      teleportAction(plugin, entry);
+  const methods: Partial<Plugin> = {
+    onCreateEntry({ entry }) {
+      teleportAction(this, entry as TeleportEntry);
     },
 
-    onDestroyEntry({ plugin, entry }: { plugin: any; entry: any }) {
-      teleportReturn(plugin, entry);
+    onDestroyEntry({ entry }) {
+      teleportReturn(this, entry as TeleportEntry);
     }
   };
 
-  function teleportAction(plugin: any, entry: any) {
+  function teleportAction(plugin: Plugin, entry: TeleportEntry) {
     // Store the teleportElement function in entry
     entry.teleport = () => {
       if (typeof entry.teleportReturn === "function") {
@@ -48,7 +54,7 @@ export function teleport(options: TeleportConfig = {}): Plugin {
     entry.parent.emit("teleport", { plugin, parent: entry.parent, entry });
   }
 
-  function teleportReturn(plugin: any, entry: any) {
+  function teleportReturn(plugin: Plugin, entry: TeleportEntry) {
     // Return teleported element if the cleanup function exists
     if (typeof entry.teleportReturn === "function") {
       entry.teleportReturn();

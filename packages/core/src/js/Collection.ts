@@ -136,7 +136,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
 
     // Run setup methods on plugins
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "setup", { plugin, parent: this });
+      await maybeRunMethod(plugin, "setup", this);
     }
 
     // Dispatch beforeMount lifecycle hooks
@@ -168,7 +168,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
 
     // Run teardown methods on plugins
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "teardown", { plugin, parent: this });
+      await maybeRunMethod(plugin, "teardown", this);
     }
 
     // Remove plugins
