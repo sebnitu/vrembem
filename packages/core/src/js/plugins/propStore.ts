@@ -1,20 +1,31 @@
 import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
+import type { CollectionEntry } from "../CollectionEntry";
 
 export interface PropStorePlugin extends Plugin {
   store: ReturnType<typeof localStore> | null;
 }
 
+export type PropStoreEntry = CollectionEntry<any> & {
+  [key: string]: any;
+};
+
+type contextObject = {
+  plugin: PropStorePlugin;
+  parent: PropStoreEntry["parent"];
+  entry: PropStoreEntry;
+};
+
 export interface PropStoreConfig {
-  prop?: string;
-  value?: any;
+  prop: string;
+  value?: any | ((context: contextObject) => any);
   keyPrefix?: string;
   key?: string | null;
   condition?:
     | boolean
-    | ((context: any, newValue?: any, oldValue?: any) => boolean);
+    | ((context: contextObject, newValue?: any, oldValue?: any) => boolean);
   onChange?: (
-    context: any,
+    context: contextObject,
     newValue: any,
     oldValue: any
   ) => void | Promise<void>;
@@ -41,7 +52,9 @@ const defaults: Required<PropStoreConfig> = {
   onChange() {}
 };
 
-export function propStore(options: PropStoreConfig = {}): PropStorePlugin {
+export function propStore(
+  options: Partial<PropStoreConfig> = {}
+): PropStorePlugin {
   const props: PropStorePlugin = {
     name: "propStore",
     config: defaults,
@@ -63,7 +76,7 @@ export function propStore(options: PropStoreConfig = {}): PropStorePlugin {
     }
   };
 
-  async function setupPropStore(this: PropStorePlugin, entry: any) {
+  async function setupPropStore(this: PropStorePlugin, entry: PropStoreEntry) {
     // Store the initial property value. Set to null if property doesn't exist
     let _value = entry[this.config.prop] || null;
     const contextObj = { plugin: this, parent: entry.parent, entry };
@@ -118,7 +131,7 @@ export function propStore(options: PropStoreConfig = {}): PropStorePlugin {
     return typeof obj === "function" ? obj(...args) : obj;
   }
 
-  async function removePropStore(this: PropStorePlugin, entry: any) {
+  async function removePropStore(this: PropStorePlugin, entry: PropStoreEntry) {
     // Remove the getter/setters and restore properties to its current value
     const currentValue = entry[this.config.prop];
     delete entry[this.config.prop];

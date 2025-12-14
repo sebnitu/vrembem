@@ -3,7 +3,8 @@ import type {
   FocusTrapEntry,
   MediaQueryConfig,
   MediaQueryEntry,
-  PropStoreConfig
+  PropStoreConfig,
+  PropStoreEntry
 } from "@vrembem/core";
 import { DrawerEntry } from "./DrawerEntry";
 
@@ -30,7 +31,7 @@ const presets: {
   },
   propStore: {
     prop: "inlineState",
-    value: ({ entry }: { entry: any }) => entry.store,
+    value: ({ entry }: { entry: PropStoreEntry }) => entry.store,
     condition: ({ entry }) =>
       ["opened", "closed", "indeterminate"].includes(entry.state),
     onChange: ({ entry }) => entry.applyState()
