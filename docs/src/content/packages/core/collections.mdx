@@ -137,7 +137,7 @@ myCollection.applyConfig({
 ```
 </CodeExample>
 
-Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is initialized under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
+Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is instanciated under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
 
 - The parent collection's config (as the `"parent"` source).
 - Entry-specific options (as the `"entry"` source).
@@ -162,7 +162,7 @@ myEntry.config.apply({
 ```
 </CodeExample>
 
-Entries can have additional config sources defined using `config.addConfigSource` where you pass a `sourceKey` and config object as arguments. The order of presidence can be updated using `config.setSourceOrder` and providing an array of `sourceKey` values to set a specific order. Lastly, you can use plugins to expand the configurability of entries:
+Entries can have additional config sources defined using `config.addConfigSource` where you pass a `sourceKey` and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
 
 - [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
 - [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.
