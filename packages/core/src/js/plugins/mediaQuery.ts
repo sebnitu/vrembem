@@ -2,11 +2,11 @@ import { getPrefix } from "../helpers";
 import type { Plugin } from "../modules/PluginsArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
-type MediaQueryEntry = CollectionEntry<any> & {
+export type MediaQueryEntry = CollectionEntry<any> & {
   mql?: MediaQueryList | null;
 };
 
-export interface MediaQueryConfig {
+export interface MediaQueryConfig<TEntry = MediaQueryEntry> {
   attrBreakpoint?: string;
   attrMediaQuery?: string;
   token?: string;
@@ -16,7 +16,7 @@ export interface MediaQueryConfig {
   mediaQueries?: Record<string, string>;
   onChange?: (
     event: MediaQueryListEvent | MediaQueryList,
-    entry: MediaQueryEntry
+    entry: TEntry
   ) => void;
 }
 
