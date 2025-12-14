@@ -112,7 +112,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   }
 
   // Sets up the MediaQueryList and event listener for an entry
-  function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry): void {
+  function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry) {
     // Get the breakpoint value else return
     const bp = getBreakpointValue.call(this, entry);
     if (!bp) return;
@@ -135,7 +135,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   }
 
   // Removes the MediaQueryList and event listener for an entry
-  function removeMediaQueryList(entry: MediaQueryEntry): void {
+  function removeMediaQueryList(entry: MediaQueryEntry) {
     if (!entry.mql) return;
     entry.mql.onchange = null;
     entry.mql = null;
