@@ -1,16 +1,20 @@
 import type {
   FocusTrapConfig,
+  FocusTrapEntry,
   MediaQueryConfig,
   PropStoreConfig
 } from "@vrembem/core";
+import { DrawerEntry } from "./DrawerEntry";
+
+type DrawerFocusTrapEntry = DrawerEntry & FocusTrapEntry;
 
 const presets: {
-  focusTrap: FocusTrapConfig;
+  focusTrap: FocusTrapConfig<DrawerFocusTrapEntry>;
   mediaQuery: MediaQueryConfig;
   propStore: PropStoreConfig;
 } = {
   focusTrap: {
-    condition: ({ entry }: { entry: any }) => {
+    condition: ({ entry }) => {
       return (
         entry.state === "closed" ||
         (entry.state === "opened" && entry.mode === "modal")
