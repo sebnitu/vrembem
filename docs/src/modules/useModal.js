@@ -1,5 +1,5 @@
 import Modal from "@vrembem/modal";
-import { focusTrap, teleport } from "@vrembem/core";
+import { attrConfig, cssConfig, focusTrap, teleport } from "@vrembem/core";
 
 let modal = null;
 
@@ -7,6 +7,8 @@ if (typeof window !== "undefined") {
   modal = new Modal({
     selectorInert: "main",
     plugins: [
+      attrConfig(),
+      cssConfig(),
       focusTrap(),
       teleport({
         where: ".modals",
