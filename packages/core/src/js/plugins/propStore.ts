@@ -1,3 +1,4 @@
+import { getValue } from "../utilities";
 import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
 import type { CollectionEntry } from "../CollectionEntry";
@@ -125,10 +126,6 @@ export function propStore(
     entry[this.config.prop] =
       (await getValue(this.config.value, contextObj)) ||
       entry[this.config.prop];
-  }
-
-  function getValue<T>(obj: T | ((...args: any[]) => T), ...args: any[]): T {
-    return typeof obj === "function" ? (obj as Function)(...args) : obj;
   }
 
   async function removePropStore(this: PropStorePlugin, entry: PropStoreEntry) {

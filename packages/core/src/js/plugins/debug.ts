@@ -1,3 +1,4 @@
+import { getValue } from "../utilities";
 import type { Plugin } from "../modules/PluginsArray";
 import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
@@ -27,10 +28,6 @@ export function debug(options: Record<string, any> = {}): Plugin {
   ) {
     const colorStyles = colorKeys.map((key) => `color: ${colors[key]}`);
     console.log(`%c📡 DEBUG: %c${name}`, ...colorStyles, ...args);
-  }
-
-  function getValue<T>(obj: T | ((...args: any[]) => T), ...args: any[]): T {
-    return typeof obj === "function" ? (obj as Function)(...args) : obj;
   }
 
   // Create event listener references

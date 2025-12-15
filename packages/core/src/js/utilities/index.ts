@@ -1,6 +1,7 @@
 export * from "./focusableSelectors";
 export * from "./getAttrData";
 export * from "./getElement";
+export * from "./getValue";
 export * from "./maybeRunMethod";
 export * from "./teleportElement";
 export * from "./toCamel";

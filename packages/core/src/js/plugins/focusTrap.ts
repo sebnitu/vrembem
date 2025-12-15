@@ -1,3 +1,4 @@
+import { getValue } from "../utilities";
 import { FocusTrap } from "../modules";
 import type { Plugin } from "../modules/PluginsArray";
 import type { Collection } from "../Collection";
@@ -46,10 +47,6 @@ export function focusTrap(
       entry.focusTrap = new FocusTrap();
     }
   };
-
-  function getValue<T>(obj: T | ((...args: any[]) => T), ...args: any[]): T {
-    return typeof obj === "function" ? (obj as Function)(...args) : obj;
-  }
 
   function enableFocusTrap(entry: FocusTrapEntry, plugin: Plugin) {
     const contextObj = { plugin, parent: entry.parent, entry };
