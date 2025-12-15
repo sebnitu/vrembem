@@ -27,13 +27,13 @@
     "watch:vb": "lerna run watch --scope=vrembem --parallel"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
     "@vitest/coverage-v8": "^4.0.15",
     "concurrently": "^9.2.1",
     "del-cli": "^7.0.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "jsdom": "^27.3.0",
