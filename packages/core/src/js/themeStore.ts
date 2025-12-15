@@ -19,19 +19,22 @@ interface ThemeStoreCallbacks {
 interface ThemeStoreConfig extends ThemeStoreCallbacks {
   prefix: string;
   storeKey: string;
-  themes?: string[];
-  fallback?: string;
+  fallback: string;
+  themes: string[];
 }
 
 const defaults: ThemeStoreConfig = {
   prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
   storeKey: "VB:Profile",
   fallback: "root",
+  themes: ["root", "light", "dark"],
   onInit() {},
   onChange() {}
 };
 
-export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreApi {
+export function themeStore(
+  options: Partial<ThemeStoreConfig> = {}
+): ThemeStoreApi {
   // Setup the default config object
   const config: ThemeStoreConfig = { ...defaults, ...options };
 
@@ -43,9 +46,6 @@ export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreA
   // Get the local storage profile
   const profile = localStore(config.storeKey);
 
-  // Setup the private themes array
-  const themesArray = options.themes || ["root", "light", "dark"];
-
   // Setup the API object
   const api: ThemeStoreApi = {
     // Store our config in the API
@@ -53,11 +53,11 @@ export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreA
 
     // Actions
     add(value: string) {
-      themesArray.push(value);
+      config.themes.push(value);
     },
     remove(value: string) {
-      const index = themesArray.indexOf(value);
-      ~index && themesArray.splice(index, 1);
+      const index = config.themes.indexOf(value);
+      ~index && config.themes.splice(index, 1);
     },
 
     // Getters
@@ -65,10 +65,10 @@ export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreA
       return `${config.prefix}${this.theme}`;
     },
     get classes() {
-      return themesArray.map((theme) => `${config.prefix}${theme}`);
+      return config.themes.map((theme) => `${config.prefix}${theme}`);
     },
     get themes() {
-      return themesArray;
+      return config.themes;
     },
 
     // Setup the theme get and set methods
@@ -77,7 +77,7 @@ export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreA
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
-      if (themesArray.includes(value)) {
+      if (config.themes.includes(value)) {
         // Check if the value is actually different from the one currently set
         if (this.theme != value) {
           // Save the theme value to local storage
