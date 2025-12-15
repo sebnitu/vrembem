@@ -1,21 +1,8 @@
 import { localStore } from "./modules";
 import { cssVar } from "./helpers";
 
-interface ThemeStoreOptions {
-  prefix?: string;
-  storeKey?: string;
-  themes?: string[];
-  fallback?: string;
-  onInit?: () => void;
-  onChange?: () => void;
-}
-
 interface ThemeStoreApi {
-  config: {
-    prefix: string;
-    storeKey: string;
-    fallback: string;
-  };
+  config: ThemeStoreConfig;
   add: (value: string) => void;
   remove: (value: string) => void;
   readonly class: string;
@@ -29,41 +16,28 @@ interface ThemeStoreCallbacks {
   onChange: () => void;
 }
 
-export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
+interface ThemeStoreConfig extends ThemeStoreCallbacks {
+  prefix: string;
+  storeKey: string;
+  themes?: string[];
+  fallback?: string;
+}
+
+const defaults: ThemeStoreConfig = {
+  prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
+  storeKey: "VB:Profile",
+  fallback: "root",
+  onInit() {},
+  onChange() {}
+};
+
+export function themeStore(options: Partial<ThemeStoreConfig> = {}): ThemeStoreApi {
   // Setup the default config object
-  const config = {
-    prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
-    storeKey: "VB:Profile",
-    fallback: "root"
-  };
-
-  // Override all config values with provided options
-  for (const [key] of Object.entries(config)) {
-    if (options && options[key as keyof ThemeStoreOptions]) {
-      config[key as keyof typeof config] = options[
-        key as keyof ThemeStoreOptions
-      ] as any;
-    }
-  }
-
-  // Setup the default callbacks object
-  const callbacks: ThemeStoreCallbacks = {
-    onInit() {},
-    onChange() {}
-  };
-
-  // Override all callback values with provided options
-  for (const [key] of Object.entries(callbacks)) {
-    if (options && options[key as keyof ThemeStoreCallbacks]) {
-      callbacks[key as keyof ThemeStoreCallbacks] = options[
-        key as keyof ThemeStoreCallbacks
-      ] as any;
-    }
-  }
+  const config: ThemeStoreConfig = { ...defaults, ...options };
 
   // Private callback function
   function callback(name: keyof ThemeStoreCallbacks) {
-    callbacks[name].call(api);
+    config[name].call(api);
   }
 
   // Get the local storage profile
