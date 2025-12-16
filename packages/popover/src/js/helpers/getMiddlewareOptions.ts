@@ -20,17 +20,17 @@ export function getMiddlewareOptions(
   popover: PopoverEntry
 ): getMiddlewareOptions {
   return {
-    offset: Number(popover.getSetting("offset")),
+    offset: Number(popover.config.get("offset")),
     flip: {
-      padding: getPadding(popover.getSetting("flip-padding"))
+      padding: getPadding(popover.config.get("flipPadding"))
     },
     shift: {
-      padding: getPadding(popover.getSetting("shift-padding"))
+      padding: getPadding(popover.config.get("shiftPadding"))
     },
     arrow: {
-      selector: popover.getSetting("selectorArrow"),
+      selector: popover.config.get("selectorArrow"),
       element: null,
-      padding: getPadding(popover.getSetting("arrow-padding"))
+      padding: getPadding(popover.config.get("arrowPadding"))
     }
   };
 }

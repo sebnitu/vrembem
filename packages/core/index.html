@@ -96,7 +96,7 @@
       }
 
       beforeMount() {
-        const resetBtn = document.querySelector(this.settings.selectorReset);
+        const resetBtn = document.querySelector(this.config.selectorReset);
         resetBtn?.addEventListener("click", this.reset.bind(this));
       }
 
@@ -114,7 +114,12 @@
 
     const ticTacToe1 = new TicTacToe({
       selector: "#ttt-1 .tictactoe__cell",
-      selectorReset: "#ttt-1 .tictactoe-reset"
+      selectorReset: "#ttt-1 .tictactoe-reset",
+      customProps: ["asdf", "fdsa"],
+      plugins: [
+        core.cssConfig(),
+        core.attrConfig()
+      ]
     });
 
     const ticTacToe2 = new TicTacToe({
@@ -143,6 +148,8 @@
     }
 
     .tictactoe__cell {
+      --vb-tictactoe-asdf: blue yellow red;
+      --vb-tictactoe-fdsa: 2em 4em 6em;
       --ttt-border: 0.25em solid var(--vb-neutral-95);
       font-size: 1.6em;
       width: 3em;
@@ -200,8 +207,20 @@
       <div id="ttt-1" class="tictactoe-wrapper">
         <table class="tictactoe">
           <tr>
-            <td id="cell-A1" class="tictactoe__cell" data-cell="A1" role="button" tabindex="0"></td>
-            <td id="cell-B1" class="tictactoe__cell" data-cell="B1" role="button" tabindex="0"></td>
+            <td 
+              id="cell-A1" 
+              class="tictactoe__cell" 
+              data-cell="A1" 
+              role="button" 
+              tabindex="0"
+              data-config='{"asdf": true, "fdsa": false}'></td>
+            <td 
+              id="cell-B1" 
+              class="tictactoe__cell" 
+              data-cell="B1" 
+              role="button" 
+              tabindex="0"
+              data-config="{'asdf': '123', 'fdsa': '321'}"></td>
             <td id="cell-C1" class="tictactoe__cell" data-cell="C1" role="button" tabindex="0"></td>
           </tr>
           <tr>

@@ -51,7 +51,7 @@ export class TicTacToe extends Collection {
   }
 
   beforeMount() {
-    const resetBtn = document.querySelector(this.settings.selectorReset);
+    const resetBtn = document.querySelector(this.config.selectorReset);
     resetBtn?.addEventListener("click", this.reset.bind(this));
   }
 

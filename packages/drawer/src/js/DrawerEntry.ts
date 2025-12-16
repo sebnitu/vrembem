@@ -22,7 +22,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
-      this.el.querySelector(this.getSetting("selectorDialog")) || this.el;
+      this.el.querySelector(this.config.get("selectorDialog")) || this.el;
 
     this.trigger = null;
     this.state = null;
@@ -51,10 +51,10 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
 
     // If state is indeterminate, remove all state classes
     if (value === "indeterminate") {
-      this.el.classList.remove(this.getSetting("stateOpened"));
-      this.el.classList.remove(this.getSetting("stateOpening"));
-      this.el.classList.remove(this.getSetting("stateClosed"));
-      this.el.classList.remove(this.getSetting("stateClosing"));
+      this.el.classList.remove(this.config.get("stateOpened"));
+      this.el.classList.remove(this.config.get("stateOpening"));
+      this.el.classList.remove(this.config.get("stateClosed"));
+      this.el.classList.remove(this.config.get("stateClosing"));
     }
   }
 
@@ -74,10 +74,10 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
     // Determine the state based on the presence of a state class. This handles
     // the initial state which is the only time `this.state` should be `null`.
     if (this.state === null) {
-      if (this.el.classList.contains(this.getSetting("stateOpened"))) {
+      if (this.el.classList.contains(this.config.get("stateOpened"))) {
         return await this.open(false, false);
       }
-      if (this.el.classList.contains(this.getSetting("stateClosed"))) {
+      if (this.el.classList.contains(this.config.get("stateClosed"))) {
         return await this.close(false, false);
       }
     }
@@ -107,7 +107,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
 
   async onCreateEntry() {
     // Set tabindex="-1" so dialog is focusable via JS or click
-    if (this.getSetting("setTabindex") && this.dialog) {
+    if (this.config.get("setTabindex") && this.dialog) {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
@@ -119,7 +119,7 @@ export class DrawerEntry extends CollectionEntry<Drawer> {
 
     // Set the initial mode
     this.mode =
-      this.el && this.el.classList.contains(this.getSetting("classModal"))
+      this.el && this.el.classList.contains(this.config.get("classModal"))
         ? "modal"
         : "inline";
   }

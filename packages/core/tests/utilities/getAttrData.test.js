@@ -1,4 +1,4 @@
-import { getDataConfig } from "../../index";
+import { getAttrData } from "../../index";
 
 document.body.innerHTML = `
   <div id="div-1" data-config="{ 'one': '1111', 'two': true }"></div>
@@ -6,23 +6,23 @@ document.body.innerHTML = `
   <div id="div-3"></div>
 `;
 
-describe("getDataConfig", () => {
+describe("getAttrData", () => {
   it("should return a data config object from HTML element", () => {
     const el = document.querySelector("#div-1");
-    const data = getDataConfig(el, "config");
+    const data = getAttrData(el, "config");
     expect(data.one).toBe("1111");
     expect(data.two).toBe(true);
   });
 
   it("should return an empty data config object if no data is found", () => {
     const el = document.querySelector("#div-2");
-    const data = getDataConfig(el, "config");
+    const data = getAttrData(el, "config");
     expect(data).toEqual({});
   });
 
   it("should return an empty data config object if no data attribute is found", () => {
     const el = document.querySelector("#div-3");
-    const data = getDataConfig(el, "config");
+    const data = getAttrData(el, "config");
     expect(data).toEqual({});
   });
 });

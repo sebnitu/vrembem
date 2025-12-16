@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import Popover from "../index";
+import { cssConfig } from "@vrembem/core";
 import {
   applyPositionStyle,
   getDelay,
@@ -229,13 +230,13 @@ describe("getDelay()", () => {
   it("should create an array if the provided delay is a string", async () => {
     document.body.innerHTML = customPropertyMarkup;
     popover = new Popover();
-    const entry1 = await popover.register("asdf");
-    expect(getDelay(entry1, 0)).toBe(200);
-    expect(getDelay(entry1, 1)).toBe(400);
-
-    const entry2 = await popover.register("fdsa");
-    expect(getDelay(entry2, 0)).toBe(400);
-    expect(getDelay(entry2, 1)).toBe(800);
+    await popover.mount({
+      plugins: [cssConfig()]
+    });
+    expect(getDelay(popover.get("asdf"), 0)).toBe(200);
+    expect(getDelay(popover.get("asdf"), 1)).toBe(400);
+    expect(getDelay(popover.get("fdsa"), 0)).toBe(400);
+    expect(getDelay(popover.get("fdsa"), 1)).toBe(800);
   });
 
   it("should throw an error if the provided delay is not a number", async () => {

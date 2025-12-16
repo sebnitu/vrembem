@@ -1,4 +1,7 @@
-import type { Plugin } from "../modules/PluginsArray";
+import { getValue } from "../utilities";
+import type { Plugin } from "../modules/PluginArray";
+import type { Collection } from "../Collection";
+import type { CollectionEntry } from "../CollectionEntry";
 
 const defaults = {
   condition: true
@@ -12,9 +15,9 @@ const colors = {
 };
 
 export function debug(options: Record<string, any> = {}): Plugin {
-  const props = {
+  const props: Plugin = {
     name: "debug",
-    defaults,
+    config: defaults,
     options
   };
 
@@ -27,14 +30,20 @@ export function debug(options: Record<string, any> = {}): Plugin {
     console.log(`%c📡 DEBUG: %c${name}`, ...colorStyles, ...args);
   }
 
-  function getValue<T>(obj: T | ((...args: any[]) => T), ...args: any[]): T {
-    return typeof obj === "function" ? (obj as Function)(...args) : obj;
-  }
-
   // Create event listener references
   const refs = {
-    beforeMountRef: log.bind(null, "Event > beforeMount()"),
-    afterMountRef: log.bind(null, "Event > afterMount()"),
+    beforeMountRef: log.bind(
+      null,
+      "Event > beforeMount()",
+      [],
+      ["primary", "secondary"]
+    ),
+    afterMountRef: log.bind(
+      null,
+      "Event > afterMount()",
+      [],
+      ["primary", "secondary"]
+    ),
     beforeUnmountRef: log.bind(
       null,
       "Event > beforeUnmount()",
@@ -47,20 +56,38 @@ export function debug(options: Record<string, any> = {}): Plugin {
       [],
       ["important", "neutral"]
     ),
-    createEntryRef: (entry: any, { parent, plugin }: any) => {
-      if (getValue(plugin.settings.condition, entry)) {
+    createEntryRef: (
+      {
+        parent,
+        entry
+      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      plugin: Plugin
+    ) => {
+      if (getValue(plugin.config.condition, entry)) {
         const count = parent.collection.length;
         log(`Event > createEntry() > [${count}] #${entry.id}`);
       }
     },
-    registerEntryRef: (entry: any, { parent, plugin }: any) => {
-      if (getValue(plugin.settings.condition, entry)) {
+    registerEntryRef: (
+      {
+        parent,
+        entry
+      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      plugin: Plugin
+    ) => {
+      if (getValue(plugin.config.condition, entry)) {
         const count = parent.collection.length;
         log(`Event > registerEntry() > [${count}] #${entry.id}`);
       }
     },
-    destroyEntryRef: (entry: any, { parent, plugin }: any) => {
-      if (getValue(plugin.settings.condition, entry)) {
+    destroyEntryRef: (
+      {
+        parent,
+        entry
+      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      plugin: Plugin
+    ) => {
+      if (getValue(plugin.config.condition, entry)) {
         const count = parent.collection.length;
         log(
           `Event > destroyEntry() > [${count}] #${entry.id}`,
@@ -69,8 +96,14 @@ export function debug(options: Record<string, any> = {}): Plugin {
         );
       }
     },
-    deregisterEntryRef: (entry: any, { parent, plugin }: any) => {
-      if (getValue(plugin.settings.condition, entry)) {
+    deregisterEntryRef: (
+      {
+        parent,
+        entry
+      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      plugin: Plugin
+    ) => {
+      if (getValue(plugin.config.condition, entry)) {
         const count = parent.collection.length;
         log(
           `Event > deregisterEntry() > [${count}]`,
@@ -81,31 +114,25 @@ export function debug(options: Record<string, any> = {}): Plugin {
     }
   };
 
-  const methods = {
+  const methods: Partial<Plugin> = {
     // Plugin setup/teardown methods
-    setup(this: any, { parent }: any) {
+    setup(parent) {
       log("Plugin > setup()", Array.from(arguments), ["secondary", "neutral"]);
 
       // Mount event lifecycle hooks
       parent.on("beforeMount", refs.beforeMountRef);
-      parent.on("createEntry", refs.createEntryRef, { parent, plugin: this });
-      parent.on("registerEntry", refs.registerEntryRef, {
-        parent,
-        plugin: this
-      });
+      parent.on("createEntry", refs.createEntryRef, this);
+      parent.on("registerEntry", refs.registerEntryRef, this);
       parent.on("afterMount", refs.afterMountRef);
 
       // Unmount event lifecycle hooks
       parent.on("beforeUnmount", refs.beforeUnmountRef);
-      parent.on("destroyEntry", refs.destroyEntryRef, { parent, plugin: this });
-      parent.on("deregisterEntry", refs.deregisterEntryRef, {
-        parent,
-        plugin: this
-      });
+      parent.on("destroyEntry", refs.destroyEntryRef, this);
+      parent.on("deregisterEntry", refs.deregisterEntryRef, this);
       parent.on("afterUnmount", refs.afterUnmountRef);
     },
 
-    teardown(this: any, { parent }: any) {
+    teardown(parent) {
       log("Plugin > teardown()", Array.from(arguments), [
         "secondary",
         "neutral"
@@ -128,8 +155,8 @@ export function debug(options: Record<string, any> = {}): Plugin {
     beforeMount() {
       log("Hook > beforeMount()", Array.from(arguments));
     },
-    onCreateEntry(this: any, { parent, entry }: any) {
-      if (getValue(this.settings.condition, entry)) {
+    onCreateEntry({ parent, entry }) {
+      if (getValue(this.config.condition, entry)) {
         const count = parent.collection.length;
         log(
           `Hook > onCreateEntry() > [${count}] #${entry.id}`,
@@ -137,8 +164,8 @@ export function debug(options: Record<string, any> = {}): Plugin {
         );
       }
     },
-    onRegisterEntry(this: any, { parent, entry }: any) {
-      if (getValue(this.settings.condition, entry)) {
+    onRegisterEntry({ parent, entry }) {
+      if (getValue(this.config.condition, entry)) {
         const count = parent.collection.length - 1;
         log(
           `Hook > onRegisterEntry() > [${count}] #${entry.id}`,
@@ -157,8 +184,8 @@ export function debug(options: Record<string, any> = {}): Plugin {
         "neutral"
       ]);
     },
-    onDestroyEntry(this: any, { parent, entry }: any) {
-      if (getValue(this.settings.condition, entry)) {
+    onDestroyEntry({ parent, entry }) {
+      if (getValue(this.config.condition, entry)) {
         const count = parent.collection.length - 1;
         log(
           `Hook > onDestroyEntry() > [${count}] #${entry.id}`,
@@ -167,8 +194,8 @@ export function debug(options: Record<string, any> = {}): Plugin {
         );
       }
     },
-    onDeregisterEntry(this: any, { parent, entry }: any) {
-      if (getValue(this.settings.condition, entry)) {
+    onDeregisterEntry({ parent, entry }) {
+      if (getValue(this.config.condition, entry)) {
         const count = parent.collection.length;
         log(`Hook > onDeregisterEntry() > [${count}]`, Array.from(arguments), [
           "important",

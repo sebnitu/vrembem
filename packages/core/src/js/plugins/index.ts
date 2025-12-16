@@ -1,3 +1,5 @@
+export * from "./attrConfig";
+export * from "./cssConfig";
 export * from "./debug";
 export * from "./focusTrap";
 export * from "./mediaQuery";

@@ -1,9 +1,9 @@
-import { getDataConfig } from "@vrembem/core";
+import { getAttrData } from "@vrembem/core";
 
-function scrollSpy(options = {}) {
-  const settings = {
+export function scrollSpy(options = {}) {
+  const config = {
     selector: ".scroll-spy",
-    dataConfig: "scroll-config",
+    attrConfig: "scroll-config",
     value: 0,
     operator: "<",
     classActive: "is-active",
@@ -13,7 +13,7 @@ function scrollSpy(options = {}) {
   const collection = [];
 
   function mount() {
-    const els = document.querySelectorAll(settings.selector);
+    const els = document.querySelectorAll(config.selector);
     els.forEach((el) => {
       register(el);
     });
@@ -25,10 +25,10 @@ function scrollSpy(options = {}) {
   }
 
   function register(el) {
-    const config = getDataConfig(el, settings.dataConfig);
+    const data = getAttrData(el, config.attrConfig);
     const entry = {
       el: el,
-      ...{ ...settings, ...config }
+      ...{ ...config, ...data }
     };
     collection.push(entry);
   }
@@ -57,11 +57,9 @@ function scrollSpy(options = {}) {
   }
 
   return {
-    settings,
+    config,
     collection,
     mount,
     register
   };
 }
-
-export { scrollSpy };

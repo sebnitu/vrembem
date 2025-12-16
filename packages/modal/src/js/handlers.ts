@@ -16,9 +16,9 @@ export async function handleClick(
   if (target) {
     // If an open, close or replace button was clicked, handle the click event
     const trigger = target.closest(`
-      [data-${this.settings.dataOpen}],
-      [data-${this.settings.dataReplace}],
-      [data-${this.settings.dataClose}]
+      [data-${this.config.attrOpen}],
+      [data-${this.config.attrReplace}],
+      [data-${this.config.attrClose}]
     `) as HTMLElement | null;
 
     if (trigger) {
@@ -26,36 +26,36 @@ export async function handleClick(
       event.preventDefault();
 
       // If it's a open trigger...
-      if (trigger.matches(`[data-${this.settings.dataOpen}]`)) {
+      if (trigger.matches(`[data-${this.config.attrOpen}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.settings.dataOpen}`)
+          .getAttribute(`data-${this.config.attrOpen}`)
           ?.trim();
         // Get the entry from collection using the attribute value
         const entry = this.getOrThrow(selector);
         // Store the trigger on the entry if it's not from inside a modal
-        const fromModal = target.closest(this.settings.selector);
+        const fromModal = target.closest(this.config.selector);
         if (!fromModal) this.trigger = trigger;
         // Toggle the drawer
         return entry.open();
       }
 
       // If it's a replace trigger...
-      if (trigger.matches(`[data-${this.settings.dataReplace}]`)) {
+      if (trigger.matches(`[data-${this.config.attrReplace}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.settings.dataReplace}`)
+          .getAttribute(`data-${this.config.attrReplace}`)
           ?.trim();
         // Get the entry from collection using the attribute value
         const entry = this.getOrThrow(selector);
         // Store the trigger on the entry if it's not from inside a modal
-        const fromModal = target.closest(this.settings.selector);
+        const fromModal = target.closest(this.config.selector);
         if (!fromModal) this.trigger = trigger;
         // Toggle the drawer
         return entry.replace();
       }
 
-      if (trigger.matches(`[data-${this.settings.dataClose}]`)) {
+      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
         const selector = trigger
-          .getAttribute(`data-${this.settings.dataClose}`)
+          .getAttribute(`data-${this.config.attrClose}`)
           ?.trim();
         return selector === "*" ? this.closeAll() : this.close(selector || "");
       }
@@ -64,7 +64,7 @@ export async function handleClick(
     // If there is an active modal and the screen was clicked...
     if (
       this.active &&
-      target.matches(this.settings.selectorScreen) &&
+      target.matches(this.config.selectorScreen) &&
       !this.active.isRequired
     ) {
       // Close the modal
@@ -82,7 +82,7 @@ export function handleKeydown(
     // If a modal is opened and not required, close the modal
     if (
       this.active &&
-      !this.active.dialog.matches(this.settings.selectorRequired)
+      !this.active.dialog.matches(this.config.selectorRequired)
     ) {
       return this.close();
     }

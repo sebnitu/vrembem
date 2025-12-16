@@ -22,18 +22,18 @@ export async function open(
     if (
       transitionOverride != undefined
         ? transitionOverride
-        : entry.getSetting("transition")
+        : entry.config.get("transition")
     ) {
       await transition(
         entry.el,
-        entry.getSetting("stateClosed"),
-        entry.getSetting("stateOpening"),
-        entry.getSetting("stateOpened"),
-        entry.getSetting("transitionDuration")
+        entry.config.get("stateClosed"),
+        entry.config.get("stateOpening"),
+        entry.config.get("stateOpened"),
+        entry.config.get("transitionDuration")
       );
     } else {
-      entry.el.classList.add(entry.getSetting("stateOpened"));
-      entry.el.classList.remove(entry.getSetting("stateClosed"));
+      entry.el.classList.add(entry.config.get("stateOpened"));
+      entry.el.classList.remove(entry.config.get("stateClosed"));
     }
 
     // Update modal state
@@ -47,7 +47,7 @@ export async function open(
 
   // Dispatch custom opened event
   entry.el.dispatchEvent(
-    new CustomEvent(entry.getSetting("customEventPrefix") + "opened", {
+    new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
       detail: entry.parent,
       bubbles: true
     })

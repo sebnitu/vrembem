@@ -13,7 +13,7 @@ export function teleportElement(
   what: HTMLElement,
   where: HTMLElement | string,
   how: "after" | "before" | "append" | "prepend"
-): Function {
+): () => void {
   // If `where` is a string, ensure that it returns an HTML element
   if (typeof where === "string") {
     const whereEl = document.querySelector(where);

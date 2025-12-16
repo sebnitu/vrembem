@@ -1,6 +1,5 @@
-import { config } from "./config";
 import { CollectionEntry } from "./CollectionEntry";
-import { EventEmitter, PluginsArray } from "./modules";
+import { EventEmitter, PluginArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
@@ -22,8 +21,8 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     query: string | HTMLElement,
     options?: Record<string, any>
   ) => TEntry;
-  settings: Record<string, any>;
-  plugins: PluginsArray;
+  config: Record<string, any>;
+  plugins: PluginArray;
 
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
@@ -33,8 +32,8 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       query: string | HTMLElement,
       options?: Record<string, any>
     ) => TEntry;
-    this.settings = { ...config, ...options };
-    this.plugins = new PluginsArray(this.settings.presets);
+    this.config = { ...options };
+    this.plugins = new PluginArray(this.config.presets);
   }
 
   get(value: any, key: keyof TEntry = "id") {
@@ -52,8 +51,8 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     }
   }
 
-  applySettings(options: Record<string, any>) {
-    return Object.assign(this.settings, options);
+  applyConfig(options: Record<string, any>) {
+    return Object.assign(this.config, options);
   }
 
   async createEntry(query: any, config: any) {
@@ -127,24 +126,24 @@ export class Collection<TEntry extends CollectionEntry<any>> {
   }
 
   async mount(options: Record<string, any> = {}) {
-    // Apply settings with passed options
-    this.applySettings(options);
+    // Apply config with passed options
+    this.applyConfig(options);
 
     // Add plugins
-    for (const plugin of this.settings?.plugins || []) {
+    for (const plugin of this.config?.plugins || []) {
       this.plugins.add(plugin);
     }
 
     // Run setup methods on plugins
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "setup", { plugin, parent: this });
+      await maybeRunMethod(plugin, "setup", this);
     }
 
     // Dispatch beforeMount lifecycle hooks
     await dispatchLifecycleHook("beforeMount", this);
 
     // Get all the selector elements and register them
-    const els = document.querySelectorAll(this.settings.selector);
+    const els = document.querySelectorAll(this.config.selector);
     for (const el of els) {
       await this.register(el);
     }
@@ -169,7 +168,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
 
     // Run teardown methods on plugins
     for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "teardown", { plugin, parent: this });
+      await maybeRunMethod(plugin, "teardown", this);
     }
 
     // Remove plugins

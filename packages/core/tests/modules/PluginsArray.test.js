@@ -1,12 +1,12 @@
-import { PluginsArray } from "../../src/js/modules";
+import { PluginArray } from "../../src/js/modules";
 
 console.error = vi.fn();
 
-const plugins = new PluginsArray({
+const plugins = new PluginArray({
   module: "Example"
 });
 
-describe("pluginsArray", () => {
+describe("PluginArray", () => {
   it("should add a plugin to the plugins array", () => {
     expect(plugins.length).toBe(0);
     plugins.add({ name: "asdf" });
@@ -40,10 +40,10 @@ describe("pluginsArray", () => {
 
   it("should return a specific plugin when using the get method", () => {
     const pluginOne = plugins.get("one");
-    expect(pluginOne.settings).toStrictEqual({ a: "a" });
+    expect(pluginOne.config).toStrictEqual({ a: "a" });
 
     const pluginTwo = plugins.get("two");
-    expect(pluginTwo.settings).toStrictEqual({ b: "b" });
+    expect(pluginTwo.config).toStrictEqual({ b: "b" });
 
     expect(plugins.get("three")).toBe(undefined);
   });

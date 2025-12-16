@@ -1,32 +1,25 @@
-import { toKebab } from "../utilities";
+import { toKebab, toCamel } from "../utilities";
 import { getPrefix } from "./";
-
-type Entry = {
-  el: HTMLElement;
-  parent: {
-    module: string;
-  };
-  getSetting: (key: string) => string[];
-};
+import type { CollectionEntry } from "../CollectionEntry";
 
 /**
- * Extracts CSS custom properties for a given entry based on its settings.
+ * Extracts CSS custom properties from a given entry based on its config.
  *
- * @param {Entry} entry - An object representing the entry with its associated
- *   settings and element.
+ * @param {Entry} entry - An object representing the entry of a collection.
  *
- * @returns {object} A key/value object of custom property names (in kebab-case)
- *   to their corresponding CSS values.
+ * @returns {object} A key/value object of custom properties.
  */
-export function getCustomProps(entry: Entry): Record<string, string> {
+export function getCustomProps(
+  entry: CollectionEntry<any>
+): Record<string, string> {
   // Get the computed styles of the element
   const styles = getComputedStyle(entry.el);
 
   // Initialize the results object for storing custom property key/value pairs
-  const result = {};
+  const result: Record<string, string> = {};
 
   // Get the custom property keys
-  const keys = entry.getSetting("customProps");
+  const keys = entry.config.get("customProps");
 
   // Loop through the custom properties object
   for (let i = 0; i < keys.length; i++) {
@@ -37,7 +30,7 @@ export function getCustomProps(entry: Entry): Record<string, string> {
     const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
     // If a value was found, add it to our results object
     if (value) {
-      result[key] = value;
+      result[toCamel(key)] = value;
     }
   }
 

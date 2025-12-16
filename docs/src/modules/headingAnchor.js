@@ -1,6 +1,6 @@
 import feather from "feather-icons";
 
-const settings = {
+const config = {
   prefix: ".layout__content",
   headings: ["h1", "h2", "h3"]
 };
@@ -12,8 +12,8 @@ const svg = feather.icons.hash.toSvg({
 
 const headingAnchor = {
   mount() {
-    settings.headings.forEach((heading) => {
-      const els = document.querySelectorAll(`${settings.prefix} ${heading}`);
+    config.headings.forEach((heading) => {
+      const els = document.querySelectorAll(`${config.prefix} ${heading}`);
       els.forEach((el) => {
         // Return if heading has the `no-anchor` class
         if (el.classList.contains("no-anchor")) return;

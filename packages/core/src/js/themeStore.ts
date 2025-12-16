@@ -1,21 +1,8 @@
 import { localStore } from "./modules";
 import { cssVar } from "./helpers";
 
-interface ThemeStoreOptions {
-  prefix?: string;
-  storeKey?: string;
-  themes?: string[];
-  fallback?: string;
-  onInit?: () => void;
-  onChange?: () => void;
-}
-
 interface ThemeStoreApi {
-  settings: {
-    prefix: string;
-    storeKey: string;
-    fallback: string;
-  };
+  config: ThemeStoreConfig;
   add: (value: string) => void;
   remove: (value: string) => void;
   readonly class: string;
@@ -29,81 +16,68 @@ interface ThemeStoreCallbacks {
   onChange: () => void;
 }
 
-export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
-  // Setup the default settings object
-  const settings = {
-    prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
-    storeKey: "VB:Profile",
-    fallback: "root"
-  };
+interface ThemeStoreConfig extends ThemeStoreCallbacks {
+  prefix: string;
+  storeKey: string;
+  fallback: string;
+  themes: string[];
+}
 
-  // Override all settings values with provided options
-  for (const [key] of Object.entries(settings)) {
-    if (options && options[key as keyof ThemeStoreOptions]) {
-      settings[key as keyof typeof settings] = options[
-        key as keyof ThemeStoreOptions
-      ] as any;
-    }
-  }
+const defaults: ThemeStoreConfig = {
+  prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
+  storeKey: "VB:Profile",
+  fallback: "root",
+  themes: ["root", "light", "dark"],
+  onInit() {},
+  onChange() {}
+};
 
-  // Setup the default callbacks object
-  const callbacks: ThemeStoreCallbacks = {
-    onInit() {},
-    onChange() {}
-  };
-
-  // Override all callback values with provided options
-  for (const [key] of Object.entries(callbacks)) {
-    if (options && options[key as keyof ThemeStoreCallbacks]) {
-      callbacks[key as keyof ThemeStoreCallbacks] = options[
-        key as keyof ThemeStoreCallbacks
-      ] as any;
-    }
-  }
+export function themeStore(
+  options: Partial<ThemeStoreConfig> = {}
+): ThemeStoreApi {
+  // Setup the default config object
+  const config: ThemeStoreConfig = { ...defaults, ...options };
 
   // Private callback function
   function callback(name: keyof ThemeStoreCallbacks) {
-    callbacks[name].call(api);
+    config[name].call(api);
   }
 
   // Get the local storage profile
-  const profile = localStore(settings.storeKey);
-
-  // Setup the private themes array
-  const themesArray = options.themes || ["root", "light", "dark"];
+  const profile = localStore(config.storeKey);
 
   // Setup the API object
   const api: ThemeStoreApi = {
-    // Store our settings in the API
-    settings,
+    // Store our config in the API
+    config,
 
     // Actions
     add(value: string) {
-      themesArray.push(value);
+      config.themes.push(value);
     },
     remove(value: string) {
-      const index = themesArray.indexOf(value);
-      ~index && themesArray.splice(index, 1);
+      const index = config.themes.indexOf(value);
+      ~index && config.themes.splice(index, 1);
     },
 
     // Getters
     get class() {
-      return `${settings.prefix}${this.theme}`;
+      return `${config.prefix}${this.theme}`;
     },
     get classes() {
-      return themesArray.map((theme) => `${settings.prefix}${theme}`);
+      return config.themes.map((theme) => `${config.prefix}${theme}`);
     },
     get themes() {
-      return themesArray;
+      return config.themes;
     },
 
     // Setup the theme get and set methods
     get theme() {
-      return profile.get("theme") || settings.fallback;
+      return profile.get("theme") || config.fallback;
     },
     set theme(value: string) {
       // Check if the value exists as a theme option
-      if (themesArray.includes(value)) {
+      if (config.themes.includes(value)) {
         // Check if the value is actually different from the one currently set
         if (this.theme != value) {
           // Save the theme value to local storage
@@ -113,7 +87,7 @@ export function themeStore(options: ThemeStoreOptions = {}): ThemeStoreApi {
           document.documentElement.classList.remove(...this.classes);
 
           // Add the new theme class to the html element
-          document.documentElement.classList.add(`${settings.prefix}${value}`);
+          document.documentElement.classList.add(`${config.prefix}${value}`);
 
           // Run the on change callback
           callback("onChange");

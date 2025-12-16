@@ -4,7 +4,7 @@ export function updateFocusState(entry: DrawerEntry): void {
   // Check if there's an active drawer
   if (entry.dialog && entry.state === "opened") {
     (
-      entry.dialog.querySelector(entry.parent.settings.selectorFocus) ||
+      entry.dialog.querySelector(entry.config.get("selectorFocus")) ||
       entry.dialog
     ).focus();
   } else {

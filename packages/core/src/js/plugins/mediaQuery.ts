@@ -1,9 +1,14 @@
 import { getPrefix } from "../helpers";
-import type { Plugin } from "../modules/PluginsArray";
+import type { Plugin } from "../modules/PluginArray";
+import type { CollectionEntry } from "../CollectionEntry";
 
-export interface MediaQueryConfig {
-  dataBreakpoint?: string;
-  dataMediaQuery?: string;
+export type MediaQueryEntry = CollectionEntry<any> & {
+  mql?: MediaQueryList | null;
+};
+
+export interface MediaQueryConfig<TEntry = MediaQueryEntry> {
+  attrBreakpoint?: string;
+  attrMediaQuery?: string;
   token?: string;
   breakpoint?: string | null;
   mediaQuery?: string;
@@ -11,23 +16,16 @@ export interface MediaQueryConfig {
   mediaQueries?: Record<string, string>;
   onChange?: (
     event: MediaQueryListEvent | MediaQueryList,
-    entry: MediaQueryEntry
+    entry: TEntry
   ) => void;
-}
-
-interface MediaQueryEntry {
-  id: string;
-  el: HTMLElement;
-  mql?: MediaQueryList | null;
-  [key: string]: any;
 }
 
 const defaults: Required<MediaQueryConfig> = {
   // The data attributes to get the breakpoint values from
-  dataBreakpoint: "breakpoint",
+  attrBreakpoint: "breakpoint",
 
   // The data attributes to get the media query value from
-  dataMediaQuery: "media-query",
+  attrMediaQuery: "media-query",
 
   // The string token to replace in the media query string
   token: "{{BP}}",
@@ -55,52 +53,52 @@ const defaults: Required<MediaQueryConfig> = {
 };
 
 export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
-  const props = {
+  const props: Plugin = {
     name: "mediaQuery",
-    defaults,
+    config: defaults,
     options
   };
 
-  const methods = {
+  const methods: Partial<Plugin> = {
     // Run when an entry is created
     // Sets up the MediaQueryList and event listener
-    onCreateEntry({ entry }: { entry: MediaQueryEntry }) {
-      setupMediaQueryList.call(this, entry);
+    onCreateEntry({ entry }) {
+      setupMediaQueryList.call(this, entry as MediaQueryEntry);
     },
 
     // Run when an entry is destroyed
     // Removes the MediaQueryList and event listener
-    onDestroyEntry({ entry }: { entry: MediaQueryEntry }) {
-      removeMediaQueryList(entry);
+    onDestroyEntry({ entry }) {
+      removeMediaQueryList(entry as MediaQueryEntry);
     }
   };
 
   // Get the media query string for an entry
   function getMediaQuery(
-    this: any,
+    this: Plugin,
     entry: MediaQueryEntry
   ): string | undefined {
-    const value = entry.el.getAttribute(`data-${this.settings.dataMediaQuery}`);
+    const value = entry.el.getAttribute(`data-${this.config.attrMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
-    if (!value && entry.id in this.settings.mediaQueries) {
-      return this.settings.mediaQueries[entry.id];
+    if (!value && entry.id in this.config.mediaQueries) {
+      return this.config.mediaQueries[entry.id];
     }
     return value || undefined;
   }
 
   // Get the breakpoint value for an entry
   function getBreakpointValue(
-    this: any,
+    this: Plugin,
     entry: MediaQueryEntry
   ): string | null {
-    let value = entry.el.getAttribute(`data-${this.settings.dataBreakpoint}`);
+    let value = entry.el.getAttribute(`data-${this.config.attrBreakpoint}`);
     // If no value was returned, is there a breakpoint mapped to the entry id?
-    if (!value && entry.id in this.settings.breakpoints) {
-      value = this.settings.breakpoints[entry.id];
+    if (!value && entry.id in this.config.breakpoints) {
+      value = this.config.breakpoints[entry.id];
     }
     // If a value exists is it a key mapped to a value in breakpoints?
-    if (value && value in this.settings.breakpoints) {
-      value = this.settings.breakpoints[value];
+    if (value && value in this.config.breakpoints) {
+      value = this.config.breakpoints[value];
     }
     // Is the value a key of a breakpoint custom property?
     if (value) {
@@ -110,33 +108,34 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
       value = customProp || value;
     }
     // Return the value or the default value
-    return value || this.settings.breakpoint;
+    return value || this.config.breakpoint;
   }
 
   // Sets up the MediaQueryList and event listener for an entry
-  function setupMediaQueryList(this: any, entry: MediaQueryEntry): void {
-    // Get the media query and breakpoint value
-    let mq = getMediaQuery.call(this, entry);
+  function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry) {
+    // Get the breakpoint value else return
     const bp = getBreakpointValue.call(this, entry);
-    // If no breakpoint value or media query was found, return
-    if (!bp && !mq) return;
-    // Use the default media query if a custom one wasn't found
-    if (bp && !mq) {
-      mq = this.settings.mediaQuery;
-    }
+    if (!bp) return;
+
+    // Get the media query value else return
+    let mq = getMediaQuery.call(this, entry) || this.config.mediaQuery;
+    if (!mq) return;
+
     // Create the media query string
-    const mqs = mq.replace(new RegExp(`${this.settings.token}`, "g"), bp);
+    const mqs = mq.replace(new RegExp(`${this.config.token}`, "g"), bp);
+
     // Setup MediaQueryList object and event listener
     entry.mql = window.matchMedia(mqs);
     entry.mql.onchange = (event: MediaQueryListEvent) => {
-      this.settings.onChange(event, entry);
+      this.config.onChange(event, entry);
     };
+
     // Run the on change function for the initial match check
-    this.settings.onChange(entry.mql, entry);
+    this.config.onChange(entry.mql, entry);
   }
 
   // Removes the MediaQueryList and event listener for an entry
-  function removeMediaQueryList(entry: MediaQueryEntry): void {
+  function removeMediaQueryList(entry: MediaQueryEntry) {
     if (!entry.mql) return;
     entry.mql.onchange = null;
     entry.mql = null;

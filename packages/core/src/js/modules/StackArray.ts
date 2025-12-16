@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "../CollectionEntry";
 
-type StackArraySettings = {
+type StackArrayConfig = {
   onChange?: () => void;
   [key: string]: any;
 };
@@ -8,11 +8,11 @@ type StackArraySettings = {
 export class StackArray<
   TEntry extends CollectionEntry<any>
 > extends Array<TEntry> {
-  settings: StackArraySettings;
+  config: StackArrayConfig;
 
-  constructor(settings: StackArraySettings = {}) {
+  constructor(config: StackArrayConfig = {}) {
     super();
-    this.settings = settings;
+    this.config = config;
   }
 
   get copy(): TEntry[] {
@@ -27,15 +27,19 @@ export class StackArray<
   updateIndex() {
     this.forEach((entry, index) => {
       entry.el.style.zIndex = "";
-      const value = getComputedStyle(entry.el)["z-index"];
-      entry.el.style.zIndex = String(parseInt(value, 10) + index + 1);
+
+      const computed = getComputedStyle(entry.el).getPropertyValue("z-index");
+      const base = parseInt(computed, 10);
+      const calculated = String((Number.isNaN(base) ? 0 : base) + index + 1);
+
+      entry.el.style.zIndex = calculated;
     });
   }
 
   onChange() {
     this.updateIndex();
-    if (typeof this.settings.onChange === "function") {
-      this.settings.onChange();
+    if (typeof this.config.onChange === "function") {
+      this.config.onChange();
     }
   }
 

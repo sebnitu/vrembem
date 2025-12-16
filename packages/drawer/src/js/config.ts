@@ -2,9 +2,9 @@ import presets from "./presets";
 
 export interface DrawerConfig {
   presets: typeof presets;
-  dataOpen: string;
-  dataClose: string;
-  dataToggle: string;
+  attrOpen: string;
+  attrClose: string;
+  attrToggle: string;
   selector: string;
   selectorDialog: string;
   selectorScreen: string;
@@ -26,9 +26,9 @@ export interface DrawerConfig {
 
 export const config: DrawerConfig = {
   presets,
-  dataOpen: "drawer-open",
-  dataClose: "drawer-close",
-  dataToggle: "drawer-toggle",
+  attrOpen: "drawer-open",
+  attrClose: "drawer-close",
+  attrToggle: "drawer-toggle",
   selector: ".drawer",
   selectorDialog: ".drawer__dialog",
   selectorScreen: ".drawer",

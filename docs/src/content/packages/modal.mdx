@@ -561,10 +561,10 @@ $size-scale: (
     autoMount: false,
 
     // Data attributes
-    dataOpen: "modal-open",
-    dataClose: "modal-close",
-    dataReplace: "modal-replace",
-    dataConfig: "modal-config",
+    attrOpen: "modal-open",
+    attrClose: "modal-close",
+    attrReplace: "modal-replace",
+    attrConfig: "modal-config",
 
     // Selectors
     selectorModal: ".modal",
@@ -581,7 +581,7 @@ $size-scale: (
     stateClosing: "is-closing",
     stateClosed: "is-closed",
 
-    // Feature settings
+    // Feature configurations
     customEventPrefix: "modal:",
     eventListeners: true,
     teleport: null,
@@ -607,14 +607,13 @@ After the modal component has been instantiated the modal object is returned wit
     el: HTMLElement, // The modal HTML element.
     dialog: HTMLElement // The modal dialog HTML element.
     returnRef: HTMLComment // The return reference left when a modal is teleported.
-    settings: Object // The modal specific settings.
+    config: Object // The modal specific configuration object.
     open: Function // Method to open this modal.
     close: Function // Method to close this modal.
     replace: Function // Method to replace open modal(s) with this modal.
     deregister: Function // Method to deregister this modal.
     teleport: Function // Method to teleport this modal.
     teleportReturn: Function // Method to return this modal to its previous location.
-    getSetting: Function // Method that returns either a modal specific setting or global modal setting.
   }
   ```
 </DocBlock>
@@ -628,7 +627,7 @@ After the modal component has been instantiated the modal object is returned wit
 </DocBlock>
 
 <DocBlock name="modal.mount" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
-  ["options", "Object (optional)", "An options object for passing custom settings."]
+  ["options", "Object (optional)", "An options object for passing custom configurations."]
 ]}>
   Mounts the modal instance. During mounting, the following processes are run:
 

@@ -477,11 +477,11 @@ $modal-screen-opacity: 0.8 !default;
     autoMount: false,
 
     // Data attributes
-    dataOpen: "drawer-open",
-    dataClose: "drawer-close",
-    dataToggle: "drawer-toggle",
-    dataBreakpoint: "drawer-breakpoint",
-    dataConfig: "drawer-config",
+    attrOpen: "drawer-open",
+    attrClose: "drawer-close",
+    attrToggle: "drawer-toggle",
+    attrBreakpoint: "drawer-breakpoint",
+    attrConfig: "drawer-config",
 
     // Selectors
     selectorDrawer: ".drawer",
@@ -527,7 +527,6 @@ After the drawer component has been instantiated the drawer object is returned w
     el: HTMLElement, // The drawer HTML element.
     dialog: HTMLElement // The drawer dialog HTML element.
     trigger: HTMLElement // The trigger element that opened the drawer.
-    settings: Object // The drawer specific settings.
     breakpoint: String // Returns the set breakpoint of the drawer. If no breakpoint is set, returns 'null'.
     mode: String // The current mode of the drawer. Either 'inline' or 'modal'.
     open: Function // Method to open this drawer.
@@ -537,7 +536,6 @@ After the drawer component has been instantiated the drawer object is returned w
     mountBreakpoint: Function // Method to mount the breakpoint feature.
     unmountBreakpoint: Function // Method to unmount the breakpoint feature.
     handleBreakpoint: Function // The function that runs whenever the breakpoint media match property is changed. Receives the event parameter.
-    getSetting: Function // Method that returns either a drawer specific setting or global drawer setting.
   }
   ```
 </DocBlock>
@@ -547,7 +545,7 @@ After the drawer component has been instantiated the drawer object is returned w
 </DocBlock>
 
 <DocBlock name="drawer.mount" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
-  ["options", "Object (optional)", "An options object for passing custom settings."]
+  ["options", "Object (optional)", "An options object for passing custom configurations."]
 ]}>
   Mounts the drawer instance. During mounting, the following processes are run:
 

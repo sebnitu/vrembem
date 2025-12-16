@@ -1,24 +1,40 @@
-export type Plugin = {
+import type { Collection } from "../Collection";
+import type { CollectionEntry } from "../CollectionEntry";
+
+export interface Plugin<
+  TParent extends Collection<any> = Collection<any>,
+  TEntry extends CollectionEntry<any> = CollectionEntry<any>
+> {
   name: string;
-  defaults?: Record<string, any>;
+  config: Record<string, any>;
   options?: Record<string, any>;
-  settings?: Record<string, any>;
-  setup?: (context: any) => void;
-  teardown?: (context: any) => void;
-  onCreateEntry?: (context: any) => void;
-  onDestroyEntry?: (context: any) => void;
-  onRegisterEntry?: (context: any) => void;
-  onDeregisterEntry?: (context: any) => void;
-  beforeMount?: (...args: any[]) => void;
-  afterMount?: (...args: any[]) => void;
-  beforeUnmount?: (...args: any[]) => void;
-  afterUnmount?: (...args: any[]) => void;
-  [key: string]: any;
-};
+  setup?: (this: this, context: TParent) => void;
+  teardown?: (this: this, context: TParent) => void;
+  onCreateEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void;
+  onDestroyEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void;
+  onRegisterEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void;
+  onDeregisterEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void;
+  beforeMount?: (this: this, context: TParent) => void;
+  afterMount?: (this: this, context: TParent) => void;
+  beforeUnmount?: (this: this, context: TParent) => void;
+  afterUnmount?: (this: this, context: TParent) => void;
+}
 
 type Presets = Record<string, Record<string, any>>;
 
-export class PluginsArray extends Array<Plugin> {
+export class PluginArray extends Array<Plugin> {
   presets: Presets;
 
   constructor(presets: Presets = {}) {
@@ -26,15 +42,14 @@ export class PluginsArray extends Array<Plugin> {
     this.presets = presets;
   }
 
-  applySettings(plugin: Plugin): void {
-    // Get the defaults, presets and provided configuration of the plugin
-    const defaults = plugin?.defaults || {};
+  buildConfig(plugin: Plugin): void {
+    // Get the preset and options of the plugin if they were set
     const preset = this.presets?.[plugin.name] || {};
     const options = plugin?.options || {};
 
-    // Create the settings property by merging the plugin defaults, preset and
+    // Create the config property by merging the plugin defaults, preset and
     // any provided options.
-    plugin.settings = { ...defaults, ...preset, ...options };
+    plugin.config = { ...plugin.config, ...preset, ...options };
   }
 
   validate(plugin: Plugin): boolean {
@@ -54,7 +69,7 @@ export class PluginsArray extends Array<Plugin> {
       plugin.forEach((p) => this.add(p));
     } else {
       // Process the plugin object
-      this.applySettings(plugin);
+      this.buildConfig(plugin);
       // Ensure the plugin is valid
       if (this.validate(plugin)) {
         // Either replace the plugin if it already exists in the array,

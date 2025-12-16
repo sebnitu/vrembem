@@ -1,5 +1,5 @@
 function currentPage(pathname, options = {}) {
-  const settings = {
+  const config = {
     pathname: pathname,
     classBase: "",
     classCurrent: "is-current",
@@ -15,7 +15,7 @@ function currentPage(pathname, options = {}) {
     return pathname.includes(path);
   }
 
-  function classes(path, base = settings.classBase) {
+  function classes(path, base = config.classBase) {
     const classes = [];
 
     if (base) {
@@ -23,16 +23,16 @@ function currentPage(pathname, options = {}) {
     }
 
     if (isCurrent(path)) {
-      classes.push(settings.classCurrent);
+      classes.push(config.classCurrent);
     } else if (isParent(path)) {
-      classes.push(settings.classParent);
+      classes.push(config.classParent);
     }
 
     return classes.join(" ");
   }
 
   return {
-    settings,
+    config,
     isCurrent,
     isParent,
     classes

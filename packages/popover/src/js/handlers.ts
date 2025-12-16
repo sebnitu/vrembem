@@ -113,7 +113,7 @@ export function handleDocumentClick(popover: PopoverEntry) {
         // If popover element exists and is not active...
         if (
           popover.el &&
-          !popover.el.classList.contains(root.settings.stateActive)
+          !popover.el.classList.contains(popover.config.get("stateActive"))
         ) {
           this.removeEventListener("click", _f);
         }
@@ -121,7 +121,7 @@ export function handleDocumentClick(popover: PopoverEntry) {
         // If popover element exists and is active...
         if (
           popover.el &&
-          popover.el.classList.contains(root.settings.stateActive)
+          popover.el.classList.contains(popover.config.get("stateActive"))
         ) {
           popover.close();
         }
