@@ -1,6 +1,6 @@
 import { getAttrData } from "@vrembem/core";
 
-function scrollSpy(options = {}) {
+export function scrollSpy(options = {}) {
   const config = {
     selector: ".scroll-spy",
     attrConfig: "scroll-config",
@@ -63,5 +63,3 @@ function scrollSpy(options = {}) {
     register
   };
 }
-
-export { scrollSpy };
