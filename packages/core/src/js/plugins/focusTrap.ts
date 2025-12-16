@@ -1,6 +1,6 @@
 import { getValue } from "../utilities";
 import { FocusTrap } from "../modules";
-import type { Plugin } from "../modules/PluginsArray";
+import type { Plugin } from "../modules/PluginArray";
 import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 

@@ -34,7 +34,7 @@ export interface Plugin<
 
 type Presets = Record<string, Record<string, any>>;
 
-export class PluginsArray extends Array<Plugin> {
+export class PluginArray extends Array<Plugin> {
   presets: Presets;
 
   constructor(presets: Presets = {}) {

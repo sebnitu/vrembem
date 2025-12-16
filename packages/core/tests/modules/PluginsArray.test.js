@@ -1,12 +1,12 @@
-import { PluginsArray } from "../../src/js/modules";
+import { PluginArray } from "../../src/js/modules";
 
 console.error = vi.fn();
 
-const plugins = new PluginsArray({
+const plugins = new PluginArray({
   module: "Example"
 });
 
-describe("pluginsArray", () => {
+describe("PluginArray", () => {
   it("should add a plugin to the plugins array", () => {
     expect(plugins.length).toBe(0);
     plugins.add({ name: "asdf" });

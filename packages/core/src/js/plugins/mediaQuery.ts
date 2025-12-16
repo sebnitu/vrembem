@@ -1,5 +1,5 @@
 import { getPrefix } from "../helpers";
-import type { Plugin } from "../modules/PluginsArray";
+import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
 export type MediaQueryEntry = CollectionEntry<any> & {

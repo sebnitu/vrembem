@@ -1,5 +1,5 @@
 import { teleportElement } from "../utilities";
-import type { Plugin } from "../modules/PluginsArray";
+import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
 type TeleportEntry = CollectionEntry<any> & {

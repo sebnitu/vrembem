@@ -1,5 +1,5 @@
 import { getAttrData } from "../utilities/getAttrData";
-import type { Plugin } from "../modules/PluginsArray";
+import type { Plugin } from "../modules/PluginArray";
 
 export interface AttrConfig {
   attr?: string;

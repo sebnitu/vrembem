@@ -1,5 +1,5 @@
 import { CollectionEntry } from "./CollectionEntry";
-import { EventEmitter, PluginsArray } from "./modules";
+import { EventEmitter, PluginArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
@@ -22,7 +22,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     options?: Record<string, any>
   ) => TEntry;
   config: Record<string, any>;
-  plugins: PluginsArray;
+  plugins: PluginArray;
 
   constructor(options: Record<string, any> = {}) {
     this.module = this.constructor.name;
@@ -33,7 +33,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       options?: Record<string, any>
     ) => TEntry;
     this.config = { ...options };
-    this.plugins = new PluginsArray(this.config.presets);
+    this.plugins = new PluginArray(this.config.presets);
   }
 
   get(value: any, key: keyof TEntry = "id") {
