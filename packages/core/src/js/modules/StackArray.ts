@@ -27,8 +27,12 @@ export class StackArray<
   updateIndex() {
     this.forEach((entry, index) => {
       entry.el.style.zIndex = "";
-      const value = getComputedStyle(entry.el)["z-index"];
-      entry.el.style.zIndex = String(parseInt(value, 10) + index + 1);
+
+      const computed = getComputedStyle(entry.el).getPropertyValue("z-index");
+      const base = parseInt(computed, 10);
+      const calculated = String((Number.isNaN(base) ? 0 : base) + index + 1);
+
+      entry.el.style.zIndex = calculated;
     });
   }
 
