@@ -1,6 +1,6 @@
 import type { CollectionEntry } from "../CollectionEntry";
 
-type StackArrayconfig = {
+type StackArrayConfig = {
   onChange?: () => void;
   [key: string]: any;
 };
@@ -8,9 +8,9 @@ type StackArrayconfig = {
 export class StackArray<
   TEntry extends CollectionEntry<any>
 > extends Array<TEntry> {
-  config: StackArrayconfig;
+  config: StackArrayConfig;
 
-  constructor(config: StackArrayconfig = {}) {
+  constructor(config: StackArrayConfig = {}) {
     super();
     this.config = config;
   }
