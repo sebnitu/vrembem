@@ -574,3 +574,120 @@ await ticTacToe.mount();
 ```
 </Fragment>
 </CodeExample>
+
+## Collection Reference
+
+The following is a reference for the `Collection` and `CollectionEntry` class APIs, which is the basis for all Vrembem JavaScript components.
+
+### Constructor
+
+The collection constructor is run when a new collection is instantiated.
+
+<CodeExample lang="js">
+```js
+new Collection(options?: Record<string, any>);
+```
+</CodeExample>
+
+### Collection.events
+
+**Type:** `array`
+
+### Collection.on
+
+**Type:** `method`
+
+### Collection.off
+
+**Type:** `method`
+
+### Collection.emit
+
+**Type:** `method`
+
+### Collection.module
+
+**Type:** `string`
+**Default:** `this.constructor.name`
+
+### Collection.collection
+
+**Type:** `array`
+
+### Collection.entryClass
+
+**Type:** `array`
+
+### Collection.config
+
+**Type:** `object`
+
+### Collection.plugins
+
+**Type:** `PluginArray`
+
+### Collection.get
+
+**Type:** `method`
+
+### Collection.getOrThrow
+
+**Type:** `method`
+
+### Collection.applyConfig
+
+**Type:** `method`
+
+### Collection.createEntry
+
+**Type:** `method`
+
+### Collection.destroyEntry
+
+**Type:** `method`
+
+### Collection.register
+
+**Type:** `method`
+
+### Collection.deregister
+
+**Type:** `method`
+
+### Collection.mount
+
+**Type:** `method`
+
+### Collection.unmount
+
+**Type:** `method`
+
+## CollectionEntry reference
+
+### Constructor
+
+**Type:** `Collection`
+
+### CollectionEntry.parent
+
+**Type:** `Collection`
+
+### CollectionEntry.el
+
+**Type:** `HTMLElement`
+
+### CollectionEntry.config
+
+**Type:** `ConfigManager`
+
+### CollectionEntry.id
+
+**Type:** `string`
+
+### CollectionEntry.init
+
+**Type:** `method`
+
+### CollectionEntry.destroy
+
+**Type:** `method`
