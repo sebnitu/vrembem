@@ -8,7 +8,7 @@ import { close } from "./close";
 import { toggle } from "./toggle";
 
 export class Drawer extends Collection<DrawerEntry> {
-  #handleClick: (event: Event) => void;
+  #handleClick: (event: MouseEvent) => Promise<void | DrawerEntry>;
   #handleKeydown: (event: KeyboardEvent) => void;
 
   constructor(options: DrawerConfig) {
