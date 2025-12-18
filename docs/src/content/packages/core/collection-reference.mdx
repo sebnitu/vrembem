@@ -5,21 +5,53 @@ group: collections
 order: 2
 ---
 
-The following is a reference for the `Collection` class API, which is the basis for all Vrembem JavaScript components.
+The following is a reference for the `Collection` class API, which is the basis for all Vrembem JavaScript components. Although you can instantiate a collection directly, the most common use case is to extend the collection class to create new components.
+
+<CodeExample lang="ts">
+```ts
+new Collection({
+  selector: ".some_selector",
+  plugins: [],
+  presets: {}
+});
+```
+</CodeExample>
 
 ## Constructor
 
 The `Collection` constructor is run when a new collection is instantiated.
 
-<CodeExample lang="ts">
-```ts
-new Collection(options?: Record<string, any>);
+<CodeExample lang="js">
+```js
+// Instantiate a new collection
+const myCollection = new Collection();
 ```
 </CodeExample>
 
 ## events
 
-**Type:** `EventMap`
+**Type:** readonly `EventMap`
+
+An event map that stores all registered events and their arguments. This can he useful to ensure that your events are being registered as expected.
+
+<CodeExample lang="js">
+```js
+// Register an event
+collection.on("eventName", functionRef, "arg1", "arg2");
+
+// The signature of the events property after an event is registered
+collection.events
+// =>
+{
+  eventName: [
+    {
+      listener: functionRef // The function reference to run when the event is emitted
+      args: ["arg1", "arg2"] // An array of all the arguments that were provided
+    }
+  ]
+}
+```
+</CodeExample>
 
 ## on
 
