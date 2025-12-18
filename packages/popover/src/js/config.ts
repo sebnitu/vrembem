@@ -1,3 +1,5 @@
+import type { CollectionConfig } from "@vrembem/core";
+
 type PlacementOptions =
   | "auto"
   | "auto-start"
@@ -15,7 +17,7 @@ type PlacementOptions =
   | "right-start"
   | "right-end";
 
-export interface PopoverConfig {
+export interface PopoverConfig extends CollectionConfig {
   selector: string;
   selectorTooltip: string;
   selectorArrow: string;

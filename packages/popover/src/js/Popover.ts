@@ -8,6 +8,7 @@ import { close, closeAll } from "./close";
 
 export class Popover extends Collection<PopoverEntry> {
   #handleKeydown: (event: KeyboardEvent) => void;
+  declare config: PopoverConfig;
   trigger: HTMLElement | null;
 
   constructor(options: PopoverConfig) {

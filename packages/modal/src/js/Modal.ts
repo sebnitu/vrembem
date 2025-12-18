@@ -10,8 +10,9 @@ import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection<ModalEntry> {
-  #handleClick: (event: Event) => void;
+  #handleClick: (event: MouseEvent) => void;
   #handleKeydown: (event: KeyboardEvent) => void;
+  declare config: ModalConfig;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
 

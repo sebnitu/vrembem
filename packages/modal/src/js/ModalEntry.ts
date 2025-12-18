@@ -2,6 +2,7 @@ import { CollectionEntry } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
 import { replace } from "./replace";
+import type { ModalConfig } from "./config";
 import type { Modal } from "./Modal";
 
 export class ModalEntry extends CollectionEntry<Modal> {
@@ -11,7 +12,7 @@ export class ModalEntry extends CollectionEntry<Modal> {
   constructor(
     parent: Modal,
     query: string | HTMLElement,
-    options: Record<string, any> = {}
+    options: ModalConfig
   ) {
     super(parent, query, options);
     this.state = "closed";
@@ -29,7 +30,7 @@ export class ModalEntry extends CollectionEntry<Modal> {
     return open(this, transition, focus);
   }
 
-  async close(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
+  async close(transition?: boolean, focus?: boolean): Promise<ModalEntry | null> {
     return close(this, transition, focus);
   }
 

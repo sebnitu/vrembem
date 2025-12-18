@@ -1,6 +1,7 @@
+import type { CollectionConfig } from "@vrembem/core";
 import presets from "./presets";
 
-export interface DrawerConfig {
+export interface DrawerConfig extends CollectionConfig {
   presets: typeof presets;
   attrOpen: string;
   attrClose: string;
