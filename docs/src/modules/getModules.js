@@ -1,10 +1,10 @@
 import { getCollection } from "astro:content";
 
-function byId(a, b) {
-  if (a.id === "core/plugins") return 1;
-  if (b.id === "core/plugins") return -1;
-  if (a.id < b.id) return -1;
-  if (a.id > b.id) return 1;
+function byTitle(a, b) {
+  if (a.data.title === "Custom Plugins") return 1;
+  if (b.data.title === "Custom Plugins") return -1;
+  if (a.data.title < b.data.title) return -1;
+  if (a.data.title > b.data.title) return 1;
   return 0;
 }
 
@@ -22,6 +22,6 @@ export async function getModules(group) {
   if (group) {
     entries = entries.filter((entry) => entry.data.group === group);
   }
-  entries.reverse().sort(byId).sort(byOrder);
+  entries.reverse().sort(byTitle).sort(byOrder);
   return entries;
 }
