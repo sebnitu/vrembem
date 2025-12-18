@@ -1,12 +1,12 @@
 import { CollectionEntry } from "./CollectionEntry";
-import { EventEmitter, PluginArray } from "./modules";
+import { EventEmitter, PluginArray, Plugin } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig {
   selector: string;
-  plugins?: [];
-  presets?: {};
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
 }
 
 export class Collection<TEntry extends CollectionEntry<any>> {
