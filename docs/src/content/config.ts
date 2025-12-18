@@ -19,9 +19,10 @@ const modules = defineCollection({
   loader: glob({ base: "./src/content/packages", pattern: "*/*.mdx" }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     parent: z.string(),
-    group: z.string().optional()
+    group: z.string().optional(),
+    order: z.number().optional()
   })
 });
 

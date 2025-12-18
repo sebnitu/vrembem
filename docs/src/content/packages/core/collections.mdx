@@ -3,6 +3,7 @@ title: Collections
 description: "Collection and CollectionEntry are base classes designed to manage component instances and implement shared systems."
 parent: core
 group: collections
+order: 1
 ---
 
 import fs from 'fs/promises';
@@ -29,7 +30,7 @@ In the following example, we'll build a tic-tac-toe game that demonstrates the f
 - Querying and updating the collection using various method.
 - Demonstrating separation of concerns between collection and entry logic.
 
-### Markup and styles
+## Markup and styles
 
 While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. Below is a working demo for what we'll build.
 
@@ -114,7 +115,7 @@ While the main focus of this example is the Collections API, it's important to s
 
 Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
 
-### Configuration
+## Configuration
 
 Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation, mount, or manually using the `applyConfig` method.
 
@@ -167,7 +168,7 @@ Entries can have additional config sources defined using `config.addConfigSource
 - [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
 - [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.
 
-### Collection classes
+## Collection classes
 
 In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a `selector` option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
 
@@ -258,7 +259,7 @@ class TicTacToe extends Collection {
 
 With our initial states in place (current player and cell state), we can now implement the feature that lets players take turns. To achieve this, we'll make use of lifecycle hooks.
 
-### Lifecycle hooks
+## Lifecycle hooks
 
 Lifecycle hooks are special methods in `Collection` and `CollectionEntry` that are automatically called at specific points during its existence—such as mount, creation, or registration. They allow you to run custom logic in response to these events, making it easier to manage state, resources, and side effects.
 
@@ -304,7 +305,7 @@ class TicTacToeCell extends CollectionEntry {
 
 Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the custom events system.
 
-### Event system
+## Event system
 
 The event system API available in collections provide a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
 
@@ -381,7 +382,7 @@ const ticTacToe = new TicTacToe({
 
 The final step in our tic-tac-toe example is to handle the winning state. To do this, we'll explore how collections can query and manage entry data.
 
-### Querying entries
+## Querying entries
 
 To finish our tic-tac-toe example, let's look at different ways to access and manage data between collection entries and the collection's global state. We'll begin by adding a few additional state properties to both the collection and entry classes.
 
@@ -531,7 +532,7 @@ class TicTacToe extends Collection {
 ```
 </CodeExample>
 
-### Conclusion
+## Conclusion
 
 The Collections API provides a powerful foundation for building interactive, stateful UI components in JavaScript. By leveraging configuration, lifecycle hooks, custom events, and flexible querying, you can efficiently manage groups of related elements and their shared logic.
 
@@ -574,120 +575,3 @@ await ticTacToe.mount();
 ```
 </Fragment>
 </CodeExample>
-
-## Collection Reference
-
-The following is a reference for the `Collection` and `CollectionEntry` class APIs, which is the basis for all Vrembem JavaScript components.
-
-### Constructor
-
-The collection constructor is run when a new collection is instantiated.
-
-<CodeExample lang="js">
-```js
-new Collection(options?: Record<string, any>);
-```
-</CodeExample>
-
-### Collection.events
-
-**Type:** `array`
-
-### Collection.on
-
-**Type:** `method`
-
-### Collection.off
-
-**Type:** `method`
-
-### Collection.emit
-
-**Type:** `method`
-
-### Collection.module
-
-**Type:** `string`
-**Default:** `this.constructor.name`
-
-### Collection.collection
-
-**Type:** `array`
-
-### Collection.entryClass
-
-**Type:** `array`
-
-### Collection.config
-
-**Type:** `object`
-
-### Collection.plugins
-
-**Type:** `PluginArray`
-
-### Collection.get
-
-**Type:** `method`
-
-### Collection.getOrThrow
-
-**Type:** `method`
-
-### Collection.applyConfig
-
-**Type:** `method`
-
-### Collection.createEntry
-
-**Type:** `method`
-
-### Collection.destroyEntry
-
-**Type:** `method`
-
-### Collection.register
-
-**Type:** `method`
-
-### Collection.deregister
-
-**Type:** `method`
-
-### Collection.mount
-
-**Type:** `method`
-
-### Collection.unmount
-
-**Type:** `method`
-
-## CollectionEntry reference
-
-### Constructor
-
-**Type:** `Collection`
-
-### CollectionEntry.parent
-
-**Type:** `Collection`
-
-### CollectionEntry.el
-
-**Type:** `HTMLElement`
-
-### CollectionEntry.config
-
-**Type:** `ConfigManager`
-
-### CollectionEntry.id
-
-**Type:** `string`
-
-### CollectionEntry.init
-
-**Type:** `method`
-
-### CollectionEntry.destroy
-
-**Type:** `method`
