@@ -3,6 +3,12 @@ import { EventEmitter, PluginArray } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
 
+export interface CollectionConfig {
+  selector: string;
+  plugins?: [];
+  presets?: {};
+}
+
 export class Collection<TEntry extends CollectionEntry<any>> {
   // Private fields
   #eventsEmitter = new EventEmitter();
@@ -19,18 +25,18 @@ export class Collection<TEntry extends CollectionEntry<any>> {
   entryClass: new (
     parent: Collection<TEntry>,
     query: string | HTMLElement,
-    options?: Record<string, any>
+    options?: CollectionConfig
   ) => TEntry;
-  config: Record<string, any>;
+  config: CollectionConfig;
   plugins: PluginArray;
 
-  constructor(options: Record<string, any> = {}) {
+  constructor(options: CollectionConfig) {
     this.module = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry as new (
       parent: Collection<TEntry>,
       query: string | HTMLElement,
-      options?: Record<string, any>
+      options?: CollectionConfig
     ) => TEntry;
     this.config = { ...options };
     this.plugins = new PluginArray(this.config.presets);
