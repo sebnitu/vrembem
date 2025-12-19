@@ -43,7 +43,7 @@ interface CollectionConfig {
 
 ## Constructor
 
-The `Collection` constructor is run when a new collection is instantiated.
+Initializes a new collection instance, setting up its configuration, event system, entry class, and plugins. The constructor accepts an options object to configure the collection's selector, plugins, and plugin presets, and prepares the collection for further setup and mounting.
 
 <CodeExample lang="js">
 ```js
@@ -51,43 +51,6 @@ The `Collection` constructor is run when a new collection is instantiated.
 const myCollection = new Collection();
 ```
 </CodeExample>
-
-## events
-
-**Type:** readonly `EventMap`
-
-An event map that stores all registered events and their arguments. This can he useful to ensure that your events are being registered as expected.
-
-<CodeExample lang="js">
-```js
-// Register an event
-collection.on("eventName", functionRef, "arg1", "arg2");
-
-// The signature of the events property after an event is registered
-collection.events
-// =>
-{
-  eventName: [
-    {
-      listener: functionRef // The function reference to run when the event is emitted
-      args: ["arg1", "arg2"] // An array of all the arguments that were provided
-    }
-  ]
-}
-```
-</CodeExample>
-
-## on
-
-**Type:** `method`
-
-## off
-
-**Type:** `method`
-
-## emit
-
-**Type:** `method`
 
 ## module
 
@@ -105,10 +68,6 @@ collection.events
 ## config
 
 **Type:** `object`
-
-## plugins
-
-**Type:** `PluginArray`
 
 ## get
 
@@ -143,5 +102,58 @@ collection.events
 **Type:** `method`
 
 ## unmount
+
+**Type:** `method`
+
+## Plugins API
+
+**Type:** `PluginArray`
+
+### plugins.buildConfig
+
+### plugins.validate
+
+### plugins.get
+
+### plugins.add
+
+### plugins.remove
+
+## Events API
+
+### events
+
+**Type:** readonly `EventMap`
+
+An event map that stores all registered events and their arguments. This can he useful to ensure that your events are being registered as expected.
+
+<CodeExample lang="js">
+```js
+// Register an event
+collection.on("eventName", functionRef, "arg1", "arg2");
+
+// The signature of the events property after an event is registered
+collection.events
+// =>
+{
+  eventName: [
+    {
+      listener: functionRef // The function reference to run when the event is emitted
+      args: ["arg1", "arg2"] // An array of all the arguments that were provided
+    }
+  ]
+}
+```
+</CodeExample>
+
+### on
+
+**Type:** `method`
+
+### off
+
+**Type:** `method`
+
+### emit
 
 **Type:** `method`
