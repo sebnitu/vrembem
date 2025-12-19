@@ -10,9 +10,9 @@ The following is a reference for the `Collection` class API, which is the basis 
 <CodeExample lang="ts">
 ```ts
 new Collection({
-  selector: ".some_selector",
-  plugins: [],
-  presets: {}
+  selector: string;
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
 });
 ```
 </CodeExample>
