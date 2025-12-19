@@ -5,17 +5,41 @@ group: collections
 order: 2
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 The following is a reference for the `Collection` class API, which is the basis for all Vrembem JavaScript components. Although you can instantiate a collection directly, the most common use case is to extend the collection class to create new components.
+
+<CodeExample lang="js">
+```js
+import { Collection } from "@vrembem/core";
+```
+</CodeExample>
+
+## Configuration
+
+Collections are configured using an options object, which can be provided during instantiation, via the mount method, or by calling applyConfig. The following outlines the structure of this options object:
 
 <CodeExample lang="ts">
 ```ts
-new Collection({
+interface CollectionConfig {
   selector: string;
   plugins?: Plugin[];
   presets?: Record<string, Record<string, any>>;
-});
+}
 ```
 </CodeExample>
+
+<ReferenceCard name="selector" type="string">
+  A valid CSS selector used to query the document for elements to include as entries in the collection.
+</ReferenceCard>
+
+<ReferenceCard name="plugins" type="Plugin[]">
+  An array of plugin objects to extend or modify the behavior of the collection. Each plugin in the array will be applied when the collection is mounted.
+</ReferenceCard>
+
+<ReferenceCard name="presets" type="Record<string, Record<string, any>>" returns="void">
+  An object where each key is a plugin name and its value is an options object that defines default configuration for that plugin. This allows you to predefine settings for plugins used in the collection.
+</ReferenceCard>
 
 ## Constructor
 

@@ -6,6 +6,8 @@ group: theme-state
 slug: core/themeStore
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
   ```js
   import { themeStore } from "@vrembem/core";
@@ -112,69 +114,52 @@ The last aspect to handle when persisting a user's preferred theme is avoiding t
 
 This script gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
 
-## Reference
-
-The following is a reference of the `themeStore` API which is designed to be both simple and fit most use cases of theme management.
-
-### Configuration
+## Configuration
 
 When initializing a new `themeStore`, you can provide an options object with the following configurable properties:
 
-<ul class="argument-list">
-  <li>
-    `prefix` - The class prefix for theme names.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `string`</span>
-      <span>**Default:** `"vb-theme-"`</span>
-    </div>
-  </li>
-  <li>
-    `storeKey` - Local storage key for saving theme state.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `string`</span>
-      <span>**Default:** `"VB:Profile"`</span>
-    </div>
-  </li>
-  <li>
-    `fallback` - The default theme if none is set in local storage. Must be an existing theme in `themes` array.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `string`</span>
-      <span>**Default:** `"root"`</span>
-    </div>
-  </li>
-  <li>
-    `themes` - An array of default theme names to make available.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `string[]`</span>
-      <span>**Default:** `["root", "light", "dark"]`</span>
-    </div>
-  </li>
-  <li>
-    `onInit` - Callback run on initialization.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `function`</span>
-    </div>
-  </li>
-  <li>
-    `onChange` - Callback run when the theme changes.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `function`</span>
-    </div>
-  </li>
-</ul>
+<CodeExample lang="ts">
+```ts
+interface ThemeStoreConfig {
+  prefix: string;
+  storeKey: string;
+  fallback: string;
+  themes: string[];
+  onInit: () => void;
+  onChange: () => void;
+}
+```
+</CodeExample>
 
-### themeStore.config
+<ReferenceCard name="prefix" type="string" defaults='"vb-theme-"'>
+  The class prefix for theme names.
+</ReferenceCard>
+
+<ReferenceCard name="storeKey" type="string" defaults='"VB:Profile"'>
+  Local storage key for saving theme state.
+</ReferenceCard>
+
+<ReferenceCard name="fallback" type="string" defaults='"root"'>
+  The default theme if none is set in local storage. Must be an existing theme in `themes` array.
+</ReferenceCard>
+
+<ReferenceCard name="themes" type="string[]" defaults='["root", "light", "dark"]'>
+  An array of default theme names to make available.
+</ReferenceCard>
+
+<ReferenceCard name="onInit" type="function" returns='void'>
+  Callback run on initialization.
+</ReferenceCard>
+
+<ReferenceCard name="onChange" type="function" returns='void'>
+  Callback run when the theme changes.
+</ReferenceCard>
+
+## themeStore.config
 
 **Type:** `object`
 
-An object to store the values of `themeStore`'s configurations. These include:
-
-- `prefix (string)` - The class prefix for theme names.
-- `storeKey (string)` - Local storage key for saving theme state.
-- `fallback (string)` - Default theme if none is set in local storage.
-- `themes (string[])` - An array of all available themes.
-- `onInit: () => void` - The function to run when themeStore is initialization.
-- `onChange: () => void` - The function to run when the theme changes.
+An object that stores the values of `themeStore`'s configurations.
 
 #### Example
 
@@ -200,7 +185,7 @@ An object to store the values of `themeStore`'s configurations. These include:
   ```
 </CodeExample>
 
-### themeStore.theme
+## themeStore.theme
 
 **Type:** `string`
 
@@ -225,7 +210,7 @@ The `theme` property acts as both a getter and setter for the current theme.
   ```
 </CodeExample>
 
-### themeStore.class
+## themeStore.class
 
 **Type:** `string`
 
@@ -243,7 +228,7 @@ Returns the current theme class name, including the configured prefix. This prop
   ```
 </CodeExample>
 
-### themeStore.themes
+## themeStore.themes
 
 **Type:** `string[]`
 
@@ -262,7 +247,7 @@ An array containing all available theme names. This property is read-only.
   ```
 </CodeExample>
 
-### themeStore.classes
+## themeStore.classes
 
 **Type:** `string[]`
 
@@ -281,7 +266,7 @@ An array containing all possible theme class names, each with the configured pre
   ```
 </CodeExample>
 
-### themeStore.add()
+## themeStore.add()
 
 **Type:** `method`
 
@@ -289,9 +274,9 @@ Adds a new theme name to the list of available themes. The new theme will be inc
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `value` | string | The name of the theme to add. |
+<ReferenceCard name="value" type="string">
+  The name of the theme to add.
+</ReferenceCard>
 
 #### Example
 
@@ -312,7 +297,7 @@ Adds a new theme name to the list of available themes. The new theme will be inc
   ```
 </CodeExample>
 
-### themeStore.remove()
+## themeStore.remove()
 
 **Type:** `method`
 
@@ -320,9 +305,9 @@ Removes a theme name from the list of available themes. The theme will be remove
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `value` | string | The name of the theme to remove. |
+<ReferenceCard name="value" type="string">
+  The name of the theme to remove.
+</ReferenceCard>
 
 #### Example
 
