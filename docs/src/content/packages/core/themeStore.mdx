@@ -116,9 +116,9 @@ This script gets the stored value that `themeStore` sets in local storage and ad
 
 The following is a reference of the `themeStore` API which is designed to be both simple and fit most use cases of theme management.
 
-### Arguments
+### Configuration
 
-Below are the available options you can pass to `themeStore` when initializing a new instance:
+When initializing a new `themeStore`, you can provide an options object with the following configurable properties:
 
 <ul class="argument-list">
   <li>
@@ -136,17 +136,17 @@ Below are the available options you can pass to `themeStore` when initializing a
     </div>
   </li>
   <li>
-    `themes` - An array of default theme names to make available.
-    <div class="flex gap-y-xs">
-      <span>**Type:** `string[]`</span>
-      <span>**Default:** `["root", "light", "dark"]`</span>
-    </div>
-  </li>
-  <li>
     `fallback` - The default theme if none is set in local storage. Must be an existing theme in `themes` array.
     <div class="flex gap-y-xs">
       <span>**Type:** `string`</span>
       <span>**Default:** `"root"`</span>
+    </div>
+  </li>
+  <li>
+    `themes` - An array of default theme names to make available.
+    <div class="flex gap-y-xs">
+      <span>**Type:** `string[]`</span>
+      <span>**Default:** `["root", "light", "dark"]`</span>
     </div>
   </li>
   <li>
@@ -173,6 +173,8 @@ An object to store the values of `themeStore`'s configurations. These include:
 - `storeKey (string)` - Local storage key for saving theme state.
 - `fallback (string)` - Default theme if none is set in local storage.
 - `themes (string[])` - An array of all available themes.
+- `onInit: () => void` - The function to run when themeStore is initialization.
+- `onChange: () => void` - The function to run when the theme changes.
 
 #### Example
 
