@@ -18,7 +18,7 @@ export class Modal extends Collection<ModalEntry> {
 
   constructor(options: ModalConfig) {
     super({ ...config, ...options });
-    this.module = "Modal";
+    this.name = "Modal";
     this.entryClass = ModalEntry as new (
       parent: Collection<ModalEntry>,
       query: string | HTMLElement,

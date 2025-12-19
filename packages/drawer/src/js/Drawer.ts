@@ -14,7 +14,7 @@ export class Drawer extends Collection<DrawerEntry> {
 
   constructor(options: DrawerConfig) {
     super({ ...config, ...options });
-    this.module = "Drawer";
+    this.name = "Drawer";
     this.entryClass = DrawerEntry as new (
       parent: Collection<DrawerEntry>,
       query: string | HTMLElement,

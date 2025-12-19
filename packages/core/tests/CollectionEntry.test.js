@@ -17,7 +17,7 @@ describe("constructor()", () => {
     const entry = new CollectionEntry(obj, "one");
     expect(entry.id).toBe("one");
     expect(entry.el).toBe(document.getElementById("one"));
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
   });
 
   it("should be able to pass options through the instantiation", () => {

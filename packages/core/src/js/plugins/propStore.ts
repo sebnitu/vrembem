@@ -65,7 +65,7 @@ export function propStore(
 
   const methods: Partial<PropStorePlugin> = {
     setup(this: PropStorePlugin, parent) {
-      this.store = localStore(getKey.call(this, parent.module));
+      this.store = localStore(getKey.call(this, parent.name));
     },
 
     async onCreateEntry({ entry }) {

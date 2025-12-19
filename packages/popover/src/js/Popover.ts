@@ -13,7 +13,7 @@ export class Popover extends Collection<PopoverEntry> {
 
   constructor(options: PopoverConfig) {
     super({ ...config, ...options });
-    this.module = "Popover";
+    this.name = "Popover";
     this.entryClass = PopoverEntry as new (
       parent: Collection<PopoverEntry>,
       query: string | HTMLElement,

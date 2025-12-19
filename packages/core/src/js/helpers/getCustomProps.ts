@@ -25,7 +25,7 @@ export function getCustomProps(
   for (let i = 0; i < keys.length; i++) {
     // Get the custom property value
     const prefix = getPrefix();
-    const module = entry.parent.module.toLowerCase();
+    const module = entry.parent.name.toLowerCase();
     const key = toKebab(keys[i]);
     const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
     // If a value was found, add it to our results object

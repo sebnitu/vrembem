@@ -20,7 +20,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
   emit = this.#eventsEmitter.emit.bind(this.#eventsEmitter);
 
   // Public fields assigned in constructor
-  module: string;
+  name: string;
   collection: TEntry[];
   entryClass: new (
     parent: Collection<TEntry>,
@@ -31,7 +31,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
   plugins: PluginArray;
 
   constructor(options: CollectionConfig) {
-    this.module = this.constructor.name;
+    this.name = this.constructor.name;
     this.collection = [];
     this.entryClass = CollectionEntry as new (
       parent: Collection<TEntry>,
@@ -52,7 +52,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       return entry;
     } else {
       throw new Error(
-        `${this.module} entry not found in collection with ${String(key)} of "${value}"`
+        `${this.name} entry not found in collection with ${String(key)} of "${value}"`
       );
     }
   }

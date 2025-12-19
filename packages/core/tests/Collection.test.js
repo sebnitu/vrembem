@@ -19,7 +19,7 @@ class ExampleEntry extends CollectionEntry {
 describe("constructor()", () => {
   it("should setup the collections object on instantiation", () => {
     const obj = new Collection();
-    expect(obj.module).toBe("Collection");
+    expect(obj.name).toBe("Collection");
     expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
   });
@@ -89,14 +89,14 @@ describe("createEntry()", () => {
     const obj = new Collection();
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
   });
 
   it("should be able to pass a config object", async () => {
     const obj = new Collection();
     const entry = await obj.createEntry("fdsa", { attrConfig: "test" });
     expect(entry.id).toBe("fdsa");
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
     expect(entry.config.get("attrConfig")).toBe("test");
   });
 });
