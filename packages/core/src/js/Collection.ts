@@ -1,4 +1,4 @@
-import { CollectionEntry } from "./CollectionEntry";
+import { CollectionEntry, CollectionEntryConstructor } from "./CollectionEntry";
 import { EventEmitter, PluginArray, Plugin } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { getElement, maybeRunMethod } from "./utilities";
@@ -22,22 +22,14 @@ export class Collection<TEntry extends CollectionEntry<any>> {
   // Public fields assigned in constructor
   name: string;
   collection: TEntry[];
-  entryClass: new (
-    parent: Collection<TEntry>,
-    query: string | HTMLElement,
-    options?: CollectionConfig
-  ) => TEntry;
+  entryClass: CollectionEntryConstructor<Collection<any>, TEntry>;
   config: CollectionConfig;
   plugins: PluginArray;
 
   constructor(options: CollectionConfig) {
     this.name = this.constructor.name;
     this.collection = [];
-    this.entryClass = CollectionEntry as new (
-      parent: Collection<TEntry>,
-      query: string | HTMLElement,
-      options?: CollectionConfig
-    ) => TEntry;
+    this.entryClass = CollectionEntry as CollectionEntryConstructor<Collection<any>, TEntry>;
     this.config = { ...options };
     this.plugins = new PluginArray(this.config.presets);
   }

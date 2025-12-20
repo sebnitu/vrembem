@@ -2,6 +2,17 @@ import { getElement } from "./utilities";
 import { ConfigManager } from "./modules";
 import type { Collection } from "./Collection";
 
+export type CollectionEntryConstructor<
+  TParent extends Collection<any>, 
+  TEntry extends CollectionEntry<TParent>
+> = {
+  new (
+    parent: Collection<any>,
+    query: string | HTMLElement,
+    options?: Record<string, any>
+  ): TEntry;
+}
+
 export class CollectionEntry<TParent extends Collection<any>> {
   parent: TParent;
   el: HTMLElement;

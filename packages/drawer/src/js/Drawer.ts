@@ -1,4 +1,4 @@
-import { Collection } from "@vrembem/core";
+import { Collection, CollectionEntryConstructor } from "@vrembem/core";
 
 import { config, DrawerConfig } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
@@ -15,11 +15,7 @@ export class Drawer extends Collection<DrawerEntry> {
   constructor(options: DrawerConfig) {
     super({ ...config, ...options });
     this.name = "Drawer";
-    this.entryClass = DrawerEntry as new (
-      parent: Collection<DrawerEntry>,
-      query: string | HTMLElement,
-      options?: Record<string, any>
-    ) => DrawerEntry;
+    this.entryClass = DrawerEntry as CollectionEntryConstructor<Drawer, DrawerEntry>;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
   }
