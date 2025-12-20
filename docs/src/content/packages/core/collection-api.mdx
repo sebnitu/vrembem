@@ -1,11 +1,12 @@
 ---
-title: Collection
+title: Collection API
 parent: core
 group: collections
 order: 2
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 The following is a reference for the `Collection` class API, which is the basis for all Vrembem JavaScript components. Although you can instantiate a collection directly, the most common use case is to extend the collection class to create new components.
 
@@ -47,6 +48,9 @@ Initializes a new collection instance, setting up its configuration, event syste
 
 <CodeExample lang="js">
 ```js
+// Import the Collection class
+import { Collection } from "@vrembem/core";
+
 // Instantiate a new collection
 const myCollection = new Collection();
 ```
@@ -54,19 +58,21 @@ const myCollection = new Collection();
 
 ## name
 
-**Type:** `string`
+<ReferenceBar type="string" defaults="this.constructor.name" />
 
 The name of the collection. This is used as a way to retrieve CSS custom properties and as part of local storage keys when applicable. Should be set as the component name the collection is meant to represent.
 
-**Default:** `this.constructor.name`
-
 ## collection
 
-**Type:** `array`
+<ReferenceBar type="CollectionEntry[]" defaults="[]" />
+
+The array where all collection entries are stored. Each entry should be an instance of the `CollectionEntry` class or a class that extends it.
 
 ## entryClass
 
-**Type:** `array`
+<ReferenceBar type="CollectionEntryConstructor" defaults="CollectionEntry" />
+
+The entryClass property defines the class constructor used to create new entries for the collection. By default, it is set to `CollectionEntry`, but it can be overridden to use a custom entry class. This allows you to specify the type of objects that will represent each item in the collection, enabling extensibility and custom behavior for collection entries.
 
 ## config
 
