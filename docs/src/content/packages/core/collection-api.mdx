@@ -74,21 +74,80 @@ The array where all collection entries are stored. Each entry should be an insta
 
 The entryClass property defines the class constructor used to create new entries for the collection. By default, it is set to `CollectionEntry`, but it can be overridden to use a custom entry class. This allows you to specify the type of objects that will represent each item in the collection, enabling extensibility and custom behavior for collection entries.
 
+<CodeExample lang="ts">
+```ts
+type CollectionEntryConstructor<
+  TParent extends Collection, 
+  TEntry extends CollectionEntry<TParent>
+> = {
+  new (
+    parent: Collection,
+    query: string | HTMLElement,
+    options?: Record<string, any>
+  ): TEntry;
+}
+```
+</CodeExample>
+
 ## config
 
-**Type:** `object`
+<ReferenceBar type="CollectionConfig" />
+
+The config property represents the stored configurations for the collection instance. The values stored in config are set directly from the provided options object and are available to entries as global fallback config values.
+
+<CodeExample lang="ts">
+```ts
+interface CollectionConfig {
+  selector: string;
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
+}
+```
+</CodeExample>
 
 ## get
 
-**Type:** `method`
+<ReferenceBar type="method" />
+
+Returns the first entry in the collection whose specified property matches the given value, and returns `undefined` if no entry is found.
+
+#### Arguments
+
+<ReferenceCard name="value" type="any">
+  The value to search for within the collection entries. This is compared against the property specified by the key argument for each entry.
+</ReferenceCard>
+
+<ReferenceCard name="key" type="keyof CollectionEntry" defaults="id">
+  The property name of the entry to compare against the provided value. This allows you to search for an entry by any of its properties.
+</ReferenceCard>
 
 ## getOrThrow
 
-**Type:** `method`
+<ReferenceBar type="method" />
+
+Returns the first entry in the collection whose specified property matches the given value, and throws an error if no entry is found.
+
+#### Arguments
+
+<ReferenceCard name="value" type="any">
+  The value to search for within the collection entries. This is compared against the property specified by the key argument for each entry.
+</ReferenceCard>
+
+<ReferenceCard name="key" type="keyof CollectionEntry" defaults="id">
+  The property name of the entry to compare against the provided value. This allows you to search for an entry by any of its properties.
+</ReferenceCard>
 
 ## applyConfig
 
-**Type:** `method`
+<ReferenceBar type="method" returns="CollectionConfig" />
+
+Merges the provided options object into the collection's existing configuration. This allows you to update or override configuration settings for the collection instance at runtime. Returns the updated config object.
+
+#### Arguments
+
+<ReferenceCard name="options" type="Partial<CollectionConfig>">
+  The options argument is an object containing configuration properties to update or override the collection's current settings.
+</ReferenceCard>
 
 ## createEntry
 
