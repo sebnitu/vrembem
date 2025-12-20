@@ -10,13 +10,13 @@ const {type, defaults} = Astro.props;
 <div class="flex justify-content-between align-items-center">
   <p>
     <strong>Type:</strong>
-    <code>{type}</code>
+    <code class="margin-left-sm">{type}</code>
   </p>
   {
     defaults && (
       <p>
         <strong>Default:</strong>
-        <code>{defaults}</code>
+        <code class="margin-left-sm">{defaults}</code>
       </p>
     )
   }
