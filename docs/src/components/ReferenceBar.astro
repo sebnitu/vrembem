@@ -1,10 +1,11 @@
 ---
 interface Props {
   type: string;
+  returns?: string;
   defaults?: string;
 }
 
-const {type, defaults} = Astro.props;
+const {type, defaults, returns} = Astro.props;
 ---
 
 <div class="flex justify-content-between align-items-center">
@@ -12,6 +13,14 @@ const {type, defaults} = Astro.props;
     <strong>Type:</strong>
     <code class="margin-left-sm">{type}</code>
   </p>
+  {
+    returns && (
+      <p>
+        <strong>Returns:</strong>
+        <code class="margin-left-sm">{returns}</code>
+      </p>
+    )
+  }
   {
     defaults && (
       <p>
