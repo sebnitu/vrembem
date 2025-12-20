@@ -1,4 +1,5 @@
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 
 astro-island {
   display: block !important;
@@ -7,6 +8,7 @@ astro-island {
 html {
   scroll-behavior: smooth;
   text-wrap: pretty;
+  scrollbar-color: palette.get("primary", 50, 50%) css.get("background");
 
   @media screen and (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;

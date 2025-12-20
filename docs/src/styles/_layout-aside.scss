@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
 
 /**
@@ -25,6 +26,7 @@
   visibility: hidden;
   width: calc(100% - 4rem);
   z-index: 100;
+  scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
 
   &.is-opened,
   &.is-opening {
