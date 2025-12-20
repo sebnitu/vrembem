@@ -13,7 +13,7 @@ const { name, type, returns, defaults } = Astro.props;
   <div class="card__header">
     <p class="flex align-items-center justify-content-between">
       <strong class="foreground">{name}</strong>
-      <code>{type}</code>
+      <span class="margin-left-sm"><code>{type}</code></span>
     </p>
   </div>
   { Astro.slots.has("default") && (
