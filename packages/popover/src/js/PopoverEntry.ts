@@ -12,31 +12,25 @@ import type { Popover } from "./Popover";
 type EventObject = {
   el: string[];
   type: string[];
-  listener: (event: Event) => void;
+  listener: (event: MouseEvent | Event) => void;
 };
 
 export class PopoverEntry extends CollectionEntry {
-  #eventListeners: EventObject[] | null;
+  #eventListeners: EventObject[] = [];
   #isHovered: {
     el: boolean;
     trigger: boolean;
+  } = {
+    el: false,
+    trigger: false
   };
-  state: string;
-  trigger: HTMLElement | null;
-  toggleDelayId: NodeJS.Timeout | null;
-  floatingCleanup: () => void;
+  state: string = "closed";
+  trigger: HTMLElement | null = null;
+  toggleDelayId: NodeJS.Timeout | null = null;
+  floatingCleanup: () => void = () => {};
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
-    this.state = "closed";
-    this.toggleDelayId = null;
-    this.trigger = null;
-    this.#eventListeners = null;
-    this.#isHovered = {
-      el: false,
-      trigger: false
-    };
-    this.floatingCleanup = () => {};
   }
 
   get isTooltip(): boolean {
@@ -114,7 +108,11 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              this[el].addEventListener(type, evObj.listener, false);
+              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+                type,
+                evObj.listener,
+                false
+              );
             });
           });
         });
@@ -135,7 +133,11 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              this[el].addEventListener(type, evObj.listener, false);
+              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+                type,
+                evObj.listener,
+                false
+              );
             });
           });
         });
@@ -150,13 +152,17 @@ export class PopoverEntry extends CollectionEntry {
       this.#eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
-            this[el].removeEventListener(type, evObj.listener, false);
+            (this[el as "el" | "trigger"] as HTMLElement).removeEventListener(
+              type,
+              evObj.listener,
+              false
+            );
           });
         });
       });
 
       // Remove eventListeners object from collection
-      this.#eventListeners = null;
+      this.#eventListeners = [];
     }
   }
 
