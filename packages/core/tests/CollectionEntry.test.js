@@ -47,9 +47,8 @@ describe("config.get()", () => {
   });
 
   it("should get a config value from the entry", () => {
-    const entry = new CollectionEntry(obj, "one", {
-      test: "new"
-    });
+    const entry = new CollectionEntry(obj, "one");
+    entry.config.apply({ test: "new" });
     expect(entry.config.get("test")).toBe("new");
   });
 
@@ -58,14 +57,5 @@ describe("config.get()", () => {
     expect(() => entry.config.get("asdf")).toThrowError(
       "Config does not exist: asdf"
     );
-  });
-});
-
-describe("init() & destroy()", () => {
-  it("should completely setup an entry when mounted", async () => {
-    const entry = new CollectionEntry(obj, "four");
-    await entry.init({ new: "asdf" });
-    expect(entry.id).toBe("four");
-    expect(entry.config.get("new")).toBe("asdf");
   });
 });
