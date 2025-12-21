@@ -2,19 +2,14 @@ import { CollectionEntry } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
 import { replace } from "./replace";
-import type { ModalConfig } from "./config";
 import type { Modal } from "./Modal";
 
-export class ModalEntry extends CollectionEntry<Modal> {
+export class ModalEntry extends CollectionEntry {
   state: string;
   dialog: HTMLElement;
 
-  constructor(
-    parent: Modal,
-    query: string | HTMLElement,
-    options: ModalConfig
-  ) {
-    super(parent, query, options);
+  constructor(parent: Modal, query: string | HTMLElement) {
+    super(parent, query);
     this.state = "closed";
 
     // Set the dialog element. If none is found, use the root element
@@ -30,7 +25,10 @@ export class ModalEntry extends CollectionEntry<Modal> {
     return open(this, transition, focus);
   }
 
-  async close(transition?: boolean, focus?: boolean): Promise<ModalEntry | null> {
+  async close(
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<ModalEntry | null> {
     return close(this, transition, focus);
   }
 

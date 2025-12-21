@@ -1,4 +1,4 @@
-import { Collection, CollectionEntryConstructor, StackArray, setGlobalState } from "@vrembem/core";
+import { Collection, StackArray, setGlobalState } from "@vrembem/core";
 
 import { config, ModalConfig } from "./config";
 import { ModalEntry } from "./ModalEntry";
@@ -9,17 +9,16 @@ import { closeAll } from "./closeAll";
 import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export class Modal extends Collection<ModalEntry> {
+export class Modal extends Collection<ModalEntry, ModalConfig> {
   #handleClick: (event: MouseEvent) => void;
   #handleKeydown: (event: KeyboardEvent) => void;
-  declare config: ModalConfig;
+  entryClass = ModalEntry;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
 
-  constructor(options: ModalConfig) {
+  constructor(options: Partial<ModalConfig>) {
     super({ ...config, ...options });
     this.name = "Modal";
-    this.entryClass = ModalEntry as CollectionEntryConstructor<Modal, ModalEntry>;
     this.trigger = null;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);

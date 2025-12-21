@@ -1,35 +1,28 @@
-import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export interface Plugin<
-  TParent extends Collection<any> = Collection<any>,
-  TEntry extends CollectionEntry<any> = CollectionEntry<any>
-> {
+export interface Plugin<TEntry extends CollectionEntry = CollectionEntry> {
   name: string;
   config: Record<string, any>;
   options?: Record<string, any>;
-  setup?: (this: this, context: TParent) => void;
-  teardown?: (this: this, context: TParent) => void;
-  onCreateEntry?: (
-    this: this,
-    context: { parent: TParent; entry: TEntry }
-  ) => void;
+  setup?: (this: this, context: any) => void;
+  teardown?: (this: this, context: any) => void;
+  onCreateEntry?: (this: this, context: { parent: any; entry: TEntry }) => void;
   onDestroyEntry?: (
     this: this,
-    context: { parent: TParent; entry: TEntry }
+    context: { parent: any; entry: TEntry }
   ) => void;
   onRegisterEntry?: (
     this: this,
-    context: { parent: TParent; entry: TEntry }
+    context: { parent: any; entry: TEntry }
   ) => void;
   onDeregisterEntry?: (
     this: this,
-    context: { parent: TParent; entry: TEntry }
+    context: { parent: any; entry: TEntry }
   ) => void;
-  beforeMount?: (this: this, context: TParent) => void;
-  afterMount?: (this: this, context: TParent) => void;
-  beforeUnmount?: (this: this, context: TParent) => void;
-  afterUnmount?: (this: this, context: TParent) => void;
+  beforeMount?: (this: this, context: any) => void;
+  afterMount?: (this: this, context: any) => void;
+  beforeUnmount?: (this: this, context: any) => void;
+  afterUnmount?: (this: this, context: any) => void;
 }
 
 type Presets = Record<string, Record<string, any>>;

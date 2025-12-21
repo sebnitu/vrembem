@@ -1,40 +1,24 @@
 import { getElement } from "./utilities";
 import { ConfigManager } from "./modules";
-import type { Collection } from "./Collection";
 
-export type CollectionEntryConstructor<
-  TParent extends Collection<any>, 
-  TEntry extends CollectionEntry<TParent>
-> = {
-  new (
-    parent: Collection<any>,
-    query: string | HTMLElement,
-    options?: Record<string, any>
-  ): TEntry;
+export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
+  new (parent: any, query: string | HTMLElement): TEntry;
 }
 
-export class CollectionEntry<TParent extends Collection<any>> {
-  parent: TParent;
+export class CollectionEntry {
+  parent: any;
   el: HTMLElement;
   config = new ConfigManager();
 
-  constructor(
-    parent: TParent,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
+  constructor(parent: any, query: string | HTMLElement) {
     this.parent = parent;
     this.el = getElement(query);
     this.config.addConfigSource("parent", this.parent.config);
-    this.config.addConfigSource("entry", options);
+    this.config.addConfigSource("entry", {});
   }
 
   get id(): string {
     return this.el.id;
-  }
-
-  async init(options: Record<string, any> = {}) {
-    this.config.apply(options);
   }
 
   async destroy() {

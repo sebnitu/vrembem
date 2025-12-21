@@ -15,7 +15,7 @@ type EventObject = {
   listener: (event: Event) => void;
 };
 
-export class PopoverEntry extends CollectionEntry<Popover> {
+export class PopoverEntry extends CollectionEntry {
   #eventListeners: EventObject[] | null;
   #isHovered: {
     el: boolean;
@@ -26,12 +26,8 @@ export class PopoverEntry extends CollectionEntry<Popover> {
   toggleDelayId: NodeJS.Timeout | null;
   floatingCleanup: () => void;
 
-  constructor(
-    parent: Popover,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
-    super(parent, query, options);
+  constructor(parent: Popover, query: string | HTMLElement) {
+    super(parent, query);
     this.state = "closed";
     this.toggleDelayId = null;
     this.trigger = null;

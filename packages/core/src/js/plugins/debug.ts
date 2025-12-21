@@ -1,6 +1,5 @@
 import { getValue } from "../utilities";
 import type { Plugin } from "../modules/PluginArray";
-import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
 const defaults = {
@@ -57,10 +56,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
       ["important", "neutral"]
     ),
     createEntryRef: (
-      {
-        parent,
-        entry
-      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      { parent, entry }: { parent: any; entry: CollectionEntry },
       plugin: Plugin
     ) => {
       if (getValue(plugin.config.condition, entry)) {
@@ -69,10 +65,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
       }
     },
     registerEntryRef: (
-      {
-        parent,
-        entry
-      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      { parent, entry }: { parent: any; entry: CollectionEntry },
       plugin: Plugin
     ) => {
       if (getValue(plugin.config.condition, entry)) {
@@ -81,10 +74,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
       }
     },
     destroyEntryRef: (
-      {
-        parent,
-        entry
-      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      { parent, entry }: { parent: any; entry: CollectionEntry },
       plugin: Plugin
     ) => {
       if (getValue(plugin.config.condition, entry)) {
@@ -97,10 +87,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
       }
     },
     deregisterEntryRef: (
-      {
-        parent,
-        entry
-      }: { parent: Collection<any>; entry: CollectionEntry<any> },
+      { parent, entry }: { parent: any; entry: CollectionEntry },
       plugin: Plugin
     ) => {
       if (getValue(plugin.config.condition, entry)) {

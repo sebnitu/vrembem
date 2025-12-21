@@ -36,7 +36,7 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
     }
   };
 
-  function update(entry: CollectionEntry<any>, plugin: Plugin) {
+  function update(entry: CollectionEntry, plugin: Plugin) {
     const data = getCustomProps(entry);
     entry.config.apply(data, plugin.config.sourceKey);
   }

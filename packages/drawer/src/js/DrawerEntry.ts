@@ -5,19 +5,15 @@ import { close } from "./close";
 import { toggle } from "./toggle";
 import type { Drawer } from "./Drawer";
 
-export class DrawerEntry extends CollectionEntry<Drawer> {
+export class DrawerEntry extends CollectionEntry {
   #mode: string;
   dialog: HTMLElement;
   trigger: HTMLElement | null;
   state: string | null;
   inlineState: string | null;
 
-  constructor(
-    parent: Drawer,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
-    super(parent, query, options);
+  constructor(parent: Drawer, query: string | HTMLElement) {
+    super(parent, query);
     this.#mode = "indeterminate";
 
     // Set the dialog element. If none is found, use the root element

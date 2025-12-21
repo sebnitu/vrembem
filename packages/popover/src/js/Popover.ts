@@ -1,4 +1,4 @@
-import { Collection, CollectionEntryConstructor } from "@vrembem/core";
+import { Collection } from "@vrembem/core";
 
 import { config, PopoverConfig } from "./config";
 import { PopoverEntry } from "./PopoverEntry";
@@ -6,15 +6,14 @@ import { handleKeydown } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
 
-export class Popover extends Collection<PopoverEntry> {
+export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   #handleKeydown: (event: KeyboardEvent) => void;
-  declare config: PopoverConfig;
+  entryClass = PopoverEntry;
   trigger: HTMLElement | null;
 
-  constructor(options: PopoverConfig) {
+  constructor(options: Partial<PopoverConfig>) {
     super({ ...config, ...options });
     this.name = "Popover";
-    this.entryClass = PopoverEntry as CollectionEntryConstructor<Popover, PopoverEntry>;
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
   }

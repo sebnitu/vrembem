@@ -9,11 +9,13 @@ export interface CollectionConfig {
   presets?: Record<string, Record<string, any>>;
 }
 
-export class Collection<TEntry extends CollectionEntry<any>> {
+export class Collection<
+  TEntry extends CollectionEntry = CollectionEntry,
+  TConfig extends CollectionConfig = CollectionConfig
+> {
   // Private fields
   #eventsEmitter = new EventEmitter();
-
-  // Assign the event emitter API directly on the Collection instance
+  // Alias the event emitter API directly on the Collection instance
   readonly events = this.#eventsEmitter.events;
   on = this.#eventsEmitter.on.bind(this.#eventsEmitter);
   off = this.#eventsEmitter.off.bind(this.#eventsEmitter);
@@ -21,16 +23,15 @@ export class Collection<TEntry extends CollectionEntry<any>> {
 
   // Public fields assigned in constructor
   name: string;
-  collection: TEntry[];
-  entryClass: CollectionEntryConstructor<Collection<any>, TEntry>;
-  config: CollectionConfig;
+  collection: TEntry[] = [];
+  entryClass: CollectionEntryConstructor<TEntry> =
+    CollectionEntry as CollectionEntryConstructor<TEntry>;
+  config: TConfig;
   plugins: PluginArray;
 
-  constructor(options: Record<string, any> = {}) {
+  constructor(options: Partial<TConfig> = {}) {
     this.name = this.constructor.name;
-    this.collection = [];
-    this.entryClass = CollectionEntry as CollectionEntryConstructor<Collection<any>, TEntry>;
-    this.config = { ...options } as CollectionConfig;
+    this.config = { ...options } as TConfig;
     this.plugins = new PluginArray(this.config.presets);
   }
 
@@ -49,12 +50,12 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     }
   }
 
-  applyConfig(options: Record<string, any> = {}) {
+  applyConfig(options: Partial<TConfig> = {}) {
     return Object.assign(this.config, options);
   }
 
-  async createEntry(query: string | HTMLElement, options: Record<string, any>) {
-    const entry = new this.entryClass(this, query, options);
+  async createEntry(query: string | HTMLElement) {
+    const entry = new this.entryClass(this, query);
     await maybeRunMethod(entry, "init");
     await dispatchLifecycleHook("onCreateEntry", this, entry);
     return entry;
@@ -66,7 +67,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     return entry;
   }
 
-  async register(query: string | HTMLElement, options: Record<string, any> = {}) {
+  async register(query: string | HTMLElement) {
     // Get the element to register
     const element = getElement(query);
 
@@ -79,16 +80,14 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       // Override the element property with the provided element
       entry.el = element;
 
-      // Run the entry init() method if it exists
-      if (typeof entry.init === "function") {
-        await entry.init(options);
-      }
+      // Run the entry init method if it exists
+      await maybeRunMethod(entry, "init");
 
       // Return the registered entry
       return entry;
     } else {
       // Create the collection entry object
-      const entry = await this.createEntry(element, options);
+      const entry = await this.createEntry(element);
 
       // Add the entry to the collection
       this.collection.push(entry);
@@ -123,7 +122,7 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     return null;
   }
 
-  async mount(options: Record<string, any> = {}) {
+  async mount(options: Partial<TConfig> = {}) {
     // Apply config with passed options
     this.applyConfig(options);
 

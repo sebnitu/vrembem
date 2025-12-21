@@ -1,5 +1,5 @@
 export class ConfigManager {
-  #source: Record<string, any>;
+  #source: Record<string, Record<string, any>>;
   #sourceOrder: string[];
 
   constructor() {

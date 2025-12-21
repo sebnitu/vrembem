@@ -7,7 +7,7 @@ export interface PropStorePlugin extends Plugin {
   store: ReturnType<typeof localStore> | null;
 }
 
-export type PropStoreEntry = CollectionEntry<any> & {
+export type PropStoreEntry = CollectionEntry & {
   [key: string]: any;
 };
 

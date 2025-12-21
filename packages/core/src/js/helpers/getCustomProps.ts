@@ -9,9 +9,7 @@ import type { CollectionEntry } from "../CollectionEntry";
  *
  * @returns {object} A key/value object of custom properties.
  */
-export function getCustomProps(
-  entry: CollectionEntry<any>
-): Record<string, string> {
+export function getCustomProps(entry: CollectionEntry): Record<string, string> {
   // Get the computed styles of the element
   const styles = getComputedStyle(entry.el);
 

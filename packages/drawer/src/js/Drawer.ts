@@ -1,4 +1,4 @@
-import { Collection, CollectionEntryConstructor } from "@vrembem/core";
+import { Collection } from "@vrembem/core";
 
 import { config, DrawerConfig } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
@@ -7,15 +7,14 @@ import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 
-export class Drawer extends Collection<DrawerEntry> {
+export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
   #handleClick: (event: MouseEvent) => Promise<void | DrawerEntry>;
   #handleKeydown: (event: KeyboardEvent) => void;
-  declare config: DrawerConfig;
+  entryClass = DrawerEntry;
 
-  constructor(options: DrawerConfig) {
+  constructor(options: Partial<DrawerConfig>) {
     super({ ...config, ...options });
     this.name = "Drawer";
-    this.entryClass = DrawerEntry as CollectionEntryConstructor<Drawer, DrawerEntry>;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
   }
