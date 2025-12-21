@@ -1,4 +1,9 @@
-export function getPopoverID(obj: string | HTMLElement): string | null {
+import type { Popover } from "../Popover";
+
+export function getPopoverID(
+  this: Popover,
+  obj: string | HTMLElement
+): string | null {
   // If it's a string, return the string
   if (typeof obj === "string") {
     return obj;
