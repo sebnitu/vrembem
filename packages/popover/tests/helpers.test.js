@@ -220,7 +220,8 @@ describe("getDelay()", () => {
     const entry1 = await popover.register("pop-1");
     expect(getDelay(entry1, 0)).toBe(200);
 
-    const entry2 = await popover.register("pop-1", {
+    const entry2 = popover.get("pop-1");
+    entry2.config.apply({
       toggleDelay: [300, 600]
     });
     expect(getDelay(entry2, 0)).toBe(300);

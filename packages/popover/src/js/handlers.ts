@@ -4,6 +4,7 @@ import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
 export function handleClick(this: Popover, popover: PopoverEntry) {
+  console.log("Click!");
   if (popover.state === "opened") {
     popover.close();
   } else {

@@ -79,7 +79,7 @@ export class PopoverEntry extends CollectionEntry {
 
   registerEventListeners() {
     // If event listeners aren't already setup
-    if (!this.#eventListeners) {
+    if (!this.#eventListeners.length) {
       // Add event listeners based on event type
       const eventType = this.config.get("event");
 
