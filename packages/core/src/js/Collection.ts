@@ -5,7 +5,7 @@ import { getElement, maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig {
   selector: string;
-  plugins: Plugin[];
+  plugins?: Plugin[];
   presets?: Record<string, Record<string, any>>;
 }
 
@@ -133,7 +133,7 @@ export class Collection<
     this.applyConfig(options);
 
     // Add plugins
-    for (const plugin of this.config.plugins) {
+    for (const plugin of this.config?.plugins || []) {
       this.plugins.add(plugin);
     }
 
