@@ -5,8 +5,14 @@ import { getElement, maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig {
   selector: string;
-  plugins?: Plugin[];
+  plugins: Plugin[];
   presets?: Record<string, Record<string, any>>;
+}
+
+const defaults: CollectionConfig = {
+  selector: "",
+  plugins: [],
+  presets: {}
 }
 
 export class Collection<
@@ -31,7 +37,7 @@ export class Collection<
 
   constructor(options: Partial<TConfig> = {}) {
     this.name = this.constructor.name;
-    this.config = { ...options } as TConfig;
+    this.config = { ...defaults, ...options } as TConfig;
     this.plugins = new PluginArray(this.config.presets);
   }
 
@@ -127,7 +133,7 @@ export class Collection<
     this.applyConfig(options);
 
     // Add plugins
-    for (const plugin of this.config?.plugins || []) {
+    for (const plugin of this.config.plugins) {
       this.plugins.add(plugin);
     }
 
