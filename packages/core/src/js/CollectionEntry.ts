@@ -8,23 +8,14 @@ export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
 export class CollectionEntry {
   parent: any;
   el: HTMLElement;
+  id: string;
   config = new ConfigManager();
 
   constructor(parent: any, query: string | HTMLElement) {
     this.parent = parent;
     this.el = getElement(query);
+    this.id = this.el.id;
     this.config.addConfigSource("parent", this.parent.config);
     this.config.addConfigSource("entry", {});
-  }
-
-  get id(): string {
-    return this.el.id;
-  }
-
-  async destroy() {
-    // Remove all the owned properties from the entry
-    Object.getOwnPropertyNames(this).forEach((prop) => {
-      delete (this as any)[prop];
-    });
   }
 }

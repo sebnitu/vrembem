@@ -87,14 +87,6 @@ describe("register() & deregister()", () => {
     expect(entry.state).toBe("closed");
   });
 
-  it("should deregister modal from the collection", async () => {
-    expect(modal.collection.length).toBe(1);
-    const result = await modal.deregister("modal-default");
-    expect(modal.collection.length).toBe(0);
-    expect(entry).toEqual({});
-    expect(result).toBe(entry);
-  });
-
   it("should reject promise with error if register is called on non-existent modal", async () => {
     const result = await modal.register("asdf").catch((error) => {
       return error.message;

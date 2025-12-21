@@ -67,8 +67,6 @@ describe("propStore", () => {
     // Deregister the entry from the collection
     await collection.deregister("entry-1");
 
-    // Check that the property has been removed
-    expect(entry.example).toBe(undefined);
     // Check that the value of entry has been removed from local storage
     expect(store.get("entry-1")).toBe(undefined);
 
