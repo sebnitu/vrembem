@@ -230,10 +230,10 @@ describe("getDelay()", () => {
 
   it("should create an array if the provided delay is a string", async () => {
     document.body.innerHTML = customPropertyMarkup;
-    popover = new Popover();
-    await popover.mount({
+    popover = new Popover({
       plugins: [cssConfig()]
     });
+    await popover.mount();
     expect(getDelay(popover.get("asdf"), 0)).toBe(200);
     expect(getDelay(popover.get("asdf"), 1)).toBe(400);
     expect(getDelay(popover.get("fdsa"), 0)).toBe(400);

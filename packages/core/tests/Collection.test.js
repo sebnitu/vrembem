@@ -42,8 +42,8 @@ describe("get()", () => {
   });
 
   it("should return an element based on a custom provided key", async () => {
-    const obj = new Collection();
-    await obj.mount({ selector: "div" });
+    const obj = new Collection({ selector: "div" });
+    await obj.mount();
     const el = document.getElementById("fdsa");
     const entry = obj.get(el, "el");
     expect(entry.id).toBe("fdsa");

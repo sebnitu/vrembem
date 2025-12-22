@@ -61,13 +61,14 @@ describe("mediaQuery", () => {
     window.innerWidth = 800;
     const spyFunction = vi.fn();
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         mediaQuery({
           onChange: spyFunction
         })
       ]
     });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     expect(typeof collection.get("entry-1").mql).toBe("undefined");
 
@@ -95,9 +96,10 @@ describe("mediaQuery", () => {
   });
 
   it("should undo the mediaQuery setup on collection unmount", async () => {
-    await collection.mount({
+    collection.updateConfig({
       plugins: [mediaQuery()]
     });
+    await collection.mount();
     const mql_1 = collection.get("entry-2").mql;
     const mql_2 = collection.get("entry-3").mql;
     await collection.unmount();
@@ -106,9 +108,10 @@ describe("mediaQuery", () => {
   });
 
   it("should remove the mediaQuery plugin when the remove method is called", async () => {
-    await collection.mount({
+    collection.updateConfig({
       plugins: [mediaQuery()]
     });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     await collection.plugins.remove("mediaQuery");
     expect(collection.plugins.length).toBe(0);
@@ -117,7 +120,7 @@ describe("mediaQuery", () => {
   it("should be able to apply configurations in various ways", async () => {
     window.innerWidth = 500;
     const spyFunction = vi.fn();
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         mediaQuery({
           breakpoints: {
@@ -131,6 +134,7 @@ describe("mediaQuery", () => {
         })
       ]
     });
+    await collection.mount();
 
     expect(spyFunction).toBeCalledTimes(3);
     expect(collection.get("entry-1").mql.media).toBe("(min-width: 333px)");

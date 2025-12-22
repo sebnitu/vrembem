@@ -28,11 +28,12 @@ describe("mount() & unmount()", () => {
     expect(popover.collection.length).toBe(3);
   });
 
-  it("should be able to pass options through mount method", async () => {
+  it("should be able to pass options through updateConfig method", async () => {
     document.body.innerHTML = markup;
     const popover = new Popover({ selector: ".asdf" });
     expect(popover.config.selector).toBe(".asdf");
-    await popover.mount({ selector: ".popover" });
+    popover.updateConfig({ selector: ".popover" });
+    await popover.mount();
     expect(popover.config.selector).toBe(".popover");
   });
 

@@ -52,7 +52,8 @@ describe("mount() & unmount()", () => {
   });
 
   it("should mount with custom config passed on mount", async () => {
-    await drawer.mount({ eventListeners: false });
+    drawer.updateConfig({ eventListeners: false });
+    await drawer.mount();
     expect(drawer.collection.length).toBe(2);
     expect(drawer.config.eventListeners).toBe(false);
     await drawer.unmount();

@@ -50,7 +50,8 @@ describe("mount() & unmount()", () => {
   });
 
   it("should mount the modal instance", async () => {
-    await modal.mount({ transition: false });
+    modal.updateConfig({ transition: false });
+    await modal.mount();
     entry = modal.get("modal-default");
     btnOpen.click();
     expect(entry.state).toBe("opened");

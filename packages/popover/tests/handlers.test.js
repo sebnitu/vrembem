@@ -159,10 +159,10 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should not close popover if either the popover element or trigger are hovered", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("popover");
     expect(entry.config.get("event")).toBe("hover");
