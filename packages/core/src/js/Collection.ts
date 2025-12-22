@@ -56,7 +56,7 @@ export class Collection<
     }
   }
 
-  applyConfig(options: Partial<TConfig> = {}) {
+  updateConfig(options: Partial<TConfig> = {}) {
     return Object.assign(this.config, options);
   }
 
@@ -130,7 +130,7 @@ export class Collection<
 
   async mount(options: Partial<TConfig> = {}) {
     // Apply config with passed options
-    this.applyConfig(options);
+    this.updateConfig(options);
 
     // Add plugins
     for (const plugin of this.config?.plugins || []) {

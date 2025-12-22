@@ -18,7 +18,7 @@ import { Collection } from "@vrembem/core";
 
 ## Configuration
 
-Collections are configured using an options object, which can be provided during instantiation, via the mount method, or by calling applyConfig. The following outlines the structure of this options object:
+Collections are configured using an options object, which can be provided during instantiation, via the mount method, or by calling `updateConfig`. The following outlines the structure of this options object:
 
 <CodeExample lang="ts">
 ```ts
@@ -137,7 +137,7 @@ Returns the first entry in the collection whose specified property matches the g
   The property name of the entry to compare against the provided value. This allows you to search for an entry by any of its properties.
 </ReferenceCard>
 
-## applyConfig
+## updateConfig
 
 <ReferenceBar type="method" returns="CollectionConfig" />
 

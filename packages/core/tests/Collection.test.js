@@ -71,11 +71,11 @@ describe("getOrTrow()", () => {
   });
 });
 
-describe("applyConfig()", () => {
+describe("updateConfig()", () => {
   it("should be able to modify the config object", async () => {
     const obj = new Collection();
     await obj.mount();
-    obj.applyConfig({
+    obj.updateConfig({
       selector: "div",
       test: "asdf"
     });

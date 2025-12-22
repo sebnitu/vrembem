@@ -117,7 +117,7 @@ Each collection entry must have a unique ID to ensure it can be referenced and m
 
 ## Configuration
 
-Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation, mount, or manually using the `applyConfig` method.
+Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation or manually using the `updateConfig` method.
 
 <CodeExample lang="js">
 ```js
@@ -131,14 +131,14 @@ await myCollection.mount({
   selector: "CSS_SELECTOR"
 });
 
-// Apply a config object manually via `applyConfig` method
-myCollection.applyConfig({
+// Apply a config object manually via `updateConfig` method
+myCollection.updateConfig({
   selector: "CSS_SELECTOR"
 });
 ```
 </CodeExample>
 
-Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is instanciated under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
+Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is instantiated under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
 
 - The parent collection's config (as the `"parent"` source).
 - Entry-specific options (as the `"entry"` source).
