@@ -18,7 +18,7 @@ import { Collection } from "@vrembem/core";
 
 ## Configuration
 
-Collections are configured using an options object, which can be provided during instantiation, via the mount method, or by calling `updateConfig`. The following outlines the structure of this options object:
+Collections are configured using an options object, which can be provided during instantiation, or by calling `updateConfig`. The following outlines the type definition of this options object:
 
 <CodeExample lang="ts">
 ```ts
@@ -31,14 +31,14 @@ interface CollectionConfig {
 </CodeExample>
 
 <ReferenceCard name="selector" type="string">
-  A valid CSS selector used to query the document for elements to include as entries in the collection.
+  A valid CSS selector used to query the document for elements to include as entries in the collection. This property is required.
 </ReferenceCard>
 
-<ReferenceCard name="plugins" type="Plugin[]">
+<ReferenceCard name="plugins" type="Plugin[]" defaults="[]">
   An array of plugin objects to extend or modify the behavior of the collection. Each plugin in the array will be applied when the collection is mounted.
 </ReferenceCard>
 
-<ReferenceCard name="presets" type="Record<string, Record<string, any>>" returns="void">
+<ReferenceCard name="presets" type="Record<string, Record<string, any>>" defaults="{}">
   An object where each key is a plugin name and its value is an options object that defines default configuration for that plugin. This allows you to predefine settings for plugins used in the collection.
 </ReferenceCard>
 
@@ -76,15 +76,8 @@ The entryClass property defines the class constructor used to create new entries
 
 <CodeExample lang="ts">
 ```ts
-type CollectionEntryConstructor<
-  TParent extends Collection, 
-  TEntry extends CollectionEntry<TParent>
-> = {
-  new (
-    parent: Collection,
-    query: string | HTMLElement,
-    options?: Record<string, any>
-  ): TEntry;
+export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
+  new(parent: any, query: string | HTMLElement): TEntry;
 }
 ```
 </CodeExample>
@@ -107,7 +100,7 @@ interface CollectionConfig {
 
 ## get
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="CollectionEntry | undefined" />
 
 Returns the first entry in the collection whose specified property matches the given value, and returns `undefined` if no entry is found.
 
@@ -123,7 +116,7 @@ Returns the first entry in the collection whose specified property matches the g
 
 ## getOrThrow
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="CollectionEntry" />
 
 Returns the first entry in the collection whose specified property matches the given value, and throws an error if no entry is found.
 

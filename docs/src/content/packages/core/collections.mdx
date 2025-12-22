@@ -126,12 +126,7 @@ const myCollection = new Collection({
   selector: "CSS_SELECTOR"
 });
 
-// Provide a config object via `mount` method
-await myCollection.mount({
-  selector: "CSS_SELECTOR"
-});
-
-// Apply a config object manually via `updateConfig` method
+// Update the config object via `updateConfig` method
 myCollection.updateConfig({
   selector: "CSS_SELECTOR"
 });
@@ -143,7 +138,7 @@ Each `CollectionEntry` implements the `ConfigManager` module to manage its confi
 - The parent collection's config (as the `"parent"` source).
 - Entry-specific options (as the `"entry"` source).
 
-When an entries `init()` method is called, new options can be applied to the `"entry"` source, allowing for per-entry overrides. The `entry.config.get` method resolves configuration values by checking the most specific source first (entry), then falling back to the parent collection config if not found. This layered approach ensures that:
+The `entry.config.get` method resolves configuration values by checking the most specific source first (entry), then falling back to the parent collection config if not found. This layered approach ensures that:
 
 - Global settings are defined at the collection level.
 - Individual entries can override or extend these settings as needed.
@@ -163,7 +158,7 @@ myEntry.config.set({
 ```
 </CodeExample>
 
-Entries can have additional config sources defined using `config.set` where you pass a `sourceKey` and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
+Entries can have additional config sources defined using `config.set` when you pass a `sourceKey` string and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
 
 - [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
 - [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.
