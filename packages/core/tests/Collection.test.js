@@ -95,7 +95,7 @@ describe("createEntry()", () => {
   it("should be able to set a config object", async () => {
     const obj = new Collection();
     const entry = await obj.createEntry("fdsa");
-    entry.config.apply({ attrConfig: "test" });
+    entry.config.set({ attrConfig: "test" });
     expect(entry.id).toBe("fdsa");
     expect(entry.parent.name).toBe("Collection");
     expect(entry.config.get("attrConfig")).toBe("test");

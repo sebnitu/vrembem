@@ -149,21 +149,21 @@ When an entries `init()` method is called, new options can be applied to the `"e
 - Individual entries can override or extend these settings as needed.
 - Config lookups always prioritize the most specific (entry) config, then fall back to broader (parent) config.
 
-To provide an entry with a custom configuration object, use the `entry.config.apply` method:
+To provide an entry with a custom configuration object, use the `entry.config.set` method:
 
 <CodeExample lang="js">
 ```js
 // Get an entry from your collection
 const myEntry = myCollection.get("ENTRY_ID");
 
-// Apply a config object manually via `config.apply` method
-myEntry.config.apply({
+// Apply a config object manually via `config.set` method
+myEntry.config.set({
   selector: "CSS_SELECTOR"
 });
 ```
 </CodeExample>
 
-Entries can have additional config sources defined using `config.addConfigSource` where you pass a `sourceKey` and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
+Entries can have additional config sources defined using `config.set` where you pass a `sourceKey` and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
 
 - [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
 - [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.

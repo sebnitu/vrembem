@@ -28,10 +28,10 @@ describe("constructor()", () => {
   });
 });
 
-describe("config.apply()", () => {
+describe("config.set()", () => {
   it("should be able to modify the config object", async () => {
     const entry = new CollectionEntry(obj, "one");
-    entry.config.apply({
+    entry.config.set({
       selector: "div",
       test: "asdf"
     });
@@ -48,7 +48,7 @@ describe("config.get()", () => {
 
   it("should get a config value from the entry", () => {
     const entry = new CollectionEntry(obj, "one");
-    entry.config.apply({ test: "new" });
+    entry.config.set({ test: "new" });
     expect(entry.config.get("test")).toBe("new");
   });
 

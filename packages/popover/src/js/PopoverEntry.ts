@@ -21,13 +21,13 @@ export class PopoverEntry extends CollectionEntry {
     el: boolean;
     trigger: boolean;
   } = {
-    el: false,
-    trigger: false
-  };
+      el: false,
+      trigger: false
+    };
   state: string = "closed";
   trigger: HTMLElement | null = null;
   toggleDelayId: NodeJS.Timeout | null = null;
-  floatingCleanup: () => void = () => {};
+  floatingCleanup: () => void = () => { };
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
@@ -175,7 +175,7 @@ export class PopoverEntry extends CollectionEntry {
     // If it's a tooltip...
     if (this.isTooltip) {
       // Set the event to hover role="tooltip" attribute
-      this.config.apply({ event: "hover" });
+      this.config.set({ event: "hover" });
       this.el.setAttribute("role", "tooltip");
     } else {
       // Check that trigger isn't null and is an HTMLElement

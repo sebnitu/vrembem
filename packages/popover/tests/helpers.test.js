@@ -221,7 +221,7 @@ describe("getDelay()", () => {
     expect(getDelay(entry1, 0)).toBe(200);
 
     const entry2 = popover.get("pop-1");
-    entry2.config.apply({
+    entry2.config.set({
       toggleDelay: [300, 600]
     });
     expect(getDelay(entry2, 0)).toBe(300);

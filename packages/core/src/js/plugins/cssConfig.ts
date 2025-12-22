@@ -28,17 +28,17 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
 
     onCreateEntry({ entry }) {
       const data = getCustomProps(entry);
-      entry.config.addConfigSource(this.config.sourceKey, data);
+      entry.config.set(this.config.sourceKey, data);
     },
 
     onDestroyEntry({ entry }) {
-      entry.config.removeConfigSource(this.config.sourceKey);
+      entry.config.remove(this.config.sourceKey);
     }
   };
 
   function update(entry: CollectionEntry, plugin: Plugin) {
     const data = getCustomProps(entry);
-    entry.config.apply(data, plugin.config.sourceKey);
+    entry.config.set(plugin.config.sourceKey, data);
   }
 
   return { ...props, ...methods };

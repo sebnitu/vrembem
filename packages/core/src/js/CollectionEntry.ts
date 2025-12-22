@@ -2,7 +2,7 @@ import { getElement } from "./utilities";
 import { ConfigManager } from "./modules";
 
 export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
-  new (parent: any, query: string | HTMLElement): TEntry;
+  new(parent: any, query: string | HTMLElement): TEntry;
 }
 
 export class CollectionEntry {
@@ -15,7 +15,7 @@ export class CollectionEntry {
     this.parent = parent;
     this.el = getElement(query);
     this.id = this.el.id;
-    this.config.addConfigSource("parent", this.parent.config);
-    this.config.addConfigSource("entry", {});
+    this.config.set("parent", this.parent.config);
+    this.config.set("entry", {});
   }
 }

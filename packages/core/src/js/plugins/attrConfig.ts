@@ -21,11 +21,11 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
   const methods: Partial<Plugin> = {
     onCreateEntry({ entry }) {
       const data = getAttrData(entry.el, this.config.attr);
-      entry.config.addConfigSource(this.config.sourceKey, data);
+      entry.config.set(this.config.sourceKey, data);
     },
 
     onDestroyEntry({ entry }) {
-      entry.config.removeConfigSource(this.config.sourceKey);
+      entry.config.remove(this.config.sourceKey);
     }
   };
 
