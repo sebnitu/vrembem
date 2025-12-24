@@ -7,7 +7,7 @@ astro-island {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: palette.get("primary", 50, 50%) css.get("background");
+  scrollbar-color: palette.get("primary", 50, 50%) transparent;
   text-wrap: pretty;
 
   @media screen and (prefers-reduced-motion: reduce) {

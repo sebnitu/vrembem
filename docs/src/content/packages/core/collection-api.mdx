@@ -144,31 +144,31 @@ Merges the provided options object into the collection's existing configuration.
 
 ## createEntry
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
 
 ## destroyEntry
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
 
 ## register
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
 
 ## deregister
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<CollectionEntry | null>" />
 
 ## mount
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<Collection>" />
 
 ## unmount
 
-**Type:** `method`
+<ReferenceBar type="method" returns="Promise<Collection>" />
 
 ## Plugins API
 
-**Type:** `PluginArray`
+<ReferenceBar type="PluginArray" />
 
 ### plugins.buildConfig
 
@@ -182,9 +182,11 @@ Merges the provided options object into the collection's existing configuration.
 
 ## Events API
 
+<ReferenceBar type="EventEmitter" />
+
 ### events
 
-**Type:** readonly `EventMap`
+<ReferenceBar type="EventMap" readonly />
 
 An event map that stores all registered events and their arguments. This can he useful to ensure that your events are being registered as expected.
 
@@ -209,12 +211,12 @@ collection.events
 
 ### on
 
-**Type:** `method`
+<ReferenceBar type="method" />
 
 ### off
 
-**Type:** `method`
+<ReferenceBar type="method" />
 
 ### emit
 
-**Type:** `method`
+<ReferenceBar type="method" />
