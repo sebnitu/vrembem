@@ -67,14 +67,10 @@ export class Collection<
     return entry;
   }
 
-  async destroyEntry(query: string | TEntry) {
-    const entry = typeof query === "string" ? this.get(query) : query;
-    if (entry) {
-      await dispatchLifecycleHook("onDestroyEntry", this, entry);
-      await maybeRunMethod(entry, "destroy");
-      return entry;
-    }
-    return null;
+  async destroyEntry(entry: TEntry) {
+    await dispatchLifecycleHook("onDestroyEntry", this, entry);
+    await maybeRunMethod(entry, "destroy");
+    return entry;
   }
 
   async register(entry: TEntry) {
@@ -93,10 +89,9 @@ export class Collection<
     return entry;
   }
 
-  async deregister(query: string | TEntry) {
-    const index = this.collection.findIndex((item) =>
-      typeof query === "string" ? item.id === query : item === query
-    );
+  async deregister(entry: TEntry) {
+    // Check if the entry with the provided ID has been registered
+    const index = this.collection.findIndex((item) => item.id === entry.id);
     if (~index) {
       // Dispatch onDeregisterEntry lifecycle hooks
       await dispatchLifecycleHook(
@@ -104,14 +99,11 @@ export class Collection<
         this,
         this.collection[index]
       );
-
       // Remove the entry from the collection
       const [entry] = this.collection.splice(index, 1);
-
-      return entry;
     }
-
-    return null;
+    // Return the deregistered entry
+    return entry;
   }
 
   async mount() {
@@ -132,8 +124,7 @@ export class Collection<
     if (this.config.selector) {
       const els = document.querySelectorAll(this.config.selector);
       for (const el of els) {
-        const entry = await this.createEntry(el as HTMLElement);
-        await this.register(entry);
+        await this.register(await this.createEntry(el as HTMLElement));
       }
     }
 
@@ -149,8 +140,7 @@ export class Collection<
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
-      const entry = await this.destroyEntry(this.collection[0]);
-      if (entry) await this.deregister(entry);
+      await this.deregister(await this.destroyEntry(this.collection[0]));
     }
 
     // Dispatch afterUnmount lifecycle hooks
