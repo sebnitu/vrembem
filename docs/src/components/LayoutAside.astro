@@ -12,5 +12,5 @@
 
 <script>
   import { drawer } from "../modules/useDrawer";
-  drawer.register(document.getElementById("layout-aside"));
+  await drawer.register(await drawer.createEntry("layout-aside"));
 </script>

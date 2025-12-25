@@ -2,7 +2,8 @@
   id="layout-drawer"
   class="layout-drawer"
   data-breakpoint="60rem"
-  data-config="{'classModal': 'is-modal', 'store': false}">
+  data-config="{'classModal': 'is-modal', 'store': false}"
+>
   <div class="layout-drawer__mask"></div>
   <slot />
 </aside>
@@ -12,7 +13,8 @@
   import { drawer } from "../modules/useDrawer";
   const drawerElement = document.getElementById("layout-drawer");
   if (drawerElement) {
-    const drawerItem = await drawer.register(drawerElement);
+    const entry = await drawer.createEntry(drawerElement);
+    const drawerItem = await drawer.register(entry);
     if (drawerItem.mode == "inline") {
       const active = drawerItem.dialog.querySelector(".is-active");
       if (active) {
