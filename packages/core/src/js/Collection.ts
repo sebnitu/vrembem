@@ -13,7 +13,7 @@ const defaults: CollectionConfig = {
   selector: "",
   plugins: [],
   presets: {}
-}
+};
 
 export class Collection<
   TEntry extends CollectionEntry = CollectionEntry,
@@ -73,37 +73,20 @@ export class Collection<
     return entry;
   }
 
-  async register(query: string | HTMLElement) {
-    // Get the element to register
-    const element = getElement(query);
-
-    // Check if the element with the provided ID has already been registered
-    const index = this.collection.findIndex((item) => item.id === element.id);
+  async register(entry: TEntry) {
+    // Check if the entry with the provided ID has already been registered
+    const index = this.collection.findIndex((item) => item.id === entry.id);
     if (~index) {
-      // Get the entry from the collection
-      const entry = this.collection[index];
-
-      // Override the element property with the provided element
-      entry.el = element;
-
-      // Run the entry init method if it exists
-      await maybeRunMethod(entry, "init");
-
-      // Return the registered entry
-      return entry;
+      // Replace the entry in the collection
+      this.collection[index] = entry;
     } else {
-      // Create the collection entry object
-      const entry = await this.createEntry(element);
-
       // Add the entry to the collection
       this.collection.push(entry);
-
-      // Dispatch onRegisterEntry lifecycle hooks
-      await dispatchLifecycleHook("onRegisterEntry", this, entry);
-
-      // Return the registered entry
-      return entry;
     }
+    // Dispatch onRegisterEntry lifecycle hooks
+    await dispatchLifecycleHook("onRegisterEntry", this, entry);
+    // Return the registered entry
+    return entry;
   }
 
   async deregister(id: string) {
@@ -146,7 +129,8 @@ export class Collection<
     if (this.config.selector) {
       const els = document.querySelectorAll(this.config.selector);
       for (const el of els) {
-        await this.register(el as HTMLElement);
+        const entry = await this.createEntry(el as HTMLElement);
+        await this.register(entry);
       }
     }
 

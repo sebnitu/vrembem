@@ -146,6 +146,14 @@ Merges the provided options object into the collection's existing configuration.
 
 <ReferenceBar type="method" returns="Promise<CollectionEntry>" />
 
+Creates an instance of a `CollectionEntry` using the provided CSS selector or HTML element. This will also run the `init` method of the collection entry if it exists and fire the `onCreateEntry` event hook. Returns the created collection entry object.
+
+#### Arguments
+
+<ReferenceCard name="query" type="Partial<CollectionConfig>" defaults="string | HTMLElement">
+  The query argument specifies a CSS selector or HTML element used to create a new collection entry.
+</ReferenceCard>
+
 ## destroyEntry
 
 <ReferenceBar type="method" returns="Promise<CollectionEntry>" />
