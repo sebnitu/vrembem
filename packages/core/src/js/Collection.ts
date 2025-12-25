@@ -67,10 +67,14 @@ export class Collection<
     return entry;
   }
 
-  async destroyEntry(entry: TEntry) {
-    await dispatchLifecycleHook("onDestroyEntry", this, entry);
-    await maybeRunMethod(entry, "destroy");
-    return entry;
+  async destroyEntry(query: string | TEntry) {
+    const entry = typeof query === "string" ? this.get(query) : query;
+    if (entry) {
+      await dispatchLifecycleHook("onDestroyEntry", this, entry);
+      await maybeRunMethod(entry, "destroy");
+      return entry;
+    }
+    return null;
   }
 
   async register(entry: TEntry) {
@@ -89,12 +93,11 @@ export class Collection<
     return entry;
   }
 
-  async deregister(id: string) {
-    const index = this.collection.findIndex((entry) => entry.id === id);
+  async deregister(query: string | TEntry) {
+    const index = this.collection.findIndex((item) =>
+      typeof query === "string" ? item.id === query : item === query
+    );
     if (~index) {
-      // Get the collection entry object from the collection and destroy it
-      const entry = await this.destroyEntry(this.collection[index]);
-
       // Dispatch onDeregisterEntry lifecycle hooks
       await dispatchLifecycleHook(
         "onDeregisterEntry",
@@ -103,7 +106,7 @@ export class Collection<
       );
 
       // Remove the entry from the collection
-      this.collection.splice(index, 1);
+      const [entry] = this.collection.splice(index, 1);
 
       return entry;
     }
@@ -146,7 +149,8 @@ export class Collection<
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
-      await this.deregister(this.collection[0].id);
+      const entry = await this.destroyEntry(this.collection[0]);
+      if (entry) await this.deregister(entry);
     }
 
     // Dispatch afterUnmount lifecycle hooks
