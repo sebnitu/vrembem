@@ -1,7 +1,7 @@
 import { CollectionEntry, CollectionEntryConstructor } from "./CollectionEntry";
 import { EventEmitter, PluginArray, Plugin } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
-import { getElement, maybeRunMethod } from "./utilities";
+import { maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig {
   selector: string;
