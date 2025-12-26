@@ -106,7 +106,9 @@ export class Collection<
     return entry;
   }
 
-  async mount() {
+  async mount(
+    callback: (entry: TEntry) => Promise<TEntry> | TEntry = (entry) => entry
+  ) {
     // Add plugins
     for (const plugin of this.config?.plugins || []) {
       this.plugins.add(plugin);
@@ -124,7 +126,9 @@ export class Collection<
     if (this.config.selector) {
       const els = document.querySelectorAll(this.config.selector);
       for (const el of els) {
-        await this.register(await this.createEntry(el as HTMLElement));
+        await this.createEntry(el as HTMLElement)
+          .then((entry) => callback(entry))
+          .then((entry) => this.register(entry));
       }
     }
 
@@ -134,13 +138,17 @@ export class Collection<
     return this;
   }
 
-  async unmount() {
+  async unmount(
+    callback: (entry: TEntry) => Promise<TEntry> | TEntry = (entry) => entry
+  ) {
     // Dispatch beforeUnmount lifecycle hooks
     await dispatchLifecycleHook("beforeUnmount", this);
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
-      await this.deregister(await this.destroyEntry(this.collection[0]));
+      await this.destroyEntry(this.collection[0])
+        .then((entry) => callback(entry))
+        .then((entry) => this.deregister(entry));
     }
 
     // Dispatch afterUnmount lifecycle hooks
