@@ -289,12 +289,48 @@ collection.events
 
 ### on
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="void" />
+
+Registers an event listener for a specific event. The listener will be called with any provided arguments when the event is emitted.
+
+#### Arguments
+
+<ReferenceCard name="event" type="string">
+  ...
+</ReferenceCard>
+
+<ReferenceCard name="listener" type="(...args: any[]) => void | Promise<void>">
+  ...
+</ReferenceCard>
+
+<ReferenceCard name="...args" type="any[]">
+  ...
+</ReferenceCard>
 
 ### off
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="void" />
+
+Removes a previously registered event listener for a specific event.
+
+<ReferenceCard name="event" type="string">
+  ...
+</ReferenceCard>
+
+<ReferenceCard name="listenerRef" type="(...args: any[]) => void | Promise<void>">
+  ...
+</ReferenceCard>
 
 ### emit
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="Promise<void>" />
+
+Triggers all listeners for a specific event, passing any provided arguments to each listener. Supports both synchronous and asynchronous listeners.
+
+<ReferenceCard name="event" type="string">
+  ...
+</ReferenceCard>
+
+<ReferenceCard name="...args" type="any[]">
+  ...
+</ReferenceCard>
