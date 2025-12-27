@@ -35,7 +35,7 @@ export class PluginArray extends Array<Plugin> {
     this.presets = presets;
   }
 
-  buildConfig(plugin: Plugin): void {
+  #buildConfig(plugin: Plugin): void {
     // Get the preset and options of the plugin if they were set
     const preset = this.presets?.[plugin.name] || {};
     const options = plugin?.options || {};
@@ -45,7 +45,7 @@ export class PluginArray extends Array<Plugin> {
     plugin.config = { ...plugin.config, ...preset, ...options };
   }
 
-  validate(plugin: Plugin): boolean {
+  #validate(plugin: Plugin): boolean {
     if (!("name" in plugin) || typeof plugin.name !== "string") {
       console.error("Plugin requires a name!");
       return false;
@@ -62,9 +62,9 @@ export class PluginArray extends Array<Plugin> {
       plugin.forEach((p) => this.add(p));
     } else {
       // Process the plugin object
-      this.buildConfig(plugin);
+      this.#buildConfig(plugin);
       // Ensure the plugin is valid
-      if (this.validate(plugin)) {
+      if (this.#validate(plugin)) {
         // Either replace the plugin if it already exists in the array,
         // otherwise push the new plugin to the array.
         const index = this.findIndex((item) => item.name === plugin.name);

@@ -218,19 +218,25 @@ Removes and destroys all collection entries, runs lifecycle hooks for unmounting
 
 <ReferenceBar type="PluginArray" />
 
-### plugins.buildConfig
-
-### plugins.validate
+The plugins API provides methods to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
 
 ### plugins.get
 
+<ReferenceBar type="method" />
+
 ### plugins.add
 
+<ReferenceBar type="method" />
+
 ### plugins.remove
+
+<ReferenceBar type="method" />
 
 ## Events API
 
 <ReferenceBar type="EventEmitter" />
+
+The EventEmitter API provides methods for registering, removing, and emitting custom events on the collection. It allows you to attach event listeners with `on`, remove them with `off`, and trigger events with `emit`. The `events` property exposes the current map of registered events and their listeners, enabling flexible event-driven behavior within the collection.
 
 ### events
 
