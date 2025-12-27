@@ -172,6 +172,8 @@ Destroys the provided collection entry. This will run the `onDestroyEntry` event
 
 Registers a collection entry with the collection. If an entry with the same ID already exists, it will be replaced; otherwise, the entry is added to the collection. This method also runs the `onRegisterEntry` lifecycle hook. Returns the registered entry.
 
+#### Arguments
+
 <ReferenceCard name="entry" type="CollectionEntry">
   The collection entry to register.
 </ReferenceCard>
@@ -182,6 +184,8 @@ Registers a collection entry with the collection. If an entry with the same ID a
 
 Removes a collection entry from the collection. If the entry is found, it is removed and the `onDeregisterEntry` lifecycle hook is run. Returns the deregistered entry.
 
+#### Arguments
+
 <ReferenceCard name="entry" type="CollectionEntry">
   The collection entry to deregister.
 </ReferenceCard>
@@ -190,9 +194,25 @@ Removes a collection entry from the collection. If the entry is found, it is rem
 
 <ReferenceBar type="method" returns="Promise<Collection>" />
 
+Initializes and registers all collection entries matching the configured selector, sets up plugins, and runs lifecycle hooks for mounting. Optionally accepts a callback to modify each entry before registration. Returns the collection instance.
+
+#### Arguments
+
+<ReferenceCard name="callback" type="(entry: CollectionEntry) => CollectionEntry" returns="CollectionEntry">
+  A function that receives each created collection entry before it is registered. The function should return the entry to be registered.
+</ReferenceCard>
+
 ## unmount
 
 <ReferenceBar type="method" returns="Promise<Collection>" />
+
+Removes and destroys all collection entries, runs lifecycle hooks for unmounting, and tears down plugins. Optionally accepts a callback to modify each entry before it is deregistered. Returns the collection instance.
+
+#### Arguments
+
+<ReferenceCard name="callback" type="(entry: CollectionEntry) => CollectionEntry" returns="CollectionEntry">
+  A function that receives each created collection entry before it is registered. The function should return the entry to be registered.
+</ReferenceCard>
 
 ## Plugins API
 
