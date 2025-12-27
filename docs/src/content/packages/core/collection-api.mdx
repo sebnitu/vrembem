@@ -214,23 +214,47 @@ Removes and destroys all collection entries, runs lifecycle hooks for unmounting
   A function that receives each created collection entry before it is registered. The function should return the entry to be registered.
 </ReferenceCard>
 
-## Plugins API
+## plugins
 
 <ReferenceBar type="PluginArray" />
 
-The plugins API provides methods to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
+Collections implement `PluginArray` under the `plugins` property to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
 
 ### plugins.get
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="Plugin | null" />
+
+Returns the plugin with the specified name from the array, or `null` if no matching plugin is found.
+
+#### Arguments
+
+<ReferenceCard name="name" type="string">
+  The name of the plugin to return.
+</ReferenceCard>
 
 ### plugins.add
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="void" />
+
+Adds one or more plugins to the array. If a plugin with the same name already exists, it is replaced; otherwise, the new plugin is added. Plugin configuration is built and validated before being added.
+
+#### Arguments
+
+<ReferenceCard name="plugin" type="Plugin | Plugin[]">
+  The plugin or array of plugins to add.
+</ReferenceCard>
 
 ### plugins.remove
 
-<ReferenceBar type="method" />
+<ReferenceBar type="method" returns="void" />
+
+Removes the plugin with the specified name from the array, if it exists.
+
+#### Arguments
+
+<ReferenceCard name="plugin" type="string">
+  The name of the plugin to remove.
+</ReferenceCard>
 
 ## Events API
 

@@ -42,7 +42,7 @@ describe("focusTrap", () => {
     await collection.mount();
     expect(collection.plugins.length).toBe(1);
     await collection.unmount();
-    expect(typeof collection.plugins.get("focusTrap")).toBe("undefined");
+    expect(collection.plugins.get("focusTrap")).toBe(null);
     expect(collection.events.opened.length).toBe(0);
     expect(collection.events.closed.length).toBe(0);
   });

@@ -53,8 +53,8 @@ export class PluginArray extends Array<Plugin> {
     return true;
   }
 
-  get(name: string): Plugin | undefined {
-    return this.find((plugin) => plugin.name === name);
+  get(name: string): Plugin | null {
+    return this.find((plugin) => plugin.name === name) || null;
   }
 
   add(plugin: Plugin | Plugin[]): void {
