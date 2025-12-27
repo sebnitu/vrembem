@@ -21,13 +21,13 @@ export class PopoverEntry extends CollectionEntry {
     el: boolean;
     trigger: boolean;
   } = {
-      el: false,
-      trigger: false
-    };
+    el: false,
+    trigger: false
+  };
   state: string = "closed";
   trigger: HTMLElement | null = null;
   toggleDelayId: NodeJS.Timeout | null = null;
-  floatingCleanup: () => void = () => { };
+  floatingCleanup: () => void = () => {};
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
@@ -74,7 +74,7 @@ export class PopoverEntry extends CollectionEntry {
   }
 
   async deregister() {
-    return this.parent.deregister(this.id);
+    return this.parent.deregister(this);
   }
 
   registerEventListeners() {

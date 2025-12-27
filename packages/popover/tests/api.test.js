@@ -75,7 +75,7 @@ describe("register() & deregister()", () => {
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
 
-    await popover.register(el);
+    await popover.register(await popover.createEntry(el));
     expect(popover.collection.length).toBe(1);
     expect(popover.collection[0].el).toBe(el);
     expect(popover.collection[0].trigger).toBe(trigger);
@@ -87,7 +87,7 @@ describe("register() & deregister()", () => {
     await popover.mount();
 
     expect(popover.collection.length).toBe(3);
-    await popover.deregister(popover.collection[0].id);
+    await popover.deregister(popover.collection[0]);
     expect(popover.collection.length).toBe(2);
   });
 });

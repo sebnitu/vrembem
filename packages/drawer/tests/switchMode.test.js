@@ -96,7 +96,7 @@ test("should switch drawer to inline when entry.mode property is set to inline",
 });
 
 test("should return local store state when switching modes", async () => {
-  const entry = await drawer.register("drawer-1");
+  const entry = await drawer.register(await drawer.createEntry("drawer-1"));
   const plugin = drawer.plugins.get("propStore");
   await entry.open();
 
@@ -171,7 +171,7 @@ test("should store inline state when switching to modal", async () => {
 });
 
 test("should throw an error when setting mode to an invalid value", async () => {
-  const entry = await drawer.register("drawer-1");
+  const entry = await drawer.register(await drawer.createEntry("drawer-1"));
   let result;
   try {
     entry.mode = "asdf";

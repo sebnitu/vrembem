@@ -79,7 +79,9 @@ describe("register() & deregister()", () => {
 
   it("should register modal in the collection", async () => {
     expect(modal.collection.length).toBe(0);
-    const result = await modal.register("modal-default");
+    const result = await modal.register(
+      await modal.createEntry("modal-default")
+    );
     expect(modal.collection.length).toBe(1);
 
     entry = modal.get("modal-default");
@@ -89,7 +91,7 @@ describe("register() & deregister()", () => {
   });
 
   it("should reject promise with error if register is called on non-existent modal", async () => {
-    const result = await modal.register("asdf").catch((error) => {
+    const result = await modal.createEntry("asdf").catch((error) => {
       return error.message;
     });
     expect(result).toBe('Element not found with ID: "asdf"');
@@ -116,14 +118,14 @@ describe("register() & deregister()", () => {
     await modal.mount();
     await modal.open("modal-default");
     expect(modal.active.id).toBe("modal-default");
-    await modal.register("modal-default");
+    await modal.register(await modal.createEntry("modal-default"));
     expect(modal.active.id).toBe("modal-default");
   });
 
   it("should use the root modal element as dialog if selector returned null", async () => {
     document.body.innerHTML = markupMulti;
     modal = new Modal();
-    const entry = modal.register("modal-4");
+    const entry = await modal.register(await modal.createEntry("modal-4"));
     expect(entry.el).toBe(entry.dialog);
   });
 });

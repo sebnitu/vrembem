@@ -127,7 +127,7 @@ describe("open(), close() & toggle()", () => {
 describe("activeModal", () => {
   it("should return entry if drawer modal is active", async () => {
     vi.useFakeTimers();
-    const entry = await drawer.register("drawer-1");
+    const entry = await drawer.register(await drawer.createEntry("drawer-1"));
 
     expect(entry.state).toBe("closed");
     expect(entry.mode).toBe("inline");
@@ -153,53 +153,45 @@ describe("register() & deregister()", () => {
   it("should disable setting tabindex on drawer dialog", async () => {
     // Disable tabindex before register
     drawer.config.setTabindex = false;
-    let entry = await drawer.register("drawer-1");
+    let entry = await drawer.register(await drawer.createEntry("drawer-1"));
     expect(entry.dialog.getAttribute("tabindex")).toBe(null);
 
     // Deregister the entry before updating the setting and re-registering
-    await drawer.deregister("drawer-1");
+    await drawer.deregister(entry);
 
     // Enable tabindex before register
     drawer.config.setTabindex = true;
-    entry = await drawer.register("drawer-1");
+    entry = await drawer.register(await drawer.createEntry("drawer-1"));
     expect(entry.dialog.getAttribute("tabindex")).toBe("-1");
   });
 
   it("should register drawer in its default state", async () => {
-    const entry = await drawer.register("drawer-1");
+    const entry = await drawer.register(await drawer.createEntry("drawer-1"));
     expect(entry.mode).toBe("inline");
     expect(entry.state).toBe("indeterminate");
   });
 
   it("should register drawer in its open state", async () => {
-    const entry = await drawer.register("drawer-2");
+    const entry = await drawer.register(await drawer.createEntry("drawer-2"));
     expect(entry.mode).toBe("inline");
     expect(entry.state).toBe("opened");
   });
 
   it("should register drawer in its modal state", async () => {
-    const entry = await drawer.register("drawer-3");
+    const entry = await drawer.register(await drawer.createEntry("drawer-3"));
     expect(entry.mode).toBe("modal");
     expect(entry.state).toBe("closed");
   });
 
   it("should deregister drawer using entry api", async () => {
     expect(drawer.collection.length).toBe(3);
-
-    const entry = await drawer.register("drawer-3");
+    const entry = await drawer.register(await drawer.createEntry("drawer-3"));
     await entry.deregister();
     expect(drawer.collection.length).toBe(2);
   });
 
-  it("should reject promise with error if register is called on non-existent drawer", async () => {
-    const result = await drawer.register("asdf").catch((error) => {
-      return error.message;
-    });
-    expect(result).toBe('Element not found with ID: "asdf"');
-  });
-
   it("should use the root drawer element as dialog if selector returned null", async () => {
-    const entry = drawer.register("drawer-5");
+    const entry = drawer.register(await drawer.createEntry("drawer-5"));
     expect(entry.el).toBe(entry.dialog);
   });
 });

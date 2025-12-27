@@ -124,10 +124,10 @@ describe("handleClick()", () => {
 describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should open tooltip when handleMouseEnter() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("tooltip-1");
     expect(entry.isTooltip).toBe(true);
@@ -141,10 +141,10 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should close tooltip when handleMouseLeave() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("tooltip-2");
     expect(entry.isTooltip).toBe(true);
@@ -186,10 +186,10 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should correctly clear timeout when multiple enter/leave events are run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry1 = popover.get("tooltip-1");
     const entry2 = popover.get("tooltip-2");

@@ -68,7 +68,7 @@ describe("propStore", () => {
     expect(store.get("entry-1")).toBe("asdf");
 
     // Deregister the entry from the collection
-    await collection.deregister("entry-1");
+    await collection.deregister(await collection.destroyEntry(entry));
 
     // Check that the value of entry has been removed from local storage
     expect(store.get("entry-1")).toBe(undefined);

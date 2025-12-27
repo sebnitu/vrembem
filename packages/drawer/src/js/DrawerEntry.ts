@@ -98,7 +98,7 @@ export class DrawerEntry extends CollectionEntry {
   }
 
   async deregister() {
-    return this.parent.deregister(this.id);
+    return this.parent.deregister(this);
   }
 
   async onCreateEntry() {
