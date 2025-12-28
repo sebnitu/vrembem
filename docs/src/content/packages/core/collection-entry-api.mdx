@@ -1,0 +1,131 @@
+---
+title: CollectionEntry API
+parent: core
+group: collections
+order: 3
+---
+
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
+
+The following is a reference for the `CollectionEntry` class API, which is the basis for all Vrembem JavaScript components.
+
+<CodeExample lang="js">
+```js
+import { CollectionEntry } from "@vrembem/core";
+```
+</CodeExample>
+
+## Constructor
+
+The `CollectionEntry` constructor is run whenever a new entry is added to a collection. It's main purpose is to setup required entry properties and the configuration module.
+
+`CollectionEntry` is meant to be used along with the `Collection` class and is most commonly extended for adding functionality to a component.
+
+<CodeExample lang="ts">
+```ts
+import { Collection, CollectionEntry } from "@vrembem/core";
+
+// Extend the collection entry class with a custom definition
+class CustomEntry extends CollectionEntry {
+  constructor(...args) {
+    super(...args);
+    // Custom entry properties here...
+  }
+  // Custom entry logic here...
+}
+
+// Instantiate a new collection
+const myCollection = new Collection();
+
+// Set the entry class property to our new class definition
+myCollection.entryClass = CustomEntry;
+
+// Mount the collection
+await myCollection.mount();
+```
+</CodeExample>
+
+## parent
+
+<ReferenceBar type="Collection" />
+
+Stores a reference to the parent collection. This allows entries to have access to the global state and methods of the collection they belong to.
+
+## el
+
+<ReferenceBar type="HTMLElement" />
+
+The HTML element the collection entry represents in the document.
+
+## id
+
+<ReferenceBar type="string" />
+
+The unique identifier of the collection entry. This is dirived from the ID attribute of the provided HTML element.
+
+## config
+
+<ReferenceBar type="ConfigManager" />
+
+Each collection entry implements the `ConfigManager` utility class which manages configuration data. It allows you to `set`, `get`, and `remove` configuration values from multiple sources, and control the order in which sources are checked for values.
+
+When `CollectionEntry` is instantiated, a `parent` (global) and `entry` (entry-specific) config source is created, providing a flexible way to access settings and options at different levels of the component hierarchy.
+
+### config.get
+
+<ReferenceBar type="method" returns="any" />
+
+Retrieves a configuration value by key, searching sources in order of priority. Optionally accepts a specific source or a fallback value if the key is not found.
+
+#### Arguments
+
+<ReferenceCard name="key" type="string">
+  The key of the configuration value to return.
+</ReferenceCard>
+
+<ReferenceCard name="options" type="{ fallback?: any; source?: string }" optional>
+  An options object to configure the behavior of the get method.
+  - `fallback` - The fallback value if no configuration value is found
+  - `source` - A specific source to get the configuration value from
+</ReferenceCard>
+
+### config.set
+
+<ReferenceBar type="method" returns="Record<string, any>" />
+
+Adds or updates a configuration source. Accepts either a key and value object, or a value object alone (which is stored under the `"entry"` key). Merges new values with existing ones for the same key.
+
+#### Arguments
+
+<ReferenceCard name="keyOrConfig" type="string | Record<string, any>">
+  The key to store the config object under, or a config object that's stored under the `"entry"` key.
+</ReferenceCard>
+
+<ReferenceCard name="config" type="Record<string, any>" defaults="{}">
+  A configuration object to store or replace depending on the value of `keyOrConfig`.
+</ReferenceCard>
+
+### config.remove
+
+<ReferenceBar type="method" returns="void" />
+
+Removes a configuration source and its values by key, and updates the source order accordingly.
+
+#### Arguments
+
+<ReferenceCard name="key" type="string">
+  The configuration source to remove.
+</ReferenceCard>
+
+### config.setSourceOrder
+
+<ReferenceBar type="method" returns="string[]" />
+
+Sets the priority order for configuration sources. Accepts an array of source keys and reorders the internal source order, preserving any existing sources not listed. Returns the new source order.
+
+#### Arguments
+
+<ReferenceCard name="order" type="string[]">
+  The array of source keys to order the configuration hierarchy. 
+</ReferenceCard>

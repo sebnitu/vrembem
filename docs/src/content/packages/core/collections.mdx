@@ -3,6 +3,7 @@ title: Collections
 description: "Collection and CollectionEntry are base classes designed to manage component instances and implement shared systems."
 parent: core
 group: collections
+order: 1
 ---
 
 import fs from 'fs/promises';
@@ -29,7 +30,7 @@ In the following example, we'll build a tic-tac-toe game that demonstrates the f
 - Querying and updating the collection using various method.
 - Demonstrating separation of concerns between collection and entry logic.
 
-### Markup and styles
+## Markup and styles
 
 While the main focus of this example is the Collections API, it's important to start with solid markup and styles as a foundation. For a tic-tac-toe game, we'll want to define the "board" using a table element. Below is a working demo for what we'll build.
 
@@ -114,9 +115,9 @@ While the main focus of this example is the Collections API, it's important to s
 
 Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
 
-### Configuration
+## Configuration
 
-Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation, mount, or manually using the `applyConfig` method.
+Before diving into our example component, lets go over how configurations are handled within collections and their entries. Each `Collection` holds a config object, which contains global configurations that are accessible to all entries in that collection. Options can be passed to a collection's config either on instantiation or manually using the `updateConfig` method.
 
 <CodeExample lang="js">
 ```js
@@ -125,49 +126,44 @@ const myCollection = new Collection({
   selector: "CSS_SELECTOR"
 });
 
-// Provide a config object via `mount` method
-await myCollection.mount({
-  selector: "CSS_SELECTOR"
-});
-
-// Apply a config object manually via `applyConfig` method
-myCollection.applyConfig({
+// Update the config object via `updateConfig` method
+myCollection.updateConfig({
   selector: "CSS_SELECTOR"
 });
 ```
 </CodeExample>
 
-Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is instanciated under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
+Each `CollectionEntry` implements the `ConfigManager` module to manage its configuration. Upon creation, the entry's `ConfigManager` is instantiated under the `entry.config` property where all its APIs are made available. Two config sources are defined by default:
 
 - The parent collection's config (as the `"parent"` source).
 - Entry-specific options (as the `"entry"` source).
 
-When an entries `init()` method is called, new options can be applied to the `"entry"` source, allowing for per-entry overrides. The `entry.config.get` method resolves configuration values by checking the most specific source first (entry), then falling back to the parent collection config if not found. This layered approach ensures that:
+The `entry.config.get` method resolves configuration values by checking the most specific source first (entry), then falling back to the parent collection config if not found. This layered approach ensures that:
 
 - Global settings are defined at the collection level.
 - Individual entries can override or extend these settings as needed.
 - Config lookups always prioritize the most specific (entry) config, then fall back to broader (parent) config.
 
-To provide an entry with a custom configuration object, use the `entry.config.apply` method:
+To provide an entry with a custom configuration object, use the `entry.config.set` method:
 
 <CodeExample lang="js">
 ```js
 // Get an entry from your collection
 const myEntry = myCollection.get("ENTRY_ID");
 
-// Apply a config object manually via `config.apply` method
-myEntry.config.apply({
+// Apply a config object manually via `config.set` method
+myEntry.config.set({
   selector: "CSS_SELECTOR"
 });
 ```
 </CodeExample>
 
-Entries can have additional config sources defined using `config.addConfigSource` where you pass a `sourceKey` and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
+Entries can have additional config sources defined using `config.set` when you pass a `sourceKey` string and config object as arguments. The most recently added source takes presidence over previously defined config sources. The order of presidence can be updated using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
 
 - [`attrConfig`](/packages/core/attrConfig): Adds the ability to store a configuration source using the value of a data attribute.
 - [`cssConfig`](/packages/core/cssConfig): Adds the ability to store a configuration source using the values of CSS custom properties.
 
-### Collection classes
+## Collection classes
 
 In our JavaScript we can import `Collection` and define a `TicTacToe` class which extends Collection. Next, we'll instantiate the collection and provide a `selector` option, which determines which elements are included in the collection. Finally the collection is populated using the `mount` method.
 
@@ -258,7 +254,7 @@ class TicTacToe extends Collection {
 
 With our initial states in place (current player and cell state), we can now implement the feature that lets players take turns. To achieve this, we'll make use of lifecycle hooks.
 
-### Lifecycle hooks
+## Lifecycle hooks
 
 Lifecycle hooks are special methods in `Collection` and `CollectionEntry` that are automatically called at specific points during its existence—such as mount, creation, or registration. They allow you to run custom logic in response to these events, making it easier to manage state, resources, and side effects.
 
@@ -304,7 +300,7 @@ class TicTacToeCell extends CollectionEntry {
 
 Players can now take turns selecting cells, but we still need to track when a player wins and also allow users to reset the game. To do this, we'll use the custom events system.
 
-### Event system
+## Event system
 
 The event system API available in collections provide a flexible way for different parts of your collection and entries to communicate through custom events. This pattern allows you to register listeners for specific events, emit events with optional data, and remove listeners when they are no longer needed.
 
@@ -381,7 +377,7 @@ const ticTacToe = new TicTacToe({
 
 The final step in our tic-tac-toe example is to handle the winning state. To do this, we'll explore how collections can query and manage entry data.
 
-### Querying entries
+## Querying entries
 
 To finish our tic-tac-toe example, let's look at different ways to access and manage data between collection entries and the collection's global state. We'll begin by adding a few additional state properties to both the collection and entry classes.
 
@@ -531,7 +527,7 @@ class TicTacToe extends Collection {
 ```
 </CodeExample>
 
-### Conclusion
+## Conclusion
 
 The Collections API provides a powerful foundation for building interactive, stateful UI components in JavaScript. By leveraging configuration, lifecycle hooks, custom events, and flexible querying, you can efficiently manage groups of related elements and their shared logic.
 

@@ -1,5 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
 
 /**
@@ -18,6 +19,7 @@
   padding: css.get("layout", "drawer-padding");
   position: fixed;
   scroll-behavior: smooth;
+  scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
   transform: translate(100%);
   transition:
     opacity 0.5s,

@@ -110,7 +110,7 @@ describe("handleClick()", () => {
     const entry1 = popover.get("popover");
     const entry2 = popover.get("tooltip");
 
-    const event = new Event("mouseenter");
+    const event = new MouseEvent("mouseenter");
     handleMouseEnter.bind(popover, entry2, event)();
     trigger.click();
     await delay(100);
@@ -124,16 +124,16 @@ describe("handleClick()", () => {
 describe("handleMouseEnter() & handleMouseLeave()", () => {
   it("should open tooltip when handleMouseEnter() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("tooltip-1");
     expect(entry.isTooltip).toBe(true);
     expect(entry.state).toBe("closed");
 
-    const event = new Event("mouseenter");
+    const event = new MouseEvent("mouseenter");
     entry.trigger.dispatchEvent(event);
     await delay();
     expect(entry.state).toBe("opened");
@@ -141,17 +141,17 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should close tooltip when handleMouseLeave() is run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("tooltip-2");
     expect(entry.isTooltip).toBe(true);
     await entry.open();
     expect(entry.state).toBe("opened");
 
-    const event = new Event("mouseleave");
+    const event = new MouseEvent("mouseleave");
     entry.el.dispatchEvent(event);
     await delay(100); // Not sure why this is needed.
     expect(entry.state).toBe("closed");
@@ -159,16 +159,16 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should not close popover if either the popover element or trigger are hovered", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry = popover.get("popover");
     expect(entry.config.get("event")).toBe("hover");
 
-    const eventEnter = new Event("mouseenter");
-    const eventLeave = new Event("mouseleave");
+    const eventEnter = new MouseEvent("mouseenter");
+    const eventLeave = new MouseEvent("mouseleave");
 
     entry.trigger.dispatchEvent(eventEnter);
     await delay();
@@ -186,15 +186,15 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
 
   it("should correctly clear timeout when multiple enter/leave events are run", async () => {
     document.body.innerHTML = hoverMarkup;
-    const popover = new Popover();
-    await popover.mount({
+    const popover = new Popover({
       plugins: [attrConfig()]
     });
+    await popover.mount();
 
     const entry1 = popover.get("tooltip-1");
     const entry2 = popover.get("tooltip-2");
 
-    const eventEnter = new Event("mouseenter");
+    const eventEnter = new MouseEvent("mouseenter");
     handleMouseEnter.bind(popover, entry1, eventEnter)();
     handleMouseEnter.bind(popover, entry2, eventEnter)();
     await delay();
@@ -206,7 +206,7 @@ describe("handleMouseEnter() & handleMouseLeave()", () => {
     expect(entry1.state).toBe("closed");
     expect(entry2.state).toBe("opened");
 
-    const eventLeave = new Event("mouseleave");
+    const eventLeave = new MouseEvent("mouseleave");
     handleMouseLeave.bind(popover, entry2, eventLeave)();
     await delay(100);
 

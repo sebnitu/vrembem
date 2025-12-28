@@ -7,7 +7,7 @@ export interface PropStorePlugin extends Plugin {
   store: ReturnType<typeof localStore> | null;
 }
 
-export type PropStoreEntry = CollectionEntry<any> & {
+export type PropStoreEntry = CollectionEntry & {
   [key: string]: any;
 };
 
@@ -65,7 +65,7 @@ export function propStore(
 
   const methods: Partial<PropStorePlugin> = {
     setup(this: PropStorePlugin, parent) {
-      this.store = localStore(getKey.call(this, parent.module));
+      this.store = localStore(getKey.call(this, parent.name));
     },
 
     async onCreateEntry({ entry }) {

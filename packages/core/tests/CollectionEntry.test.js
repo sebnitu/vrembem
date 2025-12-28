@@ -17,7 +17,7 @@ describe("constructor()", () => {
     const entry = new CollectionEntry(obj, "one");
     expect(entry.id).toBe("one");
     expect(entry.el).toBe(document.getElementById("one"));
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
   });
 
   it("should be able to pass options through the instantiation", () => {
@@ -28,10 +28,10 @@ describe("constructor()", () => {
   });
 });
 
-describe("config.apply()", () => {
+describe("config.set()", () => {
   it("should be able to modify the config object", async () => {
     const entry = new CollectionEntry(obj, "one");
-    entry.config.apply({
+    entry.config.set({
       selector: "div",
       test: "asdf"
     });
@@ -47,9 +47,8 @@ describe("config.get()", () => {
   });
 
   it("should get a config value from the entry", () => {
-    const entry = new CollectionEntry(obj, "one", {
-      test: "new"
-    });
+    const entry = new CollectionEntry(obj, "one");
+    entry.config.set({ test: "new" });
     expect(entry.config.get("test")).toBe("new");
   });
 
@@ -58,14 +57,5 @@ describe("config.get()", () => {
     expect(() => entry.config.get("asdf")).toThrowError(
       "Config does not exist: asdf"
     );
-  });
-});
-
-describe("init() & destroy()", () => {
-  it("should completely setup an entry when mounted", async () => {
-    const entry = new CollectionEntry(obj, "four");
-    await entry.init({ new: "asdf" });
-    expect(entry.id).toBe("four");
-    expect(entry.config.get("new")).toBe("asdf");
   });
 });

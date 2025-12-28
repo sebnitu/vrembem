@@ -12,35 +12,25 @@ import type { Popover } from "./Popover";
 type EventObject = {
   el: string[];
   type: string[];
-  listener: (event: Event) => void;
+  listener: (event: MouseEvent | Event) => void;
 };
 
-export class PopoverEntry extends CollectionEntry<Popover> {
-  #eventListeners: EventObject[] | null;
+export class PopoverEntry extends CollectionEntry {
+  #eventListeners: EventObject[] = [];
   #isHovered: {
     el: boolean;
     trigger: boolean;
+  } = {
+    el: false,
+    trigger: false
   };
-  state: string;
-  trigger: HTMLElement | null;
-  toggleDelayId: NodeJS.Timeout | null;
-  floatingCleanup: () => void;
+  state: string = "closed";
+  trigger: HTMLElement | null = null;
+  toggleDelayId: NodeJS.Timeout | null = null;
+  floatingCleanup: () => void = () => {};
 
-  constructor(
-    parent: Popover,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
-    super(parent, query, options);
-    this.state = "closed";
-    this.toggleDelayId = null;
-    this.trigger = null;
-    this.#eventListeners = null;
-    this.#isHovered = {
-      el: false,
-      trigger: false
-    };
-    this.floatingCleanup = () => {};
+  constructor(parent: Popover, query: string | HTMLElement) {
+    super(parent, query);
   }
 
   get isTooltip(): boolean {
@@ -84,12 +74,12 @@ export class PopoverEntry extends CollectionEntry<Popover> {
   }
 
   async deregister() {
-    return this.parent.deregister(this.id);
+    return this.parent.deregister(this);
   }
 
   registerEventListeners() {
     // If event listeners aren't already setup
-    if (!this.#eventListeners) {
+    if (!this.#eventListeners.length) {
       // Add event listeners based on event type
       const eventType = this.config.get("event");
 
@@ -118,7 +108,11 @@ export class PopoverEntry extends CollectionEntry<Popover> {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              this[el].addEventListener(type, evObj.listener, false);
+              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+                type,
+                evObj.listener,
+                false
+              );
             });
           });
         });
@@ -139,7 +133,11 @@ export class PopoverEntry extends CollectionEntry<Popover> {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              this[el].addEventListener(type, evObj.listener, false);
+              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+                type,
+                evObj.listener,
+                false
+              );
             });
           });
         });
@@ -154,13 +152,17 @@ export class PopoverEntry extends CollectionEntry<Popover> {
       this.#eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
-            this[el].removeEventListener(type, evObj.listener, false);
+            (this[el as "el" | "trigger"] as HTMLElement).removeEventListener(
+              type,
+              evObj.listener,
+              false
+            );
           });
         });
       });
 
       // Remove eventListeners object from collection
-      this.#eventListeners = null;
+      this.#eventListeners = [];
     }
   }
 
@@ -173,7 +175,7 @@ export class PopoverEntry extends CollectionEntry<Popover> {
     // If it's a tooltip...
     if (this.isTooltip) {
       // Set the event to hover role="tooltip" attribute
-      this.config.apply({ event: "hover" });
+      this.config.set({ event: "hover" });
       this.el.setAttribute("role", "tooltip");
     } else {
       // Check that trigger isn't null and is an HTMLElement

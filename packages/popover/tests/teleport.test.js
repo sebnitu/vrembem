@@ -36,9 +36,11 @@ describe("mount()", () => {
   });
 
   it("should return teleport when a popover is deregistered", async () => {
-    await popover.get("popover-1").deregister();
+    let entry = popover.get("popover-1");
+    await popover.deregister(await popover.destroyEntry(entry));
     expect(div.children.length).toBe(1);
-    await popover.get("popover-2").deregister();
+    entry = popover.get("popover-2");
+    await popover.deregister(await popover.destroyEntry(entry));
     expect(div.children.length).toBe(0);
   });
 });

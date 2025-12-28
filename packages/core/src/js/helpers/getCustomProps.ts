@@ -9,9 +9,7 @@ import type { CollectionEntry } from "../CollectionEntry";
  *
  * @returns {object} A key/value object of custom properties.
  */
-export function getCustomProps(
-  entry: CollectionEntry<any>
-): Record<string, string> {
+export function getCustomProps(entry: CollectionEntry): Record<string, string> {
   // Get the computed styles of the element
   const styles = getComputedStyle(entry.el);
 
@@ -25,7 +23,7 @@ export function getCustomProps(
   for (let i = 0; i < keys.length; i++) {
     // Get the custom property value
     const prefix = getPrefix();
-    const module = entry.parent.module.toLowerCase();
+    const module = entry.parent.name.toLowerCase();
     const key = toKebab(keys[i]);
     const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
     // If a value was found, add it to our results object

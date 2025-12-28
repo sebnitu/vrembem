@@ -1,10 +1,9 @@
 import { getValue } from "../utilities";
 import { FocusTrap } from "../modules";
 import type { Plugin } from "../modules/PluginArray";
-import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export type FocusTrapEntry = CollectionEntry<any> & {
+export type FocusTrapEntry = CollectionEntry & {
   focusTrap: FocusTrap;
   dialog: HTMLElement;
 };
@@ -12,11 +11,7 @@ export type FocusTrapEntry = CollectionEntry<any> & {
 export interface FocusTrapConfig<TEntry = FocusTrapEntry> {
   condition?:
     | boolean
-    | ((context: {
-        plugin: Plugin;
-        parent: Collection<any>;
-        entry: TEntry;
-      }) => boolean);
+    | ((context: { plugin: Plugin; parent: any; entry: TEntry }) => boolean);
 }
 
 const defaults: Required<FocusTrapConfig> = {
@@ -25,14 +20,14 @@ const defaults: Required<FocusTrapConfig> = {
 
 export function focusTrap(
   options: FocusTrapConfig = {}
-): Plugin<Collection<any>, FocusTrapEntry> {
-  const props: Plugin<Collection<any>, FocusTrapEntry> = {
+): Plugin<FocusTrapEntry> {
+  const props: Plugin<FocusTrapEntry> = {
     name: "focusTrap",
     config: defaults,
     options
   };
 
-  const methods: Partial<Plugin<Collection<any>, FocusTrapEntry>> = {
+  const methods: Partial<Plugin<FocusTrapEntry>> = {
     setup(parent) {
       parent.on("opened", enableFocusTrap, this);
       parent.on("closed", disableFocusTrap, this);

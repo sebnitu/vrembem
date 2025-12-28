@@ -15,7 +15,7 @@
   font-size: 1rem;
   font-weight: 500;
   justify-content: center;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   opacity: 0;
   padding: css.get("form-control-padding-y");
   text-decoration: none !important;
@@ -29,13 +29,7 @@
     background-color: palette.get("primary", 50%, 20%);
   }
 
-  &:focus,
-  h1:focus &,
-  h2:focus &,
-  h3:focus &,
-  h4:focus &,
-  h5:focus &,
-  h6:focus &,
+  &:hover,
   h1:hover &,
   h2:hover &,
   h3:hover &,
@@ -47,7 +41,7 @@
 
   @include core.media-min(var.$bp-code) {
     position: absolute;
-    right: calc(100% + calc(css.get("form-control-size") / 2));
-    top: calc(58% - calc(css.get("form-control-size") / 2));
+    right: calc(100% + 0.5rem);
+    top: calc(60% - calc(css.get("form-control-size") / 2));
   }
 }

@@ -2,7 +2,7 @@ import { getPrefix } from "../helpers";
 import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export type MediaQueryEntry = CollectionEntry<any> & {
+export type MediaQueryEntry = CollectionEntry & {
   mql?: MediaQueryList | null;
 };
 

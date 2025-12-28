@@ -9,20 +9,16 @@ import { closeAll } from "./closeAll";
 import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export class Modal extends Collection<ModalEntry> {
-  #handleClick: (event: Event) => void;
+export class Modal extends Collection<ModalEntry, ModalConfig> {
+  #handleClick: (event: MouseEvent) => void;
   #handleKeydown: (event: KeyboardEvent) => void;
+  entryClass = ModalEntry;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
 
-  constructor(options: ModalConfig) {
+  constructor(options: Partial<ModalConfig>) {
     super({ ...config, ...options });
-    this.module = "Modal";
-    this.entryClass = ModalEntry as new (
-      parent: Collection<ModalEntry>,
-      query: string | HTMLElement,
-      options?: Record<string, any>
-    ) => ModalEntry;
+    this.name = "Modal";
     this.trigger = null;
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);

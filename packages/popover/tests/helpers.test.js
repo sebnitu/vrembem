@@ -217,10 +217,11 @@ describe("getDelay()", () => {
     popover = new Popover({
       toggleDelay: 200
     });
-    const entry1 = await popover.register("pop-1");
+    const entry1 = await popover.register(await popover.createEntry("pop-1"));
     expect(getDelay(entry1, 0)).toBe(200);
 
-    const entry2 = await popover.register("pop-1", {
+    const entry2 = popover.get("pop-1");
+    entry2.config.set({
       toggleDelay: [300, 600]
     });
     expect(getDelay(entry2, 0)).toBe(300);
@@ -229,10 +230,10 @@ describe("getDelay()", () => {
 
   it("should create an array if the provided delay is a string", async () => {
     document.body.innerHTML = customPropertyMarkup;
-    popover = new Popover();
-    await popover.mount({
+    popover = new Popover({
       plugins: [cssConfig()]
     });
+    await popover.mount();
     expect(getDelay(popover.get("asdf"), 0)).toBe(200);
     expect(getDelay(popover.get("asdf"), 1)).toBe(400);
     expect(getDelay(popover.get("fdsa"), 0)).toBe(400);
@@ -244,7 +245,7 @@ describe("getDelay()", () => {
     popover = new Popover({
       toggleDelay: "asdf"
     });
-    const entry1 = await popover.register("pop-1");
+    const entry1 = await popover.register(await popover.createEntry("pop-1"));
     expect(() => getDelay(entry1, 0)).toThrow(
       'Provided delay value is not a number: "asdf"'
     );

@@ -19,7 +19,7 @@ class ExampleEntry extends CollectionEntry {
 describe("constructor()", () => {
   it("should setup the collections object on instantiation", () => {
     const obj = new Collection();
-    expect(obj.module).toBe("Collection");
+    expect(obj.name).toBe("Collection");
     expect(obj.collection instanceof Array).toBe(true);
     expect(obj.collection.length).toBe(0);
   });
@@ -42,8 +42,8 @@ describe("get()", () => {
   });
 
   it("should return an element based on a custom provided key", async () => {
-    const obj = new Collection();
-    await obj.mount({ selector: "div" });
+    const obj = new Collection({ selector: "div" });
+    await obj.mount();
     const el = document.getElementById("fdsa");
     const entry = obj.get(el, "el");
     expect(entry.id).toBe("fdsa");
@@ -71,11 +71,11 @@ describe("getOrTrow()", () => {
   });
 });
 
-describe("applyConfig()", () => {
+describe("updateConfig()", () => {
   it("should be able to modify the config object", async () => {
     const obj = new Collection();
     await obj.mount();
-    obj.applyConfig({
+    obj.updateConfig({
       selector: "div",
       test: "asdf"
     });
@@ -89,14 +89,15 @@ describe("createEntry()", () => {
     const obj = new Collection();
     const entry = await obj.createEntry("asdf");
     expect(entry.id).toBe("asdf");
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
   });
 
-  it("should be able to pass a config object", async () => {
+  it("should be able to set a config object", async () => {
     const obj = new Collection();
-    const entry = await obj.createEntry("fdsa", { attrConfig: "test" });
+    const entry = await obj.createEntry("fdsa");
+    entry.config.set({ attrConfig: "test" });
     expect(entry.id).toBe("fdsa");
-    expect(entry.parent.module).toBe("Collection");
+    expect(entry.parent.name).toBe("Collection");
     expect(entry.config.get("attrConfig")).toBe("test");
   });
 });
@@ -104,12 +105,12 @@ describe("createEntry()", () => {
 describe("register() & deregister()", () => {
   it("should add an item to the collection and return the entry", async () => {
     const obj = new Collection();
-    let entry = await obj.register("asdf");
+    let entry = await obj.register(await obj.createEntry("asdf"));
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe("asdf");
     expect(obj.collection[0].el).toBe(entry.el);
 
-    entry = await obj.register("fdsa");
+    entry = await obj.register(await obj.createEntry("fdsa"));
     expect(obj.collection.length).toBe(2);
     expect(obj.collection[1].id).toBe("fdsa");
     expect(obj.collection[1].el).toBe(entry.el);
@@ -117,25 +118,19 @@ describe("register() & deregister()", () => {
 
   it("should remove item from collection if it exists", async () => {
     const obj = new Collection();
-    await obj.register("asdf");
-    await obj.register("fdsa");
-    await obj.deregister("asdf");
+    await obj.register(await obj.createEntry("asdf"));
+    await obj.register(await obj.createEntry("fdsa"));
+    await obj.deregister(obj.get("asdf"));
     expect(obj.collection.length).toBe(1);
     expect(obj.collection[0].id).toBe("fdsa");
-    await obj.deregister("fdsa");
+    await obj.deregister(obj.get("fdsa"));
     expect(obj.collection.length).toBe(0);
-  });
-
-  it("should return null when running deregister on an entry that doesn't exist", async () => {
-    const obj = new Collection();
-    const result = await obj.deregister("asdf");
-    expect(result).toBe(null);
   });
 
   it("should call onCreateEntry and onRegisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
     obj.entryClass = ExampleEntry;
-    const entry = await obj.register("asdf");
+    const entry = await obj.register(await obj.createEntry("asdf"));
     expect(entry.onCreateEntry).toHaveBeenCalled();
     expect(entry.onRegisterEntry).toHaveBeenCalled();
   });
@@ -143,12 +138,12 @@ describe("register() & deregister()", () => {
   it("should call onDestroyEntry and onDeregisterEntry lifecycle hooks if set", async () => {
     const obj = new Collection();
     obj.entryClass = ExampleEntry;
-    await obj.register("asdf");
-    await obj.register("fdsa");
+    await obj.register(await obj.createEntry("asdf"));
+    await obj.register(await obj.createEntry("fdsa"));
     const entry = obj.get("asdf");
     const onDestroyEntryRef = entry.onDestroyEntry;
     const onDeregisterEntryRef = entry.onDestroyEntry;
-    await obj.deregister("asdf");
+    await obj.deregister(await obj.destroyEntry(entry));
     expect(onDestroyEntryRef).toHaveBeenCalled();
     expect(onDeregisterEntryRef).toHaveBeenCalled();
   });
@@ -157,24 +152,9 @@ describe("register() & deregister()", () => {
 describe("register() error handling and re-registration", () => {
   it("should throw an error if element is not found", async () => {
     const obj = new Collection();
-    await expect(obj.register("nonexistent-id")).rejects.toThrow(
+    await expect(obj.createEntry("nonexistent-id")).rejects.toThrow(
       'Element not found with ID: "nonexistent-id"'
     );
-  });
-
-  it("should re-init and update el if registering an already-registered id", async () => {
-    const obj = new Collection();
-    await obj.register("asdf");
-    // Simulate a new element with same id
-    const newEl = document.createElement("div");
-    newEl.id = "asdf";
-    document.body.appendChild(newEl);
-    const entry = obj.get("asdf");
-    // Spy on init
-    entry.init = vi.fn();
-    await obj.register(newEl);
-    expect(entry.el).toBe(newEl);
-    expect(entry.init).toHaveBeenCalled();
   });
 });
 

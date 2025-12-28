@@ -22,7 +22,7 @@ describe("register() & entry.deregister()", () => {
 
   it("should create collection entry when register is called with modal ID", async () => {
     expect(modal.collection.length).toBe(0);
-    entry1 = await modal.register("modal-1");
+    entry1 = await modal.register(await modal.createEntry("modal-1"));
     expect(modal.collection.length).toBe(1);
     expect(entry1.el).toBe(el1);
   });
@@ -35,7 +35,7 @@ describe("register() & entry.deregister()", () => {
 
   it("should register modal without tabindex if setTabindex is disabled", async () => {
     modal.config.setTabindex = false;
-    entry2 = await modal.register("modal-2");
+    entry2 = await modal.register(await modal.createEntry("modal-2"));
     expect(entry1.dialog.getAttribute("tabindex")).toBe("-1");
     expect(entry2.el).toBe(el2);
   });
@@ -44,7 +44,7 @@ describe("register() & entry.deregister()", () => {
     expect(modal.collection.length).toBe(2);
     expect(modal.collection[0].id).toBe("modal-1");
     expect(modal.collection[1].id).toBe("modal-2");
-    await modal.register("modal-1");
+    await modal.register(await modal.createEntry("modal-1"));
     expect(modal.collection.length).toBe(2);
     expect(modal.collection[0].id).toBe("modal-1");
     expect(modal.collection[1].id).toBe("modal-2");

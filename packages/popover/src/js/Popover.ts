@@ -6,18 +6,14 @@ import { handleKeydown } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
 
-export class Popover extends Collection<PopoverEntry> {
+export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   #handleKeydown: (event: KeyboardEvent) => void;
+  entryClass = PopoverEntry;
   trigger: HTMLElement | null;
 
-  constructor(options: PopoverConfig) {
+  constructor(options: Partial<PopoverConfig>) {
     super({ ...config, ...options });
-    this.module = "Popover";
-    this.entryClass = PopoverEntry as new (
-      parent: Collection<PopoverEntry>,
-      query: string | HTMLElement,
-      options?: Record<string, any>
-    ) => PopoverEntry;
+    this.name = "Popover";
     this.trigger = null;
     this.#handleKeydown = handleKeydown.bind(this);
   }

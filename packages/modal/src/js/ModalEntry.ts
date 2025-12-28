@@ -4,16 +4,12 @@ import { close } from "./close";
 import { replace } from "./replace";
 import type { Modal } from "./Modal";
 
-export class ModalEntry extends CollectionEntry<Modal> {
+export class ModalEntry extends CollectionEntry {
   state: string;
   dialog: HTMLElement;
 
-  constructor(
-    parent: Modal,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
-    super(parent, query, options);
+  constructor(parent: Modal, query: string | HTMLElement) {
+    super(parent, query);
     this.state = "closed";
 
     // Set the dialog element. If none is found, use the root element
@@ -29,7 +25,10 @@ export class ModalEntry extends CollectionEntry<Modal> {
     return open(this, transition, focus);
   }
 
-  async close(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
+  async close(
+    transition?: boolean,
+    focus?: boolean
+  ): Promise<ModalEntry | null> {
     return close(this, transition, focus);
   }
 
@@ -41,7 +40,7 @@ export class ModalEntry extends CollectionEntry<Modal> {
   }
 
   async deregister() {
-    return this.parent.deregister(this.id);
+    return this.parent.deregister(this);
   }
 
   async onCreateEntry() {

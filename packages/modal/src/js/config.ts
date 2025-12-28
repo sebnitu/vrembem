@@ -1,4 +1,6 @@
-export interface ModalConfig {
+import type { CollectionConfig } from "@vrembem/core";
+
+export interface ModalConfig extends CollectionConfig {
   attrOpen: string;
   attrClose: string;
   attrReplace: string;

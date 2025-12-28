@@ -22,7 +22,8 @@ describe("propStore", () => {
 
   it("should register and setup the propStore plugin on collection mount", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({ plugins: [propStore()] });
+    collection.updateConfig({ plugins: [propStore()] });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     const entry = collection.get("entry-1");
     const plugin = collection.plugins.get("propStore");
@@ -37,7 +38,8 @@ describe("propStore", () => {
 
   it("should remove the propStore plugin when the remove method is called", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({ plugins: [propStore()] });
+    collection.updateConfig({ plugins: [propStore()] });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     await collection.plugins.remove("propStore");
     expect(collection.plugins.length).toBe(0);
@@ -45,7 +47,7 @@ describe("propStore", () => {
 
   it("should remove propStore from an entry if it is deregistered", async () => {
     // Initial setup for propStore
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "example",
@@ -54,6 +56,7 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
 
     // Get a reference to the plugin's local store object
     const store = collection.plugins.get("propStore").store;
@@ -65,10 +68,8 @@ describe("propStore", () => {
     expect(store.get("entry-1")).toBe("asdf");
 
     // Deregister the entry from the collection
-    await collection.deregister("entry-1");
+    await collection.deregister(await collection.destroyEntry(entry));
 
-    // Check that the property has been removed
-    expect(entry.example).toBe(undefined);
     // Check that the value of entry has been removed from local storage
     expect(store.get("entry-1")).toBe(undefined);
 
@@ -79,7 +80,7 @@ describe("propStore", () => {
 
   it("should be able to set a condition and onChange callback", async () => {
     const spyFunction = vi.fn();
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "example",
@@ -90,6 +91,7 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
     const entry = collection.get("entry-1");
     expect(spyFunction).toBeCalledTimes(0);
     entry.example = "fdsa";
@@ -99,7 +101,7 @@ describe("propStore", () => {
 
   it("should not fire onChange callback if setting a value that isn't different", async () => {
     const spyFunction = vi.fn();
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "example",
@@ -110,6 +112,7 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
     const entry = collection.get("entry-1");
 
     // Ensure onChange has not been called
@@ -129,7 +132,7 @@ describe("propStore", () => {
   });
 
   it("should setup a store property for accessing the local storage value", async () => {
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "example",
@@ -137,6 +140,7 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
     const entry = collection.get("entry-3");
 
     // Setting the property directly should update store
@@ -152,7 +156,7 @@ describe("propStore", () => {
 
   it("should be able to set an initial value for the property", async () => {
     const spyFunction = vi.fn();
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "hello",
@@ -162,6 +166,7 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
     const entry = collection.get("entry-1");
     expect(entry.hello).toBe("world");
     expect(spyFunction).toBeCalledTimes(3);
@@ -170,7 +175,7 @@ describe("propStore", () => {
   });
 
   it("should be able to set an initial value using a function definition", async () => {
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         propStore({
           prop: "hello",
@@ -179,12 +184,14 @@ describe("propStore", () => {
         })
       ]
     });
+    await collection.mount();
     const entry = collection.get("entry-1");
     expect(entry.hello).toBe("my friend");
   });
 
   it("should set an anonymous empty function by default", async () => {
-    await collection.mount({ plugins: [propStore()] });
+    collection.updateConfig({ plugins: [propStore()] });
+    await collection.mount();
     // Get the plugin from the plugins array
     const plugin = collection.plugins.get("propStore");
     // Ensure that onChange is a function

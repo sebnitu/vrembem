@@ -2,7 +2,7 @@ import { teleportElement } from "../utilities";
 import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
-type TeleportEntry = CollectionEntry<any> & {
+type TeleportEntry = CollectionEntry & {
   teleport: () => void;
   teleportReturn: () => void;
 };

@@ -2,9 +2,9 @@
  * Sets the `overflow` style to `hidden` or removes it based on the state.
  *
  * @param {boolean} state - Whether to set or remove `overflow: hidden`.
- * @param {string} selector - A CSS selector to query the elements.
+ * @param {string | null} selector - A CSS selector to query the elements.
  */
-function setOverflowHidden(state: boolean, selector: string): void {
+function setOverflowHidden(state: boolean, selector: string | null): void {
   if (selector) {
     const els = document.querySelectorAll<HTMLElement>(selector);
     els.forEach((el) => {
@@ -21,9 +21,9 @@ function setOverflowHidden(state: boolean, selector: string): void {
  * Sets the `inert` attributes on elements based on the state.
  *
  * @param {boolean} state - Whether to set or remove `inert`.
- * @param {string} selector - A CSS selector to query the elements.
+ * @param {string | null} selector - A CSS selector to query the elements.
  */
-function setInert(state: boolean, selector: string): void {
+function setInert(state: boolean, selector: string | null): void {
   if (selector) {
     const els = document.querySelectorAll<HTMLElement>(selector);
     els.forEach((el) => {
@@ -44,8 +44,8 @@ function setInert(state: boolean, selector: string): void {
  */
 export function setGlobalState(
   state: boolean,
-  selectorInert: string,
-  selectorOverflow: string
+  selectorInert: string | null,
+  selectorOverflow: string | null
 ): void {
   setInert(!!state, selectorInert);
   setOverflowHidden(!!state, selectorOverflow);

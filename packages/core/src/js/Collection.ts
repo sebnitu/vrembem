@@ -1,38 +1,43 @@
-import { CollectionEntry } from "./CollectionEntry";
-import { EventEmitter, PluginArray } from "./modules";
+import { CollectionEntry, CollectionEntryConstructor } from "./CollectionEntry";
+import { EventEmitter, PluginArray, Plugin } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
-import { getElement, maybeRunMethod } from "./utilities";
+import { maybeRunMethod } from "./utilities";
 
-export class Collection<TEntry extends CollectionEntry<any>> {
+export interface CollectionConfig {
+  selector: string;
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
+}
+
+const defaults: CollectionConfig = {
+  selector: "",
+  plugins: [],
+  presets: {}
+};
+
+export class Collection<
+  TEntry extends CollectionEntry = CollectionEntry,
+  TConfig extends CollectionConfig = CollectionConfig
+> {
   // Private fields
   #eventsEmitter = new EventEmitter();
-
-  // Assign the event emitter API directly on the Collection instance
+  // Alias the event emitter API directly on the Collection instance
   readonly events = this.#eventsEmitter.events;
   on = this.#eventsEmitter.on.bind(this.#eventsEmitter);
   off = this.#eventsEmitter.off.bind(this.#eventsEmitter);
   emit = this.#eventsEmitter.emit.bind(this.#eventsEmitter);
 
   // Public fields assigned in constructor
-  module: string;
-  collection: TEntry[];
-  entryClass: new (
-    parent: Collection<TEntry>,
-    query: string | HTMLElement,
-    options?: Record<string, any>
-  ) => TEntry;
-  config: Record<string, any>;
+  name: string;
+  collection: TEntry[] = [];
+  entryClass: CollectionEntryConstructor<TEntry> =
+    CollectionEntry as CollectionEntryConstructor<TEntry>;
+  config: TConfig;
   plugins: PluginArray;
 
-  constructor(options: Record<string, any> = {}) {
-    this.module = this.constructor.name;
-    this.collection = [];
-    this.entryClass = CollectionEntry as new (
-      parent: Collection<TEntry>,
-      query: string | HTMLElement,
-      options?: Record<string, any>
-    ) => TEntry;
-    this.config = { ...options };
+  constructor(options: Partial<TConfig> = {}) {
+    this.name = this.constructor.name;
+    this.config = { ...defaults, ...options } as TConfig;
     this.plugins = new PluginArray(this.config.presets);
   }
 
@@ -46,17 +51,17 @@ export class Collection<TEntry extends CollectionEntry<any>> {
       return entry;
     } else {
       throw new Error(
-        `${this.module} entry not found in collection with ${String(key)} of "${value}"`
+        `${this.name} entry not found in collection with ${String(key)} of "${value}"`
       );
     }
   }
 
-  applyConfig(options: Record<string, any>) {
+  updateConfig(options: Partial<TConfig> = {}) {
     return Object.assign(this.config, options);
   }
 
-  async createEntry(query: any, config: any) {
-    const entry = new this.entryClass(this, query, config);
+  async createEntry(query: string | HTMLElement) {
+    const entry = new this.entryClass(this, query);
     await maybeRunMethod(entry, "init");
     await dispatchLifecycleHook("onCreateEntry", this, entry);
     return entry;
@@ -68,67 +73,42 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     return entry;
   }
 
-  async register(query: any, config: any = {}) {
-    // Get the element to register
-    const element = getElement(query);
-
-    // Check if the element with the provided ID has already been registered
-    const index = this.collection.findIndex((item) => item.id === element.id);
+  async register(entry: TEntry) {
+    // Check if the entry with the provided ID has already been registered
+    const index = this.collection.findIndex((item) => item.id === entry.id);
     if (~index) {
-      // Get the entry from the collection
-      const entry = this.collection[index];
-
-      // Override the element property with the provided element
-      entry.el = element;
-
-      // Run the entry init() method if it exists
-      if (typeof entry.init === "function") {
-        await entry.init(config);
-      }
-
-      // Return the registered entry
-      return entry;
+      // Replace the entry in the collection
+      this.collection[index] = entry;
     } else {
-      // Create the collection entry object
-      const entry = await this.createEntry(element, config);
-
       // Add the entry to the collection
       this.collection.push(entry);
-
-      // Dispatch onRegisterEntry lifecycle hooks
-      await dispatchLifecycleHook("onRegisterEntry", this, entry);
-
-      // Return the registered entry
-      return entry;
     }
+    // Dispatch onRegisterEntry lifecycle hooks
+    await dispatchLifecycleHook("onRegisterEntry", this, entry);
+    // Return the registered entry
+    return entry;
   }
 
-  async deregister(id: any) {
-    const index = this.collection.findIndex((entry) => entry.id === id);
+  async deregister(entry: TEntry) {
+    // Check if the entry with the provided ID has been registered
+    const index = this.collection.findIndex((item) => item.id === entry.id);
     if (~index) {
-      // Get the collection entry object from the collection and destroy it
-      const entry = await this.destroyEntry(this.collection[index]);
-
       // Dispatch onDeregisterEntry lifecycle hooks
       await dispatchLifecycleHook(
         "onDeregisterEntry",
         this,
         this.collection[index]
       );
-
       // Remove the entry from the collection
-      this.collection.splice(index, 1);
-
-      return entry;
+      const [entry] = this.collection.splice(index, 1);
     }
-
-    return null;
+    // Return the deregistered entry
+    return entry;
   }
 
-  async mount(options: Record<string, any> = {}) {
-    // Apply config with passed options
-    this.applyConfig(options);
-
+  async mount(
+    callback: (entry: TEntry) => Promise<TEntry> | TEntry = (entry) => entry
+  ) {
     // Add plugins
     for (const plugin of this.config?.plugins || []) {
       this.plugins.add(plugin);
@@ -143,9 +123,13 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     await dispatchLifecycleHook("beforeMount", this);
 
     // Get all the selector elements and register them
-    const els = document.querySelectorAll(this.config.selector);
-    for (const el of els) {
-      await this.register(el);
+    if (this.config.selector) {
+      const els = document.querySelectorAll(this.config.selector);
+      for (const el of els) {
+        await this.createEntry(el as HTMLElement)
+          .then((entry) => callback(entry))
+          .then((entry) => this.register(entry));
+      }
     }
 
     // Dispatch afterMount lifecycle hooks
@@ -154,13 +138,17 @@ export class Collection<TEntry extends CollectionEntry<any>> {
     return this;
   }
 
-  async unmount() {
+  async unmount(
+    callback: (entry: TEntry) => Promise<TEntry> | TEntry = (entry) => entry
+  ) {
     // Dispatch beforeUnmount lifecycle hooks
     await dispatchLifecycleHook("beforeUnmount", this);
 
     // Loop through the collection and deregister each entry
     while (this.collection.length > 0) {
-      await this.deregister(this.collection[0].id);
+      await this.destroyEntry(this.collection[0])
+        .then((entry) => callback(entry))
+        .then((entry) => this.deregister(entry));
     }
 
     // Dispatch afterUnmount lifecycle hooks

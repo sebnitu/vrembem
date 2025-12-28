@@ -22,9 +22,10 @@ describe("debug", () => {
 
   it("should log all the mount lifecycle hooks when collection is mounted", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({
+    collection.updateConfig({
       plugins: [debug({ asdf: "fdsa" })]
     });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     expect(console.log).toHaveBeenCalledTimes(17);
   });
@@ -40,13 +41,14 @@ describe("debug", () => {
     collection.plugins.remove("debug");
     expect(collection.plugins.length).toBe(0);
     const conditionSpy = vi.fn();
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         debug({
           condition: conditionSpy
         })
       ]
     });
+    await collection.mount();
     expect(conditionSpy).toHaveBeenCalledTimes(12);
     await collection.unmount();
     expect(conditionSpy).toHaveBeenCalledTimes(24);

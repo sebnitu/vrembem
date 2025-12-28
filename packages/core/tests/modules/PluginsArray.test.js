@@ -45,7 +45,7 @@ describe("PluginArray", () => {
     const pluginTwo = plugins.get("two");
     expect(pluginTwo.config).toStrictEqual({ b: "b" });
 
-    expect(plugins.get("three")).toBe(undefined);
+    expect(plugins.get("three")).toBe(null);
   });
 
   it("should log a console error if the plugin is missing a name property", () => {

@@ -7,18 +7,14 @@ import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 
-export class Drawer extends Collection<DrawerEntry> {
-  #handleClick: (event: Event) => void;
+export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
+  #handleClick: (event: MouseEvent) => Promise<void | DrawerEntry>;
   #handleKeydown: (event: KeyboardEvent) => void;
+  entryClass = DrawerEntry;
 
-  constructor(options: DrawerConfig) {
+  constructor(options: Partial<DrawerConfig>) {
     super({ ...config, ...options });
-    this.module = "Drawer";
-    this.entryClass = DrawerEntry as new (
-      parent: Collection<DrawerEntry>,
-      query: string | HTMLElement,
-      options?: Record<string, any>
-    ) => DrawerEntry;
+    this.name = "Drawer";
     this.#handleClick = handleClick.bind(this);
     this.#handleKeydown = handleKeydown.bind(this);
   }

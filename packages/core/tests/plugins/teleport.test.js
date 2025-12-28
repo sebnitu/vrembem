@@ -19,13 +19,14 @@ const container = document.getElementById("entries");
 describe("teleport", () => {
   it("should register and setup the teleport plugin on collection mount", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         teleport({
           where: "#entries"
         })
       ]
     });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     const entry = collection.get("entry-1");
     expect(entry.id).toBe("entry-1");

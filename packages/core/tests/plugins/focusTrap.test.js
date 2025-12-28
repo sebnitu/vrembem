@@ -28,7 +28,8 @@ describe("focusTrap", () => {
 
   it("should run plugin setup method when collection unmounts", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({ plugins: [focusTrap()] });
+    collection.updateConfig({ plugins: [focusTrap()] });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     expect(typeof collection.plugins.get("focusTrap")).toBe("object");
     expect(collection.events.opened.length).toBe(1);
@@ -37,16 +38,18 @@ describe("focusTrap", () => {
 
   it("should run plugin teardown method when collection unmounts", async () => {
     expect(collection.plugins.length).toBe(0);
-    await collection.mount({ plugins: [focusTrap()] });
+    collection.updateConfig({ plugins: [focusTrap()] });
+    await collection.mount();
     expect(collection.plugins.length).toBe(1);
     await collection.unmount();
-    expect(typeof collection.plugins.get("focusTrap")).toBe("undefined");
+    expect(collection.plugins.get("focusTrap")).toBe(null);
     expect(collection.events.opened.length).toBe(0);
     expect(collection.events.closed.length).toBe(0);
   });
 
   it("should create focusTrap property on create entry lifecycle hook", async () => {
-    await collection.mount({ plugins: [focusTrap()] });
+    collection.updateConfig({ plugins: [focusTrap()] });
+    await collection.mount();
     collection.collection.forEach((entry) => {
       expect(entry.focusTrap).toBeInstanceOf(FocusTrap);
     });
@@ -73,7 +76,7 @@ describe("focusTrap", () => {
   });
 
   it("should toggle the focus trap based on the provided condition", async () => {
-    await collection.mount({
+    collection.updateConfig({
       plugins: [
         focusTrap({
           condition: ({ entry }) => {
@@ -82,6 +85,7 @@ describe("focusTrap", () => {
         })
       ]
     });
+    await collection.mount();
 
     // Get the HTML elements for checks later
     const entry = collection.get("entry-1");

@@ -1,0 +1,340 @@
+---
+title: Collection API
+parent: core
+group: collections
+order: 2
+---
+
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
+
+The following is a reference for the `Collection` class API, which is the basis for all Vrembem JavaScript components. Although you can instantiate a collection directly, the most common use case is to extend the collection class to create new components.
+
+<CodeExample lang="js">
+```js
+import { Collection } from "@vrembem/core";
+```
+</CodeExample>
+
+## Configuration
+
+Collections are configured using an options object, which can be provided during instantiation, or by calling `updateConfig`. The following outlines the type definition of this options object:
+
+<CodeExample lang="ts">
+```ts
+interface CollectionConfig {
+  selector: string;
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
+}
+```
+</CodeExample>
+
+<ReferenceCard name="selector" type="string">
+  A valid CSS selector used to query the document for elements to include as entries in the collection. This property is required.
+</ReferenceCard>
+
+<ReferenceCard name="plugins" type="Plugin[]" defaults="[]">
+  An array of plugin objects to extend or modify the behavior of the collection. Each plugin in the array will be applied when the collection is mounted.
+</ReferenceCard>
+
+<ReferenceCard name="presets" type="Record<string, Record<string, any>>" defaults="{}">
+  An object where each key is a plugin name and its value is an options object that defines default configuration for that plugin. This allows you to predefine settings for plugins used in the collection.
+</ReferenceCard>
+
+## Constructor
+
+Initializes a new collection instance, setting up its configuration, event system, entry class, and plugins. The constructor accepts an options object to configure the collection's selector, plugins, and plugin presets, and prepares the collection for further setup and mounting.
+
+<CodeExample lang="js">
+```js
+// Import the Collection class
+import { Collection } from "@vrembem/core";
+
+// Instantiate a new collection
+const myCollection = new Collection();
+```
+</CodeExample>
+
+## name
+
+<ReferenceBar type="string" defaults="this.constructor.name" />
+
+The name of the collection. This is used as a way to retrieve CSS custom properties and as part of local storage keys when applicable. Should be set as the component name the collection is meant to represent.
+
+## collection
+
+<ReferenceBar type="CollectionEntry[]" defaults="[]" />
+
+The array where all collection entries are stored. Each entry should be an instance of the `CollectionEntry` class or a class that extends it.
+
+## entryClass
+
+<ReferenceBar type="CollectionEntryConstructor" defaults="CollectionEntry" />
+
+The entryClass property defines the class constructor used to create new entries for the collection. By default, it is set to `CollectionEntry`, but it can be overridden to use a custom entry class. This allows you to specify the type of objects that will represent each item in the collection, enabling extensibility and custom behavior for collection entries.
+
+<CodeExample lang="ts">
+```ts
+export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
+  new(parent: any, query: string | HTMLElement): TEntry;
+}
+```
+</CodeExample>
+
+## config
+
+<ReferenceBar type="CollectionConfig" />
+
+The config property represents the stored configurations for the collection instance. The values stored in config are set directly from the provided options object and are available to entries as global fallback config values.
+
+<CodeExample lang="ts">
+```ts
+interface CollectionConfig {
+  selector: string;
+  plugins?: Plugin[];
+  presets?: Record<string, Record<string, any>>;
+}
+```
+</CodeExample>
+
+## get
+
+<ReferenceBar type="method" returns="CollectionEntry | undefined" />
+
+Returns the first entry in the collection whose specified property matches the given value, and returns `undefined` if no entry is found.
+
+#### Arguments
+
+<ReferenceCard name="value" type="any">
+  The value to search for within the collection entries. This is compared against the property specified by the key argument for each entry.
+</ReferenceCard>
+
+<ReferenceCard name="key" type="keyof CollectionEntry" defaults="id">
+  The property name of the entry to compare against the provided value. This allows you to search for an entry by any of its properties.
+</ReferenceCard>
+
+## getOrThrow
+
+<ReferenceBar type="method" returns="CollectionEntry" />
+
+Returns the first entry in the collection whose specified property matches the given value, and throws an error if no entry is found.
+
+#### Arguments
+
+<ReferenceCard name="value" type="any">
+  The value to search for within the collection entries. This is compared against the property specified by the key argument for each entry.
+</ReferenceCard>
+
+<ReferenceCard name="key" type="keyof CollectionEntry" defaults="id">
+  The property name of the entry to compare against the provided value. This allows you to search for an entry by any of its properties.
+</ReferenceCard>
+
+## updateConfig
+
+<ReferenceBar type="method" returns="CollectionConfig" />
+
+Merges the provided options object into the collection's existing configuration. This allows you to update or override configuration settings for the collection instance at runtime. Returns the updated config object.
+
+#### Arguments
+
+<ReferenceCard name="options" type="Partial<CollectionConfig>">
+  The options argument is an object containing configuration properties to update or override the collection's current settings.
+</ReferenceCard>
+
+## createEntry
+
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
+
+Creates an instance of a `CollectionEntry` using the provided ID or HTML element. This will also run the `init` method of the collection entry if it exists and fire the `onCreateEntry` event hook. Returns the created collection entry object.
+
+#### Arguments
+
+<ReferenceCard name="query" type="string | HTMLElement">
+  The query argument specifies an ID or HTML element used to create a new collection entry.
+</ReferenceCard>
+
+## destroyEntry
+
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
+
+Destroys the provided collection entry. This will run the `onDestroyEntry` event hook and the `destroy` method of the provided entry if it exists. Returns the provided entry object.
+
+#### Arguments
+
+<ReferenceCard name="entry" type="CollectionEntry">
+  The collection entry to destroy.
+</ReferenceCard>
+
+## register
+
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
+
+Registers a collection entry with the collection. If an entry with the same ID already exists, it will be replaced; otherwise, the entry is added to the collection. This method also runs the `onRegisterEntry` lifecycle hook. Returns the registered entry.
+
+#### Arguments
+
+<ReferenceCard name="entry" type="CollectionEntry">
+  The collection entry to register.
+</ReferenceCard>
+
+## deregister
+
+<ReferenceBar type="method" returns="Promise<CollectionEntry>" />
+
+Removes a collection entry from the collection. If the entry is found, it is removed and the `onDeregisterEntry` lifecycle hook is run. Returns the deregistered entry.
+
+#### Arguments
+
+<ReferenceCard name="entry" type="CollectionEntry">
+  The collection entry to deregister.
+</ReferenceCard>
+
+## mount
+
+<ReferenceBar type="method" returns="Promise<Collection>" />
+
+Initializes and registers all collection entries matching the configured selector, sets up plugins, and runs lifecycle hooks for mounting. Optionally accepts a callback to modify each entry before registration. Returns the collection instance.
+
+#### Arguments
+
+<ReferenceCard name="callback" type="(entry: CollectionEntry) => CollectionEntry" returns="CollectionEntry">
+  A function that receives each created collection entry before it is registered. The function should return the entry to be registered.
+</ReferenceCard>
+
+## unmount
+
+<ReferenceBar type="method" returns="Promise<Collection>" />
+
+Removes and destroys all collection entries, runs lifecycle hooks for unmounting, and tears down plugins. Optionally accepts a callback to modify each entry before it is deregistered. Returns the collection instance.
+
+#### Arguments
+
+<ReferenceCard name="callback" type="(entry: CollectionEntry) => CollectionEntry" returns="CollectionEntry">
+  A function that receives each created collection entry before it is registered. The function should return the entry to be registered.
+</ReferenceCard>
+
+## plugins
+
+<ReferenceBar type="PluginArray" />
+
+Collections implement `PluginArray` under the `plugins` property to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
+
+### plugins.get
+
+<ReferenceBar type="method" returns="Plugin | null" />
+
+Returns the plugin with the specified name from the array, or `null` if no matching plugin is found.
+
+#### Arguments
+
+<ReferenceCard name="name" type="string">
+  The name of the plugin to return.
+</ReferenceCard>
+
+### plugins.add
+
+<ReferenceBar type="method" returns="void" />
+
+Adds one or more plugins to the array. If a plugin with the same name already exists, it is replaced; otherwise, the new plugin is added. Plugin configuration is built and validated before being added.
+
+#### Arguments
+
+<ReferenceCard name="plugin" type="Plugin | Plugin[]">
+  The plugin or array of plugins to add.
+</ReferenceCard>
+
+### plugins.remove
+
+<ReferenceBar type="method" returns="void" />
+
+Removes the plugin with the specified name from the array, if it exists.
+
+#### Arguments
+
+<ReferenceCard name="plugin" type="string">
+  The name of the plugin to remove.
+</ReferenceCard>
+
+## Events API
+
+<ReferenceBar type="EventEmitter" />
+
+The EventEmitter API provides methods for registering, removing, and emitting custom events on the collection. It allows you to attach event listeners with `on`, remove them with `off`, and trigger events with `emit`. The `events` property exposes the current map of registered events and their listeners, enabling flexible event-driven behavior within the collection.
+
+### events
+
+<ReferenceBar type="EventMap" readonly />
+
+An event map that stores all registered events and their arguments. This can be useful to ensure that your events are being registered as expected.
+
+<CodeExample lang="js">
+```js
+// Register an event
+collection.on("eventName", functionRef, "arg1", "arg2");
+
+// The signature of the events property after an event is registered
+collection.events
+// =>
+{
+  eventName: [
+    {
+      listener: functionRef // The function reference to run when the event is emitted
+      args: ["arg1", "arg2"] // An array of all the arguments that were provided
+    }
+  ]
+}
+```
+</CodeExample>
+
+### on
+
+<ReferenceBar type="method" returns="void" />
+
+Registers an event listener for a specific event. The listener will be called with any provided arguments when the event is emitted.
+
+#### Arguments
+
+<ReferenceCard name="event" type="string">
+  The name of the event to register.
+</ReferenceCard>
+
+<ReferenceCard name="listener" type="(...args: any[]) => void | Promise<void>">
+  The function reference to run when the event is emitted.
+</ReferenceCard>
+
+<ReferenceCard name="...args" type="any[]">
+  Arguments to pass to the function reference when it is run.
+</ReferenceCard>
+
+### off
+
+<ReferenceBar type="method" returns="void" />
+
+Removes a previously registered event listener for a specific event.
+
+#### Arguments
+
+<ReferenceCard name="event" type="string">
+  The name of the event to remove the listener from.
+</ReferenceCard>
+
+<ReferenceCard name="listenerRef" type="(...args: any[]) => void | Promise<void>">
+  The function reference to remove from the event.
+</ReferenceCard>
+
+### emit
+
+<ReferenceBar type="method" returns="Promise<void>" />
+
+Triggers all listeners for a specific event, passing any provided arguments to each listener. Supports both synchronous and asynchronous listeners.
+
+#### Arguments
+
+<ReferenceCard name="event" type="string">
+  The name of the event to emit.
+</ReferenceCard>
+
+<ReferenceCard name="...args" type="any[]">
+  Additional arguments to pass to the registered events.
+</ReferenceCard>

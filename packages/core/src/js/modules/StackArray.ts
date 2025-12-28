@@ -5,9 +5,7 @@ type StackArrayConfig = {
   [key: string]: any;
 };
 
-export class StackArray<
-  TEntry extends CollectionEntry<any>
-> extends Array<TEntry> {
+export class StackArray<TEntry extends CollectionEntry> extends Array<TEntry> {
   config: StackArrayConfig;
 
   constructor(config: StackArrayConfig = {}) {

@@ -1,35 +1,21 @@
 import { getElement } from "./utilities";
 import { ConfigManager } from "./modules";
-import type { Collection } from "./Collection";
 
-export class CollectionEntry<TParent extends Collection<any>> {
-  parent: TParent;
+export interface CollectionEntryConstructor<TEntry extends CollectionEntry> {
+  new(parent: any, query: string | HTMLElement): TEntry;
+}
+
+export class CollectionEntry {
+  parent: any;
   el: HTMLElement;
+  id: string;
   config = new ConfigManager();
 
-  constructor(
-    parent: TParent,
-    query: string | HTMLElement,
-    options: Record<string, any> = {}
-  ) {
+  constructor(parent: any, query: string | HTMLElement) {
     this.parent = parent;
     this.el = getElement(query);
-    this.config.addConfigSource("parent", this.parent.config);
-    this.config.addConfigSource("entry", options);
-  }
-
-  get id(): string {
-    return this.el.id;
-  }
-
-  async init(options: Record<string, any> = {}) {
-    this.config.apply(options);
-  }
-
-  async destroy() {
-    // Remove all the owned properties from the entry
-    Object.getOwnPropertyNames(this).forEach((prop) => {
-      delete (this as any)[prop];
-    });
+    this.id = this.el.id;
+    this.config.set("parent", this.parent.config);
+    this.config.set("entry", {});
   }
 }

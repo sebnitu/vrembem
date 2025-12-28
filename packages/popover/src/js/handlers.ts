@@ -1,8 +1,9 @@
 import { getDelay } from "./helpers";
 import { closeAll, closeCheck } from "./close";
+import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
-export function handleClick(popover: PopoverEntry) {
+export function handleClick(this: Popover, popover: PopoverEntry) {
   if (popover.state === "opened") {
     popover.close();
   } else {
@@ -20,7 +21,14 @@ export function handleTooltipClick(popover: PopoverEntry) {
   }
 }
 
-export function handleMouseEnter(popover: PopoverEntry, event: MouseEvent) {
+export function handleMouseEnter(
+  this: Popover,
+  popover: PopoverEntry,
+  event: Event
+) {
+  // Ensure that this is a mouse event
+  if (!(event instanceof MouseEvent)) return;
+
   // Store our hover state
   popover.isHovered = event;
 
@@ -55,7 +63,10 @@ export function handleMouseEnter(popover: PopoverEntry, event: MouseEvent) {
   }, delay);
 }
 
-export function handleMouseLeave(popover: PopoverEntry, event: MouseEvent) {
+export function handleMouseLeave(popover: PopoverEntry, event: Event) {
+  // Ensure that this is a mouse event
+  if (!(event instanceof MouseEvent)) return;
+
   // Add a tiny delay to ensure hover isn't being moved to the popover element
   setTimeout(() => {
     // Update our hover state
@@ -77,7 +88,7 @@ export function handleMouseLeave(popover: PopoverEntry, event: MouseEvent) {
   }, 1);
 }
 
-export function handleKeydown(event: KeyboardEvent) {
+export function handleKeydown(this: Popover, event: KeyboardEvent) {
   switch (event.key) {
     case "Escape":
       if (this.trigger) {
@@ -97,7 +108,7 @@ export function handleKeydown(event: KeyboardEvent) {
   }
 }
 
-export function handleDocumentClick(popover: PopoverEntry) {
+export function handleDocumentClick(this: Popover, popover: PopoverEntry) {
   const root = this;
   document.addEventListener("click", function _f(event) {
     // Guard if event target property is null
