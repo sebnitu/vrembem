@@ -7,27 +7,6 @@ export class ConfigManager {
     this.#sourceOrder = [];
   }
 
-  set(keyOrConfig: string | Record<string, any>, config: Record<string, any> = {}): Record<string, any> {
-    let key: string;
-    let value: Record<string, any>;
-
-    if (typeof keyOrConfig === "string") {
-      key = keyOrConfig;
-      value = config;
-    } else {
-      key = "entry";
-      value = keyOrConfig;
-    }
-
-    if (this.#source[key]) {
-      Object.assign(this.#source[key], value);
-    } else {
-      this.#sourceOrder.unshift(key);
-      this.#source[key] = value;
-    }
-    return this.#source[key];
-  }
-
   get(key: string, options?: { fallback?: any; source?: string }) {
     const { fallback, source } = options ?? {};
 
@@ -52,6 +31,30 @@ export class ConfigManager {
     throw new Error(`Config does not exist: ${key}`);
   }
 
+  set(
+    keyOrConfig: string | Record<string, any>,
+    config: Record<string, any> = {}
+  ): Record<string, any> {
+    let key: string;
+    let value: Record<string, any>;
+
+    if (typeof keyOrConfig === "string") {
+      key = keyOrConfig;
+      value = config;
+    } else {
+      key = "entry";
+      value = keyOrConfig;
+    }
+
+    if (this.#source[key]) {
+      Object.assign(this.#source[key], value);
+    } else {
+      this.#sourceOrder.unshift(key);
+      this.#source[key] = value;
+    }
+    return this.#source[key];
+  }
+
   remove(key: string) {
     const index = this.#sourceOrder.indexOf(key);
     if (index !== -1) {
@@ -60,7 +63,7 @@ export class ConfigManager {
     delete this.#source[key];
   }
 
-  setSourceOrder(order: string[]) {
+  setSourceOrder(order: string[]): string[] {
     const existingKeys = Object.keys(this.#source).reverse();
     const reordered = order.filter((key) => existingKeys.includes(key));
     for (const key of existingKeys) {
