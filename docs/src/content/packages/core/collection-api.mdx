@@ -296,15 +296,15 @@ Registers an event listener for a specific event. The listener will be called wi
 #### Arguments
 
 <ReferenceCard name="event" type="string">
-  ...
+  The name of the event to register.
 </ReferenceCard>
 
 <ReferenceCard name="listener" type="(...args: any[]) => void | Promise<void>">
-  ...
+  The function reference to run when the event is emitted.
 </ReferenceCard>
 
 <ReferenceCard name="...args" type="any[]">
-  ...
+  Arguments to pass to the function reference when it is run.
 </ReferenceCard>
 
 ### off
@@ -313,12 +313,14 @@ Registers an event listener for a specific event. The listener will be called wi
 
 Removes a previously registered event listener for a specific event.
 
+#### Arguments
+
 <ReferenceCard name="event" type="string">
-  ...
+  The name of the event to remove the listener from.
 </ReferenceCard>
 
 <ReferenceCard name="listenerRef" type="(...args: any[]) => void | Promise<void>">
-  ...
+  The function reference to remove from the event.
 </ReferenceCard>
 
 ### emit
@@ -327,10 +329,12 @@ Removes a previously registered event listener for a specific event.
 
 Triggers all listeners for a specific event, passing any provided arguments to each listener. Supports both synchronous and asynchronous listeners.
 
+#### Arguments
+
 <ReferenceCard name="event" type="string">
-  ...
+  The name of the event to emit.
 </ReferenceCard>
 
 <ReferenceCard name="...args" type="any[]">
-  ...
+  Additional arguments to pass to the registered events.
 </ReferenceCard>
