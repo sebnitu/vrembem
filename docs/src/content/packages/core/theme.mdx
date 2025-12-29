@@ -5,6 +5,8 @@ parent: core
 group: sass-modules
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="scss">
   ```scss
   @use "@vrembem/core/theme";
@@ -13,7 +15,7 @@ group: sass-modules
 
 ## Basic usage
 
-The most common use-case for themes is providing a light and dark mode but also any custom theme can be created and used. This module provides mixins for setting, removing, and rendering theme values, supporting dynamic theming and system color scheme preferences.
+The most common use-case for themes is providing a light and dark mode but also any custom theme can be created and used. This module provides mixins for setting, removing, and outputting theme values, supporting dynamic theming and system color scheme preferences.
 
 ### theme.set()
 
@@ -21,12 +23,21 @@ Set a new or modify existing theme properties. These are stored as custom proper
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component to set a property value for. |
-| `$theme` | string | The theme to set a property value for. |
-| `$prop (null)` | string/map | The property value to set for the theme. Can be a map containing prop/value pairs. |
-| `$value (null)` | any | The value to set for the respective property. |
+<ReferenceCard name="$component" type="string">
+  The component to set a property value for.
+</ReferenceCard>
+
+<ReferenceCard name="$theme" type="string">
+  The theme to set a property value for.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map" defaults="null">
+  The property value to set for the theme. Can be a map containing prop/value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any" defaults="null">
+  The value to set for the respective property.
+</ReferenceCard>
 
 #### Example
 
@@ -52,11 +63,17 @@ Remove a custom property from themes in a variety of ways.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component name to search under. Set to "*" for the following `$theme` and `$prop` arguments to apply to all component themes. |
-| `$theme` | string | The component theme to search under or remove. Set to "*" to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes. |
-| `$prop ("*")` | string | The property name to remove. Set to "*" to remove the entire theme from the specified component. |
+<ReferenceCard name="$component" type="string">
+  The component name to search under. Set to "*" for the following `$theme` and `$prop` arguments to apply to all component themes.
+</ReferenceCard>
+
+<ReferenceCard name="$theme" type="string">
+  The component theme to search under or remove. Set to "*" to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map" defaults='"*"'>
+  The property name to remove. Set to "*" to remove the entire theme from the specified component.
+</ReferenceCard>
 
 #### Example
 
@@ -82,10 +99,13 @@ Output all the custom properties and values of a component theme or output a spe
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component ("*")` | string | The component to output. Use "*" or "all" to output a theme from all components. |
-| `$theme ("light")` | string | The theme to output. |
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  The component to output. Use "*" or "all" to output a theme from all components.
+</ReferenceCard>
+
+<ReferenceCard name="$theme" type="string" defaults='"light"'>
+  The theme to output.
+</ReferenceCard>
 
 #### Example
 
@@ -109,9 +129,9 @@ Output all the themes for a specific component. Each theme will be wrapped in it
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component ("*")` | string | The component to output all applied themes. If no component is passed or set to "*" or "all", will output all applied themes for all components. |
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  The component to output all applied themes. If no component is passed or set to `"*"` or `"all"`, will output all applied themes for all components.
+</ReferenceCard>
 
 #### Example
 
