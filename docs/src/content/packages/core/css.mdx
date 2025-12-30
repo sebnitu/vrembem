@@ -5,6 +5,8 @@ parent: core
 group: sass-modules
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="scss">
   ```scss
   @use "@vrembem/core/css";
@@ -21,10 +23,13 @@ Function to return a custom property reference that has been stored in the custo
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component name to get the stored custom property from. |
-| `$props...` | string | The custom property name to return. Can be a list of props for returning `var()` with fallbacks. |
+<ReferenceCard name="$component" type="string">
+  The component name to get the stored custom property from.
+</ReferenceCard>
+
+<ReferenceCard name="$props..." type="string">
+  The custom property name to return. Can be a list of props for returning `var()` with fallbacks.
+</ReferenceCard>
 
 #### Example
 
@@ -54,12 +59,21 @@ Mixin to store custom properties for later definition and reference. Can also up
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component name to store the custom property under. |
-| `$prop` | string/map | The custom property name to store. Can be a map containing property and value pairs. |
-| `$value` | any | The custom property value to store. |
-| `$deep` | boolean | Whether or not to use `merge` or `deep-merge` when combining maps. |
+<ReferenceCard name="$component" type="string">
+  The component name to store the custom property under.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map">
+  The custom property name to store. Can be a map containing property and value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any">
+  The custom property value to store.
+</ReferenceCard>
+
+<ReferenceCard name="$deep" type="boolean">
+  Whether or not to use `merge` or `deep-merge` when combining maps.
+</ReferenceCard>
 
 #### Example
 
@@ -83,9 +97,9 @@ Output all custom properties of a provided component. Or output all custom prope
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component to output all custom properties from. |
+<ReferenceCard name="$component" type="string">
+  The component to output all custom properties from.
+</ReferenceCard>
 
 #### Example
 
@@ -114,11 +128,17 @@ Mixin to override previously defined custom properties. This is primarily used i
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component to override. |
-| `$prop` | string/map | The custom property name to override. Can be a map containing property and value pairs. |
-| `$value` | any | The property value to override with. |
+<ReferenceCard name="$component" type="string">
+  The component to override.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map">
+  The custom property name to override. Can be a map containing property and value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any">
+  The property value to override with.
+</ReferenceCard>
 
 #### Example
 
@@ -155,9 +175,9 @@ Register a component in the custom properties map. This is used when a component
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component to register. |
+<ReferenceCard name="$component" type="string">
+  The component to register.
+</ReferenceCard>
 
 #### Example
 
@@ -189,11 +209,17 @@ Mixin to define a custom property using the provided property name and value. Au
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component name to use as part of the prefix. |
-| `$prop` | string | The custom property name to use in the definition. |
-| `$value` | any | The value of the custom property. |
+<ReferenceCard name="$component" type="string">
+  The component name to use as part of the prefix.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string">
+  The custom property name to use in the definition.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any">
+  The value of the custom property.
+</ReferenceCard>
 
 #### Example
 
@@ -221,11 +247,17 @@ Function to create reference to a custom property using the provided component n
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | The component name to use as part of the prefix. |
-| `$prop` | string | The custom property name to use in the reference. |
-| `$fallback` | any | The fallback value to use in the `var()` declaration. |
+<ReferenceCard name="$component" type="string">
+  The component name to use as part of the prefix.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string">
+  The custom property name to use in the reference.
+</ReferenceCard>
+
+<ReferenceCard name="$fallback" type="any">
+  The fallback value to use in the `var()` declaration.
+</ReferenceCard>
 
 #### Example
 
@@ -253,9 +285,9 @@ Function used to check if a custom property has been set.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$keys...` | string | The keys to traverse in the custom properties map. |
+<ReferenceCard name="$keys..." type="string">
+  The keys to traverse in the custom properties map.
+</ReferenceCard>
 
 #### Example
 
@@ -275,9 +307,9 @@ Mixin used to remove a previously set custom property.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$keys...` | string | The list of keys to follow and remove from the custom properties map. |
+<ReferenceCard name="$keys..." type="string">
+  The list of keys to follow and remove from the custom properties map.
+</ReferenceCard>
 
 #### Example
 
@@ -295,9 +327,9 @@ Log to console all custom properties, a component map or component theme. Provid
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$component` | string | A component within the custom properties map to log. Leaving as `null` will log the entire map. |
+<ReferenceCard name="$component" type="string">
+  A component within the custom properties map to log. Leaving as `null` will log the entire map.
+</ReferenceCard>
 
 #### Example
 

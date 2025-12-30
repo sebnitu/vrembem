@@ -5,6 +5,8 @@ parent: core
 group: sass-modules
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="scss">
   ```scss
   @use "@vrembem/core/palette";
@@ -21,11 +23,17 @@ Returns a color value from the palette in various formats, based on the provided
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$name (null)` | string | The color name to return a value for. |
-| `$query (50)` | number/string | Specifies either a lightness value or `"seed"` to return the corresponding color value. |
-| `$alpha (null)` | number (alpha-value) | Optional alpha (opacity) value to apply to the returned color. |
+<ReferenceCard name="$name" type="string">
+  The color name to return a value for.
+</ReferenceCard>
+
+<ReferenceCard name="$query" type="number | string">
+  Specifies either a lightness value or `"seed"` to return the corresponding color value.
+</ReferenceCard>
+
+<ReferenceCard name="$alpha" type="number (alpha-value)">
+  Optional alpha (opacity) value to apply to the returned color.
+</ReferenceCard>
 
 #### Example
 
@@ -61,10 +69,13 @@ Set a color to the seeds map. Can receive single entries of key/value color pair
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$name` | string/map | A name to associate with the provided color, or a map containing key/value color pairs. |
-| `$value (null)` | color | The color to associate with the provided key. |
+<ReferenceCard name="$name" type="string | map">
+  A name to associate with the provided color, or a map containing key/value color pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="color" defualts="null">
+  The color to associate with the provided key.
+</ReferenceCard>
 
 #### Example
 
@@ -97,6 +108,6 @@ Removes colors from the seeds map.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$keys...` | string | A string or list of strings to remove. |
+<ReferenceCard name="$keys..." type="string">
+  A string or list of strings to remove.
+</ReferenceCard>

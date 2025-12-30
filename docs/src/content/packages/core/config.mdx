@@ -5,6 +5,8 @@ parent: core
 group: sass-modules
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="scss">
   ```scss
   @use "@vrembem/core/config";
@@ -192,9 +194,9 @@ Returns the value of an option in the configuration map.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$keys...` | string | A key or list of keys to follow in the configuration map and return. |
+<ReferenceCard name="$keys..." type="string">
+  A key or list of keys to follow in the configuration map and return.
+</ReferenceCard>
 
 #### Example
 
@@ -214,11 +216,17 @@ Set an option in the configuration map by providing a key and value to store, or
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$key` | string/map | The key in the map to set. Can be passed a map of key/value pairs. |
-| `$value` (null) | any | The value to be stored. |
-| `$default (false)` | boolean | Whether or not the value being set is a default value. |
+<ReferenceCard name="$key" type="string | map">
+  The key in the map to set. Can be passed a map of key/value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any" defaults="null">
+  The value to be stored.
+</ReferenceCard>
+
+<ReferenceCard name="$default" type="boolean" defaults="false">
+  Whether or not the value being set is a default value.
+</ReferenceCard>
 
 #### Example
 
@@ -241,10 +249,13 @@ An alias mixin for `config.set()` that predefines the default argument to `true`
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$key` | string/map | The key in the map to set. Can be passed a map of key/value pairs. |
-| `$value` (null) | any | The value to be stored. |
+<ReferenceCard name="$key" type="string | map">
+  The key in the map to set. Can be passed a map of key/value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any" defaults="null">
+  The value to be stored.
+</ReferenceCard>
 
 #### Example
 
@@ -269,9 +280,9 @@ Remove an option from the configuration map.
 
 #### Arguments
 
-| Name | Type | Description |
-|------|------|-------------|
-| `$keys...` | string | The list of keys to follow and remove from the configuration map. |
+<ReferenceCard name="$keys..." type="string">
+  The list of keys to follow and remove from the configuration map.
+</ReferenceCard>
 
 #### Example
 

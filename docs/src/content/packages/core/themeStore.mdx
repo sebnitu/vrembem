@@ -7,6 +7,7 @@ slug: core/themeStore
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 <CodeExample lang="js">
   ```js
@@ -157,9 +158,24 @@ interface ThemeStoreConfig {
 
 ## themeStore.config
 
-**Type:** `object`
+<ReferenceBar type="ThemeStoreConfig" />
 
 An object that stores the values of `themeStore`'s configurations.
+
+#### Defaults
+
+<CodeExample lang="js">
+```ts
+const defaults: ThemeStoreConfig = {
+  prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
+  storeKey: "VB:Profile",
+  fallback: "root",
+  themes: ["root", "light", "dark"],
+  onInit() {},
+  onChange() {}
+};
+```
+</CodeExample>
 
 #### Example
 
@@ -177,7 +193,10 @@ An object that stores the values of `themeStore`'s configurations.
   // Output: {
   //   "prefix": "theme-",
   //   "storeKey": "Profile",
-  //   "fallback": "default"
+  //   "fallback": "default",
+  //   "themes": ["root", "light", "dark"],
+  //   onInit() {},
+  //   onChange() {}
   // }
 
   console.log(myTheme.class);
@@ -187,7 +206,7 @@ An object that stores the values of `themeStore`'s configurations.
 
 ## themeStore.theme
 
-**Type:** `string`
+<ReferenceBar type="string" defaults="config.fallback" />
 
 The `theme` property acts as both a getter and setter for the current theme.
 
@@ -212,7 +231,7 @@ The `theme` property acts as both a getter and setter for the current theme.
 
 ## themeStore.class
 
-**Type:** `string`
+<ReferenceBar type="string" />
 
 Returns the current theme class name, including the configured prefix. This property is read-only.
 
@@ -230,7 +249,7 @@ Returns the current theme class name, including the configured prefix. This prop
 
 ## themeStore.themes
 
-**Type:** `string[]`
+<ReferenceBar type="string[]" defaults="config.themes" />
 
 An array containing all available theme names. This property is read-only.
 
@@ -249,7 +268,7 @@ An array containing all available theme names. This property is read-only.
 
 ## themeStore.classes
 
-**Type:** `string[]`
+<ReferenceBar type="string[]" />
 
 An array containing all possible theme class names, each with the configured prefix. This property is read-only.
 
@@ -268,7 +287,7 @@ An array containing all possible theme class names, each with the configured pre
 
 ## themeStore.add()
 
-**Type:** `method`
+<ReferenceBar type="method" />
 
 Adds a new theme name to the list of available themes. The new theme will be included in the `themes` array and reflected in `classes`.
 
@@ -299,7 +318,7 @@ Adds a new theme name to the list of available themes. The new theme will be inc
 
 ## themeStore.remove()
 
-**Type:** `method`
+<ReferenceBar type="method" />
 
 Removes a theme name from the list of available themes. The theme will be removed from the `themes` array and its class will no longer be included in `classes`.
 
