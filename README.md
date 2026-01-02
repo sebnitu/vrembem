@@ -180,4 +180,4 @@ await drawer.mount();
 
 ## Copyright and License
 
-Vrembem and Vrembem documentation copyright (c) 2025 Sebastian Nitu. Vrembem is released under the [MIT license](https://github.com/sebnitu/vrembem/blob/main/LICENSE) and Vrembem documentation is released under [Creative Commons](https://github.com/sebnitu/vrembem/blob/main/docs/LICENSE).
+Vrembem and Vrembem documentation copyright (c) 2026 Sebastian Nitu. Vrembem is released under the [MIT license](https://github.com/sebnitu/vrembem/blob/main/LICENSE) and Vrembem documentation is released under [Creative Commons](https://github.com/sebnitu/vrembem/blob/main/docs/LICENSE).
