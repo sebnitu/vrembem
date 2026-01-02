@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/popover",
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.",
-  "version": "3.0.21",
+  "version": "3.0.22",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -43,7 +43,7 @@
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/popover#readme",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "@vrembem/core": "^3.0.21"
+    "@vrembem/core": "^3.0.22"
   },
   "publishConfig": {
     "access": "public"

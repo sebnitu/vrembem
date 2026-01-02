@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/input",
   "description": "A component for displaying form input elements.",
-  "version": "3.0.21",
+  "version": "3.0.22",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/input#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.21"
+    "@vrembem/core": "^3.0.22"
   },
   "publishConfig": {
     "access": "public"

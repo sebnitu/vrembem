@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/notice",
   "description": "A component for highlighting (optionally dismissible) messages to the user.",
-  "version": "3.0.21",
+  "version": "3.0.22",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/notice#readme",
   "dependencies": {
-    "@vrembem/core": "^3.0.21"
+    "@vrembem/core": "^3.0.22"
   },
   "publishConfig": {
     "access": "public"
