@@ -32,12 +32,33 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.33 to CHANGELOG.md
+chore(release): add v4.0.0-next.34 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.34 (2026-01-02)
+
+### :house: Refactor
+* `card`, `core`
+  * [#2599](https://github.com/sebnitu/vrembem/pull/2599) Simplify card styles
+* `core`, `drawer`, `modal`, `popover`
+  * [#2598](https://github.com/sebnitu/vrembem/pull/2598) Refactor and add documentation for Collection and CollectionEntry API
+  * [#2583](https://github.com/sebnitu/vrembem/pull/2583) Create new ConfigManager module along with complimentary plugins
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2582](https://github.com/sebnitu/vrembem/pull/2582) Add documentation for the core component
+
+### :books: Documentation
+* `core`, `drawer`, `modal`, `popover`
+  * [#2598](https://github.com/sebnitu/vrembem/pull/2598) Refactor and add documentation for Collection and CollectionEntry API
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2582](https://github.com/sebnitu/vrembem/pull/2582) Add documentation for the core component
+
+### :hammer: Chore
+* [#2605](https://github.com/sebnitu/vrembem/pull/2605) Bump year to 2026
 
 
 ## v4.0.0-next.33 (2025-11-24)
