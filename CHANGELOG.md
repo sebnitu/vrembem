@@ -22,12 +22,18 @@ Publish flow for `main` branch
 - Run `npx lerna publish` (use `--force-publish` to force a bump on all packages)
 
 Commit message template:
-chore(release): add v3.0.21 to CHANGELOG.md
+chore(release): add v3.0.22 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v3.0.0 -->
+
+
+## v3.0.22 (2026-01-02)
+
+### :hammer: Chore
+* [#2604](https://github.com/sebnitu/vrembem/pull/2604) Bump year to 2026
 
 
 ## v3.0.21 (2025-07-26)
