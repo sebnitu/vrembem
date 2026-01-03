@@ -17,6 +17,28 @@ import ReferenceCard from "../../../components/ReferenceCard.astro";
 
 This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, and a list of lightness values to generate custom properties.
 
+The palette module defines four seed colors along with a range of lightness values. Below are the base seed colors:
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch radius background-primary"></span>
+  <span>`primary`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch radius background-secondary"></span>
+  <span>`secondary`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch radius background-neutral"></span>
+  <span>`neutral`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch radius background-important"></span>
+  <span>`important`</span>
+</div>
+
 ### palette.get()
 
 Returns a color value from the palette in various formats, based on the provided name, lightness, and optional alpha.
