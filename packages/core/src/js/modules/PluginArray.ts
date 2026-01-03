@@ -1,3 +1,4 @@
+import { maybeRunMethod } from "../utilities";
 import type { CollectionEntry } from "../CollectionEntry";
 
 export interface Plugin<TEntry extends CollectionEntry = CollectionEntry> {
@@ -60,7 +61,7 @@ export class PluginArray extends Array<Plugin> {
     return this.find((plugin) => plugin.name === name) || null;
   }
 
-  add(plugin: Plugin | Plugin[]): void {
+  async add(plugin: Plugin | Plugin[], ...args: any[]): Promise<void> {
     if (Array.isArray(plugin)) {
       plugin.forEach((p) => this.add(p));
     } else {
@@ -74,15 +75,19 @@ export class PluginArray extends Array<Plugin> {
         if (~index) {
           console.error(`Plugin name must be unique: "${plugin.name}"`);
         } else {
+          // Push plugin to the array and run the setup method
           this.push(plugin);
+          await maybeRunMethod(plugin, "setup", ...args);
         }
       }
     }
   }
 
-  remove(name: string): void {
+  async remove(name: string, ...args: any[]): Promise<void> {
     const index = this.findIndex((plugin) => plugin.name === name);
     if (~index) {
+      // Run the teardown method and splice plugin from the array
+      await maybeRunMethod(this[index], "teardown", ...args);
       this.splice(index, 1);
     }
   }
