@@ -12,7 +12,7 @@ let drawer = null;
 if (typeof window !== "undefined") {
   drawer = new Drawer({
     selector: ".drawer",
-    plugins: [attrConfig(), cssConfig(), focusTrap(), mediaQuery(), propStore()]
+    plugins: [cssConfig(), attrConfig(), focusTrap(), mediaQuery(), propStore()]
   });
   window["drawer"] = await drawer.mount();
 }
