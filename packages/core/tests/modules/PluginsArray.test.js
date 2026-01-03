@@ -13,19 +13,19 @@ describe("PluginArray", () => {
     expect(plugins.length).toBe(1);
   });
 
-  it("should override existing plugins when added with the same name", () => {
+  it("should override existing plugins when added with the same name", async () => {
     expect(plugins.length).toBe(1);
-    plugins.add({ name: "fdsa" });
+    await plugins.add({ name: "fdsa" });
     expect(plugins.length).toBe(2);
-    plugins.add({ name: "fdsa" });
+    await plugins.add({ name: "fdsa" });
     expect(plugins.length).toBe(2);
   });
 
   it("should remove a plugin from the plugins array", async () => {
     expect(plugins.length).toBe(2);
-    plugins.remove("asdf");
+    await plugins.remove("asdf");
     expect(plugins.length).toBe(1);
-    plugins.remove("fdsa");
+    await plugins.remove("fdsa");
     expect(plugins.length).toBe(0);
   });
 
