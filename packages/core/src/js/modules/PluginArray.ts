@@ -28,6 +28,12 @@ export interface Plugin<TEntry extends CollectionEntry = CollectionEntry> {
 
 type Presets = Record<string, Record<string, any>>;
 
+// TODO: Maybe don't extend array and just create an internal private array
+// Context:
+// Prefer composition over inheritance: store the plugins in a private array
+// (e.g., #items) and expose only add/remove/get methods, rather than extending
+// Array. This gives you full control and prevents accidental mutation.
+
 export class PluginArray extends Array<Plugin> {
   presets: Presets;
 
@@ -61,24 +67,20 @@ export class PluginArray extends Array<Plugin> {
     return this.find((plugin) => plugin.name === name) || null;
   }
 
-  async add(plugin: Plugin | Plugin[], ...args: any[]): Promise<void> {
-    if (Array.isArray(plugin)) {
-      plugin.forEach((p) => this.add(p));
-    } else {
-      // Process the plugin object
-      this.#buildConfig(plugin);
-      // Ensure the plugin is valid
-      if (this.#validate(plugin)) {
-        // Either replace the plugin if it already exists in the array,
-        // otherwise push the new plugin to the array.
-        const index = this.findIndex((item) => item.name === plugin.name);
-        if (~index) {
-          console.error(`Plugin name must be unique: "${plugin.name}"`);
-        } else {
-          // Push plugin to the array and run the setup method
-          this.push(plugin);
-          await maybeRunMethod(plugin, "setup", ...args);
-        }
+  async add(plugin: Plugin, ...args: any[]): Promise<void> {
+    // Process the plugin object
+    this.#buildConfig(plugin);
+    // Ensure the plugin is valid
+    if (this.#validate(plugin)) {
+      // Either replace the plugin if it already exists in the array,
+      // otherwise push the new plugin to the array.
+      const index = this.findIndex((item) => item.name === plugin.name);
+      if (~index) {
+        console.error(`Plugin name must be unique: "${plugin.name}"`);
+      } else {
+        // Push plugin to the array and run the setup method
+        this.push(plugin);
+        await maybeRunMethod(plugin, "setup", ...args);
       }
     }
   }

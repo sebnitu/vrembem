@@ -29,16 +29,10 @@ describe("PluginArray", () => {
     expect(plugins.length).toBe(0);
   });
 
-  it("should add an array of plugins at once", () => {
-    expect(plugins.length).toBe(0);
-    plugins.add([
-      { name: "one", options: { a: "a" } },
-      { name: "two", options: { b: "b" } }
-    ]);
-    expect(plugins.length).toBe(2);
-  });
+  it("should return a specific plugin when using the get method", async () => {
+    await plugins.add({ name: "one", options: { a: "a" } });
+    await plugins.add({ name: "two", options: { b: "b" } });
 
-  it("should return a specific plugin when using the get method", () => {
     const pluginOne = plugins.get("one");
     expect(pluginOne.config).toStrictEqual({ a: "a" });
 
