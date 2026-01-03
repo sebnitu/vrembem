@@ -40,6 +40,9 @@ export class PluginArray extends Array<Plugin> {
     const preset = this.presets?.[plugin.name] || {};
     const options = plugin?.options || {};
 
+    // Set the name property if it has been provided
+    plugin.name = options.name || plugin.name;
+
     // Create the config property by merging the plugin defaults, preset and
     // any provided options.
     plugin.config = { ...plugin.config, ...preset, ...options };
@@ -69,7 +72,7 @@ export class PluginArray extends Array<Plugin> {
         // otherwise push the new plugin to the array.
         const index = this.findIndex((item) => item.name === plugin.name);
         if (~index) {
-          this[index] = plugin;
+          console.error(`Plugin name must be unique: "${plugin.name}"`);
         } else {
           this.push(plugin);
         }
