@@ -2,11 +2,12 @@ import { getAttrData } from "../utilities/getAttrData";
 import type { Plugin } from "../modules/PluginArray";
 
 export interface AttrConfig {
+  name?: string;
   attr?: string;
   sourceKey?: string;
 }
 
-const defaults: Required<AttrConfig> = {
+const defaults: Partial<AttrConfig> = {
   attr: "config",
   sourceKey: "attr"
 };
