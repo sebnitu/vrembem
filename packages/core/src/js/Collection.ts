@@ -150,7 +150,7 @@ export class Collection<
     await dispatchLifecycleHook("afterUnmount", this);
 
     // Remove plugins and pass collection as an argument
-    for (const plugin of [...this.plugins]) {
+    for (const plugin of [...this.plugins.get("*")]) {
       await this.plugins.remove(plugin.name, this);
     }
 
