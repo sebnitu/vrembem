@@ -1,5 +1,5 @@
-@use "@vrembem/core/config";
 @use "@vrembem/core/css";
+@use "@vrembem/core/theme";
 
 :root {
   // Shiki light theme
@@ -17,7 +17,7 @@
   --astro-code-token-link: #ce3b4a;
 
   // Shiki dark theme
-  &.#{config.get("theme-prefix")}dark {
+  &#{theme.class("dark")} {
     --astro-code-background: #{css.get("background-dark")};
     --astro-code-foreground: #{css.get("foreground")};
     --astro-code-color-text: #{css.get("foreground")};

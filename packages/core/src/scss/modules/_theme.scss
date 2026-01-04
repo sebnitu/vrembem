@@ -10,7 +10,7 @@
 
 /// Set value to prefix all themes with.
 /// @type string
-@include config.set-default("theme-prefix", "vb-theme-");
+@include config.set-default("theme-prefix", "vb-theme");
 
 /// Set the default theme option.
 /// @type string
@@ -50,6 +50,23 @@ $-theme-keys: "light", "dark";
   @if $index {
     $-theme-keys: remove-nth($-theme-keys, $index) !global;
   }
+}
+
+/// Function for outputting a theme class.
+///
+/// @param {string} $theme
+///   The name of the theme.
+///
+/// @return {string}
+///   The theme class with appropriate prefix.
+///
+@function class($theme) {
+  $prefix: config.get("theme-prefix");
+  $delimiter: if(
+    sass($prefix): "-" ; else: ""
+  );
+
+  @return ".#{$prefix}#{$delimiter}#{$theme}";
 }
 
 /// Set a new or modify existing theme properties. These are stored as custom
@@ -279,7 +296,7 @@ $-theme-keys: "light", "dark";
   // Output the default theme and system preference media query under the using
   // the root selector. This should come before the theme class output.
   :root,
-  .#{config.get("theme-prefix")}root {
+  #{class("root")} {
     // Output the default theme
     @include output-theme($component, config.get("theme-default"));
 
@@ -300,7 +317,7 @@ $-theme-keys: "light", "dark";
 
   // This outputs all custom themes using their theme class
   @each $key in $-theme-keys {
-    .#{config.get("theme-prefix")}#{$key} {
+    #{class($key)} {
       @include output-theme($component, $key);
     }
   }
