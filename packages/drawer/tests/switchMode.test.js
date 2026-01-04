@@ -182,7 +182,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
-  const entry = await drawer.get("drawer-2");
+  const entry = drawer.get("drawer-2");
   expect(entry.mql.media).toBe("(min-width: 600px)");
   expect(entry.mode).toBe("inline");
   resizeWindow(400, drawer.collection);
@@ -190,8 +190,6 @@ test("should setup match media breakpoint for drawer on register", async () => {
 });
 
 test("should run teardown methods of all plugins when unmounted", async () => {
-  console.log("TEST", drawer.plugins.length);
   await drawer.unmount();
-  console.log("TEST", drawer.plugins.length);
   expect(drawer.plugins.length).toBe(0);
 });
