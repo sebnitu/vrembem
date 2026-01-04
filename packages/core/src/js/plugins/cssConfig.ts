@@ -13,10 +13,6 @@ const defaults: Partial<CSSConfig> = {
   updateEvent: "updateCustomProps"
 };
 
-// TODO: Find a better way to define which custom properties to fetch. Maybe
-// this should be done in the plugin and we define a preset in popover instead
-// of defining the props array in the component config.
-
 export function cssConfig(options: CSSConfig = {}): Plugin {
   const props: Plugin = {
     name: "cssConfig",

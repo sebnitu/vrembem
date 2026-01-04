@@ -33,7 +33,7 @@ await popover.mount();
 ```
 </CodeExample>
 
-Now when entries are created, `cssConfig` will build a configuration source by getting the values of CSS custom properties listed in the collection's config `customProps` array.
+Now when entries are created, `cssConfig` will build a configuration source by getting the values of CSS custom properties.
 
 <CodeExample lang="html">
 ```html
@@ -51,11 +51,8 @@ It's important to note that the array of properties to fetch will be prefixed wi
 
 <CodeExample lang="js">
 ```js
-// customProps config array:
-popover.config.customProps = ["event", ...];
-
 // Format:
-`--${prefix}${component}-${prop}`
+"--[prefix]-[component]-[property]"
 
 // Output:
 "--vb-popover-event"

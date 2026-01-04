@@ -17,7 +17,7 @@ export function getCustomProps(entry: CollectionEntry): Record<string, string> {
   const result: Record<string, string> = {};
 
   // Get the custom property keys
-  const keys = entry.config.get("customProps");
+  const keys = Object.keys(entry.parent.config);
 
   // Loop through the custom properties object
   for (let i = 0; i < keys.length; i++) {

@@ -23,7 +23,6 @@ export interface PopoverConfig extends CollectionConfig {
   selectorArrow: string;
   stateActive: string;
   customEventPrefix: string;
-  customProps: string[];
   placement: PlacementOptions;
   event: "click" | "hover";
   offset: number;
@@ -46,15 +45,6 @@ export const config: PopoverConfig = {
   customEventPrefix: "popover:",
 
   // Custom properties and their defaults
-  customProps: [
-    "placement",
-    "event",
-    "offset",
-    "flip-padding",
-    "shift-padding",
-    "arrow-padding",
-    "toggle-delay"
-  ],
   placement: "bottom",
   event: "click",
   offset: 0,

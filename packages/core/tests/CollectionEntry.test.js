@@ -8,7 +8,6 @@ document.body.innerHTML = `
 `;
 
 const obj = new Collection({
-  customProps: ["test"],
   test: "asdf"
 });
 

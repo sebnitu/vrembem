@@ -15,7 +15,6 @@ export interface ModalConfig extends CollectionConfig {
   stateOpening: string;
   stateClosing: string;
   stateClosed: string;
-  customProps: string[];
   customEventPrefix: string;
   setTabindex: boolean;
   transition: boolean;
@@ -44,7 +43,6 @@ export const config: ModalConfig = {
   stateClosed: "is-closed",
 
   // Feature configurations
-  customProps: ["transition-duration"],
   customEventPrefix: "modal:",
   setTabindex: true,
   transition: true,
