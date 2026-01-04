@@ -1,6 +1,6 @@
 ---
 title: attrConfig
-description: "Adds the ability to store a configuration source using the value of a data attribute."
+description: "Adds the ability to set a configuration source using the value of a data attribute."
 parent: core
 group: plugins
 slug: core/attrConfig
@@ -16,7 +16,7 @@ import { attrConfig } from "@vrembem/core";
 
 ## Basic usage
 
-There may be a case where you want to be able to pass a custom configuration to a specific collection entry using a data attribute of the HTML element. This can be done by adding the `attrConfig` plugin.
+In cases where you need to be able to pass a custom configuration to a specific collection entry using a data attribute of the HTML element. This can be done by adding the `attrConfig` plugin.
 
 <CodeExample lang="js">
 ```js
@@ -33,7 +33,7 @@ await modal.mount();
 ```
 </CodeExample>
 
-Now you can add a `data-config` attribute to the modal markup and pass in a JSON formatted value to provide entry specific configurations.
+Now add a `data-config` attribute to the modal markup and pass in a JSON formatted value to provide entry specific configurations.
 
 <CodeExample lang="html">
 ```html
