@@ -1,13 +1,81 @@
 ---
 title: cssConfig
-description: "Adds the ability to store a configuration source using the values of CSS custom properties."
+description: "Adds the ability to set a configuration source using the values of CSS custom properties."
 parent: core
 group: plugins
 slug: core/cssConfig
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
-  ```js
-  import { cssConfig } from "@vrembem/core";
-  ```
+```js
+import { cssConfig } from "@vrembem/core";
+```
 </CodeExample>
+
+## Basic usage
+
+In cases where you need to be able to pass a custom configuration to collection entries using CSS custom properties. This can be done by adding the `cssConfig` plugin.
+
+<CodeExample lang="js">
+```js
+import Popover from "@vrembem/modal";
+import { cssConfig } from "@vrembem/core";
+
+const popover = new Popover({
+  plugins: [
+    cssConfig()
+  ]
+});
+
+await popover.mount();
+```
+</CodeExample>
+
+Now when entries are created, `cssConfig` will build a configuration source by getting the values of CSS custom properties listed in the collection's config `customProps` array.
+
+<CodeExample lang="html">
+```html
+<div 
+  id="custom-popover" 
+  class="popover" 
+  styles="--vb-popover-event: hover"
+>
+  ...
+</div>
+```
+</CodeExample>
+
+It's important to note that the array of properties to fetch will be prefixed with the components name and Vrembem custom properties prefix if defined. For example: 
+
+<CodeExample lang="js">
+```js
+// customProps config array:
+popover.config.customProps = ["event", ...];
+
+// Format:
+`--${prefix}${component}-${prop}`
+
+// Output:
+"--vb-popover-event"
+```
+</CodeExample>
+
+The prefix is defined under the custom property `--vb-prefix`, which defaults to `vb-`. Note that custom properties are kebab-case, while their config counterparts are set as camelCase.
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `cssConfig` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"cssConfig"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="sourceKey" type="string" defaults='"attr"'>
+  Determines the key under which CSS custom properties derived configuration data is stored in the entry's ConfigManager.
+</ReferenceCard>
+
+<ReferenceCard name="updateEvent" type="string" defaults='"updateCustomProps"'>
+  The name of the event that triggers an update of the CSS custom properties configuration data.
+</ReferenceCard>
