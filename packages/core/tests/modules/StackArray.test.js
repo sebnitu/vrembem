@@ -19,7 +19,7 @@ describe("StackArray", () => {
     const entry = createEntry("a");
     stack.add(entry);
     expect(stack.length).toBe(1);
-    expect(stack[0]).toBe(entry);
+    expect(stack.top).toBe(entry);
     expect(onChange).toHaveBeenCalled();
   });
 
@@ -38,7 +38,7 @@ describe("StackArray", () => {
     stack.add(a);
     stack.add(b);
     stack.moveToTop(a);
-    expect(stack[stack.length - 1]).toBe(a);
+    expect(stack.top).toBe(a);
   });
 
   it("should return the top entry", () => {
