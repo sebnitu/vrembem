@@ -3,11 +3,14 @@ import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
 export interface CSSConfig {
+  name?: string;
   sourceKey?: string;
+  updateEvent?: string;
 }
 
-const defaults: Required<CSSConfig> = {
-  sourceKey: "css"
+const defaults: Partial<CSSConfig> = {
+  sourceKey: "css",
+  updateEvent: "updateCustomProps"
 };
 
 export function cssConfig(options: CSSConfig = {}): Plugin {
@@ -19,11 +22,11 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
 
   const methods: Partial<Plugin> = {
     setup(parent) {
-      parent.on("updateCustomProps", update, this);
+      parent.on(this.config.updateEvent, update, this);
     },
 
     teardown(parent) {
-      parent.off("updateCustomProps", update);
+      parent.off(this.config.updateEvent, update);
     },
 
     onCreateEntry({ entry }) {

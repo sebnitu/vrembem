@@ -21,8 +21,12 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
     entry.trigger?.setAttribute("aria-expanded", "true");
   }
 
-  // Get the custom property data before opening the popover
-  await entry.parent.emit("updateCustomProps", entry);
+  // If the cssConfig plugin has been added, get the custom property data
+  // before opening the popover.
+  const plugin = entry.parent.plugins.get("cssConfig");
+  if (plugin) {
+    await entry.parent.emit(plugin.config.updateEvent, entry);
+  }
 
   // Get the middleware options for floating ui
   const middlewareOptions = getMiddlewareOptions(entry);
