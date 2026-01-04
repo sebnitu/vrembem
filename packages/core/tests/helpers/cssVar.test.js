@@ -18,7 +18,7 @@ test("should return a CSS custom property with no prefix defined", () => {
 });
 
 test("should return a CSS custom property with vrembem prefix", () => {
-  document.body.style.setProperty("--vb-prefix", "vb-");
+  document.body.style.setProperty("--vb-prefix", "vb");
   const data = cssVar("background-color");
   expect(data).toBe("green");
 });

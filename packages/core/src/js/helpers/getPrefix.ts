@@ -4,5 +4,6 @@
  * @returns {string} The value of the defined prefix variable.
  */
 export function getPrefix(): string {
-  return getComputedStyle(document.body).getPropertyValue("--vb-prefix").trim();
+  const prefix = getComputedStyle(document.body).getPropertyValue("--vb-prefix").trim();
+  return prefix ? `${prefix}-` : "";
 }

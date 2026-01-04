@@ -44,7 +44,7 @@ const customPropertyMarkup = `
 `;
 
 beforeAll(() => {
-  document.body.style.setProperty("--vb-prefix", "vb-");
+  document.body.style.setProperty("--vb-prefix", "vb");
 });
 
 afterEach(() => {
