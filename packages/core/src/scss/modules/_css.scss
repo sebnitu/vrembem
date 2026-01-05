@@ -9,7 +9,7 @@
 
 /// Set value to prefix all custom properties with.
 /// @type string
-@include config.set-default("prefix-variable", "vb-");
+@include config.set-default("prefix-variable", "vb");
 
 /// The custom properties map where all custom properties are stored. These are
 /// stored under component keys with maps of their custom property.
@@ -68,10 +68,15 @@ $-custom-properties: (
 /// @access private
 ///
 @function -prefix($component) {
+  $prefix: config.get("prefix-variable");
+  $delimiter: if(
+    sass($prefix): "-" ; else: ""
+  );
+
   @if $component and $component != "core" and $component != "palette" {
-    @return "--#{config.get("prefix-variable")}#{$component}-";
+    @return "--#{$prefix}#{$delimiter}#{$component}-";
   } @else {
-    @return "--#{config.get("prefix-variable")}";
+    @return "--#{$prefix}#{$delimiter}";
   }
 }
 

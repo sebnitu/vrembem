@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
+@use "@vrembem/core/theme";
 
 .form-control-size {
   @include core.form-control-size(null, "min");
@@ -16,21 +16,21 @@
   transition-timing-function: ease;
 }
 
-.#{config.get("theme-prefix")}root {
+#{theme.class("root")} {
   .theme-icon_root {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.#{config.get("theme-prefix")}light {
+#{theme.class("light")} {
   .theme-icon_light {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.#{config.get("theme-prefix")}dark {
+#{theme.class("dark")} {
   .theme-icon_dark {
     opacity: 1;
     transform: translateY(0);

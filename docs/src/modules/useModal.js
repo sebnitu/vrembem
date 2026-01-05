@@ -7,8 +7,8 @@ if (typeof window !== "undefined") {
   modal = new Modal({
     selectorInert: "main",
     plugins: [
-      attrConfig(),
       cssConfig(),
+      attrConfig(),
       focusTrap(),
       teleport({
         where: ".modals",

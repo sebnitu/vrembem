@@ -5,25 +5,30 @@ type StackArrayConfig = {
   [key: string]: any;
 };
 
-export class StackArray<TEntry extends CollectionEntry> extends Array<TEntry> {
+export class StackArray<TEntry extends CollectionEntry> {
+  #entries: Array<TEntry>;
   config: StackArrayConfig;
 
   constructor(config: StackArrayConfig = {}) {
-    super();
+    this.#entries = [];
     this.config = config;
   }
 
   get copy(): TEntry[] {
-    return [...this];
+    return [...this.#entries];
   }
 
   get top(): TEntry | null {
-    const result = this[this.length - 1];
+    const result = this.#entries[this.#entries.length - 1];
     return result ? result : null;
   }
 
+  get length() {
+    return this.#entries.length;
+  }
+
   updateIndex() {
-    this.forEach((entry, index) => {
+    this.#entries.forEach((entry, index) => {
       entry.el.style.zIndex = "";
 
       const computed = getComputedStyle(entry.el).getPropertyValue("z-index");
@@ -41,19 +46,23 @@ export class StackArray<TEntry extends CollectionEntry> extends Array<TEntry> {
     }
   }
 
+  get(index: number) {
+    return this.#entries[index];
+  }
+
   add(entry: TEntry) {
-    this.push(entry);
+    this.#entries.push(entry);
     this.onChange();
   }
 
   remove(entry: TEntry) {
     // Get the index of the entry
-    const index = this.findIndex((item) => item.id === entry.id);
+    const index = this.#entries.findIndex((item) => item.id === entry.id);
     if (~index) {
       // Remove the z-index styles from the entry
       entry.el.style.zIndex = "";
       // Splice the entry from the stack array
-      this.splice(index, 1);
+      this.#entries.splice(index, 1);
       // Run the onChange callback
       this.onChange();
     }
@@ -61,10 +70,10 @@ export class StackArray<TEntry extends CollectionEntry> extends Array<TEntry> {
 
   moveToTop(entry: TEntry) {
     // Get the index of the entry
-    const index = this.findIndex((item) => item.id === entry.id);
+    const index = this.#entries.findIndex((item) => item.id === entry.id);
     if (~index) {
       // Splice the entry from the stack array
-      this.splice(index, 1);
+      this.#entries.splice(index, 1);
       // Add entry back to the stack array
       this.add(entry);
     }

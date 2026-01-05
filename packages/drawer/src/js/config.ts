@@ -17,7 +17,6 @@ export interface DrawerConfig extends CollectionConfig {
   stateClosing: string;
   stateClosed: string;
   classModal: string;
-  customProps: string[];
   breakpoints: Record<string, string> | null;
   customEventPrefix: string;
   setTabindex: boolean;
@@ -41,7 +40,6 @@ export const config: DrawerConfig = {
   stateClosing: "is-closing",
   stateClosed: "is-closed",
   classModal: "drawer_modal",
-  customProps: ["transition-duration"],
   breakpoints: null,
   customEventPrefix: "drawer:",
   setTabindex: true,

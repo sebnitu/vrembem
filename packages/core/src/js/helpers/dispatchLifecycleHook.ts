@@ -27,7 +27,7 @@ export async function dispatchLifecycleHook<
   }
 
   // Run the lifecycle hook on any plugins that have them
-  for (const plugin of parent.plugins) {
+  for (const plugin of parent.plugins.get("*")) {
     await maybeRunMethod(plugin, name, { parent, entry });
   }
 

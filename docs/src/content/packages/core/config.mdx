@@ -32,7 +32,7 @@ To get started with the configuration system, first import the configuration mod
     @use "@vrembem/core/config";
 
     // 2. Set a custom configuration
-    @include config.set("theme-prefix", "theme-");
+    @include config.set("theme-prefix", "theme");
     ```
   </Fragment>
 </CodeExample>
@@ -51,7 +51,7 @@ To use values from the configuration map, call the `config.get` function with th
     }
 
     // 2. Get the custom value
-    .#{config.get("theme-prefix")}high-contrast {
+    .#{config.get("theme-prefix")}-high-contrast {
       .box {
         background: #fff;
         color: #000;

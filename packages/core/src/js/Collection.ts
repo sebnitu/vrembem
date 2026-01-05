@@ -109,14 +109,9 @@ export class Collection<
   async mount(
     callback: (entry: TEntry) => Promise<TEntry> | TEntry = (entry) => entry
   ) {
-    // Add plugins
+    // Add plugins and pass collection as an argument
     for (const plugin of this.config?.plugins || []) {
-      this.plugins.add(plugin);
-    }
-
-    // Run setup methods on plugins
-    for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "setup", this);
+      await this.plugins.add(plugin, this);
     }
 
     // Dispatch beforeMount lifecycle hooks
@@ -154,14 +149,9 @@ export class Collection<
     // Dispatch afterUnmount lifecycle hooks
     await dispatchLifecycleHook("afterUnmount", this);
 
-    // Run teardown methods on plugins
-    for (const plugin of this.plugins) {
-      await maybeRunMethod(plugin, "teardown", this);
-    }
-
-    // Remove plugins
-    for (const plugin of [...this.plugins]) {
-      this.plugins.remove(plugin.name);
+    // Remove plugins and pass collection as an argument
+    for (const plugin of [...this.plugins.get("*")]) {
+      await this.plugins.remove(plugin.name, this);
     }
 
     return this;

@@ -13,32 +13,26 @@ describe("PluginArray", () => {
     expect(plugins.length).toBe(1);
   });
 
-  it("should override existing plugins when added with the same name", () => {
+  it("should override existing plugins when added with the same name", async () => {
     expect(plugins.length).toBe(1);
-    plugins.add({ name: "fdsa" });
+    await plugins.add({ name: "fdsa" });
     expect(plugins.length).toBe(2);
-    plugins.add({ name: "fdsa" });
+    await plugins.add({ name: "fdsa" });
     expect(plugins.length).toBe(2);
   });
 
   it("should remove a plugin from the plugins array", async () => {
     expect(plugins.length).toBe(2);
-    plugins.remove("asdf");
+    await plugins.remove("asdf");
     expect(plugins.length).toBe(1);
-    plugins.remove("fdsa");
+    await plugins.remove("fdsa");
     expect(plugins.length).toBe(0);
   });
 
-  it("should add an array of plugins at once", () => {
-    expect(plugins.length).toBe(0);
-    plugins.add([
-      { name: "one", options: { a: "a" } },
-      { name: "two", options: { b: "b" } }
-    ]);
-    expect(plugins.length).toBe(2);
-  });
+  it("should return a specific plugin when using the get method", async () => {
+    await plugins.add({ name: "one", options: { a: "a" } });
+    await plugins.add({ name: "two", options: { b: "b" } });
 
-  it("should return a specific plugin when using the get method", () => {
     const pluginOne = plugins.get("one");
     expect(pluginOne.config).toStrictEqual({ a: "a" });
 

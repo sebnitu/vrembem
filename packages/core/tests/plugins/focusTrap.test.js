@@ -26,7 +26,7 @@ describe("focusTrap", () => {
     await collection.unmount();
   });
 
-  it("should run plugin setup method when collection unmounts", async () => {
+  it("should run plugin setup method when collection mounts", async () => {
     expect(collection.plugins.length).toBe(0);
     collection.updateConfig({ plugins: [focusTrap()] });
     await collection.mount();

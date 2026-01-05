@@ -24,7 +24,7 @@ interface ThemeStoreConfig extends ThemeStoreCallbacks {
 }
 
 const defaults: ThemeStoreConfig = {
-  prefix: cssVar("theme-prefix", { fallback: "vb-theme-" }),
+  prefix: cssVar("theme-prefix", { fallback: "vb-theme" }),
   storeKey: "VB:Profile",
   fallback: "root",
   themes: ["root", "light", "dark"],
@@ -62,10 +62,10 @@ export function themeStore(
 
     // Getters
     get class() {
-      return `${config.prefix}${this.theme}`;
+      return `${config.prefix}-${this.theme}`;
     },
     get classes() {
-      return config.themes.map((theme) => `${config.prefix}${theme}`);
+      return config.themes.map((theme) => `${config.prefix}-${theme}`);
     },
     get themes() {
       return config.themes;
@@ -87,7 +87,7 @@ export function themeStore(
           document.documentElement.classList.remove(...this.classes);
 
           // Add the new theme class to the html element
-          document.documentElement.classList.add(`${config.prefix}${value}`);
+          document.documentElement.classList.add(`${config.prefix}-${value}`);
 
           // Run the on change callback
           callback("onChange");

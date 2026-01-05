@@ -86,8 +86,8 @@ test("should close the currently opened modal at the top of the stack", async ()
 
 test("should update the stack array and z-index of remaining active modals", () => {
   expect(modal.stack.length).toBe(2);
-  expect(modal.stack[0]).toBe(modal1);
-  expect(modal.stack[1]).toBe(modal3);
+  expect(modal.stack.get(0)).toBe(modal1);
+  expect(modal.stack.get(1)).toBe(modal3);
 
   expect(modal1.el.style.zIndex).toBe("1001");
   expect(modal2.el.style.zIndex).toBe("");
@@ -103,7 +103,7 @@ test("should close the currently opened modal and update stack array and z-index
   expect(document.activeElement).toBe(modal1.dialog);
 
   expect(modal.stack.length).toBe(1);
-  expect(modal.stack[0]).toBe(modal1);
+  expect(modal.stack.get(0)).toBe(modal1);
 
   expect(modal1.el.style.zIndex).toBe("1001");
   expect(modal2.el.style.zIndex).toBe("");

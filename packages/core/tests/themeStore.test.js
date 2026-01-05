@@ -60,10 +60,10 @@ test("should be able to set callbacks that get run on init and change", () => {
 
 test("should update the config object when options are passed", () => {
   store = themeStore({
-    prefix: "sn-theme-",
+    prefix: "sn-theme",
     storeKey: "SN:Key"
   });
-  expect(store.config.prefix).toBe("sn-theme-");
+  expect(store.config.prefix).toBe("sn-theme");
   expect(store.class).toBe("sn-theme-root");
   store.theme = "light";
   expect(store.class).toBe("sn-theme-light");

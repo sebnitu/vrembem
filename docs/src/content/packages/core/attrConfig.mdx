@@ -1,13 +1,64 @@
 ---
 title: attrConfig
-description: "Adds the ability to store a configuration source using the value of a data attribute."
+description: "Adds the ability to set a configuration source using the value of a data attribute."
 parent: core
 group: plugins
 slug: core/attrConfig
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
-  ```js
-  import { attrConfig } from "@vrembem/core";
-  ```
+```js
+import { attrConfig } from "@vrembem/core";
+```
 </CodeExample>
+
+## Basic usage
+
+To pass custom configurations to specific collection entries using a data attribute of the HTML element, add the `attrConfig` plugin to your collection instantiation.
+
+<CodeExample lang="js">
+```js
+import Modal from "@vrembem/modal";
+import { attrConfig } from "@vrembem/core";
+
+const modal = new Modal({
+  plugins: [
+    attrConfig()
+  ]
+});
+
+await modal.mount();
+```
+</CodeExample>
+
+Now add a `data-config` attribute to the modal markup and pass in a JSON formatted value to provide entry specific configurations.
+
+<CodeExample lang="html">
+```html
+<div 
+  id="custom-modal" 
+  class="modal" 
+  data-config="{'transition': false}"
+>
+  ...
+</div>
+```
+</CodeExample>
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `attrConfig` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"attrConfig"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="attr" type="string" defaults='"config"'>
+  The name of the attribute to get the configuration data from.
+</ReferenceCard>
+
+<ReferenceCard name="sourceKey" type="string" defaults='"attr"'>
+  Determines the key under which attribute-derived configuration data is stored in the entry's ConfigManager.
+</ReferenceCard>

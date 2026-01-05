@@ -66,7 +66,7 @@ beforeEach(() => {
 });
 
 test("should switch drawer to modal when entry.mode property is set to modal", async () => {
-  const entry = await drawer.get("drawer-1");
+  const entry = drawer.get("drawer-1");
   expect(entry.el).not.toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe(null);
 
@@ -77,7 +77,7 @@ test("should switch drawer to modal when entry.mode property is set to modal", a
 });
 
 test("running applyState on a modal drawer should not change its state", async () => {
-  const entry = await drawer.get("drawer-1");
+  const entry = drawer.get("drawer-1");
   expect(entry.mode).toBe("modal");
   expect(entry.state).toBe("closed");
   await entry.applyState();
@@ -85,7 +85,7 @@ test("running applyState on a modal drawer should not change its state", async (
 });
 
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
-  const entry = await drawer.get("drawer-1");
+  const entry = drawer.get("drawer-1");
   expect(entry.el).toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 
@@ -129,7 +129,7 @@ test("should return local store state when switching modes", async () => {
 });
 
 test("should apply indeterminate state when going to inline mode", async () => {
-  const entry = await drawer.get("drawer-1");
+  const entry = drawer.get("drawer-1");
   await entry.open();
   entry.setState("indeterminate");
   expect(entry.mode).toBe("inline");
@@ -164,7 +164,7 @@ test("should apply indeterminate state when going to inline mode", async () => {
 });
 
 test("should store inline state when switching to modal", async () => {
-  const entry = await drawer.get("drawer-3");
+  const entry = drawer.get("drawer-3");
   expect(entry.mode).toBe("modal");
   expect(entry.state).toBe("closed");
   expect(drawer.get(entry.id).inlineState).toBe("opened");
@@ -182,7 +182,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
-  const entry = await drawer.get("drawer-2");
+  const entry = drawer.get("drawer-2");
   expect(entry.mql.media).toBe("(min-width: 600px)");
   expect(entry.mode).toBe("inline");
   resizeWindow(400, drawer.collection);
