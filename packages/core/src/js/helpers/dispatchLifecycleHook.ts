@@ -1,7 +1,6 @@
 import { maybeRunMethod } from "../utilities";
 import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
-import type { Plugin } from "../modules/PluginArray";
 
 /**
  * Dispatches a lifecycle hook to the parent, entry, and its plugins.
