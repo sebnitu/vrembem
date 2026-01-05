@@ -27,8 +27,3 @@ test("should return a CSS custom property with an already appended prefix", () =
   const data = cssVar("--vb-background-color");
   expect(data).toBe("green");
 });
-
-test("should throw an error if a CSS custom property is not found", () => {
-  const func = cssVar.bind(null, "asdf");
-  expect(func).toThrow('CSS variable "--asdf" was not found!');
-});

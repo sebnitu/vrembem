@@ -3,7 +3,9 @@
  *
  * @returns {string} The value of the defined prefix variable.
  */
-export function getPrefix(): string {
-  const prefix = getComputedStyle(document.body).getPropertyValue("--vb-prefix").trim();
-  return prefix ? `${prefix}-` : "";
+export function getPrefix(delimiter: string = ""): string {
+  const prefix = getComputedStyle(document.body)
+    .getPropertyValue("--vb-prefix")
+    .trim();
+  return prefix ? `${prefix}${delimiter}` : "";
 }

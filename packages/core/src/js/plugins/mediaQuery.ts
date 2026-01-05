@@ -103,7 +103,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     // Is the value a key of a breakpoint custom property?
     if (value) {
       const customProp = getComputedStyle(document.body)
-        .getPropertyValue(`--${getPrefix()}breakpoint-${value}`)
+        .getPropertyValue(`--${getPrefix("-")}breakpoint-${value}`)
         .trim();
       value = customProp || value;
     }

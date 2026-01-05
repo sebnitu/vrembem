@@ -22,10 +22,11 @@ export function getCustomProps(entry: CollectionEntry): Record<string, string> {
   // Loop through the custom properties object
   for (let i = 0; i < keys.length; i++) {
     // Get the custom property value
-    const prefix = getPrefix();
     const module = entry.parent.name.toLowerCase();
     const key = toKebab(keys[i]);
-    const value = styles.getPropertyValue(`--${prefix}${module}-${key}`).trim();
+    const value = styles
+      .getPropertyValue(`--${getPrefix("-")}${module}-${key}`)
+      .trim();
     // If a value was found, add it to our results object
     if (value) {
       result[toCamel(key)] = value;
