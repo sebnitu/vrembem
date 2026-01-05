@@ -16,7 +16,7 @@ import { cssConfig } from "@vrembem/core";
 
 ## Basic usage
 
-In cases where you need to be able to pass a custom configuration to collection entries using CSS custom properties. This can be done by adding the `cssConfig` plugin.
+To pass custom configuration to collection entries using CSS custom properties, add the `cssConfig` plugin to your collection instantiation.
 
 <CodeExample lang="js">
 ```js
@@ -33,7 +33,7 @@ await popover.mount();
 ```
 </CodeExample>
 
-Now when entries are created, `cssConfig` will build a configuration source by getting the values of CSS custom properties.
+When entries are created, `cssConfig` will build a configuration source by getting the values of CSS custom properties based on the keys in the collection's config object.
 
 <CodeExample lang="html">
 ```html
@@ -47,19 +47,19 @@ Now when entries are created, `cssConfig` will build a configuration source by g
 ```
 </CodeExample>
 
-It's important to note that the array of properties to fetch will be prefixed with the components name and Vrembem custom properties prefix if defined. For example: 
+Properties are prefixed with the components name and Vrembem custom properties prefix if defined. Custom properties are also kebab-case, while their config counterparts are set as camelCase.
 
 <CodeExample lang="js">
 ```js
-// Format:
-"--[prefix]-[component]-[property]"
+// Config option:
+popover.config.shiftPadding
 
-// Output:
-"--vb-popover-event"
+// Custom property equivalent:
+// --vb-popover-shift-padding
 ```
 </CodeExample>
 
-The prefix is defined under the custom property `--vb-prefix`, which defaults to `vb`. Note that custom properties are kebab-case, while their config counterparts are set as camelCase.
+The prefix is defined under the custom property `--vb-prefix`, which defaults to `vb`.
 
 ## Configuration
 
