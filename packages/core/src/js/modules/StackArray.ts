@@ -46,8 +46,8 @@ export class StackArray<TEntry extends CollectionEntry> {
     }
   }
 
-  get(index: number) {
-    return this.#entries[index];
+  get(index: number | "*") {
+    return index === "*" ? this.#entries : this.#entries[index];
   }
 
   add(entry: TEntry) {
