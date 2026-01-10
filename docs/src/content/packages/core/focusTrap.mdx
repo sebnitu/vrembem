@@ -6,8 +6,79 @@ group: plugins
 slug: core/focusTrap
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
   ```js
   import { focusTrap } from "@vrembem/core";
   ```
 </CodeExample>
+
+## Basic usage
+
+To implement a focus trap in a collection entry, add the `focusTrap` plugin to your collection instantiation.
+
+<CodeExample lang="js">
+```js
+import Modal from "@vrembem/modal";
+import { focusTrap } from "@vrembem/core";
+
+const modal = new Modal({
+  plugins: [
+    focusTrap()
+  ]
+});
+
+await modal.mount();
+```
+</CodeExample>
+
+This will create a focus trap instance for each entry and setup an enable and disable event listener for the collection. By default, a focus trap is enabled on the `"opened"` event and disabled on the `"closed"` event. If additional logic is needed to determine whether or not a focus trap should be enabled, you can pass a function to the `condition` option:
+
+<CodeExample lang="js">
+```js
+const modal = new Modal({
+  plugins: [
+    focusTrap({
+      condition: ({ entry }) => {
+        if (entry.mode === "modal") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+With this condition, the focus trap is only enabled when the `entry.mode` property is equal to `"modal"`. The condition function recieves a context object containing entry, parent collection and `focusTrap` plugin references.
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `focusTrap` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"focusTrap"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="enableEvent" type="string" defaults='"opened"'>
+  The name of the event that should enable the focusTrap.
+</ReferenceCard>
+
+<ReferenceCard name="disableEvent" type="string" defaults='"closed"'>
+  The name of the event that should disable the focusTrap.
+</ReferenceCard>
+
+<ReferenceCard name="condition" type="boolean | () => boolean" defaults='true'>
+  The condition whether or not the focus trap should be enabled or disabled. This can be either a boolean or a function that returns a boolean. A condition function will receive a context object containing:
+
+  ```js
+  {
+    plugin, // The instance of the focusTrap plugin
+    parent, // The parent collection
+    entry // The entry that triggered the event
+  }
+  ```
+</ReferenceCard>
