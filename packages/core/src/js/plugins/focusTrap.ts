@@ -8,13 +8,11 @@ export type FocusTrapEntry = CollectionEntry & {
   dialog: HTMLElement;
 };
 
-export interface FocusTrapConfig<TEntry = FocusTrapEntry> {
+export interface FocusTrapConfig {
   name?: string;
   enableEvent?: string;
   disableEvent?: string;
-  condition?:
-    | boolean
-    | ((context: { plugin: Plugin; parent: any; entry: TEntry }) => boolean);
+  condition?: boolean | (() => boolean);
 }
 
 const defaults: Partial<FocusTrapConfig> = {
