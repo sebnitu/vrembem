@@ -24,7 +24,7 @@ const defaults: Partial<FocusTrapConfig> = {
 };
 
 export function focusTrap(
-  options: FocusTrapConfig<FocusTrapEntry> = {}
+  options: FocusTrapConfig = {}
 ): Plugin<FocusTrapEntry> {
   const props: Plugin<FocusTrapEntry> = {
     name: "focusTrap",
