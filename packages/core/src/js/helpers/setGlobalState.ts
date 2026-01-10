@@ -47,6 +47,6 @@ export function setGlobalState(
   selectorInert: string | null,
   selectorOverflow: string | null
 ): void {
-  setInert(!!state, selectorInert);
-  setOverflowHidden(!!state, selectorOverflow);
+  setInert(state, selectorInert);
+  setOverflowHidden(state, selectorOverflow);
 }

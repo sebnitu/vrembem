@@ -18,7 +18,7 @@
         propStore({
           onChange({ plugin, parent, entry }) {
             if (["opening", "closing"].includes(entry.state)) return;
-            const stackValue = parent.stack.map((item) => item.id);
+            const stackValue = parent.stack.get("*").map((item) => item.id);
             plugin.store.set("stackValue", stackValue);
           }
         }),
