@@ -7,6 +7,7 @@ export type MediaQueryEntry = CollectionEntry & {
 };
 
 export interface MediaQueryConfig<TEntry = MediaQueryEntry> {
+  name?: string;
   attrBreakpoint?: string;
   attrMediaQuery?: string;
   token?: string;
@@ -20,7 +21,7 @@ export interface MediaQueryConfig<TEntry = MediaQueryEntry> {
   ) => void;
 }
 
-const defaults: Required<MediaQueryConfig> = {
+const defaults: Partial<MediaQueryConfig> = {
   // The data attributes to get the breakpoint values from
   attrBreakpoint: "breakpoint",
 
@@ -43,7 +44,7 @@ const defaults: Required<MediaQueryConfig> = {
   // when getting an entries breakpoint value.
   breakpoints: {},
 
-  // Maps entry ID's to a media query strings. Media query may contain a token.
+  // Maps entry ID to a media query strings. Media query may contain a token.
   // This is referenced when getting an entries media query string.
   mediaQueries: {},
 
@@ -75,30 +76,30 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
 
   // Get the media query string for an entry
   function getMediaQuery(
-    this: Plugin,
+    plugin: Plugin,
     entry: MediaQueryEntry
   ): string | undefined {
-    const value = entry.el.getAttribute(`data-${this.config.attrMediaQuery}`);
+    const value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
-    if (!value && entry.id in this.config.mediaQueries) {
-      return this.config.mediaQueries[entry.id];
+    if (!value && entry.id in plugin.config.mediaQueries) {
+      return plugin.config.mediaQueries[entry.id];
     }
-    return value || undefined;
+    return value || plugin.config.mediaQuery;
   }
 
   // Get the breakpoint value for an entry
   function getBreakpointValue(
-    this: Plugin,
+    plugin: Plugin,
     entry: MediaQueryEntry
   ): string | null {
-    let value = entry.el.getAttribute(`data-${this.config.attrBreakpoint}`);
+    let value = entry.el.getAttribute(`data-${plugin.config.attrBreakpoint}`);
     // If no value was returned, is there a breakpoint mapped to the entry id?
-    if (!value && entry.id in this.config.breakpoints) {
-      value = this.config.breakpoints[entry.id];
+    if (!value && entry.id in plugin.config.breakpoints) {
+      value = plugin.config.breakpoints[entry.id];
     }
     // If a value exists is it a key mapped to a value in breakpoints?
-    if (value && value in this.config.breakpoints) {
-      value = this.config.breakpoints[value];
+    if (value && value in plugin.config.breakpoints) {
+      value = plugin.config.breakpoints[value];
     }
     // Is the value a key of a breakpoint custom property?
     if (value) {
@@ -108,17 +109,17 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
       value = customProp || value;
     }
     // Return the value or the default value
-    return value || this.config.breakpoint;
+    return value || plugin.config.breakpoint;
   }
 
   // Sets up the MediaQueryList and event listener for an entry
   function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry) {
     // Get the breakpoint value else return
-    const bp = getBreakpointValue.call(this, entry);
+    const bp = getBreakpointValue(this, entry);
     if (!bp) return;
 
     // Get the media query value else return
-    let mq = getMediaQuery.call(this, entry) || this.config.mediaQuery;
+    let mq = getMediaQuery(this, entry);
     if (!mq) return;
 
     // Create the media query string
