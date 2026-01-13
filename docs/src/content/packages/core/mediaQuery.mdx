@@ -21,15 +21,130 @@ To implement media queries in collection entries, add the `mediaQuery` plugin to
 <CodeExample lang="js">
 ```js
 import Drawer from "@vrembem/Drawer";
-import { focusTrap } from "@vrembem/core";
+import { mediaQuery } from "@vrembem/core";
 
 const drawer = new Drawer({
   plugins: [
-    focusTrap()
+    mediaQuery()
   ]
 });
 
 await drawer.mount();
+```
+</CodeExample>
+
+By default, Drawer comes with a condition preset for the `mediaQuery` plugin that will toggle between inline and modal drawer modes based on the provided breakpoint:
+
+<CodeExample lang="js">
+```js
+onChange(event, entry) {
+  entry.mode = event.matches ? "inline" : "modal";
+}
+```
+</CodeExample>
+
+To provide a custom `onChange` event for a breakpoint, you can pass in a custom function via the configuration options.
+
+<CodeExample lang="js">
+```js
+const drawer = new Drawer({
+  plugins: [
+    mediaQuery({
+      onChange(event, entry) {
+        // Your custom onChange logic here...
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+## Breakpoints
+
+A breakpoint within the context of a media query is a specific CSS unit value that triggers a change to a component. This breakpoint is used in a media query string which is evaluated whenever the viewport size changes.
+
+There are a number of ways that an entry can provide a breakpoint to the `mediaQuery` plugin. The most basic is providing a CSS unit value via an entry element's `data-breakpoint` attribute.
+
+<CodeExample lang="html">
+```html
+<div 
+  id="some-id"
+  class="drawer"
+  data-breakpoint="1000px"
+>
+  ...
+</div>
+```
+</CodeExample>
+
+Alternatively, a breakpoint key can be provided that maps to a value in a CSS custom property (e.g: `--vb-breakpoint-[key]`) or the `breakpoints` config object. The `breakpoints` object can also map entry ID's with a specific breakpoint value.
+
+<CodeExample lang="js">
+```js
+const drawer = new Drawer({
+  plugins: [
+    mediaQuery({
+      breakpoints: {
+        "md": "700px", // Map 700px breakpoint to the `md` breakpoint key
+        "entry-id": "90em" // Map 90em breakpoint to a specific entry ID
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+Finally, a default breakpoint can be set using the `breakpoint` option. All entries that don't have a breakpoint associated with them will default to any value set here.
+
+<CodeExample lang="js">
+```js
+const drawer = new Drawer({
+  plugins: [
+    mediaQuery({
+      breakpoint: "700px"
+    })
+  ]
+});
+```
+</CodeExample>
+
+## Media queries
+
+A media query is a string that defines a condition based on device or viewport characteristics. When the condition is met, it can trigger changes to a layout or component.
+
+There are three primary configuration options that control how media queries are defined and used in the `mediaQuery` plugin:
+
+- `mediaQuery` (defaults to `"(min-width: {{BP}})"`): This is the string used by all entries when a breakpoint is provided. The breakpoint replaces the `"{{BP}}"` value of the string.
+- `mediaQueries`: This is an object where specific media query strings can be mapped to entry IDs. If a media query requires a breakpoint, the `"{{BP}}"` token should be present in the string.
+- `token` (defaults to `"{{BP}}"`): The token that gets replaced within a media query string.
+
+Here is an example of providing a custom media query to a specific drawer entry:
+
+<CodeExample lang="js">
+```js
+const drawer = new Drawer({
+  plugins: [
+    mediaQuery({
+      mediaQueries: {
+        "some-id": "(max-width: {{BP}})"
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+A custom media query can also be provided to an entry using a data attribute on the entry element itself. A breakpoint token can be provided but is not required if the media query is sufficient.
+
+<CodeExample lang="html">
+```html
+<div 
+  id="some-id"
+  class="drawer"
+  data-media-query="(max-width: 700px)"
+>
+  ...
+</div>
 ```
 </CodeExample>
 
@@ -43,14 +158,22 @@ The following configurations can be used to customize the behavior of the `media
 
 <ReferenceCard name="attrBreakpoint" type="string" defaults='"breakpoint"'>
   The data attributes to get the breakpoint values from.
+
+  ```html
+  <div data-breakpoint="sm">...</div>
+  ```
 </ReferenceCard>
 
 <ReferenceCard name="attrMediaQuery" type="string" defaults='"media-query"'>
   The data attributes to get the media query value from.
+
+  ```html
+  <div data-media-query="(orientation: portrait)">...</div>
+  ```
 </ReferenceCard>
 
 <ReferenceCard name="token" type="string" defaults='"{{BP}}"'>
-  The string token to replace in the media query string.
+  The string token to replace in media query strings.
 </ReferenceCard>
 
 <ReferenceCard name="breakpoint" type="string | null" defaults="null">

@@ -28,7 +28,7 @@ const defaults: Partial<MediaQueryConfig> = {
   // The data attributes to get the media query value from
   attrMediaQuery: "media-query",
 
-  // The string token to replace in the media query string
+  // The string token to replace in media query strings
   token: "{{BP}}",
 
   // Sets a global breakpoint. Can be overridden by setting a data attribute
