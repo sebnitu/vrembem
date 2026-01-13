@@ -114,19 +114,21 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
 
   // Sets up the MediaQueryList and event listener for an entry
   function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry) {
-    // Get the breakpoint value else return
-    const bp = getBreakpointValue(this, entry);
-    if (!bp) return;
-
     // Get the media query value else return
-    const mq = getMediaQuery(this, entry);
+    let mq = getMediaQuery(this, entry);
     if (!mq) return;
 
-    // Create the media query string
-    const mqs = mq.replace(new RegExp(`${this.config.token}`, "g"), bp);
+    // If the media query contains a token
+    if (mq.includes(this.config.token)) {
+      // Get the breakpoint value else return
+      const bp = getBreakpointValue(this, entry);
+      if (!bp) return;
+      // Create the media query string
+      mq = mq.replace(new RegExp(`${this.config.token}`, "g"), bp);
+    }
 
     // Setup MediaQueryList object and event listener
-    entry.mql = window.matchMedia(mqs);
+    entry.mql = window.matchMedia(mq);
     entry.mql.onchange = (event: MediaQueryListEvent) => {
       this.config.onChange(event, entry);
     };
