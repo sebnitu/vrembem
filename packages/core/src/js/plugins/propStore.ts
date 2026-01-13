@@ -18,6 +18,7 @@ type contextObject = {
 };
 
 export interface PropStoreConfig {
+  name?: string;
   prop: string;
   value?: any | ((context: contextObject) => any);
   keyPrefix?: string;
@@ -32,7 +33,7 @@ export interface PropStoreConfig {
   ) => void | Promise<void>;
 }
 
-const defaults: Required<PropStoreConfig> = {
+const defaults: Partial<PropStoreConfig> = {
   // The property on entry objects to watch
   prop: "state",
 
