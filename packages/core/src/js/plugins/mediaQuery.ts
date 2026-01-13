@@ -119,7 +119,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     if (!bp) return;
 
     // Get the media query value else return
-    let mq = getMediaQuery(this, entry);
+    const mq = getMediaQuery(this, entry);
     if (!mq) return;
 
     // Create the media query string
