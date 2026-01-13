@@ -6,8 +6,69 @@ group: plugins
 slug: core/mediaQuery
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
   ```js
   import { mediaQuery } from "@vrembem/core";
   ```
 </CodeExample>
+
+## Basic usage
+
+To implement media queries in collection entries, add the `mediaQuery` plugin to your collection instantiation.
+
+<CodeExample lang="js">
+```js
+import Drawer from "@vrembem/Drawer";
+import { focusTrap } from "@vrembem/core";
+
+const drawer = new Drawer({
+  plugins: [
+    focusTrap()
+  ]
+});
+
+await drawer.mount();
+```
+</CodeExample>
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `mediaQuery` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"mediaQuery"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="attrBreakpoint" type="string" defaults='"breakpoint"'>
+  The data attributes to get the breakpoint values from.
+</ReferenceCard>
+
+<ReferenceCard name="attrMediaQuery" type="string" defaults='"media-query"'>
+  The data attributes to get the media query value from.
+</ReferenceCard>
+
+<ReferenceCard name="token" type="string" defaults='"{{BP}}"'>
+  The string token to replace in the media query string.
+</ReferenceCard>
+
+<ReferenceCard name="breakpoint" type="string | null" defaults="null">
+  Sets a global breakpoint. Can be overridden by setting a data attribute value. Notice: setting this option will enable a media query breakpoint on all entries.
+</ReferenceCard>
+
+<ReferenceCard name="mediaQuery" type="string" defaults='"(min-width: {{BP}})"'>
+  The default media query string to use. Can be overridden by setting a data attribute value.
+</ReferenceCard>
+
+<ReferenceCard name="breakpoints" type="Record<string, string>" defaults='{}'>
+  Maps entry ID or breakpoint key to breakpoint values. This is referenced when getting an entries breakpoint value.
+</ReferenceCard>
+
+<ReferenceCard name="mediaQueries" type="Record<string, string>" defaults='{}'>
+  Maps entry ID to a media query strings. Media query may contain a token. This is referenced when getting an entries media query string.
+</ReferenceCard>
+
+<ReferenceCard name="onChange" type="function" defaults='() => {}'>
+  The function to run when the MediaQueryList triggers a "change" event. This is run once on initial mount. This function recieves two arguments: the event (`MediaQueryList` initially and `MediaQueryListEvent` on change) and the entry object that triggered the event.
+</ReferenceCard>
