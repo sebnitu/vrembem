@@ -79,10 +79,10 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     plugin: Plugin,
     entry: MediaQueryEntry
   ): string | undefined {
-    const value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
+    let value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
     if (!value && entry.id in plugin.config.mediaQueries) {
-      return plugin.config.mediaQueries[entry.id];
+      value = plugin.config.mediaQueries[entry.id];
     }
     return value || plugin.config.mediaQuery;
   }
@@ -101,7 +101,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     if (value && value in plugin.config.breakpoints) {
       value = plugin.config.breakpoints[value];
     }
-    // Is the value a key of a breakpoint custom property?
+    // If a value exists is it a key of a breakpoint custom property?
     if (value) {
       const customProp = getComputedStyle(document.body)
         .getPropertyValue(`--${getPrefix("-")}breakpoint-${value}`)
