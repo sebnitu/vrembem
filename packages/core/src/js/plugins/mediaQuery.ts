@@ -64,7 +64,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
     // Run when an entry is created
     // Sets up the MediaQueryList and event listener
     onCreateEntry({ entry }) {
-      setupMediaQueryList.call(this, entry as MediaQueryEntry);
+      setupMediaQueryList(this, entry as MediaQueryEntry);
     },
 
     // Run when an entry is destroyed
@@ -113,28 +113,28 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   }
 
   // Sets up the MediaQueryList and event listener for an entry
-  function setupMediaQueryList(this: Plugin, entry: MediaQueryEntry) {
+  function setupMediaQueryList(plugin: Plugin, entry: MediaQueryEntry) {
     // Get the media query value else return
-    let mq = getMediaQuery(this, entry);
+    let mq = getMediaQuery(plugin, entry);
     if (!mq) return;
 
     // If the media query contains a token
-    if (mq.includes(this.config.token)) {
+    if (mq.includes(plugin.config.token)) {
       // Get the breakpoint value else return
-      const bp = getBreakpointValue(this, entry);
+      const bp = getBreakpointValue(plugin, entry);
       if (!bp) return;
       // Create the media query string
-      mq = mq.replace(new RegExp(`${this.config.token}`, "g"), bp);
+      mq = mq.replace(new RegExp(`${plugin.config.token}`, "g"), bp);
     }
 
     // Setup MediaQueryList object and event listener
     entry.mql = window.matchMedia(mq);
     entry.mql.onchange = (event: MediaQueryListEvent) => {
-      this.config.onChange(event, entry);
+      plugin.config.onChange(event, entry);
     };
 
     // Run the on change function for the initial match check
-    this.config.onChange(entry.mql, entry);
+    plugin.config.onChange(entry.mql, entry);
   }
 
   // Removes the MediaQueryList and event listener for an entry
