@@ -78,7 +78,7 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
   function getMediaQuery(
     plugin: Plugin,
     entry: MediaQueryEntry
-  ): string | undefined {
+  ): string | null {
     let value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
     // Check if a media query exists in mediaQueries object using entry ID
     if (!value && entry.id in plugin.config.mediaQueries) {
