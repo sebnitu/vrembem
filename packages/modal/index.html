@@ -16,23 +16,23 @@
       plugins: [
         focusTrap(),
         propStore({
-          onChange({ plugin, parent, entry }) {
-            if (["opening", "closing"].includes(entry.state)) return;
-            const stackValue = parent.stack.get("*").map((item) => item.id);
-            plugin.store.set("stackValue", stackValue);
+          async afterMount({ plugin, parent, entry }) {
+            // Open all the modals stored in stackValue
+            for (const entry of plugin.store.get("stackValue", [])) {
+              await parent.open(entry, false);
+            }
+            // Add listener for when the stack changes
+            parent.on("stackChange", () => {
+              // Store the current stack value when it changes
+              const stackValue = parent.stack.get("*").map((item) => item.id);
+              plugin.store.set("stackValue", stackValue);
+            });
           }
         }),
         teleport({
           where: ".modals"
         })
       ]
-    });
-
-    modal.on("afterMount", () => {
-      const plugin = modal.plugins.get("propStore");
-      for (const entry of plugin.store.get("stackValue", [])) {
-        modal.open(entry, false);
-      }
     });
 
     window["modal"] = await modal.mount();
