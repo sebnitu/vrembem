@@ -26,11 +26,18 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     // Setup stack property using StackArray
     this.stack = new StackArray({
       onChange: () => {
+        // Update the global state
         setGlobalState(
           !!this.stack.top,
           this.config.selectorInert,
           this.config.selectorOverflow
         );
+        // Update the focus state
+        if (this.stack.top) {
+          updateFocusState(this.stack.top.parent);
+        }
+        // Emit the stack change event
+        this.emit("stackChange");
       }
     });
   }
@@ -39,44 +46,29 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     return this.stack.top;
   }
 
-  async open(
-    id: string,
-    transition?: boolean,
-    focus?: boolean
-  ): Promise<ModalEntry> {
+  async open(id: string, transition?: boolean): Promise<ModalEntry> {
     const entry = this.getOrThrow(id);
-    return open(entry, transition, focus);
+    return open(entry, transition);
   }
 
-  async close(
-    id?: string,
-    transition?: boolean,
-    focus?: boolean
-  ): Promise<ModalEntry | null> {
+  async close(id?: string, transition?: boolean): Promise<ModalEntry | null> {
     const entry = id ? this.getOrThrow(id) : this.active;
-    return close(entry, transition, focus);
+    return close(entry, transition);
   }
 
   async replace(
     id: string,
-    transition?: boolean,
-    focus?: boolean
+    transition?: boolean
   ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
     const entry = this.getOrThrow(id);
-    return replace(entry, transition, focus);
+    return replace(entry, transition);
   }
 
   async closeAll(
     exclude?: string,
-    transition?: boolean,
-    focus: boolean = true
+    transition?: boolean
   ): Promise<ModalEntry[]> {
-    const result = await closeAll.call(this, exclude, transition);
-    // Update focus if the focus param is true
-    if (focus) {
-      updateFocusState(this);
-    }
-    return result;
+    return await closeAll.call(this, exclude, transition);
   }
 
   async afterMount() {
