@@ -7,6 +7,7 @@ export interface CollectionConfig<
   TEntry extends CollectionEntry = CollectionEntry
 > {
   selector: string;
+  name?: string;
   entryClass?: CollectionEntryConstructor<TEntry>;
   plugins?: Plugin[];
   presets?: Record<string, Record<string, any>>;
@@ -38,8 +39,8 @@ export class Collection<
   plugins: PluginArray;
 
   constructor(options: Partial<TConfig> = {}) {
-    this.name = this.constructor.name;
     this.config = { ...defaults, ...options } as TConfig;
+    this.name = this.config.name || this.constructor.name;
     this.entryClass = (this.config.entryClass ||
       CollectionEntry) as CollectionEntryConstructor<TEntry>;
     this.plugins = new PluginArray(this.config.presets);
