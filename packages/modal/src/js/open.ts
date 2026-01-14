@@ -1,11 +1,9 @@
 import { transition } from "@vrembem/core";
-import { updateFocusState } from "./helpers/updateFocusState";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function open(
   entry: ModalEntry,
-  transitionOverride?: boolean,
-  focus: boolean = true
+  transitionOverride?: boolean
 ): Promise<ModalEntry> {
   // Maybe add modal to top of stack
   entry.parent.stack.moveToTop(entry);
@@ -38,11 +36,6 @@ export async function open(
 
     // Update modal state
     entry.state = "opened";
-  }
-
-  // Update focus if the focus param is true
-  if (focus) {
-    updateFocusState(entry.parent);
   }
 
   // Dispatch custom opened event

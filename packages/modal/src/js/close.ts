@@ -1,11 +1,9 @@
 import { transition } from "@vrembem/core";
-import { updateFocusState } from "./helpers/updateFocusState";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function close(
   entry: ModalEntry | null,
-  transitionOverride?: boolean,
-  focus: boolean = true
+  transitionOverride?: boolean
 ): Promise<ModalEntry | null> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
@@ -43,11 +41,6 @@ export async function close(
 
     // Update modal state
     entry.state = "closed";
-
-    // Update focus if the focus param is true
-    if (focus) {
-      updateFocusState(entry.parent);
-    }
 
     // Dispatch custom closed event
     entry.el.dispatchEvent(

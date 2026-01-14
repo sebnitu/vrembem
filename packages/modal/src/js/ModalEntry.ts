@@ -21,22 +21,18 @@ export class ModalEntry extends CollectionEntry {
     return this.dialog.matches(this.config.get("selectorRequired"));
   }
 
-  async open(transition?: boolean, focus?: boolean): Promise<ModalEntry> {
-    return open(this, transition, focus);
+  async open(transition?: boolean): Promise<ModalEntry> {
+    return open(this, transition);
   }
 
-  async close(
-    transition?: boolean,
-    focus?: boolean
-  ): Promise<ModalEntry | null> {
-    return close(this, transition, focus);
+  async close(transition?: boolean): Promise<ModalEntry | null> {
+    return close(this, transition);
   }
 
   async replace(
-    transition?: boolean,
-    focus?: boolean
+    transition?: boolean
   ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
-    return replace(this, transition, focus);
+    return replace(this, transition);
   }
 
   async deregister() {
