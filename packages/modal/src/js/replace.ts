@@ -1,9 +1,11 @@
 import { open } from "./open";
+import { updateFocusState } from "./helpers/updateFocusState";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function replace(
   entry: ModalEntry,
-  transition?: boolean
+  transition?: boolean,
+  focus: boolean = true
 ): Promise<{ opened: ModalEntry; closed: ModalEntry[] }> {
   // Setup results for return
   let resultOpened: ModalEntry, resultClosed: ModalEntry[];
@@ -17,8 +19,13 @@ export async function replace(
     // Await both promises and destructure the results
     [resultClosed, resultOpened] = await Promise.all([
       entry.parent.closeAll("", transition),
-      open(entry, transition)
+      open(entry, transition, false)
     ]);
+  }
+
+  // Update focus if the focus param is true
+  if (focus) {
+    updateFocusState(entry.parent);
   }
 
   // Return the modals there were opened and closed

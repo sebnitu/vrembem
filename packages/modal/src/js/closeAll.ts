@@ -11,7 +11,7 @@ export async function closeAll(
   await Promise.all(
     this.stack.copy.map(async (entry) => {
       if (exclude && exclude === entry.id) return;
-      result.push((await close(entry, transition)) as ModalEntry);
+      result.push((await close(entry, transition, false)) as ModalEntry);
     })
   );
   return result;
