@@ -37,8 +37,9 @@ const defaults: Partial<PropStoreConfig> = {
   // The property on entry objects to watch
   prop: "state",
 
-  // The default value or a function to compute the initial value
-  value: null,
+  // The initial value or a function to compute the initial value of the watched
+  // property. Will default to the local store value if it exists.
+  value: ({ entry }: contextObject) => entry.store,
 
   // The local storage key prefix
   keyPrefix: "VB:",

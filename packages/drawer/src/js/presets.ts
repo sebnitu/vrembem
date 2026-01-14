@@ -31,7 +31,6 @@ const presets: {
   },
   propStore: {
     prop: "inlineState",
-    value: ({ entry }: { entry: PropStoreEntry }) => entry.store,
     condition: ({ entry }) =>
       ["opened", "closed", "indeterminate"].includes(entry.state),
     onChange: ({ entry }) => entry.applyState()
