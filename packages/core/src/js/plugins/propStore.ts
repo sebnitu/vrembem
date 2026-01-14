@@ -74,7 +74,7 @@ export function propStore(
     },
 
     async onDestroyEntry({ entry }) {
-      await removePropStore(this, entry);
+      await teardownPropStore(this, entry);
     }
   };
 
@@ -132,7 +132,7 @@ export function propStore(
       entry[plugin.config.prop];
   }
 
-  async function removePropStore(
+  async function teardownPropStore(
     plugin: PropStorePlugin,
     entry: PropStoreEntry
   ) {
