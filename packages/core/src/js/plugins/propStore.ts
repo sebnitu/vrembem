@@ -82,9 +82,11 @@ export function propStore(
     plugin: PropStorePlugin,
     entry: PropStoreEntry
   ) {
+    // Setup the context object that is passed to condition, onChange and value
+    const contextObj = { plugin: plugin, parent: entry.parent, entry };
+
     // Store the initial property value. Set to null if property doesn't exist
     let _value = entry[plugin.config.prop] || null;
-    const contextObj = { plugin: plugin, parent: entry.parent, entry };
 
     // Define a getter and setter for the property
     Object.defineProperty(entry, plugin.config.prop, {
@@ -115,7 +117,7 @@ export function propStore(
       }
     });
 
-    // Create the store object for binding entry to its local store value
+    // Create the store alias that binds entry to its local store value
     Object.defineProperty(entry, "store", {
       configurable: true,
       get: () => {
