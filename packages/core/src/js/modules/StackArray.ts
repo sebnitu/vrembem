@@ -2,7 +2,6 @@ import type { CollectionEntry } from "../CollectionEntry";
 
 type StackArrayConfig = {
   onChange?: () => void;
-  [key: string]: any;
 };
 
 export class StackArray<TEntry extends CollectionEntry> {
@@ -48,6 +47,17 @@ export class StackArray<TEntry extends CollectionEntry> {
 
   get(index: number | "*") {
     return index === "*" ? this.#entries : this.#entries[index];
+  }
+
+  order(newOrder: string[]) {
+    // Map entries to their associated ID for easier lookup
+    const idToEntry = new Map(this.#entries.map((entry) => [entry.id, entry]));
+    // Reorder entries based on the ids in the provided order array
+    this.#entries = newOrder
+      .map((id) => idToEntry.get(id))
+      .filter((entry): entry is TEntry => !!entry);
+    // Run the onChange callback
+    this.onChange();
   }
 
   add(entry: TEntry) {
