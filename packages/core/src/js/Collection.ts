@@ -3,8 +3,11 @@ import { EventEmitter, PluginArray, Plugin } from "./modules";
 import { dispatchLifecycleHook } from "./helpers";
 import { maybeRunMethod } from "./utilities";
 
-export interface CollectionConfig {
+export interface CollectionConfig<
+  TEntry extends CollectionEntry = CollectionEntry
+> {
   selector: string;
+  entryClass?: CollectionEntryConstructor<TEntry>;
   plugins?: Plugin[];
   presets?: Record<string, Record<string, any>>;
 }
@@ -30,14 +33,15 @@ export class Collection<
   // Public fields assigned in constructor
   name: string;
   collection: TEntry[] = [];
-  entryClass: CollectionEntryConstructor<TEntry> =
-    CollectionEntry as CollectionEntryConstructor<TEntry>;
+  entryClass: CollectionEntryConstructor<TEntry>;
   config: TConfig;
   plugins: PluginArray;
 
   constructor(options: Partial<TConfig> = {}) {
     this.name = this.constructor.name;
     this.config = { ...defaults, ...options } as TConfig;
+    this.entryClass = (this.config.entryClass ||
+      CollectionEntry) as CollectionEntryConstructor<TEntry>;
     this.plugins = new PluginArray(this.config.presets);
   }
 
