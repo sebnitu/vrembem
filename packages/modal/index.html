@@ -28,7 +28,7 @@
       ]
     });
 
-    modal.on("afterMount", function () {
+    modal.on("afterMount", () => {
       const plugin = modal.plugins.get("propStore");
       for (const entry of plugin.store.get("stackValue", [])) {
         modal.open(entry, false);
