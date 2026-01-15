@@ -123,8 +123,8 @@
         core.attrConfig(),
         core.propStore({
           prop: "storeState",
-          onChange({ entry }) {
-            entry.state = entry.storeState;
+          onChange({ entry }, newValue) {
+            entry.state = newValue;
           },
           afterMount({ parent }) {
             parent.checkWinConditions();
