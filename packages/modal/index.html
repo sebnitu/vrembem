@@ -16,9 +16,10 @@
       plugins: [
         focusTrap(),
         propStore({
+          // Disable automatic local storage
           condition: false,
           async afterMount({ plugin, parent, entry }) {
-            // Open all the modals stored in stackValue
+            // Open all the modals stored in stackOrder
             for (const entry of plugin.store.get("stackOrder", [])) {
               await parent.open(entry, false);
             }
