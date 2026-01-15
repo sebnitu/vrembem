@@ -49,6 +49,7 @@
     class TicTacToe extends core.Collection {
       constructor(options) {
         super(options);
+        this.name = "TicTacToe";
         this.entryClass = TicTacToeCell;
         this.currentPlayer = "X";
         this.winner = false;
@@ -154,7 +155,7 @@
     window["ttt2"] = await ticTacToe2.mount();
     window["ttt3"] = await ticTacToe3.mount();
 
-    // propStore Test
+    // Using propStore
 
     const inputs = new core.Collection({
       selector: ".input-store",
@@ -163,6 +164,13 @@
           prop: "value",
           onChange({ entry }, newValue) {
             entry.el.value = newValue;
+          },
+          afterMount({ parent }) {
+            parent.collection.forEach((entry) => {
+              entry.el.addEventListener("input", (event) => {
+                entry.value = event.target.value;
+              });
+            });
           }
         })
       ]
@@ -170,11 +178,6 @@
 
     window["inputs"] = await inputs.mount();
 
-    inputs.collection.forEach((entry) => {
-      entry.el.addEventListener("input", (event) => {
-        entry.value = event.target.value;
-      });
-    });
   </script>
   <style>
     .tictactoe-wrapper {
