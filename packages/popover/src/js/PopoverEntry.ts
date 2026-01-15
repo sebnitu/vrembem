@@ -26,7 +26,7 @@ export class PopoverEntry extends CollectionEntry {
   };
   state: string = "closed";
   trigger: HTMLElement | null = null;
-  toggleDelayId: NodeJS.Timeout | null = null;
+  toggleDelayId: number | null = null;
   floatingCleanup: () => void = () => {};
 
   constructor(parent: Popover, query: string | HTMLElement) {
