@@ -31,6 +31,7 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
           this.config.selectorInert,
           this.config.selectorOverflow
         );
+        this.emit("stackChange");
       }
     });
   }

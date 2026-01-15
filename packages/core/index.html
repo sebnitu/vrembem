@@ -49,6 +49,7 @@
     class TicTacToe extends core.Collection {
       constructor(options) {
         super(options);
+        this.name = "TicTacToe";
         this.entryClass = TicTacToeCell;
         this.currentPlayer = "X";
         this.winner = false;
@@ -119,7 +120,24 @@
       fdsa: "",
       plugins: [
         core.cssConfig(),
-        core.attrConfig()
+        core.attrConfig(),
+        core.propStore({
+          prop: "storeState",
+          onChange({ entry }, newValue) {
+            entry.state = newValue;
+          },
+          afterMount({ parent }) {
+            parent.checkWinConditions();
+            parent.on("afterTurn", (entry) => {
+              entry.store = entry.state;
+            });
+            parent.on("reset", () => {
+              parent.collection.forEach((entry) => {
+                entry.store = "";
+              });
+            })
+          }
+        })
       ]
     });
 
@@ -136,6 +154,30 @@
     window["ttt1"] = await ticTacToe1.mount();
     window["ttt2"] = await ticTacToe2.mount();
     window["ttt3"] = await ticTacToe3.mount();
+
+    // Using propStore
+
+    const inputs = new core.Collection({
+      selector: ".input-store",
+      plugins: [
+        core.propStore({
+          prop: "value",
+          onChange({ entry }, newValue) {
+            entry.el.value = newValue;
+          },
+          afterMount({ parent }) {
+            parent.collection.forEach((entry) => {
+              entry.el.addEventListener("input", (event) => {
+                entry.value = event.target.value;
+              });
+            });
+          }
+        })
+      ]
+    });
+
+    window["inputs"] = await inputs.mount();
+
   </script>
   <style>
     .tictactoe-wrapper {
@@ -215,6 +257,13 @@
   </header>
 
   <section class="section">
+
+    <div class="section__container max-width-xs padding-bottom-xl spacing">
+      <input id="input-1" type="text" class="input input-store" />
+      <input id="input-2" type="text" class="input input-store" />
+      <input id="input-3" type="text" class="input input-store" />
+    </div>
+    
     <div class="section__container max-width-xs grid grid_cols_3">
       
       <div id="ttt-1" class="tictactoe-wrapper">

@@ -33,7 +33,7 @@ describe("propStore", () => {
     expect(typeof plugin.config.onChange).toBe("function");
     expect(typeof plugin.config.condition).toBe("boolean");
     await plugin.config.onChange();
-    expect(plugin.config.condition).toBe(false);
+    expect(plugin.config.condition).toBe(true);
   });
 
   it("should remove the propStore plugin when the remove method is called", async () => {

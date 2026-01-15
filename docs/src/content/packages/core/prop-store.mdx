@@ -1,0 +1,268 @@
+---
+title: propStore
+description: "Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management."
+parent: core
+group: plugins
+---
+
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
+<CodeExample lang="js">
+  ```js
+  import { propStore } from "@vrembem/core";
+  ```
+</CodeExample>
+
+## Basic usage
+
+To implement property storage in collection entries, add the `propStore` plugin to your collection instantiation.
+
+<CodeExample lang="js">
+```js
+import { Collection, propStore } from "@vrembem/core";
+
+const inputs = new Collection({
+  selector: ".input-store",
+  plugins: [
+    propStore()
+  ]
+});
+
+await inputs.mount();
+```
+</CodeExample>
+
+By default, `propStore` will watch the `state` property of your entries for changes. Whenever the watched property changes, the new value is stored in local storage and the provided `onChange` function is fired.
+
+The value stored in local storage is also aliased to the `entry.store` property as a getter/setter.
+
+There may also be cases where you want to avoid storing transitional states in local storage. For these cases, you can provide a `condition` function to evaluate these cases which receives as arguments a context object as well as new and old values of the watched property.
+
+<CodeExample lang="js">
+```js
+propStore({
+  // Condition functions should return a boolean
+  condition({ entry }) {
+    // Prevent storing these transitional states in local storage
+    return !["opening", "closing"].includes(entry.state);
+  }
+})
+```
+</CodeExample>
+
+### Example
+
+In this example, we'll create a new collection for a group of input fields where we want to persist their input values. First, we'll set up `propStore` to watch the `value` property. Whenever the `value` property changes, we'll use the `onChange` callback to update the value of our input fields.
+
+<CodeExample lang="js">
+```js
+import { Collection, propStore } from "@vrembem/core";
+
+const inputs = new Collection({
+  selector: ".input-store",
+  plugins: [
+    propStore({
+      prop: "value",
+      onChange({ entry }, newValue) {
+        entry.el.value = newValue;
+      }
+    })
+  ]
+});
+
+await inputs.mount();
+```
+</CodeExample>
+
+We can also provide an `afterMount` lifecycle hook to `propStore` where we can add an event listener to collection entry inputs. Here we just want to update our `entry.value` property whenever an input value changes.
+
+<CodeExample lang="js">
+```js
+const inputs = new Collection({
+  selector: ".input-store",
+  plugins: [
+    propStore({
+      prop: "value",
+      onChange({ entry }, newValue) {
+        entry.el.value = newValue;
+      },
+      afterMount({ parent }) {
+        parent.collection.forEach((entry) => {
+          entry.el.addEventListener("input", (event) => {
+            entry.value = event.target.value;
+          });
+        });
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+Lastly, we need some input markup with our required selector to finish up the example. Each input now uses `propStore` to persist their input values across page reloads.
+
+<CodeExample tabs>
+<Fragment slot="output">
+  <div class="spacing">
+    <input id="input-1" type="text" class="input input-store" />
+    <input id="input-2" type="text" class="input input-store" />
+    <input id="input-3" type="text" class="input input-store" />
+  </div>
+</Fragment>
+<Fragment slot="tab-html">
+```html
+<input id="input-1" type="text" class="input input-store" />
+<input id="input-2" type="text" class="input input-store" />
+<input id="input-3" type="text" class="input input-store" />
+```
+</Fragment>
+<Fragment slot="tab-js">
+```js
+import { Collection, propStore } from "@vrembem/core";
+
+const inputs = new Collection({
+  selector: ".input-store",
+  plugins: [
+    propStore({
+      prop: "value",
+      onChange({ entry }, newValue) {
+        entry.el.value = newValue;
+      },
+      afterMount({ parent }) {
+        parent.collection.forEach((entry) => {
+          entry.el.addEventListener("input", (event) => {
+            entry.value = event.target.value;
+          });
+        });
+      }
+    })
+  ]
+});
+
+await inputs.mount();
+```
+</Fragment>
+</CodeExample>
+
+## Use cases
+
+There are two common use cases for `propStore` in both Modal and Drawer components. For Modals, you may want to persist modal state across page load and refresh. Here is an example to accomplish this while also maintaining nested modal support:
+
+<CodeExample lang="js">
+```js
+import Modal from "@vrembem/modal";
+import { propStore } from "@vrembem/core";
+
+const modal = new Modal({
+  selectorInert: "main",
+  plugins: [
+    propStore({
+      // Disable automatic local storage
+      condition: false,
+      async afterMount({ plugin, parent, entry }) {
+        // Open all the modals stored in stackOrder
+        for (const entry of plugin.store.get("stackOrder", [])) {
+          await parent.open(entry, false);
+        }
+        // Add listener for when the stack changes
+        parent.on("stackChange", () => {
+          // Store the current stack value when it changes
+          const stackOrder = parent.stack.get("*").map((item) => item.id);
+          plugin.store.set("stackOrder", stackOrder);
+        });
+      }
+    })
+  ]
+});
+
+await modal.mount();
+```
+</CodeExample>
+
+For Drawers, it is common to persist the state of inline drawers. Drawers come with a preset for this feature so all that's needed is to include the `propStore` plugin.
+
+<CodeExample lang="js">
+```js
+import Drawer from "@vrembem/drawer";
+import { propStore } from "@vrembem/core";
+
+const drawer = new Drawer({
+  plugins: [
+    propStore()
+  ]
+});
+
+await drawer.mount();
+```
+</CodeExample>
+
+Drawer comes pre-configured with these options when `propStore` is used:
+
+<CodeExample lang="js">
+```js
+propStore: {
+  prop: "inlineState",
+  onChange: ({ entry }) => entry.applyState()
+}
+```
+</CodeExample>
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `propStore` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"propStore"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="keyPrefix" type="string" defaults='"VB:"'>
+  The local storage key prefix.
+</ReferenceCard>
+
+<ReferenceCard name="key" type="string" defaults='""'>
+  The local storage key to use. If not provided, module name and prop name will be used e.g., `"VB:ModalState"`.
+</ReferenceCard>
+
+<ReferenceCard name="prop" type="string" defaults='"state"'>
+  The property on entries to watch for changes.
+</ReferenceCard>
+
+<ReferenceCard name="value" type="any | () => any" defaults='entry.store'>
+  The initial value or a function to compute the initial value of the watched property. Will default to the local store value if it exists. Value functions receive a context object as an argument:
+
+  ```js
+  {
+    plugin, // The instance of the propStore plugin
+    parent, // The parent collection
+    entry // The entry
+  }
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="condition" type="boolean | () => boolean" defaults='true'>
+  Condition to determine whether or not to store the value in local storage. Can be either a boolean or a function that returns a boolean value. Condition functions receive a context object as well as the new and old values of the updated property as arguments.
+
+  ```js
+  {
+    plugin, // The instance of the propStore plugin
+    parent, // The parent collection
+    entry // The entry
+  },
+  newValue, // The new value assigned to the property
+  oldValue // The old value previously assigned to the property
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="onChange" type="function" defaults='() => void'>
+  The function to run whenever the value of the watched property changes. The `onChange` function receive a context object as well as the new and old values of the updated property as arguments.
+
+  ```js
+  {
+    plugin, // The instance of the propStore plugin
+    parent, // The parent collection
+    entry // The entry
+  },
+  newValue, // The new value assigned to the property
+  oldValue // The old value previously assigned to the property
+  ```
+</ReferenceCard>
