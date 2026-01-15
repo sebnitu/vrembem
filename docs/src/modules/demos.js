@@ -25,15 +25,16 @@ const inputs = new Collection({
       prop: "value",
       onChange({ entry }, newValue) {
         entry.el.value = newValue;
+      },
+      afterMount({ parent }) {
+        parent.collection.forEach((entry) => {
+          entry.el.addEventListener("input", (event) => {
+            entry.value = event.target.value;
+          });
+        });
       }
     })
   ]
 });
 
 await inputs.mount();
-
-inputs.collection.forEach((entry) => {
-  entry.el.addEventListener("input", (event) => {
-    entry.value = event.target.value;
-  });
-});
