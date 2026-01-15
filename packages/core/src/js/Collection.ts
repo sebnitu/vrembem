@@ -40,7 +40,7 @@ export class Collection<
 
   constructor(options: Partial<TConfig> = {}) {
     this.config = { ...defaults, ...options } as TConfig;
-    this.name = this.config.name || this.constructor.name;
+    this.name = this.config.name || "Collection";
     this.entryClass = (this.config.entryClass ||
       CollectionEntry) as CollectionEntryConstructor<TEntry>;
     this.plugins = new PluginArray(this.config.presets);
