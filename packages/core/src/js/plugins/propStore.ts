@@ -19,13 +19,13 @@ type contextObject = {
 
 export interface PropStoreConfig {
   name?: string;
-  prop: string;
-  value?: any | ((context: contextObject) => any);
   keyPrefix?: string;
-  key?: string | null;
+  key?: string;
+  prop?: string;
+  value?: any | ((context: contextObject) => any);
   condition?:
     | boolean
-    | ((context: contextObject, newValue?: any, oldValue?: any) => boolean);
+    | ((context: contextObject, newValue: any, oldValue: any) => boolean);
   onChange?: (
     context: contextObject,
     newValue: any,
@@ -34,24 +34,25 @@ export interface PropStoreConfig {
 }
 
 const defaults: Partial<PropStoreConfig> = {
-  // The property on entry objects to watch
+  // The local storage key prefix
+  keyPrefix: "VB:",
+
+  // The local storage key to use. If not provided, module name and prop name
+  // will be used e.g., "VB:ModalState".
+  key: "",
+
+  // The property on entries to watch for changes
   prop: "state",
 
   // The initial value or a function to compute the initial value of the watched
   // property. Will default to the local store value if it exists.
   value: ({ entry }: contextObject) => entry.store,
 
-  // The local storage key prefix
-  keyPrefix: "VB:",
+  // Condition to determine whether or not to store the value in local storage.
+  // Can be either a boolean or a function that returns a boolean value.
+  condition: true,
 
-  // The local storage key to use. If not provided, module name and prop value
-  // will be used e.g., "VB:ModalState".
-  key: null,
-
-  // Condition to determine whether or not to store the value in local storage
-  condition: false,
-
-  // The function to run whenever the value changes
+  // The function to run whenever the value of the watched property changes
   onChange() {}
 };
 
@@ -118,7 +119,8 @@ export function propStore(
       }
     });
 
-    // Create the store alias that binds entry to its local store value
+    // Create the store alias on entry that binds entry to its local storage
+    // value as a getter/setter.
     Object.defineProperty(entry, "store", {
       configurable: true,
       get: () => {
