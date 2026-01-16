@@ -16,8 +16,9 @@
       plugins: [
         focusTrap(),
         propStore({
-          // Disable automatic local storage
-          condition: false,
+          // Disable automatic prop watch and local storage
+          prop: false,
+          // Use plugin.store to manually prop watch and local storage
           async afterMount({ plugin, parent, entry }) {
             // Open all the modals stored in stackOrder
             for (const entry of plugin.store.get("stackOrder", [])) {
@@ -25,7 +26,7 @@
             }
             // Add listener for when the stack changes
             parent.on("stackChange", () => {
-              // Store the current stack value when it changes
+              // Store the current stack value in stackOrder
               const stackOrder = parent.stack.get("*").map((item) => item.id);
               plugin.store.set("stackOrder", stackOrder);
             });

@@ -21,7 +21,7 @@ export interface PropStoreConfig {
   name?: string;
   keyPrefix?: string;
   key?: string;
-  prop?: string;
+  prop?: string | false;
   value?: any | ((context: contextObject) => any);
   condition?:
     | boolean
@@ -71,15 +71,25 @@ export function propStore(
       this.store = localStore(getKey(this, parent.name));
     },
 
+    async onCreateEntry({ entry }) {
+      await setupPropStore(this, entry);
+    },
+
+    async onDestroyEntry({ entry }) {
+      await teardownPropStore(this, entry);
+    },
+
     proxyEntry({ plugin, entry }) {
       return {
         get(target, prop) {
           return Reflect.get(target, prop);
         },
         set(target, prop, value) {
-          if (prop === plugin.config.prop) {
+          if (plugin.config.prop && prop === plugin.config.prop) {
             // Guard if value hasn't changed
             if (Reflect.get(target, prop) === value) return true;
+
+            // Store the old value and set the new one
             const oldValue = Reflect.get(target, prop);
             Reflect.set(target, prop, value);
 
@@ -104,14 +114,6 @@ export function propStore(
           return Reflect.set(target, prop, value);
         }
       };
-    },
-
-    async onCreateEntry({ entry }) {
-      await setupPropStore(this, entry);
-    },
-
-    async onDestroyEntry({ entry }) {
-      await teardownPropStore(this, entry);
     }
   };
 
@@ -119,6 +121,9 @@ export function propStore(
     plugin: PropStorePlugin,
     entry: PropStoreEntry
   ) {
+    // Guard if prop is not being watched
+    if (!plugin.config.prop) return;
+
     // Setup the context object that is passed to condition, onChange and value
     const contextObj = { plugin, parent: entry.parent, entry };
 
@@ -149,8 +154,9 @@ export function propStore(
   }
 
   function getKey(plugin: PropStorePlugin, moduleName: string): string {
-    const prop =
-      plugin.config.prop.charAt(0).toUpperCase() + plugin.config.prop.slice(1);
+    const prop = plugin.config.prop
+      ? plugin.config.prop.charAt(0).toUpperCase() + plugin.config.prop.slice(1)
+      : "Store";
     const key = plugin.config.key || moduleName + prop;
     return plugin.config.keyPrefix + key;
   }
