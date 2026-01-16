@@ -5,6 +5,7 @@ import type { CollectionEntry } from "../CollectionEntry";
 
 export interface PropStorePlugin extends Plugin<PropStoreEntry> {
   store: ReturnType<typeof localStore> | null;
+  ready: string[];
 }
 
 export type PropStoreEntry = CollectionEntry & {
@@ -63,7 +64,8 @@ export function propStore(
     name: "propStore",
     config: defaults,
     options,
-    store: null
+    store: null,
+    ready: []
   };
 
   const methods: Partial<PropStorePlugin> = {
@@ -80,8 +82,6 @@ export function propStore(
     },
 
     proxyEntry({ plugin, entry }) {
-      // Setup the propStore ready flag
-      entry._propStoreReady = false;
       return {
         get(target, prop) {
           return Reflect.get(target, prop);
@@ -94,7 +94,7 @@ export function propStore(
           if (
             plugin.config.prop &&
             plugin.config.prop === prop &&
-            entry._propStoreReady
+            plugin.ready.includes(entry.id)
           ) {
             // Guard if value hasn't changed
             if (Reflect.get(target, prop) === value) return true;
@@ -149,8 +149,8 @@ export function propStore(
       }
     });
 
-    // Flag propStore as being ready
-    entry._propStoreReady = true;
+    // Add entry ID to the plugin ready array
+    plugin.ready.push(entry.id);
 
     // Conditionally set the initial value (must be truthy)
     entry[plugin.config.prop] =
