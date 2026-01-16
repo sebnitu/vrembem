@@ -6,13 +6,14 @@ export async function dispatchProxyEntryHook<
   TParent extends Collection<TEntry>,
   TEntry extends CollectionEntry
 >(parent: TParent, entry: TEntry): Promise<TEntry> {
-  // Allow a collection to proxy its entries
+  // Allow a collection to proxy entries
   let handler = await maybeRunMethod(parent, "proxyEntry", entry);
   if (handler) entry = new Proxy(entry, handler);
 
   // Allow plugins to proxy entries
   for (const plugin of parent.plugins.get("*")) {
-    handler = await maybeRunMethod(plugin, "proxyEntry", { parent, entry });
+    const context = { plugin, parent, entry };
+    handler = await maybeRunMethod(plugin, "proxyEntry", context);
     if (handler) entry = new Proxy(entry, handler);
   }
 

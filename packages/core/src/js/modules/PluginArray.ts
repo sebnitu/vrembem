@@ -7,6 +7,11 @@ export interface Plugin<TEntry extends CollectionEntry = CollectionEntry> {
   options?: Record<string, any>;
   setup?: (this: this, context: any) => void;
   teardown?: (this: this, context: any) => void;
+  proxyEntry?: (context: {
+    plugin: any;
+    parent: any;
+    entry: TEntry;
+  }) => ProxyHandler<TEntry>;
   onCreateEntry?: (this: this, context: { parent: any; entry: TEntry }) => void;
   onDestroyEntry?: (
     this: this,

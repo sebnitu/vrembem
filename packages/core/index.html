@@ -90,6 +90,15 @@
         this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
       }
 
+      setNextPlayer() {
+        let xCount = 0, oCount = 0;
+        for (const cell in this.boardState) {
+          if (this.boardState[cell] === "X") xCount++;
+          if (this.boardState[cell] === "O") oCount++;
+        }
+        this.currentPlayer = xCount <= oCount ? "X" : "O";
+      }
+
       async reset() {
         await this.emit("reset");
         this.currentPlayer = "X";
@@ -122,20 +131,10 @@
         core.cssConfig(),
         core.attrConfig(),
         core.propStore({
-          prop: "storeState",
-          onChange({ entry }, newValue) {
-            entry.state = newValue;
-          },
+          prop: "state",
           afterMount({ parent }) {
             parent.checkWinConditions();
-            parent.on("afterTurn", (entry) => {
-              entry.store = entry.state;
-            });
-            parent.on("reset", () => {
-              parent.collection.forEach((entry) => {
-                entry.store = "";
-              });
-            })
+            parent.setNextPlayer();
           }
         })
       ]

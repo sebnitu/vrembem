@@ -71,6 +71,41 @@ export function propStore(
       this.store = localStore(getKey(this, parent.name));
     },
 
+    proxyEntry({ plugin, entry }) {
+      return {
+        get(target, prop) {
+          return Reflect.get(target, prop);
+        },
+        set(target, prop, value) {
+          if (prop === plugin.config.prop) {
+            // Guard if value hasn't changed
+            if (Reflect.get(target, prop) === value) return true;
+            const oldValue = Reflect.get(target, prop);
+            Reflect.set(target, prop, value);
+
+            // Setup the context object
+            const contextObj = { plugin, parent: entry.parent, entry };
+
+            // Conditionally store the value in local storage
+            if (
+              getValue(plugin.config.condition, contextObj, value, oldValue)
+            ) {
+              plugin.store?.set(entry.id, value);
+            }
+
+            // Run the on change callback
+            Promise.resolve(
+              plugin.config.onChange(contextObj, value, oldValue)
+            );
+
+            return true;
+          }
+
+          return Reflect.set(target, prop, value);
+        }
+      };
+    },
+
     async onCreateEntry({ entry }) {
       await setupPropStore(this, entry);
     },
@@ -85,39 +120,7 @@ export function propStore(
     entry: PropStoreEntry
   ) {
     // Setup the context object that is passed to condition, onChange and value
-    const contextObj = { plugin: plugin, parent: entry.parent, entry };
-
-    // Store the initial property value. Set to null if property doesn't exist
-    let _value = entry[plugin.config.prop] || null;
-
-    // Define a getter and setter for the property
-    Object.defineProperty(entry, plugin.config.prop, {
-      configurable: true,
-      get() {
-        return _value;
-      },
-      set: async (newValue) => {
-        // Guard if value hasn't changed
-        if (_value === newValue) return;
-        const oldValue = _value;
-        _value = newValue;
-
-        // Conditionally store the value in local storage
-        const condition = getValue(
-          plugin.config.condition,
-          contextObj,
-          newValue,
-          oldValue
-        );
-
-        if (condition) {
-          plugin.store?.set(entry.id, newValue);
-        }
-
-        // Run the on change callback
-        await plugin.config.onChange(contextObj, newValue, oldValue);
-      }
-    });
+    const contextObj = { plugin, parent: entry.parent, entry };
 
     // Create the store alias on entry that binds entry to its local storage
     // value as a getter/setter.
@@ -141,11 +144,6 @@ export function propStore(
     plugin: PropStorePlugin,
     entry: PropStoreEntry
   ) {
-    // Remove the getter/setters and restore properties to its current value
-    const currentValue = entry[plugin.config.prop];
-    delete entry[plugin.config.prop];
-    entry[plugin.config.prop] = currentValue;
-
     // Remove value from local store
     plugin.store?.set(entry.id, null);
   }
