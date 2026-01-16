@@ -7,7 +7,7 @@ export async function dispatchProxyEntryHook<
   TEntry extends CollectionEntry
 >(parent: TParent, entry: TEntry): Promise<TEntry> {
   // Allow a collection to proxy entries
-  let handler = await maybeRunMethod(parent, "proxyEntry", entry);
+  let handler = await maybeRunMethod(parent, "proxyEntry", { parent, entry });
   if (handler) entry = new Proxy(entry, handler);
 
   // Allow plugins to proxy entries
