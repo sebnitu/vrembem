@@ -3,7 +3,7 @@ import { localStore } from "../modules";
 import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export interface PropStorePlugin extends Plugin {
+export interface PropStorePlugin extends Plugin<PropStoreEntry> {
   store: ReturnType<typeof localStore> | null;
 }
 
@@ -67,7 +67,7 @@ export function propStore(
   };
 
   const methods: Partial<PropStorePlugin> = {
-    setup(this: PropStorePlugin, parent) {
+    setup(parent) {
       this.store = localStore(getKey(this, parent.name));
     },
 
@@ -80,12 +80,22 @@ export function propStore(
     },
 
     proxyEntry({ plugin, entry }) {
+      // Setup the propStore ready flag
+      entry._propStoreReady = false;
       return {
         get(target, prop) {
           return Reflect.get(target, prop);
         },
         set(target, prop, value) {
-          if (plugin.config.prop && prop === plugin.config.prop) {
+          // Check if:
+          // - A property has been set to watch
+          // - The watch property matches the one being set
+          // - Our propStore has been fully setup and is ready
+          if (
+            plugin.config.prop &&
+            plugin.config.prop === prop &&
+            entry._propStoreReady
+          ) {
             // Guard if value hasn't changed
             if (Reflect.get(target, prop) === value) return true;
 
@@ -138,6 +148,9 @@ export function propStore(
         entry[plugin.config.prop] = value;
       }
     });
+
+    // Flag propStore as being ready
+    entry._propStoreReady = true;
 
     // Conditionally set the initial value (must be truthy)
     entry[plugin.config.prop] =
