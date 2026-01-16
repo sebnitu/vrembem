@@ -32,9 +32,9 @@ await inputs.mount();
 ```
 </CodeExample>
 
-By default, `propStore` will watch the `state` property of your entries for changes. Whenever the watched property changes, the new value is stored in local storage and the provided `onChange` function is fired.
+By default, `propStore` will watch the `state` property of your entries for changes. Whenever the watched property changes, the new value is stored in local storage and any provided `onChange` function is fired.
 
-The value stored in local storage is also aliased to the `entry.store` property as a getter/setter.
+When the page reloads, the value in local storage is used as the default value of the watched property. The value stored in local storage is also aliased to the `entry.store` property as a getter/setter.
 
 There may also be cases where you want to avoid storing transitional states in local storage. For these cases, you can provide a `condition` function to evaluate these cases which receives as arguments a context object as well as new and old values of the watched property.
 
@@ -52,7 +52,7 @@ propStore({
 
 ### Example
 
-In this example, we'll create a new collection for a group of input fields where we want to persist their input values. First, we'll set up `propStore` to watch the `value` property. Whenever the `value` property changes, we'll use the `onChange` callback to update the value of our input fields.
+Let's create a new collection for a group of input fields where we want to persist their input values. First, we'll set up `propStore` to watch the `value` property. Whenever the `value` property changes, we'll use the `onChange` callback to update the input field's value.
 
 <CodeExample lang="js">
 ```js
@@ -74,7 +74,7 @@ await inputs.mount();
 ```
 </CodeExample>
 
-We can also provide an `afterMount` lifecycle hook to `propStore` where we can add an event listener to collection entry inputs. Here we just want to update our `entry.value` property whenever an input value changes.
+Next, let's define an `afterMount` lifecycle hook to `propStore` where we can add an event listener to collection entry inputs. In the listener we want to update the `entry.value` property whenever the input value changes.
 
 <CodeExample lang="js">
 ```js
@@ -82,10 +82,7 @@ const inputs = new Collection({
   selector: ".input-store",
   plugins: [
     propStore({
-      prop: "value",
-      onChange({ entry }, newValue) {
-        entry.el.value = newValue;
-      },
+      // ...
       afterMount({ parent }) {
         parent.collection.forEach((entry) => {
           entry.el.addEventListener("input", (event) => {
@@ -99,7 +96,7 @@ const inputs = new Collection({
 ```
 </CodeExample>
 
-Lastly, we need some input markup with our required selector to finish up the example. Each input now uses `propStore` to persist their input values across page reloads.
+Lastly, we need some input markup with our selector to finish up the example. Each of these inputs now uses `propStore` to persist their input values across page sessions.
 
 <CodeExample tabs>
 <Fragment slot="output">
@@ -146,7 +143,7 @@ await inputs.mount();
 
 ## Use cases
 
-There are two common use cases for `propStore` in both Modal and Drawer components. For Modals, you may want to persist modal state across page load and refresh. Here is an example to accomplish this while also maintaining nested modal support:
+There are two common use cases for `propStore` in Modal and Drawer components. For Modals, sometimes we may want to persist modal state. Here is an example to accomplish this while also maintaining stacking modal support:
 
 <CodeExample lang="js">
 ```js
@@ -157,8 +154,9 @@ const modal = new Modal({
   selectorInert: "main",
   plugins: [
     propStore({
-      // Disable automatic local storage
-      condition: false,
+      // Disable automatic prop watch and local storage
+      prop: false,
+      // Use plugin.store to manually prop watch and local storage
       async afterMount({ plugin, parent, entry }) {
         // Open all the modals stored in stackOrder
         for (const entry of plugin.store.get("stackOrder", [])) {
@@ -166,7 +164,7 @@ const modal = new Modal({
         }
         // Add listener for when the stack changes
         parent.on("stackChange", () => {
-          // Store the current stack value when it changes
+          // Store the current stack value in stackOrder
           const stackOrder = parent.stack.get("*").map((item) => item.id);
           plugin.store.set("stackOrder", stackOrder);
         });
