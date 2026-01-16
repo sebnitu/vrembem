@@ -13,8 +13,8 @@ export async function maybeRunMethod(
   obj: Record<string, any>,
   name: string,
   ...args: any[]
-): Promise<void> {
+): Promise<any> {
   if (name in obj && typeof obj[name] === "function") {
-    await obj[name](...args);
+    return await obj[name](...args);
   }
 }

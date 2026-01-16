@@ -1,6 +1,6 @@
 import { CollectionEntry, CollectionEntryConstructor } from "./CollectionEntry";
 import { EventEmitter, PluginArray, Plugin } from "./modules";
-import { dispatchLifecycleHook } from "./helpers";
+import { dispatchLifecycleHook, dispatchProxyEntryHook } from "./helpers";
 import { maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig<
@@ -66,8 +66,9 @@ export class Collection<
   }
 
   async createEntry(query: string | HTMLElement) {
-    const entry = new this.entryClass(this, query);
+    let entry = new this.entryClass(this, query);
     await maybeRunMethod(entry, "init");
+    entry = await dispatchProxyEntryHook(this, entry);
     await dispatchLifecycleHook("onCreateEntry", this, entry);
     return entry;
   }
