@@ -274,7 +274,37 @@ Lifecycle hooks that are run when `unmount` is called:
 - `onDeregisterEntry`
 - `afterUnmount`
 
-With this setup, we can add a `toggle` method to each cell and attach a click event listener using the `onRegisterEntry` lifecycle hook. Entries also have access to their parent collection via the `this.parent` alias, allowing them to interact with collection methods and properties directly.
+### Entry proxies
+
+The `proxyEntry` lifecycle hook allows a collection and its plugins to wrap each entry in a JavaScript Proxy. This enables advanced interception of property access and assignment, making it possible to implement reactive features.
+
+The hook receives the entry and its parent collection as context (plugins also receive their own context) and should return a Proxy handler object. The returned handler is used to create a Proxy that wraps the entry before it is registered in the collection.
+
+<CodeExample lang="js">
+```js
+class MyCollection extends Collection {
+  // ...
+  proxyEntry({ parent, entry }) {
+    return {
+      get(target, prop) {
+        // Your custom get logic...
+        return Reflect.get(target, prop);
+      },
+      set(target, prop, value) {
+        // Your custom set logic...
+        return Reflect.set(target, prop, value);
+      }
+    };
+  }
+}
+```
+</CodeExample>
+
+For more information on JavaScript Proxies and their usage, please refer to the [MDN developer documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+
+### Basic usage
+
+We can add a `toggle` method to each cell and attach a click event listener using the `onRegisterEntry` lifecycle hook. Entries also have access to their parent collection via the `this.parent` alias, allowing them to interact with collection methods and properties directly.
 
 <CodeExample lang="js">
 ```js
