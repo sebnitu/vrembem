@@ -8,12 +8,13 @@ type TeleportEntry = CollectionEntry & {
 };
 
 export interface TeleportConfig {
-  where?: string | null;
-  how?: string;
+  name?: string;
+  where?: HTMLElement | string;
+  how?: "after" | "before" | "append" | "prepend";
 }
 
-const defaults: Required<TeleportConfig> = {
-  where: null,
+const defaults: Partial<TeleportConfig> = {
+  where: "",
   how: "append"
 };
 

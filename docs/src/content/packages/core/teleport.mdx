@@ -6,8 +6,68 @@ group: plugins
 slug: core/teleport
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+
 <CodeExample lang="js">
   ```js
   import { teleport } from "@vrembem/core";
   ```
 </CodeExample>
+
+## Basic usage
+
+The most common use case for the `teleport` plugin is when,due to template constraints, modals or popovers are not in an optimal location in the document. Teleporting these elements to a specific location can help improve semantics, accessibility and helps resolve possible style inheritance issues.
+
+To teleport collection entry elements to a specific location in the document, add the `teleport` plugin to your collection instantiation and set the `where` configuration.
+
+<CodeExample lang="js">
+```js
+import Modal from "@vrembem/modal";
+import { teleport } from "@vrembem/core";
+
+const modals = new Modal({
+  plugins: [
+    teleport({
+      where: ".modals"
+    })
+  ]
+});
+
+await modals.mount();
+```
+</CodeExample>
+
+You can also define how elements are teleported relative to the teleport target element (`where`) by using the `how` configuration and providing one of four values:
+
+- `"before"`: Insert the element as a sibling before the target.
+- `"prepend"`: Insert as the first child of the target.
+- `"append"`: Insert as the last child of the target. This is the default behavior.
+- `"after"`: Insert the element as a sibling after the target.
+
+<CodeExample lang="html">
+```html
+<!-- "before" -->
+<div class="modals">
+  <!-- "prepend" -->
+  <div>...</div>
+  <!-- "append" -->
+</div>
+<!-- "after" -->
+```
+</CodeExample>
+
+## Configuration
+
+The following configurations can be used to customize the behavior of the `teleport` plugin.
+
+<ReferenceCard name="name" type="string" defaults='"teleport"'>
+  The unique name of the plugin.
+</ReferenceCard>
+
+<ReferenceCard name="where" type="HTMLElement | string" defaults='""'>
+  Where the entry element should be teleported. This can be either an HTML element or a valid CSS selector.
+</ReferenceCard>
+
+<ReferenceCard name="how" type='"after" | "before" | "append" | "prepend"' defaults='"append"'>
+  How the entry element should be teleported relative to the `where` element.
+</ReferenceCard>
