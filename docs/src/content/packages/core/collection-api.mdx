@@ -218,13 +218,13 @@ Removes and destroys all collection entries, runs lifecycle hooks for unmounting
 
 <ReferenceBar type="PluginArray" />
 
-Collections implement `PluginArray` under the `plugins` property to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
+Collections implement `PluginArray` under the `plugins` property to manage and interact with plugins that extend or modify collection behavior. It allows you to `add`, `remove`, and `get` plugins by name.
 
 ### plugins.get
 
-<ReferenceBar type="method" returns="Plugin | null" />
+<ReferenceBar type="method" returns="Array<Plugin> | Plugin | null" />
 
-Returns the plugin with the specified name from the array, or `null` if no matching plugin is found.
+Returns the plugin with the specified name from the array, or `null` if no matching plugin is found. If provied with the string `"*"`, the entire plugin array is returned.
 
 #### Arguments
 
@@ -236,19 +236,19 @@ Returns the plugin with the specified name from the array, or `null` if no match
 
 <ReferenceBar type="method" returns="void" />
 
-Adds one or more plugins to the array. If a plugin with the same name already exists, it is replaced; otherwise, the new plugin is added. Plugin configuration is built and validated before being added.
+Adds a plugin to the array. Plugins must have a unique name, otherwise an error will be logged. Added plugin objects will have their configuration built using the default values of the `config` property, any presets provided by the collection and the plugin object's `options` property. Lastely, the `setup` method of the plugin object is run.
 
 #### Arguments
 
-<ReferenceCard name="plugin" type="Plugin | Plugin[]">
-  The plugin or array of plugins to add.
+<ReferenceCard name="plugin" type="Plugin">
+  The plugin object or a function that returns a plugin object.
 </ReferenceCard>
 
 ### plugins.remove
 
 <ReferenceBar type="method" returns="void" />
 
-Removes the plugin with the specified name from the array, if it exists.
+Removes the plugin with the specified name from the array, if it exists. Will also run the `teardown` method if provided by the plugin.
 
 #### Arguments
 
