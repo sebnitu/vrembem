@@ -8,19 +8,15 @@ export interface CSSConfig {
   updateEvent?: string;
 }
 
-const defaults: Partial<CSSConfig> = {
-  sourceKey: "css",
-  updateEvent: "updateCustomProps"
-};
-
 export function cssConfig(options: CSSConfig = {}): Plugin {
-  const props: Plugin = {
+  return {
     name: "cssConfig",
-    config: defaults,
-    options
-  };
+    config: {
+      sourceKey: "css",
+      updateEvent: "updateCustomProps"
+    },
+    options,
 
-  const methods: Partial<Plugin> = {
     setup(parent) {
       parent.on(this.config.updateEvent, update, this);
     },
@@ -38,11 +34,9 @@ export function cssConfig(options: CSSConfig = {}): Plugin {
       entry.config.remove(this.config.sourceKey);
     }
   };
+}
 
-  function update(entry: CollectionEntry, plugin: Plugin) {
-    const data = getCustomProps(entry);
-    entry.config.set(plugin.config.sourceKey, data);
-  }
-
-  return { ...props, ...methods };
+function update(entry: CollectionEntry, plugin: Plugin) {
+  const data = getCustomProps(entry);
+  entry.config.set(plugin.config.sourceKey, data);
 }

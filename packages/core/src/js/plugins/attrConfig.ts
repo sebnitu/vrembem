@@ -7,19 +7,15 @@ export interface AttrConfig {
   sourceKey?: string;
 }
 
-const defaults: Partial<AttrConfig> = {
-  attr: "config",
-  sourceKey: "attr"
-};
-
 export function attrConfig(options: AttrConfig = {}): Plugin {
-  const props: Plugin = {
+  return {
     name: "attrConfig",
-    config: defaults,
-    options
-  };
+    config: {
+      attr: "config",
+      sourceKey: "attr"
+    },
+    options,
 
-  const methods: Partial<Plugin> = {
     onCreateEntry({ entry }) {
       const data = getAttrData(entry.el, this.config.attr);
       entry.config.set(this.config.sourceKey, data);
@@ -29,6 +25,4 @@ export function attrConfig(options: AttrConfig = {}): Plugin {
       entry.config.remove(this.config.sourceKey);
     }
   };
-
-  return { ...props, ...methods };
 }
