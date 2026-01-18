@@ -62,7 +62,9 @@ await myCollection.mount();
 
 ## Plugin objects
 
-A plugin is comprised of properties, lifecycle hooks and methods. The only requirment for a plugin is that it has a unique name property. A plugins configuration object is built when added to a collection by merging the values of the `config`, collection presets (if they exist) and `options` properties.
+A plugin is comprised of properties, lifecycle hooks and methods. The only requirment for a plugin is that it has a unique name property. If a plugin is needed to be used multiple times in the same collection, it's possible to provide a custom `name` via options.
+
+A plugins configuration object is built when added to a collection by merging the values of the `config`, collection `presets`, and `options` properties.
 
 <CodeExample lang="js">
 ```js
@@ -72,7 +74,7 @@ interface Plugin<
 > {
   name: string;
   config: Record<string, any>;
-  options: Record<string, any>;
+  options?: Record<string, any>;
   setup?: (this: this, context: TParent) => void | Promise<void>;
   teardown?: (this: this, context: TParent) => void | Promise<void>;
   proxyEntry?: (context: {
@@ -106,7 +108,7 @@ interface Plugin<
 
 ## Writing a plugin
 
-It is common convention to author Vrembem plugins as a factory function that returns the actual plugin object. The function can accept options which allows users to customize the behavior of the plugin.
+It is common convention to author Vrembem plugins as a factory function that returns the plugin object. The function can accept options which allows users to customize the behavior of the plugin.
 
 <CodeExample lang="js">
 ```js
@@ -122,12 +124,32 @@ function myPlugin(options = {}): Plugin {
       // Plugin setup logic...
     },
 
+    teardown() {
+      // Plugin teardown logic...
+    },
+
     onCreateEntry() {
       // Plugin logic to run when entries are created...
     }
-
-    // Additional hooks and methods...
   };
 }
 ```
 </CodeExample>
+
+ Plugin options can also receive the same lifecycle hooks available to the plugin object itself allowing for aditional usage customization. Plugin hooks are run before plugin option hooks.
+
+<CodeExample lang="js">
+```js
+const myCollection = new Collection({
+  plugins: [
+    myPlugin({
+      onMount() {
+        // Options provided hooks logic here...
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+For more information on lifecycle hooks and when they are called, please reference the [Collections documentation](/packages/core/collections#lifecycle-hooks).

@@ -8,7 +8,7 @@ export interface Plugin<
 > {
   name: string;
   config: Record<string, any>;
-  options: Record<string, any>;
+  options?: Record<string, any>;
   setup?: (this: this, context: TParent) => void | Promise<void>;
   teardown?: (this: this, context: TParent) => void | Promise<void>;
   proxyEntry?: (context: {

@@ -236,7 +236,7 @@ Returns the plugin with the specified name from the array, or `null` if no match
 
 <ReferenceBar type="method" returns="void" />
 
-Adds a plugin to the array. Plugins must have a unique name, otherwise an error will be logged. Added plugin objects will have their configuration built using the default values of the `config` property, any presets provided by the collection and the plugin object's `options` property. Lastely, the `setup` method of the plugin object is run.
+Adds a plugin to the array. Plugins must have a unique name. Added plugin objects will have their configuration built by merging the values of the `config`, collection `presets`, and `options` properties. Lastely, the `setup` method of the plugin object is run.
 
 #### Arguments
 
