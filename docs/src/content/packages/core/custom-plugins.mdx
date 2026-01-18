@@ -1,0 +1,133 @@
+---
+title: Custom Plugins
+parent: core
+group: plugins
+order: 1
+---
+
+Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements. Plugins can hook into collection lifecycle events, enabling advanced customization and functionality for collection instances.
+
+When writing a custom plugin, you can import the `Plugin` type for strong typing and IntelliSense support in TypeScript.
+
+<CodeExample lang="ts">
+  ```ts
+  import type { Plugin } from "../modules/PluginArray";
+  ```
+</CodeExample>
+
+Collections implement `PluginArray` under the `plugins` property to manage and interact with plugins that extend or modify collection behavior. See the [Collection API](/packages/core/collection-api#plugins) for more information on plugin management.
+
+## Installing plugins
+
+Plugins can be installed to a colleciton by passing their object or a function that returns their object to the `plugins` array option.
+
+<CodeExample lang="js">
+```js
+import { Collection } from "@vrembem/core";
+
+const myCollection = new Collection({
+  plugins: [
+    somePlugin(), // Should return a plugin object
+    anotherPlugin(options), // Should return a plugin object with options
+    { 
+      name: "simplePlugin",
+      config: { ... },
+      setup() {
+        // Plugin setup logic goes here...
+      }
+      // Additional properties or methods...
+    }
+  ]
+});
+
+await myCollection.mount();
+```
+</CodeExample>
+
+Alternatively, plugins can also be installed using the `Collection.plugins.add` method. Plugins should be added to the collection before mounting the collection:
+
+<CodeExample lang="js">
+```js
+const myCollection = new Collection();
+
+myCollection.plugins.add({
+  name: "customPlugin",
+  // Add props, hooks and methods here...
+});
+
+// Plugins should be added before mounting the collection
+await myCollection.mount();
+```
+</CodeExample>
+
+## Plugin objects
+
+A plugin is comprised of properties, lifecycle hooks and methods. The only requirment for a plugin is that it has a unique name property. A plugins configuration object is built when added to a collection by merging the values of the `config`, collection presets (if they exist) and `options` properties.
+
+<CodeExample lang="js">
+```js
+interface Plugin<
+  TEntry extends CollectionEntry = CollectionEntry,
+  TParent extends Collection<TEntry> = Collection<TEntry>
+> {
+  name: string;
+  config: Record<string, any>;
+  options: Record<string, any>;
+  setup?: (this: this, context: TParent) => void | Promise<void>;
+  teardown?: (this: this, context: TParent) => void | Promise<void>;
+  proxyEntry?: (context: {
+    plugin: any;
+    parent: TParent;
+    entry: TEntry;
+  }) => ProxyHandler<TEntry>;
+  onCreateEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
+  onDestroyEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
+  onRegisterEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
+  onDeregisterEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
+  beforeMount?: (this: this, context: TParent) => void | Promise<void>;
+  afterMount?: (this: this, context: TParent) => void | Promise<void>;
+  beforeUnmount?: (this: this, context: TParent) => void | Promise<void>;
+  afterUnmount?: (this: this, context: TParent) => void | Promise<void>;
+}
+```
+</CodeExample>
+
+## Writing a plugin
+
+It is common convention to author Vrembem plugins as a factory function that returns the actual plugin object. The function can accept options which allows users to customize the behavior of the plugin.
+
+<CodeExample lang="js">
+```js
+import type { Plugin } from "../modules/PluginArray";
+
+function myPlugin(options = {}): Plugin {
+  return {
+    name: "myPlugin", // Should be a unique name
+    config: {}, // Should contain the default configuration values
+    options, // Options override config default values and collection presets
+
+    setup() {
+      // Plugin setup logic...
+    },
+
+    onCreateEntry() {
+      // Plugin logic to run when entries are created...
+    }
+
+    // Additional hooks and methods...
+  };
+}
+```
+</CodeExample>
