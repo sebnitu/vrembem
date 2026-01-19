@@ -28,14 +28,13 @@ import { Collection } from "@vrembem/core";
 const myCollection = new Collection({
   plugins: [
     somePlugin(), // Should return a plugin object
-    anotherPlugin(options), // Should return a plugin object with options
     { 
       name: "simplePlugin",
       config: { ... },
       setup() {
         // Plugin setup logic goes here...
       }
-      // Additional properties or methods...
+      // Add props, hooks, and methods here...
     }
   ]
 });
@@ -52,7 +51,7 @@ const myCollection = new Collection();
 
 myCollection.plugins.add({
   name: "customPlugin",
-  // Add props, hooks and methods here...
+  // Add props, hooks, and methods here...
 });
 
 // Plugins should be added before mounting the collection
