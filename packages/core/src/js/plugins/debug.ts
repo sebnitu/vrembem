@@ -2,10 +2,6 @@ import { getValue } from "../utilities";
 import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
-const defaults = {
-  condition: true
-};
-
 const colors = {
   primary: "hsl(152deg 60% 50%)",
   secondary: "hsl(214deg 50% 50%)",
@@ -16,7 +12,9 @@ const colors = {
 export function debug(options: Record<string, any> = {}): Plugin {
   const props: Plugin = {
     name: "debug",
-    config: defaults,
+    config: {
+      condition: true
+    },
     options
   };
 
@@ -101,7 +99,7 @@ export function debug(options: Record<string, any> = {}): Plugin {
     }
   };
 
-  const methods: Partial<Plugin> = {
+  const hooks: Partial<Plugin> = {
     // Plugin setup/teardown methods
     setup(parent) {
       log("Plugin > setup()", Array.from(arguments), ["secondary", "neutral"]);
@@ -198,5 +196,5 @@ export function debug(options: Record<string, any> = {}): Plugin {
     }
   };
 
-  return { ...props, ...methods };
+  return { ...props, ...hooks };
 }

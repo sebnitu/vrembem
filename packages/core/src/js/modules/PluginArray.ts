@@ -1,34 +1,41 @@
 import { maybeRunMethod } from "../utilities";
+import type { Collection } from "../Collection";
 import type { CollectionEntry } from "../CollectionEntry";
 
-export interface Plugin<TEntry extends CollectionEntry = CollectionEntry> {
+export interface Plugin<
+  TEntry extends CollectionEntry = CollectionEntry,
+  TParent extends Collection<TEntry> = Collection<TEntry>
+> {
   name: string;
   config: Record<string, any>;
   options?: Record<string, any>;
-  setup?: (this: this, context: any) => void;
-  teardown?: (this: this, context: any) => void;
+  setup?: (this: this, context: TParent) => void | Promise<void>;
+  teardown?: (this: this, context: TParent) => void | Promise<void>;
   proxyEntry?: (context: {
     plugin: any;
-    parent: any;
+    parent: TParent;
     entry: TEntry;
   }) => ProxyHandler<TEntry>;
-  onCreateEntry?: (this: this, context: { parent: any; entry: TEntry }) => void;
+  onCreateEntry?: (
+    this: this,
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
   onDestroyEntry?: (
     this: this,
-    context: { parent: any; entry: TEntry }
-  ) => void;
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
   onRegisterEntry?: (
     this: this,
-    context: { parent: any; entry: TEntry }
-  ) => void;
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
   onDeregisterEntry?: (
     this: this,
-    context: { parent: any; entry: TEntry }
-  ) => void;
-  beforeMount?: (this: this, context: any) => void;
-  afterMount?: (this: this, context: any) => void;
-  beforeUnmount?: (this: this, context: any) => void;
-  afterUnmount?: (this: this, context: any) => void;
+    context: { parent: TParent; entry: TEntry }
+  ) => void | Promise<void>;
+  beforeMount?: (this: this, context: TParent) => void | Promise<void>;
+  afterMount?: (this: this, context: TParent) => void | Promise<void>;
+  beforeUnmount?: (this: this, context: TParent) => void | Promise<void>;
+  afterUnmount?: (this: this, context: TParent) => void | Promise<void>;
 }
 
 type Presets = Record<string, Record<string, any>>;

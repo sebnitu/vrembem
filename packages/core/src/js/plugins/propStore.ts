@@ -68,7 +68,7 @@ export function propStore(
     ready: []
   };
 
-  const methods: Partial<PropStorePlugin> = {
+  const hooks: Partial<PropStorePlugin> = {
     setup(parent) {
       this.store = localStore(getKey(this, parent.name));
     },
@@ -127,52 +127,49 @@ export function propStore(
     }
   };
 
-  async function setupPropStore(
-    plugin: PropStorePlugin,
-    entry: PropStoreEntry
-  ) {
-    // Guard if prop is not being watched
-    if (!plugin.config.prop) return;
+  return { ...props, ...hooks };
+}
 
-    // Setup the context object that is passed to condition, onChange and value
-    const contextObj = { plugin, parent: entry.parent, entry };
+async function setupPropStore(plugin: PropStorePlugin, entry: PropStoreEntry) {
+  // Guard if prop is not being watched
+  if (!plugin.config.prop) return;
 
-    // Create the store alias on entry that binds entry to its local storage
-    // value as a getter/setter.
-    Object.defineProperty(entry, "store", {
-      configurable: true,
-      get: () => {
-        return plugin.store?.get(entry.id);
-      },
-      set: (value) => {
-        entry[plugin.config.prop] = value;
-      }
-    });
+  // Setup the context object that is passed to condition, onChange and value
+  const contextObj = { plugin, parent: entry.parent, entry };
 
-    // Add entry ID to the plugin ready array
-    plugin.ready.push(entry.id);
+  // Create the store alias on entry that binds entry to its local storage
+  // value as a getter/setter.
+  Object.defineProperty(entry, "store", {
+    configurable: true,
+    get: () => {
+      return plugin.store?.get(entry.id);
+    },
+    set: (value) => {
+      entry[plugin.config.prop] = value;
+    }
+  });
 
-    // Conditionally set the initial value (must be truthy)
-    entry[plugin.config.prop] =
-      (await getValue(plugin.config.value, contextObj)) ||
-      entry[plugin.config.prop];
-  }
+  // Add entry ID to the plugin ready array
+  plugin.ready.push(entry.id);
 
-  async function teardownPropStore(
-    plugin: PropStorePlugin,
-    entry: PropStoreEntry
-  ) {
-    // Remove value from local store
-    plugin.store?.set(entry.id, null);
-  }
+  // Conditionally set the initial value (must be truthy)
+  entry[plugin.config.prop] =
+    (await getValue(plugin.config.value, contextObj)) ||
+    entry[plugin.config.prop];
+}
 
-  function getKey(plugin: PropStorePlugin, moduleName: string): string {
-    const prop = plugin.config.prop
-      ? plugin.config.prop.charAt(0).toUpperCase() + plugin.config.prop.slice(1)
-      : "Store";
-    const key = plugin.config.key || moduleName + prop;
-    return plugin.config.keyPrefix + key;
-  }
+async function teardownPropStore(
+  plugin: PropStorePlugin,
+  entry: PropStoreEntry
+) {
+  // Remove value from local store
+  plugin.store?.set(entry.id, null);
+}
 
-  return { ...props, ...methods };
+function getKey(plugin: PropStorePlugin, moduleName: string): string {
+  const prop = plugin.config.prop
+    ? plugin.config.prop.charAt(0).toUpperCase() + plugin.config.prop.slice(1)
+    : "Store";
+  const key = plugin.config.key || moduleName + prop;
+  return plugin.config.keyPrefix + key;
 }

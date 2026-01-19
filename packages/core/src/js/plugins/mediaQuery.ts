@@ -54,13 +54,11 @@ const defaults: Partial<MediaQueryConfig> = {
 };
 
 export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
-  const props: Plugin = {
+  return {
     name: "mediaQuery",
     config: defaults,
-    options
-  };
+    options,
 
-  const methods: Partial<Plugin> = {
     // Run when an entry is created
     // Sets up the MediaQueryList and event listener
     onCreateEntry({ entry }) {
@@ -73,76 +71,71 @@ export function mediaQuery(options: MediaQueryConfig = {}): Plugin {
       removeMediaQueryList(entry as MediaQueryEntry);
     }
   };
+}
 
-  // Get the media query string for an entry
-  function getMediaQuery(
-    plugin: Plugin,
-    entry: MediaQueryEntry
-  ): string | null {
-    let value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
-    // Check if a media query exists in mediaQueries object using entry ID
-    if (!value && entry.id in plugin.config.mediaQueries) {
-      value = plugin.config.mediaQueries[entry.id];
-    }
-    return value || plugin.config.mediaQuery;
+// Get the media query string for an entry
+function getMediaQuery(plugin: Plugin, entry: MediaQueryEntry): string | null {
+  let value = entry.el.getAttribute(`data-${plugin.config.attrMediaQuery}`);
+  // Check if a media query exists in mediaQueries object using entry ID
+  if (!value && entry.id in plugin.config.mediaQueries) {
+    value = plugin.config.mediaQueries[entry.id];
+  }
+  return value || plugin.config.mediaQuery;
+}
+
+// Get the breakpoint value for an entry
+function getBreakpointValue(
+  plugin: Plugin,
+  entry: MediaQueryEntry
+): string | null {
+  let value = entry.el.getAttribute(`data-${plugin.config.attrBreakpoint}`);
+  // If no value was returned, is there a breakpoint mapped to the entry id?
+  if (!value && entry.id in plugin.config.breakpoints) {
+    value = plugin.config.breakpoints[entry.id];
+  }
+  // If a value exists is it a key mapped to a value in breakpoints?
+  if (value && value in plugin.config.breakpoints) {
+    value = plugin.config.breakpoints[value];
+  }
+  // If a value exists is it a key of a breakpoint custom property?
+  if (value) {
+    const customProp = getComputedStyle(document.body)
+      .getPropertyValue(`--${getPrefix("-")}breakpoint-${value}`)
+      .trim();
+    value = customProp || value;
+  }
+  // Return the value or the default value
+  return value || plugin.config.breakpoint;
+}
+
+// Sets up the MediaQueryList and event listener for an entry
+function setupMediaQueryList(plugin: Plugin, entry: MediaQueryEntry) {
+  // Get the media query value else return
+  let mq = getMediaQuery(plugin, entry);
+  if (!mq) return;
+
+  // If the media query contains a token
+  if (mq.includes(plugin.config.token)) {
+    // Get the breakpoint value else return
+    const bp = getBreakpointValue(plugin, entry);
+    if (!bp) return;
+    // Create the media query string
+    mq = mq.replace(new RegExp(`${plugin.config.token}`, "g"), bp);
   }
 
-  // Get the breakpoint value for an entry
-  function getBreakpointValue(
-    plugin: Plugin,
-    entry: MediaQueryEntry
-  ): string | null {
-    let value = entry.el.getAttribute(`data-${plugin.config.attrBreakpoint}`);
-    // If no value was returned, is there a breakpoint mapped to the entry id?
-    if (!value && entry.id in plugin.config.breakpoints) {
-      value = plugin.config.breakpoints[entry.id];
-    }
-    // If a value exists is it a key mapped to a value in breakpoints?
-    if (value && value in plugin.config.breakpoints) {
-      value = plugin.config.breakpoints[value];
-    }
-    // If a value exists is it a key of a breakpoint custom property?
-    if (value) {
-      const customProp = getComputedStyle(document.body)
-        .getPropertyValue(`--${getPrefix("-")}breakpoint-${value}`)
-        .trim();
-      value = customProp || value;
-    }
-    // Return the value or the default value
-    return value || plugin.config.breakpoint;
-  }
+  // Setup MediaQueryList object and event listener
+  entry.mql = window.matchMedia(mq);
+  entry.mql.onchange = (event: MediaQueryListEvent) => {
+    plugin.config.onChange(event, entry);
+  };
 
-  // Sets up the MediaQueryList and event listener for an entry
-  function setupMediaQueryList(plugin: Plugin, entry: MediaQueryEntry) {
-    // Get the media query value else return
-    let mq = getMediaQuery(plugin, entry);
-    if (!mq) return;
+  // Run the on change function for the initial match check
+  plugin.config.onChange(entry.mql, entry);
+}
 
-    // If the media query contains a token
-    if (mq.includes(plugin.config.token)) {
-      // Get the breakpoint value else return
-      const bp = getBreakpointValue(plugin, entry);
-      if (!bp) return;
-      // Create the media query string
-      mq = mq.replace(new RegExp(`${plugin.config.token}`, "g"), bp);
-    }
-
-    // Setup MediaQueryList object and event listener
-    entry.mql = window.matchMedia(mq);
-    entry.mql.onchange = (event: MediaQueryListEvent) => {
-      plugin.config.onChange(event, entry);
-    };
-
-    // Run the on change function for the initial match check
-    plugin.config.onChange(entry.mql, entry);
-  }
-
-  // Removes the MediaQueryList and event listener for an entry
-  function removeMediaQueryList(entry: MediaQueryEntry) {
-    if (!entry.mql) return;
-    entry.mql.onchange = null;
-    entry.mql = null;
-  }
-
-  return { ...props, ...methods };
+// Removes the MediaQueryList and event listener for an entry
+function removeMediaQueryList(entry: MediaQueryEntry) {
+  if (!entry.mql) return;
+  entry.mql.onchange = null;
+  entry.mql = null;
 }
