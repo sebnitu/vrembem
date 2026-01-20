@@ -47,8 +47,8 @@ Collection and CollectionEntry are base classes designed to manage component ins
 CollectionEntry represent an individual component instance within a collection, storing its state, configuration, and DOM reference. By extending these classes, Vrembem components inherit shared systems and APIs that can also be leveraged by custom components or plugins.
 
 - [Getting started with collections](/packages/core/collections)
-- [`Collection` reference](/packages/core/collection-api)
-- [`CollectionEntry` reference](/packages/core/collection-entry-api)
+- [`Collection` API reference](/packages/core/collection-api)
+- [`CollectionEntry` API reference](/packages/core/collection-entry-api)
 
 ### Plugins
 
@@ -69,14 +69,14 @@ It's also possible to write your own custom plugins. Custom plugins allow you to
 
 Outside of core systems, Vrembem also makes available a number of variables, functions and mixins that can be used throughout your project as needed.
 
-### Variables
+### CSS Variables
 
-Vrembem core defines a set of global variables via CSS custom properties that are accessible to all components, helping establish a consistent design language across your project. These are stored under the `core` module and are not prefixed with the module name when output.
+Vrembem core defines a set of global variables via CSS custom properties that are accessible to all components and help establish a consistent design language across your project. These are stored under the `core` module and are not prefixed with the module name when output.
 
-[Custom properties reference](/packages/core/variables)
+[Custom properties reference](/packages/core/css-variables)
 
-### Utilities
+### Sass Utilities
 
 Vrembem core provides a number of helpful Sass functions and mixin utilities. Some of which are used internally by components to apply consistent design patterns (such as focus rings) and others are helpful stand-off utilities like drawing CSS arrows or loading spinners.
 
-[Function and mixin reference](/packages/core/utilities)
+[Function and mixin reference](/packages/core/sass-utilities)
