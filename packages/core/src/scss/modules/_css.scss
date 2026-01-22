@@ -7,9 +7,9 @@
 @use "../utilities/reverse" as *;
 @use "./config";
 
-/// Set value to prefix all custom properties with.
+/// Set value to prefix all css custom properties with.
 /// @type string
-@include config.set-default("prefix-variable", "vb");
+@include config.set-default("css-prefix", "vb");
 
 /// The custom properties map where all custom properties are stored. These are
 /// stored under component keys with maps of their custom property.
@@ -18,7 +18,7 @@
 $-custom-properties: (
   "core": (
     "prefix": (
-      "config": "prefix-variable"
+      "config": "css-prefix"
     )
   )
 );
@@ -68,7 +68,7 @@ $-custom-properties: (
 /// @access private
 ///
 @function -prefix($component) {
-  $prefix: config.get("prefix-variable");
+  $prefix: config.get("css-prefix");
   $delimiter: if(
     sass($prefix): "-" ; else: ""
   );
@@ -492,10 +492,6 @@ $-custom-properties: (
   } @else if -component-exists($component, false) {
     // Get the component's property map
     $property-map: map.get($-custom-properties, $component);
-
-    @if $component == "config" {
-      @debug $component;
-    }
 
     // Loop through the property map
     @each $prop, $value in $property-map {
