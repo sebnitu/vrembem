@@ -1,3 +1,7 @@
+@forward "./src/scss/modules/config" as config-*;
+@forward "./src/scss/modules/css" as css-*;
+@forward "./src/scss/modules/palette" as palette-*;
+@forward "./src/scss/modules/theme" as theme-*;
 @forward "./src/scss/variables/breakpoints";
 @forward "./src/scss/variables/spacing";
 @forward "./src/scss/variables/border";
@@ -26,7 +30,3 @@
 @forward "./src/scss/library/scroll-box";
 @forward "./src/scss/library/size";
 @forward "./src/scss/library/sr-only";
-@forward "./src/scss/modules/config" as config-*;
-@forward "./src/scss/modules/css" as css-*;
-@forward "./src/scss/modules/palette" as palette-*;
-@forward "./src/scss/modules/theme" as theme-*;
