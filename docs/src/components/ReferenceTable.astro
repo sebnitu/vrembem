@@ -1,0 +1,55 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  data: {};
+}
+
+const { data } = Astro.props;
+---
+
+<div class="reference-table">
+  <table class="table">
+    <tr>
+      <th>Var</th>
+      <th>Value</th>
+    </tr>
+
+    {
+      Object.entries(data).map(([key, value]) => (
+        <tr id={key}>
+          <td>
+            <a
+              class="table-anchor"
+              href={`#${key}`}
+              aria-label={`Permalink to '${key}' CSS custom property`}
+            >
+              <Icon name="hash" classes="icon_size_sm" />
+            </a>
+            <div class="scroll-box">
+              <code>{key}</code>
+            </div>
+          </td>
+          <td>
+            {typeof value === "string" ? (
+              <code>{value}</code>
+            ) : (
+              <div class="scroll-box">
+                {Object.entries(value).map(([theme, v]) => (
+                  <div class="flex justify-content-between align-items-center">
+                    <span>
+                      <code>{v}</code>
+                    </span>
+                    <span>
+                      <span class="badge">{theme}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </td>
+        </tr>
+      ))
+    }
+  </table>
+</div>

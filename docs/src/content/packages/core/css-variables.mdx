@@ -5,18 +5,15 @@ parent: core
 group: reference
 ---
 
+import ReferenceTable from "../../../components/ReferenceTable.astro";
+import data from "../../../data/cssvar-core.json";
+
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core";
-  ```
+```scss
+@use "@vrembem/core/root";
+```
 </CodeExample>
 
-- `_border.scss`
-- `_box-shadow.scss`
-- `_breakpoints.scss`
-- `_focus-ring.scss`
-- `_form-control.scss`
-- `_screen.scss`
-- `_spacing.scss`
-- `_transition.scss`
-- `_typography.scss`
+Below is a reference of all the `core` CSS custom properties and their value. By default, custom properties are not output by the core package.
+
+<ReferenceTable data={data} />

@@ -1,0 +1,79 @@
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core";
+
+.reference-table {
+  background: css.get("background-dark");
+  border-radius: css.get("border-radius-lg");
+  border: 3px solid css.get("background-darker");
+
+  table {
+    background-color: transparent;
+  }
+
+  tr {
+    position: relative;
+    border-top: css.get("table", "border");
+    box-shadow:
+      0 0 0 0 palette.get("primary"),
+      0 0 0 0 palette.get("primary", 50%, 20%);
+
+    &.is-active {
+      box-shadow:
+        0 0 0 1px palette.get("primary"),
+        0 0 0 0.2rem palette.get("primary", 50%, 20%);
+      z-index: 1;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  td {
+    &:first-child {
+      text-wrap: nowrap;
+      max-width: 300px;
+    }
+
+    &:hover {
+      background-color: css.get("background");
+    }
+  }
+
+  :not(pre) code {
+    background-color: transparent;
+    padding: 0;
+  }
+}
+
+.table-anchor {
+  @include css.override("core", "form-control-border-width", 0);
+  position: absolute;
+  align-items: center;
+  background-color: palette.get("primary", 50%, 0%);
+  border-radius: core.$border-radius-circle;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-content: center;
+  margin-left: 0.5rem;
+  opacity: 0;
+  padding: css.get("form-control-padding-y");
+  text-decoration: none !important;
+  transition:
+    color 0.25s,
+    opacity 0.25s;
+  user-select: none;
+  right: calc(100% + 0.5rem);
+  top: calc(50% - calc(34px / 2));
+
+  &:focus,
+  &:hover {
+    background-color: palette.get("primary", 50%, 20%);
+  }
+
+  tr:hover & {
+    opacity: 1;
+  }
+}
