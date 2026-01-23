@@ -64,6 +64,11 @@
 
     .code-block__icon {
       background-color: transparent;
+      padding: 0.5em;
+
+      .icon {
+        @include css.override("icon", "size", 1em);
+      }
     }
 
     .code-block__copy-button {
@@ -82,8 +87,8 @@
     }
 
     &.has-icon .pre {
-      margin-left: 3.5rem;
-      padding-left: 00.75em;
+      margin-left: 2.5rem;
+      padding-left: 0;
     }
   }
 }
