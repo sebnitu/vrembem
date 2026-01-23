@@ -7,13 +7,31 @@ interface Props {
 }
 
 const { data } = Astro.props;
+const props = Object.entries(data);
+const keys = Object.keys(data);
+
+function linkifyValue(value, keys) {
+  if (typeof value !== "string") return value;
+  // Sort keys by length descending to match longest first
+  const sortedKeys = [...keys].sort((a, b) => b.length - a.length);
+  // Only match if not followed or preceded by a dash or word char
+  const pattern = new RegExp(
+    sortedKeys
+      .map(
+        (k) => `(?<![\w-])${k.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}(?![\w-])`
+      )
+      .join("|"),
+    "g"
+  );
+  return value.replace(pattern, (match) => `<a href="#${match}">${match}</a>`);
+}
 
 // TODO:
-// - Capture the hash click and scroll appropriatly
-// - Add the ability to click cell to copy its contents
-// - Implement search filter of table
-// - Allow clicking a CSS value to link to prop reference
-// - Add active class to the "selected" table row
+// - [ ] Capture the hash click and scroll appropriately
+// - [x] Add the ability to click cell to copy its contents
+// - [ ] Implement search filter of table
+// - [x] Allow clicking a CSS value to link to prop reference
+// - [ ] Add active class to the "selected" table row
 ---
 
 <div class="reference-table">
@@ -24,7 +42,7 @@ const { data } = Astro.props;
     </tr>
 
     {
-      Object.entries(data).map(([key, value]) => (
+      props.map(([key, value]) => (
         <tr id={key}>
           <td>
             <a
@@ -41,7 +59,7 @@ const { data } = Astro.props;
           <td>
             {typeof value === "string" ? (
               <CodeBlock>
-                <code>{value}</code>
+                <code set:html={linkifyValue(value, keys)} />
               </CodeBlock>
             ) : (
               <div class="scroll-box">
@@ -49,7 +67,7 @@ const { data } = Astro.props;
                   <div class="flex justify-content-between align-items-center">
                     <span>
                       <CodeBlock>
-                        <code>{v}</code>
+                        <code set:html={linkifyValue(v, keys)} />
                       </CodeBlock>
                     </span>
                     <span>
