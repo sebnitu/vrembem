@@ -27,11 +27,12 @@ function linkifyValue(value, keys) {
 }
 
 // TODO:
-// - [ ] Capture the hash click and scroll appropriately
+// - [x] Capture the hash click and apply active class to row
 // - [x] Add the ability to click cell to copy its contents
 // - [ ] Implement search filter of table
 // - [x] Allow clicking a CSS value to link to prop reference
 // - [ ] Add active class to the "selected" table row
+// - [ ] Fix scrolling so that it's not cut off by header
 ---
 
 <div class="reference-table">
@@ -83,3 +84,43 @@ function linkifyValue(value, keys) {
     }
   </table>
 </div>
+
+<script>
+  // Build the docBlock array
+  const props = [];
+  const rows = document.querySelectorAll(".reference-table tr");
+  rows.forEach((el) => {
+    props.push({
+      id: el.id,
+      el: el
+    });
+  });
+
+  // Check for active block function
+  function checkActiveBlock() {
+    const result = props.find((el) => {
+      return `#${el.id}` === window.location.hash;
+    });
+
+    props.forEach((item) => {
+      item.el.classList.remove("is-active");
+    });
+
+    if (result) {
+      result.el.classList.add("is-active");
+
+      // Scroll to the element after it's open. This is needed to ensure the
+      // element's toggled height is factored into the scroll position.
+      const el = document.querySelector(`#${result.id}`);
+      if (el) el.scrollIntoView({ block: "center" });
+    }
+  }
+
+  // Setup event listener for hash change and check for active block on load
+  // and change.
+  checkActiveBlock();
+  window.addEventListener("hashchange", () => {
+    console.log("hashchange fired!");
+    checkActiveBlock();
+  });
+</script>
