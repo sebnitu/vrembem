@@ -28,6 +28,10 @@ function linkifyValue(value: string) {
   });
 }
 
+function iconMap(value: string) {
+  return value === "light" ? "sun" : value === "dark" ? "moon" : value;
+}
+
 // TODO:
 // - [x] Capture the hash click and apply active class to row
 // - [x] Add the ability to click cell to copy its contents
@@ -53,7 +57,7 @@ function linkifyValue(value: string) {
             <a
               class="table-anchor"
               href={`#${key}`}
-              aria-label={`Permalink to '${key}' CSS custom property`}
+              aria-label={`Permalink to '${key}'`}
             >
               <Icon name="hash" classes="icon_size_sm" />
             </a>
@@ -64,20 +68,17 @@ function linkifyValue(value: string) {
             >
               <Icon name="x" classes="icon_size_sm" />
             </button>
-            <CodeBlock>
-              <code>{key}</code>
-            </CodeBlock>
+            <CodeBlock inline={key} />
           </td>
           <td>
             {typeof value === "string" ? (
-              <CodeBlock>
-                <code set:html={linkifyValue(value)} />
-              </CodeBlock>
+              <CodeBlock inline={linkifyValue(value)} />
             ) : (
               Object.entries(value).map(([themeKey, themeValue]) => (
-                <CodeBlock aria-label={`Used in ${themeKey} theme`}>
-                  <code set:html={linkifyValue(themeValue)} />
-                </CodeBlock>
+                <CodeBlock
+                  inline={linkifyValue(themeValue)}
+                  icon={iconMap(themeKey)}
+                />
               ))
             )}
           </td>

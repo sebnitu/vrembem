@@ -57,15 +57,16 @@
     width: 100%;
 
     pre {
-      padding: 0.75em calc(34px + 0.5em) 0.75em 0.5em;
       margin: 0;
       border: 0 none;
       background-color: transparent;
     }
 
+    .code-block__icon {
+      background-color: transparent;
+    }
+
     .code-block__copy-button {
-      inset: 0 0 0 auto;
-      align-items: center;
       background-color: css.get("background");
       opacity: 0;
       transition: opacity css.get("transition-duration") css.get("transition-timing-function");
@@ -78,6 +79,11 @@
 
     &:hover .code-block__copy-button {
       opacity: 1;
+    }
+
+    &.has-icon .pre {
+      margin-left: 3.5rem;
+      padding-left: 00.75em;
     }
   }
 }
