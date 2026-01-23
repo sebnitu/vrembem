@@ -34,6 +34,7 @@ function linkifyValue(value: string) {
 // - [x] Allow clicking a CSS value to link to prop reference
 // - [x] Add active class to the "selected" table row
 // - [x] Fix scrolling so that it's not cut off by header
+// - [x] Add an "x" to clear the current hash of a table row
 // - [ ] Implement search filter of table in sticky header
 // - [ ] Fix styles and mobile styles of reference table
 ---
@@ -56,6 +57,13 @@ function linkifyValue(value: string) {
             >
               <Icon name="hash" classes="icon_size_sm" />
             </a>
+            <button
+              class="table-anchor-clear"
+              type="button"
+              aria-label="Clear current hash anchor"
+            >
+              <Icon name="x" classes="icon_size_sm" />
+            </button>
             <CodeBlock>
               <code>{key}</code>
             </CodeBlock>
@@ -126,5 +134,20 @@ function linkifyValue(value: string) {
   checkActiveBlock();
   window.addEventListener("hashchange", () => {
     checkActiveBlock();
+  });
+
+  // Add event listener for hash clear buttons
+  window.addEventListener("click", (event) => {
+    if (
+      event.target instanceof Element &&
+      event.target.closest(".table-anchor-clear")
+    ) {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+      checkActiveBlock();
+    }
   });
 </script>

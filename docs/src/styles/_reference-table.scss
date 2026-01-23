@@ -26,6 +26,13 @@
         0 0 0 1px palette.get("primary"),
         0 0 0 0.2rem palette.get("primary", 50%, 20%);
       z-index: 1;
+
+      .table-anchor {
+        display: none;
+      }
+      .table-anchor-clear {
+        display: block;
+      }
     }
 
     &:first-child {
@@ -51,6 +58,7 @@
 
     pre {
       padding: 0.75em calc(34px + 0.5em) 0.75em 0.5em;
+      margin: 0;
       border: 0 none;
       background-color: transparent;
     }
@@ -74,7 +82,8 @@
   }
 }
 
-.table-anchor {
+.table-anchor,
+.table-anchor-clear {
   @include css.override("core", "form-control-border-width", 0);
   position: absolute;
   align-items: center;
@@ -83,6 +92,7 @@
   display: inline-flex;
   font-size: 1rem;
   font-weight: 500;
+  line-height: 1em;
   justify-content: center;
   margin-left: 0.5rem;
   opacity: 0;
@@ -103,5 +113,16 @@
 
   tr:hover & {
     opacity: 1;
+  }
+}
+
+.table-anchor-clear {
+  display: none;
+  color: palette.get("important");
+  background-color: palette.get("important", 50%, 0%);
+
+  &:focus,
+  &:hover {
+    background-color: palette.get("important", 50%, 10%);
   }
 }
