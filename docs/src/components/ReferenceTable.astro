@@ -89,7 +89,7 @@ function iconMap(value: string) {
 </div>
 
 <script>
-  // Build the docBlock array
+  // Build the props from the reference table
   const props = [];
   const rows = document.querySelectorAll(".reference-table tr");
   rows.forEach((el) => {
@@ -99,19 +99,8 @@ function iconMap(value: string) {
     });
   });
 
-  const anchors = document.querySelectorAll(".reference-table a");
-
-  anchors.forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const hash = anchor.getAttribute("href");
-      window.location.hash = hash;
-      checkActiveBlock();
-    });
-  });
-
   // Check for active block function
-  function checkActiveBlock() {
+  function checkActiveHash() {
     const result = props.find((el) => {
       return `#${el.id}` === window.location.hash;
     });
@@ -130,11 +119,20 @@ function iconMap(value: string) {
     }
   }
 
-  // Setup event listener for hash change and check for active block on load
-  // and change.
-  checkActiveBlock();
+  // Setup click listener to anchors in reference table
+  const anchors = document.querySelectorAll(".reference-table a");
+  anchors.forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+      const hash = anchor.getAttribute("href");
+      window.location.hash = hash;
+      checkActiveHash();
+    });
+  });
+
+  // Setup event listener for hash change
   window.addEventListener("hashchange", () => {
-    checkActiveBlock();
+    checkActiveHash();
   });
 
   // Add event listener for hash clear buttons
@@ -148,7 +146,10 @@ function iconMap(value: string) {
         "",
         window.location.pathname + window.location.search
       );
-      checkActiveBlock();
+      checkActiveHash();
     }
   });
+
+  // Run an initial active hash check
+  checkActiveHash();
 </script>
