@@ -32,7 +32,7 @@ function linkifyValue(value, keys) {
 // - [ ] Implement search filter of table
 // - [x] Allow clicking a CSS value to link to prop reference
 // - [ ] Add active class to the "selected" table row
-// - [ ] Fix scrolling so that it's not cut off by header
+// - [x] Fix scrolling so that it's not cut off by header
 ---
 
 <div class="reference-table">
@@ -96,6 +96,17 @@ function linkifyValue(value, keys) {
     });
   });
 
+  const anchors = document.querySelectorAll(".reference-table a");
+
+  anchors.forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+      const hash = anchor.getAttribute("href");
+      window.location.hash = hash;
+      checkActiveBlock();
+    });
+  });
+
   // Check for active block function
   function checkActiveBlock() {
     const result = props.find((el) => {
@@ -120,7 +131,6 @@ function linkifyValue(value, keys) {
   // and change.
   checkActiveBlock();
   window.addEventListener("hashchange", () => {
-    console.log("hashchange fired!");
     checkActiveBlock();
   });
 </script>
