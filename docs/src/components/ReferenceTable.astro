@@ -8,22 +8,24 @@ interface Props {
 
 const { data } = Astro.props;
 const props = Object.entries(data);
-const keys = Object.keys(data);
 
-function linkifyValue(value, keys) {
-  if (typeof value !== "string") return value;
-  // Sort keys by length descending to match longest first
-  const sortedKeys = [...keys].sort((a, b) => b.length - a.length);
-  // Only match if not followed or preceded by a dash or word char
-  const pattern = new RegExp(
-    sortedKeys
-      .map(
-        (k) => `(?<![\w-])${k.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}(?![\w-])`
-      )
-      .join("|"),
-    "g"
-  );
-  return value.replace(pattern, (match) => `<a href="#${match}">${match}</a>`);
+// Create variables for pattern matching on prop keys
+const keys = Object.keys(data).sort((a, b) => b.length - a.length);
+const stringPattern = keys
+  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+  .join("|");
+const regExpObj = new RegExp(stringPattern, "g");
+
+// Escape the special characters of a string so that it can be used in RegExp
+function escapeSpecialChars(value: string) {
+  return value.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+}
+
+// Wrap the matching string value with an anchor element and href hash value
+function linkifyValue(value: string) {
+  return value.replace(regExpObj, (match) => {
+    return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+  });
 }
 
 // TODO:
@@ -61,23 +63,14 @@ function linkifyValue(value, keys) {
           <td>
             {typeof value === "string" ? (
               <CodeBlock>
-                <code set:html={linkifyValue(value, keys)} />
+                <code set:html={linkifyValue(value)} />
               </CodeBlock>
             ) : (
-              <div class="scroll-box">
-                {Object.entries(value).map(([theme, v]) => (
-                  <div class="flex justify-content-between align-items-center">
-                    <span>
-                      <CodeBlock>
-                        <code set:html={linkifyValue(v, keys)} />
-                      </CodeBlock>
-                    </span>
-                    <span>
-                      <span class="badge">{theme}</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
+              Object.entries(value).map(([themeKey, themeValue]) => (
+                <CodeBlock aria-label={`Used in ${themeKey} theme`}>
+                  <code set:html={linkifyValue(themeValue)} />
+                </CodeBlock>
+              ))
             )}
           </td>
         </tr>
