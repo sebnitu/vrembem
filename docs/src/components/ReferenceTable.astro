@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import CodeBlock from "./CodeBlock.astro";
 
 interface Props {
   data: {};
@@ -12,6 +13,7 @@ const { data } = Astro.props;
 // - Add the ability to click cell to copy its contents
 // - Implement search filter of table
 // - Allow clicking a CSS value to link to prop reference
+// - Add active class to the "selected" table row
 ---
 
 <div class="reference-table">
@@ -32,19 +34,23 @@ const { data } = Astro.props;
             >
               <Icon name="hash" classes="icon_size_sm" />
             </a>
-            <div class="scroll-box">
+            <CodeBlock>
               <code>{key}</code>
-            </div>
+            </CodeBlock>
           </td>
           <td>
             {typeof value === "string" ? (
-              <code>{value}</code>
+              <CodeBlock>
+                <code>{value}</code>
+              </CodeBlock>
             ) : (
               <div class="scroll-box">
                 {Object.entries(value).map(([theme, v]) => (
                   <div class="flex justify-content-between align-items-center">
                     <span>
-                      <code>{v}</code>
+                      <CodeBlock>
+                        <code>{v}</code>
+                      </CodeBlock>
                     </span>
                     <span>
                       <span class="badge">{theme}</span>

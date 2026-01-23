@@ -6,9 +6,12 @@
   background: css.get("background-dark");
   border-radius: css.get("border-radius-lg");
   border: 3px solid css.get("background-darker");
+  width: 100%;
 
   table {
     background-color: transparent;
+    position: relative;
+    table-layout: fixed;
   }
 
   tr {
@@ -31,9 +34,10 @@
   }
 
   td {
+    position: relative;
+
     &:first-child {
       text-wrap: nowrap;
-      max-width: 300px;
     }
 
     &:hover {
@@ -41,9 +45,8 @@
     }
   }
 
-  :not(pre) code {
-    background-color: transparent;
-    padding: 0;
+  .code-block {
+    width: 100%;
   }
 }
 
