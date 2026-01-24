@@ -49,11 +49,21 @@ function iconMap(value: string) {
 // - [x] Fix scrolling so that it's not cut off by header
 // - [x] Add an "x" to clear the current hash of a table row
 // - [x] Fix styles and mobile styles of reference table
+// - [x] Implement search filter of table
+// - [ ] Improve the styles of the search filter
+// - [ ] Maybe make the search header sticky
 // - [ ] Maybe add popover for light/dark theme icons
-// - [ ] Implement search filter of table in sticky header
 ---
 
 <div id={`reference-table-${uid}`} class="reference-table">
+  <div class="padding border-bottom">
+    <input
+      class="input reference-table__filter"
+      name="table-filter"
+      type="text"
+      placeholder="Filter..."
+    />
+  </div>
   <table
     class="table sm:table_responsive"
     style={`--vb-table-mobile-label-width: ${labelWidth}`}
@@ -106,9 +116,60 @@ function iconMap(value: string) {
       }
     </tbody>
   </table>
+  <div class="notice radius-square-top display-none">
+    <div class="flex align-items-center">
+      <Icon name="alert-triangle" classes="icon_size_sm foreground-important" />
+      <p>There are no variables that match your search.</p>
+    </div>
+  </div>
 </div>
 
 <script>
+  /**
+   * Table filter functionality
+   */
+
+  function filterTable(event: KeyboardEvent) {
+    // Declare variables
+    const input = event.target as HTMLInputElement;
+    const filter = input.value.toUpperCase();
+    const parent = input.closest(".reference-table");
+    const rows = parent.querySelectorAll("tr");
+    const notice = parent.querySelector(".notice");
+    let visible = 0;
+    let hidden = 0;
+
+    // Loop through table rows and hide those that don't match the search query
+    for (let i = 0; i < rows.length; i++) {
+      let td = rows[i].querySelector("td code") as HTMLElement;
+      if (td) {
+        let txtValue = td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          rows[i].classList.remove("display-none");
+          visible++;
+        } else {
+          rows[i].classList.add("display-none");
+          hidden++;
+        }
+      }
+    }
+
+    // Toggle the notice if no items are displayed
+    if (!visible) {
+      notice.classList.remove("display-none");
+    } else {
+      notice.classList.add("display-none");
+    }
+  }
+
+  document.querySelectorAll(".reference-table__filter").forEach((input) => {
+    input.addEventListener("keyup", filterTable);
+  });
+
+  /**
+   * Row permalink functionality
+   */
+
   // Build the props from the reference table
   const props = [];
   const rows = document.querySelectorAll(".reference-table tr");

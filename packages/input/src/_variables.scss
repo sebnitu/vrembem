@@ -20,7 +20,7 @@ $box-shadow-hover: $box-shadow !default;
 $box-shadow-focus: none !default;
 
 // State: placeholder
-$foreground-placeholder: null !default;
+$foreground-placeholder: css.get("foreground-lighter") !default;
 
 // State: readonly
 $background-readonly: css.get("background-dark") !default;
