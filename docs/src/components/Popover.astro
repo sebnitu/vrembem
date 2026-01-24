@@ -8,17 +8,17 @@ interface Props {
   placement?: string;
 }
 
-const { 
-  id, 
+const {
+  id,
   arrow = false,
-  triggerClass = "link", 
+  triggerClass = "link",
   popoverClass = "",
   tooltipClass = "",
   placement,
   ...rest
 } = Astro.props;
 
-const uid = id ? id : JSON.stringify(Math.floor(Math.random() * Date.now()));
+const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 const triggerId = `popover-trigger-${uid}`;
 const popoverId = Astro.slots.has("default") ? `popover-${uid}` : null;
 const tooltipId = Astro.slots.has("tooltip") ? `popover-tooltip-${uid}` : null;
@@ -27,7 +27,6 @@ const css = {};
 if (placement) {
   css["--vb-popover-placement"] = placement;
 }
-
 ---
 
 {
@@ -54,11 +53,7 @@ if (placement) {
       style={css}
     >
       <slot />
-      { 
-        arrow && (
-          <span class="popover__arrow"></span>
-        )
-      }
+      {arrow && <span class="popover__arrow" />}
     </div>
   )
 }
@@ -71,7 +66,7 @@ if (placement) {
       style={css}
     >
       <slot name="tooltip" />
-      <span class="popover__arrow"></span>
+      <span class="popover__arrow" />
     </div>
   )
 }
