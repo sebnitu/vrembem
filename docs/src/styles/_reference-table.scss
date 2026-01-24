@@ -5,8 +5,8 @@
 
 .reference-table {
   background: css.get("background-dark");
-  border-radius: css.get("border-radius-lg");
   border: 3px solid css.get("background-darker");
+  border-radius: css.get("border-radius-lg");
   width: 100%;
 
   table {
@@ -20,11 +20,11 @@
   }
 
   tr {
-    position: relative;
     border-top: css.get("table", "border");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
+    position: relative;
 
     &.is-active {
       background-color: css.get("background");
@@ -36,6 +36,7 @@
       .table-anchor {
         display: none;
       }
+
       .table-anchor-clear {
         display: block;
       }
@@ -47,8 +48,8 @@
   }
 
   td {
-    position: relative;
     padding: 0;
+    position: relative;
 
     &:first-child {
       text-wrap: nowrap;
@@ -63,9 +64,9 @@
     width: 100%;
 
     pre {
-      margin: 0;
-      border: 0 none;
       background-color: transparent;
+      border: 0 none;
+      margin: 0;
     }
 
     .code-block__icon {
@@ -102,25 +103,26 @@
 .table-anchor,
 .table-anchor-clear {
   @include css.override("core", "form-control-border-width", 0);
-  position: absolute;
+
   align-items: center;
   background-color: palette.get("primary", 50%, 0%);
   border-radius: core.$border-radius-circle;
   display: inline-flex;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1em;
   justify-content: center;
+  line-height: 1em;
   margin-left: 0.5rem;
   opacity: 0;
   padding: css.get("form-control-padding-y");
+  position: absolute;
+  right: calc(100% + 0.5rem);
   text-decoration: none !important;
+  top: calc(50% - calc(34px / 2));
   transition:
     color 0.25s,
     opacity 0.25s;
   user-select: none;
-  right: calc(100% + 0.5rem);
-  top: calc(50% - calc(34px / 2));
 
   &:focus,
   &:hover {
@@ -134,9 +136,9 @@
 }
 
 .table-anchor-clear {
-  display: none;
-  color: palette.get("important");
   background-color: palette.get("important", 50%, 0%);
+  color: palette.get("important");
+  display: none;
 
   &:focus,
   &:hover {

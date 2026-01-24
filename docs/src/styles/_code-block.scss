@@ -46,19 +46,19 @@
 
 .code-block__icon,
 .code-block__copy-button {
-  background-color: css.get("background-dark");
-  color: css.get("foreground-lighter");
-  border-radius: core.$border-radius;
-  display: flex;
   align-items: center;
+  background-color: css.get("background-dark");
+  border-radius: core.$border-radius;
+  color: css.get("foreground-lighter");
+  display: flex;
+  inset: 0.8rem;
   padding: 0.5rem;
   position: absolute;
-  inset: 0.8rem;
 }
 
 .code-block__icon {
-  right: auto;
   bottom: auto;
+  right: auto;
 
   @include core.media-max(var.$bp-code) {
     left: 0;
@@ -66,8 +66,8 @@
 }
 
 .code-block__copy-button {
-  left: auto;
   bottom: auto;
+  left: auto;
 
   &:hover {
     color: css.get("foreground-light");

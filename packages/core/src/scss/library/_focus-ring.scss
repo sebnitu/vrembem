@@ -14,6 +14,7 @@
 ///
 @function focus-ring-color($module, $value) {
   $result: css.get("core", "focus-ring-color", $value);
+
   @if $module != "core" {
     $result: css.get($module, "focus-ring-color", $result);
   }
@@ -34,6 +35,7 @@
 ///
 @function focus-ring-opacity($module, $value) {
   $result: css.get("core", "focus-ring-opacity", $value);
+
   @if $module != "core" {
     $result: css.get($module, "focus-ring-opacity", $result);
   }
