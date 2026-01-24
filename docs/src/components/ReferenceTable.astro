@@ -6,9 +6,12 @@ interface Props {
   data: {};
   keyWidth?: string;
   valueWidth?: string;
+  labelWidth?: string;
 }
 
-const { data, keyWidth, valueWidth } = Astro.props;
+const { data, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+
+// Create an array of the provided data object
 const props = Object.entries(data);
 
 // Create variables for pattern matching on prop keys
@@ -41,56 +44,62 @@ function iconMap(value: string) {
 // - [x] Add active class to the "selected" table row
 // - [x] Fix scrolling so that it's not cut off by header
 // - [x] Add an "x" to clear the current hash of a table row
+// - [x] Fix styles and mobile styles of reference table
 // - [ ] Implement search filter of table in sticky header
-// - [ ] Fix styles and mobile styles of reference table
 ---
 
 <div class="reference-table">
-  <table class="table">
+  <table
+    class="table sm:table_responsive"
+    style={`--vb-table-mobile-label-width: ${labelWidth}`}
+  >
     <colgroup>
       <col width={keyWidth} />
       <col width={valueWidth} />
     </colgroup>
-    <tr>
-      <th>Var</th>
-      <th>Value</th>
-    </tr>
-
-    {
-      props.map(([key, value]) => (
-        <tr id={key}>
-          <td>
-            <a
-              class="table-anchor"
-              href={`#${key}`}
-              aria-label={`Permalink to '${key}'`}
-            >
-              <Icon name="hash" classes="icon_size_sm" />
-            </a>
-            <button
-              class="table-anchor-clear"
-              type="button"
-              aria-label="Clear current hash anchor"
-            >
-              <Icon name="x" classes="icon_size_sm" />
-            </button>
-            <CodeBlock inline={key} />
-          </td>
-          <td>
-            {typeof value === "string" ? (
-              <CodeBlock inline={linkifyValue(value)} />
-            ) : (
-              Object.entries(value).map(([themeKey, themeValue]) => (
-                <CodeBlock
-                  inline={linkifyValue(themeValue)}
-                  icon={iconMap(themeKey)}
-                />
-              ))
-            )}
-          </td>
-        </tr>
-      ))
-    }
+    <thead>
+      <tr>
+        <th>Var</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        props.map(([key, value]) => (
+          <tr id={key}>
+            <td data-mobile-label="Var">
+              <a
+                class="table-anchor"
+                href={`#${key}`}
+                aria-label={`Permalink to '${key}'`}
+              >
+                <Icon name="hash" classes="icon_size_sm" />
+              </a>
+              <button
+                class="table-anchor-clear"
+                type="button"
+                aria-label="Clear current hash anchor"
+              >
+                <Icon name="x" classes="icon_size_sm" />
+              </button>
+              <CodeBlock inline={key} />
+            </td>
+            <td data-mobile-label="Value">
+              {typeof value === "string" ? (
+                <CodeBlock inline={linkifyValue(value)} />
+              ) : (
+                Object.entries(value).map(([themeKey, themeValue]) => (
+                  <CodeBlock
+                    inline={linkifyValue(themeValue)}
+                    icon={iconMap(themeKey)}
+                  />
+                ))
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
   </table>
 </div>
 

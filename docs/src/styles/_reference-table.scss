@@ -1,6 +1,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core";
+@use "./variables" as var;
 
 .reference-table {
   background: css.get("background-dark");
@@ -12,6 +13,10 @@
     background-color: transparent;
     position: relative;
     table-layout: fixed;
+  }
+
+  thead {
+    border-bottom: css.get("table", "border");
   }
 
   tr {
@@ -136,5 +141,13 @@
   &:focus,
   &:hover {
     background-color: palette.get("important", 50%, 10%);
+  }
+}
+
+@include core.media-max(var.$bp-code) {
+  .table-anchor,
+  .table-anchor-clear {
+    left: 3.75rem;
+    right: auto;
   }
 }

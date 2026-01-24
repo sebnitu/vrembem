@@ -12,6 +12,10 @@
     display: block;
   }
 
+  colgroup {
+    display: none;
+  }
+
   thead,
   [rowspan] {
     left: -9999px;
