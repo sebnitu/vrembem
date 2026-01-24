@@ -4,9 +4,11 @@ import CodeBlock from "./CodeBlock.astro";
 
 interface Props {
   data: {};
+  keyWidth?: string;
+  valueWidth?: string;
 }
 
-const { data } = Astro.props;
+const { data, keyWidth, valueWidth } = Astro.props;
 const props = Object.entries(data);
 
 // Create variables for pattern matching on prop keys
@@ -45,6 +47,10 @@ function iconMap(value: string) {
 
 <div class="reference-table">
   <table class="table">
+    <colgroup>
+      <col width={keyWidth} />
+      <col width={valueWidth} />
+    </colgroup>
     <tr>
       <th>Var</th>
       <th>Value</th>
