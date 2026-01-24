@@ -1,4 +1,17 @@
 ---
+// TODO:
+// - [x] Capture the hash click and apply active class to row
+// - [x] Add the ability to click cell to copy its contents
+// - [x] Allow clicking a CSS value to link to prop reference
+// - [x] Add active class to the "selected" table row
+// - [x] Fix scrolling so that it's not cut off by header
+// - [x] Add an "x" to clear the current hash of a table row
+// - [x] Fix styles and mobile styles of reference table
+// - [x] Implement search filter of table
+// - [ ] Improve the styles of the search filter
+// - [ ] Maybe make the search header sticky
+// - [ ] Maybe add popover for light/dark theme icons
+
 import Icon from "./Icon.astro";
 import CodeBlock from "./CodeBlock.astro";
 
@@ -40,19 +53,6 @@ function linkifyValue(value: string) {
 function iconMap(value: string) {
   return value === "light" ? "sun" : value === "dark" ? "moon" : value;
 }
-
-// TODO:
-// - [x] Capture the hash click and apply active class to row
-// - [x] Add the ability to click cell to copy its contents
-// - [x] Allow clicking a CSS value to link to prop reference
-// - [x] Add active class to the "selected" table row
-// - [x] Fix scrolling so that it's not cut off by header
-// - [x] Add an "x" to clear the current hash of a table row
-// - [x] Fix styles and mobile styles of reference table
-// - [x] Implement search filter of table
-// - [ ] Improve the styles of the search filter
-// - [ ] Maybe make the search header sticky
-// - [ ] Maybe add popover for light/dark theme icons
 ---
 
 <div id={`reference-table-${uid}`} class="reference-table">
