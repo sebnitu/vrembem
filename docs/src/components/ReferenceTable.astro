@@ -4,12 +4,16 @@ import CodeBlock from "./CodeBlock.astro";
 
 interface Props {
   data: {};
+  id?: string;
   keyWidth?: string;
   valueWidth?: string;
   labelWidth?: string;
 }
 
-const { data, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+const { data, id, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+
+// Create a unique ID if one is not provided
+const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 
 // Create an array of the provided data object
 const props = Object.entries(data);
@@ -48,7 +52,7 @@ function iconMap(value: string) {
 // - [ ] Implement search filter of table in sticky header
 ---
 
-<div class="reference-table">
+<div id={`reference-table-${uid}`} class="reference-table">
   <table
     class="table sm:table_responsive"
     style={`--vb-table-mobile-label-width: ${labelWidth}`}
