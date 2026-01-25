@@ -1,12 +1,14 @@
 ---
 title: CSS Variables
-description: "Core custom properties for establishing a consistent design language across components."
 parent: core
 group: reference
 ---
 
+import Icon from "../../../components/Icon.astro";
 import ReferenceTable from "../../../components/ReferenceTable.astro";
 import data from "../../../data/cssvar-core.json";
+
+The `core` package provides a number of pre-defined CSS variables that are used throughout the Vrembem library. These variables are not output when you import or use `@vrembem/core`. To output core CSS varibales, use the `@vrembem/core/root` export.
 
 <CodeExample lang="scss">
 ```scss
@@ -14,6 +16,23 @@ import data from "../../../data/cssvar-core.json";
 ```
 </CodeExample>
 
-Below is a reference of all `core` CSS custom properties and their values. By default, custom properties are not output by the core package.
+Alternatively, custom properties can also be output using the `core/css` and `core/theme` modules:
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
+
+// Output all registered CSS variables
+:root {
+  @include css.output;
+}
+
+// Output all registered theme CSS variables
+@include theme.output;
+```
+</CodeExample>
+
+Below is a reference to all CSS variables and their values. Theme variables will use the value based on the current theme as shown by the sun (<Icon name="sun" classes="icon_inline icon_size_sm" />) and moon (<Icon name="moon" classes="icon_inline icon_size_sm" />) icons.
 
 <ReferenceTable id="cssvar-core" data={data} keyWidth="45%" />
