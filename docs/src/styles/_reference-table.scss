@@ -101,9 +101,9 @@
 }
 
 .reference-table__header {
-  position: relative;
   border-bottom: css.get("border");
   padding: css.get("gap");
+  position: relative;
 
   .input-group {
     position: relative;
@@ -111,15 +111,15 @@
 
   .input-icon,
   .input-clear {
+    align-items: center;
+    color: css.get("foreground-lighter");
     cursor: pointer;
     display: flex;
-    align-items: center;
+    inset: 0 auto 0 0;
     justify-content: center;
     padding: 0 0.75em;
     position: absolute;
-    inset: 0 auto 0 0;
     z-index: 1;
-    color: css.get("foreground-lighter");
 
     &:hover {
       color: palette.get("primary");
@@ -127,8 +127,8 @@
   }
 
   .input-clear {
-    inset: 0 0 0 auto;
     border: none;
+    inset: 0 0 0 auto;
   }
 
   .input {
