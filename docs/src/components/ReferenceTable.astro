@@ -9,7 +9,7 @@
 // - [x] Fix styles and mobile styles of reference table
 // - [x] Implement search filter of table
 // - [x] Improve the styles of the search filter
-// - [ ] Maybe make the search header sticky
+// - [x] Maybe make the search header sticky
 // - [ ] Maybe add popover for light/dark theme icons
 
 import Icon from "./Icon.astro";
@@ -139,6 +139,8 @@ function iconMap(value: string) {
 </div>
 
 <script>
+  import { cssVar } from "@vrembem/core";
+
   /**
    * Table filter functionality
    */
@@ -155,7 +157,7 @@ function iconMap(value: string) {
     // Setup the variables
     const input = event.target as HTMLInputElement;
     const filter = input.value.toUpperCase();
-    const parent = input.closest(".reference-table");
+    const parent = input.closest(".reference-table") as HTMLElement;
     const rows = parent.querySelectorAll("tr");
     const notice = parent.querySelector(".notice");
     const clearBtn = parent.querySelector(".input-clear");
@@ -183,6 +185,9 @@ function iconMap(value: string) {
 
     // Toggle the clear input button
     if (filter) {
+      // Scroll to the top of the reference table
+      // parent.scrollIntoView({ block: "start" });
+      scrollToRef(parent);
       clearBtn.classList.remove("display-none");
     } else {
       clearBtn.classList.add("display-none");
@@ -194,6 +199,19 @@ function iconMap(value: string) {
     } else {
       notice.classList.remove("display-none");
     }
+    setTimeout(() => {}, 100);
+  }
+
+  function scrollToRef(ref: HTMLElement) {
+    const rect = ref.getBoundingClientRect();
+    const scrollTop = document.documentElement.scrollTop;
+    const navibar = document.querySelector(".navibar") as HTMLElement;
+    const offset = navibar ? navibar.offsetHeight : 0;
+    console.log("offset", offset);
+    window.scrollTo({
+      top: rect.top + scrollTop - offset,
+      behavior: "instant"
+    });
   }
 
   document.querySelectorAll(".reference-table__filter").forEach((input) => {
