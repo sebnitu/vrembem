@@ -143,8 +143,16 @@ function iconMap(value: string) {
    * Table filter functionality
    */
 
-  function filterTable(event: KeyboardEvent) {
-    // Declare variables
+  function filterTable(event?: KeyboardEvent) {
+    // Query for the filter elements if event is not provided
+    if (!event) {
+      document.querySelectorAll(".reference-table__filter").forEach((input) => {
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+      return;
+    }
+
+    // Setup the variables
     const input = event.target as HTMLInputElement;
     const filter = input.value.toUpperCase();
     const parent = input.closest(".reference-table");
@@ -163,8 +171,12 @@ function iconMap(value: string) {
           rows[i].classList.remove("display-none");
           visible++;
         } else {
-          rows[i].classList.add("display-none");
-          hidden++;
+          if (!rows[i].classList.contains("is-active")) {
+            rows[i].classList.add("display-none");
+            hidden++;
+          } else {
+            visible++;
+          }
         }
       }
     }
@@ -194,6 +206,7 @@ function iconMap(value: string) {
       const input = document.getElementById(id) as HTMLInputElement;
       input.value = "";
       input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
     });
   });
 
@@ -223,6 +236,7 @@ function iconMap(value: string) {
 
     if (result) {
       result.el.classList.add("is-active");
+      result.el.classList.remove("display-none");
 
       // Scroll to the element after it's open. This is needed to ensure the
       // element's toggled height is factored into the scroll position.
@@ -238,28 +252,27 @@ function iconMap(value: string) {
       event.preventDefault();
       const hash = anchor.getAttribute("href");
       window.location.hash = hash;
-      checkActiveHash();
+    });
+  });
+
+  // Setup click listener to hash clear buttons
+  const clearBtns = document.querySelectorAll(".table-anchor-clear");
+  clearBtns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+      // Manually fire hasChange event since `history.replaceState` doesn't
+      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
     });
   });
 
   // Setup event listener for hash change
   window.addEventListener("hashchange", () => {
     checkActiveHash();
-  });
-
-  // Add event listener for hash clear buttons
-  window.addEventListener("click", (event) => {
-    if (
-      event.target instanceof Element &&
-      event.target.closest(".table-anchor-clear")
-    ) {
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-      checkActiveHash();
-    }
+    filterTable();
   });
 
   // Run an initial active hash check
