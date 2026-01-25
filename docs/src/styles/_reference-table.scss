@@ -100,6 +100,46 @@
   }
 }
 
+.reference-table__header {
+  position: relative;
+  border-bottom: css.get("border");
+  padding: css.get("gap");
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-icon,
+  .input-clear {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.75em;
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 1;
+    color: css.get("foreground-lighter");
+
+    &:hover {
+      color: palette.get("primary");
+    }
+  }
+
+  .input-clear {
+    inset: 0 0 0 auto;
+    border: none;
+  }
+
+  .input {
+    padding-left: 3em;
+
+    &:focus ~ .input-icon {
+      color: palette.get("primary");
+    }
+  }
+}
+
 .table-anchor,
 .table-anchor-clear {
   @include css.override("core", "form-control-border-width", 0);
