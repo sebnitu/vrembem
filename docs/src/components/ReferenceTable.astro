@@ -1,18 +1,6 @@
 ---
-// TODO:
-// - [x] Capture the hash click and apply active class to row
-// - [x] Add the ability to click cell to copy its contents
-// - [x] Allow clicking a CSS value to link to prop reference
-// - [x] Add active class to the "selected" table row
-// - [x] Fix scrolling so that it's not cut off by header
-// - [x] Add an "x" to clear the current hash of a table row
-// - [x] Fix styles and mobile styles of reference table
-// - [x] Implement search filter of table
-// - [x] Improve the styles of the search filter
-// - [x] Maybe make the search header sticky
-// - [ ] Maybe add popover for light/dark theme icons
-
 import Icon from "./Icon.astro";
+import Popover from "./Popover.astro";
 import CodeBlock from "./CodeBlock.astro";
 
 interface Props {
@@ -118,10 +106,17 @@ function iconMap(value: string) {
                 <CodeBlock inline={linkifyValue(value)} />
               ) : (
                 Object.entries(value).map(([themeKey, themeValue]) => (
-                  <CodeBlock
-                    inline={linkifyValue(themeValue)}
-                    icon={iconMap(themeKey)}
-                  />
+                  <div class="flex flex_nowrap gap-none align-items-center">
+                    <Popover triggerClass="foreground-lighter flex padding-y-sm margin-left-sm">
+                      <Fragment slot="trigger">
+                        <Icon name={iconMap(themeKey)} classes="icon_size_sm" />
+                      </Fragment>
+                      <Fragment slot="tooltip">
+                        {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
+                      </Fragment>
+                    </Popover>
+                    <CodeBlock inline={linkifyValue(themeValue)} />
+                  </div>
                 ))
               )}
             </td>

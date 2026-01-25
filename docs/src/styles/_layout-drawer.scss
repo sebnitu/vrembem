@@ -72,10 +72,10 @@
       content: "";
       height: 100%;
       inset: 0 0 auto auto;
+      pointer-events: none;
       position: absolute;
       width: 2rem;
       z-index: 2;
-      pointer-events: none;
     }
   }
 
