@@ -18,26 +18,13 @@ const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
   hasDrawer: !!collection,
-  hasAside: !!headings.filter((item) => item.depth === 2).length,
+  hasAside: !!headings.filter((item) => item.depth === 2).length
 };
-
 ---
 
 <Base {title} {layout}>
-  {
-    layout.hasDrawer && (
-      <div slot="drawer">
-        <Navi {entries} collection={collection} />
-      </div>
-    )
-  }
-  {
-    layout.hasAside && (
-      <div slot="aside">
-        <OnThisPage {headings} />
-      </div>
-    )
-  }
+  {layout.hasDrawer && <Navi {entries} collection={collection} slot="drawer" />}
+  {layout.hasAside && <OnThisPage {headings} slot="aside" />}
   <slot />
   <div slot="append">
     <LinkEditPage dir="pages" {filename} />
