@@ -6,7 +6,6 @@
 .layout {
   display: flex;
   justify-content: center;
-  // overflow-x: hidden; // This breaks posiiton: sticky?
   padding-left: css.get("layout", "padding");
   padding-right: css.get("layout", "padding");
   position: relative;
