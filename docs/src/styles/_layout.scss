@@ -6,7 +6,6 @@
 .layout {
   display: flex;
   justify-content: center;
-  overflow-x: hidden;
   padding-left: css.get("layout", "padding");
   padding-right: css.get("layout", "padding");
   position: relative;

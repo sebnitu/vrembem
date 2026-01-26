@@ -255,10 +255,6 @@ $-theme-keys: "light", "dark";
       // Save a copy of the component map from variables
       $component-theme-map: map.get($component-map, $theme);
 
-      // Get a reference of the color scheme property and remove it from the map
-      $color-scheme: map.get($component-theme-map, "color-scheme");
-      $component-theme-map: map.remove($component-theme-map, "color-scheme");
-
       // Merge the values of the default theme with all other themes
       @if $theme != config.get("theme-default") {
         $component-theme-map: map.merge(map.get($component-map, config.get("theme-default")), $component-theme-map);
@@ -266,8 +262,14 @@ $-theme-keys: "light", "dark";
 
       // Output custom properties
       @each $prop, $value in $component-theme-map {
-        @include css.define($component, $prop, $value);
+        // Don't output the color-scheme property
+        @if $prop != "color-scheme" {
+          @include css.define($component, $prop, $value);
+        }
       }
+
+      // Get a reference of the color scheme property and remove it from the map
+      $color-scheme: map.get($component-theme-map, "color-scheme");
 
       // If a color scheme was stored, output it below everything else
       @if $color-scheme {

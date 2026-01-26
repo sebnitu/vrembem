@@ -3,22 +3,34 @@ import Icon from "./Icon.astro";
 import Popover from "./Popover.astro";
 
 interface Props {
-  inline?: boolean;
   nopre?: boolean;
+  inline?: string;
+  icon?: string;
 }
 
-const { inline = false, nopre = false } = Astro.props;
+const { inline, nopre, icon } = Astro.props;
 
+const classes = ["code-block"];
+if (inline) classes.push("code-block_inline");
+if (icon) classes.push("has-icon");
 ---
 
-<div class={`code-block ${inline ? "code-block_inline" : ""}`.trim()}>
+<div class={classes.join(" ")}>
+  {
+    icon && (
+      <span class="code-block__icon">
+        <Icon name={icon} classes="icon_size_sm" />
+      </span>
+    )
+  }
   {
     nopre ? (
       <slot />
     ) : inline ? (
-      <Icon name="chevron-right" classes="code-block__prompt icon_size_sm foreground-lighter" />
-      <pre tabindex="0" class="pre"><code><slot /></code></pre>
+      // prettier-ignore
+      <pre tabindex="0" class="pre"><code set:html={inline} /></pre>
     ) : (
+      // prettier-ignore
       <pre tabindex="0" class="pre"><slot /></pre>
     )
   }
@@ -29,7 +41,10 @@ const { inline = false, nopre = false } = Astro.props;
   >
     <Fragment slot="trigger">
       <Icon name="copy" classes="icon_size_sm" />
-      <Icon name="check" classes="icon_size_sm foreground-primary-50 display-none" />
+      <Icon
+        name="check"
+        classes="icon_size_sm foreground-primary-50 display-none"
+      />
     </Fragment>
     Copied!
   </Popover>
@@ -38,12 +53,15 @@ const { inline = false, nopre = false } = Astro.props;
 <script>
   import { popover } from "../modules/usePopover";
 
-  function copyCode(event) {
-    const trigger = event.target.closest(".code-block__copy-button");
-    const code = event.target.closest(".code-block").querySelector("pre code");
+  function copyCode(el: HTMLElement) {
+    const trigger = el.closest(".code-block__copy-button") as HTMLButtonElement;
+    const code = el
+      .closest(".code-block")
+      .querySelector("pre code") as HTMLElement;
     const text = code.innerText;
     const icons = trigger.querySelectorAll(".icon");
-    navigator.clipboard.writeText(text)
+    navigator.clipboard
+      .writeText(text)
       .then(() => {
         trigger.disabled = true;
         icons.forEach((icon) => icon.classList.toggle("display-none"));
@@ -62,7 +80,7 @@ const { inline = false, nopre = false } = Astro.props;
 
   btns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      copyCode(event);
+      copyCode(event.target as HTMLElement);
     });
   });
 </script>

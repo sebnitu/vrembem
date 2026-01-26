@@ -47,12 +47,8 @@ const layout = {
 ---
 
 <Base title={entry.data.title} {layout}>
-  <div slot="drawer">
-    <Navi entries={packages} collection="packages" />
-  </div>
-  <div slot="aside">
-    <OnThisPage {headings} />
-  </div>
+  <Navi entries={packages} collection="packages" slot="drawer" />
+  <OnThisPage {headings} slot="aside" />
 
   {
     entry.data.parent && (

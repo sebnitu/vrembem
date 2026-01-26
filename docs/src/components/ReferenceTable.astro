@@ -1,0 +1,293 @@
+---
+import Icon from "./Icon.astro";
+import Popover from "./Popover.astro";
+import CodeBlock from "./CodeBlock.astro";
+
+interface Props {
+  data: {};
+  id?: string;
+  keyWidth?: string;
+  valueWidth?: string;
+  labelWidth?: string;
+}
+
+const { data, id, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+
+// Create a unique ID if one is not provided
+const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
+
+// Create an array of the provided data object
+const props = Object.entries(data);
+
+// Create variables for pattern matching on prop keys
+const keys = Object.keys(data).sort((a, b) => b.length - a.length);
+const stringPattern = keys
+  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+  .join("|");
+const regExpObj = new RegExp(stringPattern, "g");
+
+// Escape the special characters of a string so that it can be used in RegExp
+function escapeSpecialChars(value: string) {
+  return value.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+}
+
+// Wrap the matching string value with an anchor element and href hash value
+function linkifyValue(value: string) {
+  return value.replace(regExpObj, (match) => {
+    return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+  });
+}
+
+function iconMap(value: string) {
+  return value === "light" ? "sun" : value === "dark" ? "moon" : value;
+}
+---
+
+<div id={`reference-table-${uid}`} class="reference-table">
+  <div class="reference-table__header">
+    <div class="input-group">
+      <input
+        id={`reference-table-filter-${uid}`}
+        name={`reference-table-filter-${uid}`}
+        class="input reference-table__filter"
+        type="text"
+        placeholder="Filter..."
+      />
+      <label class="input-icon" for={`reference-table-filter-${uid}`}>
+        <Icon name="eye" classes="icon_size_sm" />
+        <span class="sr-only">Type to filter the reference table.</span>
+      </label>
+      <button
+        class="button button_icon input-clear display-none"
+        type="button"
+        data-clear={`reference-table-filter-${uid}`}
+      >
+        <Icon name="x" classes="icon_size_sm" />
+      </button>
+    </div>
+  </div>
+  <table
+    class="table sm:table_responsive"
+    style={`--vb-table-mobile-label-width: ${labelWidth}`}
+  >
+    <colgroup>
+      <col width={keyWidth} />
+      <col width={valueWidth} />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Var</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        props.map(([key, value]) => (
+          <tr id={key}>
+            <td data-mobile-label="Var">
+              <a
+                class="table-anchor"
+                href={`#${key}`}
+                aria-label={`Permalink to '${key}'`}
+              >
+                <Icon name="hash" classes="icon_size_sm" />
+              </a>
+              <button
+                class="table-anchor-clear"
+                type="button"
+                aria-label="Clear current hash anchor"
+              >
+                <Icon name="x" classes="icon_size_sm" />
+              </button>
+              <CodeBlock inline={key} />
+            </td>
+            <td data-mobile-label="Value">
+              {typeof value === "string" ? (
+                <CodeBlock inline={linkifyValue(value)} />
+              ) : (
+                Object.entries(value).map(([themeKey, themeValue]) => (
+                  <div class="flex flex_nowrap gap-none align-items-center">
+                    <Popover triggerClass="foreground-lighter flex padding-y-sm margin-left-sm">
+                      <Fragment slot="trigger">
+                        <Icon name={iconMap(themeKey)} classes="icon_size_sm" />
+                      </Fragment>
+                      <Fragment slot="tooltip">
+                        {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
+                      </Fragment>
+                    </Popover>
+                    <CodeBlock inline={linkifyValue(themeValue)} />
+                  </div>
+                ))
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <div class="notice radius-square-top display-none">
+    <div class="flex align-items-center">
+      <Icon name="alert-triangle" classes="icon_size_sm foreground-important" />
+      <p>There are no variables that match your search.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { cssVar } from "@vrembem/core";
+
+  /**
+   * Table filter functionality
+   */
+
+  function filterTable(event?: KeyboardEvent) {
+    // Query for the filter elements if event is not provided
+    if (!event) {
+      document.querySelectorAll(".reference-table__filter").forEach((input) => {
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+      return;
+    }
+
+    // Setup the variables
+    const input = event.target as HTMLInputElement;
+    const filter = input.value.toUpperCase();
+    const parent = input.closest(".reference-table") as HTMLElement;
+    const rows = parent.querySelectorAll("tr");
+    const notice = parent.querySelector(".notice");
+    const clearBtn = parent.querySelector(".input-clear");
+    let visible = 0;
+    let hidden = 0;
+
+    // Loop through table rows and hide those that don't match the search query
+    for (let i = 0; i < rows.length; i++) {
+      let td = rows[i].querySelector("td code") as HTMLElement;
+      if (td) {
+        let txtValue = td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          rows[i].classList.remove("display-none");
+          visible++;
+        } else {
+          if (!rows[i].classList.contains("is-active")) {
+            rows[i].classList.add("display-none");
+            hidden++;
+          } else {
+            visible++;
+          }
+        }
+      }
+    }
+
+    // Toggle the clear input button
+    if (filter) {
+      // Scroll to the top of the reference table
+      // parent.scrollIntoView({ block: "start" });
+      scrollToRef(parent);
+      clearBtn.classList.remove("display-none");
+    } else {
+      clearBtn.classList.add("display-none");
+    }
+
+    // Toggle the notice if no items are displayed
+    if (visible) {
+      notice.classList.add("display-none");
+    } else {
+      notice.classList.remove("display-none");
+    }
+    setTimeout(() => {}, 100);
+  }
+
+  function scrollToRef(ref: HTMLElement) {
+    const rect = ref.getBoundingClientRect();
+    const scrollTop = document.documentElement.scrollTop;
+    const navibar = document.querySelector(".navibar") as HTMLElement;
+    const offset = navibar ? navibar.offsetHeight : 0;
+    console.log("offset", offset);
+    window.scrollTo({
+      top: rect.top + scrollTop - offset,
+      behavior: "instant"
+    });
+  }
+
+  document.querySelectorAll(".reference-table__filter").forEach((input) => {
+    input.addEventListener("input", filterTable);
+  });
+
+  document.querySelectorAll(".input-clear").forEach((button: HTMLElement) => {
+    button.addEventListener("click", (event) => {
+      const id = button.dataset.clear;
+      const input = document.getElementById(id) as HTMLInputElement;
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    });
+  });
+
+  /**
+   * Row permalink functionality
+   */
+
+  // Build the props from the reference table
+  const props = [];
+  const rows = document.querySelectorAll(".reference-table tr");
+  rows.forEach((el) => {
+    props.push({
+      id: el.id,
+      el: el
+    });
+  });
+
+  // Check for active block function
+  function checkActiveHash() {
+    const result = props.find((el) => {
+      return `#${el.id}` === window.location.hash;
+    });
+
+    props.forEach((item) => {
+      item.el.classList.remove("is-active");
+    });
+
+    if (result) {
+      result.el.classList.add("is-active");
+      result.el.classList.remove("display-none");
+
+      // Scroll to the element after it's open. This is needed to ensure the
+      // element's toggled height is factored into the scroll position.
+      const el = document.querySelector(`#${result.id}`);
+      if (el) el.scrollIntoView({ block: "center" });
+    }
+  }
+
+  // Setup click listener to anchors in reference table
+  const anchors = document.querySelectorAll(".reference-table a");
+  anchors.forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+      const hash = anchor.getAttribute("href");
+      window.location.hash = hash;
+    });
+  });
+
+  // Setup click listener to hash clear buttons
+  const clearBtns = document.querySelectorAll(".table-anchor-clear");
+  clearBtns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+      // Manually fire hasChange event since `history.replaceState` doesn't
+      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+    });
+  });
+
+  // Setup event listener for hash change
+  window.addEventListener("hashchange", () => {
+    checkActiveHash();
+    filterTable();
+  });
+
+  // Run an initial active hash check
+  checkActiveHash();
+</script>

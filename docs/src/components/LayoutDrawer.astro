@@ -5,7 +5,9 @@
   data-config="{'classModal': 'is-modal', 'store': false}"
 >
   <div class="layout-drawer__mask"></div>
-  <slot />
+  <div class="layout-drawer__content">
+    <slot />
+  </div>
 </aside>
 <div class="layout__screen" data-drawer-close="layout-drawer"></div>
 
