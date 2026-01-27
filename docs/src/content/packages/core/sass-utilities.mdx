@@ -4,8 +4,8 @@ parent: core
 group: reference
 ---
 
-import ReferenceCard from "../../../components/ReferenceCard.astro";
 import ReferenceBar from "../../../components/ReferenceBar.astro";
+import ReferenceCard from "../../../components/ReferenceCard.astro";
 
 The `core` package makes available a number of Sass mixins and functions that are used throughout the Vrembem library.
 
@@ -393,14 +393,189 @@ Output the styles for a loading spinner. If a position argument is provided with
 
 *Notice: spin animation is only output the first time `loading-spinner` mixin is used and is omitted on subsequent usages.*
 
+## media-max
 
+<ReferenceBar type="mixin" />
 
-<div>
-  <hr class="sep margin-y-xl" />
-</div>
+A media query mixin that defines a query using max-width. You can pass in a key to the `core.$breakpoints` maps to access that value, or pass a value to create your media query. This mixin will shave a pixel off your breakpoint values so that it never overlaps with a min-width usage.
 
-- `_media-max.scss`
-- `_media-min.scss`
-- `_scroll-box.scss`
-- `_size.scss`
-- `_sr-only.scss`
+#### Arguments
+
+<ReferenceCard name="$point" type="number | string">
+  A breakpoint screen width or `core.$breakpoint` map key.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+@include core.media-max(300px) {
+  // ...
+}
+
+@include core.media-max("md") {
+  // ...
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+@media (max-width: 299px) {
+  // ...
+}
+
+@media (max-width: 759px) {
+  // ...
+}
+```
+</Fragment>
+</CodeExample>
+
+## media-min
+
+<ReferenceBar type="mixin" />
+
+A media query mixin that defines a query using min-width. You can pass in a key to the `core.$breakpoints` map to access that value, or pass a value to create your media query.
+
+#### Arguments
+
+<ReferenceCard name="$point" type="number | string">
+  A breakpoint screen width or `core.$breakpoint` map key.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+@include core.media-min(300px) {
+  // ...
+}
+
+@include core.media-min("md") {
+  // ...
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+@media (max-width: 300px) {
+  // ...
+}
+
+@media (max-width: 760px) {
+  // ...
+}
+```
+</Fragment>
+</CodeExample>
+
+## scroll-box
+
+<ReferenceBar type="mixin" />
+
+Output styles for creating a scrollable container.
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.scroll-box {
+  @include core.scroll-box;
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.scroll-box {
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+```
+</Fragment>
+</CodeExample>
+
+## size
+
+<ReferenceBar type="mixin" />
+
+A utility mixin for quickly setting the width and height of an element.
+
+#### Arguments
+
+<ReferenceCard name="$width" type="number">
+  Width size unit.
+</ReferenceCard>
+
+<ReferenceCard name="$height" type="number" defaults="$width">
+  Height size unit.
+</ReferenceCard>
+
+<ReferenceCard name="$prefix" type="string" defaults="null">
+  The prefix to apply to the width/height css property.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.box {
+  @include core.size(1em);
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.box {
+  height: 1em;
+  width: 1em;
+}
+```
+</Fragment>
+</CodeExample>
+
+## sr-only
+
+<ReferenceBar type="mixin" />
+
+Output styles for displaying content meant only for screen readers.
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.box {
+  @include core.sr-only;
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.box {
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+```
+</Fragment>
+</CodeExample>
