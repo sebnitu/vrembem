@@ -2,45 +2,16 @@
 @use "../variables/form-control" as *;
 @use "./size" as mix;
 
-$-set-custom-property: true;
-
-/// Get the form-control-size calculation using the line-height, padding and
-/// border-width values.
-///
-/// @return {value}
-///   The CSS value in the form of a calc function.
-///
-@function form-control-get-size() {
-  $line-height: css.get("form-control-line-height");
-  $padding: css.get("form-control-padding-y");
-  $border-width: css.get("form-control-border-width");
-  $result: calc(calc(1em * $line-height) + calc(calc($padding + $border-width) * 2));
-
-  @return $result;
-}
-
-/// Set the form-control-size custom property. This mixin contains a check to
-/// ensure the property is only set once.
-@mixin form-control-set-size() {
-  @if $-set-custom-property {
-    $-set-custom-property: false !global;
-
-    @include css.set("core", "form-control-size", form-control-get-size());
-  }
-}
-
 /// Output the width and height with the form-control-size CSS variable value.
 /// This can optionally be provided a component name to allow component specific
 /// overrides as well as optionally setting min/max width/height instead.
 ///
-/// @param {string} $component ("")
+/// @param {string} $component (null)
 ///   Optionally provide a component to allow specific overrides for.
-/// @param {string} $prefix ("")
+/// @param {string} $prefix (null)
 ///   The prefix to apply to the width/height css property e.g: "min" | "max".
 ///
-@mixin form-control-size($component: "", $prefix: "") {
-  @include form-control-set-size;
-
+@mixin form-control-size($component: null, $prefix: null) {
   @if $component {
     @include mix.size(css.get($component, "size", css.get("form-control-size")), css.get($component, "size", css.get("form-control-size")), $prefix);
   } @else {

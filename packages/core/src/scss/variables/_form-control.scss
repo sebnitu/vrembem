@@ -45,6 +45,10 @@ $form-control-padding: $form-control-padding-y $form-control-padding-x !default;
   )
 );
 
+$form-control-size: calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2));
+
+@include css.set("core", "form-control-size", $form-control-size);
+
 $form-control-accent: palette.get("primary") !default;
 $form-control-background: css.get("background") !default;
 

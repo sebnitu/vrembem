@@ -60,6 +60,7 @@
   "--vb-form-control-padding-x": "1em",
   "--vb-form-control-padding-y": "0.5em",
   "--vb-form-control-padding": "0.5em 1em",
+  "--vb-form-control-size": "calc(1em * var(--vb-form-control-line-height) + (var(--vb-form-control-padding-y) + var(--vb-form-control-border-width)) * 2)",
   "--vb-form-control-accent": "var(--vb-primary-50)",
   "--vb-form-control-background": "var(--vb-background)",
   "--vb-form-control-background-border-radius": "var(--vb-border-radius-circle)",
