@@ -29,46 +29,46 @@ $-set-custom-property: true;
   }
 }
 
-/// Set the width and height with the form-control-size custom property value.
-/// This can optionally be provided a module name to allow component specific
+/// Output the width and height with the form-control-size CSS variable value.
+/// This can optionally be provided a component name to allow component specific
 /// overrides as well as optionally setting min/max width/height instead.
 ///
-/// @param {string} $module (null)
-///   The module to allow component specific overrides for.
-/// @param {string} $prefix (null)
-///   The prefix to apply to the width/height css property.
+/// @param {string} $component ("")
+///   Optionally provide a component to allow specific overrides for.
+/// @param {string} $prefix ("")
+///   The prefix to apply to the width/height css property e.g: "min" | "max".
 ///
-@mixin form-control-size($module: null, $prefix: null) {
+@mixin form-control-size($component: "", $prefix: "") {
   @include form-control-set-size;
 
-  @if $module {
-    @include mix.size(css.get($module, "size", css.get("form-control-size")), css.get($module, "size", css.get("form-control-size")), $prefix);
+  @if $component {
+    @include mix.size(css.get($component, "size", css.get("form-control-size")), css.get($component, "size", css.get("form-control-size")), $prefix);
   } @else {
     @include mix.size(css.get("form-control-size"), css.get("form-control-size"), $prefix);
   }
 }
 
-/// Set the shared form-control properties with the component specific custom
-/// property and the form-control custom property as the fallback.
+/// Output the shared form-control properties with the component specific CSS
+/// variable and the form-control CSS variable as the fallback.
 ///
-/// @param {string} $module
-///   The module to pass to `css.get` calls.
+/// @param {string} $component
+///   The component value to prefix CSS variable references.
 ///
-@mixin form-control-properties($module) {
-  @if $module != "menu" {
-    font-size: css.get($module, "font-size", css.get("form-control-font-size"));
-    line-height: css.get($module, "line-height", css.get("form-control-line-height"));
+@mixin form-control-properties($component) {
+  @if $component != "menu" {
+    font-size: css.get($component, "font-size", css.get("form-control-font-size"));
+    line-height: css.get($component, "line-height", css.get("form-control-line-height"));
   }
 
-  @if $module == "input" {
-    padding: css.get($module, "padding", css.get("form-control-padding-y"));
+  @if $component == "input" {
+    padding: css.get($component, "padding", css.get("form-control-padding-y"));
   } @else {
-    padding: css.get($module, "padding", css.get("form-control-padding"));
+    padding: css.get($component, "padding", css.get("form-control-padding"));
   }
 
-  border-radius: css.get($module, "border-radius", css.get("form-control-border-radius"));
-  border-width: css.get($module, "border-width", css.get("form-control-border-width"));
-  transition-duration: css.get($module, "transition-duration", css.get("form-control-transition-duration"));
-  transition-property: css.get($module, "transition-property", css.get("form-control-transition-property"));
-  transition-timing-function: css.get($module, "transition-timing-function", css.get("form-control-transition-timing-function"));
+  border-radius: css.get($component, "border-radius", css.get("form-control-border-radius"));
+  border-width: css.get($component, "border-width", css.get("form-control-border-width"));
+  transition-duration: css.get($component, "transition-duration", css.get("form-control-transition-duration"));
+  transition-property: css.get($component, "transition-property", css.get("form-control-transition-property"));
+  transition-timing-function: css.get($component, "transition-timing-function", css.get("form-control-transition-timing-function"));
 }
