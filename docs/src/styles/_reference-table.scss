@@ -61,8 +61,8 @@
   }
 
   .code-block {
-    width: 100%;
     min-width: 0; // Fixes overflow issue
+    width: 100%;
 
     pre {
       background-color: transparent;
@@ -82,8 +82,8 @@
     .code-block__copy-button {
       background-color: css.get("background");
       opacity: 0;
-      transition: opacity css.get("transition-duration") css.get("transition-timing-function");
       right: 0;
+      transition: opacity css.get("transition-duration") css.get("transition-timing-function");
 
       &:hover,
       &:focus {
