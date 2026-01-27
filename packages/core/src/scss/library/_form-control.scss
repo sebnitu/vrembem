@@ -2,23 +2,6 @@
 @use "../variables/form-control" as *;
 @use "./size" as mix;
 
-/// Output the width and height with the form-control-size CSS variable value.
-/// This can optionally be provided a component name to allow component specific
-/// overrides as well as optionally setting min/max width/height instead.
-///
-/// @param {string} $component (null)
-///   Optionally provide a component to allow specific overrides for.
-/// @param {string} $prefix (null)
-///   The prefix to apply to the width/height css property e.g: "min" | "max".
-///
-@mixin form-control-size($component: null, $prefix: null) {
-  @if $component {
-    @include mix.size(css.get($component, "size", css.get("form-control-size")), css.get($component, "size", css.get("form-control-size")), $prefix);
-  } @else {
-    @include mix.size(css.get("form-control-size"), css.get("form-control-size"), $prefix);
-  }
-}
-
 /// Output the shared form-control properties with the component specific CSS
 /// variable and the form-control CSS variable as the fallback.
 ///
@@ -42,4 +25,21 @@
   transition-duration: css.get($component, "transition-duration", css.get("form-control-transition-duration"));
   transition-property: css.get($component, "transition-property", css.get("form-control-transition-property"));
   transition-timing-function: css.get($component, "transition-timing-function", css.get("form-control-transition-timing-function"));
+}
+
+/// Output the width and height with the form-control-size CSS variable value.
+/// This can optionally be provided a component name to allow component specific
+/// overrides as well as optionally setting min/max width/height instead.
+///
+/// @param {string} $component (null)
+///   Optionally provide a component to allow specific overrides for.
+/// @param {string} $prefix (null)
+///   The prefix to apply to the width/height css property e.g: "min" | "max".
+///
+@mixin form-control-size($component: null, $prefix: null) {
+  @if $component {
+    @include mix.size(css.get($component, "size", css.get("form-control-size")), css.get($component, "size", css.get("form-control-size")), $prefix);
+  } @else {
+    @include mix.size(css.get("form-control-size"), css.get("form-control-size"), $prefix);
+  }
 }
