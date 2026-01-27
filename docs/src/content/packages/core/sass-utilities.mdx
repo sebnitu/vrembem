@@ -1,27 +1,406 @@
 ---
 title: Sass Utilities
-description: "Core Sass functions and mixin utilities."
 parent: core
 group: reference
 ---
 
+import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
+
+The `core` package makes available a number of Sass mixins and functions that are used throughout the Vrembem library.
+
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core";
-  ```
+```scss
+@use "@vrembem/core";
+```
 </CodeExample>
 
-- `_arrow.scss`
-- `_bem.scss`*
-- `_css-query.scss`
-- `_focus-ring.scss`*
-- `_form-control.scss`*
-- `_get-side.scss`
-- `_loading-spinner.scss`
+## arrow
+
+<ReferenceBar type="mixin" />
+
+Outputs the styles for an arrow or caret.
+
+#### Arguments
+
+<ReferenceCard name="$direction" type='"up" | "down" | "left" | "right"' defaults='"down"'>
+  The direction the arrow should point.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="output">
+<button class="button" type="button">
+  <span>Learn More</span>
+  <span class="arrow-right"></span>
+</button>
+</Fragment>
+<Fragment slot="tab-html">
+```html
+<button class="button" type="button">
+  <span>Learn More</span>
+  <span class="arrow-right"></span>
+</button>
+```
+</Fragment>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.arrow-right {
+  @include core.arrow("right");
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```scss
+.arrow-right {
+  border-width: var(--vb-arrow-size, 6px 4px);
+  border-bottom-width: 0;
+  border-color: var(--vb-arrow-color, currentcolor) transparent transparent;
+  border-radius: var(--vb-arrow-radius, 2px);
+  border-style: solid;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 0;
+  pointer-events: none;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  width: 0;
+}
+```
+</Fragment>
+</CodeExample>
+
+## bem
+
+<ReferenceBar type="function" returns="selector" />
+
+Output a valid BEM class selector using core prefixes and the provided parameters; block, element, modifier and modifier-value. Returns a valid BEM CSS selector using the provided parameters.
+
+#### Arguments
+
+<ReferenceCard name="$b" type="string">
+  The block name.
+</ReferenceCard>
+
+<ReferenceCard name="$e" type="string" defaults="null">
+  The element name.
+</ReferenceCard>
+
+<ReferenceCard name="$m" type="string" defaults="null">
+  The modifier name.
+</ReferenceCard>
+
+<ReferenceCard name="$v" type="string" defaults="null">
+  The modifier value name.
+</ReferenceCard>
+
+<ReferenceCard name="$bp" type="string" defaults="null">
+  A breakpoint modifier to prepend to the BEM class. Example values: `"xs"`, `"sm"`, `"md"`, `"lg"`, `"xl"`, etc.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+// Generate selector for block
+#{core.bem("menu")} {
+  // ...
+}
+
+// Generate selector for element
+#{core.bem("menu", "item")} {
+  // ...
+}
+
+// Generate selector for modifier
+#{core.bem("menu", null, "stack")} {
+  // ...
+}
+
+// Generate selector for modifier value
+#{core.bem("menu", null, "size", "lg")} {
+  // ...
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```scss
+// Generate selector for block
+.menu {
+  // ...
+}
+
+// Generate selector for element
+.menu__item {
+  // ...
+}
+
+// Generate selector for modifier
+.menu_stack {
+  // ...
+}
+
+// Generate selector for modifier value
+.menu_size_lg {
+  // ...
+}
+```
+</Fragment>
+</CodeExample>
+
+## css-query
+
+<ReferenceBar type="mixin" />
+
+Define a dynamic CSS variable using maps and breakpoints.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component name to prefix the CSS variable with.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string">
+  The custom property name.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="map|any">
+  The value of the custom property or a map of valid variables with breakpoints as the key.
+</ReferenceCard>
+
+<ReferenceCard name="$breakpoints" type="map">
+  A breakpoints map (e.g., `core.$breakpoints`).
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+$size-padding: (
+  "sm": 1.5em,
+  "md": 2em 1.5em,
+  "lg": 3em 1.5em
+) !default;
+
+#{core.bem("section", null, "size", "md")} {
+  @include core.css-query("section", "padding", $size-padding, core.$breakpoints);
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.section_size_lg {
+  --vb-section-padding: 1.5em;
+}
+
+@media (min-width: 760px) {
+  .section_size_lg {
+    --vb-section-padding: 4em 1.5em;
+  }
+}
+
+@media (min-width: 990px) {
+  .section_size_lg {
+    --vb-section-padding: 6em 1.5em;
+  }
+}
+```
+</Fragment>
+</CodeExample>
+
+## focus-ring-base
+
+<ReferenceBar type="mixin" />
+
+Apply the base styles for focus-ring using the outline properties. This is typically used in conjunction with [`focus-ring`](#focus-ring) as a default transitional state.
+
+## focus-ring
+
+<ReferenceBar type="mixin" />
+
+Builds the focus ring styles by applying a number of custom property values and optional component overrides using the outline property.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component to allow specific overrides for.
+</ReferenceCard>
+
+<ReferenceCard name="$color" type="string">
+  The color to use as the fallback value.
+</ReferenceCard>
+
+<ReferenceCard name="$opacity" type="number" defaults="40%">
+  The value to set for the opacity of the color.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="output">
+  <div class="focus-ring-example padding radius">
+    Example element with a focus-ring applied.
+  </div>
+</Fragment>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.focus-ring-example {
+  @include core.focus-ring-base;
+  @include core.focus-ring("focus-ring-example", pink);
+
+  &:hover {
+    @include core.focus-ring("focus-ring-example", green, 80%);
+  }
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.focus-ring-example {
+  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) transparent;
+  outline-offset: var(--vb-focus-ring-offset);
+  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) hsl(from var(--vb-focus-ring-example-focus-ring-color, var(--vb-focus-ring-color, pink)) h s l / var(--vb-focus-ring-example-focus-ring-opacity, var(--vb-focus-ring-opacity, 40%)));
+}
+
+.focus-ring-example:hover {
+  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) hsl(from var(--vb-focus-ring-example-focus-ring-color, var(--vb-focus-ring-color, green)) h s l / var(--vb-focus-ring-example-focus-ring-opacity, var(--vb-focus-ring-opacity, 80%)));
+}
+```
+</Fragment>
+</CodeExample>
+
+## form-control-properties
+
+<ReferenceBar type="mixin" />
+
+Output the shared form-control properties with the component specific CSS variable and the form-control CSS variable as the fallback.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component value to prefix CSS variable references.
+</ReferenceCard>
+
+## form-control-size
+
+<ReferenceBar type="mixin" />
+
+Output the width and height with the form-control-size CSS variable value. This can optionally be provided a component name to allow component specific overrides as well as optionally setting min/max width/height instead.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string" defaults="null">
+  Optionally provide a component to allow specific overrides for.
+</ReferenceCard>
+
+<ReferenceCard name="$prefix" type="string" defaults="null">
+  The prefix to apply to the width and height CSS property. Size prefixes incldue `"min"` and `"max"`.
+</ReferenceCard>
+
+
+## get-side
+
+<ReferenceBar type="function" returns="number" />
+
+Return the top, right, bottom, or right value on a padding, margin, etc. property, no matter how many values were passed in.
+
+#### Arguments
+
+<ReferenceCard name="$value" type="list | number">
+  Value to analyze. Should be shorthand sizing property, e.g. `"1em 2em 1em"`.
+</ReferenceCard>
+
+<ReferenceCard name="$side" type='"top", "right", "bottom", "left"'>
+  The side of the sizing property to return.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+@import "@vrembem/core";
+
+$size-list: 1em 10px 2em;
+
+@debug core.get-side($size-list, "top"); // Returns: 1em
+@debug core.get-side($size-list, "left"); // Returns: 10px
+```
+</CodeExample>
+
+## loading-spinner
+
+<ReferenceBar type="mixin" />
+
+Output the styles for a loading spinner. If a position argument is provided with a value of "absolute" or "fixed" the spinner will be centered to its nearest relative parent.
+
+#### Arguments
+
+<ReferenceCard name="$position" type="keyword" defaults="absolute">
+  The value of the position property to use.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="output">
+  <span class="loading-spinner"></span>
+</Fragment>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.loading-spinner {
+  @include core.loading-spinner(relative);
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.loading-spinner {
+  height: var(--vb-loading-size, 1em);
+  width: var(--vb-loading-size, 1em);
+  animation: spin var(--vb-loading-duration, 0.6s) infinite linear;
+  border: var(--vb-loading-border, 2px solid);
+  border-color: var(--vb-loading-color, currentcolor) var(--vb-loading-color, currentcolor) transparent transparent;
+  border-radius: 9999px;
+  display: inline-block;
+  position: relative;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+```
+</Fragment>
+</CodeExample>
+
+*Notice: spin animation is only output the first time `loading-spinner` mixin is used and is omitted on subsequent usages.*
+
+
+
+<div>
+  <hr class="sep margin-y-xl" />
+</div>
+
 - `_media-max.scss`
 - `_media-min.scss`
 - `_scroll-box.scss`
 - `_size.scss`
 - `_sr-only.scss`
-
-\**Contains functions.*
