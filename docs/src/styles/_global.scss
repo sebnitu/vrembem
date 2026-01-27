@@ -1,3 +1,4 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
@@ -23,17 +24,24 @@ html {
   outline: none;
 }
 
-.argument-list {
-  > li {
-    border-top: css.get("border");
-    padding: 0.5em 0;
-  }
-
-  > li:first-child {
-    border-top: none;
-  }
-}
-
 .icon_inline {
   vertical-align: text-bottom;
+}
+
+/**
+ * CodeExample
+ * These are styles used specifically in code example blocks
+ */
+
+// Source: sass-utilities.mdx
+
+@include css.register("focus-ring-example");
+
+.focus-ring-example {
+  @include core.focus-ring-base;
+  @include core.focus-ring("focus-ring-example", pink);
+
+  &:hover {
+    @include core.focus-ring("focus-ring-example", green, 80%);
+  }
 }
