@@ -6,9 +6,11 @@ $-output-spin-animation: true;
 
 @include css.register("loading");
 
-/// Output the styles for a loading spinner.
+/// Output the styles for a loading spinner. If a position argument is provided
+/// with a value of "absolute" or "fixed" the spinner will be centered to its
+/// nearest relative parent.
 ///
-/// @param {keyword} $position
+/// @param {keyword} $position (absolute)
 ///   The value of the position property to use.
 ///
 @mixin loading-spinner($position: absolute) {
