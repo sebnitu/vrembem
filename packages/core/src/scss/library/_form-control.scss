@@ -34,7 +34,8 @@
 /// @param {string} $component (null)
 ///   Optionally provide a component to allow specific overrides for.
 /// @param {string} $prefix (null)
-///   The prefix to apply to the width/height css property e.g: "min" | "max".
+///   The prefix to apply to the width and height CSS property. Size prefixes
+///   incldue `"min"` and `"max"`.
 ///
 @mixin form-control-size($component: null, $prefix: null) {
   @if $component {
