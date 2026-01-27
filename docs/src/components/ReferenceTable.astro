@@ -202,7 +202,6 @@ function iconMap(value: string) {
     const scrollTop = document.documentElement.scrollTop;
     const navibar = document.querySelector(".navibar") as HTMLElement;
     const offset = navibar ? navibar.offsetHeight : 0;
-    console.log("offset", offset);
     window.scrollTo({
       top: rect.top + scrollTop - offset,
       behavior: "instant"
