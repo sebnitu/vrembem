@@ -1,6 +1,6 @@
 # Base
 
-Includes useful default styles and base modules for common HTML elements.
+A collection of modules that apply global style to commonly used HTML elements.
 
 [Documentation](https://vrembem.com/packages/base)
 
