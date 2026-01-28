@@ -7,6 +7,8 @@
 
 /// Define a dynamic CSS variable using maps and breakpoints.
 ///
+/// @param {string} $component
+///   The component name to create the CSS variable for.
 /// @param {string} $prop
 ///   The custom property name.
 /// @param {map|any} $value
@@ -15,10 +17,10 @@
 /// @param {map} $breakpoints
 ///   A breakpoints map (e.g., core.$breakpoints).
 ///
-@mixin css-query($module, $prop, $value, $breakpoints: $breakpoints) {
+@mixin css-query($component, $prop, $value, $breakpoints: $breakpoints) {
   // If padding is not a map, set the CSS var
   @if meta.type-of($value) != "map" {
-    @include css.override($module, $prop, $value);
+    @include css.override($component, $prop, $value);
   }
 
   // Else padding is a map, loop through the breakpoints and output CSS var
@@ -27,7 +29,7 @@
     $first-key: list.nth(list.nth($value, 1), 1);
 
     // Output the fist padding value in the map as the base CSS var
-    @include css.override($module, $prop, map.get($value, $first-key));
+    @include css.override($component, $prop, map.get($value, $first-key));
 
     // Loop through the breakpoints
     @each $key, $bpValue in $breakpoints {
@@ -37,7 +39,7 @@
         @if map.has-key($value, $key) {
           // Output the media query with new CSS variable value
           @include media-min($bpValue) {
-            @include css.override($module, $prop, map.get($value, $key));
+            @include css.override($component, $prop, map.get($value, $key));
           }
         }
       }

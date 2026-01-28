@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@include core.form-control-set-size;
 @include css.register("switch");
 
 $accent: css.get("switch", "accent", css.get("form-control-accent")) !default;

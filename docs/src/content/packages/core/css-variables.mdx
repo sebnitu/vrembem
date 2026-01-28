@@ -8,7 +8,11 @@ import Icon from "../../../components/Icon.astro";
 import ReferenceTable from "../../../components/ReferenceTable.astro";
 import data from "../../../data/cssvar-core.json";
 
-The `core` package provides a number of pre-defined CSS variables that are used throughout the Vrembem library. These variables are not output when you import or use `@vrembem/core`. To output core CSS varibales, use the `@vrembem/core/root` export.
+The `core` package provides a number of pre-defined CSS variables that are used throughout the Vrembem library.
+
+## Output
+
+CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS varibales, use the `@vrembem/core/root` export at the bottom of your Sass manifest file.
 
 <CodeExample lang="scss">
 ```scss
@@ -16,10 +20,11 @@ The `core` package provides a number of pre-defined CSS variables that are used 
 ```
 </CodeExample>
 
-Alternatively, custom properties can also be output using the `core/css` and `core/theme` modules:
+Alternatively, custom properties can also be output manually using the `core/css` and `core/theme` modules:
 
 <CodeExample lang="scss">
 ```scss
+@use "@vrembem/core"; // Includes all core CSS variable definitions
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 
@@ -32,6 +37,10 @@ Alternatively, custom properties can also be output using the `core/css` and `co
 @include theme.output;
 ```
 </CodeExample>
+
+It is recommended to output CSS variables at the end of your Sass manifest file. This is to ensure that all uses of registered properties are included in the output.
+
+## Reference
 
 Below is a reference to all CSS variables and their values. Theme variables will use the value based on the current theme as shown by the sun (<Icon name="sun" classes="icon_inline icon_size_sm" />) and moon (<Icon name="moon" classes="icon_inline icon_size_sm" />) icons.
 

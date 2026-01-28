@@ -138,22 +138,22 @@ You can use the `core.bem` function to generate class names with the correct pre
     @use "@vrembem/core";
 
     // Generate selector for block
-    .#{core.bem("menu")} {
+    #{core.bem("menu")} {
       // ...
     }
 
     // Generate selector for element
-    .#{core.bem("menu", "item")} {
+    #{core.bem("menu", "item")} {
       // ...
     }
 
     // Generate selector for modifier
-    .#{core.bem("menu", null, "stack")} {
+    #{core.bem("menu", null, "stack")} {
       // ...
     }
 
     // Generate selector for modifier value
-    .#{core.bem("menu", null, "size", "lg")} {
+    #{core.bem("menu", null, "size", "lg")} {
       // ...
     }
     ```
@@ -181,7 +181,6 @@ You can use the `core.bem` function to generate class names with the correct pre
     }
     ```
   </Fragment>
-  
 </CodeExample>
 
 ## Reference

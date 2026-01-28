@@ -4,19 +4,19 @@
 /// Output the focus-ring-color custom property stack with core and value
 /// fallbacks.
 ///
-/// @param {string} $module
-///   The name of the module to start the property stack with.
+/// @param {string} $component
+///   The name of the component to start the property stack with.
 /// @param {string} $value
 ///   The CSS value to use as the final property fallback.
 ///
 /// @return {string}
-///   The CSS variable with the provided module and value fallback stack.
+///   The CSS variable with the provided component and value fallback stack.
 ///
-@function focus-ring-color($module, $value) {
+@function focus-ring-color($component, $value) {
   $result: css.get("core", "focus-ring-color", $value);
 
-  @if $module != "core" {
-    $result: css.get($module, "focus-ring-color", $result);
+  @if $component != "core" {
+    $result: css.get($component, "focus-ring-color", $result);
   }
 
   @return $result;
@@ -25,19 +25,19 @@
 /// Output the focus-ring-opacity custom property stack with core and value
 /// fallbacks.
 ///
-/// @param {string} $module
-///   The name of the module to start the property stack with.
+/// @param {string} $component
+///   The name of the component to start the property stack with.
 /// @param {string} $value
 ///   The CSS value to use as the final property fallback.
 ///
 /// @return {string}
-///   The CSS variable with the provided module and value fallback stack.
+///   The CSS variable with the provided component and value fallback stack.
 ///
-@function focus-ring-opacity($module, $value) {
+@function focus-ring-opacity($component, $value) {
   $result: css.get("core", "focus-ring-opacity", $value);
 
-  @if $module != "core" {
-    $result: css.get($module, "focus-ring-opacity", $result);
+  @if $component != "core" {
+    $result: css.get($component, "focus-ring-opacity", $result);
   }
 
   @return $result;
@@ -52,13 +52,13 @@
 /// Builds the focus ring styles by applying a number of custom property values
 /// and optional component overrides using the outline property.
 ///
-/// @param {string} $module
-///   The module to allow component specific overrides for.
+/// @param {string} $component
+///   The component to allow specific overrides for.
 /// @param {string} $color
 ///   The color to use as the fallback value.
-/// @param {number} $opacity
+/// @param {number} $opacity (var.$focus-ring-opacity)
 ///   The value to set for the opacity of the color.
 ///
-@mixin focus-ring($module, $color, $opacity: var.$focus-ring-opacity) {
-  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from focus-ring-color($module, $color) h s l / focus-ring-opacity($module, $opacity));
+@mixin focus-ring($component, $color, $opacity: var.$focus-ring-opacity) {
+  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from focus-ring-color($component, $color) h s l / focus-ring-opacity($component, $opacity));
 }
