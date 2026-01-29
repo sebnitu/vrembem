@@ -5,6 +5,8 @@ package: "@vrembem/base"
 status: "layers"
 ---
 
+import ReferenceCard from "../../components/ReferenceCard.astro";
+
 # Base
 
 A collection of modules that apply global style to commonly used HTML elements.
@@ -18,6 +20,35 @@ npm install @vrembem/base
   @use "@vrembem/base";
   ```
 </CodeExample>
+
+## Output
+
+Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules styles are output using the `$output` variable and `$output-exceptions` list.
+
+<ReferenceCard name="$output" type="boolean" defaults="true">
+  Controls whether module styles are output. You can specify exceptions using the `$output-exceptions` list.
+</ReferenceCard>
+
+<ReferenceCard name="$output-exceptions" type="list" defaults="()">
+  Modules listed in this variable are exceptions to the value set in `$output`. If `$output` is `true`, modules listed here will not be output. If `$output` is `false`, modules listed here will be output.
+</ReferenceCard>
+
+### Example usage
+
+You can disable CSS output using the `$output` and `$output-[module]` variables. All base modules have a corresponding output variable that inherits it's value from `$output`.
+
+```scss
+// Will disable the output of the type module
+@use "@vrembem/base" with (
+  $output-type: false
+);
+
+// Will disable all modules, but enables the base module
+@use "@vrembem/base" with (
+  $output: false,
+  $output-base: true
+);
+```
 
 ## Basic usage
 
@@ -39,21 +70,6 @@ Once loaded, the base component provides default styles for HTML elements and a 
     <li>...</li>
   </ul>
 </div>
-```
-
-Alternatively, you can disable CSS output using the `$output` and `$output-[module]` variables. All base modules have a corresponding output variable that inherits it's value from `$output`.
-
-```scss
-// Will disable the output of the type module
-@use "@vrembem/base" with (
-  $output-type: false
-);
-
-// Will disable all modules, but enables the base module
-@use "@vrembem/base" with (
-  $output: false,
-  $output-base: true
-);
 ```
 
 ## normalize
