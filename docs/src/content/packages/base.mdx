@@ -5,7 +5,9 @@ package: "@vrembem/base"
 status: "layers"
 ---
 
+import ReferenceBar from "../../components/ReferenceBar.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Base
 
@@ -128,9 +130,17 @@ The following CSS variables are referenced with a provided fallback for more eas
   Used to set the color property of the `body` element. The fallback value is set usign the `$base-foreground` Sass variable.
 </ReferenceCard>
 
+<ReferenceTable id="cssvar-base" data={{
+  "--vb-base-height": "100%",
+  "--vb-base-background": "var(--vb-background)",
+  "--vb-base-foreground": "var(--vb-foreground)"
+}} />
+
 ### blockquote
 
-The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
+<ReferenceBar selector=".blockquote" />
+
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -150,14 +160,41 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 ```
 </CodeExample>
 
+#### Variables
+
+The following CSS variables are referenced with a provided fallback for more easily overriding blockquote properties:
+
+<ReferenceCard name="--vb-blockquote-background" type="color" fallback="transparent">
+  Used to set the background property of the `.blockquote` class.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-blockquote-foreground" type="color" fallback="currentcolor">
+  Used to set the color property of the `.blockquote` class.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-blockquote-border" type="width | style | color" fallback="var(--vb-border)">
+  Used to set the border property of the `.blockquote` class.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-blockquote-border-radius" type="number value" fallback="var(--vb-border-radius)">
+  Used to set the border-radius property of the `.blockquote` class.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-blockquote-padding" type="number value" fallback="1em">
+  Used to set the padding property of the `.blockquote` class.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-blockquote-gap" type="number value" fallback="1em">
+  Used to set the margin-top property of children (except the first-child) in the `.blockquote` class element.
+</ReferenceCard>
+
 {/*
 .blockquote, .type > blockquote {
   background: var(--vb-blockquote-background, transparent);
+  color: var(--vb-blockquote-foreground, currentcolor);
   border: var(--vb-blockquote-border, var(--vb-border));
   border-radius: var(--vb-blockquote-border-radius, var(--vb-border-radius));
-  color: var(--vb-blockquote-foreground, currentcolor);
   padding: var(--vb-blockquote-padding, 1em);
-  position: relative;
 }
 .blockquote > * + *, .type > blockquote > * + * {
   margin-top: var(--vb-blockquote-gap, 1em);
