@@ -1,6 +1,9 @@
+// Setup
 @forward "./setup";
 @forward "vrembem/base";
 @forward "./root";
+
+// Layout
 @forward "./global";
 @forward "./brand";
 @forward "./navibar";
@@ -8,9 +11,11 @@
 @forward "./layout";
 @forward "./layout-drawer";
 @forward "./layout-aside";
-@forward "./animations";
+
+// Components
 @forward "./badge";
 @forward "./box";
+@forward "./card_reference";
 @forward "./code-block";
 @forward "./code-example";
 @forward "./doc-block";
