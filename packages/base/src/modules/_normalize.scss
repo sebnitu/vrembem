@@ -124,25 +124,4 @@
   [type="submit"] {
     appearance: auto;
   }
-
-  // Remove the inner border and padding in Firefox
-  button::-moz-focus-inner,
-  [type="button"]::-moz-focus-inner,
-  [type="reset"]::-moz-focus-inner,
-  [type="submit"]::-moz-focus-inner {
-    border-style: none;
-    padding: 0;
-  }
-
-  // Correct placeholder text opacity in Firefox
-  input::placeholder {
-    opacity: 1;
-  }
-
-  // 1. Correct the inability to style clickable types in iOS and Safari
-  // 2. Change font properties to `inherit` in Safari
-  ::-webkit-file-upload-button {
-    appearance: auto; // 1
-    font: inherit; // 2
-  }
 }
