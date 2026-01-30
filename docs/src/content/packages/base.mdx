@@ -132,6 +132,13 @@ The following CSS variables are referenced with a provided fallback for more eas
 
 The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way by providing the `.blockquote` CSS class.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+  <blockquote class="blockquote">
+    <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
+    <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
+  </blockquote>
+</Fragment>
 ```html
 <blockquote class="blockquote" cite="...">
   <p>...</p>
@@ -141,19 +148,63 @@ The HTML blockquote element is used for marking up extended quotations. This mod
   </footer>
 </blockquote>
 ```
+</CodeExample>
+
+{/*
+.blockquote, .type > blockquote {
+  background: var(--vb-blockquote-background, transparent);
+  border: var(--vb-blockquote-border, var(--vb-border));
+  border-radius: var(--vb-blockquote-border-radius, var(--vb-border-radius));
+  color: var(--vb-blockquote-foreground, currentcolor);
+  padding: var(--vb-blockquote-padding, 1em);
+  position: relative;
+}
+.blockquote > * + *, .type > blockquote > * + * {
+  margin-top: var(--vb-blockquote-gap, 1em);
+}
+*/}
 
 ### code
 
 The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+  <code class="code">a = 17</code>
+</Fragment>
 ```html
 <code class="code">a = 17</code>
 ```
+</CodeExample>
+
+{/*
+.code, .type :not(pre) > code {
+  background: var(--vb-code-background, var(--vb-background-alt));
+  border: var(--vb-code-border);
+  border-radius: var(--vb-code-border-radius, var(--vb-border-radius));
+  color: var(--vb-code-foreground, var(--vb-foreground-alt));
+  font-family: var(--vb-font-family-mono);
+  font-size: var(--vb-code-font-size, var(--vb-font-size-sm));
+  overflow-wrap: break-word;
+  padding: var(--vb-code-padding, 0.125rem 0.375rem);
+}
+*/}
 
 ### heading
 
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+  <div class="spacing">
+    <h1 class="h1">Heading h1</h1>
+    <h2 class="h2">Heading h2</h2>
+    <h3 class="h3">Heading h3</h3>
+    <h4 class="h4">Heading h4</h4>
+    <h5 class="h5">Heading h5</h5>
+    <h6 class="h6">Heading h6</h6>
+  </div>
+</Fragment>
 ```html
 <h1 class="h1">...</h1>
 <h2 class="h2">...</h2>
@@ -162,12 +213,29 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 <h5 class="h5">...</h5>
 <h6 class="h6">...</h6>
 ```
+</CodeExample>
+
+{/*
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: var(--vb-heading-color, var(--vb-foreground));
+  font-family: var(--vb-heading-font-family, inherit);
+  font-weight: var(--vb-heading-font-weight, var(--vb-font-weight-semi-bold));
+  line-height: var(--vb-heading-line-height);
+}
+*/}
+
+#### Heading scale
 
 A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
 
 ```scss
 $heading-scale: (
-  "h1": 2.25em,
+  "h1": 2.75em,
   "h2": 2em,
   "h3": 1.75em,
   "h4": 1.5em,
@@ -186,6 +254,35 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 <a href="#" class="link link_invert">Link</a>
 <a href="#" class="link link_invert-subtle">Link</a>
 ```
+
+{/*
+.link, .type :not(div) > a {
+  color: var(--vb-link-color, var(--vb-primary-50));
+  text-decoration: var(--vb-link-decoration, underline);
+  text-decoration-thickness: var(--vb-link-decoration, var(--vb-link-thickness, 1px));
+  text-underline-offset: var(--vb-link-underline, var(--vb-link-offset, 2px));
+}
+.link code, .type :not(div) > a code {
+  background-color: hsl(var(--vb-primary-hs) 50% / 10%);
+  color: var(--vb-link-color, var(--vb-primary-50));
+}
+.link:hover, .type :not(div) > a:hover {
+  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
+  text-decoration: var(--vb-link-decoration, var(--vb-link-hover, none));
+}
+.link:hover code, .type :not(div) > a:hover code {
+  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
+}
+.link:focus, .type :not(div) > a:focus {
+  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
+  outline: var(--vb-link-focus-ring, currentcolor dotted 1px);
+  outline-offset: var(--vb-link-focus-ring-offset, 0.125rem);
+  text-decoration: var(--vb-link-decoration, var(--vb-link-hover, none));
+}
+.link:focus code, .type :not(div) > a:focus code {
+  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
+}
+*/}
 
 ### list
 
@@ -209,6 +306,28 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 </ol>
 ```
 
+{/*
+.list, .type > ul, .type > ol {
+  margin-left: var(--vb-list-indent, 1.5em);
+}
+.list ul,
+.list ol, .type > ul ul,
+.type > ul ol, .type > ol ul,
+.type > ol ol {
+  margin-left: var(--vb-list-indent, 1.5em);
+}
+.list li li,
+.list li + li, .type > ul li li,
+.type > ul li + li, .type > ol li li,
+.type > ol li + li {
+  margin-top: var(--vb-list-gap, 0.5em);
+}
+
+.list-style-none {
+  list-style: none !important;
+}
+*/}
+
 ### pre
 
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
@@ -226,6 +345,25 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 </pre>
 ```
 
+{/*
+.pre, .type > pre {
+  background: var(--vb-pre-background, var(--vb-background-dark));
+  border: var(--vb-pre-padding);
+  border-radius: var(--vb-pre-padding, var(--vb-border-radius));
+  color: var(--vb-pre-foreground, var(--vb-foreground));
+  font-family: var(--vb-font-family-mono);
+  overflow: auto;
+  padding: var(--vb-pre-padding, 1em);
+}
+.pre code, .type > pre code {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: var(--vb-pre-font-size, var(--vb-font-size-sm));
+  padding: 0;
+}
+*/}
+
 ### separator
 
 This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
@@ -239,6 +377,15 @@ This module adds the `.sep` and `.sep-invert` CSS classes which visually renders
 <hr class="sep-invert">
 <hr class="sep-invert border-color-invert-darker">
 ```
+
+{/*
+.sep, .type > hr {
+  border: none;
+  border-top: var(--vb-separator-border, var(--vb-border));
+  display: block;
+  height: 0;
+}
+*/}
 
 ### type
 
@@ -255,6 +402,18 @@ The type module provides the `.type` CSS class as a quick way to apply many base
   </ul>
 </div>
 ```
+
+{/*
+.type {
+  color: var(--vb-type-color, var(--vb-foreground-light));
+  font-family: var(--vb-type-font-family);
+  font-size: var(--vb-type-font-size, var(--vb-font-size-lg));
+  line-height: var(--vb-type-line-height, 1.7778);
+}
+.type > * + * {
+  margin-top: var(--vb-type-gap);
+}
+*/}
 
 Modules that get mapped to HTML elements include:
 
@@ -287,6 +446,39 @@ The arrow (caret) module creates directional triangles drawn with CSS.
   ```
 </CodeExample>
 
+{/*
+.arrow,
+.arrow-up,
+.arrow-down,
+.arrow-left,
+.arrow-right {
+  border-width: var(--vb-arrow-size, 6px 4px);
+  border-bottom-width: 0;
+  border-color: var(--vb-arrow-color, currentcolor) transparent transparent;
+  border-radius: var(--vb-arrow-radius, 2px);
+  border-style: solid;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 0;
+  pointer-events: none;
+  transform-origin: center;
+  width: 0;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.arrow-left {
+  transform: rotate(90deg);
+}
+
+.arrow-right {
+  transform: rotate(-90deg);
+}
+*/}
+
 #### Example
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other togglable components.
@@ -302,6 +494,27 @@ Arrows are great indicators for buttons and menu items when interacting with the
 
 ...
 
+{/*
+.loading-spinner {
+  height: var(--vb-loading-size, 1em);
+  width: var(--vb-loading-size, 1em);
+  animation: spin var(--vb-loading-duration, 0.6s) infinite linear;
+  border: var(--vb-loading-border, 2px solid);
+  border-color: var(--vb-loading-color, currentcolor) var(--vb-loading-color, currentcolor) transparent transparent;
+  border-radius: 9999px;
+  display: inline-block;
+  position: relative;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/}
+
 ### scroll-box
 
 This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
@@ -312,6 +525,27 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 </div>
 ```
 
+{/*
+.scroll-box {
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+*/}
+
 ### sr-only
 
 ...
+
+{/*
+.sr-only {
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+*/}
