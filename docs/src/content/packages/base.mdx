@@ -104,7 +104,29 @@ Below is a list of each base module, a description of what they do, their defaul
 
 ### normalize
 
-Outputs a number of base and reset element styles to help keep html elements predictable and easier to work with. Some more global options are set via the `@vrembem/core` component, while others that are specific to the base component are set directly here.
+A module that helps ensure HTML elements are rendered consistently across browsers by resetting and standardizing their default styles. This provides a reliable foundation for building components, making elements more predictable and easier to work with by:
+
+- Resetting margin, padding, and box-sizing for all elements.
+- Setting default html/body height, font, and background styles.
+- Normalizing heading, image, table and caption elements.
+- Creating consistent typography styles for code and pre elements.
+- Normalizing form-control element appearance and font styles.
+
+#### Variables
+
+The following CSS variables are referenced with a provided fallback for more easily overriding base properties:
+
+<ReferenceCard name="--vb-base-height" type="height value" fallback="100%">
+  Used to set the height property of both the `html` and `body` elements. The fallback value is set using the `$base-height` Sass variable.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-base-background" type="color" fallback="var(--vb-background)">
+  Used to set the background property of the `body` element. The fallback value is set using the `$base-background` Sass variable.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-base-foreground" type="color" fallback="var(--vb-foreground)">
+  Used to set the color property of the `body` element. The fallback value is set usign the `$base-foreground` Sass variable.
+</ReferenceCard>
 
 ### blockquote
 
