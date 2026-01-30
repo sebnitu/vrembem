@@ -9,9 +9,17 @@ interface Props {
   keyWidth?: string;
   valueWidth?: string;
   labelWidth?: string;
+  valueLabel?: string;
 }
 
-const { data, id, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+const {
+  data,
+  id,
+  keyWidth,
+  valueWidth,
+  labelWidth = "5em",
+  valueLabel = "Value"
+} = Astro.props;
 
 // Create a unique ID if one is not provided
 const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
@@ -77,7 +85,7 @@ function iconMap(value: string) {
     <thead>
       <tr>
         <th>Var</th>
-        <th>Value</th>
+        <th>{valueLabel}</th>
       </tr>
     </thead>
     <tbody>
@@ -101,7 +109,7 @@ function iconMap(value: string) {
               </button>
               <CodeBlock inline={key} />
             </td>
-            <td data-mobile-label="Value">
+            <td data-mobile-label={valueLabel}>
               {typeof value === "string" ? (
                 <CodeBlock inline={linkifyValue(value)} />
               ) : (
