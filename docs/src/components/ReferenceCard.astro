@@ -4,43 +4,41 @@ interface Props {
   type: string;
   returns?: string;
   defaults?: string;
+  fallback?: string;
 }
 
-const { name, type, returns, defaults } = Astro.props;
+const { name, type, returns, defaults, fallback } = Astro.props;
 ---
 
-<div class="card">
+<div class="card card_reference">
   <div class="card__header">
-    <p class="flex align-items-center justify-content-between">
-      <strong class="foreground">{name}</strong>
-      <span class="margin-left-sm"><code>{type}</code></span>
-    </p>
+    <code class="card__title">{name}</code>
+    <span class="card__type"><code>{type}</code></span>
   </div>
   { Astro.slots.has("default") && (
-    <>
-      <div class="card__body type spacing">
-        <slot />
-        { returns && (
-          <hr class="sep" />
-          <p>
-            <span class="font-family-mono font-size-sm">@returns</span> 
-            <code class="margin-left-sm">{returns}</code>
-          </p>
-        )}
-        { defaults && (
-          <hr class="sep" />
-          <p>
-            <span class="font-family-mono font-size-sm">@default</span> 
-            <code class="margin-left-sm">{defaults}</code>
-          </p>
-        )}
-      </div>
-    </>
+    <div class="card__body type spacing">
+      <slot />
+      { returns && (
+        <hr class="sep" />
+        <p>
+          <span class="font-family-mono font-size-sm">@returns</span> 
+          <code class="margin-left-sm">{returns}</code>
+        </p>
+      )}
+      { defaults && (
+        <hr class="sep" />
+        <p>
+          <span class="font-family-mono font-size-sm">@default</span> 
+          <code class="margin-left-sm">{defaults}</code>
+        </p>
+      )}
+      { fallback && (
+        <hr class="sep" />
+        <p>
+          <span class="font-family-mono font-size-sm">@fallback</span> 
+          <code class="margin-left-sm">{fallback}</code>
+        </p>
+      )}
+    </div>
   )}
 </div>
-
-<style>
-  .card__header {
-    --vb-card-padding: 0.75em 1em;
-  }
-</style>
