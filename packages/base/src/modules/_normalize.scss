@@ -20,7 +20,7 @@
 
   html {
     box-sizing: border-box;
-    font-size: css.get("font-size");
+    font-size: css.get("base", "font-size", 16px);
     -moz-osx-font-smoothing: grayscale;
     line-height: css.get("line-height");
     text-size-adjust: 100%;
