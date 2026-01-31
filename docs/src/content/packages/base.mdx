@@ -157,7 +157,9 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 
 ### code
 
-The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
+<ReferenceBar selector=".code" />
+
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -167,19 +169,6 @@ The HTML code element displays its contents styled in a fashion intended to indi
 <code class="code">a = 17</code>
 ```
 </CodeExample>
-
-{/*
-.code, .type :not(pre) > code {
-  background: var(--vb-code-background, var(--vb-background-alt));
-  border: var(--vb-code-border);
-  border-radius: var(--vb-code-border-radius, var(--vb-border-radius));
-  color: var(--vb-code-foreground, var(--vb-foreground-alt));
-  font-family: var(--vb-font-family-mono);
-  font-size: var(--vb-code-font-size, var(--vb-font-size-sm));
-  overflow-wrap: break-word;
-  padding: var(--vb-code-padding, 0.125rem 0.375rem);
-}
-*/}
 
 ### heading
 
