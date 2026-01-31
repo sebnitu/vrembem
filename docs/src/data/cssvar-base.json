@@ -1,0 +1,12 @@
+{
+  "--vb-base-height": "100%",
+  "--vb-base-background": "var(--vb-background)",
+  "--vb-base-foreground": "var(--vb-foreground)",
+
+  "--vb-blockquote-background": "transparent",
+  "--vb-blockquote-foreground": "currentcolor",
+  "--vb-blockquote-border": "var(--vb-border)",
+  "--vb-blockquote-border-radius": "var(--vb-border-radius)",
+  "--vb-blockquote-padding": "1em",
+  "--vb-blockquote-gap": "1em"
+}
