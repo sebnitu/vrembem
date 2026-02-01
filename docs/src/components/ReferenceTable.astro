@@ -219,7 +219,7 @@ function iconMap(value: string) {
       const input = table.querySelector(".input") as HTMLInputElement;
       if (input) {
         input.value = event.detail.value;
-        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("input"));
         input.focus();
       }
     });
@@ -230,12 +230,14 @@ function iconMap(value: string) {
   });
 
   document.querySelectorAll(".input-clear").forEach((button: HTMLElement) => {
-    button.addEventListener("click", (event) => {
+    button.addEventListener("click", () => {
       const id = button.dataset.clear;
       const input = document.getElementById(id) as HTMLInputElement;
-      input.value = "";
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.focus();
+      if (input) {
+        input.value = "";
+        input.dispatchEvent(new Event("input"));
+        input.focus();
+      }
     });
   });
 
