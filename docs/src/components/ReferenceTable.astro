@@ -142,8 +142,6 @@ function iconMap(value: string) {
 </div>
 
 <script>
-  import { cssVar } from "@vrembem/core";
-
   /**
    * Table filter functionality
    */
@@ -159,7 +157,7 @@ function iconMap(value: string) {
 
     // Setup the variables
     const input = event.target as HTMLInputElement;
-    const filter = input.value.toUpperCase();
+    const filter = input.value.toUpperCase().trim();
     const parent = input.closest(".reference-table") as HTMLElement;
     const rows = parent.querySelectorAll("tr");
     const notice = parent.querySelector(".notice");
@@ -172,7 +170,7 @@ function iconMap(value: string) {
       let td = rows[i].querySelector("td code") as HTMLElement;
       if (td) {
         let txtValue = td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        if (txtValue.toUpperCase().trim().indexOf(filter) > -1) {
           rows[i].classList.remove("display-none");
           visible++;
         } else {
@@ -189,7 +187,6 @@ function iconMap(value: string) {
     // Toggle the clear input button
     if (filter) {
       // Scroll to the top of the reference table
-      // parent.scrollIntoView({ block: "start" });
       scrollToRef(parent);
       clearBtn.classList.remove("display-none");
     } else {
@@ -215,6 +212,18 @@ function iconMap(value: string) {
       behavior: "instant"
     });
   }
+
+  // Setup listener for "filter" custom event
+  document.querySelectorAll(".reference-table").forEach((table) => {
+    table.addEventListener("filter", (event: CustomEvent) => {
+      const input = table.querySelector(".input") as HTMLInputElement;
+      if (input) {
+        input.value = event.detail.value;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.focus();
+      }
+    });
+  });
 
   document.querySelectorAll(".reference-table__filter").forEach((input) => {
     input.addEventListener("input", filterTable);
@@ -272,6 +281,8 @@ function iconMap(value: string) {
       event.preventDefault();
       const hash = anchor.getAttribute("href");
       window.location.hash = hash;
+      // Check if the filter needs to be updated
+      filterTable();
     });
   });
 
@@ -284,13 +295,14 @@ function iconMap(value: string) {
       history.pushState({}, "", url);
       // Manually fire hashchange event since `history.pushState` doesn't
       window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      // Check if the filter needs to be updated
+      filterTable();
     });
   });
 
   // Setup event listener for hash change
   window.addEventListener("hashchange", () => {
     checkActiveHash();
-    filterTable();
   });
 
   // Run an initial active hash check
