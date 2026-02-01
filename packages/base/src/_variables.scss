@@ -7,9 +7,6 @@ $output-exceptions: () !default;
 $classes: (
   "separator": "sep"
 ) !default;
-$base-height: 100% !default;
-$base-background: css.get("background") !default;
-$base-foreground: css.get("foreground") !default;
 $heading-scale: (
   "h1": 2.75em,
   "h2": 2em,

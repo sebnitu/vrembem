@@ -15,20 +15,20 @@
   // Default html (root) and body styles
   html,
   body {
-    height: css.get("base", "height", var.$base-height);
+    height: css.get("base", "height", 100%);
   }
 
   html {
     box-sizing: border-box;
     font-size: css.get("base", "font-size", 16px);
     -moz-osx-font-smoothing: grayscale;
-    line-height: css.get("line-height");
+    line-height: css.get("base", "line-height", css.get("line-height"));
     text-size-adjust: 100%;
   }
 
   body {
-    background: css.get("base", "background", var.$base-background);
-    color: css.get("base", "foreground", var.$base-foreground);
+    background: css.get("base", "background", css.get("background"));
+    color: css.get("base", "foreground", css.get("foreground"));
     font-family: css.get("font-family");
   }
 
