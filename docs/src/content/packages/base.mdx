@@ -159,7 +159,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 
 <ReferenceBar selector=".code">
   {/* TODO: Link should scroll down to reference table and filter results */}
-  [Variables](#reference-table-cssvar-base)
+  [Variables](#reference-table-cssvar-base?filter=--vb-code)
 </ReferenceBar>
 
 The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code.
@@ -537,4 +537,5 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 
 Below is a reference to all CSS variables that are referenced by `base` modules along with their fallback values. These variables are only referenced (not defined), allowing you to easily customize styles by setting your own values as needed.
 
+{/* TODO: Add ability to link values to csscvar-core.json reference table */}
 <ReferenceTable id="cssvar-base" data={data} valueLabel="Fallback" />
