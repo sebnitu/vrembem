@@ -69,9 +69,18 @@
   max-width: css.get("layout", "content-width");
   order: 1;
   width: 100%;
+  scroll-margin-top: css.get("layout", "toolbar-height");
 
   @include core.media-min(var.$bp-aside) {
     width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
+  }
+
+  @include core.media-min(var.$bp-drawer) {
+    scroll-margin-top: css.get("layout", "navibar-height");
+  }
+
+  * {
+    scroll-margin-top: inherit;
   }
 
   h1,
@@ -81,7 +90,6 @@
   h5,
   h6 {
     position: relative;
-    scroll-margin-top: calc(css.get("layout", "navibar-height") + 1rem);
   }
 
   h3 {
