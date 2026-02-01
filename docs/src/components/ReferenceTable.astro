@@ -266,11 +266,6 @@ function iconMap(value: string) {
     if (result) {
       result.el.classList.add("is-active");
       result.el.classList.remove("display-none");
-
-      // Scroll to the element after it's open. This is needed to ensure the
-      // element's toggled height is factored into the scroll position.
-      const el = document.querySelector(`#${result.id}`);
-      if (el) el.scrollIntoView({ block: "center" });
     }
   }
 
@@ -281,8 +276,6 @@ function iconMap(value: string) {
       event.preventDefault();
       const hash = anchor.getAttribute("href");
       window.location.hash = hash;
-      // Check if the filter needs to be updated
-      filterTable();
     });
   });
 
