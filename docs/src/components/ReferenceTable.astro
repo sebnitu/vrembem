@@ -279,12 +279,10 @@ function iconMap(value: string) {
   const clearBtns = document.querySelectorAll(".table-anchor-clear");
   clearBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-      // Manually fire hasChange event since `history.replaceState` doesn't
+      // Build URL without the hash
+      const url = window.location.pathname + window.location.search;
+      history.pushState({}, "", url);
+      // Manually fire hashchange event since `history.pushState` doesn't
       window.dispatchEvent(new Event("hashchange", { bubbles: true }));
     });
   });
