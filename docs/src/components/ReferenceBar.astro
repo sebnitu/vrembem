@@ -4,11 +4,15 @@ interface Props {
   returns?: string;
   defaults?: string;
   selector?: string;
-  href?: {};
+  hash?: {
+    target: string;
+    event?: string;
+    detail?: {};
+  };
   readonly?: boolean;
 }
 
-const { type, defaults, returns, selector, href, readonly } = Astro.props;
+const { type, defaults, returns, selector, hash, readonly } = Astro.props;
 ---
 
 <div class="flex justify-content-between align-items-center">
@@ -54,12 +58,13 @@ const { type, defaults, returns, selector, href, readonly } = Astro.props;
     )
   }
   {
-    href && (
+    hash && (
       <a
         class="link link_hash"
-        href={`#${href.hash}`}
-        data-target={href.hash}
-        data-filter={href.filter}
+        href={`#${hash.target}`}
+        data-target={hash.target}
+        data-event={hash.event}
+        data-detail={JSON.stringify(hash.detail)}
       >
         <slot />
       </a>
@@ -71,17 +76,28 @@ const { type, defaults, returns, selector, href, readonly } = Astro.props;
   const links = document.querySelectorAll(".link_hash");
   links.forEach((link: HTMLAnchorElement) => {
     link.addEventListener("click", () => {
-      function onScrollEnd() {
-        const target = document.getElementById(link.dataset.target);
-        const data = { value: link.dataset.filter };
-        target.dispatchEvent(
-          new CustomEvent("filter", {
-            detail: data
-          })
-        );
-        window.removeEventListener("scrollend", onScrollEnd);
-      }
-      window.addEventListener("scrollend", onScrollEnd);
+      // Guard if a target was not provided
+      const target = document.getElementById(link.dataset.target);
+      if (!target) return;
+
+      // Add event listener that dispatches an event on scroll end
+      window.addEventListener(
+        "scrollend",
+        () => {
+          // Dispatch a custom event if event is provided
+          if (link.dataset.event) {
+            const data = link.dataset.detail
+              ? JSON.parse(link.dataset.detail)
+              : {};
+            target.dispatchEvent(
+              new CustomEvent(link.dataset.event, {
+                detail: data
+              })
+            );
+          }
+        },
+        { once: true }
+      );
     });
   });
 </script>

@@ -107,6 +107,16 @@ Below is a list of each base module, a description of what they do, their defaul
 
 ### normalize
 
+<ReferenceBar selector="none" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-base"
+  }
+}}>
+  Variables
+</ReferenceBar>
+
 A module that helps ensure HTML elements are rendered consistently across browsers by resetting and standardizing their default styles. This provides a reliable foundation for building components, making elements more predictable and easier to work with by:
 
 - Resetting margin, padding, and box-sizing for all elements.
@@ -120,22 +130,33 @@ A module that helps ensure HTML elements are rendered consistently across browse
 The following CSS variables are referenced with a provided fallback for more easily overriding base properties:
 
 <ReferenceCard name="--vb-base-height" type="height value" fallback="100%">
-  Used to set the height property of both the `html` and `body` elements. The fallback value is set using the `$base-height` Sass variable.
+  Used to set the height property on both the `html` and `body` elements.
 </ReferenceCard>
 
 <ReferenceCard name="--vb-base-background" type="color" fallback="var(--vb-background)">
-  Used to set the background property of the `body` element. The fallback value is set using the `$base-background` Sass variable.
+  Used to set the background property on the `body` element.
 </ReferenceCard>
 
 <ReferenceCard name="--vb-base-foreground" type="color" fallback="var(--vb-foreground)">
-  Used to set the color property of the `body` element. The fallback value is set usign the `$base-foreground` Sass variable.
+  Used to set the color property on the `body` element.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-base-font-size" type="font-size value" fallback="16px">
+  Used to set the font-size property on the `html` element.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-base-line-height" type="line-height value" fallback="var(--vb-line-height)">
+  Used to set the line-height property on the `html` element.
 </ReferenceCard>
 
 ### blockquote
 
-<ReferenceBar selector=".blockquote" href={{
-  "hash": "reference-table-cssvar-base",
-  "filter": "--vb-blockquote"
+<ReferenceBar selector=".blockquote" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-blockquote"
+  }
 }}>
   Variables
 </ReferenceBar>
@@ -162,9 +183,12 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 
 ### code
 
-<ReferenceBar selector=".code" href={{
-  "hash": "reference-table-cssvar-base",
-  "filter": "--vb-code"
+<ReferenceBar selector=".code" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-code"
+  }
 }}>
   Variables
 </ReferenceBar>
