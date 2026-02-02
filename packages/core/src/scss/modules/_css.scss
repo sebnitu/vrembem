@@ -98,7 +98,9 @@ $-custom-properties: (
 ///   The component to register.
 ///
 @mixin register($component) {
-  $-custom-properties: map.set($-custom-properties, $component, empty-map()) !global;
+  @if not(has($component)) {
+    $-custom-properties: map.set($-custom-properties, $component, empty-map()) !global;
+  }
 }
 
 /// Function to create reference to a custom property using the provided
