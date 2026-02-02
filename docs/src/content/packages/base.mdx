@@ -333,10 +333,45 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 
 ### list
 
-<ReferenceBar selector=".list" />
+<ReferenceBar selector=".list" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-list"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
 The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
+<CodeExample lang="html">
+<div slot="output" class="flex flex_items_auto">
+  <ul class="list">
+    <li>One</li>
+    <li>
+      Two
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
+    </li>
+    <li>Three</li>
+  </ul>
+  <ol class="list">
+    <li>One</li>
+    <li>
+      Two
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ol>
+    </li>
+    <li>Three</li>
+  </ol>
+</div>
 ```html
 <ul class="list">
   <li>One</li>
@@ -354,28 +389,7 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
   ...
 </ol>
 ```
-
-{/*
-.list, .type > ul, .type > ol {
-  margin-left: var(--vb-list-indent, 1.5em);
-}
-.list ul,
-.list ol, .type > ul ul,
-.type > ul ol, .type > ol ul,
-.type > ol ol {
-  margin-left: var(--vb-list-indent, 1.5em);
-}
-.list li li,
-.list li + li, .type > ul li li,
-.type > ul li + li, .type > ol li li,
-.type > ol li + li {
-  margin-top: var(--vb-list-gap, 0.5em);
-}
-
-.list-style-none {
-  list-style: none !important;
-}
-*/}
+</CodeExample>
 
 ### pre
 

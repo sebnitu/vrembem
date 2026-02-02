@@ -31,5 +31,8 @@
   "--vb-link-decoration-thickness": "1px",
   "--vb-link-underline-offset": "2px",
   "--vb-link-focus-ring": "currentcolor dotted 1px",
-  "--vb-link-focus-ring-offset": "0.125rem"
+  "--vb-link-focus-ring-offset": "0.125rem",
+
+  "--vb-list-indent": "1.5em",
+  "--vb-list-gap": "0.5em"
 }
