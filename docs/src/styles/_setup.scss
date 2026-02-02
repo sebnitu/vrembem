@@ -22,6 +22,12 @@
     "content-width": 42rem
   )
 );
-@include css.set("type", "font-size", css.get("font-size-lg"));
+@include css.set(
+  "type",
+  (
+    "font-size": css.get("font-size-lg"),
+    "line-height": 1.7778
+  )
+);
 @include theme.set("light", "background-glass", palette.get("neutral", 100, 90%));
 @include theme.set("dark", "background-glass", palette.get("neutral", 10, 90%));
