@@ -305,6 +305,8 @@ $scale: (
 
 ### link
 
+<ReferenceBar selector=".link" />
+
 A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
 
 ```html
@@ -344,6 +346,8 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 */}
 
 ### list
+
+<ReferenceBar selector=".list" />
 
 The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
@@ -389,6 +393,8 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 
 ### pre
 
+<ReferenceBar selector=".pre" />
+
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
 
 ```html
@@ -425,6 +431,8 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 
 ### separator
 
+<ReferenceBar selector=".sep" />
+
 This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
 ```html
@@ -447,6 +455,8 @@ This module adds the `.sep` and `.sep-invert` CSS classes which visually renders
 */}
 
 ### type
+
+<ReferenceBar selector=".type" />
 
 The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
 
@@ -487,6 +497,8 @@ Modules that get mapped to HTML elements include:
 > The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
 
 ### arrow
+
+<ReferenceBar selector=".arrow" />
 
 The arrow (caret) module creates directional triangles drawn with CSS.
 
@@ -542,16 +554,26 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other toggle-able components.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+</Fragment>
 ```html
 <button class="button">
   <span>Button</span>
   <span class="arrow"></span>
 </button>
 ```
+</CodeExample>
 
 ### loading-spinner
 
-...
+<ReferenceBar selector=".loading-spinner" />
+
+A class to output the styles for a loading spinner.
 
 {/*
 .loading-spinner {
@@ -576,6 +598,8 @@ Arrows are great indicators for buttons and menu items when interacting with the
 
 ### scroll-box
 
+<ReferenceBar selector=".scroll-box" />
+
 This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
 
 ```html
@@ -595,7 +619,21 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 
 ### sr-only
 
-...
+<ReferenceBar selector=".sr-only" />
+
+This module provides an accessibility class for rendering content meant only for screen readers. This keeps the content accessible in the DOM for screen readers while hiding it visually from all other users.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+<p>The following content is for screen readers only: <span class="sr-only">Hello, screen readers!</span></p>
+</Fragment>
+```html
+<p>
+  The following content is for screen readers only:
+  <span class="sr-only">Hello, screen readers!</span>
+</p>
+```
+</CodeExample>
 
 {/*
 .sr-only {
