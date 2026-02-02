@@ -25,8 +25,9 @@
       h6 {
         color: css.get("heading", "color", css.get("foreground"));
         font-family: css.get("heading", "font-family", inherit);
+        font-size: css.get("heading", "font-size", 1em);
         font-weight: css.get("heading", "font-weight", css.get("font-weight-semi-bold"));
-        line-height: css.get("heading", "line-height", null);
+        line-height: css.get("heading", "line-height", inherit);
       }
 
       @include mix.heading-levels($prefix: null);

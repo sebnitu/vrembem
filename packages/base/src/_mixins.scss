@@ -1,5 +1,6 @@
 @use "sass:list";
 @use "sass:meta";
+@use "@vrembem/core/css";
 @use "./variables" as var;
 
 /// Output the styles for heading levels based on the values of `$map`.
@@ -18,9 +19,10 @@
       $font-size: list.nth($value, 1);
       $line-height: list.nth($value, 2);
     }
+
     #{$prefix}#{$key} {
-      font-size: $font-size;
-      line-height: $line-height;
+      @include css.override("heading", "font-size", $font-size);
+      @include css.override("heading", "line-height", $line-height);
     }
   }
 }

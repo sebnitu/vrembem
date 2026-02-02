@@ -68,8 +68,8 @@
 .layout__content {
   max-width: css.get("layout", "content-width");
   order: 1;
-  width: 100%;
   scroll-margin-top: css.get("layout", "toolbar-height");
+  width: 100%;
 
   @include core.media-min(var.$bp-aside) {
     width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
