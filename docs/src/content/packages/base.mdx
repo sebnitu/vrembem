@@ -206,6 +206,16 @@ The HTML code element displays its contents styled in a fashion intended to indi
 
 ### heading
 
+<ReferenceBar selector=".h1 - .h6" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-heading"
+  }
+}}>
+  Variables
+</ReferenceBar>
+
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
 
 <CodeExample lang="html">
@@ -228,20 +238,6 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 <h6 class="h6">...</h6>
 ```
 </CodeExample>
-
-{/*
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  color: var(--vb-heading-color, var(--vb-foreground));
-  font-family: var(--vb-heading-font-family, inherit);
-  font-weight: var(--vb-heading-font-weight, var(--vb-font-weight-semi-bold));
-  line-height: var(--vb-heading-line-height);
-}
-*/}
 
 #### Heading scale
 
