@@ -422,28 +422,26 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 
 ### separator
 
-<ReferenceBar selector=".sep" />
+<ReferenceBar selector=".sep" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-sep"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
-This module adds the `.sep` and `.sep-invert` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
+This module adds the `.sep` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+  <hr class="sep" />
+</Fragment>
 ```html
-<!-- Separator -->
-<hr class="sep">
-<hr class="sep border-color-darker">
-
-<!-- Invert separator -->
-<hr class="sep-invert">
-<hr class="sep-invert border-color-invert-darker">
+<hr class="sep" />
 ```
-
-{/*
-.sep, .type > hr {
-  border: none;
-  border-top: var(--vb-separator-border, var(--vb-border));
-  display: block;
-  height: 0;
-}
-*/}
+</CodeExample>
 
 ### type
 

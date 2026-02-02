@@ -41,5 +41,7 @@
   "--vb-pre-border": "none",
   "--vb-pre-border-radius": "var(--vb-border-radius)",
   "--vb-pre-padding": "1em",
-  "--vb-pre-font-size": "var(--vb-font-size-sm)"
+  "--vb-pre-font-size": "var(--vb-font-size-sm)",
+
+  "--vb-separator-border": "var(--vb-border)"
 }
