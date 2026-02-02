@@ -241,8 +241,9 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 
 #### Heading scale
 
-A map containing the font-size and optional line-height scale for HTML headings. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+The font-size of heading elements are controlled by the `$heading-scale` Sass variable map. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
 
+<CodeExample lang="scss">
 ```scss
 $heading-scale: (
   "h1": 2.75em,
@@ -252,6 +253,55 @@ $heading-scale: (
   "h5": 1.25em
 ) !default;
 ```
+</CodeExample>
+
+The `heading-levels()` mixin is available to output font-size and line-height CSS variables for heading levels based on the values of the provided map argument. By default, `$heading-scale` is used if no map is provided.
+
+##### Arguments
+
+<ReferenceCard name="$map" type="map" defaults="$heading-scale">
+  The map of heading levels to loop through.
+</ReferenceCard>
+
+<ReferenceCard name="$prefix" type="string" defaults='"."'>
+  The string to prefix each map key with.
+</ReferenceCard>
+
+##### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/base";
+
+$scale: (
+  "h1": 3em 1.2,
+  "h2": 2em 1.4,
+  "h3": 1.5em 1.6
+);
+
+@include base.heading-levels($scale, ".example > ");
+```
+</Fragment>
+<Fragment slot="tab-css">
+```scss
+.example > h1 {
+  --vb-heading-font-size: 3em;
+  --vb-heading-line-height: 1.2;
+}
+
+.example > h2 {
+  --vb-heading-font-size: 2em;
+  --vb-heading-line-height: 1.4;
+}
+
+.example > h3 {
+  --vb-heading-font-size: 1.5em;
+  --vb-heading-line-height: 1.6;
+}
+```
+</Fragment>
+</CodeExample>
 
 ### link
 
@@ -490,7 +540,7 @@ The arrow (caret) module creates directional triangles drawn with CSS.
 
 #### Example
 
-Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other togglable components.
+Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other toggle-able components.
 
 ```html
 <button class="button">
