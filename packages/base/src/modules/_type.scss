@@ -7,7 +7,7 @@
   @include css.register("heading");
 
   #{fun.selector("type")} {
-    color: css.get("type", "color", css.get("foreground-light"));
+    color: css.get("type", "foreground", css.get("foreground-light"));
     font-family: css.get("type", "font-family", null);
     font-size: css.get("type", "font-size", inherit);
     line-height: css.get("type", "line-height", inherit);
@@ -23,7 +23,7 @@
       h4,
       h5,
       h6 {
-        color: css.get("heading", "color", css.get("foreground"));
+        color: css.get("heading", "foreground", css.get("foreground"));
         font-family: css.get("heading", "font-family", inherit);
         font-size: css.get("heading", "font-size", 1em);
         font-weight: css.get("heading", "font-weight", css.get("font-weight-semi-bold"));

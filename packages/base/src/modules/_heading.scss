@@ -11,7 +11,7 @@
   .h4,
   .h5,
   .h6 {
-    color: css.get("heading", "color", css.get("foreground"));
+    color: css.get("heading", "foreground", css.get("foreground"));
     font-family: css.get("heading", "font-family", inherit);
     font-size: css.get("heading", "font-size", 1em);
     font-weight: css.get("heading", "font-weight", css.get("font-weight-semi-bold"));

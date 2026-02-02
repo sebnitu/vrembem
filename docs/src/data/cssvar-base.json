@@ -19,7 +19,7 @@
   "--vb-code-font-size": "var(--vb-font-size-sm)",
   "--vb-code-padding": "0.125rem 0.375rem",
 
-  "--vb-heading-color": "var(--vb-foreground)",
+  "--vb-heading-foreground": "var(--vb-foreground)",
   "--vb-heading-font-family": "inherit",
   "--vb-heading-font-weight": "var(--vb-font-weight-semi-bold)",
   "--vb-heading-line-height": "inherit"
