@@ -22,5 +22,14 @@
   "--vb-heading-foreground": "var(--vb-foreground)",
   "--vb-heading-font-family": "inherit",
   "--vb-heading-font-weight": "var(--vb-font-weight-semi-bold)",
-  "--vb-heading-line-height": "inherit"
+  "--vb-heading-line-height": "inherit",
+
+  "--vb-link-foreground": "var(--vb-primary-50)",
+  "--vb-link-foreground-hover": "var(--vb-primary-40)",
+  "--vb-link-decoration": "underline",
+  "--vb-link-decoration-hover": "none",
+  "--vb-link-decoration-thickness": "1px",
+  "--vb-link-underline-offset": "2px",
+  "--vb-link-focus-ring": "currentcolor dotted 1px",
+  "--vb-link-focus-ring-offset": "0.125rem"
 }

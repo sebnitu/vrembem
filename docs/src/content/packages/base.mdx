@@ -241,9 +241,14 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 
 #### Heading scale
 
-The font-size of heading elements are controlled by the `$heading-scale` Sass variable map. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+The font-size of heading elements are controlled by the `$heading-scale` Sass variable map.
 
-<CodeExample lang="scss">
+<ReferenceCard name="$heading-scale" type="map">
+  Used to output the heading font-size and line-height CSS variable based on the provided values. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+
+  <hr class="sep" />
+  <p class="font-family-mono font-size-sm">@default</p>
+
 ```scss
 $heading-scale: (
   "h1": 2.75em,
@@ -253,7 +258,7 @@ $heading-scale: (
   "h5": 1.25em
 ) !default;
 ```
-</CodeExample>
+</ReferenceCard>
 
 The `heading-levels()` mixin is available to output font-size and line-height CSS variables for heading levels based on the values of the provided map argument. By default, `$heading-scale` is used if no map is provided.
 
@@ -305,45 +310,26 @@ $scale: (
 
 ### link
 
-<ReferenceBar selector=".link" />
+<ReferenceBar selector=".link" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-link"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
-A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class as well as a few optional modifiers.
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class.
 
+<CodeExample lang="html">
+<Fragment slot="output">
+<a href="#" class="link" onclick="event.preventDefault();">Link</a>
+</Fragment>
 ```html
 <a href="#" class="link">Link</a>
-<a href="#" class="link link_subtle">Link</a>
-<a href="#" class="link link_invert">Link</a>
-<a href="#" class="link link_invert-subtle">Link</a>
 ```
-
-{/*
-.link, .type :not(div) > a {
-  color: var(--vb-link-color, var(--vb-primary-50));
-  text-decoration: var(--vb-link-decoration, underline);
-  text-decoration-thickness: var(--vb-link-decoration, var(--vb-link-thickness, 1px));
-  text-underline-offset: var(--vb-link-underline, var(--vb-link-offset, 2px));
-}
-.link code, .type :not(div) > a code {
-  background-color: hsl(var(--vb-primary-hs) 50% / 10%);
-  color: var(--vb-link-color, var(--vb-primary-50));
-}
-.link:hover, .type :not(div) > a:hover {
-  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
-  text-decoration: var(--vb-link-decoration, var(--vb-link-hover, none));
-}
-.link:hover code, .type :not(div) > a:hover code {
-  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
-}
-.link:focus, .type :not(div) > a:focus {
-  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
-  outline: var(--vb-link-focus-ring, currentcolor dotted 1px);
-  outline-offset: var(--vb-link-focus-ring-offset, 0.125rem);
-  text-decoration: var(--vb-link-decoration, var(--vb-link-hover, none));
-}
-.link:focus code, .type :not(div) > a:focus code {
-  color: var(--vb-link-color, var(--vb-link-hover, var(--vb-primary-40)));
-}
-*/}
+</CodeExample>
 
 ### list
 
