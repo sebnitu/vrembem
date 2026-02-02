@@ -9,8 +9,8 @@
   #{fun.selector("type")} {
     color: css.get("type", "color", css.get("foreground-light"));
     font-family: css.get("type", "font-family", null);
-    font-size: css.get("type", "font-size", css.get("font-size-lg"));
-    line-height: css.get("type", "line-height", 1.7778);
+    font-size: css.get("type", "font-size", inherit);
+    line-height: css.get("type", "line-height", inherit);
 
     > * + * {
       margin-top: css.get("type", "gap", null);

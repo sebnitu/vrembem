@@ -22,5 +22,6 @@
     "content-width": 42rem
   )
 );
+@include css.set("type", "font-size", css.get("font-size-lg"));
 @include theme.set("light", "background-glass", palette.get("neutral", 100, 90%));
 @include theme.set("dark", "background-glass", palette.get("neutral", 10, 90%));
