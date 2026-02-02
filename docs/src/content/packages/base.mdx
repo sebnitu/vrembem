@@ -393,10 +393,19 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 
 ### pre
 
-<ReferenceBar selector=".pre" />
+<ReferenceBar selector=".pre" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-pre"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
 
+<CodeExample lang="html">
 ```html
 <pre class="pre">
 -----------------------------
@@ -409,25 +418,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
              ||     ||
 </pre>
 ```
-
-{/*
-.pre, .type > pre {
-  background: var(--vb-pre-background, var(--vb-background-dark));
-  border: var(--vb-pre-padding);
-  border-radius: var(--vb-pre-padding, var(--vb-border-radius));
-  color: var(--vb-pre-foreground, var(--vb-foreground));
-  font-family: var(--vb-font-family-mono);
-  overflow: auto;
-  padding: var(--vb-pre-padding, 1em);
-}
-.pre code, .type > pre code {
-  background: none;
-  border: none;
-  color: inherit;
-  font-size: var(--vb-pre-font-size, var(--vb-font-size-sm));
-  padding: 0;
-}
-*/}
+</CodeExample>
 
 ### separator
 

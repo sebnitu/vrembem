@@ -34,5 +34,12 @@
   "--vb-link-focus-ring-offset": "0.125rem",
 
   "--vb-list-indent": "1.5em",
-  "--vb-list-gap": "0.5em"
+  "--vb-list-gap": "0.5em",
+
+  "--vb-pre-background": "var(--vb-background-dark)",
+  "--vb-pre-foreground": "var(--vb-foreground)",
+  "--vb-pre-border": "none",
+  "--vb-pre-border-radius": "var(--vb-border-radius)",
+  "--vb-pre-padding": "1em",
+  "--vb-pre-font-size": "var(--vb-font-size-sm)"
 }

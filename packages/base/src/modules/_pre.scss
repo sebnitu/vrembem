@@ -6,8 +6,8 @@
 
   #{fun.selector("pre")} {
     background: css.get("pre", "background", css.get("background-dark"));
-    border: css.get("pre", "padding", null);
-    border-radius: css.get("pre", "padding", css.get("border-radius"));
+    border: css.get("pre", "border", none);
+    border-radius: css.get("pre", "border-radius", css.get("border-radius"));
     color: css.get("pre", "foreground", css.get("foreground"));
     font-family: css.get("font-family-mono");
     overflow: auto;
