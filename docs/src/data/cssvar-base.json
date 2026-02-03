@@ -49,5 +49,14 @@
   "--vb-type-font-family": "inherit",
   "--vb-type-font-size": "inherit",
   "--vb-type-line-height": "inherit",
-  "--vb-type-gap": ""
+  "--vb-type-gap": "",
+
+  "--vb-arrow-size": "6px 4px",
+  "--vb-arrow-color": "currentcolor",
+  "--vb-arrow-radius": "2px",
+
+  "--vb-loading-size": "1em",
+  "--vb-loading-duration": "0.6s",
+  "--vb-loading-border": "2px solid",
+  "--vb-loading-color": "currentcolor"
 }

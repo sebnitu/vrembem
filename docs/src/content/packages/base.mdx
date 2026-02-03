@@ -502,9 +502,17 @@ $type-selectors: (
 
 ### arrow
 
-<ReferenceBar selector=".arrow" />
+<ReferenceBar selector=".arrow" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-arrow"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
-The arrow (caret) module creates directional triangles drawn with CSS.
+The arrow (caret) module provides classes for directional triangles drawn with CSS. These are typically applied to `<span>` elements and used along side other components as direction indicators.
 
 <CodeExample>
   <div slot="output" class="flex">
@@ -520,39 +528,6 @@ The arrow (caret) module creates directional triangles drawn with CSS.
   <span class="arrow-right"></span>
   ```
 </CodeExample>
-
-{/*
-.arrow,
-.arrow-up,
-.arrow-down,
-.arrow-left,
-.arrow-right {
-  border-width: var(--vb-arrow-size, 6px 4px);
-  border-bottom-width: 0;
-  border-color: var(--vb-arrow-color, currentcolor) transparent transparent;
-  border-radius: var(--vb-arrow-radius, 2px);
-  border-style: solid;
-  display: inline-block;
-  flex-grow: 0;
-  flex-shrink: 0;
-  height: 0;
-  pointer-events: none;
-  transform-origin: center;
-  width: 0;
-}
-
-.arrow-up {
-  transform: rotate(180deg);
-}
-
-.arrow-left {
-  transform: rotate(90deg);
-}
-
-.arrow-right {
-  transform: rotate(-90deg);
-}
-*/}
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other toggle-able components.
 
@@ -573,30 +548,29 @@ Arrows are great indicators for buttons and menu items when interacting with the
 
 ### loading-spinner
 
-<ReferenceBar selector=".loading-spinner" />
-
-A class to output the styles for a loading spinner.
-
-{/*
-.loading-spinner {
-  height: var(--vb-loading-size, 1em);
-  width: var(--vb-loading-size, 1em);
-  animation: spin var(--vb-loading-duration, 0.6s) infinite linear;
-  border: var(--vb-loading-border, 2px solid);
-  border-color: var(--vb-loading-color, currentcolor) var(--vb-loading-color, currentcolor) transparent transparent;
-  border-radius: 9999px;
-  display: inline-block;
-  position: relative;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+<ReferenceBar selector=".loading-spinner" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-loading"
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/}
+}}>
+  Variables
+</ReferenceBar>
+
+A class to output the styles for a loading spinner. A loading spinner is a visual indicator for users to let them know a process or action is taking place.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <div class="flex align-items-center">
+    <span class="loading-spinner"></span>
+    <span>Loading text here...</span>
+  </div>
+</Fragment>
+```html
+<span class="loading-spinner"></span>
+```
+</CodeExample>
 
 ### scroll-box
 
@@ -604,20 +578,18 @@ A class to output the styles for a loading spinner.
 
 This module provides the `.scroll-box` CSS class to be applied as a wrapper around elements when they need a scrollable container.
 
+<CodeExample lang="html">
+<Fragment slot="demo">
+  <div class="scroll-box padding margin-y-sm border radius">
+    <p class="text-nowrap">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quaerat doloribus ab minus ad amet repellendus. Dolore aliquam corrupti, omnis recusandae soluta minima, tempora eligendi, explicabo suscipit maiores reprehenderit illum!</p>
+  </div>
+</Fragment>
 ```html
 <div class="scroll-box">
   ...
 </div>
 ```
-
-{/*
-.scroll-box {
-  display: block;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-}
-*/}
+</CodeExample>
 
 ### sr-only
 
@@ -636,18 +608,6 @@ This module provides an accessibility class for rendering content meant only for
 </p>
 ```
 </CodeExample>
-
-{/*
-.sr-only {
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-*/}
 
 ## Reference
 
