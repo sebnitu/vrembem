@@ -20,15 +20,18 @@
   $module,
   $args...
 ) {
-  @if meta.type-of($module) == "map" {
-    // If $module is a map, get all the keys and build a selector with them
+  @if meta.type-of($module) == "map" or meta.type-of($module) == "list" {
+    // If $module is a map or list, build a selector for each item/key
     $selectors: ();
+    $items: if(
+      sass(meta.type-of($module) == "map"): map.keys($module) ; else: $module
+    );
 
-    @each $key in map.keys($module) {
+    @each $item in $items {
       $selectors: list.append(
         $selectors,
         selector(
-          $key,
+          $item,
           $args...
         ),
         comma
