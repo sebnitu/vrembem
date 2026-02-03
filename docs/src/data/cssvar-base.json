@@ -43,5 +43,11 @@
   "--vb-pre-padding": "1em",
   "--vb-pre-font-size": "var(--vb-font-size-sm)",
 
-  "--vb-separator-border": "var(--vb-border)"
+  "--vb-separator-border": "var(--vb-border)",
+
+  "--vb-type-foreground": "var(--vb-foreground-light)",
+  "--vb-type-font-family": "inherit",
+  "--vb-type-font-size": "inherit",
+  "--vb-type-line-height": "inherit",
+  "--vb-type-gap": ""
 }

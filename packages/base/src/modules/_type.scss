@@ -8,7 +8,7 @@
 
   #{fun.selector("type")} {
     color: css.get("type", "foreground", css.get("foreground-light"));
-    font-family: css.get("type", "font-family", null);
+    font-family: css.get("type", "font-family", inherit);
     font-size: css.get("type", "font-size", inherit);
     line-height: css.get("type", "line-height", inherit);
 

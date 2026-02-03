@@ -260,7 +260,7 @@ $heading-scale: (
 ```
 </ReferenceCard>
 
-The `heading-levels()` mixin is available to output font-size and line-height CSS variables for heading levels based on the values of the provided map argument. By default, `$heading-scale` is used if no map is provided.
+The `base.heading-levels()` mixin is available to output font-size and line-height CSS variables for heading levels based on the values of the provided map argument. By default, `$heading-scale` is used if no map is provided.
 
 ##### Arguments
 
@@ -445,10 +445,28 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
 
 ### type
 
-<ReferenceBar selector=".type" />
+<ReferenceBar selector=".type" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-type"
+  }
+}}>
+  Variables
+</ReferenceBar>
 
-The type module provides the `.type` CSS class as a quick way to apply many base modules to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set. Use `.type_invert` for when text sits on a dark background.
+The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set.
 
+<CodeExample lang="html">
+<div slot="output" class="type spacing">
+  <h1>Heading</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
+  <ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+  </ul>
+</div>
 ```html
 <div class="type">
   <h1>Heading</h1>
@@ -460,30 +478,27 @@ The type module provides the `.type` CSS class as a quick way to apply many base
   </ul>
 </div>
 ```
+</CodeExample>
 
-{/*
-.type {
-  color: var(--vb-type-color, var(--vb-foreground-light));
-  font-family: var(--vb-type-font-family);
-  font-size: var(--vb-type-font-size, var(--vb-font-size-lg));
-  line-height: var(--vb-type-line-height, 1.7778);
-}
-.type > * + * {
-  margin-top: var(--vb-type-gap);
-}
-*/}
+The type module only applies styles to its direct children using the `>` child combinator. It's possible to nest other components within type and not have style or specificity conflicts. Module specific type selectors are controlled using the `$type-selectors` variable map.
 
-Modules that get mapped to HTML elements include:
+<ReferenceCard name="$type-selectors" type="map">
+  Used to map modules to type selectors. These are used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector within the `.type` context.
 
-- `.h1`-`.h6` &rarr; `<h1>`-`<h6>`
-- `.link` &rarr; `<a>`
-- `.code` &rarr; `<code>`
-- `.sep` &rarr; `<hr>`
-- `.list` &rarr; `<ul>` `<ol>`
-- `.blockquote` &rarr; `<blockquote>`
-- `.pre` &rarr; `<pre>`
+  <hr class="sep" />
+  <p class="font-family-mono font-size-sm">@default</p>
 
-> The type module only applies styles to children HTML elements. It's possible to nest other components within type and not have style or specificity conflicts. It's recommended to wrap nested components with anonymous `<div>` elements when possible.
+```scss
+$type-selectors: (
+  "blockquote": "> blockquote",
+  "code": ":not(pre) > code",
+  "link": ":not(div) > a",
+  "list": "> ul, > ol",
+  "pre": "> pre",
+  "separator": "> hr"
+) !default;
+```
+</ReferenceCard>
 
 ### arrow
 
@@ -538,8 +553,6 @@ The arrow (caret) module creates directional triangles drawn with CSS.
   transform: rotate(-90deg);
 }
 */}
-
-#### Example
 
 Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other toggle-able components.
 
