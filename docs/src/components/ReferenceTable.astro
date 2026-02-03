@@ -2,6 +2,7 @@
 import Icon from "./Icon.astro";
 import Popover from "./Popover.astro";
 import CodeBlock from "./CodeBlock.astro";
+import coreData from "../data/cssvar-core.json";
 
 interface Props {
   data: {};
@@ -27,12 +28,22 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 // Create an array of the provided data object
 const props = Object.entries(data);
 
-// Create variables for pattern matching on prop keys
+// Is the provided data the core data?
+const isRoot = data === coreData;
+
+// Create variables for pattern matching on data keys
 const keys = Object.keys(data).sort((a, b) => b.length - a.length);
 const stringPattern = keys
   .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
   .join("|");
 const regExpObj = new RegExp(stringPattern, "g");
+
+// Create variables for pattern matching on coreData keys
+const coreKeys = Object.keys(coreData).sort((a, b) => b.length - a.length);
+const coreStringPattern = coreKeys
+  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+  .join("|");
+const coreRegExpObj = new RegExp(coreStringPattern, "g");
 
 // Escape the special characters of a string so that it can be used in RegExp
 function escapeSpecialChars(value: string) {
@@ -41,9 +52,15 @@ function escapeSpecialChars(value: string) {
 
 // Wrap the matching string value with an anchor element and href hash value
 function linkifyValue(value: string) {
-  return value.replace(regExpObj, (match) => {
-    return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
-  });
+  if (isRoot || regExpObj.test(value)) {
+    return value.replace(regExpObj, (match) => {
+      return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  } else {
+    return value.replace(coreRegExpObj, (match) => {
+      return `<a href="/packages/core/css-variables#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  }
 }
 
 function iconMap(value: string) {
@@ -270,16 +287,6 @@ function iconMap(value: string) {
       result.el.classList.remove("display-none");
     }
   }
-
-  // Setup click listener to anchors in reference table
-  const anchors = document.querySelectorAll(".reference-table a");
-  anchors.forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const hash = anchor.getAttribute("href");
-      window.location.hash = hash;
-    });
-  });
 
   // Setup click listener to hash clear buttons
   const clearBtns = document.querySelectorAll(".table-anchor-clear");
