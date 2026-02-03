@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:string";
 @use "sass:map";
+@use "sass:meta";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "./variables" as var;
@@ -19,34 +20,52 @@
   $module,
   $args...
 ) {
-  // Initialize the name variable
-  $name: $module;
+  @if meta.type-of($module) == "map" {
+    // If $module is a map, get all the keys and build a selector with them
+    $selectors: ();
 
-  // Check if there's a shortname for the provided module name
-  @if map.has-key(var.$classes, $name) {
-    $name: map.get(var.$classes, $name);
-  }
-
-  // Setup the base module class name with prefix
-  $class: '#{config.get("prefix-block")}#{$name}';
-
-  // Apply all the arguments to class
-  @each $arg in $args {
-    // Convert arg to a string
-    $arg: "" + $arg;
-
-    // Ensure that it's not an empty string
-    @if $arg != "" {
-      // Append $arg to $class with a dash delimiter
-      $class: "#{$class}-#{$arg}";
+    @each $key in map.keys($module) {
+      $selectors: list.append(
+        $selectors,
+        selector(
+          $key,
+          $args...
+        ),
+        comma
+      );
     }
+
+    @return list.join($selectors, ", ");
+  } @else {
+    // Initialize the name variable
+    $name: $module;
+
+    // Check if there's a shortname for the provided module name
+    @if map.has-key(var.$classes, $name) {
+      $name: map.get(var.$classes, $name);
+    }
+
+    // Setup the base module class name with prefix
+    $class: '#{config.get("prefix-block")}#{$name}';
+
+    // Apply all the arguments to class
+    @each $arg in $args {
+      // Convert arg to a string
+      $arg: "" + $arg;
+
+      // Ensure that it's not an empty string
+      @if $arg != "" {
+        // Append $arg to $class with a dash delimiter
+        $class: "#{$class}-#{$arg}";
+      }
+    }
+
+    // Get the type selector if one is required
+    $type-selector: get-type-selector($module);
+
+    // Return the class
+    @return ".#{$class}#{$type-selector}";
   }
-
-  // Get the type selector if one is required
-  $type-selector: get-type-selector($module);
-
-  // Return the class
-  @return ".#{$class}#{$type-selector}";
 }
 
 /// Creates a type selector for a base module if configured in `$type-include`.
