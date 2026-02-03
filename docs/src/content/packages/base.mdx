@@ -1,6 +1,6 @@
 ---
 title: Base
-description: "A collection of modules that apply global style to commonly used HTML elements."
+description: "A collection of modules that apply global styles and provide classes for styling commonly used HTML elements."
 package: "@vrembem/base"
 status: "layers"
 ---
@@ -12,7 +12,7 @@ import data from "../../data/cssvar-base.json";
 
 # Base
 
-A collection of modules that apply global style to commonly used HTML elements.
+A collection of modules that apply global styles and provide classes for styling commonly used HTML elements.
 
 ```sh
 npm install @vrembem/base
@@ -33,12 +33,12 @@ Base modules each have their own output styles. These are all output by default 
 </ReferenceCard>
 
 <ReferenceCard name="$output-exceptions" type="list" defaults="()">
-  Modules listed in this variable are exceptions to the value set in `$output`. If `$output` is `true`, modules listed here will not be output. If `$output` is `false`, modules listed here will be output.
+  Modules listed in this variable are exceptions to the value set in `$output`. If `$output` is `true`, modules listed will not be output. If `$output` is `false`, modules listed will be output.
 </ReferenceCard>
 
 #### Example
 
-Use the `$output` variable to toggle output for all modules. Add exceptions to the `$output-exceptions` list to override this setting for specific modules.
+Use the `$output` variable to toggle output for all modules. Add exceptions to the `$output-exceptions` list to override the output option for specific modules.
 
 <CodeExample lang="scss">
 ```scss
@@ -64,7 +64,7 @@ Use the `$output` variable to toggle output for all modules. Add exceptions to t
 
 ## Basic usage
 
-Once loaded, the base component provides default styles for HTML elements and a number of output modules. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
+Once loaded, the base component provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
 
 <CodeExample lang="html">
 ```html
@@ -103,11 +103,11 @@ You can also customize the class selectors used by modules by mapping the module
 
 ## Modules
 
-Below is a list of each base module, a description of what they do, their default class selectors (if any), and how to use them in your project.
+Below is a list of each base module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
 
 ### normalize
 
-<ReferenceBar selector="none" hash={{
+<ReferenceBar selector="n/a" hash={{
   target: "reference-table-cssvar-base",
   event: "filter",
   detail: {
@@ -127,7 +127,7 @@ A module that helps ensure HTML elements are rendered consistently across browse
 
 #### Variables
 
-The following CSS variables are referenced with a provided fallback for more easily overriding base properties:
+The following CSS variables are referenced with a fallback for more easily overriding base properties:
 
 <ReferenceCard name="--vb-base-height" type="height value" fallback="100%">
   Used to set the height property on both the `html` and `body` elements.
@@ -161,7 +161,7 @@ The following CSS variables are referenced with a provided fallback for more eas
   Variables
 </ReferenceBar>
 
-The HTML blockquote element is used for marking up extended quotations. This module helps style these elements in a distinct and appealing way.
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements by providing the `.blockquote` CSS class.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -193,7 +193,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
   Variables
 </ReferenceBar>
 
-The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code.
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -244,7 +244,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 The font-size of heading elements are controlled by the `$heading-scale` Sass variable map.
 
 <ReferenceCard name="$heading-scale" type="map">
-  Used to output the heading font-size and line-height CSS variable based on the provided values. The map should contain a key of the heading level and the value of a font-size and optional line-height space separated.
+  Used to output the heading font-size and line-height CSS variable based on the provided values. The map should contain a key of the heading level and the value of a font-size and optional line-height (space separated).
 
   <hr class="sep" />
   <p class="font-family-mono font-size-sm">@default</p>
@@ -385,7 +385,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
   Variables
 </ReferenceBar>
 
-This module adds the `.sep` CSS classes which visually renders a horizontal separator. This can be applied to an `<hr>` HTML element. It can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
+This module adds the `.sep` CSS classes which visually renders a horizontal separator. This is most commonly applied to an `<hr>` HTML element but can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -408,7 +408,7 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
   Variables
 </ReferenceBar>
 
-The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. Base module classes will override a parent `.type` application when explicitly set.
+The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
 
 <CodeExample lang="html">
 <div slot="output" class="type spacing">
@@ -433,7 +433,7 @@ The type module provides the `.type` CSS class as a way to apply many base modul
 ```
 </CodeExample>
 
-The type module only applies styles to its direct children using the `>` child combinator. It's possible to nest other components within type and not have style or specificity conflicts. Module specific type selectors are controlled using the `$type-selectors` variable map.
+The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `$type-selectors` variable map.
 
 <ReferenceCard name="$type-selectors" type="map">
   Used to map modules to type selectors. These are used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector within the `.type` context.
@@ -488,7 +488,7 @@ The arrow (caret) module provides classes for directional triangles drawn with C
   ```
 </CodeExample>
 
-Arrows are great indicators for buttons and menu items when interacting with them would toggle a popover or other toggle-able components.
+Arrows are great for buttons or menu items to visually indicate when it reveals toggle-able content such as popovers or dropdowns.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -517,7 +517,7 @@ Arrows are great indicators for buttons and menu items when interacting with the
   Variables
 </ReferenceBar>
 
-A class to output the styles for a loading spinner. A loading spinner is a visual indicator for users to let them know a process or action is taking place.
+The loading-spinner module provides the `.loading-spinner` CSS class. A loading spinner is a visual indicator for when a process or action is taking place such as a loading state.
 
 <CodeExample lang="html">
 <Fragment slot="output">
@@ -570,6 +570,6 @@ This module provides an accessibility class for rendering content meant only for
 
 ## Reference
 
-Below is a reference to all CSS variables that are referenced by `base` modules along with their fallback values. These variables are only referenced (not defined), allowing you to easily customize styles by setting your own values as needed.
+Below is a reference to all CSS variables that are referenced by `base` modules along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
 <ReferenceTable id="cssvar-base" data={data} valueLabel="Fallback" />

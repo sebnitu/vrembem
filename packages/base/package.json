@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/base",
-  "description": "A collection of modules that apply global style to commonly used HTML elements.",
+  "description": "A collection of modules that apply global styles and provide classes for styling commonly used HTML elements.",
   "version": "4.0.0-next.34",
   "license": "MIT",
   "keywords": [
