@@ -31,38 +31,39 @@ const props = Object.entries(data);
 // Is the provided data the core data?
 const isRoot = data === coreData;
 
-// Create variables for pattern matching on data keys
-const keys = Object.keys(data).sort((a, b) => b.length - a.length);
-const stringPattern = keys
-  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
-  .join("|");
-const regExpObj = new RegExp(stringPattern, "g");
-
-// Create variables for pattern matching on coreData keys
-const coreKeys = Object.keys(coreData).sort((a, b) => b.length - a.length);
-const coreStringPattern = coreKeys
-  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
-  .join("|");
-const coreRegExpObj = new RegExp(coreStringPattern, "g");
-
 // Escape the special characters of a string so that it can be used in RegExp
 function escapeSpecialChars(value: string) {
   return value.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
 }
 
+function buildRegExp(data) {
+  return new RegExp(
+    Object.keys(data)
+      .sort((a, b) => b.length - a.length)
+      .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+      .join("|"),
+    "g"
+  );
+}
+
+// Create regular expression objects using provided json objects
+const dataRegExp = buildRegExp(data);
+const coreRegExp = buildRegExp(coreData);
+
 // Wrap the matching string value with an anchor element and href hash value
 function linkifyValue(value: string) {
-  if (isRoot || regExpObj.test(value)) {
-    return value.replace(regExpObj, (match) => {
+  if (isRoot || dataRegExp.test(value)) {
+    return value.replace(dataRegExp, (match) => {
       return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   } else {
-    return value.replace(coreRegExpObj, (match) => {
+    return value.replace(coreRegExp, (match) => {
       return `<a href="/packages/core/css-variables#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
 }
 
+// Map theme names to the icons that represent them
 function iconMap(value: string) {
   return value === "light" ? "sun" : value === "dark" ? "moon" : value;
 }
