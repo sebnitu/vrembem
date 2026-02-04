@@ -6,6 +6,60 @@
 @use "@vrembem/core/config";
 @use "./variables" as var;
 
+/// Conditional logic for when to output a base module.
+///
+/// @param {string} $module
+///   The module name to conditionally toggle output.
+///
+/// @return {boolean}
+///   The resolved condition boolean.
+///
+@function maybe-output($module) {
+  @if list.index(var.$output-exceptions, $module) {
+    @return not var.$output;
+  } @else {
+    @return var.$output;
+  }
+}
+
+/// Creates a type selector for a base module if configured in `$type-include`.
+///
+/// @param {string} $module
+///   The base module to check if type selector should be included.
+///
+/// @return {selector}
+///   A partial CSS selector starting with ", " meant to be appended to an
+///   existing selector. Will return an empty string if not configured.
+///
+@function get-type-selector($module) {
+  // Initialize the type selector as an empty string
+  $type-selector: "";
+
+  // Check if we should include this module in type styles
+  @if map.has-key(var.$type-selectors, $module) {
+    // Initialize the type class selector
+    $type: "type";
+
+    // Check if there's a shortname for the type module
+    @if map.has-key(var.$classes, "type") {
+      $type: map.get(var.$classes, "type");
+    }
+
+    // Apply the block prefix to the root type class
+    $type: '#{config.get("prefix-block")}#{$type}';
+
+    // Create the type selector using the type module selector
+    $list: string.split(map.get(var.$type-selectors, $module), ",");
+
+    @each $item in $list {
+      $type-selector: "#{$type-selector}, .#{$type} #{$item}";
+    }
+  }
+
+  // Return the type selector
+  @return $type-selector;
+}
+
 /// Generate a base module selector with a core prefix and optional modifiers.
 ///
 /// @param {string} $module
@@ -68,59 +122,5 @@
 
     // Return the class
     @return ".#{$class}#{$type-selector}";
-  }
-}
-
-/// Creates a type selector for a base module if configured in `$type-include`.
-///
-/// @param {string} $module
-///   The base module to check if type selector should be included.
-///
-/// @return {selector}
-///   A partial CSS selector starting with ", " meant to be appended to an
-///   existing selector. Will return an empty string if not configured.
-///
-@function get-type-selector($module) {
-  // Initialize the type selector as an empty string
-  $type-selector: "";
-
-  // Check if we should include this module in type styles
-  @if map.has-key(var.$type-selectors, $module) {
-    // Initialize the type class selector
-    $type: "type";
-
-    // Check if there's a shortname for the type module
-    @if map.has-key(var.$classes, "type") {
-      $type: map.get(var.$classes, "type");
-    }
-
-    // Apply the block prefix to the root type class
-    $type: '#{config.get("prefix-block")}#{$type}';
-
-    // Create the type selector using the type module selector
-    $list: string.split(map.get(var.$type-selectors, $module), ",");
-
-    @each $item in $list {
-      $type-selector: "#{$type-selector}, .#{$type} #{$item}";
-    }
-  }
-
-  // Return the type selector
-  @return $type-selector;
-}
-
-/// Conditional logic for when to output a base module.
-///
-/// @param {string} $module
-///   The module name to conditionally toggle output.
-///
-/// @return {boolean}
-///   The resolved condition boolean.
-///
-@function maybe-output($module) {
-  @if list.index(var.$output-exceptions, $module) {
-    @return not var.$output;
-  } @else {
-    @return var.$output;
   }
 }
