@@ -6,11 +6,11 @@
 /// @type map
 /// @access private
 $-config: (
-  "prefix-block": null,
+  "prefix-block": "",
   "prefix-element": "__",
   "prefix-modifier": "_",
   "prefix-modifier-value": "_",
-  "prefix-utility": null
+  "prefix-utility": ""
 );
 
 /// Helper function that checks if a value should be set in the config map.
