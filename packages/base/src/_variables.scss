@@ -1,13 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@include css.register("base");
 
 $output: true !default;
 $output-exceptions: () !default;
 $classes: (
   "separator": "sep"
 ) !default;
-$heading-scale: (
+$headings-scale: (
   "h1": 2.75em,
   "h2": 2em,
   "h3": 1.75em,

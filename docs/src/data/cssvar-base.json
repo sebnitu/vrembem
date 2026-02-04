@@ -5,10 +5,10 @@
   "--vb-base-font-size": "16px",
   "--vb-base-line-height": "var(--vb-line-height)",
 
-  "--vb-heading-foreground": "var(--vb-foreground)",
-  "--vb-heading-font-family": "inherit",
-  "--vb-heading-font-weight": "var(--vb-font-weight-semi-bold)",
-  "--vb-heading-line-height": "inherit",
+  "--vb-headings-foreground": "var(--vb-foreground)",
+  "--vb-headings-font-family": "inherit",
+  "--vb-headings-font-weight": "var(--vb-font-weight-semi-bold)",
+  "--vb-headings-line-height": "inherit",
 
   "--vb-link-foreground": "var(--vb-primary-50)",
   "--vb-link-foreground-hover": "var(--vb-primary-40)",

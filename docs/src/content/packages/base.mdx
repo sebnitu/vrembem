@@ -149,13 +149,13 @@ The following CSS variables are referenced with a fallback for more easily overr
   Used to set the line-height property on the `html` element.
 </ReferenceCard>
 
-### heading
+### headings
 
 <ReferenceBar selector=".h1 - .h6" hash={{
   target: "reference-table-cssvar-base",
   event: "filter",
   detail: {
-    value: "--vb-heading"
+    value: "--vb-headings"
   }
 }}>
   Variables
@@ -186,16 +186,16 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 
 #### Heading scale
 
-The font-size of heading elements are controlled by the `$heading-scale` Sass variable map.
+The font-size of heading elements are controlled by the `$headings-scale` Sass variable map.
 
-<ReferenceCard name="$heading-scale" type="map">
+<ReferenceCard name="$headings-scale" type="map">
   Used to output the heading font-size and line-height CSS variable based on the provided values. The map should contain a key of the heading level and the value of a font-size and optional line-height (space separated).
 
   <hr class="sep" />
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
-$heading-scale: (
+$headings-scale: (
   "h1": 2.75em,
   "h2": 2em,
   "h3": 1.75em,

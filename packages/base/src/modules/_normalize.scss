@@ -3,6 +3,8 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("normalize") {
+  @include css.register("base");
+
   // Remove margin, padding and inherit box-sizing on everything
   *,
   *::before,
