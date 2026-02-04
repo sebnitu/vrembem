@@ -71,7 +71,7 @@ $-config: (
   $-config: $result !global;
 }
 
-/// An alias mixin for `config.set()` that predefined the default argument to
+/// An alias mixin for `config.set()` with predefined default argument to
 /// `true`. Running this will not override a previously set value.
 ///
 /// @param {string} $key
@@ -94,6 +94,14 @@ $-config: (
 }
 
 /// Log to console the entire configuration map.
-@mixin log() {
-  @include debug-map($-config, "Config options map");
+@mixin log($value: null) {
+  @if $value {
+    @if map.has-key($-config, $value) {
+      @include debug-map(map.get($-config, $value), "Config > #{$value}");
+    } @else {
+      @debug 'Config "#{$value}" has not been set!';
+    }
+  } @else {
+    @include debug-map($-config, "Config options map");
+  }
 }

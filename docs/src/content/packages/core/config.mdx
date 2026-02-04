@@ -224,7 +224,7 @@ Set an option in the configuration map by providing a key and value to store, or
 </ReferenceCard>
 
 <ReferenceCard name="$default" type="boolean" defaults="false">
-  Whether or not the value being set is a default value.
+  Whether or not the value being set is a default value. Default values are only set if the value has not already been set.
 </ReferenceCard>
 
 #### Example
@@ -244,7 +244,7 @@ Set an option in the configuration map by providing a key and value to store, or
 
 ### config.set-default()
 
-An alias mixin for `config.set()` that predefines the default argument to `true`. Running this will not override a previously set value.
+An alias mixin for `config.set()` with predefined default argument to `true`. Running this will not override a previously set value.
 
 #### Arguments
 
