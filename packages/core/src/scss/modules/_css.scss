@@ -506,8 +506,10 @@ $-custom-properties: (
 /// Provided component must be registered in the custom properties map.
 ///
 /// @param {string} $component ("*")
-///   A component within the custom properties map to log. Leaving as `null`
-///   will log the entire map.
+///   Optionally output a specific component within the custom properties map.
+/// @param {string} $props...
+///   Optionally search for more specific properties in the custom
+///   properties map.
 ///
 @mixin log($component: "*", $props...) {
   @if $component == "*" or $component == "all" {
