@@ -327,8 +327,12 @@ Log to console all custom properties, a component map or component theme. Provid
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string">
-  A component within the custom properties map to log. Leaving as `null` will log the entire map.
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  Optionally output a specific component within the custom properties map.
+</ReferenceCard>
+
+<ReferenceCard name="$props..." type="string">
+  Optionally search for more specific properties in the custom properties map.
 </ReferenceCard>
 
 #### Example
