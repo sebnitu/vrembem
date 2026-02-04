@@ -51,8 +51,7 @@ $-config: (
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value"), null
-///   - ("key": ("key": "value")), null
+///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
 /// @param {boolean} $default (false)
@@ -72,13 +71,12 @@ $-config: (
   $-config: $result !global;
 }
 
-/// An alias mixin for `config.set()` that predefines the default argument to
+/// An alias mixin for `config.set()` that predefined the default argument to
 /// `true`. Running this will not override a previously set value.
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value"), null
-///   - ("key": ("key": "value")), null
+///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
 ///

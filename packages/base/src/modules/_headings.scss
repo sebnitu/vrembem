@@ -1,13 +1,13 @@
 @use "sass:list";
 @use "sass:meta";
 @use "@vrembem/core/css";
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("headings") {
   @include css.register("headings");
 
-  #{fun.selector(var.$headings-scale)} {
+  #{fun.selector(config.get("base-headings"))} {
     color: css.get("headings", "foreground", css.get("foreground"));
     font-family: css.get("headings", "font-family", inherit);
     font-size: css.get("headings", "font-size", 1em);
@@ -15,7 +15,7 @@
     line-height: css.get("headings", "line-height", inherit);
   }
 
-  @each $key, $value in var.$headings-scale {
+  @each $key, $value in config.get("base-headings") {
     $font-size: $value;
     $line-height: null;
 

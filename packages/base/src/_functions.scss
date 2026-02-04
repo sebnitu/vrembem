@@ -2,9 +2,7 @@
 @use "sass:string";
 @use "sass:map";
 @use "sass:meta";
-@use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "./variables" as var;
 
 /// Conditional logic for when to output a base module.
 ///
@@ -15,10 +13,10 @@
 ///   The resolved condition boolean.
 ///
 @function maybe-output($module) {
-  @if list.index(var.$output-exceptions, $module) {
-    @return not var.$output;
+  @if list.index(config.get("base-output-exceptions"), $module) {
+    @return not config.get("base-output");
   } @else {
-    @return var.$output;
+    @return config.get("base-output");
   }
 }
 
@@ -36,20 +34,20 @@
   $type-selector: "";
 
   // Check if we should include this module in type styles
-  @if map.has-key(var.$type-selectors, $module) {
+  @if map.has-key(config.get("base-type-selectors"), $module) {
     // Initialize the type class selector
     $type: "type";
 
     // Check if there's a shortname for the type module
-    @if map.has-key(var.$classes, "type") {
-      $type: map.get(var.$classes, "type");
+    @if map.has-key(config.get("base-classes"), "type") {
+      $type: map.get(config.get("base-classes"), "type");
     }
 
     // Apply the block prefix to the root type class
     $type: '#{config.get("prefix-block")}#{$type}';
 
     // Create the type selector using the type module selector
-    $list: string.split(map.get(var.$type-selectors, $module), ",");
+    $list: string.split(map.get(config.get("base-type-selectors"), $module), ",");
 
     @each $item in $list {
       $type-selector: "#{$type-selector}, .#{$type} #{$item}";
@@ -63,7 +61,7 @@
 /// Generate a base module selector with a core prefix and optional modifiers.
 ///
 /// @param {string} $module
-///   The base module name. Will search for a shorthand in `var.$classes`.
+///   The base module name. Will search for a shorthand in `config.get("base-classes")`.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class selector.
 ///
@@ -98,8 +96,8 @@
     $name: $module;
 
     // Check if there's a shortname for the provided module name
-    @if map.has-key(var.$classes, $name) {
-      $name: map.get(var.$classes, $name);
+    @if map.has-key(config.get("base-classes"), $name) {
+      $name: map.get(config.get("base-classes"), $name);
     }
 
     // Setup the base module class name with prefix
