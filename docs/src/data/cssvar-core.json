@@ -31,7 +31,7 @@
   "--vb-font-family-sans": "blinkmacsystemfont, -apple-system, system-ui, Segoe UI, Roboto, Helvetica Neue, arial, sans-serif",
   "--vb-font-family-serif": "constantia, Lucida Bright, lucidabright, Lucida Serif, lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, georgia, serif",
   "--vb-font-family-mono": "sfmono-regular, menlo, monaco, consolas, Liberation Mono, Courier New, monospace",
-  "--vb-font-size": "16px",
+  "--vb-font-size": "1rem",
   "--vb-font-size-sm": "0.875rem",
   "--vb-font-size-lg": "1.125rem",
   "--vb-line-height": "1.5",

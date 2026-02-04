@@ -1,0 +1,18 @@
+@use "@vrembem/core/css";
+
+.card_reference {
+  .card__header {
+    @include css.override("card", "padding", 0.75em 1em);
+
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card__title {
+    background: transparent;
+    color: css.get("foreground");
+    font-size: 1rem;
+    padding: 0;
+  }
+}

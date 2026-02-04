@@ -6,34 +6,29 @@
   @include css.register("link");
 
   #{fun.selector("link")} {
-    color: css.get("link", "color", palette.get("primary"));
+    color: css.get("link", "foreground", palette.get("primary"));
     text-decoration: css.get("link", "decoration", underline);
-    text-decoration-thickness: css.get("link", "decoration", "thickness", 1px);
-    text-underline-offset: css.get("link", "underline", "offset", 2px);
+    text-decoration-thickness: css.get("link", "decoration-thickness", 1px);
+    text-underline-offset: css.get("link", "underline-offset", 2px);
 
     code {
       background-color: palette.get("primary", 50%, 10%);
-      color: css.get("link", "color", palette.get("primary"));
+      color: css.get("link", "foreground", palette.get("primary"));
     }
 
-    &:hover {
-      color: css.get("link", "color", "hover", palette.get("primary", 40));
-      text-decoration: css.get("link", "decoration", "hover", none);
+    &:hover,
+    &:focus {
+      color: css.get("link", "foreground-hover", palette.get("primary", 40));
+      text-decoration: css.get("link", "decoration-hover", none);
 
       code {
-        color: css.get("link", "color", "hover", palette.get("primary", 40));
+        color: css.get("link", "foreground-hover", palette.get("primary", 40));
       }
     }
 
     &:focus {
-      color: css.get("link", "color", "hover", palette.get("primary", 40));
       outline: css.get("link", "focus-ring", currentcolor dotted 1px);
       outline-offset: css.get("link", "focus-ring-offset", 0.125rem);
-      text-decoration: css.get("link", "decoration", "hover", none);
-
-      code {
-        color: css.get("link", "color", "hover", palette.get("primary", 40));
-      }
     }
   }
 }

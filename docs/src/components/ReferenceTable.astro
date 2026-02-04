@@ -2,6 +2,7 @@
 import Icon from "./Icon.astro";
 import Popover from "./Popover.astro";
 import CodeBlock from "./CodeBlock.astro";
+import coreData from "../data/cssvar-core.json";
 
 interface Props {
   data: {};
@@ -9,9 +10,17 @@ interface Props {
   keyWidth?: string;
   valueWidth?: string;
   labelWidth?: string;
+  valueLabel?: string;
 }
 
-const { data, id, keyWidth, valueWidth, labelWidth = "5em" } = Astro.props;
+const {
+  data,
+  id,
+  keyWidth,
+  valueWidth,
+  labelWidth = "5em",
+  valueLabel = "Value"
+} = Astro.props;
 
 // Create a unique ID if one is not provided
 const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
@@ -19,25 +28,42 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 // Create an array of the provided data object
 const props = Object.entries(data);
 
-// Create variables for pattern matching on prop keys
-const keys = Object.keys(data).sort((a, b) => b.length - a.length);
-const stringPattern = keys
-  .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
-  .join("|");
-const regExpObj = new RegExp(stringPattern, "g");
+// Is the provided data the core data?
+const isRoot = data === coreData;
 
 // Escape the special characters of a string so that it can be used in RegExp
 function escapeSpecialChars(value: string) {
   return value.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
 }
 
-// Wrap the matching string value with an anchor element and href hash value
-function linkifyValue(value: string) {
-  return value.replace(regExpObj, (match) => {
-    return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
-  });
+function buildRegExp(data) {
+  return new RegExp(
+    Object.keys(data)
+      .sort((a, b) => b.length - a.length)
+      .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+      .join("|"),
+    "g"
+  );
 }
 
+// Create regular expression objects using provided json objects
+const dataRegExp = buildRegExp(data);
+const coreRegExp = buildRegExp(coreData);
+
+// Wrap the matching string value with an anchor element and href hash value
+function linkifyValue(value: string) {
+  if (isRoot || dataRegExp.test(value)) {
+    return value.replace(dataRegExp, (match) => {
+      return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  } else {
+    return value.replace(coreRegExp, (match) => {
+      return `<a href="/packages/core/css-variables#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  }
+}
+
+// Map theme names to the icons that represent them
 function iconMap(value: string) {
   return value === "light" ? "sun" : value === "dark" ? "moon" : value;
 }
@@ -77,7 +103,7 @@ function iconMap(value: string) {
     <thead>
       <tr>
         <th>Var</th>
-        <th>Value</th>
+        <th>{valueLabel}</th>
       </tr>
     </thead>
     <tbody>
@@ -101,7 +127,7 @@ function iconMap(value: string) {
               </button>
               <CodeBlock inline={key} />
             </td>
-            <td data-mobile-label="Value">
+            <td data-mobile-label={valueLabel}>
               {typeof value === "string" ? (
                 <CodeBlock inline={linkifyValue(value)} />
               ) : (
@@ -134,8 +160,6 @@ function iconMap(value: string) {
 </div>
 
 <script>
-  import { cssVar } from "@vrembem/core";
-
   /**
    * Table filter functionality
    */
@@ -151,7 +175,7 @@ function iconMap(value: string) {
 
     // Setup the variables
     const input = event.target as HTMLInputElement;
-    const filter = input.value.toUpperCase();
+    const filter = input.value.toUpperCase().trim();
     const parent = input.closest(".reference-table") as HTMLElement;
     const rows = parent.querySelectorAll("tr");
     const notice = parent.querySelector(".notice");
@@ -164,7 +188,7 @@ function iconMap(value: string) {
       let td = rows[i].querySelector("td code") as HTMLElement;
       if (td) {
         let txtValue = td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        if (txtValue.toUpperCase().trim().indexOf(filter) > -1) {
           rows[i].classList.remove("display-none");
           visible++;
         } else {
@@ -181,7 +205,6 @@ function iconMap(value: string) {
     // Toggle the clear input button
     if (filter) {
       // Scroll to the top of the reference table
-      // parent.scrollIntoView({ block: "start" });
       scrollToRef(parent);
       clearBtn.classList.remove("display-none");
     } else {
@@ -208,17 +231,31 @@ function iconMap(value: string) {
     });
   }
 
+  // Setup listener for "filter" custom event
+  document.querySelectorAll(".reference-table").forEach((table) => {
+    table.addEventListener("filter", (event: CustomEvent) => {
+      const input = table.querySelector(".input") as HTMLInputElement;
+      if (input) {
+        input.value = event.detail.value;
+        input.dispatchEvent(new Event("input"));
+        input.focus();
+      }
+    });
+  });
+
   document.querySelectorAll(".reference-table__filter").forEach((input) => {
     input.addEventListener("input", filterTable);
   });
 
   document.querySelectorAll(".input-clear").forEach((button: HTMLElement) => {
-    button.addEventListener("click", (event) => {
+    button.addEventListener("click", () => {
       const id = button.dataset.clear;
       const input = document.getElementById(id) as HTMLInputElement;
-      input.value = "";
-      input.dispatchEvent(new Event("input", { bubbles: true }));
-      input.focus();
+      if (input) {
+        input.value = "";
+        input.dispatchEvent(new Event("input"));
+        input.focus();
+      }
     });
   });
 
@@ -249,42 +286,26 @@ function iconMap(value: string) {
     if (result) {
       result.el.classList.add("is-active");
       result.el.classList.remove("display-none");
-
-      // Scroll to the element after it's open. This is needed to ensure the
-      // element's toggled height is factored into the scroll position.
-      const el = document.querySelector(`#${result.id}`);
-      if (el) el.scrollIntoView({ block: "center" });
     }
   }
-
-  // Setup click listener to anchors in reference table
-  const anchors = document.querySelectorAll(".reference-table a");
-  anchors.forEach((anchor) => {
-    anchor.addEventListener("click", (event) => {
-      event.preventDefault();
-      const hash = anchor.getAttribute("href");
-      window.location.hash = hash;
-    });
-  });
 
   // Setup click listener to hash clear buttons
   const clearBtns = document.querySelectorAll(".table-anchor-clear");
   clearBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-      // Manually fire hasChange event since `history.replaceState` doesn't
+      // Build URL without the hash
+      const url = window.location.pathname + window.location.search;
+      history.pushState({}, "", url);
+      // Manually fire hashchange event since `history.pushState` doesn't
       window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      // Check if the filter needs to be updated
+      filterTable();
     });
   });
 
   // Setup event listener for hash change
   window.addEventListener("hashchange", () => {
     checkActiveHash();
-    filterTable();
   });
 
   // Run an initial active hash check

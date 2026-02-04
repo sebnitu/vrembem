@@ -28,6 +28,20 @@ html {
   vertical-align: text-bottom;
 }
 
+.slide-up {
+  opacity: 0;
+  position: relative;
+  transform: translateY(1rem);
+  transition: transform, opacity;
+  transition-duration: core.$transition-duration;
+  transition-timing-function: core.$transition-timing-function;
+
+  &.is-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /**
  * CodeExample
  * These are styles used specifically in code example blocks

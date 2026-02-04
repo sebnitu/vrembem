@@ -1,23 +1,30 @@
-@use "@vrembem/core" with (
-  $font-family: #{'"Barlow", sans-serif'}
-);
+@use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+@include css.set("core", "font-family", #{'"Barlow", sans-serif'});
+@include css.set(
+  "type",
+  (
+    "font-size": css.get("font-size-lg"),
+    "line-height": 1.7778
+  )
+);
 @include css.set(
   "layout",
   (
     "width": 80rem,
     "padding": 1rem,
     "navibar-height": 5.25rem,
+    "toolbar-height": 4.75rem,
     "footer-height": 6rem,
     "drawer-width": 16rem,
     "drawer-padding": 1rem,
     "gap": 6rem,
     "aside-width": 12rem,
+    // aside-padding: used to prevent cutoff of focus outline styles
     "aside-padding": 0.25rem,
-    // Used to prevent cutoff of focus outline styles
     "content-width": 42rem
   )
 );

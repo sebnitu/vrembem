@@ -7,6 +7,7 @@
   background: css.get("background-dark");
   border: 3px solid css.get("background-darker");
   border-radius: css.get("border-radius-lg");
+  font-size: css.get("font-size");
   width: 100%;
 
   table {
@@ -25,6 +26,11 @@
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
     position: relative;
+    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 80px);
+
+    @include core.media-min(var.$bp-drawer) {
+      scroll-margin-top: calc(css.get("layout", "navibar-height") + 81px);
+    }
 
     &.is-active {
       background-color: css.get("background");
@@ -100,6 +106,10 @@
       padding-left: 0;
     }
   }
+
+  .notice {
+    font-size: css.get("font-size");
+  }
 }
 
 .reference-table__header {
@@ -109,7 +119,7 @@
   border-top-right-radius: css.get("border-radius-lg");
   padding: css.get("gap");
   position: sticky;
-  top: 75px;
+  top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;
 
   @include core.media-min(var.$bp-drawer) {
@@ -143,7 +153,16 @@
   }
 
   .input {
-    padding-left: 3em;
+    @include css.override(
+      "input",
+      (
+        "padding": 0.75rem,
+        "font-size": css.get("font-size-sm")
+      )
+    );
+
+    font-family: css.get("font-family-mono");
+    padding-left: 3.5em;
 
     &:focus ~ .input-icon {
       color: palette.get("primary");
