@@ -10,6 +10,8 @@
   }
 
   .card__title {
+    @include css.override("link", "decoration-thickness", 1.5px);
+
     background: transparent;
     color: css.get("foreground");
     font-size: 1rem;
