@@ -5,6 +5,7 @@
 @function -debug-map-recursive($map, $indent: "  ", $output: "", $n: "\A") {
   @each $key, $value in $map {
     $current-indent: $indent;
+
     @if meta.type-of($value) == "map" {
       $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (';
       $output: -debug-map-recursive($value, $current-indent + $indent, $output, $n);
@@ -23,6 +24,7 @@
       }
     }
   }
+
   @return $output;
 }
 
@@ -40,5 +42,6 @@
   $output: "#{$n}#{$label}: (";
   $output: -debug-map-recursive($map, $indent, $output, $n);
   $output: "#{$output}#{$n})";
+
   @debug $output;
 }
