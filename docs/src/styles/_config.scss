@@ -1,7 +1,12 @@
+// Import core to bootstrap all modules
 @use "@vrembem/core";
+
+// Import modules to configure
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+
+// Set CSS variables
 @include css.set("core", "font-family", #{'"Barlow", sans-serif'});
 @include css.set(
   "type",
@@ -27,5 +32,7 @@
     "content-width": 42rem
   )
 );
+
+// Set CSS variable themes
 @include theme.set("light", "background-glass", palette.get("neutral", 100, 90%));
 @include theme.set("dark", "background-glass", palette.get("neutral", 10, 90%));
