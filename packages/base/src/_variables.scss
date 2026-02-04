@@ -22,10 +22,10 @@ $type-selectors: (
   "h4": "> h4",
   "h5": "> h5",
   "h6": "> h6",
-  "blockquote": "> blockquote",
-  "code": ":not(pre) > code",
   "link": ":not(div) > a",
   "list": "> ul, > ol",
+  "code": ":not(pre) > code",
   "pre": "> pre",
+  "blockquote": "> blockquote",
   "separator": "> hr"
 ) !default;

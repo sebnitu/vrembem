@@ -5,20 +5,6 @@
   "--vb-base-font-size": "16px",
   "--vb-base-line-height": "var(--vb-line-height)",
 
-  "--vb-blockquote-background": "transparent",
-  "--vb-blockquote-foreground": "currentcolor",
-  "--vb-blockquote-border": "var(--vb-border)",
-  "--vb-blockquote-border-radius": "var(--vb-border-radius)",
-  "--vb-blockquote-padding": "1em",
-  "--vb-blockquote-gap": "1em",
-
-  "--vb-code-background": "var(--vb-background-alt)",
-  "--vb-code-foreground": "var(--vb-foreground-alt)",
-  "--vb-code-border": "var(--vb-border)",
-  "--vb-code-border-radius": "var(--vb-border-radius)",
-  "--vb-code-font-size": "var(--vb-font-size-sm)",
-  "--vb-code-padding": "0.125rem 0.375rem",
-
   "--vb-heading-foreground": "var(--vb-foreground)",
   "--vb-heading-font-family": "inherit",
   "--vb-heading-font-weight": "var(--vb-font-weight-semi-bold)",
@@ -36,12 +22,26 @@
   "--vb-list-indent": "1.5em",
   "--vb-list-gap": "0.5em",
 
+  "--vb-code-background": "var(--vb-background-alt)",
+  "--vb-code-foreground": "var(--vb-foreground-alt)",
+  "--vb-code-border": "var(--vb-border)",
+  "--vb-code-border-radius": "var(--vb-border-radius)",
+  "--vb-code-font-size": "var(--vb-font-size-sm)",
+  "--vb-code-padding": "0.125rem 0.375rem",
+
   "--vb-pre-background": "var(--vb-background-dark)",
   "--vb-pre-foreground": "var(--vb-foreground)",
   "--vb-pre-border": "none",
   "--vb-pre-border-radius": "var(--vb-border-radius)",
   "--vb-pre-padding": "1em",
   "--vb-pre-font-size": "var(--vb-font-size-sm)",
+
+  "--vb-blockquote-background": "transparent",
+  "--vb-blockquote-foreground": "currentcolor",
+  "--vb-blockquote-border": "var(--vb-border)",
+  "--vb-blockquote-border-radius": "var(--vb-border-radius)",
+  "--vb-blockquote-padding": "1em",
+  "--vb-blockquote-gap": "1em",
 
   "--vb-separator-border": "var(--vb-border)",
 

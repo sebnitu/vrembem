@@ -149,61 +149,6 @@ The following CSS variables are referenced with a fallback for more easily overr
   Used to set the line-height property on the `html` element.
 </ReferenceCard>
 
-### blockquote
-
-<ReferenceBar selector=".blockquote" hash={{
-  target: "reference-table-cssvar-base",
-  event: "filter",
-  detail: {
-    value: "--vb-blockquote"
-  }
-}}>
-  Variables
-</ReferenceBar>
-
-The HTML blockquote element is used for marking up extended quotations. This module helps style these elements by providing the `.blockquote` CSS class.
-
-<CodeExample lang="html">
-<Fragment slot="output">
-  <blockquote class="blockquote">
-    <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
-    <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
-  </blockquote>
-</Fragment>
-```html
-<blockquote class="blockquote" cite="...">
-  <p>...</p>
-  <footer>
-    ...
-    <cite>...</cite>
-  </footer>
-</blockquote>
-```
-</CodeExample>
-
-### code
-
-<ReferenceBar selector=".code" hash={{
-  target: "reference-table-cssvar-base",
-  event: "filter",
-  detail: {
-    value: "--vb-code"
-  }
-}}>
-  Variables
-</ReferenceBar>
-
-The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
-
-<CodeExample lang="html">
-<Fragment slot="output">
-  <code class="code">a = 17</code>
-</Fragment>
-```html
-<code class="code">a = 17</code>
-```
-</CodeExample>
-
 ### heading
 
 <ReferenceBar selector=".h1 - .h6" hash={{
@@ -344,6 +289,29 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 ```
 </CodeExample>
 
+### code
+
+<ReferenceBar selector=".code" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-code"
+  }
+}}>
+  Variables
+</ReferenceBar>
+
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <code class="code">a = 17</code>
+</Fragment>
+```html
+<code class="code">a = 17</code>
+```
+</CodeExample>
+
 ### pre
 
 <ReferenceBar selector=".pre" hash={{
@@ -370,6 +338,38 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
              ||----w |
              ||     ||
 </pre>
+```
+</CodeExample>
+
+### blockquote
+
+<ReferenceBar selector=".blockquote" hash={{
+  target: "reference-table-cssvar-base",
+  event: "filter",
+  detail: {
+    value: "--vb-blockquote"
+  }
+}}>
+  Variables
+</ReferenceBar>
+
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements by providing the `.blockquote` CSS class.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <blockquote class="blockquote">
+    <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
+    <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
+  </blockquote>
+</Fragment>
+```html
+<blockquote class="blockquote" cite="...">
+  <p>...</p>
+  <footer>
+    ...
+    <cite>...</cite>
+  </footer>
+</blockquote>
 ```
 </CodeExample>
 
@@ -449,11 +449,11 @@ $type-selectors: (
   "h4": "> h4",
   "h5": "> h5",
   "h6": "> h6",
-  "blockquote": "> blockquote",
-  "code": ":not(pre) > code",
   "link": ":not(div) > a",
   "list": "> ul, > ol",
+  "code": ":not(pre) > code",
   "pre": "> pre",
+  "blockquote": "> blockquote",
   "separator": "> hr"
 ) !default;
 ```
