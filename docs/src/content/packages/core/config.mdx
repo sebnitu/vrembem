@@ -6,6 +6,7 @@ group: sass-modules
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
   ```scss
@@ -190,6 +191,8 @@ This reference details the available configuration API, their arguments, and usa
 
 ### config.get()
 
+<ReferenceBar type="function" />
+
 Returns the value of an option in the configuration map.
 
 #### Arguments
@@ -211,6 +214,8 @@ Returns the value of an option in the configuration map.
 </CodeExample>
 
 ### config.set()
+
+<ReferenceBar type="mixin" />
 
 Set an option in the configuration map by providing a key and value to store, or pass a map to store multiple key/value pairs.
 
@@ -245,6 +250,8 @@ Set an option in the configuration map by providing a key and value to store, or
 
 ### config.set-default()
 
+<ReferenceBar type="mixin" />
+
 An alias mixin for `config.set()` with predefined default argument to `true`. Running this will not override a previously set value.
 
 #### Arguments
@@ -276,6 +283,8 @@ An alias mixin for `config.set()` with predefined default argument to `true`. Ru
 
 ### config.remove()
 
+<ReferenceBar type="mixin" />
+
 Remove an option from the configuration map.
 
 #### Arguments
@@ -294,6 +303,8 @@ Remove an option from the configuration map.
 </CodeExample>
 
 ### config.apply()
+
+<ReferenceBar type="mixin" />
 
 Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` clause.
 
@@ -369,6 +380,8 @@ We can also set our configuration values before the module is loaded and include
 </CodeExample>
 
 ### config.log()
+
+<ReferenceBar type="mixin" />
 
 Log to console the entire or a specific value in the configuration map.
 

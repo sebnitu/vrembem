@@ -26,18 +26,18 @@ npm install @vrembem/base
 
 ## Output
 
-Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `"base-output"` and `"base-output-exceptions"` configuration options.
+Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `base-output` and `base-output-exceptions` configuration options.
 
-<ReferenceCard name='config.get("base-output")' type="boolean" defaults="true">
-  Controls whether module styles are output. You can specify exceptions using the `"base-output-exceptions"` list.
+<ReferenceCard ref="config" name="base-output" type="boolean" defaults="true">
+  Controls whether module styles are output. You can specify exceptions using the `base-output-exceptions` list.
 
 ```scss
 @include config.set("base-output", false);
 ```
 </ReferenceCard>
 
-<ReferenceCard name='config.get("base-output-exceptions")' type="list" defaults="()">
-  Modules listed in this configuration are exceptions to the value set in `"base-output"`. If `"base-output"` is `true`, modules listed will not be output. If `"base-output"` is `false`, modules listed will be output.
+<ReferenceCard ref="config" name="base-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `base-output`. If `base-output` is `true`, modules listed will not be output. If `base-output` is `false`, modules listed will be output.
 
 ```scss
 @include config.set("base-output-exceptions", (
@@ -48,7 +48,7 @@ Base modules each have their own output styles. These are all output by default 
 
 #### Example
 
-Use the `"base-output"` configuration to toggle output for all modules. Add exceptions to the `"base-output-exceptions"` list to override the output option for specific modules.
+Use the `base-output` configuration to toggle output for all modules. Add exceptions to the `base-output-exceptions` list to override the output option for specific modules.
 
 <CodeExample lang="scss">
 ```scss
@@ -98,9 +98,9 @@ Once loaded, the base component provides normalization and default styles for HT
 ```
 </CodeExample>
 
-You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `$classes` map.
+You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `base-classes` configuration.
 
-<ReferenceCard name='config.get("base-classes")' type="map" defaults='("separator": "sep")'>
+<ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, you could set the following:
 
 ```scss
@@ -194,9 +194,9 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 ```
 </CodeExample>
 
-Headings output and scale is controlled by the `"base-headings"` configuration option.
+Headings output and scale is controlled by the `base-headings` configuration option.
 
-<ReferenceCard name='config.get("base-headings")' type="map">
+<ReferenceCard ref="config" name="base-headings" type="map">
   Used to output the heading styles and their font-size/line-height CSS variables. This map should contain a key of the heading level to output and the value of a font-size and optional line-height (space separated).
 
 ```scss
@@ -449,9 +449,9 @@ The type module provides the `.type` CSS class as a way to apply many base modul
 ```
 </CodeExample>
 
-The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `"base-type-selectors"` variable map.
+The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `base-type-selectors` variable map.
 
-<ReferenceCard name='config.get("base-type-selectors")' type="map">
+<ReferenceCard ref="config" name="base-type-selectors" type="map">
   Map modules to type selectors. This configuration is used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector to be used within the `.type` context.
 
 ```scss
