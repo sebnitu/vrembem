@@ -6,6 +6,7 @@ group: sass-modules
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
   ```scss
@@ -20,6 +21,8 @@ The most common use-case for themes is providing a light and dark mode but also 
 Theme colors differ from palette colors in that you can create a semantic color name that changes it's value depending on the active theme.
 
 ### theme.set()
+
+<ReferenceBar type="mixin" />
 
 Set a new or modify existing theme properties. These are stored as custom properties in the `core/css` module.
 
@@ -61,6 +64,8 @@ Set a new or modify existing theme properties. These are stored as custom proper
 
 ### theme.remove()
 
+<ReferenceBar type="mixin" />
+
 Remove a custom property from themes in a variety of ways.
 
 #### Arguments
@@ -97,6 +102,8 @@ Remove a custom property from themes in a variety of ways.
 
 ### theme.output-theme()
 
+<ReferenceBar type="mixin" />
+
 Output all the custom properties and values of a component theme or output a specific theme from all components. The root selector or theme class is not included in the output.
 
 #### Arguments
@@ -126,6 +133,8 @@ Output all the custom properties and values of a component theme or output a spe
 </CodeExample>
 
 ### theme.output()
+
+<ReferenceBar type="mixin" />
 
 Output all the themes for a specific component. Each theme will be wrapped in its own appropriate root selector and theme class. Themes named "light" or "dark" will have a `prefers-color-scheme` media query applied.
 

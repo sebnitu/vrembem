@@ -6,6 +6,7 @@ group: sass-modules
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
   ```scss
@@ -40,6 +41,8 @@ The palette module defines four seed colors along with a range of lightness valu
 </div>
 
 ### palette.get()
+
+<ReferenceBar type="function" />
 
 Returns a color value from the palette in various formats, based on the provided name, lightness, and optional alpha.
 
@@ -87,6 +90,8 @@ Returns a color value from the palette in various formats, based on the provided
 
 ### palette.set()
 
+<ReferenceBar type="mixin" />
+
 Set a color to the seeds map. Can receive single entries of key/value color pairs or a map containing multiple key/value pairs.
 
 #### Arguments
@@ -115,6 +120,8 @@ Set a color to the seeds map. Can receive single entries of key/value color pair
 </CodeExample>
 
 ### palette.remove()
+
+<ReferenceBar type="mixin" />
 
 Removes colors from the seeds map.
 
