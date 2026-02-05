@@ -38,7 +38,7 @@ $-config: (
   @return $map;
 }
 
-/// Returns the value of an option in the configuration map.
+/// Function to returns the value of an option in the configuration map.
 ///
 /// @param {string} $keys...
 ///   A key or list of keys to follow in the configuration map and return.
