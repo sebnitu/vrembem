@@ -97,7 +97,7 @@ $-config: (
 /// Apply a configuration map prefixing all keys with the provided prefix value.
 /// The provided configuration map must match the signature list or map. This
 /// mixin is typically used by components to allow providing default values
-/// using the Sass `with` directive.
+/// using the Sass `with` clause.
 ///
 /// @param {string} $prefix
 ///   The value to prefix all keys with. This is typically the name of the

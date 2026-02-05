@@ -295,7 +295,7 @@ Remove an option from the configuration map.
 
 ### config.apply()
 
-Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` directive.
+Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` clause.
 
 #### Arguments
 
@@ -313,7 +313,7 @@ Apply a configuration map prefixing all keys with the provided prefix value. The
 
 #### Example
 
-Consider the following setup where we define an empty `$config` map (with the `!default` flag) and a `$default` map containing the configurations we want to expose and provide defaults for.
+We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and provide defaults for.
 
 <CodeExample lang="scss">
 ```scss
@@ -330,7 +330,7 @@ $default: (
 ```
 </CodeExample>
 
-When we use this module, we can define the configuration using the Sass `with` directive:
+When we use this module, we can define the configuration using the Sass `with` clause:
 
 <CodeExample lang="scss">
 ```scss
