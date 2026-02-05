@@ -75,9 +75,11 @@
   @if meta.type-of($module) == "map" or meta.type-of($module) == "list" {
     // If $module is a map or list, build a selector for each item/key
     $selectors: ();
-    $items: if(
-      sass(meta.type-of($module) == "map"): map.keys($module) ; else: $module
-    );
+    $items: $module;
+
+    @if meta.type-of($module) == "map" {
+      $items: map.keys($module);
+    }
 
     @each $item in $items {
       $selectors: list.append(

@@ -13,9 +13,12 @@
 ///
 @function remove-nth($list, $n) {
   $result: ();
-  $n: if(
-    sass($n < 0): list.length($list) + $n + 1; else: $n
-  );
+  $n: $n;
+
+  @if $n < 0 {
+    $n: list.length($list) + $n + 1;
+  }
+
   $bracketed: list.is-bracketed($list);
   $separator: list.separator($list);
 
