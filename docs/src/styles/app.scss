@@ -1,10 +1,13 @@
-// Setup
-@forward "./setup";
+// Configure Vrembem
+@forward "./config";
+
+// Import all Vrembem components
 @forward "vrembem/base";
-@forward "./root";
+
+// Miscellaneous global styles
+@forward "./global";
 
 // Layout
-@forward "./global";
 @forward "./brand";
 @forward "./navibar";
 @forward "./toolbar";
@@ -37,4 +40,5 @@
 
 // Important!
 // Include this last to catch all custom property references.
+// Output all CSS custom properties
 @forward "vrembem/root";

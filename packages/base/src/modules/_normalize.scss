@@ -1,5 +1,4 @@
 @use "@vrembem/core/css";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("normalize") {

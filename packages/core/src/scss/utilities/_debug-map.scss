@@ -1,4 +1,32 @@
 @use "sass:meta";
+@use "sass:list";
+
+/// Recursive helper for debug-map
+@function -debug-map-recursive($map, $indent: "  ", $output: "", $n: "\A") {
+  @each $key, $value in $map {
+    $current-indent: $indent;
+
+    @if meta.type-of($value) == "map" {
+      $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (';
+      $output: -debug-map-recursive($value, $current-indent + $indent, $output, $n);
+      $output: "#{$output}#{$n}#{$current-indent}),";
+    } @else if meta.type-of($value) == "list" {
+      @if list.length($value) == 0 {
+        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (),';
+      } @else {
+        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (#{$value}),';
+      }
+    } @else {
+      @if $value {
+        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": #{$value},';
+      } @else {
+        $output: '#{$output}#{$n}#{$current-indent}"#{$key}",';
+      }
+    }
+  }
+
+  @return $output;
+}
 
 /// Debug output a more readable version of a scss map in the console.
 /// Currently this mixin only supports debugging maps up to 3 levels deep.
@@ -9,56 +37,11 @@
 ///   A label to add before the map contents.
 ///
 @mixin debug-map($map, $label: "Debug Map") {
-  // Indent variable
-  $i: "  ";
-
-  // New line variable
   $n: "\A";
-
-  // Initialize output variable
+  $indent: "  ";
   $output: "#{$n}#{$label}: (";
-
-  // First level map loop
-  @each $key, $value in $map {
-    @if meta.type-of($value) == "map" {
-      // Open the map output
-      $output: '#{$output}#{$n}#{$i}"#{$key}": (';
-
-      // Second level map loop
-      @each $key, $value in $value {
-        @if meta.type-of($value) == "map" {
-          // Open the map output
-          $output: '#{$output}#{$n}#{$i}#{$i}"#{$key}": (';
-
-          // Third level map loop
-          @each $key, $value in $value {
-            // Set Level 3 output
-            $output: '#{$output}#{$n}#{$i}#{$i}#{$i}"#{$key}": #{$value},';
-          }
-
-          // Close level 3 map output
-          $output: "#{$output}#{$n}#{$i}#{$i}),";
-        }
-
-        // Set Level 2 output
-        @else {
-          $output: '#{$output}#{$n}#{$i}#{$i}"#{$key}": #{$value},';
-        }
-      }
-
-      // Close level 2 map output
-      $output: "#{$output}#{$n}#{$i}),";
-    }
-
-    // Set Level 1 output
-    @else {
-      $output: '#{$output}#{$n}#{$i}"#{$key}": #{$value},';
-    }
-  }
-
-  // Close the output variable
+  $output: -debug-map-recursive($map, $indent, $output, $n);
   $output: "#{$output}#{$n})";
 
-  // Debug the output
   @debug $output;
 }

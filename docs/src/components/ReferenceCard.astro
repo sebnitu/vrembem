@@ -8,11 +8,17 @@ interface Props {
 }
 
 const { name, type, returns, defaults, fallback } = Astro.props;
+
+function linkifyName(name: string) {
+  return name.replace(/^config/, (match) => {
+    return `<a href="/packages/core/config">${match}</a>`;
+  });
+}
 ---
 
 <div class="card card_reference">
   <div class="card__header">
-    <code class="card__title">{name}</code>
+    <code class="card__title" set:html={linkifyName(name)} />
     <span class="card__type"><code>{type}</code></span>
   </div>
   { Astro.slots.has("default") && (

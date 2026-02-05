@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
@@ -6,11 +7,11 @@
 /// @type map
 /// @access private
 $-config: (
-  "prefix-block": null,
+  "prefix-block": "",
   "prefix-element": "__",
   "prefix-modifier": "_",
   "prefix-modifier-value": "_",
-  "prefix-utility": null
+  "prefix-utility": ""
 );
 
 /// Helper function that checks if a value should be set in the config map.
@@ -51,8 +52,7 @@ $-config: (
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value"), null
-///   - ("key": ("key": "value")), null
+///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
 /// @param {boolean} $default (false)
@@ -72,13 +72,12 @@ $-config: (
   $-config: $result !global;
 }
 
-/// An alias mixin for `config.set()` that predefines the default argument to
+/// An alias mixin for `config.set()` with predefined default argument to
 /// `true`. Running this will not override a previously set value.
 ///
 /// @param {string} $key
 ///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value"), null
-///   - ("key": ("key": "value")), null
+///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
 ///
@@ -95,7 +94,55 @@ $-config: (
   $-config: map.deep-remove($-config, $keys...) !global;
 }
 
+/// Apply a configuration map prefixing all keys with the provided prefix value.
+/// The provided configuration map must match the signature list or map. This
+/// mixin is typically used by components to allow providing default values
+/// using the Sass `with` clause.
+///
+/// @param {string} $prefix
+///   The value to prefix all keys with. This is typically the name of the
+///   component or module. Set to `null` for no prefix.
+/// @param {map} $config
+///   The config map to set in the global config object.
+/// @param {map | list} $default
+///   The valid map signature and default config map values, or a list of valid
+///   configuration options. Set map values to `null` to prevent them from being
+///   set as the config default.
+///
+@mixin apply($prefix, $config, $default) {
+  @if $prefix {
+    $prefix: "#{$prefix}-";
+  }
+
+  @each $key, $value in $config {
+    $valid-m: meta.type-of($default) == "map" and map.has-key($default, $key);
+    $valid-l: meta.type-of($default) == "list" and list.index($default, $key);
+
+    @if $valid-m or $valid-l {
+      @include set("#{$prefix}#{$key}", $value);
+    } @else {
+      @error '"#{$key}" is not a valid configuration option';
+    }
+  }
+
+  @if meta.type-of($default) == "map" {
+    @each $key, $value in $default {
+      @if $value {
+        @include set-default("#{$prefix}#{$key}", $value);
+      }
+    }
+  }
+}
+
 /// Log to console the entire configuration map.
-@mixin log() {
-  @include debug-map($-config, "Config options map");
+@mixin log($value: "*") {
+  @if $value == "*" or $value == "all" {
+    @include debug-map($-config, "Config options map");
+  } @else {
+    @if map.has-key($-config, $value) {
+      @include debug-map(map.get($-config, $value), "Config > #{$value}");
+    } @else {
+      @debug 'Config "#{$value}" has not been set!';
+    }
+  }
 }
