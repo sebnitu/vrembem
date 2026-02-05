@@ -76,13 +76,43 @@ It's important to keep in mind that all changes to the global config should be d
   ```
 </CodeExample>
 
+Core and other components that define configuration properties can also be set using the Sass `with` clause and setting the `$config` map:
+
+<CodeExample label="app.scss">
+  ```scss
+  // Set values to config using @use ... with
+  @use "@vrembem/core" with (
+    $config: (
+      "prefix-block": "sn-"
+    )
+  );
+
+  // Values set in $config should not be prefixed by the component name
+  @use "@vrembem/base" with (
+    $config: (
+      "output": false
+    )
+  );
+
+  // Core configurations are not prefixed
+  @debug core.config-get("prefix-block"); // => "sn-"
+
+  // Component configurations are prefixed with their name
+  @debug core.config-get("base-output"); // => false
+  ```
+</CodeExample>
+
+<div class="notice notice_color_primary">
+  Component specific configurations are prefixed with their component name. Core is the only exception.
+</div>
+
 ## Default values
 
 The values predefined by core modules are used internally by the Vrembem library. The configuration module defines several prefix values related to the BEM naming syntax.
 
 <CodeExample lang="scss">
   ```scss
-  $-config: (
+  $config: (
     // Prefix for block class names
     // Example: .block { ... }
     "prefix-block": "",
