@@ -21,6 +21,7 @@ The purpose of `core/config` is to provide a straightforward API for managing li
 - [`config.set`](#configset)
 - [`config.set-default`](#configset-default)
 - [`config.remove`](#configremove)
+- [`config.apply`](#configapply)
 - [`config.log`](#configlog)
 
 To get started with the configuration system, first import the configuration module. Once imorted, set a value using the `config.set` mixin.
@@ -204,7 +205,7 @@ Returns the value of an option in the configuration map.
   @debug config.get("theme-default");
   // Debug: light
 
-  @debug config.get("css-prefix");
+  @debug config.get("prefix-cssvar");
   // Debug: vb
   ```
 </CodeExample>
@@ -236,7 +237,7 @@ Set an option in the configuration map by providing a key and value to store, or
 
   // Set multiple options using a map
   @include config.set((
-    "css-prefix": "custom",
+    "prefix-cssvar": "custom",
     "theme-default": "light"
   ));
   ```
@@ -290,6 +291,81 @@ Remove an option from the configuration map.
   // Remove the theme default option
   @include config.remove("theme-default");
   ```
+</CodeExample>
+
+### config.apply()
+
+Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` directive.
+
+#### Arguments
+
+<ReferenceCard name="$prefix" type="string">
+  The value to prefix all keys with. This is typically the name of the component or module. Set to `null` for no prefix.
+</ReferenceCard>
+
+<ReferenceCard name="$config" type="map">
+  The config map to set in the global config object.
+</ReferenceCard>
+
+<ReferenceCard name="$default" type="map | list">
+  The valid map signature and default config map values, or a list of valid configuration options. Set map values to `null` to prevent them from being set as the config default.
+</ReferenceCard>
+
+#### Example
+
+Consider the following setup where we define an empty `$config` map (with the `!default` flag) and a `$default` map containing the configurations we want to expose and provide defaults for.
+
+<CodeExample lang="scss">
+```scss
+// _example.scss
+@use "@vrembem/core/config";
+
+$config: () !default;
+$default: (
+  "config-1": true,
+  "config-2": "asdf",
+);
+
+@include config.apply("example", $config, $default);
+```
+</CodeExample>
+
+When we use this module, we can define the configuration using the Sass `with` directive:
+
+<CodeExample lang="scss">
+```scss
+// style.scss
+@use "example" with (
+  $config: (
+    "config-1": false
+  )
+);
+```
+</CodeExample>
+
+We can also set our configuration values before the module is loaded and include our files in a manifest file:
+
+<CodeExample lang="scss">
+```scss
+// _config.scss
+@use "@vrembem/core/config";
+
+// These values will be used once the module is loaded
+@include config.set((
+  "example-config-1": false,
+  "example-config-2": "fdsa"
+));
+```
+</CodeExample>
+
+<CodeExample lang="scss">
+```scss
+// styles.scss
+@use "config";
+@use "example";
+
+// More imports here...
+```
 </CodeExample>
 
 ### config.log()

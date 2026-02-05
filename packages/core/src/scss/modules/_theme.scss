@@ -62,9 +62,11 @@ $-theme-keys: "light", "dark";
 ///
 @function class($theme) {
   $prefix: config.get("theme-prefix");
-  $delimiter: if(
-    sass($prefix): "-" ; else: ""
-  );
+  $delimiter: "";
+
+  @if $prefix {
+    $delimiter: "-";
+  }
 
   @return ".#{$prefix}#{$delimiter}#{$theme}";
 }

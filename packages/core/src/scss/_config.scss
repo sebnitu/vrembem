@@ -1,0 +1,6 @@
+@use "./modules/config";
+
+$config: () !default;
+$signature: ("prefix-block", "prefix-element", "prefix-modifier", "prefix-modifier-value", "prefix-utility", "prefix-cssvar", "palette-default", "palette-range", "theme-prefix", "theme-default");
+
+@include config.apply(null, $config, $signature);
