@@ -1,0 +1,23 @@
+@use "@vrembem/core/css";
+
+.reference-bar {
+  align-items: center;
+  color: css.get("foreground");
+  display: flex;
+  flex-wrap: wrap;
+  gap: css.get("gap");
+  justify-content: space-between;
+
+  .link_hash {
+    align-items: center;
+    display: flex;
+    gap: css.get("gap-sm");
+  }
+}
+
+.reference-bar__item {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: css.get("gap-sm");
+}
