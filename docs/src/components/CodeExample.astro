@@ -8,6 +8,7 @@ interface FileTab {
 }
 
 interface Props {
+  label?: string;
   lang?: string;
   tabs?: boolean;
   files?: FileTab[];
@@ -16,7 +17,8 @@ interface Props {
 }
 
 const { 
-  lang = "html",
+  label,
+  lang,
   tabs = false,
   files = [],
   flush = false,
@@ -48,7 +50,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     !tabs ? (
       <div class="code-example__toolbar">
-        <div class="flex-grow">{lang}</div>
+        <div>{lang?.toUpperCase() || label}</div>
         {
           resettable && (
             <button

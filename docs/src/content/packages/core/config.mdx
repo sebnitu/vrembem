@@ -27,68 +27,52 @@ The purpose of `core/config` is to provide a straightforward API for managing li
 
 To get started with the configuration system, first import the configuration module. Once imorted, set a value using the `config.set` mixin.
 
-<CodeExample lang="scss">
-  <Fragment>
-    ```scss
-    // 1. Import the module
-    @use "@vrembem/core/config";
+<CodeExample label="_config.scss">
+  ```scss
+  // 1. Import the module
+  @use "@vrembem/core/config";
 
-    // 2. Set a custom configuration
-    @include config.set("theme-prefix", "theme");
-    ```
-  </Fragment>
+  // 2. Set a custom configuration
+  @include config.set("theme-prefix", "theme");
+  ```
 </CodeExample>
 
 To use values from the configuration map, call the `config.get` function with the key of the desired configuration value.
 
-<CodeExample lang="scss" tabs>
-  <Fragment slot="tab-scss">
-    ```scss
-    // 1. Import the module
-    @use "@vrembem/core/config";
+<CodeExample label="_box.scss">
+  ```scss
+  // 1. Import the module
+  @use "@vrembem/core/config";
 
+  .box {
+    background: #ddd;
+    color: #333;
+  }
+
+  // 2. Get the custom value
+  .#{config.get("theme-prefix")}-high-contrast {
     .box {
-      background: #ddd;
-      color: #333;
-    }
-
-    // 2. Get the custom value
-    .#{config.get("theme-prefix")}-high-contrast {
-      .box {
-        background: #fff;
-        color: #000;
-      }
-    }
-    ```
-  </Fragment>
-  <Fragment slot="tab-css">
-    ```css
-    .box {
-      background: #ddd;
-      color: #333;
-    }
-
-    .theme-high-contrast .box {
       background: #fff;
       color: #000;
     }
-    ```
-  </Fragment>
+  }
+  ```
 </CodeExample>
 
-It's important to keep in mind that all changes to the global config should be done in a setup file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
+It's important to keep in mind that all changes to the global config should be done in a config file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
   ```scss
-  // Inside an app.scss manifest file
   // 1. Make all your custom configurations
-  @use "_setup.scss";
+  @use "_config.scss";
 
-  // 2. Import other files that use your custom configurations
+  // 2. Import the Vrembem library or specific components as needed
+  @use "vrembem";
+
+  // 3. Import other files that use your custom configurations
   @use "_box.scss";
 
-  // 3. Import the Vrembem library or specific components as needed
-  @use "vrembem";
+  // Additional imports here...
   ```
 </CodeExample>
 
@@ -125,11 +109,9 @@ The values predefined by core modules are used internally by the Vrembem library
 By default, Vrembem does not prefix its component class names. If you'd like to prefix component class names to help avoid conflicts in existing projects, set a value for `"prefix-block"` (such as `"vb-"`) before importing Vrembem components.
 
 <CodeExample lang="scss">
-  <Fragment>
-    ```scss
-    @include config.set("prefix-block", "vb-");
-    ```
-  </Fragment>
+  ```scss
+  @include config.set("prefix-block", "vb-");
+  ```
 </CodeExample>
 
 You can use the `core.bem` function to generate class names with the correct prefixes, without setting them manually.
