@@ -5,43 +5,30 @@
 @use "./config";
 @use "./css";
 
-/// The map of colors used to build the palette.
-/// @type map
-/// @access private
-$-seeds: (
-  "primary": hsl(152deg 60% 50%),
-  "secondary": hsl(214deg 50% 50%),
-  "neutral": hsl(214deg 20% 50%),
-  "important": hsl(0deg 80% 50%)
-);
+// Set the initial CSS variables for the palette map
+@if config.get("palette") {
+  @each $name, $value in config.get("palette") {
+    @include css.set("palette", "#{$name}", $value);
+    @include css.set("palette", "#{$name}-hs", get-hs($value));
+  }
+}
 
-/// Builds a palette map using values set in `$-seeds` and `$palette-range`.
-/// Is run automatically whenever seeds map is modified.
+/// Builds a palette map using values set in `config.get("palette")` and is run
+/// automatically whenever `palette.set` or `palette.remove` is run.
 ///
-/// @param {map} $seeds ($-seeds)
+/// @param {map} $seeds (config.get("palette"))
 ///   The seeds to generate a palette map from.
-/// @param {list} $range (config.get("palette-range"))
-///   A list of lightness values to generate the palette map from.
-/// @param {number} $default (config.get("palette-default"))
-///   The default lightness value. Used to generate the shorthand property.
 ///
 /// @access private
 ///
-@mixin -build($seeds: $-seeds, $range: config.get("palette-range"), $default: config.get("palette-default")) {
+@mixin -build($seeds: config.get("palette")) {
   // Remove the palette component before building
   @include css.remove("palette");
 
   // Loop through the seeds and set the variables for each item in $seeds
   @each $name, $value in $seeds {
+    @include css.set("palette", "#{$name}", $value);
     @include css.set("palette", "#{$name}-hs", get-hs($value));
-
-    @each $value in $range {
-      @include css.set("palette", "#{$name}-#{$value}", hsl(#{css.get("palette", "#{$name}-hs") $value + "%"}));
-    }
-
-    @if $default {
-      @include css.set("palette", "#{$name}", css.get("palette", "#{$name}-#{$default}"));
-    }
   }
 }
 
@@ -50,7 +37,7 @@ $-seeds: (
 ///
 /// @param {string} $name
 ///   The color name to return a value for.
-/// @param {number|string} $query (config.get("palette-default"))
+/// @param {number|string} $query (null)
 ///   Specifies either a lightness value or "seed" to return the corresponding
 ///   color value.
 /// @param {number (alpha-value)} $alpha (null)
@@ -75,12 +62,7 @@ $-seeds: (
 /// @example scss
 ///   // Return a color with a specified lightness value
 ///   $value: palette.get("primary", 20);
-///   // Returns: var(--vb-primary-20)
-///
-/// @example scss
-///   // Return a color with a specified lightness value
-///   $value: palette.get("primary", 23);
-///   // Returns: hsl(var(--vb-primary-hs) 23)
+///   // Returns: hsl(var(--vb-primary-hs) 20)
 ///
 /// @example scss
 ///   // Return a color with a specified lightness and alpha value
@@ -88,29 +70,24 @@ $-seeds: (
 ///   // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
 ///
 @function get($name, $query: config.get("palette-default"), $alpha: null) {
-  // If name is passed as "seeds", return the $-seeds map
-  @if $name == "seeds" {
-    @return $-seeds;
-  }
-
-  // If query is passed as "seed", return the seed value
-  @else if $query == "seed" {
-    @return map.get($-seeds, $name);
+  // Throw error if palette name doesn't exist in palette map
+  @if not map.has-key(config.get("palette"), $name) {
+    @error 'Palette value could not be found: "#{$name}"';
   }
 
   // If an alpha value is passed, return hsl with the alpha
-  @else if $alpha {
+  @else if $alpha and $query {
     @return hsl(#{css.get("palette", "#{$name}-hs") $query + " / " + $alpha});
   }
 
-  // If the specified query value exists in the palette map, return its value
-  @else if css.has("palette", "#{$name}-#{$query}") {
-    @return css.get("palette", "#{$name}-#{$query}");
+  // If a query value is passed, return hsl with the query
+  @else if $query {
+    @return hsl(#{css.get("palette", "#{$name}-hs") $query});
   }
 
-  // Else return hsl using the provided query value
+  // Else return the value stored in config
   @else {
-    @return hsl(#{css.get("palette", "#{$name}-hs") $query});
+    @return map.get(config.get("palette"), $name);
   }
 }
 
@@ -136,12 +113,12 @@ $-seeds: (
 ///
 @mixin set($name, $value: null) {
   @if meta.type-of($name) == "map" {
-    $-seeds: map.merge($-seeds, $name) !global;
+    @include config.set("palette", map.merge(config.get("palette"), $name));
   } @else {
-    $-seeds: map.set($-seeds, $name, $value) !global;
+    @include config.set("palette", map.set(config.get("palette"), $name, $value));
   }
 
-  // Run build since `$-seeds` has been modified
+  // Run build since `config.get("palette")` has been modified
   @include -build;
 }
 
@@ -159,11 +136,8 @@ $-seeds: (
 ///   @include palette.remove("secondary", "neutral");
 ///
 @mixin remove($keys...) {
-  $-seeds: map.remove($-seeds, $keys...) !global;
+  @include config.remove("palette", $keys...);
 
-  // Run build since `$-seeds` has been modified
+  // Run build since `config.get("palette")` has been modified
   @include -build;
 }
-
-// Run initial build for palette map
-@include -build;
