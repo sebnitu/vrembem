@@ -6,13 +6,7 @@
 /// Stores all library wide configuration options.
 /// @type map
 /// @access private
-$-config: (
-  "prefix-block": "",
-  "prefix-element": "__",
-  "prefix-modifier": "_",
-  "prefix-modifier-value": "_",
-  "prefix-utility": ""
-);
+$-config: ();
 
 /// Helper function that checks if a value should be set in the config map.
 ///

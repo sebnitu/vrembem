@@ -7,15 +7,11 @@
 @use "../utilities/reverse" as *;
 @use "./config";
 
-/// A prefix to apply to CSS variables.
-/// @type string
-@include config.set-default("prefix-cssvar", "vb");
-
 /// The custom properties map where all custom properties are stored. These are
 /// stored under component keys with maps of their custom property.
 /// @type map
 /// @access private
-$-custom-properties: (
+$-css-vars: (
   "core": (
     "prefix": (
       "config": "prefix-cssvar"
@@ -40,7 +36,7 @@ $-custom-properties: (
 /// @access private
 ///
 @function -component-exists($component, $required: true) {
-  @if not map.has-key($-custom-properties, $component) {
+  @if not map.has-key($-css-vars, $component) {
     @if $required {
       @error "Component `#{$component}` has not been registered in custom properties map.";
     } @else {
@@ -89,7 +85,7 @@ $-custom-properties: (
 ///   The keys to traverse in the custom properties map.
 ///
 @function has($keys...) {
-  @return map.has-key($-custom-properties, $keys...);
+  @return map.has-key($-css-vars, $keys...);
 }
 
 /// Register a component in the custom properties map. This is used when a
@@ -101,7 +97,7 @@ $-custom-properties: (
 ///
 @mixin register($component) {
   @if not(has($component)) {
-    $-custom-properties: map.set($-custom-properties, $component, empty-map()) !global;
+    $-css-vars: map.set($-css-vars, $component, empty-map()) !global;
   }
 }
 
@@ -210,7 +206,7 @@ $-custom-properties: (
 @function get($component, $props...) {
   // Return custom properties map if component is set to "*" value
   @if $component == "*" or $component == "all" {
-    @return $-custom-properties;
+    @return $-css-vars;
   }
 
   // Return a nested map in custom properties map if props contains "*" value
@@ -219,7 +215,7 @@ $-custom-properties: (
     @if -component-exists($component) {
       $props: remove-nth($props, list.index($props, "*"));
 
-      @return map.get($-custom-properties, $component, $props...);
+      @return map.get($-css-vars, $component, $props...);
     }
   }
 
@@ -241,10 +237,10 @@ $-custom-properties: (
     // Loop through the props and append them to results as nested fallbacks
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
-      $value: map.get($-custom-properties, $component, $prop);
+      $value: map.get($-css-vars, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-custom-properties, $component, $prop) or map.has-key($-custom-properties, $component, config.get("theme-default"), $prop) {
+      @if map.has-key($-css-vars, $component, $prop) or map.has-key($-css-vars, $component, config.get("theme-default"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
@@ -289,7 +285,7 @@ $-custom-properties: (
 ///   @include css.set("button", "background", #000);
 ///
 ///   // Result in custom properties map:
-///   $-custom-properties: (
+///   $-css-vars: (
 ///     "button": (
 ///       "background": #000
 ///     )
@@ -302,7 +298,7 @@ $-custom-properties: (
 ///   ));
 ///
 ///   // Result in custom properties map:
-///   $-custom-properties: (
+///   $-css-vars: (
 ///     "button": (
 ///       "background": #000,
 ///       "foreground": #fff
@@ -319,7 +315,7 @@ $-custom-properties: (
 ///   ));
 ///
 ///   // Result in custom properties map:
-///   $-custom-properties: (
+///   $-css-vars: (
 ///     "button": (
 ///       "background-hover": #000,
 ///       "background-focus": #555,
@@ -330,21 +326,21 @@ $-custom-properties: (
 @mixin set($component, $prop, $value: null, $deep: true) {
   // If component is set to "*", update the entire custom properties map
   @if $component == "*" or $component == "all" {
-    $-custom-properties: $prop !global;
+    $-css-vars: $prop !global;
   }
 
   // If prop is set to "*", update the component map in custom properties map
   @else if $prop == "*" or $prop == "all" {
     @if $deep != true {
-      $-custom-properties: map.merge(
-        $-custom-properties,
+      $-css-vars: map.merge(
+        $-css-vars,
         (
           $component: $value
         )
       ) !global;
     } @else {
-      $-custom-properties: map.deep-merge(
-        $-custom-properties,
+      $-css-vars: map.deep-merge(
+        $-css-vars,
         (
           $component: $value
         )
@@ -359,13 +355,13 @@ $-custom-properties: (
       // Scenario: ("prop": ("prop": "value"))
       @if meta.type-of($propValue) == "map" {
         @each $key, $value in $propValue {
-          $-custom-properties: map.set($-custom-properties, $component, "#{$propKey}-#{$key}", $value) !global;
+          $-css-vars: map.set($-css-vars, $component, "#{$propKey}-#{$key}", $value) !global;
         }
       }
 
       // Scenario: ("prop": "value")
       @else {
-        $-custom-properties: map.set($-custom-properties, $component, $propKey, $propValue) !global;
+        $-css-vars: map.set($-css-vars, $component, $propKey, $propValue) !global;
       }
     }
   }
@@ -375,8 +371,8 @@ $-custom-properties: (
     @each $key, $value in $value {
       // If the map has the value of "config", store the entire map directly
       @if $component == "core" and $key == "config" {
-        $-custom-properties: map.set(
-          $-custom-properties,
+        $-css-vars: map.set(
+          $-css-vars,
           $component,
           $prop,
           (
@@ -387,14 +383,14 @@ $-custom-properties: (
 
       // Else, suffix the custom property with the key
       @else {
-        $-custom-properties: map.set($-custom-properties, $component, "#{$prop}-#{$key}", $value) !global;
+        $-css-vars: map.set($-css-vars, $component, "#{$prop}-#{$key}", $value) !global;
       }
     }
   }
 
   // Scenario: "prop", "value"
   @else {
-    $-custom-properties: map.set($-custom-properties, $component, $prop, $value) !global;
+    $-css-vars: map.set($-css-vars, $component, $prop, $value) !global;
   }
 }
 
@@ -404,7 +400,7 @@ $-custom-properties: (
 ///   The list of keys to follow and remove from the custom properties map.
 ///
 @mixin remove($keys...) {
-  $-custom-properties: map.deep-remove($-custom-properties, $keys...) !global;
+  $-css-vars: map.deep-remove($-css-vars, $keys...) !global;
 }
 
 /// Mixin to override previously defined custom properties. This is primarily
@@ -467,7 +463,7 @@ $-custom-properties: (
 ///
 /// @example scss
 ///   // Example value in custom properties map:
-///   $-custom-properties: (
+///   $-css-vars: (
 ///     "button": (
 ///       "background": #555,
 ///       "foreground": #fff,
@@ -489,13 +485,13 @@ $-custom-properties: (
 ///
 @mixin output($component: "*") {
   @if $component == "*" or $component == "all" {
-    // Call output() for every component in $-custom-properties
-    @each $component in map.keys($-custom-properties) {
+    // Call output() for every component in $-css-vars
+    @each $component in map.keys($-css-vars) {
       @include output($component);
     }
   } @else if -component-exists($component, false) {
     // Get the component's property map
-    $property-map: map.get($-custom-properties, $component);
+    $property-map: map.get($-css-vars, $component);
 
     // Loop through the property map
     @each $prop, $value in $property-map {
@@ -515,12 +511,12 @@ $-custom-properties: (
 ///
 @mixin log($component: "*", $props...) {
   @if $component == "*" or $component == "all" {
-    @include debug-map($-custom-properties, 'Custom properties of "*"');
+    @include debug-map($-css-vars, 'Custom properties of "*"');
   } @else if -component-exists($component) {
     @if list.length($props) > 0 {
-      @include debug-map(map.get($-custom-properties, $component, $props...), 'Custom properties of "#{$component}" > "#{$props}"');
+      @include debug-map(map.get($-css-vars, $component, $props...), 'Custom properties of "#{$component}" > "#{$props}"');
     } @else {
-      @include debug-map(map.get($-custom-properties, $component), 'Custom properties of "#{$component}"');
+      @include debug-map(map.get($-css-vars, $component), 'Custom properties of "#{$component}"');
     }
   }
 }
