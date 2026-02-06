@@ -16,7 +16,7 @@ import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 ## Basic usage
 
-The purpose of `core/config` is to provide a straightforward API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
+The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
 
 - [`config.get`](#configget)
 - [`config.set`](#configset)
@@ -25,86 +25,68 @@ The purpose of `core/config` is to provide a straightforward API for managing li
 - [`config.apply`](#configapply)
 - [`config.log`](#configlog)
 
-To get started with the configuration system, first import the configuration module. Once imorted, set a value using the `config.set` mixin.
+There are two primary methods to configure options in the config module. The first is import and use the module API directly and the second is the Sass `@use ... with` clause.
+
+### Using config module
+
+To use the configuration module directly, import the `core/config` module. Once imported you can use the API to `set` and `get` values in the configuration map.
 
 <CodeExample label="_config.scss">
   ```scss
   // 1. Import the module
   @use "@vrembem/core/config";
 
-  // 2. Set a custom configuration
+  // 2. Set a configuration value
   @include config.set("theme-prefix", "theme");
+
+  // 3. Get a configuration value
+  @debug config.get("theme-prefix"); // => "theme"
   ```
 </CodeExample>
 
-To use values from the configuration map, call the `config.get` function with the key of the desired configuration value.
+Changes to the global config should be done in a file that is loaded before other Vrembem or custom components. This ensures that components use the correct configuration values.
 
-<CodeExample label="_box.scss">
-  ```scss
-  // 1. Import the module
-  @use "@vrembem/core/config";
-
-  .box {
-    background: #ddd;
-    color: #333;
-  }
-
-  // 2. Get the custom value
-  .#{config.get("theme-prefix")}-high-contrast {
-    .box {
-      background: #fff;
-      color: #000;
-    }
-  }
-  ```
-</CodeExample>
-
-It's important to keep in mind that all changes to the global config should be done in a config file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
-
-<CodeExample label="app.scss">
+<CodeExample label="style.scss">
   ```scss
   // 1. Make all your custom configurations
-  @use "_config.scss";
+  @use "./config";
 
-  // 2. Import the Vrembem library or specific components as needed
-  @use "vrembem";
+  // 2. Import components or other custom modules
+  @use "@vrembem/base";
+  @use "@vrembem/modal";
+  // ...
 
-  // 3. Import other files that use your custom configurations
-  @use "_box.scss";
-
-  // Additional imports here...
+  // 3. Output CSS variables
+  @use "@vrembem/core/root";
   ```
 </CodeExample>
 
-Core and other components that define configuration properties can also be set using the Sass `with` clause and setting the `$config` map:
+### Using with clause
+
+To set configuration options via the Sass `@use ... with` clause define the `$config` map. Values set using `with ($config)` are stored prefixed with the component's name. The core component is the only exception to this.
 
 <CodeExample label="app.scss">
   ```scss
-  // Set values to config using @use ... with
   @use "@vrembem/core" with (
     $config: (
       "prefix-block": "sn-"
     )
   );
-
-  // Values set in $config should not be prefixed by the component name
   @use "@vrembem/base" with (
     $config: (
       "output": false
     )
   );
 
-  // Core configurations are not prefixed
+  // Core config options are not prefixed
   @debug core.config-get("prefix-block"); // => "sn-"
 
-  // Component configurations are prefixed with their name
+  // Component config options are prefixed with their name
   @debug core.config-get("base-output"); // => false
   ```
 </CodeExample>
 
-<div class="notice notice_color_primary">
-  Component specific configurations are prefixed with their component name. Core is the only exception.
-</div>
+Changes to the global config should be done before loading other Vrembem or custom components. This ensures that components use the correct configuration values.
 
 ## Default values
 
@@ -338,9 +320,8 @@ Apply a configuration map prefixing all keys with the provided prefix value. The
 
 We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and provide defaults for.
 
-<CodeExample lang="scss">
+<CodeExample label="_example.scss">
 ```scss
-// _example.scss
 @use "@vrembem/core/config";
 
 $config: () !default;
@@ -355,22 +336,23 @@ $default: (
 
 When we use this module, we can define the configuration using the Sass `with` clause:
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
 ```scss
-// style.scss
 @use "example" with (
   $config: (
     "config-1": false
   )
 );
+
+// More imports here...
 ```
 </CodeExample>
 
-We can also set our configuration values before the module is loaded and include our files in a manifest file:
+We can also set our configuration values before the module is loaded and include our config at the top of our manifest file:
 
-<CodeExample lang="scss">
+<CodeExample label="_config.scss">
 ```scss
-// _config.scss
+// Import the config module
 @use "@vrembem/core/config";
 
 // These values will be used once the module is loaded
@@ -381,9 +363,8 @@ We can also set our configuration values before the module is loaded and include
 ```
 </CodeExample>
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
 ```scss
-// styles.scss
 @use "config";
 @use "example";
 
