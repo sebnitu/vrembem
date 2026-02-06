@@ -24,11 +24,11 @@ $defaults: (
   // @type string
   "prefix-utility": "",
 
-  // A prefix to apply to CSS variables.
+  // A prefix to apply to CSS variables
   // @type string
   "prefix-cssvar": "vb",
 
-  // The palette to build CSS variables from.
+  // The palette to build CSS variables from
   // @type map
   "palette": (
     "primary": hsl(152deg 60% 50%),
@@ -37,15 +37,15 @@ $defaults: (
     "important": hsl(0deg 80% 50%)
   ),
 
-  // The default color lightness to use when referencing a color.
+  // The default color lightness to use when referencing a color
   // @type number
   "palette-default": null,
 
-  // A prefix to apply to theme names.
+  // A prefix to apply to theme names
   // @type string
   "theme-prefix": "vb-theme",
 
-  // Sets the default theme option.
+  // Sets the default theme option
   // @type string
   "theme-default": "light",
 );
