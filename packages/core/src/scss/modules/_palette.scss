@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/get-hs" as *;
-@use "../utilities/debug-map" as *;
 @use "./config";
 @use "./css";
 
@@ -13,131 +12,73 @@
   }
 }
 
-/// Builds a palette map using values set in `config.get("palette")` and is run
-/// automatically whenever `palette.set` or `palette.remove` is run.
+/// Builds a palette map using values set in `config.get("palette")`.
 ///
 /// @param {map} $seeds (config.get("palette"))
 ///   The seeds to generate a palette map from.
 ///
 /// @access private
 ///
-@mixin -build($seeds: config.get("palette")) {
+@mixin -rebuild-palette($action) {
   // Remove the palette component before building
   @include css.remove("palette");
 
   // Loop through the seeds and set the variables for each item in $seeds
-  @each $name, $value in $seeds {
+  @each $name, $value in config.get("palette") {
     @include css.set("palette", "#{$name}", $value);
     @include css.set("palette", "#{$name}-hs", get-hs($value));
   }
 }
 
+/// Setup a config watcher for when the palette property changes.
+@include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
+
 /// Returns a color value from the palette in various formats, based on the
-/// provided name, lightness, and optional alpha.
+/// provided name, lightness, and alpha values.
 ///
 /// @param {string} $name
 ///   The color name to return a value for.
-/// @param {number|string} $query (null)
-///   Specifies either a lightness value or "seed" to return the corresponding
-///   color value.
-/// @param {number (alpha-value)} $alpha (null)
+/// @param {percentage} $lightness (null)
+///   The value to use for the lightness value.
+/// @param {percentage} $alpha (null)
 ///   Optional alpha (opacity) value to apply to the returned color.
 ///
 /// @return {Color}
 ///   Return format depends on the requested value.
 ///
 /// @example scss
-///   // Return the entire seeds map
-///   $value: palette.get("seeds");
-///
-/// @example scss
-///   // Return the seed of a stored color
-///   $value: palette.get("primary", "seed");
-///
-/// @example scss
-///   // Return a color with the default lightness value
+///   // Return a color with the default lightness value or the raw value
 ///   $value: palette.get("primary");
-///   // Returns: var(--vb-primary-50)
+///   // Returns: var(--vb-primary)
 ///
 /// @example scss
 ///   // Return a color with a specified lightness value
-///   $value: palette.get("primary", 20);
-///   // Returns: hsl(var(--vb-primary-hs) 20)
+///   $value: palette.get("primary", 20%);
+///   // Returns: hsl(var(--vb-primary-hs) 20%)
 ///
 /// @example scss
 ///   // Return a color with a specified lightness and alpha value
-///   $value: palette.get("primary", 20, 30%);
-///   // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
+///   $value: palette.get("primary", 20%, 30%);
+///   // Returns: hsl(var(--vb-primary-hs) 20% / 30%)
 ///
-@function get($name, $query: config.get("palette-default"), $alpha: null) {
+@function get($name, $lightness: config.get("palette-default"), $alpha: null) {
   // Throw error if palette name doesn't exist in palette map
   @if not map.has-key(config.get("palette"), $name) {
     @error 'Palette value could not be found: "#{$name}"';
   }
 
   // If an alpha value is passed, return hsl with the alpha
-  @else if $alpha and $query {
-    @return hsl(#{css.get("palette", "#{$name}-hs") $query + " / " + $alpha});
+  @else if $alpha and $lightness {
+    @return hsl(#{css.get("palette", "#{$name}-hs") $lightness + " / " + $alpha});
   }
 
-  // If a query value is passed, return hsl with the query
-  @else if $query {
-    @return hsl(#{css.get("palette", "#{$name}-hs") $query});
+  // If a query value is passed, return hsl with the lightness
+  @else if $lightness {
+    @return hsl(#{css.get("palette", "#{$name}-hs") $lightness});
   }
 
   // Else return the value stored in config
   @else {
-    @return map.get(config.get("palette"), $name);
+    @return css.get("palette", $name);
   }
-}
-
-/// Set a color to the seeds map. Can receive single entries of key/value
-/// color pairs or a map containing multiple key/value pairs.
-///
-/// @param {string|map} $name
-///   A name to associate with the provided color, or a map containing key/value
-///   color pairs.
-/// @param {color} $value (null)
-///   The color to associate with the provided key.
-///
-/// @example scss
-///   // Set a single color
-///   @include palette.set("primary", blue);
-///
-/// @example scss
-///   // Set multiple values using a map
-///   @include palette.set((
-///     "secondary": green,
-///     "neutral": yellow
-///   ));
-///
-@mixin set($name, $value: null) {
-  @if meta.type-of($name) == "map" {
-    @include config.set("palette", map.merge(config.get("palette"), $name));
-  } @else {
-    @include config.set("palette", map.set(config.get("palette"), $name, $value));
-  }
-
-  // Run build since `config.get("palette")` has been modified
-  @include -build;
-}
-
-/// Removes colors from the seeds map.
-///
-/// @param {string} $keys...
-///   A string or list of strings to remove.
-///
-/// @example scss
-///   // Remove a single color from seeds map
-///   @include palette.remove("primary");
-///
-/// @example scss
-///   // Remove multiple colors from seeds map
-///   @include palette.remove("secondary", "neutral");
-///
-@mixin remove($keys...) {
-  @include config.remove("palette", $keys...);
-
-  // Run build since `config.get("palette")` has been modified
-  @include -build;
 }
