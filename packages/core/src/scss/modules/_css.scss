@@ -7,7 +7,7 @@
 @use "../utilities/reverse" as *;
 @use "./config";
 
-/// Set value to prefix all css custom properties with.
+/// A prefix to apply to CSS variables.
 /// @type string
 @include config.set-default("prefix-cssvar", "vb");
 

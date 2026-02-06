@@ -8,11 +8,11 @@
 @use "./css";
 @use "./palette";
 
-/// Set value to prefix all themes with.
+/// A prefix to apply to theme names.
 /// @type string
 @include config.set-default("theme-prefix", "vb-theme");
 
-/// Set the default theme option.
+/// Sets the default theme option.
 /// @type string
 @include config.set-default("theme-default", "light");
 
