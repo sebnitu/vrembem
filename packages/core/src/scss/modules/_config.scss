@@ -113,6 +113,10 @@ $-config: ();
     $valid-l: meta.type-of($default) == "list" and list.index($default, $key);
 
     @if $valid-m or $valid-l {
+      // If the value is a map, merge it with the default value
+      @if meta.type-of($value) == "map" {
+        $value: map.deep-merge(map.get($default, "#{$prefix}#{$key}"), $value);
+      }
       @include set("#{$prefix}#{$key}", $value);
     } @else {
       @error '"#{$key}" is not a valid configuration option';
