@@ -181,25 +181,24 @@ $-watchers: ();
 ///
 /// @param {string} $prop
 ///   The name of the property to watch for changes.
-/// @param {string} $key
+/// @param {string} $id
 ///   A unique ID to store the watcher under.
 /// @param {mixin} $mixin
 ///   The mixin reference to run when the watched property has changed.
 ///
-@mixin watch($prop, $key, $mixin) {
-  $-watchers: map.set($-watchers, $prop, $key, $mixin) !global;
+@mixin watch($prop, $id, $mixin) {
+  $-watchers: map.set($-watchers, $prop, $id, $mixin) !global;
 }
 
 /// Remove a watcher to a specific property of the configuration object.
 ///
 /// @param {string} $prop
 ///   The name of the property to stop watching.
-/// @param {string} $keys...
-///   The unique ID of the watcher to remove. If no keys are provided, all
-///   watchers will be removed.
+/// @param {string} $id
+///   The unique ID of the watcher to remove.
 ///
-@mixin unwatch($prop, $keys...) {
-  $-watchers: map.deep-remove($-watchers, $prop, $keys...) !global;
+@mixin unwatch($prop, $id) {
+  $-watchers: map.deep-remove($-watchers, $prop, $id) !global;
 }
 
 /// Log to console the entire configuration map.

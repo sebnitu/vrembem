@@ -1,6 +1,6 @@
 ---
 title: core/palette
-description: "Used to define, manage, and output a color palette powered by custom properties."
+description: "Used to build and return color palette values by leveraging both config and css modules."
 parent: core
 group: sass-modules
 ---
@@ -16,9 +16,11 @@ import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 ## Basic usage
 
-This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses a seeds map containing color names and values, and a list of lightness values to generate custom properties.
+This module extends `core/css` by creating a custom properties color palette map under the `palette` namespace. It uses the core palette defined in the config `palette` map containing color names and values.
 
-The palette module defines four seed colors along with a range of lightness values. Below are the base seed colors:
+The palette module sets up a watcher on the `palette` map of `core/config`. Whenever the `palette` value is updated the palette module rebuilds stored CSS variables.
+
+The default color palette defines four colors under semantic names that are used throughout the library. These are base colors:
 
 <div class="flex flex_gap_lg align-items-center">
   <span class="swatch radius background-primary"></span>
@@ -42,9 +44,9 @@ The palette module defines four seed colors along with a range of lightness valu
 
 ### palette.get()
 
-<ReferenceBar type="function" />
+<ReferenceBar type="function" returns="color" />
 
-Returns a color value from the palette in various formats, based on the provided name, lightness, and optional alpha.
+Returns a color value from the palette in various formats, based on the provided name, lightness, and alpha values.
 
 #### Arguments
 
@@ -52,11 +54,11 @@ Returns a color value from the palette in various formats, based on the provided
   The color name to return a value for.
 </ReferenceCard>
 
-<ReferenceCard name="$query" type="number | string">
-  Specifies either a lightness value or `"seed"` to return the corresponding color value.
+<ReferenceCard name="$lightness" type="percentage" defaults="null">
+  The value to use for the lightness value.
 </ReferenceCard>
 
-<ReferenceCard name="$alpha" type="number (alpha-value)">
+<ReferenceCard name="$alpha" type="percentage" defaults="null">
   Optional alpha (opacity) value to apply to the returned color.
 </ReferenceCard>
 
@@ -64,79 +66,16 @@ Returns a color value from the palette in various formats, based on the provided
 
 <CodeExample lang="scss">
   ```scss
-  // Return the entire seeds map
-  $value: palette.get("seeds");
-
-  // Return the seed of a stored color
-  $value: palette.get("primary", "seed");
-
-  // Return a color with the default lightness value
+  // Return a color with the default lightness value or the raw value
   $value: palette.get("primary");
-  // Returns: var(--vb-primary-50)
+  // Returns: var(--vb-primary)
 
   // Return a color with a specified lightness value
-  $value: palette.get("primary", 20);
-  // Returns: var(--vb-primary-20)
-
-  // Return a color with a specified lightness value
-  $value: palette.get("primary", 23);
-  // Returns: hsl(var(--vb-primary-hs) 23)
+  $value: palette.get("primary", 20%);
+  // Returns: hsl(var(--vb-primary-hs) 20%)
 
   // Return a color with a specified lightness and alpha value
-  $value: palette.get("primary", 20, 30%);
-  // Returns: hsl(var(--vb-primary-hs) 20 / 30%)
+  $value: palette.get("primary", 20%, 30%);
+  // Returns: hsl(var(--vb-primary-hs) 20% / 30%)
   ```
 </CodeExample>
-
-### palette.set()
-
-<ReferenceBar type="mixin" />
-
-Set a color to the seeds map. Can receive single entries of key/value color pairs or a map containing multiple key/value pairs.
-
-#### Arguments
-
-<ReferenceCard name="$name" type="string | map">
-  A name to associate with the provided color, or a map containing key/value color pairs.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="color" defualts="null">
-  The color to associate with the provided key.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-  ```scss
-  // Set a single color
-  @include palette.set("primary", blue);
-
-  // Set multiple values using a map
-  @include palette.set((
-    "secondary": green,
-    "neutral": yellow
-  ));
-  ```
-</CodeExample>
-
-### palette.remove()
-
-<ReferenceBar type="mixin" />
-
-Removes colors from the seeds map.
-
-<CodeExample lang="scss">
-  ```scss
-  // Remove a single color from seeds map
-  @include palette.remove("primary");
-
-  // Remove multiple colors from seeds map
-  @include palette.remove("secondary", "neutral");
-  ```
-</CodeExample>
-
-#### Arguments
-
-<ReferenceCard name="$keys..." type="string">
-  A string or list of strings to remove.
-</ReferenceCard>
