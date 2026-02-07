@@ -225,13 +225,9 @@ Remove an option from the configuration map.
 
 <ReferenceBar type="mixin" />
 
-Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` clause.
+Apply a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
 
 #### Arguments
-
-<ReferenceCard name="$prefix" type="string">
-  The value to prefix all keys with. This is typically the name of the component or module. Set to `null` for no prefix.
-</ReferenceCard>
 
 <ReferenceCard name="$config" type="map">
   The config map to set in the global config object.
@@ -243,7 +239,7 @@ Apply a configuration map prefixing all keys with the provided prefix value. The
 
 #### Example
 
-We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and provide defaults for.
+We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and their default values.
 
 <CodeExample label="_example.scss">
 ```scss
@@ -255,7 +251,7 @@ $default: (
   "config-2": "asdf",
 );
 
-@include config.apply("example", $config, $default);
+@include config.apply($config, $default);
 ```
 </CodeExample>
 
@@ -282,8 +278,8 @@ We can also set our configuration values before the module is loaded and include
 
 // These values will be used once the module is loaded
 @include config.set((
-  "example-config-1": false,
-  "example-config-2": "fdsa"
+  "config-1": false,
+  "config-2": "fdsa"
 ));
 ```
 </CodeExample>
