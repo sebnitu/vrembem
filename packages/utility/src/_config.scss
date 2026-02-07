@@ -1,0 +1,51 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Controls whether module styles are output. This can be overridden on a per 
+  // module basis using the `base-output-exceptions` config option.
+  // @type boolean
+  "utility-output": true,
+
+  // Modules to exclude from the output rule set in `base-output`
+  // @type list
+  "utility-output-exceptions": (),
+
+  // A prefix to apply to utility class names
+  // @type string
+  "utility-prefix": "",
+
+  // A map containing module names as keys and their preferred class selectors
+  // @type map
+  "utility-classes": (
+    "border-radius": "radius",
+    "box-shadow": "shadow"
+  )
+);
+
+@include config.apply($config, $default);
+
+$border-radius-map: (
+  "": css.get("border-radius"),
+  "lg": css.get("border-radius-lg"),
+  "circle": css.get("border-radius-circle"),
+  "square": 0
+) !default;
+$display-properties: (inline, flex, inline-flex, grid, inline-grid, block, inline-block, none) !default;
+$max-width: 70rem !default;
+$max-width-scale: (
+  "none": none,
+  "xs": 45rem,
+  "sm": 60rem,
+  "md": 70rem,
+  "lg": 80rem,
+  "xl": 90rem,
+  "full": 100%
+) !default;
+$order-count: 6 !default;
+$overflow-properties: (visible, hidden, clip, scroll, auto) !default;
+$gap: core.$gap !default;
+$gap-map: core.$gap-map !default;
