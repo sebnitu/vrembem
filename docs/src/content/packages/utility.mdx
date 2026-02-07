@@ -26,7 +26,7 @@ Once loaded, the utility component provides a number of classes that can be used
 <CodeExample>
   ```html
   <!-- Using utility classes independently -->
-  <div class="padding background-shade border radius">
+  <div class="padding background-shade border border-radius">
     <p class="text-bold text-align-center">...</p>
   </div>
 
@@ -234,7 +234,7 @@ Add border color utilities with light, dark and darker variants. Also available 
 
 ## border-radius
 
-Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
+Applies border-radius styles with optional corner variants. The value used by the border-radius utility is pulled from the `core.$border-radius` variable.
 
 ```html
 <!-- Applied to all corners -->
@@ -258,9 +258,9 @@ Applies border-radius styles with optional corner variants. The value used by th
 | `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
 | `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
 
-### radius-circle
+### border-radius-circle
 
-Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
+Applies the maximum value to border-radius with optional corner variants. The value used by border-radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
 ```html
 <!-- Applied to all corners -->
@@ -279,7 +279,7 @@ Applies the maximum value to border-radius with optional corner variants. The va
 <div class="radius-circle-bottom-left"></div>
 ```
 
-### radius-square
+### border-radius-square
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 

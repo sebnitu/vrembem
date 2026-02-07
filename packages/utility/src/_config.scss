@@ -21,10 +21,7 @@ $default: (
 
   // A map containing module names as keys and their preferred class selectors
   // @type map
-  "utility-classes": (
-    "border-radius": "radius",
-    "box-shadow": "shadow"
-  )
+  "utility-classes": ()
 );
 
 @include config.apply($config, $default);
