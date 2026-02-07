@@ -50,7 +50,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     !tabs ? (
       <div class="code-example__toolbar">
-        <div>{lang?.toUpperCase() || label}</div>
+        <div>{label || lang?.toUpperCase()}</div>
         {
           resettable && (
             <button
