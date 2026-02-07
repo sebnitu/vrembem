@@ -1,8 +1,8 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("border-radius") {
-  @each $key, $value in var.$border-radius-map {
+  @each $key, $value in config.get("utility-border-radius") {
     #{fun.selector("border-radius", $key)} {
       border-radius: $value !important;
     }

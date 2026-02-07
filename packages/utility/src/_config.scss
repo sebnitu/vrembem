@@ -23,21 +23,24 @@ $default: (
   // @type map
   "utility-classes": (),
 
-  // A lightness range list for outputting palette related utilities.
+  // A lightness range list for outputting palette related utilities
   // @type list
   "utility-palette-range": (
     0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100
   ),
+
+  // A map of border-radius utilities to output
+  // @type map
+  "utility-border-radius": (
+    "": css.get("border-radius"),
+    "lg": css.get("border-radius-lg"),
+    "circle": css.get("border-radius-circle"),
+    "square": 0
+  )
 );
 
 @include config.apply($config, $default);
 
-$border-radius-map: (
-  "": css.get("border-radius"),
-  "lg": css.get("border-radius-lg"),
-  "circle": css.get("border-radius-circle"),
-  "square": 0
-) !default;
 $display-properties: (inline, flex, inline-flex, grid, inline-grid, block, inline-block, none) !default;
 $max-width: 70rem !default;
 $max-width-scale: (
