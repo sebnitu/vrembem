@@ -7,11 +7,11 @@ $config: () !default;
 // prettier-ignore
 $default: (
   // Controls whether module styles are output. This can be overridden on a per 
-  // module basis using the `base-output-exceptions` config option.
+  // module basis using the `utility-output-exceptions` config option.
   // @type boolean
   "utility-output": true,
 
-  // Modules to exclude from the output rule set in `base-output`
+  // Modules to exclude from the output rule set in `utility-output`
   // @type list
   "utility-output-exceptions": (),
 
