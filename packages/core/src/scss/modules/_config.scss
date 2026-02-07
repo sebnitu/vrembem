@@ -92,6 +92,19 @@ $-watchers: ();
   @include -run-watchers($key, "set");
 }
 
+/// An alias mixin for `config.set()` with predefined default argument to
+/// `true`. Running this will not override a previously set value.
+///
+/// @param {string} $key
+///   The key in the map to set. Can be passed a map of key/value pairs.
+///   - ("key": "value")
+/// @param {any} $value (null)
+///   The value to be stored.
+///
+@mixin set-default($key, $value: null) {
+  @include set($key, $value, $default: true);
+}
+
 /// Merges a map value of the configuration object with a provided map value.
 ///
 /// @param {string} $key
@@ -104,19 +117,6 @@ $-watchers: ();
   $-config: map.set($-config, $key, $map) !global;
 
   @include -run-watchers($key, "merge");
-}
-
-/// An alias mixin for `config.set()` with predefined default argument to
-/// `true`. Running this will not override a previously set value.
-///
-/// @param {string} $key
-///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value")
-/// @param {any} $value (null)
-///   The value to be stored.
-///
-@mixin set-default($key, $value: null) {
-  @include set($key, $value, $default: true);
 }
 
 /// Remove an option from the configuration map.

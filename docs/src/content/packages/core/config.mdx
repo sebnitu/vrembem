@@ -20,8 +20,8 @@ The purpose of `core/config` is to provide an API for managing library-wide conf
 
 - [`config.get`](#configget)
 - [`config.set`](#configset)
-- [`config.merge`](#configmerge)
 - [`config.set-default`](#configset-default)
+- [`config.merge`](#configmerge)
 - [`config.remove`](#configremove)
 - [`config.apply`](#configapply)
 - [`config.watch`](#configwatch)
@@ -151,22 +151,6 @@ Set an option in the configuration map by providing a key and value to store, or
   ```
 </CodeExample>
 
-### config.merge()
-
-<ReferenceBar type="mixin" />
-
-Merges a map value of the configuration object with a provided map value.
-
-#### Arguments
-
-<ReferenceCard name="$key" type="string">
-  The name of the property to merge maps with.
-</ReferenceCard>
-
-<ReferenceCard name="$map" type="string">
-  The map to be merged with the existing map value.
-</ReferenceCard>
-
 ### config.set-default()
 
 <ReferenceBar type="mixin" />
@@ -199,6 +183,22 @@ An alias mixin for `config.set()` with predefined default argument to `true`. Ru
   @debug config.get("theme-default"); // Debug: dark
   ```
 </CodeExample>
+
+### config.merge()
+
+<ReferenceBar type="mixin" />
+
+Merges a map value of the configuration object with a provided map value.
+
+#### Arguments
+
+<ReferenceCard name="$key" type="string">
+  The name of the property to merge maps with.
+</ReferenceCard>
+
+<ReferenceCard name="$map" type="string">
+  The map to be merged with the existing map value.
+</ReferenceCard>
 
 ### config.remove()
 
