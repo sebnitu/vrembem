@@ -29,7 +29,8 @@
 ///   A partial CSS selector starting with ", " meant to be appended to an
 ///   existing selector. Will return an empty string if not configured.
 ///
-@function get-type-selector($module) {
+/// @access private
+@function -get-type-selector($module) {
   // Initialize the type selector as an empty string
   $type-selector: "";
 
@@ -118,7 +119,7 @@
     }
 
     // Get the type selector if one is required
-    $type-selector: get-type-selector($module);
+    $type-selector: -get-type-selector($module);
 
     // Return the class
     @return ".#{$class}#{$type-selector}";
