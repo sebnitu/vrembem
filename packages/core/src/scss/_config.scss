@@ -44,6 +44,16 @@ $defaults: (
   // Sets the default theme option
   // @type string
   "theme-default": "light",
+
+  // A map of breakpoint key/value pairs
+  // @type map
+  "breakpoints": (
+    "xs": 480px,
+    "sm": 620px,
+    "md": 760px,
+    "lg": 990px,
+    "xl": 1380px
+  )
 );
 
 @include config.apply($config, $defaults);

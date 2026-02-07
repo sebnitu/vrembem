@@ -1,7 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
-@use "../variables/breakpoints" as *;
+@use "../modules/config";
 @use "../modules/css";
 @use "./media-min" as *;
 
@@ -15,9 +15,9 @@
 ///   The value of the custom property or a map of valid variables with
 ///   breakpoints as the key.
 /// @param {map} $breakpoints
-///   A breakpoints map (e.g., core.$breakpoints).
+///   A breakpoints map (e.g., config.get("breakpoints")).
 ///
-@mixin css-query($component, $prop, $value, $breakpoints: $breakpoints) {
+@mixin css-query($component, $prop, $value, $breakpoints: config.get("breakpoints")) {
   // If padding is not a map, set the CSS var
   @if meta.type-of($value) != "map" {
     @include css.override($component, $prop, $value);

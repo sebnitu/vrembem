@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "../config" as var;
 @use "../functions" as fun;
 
@@ -9,7 +10,7 @@
     }
   }
 
-  @each $bp, $value in core.$breakpoints {
+  @each $bp, $value in config.get("breakpoints") {
     @include core.media-min($value) {
       @each $property in var.$display-properties {
         #{fun.selector("display", $property, "#{$bp}:")} {
