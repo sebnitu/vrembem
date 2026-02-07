@@ -1,0 +1,17 @@
+@use "@vrembem/core/css";
+@include css.set("code-expander", "max-height", 20rem);
+
+.code-expander {
+  position: relative;
+
+  .pre {
+    max-height: css.get("code-expander", "max-height");
+    transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+  }
+}
+
+.code-expander__toggle {
+  inset: auto css.get("gap") css.get("gap") auto;
+  position: absolute;
+  z-index: 1;
+}

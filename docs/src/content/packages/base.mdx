@@ -5,6 +5,7 @@ package: "@vrembem/base"
 status: "layers"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
@@ -28,6 +29,7 @@ npm install @vrembem/base
 
 Base comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
 
+<CodeExpander>
 ```scss
 $config: (
   // Controls whether module styles are output. This can be overridden on a per 
@@ -76,6 +78,7 @@ $config: (
   )
 );
 ```
+</CodeExpander>
 
 ## Output
 

@@ -5,6 +5,8 @@ package: "@vrembem/core"
 status: "settings"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
+
 # Core
 
 Vrembem's core package provides a number of Sass and JavaScript modules that make up the shared systems, configurations, and utilities of the Vrembem library.
@@ -29,6 +31,7 @@ npm install @vrembem/core
 
 Core comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
 
+<CodeExpander>
 ```scss
 $config: (
   // A prefix to apply to block class names
@@ -77,6 +80,7 @@ $config: (
   "theme-default": "light",
 );
 ```
+</CodeExpander>
 
 ## Sass modules
 
