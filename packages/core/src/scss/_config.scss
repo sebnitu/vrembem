@@ -50,4 +50,4 @@ $defaults: (
   "theme-default": "light",
 );
 
-@include config.apply(null, $config, $defaults);
+@include config.apply($config, $defaults);

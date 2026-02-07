@@ -8,15 +8,15 @@ $default: (
   // Controls whether module styles are output. This can be overridden on a per 
   // module basis using the `output-exceptions` config option.
   // @type boolean
-  "output": true,
+  "base-output": true,
 
   // Modules to exclude from the output rule set in `base-output`
   // @type list
-  "output-exceptions": (),
+  "base-output-exceptions": (),
 
   // A map containing module names as keys and their preferred class selectors
   // @type map
-  "classes": (
+  "base-classes": (
     "separator": "sep"
   ),
 
@@ -24,7 +24,7 @@ $default: (
   // variables. Should contain a key of the heading level to output and the 
   // value of a font-size and optional line-height (space separated).
   // @type map
-  "headings": (
+  "base-headings": (
     "h1": 2.75em,
     "h2": 2em,
     "h3": 1.75em,
@@ -35,7 +35,7 @@ $default: (
 
   // Map modules to their preferred type selectors
   // @type map
-  "type-selectors": (
+  "base-type-selectors": (
     "h1": "> h1",
     "h2": "> h2",
     "h3": "> h3",
@@ -51,4 +51,4 @@ $default: (
   )
 );
 
-@include config.apply("base", $config, $default);
+@include config.apply($config, $default);

@@ -66,7 +66,7 @@ Changes to the global config should be done in a file that is loaded before othe
 
 ### Using with clause
 
-To set configuration options via the Sass `@use ... with` clause define the `$config` map. Values set using `with ($config)` are stored prefixed with the component's name. The core component is the only exception to this.
+To set configuration options via the Sass `@use ... with` clause define the `$config` map. Values set using `with ($config)` are stored in the config module.
 
 <CodeExample label="app.scss">
   ```scss
@@ -77,14 +77,11 @@ To set configuration options via the Sass `@use ... with` clause define the `$co
   );
   @use "@vrembem/base" with (
     $config: (
-      "output": false
+      "base-output": false
     )
   );
 
-  // Core config options are not prefixed
   @debug core.config-get("prefix-block"); // => "sn-"
-
-  // Component config options are prefixed with their name
   @debug core.config-get("base-output"); // => false
   ```
 </CodeExample>
