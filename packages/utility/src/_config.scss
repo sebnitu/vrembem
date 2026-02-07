@@ -36,12 +36,17 @@ $default: (
     "lg": css.get("border-radius-lg"),
     "circle": css.get("border-radius-circle"),
     "square": 0
+  ),
+
+  // A list of display value properties to output
+  // @type list
+  "utility-display": (
+    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
   )
 );
 
 @include config.apply($config, $default);
 
-$display-properties: (inline, flex, inline-flex, grid, inline-grid, block, inline-block, none) !default;
 $max-width: 70rem !default;
 $max-width-scale: (
   "none": none,
