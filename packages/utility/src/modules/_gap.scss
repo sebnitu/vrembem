@@ -3,60 +3,60 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("gap") {
-  #{fun.utility("gap")} {
+  #{fun.selector("gap")} {
     gap: var.$gap !important;
   }
 
-  #{fun.utility("gap", "x")} {
+  #{fun.selector("gap", "x")} {
     column-gap: var.$gap !important;
   }
 
-  #{fun.utility("gap", "y")} {
+  #{fun.selector("gap", "y")} {
     row-gap: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("gap", $key)} {
+    #{fun.selector("gap", $key)} {
       gap: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("gap", "x", $key)} {
+    #{fun.selector("gap", "x", $key)} {
       column-gap: $value !important;
     }
 
-    #{fun.utility("gap", "y", $key)} {
+    #{fun.selector("gap", "y", $key)} {
       row-gap: $value !important;
     }
   }
 
   @each $bp, $value in var.$breakpoints {
     @include core.media-min($value) {
-      #{fun.utility("gap", "#{$bp}:")} {
+      #{fun.selector("gap", "#{$bp}:")} {
         gap: var.$gap !important;
       }
 
-      #{fun.utility("gap", "x", "#{$bp}:")} {
+      #{fun.selector("gap", "x", "#{$bp}:")} {
         column-gap: var.$gap !important;
       }
 
-      #{fun.utility("gap", "y", "#{$bp}:")} {
+      #{fun.selector("gap", "y", "#{$bp}:")} {
         row-gap: var.$gap !important;
       }
 
       @each $key, $value in var.$gap-map {
-        #{fun.utility("gap", $key, "#{$bp}:")} {
+        #{fun.selector("gap", $key, "#{$bp}:")} {
           gap: $value !important;
         }
       }
 
       @each $key, $value in var.$gap-map {
-        #{fun.utility("gap", "x", $key, "#{$bp}:")} {
+        #{fun.selector("gap", "x", $key, "#{$bp}:")} {
           column-gap: $value !important;
         }
 
-        #{fun.utility("gap", "y", $key, "#{$bp}:")} {
+        #{fun.selector("gap", "y", $key, "#{$bp}:")} {
           row-gap: $value !important;
         }
       }

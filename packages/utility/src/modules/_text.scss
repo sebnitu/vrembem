@@ -2,69 +2,69 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("text") {
-  #{fun.utility("text", "capitalize")} {
+  #{fun.selector("text", "capitalize")} {
     text-transform: capitalize !important;
   }
 
-  #{fun.utility("text", "lowercase")} {
+  #{fun.selector("text", "lowercase")} {
     text-transform: lowercase !important;
   }
 
-  #{fun.utility("text", "uppercase")} {
+  #{fun.selector("text", "uppercase")} {
     text-transform: uppercase !important;
   }
 
-  #{fun.utility("text", "align", "left")} {
+  #{fun.selector("text", "align", "left")} {
     text-align: left !important;
   }
 
-  #{fun.utility("text", "align", "center")} {
+  #{fun.selector("text", "align", "center")} {
     text-align: center !important;
   }
 
-  #{fun.utility("text", "align", "right")} {
+  #{fun.selector("text", "align", "right")} {
     text-align: right !important;
   }
 
-  #{fun.utility("text", "strike")} {
+  #{fun.selector("text", "strike")} {
     text-decoration: line-through !important;
   }
 
-  #{fun.utility("text", "underline")} {
+  #{fun.selector("text", "underline")} {
     text-decoration: underline !important;
   }
 
-  #{fun.utility("text", "underline", "dotted")} {
+  #{fun.selector("text", "underline", "dotted")} {
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
   }
 
-  #{fun.utility("text", "underline", "dashed")} {
+  #{fun.selector("text", "underline", "dashed")} {
     text-decoration: underline !important;
     text-decoration-style: dashed !important;
   }
 
-  #{fun.utility("text", "wrap")} {
+  #{fun.selector("text", "wrap")} {
     text-wrap: normal !important;
   }
 
-  #{fun.utility("text", "nowrap")} {
+  #{fun.selector("text", "nowrap")} {
     text-wrap: nowrap !important;
   }
 
-  #{fun.utility("text", "wrap", "balance")} {
+  #{fun.selector("text", "wrap", "balance")} {
     text-wrap: balance !important;
   }
 
-  #{fun.utility("text", "wrap", "pretty")} {
+  #{fun.selector("text", "wrap", "pretty")} {
     text-wrap: pretty !important;
   }
 
-  #{fun.utility("text", "wrap", "stable")} {
+  #{fun.selector("text", "wrap", "stable")} {
     text-wrap: stable !important;
   }
 
-  #{fun.utility("text", "overflow", "ellipsis")} {
+  #{fun.selector("text", "overflow", "ellipsis")} {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     text-wrap: nowrap !important;

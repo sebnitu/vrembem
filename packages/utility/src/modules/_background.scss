@@ -6,58 +6,58 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("background") {
-  #{fun.utility("background", "clip-border")} {
+  #{fun.selector("background", "clip-border")} {
     background-clip: border-box !important;
   }
 
-  #{fun.utility("background", "clip-content")} {
+  #{fun.selector("background", "clip-content")} {
     background-clip: content-box !important;
   }
 
-  #{fun.utility("background", "clip-padding")} {
+  #{fun.selector("background", "clip-padding")} {
     background-clip: padding-box !important;
   }
 
-  #{fun.utility("background", "clip-text")} {
+  #{fun.selector("background", "clip-text")} {
     background-clip: text !important;
   }
 
-  #{fun.utility("background", "black")} {
+  #{fun.selector("background", "black")} {
     background-color: black !important;
   }
 
-  #{fun.utility("background", "white")} {
+  #{fun.selector("background", "white")} {
     background-color: white !important;
   }
 
-  #{fun.utility("background", "transparent")} {
+  #{fun.selector("background", "transparent")} {
     background-color: transparent !important;
   }
 
   // Theme CSS Variable output
 
-  #{fun.utility("background")} {
+  #{fun.selector("background")} {
     background-color: css.get("background") !important;
   }
 
-  #{fun.utility("background", "dark")} {
+  #{fun.selector("background", "dark")} {
     background-color: css.get("background-dark") !important;
   }
 
-  #{fun.utility("background", "darker")} {
+  #{fun.selector("background", "darker")} {
     background-color: css.get("background-darker") !important;
   }
 
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
-    #{fun.utility("background", $name)} {
+    #{fun.selector("background", $name)} {
       background-color: palette.get($name) !important;
     }
 
     // TODO: Either add a range config in utilities, or remove this
     // @each $value in config.get("palette-range") {
-    //   #{fun.utility("background", $name, $value)} {
+    //   #{fun.selector("background", $name, $value)} {
     //     background-color: palette.get($name, $value) !important;
     //   }
     // }

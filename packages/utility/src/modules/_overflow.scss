@@ -3,15 +3,15 @@
 
 @if fun.maybe-output("overflow") {
   @each $property in var.$overflow-properties {
-    #{fun.utility("overflow", $property)} {
+    #{fun.selector("overflow", $property)} {
       overflow: $property !important;
     }
 
-    #{fun.utility("overflow", "x", $property)} {
+    #{fun.selector("overflow", "x", $property)} {
       overflow-x: $property !important;
     }
 
-    #{fun.utility("overflow", "y", $property)} {
+    #{fun.selector("overflow", "y", $property)} {
       overflow-y: $property !important;
     }
   }

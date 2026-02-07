@@ -2,65 +2,65 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("padding") {
-  #{fun.utility("padding")} {
+  #{fun.selector("padding")} {
     padding: var.$gap !important;
   }
 
-  #{fun.utility("padding", "top")} {
+  #{fun.selector("padding", "top")} {
     padding-top: var.$gap !important;
   }
 
-  #{fun.utility("padding", "bottom")} {
+  #{fun.selector("padding", "bottom")} {
     padding-bottom: var.$gap !important;
   }
 
-  #{fun.utility("padding", "left")} {
+  #{fun.selector("padding", "left")} {
     padding-left: var.$gap !important;
   }
 
-  #{fun.utility("padding", "right")} {
+  #{fun.selector("padding", "right")} {
     padding-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", $key)} {
+    #{fun.selector("padding", $key)} {
       padding: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "top", $key)} {
+    #{fun.selector("padding", "top", $key)} {
       padding-top: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "bottom", $key)} {
+    #{fun.selector("padding", "bottom", $key)} {
       padding-bottom: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "left", $key)} {
+    #{fun.selector("padding", "left", $key)} {
       padding-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "right", $key)} {
+    #{fun.selector("padding", "right", $key)} {
       padding-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "x", $key)} {
+    #{fun.selector("padding", "x", $key)} {
       padding-left: $value !important;
       padding-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("padding", "y", $key)} {
+    #{fun.selector("padding", "y", $key)} {
       padding-bottom: $value !important;
       padding-top: $value !important;
     }

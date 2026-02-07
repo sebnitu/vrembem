@@ -4,7 +4,7 @@
 
 @if fun.maybe-output("display") {
   @each $property in var.$display-properties {
-    #{fun.utility("display", $property)} {
+    #{fun.selector("display", $property)} {
       display: $property !important;
     }
   }
@@ -12,7 +12,7 @@
   @each $bp, $value in var.$breakpoints {
     @include core.media-min($value) {
       @each $property in var.$display-properties {
-        #{fun.utility("display", $property, "#{$bp}:")} {
+        #{fun.selector("display", $property, "#{$bp}:")} {
           display: $property !important;
         }
       }

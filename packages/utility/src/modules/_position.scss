@@ -2,23 +2,23 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("position") {
-  #{fun.utility("position", "absolute")} {
+  #{fun.selector("position", "absolute")} {
     position: absolute !important;
   }
 
-  #{fun.utility("position", "fixed")} {
+  #{fun.selector("position", "fixed")} {
     position: fixed !important;
   }
 
-  #{fun.utility("position", "relative")} {
+  #{fun.selector("position", "relative")} {
     position: relative !important;
   }
 
-  #{fun.utility("position", "static")} {
+  #{fun.selector("position", "static")} {
     position: static !important;
   }
 
-  #{fun.utility("position", "sticky")} {
+  #{fun.selector("position", "sticky")} {
     position: sticky !important;
   }
 }

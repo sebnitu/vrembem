@@ -3,55 +3,55 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("border") {
-  #{fun.utility("border")} {
+  #{fun.selector("border")} {
     border: css.get("border") !important;
   }
 
-  #{fun.utility("border", "top")} {
+  #{fun.selector("border", "top")} {
     border-top: css.get("border") !important;
   }
 
-  #{fun.utility("border", "bottom")} {
+  #{fun.selector("border", "bottom")} {
     border-bottom: css.get("border") !important;
   }
 
-  #{fun.utility("border", "left")} {
+  #{fun.selector("border", "left")} {
     border-left: css.get("border") !important;
   }
 
-  #{fun.utility("border", "right")} {
+  #{fun.selector("border", "right")} {
     border-right: css.get("border") !important;
   }
 
-  #{fun.utility("border", "none")} {
+  #{fun.selector("border", "none")} {
     border: 0 !important;
   }
 
-  #{fun.utility("border", "top-none")} {
+  #{fun.selector("border", "top-none")} {
     border-top: 0 !important;
   }
 
-  #{fun.utility("border", "bottom-none")} {
+  #{fun.selector("border", "bottom-none")} {
     border-bottom: 0 !important;
   }
 
-  #{fun.utility("border", "left-none")} {
+  #{fun.selector("border", "left-none")} {
     border-left: 0 !important;
   }
 
-  #{fun.utility("border", "right-none")} {
+  #{fun.selector("border", "right-none")} {
     border-right: 0 !important;
   }
 
-  #{fun.utility("border", "color-dark")} {
+  #{fun.selector("border", "color-dark")} {
     border-color: css.get("border-color-dark") !important;
   }
 
-  #{fun.utility("border", "color-darker")} {
+  #{fun.selector("border", "color-darker")} {
     border-color: css.get("border-color-darker") !important;
   }
 
-  #{fun.utility("border", "color-transparent")} {
+  #{fun.selector("border", "color-transparent")} {
     border-color: transparent !important;
   }
 }

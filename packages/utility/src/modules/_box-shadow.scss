@@ -3,31 +3,31 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("box-shadow") {
-  #{fun.utility("box-shadow")} {
+  #{fun.selector("box-shadow")} {
     box-shadow: css.get("box-shadow") !important;
   }
 
-  #{fun.utility("box-shadow", "flat")} {
+  #{fun.selector("box-shadow", "flat")} {
     box-shadow: 0 0 0 0 transparent !important;
   }
 
-  #{fun.utility("box-shadow", "1")} {
+  #{fun.selector("box-shadow", "1")} {
     box-shadow: css.get("box-shadow-1") !important;
   }
 
-  #{fun.utility("box-shadow", "2")} {
+  #{fun.selector("box-shadow", "2")} {
     box-shadow: css.get("box-shadow-2") !important;
   }
 
-  #{fun.utility("box-shadow", "3")} {
+  #{fun.selector("box-shadow", "3")} {
     box-shadow: css.get("box-shadow-3") !important;
   }
 
-  #{fun.utility("box-shadow", "4")} {
+  #{fun.selector("box-shadow", "4")} {
     box-shadow: css.get("box-shadow-4") !important;
   }
 
-  #{fun.utility("box-shadow", "5")} {
+  #{fun.selector("box-shadow", "5")} {
     box-shadow: css.get("box-shadow-5") !important;
   }
 }

@@ -2,63 +2,63 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("align") {
-  #{fun.utility("align", "content", "start")} {
+  #{fun.selector("align", "content", "start")} {
     align-content: start !important;
   }
 
-  #{fun.utility("align", "content", "center")} {
+  #{fun.selector("align", "content", "center")} {
     align-content: center !important;
   }
 
-  #{fun.utility("align", "content", "end")} {
+  #{fun.selector("align", "content", "end")} {
     align-content: end !important;
   }
 
-  #{fun.utility("align", "content", "between")} {
+  #{fun.selector("align", "content", "between")} {
     align-content: space-between !important;
   }
 
-  #{fun.utility("align", "content", "around")} {
+  #{fun.selector("align", "content", "around")} {
     align-content: space-around !important;
   }
 
-  #{fun.utility("align", "content", "evenly")} {
+  #{fun.selector("align", "content", "evenly")} {
     align-content: space-evenly !important;
   }
 
-  #{fun.utility("align", "content", "stretch")} {
+  #{fun.selector("align", "content", "stretch")} {
     align-content: stretch !important;
   }
 
-  #{fun.utility("align", "items", "start")} {
+  #{fun.selector("align", "items", "start")} {
     align-items: start !important;
   }
 
-  #{fun.utility("align", "items", "center")} {
+  #{fun.selector("align", "items", "center")} {
     align-items: center !important;
   }
 
-  #{fun.utility("align", "items", "end")} {
+  #{fun.selector("align", "items", "end")} {
     align-items: end !important;
   }
 
-  #{fun.utility("align", "items", "stretch")} {
+  #{fun.selector("align", "items", "stretch")} {
     align-items: stretch !important;
   }
 
-  #{fun.utility("align", "self", "start")} {
+  #{fun.selector("align", "self", "start")} {
     align-self: start !important;
   }
 
-  #{fun.utility("align", "self", "center")} {
+  #{fun.selector("align", "self", "center")} {
     align-self: center !important;
   }
 
-  #{fun.utility("align", "self", "end")} {
+  #{fun.selector("align", "self", "end")} {
     align-self: end !important;
   }
 
-  #{fun.utility("align", "self", "stretch")} {
+  #{fun.selector("align", "self", "stretch")} {
     align-self: stretch !important;
   }
 }

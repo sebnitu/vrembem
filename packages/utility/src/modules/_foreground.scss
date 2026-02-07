@@ -6,42 +6,42 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("foreground") {
-  #{fun.utility("foreground", "black")} {
+  #{fun.selector("foreground", "black")} {
     color: black !important;
   }
 
-  #{fun.utility("foreground", "white")} {
+  #{fun.selector("foreground", "white")} {
     color: white !important;
   }
 
-  #{fun.utility("foreground", "transparent")} {
+  #{fun.selector("foreground", "transparent")} {
     color: transparent !important;
   }
 
   // Theme CSS Variable output
 
-  #{fun.utility("foreground")} {
+  #{fun.selector("foreground")} {
     color: css.get("foreground") !important;
   }
 
-  #{fun.utility("foreground", "light")} {
+  #{fun.selector("foreground", "light")} {
     color: css.get("foreground-light") !important;
   }
 
-  #{fun.utility("foreground", "lighter")} {
+  #{fun.selector("foreground", "lighter")} {
     color: css.get("foreground-lighter") !important;
   }
 
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
-    #{fun.utility("foreground", $name)} {
+    #{fun.selector("foreground", $name)} {
       color: palette.get($name) !important;
     }
 
     // TODO: Either add a range config in utilities, or remove this
     // @each $value in config.get("palette-range") {
-    //   #{fun.utility("foreground", $name, $value)} {
+    //   #{fun.selector("foreground", $name, $value)} {
     //     color: palette.get($name, $value) !important;
     //   }
     // }

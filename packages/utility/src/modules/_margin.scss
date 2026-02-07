@@ -2,96 +2,96 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("margin") {
-  #{fun.utility("margin")} {
+  #{fun.selector("margin")} {
     margin: var.$gap !important;
   }
 
-  #{fun.utility("margin", "top")} {
+  #{fun.selector("margin", "top")} {
     margin-top: var.$gap !important;
   }
 
-  #{fun.utility("margin", "bottom")} {
+  #{fun.selector("margin", "bottom")} {
     margin-bottom: var.$gap !important;
   }
 
-  #{fun.utility("margin", "left")} {
+  #{fun.selector("margin", "left")} {
     margin-left: var.$gap !important;
   }
 
-  #{fun.utility("margin", "right")} {
+  #{fun.selector("margin", "right")} {
     margin-right: var.$gap !important;
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", $key)} {
+    #{fun.selector("margin", $key)} {
       margin: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "top", $key)} {
+    #{fun.selector("margin", "top", $key)} {
       margin-top: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "bottom", $key)} {
+    #{fun.selector("margin", "bottom", $key)} {
       margin-bottom: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "left", $key)} {
+    #{fun.selector("margin", "left", $key)} {
       margin-left: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "right", $key)} {
+    #{fun.selector("margin", "right", $key)} {
       margin-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "x", $key)} {
+    #{fun.selector("margin", "x", $key)} {
       margin-left: $value !important;
       margin-right: $value !important;
     }
   }
 
   @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "y", $key)} {
+    #{fun.selector("margin", "y", $key)} {
       margin-bottom: $value !important;
       margin-top: $value !important;
     }
   }
 
-  #{fun.utility("margin", "auto")} {
+  #{fun.selector("margin", "auto")} {
     margin: auto !important;
   }
 
-  #{fun.utility("margin", "top", "auto")} {
+  #{fun.selector("margin", "top", "auto")} {
     margin-top: auto !important;
   }
 
-  #{fun.utility("margin", "bottom", "auto")} {
+  #{fun.selector("margin", "bottom", "auto")} {
     margin-bottom: auto !important;
   }
 
-  #{fun.utility("margin", "left", "auto")} {
+  #{fun.selector("margin", "left", "auto")} {
     margin-left: auto !important;
   }
 
-  #{fun.utility("margin", "right", "auto")} {
+  #{fun.selector("margin", "right", "auto")} {
     margin-right: auto !important;
   }
 
-  #{fun.utility("margin", "x", "auto")} {
+  #{fun.selector("margin", "x", "auto")} {
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  #{fun.utility("margin", "y", "auto")} {
+  #{fun.selector("margin", "y", "auto")} {
     margin-bottom: auto !important;
     margin-top: auto !important;
   }

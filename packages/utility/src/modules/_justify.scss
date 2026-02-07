@@ -2,63 +2,63 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("justify") {
-  #{fun.utility("justify", "content", "start")} {
+  #{fun.selector("justify", "content", "start")} {
     justify-content: start !important;
   }
 
-  #{fun.utility("justify", "content", "center")} {
+  #{fun.selector("justify", "content", "center")} {
     justify-content: center !important;
   }
 
-  #{fun.utility("justify", "content", "end")} {
+  #{fun.selector("justify", "content", "end")} {
     justify-content: end !important;
   }
 
-  #{fun.utility("justify", "content", "between")} {
+  #{fun.selector("justify", "content", "between")} {
     justify-content: space-between !important;
   }
 
-  #{fun.utility("justify", "content", "around")} {
+  #{fun.selector("justify", "content", "around")} {
     justify-content: space-around !important;
   }
 
-  #{fun.utility("justify", "content", "evenly")} {
+  #{fun.selector("justify", "content", "evenly")} {
     justify-content: space-evenly !important;
   }
 
-  #{fun.utility("justify", "content", "stretch")} {
+  #{fun.selector("justify", "content", "stretch")} {
     justify-content: stretch !important;
   }
 
-  #{fun.utility("justify", "items", "start")} {
+  #{fun.selector("justify", "items", "start")} {
     justify-items: start !important;
   }
 
-  #{fun.utility("justify", "items", "center")} {
+  #{fun.selector("justify", "items", "center")} {
     justify-items: center !important;
   }
 
-  #{fun.utility("justify", "items", "end")} {
+  #{fun.selector("justify", "items", "end")} {
     justify-items: end !important;
   }
 
-  #{fun.utility("justify", "items", "stretch")} {
+  #{fun.selector("justify", "items", "stretch")} {
     justify-items: stretch !important;
   }
 
-  #{fun.utility("justify", "self", "start")} {
+  #{fun.selector("justify", "self", "start")} {
     justify-self: start !important;
   }
 
-  #{fun.utility("justify", "self", "center")} {
+  #{fun.selector("justify", "self", "center")} {
     justify-self: center !important;
   }
 
-  #{fun.utility("justify", "self", "end")} {
+  #{fun.selector("justify", "self", "end")} {
     justify-self: end !important;
   }
 
-  #{fun.utility("justify", "self", "stretch")} {
+  #{fun.selector("justify", "self", "stretch")} {
     justify-self: stretch !important;
   }
 }

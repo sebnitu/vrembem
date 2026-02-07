@@ -2,63 +2,63 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("place") {
-  #{fun.utility("place", "content", "start")} {
+  #{fun.selector("place", "content", "start")} {
     place-content: start !important;
   }
 
-  #{fun.utility("place", "content", "center")} {
+  #{fun.selector("place", "content", "center")} {
     place-content: center !important;
   }
 
-  #{fun.utility("place", "content", "end")} {
+  #{fun.selector("place", "content", "end")} {
     place-content: end !important;
   }
 
-  #{fun.utility("place", "content", "between")} {
+  #{fun.selector("place", "content", "between")} {
     place-content: space-between !important;
   }
 
-  #{fun.utility("place", "content", "around")} {
+  #{fun.selector("place", "content", "around")} {
     place-content: space-around !important;
   }
 
-  #{fun.utility("place", "content", "evenly")} {
+  #{fun.selector("place", "content", "evenly")} {
     place-content: space-evenly !important;
   }
 
-  #{fun.utility("place", "content", "stretch")} {
+  #{fun.selector("place", "content", "stretch")} {
     place-content: stretch !important;
   }
 
-  #{fun.utility("place", "items", "start")} {
+  #{fun.selector("place", "items", "start")} {
     place-items: start !important;
   }
 
-  #{fun.utility("place", "items", "center")} {
+  #{fun.selector("place", "items", "center")} {
     place-items: center !important;
   }
 
-  #{fun.utility("place", "items", "end")} {
+  #{fun.selector("place", "items", "end")} {
     place-items: end !important;
   }
 
-  #{fun.utility("place", "items", "stretch")} {
+  #{fun.selector("place", "items", "stretch")} {
     place-items: stretch !important;
   }
 
-  #{fun.utility("place", "self", "start")} {
+  #{fun.selector("place", "self", "start")} {
     place-self: start !important;
   }
 
-  #{fun.utility("place", "self", "center")} {
+  #{fun.selector("place", "self", "center")} {
     place-self: center !important;
   }
 
-  #{fun.utility("place", "self", "end")} {
+  #{fun.selector("place", "self", "end")} {
     place-self: end !important;
   }
 
-  #{fun.utility("place", "self", "stretch")} {
+  #{fun.selector("place", "self", "stretch")} {
     place-self: stretch !important;
   }
 }
