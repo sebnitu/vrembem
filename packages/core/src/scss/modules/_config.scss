@@ -132,24 +132,19 @@ $-watchers: ();
   @include -run-watchers($key, "remove");
 }
 
-/// Apply a configuration map prefixing all keys with the provided prefix value.
-/// The provided configuration map must match the signature list or map. This
-/// mixin is typically used by components to allow providing default values
+/// Apply a configuration map to the config module based on the values in a
+/// default map. The provided configuration map must match the signature of the
+/// default map. This mixin is used to allow setting values in the config module
 /// using the Sass `with` clause.
 ///
 /// @param {map} $config
 ///   The config map to set in the global config object.
-/// @param {map | list} $default
-///   The valid map signature and default config map values, or a list of valid
-///   configuration options. Set map values to `null` to prevent them from being
-///   set as the config default.
+/// @param {map} $default
+///   The default map that is also used as a map signature for `$config`.
 ///
 @mixin apply($config, $default) {
   @each $key, $value in $config {
-    $valid-m: meta.type-of($default) == "map" and map.has-key($default, $key);
-    $valid-l: meta.type-of($default) == "list" and list.index($default, $key);
-
-    @if $valid-m or $valid-l {
+    @if map.has-key($default, $key) {
       // If the value is a map, merge it with the default value
       @if meta.type-of($value) == "map" {
         $value: map.deep-merge(map.get($default, $key), $value);
@@ -163,9 +158,7 @@ $-watchers: ();
 
   @if meta.type-of($default) == "map" {
     @each $key, $value in $default {
-      @if $value {
-        @include set-default($key, $value);
-      }
+      @include set-default($key, $value);
     }
   }
 }
