@@ -6,6 +6,7 @@ interface Props {
   selector?: string;
   hash?: {
     target: string;
+    text?: string;
     event?: string;
     detail?: {};
   };
@@ -15,12 +16,12 @@ interface Props {
 const { type, defaults, returns, selector, hash, readonly } = Astro.props;
 ---
 
-<div class="flex justify-content-between align-items-center">
+<div class="reference-bar">
   {
     type && (
-      <p>
+      <p class="reference-bar__item">
         <strong>Type:</strong>
-        <span class="margin-left-sm">
+        <span>
           {readonly && <span>readonly</span>}
           <code>{type}</code>
         </span>
@@ -29,9 +30,9 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
   }
   {
     selector && (
-      <p>
+      <p class="reference-bar__item">
         <strong>Selector:</strong>
-        <span class="margin-left-sm">
+        <span>
           <code>{selector}</code>
         </span>
       </p>
@@ -39,9 +40,9 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
   }
   {
     returns && (
-      <p>
+      <p class="reference-bar__item">
         <strong>Returns:</strong>
-        <span class="margin-left-sm">
+        <span>
           <code>{returns}</code>
         </span>
       </p>
@@ -49,9 +50,9 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
   }
   {
     defaults && (
-      <p>
+      <p class="reference-bar__item">
         <strong>Default:</strong>
-        <span class="margin-left-sm">
+        <span>
           <code>{defaults}</code>
         </span>
       </p>
@@ -66,7 +67,8 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
         data-event={hash.event}
         data-detail={JSON.stringify(hash.detail)}
       >
-        <slot />
+        {hash.text || "Variables"}
+        <span class="arrow" />
       </a>
     )
   }

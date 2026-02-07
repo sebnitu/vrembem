@@ -34,15 +34,16 @@
 
   // Palette CSS Variable output
 
-  @each $name in map.keys(palette.get("seeds")) {
+  @each $name in map.keys(config.get("palette")) {
     #{fun.utility("foreground", $name)} {
       color: palette.get($name) !important;
     }
 
-    @each $value in config.get("palette-range") {
-      #{fun.utility("foreground", $name, $value)} {
-        color: palette.get($name, $value) !important;
-      }
-    }
+    // TODO: Either add a range config in utilities, or remove this
+    // @each $value in config.get("palette-range") {
+    //   #{fun.utility("foreground", $name, $value)} {
+    //     color: palette.get($name, $value) !important;
+    //   }
+    // }
   }
 }

@@ -6,6 +6,7 @@ group: sass-modules
 ---
 
 import ReferenceCard from "../../../components/ReferenceCard.astro";
+import ReferenceBar from "../../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
   ```scss
@@ -15,174 +16,77 @@ import ReferenceCard from "../../../components/ReferenceCard.astro";
 
 ## Basic usage
 
-The purpose of `core/config` is to provide a straightforward API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
+The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
 
 - [`config.get`](#configget)
 - [`config.set`](#configset)
 - [`config.set-default`](#configset-default)
+- [`config.merge`](#configmerge)
 - [`config.remove`](#configremove)
 - [`config.apply`](#configapply)
+- [`config.watch`](#configwatch)
+- [`config.unwatch`](#configunwatch)
 - [`config.log`](#configlog)
 
-To get started with the configuration system, first import the configuration module. Once imorted, set a value using the `config.set` mixin.
+There are two primary methods to configure options in the config module. The first is import and use the module API directly and the second is the Sass `@use ... with` clause.
 
-<CodeExample lang="scss">
-  <Fragment>
-    ```scss
-    // 1. Import the module
-    @use "@vrembem/core/config";
+### Using config module
 
-    // 2. Set a custom configuration
-    @include config.set("theme-prefix", "theme");
-    ```
-  </Fragment>
-</CodeExample>
+To use the configuration module directly, import the `core/config` module. Once imported you can use the API to `set` and `get` values in the configuration map.
 
-To use values from the configuration map, call the `config.get` function with the key of the desired configuration value.
-
-<CodeExample lang="scss" tabs>
-  <Fragment slot="tab-scss">
-    ```scss
-    // 1. Import the module
-    @use "@vrembem/core/config";
-
-    .box {
-      background: #ddd;
-      color: #333;
-    }
-
-    // 2. Get the custom value
-    .#{config.get("theme-prefix")}-high-contrast {
-      .box {
-        background: #fff;
-        color: #000;
-      }
-    }
-    ```
-  </Fragment>
-  <Fragment slot="tab-css">
-    ```css
-    .box {
-      background: #ddd;
-      color: #333;
-    }
-
-    .theme-high-contrast .box {
-      background: #fff;
-      color: #000;
-    }
-    ```
-  </Fragment>
-</CodeExample>
-
-It's important to keep in mind that all changes to the global config should be done in a setup file that is loaded before all other Vrembem components. This ensures that components use the correct configuration values.
-
-<CodeExample lang="scss">
+<CodeExample label="_config.scss">
   ```scss
-  // Inside an app.scss manifest file
+  // 1. Import the module
+  @use "@vrembem/core/config";
+
+  // 2. Set a configuration value
+  @include config.set("theme-prefix", "theme");
+
+  // 3. Get a configuration value
+  @debug config.get("theme-prefix"); // => "theme"
+  ```
+</CodeExample>
+
+Changes to the global config should be done in a file that is loaded before other Vrembem or custom components. This ensures that components use the correct configuration values.
+
+<CodeExample label="style.scss">
+  ```scss
   // 1. Make all your custom configurations
-  @use "_setup.scss";
+  @use "./config";
 
-  // 2. Import other files that use your custom configurations
-  @use "_box.scss";
+  // 2. Import components or other custom modules
+  @use "@vrembem/base";
+  @use "@vrembem/modal";
+  // ...
 
-  // 3. Import the Vrembem library or specific components as needed
-  @use "vrembem";
+  // 3. Output CSS variables
+  @use "@vrembem/core/root";
   ```
 </CodeExample>
 
-## Default values
+### Using with clause
 
-The values predefined by core modules are used internally by the Vrembem library. The configuration module defines several prefix values related to the BEM naming syntax.
+To set configuration options via the Sass `@use ... with` clause, define and set options in the `$config` map. Options set in the `$config` map are stored in the config module.
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
   ```scss
-  $-config: (
-    // Prefix for block class names
-    // Example: .block { ... }
-    "prefix-block": "",
-
-    // Prefix for element class names
-    // Example: .block__element { ... }
-    "prefix-element": "__",
-
-    // Prefix for modifier class names
-    // Example: .block_modifier { ... }
-    "prefix-modifier": "_",
-
-    // Prefix for modifier value class names
-    // Example: .block_modifier_value { ... }
-    "prefix-modifier-value": "_",
-
-    // Prefix for utility class names
-    // Example: .display-block { ... }
-    "prefix-utility": ""
+  @use "@vrembem/core" with (
+    $config: (
+      "prefix-block": "sn-"
+    )
   );
+  @use "@vrembem/base" with (
+    $config: (
+      "base-output": false
+    )
+  );
+
+  @debug core.config-get("prefix-block"); // => "sn-"
+  @debug core.config-get("base-output"); // => false
   ```
 </CodeExample>
 
-By default, Vrembem does not prefix its component class names. If you'd like to prefix component class names to help avoid conflicts in existing projects, set a value for `"prefix-block"` (such as `"vb-"`) before importing Vrembem components.
-
-<CodeExample lang="scss">
-  <Fragment>
-    ```scss
-    @include config.set("prefix-block", "vb-");
-    ```
-  </Fragment>
-</CodeExample>
-
-You can use the `core.bem` function to generate class names with the correct prefixes, without setting them manually.
-
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
-    ```scss
-    @use "@vrembem/core";
-
-    // Generate selector for block
-    #{core.bem("menu")} {
-      // ...
-    }
-
-    // Generate selector for element
-    #{core.bem("menu", "item")} {
-      // ...
-    }
-
-    // Generate selector for modifier
-    #{core.bem("menu", null, "stack")} {
-      // ...
-    }
-
-    // Generate selector for modifier value
-    #{core.bem("menu", null, "size", "lg")} {
-      // ...
-    }
-    ```
-  </Fragment>
-  <Fragment slot="tab-css">
-    ```scss
-    // Generate selector for block
-    .menu {
-      // ...
-    }
-
-    // Generate selector for element
-    .menu__item {
-      // ...
-    }
-
-    // Generate selector for modifier
-    .menu_stack {
-      // ...
-    }
-
-    // Generate selector for modifier value
-    .menu_size_lg {
-      // ...
-    }
-    ```
-  </Fragment>
-</CodeExample>
+Changes to the global config should be done before loading other Vrembem or custom components. This ensures that components use the correct configuration values.
 
 ## Reference
 
@@ -190,7 +94,9 @@ This reference details the available configuration API, their arguments, and usa
 
 ### config.get()
 
-Returns the value of an option in the configuration map.
+<ReferenceBar type="function" />
+
+Function to returns the value of an option in the configuration map.
 
 #### Arguments
 
@@ -211,6 +117,8 @@ Returns the value of an option in the configuration map.
 </CodeExample>
 
 ### config.set()
+
+<ReferenceBar type="mixin" />
 
 Set an option in the configuration map by providing a key and value to store, or pass a map to store multiple key/value pairs.
 
@@ -245,6 +153,8 @@ Set an option in the configuration map by providing a key and value to store, or
 
 ### config.set-default()
 
+<ReferenceBar type="mixin" />
+
 An alias mixin for `config.set()` with predefined default argument to `true`. Running this will not override a previously set value.
 
 #### Arguments
@@ -274,7 +184,25 @@ An alias mixin for `config.set()` with predefined default argument to `true`. Ru
   ```
 </CodeExample>
 
+### config.merge()
+
+<ReferenceBar type="mixin" />
+
+Merges a map value of the configuration object with a provided map value.
+
+#### Arguments
+
+<ReferenceCard name="$key" type="string">
+  The name of the property to merge maps with.
+</ReferenceCard>
+
+<ReferenceCard name="$map" type="string">
+  The map to be merged with the existing map value.
+</ReferenceCard>
+
 ### config.remove()
+
+<ReferenceBar type="mixin" />
 
 Remove an option from the configuration map.
 
@@ -295,29 +223,26 @@ Remove an option from the configuration map.
 
 ### config.apply()
 
-Apply a configuration map prefixing all keys with the provided prefix value. The provided configuration map must match the signature list or default map. This mixin is typically used by components to allow providing default values using the Sass `with` clause.
+<ReferenceBar type="mixin" />
+
+Apply a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
 
 #### Arguments
-
-<ReferenceCard name="$prefix" type="string">
-  The value to prefix all keys with. This is typically the name of the component or module. Set to `null` for no prefix.
-</ReferenceCard>
 
 <ReferenceCard name="$config" type="map">
   The config map to set in the global config object.
 </ReferenceCard>
 
-<ReferenceCard name="$default" type="map | list">
-  The valid map signature and default config map values, or a list of valid configuration options. Set map values to `null` to prevent them from being set as the config default.
+<ReferenceCard name="$default" type="map">
+  The default map that is also used as a map signature for `$config`.
 </ReferenceCard>
 
 #### Example
 
-We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and provide defaults for.
+We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and their default values.
 
-<CodeExample lang="scss">
+<CodeExample label="_example.scss">
 ```scss
-// _example.scss
 @use "@vrembem/core/config";
 
 $config: () !default;
@@ -326,41 +251,41 @@ $default: (
   "config-2": "asdf",
 );
 
-@include config.apply("example", $config, $default);
+@include config.apply($config, $default);
 ```
 </CodeExample>
 
 When we use this module, we can define the configuration using the Sass `with` clause:
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
 ```scss
-// style.scss
 @use "example" with (
   $config: (
     "config-1": false
   )
 );
+
+// More imports here...
 ```
 </CodeExample>
 
-We can also set our configuration values before the module is loaded and include our files in a manifest file:
+We can also set our configuration values before the module is loaded and include our config at the top of our manifest file:
 
-<CodeExample lang="scss">
+<CodeExample label="_config.scss">
 ```scss
-// _config.scss
+// Import the config module
 @use "@vrembem/core/config";
 
 // These values will be used once the module is loaded
 @include config.set((
-  "example-config-1": false,
-  "example-config-2": "fdsa"
+  "config-1": false,
+  "config-2": "fdsa"
 ));
 ```
 </CodeExample>
 
-<CodeExample lang="scss">
+<CodeExample label="app.scss">
 ```scss
-// styles.scss
 @use "config";
 @use "example";
 
@@ -368,7 +293,45 @@ We can also set our configuration values before the module is loaded and include
 ```
 </CodeExample>
 
+### config.watch()
+
+<ReferenceBar type="mixin" />
+
+Set a watcher to a specific property of the configuration object.
+
+#### Arguments
+
+<ReferenceCard name="$prop" type="string">
+  The name of the property to watch for changes.
+</ReferenceCard>
+
+<ReferenceCard name="$id" type="string">
+  A unique ID to store the watcher under.
+</ReferenceCard>
+
+<ReferenceCard name="$mixin" type="mixin">
+  The mixin reference to run when the watched property has changed.
+</ReferenceCard>
+
+### config.unwatch()
+
+<ReferenceBar type="mixin" />
+
+Remove a watcher to a specific property of the configuration object.
+
+#### Arguments
+
+<ReferenceCard name="$prop" type="string">
+  The name of the property to stop watching.
+</ReferenceCard>
+
+<ReferenceCard name="$id" type="string">
+  The unique ID of the watcher to remove.
+</ReferenceCard>
+
 ### config.log()
+
+<ReferenceBar type="mixin" />
 
 Log to console the entire or a specific value in the configuration map.
 

@@ -1,6 +1,53 @@
 @use "./modules/config";
 
 $config: () !default;
-$signature: ("prefix-block", "prefix-element", "prefix-modifier", "prefix-modifier-value", "prefix-utility", "prefix-cssvar", "palette-default", "palette-range", "theme-prefix", "theme-default");
 
-@include config.apply(null, $config, $signature);
+// prettier-ignore
+$defaults: (
+  // A prefix to apply to block class names
+  // @type string
+  "prefix-block": "",
+
+  // A prefix to apply to element class names
+  // @type string
+  "prefix-element": "__",
+
+  // A prefix to apply to modifier class names
+  // @type string
+  "prefix-modifier": "_",
+
+  // A prefix to apply to modifier value class names
+  // @type string
+  "prefix-modifier-value": "_",
+
+  // A prefix to apply to utility class names
+  // @type string
+  "prefix-utility": "",
+
+  // A prefix to apply to CSS variables
+  // @type string
+  "prefix-cssvar": "vb",
+
+  // The palette to build CSS variables from
+  // @type map
+  "palette": (
+    "primary": hsl(152deg 60% 50%),
+    "secondary": hsl(214deg 50% 50%),
+    "neutral": hsl(214deg 20% 50%),
+    "important": hsl(0deg 80% 50%)
+  ),
+
+  // The default color lightness to use when referencing a color
+  // @type number
+  "palette-default": null,
+
+  // A prefix to apply to theme names
+  // @type string
+  "theme-prefix": "vb-theme",
+
+  // Sets the default theme option
+  // @type string
+  "theme-default": "light",
+);
+
+@include config.apply($config, $defaults);

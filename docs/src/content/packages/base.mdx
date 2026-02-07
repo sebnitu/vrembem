@@ -5,6 +5,7 @@ package: "@vrembem/base"
 status: "layers"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
@@ -24,20 +25,75 @@ npm install @vrembem/base
   ```
 </CodeExample>
 
+## Config options
+
+Base comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Controls whether module styles are output. This can be overridden on a per 
+  // module basis using the `base-output-exceptions` config option.
+  // @type boolean
+  "base-output": true,
+
+  // Modules to exclude from the output rule set in `base-output`
+  // @type list
+  "base-output-exceptions": (),
+
+  // A map containing module names as keys and their preferred class selectors
+  // @type map
+  "base-classes": (
+    "separator": "sep"
+  ),
+
+  // Used to output the heading styles and their font-size/line-height CSS 
+  // variables. Should contain a key of the heading level to output and the 
+  // value of a font-size and optional line-height (space separated).
+  // @type map
+  "base-headings": (
+    "h1": 2.75em,
+    "h2": 2em,
+    "h3": 1.75em,
+    "h4": 1.5em,
+    "h5": 1.25em,
+    "h6": 1em
+  ),
+
+  // Map modules to their preferred type selectors
+  // @type map
+  "base-type-selectors": (
+    "h1": "> h1",
+    "h2": "> h2",
+    "h3": "> h3",
+    "h4": "> h4",
+    "h5": "> h5",
+    "h6": "> h6",
+    "link": ":not(div) > a",
+    "list": "> ul, > ol",
+    "code": ":not(pre) > code",
+    "pre": "> pre",
+    "blockquote": "> blockquote",
+    "separator": "> hr"
+  )
+);
+```
+</CodeExpander>
+
 ## Output
 
-Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `"base-output"` and `"base-output-exceptions"` configuration options.
+Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `base-output` and `base-output-exceptions` configuration options.
 
-<ReferenceCard name='config.get("base-output")' type="boolean" defaults="true">
-  Controls whether module styles are output. You can specify exceptions using the `"base-output-exceptions"` list.
+<ReferenceCard ref="config" name="base-output" type="boolean" defaults="true">
+  Controls whether module styles are output. You can specify exceptions using the `base-output-exceptions` list.
 
 ```scss
 @include config.set("base-output", false);
 ```
 </ReferenceCard>
 
-<ReferenceCard name='config.get("base-output-exceptions")' type="list" defaults="()">
-  Modules listed in this configuration are exceptions to the value set in `"base-output"`. If `"base-output"` is `true`, modules listed will not be output. If `"base-output"` is `false`, modules listed will be output.
+<ReferenceCard ref="config" name="base-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `base-output`. If `base-output` is `true`, modules listed will not be output. If `base-output` is `false`, modules listed will be output.
 
 ```scss
 @include config.set("base-output-exceptions", (
@@ -48,7 +104,7 @@ Base modules each have their own output styles. These are all output by default 
 
 #### Example
 
-Use the `"base-output"` configuration to toggle output for all modules. Add exceptions to the `"base-output-exceptions"` list to override the output option for specific modules.
+Use the `base-output` configuration to toggle output for all modules. Add exceptions to the `base-output-exceptions` list to override the output option for specific modules.
 
 <CodeExample lang="scss">
 ```scss
@@ -98,9 +154,9 @@ Once loaded, the base component provides normalization and default styles for HT
 ```
 </CodeExample>
 
-You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `$classes` map.
+You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `base-classes` configuration.
 
-<ReferenceCard name='config.get("base-classes")' type="map" defaults='("separator": "sep")'>
+<ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, you could set the following:
 
 ```scss
@@ -123,9 +179,7 @@ Below is a list of each base module, their class selectors, CSS variables, and i
   detail: {
     value: "--vb-base"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 A module that helps ensure HTML elements are rendered consistently across browsers by resetting and standardizing their default styles. This provides a reliable foundation for building components, making elements more predictable and easier to work with by:
 
@@ -167,9 +221,7 @@ The following CSS variables are referenced with a fallback for more easily overr
   detail: {
     value: "--vb-headings"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
 
@@ -194,9 +246,9 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 ```
 </CodeExample>
 
-Headings output and scale is controlled by the `"base-headings"` configuration option.
+Headings output and scale is controlled by the `base-headings` configuration option.
 
-<ReferenceCard name='config.get("base-headings")' type="map">
+<ReferenceCard ref="config" name="base-headings" type="map">
   Used to output the heading styles and their font-size/line-height CSS variables. This map should contain a key of the heading level to output and the value of a font-size and optional line-height (space separated).
 
 ```scss
@@ -230,9 +282,7 @@ Headings output and scale is controlled by the `"base-headings"` configuration o
   detail: {
     value: "--vb-link"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class.
 
@@ -253,9 +303,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
   detail: {
     value: "--vb-list"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
 
@@ -313,9 +361,7 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
   detail: {
     value: "--vb-code"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
 
@@ -336,9 +382,7 @@ The HTML code element displays its contents styled in a fashion intended to indi
   detail: {
     value: "--vb-pre"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
 
@@ -365,9 +409,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
   detail: {
     value: "--vb-blockquote"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The HTML blockquote element is used for marking up extended quotations. This module helps style these elements by providing the `.blockquote` CSS class.
 
@@ -397,9 +439,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
   detail: {
     value: "--vb-sep"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 This module adds the `.sep` CSS classes which visually renders a horizontal separator. This is most commonly applied to an `<hr>` HTML element but can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
@@ -420,9 +460,7 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
   detail: {
     value: "--vb-type"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
 
@@ -449,9 +487,9 @@ The type module provides the `.type` CSS class as a way to apply many base modul
 ```
 </CodeExample>
 
-The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `"base-type-selectors"` variable map.
+The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `base-type-selectors` variable map.
 
-<ReferenceCard name='config.get("base-type-selectors")' type="map">
+<ReferenceCard ref="config" name="base-type-selectors" type="map">
   Map modules to type selectors. This configuration is used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector to be used within the `.type` context.
 
 ```scss
@@ -492,9 +530,7 @@ The type module only applies styles to its direct children using the `>` child c
   detail: {
     value: "--vb-arrow"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The arrow (caret) module provides classes for directional triangles drawn with CSS. These are typically applied to `<span>` elements and used along side other components as direction indicators.
 
@@ -538,9 +574,7 @@ Arrows are great for buttons or menu items to visually indicate when it reveals 
   detail: {
     value: "--vb-loading"
   }
-}}>
-  Variables
-</ReferenceBar>
+}} />
 
 The loading-spinner module provides the `.loading-spinner` CSS class. A loading spinner is a visual indicator for when a process or action is taking place such as a loading state.
 

@@ -2,6 +2,7 @@
 interface Props {
   id?: string;
   arrow?: boolean;
+  href?: string;
   triggerClass?: string;
   popoverClass?: string;
   tooltipClass?: string;
@@ -11,6 +12,7 @@ interface Props {
 const {
   id,
   arrow = false,
+  href,
   triggerClass = "link",
   popoverClass = "",
   tooltipClass = "",
@@ -30,7 +32,7 @@ if (placement) {
 ---
 
 {
-  Astro.slots.has("trigger") && (
+  Astro.slots.has("trigger") && !href && (
     <button
       id={triggerId}
       data-popover-trigger={popoverId}
@@ -41,6 +43,22 @@ if (placement) {
     >
       <slot name="trigger" />
     </button>
+  )
+}
+
+{
+  Astro.slots.has("trigger") && href && (
+    <a
+      href={href}
+      id={triggerId}
+      data-popover-trigger={popoverId}
+      aria-controls={popoverId}
+      aria-describedby={tooltipId}
+      class={triggerClass}
+      {...rest}
+    >
+      <slot name="trigger" />
+    </a>
   )
 }
 

@@ -1,24 +1,39 @@
 ---
+import Popover from './Popover.astro';
+import Icon from './Icon.astro';
+
 interface Props {
   name: string;
   type: string;
   returns?: string;
   defaults?: string;
   fallback?: string;
+  ref?: string;
 }
 
-const { name, type, returns, defaults, fallback } = Astro.props;
+const { name, type, returns, defaults, fallback, ref } = Astro.props;
 
-function linkifyName(name: string) {
-  return name.replace(/^config/, (match) => {
-    return `<a href="/packages/core/config">${match}</a>`;
-  });
-}
 ---
 
 <div class="card card_reference">
   <div class="card__header">
-    <code class="card__title" set:html={linkifyName(name)} />
+    {
+      ref && (
+        <Popover 
+          href={`/packages/core/${ref}`} 
+          triggerClass="button button_icon"
+          placement="right"
+        >
+          <Fragment slot="trigger">
+            <Icon name="box" />
+          </Fragment>
+          <Fragment slot="tooltip">
+            Stored in core/{ref} module
+          </Fragment>
+        </Popover>
+      )
+    }
+    <code class="card__title">{name}</code>
     <span class="card__type"><code>{type}</code></span>
   </div>
   { Astro.slots.has("default") && (

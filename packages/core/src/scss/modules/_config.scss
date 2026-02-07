@@ -6,13 +6,12 @@
 /// Stores all library wide configuration options.
 /// @type map
 /// @access private
-$-config: (
-  "prefix-block": "",
-  "prefix-element": "__",
-  "prefix-modifier": "_",
-  "prefix-modifier-value": "_",
-  "prefix-utility": ""
-);
+$-config: ();
+
+/// Stores config property watchers.
+/// @type map
+/// @access private
+$-watchers: ();
 
 /// Helper function that checks if a value should be set in the config map.
 ///
@@ -32,13 +31,32 @@ $-config: (
 /// @access private
 @function -maybe-set($map, $key, $value, $default) {
   @if not $default or not map.has-key($map, $key) {
-    @return map.set($map, $key, $value);
+    $map: map.set($map, $key, $value);
   }
 
   @return $map;
 }
 
-/// Returns the value of an option in the configuration map.
+/// Run all property watchers of a specific property. Passes along the name of
+/// the action to the applied mixin.
+///
+/// @param {string} $key
+///   The name of the property that has been changed.
+/// @param {string} $action
+///   The name of the action taking place, e.g.: "set", "remove", etc.
+///
+/// @access private
+@mixin -run-watchers($key, $action) {
+  @if map.has-key($-watchers, $key) {
+    $mixins: map.get($-watchers, $key);
+
+    @each $key, $mixin in $mixins {
+      @include meta.apply($mixin, $action);
+    }
+  }
+}
+
+/// Function to returns the value of an option in the configuration map.
 ///
 /// @param {string} $keys...
 ///   A key or list of keys to follow in the configuration map and return.
@@ -70,6 +88,8 @@ $-config: (
   }
 
   $-config: $result !global;
+
+  @include -run-watchers($key, "set");
 }
 
 /// An alias mixin for `config.set()` with predefined default argument to
@@ -85,41 +105,52 @@ $-config: (
   @include set($key, $value, $default: true);
 }
 
+/// Merges a map value of the configuration object with a provided map value.
+///
+/// @param {string} $key
+///   The name of the property to merge maps with.
+/// @param {map} $map
+///   The map to be merged with the existing map value.
+///
+@mixin merge($key, $map) {
+  $map: map.merge(map.get($-config, $key), $map);
+  $-config: map.set($-config, $key, $map) !global;
+
+  @include -run-watchers($key, "merge");
+}
+
 /// Remove an option from the configuration map.
 ///
+/// @param {string} $key
+///   The first key to follow or remove if no other keys are provided.
 /// @param {string} $keys...
 ///   The list of keys to follow and remove from the configuration map.
 ///
-@mixin remove($keys...) {
-  $-config: map.deep-remove($-config, $keys...) !global;
+@mixin remove($key, $keys...) {
+  $-config: map.deep-remove($-config, $key, $keys...) !global;
+
+  @include -run-watchers($key, "remove");
 }
 
-/// Apply a configuration map prefixing all keys with the provided prefix value.
-/// The provided configuration map must match the signature list or map. This
-/// mixin is typically used by components to allow providing default values
+/// Apply a configuration map to the config module based on the values in a
+/// default map. The provided configuration map must match the signature of the
+/// default map. This mixin is used to allow setting values in the config module
 /// using the Sass `with` clause.
 ///
-/// @param {string} $prefix
-///   The value to prefix all keys with. This is typically the name of the
-///   component or module. Set to `null` for no prefix.
 /// @param {map} $config
 ///   The config map to set in the global config object.
-/// @param {map | list} $default
-///   The valid map signature and default config map values, or a list of valid
-///   configuration options. Set map values to `null` to prevent them from being
-///   set as the config default.
+/// @param {map} $default
+///   The default map that is also used as a map signature for `$config`.
 ///
-@mixin apply($prefix, $config, $default) {
-  @if $prefix {
-    $prefix: "#{$prefix}-";
-  }
-
+@mixin apply($config, $default) {
   @each $key, $value in $config {
-    $valid-m: meta.type-of($default) == "map" and map.has-key($default, $key);
-    $valid-l: meta.type-of($default) == "list" and list.index($default, $key);
+    @if map.has-key($default, $key) {
+      // If the value is a map, merge it with the default value
+      @if meta.type-of($value) == "map" {
+        $value: map.deep-merge(map.get($default, $key), $value);
+      }
 
-    @if $valid-m or $valid-l {
-      @include set("#{$prefix}#{$key}", $value);
+      @include set($key, $value);
     } @else {
       @error '"#{$key}" is not a valid configuration option';
     }
@@ -127,11 +158,33 @@ $-config: (
 
   @if meta.type-of($default) == "map" {
     @each $key, $value in $default {
-      @if $value {
-        @include set-default("#{$prefix}#{$key}", $value);
-      }
+      @include set-default($key, $value);
     }
   }
+}
+
+/// Set a watcher to a specific property of the configuration object.
+///
+/// @param {string} $prop
+///   The name of the property to watch for changes.
+/// @param {string} $id
+///   A unique ID to store the watcher under.
+/// @param {mixin} $mixin
+///   The mixin reference to run when the watched property has changed.
+///
+@mixin watch($prop, $id, $mixin) {
+  $-watchers: map.set($-watchers, $prop, $id, $mixin) !global;
+}
+
+/// Remove a watcher to a specific property of the configuration object.
+///
+/// @param {string} $prop
+///   The name of the property to stop watching.
+/// @param {string} $id
+///   The unique ID of the watcher to remove.
+///
+@mixin unwatch($prop, $id) {
+  $-watchers: map.deep-remove($-watchers, $prop, $id) !global;
 }
 
 /// Log to console the entire configuration map.
