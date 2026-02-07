@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:string";
 @use "sass:map";
+@use "@vrembem/core";
 @use "@vrembem/core/config";
 
 /// Conditional logic for when to output the utilities of a specific module.

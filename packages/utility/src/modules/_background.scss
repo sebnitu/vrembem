@@ -2,7 +2,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("background") {

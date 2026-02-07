@@ -1,4 +1,4 @@
-@use "../variables" as var;
+@use "../config" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("overflow") {
