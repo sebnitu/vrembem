@@ -1,14 +1,8 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("spacing") {
-  #{fun.selector("spacing")} {
-    > * + * {
-      margin-top: var.$gap !important;
-    }
-  }
-
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("spacing", $key)} {
       > * + * {
         margin-top: $value !important;

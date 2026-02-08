@@ -64,10 +64,17 @@ $default: (
   // @type list
   "utility-overflow": (
     visible, hidden, clip, scroll, auto
+  ),
+
+  // A map of gap utilities to output
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
   )
 );
 
 @include config.apply($config, $default);
-
-$gap: core.$gap !default;
-$gap-map: core.$gap-map !default;

@@ -5,10 +5,9 @@ $gap-map: (
   "none": 0,
   "xs": 0.25em,
   "sm": 0.5em,
-  "md": 1em,
+  "": 1em,
   "lg": 1.5em,
   "xl": 2em
 ) !default;
 
-@include css.set("core", "gap", $gap);
 @include css.set("core", "gap", $gap-map);

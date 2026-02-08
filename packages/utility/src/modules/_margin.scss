@@ -1,65 +1,45 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("margin") {
-  #{fun.selector("margin")} {
-    margin: var.$gap !important;
-  }
-
-  #{fun.selector("margin", "top")} {
-    margin-top: var.$gap !important;
-  }
-
-  #{fun.selector("margin", "bottom")} {
-    margin-bottom: var.$gap !important;
-  }
-
-  #{fun.selector("margin", "left")} {
-    margin-left: var.$gap !important;
-  }
-
-  #{fun.selector("margin", "right")} {
-    margin-right: var.$gap !important;
-  }
-
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", $key)} {
       margin: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "top", $key)} {
       margin-top: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "bottom", $key)} {
       margin-bottom: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "left", $key)} {
       margin-left: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "right", $key)} {
       margin-right: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "x", $key)} {
       margin-left: $value !important;
       margin-right: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "y", $key)} {
       margin-bottom: $value !important;
       margin-top: $value !important;

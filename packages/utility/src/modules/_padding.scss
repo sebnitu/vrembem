@@ -1,65 +1,45 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("padding") {
-  #{fun.selector("padding")} {
-    padding: var.$gap !important;
-  }
-
-  #{fun.selector("padding", "top")} {
-    padding-top: var.$gap !important;
-  }
-
-  #{fun.selector("padding", "bottom")} {
-    padding-bottom: var.$gap !important;
-  }
-
-  #{fun.selector("padding", "left")} {
-    padding-left: var.$gap !important;
-  }
-
-  #{fun.selector("padding", "right")} {
-    padding-right: var.$gap !important;
-  }
-
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", $key)} {
       padding: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "top", $key)} {
       padding-top: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "bottom", $key)} {
       padding-bottom: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "left", $key)} {
       padding-left: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "right", $key)} {
       padding-right: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "x", $key)} {
       padding-left: $value !important;
       padding-right: $value !important;
     }
   }
 
-  @each $key, $value in var.$gap-map {
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "y", $key)} {
       padding-bottom: $value !important;
       padding-top: $value !important;
