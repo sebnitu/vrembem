@@ -1,8 +1,8 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("overflow") {
-  @each $property in var.$overflow-properties {
+  @each $property in config.get("utility-overflow") {
     #{fun.selector("overflow", $property)} {
       overflow: $property !important;
     }

@@ -58,11 +58,16 @@ $default: (
 
   // The number of order utility properties to output
   // @type number
-  "utility-order": 6
+  "utility-order": 6,
+
+  // A list of overflow utilities to output
+  // @type list
+  "utility-overflow": (
+    visible, hidden, clip, scroll, auto
+  )
 );
 
 @include config.apply($config, $default);
 
-$overflow-properties: (visible, hidden, clip, scroll, auto) !default;
 $gap: core.$gap !default;
 $gap-map: core.$gap-map !default;
