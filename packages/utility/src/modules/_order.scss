@@ -1,4 +1,4 @@
-@use "../config" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("order") {
@@ -10,7 +10,7 @@
     order: 99 !important;
   }
 
-  @for $i from 0 through var.$order-count {
+  @for $i from 0 through config.get("utility-order") {
     #{fun.selector("order", $i)} {
       order: $i !important;
     }

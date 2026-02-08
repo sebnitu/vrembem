@@ -54,12 +54,15 @@ $default: (
     "lg": 80rem,
     "xl": 90rem,
     "full": 100%
-  )
+  ),
+
+  // The number of order utility properties to output
+  // @type number
+  "utility-order": 6
 );
 
 @include config.apply($config, $default);
 
-$order-count: 6 !default;
 $overflow-properties: (visible, hidden, clip, scroll, auto) !default;
 $gap: core.$gap !default;
 $gap-map: core.$gap-map !default;
