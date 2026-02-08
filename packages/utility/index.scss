@@ -1,27 +1,27 @@
 @forward "./src/config";
 @forward "./src/functions";
 
-// Appearance
+// Appearance (5)
 @forward "./src/modules/background"; // 312
 @forward "./src/modules/foreground"; // 296
 @forward "./src/modules/border"; // 52
 @forward "./src/modules/border-radius"; // 112
 @forward "./src/modules/box-shadow"; // 28
 
-// Display and spacing
+// Display and spacing (4)
 @forward "./src/modules/display"; // 163
 @forward "./src/modules/margin"; // 210
 @forward "./src/modules/padding"; // 180
 @forward "./src/modules/spacing"; // 24
 
-// Grid and flex
+// Grid and flex (5)
 @forward "./src/modules/gap"; // 72
 @forward "./src/modules/justify"; // 60
 @forward "./src/modules/align"; // 60
 @forward "./src/modules/place"; // 60
 @forward "./src/modules/order"; // 36
 
-// Miscellaneous
+// Miscellaneous (6)
 @forward "./src/modules/position"; // 20
 @forward "./src/modules/overflow"; // 60
 @forward "./src/modules/max-width"; // 28
