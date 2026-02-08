@@ -6,6 +6,8 @@ status: "layers"
 ---
 
 import CodeExpander from "../../components/CodeExpander.astro";
+import ReferenceBar from "../../components/ReferenceBar.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
 
 # Utility
 
@@ -91,6 +93,55 @@ $config: (
 ```
 </CodeExpander>
 
+## Output
+
+Utility modules each have their own output styles. These are all output by default when the utility package is loaded. There are two ways to control which modules are output using the `utility-output` and `utility-output-exceptions` configuration options.
+
+<ReferenceCard ref="config" name="utility-output" type="boolean" defaults="true">
+  Controls whether module styles are output. You can specify exceptions using the `utility-output-exceptions` list.
+
+```scss
+@include config.set("utility-output", false);
+```
+</ReferenceCard>
+
+<ReferenceCard ref="config" name="utility-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `utility-output`. If `utility-output` is `true`, modules listed will not be output. If `utility-output` is `false`, modules listed will be output.
+
+```scss
+@include config.set("utility-output-exceptions", (
+  "background", "foreground"
+));
+```
+</ReferenceCard>
+
+#### Example
+
+Use the `utility-output` configuration to toggle output for all modules. Add exceptions to the `utility-output-exceptions` list to override the output option for specific modules.
+
+<CodeExample lang="scss">
+```scss
+// Import the config module
+@use "@vrembem/core/config";
+
+// Disable the output of specific modules
+@include config.set("utility-output-exceptions", (
+  "gap",
+  "margin",
+  "padding"
+));
+
+// Disable the output of all modules except for "margin" and "padding"
+@include config.set((
+  "utility-output": false
+  "utility-output-exceptions": (
+    "margin",
+    "padding"
+  )
+));
+```
+</CodeExample>
+
 ## Basic usage
 
 Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
@@ -110,25 +161,13 @@ Once loaded, the utility component provides a number of classes that can be used
   ```
 </CodeExample>
 
-Each utility has a corresponding `$output-[module]` and `$class-[module]` variable that determines whether or not the module is output and it's class name. Output variable inherits their default value from `$output`.
+## Modules
 
-<CodeExample lang="scss">
+Below is a list of each utility module, their available variants and intended usage. Some modules also have configuration options that alter their output.
 
-  ```scss
-  // Will disable the output of the color module
-  @use "@vrembem/utility" with (
-    $output-color: false
-  );
+### background
 
-  // Will disable all modules, but enables the color module
-  @use "@vrembem/utility" with (
-    $output: false,
-    $output-color: true
-  );
-  ```
-</CodeExample>
-
-## background
+<ReferenceBar selector=".background" />
 
 Applies background color property. Most options include light, lighter, dark and darker variants.
 
@@ -207,7 +246,24 @@ Also available are utility classes for the `background-clip-[value]` property.
 <div class="background-clip-padding"></div>
 ```
 
-## border
+### foreground
+
+<ReferenceBar selector=".foreground" />
+
+Applies text color property. Most options include light, lighter, dark and darker variants.
+
+```html
+<span class="color">...</span>
+<span class="color-subtle">...</span>
+<span class="color-primary-light">...</span>
+<span class="color-primary">...</span>
+<span class="color-primary-dark">...</span>
+...
+```
+
+### border
+
+<ReferenceBar selector=".border" />
 
 Applies border property with optional sides variants.
 
@@ -219,8 +275,6 @@ Applies border property with optional sides variants.
 <div class="border-left"></div>
 ```
 
-### border-none
-
 Remove border styles with `border-none` utilities and optional side variants.
 
 ```html
@@ -230,8 +284,6 @@ Remove border styles with `border-none` utilities and optional side variants.
 <div class="border-bottom-none"></div>
 <div class="border-left-none"></div>
 ```
-
-### border-color
 
 Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
 
@@ -249,7 +301,9 @@ Add border color utilities with light, dark and darker variants. Also available 
 <div class="border border-color-invert-darker"></div>
 ```
 
-## border-radius
+### border-radius
+
+<ReferenceBar selector=".border-radius" />
 
 Applies border-radius styles with optional corner variants. The value used by the border-radius utility is pulled from the `core.$border-radius` variable.
 
@@ -270,8 +324,6 @@ Applies border-radius styles with optional corner variants. The value used by th
 <div class="radius-bottom-left"></div>
 ```
 
-### border-radius-circle
-
 Applies the maximum value to border-radius with optional corner variants. The value used by border-radius-circle utility is pulled from the `core.$border-radius-circle` variable.
 
 ```html
@@ -290,8 +342,6 @@ Applies the maximum value to border-radius with optional corner variants. The va
 <div class="radius-circle-bottom-right"></div>
 <div class="radius-circle-bottom-left"></div>
 ```
-
-### border-radius-square
 
 Removes border-radius by setting it's value to `0` with optional corner variants.
 
@@ -312,34 +362,25 @@ Removes border-radius by setting it's value to `0` with optional corner variants
 <div class="radius-square-bottom-left"></div>
 ```
 
-## elevate
+### box-shadow
+
+<ReferenceBar selector=".box-shadow" />
 
 Applies different levels of elevation through box-shadow styles.
 
 ```html
-<div class="elevate"></div>
-<div class="elevate-flat"></div>
-<div class="elevate-1dp"></div>
-<div class="elevate-4dp"></div>
-<div class="elevate-8dp"></div>
-<div class="elevate-16dp"></div>
-<div class="elevate-24dp"></div>
+<div class="box-shadow"></div>
+<div class="box-shadow-flat"></div>
+<div class="box-shadow-1dp"></div>
+<div class="box-shadow-4dp"></div>
+<div class="box-shadow-8dp"></div>
+<div class="box-shadow-16dp"></div>
+<div class="box-shadow-24dp"></div>
 ```
 
-## color
+### display
 
-Applies text color property. Most options include light, lighter, dark and darker variants.
-
-```html
-<span class="color">...</span>
-<span class="color-subtle">...</span>
-<span class="color-primary-light">...</span>
-<span class="color-primary">...</span>
-<span class="color-primary-dark">...</span>
-...
-```
-
-## display
+<ReferenceBar selector=".display" />
 
 Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
 
@@ -375,22 +416,138 @@ Available properties are generated from the `$display-properties` variable map a
 </div>
 ```
 
-### $display-properties
+### margin
 
-A list of display properties to output along with their breakpoint variants.
+<ReferenceBar selector=".margin" />
 
-```scss
-$display-properties: (
-  inline,
-  flex,
-  inline-flex,
-  block,
-  inline-block,
-  none
-) !default;
+Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+
+- `margin` - Adds margins on all sides.
+- `margin-[direction]` - Adds default margin to a specific side.
+- `margin-[size]` - Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]` - Adds margins on a specific side and size.
+- `margin-x-[size]` - Adds left and right margins with a specific size key.
+- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
+- `margin-auto` - Sets margins to auto.
+- `margin-[direction]-auto` - Sets margins auto to a specific side.
+- `margin-x-auto` - Sets left and right margins to auto.
+- `margin-y-auto` - Sets top and bottom margins to auto.
+
+### padding
+
+<ReferenceBar selector=".padding" />
+
+Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+
+- `padding` - Adds default padding on all sides.
+- `padding-[direction]` - Adds default padding to a specific side.
+- `padding-[size]` - Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]` - Adds padding on a specific side and size.
+- `padding-x-[size]` - Sets left and right padding to a specific size key.
+- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
+
+### spacing
+
+<ReferenceBar selector=".spacing" />
+
+...
+
+### gap
+
+<ReferenceBar selector=".gap" />
+
+Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-x`
+- `gap-x-[key]`
+
+```html
+<!-- Using the default gap-x class -->
+<div class="gap-x">...</div>
+
+<!-- Using the gap-x class with variant key -->
+<div class="gap-x-none">...</div>
+<div class="gap-x-xs">...</div>
+<div class="gap-x-sm">...</div>
+<div class="gap-x-md">...</div>
+<div class="gap-x-lg">...</div>
+<div class="gap-x-xl">...</div>
 ```
 
-## font
+Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+
+- `gap-y`
+- `gap-y-[key]`
+
+```html
+<!-- Using the default gap-y class -->
+<div class="gap-y">...</div>
+
+<!-- Using the gap-y class with variant key -->
+<div class="gap-y-none">...</div>
+<div class="gap-y-xs">...</div>
+<div class="gap-y-sm">...</div>
+<div class="gap-y-md">...</div>
+<div class="gap-y-lg">...</div>
+<div class="gap-y-xl">...</div>
+```
+
+### justify
+
+<ReferenceBar selector=".justify" />
+
+...
+
+### align
+
+<ReferenceBar selector=".align" />
+
+...
+
+### place
+
+<ReferenceBar selector=".place" />
+
+...
+
+### order
+
+<ReferenceBar selector=".order" />
+
+...
+
+### position
+
+<ReferenceBar selector=".position" />
+
+A utility for setting the position CSS property.
+
+- `position-absolute` - Sets the position property to absolute.
+- `position-fixed` - Sets the position property to fixed.
+- `position-relative` - Sets the position property to relative.
+- `position-static` - Sets the position property to static.
+- `position-sticky` - Sets the position property to sticky.
+
+### overflow
+
+<ReferenceBar selector=".overflow" />
+
+...
+
+### max-width
+
+<ReferenceBar selector=".max-width" />
+
+Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+
+- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
+- `max-width-none` - Sets the max-width property to `none`.
+- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
+- `max-width-full` - Sets the max-width property to `100%`.
+
+### font
+
+<ReferenceBar selector=".font" />
 
 A utility for adjusting various font styles.
 
@@ -415,108 +572,9 @@ A utility for adjusting various font styles.
 - `font-style-normal` - Sets the font-style property to normal.
 - `font-style-italic` - Sets the font-style property to italic.
 
-## gap-x-[key]
+### text
 
-Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-x`
-- `gap-x-[key]`
-
-```html
-<!-- Using the default gap-x class -->
-<div class="gap-x">...</div>
-
-<!-- Using the gap-x class with variant key -->
-<div class="gap-x-none">...</div>
-<div class="gap-x-xs">...</div>
-<div class="gap-x-sm">...</div>
-<div class="gap-x-md">...</div>
-<div class="gap-x-lg">...</div>
-<div class="gap-x-xl">...</div>
-```
-
-## gap-y-[key]
-
-Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-y`
-- `gap-y-[key]`
-
-```html
-<!-- Using the default gap-y class -->
-<div class="gap-y">...</div>
-
-<!-- Using the gap-y class with variant key -->
-<div class="gap-y-none">...</div>
-<div class="gap-y-xs">...</div>
-<div class="gap-y-sm">...</div>
-<div class="gap-y-md">...</div>
-<div class="gap-y-lg">...</div>
-<div class="gap-y-xl">...</div>
-```
-
-## margin
-
-Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
-
-- `margin` - Adds margins on all sides.
-- `margin-[direction]` - Adds default margin to a specific side.
-- `margin-[size]` - Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]` - Adds margins on a specific side and size.
-- `margin-x-[size]` - Adds left and right margins with a specific size key.
-- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
-- `margin-auto` - Sets margins to auto.
-- `margin-[direction]-auto` - Sets margins auto to a specific side.
-- `margin-x-auto` - Sets left and right margins to auto.
-- `margin-y-auto` - Sets top and bottom margins to auto.
-
-## max-width
-
-Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
-
-- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
-- `max-width-none` - Sets the max-width property to `none`.
-- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
-- `max-width-full` - Sets the max-width property to `100%`.
-
-### $max-width-scale
-
-A scale map used for building max-width utility variations using the key as variant name.
-
-```scss
-$max-width-scale: (
-  'none': none,
-  'xs': 45rem,
-  'sm': 60rem,
-  'md': 70rem,
-  'lg': 80rem,
-  'xl': 90rem,
-  'full': 100%
-) !default;
-```
-
-## Padding
-
-Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
-
-- `padding` - Adds default padding on all sides.
-- `padding-[direction]` - Adds default padding to a specific side.
-- `padding-[size]` - Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]` - Adds padding on a specific side and size.
-- `padding-x-[size]` - Sets left and right padding to a specific size key.
-- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
-
-## position
-
-A utility for setting the position CSS property.
-
-- `position-absolute` - Sets the position property to absolute.
-- `position-fixed` - Sets the position property to fixed.
-- `position-relative` - Sets the position property to relative.
-- `position-static` - Sets the position property to static.
-- `position-sticky` - Sets the position property to sticky.
-
-## text
+<ReferenceBar selector=".text" />
 
 A utility for adjusting various text styles.
 
@@ -533,3 +591,9 @@ A utility for adjusting various text styles.
 - `text-wrap` - Sets white-space to normal allowing text to wrap.
 - `text-nowrap` - Sets white-space to `nowrap` which no longer allows text to wrap.
 - `text-overflow-ellipsis` - Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+
+### transition
+
+<ReferenceBar selector=".transition" />
+
+...
