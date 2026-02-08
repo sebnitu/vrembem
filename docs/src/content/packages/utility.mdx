@@ -5,6 +5,8 @@ package: "@vrembem/utility"
 status: "layers"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
+
 # Utility
 
 The utility component provides atomic classes that specialize in single functions.
@@ -18,6 +20,76 @@ npm install @vrembem/utility
   @use "@vrembem/utility";
   ```
 </CodeExample>
+
+## Config options
+
+Utility comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Controls whether module styles are output. This can be overridden on a per 
+  // module basis using the `utility-output-exceptions` config option.
+  // @type boolean
+  "utility-output": true,
+
+  // Modules to exclude from the output rule set in `utility-output`
+  // @type list
+  "utility-output-exceptions": (),
+
+  // A prefix to apply to utility class names
+  // @type string
+  "utility-prefix": "",
+
+  // A map containing module names as keys and their preferred class selectors
+  // @type map
+  "utility-classes": (),
+
+  // A lightness range list for outputting palette related utilities
+  // @type list
+  "utility-palette-range": (
+    0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100
+  ),
+
+  // A map of border-radius utilities to output
+  // @type map
+  "utility-border-radius": (
+    "": css.get("border-radius"),
+    "lg": css.get("border-radius-lg"),
+    "circle": css.get("border-radius-circle"),
+    "square": 0
+  ),
+
+  // A list of display value properties to output
+  // @type list
+  "utility-display": (
+    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+  ),
+
+  // A map of max-width utilities to output
+  // @type map
+  "utility-max-width": (
+    "none": none,
+    "xs": 45rem,
+    "sm": 60rem,
+    "": 70rem,
+    "lg": 80rem,
+    "xl": 90rem,
+    "full": 100%
+  ),
+
+  // A map of gap utilities to output
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
+  )
+);
+```
+</CodeExpander>
 
 ## Basic usage
 
@@ -55,49 +127,6 @@ Each utility has a corresponding `$output-[module]` and `$class-[module]` variab
   );
   ```
 </CodeExample>
-
-## Customization
-
-Setting these variables will apply to all utility modules.
-
-| Variable          | Default                                        | Description                                                                                                                   |
-| ----------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-utility` | `null`                                         | String to prefix all utility classes with.                                                                                    |
-| `$output`         | `true`                                         | Toggles the default output of all modules.                                                                                    |
-| `$breakpoints`    | [`core.$breakpoints` Ref &darr;](#breakpoints) | A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) utility. |
-| `$gap`            | `core.$gap` &rarr; `1em`                       | Used as the default spacing unit for many utilities.                                                                          |
-| `$gap-map`        | [`core.$gap-map` Ref &darr;](#gap-map)         | Used to build gap variants for many utilities.                                                                                |
-
-### $breakpoints
-
-A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
-
-```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
-```
-
-### $gap-map
-
-Used to build gap variants for [`gap`](#gap-key), [`gap-x`](#gap-x-key), [`gap-y`](#gap-y-key), [`margin`](#margin) and [`padding`](#padding) utilities.
-
-```scss
-// Inherited from: core.$gap-map
-$gap-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-```
 
 ## background
 
@@ -178,13 +207,6 @@ Also available are utility classes for the `background-clip-[value]` property.
 <div class="background-clip-padding"></div>
 ```
 
-| Variable             | Default                 | Description                                                 |
-| -------------------- | ----------------------- | ----------------------------------------------------------- |
-| `$output-background` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
-| `$class-background`  | `"background"`          | String to use for the class name of the background utility. |
-
-> Checkout the [web documentation](https://vrembem.com/packages/utility/#background) for a complete list of available options.
-
 ## border
 
 Applies border property with optional sides variants.
@@ -196,11 +218,6 @@ Applies border property with optional sides variants.
 <div class="border-bottom"></div>
 <div class="border-left"></div>
 ```
-
-| Variable         | Default                 | Description                                             |
-| ---------------- | ----------------------- | ------------------------------------------------------- |
-| `$output-border` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
-| `$class-border`  | `"border"`              | String to use for the class name of the border utility. |
 
 ### border-none
 
@@ -252,11 +269,6 @@ Applies border-radius styles with optional corner variants. The value used by th
 <div class="radius-bottom-right"></div>
 <div class="radius-bottom-left"></div>
 ```
-
-| Variable                | Default                 | Description                                                    |
-| ----------------------- | ----------------------- | -------------------------------------------------------------- |
-| `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
-| `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
 
 ### border-radius-circle
 
@@ -314,11 +326,6 @@ Applies different levels of elevation through box-shadow styles.
 <div class="elevate-24dp"></div>
 ```
 
-| Variable             | Default                 | Description                                                 |
-| -------------------- | ----------------------- | ----------------------------------------------------------- |
-| `$output-box-shadow` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
-| `$class-box-shadow`  | `"elevate"`             | String to use for the class name of the box-shadow utility. |
-
 ## color
 
 Applies text color property. Most options include light, lighter, dark and darker variants.
@@ -331,13 +338,6 @@ Applies text color property. Most options include light, lighter, dark and darke
 <span class="color-primary-dark">...</span>
 ...
 ```
-
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-color` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-color`  | `"color"`               | String to use for the class name of the color utility. |
-
-> Checkout the [web documentation](https://vrembem.com/packages/utility/#color) for a complete list of available options.
 
 ## display
 
@@ -375,12 +375,6 @@ Available properties are generated from the `$display-properties` variable map a
 </div>
 ```
 
-| Variable              | Default                                      | Description                                                                  |
-| --------------------- | -------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$output-display`     | `$output` &rarr; `true`                      | Toggles the output of this utility.                                          |
-| `$class-display`      | `"display"`                                  | String to use for the class name of the display utility.                     |
-| `$display-properties` | [`Sass Map` Ref &darr;](#display-properties) | A list of display properties to output along with their breakpoint variants. |
-
 ### $display-properties
 
 A list of display properties to output along with their breakpoint variants.
@@ -399,11 +393,6 @@ $display-properties: (
 ## font
 
 A utility for adjusting various font styles.
-
-| Variable       | Default                 | Description                                           |
-| -------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-font` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-font`  | `"font"`                | String to use for the class name of the font utility. |
 
 - `font-family-sans` - Sets the font-family property to the sans-serif font stack.
 - `font-family-serif` - Sets the font-family property to the serif font stack.
@@ -446,11 +435,6 @@ Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-
 <div class="gap-x-xl">...</div>
 ```
 
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-gap-x` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-gap-x`  | `"gap-x"`               | String to use for the class name of the gap-x utility. |
-
 ## gap-y-[key]
 
 Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
@@ -471,11 +455,6 @@ Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y k
 <div class="gap-y-xl">...</div>
 ```
 
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-gap-y` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-gap-y`  | `"gap-y"`               | String to use for the class name of the gap-y utility. |
-
 ## margin
 
 Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
@@ -491,11 +470,6 @@ Add margin to an element using directional and size variations. Margin size and 
 - `margin-x-auto` - Sets left and right margins to auto.
 - `margin-y-auto` - Sets top and bottom margins to auto.
 
-| Variable         | Default                 | Description                                             |
-| ---------------- | ----------------------- | ------------------------------------------------------- |
-| `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
-| `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
-
 ## max-width
 
 Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
@@ -504,13 +478,6 @@ Set the max-width property on an element using values mapped from scale keys. Sc
 - `max-width-none` - Sets the max-width property to `none`.
 - `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
 - `max-width-full` - Sets the max-width property to `100%`.
-
-| Variable            | Default                                 | Description                                                |
-| ------------------- | --------------------------------------- | ---------------------------------------------------------- |
-| `$output-max-width` | `$output` &rarr; `true`                 | Toggles the output of this module.                         |
-| `$class-max-width`  | `"max-width"`                           | String to use for the class name of the max-width utility. |
-| `$max-width`        | `70rem`                                 | The default value used to set max-width.                   |
-| `$max-width-scale`  | [Sass map ref &darr;](#max-width-scale) | Map used to build max-width utility variants.              |
 
 ### $max-width-scale
 
@@ -539,11 +506,6 @@ Add padding to an element using directional and size variations. Padding size an
 - `padding-x-[size]` - Sets left and right padding to a specific size key.
 - `padding-y-[size]` - Sets top and bottom padding to a specific size key.
 
-| Variable          | Default                 | Description                                              |
-| ----------------- | ----------------------- | -------------------------------------------------------- |
-| `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
-| `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
-
 ## position
 
 A utility for setting the position CSS property.
@@ -554,19 +516,9 @@ A utility for setting the position CSS property.
 - `position-static` - Sets the position property to static.
 - `position-sticky` - Sets the position property to sticky.
 
-| Variable           | Default                 | Description                                               |
-| ------------------ | ----------------------- | --------------------------------------------------------- |
-| `$output-position` | `$output` &rarr; `true` | Toggles the output of this utility.                       |
-| `$class-position`  | `"position"`            | String to use for the class name of the position utility. |
-
 ## text
 
 A utility for adjusting various text styles.
-
-| Variable       | Default                 | Description                                           |
-| -------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-text` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-text`  | `"text"`                | String to use for the class name of the text utility. |
 
 - `text-capitalize` - Sets text-transform to capitalize.
 - `text-lowercase` - Sets text-transform to lowercase.
