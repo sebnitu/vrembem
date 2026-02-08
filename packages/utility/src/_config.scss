@@ -42,21 +42,23 @@ $default: (
   // @type list
   "utility-display": (
     inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+  ),
+
+  // A map of max-width utilities to output
+  // @type map
+  "utility-max-width": (
+    "none": none,
+    "xs": 45rem,
+    "sm": 60rem,
+    "": 70rem,
+    "lg": 80rem,
+    "xl": 90rem,
+    "full": 100%
   )
 );
 
 @include config.apply($config, $default);
 
-$max-width: 70rem !default;
-$max-width-scale: (
-  "none": none,
-  "xs": 45rem,
-  "sm": 60rem,
-  "md": 70rem,
-  "lg": 80rem,
-  "xl": 90rem,
-  "full": 100%
-) !default;
 $order-count: 6 !default;
 $overflow-properties: (visible, hidden, clip, scroll, auto) !default;
 $gap: core.$gap !default;
