@@ -393,7 +393,11 @@ $-css-vars: (
 
       // Else, suffix the custom property with the key
       @else {
-        $-css-vars: map.set($-css-vars, $component, "#{$prop}-#{$key}", $value) !global;
+        $newKey: "#{$prop}-#{$key}";
+        @if $key == "" {
+          $newKey: $prop;
+        }
+        $-css-vars: map.set($-css-vars, $component, $newKey, $value) !global;
       }
     }
   }
