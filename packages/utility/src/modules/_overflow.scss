@@ -2,7 +2,7 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("overflow") {
-  @each $property in config.get("utility-overflow") {
+  @each $property in (visible, hidden, clip, scroll, auto) {
     #{fun.selector("overflow", $property)} {
       overflow: $property !important;
     }

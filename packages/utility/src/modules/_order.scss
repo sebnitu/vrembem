@@ -10,7 +10,7 @@
     order: 99 !important;
   }
 
-  @for $i from 0 through config.get("utility-order") {
+  @for $i from 0 through 6 {
     #{fun.selector("order", $i)} {
       order: $i !important;
     }

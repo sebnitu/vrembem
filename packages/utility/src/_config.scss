@@ -56,16 +56,6 @@ $default: (
     "full": 100%
   ),
 
-  // The number of order utility properties to output
-  // @type number
-  "utility-order": 6,
-
-  // A list of overflow utilities to output
-  // @type list
-  "utility-overflow": (
-    visible, hidden, clip, scroll, auto
-  ),
-
   // A map of gap utilities to output
   "utility-gap": (
     "none": css.get("gap-none"),

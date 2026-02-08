@@ -18,24 +18,4 @@
       row-gap: $value !important;
     }
   }
-
-  @each $bp, $value in config.get("breakpoints") {
-    @include core.media-min($value) {
-      @each $key, $value in config.get("utility-gap") {
-        #{fun.selector("gap", $key, "#{$bp}:")} {
-          gap: $value !important;
-        }
-      }
-
-      @each $key, $value in config.get("utility-gap") {
-        #{fun.selector("gap", "x", $key, "#{$bp}:")} {
-          column-gap: $value !important;
-        }
-
-        #{fun.selector("gap", "y", $key, "#{$bp}:")} {
-          row-gap: $value !important;
-        }
-      }
-    }
-  }
 }
