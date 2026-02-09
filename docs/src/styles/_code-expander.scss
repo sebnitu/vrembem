@@ -1,4 +1,5 @@
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @include css.set("code-expander", "max-height", 20rem);
 
 .code-expander {
@@ -6,12 +7,56 @@
 
   .pre {
     max-height: css.get("code-expander", "max-height");
-    transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+    transition-duration: css.get("transition-duration"), css.get("transition-duration-short"), css.get("transition-duration-short");
+    transition-property: max-height, border-color, box-shadow;
+    transition-timing-function: css.get("transition-timing-function");
   }
 }
 
-.code-expander__toggle {
+.code-expander__tools {
+  display: flex;
+  gap: css.get("gap-sm");
   inset: auto css.get("gap") css.get("gap") auto;
   position: absolute;
+  z-index: 2;
+}
+
+.code-expander__unlock-scroll {
+  display: none;
+  opacity: 0;
+  transition-duration: css.get("transition-duration-short");
+  transition-property: opacity, border-color;
+  transition-timing-function: css.get("transition-timing-function");
+}
+
+.code-expander__screen {
+  cursor: pointer;
+  display: none;
+  inset: 1px;
+  position: absolute;
   z-index: 1;
+}
+
+.code-expander.is-scroll-locked {
+  .code-expander__unlock-scroll {
+    display: flex;
+  }
+
+  .code-expander__screen {
+    display: block;
+  }
+
+  &:hover {
+    .pre {
+      border-color: palette.get("primary");
+      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
+    }
+
+    .code-expander__unlock-scroll {
+      border-color: palette.get("primary");
+      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
+      display: inline-flex;
+      opacity: 1;
+    }
+  }
 }

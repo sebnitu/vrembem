@@ -1,10 +1,24 @@
-<div class="code-expander">
-  <button
-    type="button"
-    class="button button_color_primary button_size_sm code-expander__toggle"
-  >
-    Expand
-  </button>
+---
+import Icon from "../components/Icon.astro";
+---
+
+<div class="code-expander is-scroll-locked">
+  <div class="code-expander__tools">
+    <button
+      type="button"
+      class="button button_size_sm code-expander__unlock-scroll background-white"
+    >
+      <Icon name="unlock" classes="icon_size_sm" />
+      <span>Unlock scroll</span>
+    </button>
+    <button
+      type="button"
+      class="button button_color_primary button_size_sm code-expander__toggle"
+    >
+      Expand
+    </button>
+  </div>
+  <div class="code-expander__screen"></div>
   <slot />
 </div>
 
@@ -34,6 +48,13 @@
         btn.innerHTML = "Expand";
         parent.style.setProperty("--vb-code-expander-max-height", null);
       }
+    });
+  });
+
+  const screens = document.querySelectorAll(".code-expander");
+  screens.forEach((screen) => {
+    screen.addEventListener("click", () => {
+      screen.classList.remove("is-scroll-locked");
     });
   });
 </script>
