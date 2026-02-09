@@ -68,16 +68,15 @@ $-css-vars: (
 ///
 @function -prefix($component) {
   $prefix: config.get("prefix-cssvar");
-  $delimiter: "";
 
-  @if $prefix {
-    $delimiter: "-";
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
   }
 
   @if $component and $component != "core" and $component != "palette" {
-    @return "--#{$prefix}#{$delimiter}#{$component}-";
+    @return "--#{$prefix}#{$component}-";
   } @else {
-    @return "--#{$prefix}#{$delimiter}";
+    @return "--#{$prefix}";
   }
 }
 

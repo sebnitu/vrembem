@@ -62,7 +62,7 @@
 /// Generate a base module selector with a core prefix and optional modifiers.
 ///
 /// @param {string} $module
-///   The base module name. Will search for a shorthand in `config.get("base-classes")`.
+///   The base module name.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class selector.
 ///
@@ -95,7 +95,7 @@
 
     @return list.join($selectors, ", ");
   } @else {
-    // Initialize the name variable
+    // Setup name var since we use `$module` later
     $name: $module;
 
     // Check if there's a shortname for the provided module name
@@ -103,8 +103,14 @@
       $name: map.get(config.get("base-classes"), $name);
     }
 
+    $prefix: config.get("base-prefix");
+
+    @if $prefix and $prefix != "" {
+      $prefix: "#{$prefix}-";
+    }
+
     // Setup the base module class name with prefix
-    $class: '#{config.get("prefix-block")}#{$name}';
+    $class: "#{$prefix}#{$name}";
 
     // Apply all the arguments to class
     @each $arg in $args {

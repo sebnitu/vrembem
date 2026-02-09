@@ -39,13 +39,14 @@ $config: (
   // @type list
   "utility-output-exceptions": (),
 
-  // A prefix to apply to utility class names
-  // @type string
-  "utility-prefix": "",
-
   // A map containing module names as keys and their preferred class selectors
   // @type map
   "utility-classes": (),
+
+  // A prefix to apply to utility class selectors. Provided value is 
+  // automatically suffixed with a `"-"` character when applied.
+  // @type string
+  "utility-prefix": "",
 
   // A lightness range list for outputting palette related utilities
   // @type list
@@ -160,6 +161,29 @@ Once loaded, the utility component provides a number of classes that can be used
   </div>
   ```
 </CodeExample>
+
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `utility-classes` config option.
+
+<ReferenceCard ref="config" name="utility-classes" type="map" defaults='("separator": "sep")'>
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.radius` instead of `.border-radius`, you could set the following:
+
+```scss
+@include config.set("utility-classes", (
+  "border-radius": "radius"
+));
+```
+</ReferenceCard>
+
+It's also possible to provide a prefix to all utility classes using the `utility-prefix` config option.
+
+<ReferenceCard ref="config" name="utility-prefix" type="map" defaults='""'>
+  A prefix to apply to utility class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
+
+```scss
+@include config.set("utility-prefix", "u");
+// Result: .display-none > .u-display-none
+```
+</ReferenceCard>
 
 ## Modules
 

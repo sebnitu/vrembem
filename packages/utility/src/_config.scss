@@ -15,13 +15,14 @@ $default: (
   // @type list
   "utility-output-exceptions": (),
 
-  // A prefix to apply to utility class names
-  // @type string
-  "utility-prefix": "",
-
   // A map containing module names as keys and their preferred class selectors
   // @type map
   "utility-classes": (),
+
+  // A prefix to apply to utility class selectors. Provided value is 
+  // automatically suffixed with a `"-"` character when applied.
+  // @type string
+  "utility-prefix": "",
 
   // A lightness range list for outputting palette related utilities
   // @type list

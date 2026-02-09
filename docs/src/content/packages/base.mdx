@@ -47,6 +47,11 @@ $config: (
     "separator": "sep"
   ),
 
+  // A prefix to apply to base class selectors. Provided value is automatically 
+  // suffixed with a `"-"` character when applied.
+  // @type string
+  "base-prefix": "",
+
   // Used to output the heading styles and their font-size/line-height CSS 
   // variables. Should contain a key of the heading level to output and the 
   // value of a font-size and optional line-height (space separated).
@@ -154,7 +159,7 @@ Once loaded, the base component provides normalization and default styles for HT
 ```
 </CodeExample>
 
-You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `base-classes` configuration.
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `base-classes` config option.
 
 <ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, you could set the following:
@@ -164,6 +169,17 @@ You can also customize the class selectors used by modules by mapping the module
   "separator": "sep",
   "type": "content"
 ));
+```
+</ReferenceCard>
+
+It's also possible to provide a prefix to all base classes using the `base-prefix` config option.
+
+<ReferenceCard ref="config" name="base-prefix" type="map" defaults='""'>
+  A prefix to apply to base class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
+
+```scss
+@include config.set("base-prefix", "vb");
+// Result: .type > .vb-type
 ```
 </ReferenceCard>
 

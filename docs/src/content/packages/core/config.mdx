@@ -72,7 +72,7 @@ To set configuration options via the Sass `@use ... with` clause, define and set
   ```scss
   @use "@vrembem/core" with (
     $config: (
-      "prefix-block": "sn-"
+      "prefix-block": "vb"
     )
   );
   @use "@vrembem/base" with (
@@ -81,7 +81,7 @@ To set configuration options via the Sass `@use ... with` clause, define and set
     )
   );
 
-  @debug core.config-get("prefix-block"); // => "sn-"
+  @debug core.config-get("prefix-block"); // => "vb"
   @debug core.config-get("base-output"); // => false
   ```
 </CodeExample>

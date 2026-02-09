@@ -22,8 +22,8 @@
 
 /// Generate a utility class selector with a core prefix and optional modifiers.
 ///
-/// @param {string} $name
-///   Name of the utility. Will search for a shorthand in `config.get("utility-classes")`.
+/// @param {string} $module
+///   The utility module name.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class name. Add a ":" for
 ///   a prepended modifier such as breakpoints, e.g., "md:".
@@ -32,16 +32,22 @@
 ///   A valid utility CSS selector.
 ///
 @function selector(
-  $name,
+  $module,
   $args...
 ) {
   // Check if there's a shortname for the class name
-  @if map.has-key(config.get("utility-classes"), $name) {
-    $name: map.get(config.get("utility-classes"), $name);
+  @if map.has-key(config.get("utility-classes"), $module) {
+    $module: map.get(config.get("utility-classes"), $module);
+  }
+
+  $prefix: config.get("utility-prefix");
+
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
   }
 
   // Setup the base utility class name with prefix
-  $class: '#{config.get("utility-prefix")}#{$name}';
+  $class: "#{$prefix}#{$module}";
 
   // Apply all the arguments to class
   @each $arg in $args {

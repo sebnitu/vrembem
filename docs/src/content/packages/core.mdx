@@ -34,7 +34,8 @@ Core comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // A prefix to apply to block class names
+  // A prefix to apply to block class names. Provided value is automatically 
+  // suffixed with a `"-"` character when applied.
   // @type string
   "prefix-block": "",
 
@@ -50,7 +51,8 @@ $config: (
   // @type string
   "prefix-modifier-value": "_",
 
-  // A prefix to apply to CSS variables
+  // A prefix to apply to CSS variables. Provided value is automatically 
+  // suffixed with a `"-"` character when applied.
   // @type string
   "prefix-cssvar": "vb",
 
@@ -67,13 +69,24 @@ $config: (
   // @type number
   "palette-default": null,
 
-  // A prefix to apply to theme names
+  // A prefix to apply to theme names. Provided value is automatically suffixed
+  // with a `"-"` character when applied.
   // @type string
   "theme-prefix": "vb-theme",
 
   // Sets the default theme option
   // @type string
   "theme-default": "light",
+
+  // A map of breakpoint key/value pairs
+  // @type map
+  "breakpoints": (
+    "xs": 480px,
+    "sm": 620px,
+    "md": 760px,
+    "lg": 990px,
+    "xl": 1380px
+  )
 );
 ```
 </CodeExpander>

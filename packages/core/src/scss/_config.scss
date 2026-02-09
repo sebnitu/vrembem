@@ -4,7 +4,8 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // A prefix to apply to block class names
+  // A prefix to apply to block class names. Provided value is automatically 
+  // suffixed with a `"-"` character when applied.
   // @type string
   "prefix-block": "",
 
@@ -20,7 +21,8 @@ $defaults: (
   // @type string
   "prefix-modifier-value": "_",
 
-  // A prefix to apply to CSS variables
+  // A prefix to apply to CSS variables. Provided value is automatically 
+  // suffixed with a `"-"` character when applied.
   // @type string
   "prefix-cssvar": "vb",
 
@@ -37,7 +39,8 @@ $defaults: (
   // @type number
   "palette-default": null,
 
-  // A prefix to apply to theme names
+  // A prefix to apply to theme names. Provided value is automatically suffixed
+  // with a `"-"` character when applied.
   // @type string
   "theme-prefix": "vb-theme",
 
