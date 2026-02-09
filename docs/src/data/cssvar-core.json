@@ -50,6 +50,7 @@
   "--vb-focus-ring-width": "3px",
   "--vb-focus-ring-style": "solid",
   "--vb-focus-ring-offset": "0",
+  "--vb-focus-ring-opacity": "40%",
   "--vb-form-control-font-size": "var(--vb-font-size)",
   "--vb-form-control-font-size-sm": "var(--vb-font-size-sm)",
   "--vb-form-control-font-size-lg": "var(--vb-font-size-lg)",
