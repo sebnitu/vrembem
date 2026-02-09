@@ -14,6 +14,7 @@
 ///
 @mixin media-max($point) {
   $breakpoints: config.get("breakpoints");
+
   @if map.has-key($breakpoints, $point) {
     @media (max-width: (map.get($breakpoints, $point) - 1)) {
       @content;

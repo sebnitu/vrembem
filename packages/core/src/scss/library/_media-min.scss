@@ -13,6 +13,7 @@
 ///
 @mixin media-min($point) {
   $breakpoints: config.get("breakpoints");
+
   @if map.has-key($breakpoints, $point) {
     @media (min-width: map.get($breakpoints, $point)) {
       @content;
