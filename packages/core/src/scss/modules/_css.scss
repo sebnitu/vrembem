@@ -137,7 +137,7 @@ $-css-vars: (
 }
 
 /// Mixin to define custom property using the provided property name and value.
-/// Automatically applies with prefix and component name if provided.
+/// Automatically applied with prefix and component name if provided.
 ///
 /// @param {string} $component
 ///   The component name to use as part of the prefix. The "core" and "palette"
