@@ -1,6 +1,6 @@
 ---
 title: Utility
-description: "The utility component provides atomic classes that specialize in single functions."
+description: "The utility package provides atomic classes that specialize in single functions."
 package: "@vrembem/utility"
 status: "layers"
 ---
@@ -11,7 +11,7 @@ import ReferenceCard from "../../components/ReferenceCard.astro";
 
 # Utility
 
-The utility component provides atomic classes that specialize in single functions.
+The utility package provides atomic classes that specialize in single functions.
 
 ```sh
 npm install @vrembem/utility
@@ -44,7 +44,7 @@ $config: (
   "utility-classes": (),
 
   // A prefix to apply to utility class selectors. Provided value is 
-  // automatically suffixed with a `"-"` character when applied.
+  // automatically suffixed with a "-" character when applied.
   // @type string
   "utility-prefix": "",
 
@@ -99,7 +99,7 @@ $config: (
 Utility modules each have their own output styles. These are all output by default when the utility package is loaded. There are two ways to control which modules are output using the `utility-output` and `utility-output-exceptions` configuration options.
 
 <ReferenceCard ref="config" name="utility-output" type="boolean" defaults="true">
-  Controls whether module styles are output. You can specify exceptions using the `utility-output-exceptions` list.
+  Controls whether module styles are output. Specify exceptions using the `utility-output-exceptions` config option.
 
 ```scss
 @include config.set("utility-output", false);
@@ -145,7 +145,7 @@ Use the `utility-output` configuration to toggle output for all modules. Add exc
 
 ## Basic usage
 
-Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
+Once loaded, the utility package provides a number of classes that can be used independently or to supplement other loaded components.
 
 <CodeExample>
   ```html
@@ -165,7 +165,7 @@ Once loaded, the utility component provides a number of classes that can be used
 To customize the class selectors used by modules, map the module name to your preferred class selector in the `utility-classes` config option.
 
 <ReferenceCard ref="config" name="utility-classes" type="map" defaults='("separator": "sep")'>
-  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.radius` instead of `.border-radius`, you could set the following:
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.radius` instead of `.border-radius`, set the following value:
 
 ```scss
 @include config.set("utility-classes", (
@@ -187,7 +187,7 @@ It's also possible to provide a prefix to all utility classes using the `utility
 
 ## Modules
 
-Below is a list of each utility module, their available variants and intended usage. Some modules also have configuration options that alter their output.
+Below is a list of each utility module, their available variants and intended usage. Some modules also have configuration options that can be used to configure their output.
 
 ### background
 

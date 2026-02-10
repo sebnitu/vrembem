@@ -1,6 +1,6 @@
 # Utility
 
-The utility component provides atomic classes that specialize in single functions.
+The utility package provides atomic classes that specialize in single functions.
 
 [Documentation](https://vrembem.com/packages/utility)
 
