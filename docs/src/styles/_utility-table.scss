@@ -1,12 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "./variables" as var;
-
 @include css.set("utility-table", "max-height", 30rem);
 
 .utility-table {
-  overflow: hidden;
   max-height: css.get("utility-table", "max-height");
+  overflow: hidden;
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   thead {
@@ -32,9 +31,9 @@
 }
 
 .utility-table__footer {
-  position: sticky;
-  bottom: 0;
-  text-align: center;
-  padding: 1.5em 0;
   background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  bottom: 0;
+  padding: 1.5em 0;
+  position: sticky;
+  text-align: center;
 }
