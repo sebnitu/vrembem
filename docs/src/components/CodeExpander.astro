@@ -6,7 +6,7 @@ import Icon from "../components/Icon.astro";
   <div class="code-expander__tools">
     <button
       type="button"
-      class="button button_size_sm code-expander__unlock-scroll background-white"
+      class="button button_size_sm code-expander__unlock-scroll background"
     >
       <Icon name="unlock" classes="icon_size_sm" />
       <span>Unlock scroll</span>
@@ -25,15 +25,15 @@ import Icon from "../components/Icon.astro";
 <script>
   const btns = document.querySelectorAll(".code-expander__toggle");
   btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".code-expander") as HTMLElement;
+    const code = parent.querySelector("code") as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = code.offsetHeight + padding;
+
     btn.addEventListener("click", () => {
-      // Get the elements
-      const parent = btn.closest(".code-expander") as HTMLElement;
-      const code = parent.querySelector("code") as HTMLElement;
-
-      // Get the height variable
-      const padding = 42; // Kind of a magic number atm
-      const height = code.offsetHeight + padding;
-
       // Toggle the expand state
       parent.classList.toggle("is-expanded");
 
