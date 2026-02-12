@@ -1,0 +1,73 @@
+---
+// TODO: Allow clicking row or class value to copy the class.
+
+interface Props {
+  data: {};
+}
+
+const { data } = Astro.props;
+---
+
+<div class="utility-table font-size-base">
+  <table class="table table_style_rowed">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Styles</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        Object.entries(data).map(([key, value]) => (
+          <tr>
+            <td>
+              <code>{key}</code>
+            </td>
+            <td>
+              <code>{value}</code>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <div class="utility-table__footer">
+    <button
+      class="button button_color_primary button_size_sm utility-table__toggle"
+      type="button">Expand</button
+    >
+  </div>
+</div>
+
+<script>
+  const btns = document.querySelectorAll(".utility-table__toggle");
+  btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".utility-table") as HTMLElement;
+    const table = parent.querySelector("table") as HTMLElement;
+    const footer = parent.querySelector(
+      ".utility-table__footer"
+    ) as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = table.offsetHeight + footer.offsetHeight + padding;
+
+    btn.addEventListener("click", () => {
+      // Toggle the expand state
+      parent.classList.toggle("is-expanded");
+
+      // Update the state
+      if (parent.classList.contains("is-expanded")) {
+        btn.innerHTML = "Collapse";
+        parent.style.setProperty(
+          "--vb-utility-table-max-height",
+          `${height}px`
+        );
+      } else {
+        btn.innerHTML = "Expand";
+        parent.style.setProperty("--vb-utility-table-max-height", null);
+      }
+    });
+  });
+</script>
