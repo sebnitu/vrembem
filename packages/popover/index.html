@@ -61,6 +61,18 @@
       <div id="popover-bottom" class="popover">Popover</div>
       <div id="popover-right" class="popover" style="--vb-popover-placement: right;">Popover</div>
 
+      <h2 id="popover-virtual"><a href="#popover-virtual">virtual popover</a></h2>
+
+      <button class="button" aria-describedby="popover-virtual-1">Copy</button>
+      <div 
+        id="popover-virtual-1" 
+        class="popover popover_tooltip"
+        data-config='{"virtual": true}'
+        style="--vb-popover-event: click;"
+      >
+        Virtual popover...
+      </div>
+
       <h2 id="popover_size_value"><a href="#popover_size_value">popover_size_[value]</a></h2>
 
       <div class="flex">
