@@ -4,7 +4,6 @@
 @use "./variables" as var;
 @include css.set("utility-table", "max-height", 28rem);
 
-// TODO: Make utility-table__code fill the full height of the td
 // TODO: Create a theme for the foreground colors
 
 .utility-table {
@@ -23,7 +22,12 @@
     }
   }
 
+  tr {
+    height: 1px;
+  }
+
   td {
+    height: inherit;
     padding: 0;
     vertical-align: middle;
   }
@@ -64,6 +68,7 @@
   cursor: pointer;
   display: flex;
   gap: css.get("gap");
+  height: 100%;
   justify-content: space-between;
   padding: 0.5em;
 
@@ -82,7 +87,7 @@
     transition: opacity css.get("transition-short");
   }
 
-  &:hover {
+  td:hover & {
     .icon {
       opacity: 1;
     }
