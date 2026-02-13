@@ -1,10 +1,25 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
 @use "./variables" as var;
 @include css.set("utility-table", "max-height", 28rem);
-
-// TODO: Create a theme for the foreground colors
+@include theme.set(
+  "utility-table",
+  "light",
+  (
+    "class-foreground": palette.get("primary", 45),
+    "style-foreground": palette.get("secondary", 45)
+  )
+);
+@include theme.set(
+  "utility-table",
+  "dark",
+  (
+    "class-foreground": palette.get("primary", 65),
+    "style-foreground": palette.get("secondary", 65)
+  )
+);
 
 .utility-table {
   max-height: css.get("utility-table", "max-height");
@@ -32,12 +47,12 @@
     vertical-align: middle;
   }
 
-  td:first-child {
-    @include css.override("code", "foreground", palette.get("primary", 40));
+  td:nth-child(1) {
+    @include css.override("code", "foreground", css.get("utility-table", "class-foreground"));
   }
 
-  td:last-child {
-    @include css.override("code", "foreground", palette.get("secondary"));
+  td:nth-child(2) {
+    @include css.override("code", "foreground", css.get("utility-table", "style-foreground"));
   }
 
   .swatch {
