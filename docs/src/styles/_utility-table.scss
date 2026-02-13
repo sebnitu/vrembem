@@ -4,15 +4,18 @@
 @use "./variables" as var;
 @include css.set("utility-table", "max-height", 28rem);
 
+// TODO: Make utility-table__code fill the full height of the td
+// TODO: Create a theme for the foreground colors
+
 .utility-table {
   max-height: css.get("utility-table", "max-height");
   overflow: hidden;
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   thead {
+    background-color: css.get("background");
     position: sticky;
     top: 0;
-    background-color: css.get("background");
     z-index: 1;
 
     tr {
@@ -35,6 +38,7 @@
 
   .swatch {
     @include core.size(2em);
+
     display: block;
     margin-left: auto;
   }
@@ -55,11 +59,12 @@
 .utility-table__code {
   @include css.override("code", "background", transparent);
   @include css.override("code", "padding", 0);
+
+  align-items: center;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: css.get("gap");
+  justify-content: space-between;
   padding: 0.5em;
 
   td:first-child & {
@@ -72,6 +77,7 @@
 
   .icon {
     @include css.override("icon", "color", css.get("foreground-lighter"));
+
     opacity: 0;
     transition: opacity css.get("transition-short");
   }

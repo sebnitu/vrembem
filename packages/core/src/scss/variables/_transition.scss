@@ -1,5 +1,4 @@
 @use "../modules/css";
-
 @include css.set(
   "core",
   "transition",
@@ -10,7 +9,6 @@
     "timing-function": cubic-bezier(0.4, 0, 0.2, 1)
   )
 );
-
 @include css.set(
   "core",
   "transition",
