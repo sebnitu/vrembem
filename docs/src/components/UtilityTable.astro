@@ -32,16 +32,26 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
         Object.entries(data).map(([key, value]) => (
           <tr>
             <td>
-              <div class="utility-table__code">
+              <button
+                type="button"
+                class="utility-table__code"
+                aria-label="Copy utility class"
+              >
                 <code class="text-nowrap">{key}</code>
                 <Icon name="copy" classes="icon_size_sm" />
-              </div>
+                <Icon name="check" classes="icon_size_sm display-none" />
+              </button>
             </td>
             <td>
-              <div class="utility-table__code">
+              <button
+                type="button"
+                class="utility-table__code"
+                aria-label="Copy utility styles"
+              >
                 <code>{value}</code>
                 <Icon name="copy" classes="icon_size_sm" />
-              </div>
+                <Icon name="check" classes="icon_size_sm display-none" />
+              </button>
             </td>
             {example && (
               <td>
@@ -101,11 +111,25 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
   });
 
   const codes = document.querySelectorAll(".utility-table__code");
-  codes.forEach((code) => {
+  codes.forEach((code: HTMLButtonElement) => {
+    const icons = code.querySelectorAll(".icon");
     code.addEventListener("click", () => {
       const text = code.querySelector("code").innerText;
-      navigator.clipboard.writeText(text);
-      // TODO: Add some type of UI indication that copy has been made
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          code.disabled = true;
+          icons.forEach((icon) => icon.classList.toggle("display-none"));
+          setTimeout(() => {
+            code.disabled = false;
+            icons.forEach((icon) => icon.classList.toggle("display-none"));
+            // TODO: Maybe at a popover on mouse position
+            // popover.close(trigger.getAttribute("data-popover-trigger"));
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     });
   });
 </script>
