@@ -52,7 +52,7 @@ $config: (
   // A lightness range list for outputting palette related utilities
   // @type list
   "utility-palette-range": (
-    0, 5, 10, 12, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 100
+    0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
   ),
 
   // A map of border-radius utilities to output
@@ -192,375 +192,44 @@ Below is a list of each utility module, their available variants and intended us
 
 ### background
 
-Utilities for setting the background-color property of an element.
+Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
 
-<UtilityTable data={{
+export const background = (() => {
+  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const palette = ["primary", "secondary", "neutral", "important"];
+  return palette.reduce((acc, pal) => {
+    acc[`background-${pal}`] = `background-color: var(--vb-${pal});`
+    range.forEach(val => {
+      acc[`background-${pal}-${val}`] = `background-color: hsl(var(--vb-${pal}-hs) ${val});`;
+    });
+    return acc;
+  }, {});
+})();
+
+<UtilityTable id="background-color" example data={{
   // Miscellaneous
-  "background-clip-border": "background-clip: border-box;",
-  "background-clip-content": "background-clip: content-box;",
-  "background-clip-padding": "background-clip: padding-box;",
-  "background-clip-text": "background-clip: text;",
   "background-black": "background-color: black;",
   "background-white": "background-color: white;",
   "background-transparent": "background-color: transparent;",
 
   // Theme utilities
-  "background-background": "background-color: var(--vb-background);",
-  "background-background-dark": "background-color: var(--vb-background-dark);",
-  "background-background-darker": "background-color: var(--vb-background-darker);",
+  "background": "background-color: var(--vb-background);",
+  "background-dark": "background-color: var(--vb-background-dark);",
+  "background-darker": "background-color: var(--vb-background-darker);",
 
   // Palette utilities
-  "background-primary": "background-color: var(--vb-primary);",
+  ...background
 }} />
 
-{/*
-.background-primary-0 {
-  background-color: hsl(var(--vb-primary-hs) 0) !important;
-}
-
-.background-primary-5 {
-  background-color: hsl(var(--vb-primary-hs) 5) !important;
-}
-
-.background-primary-10 {
-  background-color: hsl(var(--vb-primary-hs) 10) !important;
-}
-
-.background-primary-12 {
-  background-color: hsl(var(--vb-primary-hs) 12) !important;
-}
-
-.background-primary-15 {
-  background-color: hsl(var(--vb-primary-hs) 15) !important;
-}
-
-.background-primary-20 {
-  background-color: hsl(var(--vb-primary-hs) 20) !important;
-}
-
-.background-primary-30 {
-  background-color: hsl(var(--vb-primary-hs) 30) !important;
-}
-
-.background-primary-40 {
-  background-color: hsl(var(--vb-primary-hs) 40) !important;
-}
-
-.background-primary-50 {
-  background-color: hsl(var(--vb-primary-hs) 50) !important;
-}
-
-.background-primary-60 {
-  background-color: hsl(var(--vb-primary-hs) 60) !important;
-}
-
-.background-primary-70 {
-  background-color: hsl(var(--vb-primary-hs) 70) !important;
-}
-
-.background-primary-80 {
-  background-color: hsl(var(--vb-primary-hs) 80) !important;
-}
-
-.background-primary-90 {
-  background-color: hsl(var(--vb-primary-hs) 90) !important;
-}
-
-.background-primary-95 {
-  background-color: hsl(var(--vb-primary-hs) 95) !important;
-}
-
-.background-primary-98 {
-  background-color: hsl(var(--vb-primary-hs) 98) !important;
-}
-
-.background-primary-100 {
-  background-color: hsl(var(--vb-primary-hs) 100) !important;
-}
-
-.background-secondary {
-  background-color: var(--vb-secondary) !important;
-}
-
-.background-secondary-0 {
-  background-color: hsl(var(--vb-secondary-hs) 0) !important;
-}
-
-.background-secondary-5 {
-  background-color: hsl(var(--vb-secondary-hs) 5) !important;
-}
-
-.background-secondary-10 {
-  background-color: hsl(var(--vb-secondary-hs) 10) !important;
-}
-
-.background-secondary-12 {
-  background-color: hsl(var(--vb-secondary-hs) 12) !important;
-}
-
-.background-secondary-15 {
-  background-color: hsl(var(--vb-secondary-hs) 15) !important;
-}
-
-.background-secondary-20 {
-  background-color: hsl(var(--vb-secondary-hs) 20) !important;
-}
-
-.background-secondary-30 {
-  background-color: hsl(var(--vb-secondary-hs) 30) !important;
-}
-
-.background-secondary-40 {
-  background-color: hsl(var(--vb-secondary-hs) 40) !important;
-}
-
-.background-secondary-50 {
-  background-color: hsl(var(--vb-secondary-hs) 50) !important;
-}
-
-.background-secondary-60 {
-  background-color: hsl(var(--vb-secondary-hs) 60) !important;
-}
-
-.background-secondary-70 {
-  background-color: hsl(var(--vb-secondary-hs) 70) !important;
-}
-
-.background-secondary-80 {
-  background-color: hsl(var(--vb-secondary-hs) 80) !important;
-}
-
-.background-secondary-90 {
-  background-color: hsl(var(--vb-secondary-hs) 90) !important;
-}
-
-.background-secondary-95 {
-  background-color: hsl(var(--vb-secondary-hs) 95) !important;
-}
-
-.background-secondary-98 {
-  background-color: hsl(var(--vb-secondary-hs) 98) !important;
-}
-
-.background-secondary-100 {
-  background-color: hsl(var(--vb-secondary-hs) 100) !important;
-}
-
-.background-neutral {
-  background-color: var(--vb-neutral) !important;
-}
-
-.background-neutral-0 {
-  background-color: hsl(var(--vb-neutral-hs) 0) !important;
-}
-
-.background-neutral-5 {
-  background-color: hsl(var(--vb-neutral-hs) 5) !important;
-}
-
-.background-neutral-10 {
-  background-color: hsl(var(--vb-neutral-hs) 10) !important;
-}
-
-.background-neutral-12 {
-  background-color: hsl(var(--vb-neutral-hs) 12) !important;
-}
-
-.background-neutral-15 {
-  background-color: hsl(var(--vb-neutral-hs) 15) !important;
-}
-
-.background-neutral-20 {
-  background-color: hsl(var(--vb-neutral-hs) 20) !important;
-}
-
-.background-neutral-30 {
-  background-color: hsl(var(--vb-neutral-hs) 30) !important;
-}
-
-.background-neutral-40 {
-  background-color: hsl(var(--vb-neutral-hs) 40) !important;
-}
-
-.background-neutral-50 {
-  background-color: hsl(var(--vb-neutral-hs) 50) !important;
-}
-
-.background-neutral-60 {
-  background-color: hsl(var(--vb-neutral-hs) 60) !important;
-}
-
-.background-neutral-70 {
-  background-color: hsl(var(--vb-neutral-hs) 70) !important;
-}
-
-.background-neutral-80 {
-  background-color: hsl(var(--vb-neutral-hs) 80) !important;
-}
-
-.background-neutral-90 {
-  background-color: hsl(var(--vb-neutral-hs) 90) !important;
-}
-
-.background-neutral-95 {
-  background-color: hsl(var(--vb-neutral-hs) 95) !important;
-}
-
-.background-neutral-98 {
-  background-color: hsl(var(--vb-neutral-hs) 98) !important;
-}
-
-.background-neutral-100 {
-  background-color: hsl(var(--vb-neutral-hs) 100) !important;
-}
-
-.background-important {
-  background-color: var(--vb-important) !important;
-}
-
-.background-important-0 {
-  background-color: hsl(var(--vb-important-hs) 0) !important;
-}
-
-.background-important-5 {
-  background-color: hsl(var(--vb-important-hs) 5) !important;
-}
-
-.background-important-10 {
-  background-color: hsl(var(--vb-important-hs) 10) !important;
-}
-
-.background-important-12 {
-  background-color: hsl(var(--vb-important-hs) 12) !important;
-}
-
-.background-important-15 {
-  background-color: hsl(var(--vb-important-hs) 15) !important;
-}
-
-.background-important-20 {
-  background-color: hsl(var(--vb-important-hs) 20) !important;
-}
-
-.background-important-30 {
-  background-color: hsl(var(--vb-important-hs) 30) !important;
-}
-
-.background-important-40 {
-  background-color: hsl(var(--vb-important-hs) 40) !important;
-}
-
-.background-important-50 {
-  background-color: hsl(var(--vb-important-hs) 50) !important;
-}
-
-.background-important-60 {
-  background-color: hsl(var(--vb-important-hs) 60) !important;
-}
-
-.background-important-70 {
-  background-color: hsl(var(--vb-important-hs) 70) !important;
-}
-
-.background-important-80 {
-  background-color: hsl(var(--vb-important-hs) 80) !important;
-}
-
-.background-important-90 {
-  background-color: hsl(var(--vb-important-hs) 90) !important;
-}
-
-.background-important-95 {
-  background-color: hsl(var(--vb-important-hs) 95) !important;
-}
-
-.background-important-98 {
-  background-color: hsl(var(--vb-important-hs) 98) !important;
-}
-
-.background-important-100 {
-  background-color: hsl(var(--vb-important-hs) 100) !important;
-}
-*/}
-
-<CodeExample>
-  <div slot="output" class="flex flex-wrap">
-    <div class="swatch background-black"></div>
-    <div class="swatch background-white"></div>
-    <div class="swatch background-transparent"></div>
-    <div class="swatch background"></div>
-    <div class="swatch background-dark"></div>
-    <div class="swatch background-darker"></div>
-    <div class="swatch background-primary-0"></div>
-    <div class="swatch background-primary-10"></div>
-    <div class="swatch background-primary-20"></div>
-    <div class="swatch background-primary-30"></div>
-    <div class="swatch background-primary-40"></div>
-    <div class="swatch background-primary-50"></div>
-    <div class="swatch background-primary-60"></div>
-    <div class="swatch background-primary-70"></div>
-    <div class="swatch background-primary-80"></div>
-    <div class="swatch background-primary-90"></div>
-    <div class="swatch background-primary-95"></div>
-    <div class="swatch background-primary-98"></div>
-    <div class="swatch background-primary-100"></div>
-    <div class="swatch background-secondary-0"></div>
-    <div class="swatch background-secondary-10"></div>
-    <div class="swatch background-secondary-20"></div>
-    <div class="swatch background-secondary-30"></div>
-    <div class="swatch background-secondary-40"></div>
-    <div class="swatch background-secondary-50"></div>
-    <div class="swatch background-secondary-60"></div>
-    <div class="swatch background-secondary-70"></div>
-    <div class="swatch background-secondary-80"></div>
-    <div class="swatch background-secondary-90"></div>
-    <div class="swatch background-secondary-95"></div>
-    <div class="swatch background-secondary-98"></div>
-    <div class="swatch background-secondary-100"></div>
-    <div class="swatch background-neutral-0"></div>
-    <div class="swatch background-neutral-10"></div>
-    <div class="swatch background-neutral-20"></div>
-    <div class="swatch background-neutral-30"></div>
-    <div class="swatch background-neutral-40"></div>
-    <div class="swatch background-neutral-50"></div>
-    <div class="swatch background-neutral-60"></div>
-    <div class="swatch background-neutral-70"></div>
-    <div class="swatch background-neutral-80"></div>
-    <div class="swatch background-neutral-90"></div>
-    <div class="swatch background-neutral-95"></div>
-    <div class="swatch background-neutral-98"></div>
-    <div class="swatch background-neutral-100"></div>
-    <div class="swatch background-important-0"></div>
-    <div class="swatch background-important-10"></div>
-    <div class="swatch background-important-20"></div>
-    <div class="swatch background-important-30"></div>
-    <div class="swatch background-important-40"></div>
-    <div class="swatch background-important-50"></div>
-    <div class="swatch background-important-60"></div>
-    <div class="swatch background-important-70"></div>
-    <div class="swatch background-important-80"></div>
-    <div class="swatch background-important-90"></div>
-    <div class="swatch background-important-95"></div>
-    <div class="swatch background-important-98"></div>
-    <div class="swatch background-important-100"></div>
-  </div>
-  ```html
-  <div class="background"></div>
-  <div class="background-dark"></div>
-  <div class="background-darker"></div>
-  <div class="background-primary"></div>
-  ...
-  ```
-</CodeExample>
-
-Also available are utility classes for the `background-clip` property.
-
-```html
-<div class="background-clip-border"></div>
-<div class="background-clip-content"></div>
-<div class="background-clip-padding"></div>
-<div class="background-clip-text"></div>
-```
+The background utility module also includes options for setting the background-clip property.
+
+<UtilityTable id="background-clip" expandable={false} data={{
+  // Miscellaneous
+  "background-clip-border": "background-clip: border-box;",
+  "background-clip-content": "background-clip: content-box;",
+  "background-clip-padding": "background-clip: padding-box;",
+  "background-clip-text": "background-clip: text;",
+}} />
 
 ### foreground
 

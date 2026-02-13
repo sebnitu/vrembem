@@ -1,19 +1,30 @@
 ---
-// TODO: Allow clicking row or class value to copy the class.
+import Icon from "../components/Icon.astro";
 
 interface Props {
   data: {};
+  id?: string;
+  example?: boolean;
+  expandable?: boolean;
 }
 
-const { data } = Astro.props;
+const { data, id, example = false, expandable = true } = Astro.props;
+
+// Create a unique ID if one is not provided
+const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 ---
 
-<div class="utility-table font-size-base">
+<div
+  id={`utility-table-${uid}`}
+  class="utility-table font-size-base"
+  data-expandable={expandable}
+>
   <table class="table table_style_rowed">
     <thead>
       <tr>
         <th>Class</th>
         <th>Styles</th>
+        {example && <th>E.g.</th>}
       </tr>
     </thead>
     <tbody>
@@ -21,22 +32,39 @@ const { data } = Astro.props;
         Object.entries(data).map(([key, value]) => (
           <tr>
             <td>
-              <code>{key}</code>
+              <div class="utility-table__code">
+                <code class="text-nowrap">{key}</code>
+                <Icon name="copy" classes="icon_size_sm" />
+              </div>
             </td>
             <td>
-              <code>{value}</code>
+              <div class="utility-table__code">
+                <code>{value}</code>
+                <Icon name="copy" classes="icon_size_sm" />
+              </div>
             </td>
+            {example && (
+              <td>
+                <span class={`swatch ${key}`} />
+              </td>
+            )}
           </tr>
         ))
       }
     </tbody>
   </table>
-  <div class="utility-table__footer">
-    <button
-      class="button button_color_primary button_size_sm utility-table__toggle"
-      type="button">Expand</button
-    >
-  </div>
+  {
+    expandable && (
+      <div class="utility-table__footer">
+        <button
+          class="button button_color_primary button_size_sm utility-table__toggle"
+          type="button"
+        >
+          Expand
+        </button>
+      </div>
+    )
+  }
 </div>
 
 <script>
@@ -67,7 +95,17 @@ const { data } = Astro.props;
       } else {
         btn.innerHTML = "Expand";
         parent.style.setProperty("--vb-utility-table-max-height", null);
+        parent.scrollIntoView({ behavior: "instant" });
       }
+    });
+  });
+
+  const codes = document.querySelectorAll(".utility-table__code");
+  codes.forEach((code) => {
+    code.addEventListener("click", () => {
+      const text = code.querySelector("code").innerText;
+      navigator.clipboard.writeText(text);
+      // TODO: Add some type of UI indication that copy has been made
     });
   });
 </script>

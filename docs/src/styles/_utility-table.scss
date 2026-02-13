@@ -1,7 +1,8 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "./variables" as var;
-@include css.set("utility-table", "max-height", 30rem);
+@include css.set("utility-table", "max-height", 28rem);
 
 .utility-table {
   max-height: css.get("utility-table", "max-height");
@@ -9,23 +10,75 @@
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   thead {
+    position: sticky;
+    top: 0;
     background-color: css.get("background");
+    z-index: 1;
 
     tr {
       border-top: none;
     }
   }
 
+  td {
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  td:first-child {
+    @include css.override("code", "foreground", palette.get("primary", 40));
+  }
+
+  td:last-child {
+    @include css.override("code", "foreground", palette.get("secondary"));
+  }
+
+  .swatch {
+    @include core.size(2em);
+    display: block;
+    margin-left: auto;
+  }
+
   &.is-expanded {
     overflow: visible;
 
     thead {
-      position: sticky;
-      top: calc(css.get("layout", "toolbar-height"));
+      top: calc(css.get("layout", "toolbar-height") - 1px);
 
       @include core.media-min(var.$bp-drawer) {
-        top: calc(css.get("layout", "toolbar-height"));
+        top: calc(css.get("layout", "navibar-height") - 1px);
       }
+    }
+  }
+}
+
+.utility-table__code {
+  @include css.override("code", "background", transparent);
+  @include css.override("code", "padding", 0);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: css.get("gap");
+  padding: 0.5em;
+
+  td:first-child & {
+    padding-left: 0;
+  }
+
+  td:last-child & {
+    padding-right: 0;
+  }
+
+  .icon {
+    @include css.override("icon", "color", css.get("foreground-lighter"));
+    opacity: 0;
+    transition: opacity css.get("transition-short");
+  }
+
+  &:hover {
+    .icon {
+      opacity: 1;
     }
   }
 }
