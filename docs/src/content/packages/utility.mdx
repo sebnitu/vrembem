@@ -297,10 +297,10 @@ export const foreground = (() => {
 <CodeExample>
   <Fragment slot="output">
     <div class="flex gap">
-      <button class="button foreground-primary">Button 1</button>
-      <button class="button foreground-secondary">Button 2</button>
-      <button class="button foreground-neutral">Button 3</button>
-      <button class="button foreground-important">Button 4</button>
+      <button class="button border-color-current foreground-primary">Button 1</button>
+      <button class="button border-color-current foreground-secondary">Button 2</button>
+      <button class="button border-color-current foreground-neutral">Button 3</button>
+      <button class="button border-color-current foreground-important">Button 4</button>
     </div>
   </Fragment>
 ```html
@@ -313,43 +313,26 @@ export const foreground = (() => {
 
 ### border
 
-<ReferenceBar selector=".border" />
+Utilities for setting the border property with optional sides variants of an element. Also includes utilities for setting variants of the border-color property.
 
-Applies border property with optional sides variants.
+<UtilityTable id="border" expandable={false} data={{
+  "border": "border: var(--vb-border);",
+  "border-top": "border-top: var(--vb-border);",
+  "border-bottom": "border-bottom: var(--vb-border);",
+  "border-left": "border-left: var(--vb-border);",
+  "border-right": "border-right: var(--vb-border);",
 
-```html
-<div class="border"></div>
-<div class="border-top"></div>
-<div class="border-right"></div>
-<div class="border-bottom"></div>
-<div class="border-left"></div>
-```
+  "border-none": "border: 0;",
+  "border-top-none": "border-top: 0;",
+  "border-bottom-none": "border-bottom: 0;",
+  "border-left-none": "border-left: 0;",
+  "border-right-none": "border-right: 0;",
 
-Remove border styles with `border-none` utilities and optional side variants.
-
-```html
-<div class="border-none"></div>
-<div class="border-top-none"></div>
-<div class="border-right-none"></div>
-<div class="border-bottom-none"></div>
-<div class="border-left-none"></div>
-```
-
-Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
-
-```html
-<!-- border-color -->
-<div class="border border-color-light"></div>
-<div class="border"></div>
-<div class="border border-color-dark"></div>
-<div class="border border-color-darker"></div>
-
-<!-- border-color-invert -->
-<div class="border border-color-invert-light"></div>
-<div class="border border-color-invert"></div>
-<div class="border border-color-invert-dark"></div>
-<div class="border border-color-invert-darker"></div>
-```
+  "border-color-dark": "border-color: var(--vb-border-color-dark);",
+  "border-color-darker": "border-color: var(--vb-border-color-darker);",
+  "border-color-transparent": "border-color: transparent;",
+  "border-color-current": "border-color: currentcolor;",
+}} />
 
 ### border-radius
 

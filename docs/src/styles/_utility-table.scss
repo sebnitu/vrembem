@@ -22,8 +22,7 @@
 );
 
 .utility-table {
-  max-height: css.get("utility-table", "max-height");
-  overflow: hidden;
+  font-size: css.get("font-size");
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   thead {
@@ -55,11 +54,22 @@
     @include css.override("code", "foreground", css.get("utility-table", "style-foreground"));
   }
 
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding: 0.25em 0 0.25em 0.75em;
+    text-align: right;
+  }
+
   .swatch {
     @include core.size(2em);
 
     display: block;
     margin-left: auto;
+  }
+
+  &.is-expandable {
+    max-height: css.get("utility-table", "max-height");
+    overflow: hidden;
   }
 
   &.is-expanded {

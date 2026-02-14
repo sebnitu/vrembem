@@ -23,7 +23,7 @@ function exampleTemplate(example: string | boolean, key: string) {
 
 <div
   id={`utility-table-${uid}`}
-  class="utility-table font-size-base"
+  class={`utility-table${expandable ? " is-expandable" : ""}`}
   data-expandable={expandable}
 >
   <table class="table table_style_rowed">
