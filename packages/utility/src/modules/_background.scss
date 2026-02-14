@@ -17,10 +17,6 @@
     background-clip: padding-box !important;
   }
 
-  #{fun.selector("background", "clip-text")} {
-    background-clip: text !important;
-  }
-
   #{fun.selector("background", "black")} {
     background-color: black !important;
   }

@@ -221,7 +221,20 @@ export const background = (() => {
   ...background
 }} />
 
-{/* TODO: Add code examples for background colors */}
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex gap">
+      <button class="button foreground-white background-primary">Button 1</button>
+      <button class="button foreground-white background-secondary-40">Button 2</button>
+      <button class="button foreground-white background-neutral-60 ">Button 3</button>
+    </div>
+  </Fragment>
+```html
+<button class="background-primary ...">Button 1</button>
+<button class="background-secondary-40 ...">Button 2</button>
+<button class="background-neutral-60 ...">Button 3</button>
+```
+</CodeExample>
 
 The background utility module also includes options for setting the background-clip property.
 
@@ -230,10 +243,22 @@ The background utility module also includes options for setting the background-c
   "background-clip-border": "background-clip: border-box;",
   "background-clip-content": "background-clip: content-box;",
   "background-clip-padding": "background-clip: padding-box;",
-  "background-clip-text": "background-clip: text;",
 }} />
 
-{/* TODO: Add code examples for background clip */}
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex gap" style="--vb-border: 8px solid var(--vb-border-color);">
+      <div class="padding border border-radius background-clip-border background-primary foreground-white">Button 1</div>
+      <div class="padding border border-radius background-clip-content background-primary foreground-white">Button 2</div>
+      <div class="padding border border-radius background-clip-padding background-primary foreground-white">Button 3</div>
+    </div>
+  </Fragment>
+```html
+<div class="background-clip-border ...">Example 1</div>
+<div class="background-clip-content ...">Example 2</div>
+<div class="background-clip-padding ...">Example 3</div>
+```
+</CodeExample>
 
 ### foreground
 
