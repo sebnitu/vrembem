@@ -5,7 +5,7 @@ import Popover from "./Popover.astro";
 interface Props {
   data: {};
   id?: string;
-  example?: boolean;
+  example?: boolean | string;
   expandable?: boolean;
 }
 
@@ -13,6 +13,12 @@ const { data, id, example = false, expandable = true } = Astro.props;
 
 // Create a unique ID if one is not provided
 const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
+
+function exampleTemplate(example: string | boolean, key: string) {
+  let tpl =
+    typeof example === "string" ? example : '<span class="swatch ${key}" />';
+  return tpl.replace("${key}", key);
+}
 ---
 
 <div
@@ -62,11 +68,7 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
                 Copied!
               </Popover>
             </td>
-            {example && (
-              <td>
-                <span class={`swatch ${key}`} />
-              </td>
-            )}
+            {example && <td set:html={exampleTemplate(example, key)} />}
           </tr>
         ))
       }

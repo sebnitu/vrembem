@@ -262,18 +262,54 @@ The background utility module also includes options for setting the background-c
 
 ### foreground
 
-<ReferenceBar selector=".foreground" />
+Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
 
-Applies text color property. Most options include light, lighter, dark and darker variants.
+export const foreground = (() => {
+  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const palette = ["primary", "secondary", "neutral", "important"];
+  return palette.reduce((acc, pal) => {
+    acc[`foreground-${pal}`] = `color: var(--vb-${pal});`
+    range.forEach(val => {
+      acc[`foreground-${pal}-${val}`] = `color: hsl(var(--vb-${pal}-hs) ${val});`;
+    });
+    return acc;
+  }, {});
+})();
 
+<UtilityTable 
+  id="foreground-color" 
+  example='<span class="${key}">Example</span>' 
+  data={{
+  // Miscellaneous
+  "foreground-black": "color: black;",
+  "foreground-white": "color: white;",
+  "foreground-transparent": "color: transparent;",
+
+  // Theme utilities
+  "foreground": "color: var(--vb-foreground);",
+  "foreground-light": "color: var(--vb-foreground-light);",
+  "foreground-lighter": "color: var(--vb-foreground-lighter);",
+
+  // Palette utilities
+  ...foreground
+}} />
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex gap">
+      <button class="button foreground-primary">Button 1</button>
+      <button class="button foreground-secondary">Button 2</button>
+      <button class="button foreground-neutral">Button 3</button>
+      <button class="button foreground-important">Button 4</button>
+    </div>
+  </Fragment>
 ```html
-<span class="color">...</span>
-<span class="color-subtle">...</span>
-<span class="color-primary-light">...</span>
-<span class="color-primary">...</span>
-<span class="color-primary-dark">...</span>
-...
+<button class="foreground-primary ...">Button 1</button>
+<button class="foreground-secondary ...">Button 2</button>
+<button class="foreground-neutral ...">Button 3</button>
+<button class="foreground-important ...">Button 4</button>
 ```
+</CodeExample>
 
 ### border
 
