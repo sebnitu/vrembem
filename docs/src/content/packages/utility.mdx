@@ -336,64 +336,49 @@ Utilities for setting the border property with optional sides variants of an ele
 
 ### border-radius
 
-<ReferenceBar selector=".border-radius" />
+Utilities for setting the border-radius property with optional corner variants of an element. The value and variants used by the border-radius utility is built from the `utility-border-radius` configuration option.
 
-Applies border-radius styles with optional corner variants. The value used by the border-radius utility is pulled from the `core.$border-radius` variable.
+<UtilityTable id="border-radius" data={{
+  "border-radius": "border-radius: var(--vb-border-radius);",
+  "border-radius-top-left": "border-top-left-radius: var(--vb-border-radius);",
+  "border-radius-top-right": "border-top-right-radius: var(--vb-border-radius);",
+  "border-radius-bottom-left": "border-bottom-left-radius: var(--vb-border-radius);",
+  "border-radius-bottom-right": "border-bottom-right-radius: var(--vb-border-radius);",
+  "border-radius-top": "border-top-left-radius: var(--vb-border-radius); border-top-right-radius: var(--vb-border-radius);",
+  "border-radius-bottom": "border-bottom-left-radius: var(--vb-border-radius); border-bottom-right-radius: var(--vb-border-radius);",
+  "border-radius-left": "border-top-left-radius: var(--vb-border-radius); border-bottom-left-radius: var(--vb-border-radius);",
+  "border-radius-right": "border-top-right-radius: var(--vb-border-radius); border-bottom-right-radius: var(--vb-border-radius);",
 
-```html
-<!-- Applied to all corners -->
-<div class="radius"></div>
+  "border-radius-lg": "border-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top-left": "border-top-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top-right": "border-top-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top": "border-top-left-radius: var(--vb-border-radius-lg); border-top-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom": "border-bottom-left-radius: var(--vb-border-radius-lg); border-bottom-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-left": "border-top-left-radius: var(--vb-border-radius-lg); border-bottom-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-right": "border-top-right-radius: var(--vb-border-radius-lg); border-bottom-right-radius: var(--vb-border-radius-lg);",
 
-<!-- Applied to all corners on a specific side -->
-<div class="radius-top"></div>
-<div class="radius-right"></div>
-<div class="radius-bottom"></div>
-<div class="radius-left"></div>
+  "border-radius-circle": "border-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top-left": "border-top-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top-right": "border-top-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top": "border-top-left-radius: var(--vb-border-radius-circle); border-top-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom": "border-bottom-left-radius: var(--vb-border-radius-circle); border-bottom-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-left": "border-top-left-radius: var(--vb-border-radius-circle); border-bottom-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-right": "border-top-right-radius: var(--vb-border-radius-circle); border-bottom-right-radius: var(--vb-border-radius-circle);",
 
-<!-- Applied to specific corners -->
-<div class="radius-top-left"></div>
-<div class="radius-top-right"></div>
-<div class="radius-bottom-right"></div>
-<div class="radius-bottom-left"></div>
-```
-
-Applies the maximum value to border-radius with optional corner variants. The value used by border-radius-circle utility is pulled from the `core.$border-radius-circle` variable.
-
-```html
-<!-- Applied to all corners -->
-<div class="radius-circle"></div>
-
-<!-- Applied to all corners on a specific side -->
-<div class="radius-circle-top"></div>
-<div class="radius-circle-right"></div>
-<div class="radius-circle-bottom"></div>
-<div class="radius-circle-left"></div>
-
-<!-- Applied to specific corners -->
-<div class="radius-circle-top-left"></div>
-<div class="radius-circle-top-right"></div>
-<div class="radius-circle-bottom-right"></div>
-<div class="radius-circle-bottom-left"></div>
-```
-
-Removes border-radius by setting it's value to `0` with optional corner variants.
-
-```html
-<!-- Applied to all corners -->
-<div class="radius-square"></div>
-
-<!-- Applied to all corners on a specific side -->
-<div class="radius-square-top"></div>
-<div class="radius-square-right"></div>
-<div class="radius-square-bottom"></div>
-<div class="radius-square-left"></div>
-
-<!-- Applied to specific corners -->
-<div class="radius-square-top-left"></div>
-<div class="radius-square-top-right"></div>
-<div class="radius-square-bottom-right"></div>
-<div class="radius-square-bottom-left"></div>
-```
+  "border-radius-square": "border-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top-left": "border-top-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top-right": "border-top-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top": "border-top-left-radius: var(--vb-border-radius-square); border-top-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom": "border-bottom-left-radius: var(--vb-border-radius-square); border-bottom-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-left": "border-top-left-radius: var(--vb-border-radius-square); border-bottom-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-right": "border-top-right-radius: var(--vb-border-radius-square); border-bottom-right-radius: var(--vb-border-radius-square);",
+}} />
 
 ### box-shadow
 
