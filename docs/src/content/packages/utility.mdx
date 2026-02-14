@@ -336,7 +336,7 @@ Utilities for setting the border property with optional sides variants of an ele
 
 ### border-radius
 
-Utilities for setting the border-radius property with optional corner variants of an element. The value and variants used by the border-radius utility is built from the `utility-border-radius` configuration option.
+Utilities for setting the border-radius property of an element with optional corner variants. The value and variants used by the border-radius utility is built from the `utility-border-radius` configuration option.
 
 <UtilityTable id="border-radius" data={{
   "border-radius": "border-radius: var(--vb-border-radius);",
@@ -382,19 +382,21 @@ Utilities for setting the border-radius property with optional corner variants o
 
 ### box-shadow
 
-<ReferenceBar selector=".box-shadow" />
+Utilities for setting the box-shadow property of an element with optional depth variants.
 
-Applies different levels of elevation through box-shadow styles.
-
-```html
-<div class="box-shadow"></div>
-<div class="box-shadow-flat"></div>
-<div class="box-shadow-1dp"></div>
-<div class="box-shadow-4dp"></div>
-<div class="box-shadow-8dp"></div>
-<div class="box-shadow-16dp"></div>
-<div class="box-shadow-24dp"></div>
-```
+<UtilityTable 
+  id="box-shadow" 
+  expandable={false} 
+  example={'<span class="swatch background-white background-clip-padding ${key}"></span>'}
+  data={{
+  "box-shadow": "box-shadow: var(--vb-box-shadow);",
+  "box-shadow-flat": "box-shadow: 0 0 0 0 transparent;",
+  "box-shadow-1": "box-shadow: var(--vb-box-shadow-1);",
+  "box-shadow-2": "box-shadow: var(--vb-box-shadow-2);",
+  "box-shadow-3": "box-shadow: var(--vb-box-shadow-3);",
+  "box-shadow-4": "box-shadow: var(--vb-box-shadow-4);",
+  "box-shadow-5": "box-shadow: var(--vb-box-shadow-5);",
+}} />
 
 ### display
 
