@@ -2,7 +2,9 @@
 interface Props {
   id?: string;
   arrow?: boolean;
+  virtual?: boolean;
   href?: string;
+  label?: string;
   triggerClass?: string;
   popoverClass?: string;
   tooltipClass?: string;
@@ -11,8 +13,10 @@ interface Props {
 
 const {
   id,
-  arrow = false,
+  arrow,
+  virtual,
   href,
+  label,
   triggerClass = "link",
   popoverClass = "",
   tooltipClass = "",
@@ -29,6 +33,9 @@ const css = {};
 if (placement) {
   css["--vb-popover-placement"] = placement;
 }
+if (virtual) {
+  css["--vb-popover-virtual"] = String(virtual);
+}
 ---
 
 {
@@ -38,6 +45,7 @@ if (placement) {
       data-popover-trigger={popoverId}
       aria-controls={popoverId}
       aria-describedby={tooltipId}
+      aria-label={label}
       class={triggerClass}
       {...rest}
     >

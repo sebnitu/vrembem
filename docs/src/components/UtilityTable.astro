@@ -1,5 +1,6 @@
 ---
 import Icon from "../components/Icon.astro";
+import Popover from "./Popover.astro";
 
 interface Props {
   data: {};
@@ -32,26 +33,34 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
         Object.entries(data).map(([key, value]) => (
           <tr>
             <td>
-              <button
-                type="button"
-                class="utility-table__code"
-                aria-label="Copy utility class"
+              <Popover
+                virtual={true}
+                triggerClass="utility-table__code"
+                popoverClass="popover_virtual"
+                label="Copy utility class"
               >
-                <code class="text-nowrap">{key}</code>
-                <Icon name="copy" classes="icon_size_sm" />
-                <Icon name="check" classes="icon_size_sm display-none" />
-              </button>
+                <Fragment slot="trigger" type="button">
+                  <code class="text-nowrap">{key}</code>
+                  <Icon name="copy" classes="icon_size_sm" />
+                  <Icon name="check" classes="icon_size_sm display-none" />
+                </Fragment>
+                Copied!
+              </Popover>
             </td>
             <td>
-              <button
-                type="button"
-                class="utility-table__code"
-                aria-label="Copy utility styles"
+              <Popover
+                virtual={true}
+                triggerClass="utility-table__code"
+                popoverClass="popover_virtual"
+                label="Copy utility styles"
               >
-                <code>{value}</code>
-                <Icon name="copy" classes="icon_size_sm" />
-                <Icon name="check" classes="icon_size_sm display-none" />
-              </button>
+                <Fragment slot="trigger" type="button">
+                  <code>{value}</code>
+                  <Icon name="copy" classes="icon_size_sm" />
+                  <Icon name="check" classes="icon_size_sm display-none" />
+                </Fragment>
+                Copied!
+              </Popover>
             </td>
             {example && (
               <td>
@@ -78,6 +87,8 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 </div>
 
 <script>
+  import { popover } from "../modules/usePopover";
+
   const btns = document.querySelectorAll(".utility-table__toggle");
   btns.forEach((btn) => {
     // Get the elements
@@ -123,8 +134,7 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
           setTimeout(() => {
             code.disabled = false;
             icons.forEach((icon) => icon.classList.toggle("display-none"));
-            // TODO: Maybe at a popover on mouse position
-            // popover.close(trigger.getAttribute("data-popover-trigger"));
+            popover.close(code.getAttribute("data-popover-trigger"));
           }, 2000);
         })
         .catch((error) => {
