@@ -53,4 +53,8 @@
   #{fun.selector("border", "color-transparent")} {
     border-color: transparent !important;
   }
+
+  #{fun.selector("border", "color-current")} {
+    border-color: currentcolor !important;
+  }
 }
