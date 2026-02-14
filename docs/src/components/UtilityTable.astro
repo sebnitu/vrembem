@@ -37,7 +37,7 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
                 virtual={true}
                 triggerClass="utility-table__code"
                 popoverClass="popover_virtual"
-                label="Copy utility class"
+                label="Copy utility class to clipboard"
               >
                 <Fragment slot="trigger" type="button">
                   <code class="text-nowrap">{key}</code>
@@ -52,7 +52,7 @@ const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
                 virtual={true}
                 triggerClass="utility-table__code"
                 popoverClass="popover_virtual"
-                label="Copy utility styles"
+                label="Copy utility styles to clipboard"
               >
                 <Fragment slot="trigger" type="button">
                   <code>{value}</code>
