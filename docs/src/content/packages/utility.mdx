@@ -52,7 +52,7 @@ $config: (
 
   // Whether or not utility styles should be output with the !important flag
   // @type boolean
-  "utility-important": false,
+  "utility-important": true,
 
   // A lightness range list for outputting palette related utilities
   // @type list
@@ -192,6 +192,8 @@ It's also possible to provide a prefix to all utility classes using the `utility
 ```
 </ReferenceCard>
 
+{/* TODO: Add documentation for applying !important flag via utility-important  */}
+
 ## Modules
 
 Below is a list of each utility module, their available variants and intended usage. Some modules also have configuration options that can be used to configure their output.
@@ -250,21 +252,6 @@ The background utility module also includes options for setting the background-c
   "background-clip-content": "background-clip: content-box;",
   "background-clip-padding": "background-clip: padding-box;",
 }} />
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="flex gap" style="--vb-border: 8px solid var(--vb-border-color);">
-      <div class="padding border border-radius background-clip-border background-primary foreground-white">Button 1</div>
-      <div class="padding border border-radius background-clip-content background-primary foreground-white">Button 2</div>
-      <div class="padding border border-radius background-clip-padding background-primary foreground-white">Button 3</div>
-    </div>
-  </Fragment>
-```html
-<div class="background-clip-border ...">Example 1</div>
-<div class="background-clip-content ...">Example 2</div>
-<div class="background-clip-padding ...">Example 3</div>
-```
-</CodeExample>
 
 ### foreground
 
