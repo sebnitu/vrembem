@@ -41,8 +41,8 @@
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "y", $key)} {
-      padding-bottom: $value !important;
       padding-top: $value !important;
+      padding-bottom: $value !important;
     }
   }
 }

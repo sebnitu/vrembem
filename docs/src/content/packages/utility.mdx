@@ -443,33 +443,121 @@ Display utilities also come with breakpoint modifiers. These can be used by pref
 
 ### margin
 
-<ReferenceBar selector=".margin" />
+Utilities for setting the margin property of an element. Margin variants are built using the values set in the `utility-gap` configuration option.
 
-Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+<UtilityTable id="margin" data={{
+  "margin-none": "margin: var(--vb-gap-none);",
+  "margin-xs": "margin: var(--vb-gap-xs);",
+  "margin-sm": "margin: var(--vb-gap-sm);",
+  "margin": "margin: var(--vb-gap);",
+  "margin-lg": "margin: var(--vb-gap-lg);",
+  "margin-xl": "margin: var(--vb-gap-xl);",
 
-- `margin` - Adds margins on all sides.
-- `margin-[direction]` - Adds default margin to a specific side.
-- `margin-[size]` - Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]` - Adds margins on a specific side and size.
-- `margin-x-[size]` - Adds left and right margins with a specific size key.
-- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
-- `margin-auto` - Sets margins to auto.
-- `margin-[direction]-auto` - Sets margins auto to a specific side.
-- `margin-x-auto` - Sets left and right margins to auto.
-- `margin-y-auto` - Sets top and bottom margins to auto.
+  "margin-top-none": "margin-top: var(--vb-gap-none);",
+  "margin-top-xs": "margin-top: var(--vb-gap-xs);",
+  "margin-top-sm": "margin-top: var(--vb-gap-sm);",
+  "margin-top": "margin-top: var(--vb-gap);",
+  "margin-top-lg": "margin-top: var(--vb-gap-lg);",
+  "margin-top-xl": "margin-top: var(--vb-gap-xl);",
+
+  "margin-bottom-none": "margin-bottom: var(--vb-gap-none);",
+  "margin-bottom-xs": "margin-bottom: var(--vb-gap-xs);",
+  "margin-bottom-sm": "margin-bottom: var(--vb-gap-sm);",
+  "margin-bottom": "margin-bottom: var(--vb-gap);",
+  "margin-bottom-lg": "margin-bottom: var(--vb-gap-lg);",
+  "margin-bottom-xl": "margin-bottom: var(--vb-gap-xl);",
+
+  "margin-left-none": "margin-left: var(--vb-gap-none);",
+  "margin-left-xs": "margin-left: var(--vb-gap-xs);",
+  "margin-left-sm": "margin-left: var(--vb-gap-sm);",
+  "margin-left": "margin-left: var(--vb-gap);",
+  "margin-left-lg": "margin-left: var(--vb-gap-lg);",
+  "margin-left-xl": "margin-left: var(--vb-gap-xl);",
+
+  "margin-right-none": "margin-right: var(--vb-gap-none);",
+  "margin-right-xs": "margin-right: var(--vb-gap-xs);",
+  "margin-right-sm": "margin-right: var(--vb-gap-sm);",
+  "margin-right": "margin-right: var(--vb-gap);",
+  "margin-right-lg": "margin-right: var(--vb-gap-lg);",
+  "margin-right-xl": "margin-right: var(--vb-gap-xl);",
+
+  "margin-x-none": "margin-left: var(--vb-gap-none); margin-right: var(--vb-gap-none);",
+  "margin-x-xs": "margin-left: var(--vb-gap-xs); margin-right: var(--vb-gap-xs);",
+  "margin-x-sm": "margin-left: var(--vb-gap-sm); margin-right: var(--vb-gap-sm);",
+  "margin-x": "margin-left: var(--vb-gap); margin-right: var(--vb-gap);",
+  "margin-x-lg": "margin-left: var(--vb-gap-lg); margin-right: var(--vb-gap-lg);",
+  "margin-x-xl": "margin-left: var(--vb-gap-xl); margin-right: var(--vb-gap-xl);",
+
+  "margin-y-none": "margin-top: var(--vb-gap-none); margin-bottom: var(--vb-gap-none);",
+  "margin-y-xs": "margin-top: var(--vb-gap-xs); margin-bottom: var(--vb-gap-xs);",
+  "margin-y-sm": "margin-top: var(--vb-gap-sm); margin-bottom: var(--vb-gap-sm);",
+  "margin-y": "margin-top: var(--vb-gap); margin-bottom: var(--vb-gap);",
+  "margin-y-lg": "margin-top: var(--vb-gap-lg); margin-bottom: var(--vb-gap-lg);",
+  "margin-y-xl": "margin-top: var(--vb-gap-xl); margin-bottom: var(--vb-gap-xl);",
+
+  "margin-auto": "margin: auto;",
+  "margin-top-auto": "margin-top: auto;",
+  "margin-bottom-auto": "margin-bottom: auto;",
+  "margin-left-auto": "margin-left: auto;",
+  "margin-right-auto": "margin-right: auto;",
+  "margin-x-auto": "margin-left: auto; margin-right: auto;",
+  "margin-y-auto": "margin-top: auto; margin-bottom: auto;",
+}} />
 
 ### padding
 
-<ReferenceBar selector=".padding" />
+Utilities for setting the padding property of an element. Padding variants are built using the values set in the `utility-gap` configuration option.
 
-Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
+<UtilityTable id="padding" data={{
+  "padding-none": "padding: var(--vb-gap-none);",
+  "padding-xs": "padding: var(--vb-gap-xs);",
+  "padding-sm": "padding: var(--vb-gap-sm);",
+  "padding": "padding: var(--vb-gap);",
+  "padding-lg": "padding: var(--vb-gap-lg);",
+  "padding-xl": "padding: var(--vb-gap-xl);",
 
-- `padding` - Adds default padding on all sides.
-- `padding-[direction]` - Adds default padding to a specific side.
-- `padding-[size]` - Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]` - Adds padding on a specific side and size.
-- `padding-x-[size]` - Sets left and right padding to a specific size key.
-- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
+  "padding-top-none": "padding-top: var(--vb-gap-none);",
+  "padding-top-xs": "padding-top: var(--vb-gap-xs);",
+  "padding-top-sm": "padding-top: var(--vb-gap-sm);",
+  "padding-top": "padding-top: var(--vb-gap);",
+  "padding-top-lg": "padding-top: var(--vb-gap-lg);",
+  "padding-top-xl": "padding-top: var(--vb-gap-xl);",
+
+  "padding-bottom-none": "padding-bottom: var(--vb-gap-none);",
+  "padding-bottom-xs": "padding-bottom: var(--vb-gap-xs);",
+  "padding-bottom-sm": "padding-bottom: var(--vb-gap-sm);",
+  "padding-bottom": "padding-bottom: var(--vb-gap);",
+  "padding-bottom-lg": "padding-bottom: var(--vb-gap-lg);",
+  "padding-bottom-xl": "padding-bottom: var(--vb-gap-xl);",
+
+  "padding-left-none": "padding-left: var(--vb-gap-none);",
+  "padding-left-xs": "padding-left: var(--vb-gap-xs);",
+  "padding-left-sm": "padding-left: var(--vb-gap-sm);",
+  "padding-left": "padding-left: var(--vb-gap);",
+  "padding-left-lg": "padding-left: var(--vb-gap-lg);",
+  "padding-left-xl": "padding-left: var(--vb-gap-xl);",
+
+  "padding-right-none": "padding-right: var(--vb-gap-none);",
+  "padding-right-xs": "padding-right: var(--vb-gap-xs);",
+  "padding-right-sm": "padding-right: var(--vb-gap-sm);",
+  "padding-right": "padding-right: var(--vb-gap);",
+  "padding-right-lg": "padding-right: var(--vb-gap-lg);",
+  "padding-right-xl": "padding-right: var(--vb-gap-xl);",
+
+  "padding-x-none": "padding-left: var(--vb-gap-none); padding-right: var(--vb-gap-none);",
+  "padding-x-xs": "padding-left: var(--vb-gap-xs); padding-right: var(--vb-gap-xs);",
+  "padding-x-sm": "padding-left: var(--vb-gap-sm); padding-right: var(--vb-gap-sm);",
+  "padding-x": "padding-left: var(--vb-gap); padding-right: var(--vb-gap);",
+  "padding-x-lg": "padding-left: var(--vb-gap-lg); padding-right: var(--vb-gap-lg);",
+  "padding-x-xl": "padding-left: var(--vb-gap-xl); padding-right: var(--vb-gap-xl);",
+
+  "padding-y-none": "padding-top: var(--vb-gap-none); padding-bottom: var(--vb-gap-none);",
+  "padding-y-xs": "padding-top: var(--vb-gap-xs); padding-bottom: var(--vb-gap-xs);",
+  "padding-y-sm": "padding-top: var(--vb-gap-sm); padding-bottom: var(--vb-gap-sm);",
+  "padding-y": "padding-top: var(--vb-gap); padding-bottom: var(--vb-gap);",
+  "padding-y-lg": "padding-top: var(--vb-gap-lg); padding-bottom: var(--vb-gap-lg);",
+  "padding-y-xl": "padding-top: var(--vb-gap-xl); padding-bottom: var(--vb-gap-xl);",
+}} />
 
 ### spacing
 
