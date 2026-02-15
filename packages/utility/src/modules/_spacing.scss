@@ -5,7 +5,7 @@
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("spacing", $key)} {
       > * + * {
-        margin-top: #{$value}#{fun.maybe-important()};
+        margin-top: fun.maybe-important($value);
       }
     }
   }

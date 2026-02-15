@@ -3,58 +3,58 @@
 
 @if fun.maybe-output("border") {
   #{fun.selector("border")} {
-    border: #{css.get("border")}#{fun.maybe-important()};
+    border: fun.maybe-important(css.get("border"));
   }
 
   #{fun.selector("border", "top")} {
-    border-top: #{css.get("border")}#{fun.maybe-important()};
+    border-top: fun.maybe-important(css.get("border"));
   }
 
   #{fun.selector("border", "bottom")} {
-    border-bottom: #{css.get("border")}#{fun.maybe-important()};
+    border-bottom: fun.maybe-important(css.get("border"));
   }
 
   #{fun.selector("border", "left")} {
-    border-left: #{css.get("border")}#{fun.maybe-important()};
+    border-left: fun.maybe-important(css.get("border"));
   }
 
   #{fun.selector("border", "right")} {
-    border-right: #{css.get("border")}#{fun.maybe-important()};
+    border-right: fun.maybe-important(css.get("border"));
   }
 
   #{fun.selector("border", "none")} {
-    border: #{0}#{fun.maybe-important()};
+    border: fun.maybe-important(0);
   }
 
   #{fun.selector("border", "top-none")} {
-    border-top: #{0}#{fun.maybe-important()};
+    border-top: fun.maybe-important(0);
   }
 
   #{fun.selector("border", "bottom-none")} {
-    border-bottom: #{0}#{fun.maybe-important()};
+    border-bottom: fun.maybe-important(0);
   }
 
   #{fun.selector("border", "left-none")} {
-    border-left: #{0}#{fun.maybe-important()};
+    border-left: fun.maybe-important(0);
   }
 
   #{fun.selector("border", "right-none")} {
-    border-right: #{0}#{fun.maybe-important()};
+    border-right: fun.maybe-important(0);
   }
 
   #{fun.selector("border", "color-dark")} {
-    border-color: #{css.get("border-color-dark")}#{fun.maybe-important()};
+    border-color: fun.maybe-important(css.get("border-color-dark"));
   }
 
   #{fun.selector("border", "color-darker")} {
-    border-color: #{css.get("border-color-darker")}#{fun.maybe-important()};
+    border-color: fun.maybe-important(css.get("border-color-darker"));
   }
 
   #{fun.selector("border", "color-transparent")} {
-    border-color: transparent#{fun.maybe-important()};
+    border-color: fun.maybe-important(transparent);
   }
 
   #{fun.selector("border", "color-current")} {
-    border-color: currentcolor#{fun.maybe-important()};
+    border-color: fun.maybe-important(currentcolor);
   }
 }

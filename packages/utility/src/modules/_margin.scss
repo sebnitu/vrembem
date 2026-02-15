@@ -4,75 +4,75 @@
 @if fun.maybe-output("margin") {
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", $key)} {
-      margin: #{$value}#{fun.maybe-important()};
+      margin: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "top", $key)} {
-      margin-top: #{$value}#{fun.maybe-important()};
+      margin-top: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "bottom", $key)} {
-      margin-bottom: #{$value}#{fun.maybe-important()};
+      margin-bottom: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "left", $key)} {
-      margin-left: #{$value}#{fun.maybe-important()};
+      margin-left: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "right", $key)} {
-      margin-right: #{$value}#{fun.maybe-important()};
+      margin-right: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "x", $key)} {
-      margin-left: #{$value}#{fun.maybe-important()};
-      margin-right: #{$value}#{fun.maybe-important()};
+      margin-left: fun.maybe-important($value);
+      margin-right: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "y", $key)} {
-      margin-bottom: #{$value}#{fun.maybe-important()};
-      margin-top: #{$value}#{fun.maybe-important()};
+      margin-bottom: fun.maybe-important($value);
+      margin-top: fun.maybe-important($value);
     }
   }
 
   #{fun.selector("margin", "auto")} {
-    margin: auto#{fun.maybe-important()};
+    margin: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "top", "auto")} {
-    margin-top: auto#{fun.maybe-important()};
+    margin-top: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "bottom", "auto")} {
-    margin-bottom: auto#{fun.maybe-important()};
+    margin-bottom: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "left", "auto")} {
-    margin-left: auto#{fun.maybe-important()};
+    margin-left: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "right", "auto")} {
-    margin-right: auto#{fun.maybe-important()};
+    margin-right: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "x", "auto")} {
-    margin-left: auto#{fun.maybe-important()};
-    margin-right: auto#{fun.maybe-important()};
+    margin-left: fun.maybe-important(auto);
+    margin-right: fun.maybe-important(auto);
   }
 
   #{fun.selector("margin", "y", "auto")} {
-    margin-bottom: auto#{fun.maybe-important()};
-    margin-top: auto#{fun.maybe-important()};
+    margin-bottom: fun.maybe-important(auto);
+    margin-top: fun.maybe-important(auto);
   }
 }

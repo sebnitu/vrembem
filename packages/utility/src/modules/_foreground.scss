@@ -6,41 +6,41 @@
 
 @if fun.maybe-output("foreground") {
   #{fun.selector("foreground", "black")} {
-    color: black#{fun.maybe-important()};
+    color: fun.maybe-important(black);
   }
 
   #{fun.selector("foreground", "white")} {
-    color: white#{fun.maybe-important()};
+    color: fun.maybe-important(white);
   }
 
   #{fun.selector("foreground", "transparent")} {
-    color: transparent#{fun.maybe-important()};
+    color: fun.maybe-important(transparent);
   }
 
   // Theme CSS Variable output
 
   #{fun.selector("foreground")} {
-    color: #{css.get("foreground")}#{fun.maybe-important()};
+    color: fun.maybe-important(css.get("foreground"));
   }
 
   #{fun.selector("foreground", "light")} {
-    color: #{css.get("foreground-light")}#{fun.maybe-important()};
+    color: fun.maybe-important(css.get("foreground-light"));
   }
 
   #{fun.selector("foreground", "lighter")} {
-    color: #{css.get("foreground-lighter")}#{fun.maybe-important()};
+    color: fun.maybe-important(css.get("foreground-lighter"));
   }
 
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
     #{fun.selector("foreground", $name)} {
-      color: #{palette.get($name)}#{fun.maybe-important()};
+      color: fun.maybe-important(palette.get($name));
     }
 
     @each $value in config.get("utility-palette-range") {
       #{fun.selector("foreground", $name, $value)} {
-        color: #{palette.get($name, $value)}#{fun.maybe-important()};
+        color: fun.maybe-important(palette.get($name, $value));
       }
     }
   }

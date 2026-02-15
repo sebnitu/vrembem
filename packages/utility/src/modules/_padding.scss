@@ -4,45 +4,45 @@
 @if fun.maybe-output("padding") {
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", $key)} {
-      padding: #{$value}#{fun.maybe-important()};
+      padding: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "top", $key)} {
-      padding-top: #{$value}#{fun.maybe-important()};
+      padding-top: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "bottom", $key)} {
-      padding-bottom: #{$value}#{fun.maybe-important()};
+      padding-bottom: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "left", $key)} {
-      padding-left: #{$value}#{fun.maybe-important()};
+      padding-left: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "right", $key)} {
-      padding-right: #{$value}#{fun.maybe-important()};
+      padding-right: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "x", $key)} {
-      padding-left: #{$value}#{fun.maybe-important()};
-      padding-right: #{$value}#{fun.maybe-important()};
+      padding-left: fun.maybe-important($value);
+      padding-right: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("padding", "y", $key)} {
-      padding-bottom: #{$value}#{fun.maybe-important()};
-      padding-top: #{$value}#{fun.maybe-important()};
+      padding-bottom: fun.maybe-important($value);
+      padding-top: fun.maybe-important($value);
     }
   }
 }

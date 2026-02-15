@@ -73,13 +73,18 @@
   @return ".#{$class}";
 }
 
-/// Returns the important flag if enabled by config options
-@function maybe-important() {
-  $flag: "";
-
+/// Returns the important flag if enabled by config options.
+///
+/// @param {any} $value
+///   The CSS property value to conditionally apply important flag to.
+///
+/// @return {any}
+///   The CSS property value
+///
+@function maybe-important($value: "") {
   @if config.get("utility-important") {
-    $flag: " !important";
+    $value: $value !important;
   }
 
-  @return $flag;
+  @return $value;
 }

@@ -3,16 +3,16 @@
 
 @if fun.maybe-output("order") {
   #{fun.selector("order", "first")} {
-    order: #{-99}#{fun.maybe-important()};
+    order: fun.maybe-important(-99);
   }
 
   #{fun.selector("order", "last")} {
-    order: #{99}#{fun.maybe-important()};
+    order: fun.maybe-important(99);
   }
 
   @for $i from 0 through 6 {
     #{fun.selector("order", $i)} {
-      order: #{$i}#{fun.maybe-important()};
+      order: fun.maybe-important($i);
     }
   }
 }

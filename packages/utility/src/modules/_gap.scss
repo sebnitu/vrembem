@@ -5,19 +5,19 @@
 @if fun.maybe-output("gap") {
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("gap", $key)} {
-      gap: #{$value}#{fun.maybe-important()};
+      gap: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("gap", "x", $key)} {
-      column-gap: #{$value}#{fun.maybe-important()};
+      column-gap: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("gap", "y", $key)} {
-      row-gap: #{$value}#{fun.maybe-important()};
+      row-gap: fun.maybe-important($value);
     }
   }
 }

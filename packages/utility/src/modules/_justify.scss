@@ -2,62 +2,62 @@
 
 @if fun.maybe-output("justify") {
   #{fun.selector("justify", "content", "start")} {
-    justify-content: start#{fun.maybe-important()};
+    justify-content: fun.maybe-important(start);
   }
 
   #{fun.selector("justify", "content", "center")} {
-    justify-content: center#{fun.maybe-important()};
+    justify-content: fun.maybe-important(center);
   }
 
   #{fun.selector("justify", "content", "end")} {
-    justify-content: end#{fun.maybe-important()};
+    justify-content: fun.maybe-important(end);
   }
 
   #{fun.selector("justify", "content", "between")} {
-    justify-content: space-between#{fun.maybe-important()};
+    justify-content: fun.maybe-important(space-between);
   }
 
   #{fun.selector("justify", "content", "around")} {
-    justify-content: space-around#{fun.maybe-important()};
+    justify-content: fun.maybe-important(space-around);
   }
 
   #{fun.selector("justify", "content", "evenly")} {
-    justify-content: space-evenly#{fun.maybe-important()};
+    justify-content: fun.maybe-important(space-evenly);
   }
 
   #{fun.selector("justify", "content", "stretch")} {
-    justify-content: stretch#{fun.maybe-important()};
+    justify-content: fun.maybe-important(stretch);
   }
 
   #{fun.selector("justify", "items", "start")} {
-    justify-items: start#{fun.maybe-important()};
+    justify-items: fun.maybe-important(start);
   }
 
   #{fun.selector("justify", "items", "center")} {
-    justify-items: center#{fun.maybe-important()};
+    justify-items: fun.maybe-important(center);
   }
 
   #{fun.selector("justify", "items", "end")} {
-    justify-items: end#{fun.maybe-important()};
+    justify-items: fun.maybe-important(end);
   }
 
   #{fun.selector("justify", "items", "stretch")} {
-    justify-items: stretch#{fun.maybe-important()};
+    justify-items: fun.maybe-important(stretch);
   }
 
   #{fun.selector("justify", "self", "start")} {
-    justify-self: start#{fun.maybe-important()};
+    justify-self: fun.maybe-important(start);
   }
 
   #{fun.selector("justify", "self", "center")} {
-    justify-self: center#{fun.maybe-important()};
+    justify-self: fun.maybe-important(center);
   }
 
   #{fun.selector("justify", "self", "end")} {
-    justify-self: end#{fun.maybe-important()};
+    justify-self: fun.maybe-important(end);
   }
 
   #{fun.selector("justify", "self", "stretch")} {
-    justify-self: stretch#{fun.maybe-important()};
+    justify-self: fun.maybe-important(stretch);
   }
 }

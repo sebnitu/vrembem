@@ -4,52 +4,52 @@
 
 @if fun.maybe-output("font") {
   #{fun.selector("font", "family", "sans")} {
-    font-family: #{css.get("font-family-sans")}#{fun.maybe-important()};
+    font-family: fun.maybe-important(css.get("font-family-sans"));
   }
 
   #{fun.selector("font", "family", "serif")} {
-    font-family: #{css.get("font-family-serif")}#{fun.maybe-important()};
+    font-family: fun.maybe-important(css.get("font-family-serif"));
   }
 
   #{fun.selector("font", "family", "mono")} {
-    font-family: #{css.get("font-family-mono")}#{fun.maybe-important()};
+    font-family: fun.maybe-important(css.get("font-family-mono"));
   }
 
   #{fun.selector("font", "size", "base")} {
-    font-size: #{1rem}#{fun.maybe-important()};
+    font-size: fun.maybe-important(1rem);
   }
 
   #{fun.selector("font", "size", "sm")} {
-    font-size: #{css.get("font-size-sm")}#{fun.maybe-important()};
+    font-size: fun.maybe-important(css.get("font-size-sm"));
   }
 
   #{fun.selector("font", "size", "lg")} {
-    font-size: #{css.get("font-size-lg")}#{fun.maybe-important()};
+    font-size: fun.maybe-important(css.get("font-size-lg"));
   }
 
   #{fun.selector("font", "line-height")} {
-    line-height: #{css.get("line-height")}#{fun.maybe-important()};
+    line-height: fun.maybe-important(css.get("line-height"));
   }
 
   @each $key, $value in core.$font-weight-map {
     #{fun.selector("font", "weight", $key)} {
-      font-weight: #{$value}#{fun.maybe-important()};
+      font-weight: fun.maybe-important($value);
     }
   }
 
   #{fun.selector("font", "weight", "lighter")} {
-    font-weight: lighter#{fun.maybe-important()};
+    font-weight: fun.maybe-important(lighter);
   }
 
   #{fun.selector("font", "weight", "bolder")} {
-    font-weight: bolder#{fun.maybe-important()};
+    font-weight: fun.maybe-important(bolder);
   }
 
   #{fun.selector("font", "style", "normal")} {
-    font-style: normal#{fun.maybe-important()};
+    font-style: fun.maybe-important(normal);
   }
 
   #{fun.selector("font", "style", "italic")} {
-    font-style: italic#{fun.maybe-important()};
+    font-style: fun.maybe-important(italic);
   }
 }
