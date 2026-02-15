@@ -5,6 +5,7 @@ package: "@vrembem/utility"
 status: "layers"
 ---
 
+import Icon from "../../components/Icon.astro";
 import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
@@ -400,41 +401,45 @@ Utilities for setting the box-shadow property of an element with optional depth 
 
 ### display
 
-<ReferenceBar selector=".display" />
+Utilities for setting the display property of an element with optional breakpoint modifiers. Display variants are built using the values set in the `utility-display` configuration option.
 
-Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
+<UtilityTable id="display" expandable={false} data={{
+  "display-inline": "display: inline;",
+  "display-flex": "display: flex;",
+  "display-inline-flex": "display: inline-flex;",
+  "display-grid": "display: grid",
+  "display-inline-grid": "display: inline-grid",
+  "display-block": "display: block",
+  "display-inline-block": "display: inline-block",
+  "display-none": "display: none",
+}} />
 
-```
-.display-[property]-[breakpoint]
-```
+Display utilities also come with breakpoint modifiers. These can be used by prefixing a breakpoint key to any of the above listed utilities. Breakpoint modifiers are built from the [core `breakpoints`](/packages/core#config-options) configuration option.
 
-Available properties are generated from the `$display-properties` variable map and breakpoint conditions from [`$breakpoints`](#breakpoints) variable map.
-
+<CodeExample>
+<Fragment slot="output">
+  <div class="notice notice_color_primary display-block md:display-none">
+    <div class="flex gap align-items-center">
+      <Icon name="smartphone" />
+      <p>This is only visible for mobile users</p>
+    </div>
+  </div>
+  <div class="notice notice_color_secondary display-none md:display-block">
+    <div class="flex gap align-items-center">
+      <Icon name="monitor" />
+      <p>This is only visible for desktop users</p>
+    </div>
+  </div>
+</Fragment>
 ```html
-<div class="display-block display-none-xs">
-  <p>Small Mobile</p>
+<div class="display-block md:display-none">
+  <p>This is only visible for mobile users</p>
 </div>
-
-<div class="display-none display-block-xs display-none-sm">
-  <p>Small Mobile => Mobile</p>
-</div>
-
-<div class="display-none display-block-sm display-none-md">
-  <p>Mobile => Tablet</p>
-</div>
-
-<div class="display-none display-block-md display-none-lg">
-  <p>Tablet => Desktop</p>
-</div>
-
-<div class="display-none display-block-lg display-none-xl">
-  <p>Desktop => Large Desktop</p>
-</div>
-
-<div class="display-none display-block-xl">
-  <p>Large Desktop</p>
+<div class="display-none md:display-block">
+  <p>This is only visible for desktop users</p>
 </div>
 ```
+</CodeExample>
 
 ### margin
 
