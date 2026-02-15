@@ -561,152 +561,588 @@ Utilities for setting the padding property of an element. Padding variants are b
 
 ### spacing
 
-<ReferenceBar selector=".spacing" />
+Utilities for setting the margin-top property of all direct children of an element. Spacing variants are built using the values set in the `utility-gap` configuration option.
 
-...
+<UtilityTable id="spacing" expandable={false} data={{
+  "spacing-none": "margin-top: var(--vb-gap-none);",
+  "spacing-xs": "margin-top: var(--vb-gap-xs);",
+  "spacing-sm": "margin-top: var(--vb-gap-sm);",
+  "spacing": "margin-top: var(--vb-gap);",
+  "spacing-lg": "margin-top: var(--vb-gap-lg);",
+  "spacing-xl": "margin-top: var(--vb-gap-xl);",
+}} />
 
 ### gap
 
-<ReferenceBar selector=".gap" />
+Utilities for setting the gap property of an element. Gap variants are built using the values set in the `utility-gap` configuration option.
 
-Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
+<UtilityTable id="spacing" data={{
+  "gap-none": "gap: var(--vb-gap-none);",
+  "gap-xs": "gap: var(--vb-gap-xs);",
+  "gap-sm": "gap: var(--vb-gap-sm);",
+  "gap": "gap: var(--vb-gap);",
+  "gap-lg": "gap: var(--vb-gap-lg);",
+  "gap-xl": "gap: var(--vb-gap-xl);",
 
-- `gap-x`
-- `gap-x-[key]`
+  "gap-x-none": "column-gap: var(--vb-gap-none);",
+  "gap-x-xs": "column-gap: var(--vb-gap-xs);",
+  "gap-x-sm": "column-gap: var(--vb-gap-sm);",
+  "gap-x": "column-gap: var(--vb-gap);",
+  "gap-x-lg": "column-gap: var(--vb-gap-lg);",
+  "gap-x-xl": "column-gap: var(--vb-gap-xl);",
 
-```html
-<!-- Using the default gap-x class -->
-<div class="gap-x">...</div>
-
-<!-- Using the gap-x class with variant key -->
-<div class="gap-x-none">...</div>
-<div class="gap-x-xs">...</div>
-<div class="gap-x-sm">...</div>
-<div class="gap-x-md">...</div>
-<div class="gap-x-lg">...</div>
-<div class="gap-x-xl">...</div>
-```
-
-Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-y`
-- `gap-y-[key]`
-
-```html
-<!-- Using the default gap-y class -->
-<div class="gap-y">...</div>
-
-<!-- Using the gap-y class with variant key -->
-<div class="gap-y-none">...</div>
-<div class="gap-y-xs">...</div>
-<div class="gap-y-sm">...</div>
-<div class="gap-y-md">...</div>
-<div class="gap-y-lg">...</div>
-<div class="gap-y-xl">...</div>
-```
+  "gap-y-none": "row-gap: var(--vb-gap-none);",
+  "gap-y-xs": "row-gap: var(--vb-gap-xs);",
+  "gap-y-sm": "row-gap: var(--vb-gap-sm);",
+  "gap-y": "row-gap: var(--vb-gap);",
+  "gap-y-lg": "row-gap: var(--vb-gap-lg);",
+  "gap-y-xl": "row-gap: var(--vb-gap-xl);",
+}} />
 
 ### justify
 
-<ReferenceBar selector=".justify" />
-
 ...
+
+{/*
+.justify-content-start {
+  justify-content: start !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-end {
+  justify-content: end !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.justify-content-around {
+  justify-content: space-around !important;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly !important;
+}
+
+.justify-content-stretch {
+  justify-content: stretch !important;
+}
+
+.justify-items-start {
+  justify-items: start !important;
+}
+
+.justify-items-center {
+  justify-items: center !important;
+}
+
+.justify-items-end {
+  justify-items: end !important;
+}
+
+.justify-items-stretch {
+  justify-items: stretch !important;
+}
+
+.justify-self-start {
+  justify-self: start !important;
+}
+
+.justify-self-center {
+  justify-self: center !important;
+}
+
+.justify-self-end {
+  justify-self: end !important;
+}
+
+.justify-self-stretch {
+  justify-self: stretch !important;
+}
+*/}
 
 ### align
 
-<ReferenceBar selector=".align" />
-
 ...
+
+{/*
+.align-content-start {
+  align-content: start !important;
+}
+
+.align-content-center {
+  align-content: center !important;
+}
+
+.align-content-end {
+  align-content: end !important;
+}
+
+.align-content-between {
+  align-content: space-between !important;
+}
+
+.align-content-around {
+  align-content: space-around !important;
+}
+
+.align-content-evenly {
+  align-content: space-evenly !important;
+}
+
+.align-content-stretch {
+  align-content: stretch !important;
+}
+
+.align-items-start {
+  align-items: start !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.align-items-end {
+  align-items: end !important;
+}
+
+.align-items-stretch {
+  align-items: stretch !important;
+}
+
+.align-self-start {
+  align-self: start !important;
+}
+
+.align-self-center {
+  align-self: center !important;
+}
+
+.align-self-end {
+  align-self: end !important;
+}
+
+.align-self-stretch {
+  align-self: stretch !important;
+}
+*/}
 
 ### place
 
-<ReferenceBar selector=".place" />
-
 ...
+
+{/*
+.place-content-start {
+  place-content: start !important;
+}
+
+.place-content-center {
+  place-content: center !important;
+}
+
+.place-content-end {
+  place-content: end !important;
+}
+
+.place-content-between {
+  place-content: space-between !important;
+}
+
+.place-content-around {
+  place-content: space-around !important;
+}
+
+.place-content-evenly {
+  place-content: space-evenly !important;
+}
+
+.place-content-stretch {
+  place-content: stretch !important;
+}
+
+.place-items-start {
+  place-items: start !important;
+}
+
+.place-items-center {
+  place-items: center !important;
+}
+
+.place-items-end {
+  place-items: end !important;
+}
+
+.place-items-stretch {
+  place-items: stretch !important;
+}
+
+.place-self-start {
+  place-self: start !important;
+}
+
+.place-self-center {
+  place-self: center !important;
+}
+
+.place-self-end {
+  place-self: end !important;
+}
+
+.place-self-stretch {
+  place-self: stretch !important;
+}
+*/}
 
 ### order
 
-<ReferenceBar selector=".order" />
-
 ...
+
+{/*
+.order-first {
+  order: -99 !important;
+}
+
+.order-last {
+  order: 99 !important;
+}
+
+.order-0 {
+  order: 0 !important;
+}
+
+.order-1 {
+  order: 1 !important;
+}
+
+.order-2 {
+  order: 2 !important;
+}
+
+.order-3 {
+  order: 3 !important;
+}
+
+.order-4 {
+  order: 4 !important;
+}
+
+.order-5 {
+  order: 5 !important;
+}
+
+.order-6 {
+  order: 6 !important;
+}
+*/}
 
 ### position
 
-<ReferenceBar selector=".position" />
+...
 
-A utility for setting the position CSS property.
+{/*
+.position-absolute {
+  position: absolute !important;
+}
 
-- `position-absolute` - Sets the position property to absolute.
-- `position-fixed` - Sets the position property to fixed.
-- `position-relative` - Sets the position property to relative.
-- `position-static` - Sets the position property to static.
-- `position-sticky` - Sets the position property to sticky.
+.position-fixed {
+  position: fixed !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.position-static {
+  position: static !important;
+}
+
+.position-sticky {
+  position: sticky !important;
+}
+*/}
 
 ### overflow
 
-<ReferenceBar selector=".overflow" />
-
 ...
+
+{/*
+.overflow-visible {
+  overflow: visible !important;
+}
+
+.overflow-x-visible {
+  overflow-x: visible !important;
+}
+
+.overflow-y-visible {
+  overflow-y: visible !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden !important;
+}
+
+.overflow-clip {
+  overflow: clip !important;
+}
+
+.overflow-x-clip {
+  overflow-x: clip !important;
+}
+
+.overflow-y-clip {
+  overflow-y: clip !important;
+}
+
+.overflow-scroll {
+  overflow: scroll !important;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll !important;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll !important;
+}
+
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.overflow-x-auto {
+  overflow-x: auto !important;
+}
+
+.overflow-y-auto {
+  overflow-y: auto !important;
+}
+*/}
 
 ### max-width
 
-<ReferenceBar selector=".max-width" />
+...
 
-Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+{/*
+.max-width-none {
+  max-width: none !important;
+}
 
-- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
-- `max-width-none` - Sets the max-width property to `none`.
-- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
-- `max-width-full` - Sets the max-width property to `100%`.
+.max-width-xs {
+  max-width: 45rem !important;
+}
+
+.max-width-sm {
+  max-width: 60rem !important;
+}
+
+.max-width {
+  max-width: 70rem !important;
+}
+
+.max-width-lg {
+  max-width: 80rem !important;
+}
+
+.max-width-xl {
+  max-width: 90rem !important;
+}
+
+.max-width-full {
+  max-width: 100% !important;
+}
+*/}
 
 ### font
 
-<ReferenceBar selector=".font" />
+...
 
-A utility for adjusting various font styles.
+{/*
+.font-family-sans {
+  font-family: var(--vb-font-family-sans) !important;
+}
 
-- `font-family-sans` - Sets the font-family property to the sans-serif font stack.
-- `font-family-serif` - Sets the font-family property to the serif font stack.
-- `font-family-mono` - Sets the font-family property to the monospace font stack.
-- `font-size-base` - Sets the font-size property to the base value.
-- `font-size-sm` - Sets the font-size property to small variable.
-- `font-size-lg` - Sets the font-size property to large variable.
-- `font-leading-base` - Sets the line-height property to the base value.
-- `font-leading-sm` - Sets the line-height property to small variable.
-- `font-leading-lg` - Sets the line-height property to large variable.
-- `font-kerning-0` - Sets the letter-spacing property to 0.
-- `font-kerning-1` - Sets the letter-spacing property to `0.1em`.
-- `font-kerning-2` - Sets the letter-spacing property to `0.2em`.
-- `font-weight-normal` - Sets the font-weight property to "normal" (`400`).
-- `font-weight-medium` - Sets the font-weight property to "medium" (`500`).
-- `font-weight-semibold` - Sets the font-weight property to "semibold" (`600`).
-- `font-weight-bold` - Sets the font-weight property to "bold" (`700`).
-- `font-weight-lighter` - Sets the font-weight property to the relative "lighter" value.
-- `font-weight-bolder` - Sets the font-weight property to the relative "bolder" value.
-- `font-style-normal` - Sets the font-style property to normal.
-- `font-style-italic` - Sets the font-style property to italic.
+.font-family-serif {
+  font-family: var(--vb-font-family-serif) !important;
+}
+
+.font-family-mono {
+  font-family: var(--vb-font-family-mono) !important;
+}
+
+.font-size-base {
+  font-size: 1rem !important;
+}
+
+.font-size-sm {
+  font-size: var(--vb-font-size-sm) !important;
+}
+
+.font-size-lg {
+  font-size: var(--vb-font-size-lg) !important;
+}
+
+.font-line-height {
+  line-height: var(--vb-line-height) !important;
+}
+
+.font-weight-thin {
+  font-weight: 100 !important;
+}
+
+.font-weight-extra-light {
+  font-weight: 200 !important;
+}
+
+.font-weight-light {
+  font-weight: 300 !important;
+}
+
+.font-weight-regular {
+  font-weight: 400 !important;
+}
+
+.font-weight-medium {
+  font-weight: 500 !important;
+}
+
+.font-weight-semi-bold {
+  font-weight: 600 !important;
+}
+
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+
+.font-weight-extra-bold {
+  font-weight: 800 !important;
+}
+
+.font-weight-black {
+  font-weight: 900 !important;
+}
+
+.font-weight-lighter {
+  font-weight: lighter !important;
+}
+
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+
+.font-style-normal {
+  font-style: normal !important;
+}
+
+.font-style-italic {
+  font-style: italic !important;
+}
+*/}
 
 ### text
 
-<ReferenceBar selector=".text" />
+...
 
-A utility for adjusting various text styles.
+{/*
+.text-capitalize {
+  text-transform: capitalize !important;
+}
 
-- `text-capitalize` - Sets text-transform to capitalize.
-- `text-lowercase` - Sets text-transform to lowercase.
-- `text-uppercase` - Sets text-transform to uppercase.
-- `text-align-left` - Sets text-align to left.
-- `text-align-center` - Sets text-align to center.
-- `text-align-right` - Sets text-align to right.
-- `text-strike` - Sets text-decoration to line-through.
-- `text-underline` - Sets text-decoration to underline.
-- `text-underline-dotted` - Sets text-decoration to underline with dotted style.
-- `text-underline-dashed` - Sets text-decoration to underline with dashed style.
-- `text-wrap` - Sets white-space to normal allowing text to wrap.
-- `text-nowrap` - Sets white-space to `nowrap` which no longer allows text to wrap.
-- `text-overflow-ellipsis` - Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-align-left {
+  text-align: left !important;
+}
+
+.text-align-center {
+  text-align: center !important;
+}
+
+.text-align-right {
+  text-align: right !important;
+}
+
+.text-strike {
+  text-decoration: line-through !important;
+}
+
+.text-underline {
+  text-decoration: underline !important;
+}
+
+.text-underline-dotted {
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+}
+
+.text-underline-dashed {
+  text-decoration: underline !important;
+  text-decoration-style: dashed !important;
+}
+
+.text-wrap {
+  text-wrap: normal !important;
+}
+
+.text-nowrap {
+  text-wrap: nowrap !important;
+}
+
+.text-wrap-balance {
+  text-wrap: balance !important;
+}
+
+.text-wrap-pretty {
+  text-wrap: pretty !important;
+}
+
+.text-wrap-stable {
+  text-wrap: stable !important;
+}
+
+.text-overflow-ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-wrap: nowrap !important;
+}
+*/}
 
 ### transition
 
-<ReferenceBar selector=".transition" />
-
 ...
+
+{/*
+.transition {
+  transition: all var(--vb-transition-duration) var(--vb-transition-timing-function) !important;
+}
+
+.transition-none {
+  transition: none !important;
+}
+
+.transition-duration-short {
+  transition-duration: var(--vb-transition-duration-short) !important;
+}
+
+.transition-duration-long {
+  transition-duration: var(--vb-transition-duration-long) !important;
+}
+*/}

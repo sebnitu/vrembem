@@ -48,6 +48,10 @@
 
   td:nth-child(1) {
     @include css.override("code", "foreground", css.get("utility-table", "class-foreground"));
+
+    .popover_virtual {
+      @include css.override("popover", "background", palette.get("primary"));
+    }
   }
 
   td:nth-child(2) {

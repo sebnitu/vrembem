@@ -13,7 +13,9 @@
     #{fun.selector("gap", "x", $key)} {
       column-gap: $value !important;
     }
+  }
 
+  @each $key, $value in config.get("utility-gap") {
     #{fun.selector("gap", "y", $key)} {
       row-gap: $value !important;
     }
