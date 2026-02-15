@@ -1,9 +1,10 @@
 @use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 
-$breakpoints: core.$breakpoints !default;
+$breakpoints: config.get("breakpoints") !default;
 $max-width: 70rem !default;
 $padding: (
   "sm": 1.5em,

@@ -15,6 +15,9 @@ $-css-vars: (
   "core": (
     "prefix": (
       "config": "prefix-cssvar"
+    ),
+    "breakpoint": (
+      "config": "breakpoints"
     )
   )
 );
@@ -65,16 +68,15 @@ $-css-vars: (
 ///
 @function -prefix($component) {
   $prefix: config.get("prefix-cssvar");
-  $delimiter: "";
 
-  @if $prefix {
-    $delimiter: "-";
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
   }
 
   @if $component and $component != "core" and $component != "palette" {
-    @return "--#{$prefix}#{$delimiter}#{$component}-";
+    @return "--#{$prefix}#{$component}-";
   } @else {
-    @return "--#{$prefix}#{$delimiter}";
+    @return "--#{$prefix}";
   }
 }
 
@@ -135,7 +137,7 @@ $-css-vars: (
 }
 
 /// Mixin to define custom property using the provided property name and value.
-/// Automatically applies with prefix and component name if provided.
+/// Automatically applied with prefix and component name if provided.
 ///
 /// @param {string} $component
 ///   The component name to use as part of the prefix. The "core" and "palette"
@@ -164,7 +166,15 @@ $-css-vars: (
 
     // If the map has a key of config, get the value from config directly
     @if meta.type-of($value) == "map" and map.has-key($value, "config") {
-      #{-prefix($component)}#{$prop}: #{config.get(map.get($value, "config"))};
+      $config-value: config.get(map.get($value, "config"));
+
+      @if meta.type-of($config-value) == "map" {
+        @each $key, $value in $config-value {
+          @include define($component, "#{$prop}-#{$key}", $value);
+        }
+      } @else {
+        @include define($component, $prop, $config-value);
+      }
     }
   }
 }
@@ -383,7 +393,13 @@ $-css-vars: (
 
       // Else, suffix the custom property with the key
       @else {
-        $-css-vars: map.set($-css-vars, $component, "#{$prop}-#{$key}", $value) !global;
+        $new-key: "#{$prop}-#{$key}";
+
+        @if $key == "" {
+          $new-key: $prop;
+        }
+
+        $-css-vars: map.set($-css-vars, $component, $new-key, $value) !global;
       }
     }
   }

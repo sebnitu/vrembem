@@ -1,11 +1,11 @@
 @use "sass:map";
 @use "sass:meta";
-@use "../variables/breakpoints" as *;
+@use "../modules/config";
 
 /// A media query mixin that defines a query using max-width. You can pass in a
-/// key to the `core.$breakpoints` maps to access that value, or pass a value to
-/// create your media query. This mixin will shave a pixel off your breakpoint
-/// values so that it never overlaps with a min-width usage.
+/// key to the `config.get("breakpoints")` maps to access that value, or pass a
+/// value to create your media query. This mixin will shave a pixel off your
+/// breakpoint values so that it never overlaps with a min-width usage.
 ///
 /// @content Content to output in media query.
 ///
@@ -13,6 +13,8 @@
 ///   A breakpoint screen width or `core.$breakpoint` map key.
 ///
 @mixin media-max($point) {
+  $breakpoints: config.get("breakpoints");
+
   @if map.has-key($breakpoints, $point) {
     @media (max-width: (map.get($breakpoints, $point) - 1)) {
       @content;

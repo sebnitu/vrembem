@@ -65,9 +65,8 @@ html {
   opacity: 0;
   position: relative;
   transform: translateY(1rem);
-  transition: transform, opacity;
-  transition-duration: core.$transition-duration;
-  transition-timing-function: core.$transition-timing-function;
+  transition: css.get("transition");
+  transition-property: transform, opacity;
 
   &.is-active {
     opacity: 1;

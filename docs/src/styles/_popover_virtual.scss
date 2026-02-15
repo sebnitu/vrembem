@@ -1,0 +1,19 @@
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+
+.popover_virtual {
+  @include css.override(
+    "popover",
+    (
+      "placement": top,
+      "width": auto,
+      "padding": 0.5rem 0.75rem,
+      "background": palette.get("secondary"),
+      "foreground": white
+    )
+  );
+
+  &::before {
+    display: none;
+  }
+}

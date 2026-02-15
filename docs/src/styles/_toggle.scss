@@ -1,11 +1,10 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 .toggle-trigger {
   .icon {
     transform: rotate(0);
-    transition-duration: core.$transition-duration;
-    transition-property: transform;
-    transition-timing-function: core.$transition-timing-function;
+    transition: transform css.get("transition");
   }
 
   &[aria-expanded="true"] .icon {

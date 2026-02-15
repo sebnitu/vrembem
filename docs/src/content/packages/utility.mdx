@@ -1,13 +1,19 @@
 ---
 title: Utility
-description: "The utility component provides a set of atomic classes that specialize in a single function."
+description: "The utility package provides atomic classes that specialize in single functions."
 package: "@vrembem/utility"
 status: "layers"
 ---
 
+import Icon from "../../components/Icon.astro";
+import CodeExpander from "../../components/CodeExpander.astro";
+import ReferenceBar from "../../components/ReferenceBar.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
+import UtilityTable from "../../components/UtilityTable.astro";
+
 # Utility
 
-The utility component provides a set of atomic classes that specialize in a single function.
+The utility package provides atomic classes that specialize in single functions.
 
 ```sh
 npm install @vrembem/utility
@@ -19,391 +25,556 @@ npm install @vrembem/utility
   ```
 </CodeExample>
 
+## Config options
+
+Utility comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Controls whether module styles are output. This can be overridden on a per 
+  // module basis using the `utility-output-exceptions` config option.
+  // @type boolean
+  "utility-output": true,
+
+  // Modules to exclude from the output rule set in `utility-output`
+  // @type list
+  "utility-output-exceptions": (),
+
+  // A map containing module names as keys and their preferred class selectors
+  // @type map
+  "utility-classes": (),
+
+  // A prefix to apply to utility class selectors. Provided value is 
+  // automatically suffixed with a "-" character when applied.
+  // @type string
+  "utility-prefix": "",
+
+  // A lightness range list for outputting palette related utilities
+  // @type list
+  "utility-palette-range": (
+    0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
+  ),
+
+  // A map of border-radius utilities to output
+  // @type map
+  "utility-border-radius": (
+    "": css.get("border-radius"),
+    "lg": css.get("border-radius-lg"),
+    "circle": css.get("border-radius-circle"),
+    "square": 0
+  ),
+
+  // A list of display value properties to output
+  // @type list
+  "utility-display": (
+    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+  ),
+
+  // A map of max-width utilities to output
+  // @type map
+  "utility-max-width": (
+    "none": none,
+    "xs": 45rem,
+    "sm": 60rem,
+    "": 70rem,
+    "lg": 80rem,
+    "xl": 90rem,
+    "full": 100%
+  ),
+
+  // A map of gap utilities to output
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
+  )
+);
+```
+</CodeExpander>
+
+## Output
+
+Utility modules each have their own output styles. These are all output by default when the utility package is loaded. There are two ways to control which modules are output using the `utility-output` and `utility-output-exceptions` configuration options.
+
+<ReferenceCard ref="config" name="utility-output" type="boolean" defaults="true">
+  Controls whether module styles are output. Specify exceptions using the `utility-output-exceptions` config option.
+
+```scss
+@include config.set("utility-output", false);
+```
+</ReferenceCard>
+
+<ReferenceCard ref="config" name="utility-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `utility-output`. If `utility-output` is `true`, modules listed will not be output. If `utility-output` is `false`, modules listed will be output.
+
+```scss
+@include config.set("utility-output-exceptions", (
+  "background", "foreground"
+));
+```
+</ReferenceCard>
+
+#### Example
+
+Use the `utility-output` configuration to toggle output for all modules. Add exceptions to the `utility-output-exceptions` list to override the output option for specific modules.
+
+<CodeExample lang="scss">
+```scss
+// Import the config module
+@use "@vrembem/core/config";
+
+// Disable the output of specific modules
+@include config.set("utility-output-exceptions", (
+  "gap",
+  "margin",
+  "padding"
+));
+
+// Disable the output of all modules except for "margin" and "padding"
+@include config.set((
+  "utility-output": false
+  "utility-output-exceptions": (
+    "margin",
+    "padding"
+  )
+));
+```
+</CodeExample>
+
 ## Basic usage
 
-Once loaded, the utility component provides a number of classes that can be used independently or to supplement other loaded components.
+Once loaded, the utility package provides a number of classes that can be used independently or to supplement other loaded components.
 
 <CodeExample>
   ```html
   <!-- Using utility classes independently -->
-  <div class="padding background-shade border radius">
+  <div class="padding background-shade border border-radius">
     <p class="text-bold text-align-center">...</p>
   </div>
 
   <!-- Using utility classes with other components -->
   <div class="grid justify-content-center">
-    <div class="grid__item span-auto">...</div>
-    <div class="grid__item span-auto">...</div>
+    <div class="grid__item row-full">...</div>
+    <div class="grid__item row-auto">...</div>
   </div>
   ```
 </CodeExample>
 
-Each utility has a corresponding `$output-[module]` and `$class-[module]` variable that determines whether or not the module is output and it's class name. Output variable inherits their default value from `$output`.
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `utility-classes` config option.
 
-<CodeExample lang="scss">
-
-  ```scss
-  // Will disable the output of the color module
-  @use "@vrembem/utility" with (
-    $output-color: false
-  );
-
-  // Will disable all modules, but enables the color module
-  @use "@vrembem/utility" with (
-    $output: false,
-    $output-color: true
-  );
-  ```
-</CodeExample>
-
-## Customization
-
-Setting these variables will apply to all utility modules.
-
-| Variable          | Default                                        | Description                                                                                                                   |
-| ----------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `$prefix-utility` | `null`                                         | String to prefix all utility classes with.                                                                                    |
-| `$output`         | `true`                                         | Toggles the default output of all modules.                                                                                    |
-| `$breakpoints`    | [`core.$breakpoints` Ref &darr;](#breakpoints) | A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) utility. |
-| `$gap`            | `core.$gap` &rarr; `1em`                       | Used as the default spacing unit for many utilities.                                                                          |
-| `$gap-map`        | [`core.$gap-map` Ref &darr;](#gap-map)         | Used to build gap variants for many utilities.                                                                                |
-
-### $breakpoints
-
-A map of breakpoints used by utilities that provide breakpoint specific variations such as the [`display`](#display) and [`span`](#span) utilities.
+<ReferenceCard ref="config" name="utility-classes" type="map" defaults='("separator": "sep")'>
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.radius` instead of `.border-radius`, set the following value:
 
 ```scss
-// Inherited from: core.$breakpoints
-$breakpoints: (
-  "xs": 480px,
-  "sm": 620px,
-  "md": 760px,
-  "lg": 990px,
-  "xl": 1380px
-) !default;
+@include config.set("utility-classes", (
+  "border-radius": "radius"
+));
 ```
+</ReferenceCard>
 
-### $gap-map
+It's also possible to provide a prefix to all utility classes using the `utility-prefix` config option.
 
-Used to build gap variants for [`gap`](#gap-key), [`gap-x`](#gap-x-key), [`gap-y`](#gap-y-key), [`margin`](#margin) and [`padding`](#padding) utilities.
+<ReferenceCard ref="config" name="utility-prefix" type="map" defaults='""'>
+  A prefix to apply to utility class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
 
 ```scss
-// Inherited from: core.$gap-map
-$gap-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
+@include config.set("utility-prefix", "u");
+// Result: .display-none > .u-display-none
 ```
+</ReferenceCard>
 
-## background
+## Modules
 
-Applies background color property. Most options include light, lighter, dark and darker variants.
+Below is a list of each utility module, their available variants and intended usage. Some modules also have configuration options that can be used to configure their output.
+
+### background
+
+Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
+
+export const background = (() => {
+  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const palette = ["primary", "secondary", "neutral", "important"];
+  return palette.reduce((acc, pal) => {
+    acc[`background-${pal}`] = `background-color: var(--vb-${pal});`
+    range.forEach(val => {
+      acc[`background-${pal}-${val}`] = `background-color: hsl(var(--vb-${pal}-hs) ${val});`;
+    });
+    return acc;
+  }, {});
+})();
+
+<UtilityTable id="background-color" example data={{
+  // Miscellaneous
+  "background-black": "background-color: black;",
+  "background-white": "background-color: white;",
+  "background-transparent": "background-color: transparent;",
+
+  // Theme utilities
+  "background": "background-color: var(--vb-background);",
+  "background-dark": "background-color: var(--vb-background-dark);",
+  "background-darker": "background-color: var(--vb-background-darker);",
+
+  // Palette utilities
+  ...background
+}} />
 
 <CodeExample>
-  <div slot="output" class="flex flex-wrap">
-    <div class="swatch background"></div>
-    <div class="swatch background-dark"></div>
-    <div class="swatch background-darker"></div>
-    <div class="swatch background-primary-0"></div>
-    <div class="swatch background-primary-10"></div>
-    <div class="swatch background-primary-20"></div>
-    <div class="swatch background-primary-30"></div>
-    <div class="swatch background-primary-40"></div>
-    <div class="swatch background-primary-50"></div>
-    <div class="swatch background-primary-60"></div>
-    <div class="swatch background-primary-70"></div>
-    <div class="swatch background-primary-80"></div>
-    <div class="swatch background-primary-90"></div>
-    <div class="swatch background-primary-95"></div>
-    <div class="swatch background-primary-98"></div>
-    <div class="swatch background-primary-100"></div>
-    <div class="swatch background-secondary-0"></div>
-    <div class="swatch background-secondary-10"></div>
-    <div class="swatch background-secondary-20"></div>
-    <div class="swatch background-secondary-30"></div>
-    <div class="swatch background-secondary-40"></div>
-    <div class="swatch background-secondary-50"></div>
-    <div class="swatch background-secondary-60"></div>
-    <div class="swatch background-secondary-70"></div>
-    <div class="swatch background-secondary-80"></div>
-    <div class="swatch background-secondary-90"></div>
-    <div class="swatch background-secondary-95"></div>
-    <div class="swatch background-secondary-98"></div>
-    <div class="swatch background-secondary-100"></div>
-    <div class="swatch background-neutral-0"></div>
-    <div class="swatch background-neutral-10"></div>
-    <div class="swatch background-neutral-20"></div>
-    <div class="swatch background-neutral-30"></div>
-    <div class="swatch background-neutral-40"></div>
-    <div class="swatch background-neutral-50"></div>
-    <div class="swatch background-neutral-60"></div>
-    <div class="swatch background-neutral-70"></div>
-    <div class="swatch background-neutral-80"></div>
-    <div class="swatch background-neutral-90"></div>
-    <div class="swatch background-neutral-95"></div>
-    <div class="swatch background-neutral-98"></div>
-    <div class="swatch background-neutral-100"></div>
-    <div class="swatch background-important-0"></div>
-    <div class="swatch background-important-10"></div>
-    <div class="swatch background-important-20"></div>
-    <div class="swatch background-important-30"></div>
-    <div class="swatch background-important-40"></div>
-    <div class="swatch background-important-50"></div>
-    <div class="swatch background-important-60"></div>
-    <div class="swatch background-important-70"></div>
-    <div class="swatch background-important-80"></div>
-    <div class="swatch background-important-90"></div>
-    <div class="swatch background-important-95"></div>
-    <div class="swatch background-important-98"></div>
-    <div class="swatch background-important-100"></div>
-  </div>
-  ```html
-  <div class="background"></div>
-  <div class="background-dark"></div>
-  <div class="background-darker"></div>
-  <div class="background-primary"></div>
-  ...
-  ```
+  <Fragment slot="output">
+    <div class="flex gap">
+      <button class="button foreground-white background-primary">Button 1</button>
+      <button class="button foreground-white background-secondary-40">Button 2</button>
+      <button class="button foreground-white background-neutral-60 ">Button 3</button>
+    </div>
+  </Fragment>
+```html
+<button class="background-primary ...">Button 1</button>
+<button class="background-secondary-40 ...">Button 2</button>
+<button class="background-neutral-60 ...">Button 3</button>
+```
 </CodeExample>
 
-Also available are utility classes for the `background-clip-[value]` property.
+The background utility module also includes options for setting the background-clip property.
 
+<UtilityTable id="background-clip" expandable={false} data={{
+  // Miscellaneous
+  "background-clip-border": "background-clip: border-box;",
+  "background-clip-content": "background-clip: content-box;",
+  "background-clip-padding": "background-clip: padding-box;",
+}} />
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex gap" style="--vb-border: 8px solid var(--vb-border-color);">
+      <div class="padding border border-radius background-clip-border background-primary foreground-white">Button 1</div>
+      <div class="padding border border-radius background-clip-content background-primary foreground-white">Button 2</div>
+      <div class="padding border border-radius background-clip-padding background-primary foreground-white">Button 3</div>
+    </div>
+  </Fragment>
 ```html
-<div class="background-clip-border"></div>
-<div class="background-clip-content"></div>
-<div class="background-clip-padding"></div>
+<div class="background-clip-border ...">Example 1</div>
+<div class="background-clip-content ...">Example 2</div>
+<div class="background-clip-padding ...">Example 3</div>
 ```
+</CodeExample>
 
-| Variable             | Default                 | Description                                                 |
-| -------------------- | ----------------------- | ----------------------------------------------------------- |
-| `$output-background` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
-| `$class-background`  | `"background"`          | String to use for the class name of the background utility. |
+### foreground
 
-> Checkout the [web documentation](https://vrembem.com/packages/utility/#background) for a complete list of available options.
+Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
 
-## border
+export const foreground = (() => {
+  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const palette = ["primary", "secondary", "neutral", "important"];
+  return palette.reduce((acc, pal) => {
+    acc[`foreground-${pal}`] = `color: var(--vb-${pal});`
+    range.forEach(val => {
+      acc[`foreground-${pal}-${val}`] = `color: hsl(var(--vb-${pal}-hs) ${val});`;
+    });
+    return acc;
+  }, {});
+})();
 
-Applies border property with optional sides variants.
+<UtilityTable 
+  id="foreground-color" 
+  example='<span class="${key}">Example</span>' 
+  data={{
+  // Miscellaneous
+  "foreground-black": "color: black;",
+  "foreground-white": "color: white;",
+  "foreground-transparent": "color: transparent;",
 
+  // Theme utilities
+  "foreground": "color: var(--vb-foreground);",
+  "foreground-light": "color: var(--vb-foreground-light);",
+  "foreground-lighter": "color: var(--vb-foreground-lighter);",
+
+  // Palette utilities
+  ...foreground
+}} />
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex gap">
+      <button class="button border-color-current foreground-primary">Button 1</button>
+      <button class="button border-color-current foreground-secondary">Button 2</button>
+      <button class="button border-color-current foreground-neutral">Button 3</button>
+      <button class="button border-color-current foreground-important">Button 4</button>
+    </div>
+  </Fragment>
 ```html
-<div class="border"></div>
-<div class="border-top"></div>
-<div class="border-right"></div>
-<div class="border-bottom"></div>
-<div class="border-left"></div>
+<button class="foreground-primary ...">Button 1</button>
+<button class="foreground-secondary ...">Button 2</button>
+<button class="foreground-neutral ...">Button 3</button>
+<button class="foreground-important ...">Button 4</button>
 ```
+</CodeExample>
 
-| Variable         | Default                 | Description                                             |
-| ---------------- | ----------------------- | ------------------------------------------------------- |
-| `$output-border` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
-| `$class-border`  | `"border"`              | String to use for the class name of the border utility. |
+### border
 
-### border-none
+Utilities for setting the border property with optional sides variants of an element. Also includes utilities for setting variants of the border-color property.
 
-Remove border styles with `border-none` utilities and optional side variants.
+<UtilityTable id="border" expandable={false} data={{
+  "border": "border: var(--vb-border);",
+  "border-top": "border-top: var(--vb-border);",
+  "border-bottom": "border-bottom: var(--vb-border);",
+  "border-left": "border-left: var(--vb-border);",
+  "border-right": "border-right: var(--vb-border);",
 
+  "border-none": "border: 0;",
+  "border-top-none": "border-top: 0;",
+  "border-bottom-none": "border-bottom: 0;",
+  "border-left-none": "border-left: 0;",
+  "border-right-none": "border-right: 0;",
+
+  "border-color-dark": "border-color: var(--vb-border-color-dark);",
+  "border-color-darker": "border-color: var(--vb-border-color-darker);",
+  "border-color-transparent": "border-color: transparent;",
+  "border-color-current": "border-color: currentcolor;",
+}} />
+
+### border-radius
+
+Utilities for setting the border-radius property of an element with optional corner variants. The value and variants used by the border-radius utility is built from the `utility-border-radius` configuration option.
+
+<UtilityTable id="border-radius" data={{
+  "border-radius": "border-radius: var(--vb-border-radius);",
+  "border-radius-top-left": "border-top-left-radius: var(--vb-border-radius);",
+  "border-radius-top-right": "border-top-right-radius: var(--vb-border-radius);",
+  "border-radius-bottom-left": "border-bottom-left-radius: var(--vb-border-radius);",
+  "border-radius-bottom-right": "border-bottom-right-radius: var(--vb-border-radius);",
+  "border-radius-top": "border-top-left-radius: var(--vb-border-radius); border-top-right-radius: var(--vb-border-radius);",
+  "border-radius-bottom": "border-bottom-left-radius: var(--vb-border-radius); border-bottom-right-radius: var(--vb-border-radius);",
+  "border-radius-left": "border-top-left-radius: var(--vb-border-radius); border-bottom-left-radius: var(--vb-border-radius);",
+  "border-radius-right": "border-top-right-radius: var(--vb-border-radius); border-bottom-right-radius: var(--vb-border-radius);",
+
+  "border-radius-lg": "border-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top-left": "border-top-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top-right": "border-top-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-top": "border-top-left-radius: var(--vb-border-radius-lg); border-top-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-bottom": "border-bottom-left-radius: var(--vb-border-radius-lg); border-bottom-right-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-left": "border-top-left-radius: var(--vb-border-radius-lg); border-bottom-left-radius: var(--vb-border-radius-lg);",
+  "border-radius-lg-right": "border-top-right-radius: var(--vb-border-radius-lg); border-bottom-right-radius: var(--vb-border-radius-lg);",
+
+  "border-radius-circle": "border-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top-left": "border-top-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top-right": "border-top-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-top": "border-top-left-radius: var(--vb-border-radius-circle); border-top-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-bottom": "border-bottom-left-radius: var(--vb-border-radius-circle); border-bottom-right-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-left": "border-top-left-radius: var(--vb-border-radius-circle); border-bottom-left-radius: var(--vb-border-radius-circle);",
+  "border-radius-circle-right": "border-top-right-radius: var(--vb-border-radius-circle); border-bottom-right-radius: var(--vb-border-radius-circle);",
+
+  "border-radius-square": "border-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top-left": "border-top-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top-right": "border-top-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom-left": "border-bottom-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom-right": "border-bottom-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-top": "border-top-left-radius: var(--vb-border-radius-square); border-top-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-bottom": "border-bottom-left-radius: var(--vb-border-radius-square); border-bottom-right-radius: var(--vb-border-radius-square);",
+  "border-radius-square-left": "border-top-left-radius: var(--vb-border-radius-square); border-bottom-left-radius: var(--vb-border-radius-square);",
+  "border-radius-square-right": "border-top-right-radius: var(--vb-border-radius-square); border-bottom-right-radius: var(--vb-border-radius-square);",
+}} />
+
+### box-shadow
+
+Utilities for setting the box-shadow property of an element with optional depth variants.
+
+<UtilityTable 
+  id="box-shadow" 
+  expandable={false} 
+  example={'<span class="swatch background-white background-clip-padding ${key}"></span>'}
+  data={{
+  "box-shadow": "box-shadow: var(--vb-box-shadow);",
+  "box-shadow-flat": "box-shadow: 0 0 0 0 transparent;",
+  "box-shadow-1": "box-shadow: var(--vb-box-shadow-1);",
+  "box-shadow-2": "box-shadow: var(--vb-box-shadow-2);",
+  "box-shadow-3": "box-shadow: var(--vb-box-shadow-3);",
+  "box-shadow-4": "box-shadow: var(--vb-box-shadow-4);",
+  "box-shadow-5": "box-shadow: var(--vb-box-shadow-5);",
+}} />
+
+### display
+
+Utilities for setting the display property of an element with optional breakpoint modifiers. Display variants are built using the values set in the `utility-display` configuration option.
+
+<UtilityTable id="display" expandable={false} data={{
+  "display-inline": "display: inline;",
+  "display-flex": "display: flex;",
+  "display-inline-flex": "display: inline-flex;",
+  "display-grid": "display: grid",
+  "display-inline-grid": "display: inline-grid",
+  "display-block": "display: block",
+  "display-inline-block": "display: inline-block",
+  "display-none": "display: none",
+}} />
+
+Display utilities also come with breakpoint modifiers. These can be used by prefixing a breakpoint key to any of the above listed utilities. Breakpoint modifiers are built from the [core `breakpoints`](/packages/core#config-options) configuration option.
+
+<CodeExample>
+<Fragment slot="output">
+  <div class="notice notice_color_primary display-block md:display-none">
+    <div class="flex gap align-items-center">
+      <Icon name="smartphone" />
+      <p>This is only visible for mobile users</p>
+    </div>
+  </div>
+  <div class="notice notice_color_secondary display-none md:display-block">
+    <div class="flex gap align-items-center">
+      <Icon name="monitor" />
+      <p>This is only visible for desktop users</p>
+    </div>
+  </div>
+</Fragment>
 ```html
-<div class="border-none"></div>
-<div class="border-top-none"></div>
-<div class="border-right-none"></div>
-<div class="border-bottom-none"></div>
-<div class="border-left-none"></div>
+<div class="display-block md:display-none">
+  <p>This is only visible for mobile users</p>
+</div>
+<div class="display-none md:display-block">
+  <p>This is only visible for desktop users</p>
+</div>
 ```
+</CodeExample>
 
-### border-color
+### margin
 
-Add border color utilities with light, dark and darker variants. Also available is the `border-color-transparent` utility which sets the border-color property to transparent.
+<ReferenceBar selector=".margin" />
 
-```html
-<!-- border-color -->
-<div class="border border-color-light"></div>
-<div class="border"></div>
-<div class="border border-color-dark"></div>
-<div class="border border-color-darker"></div>
+Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
-<!-- border-color-invert -->
-<div class="border border-color-invert-light"></div>
-<div class="border border-color-invert"></div>
-<div class="border border-color-invert-dark"></div>
-<div class="border border-color-invert-darker"></div>
-```
+- `margin` - Adds margins on all sides.
+- `margin-[direction]` - Adds default margin to a specific side.
+- `margin-[size]` - Adds margins on all sides with a specific size key.
+- `margin-[direction]-[size]` - Adds margins on a specific side and size.
+- `margin-x-[size]` - Adds left and right margins with a specific size key.
+- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
+- `margin-auto` - Sets margins to auto.
+- `margin-[direction]-auto` - Sets margins auto to a specific side.
+- `margin-x-auto` - Sets left and right margins to auto.
+- `margin-y-auto` - Sets top and bottom margins to auto.
 
-## border-radius
+### padding
 
-Applies border-radius styles with optional corner variants. The value used by the radius utility is pulled from the `core.$border-radius` variable.
+<ReferenceBar selector=".padding" />
 
-```html
-<!-- Applied to all corners -->
-<div class="radius"></div>
+Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
 
-<!-- Applied to all corners on a specific side -->
-<div class="radius-top"></div>
-<div class="radius-right"></div>
-<div class="radius-bottom"></div>
-<div class="radius-left"></div>
+- `padding` - Adds default padding on all sides.
+- `padding-[direction]` - Adds default padding to a specific side.
+- `padding-[size]` - Adds padding on all sides with a specific size key.
+- `padding-[direction]-[size]` - Adds padding on a specific side and size.
+- `padding-x-[size]` - Sets left and right padding to a specific size key.
+- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
 
-<!-- Applied to specific corners -->
-<div class="radius-top-left"></div>
-<div class="radius-top-right"></div>
-<div class="radius-bottom-right"></div>
-<div class="radius-bottom-left"></div>
-```
+### spacing
 
-| Variable                | Default                 | Description                                                    |
-| ----------------------- | ----------------------- | -------------------------------------------------------------- |
-| `$output-border-radius` | `$output` &rarr; `true` | Toggles the output of this utility.                            |
-| `$class-border-radius`  | `"radius"`              | String to use for the class name of the border-radius utility. |
+<ReferenceBar selector=".spacing" />
 
-### radius-circle
-
-Applies the maximum value to border-radius with optional corner variants. The value used by radius-circle utility is pulled from the `core.$border-radius-circle` variable.
-
-```html
-<!-- Applied to all corners -->
-<div class="radius-circle"></div>
-
-<!-- Applied to all corners on a specific side -->
-<div class="radius-circle-top"></div>
-<div class="radius-circle-right"></div>
-<div class="radius-circle-bottom"></div>
-<div class="radius-circle-left"></div>
-
-<!-- Applied to specific corners -->
-<div class="radius-circle-top-left"></div>
-<div class="radius-circle-top-right"></div>
-<div class="radius-circle-bottom-right"></div>
-<div class="radius-circle-bottom-left"></div>
-```
-
-### radius-square
-
-Removes border-radius by setting it's value to `0` with optional corner variants.
-
-```html
-<!-- Applied to all corners -->
-<div class="radius-square"></div>
-
-<!-- Applied to all corners on a specific side -->
-<div class="radius-square-top"></div>
-<div class="radius-square-right"></div>
-<div class="radius-square-bottom"></div>
-<div class="radius-square-left"></div>
-
-<!-- Applied to specific corners -->
-<div class="radius-square-top-left"></div>
-<div class="radius-square-top-right"></div>
-<div class="radius-square-bottom-right"></div>
-<div class="radius-square-bottom-left"></div>
-```
-
-## elevate
-
-Applies different levels of elevation through box-shadow styles.
-
-```html
-<div class="elevate"></div>
-<div class="elevate-flat"></div>
-<div class="elevate-1dp"></div>
-<div class="elevate-4dp"></div>
-<div class="elevate-8dp"></div>
-<div class="elevate-16dp"></div>
-<div class="elevate-24dp"></div>
-```
-
-| Variable             | Default                 | Description                                                 |
-| -------------------- | ----------------------- | ----------------------------------------------------------- |
-| `$output-box-shadow` | `$output` &rarr; `true` | Toggles the output of this utility.                         |
-| `$class-box-shadow`  | `"elevate"`             | String to use for the class name of the box-shadow utility. |
-
-## color
-
-Applies text color property. Most options include light, lighter, dark and darker variants.
-
-```html
-<span class="color">...</span>
-<span class="color-subtle">...</span>
-<span class="color-primary-light">...</span>
-<span class="color-primary">...</span>
-<span class="color-primary-dark">...</span>
 ...
-```
 
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-color` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-color`  | `"color"`               | String to use for the class name of the color utility. |
+### gap
 
-> Checkout the [web documentation](https://vrembem.com/packages/utility/#color) for a complete list of available options.
+<ReferenceBar selector=".gap" />
 
-## display
+Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
-Display utilities allow you to toggle the display property on an element with an optional breakpoint conditional.
-
-```
-.display-[property]-[breakpoint]
-```
-
-Available properties are generated from the `$display-properties` variable map and breakpoint conditions from [`$breakpoints`](#breakpoints) variable map.
+- `gap-x`
+- `gap-x-[key]`
 
 ```html
-<div class="display-block display-none-xs">
-  <p>Small Mobile</p>
-</div>
+<!-- Using the default gap-x class -->
+<div class="gap-x">...</div>
 
-<div class="display-none display-block-xs display-none-sm">
-  <p>Small Mobile => Mobile</p>
-</div>
-
-<div class="display-none display-block-sm display-none-md">
-  <p>Mobile => Tablet</p>
-</div>
-
-<div class="display-none display-block-md display-none-lg">
-  <p>Tablet => Desktop</p>
-</div>
-
-<div class="display-none display-block-lg display-none-xl">
-  <p>Desktop => Large Desktop</p>
-</div>
-
-<div class="display-none display-block-xl">
-  <p>Large Desktop</p>
-</div>
+<!-- Using the gap-x class with variant key -->
+<div class="gap-x-none">...</div>
+<div class="gap-x-xs">...</div>
+<div class="gap-x-sm">...</div>
+<div class="gap-x-md">...</div>
+<div class="gap-x-lg">...</div>
+<div class="gap-x-xl">...</div>
 ```
 
-| Variable              | Default                                      | Description                                                                  |
-| --------------------- | -------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$output-display`     | `$output` &rarr; `true`                      | Toggles the output of this utility.                                          |
-| `$class-display`      | `"display"`                                  | String to use for the class name of the display utility.                     |
-| `$display-properties` | [`Sass Map` Ref &darr;](#display-properties) | A list of display properties to output along with their breakpoint variants. |
+Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
 
-### $display-properties
+- `gap-y`
+- `gap-y-[key]`
 
-A list of display properties to output along with their breakpoint variants.
+```html
+<!-- Using the default gap-y class -->
+<div class="gap-y">...</div>
 
-```scss
-$display-properties: (
-  inline,
-  flex,
-  inline-flex,
-  block,
-  inline-block,
-  none
-) !default;
+<!-- Using the gap-y class with variant key -->
+<div class="gap-y-none">...</div>
+<div class="gap-y-xs">...</div>
+<div class="gap-y-sm">...</div>
+<div class="gap-y-md">...</div>
+<div class="gap-y-lg">...</div>
+<div class="gap-y-xl">...</div>
 ```
 
-## font
+### justify
+
+<ReferenceBar selector=".justify" />
+
+...
+
+### align
+
+<ReferenceBar selector=".align" />
+
+...
+
+### place
+
+<ReferenceBar selector=".place" />
+
+...
+
+### order
+
+<ReferenceBar selector=".order" />
+
+...
+
+### position
+
+<ReferenceBar selector=".position" />
+
+A utility for setting the position CSS property.
+
+- `position-absolute` - Sets the position property to absolute.
+- `position-fixed` - Sets the position property to fixed.
+- `position-relative` - Sets the position property to relative.
+- `position-static` - Sets the position property to static.
+- `position-sticky` - Sets the position property to sticky.
+
+### overflow
+
+<ReferenceBar selector=".overflow" />
+
+...
+
+### max-width
+
+<ReferenceBar selector=".max-width" />
+
+Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
+
+- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
+- `max-width-none` - Sets the max-width property to `none`.
+- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
+- `max-width-full` - Sets the max-width property to `100%`.
+
+### font
+
+<ReferenceBar selector=".font" />
 
 A utility for adjusting various font styles.
-
-| Variable       | Default                 | Description                                           |
-| -------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-font` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-font`  | `"font"`                | String to use for the class name of the font utility. |
 
 - `font-family-sans` - Sets the font-family property to the sans-serif font stack.
 - `font-family-serif` - Sets the font-family property to the serif font stack.
@@ -426,147 +597,11 @@ A utility for adjusting various font styles.
 - `font-style-normal` - Sets the font-style property to normal.
 - `font-style-italic` - Sets the font-style property to italic.
 
-## gap-x-[key]
+### text
 
-Adds gap spacing horizontally using margin-left and the `> * + *` selector. Gap-x keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-x`
-- `gap-x-[key]`
-
-```html
-<!-- Using the default gap-x class -->
-<div class="gap-x">...</div>
-
-<!-- Using the gap-x class with variant key -->
-<div class="gap-x-none">...</div>
-<div class="gap-x-xs">...</div>
-<div class="gap-x-sm">...</div>
-<div class="gap-x-md">...</div>
-<div class="gap-x-lg">...</div>
-<div class="gap-x-xl">...</div>
-```
-
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-gap-x` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-gap-x`  | `"gap-x"`               | String to use for the class name of the gap-x utility. |
-
-## gap-y-[key]
-
-Adds gap spacing vertically using margin-top and the `> * + *` selector. Gap-y keys and their values are generated from the [`$gap-map`](#gap-map) variable map.
-
-- `gap-y`
-- `gap-y-[key]`
-
-```html
-<!-- Using the default gap-y class -->
-<div class="gap-y">...</div>
-
-<!-- Using the gap-y class with variant key -->
-<div class="gap-y-none">...</div>
-<div class="gap-y-xs">...</div>
-<div class="gap-y-sm">...</div>
-<div class="gap-y-md">...</div>
-<div class="gap-y-lg">...</div>
-<div class="gap-y-xl">...</div>
-```
-
-| Variable        | Default                 | Description                                            |
-| --------------- | ----------------------- | ------------------------------------------------------ |
-| `$output-gap-y` | `$output` &rarr; `true` | Toggles the output of this utility.                    |
-| `$class-gap-y`  | `"gap-y"`               | String to use for the class name of the gap-y utility. |
-
-## margin
-
-Add margin to an element using directional and size variations. Margin size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
-
-- `margin` - Adds margins on all sides.
-- `margin-[direction]` - Adds default margin to a specific side.
-- `margin-[size]` - Adds margins on all sides with a specific size key.
-- `margin-[direction]-[size]` - Adds margins on a specific side and size.
-- `margin-x-[size]` - Adds left and right margins with a specific size key.
-- `margin-y-[size]` - Adds top and bottom margins with a specific size key.
-- `margin-auto` - Sets margins to auto.
-- `margin-[direction]-auto` - Sets margins auto to a specific side.
-- `margin-x-auto` - Sets left and right margins to auto.
-- `margin-y-auto` - Sets top and bottom margins to auto.
-
-| Variable         | Default                 | Description                                             |
-| ---------------- | ----------------------- | ------------------------------------------------------- |
-| `$output-margin` | `$output` &rarr; `true` | Toggles the output of this utility.                     |
-| `$class-margin`  | `"margin"`              | String to use for the class name of the margin utility. |
-
-## max-width
-
-Set the max-width property on an element using values mapped from scale keys. Scale variations are built using the [`$max-width-scale`](#max-width-scale) variable map.
-
-- `max-width` - Sets the max-width propertry to the default value set in `$max-width`.
-- `max-width-none` - Sets the max-width property to `none`.
-- `max-width-[key]` - Sets the max-width property to the value of a specific scale key.
-- `max-width-full` - Sets the max-width property to `100%`.
-
-| Variable            | Default                                 | Description                                                |
-| ------------------- | --------------------------------------- | ---------------------------------------------------------- |
-| `$output-max-width` | `$output` &rarr; `true`                 | Toggles the output of this module.                         |
-| `$class-max-width`  | `"max-width"`                           | String to use for the class name of the max-width utility. |
-| `$max-width`        | `70rem`                                 | The default value used to set max-width.                   |
-| `$max-width-scale`  | [Sass map ref &darr;](#max-width-scale) | Map used to build max-width utility variants.              |
-
-### $max-width-scale
-
-A scale map used for building max-width utility variations using the key as variant name.
-
-```scss
-$max-width-scale: (
-  'none': none,
-  'xs': 45rem,
-  'sm': 60rem,
-  'md': 70rem,
-  'lg': 80rem,
-  'xl': 90rem,
-  'full': 100%
-) !default;
-```
-
-## Padding
-
-Add padding to an element using directional and size variations. Padding size and spacing values are generated from [`$gap-map`](#gap-map) variable map.
-
-- `padding` - Adds default padding on all sides.
-- `padding-[direction]` - Adds default padding to a specific side.
-- `padding-[size]` - Adds padding on all sides with a specific size key.
-- `padding-[direction]-[size]` - Adds padding on a specific side and size.
-- `padding-x-[size]` - Sets left and right padding to a specific size key.
-- `padding-y-[size]` - Sets top and bottom padding to a specific size key.
-
-| Variable          | Default                 | Description                                              |
-| ----------------- | ----------------------- | -------------------------------------------------------- |
-| `$output-padding` | `$output` &rarr; `true` | Toggles the output of this utility.                      |
-| `$class-padding`  | `"padding"`             | String to use for the class name of the padding utility. |
-
-## position
-
-A utility for setting the position CSS property.
-
-- `position-absolute` - Sets the position property to absolute.
-- `position-fixed` - Sets the position property to fixed.
-- `position-relative` - Sets the position property to relative.
-- `position-static` - Sets the position property to static.
-- `position-sticky` - Sets the position property to sticky.
-
-| Variable           | Default                 | Description                                               |
-| ------------------ | ----------------------- | --------------------------------------------------------- |
-| `$output-position` | `$output` &rarr; `true` | Toggles the output of this utility.                       |
-| `$class-position`  | `"position"`            | String to use for the class name of the position utility. |
-
-## text
+<ReferenceBar selector=".text" />
 
 A utility for adjusting various text styles.
-
-| Variable       | Default                 | Description                                           |
-| -------------- | ----------------------- | ----------------------------------------------------- |
-| `$output-text` | `$output` &rarr; `true` | Toggles the output of this utility.                   |
-| `$class-text`  | `"text"`                | String to use for the class name of the text utility. |
 
 - `text-capitalize` - Sets text-transform to capitalize.
 - `text-lowercase` - Sets text-transform to lowercase.
@@ -581,3 +616,9 @@ A utility for adjusting various text styles.
 - `text-wrap` - Sets white-space to normal allowing text to wrap.
 - `text-nowrap` - Sets white-space to `nowrap` which no longer allows text to wrap.
 - `text-overflow-ellipsis` - Adds ellipsis styles to an element that will display an ellipsis (...) for text that would otherwise wrap.
+
+### transition
+
+<ReferenceBar selector=".transition" />
+
+...

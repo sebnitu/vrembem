@@ -53,13 +53,12 @@ $-theme-keys: "light", "dark";
 ///
 @function class($theme) {
   $prefix: config.get("theme-prefix");
-  $delimiter: "";
 
-  @if $prefix {
-    $delimiter: "-";
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
   }
 
-  @return ".#{$prefix}#{$delimiter}#{$theme}";
+  @return ".#{$prefix}#{$theme}";
 }
 
 /// Set a new or modify existing theme properties. These are stored as custom

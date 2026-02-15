@@ -47,6 +47,11 @@ $config: (
     "separator": "sep"
   ),
 
+  // A prefix to apply to base class selectors. Provided value is automatically 
+  // suffixed with a "-" character when applied.
+  // @type string
+  "base-prefix": "",
+
   // Used to output the heading styles and their font-size/line-height CSS 
   // variables. Should contain a key of the heading level to output and the 
   // value of a font-size and optional line-height (space separated).
@@ -85,7 +90,7 @@ $config: (
 Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `base-output` and `base-output-exceptions` configuration options.
 
 <ReferenceCard ref="config" name="base-output" type="boolean" defaults="true">
-  Controls whether module styles are output. You can specify exceptions using the `base-output-exceptions` list.
+  Controls whether module styles are output. Specify exceptions using the `base-output-exceptions` config option.
 
 ```scss
 @include config.set("base-output", false);
@@ -132,7 +137,7 @@ Use the `base-output` configuration to toggle output for all modules. Add except
 
 ## Basic usage
 
-Once loaded, the base component provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
+Once loaded, the base package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
 
 <CodeExample lang="html">
 ```html
@@ -154,16 +159,26 @@ Once loaded, the base component provides normalization and default styles for HT
 ```
 </CodeExample>
 
-You can also customize the class selectors used by modules by mapping the module name to your preferred class selector in the `base-classes` configuration.
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `base-classes` config option.
 
 <ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
-  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, you could set the following:
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, set the following value:
 
 ```scss
 @include config.set("base-classes", (
-  "separator": "sep",
   "type": "content"
 ));
+```
+</ReferenceCard>
+
+It's also possible to provide a prefix to all base classes using the `base-prefix` config option.
+
+<ReferenceCard ref="config" name="base-prefix" type="map" defaults='""'>
+  A prefix to apply to base class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
+
+```scss
+@include config.set("base-prefix", "vb");
+// Result: .type > .vb-type
 ```
 </ReferenceCard>
 
@@ -598,7 +613,7 @@ This module provides the `.scroll-box` CSS class to be applied as a wrapper arou
 
 <CodeExample lang="html">
 <Fragment slot="demo">
-  <div class="scroll-box padding margin-y-sm border radius">
+  <div class="scroll-box padding margin-y-sm border border-radius">
     <p class="text-nowrap">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere quaerat doloribus ab minus ad amet repellendus. Dolore aliquam corrupti, omnis recusandae soluta minima, tempora eligendi, explicabo suscipit maiores reprehenderit illum!</p>
   </div>
 </Fragment>

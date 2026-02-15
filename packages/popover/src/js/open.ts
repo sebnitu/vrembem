@@ -28,43 +28,61 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
     await entry.parent.emit(plugin.config.updateEvent, entry);
   }
 
-  // Get the middleware options for floating ui
-  const middlewareOptions = getMiddlewareOptions(entry);
+  // If a trigger exists
+  if (entry.trigger) {
+    // Get the middleware options for floating ui
+    const middlewareOptions = getMiddlewareOptions(entry);
 
-  // Get the arrow element
-  const arrowEl = entry.el.querySelector(
-    middlewareOptions.arrow.selector
-  ) as HTMLElement;
-  middlewareOptions.arrow.element = arrowEl ? arrowEl : null;
+    // Get the arrow element
+    const arrowEl = entry.el.querySelector(
+      middlewareOptions.arrow.selector
+    ) as HTMLElement;
+    middlewareOptions.arrow.element = arrowEl;
 
-  if (entry.trigger instanceof HTMLElement) {
-    // Setup the autoUpdate of popover positioning and store the cleanup function
-    entry.floatingCleanup = autoUpdate(entry.trigger, entry.el, () => {
-      const middleware = [
-        flip(middlewareOptions.flip),
-        shift({ ...middlewareOptions.shift, limiter: limitShift() }),
-        offset(middlewareOptions.offset)
-      ];
+    // Setup the middleware array, this is needed by floating-ui
+    const middleware = [
+      flip(middlewareOptions.flip),
+      shift({ ...middlewareOptions.shift, limiter: limitShift() }),
+      offset(middlewareOptions.offset)
+    ];
 
-      // Add arrow middleware if an element exists
-      if (middlewareOptions.arrow.element) {
-        middleware.push(
-          arrow({
-            ...middlewareOptions.arrow,
-            element: middlewareOptions.arrow.element
-          })
-        );
+    // Add arrow middleware if an element exists
+    if (middlewareOptions.arrow.element) {
+      middleware.push(
+        arrow({
+          ...middlewareOptions.arrow,
+          element: middlewareOptions.arrow.element
+        })
+      );
+    }
+
+    // Check if this is a virtual trigger
+    const isVirtual = entry.config.get("virtual");
+
+    // Enable virtual element tracking on parent collection
+    if (isVirtual) entry.parent.virtual = true;
+
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
+    // console.log("Race condition?");
+
+    // Define the update position function
+    function updatePosition() {
+      // Remove the mousemove event listener if popover is no longer opened
+      if (isVirtual && entry.state !== "opened") {
+        document.removeEventListener("mousemove", updatePosition);
+        document.removeEventListener("scroll", updatePosition);
       }
 
-      // Non-null assertion (entry.trigger!) since we already check that entry.trigger is not null
-      computePosition(entry.trigger!, entry.el, {
+      // Get either the virtual element or the entry trigger
+      const refEl = isVirtual ? entry.parent.virtualElement : entry.trigger;
+
+      // Setup the compute position API
+      computePosition(refEl, entry.el, {
         placement: entry.config.get("placement"),
         middleware
       }).then(({ x, y, placement, middlewareData }) => {
         // Guard in case there is no popover element
-        if (!entry.el) {
-          return;
-        }
+        if (!entry.el) return;
 
         // Apply popover left and top position
         applyPositionStyle(entry.el, x, y);
@@ -79,7 +97,21 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
         // CSS to determine the vertical position of arrows.
         entry.el.setAttribute("data-floating-placement", placement);
       });
-    });
+    }
+
+    // If this is a virtual trigger, update the position on mouse move
+    if (isVirtual) {
+      updatePosition();
+      document.addEventListener("mousemove", updatePosition);
+      document.addEventListener("scroll", updatePosition);
+    } else {
+      // Setup the autoUpdate of popover positioning and store the cleanup function
+      entry.floatingCleanup = autoUpdate(
+        entry.trigger,
+        entry.el,
+        updatePosition
+      );
+    }
   }
 
   // Update popover state

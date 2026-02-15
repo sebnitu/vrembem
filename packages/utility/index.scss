@@ -1,22 +1,30 @@
-@forward "./src/variables";
+@forward "./src/config";
 @forward "./src/functions";
-@forward "./src/modules/background";
-@forward "./src/modules/foreground";
-@forward "./src/modules/border";
-@forward "./src/modules/border-radius";
-@forward "./src/modules/box-shadow";
-@forward "./src/modules/display";
-@forward "./src/modules/margin";
-@forward "./src/modules/padding";
-@forward "./src/modules/spacing";
-@forward "./src/modules/gap";
-@forward "./src/modules/justify";
-@forward "./src/modules/align";
-@forward "./src/modules/place";
-@forward "./src/modules/order";
-@forward "./src/modules/position";
-@forward "./src/modules/overflow";
-@forward "./src/modules/max-width";
-@forward "./src/modules/font";
-@forward "./src/modules/text";
-@forward "./src/modules/transition";
+
+// Appearance (5)
+@forward "./src/modules/background"; // 312
+@forward "./src/modules/foreground"; // 296
+@forward "./src/modules/border"; // 52
+@forward "./src/modules/border-radius"; // 112
+@forward "./src/modules/box-shadow"; // 28
+
+// Display and spacing (4)
+@forward "./src/modules/display"; // 163
+@forward "./src/modules/margin"; // 210
+@forward "./src/modules/padding"; // 180
+@forward "./src/modules/spacing"; // 24
+
+// Grid and flex (5)
+@forward "./src/modules/gap"; // 72
+@forward "./src/modules/justify"; // 60
+@forward "./src/modules/align"; // 60
+@forward "./src/modules/place"; // 60
+@forward "./src/modules/order"; // 36
+
+// Miscellaneous (6)
+@forward "./src/modules/position"; // 20
+@forward "./src/modules/overflow"; // 60
+@forward "./src/modules/max-width"; // 28
+@forward "./src/modules/font"; // 80
+@forward "./src/modules/text"; // 68
+@forward "./src/modules/transition"; // 16

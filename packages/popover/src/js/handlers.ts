@@ -3,10 +3,34 @@ import { closeAll, closeCheck } from "./close";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
-export function handleClick(this: Popover, popover: PopoverEntry) {
+function setVirtualElement(parent: Popover, { clientX, clientY }: MouseEvent) {
+  parent.virtualElement = {
+    getBoundingClientRect() {
+      return {
+        width: 0,
+        height: 0,
+        x: clientX,
+        y: clientY,
+        left: clientX,
+        right: clientX,
+        top: clientY,
+        bottom: clientY
+      };
+    }
+  };
+}
+
+export function handleClick(
+  this: Popover,
+  popover: PopoverEntry,
+  event: MouseEvent | Event
+) {
   if (popover.state === "opened") {
     popover.close();
   } else {
+    if (event instanceof MouseEvent) {
+      setVirtualElement(this, event);
+    }
     this.trigger = popover.trigger;
     popover.open();
   }
@@ -19,6 +43,10 @@ export function handleTooltipClick(popover: PopoverEntry) {
     }
     popover.close();
   }
+}
+
+export function handleMousemove(this: Popover, event: MouseEvent) {
+  setVirtualElement(this, event);
 }
 
 export function handleMouseEnter(
