@@ -2,62 +2,62 @@
 
 @if fun.maybe-output("align") {
   #{fun.selector("align", "content", "start")} {
-    align-content: start !important;
+    align-content: start#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "center")} {
-    align-content: center !important;
+    align-content: center#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "end")} {
-    align-content: end !important;
+    align-content: end#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "between")} {
-    align-content: space-between !important;
+    align-content: space-between#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "around")} {
-    align-content: space-around !important;
+    align-content: space-around#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "evenly")} {
-    align-content: space-evenly !important;
+    align-content: space-evenly#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "content", "stretch")} {
-    align-content: stretch !important;
+    align-content: stretch#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "items", "start")} {
-    align-items: start !important;
+    align-items: start#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "items", "center")} {
-    align-items: center !important;
+    align-items: center#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "items", "end")} {
-    align-items: end !important;
+    align-items: end#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "items", "stretch")} {
-    align-items: stretch !important;
+    align-items: stretch#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "self", "start")} {
-    align-self: start !important;
+    align-self: start#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "self", "center")} {
-    align-self: center !important;
+    align-self: center#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "self", "end")} {
-    align-self: end !important;
+    align-self: end#{fun.maybe-important()};
   }
 
   #{fun.selector("align", "self", "stretch")} {
-    align-self: stretch !important;
+    align-self: stretch#{fun.maybe-important()};
   }
 }

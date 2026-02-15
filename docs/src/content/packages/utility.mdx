@@ -50,6 +50,10 @@ $config: (
   // @type string
   "utility-prefix": "",
 
+  // Whether or not utility styles should be output with the !important flag
+  // @type boolean
+  "utility-important": false,
+
   // A lightness range list for outputting palette related utilities
   // @type list
   "utility-palette-range": (
@@ -165,7 +169,7 @@ Once loaded, the utility package provides a number of classes that can be used i
   ```
 </CodeExample>
 
-To customize the class selectors used by modules, map the module name to your preferred class selector in the `utility-classes` config option.
+To customize utility class selectors used by modules, map the module name to your preferred class selector in the `utility-classes` config option.
 
 <ReferenceCard ref="config" name="utility-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.radius` instead of `.border-radius`, set the following value:
@@ -602,7 +606,7 @@ Utilities for setting the gap property of an element. Gap variants are built usi
 
 ### justify
 
-...
+Utilities for setting the justify-content, justify-items and justify-self properties of an element.
 
 {/*
 .justify-content-start {

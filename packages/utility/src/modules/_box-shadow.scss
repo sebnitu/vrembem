@@ -3,30 +3,30 @@
 
 @if fun.maybe-output("box-shadow") {
   #{fun.selector("box-shadow")} {
-    box-shadow: css.get("box-shadow") !important;
+    box-shadow: #{css.get("box-shadow")}#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "flat")} {
-    box-shadow: 0 0 0 0 transparent !important;
+    box-shadow: 0 0 0 0 transparent#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "1")} {
-    box-shadow: css.get("box-shadow-1") !important;
+    box-shadow: #{css.get("box-shadow-1")}#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "2")} {
-    box-shadow: css.get("box-shadow-2") !important;
+    box-shadow: #{css.get("box-shadow-2")}#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "3")} {
-    box-shadow: css.get("box-shadow-3") !important;
+    box-shadow: #{css.get("box-shadow-3")}#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "4")} {
-    box-shadow: css.get("box-shadow-4") !important;
+    box-shadow: #{css.get("box-shadow-4")}#{fun.maybe-important()};
   }
 
   #{fun.selector("box-shadow", "5")} {
-    box-shadow: css.get("box-shadow-5") !important;
+    box-shadow: #{css.get("box-shadow-5")}#{fun.maybe-important()};
   }
 }

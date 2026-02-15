@@ -5,7 +5,7 @@
 @if fun.maybe-output("display") {
   @each $property in config.get("utility-display") {
     #{fun.selector("display", $property)} {
-      display: $property !important;
+      display: #{$property}#{fun.maybe-important()};
     }
   }
 
@@ -13,7 +13,7 @@
     @include core.media-min($value) {
       @each $property in config.get("utility-display") {
         #{fun.selector("display", $property, "#{$bp}:")} {
-          display: $property !important;
+          display: #{$property}#{fun.maybe-important()};
         }
       }
     }

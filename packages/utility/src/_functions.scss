@@ -72,3 +72,14 @@
   // Return the class
   @return ".#{$class}";
 }
+
+/// Returns the important flag if enabled by config options
+@function maybe-important() {
+  $flag: "";
+
+  @if config.get("utility-important") {
+    $flag: " !important";
+  }
+
+  @return $flag;
+}

@@ -4,7 +4,7 @@
 @if fun.maybe-output("max-width") {
   @each $key, $value in config.get("utility-max-width") {
     #{fun.selector("max-width", $key)} {
-      max-width: $value !important;
+      max-width: #{$value}#{fun.maybe-important()};
     }
   }
 }

@@ -6,53 +6,53 @@
 
 @if fun.maybe-output("background") {
   #{fun.selector("background", "clip-border")} {
-    background-clip: border-box !important;
+    background-clip: border-box#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "clip-content")} {
-    background-clip: content-box !important;
+    background-clip: content-box#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "clip-padding")} {
-    background-clip: padding-box !important;
+    background-clip: padding-box#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "black")} {
-    background-color: black !important;
+    background-color: black#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "white")} {
-    background-color: white !important;
+    background-color: white#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "transparent")} {
-    background-color: transparent !important;
+    background-color: transparent#{fun.maybe-important()};
   }
 
   // Theme CSS Variable output
 
   #{fun.selector("background")} {
-    background-color: css.get("background") !important;
+    background-color: #{css.get("background")}#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "dark")} {
-    background-color: css.get("background-dark") !important;
+    background-color: #{css.get("background-dark")}#{fun.maybe-important()};
   }
 
   #{fun.selector("background", "darker")} {
-    background-color: css.get("background-darker") !important;
+    background-color: #{css.get("background-darker")}#{fun.maybe-important()};
   }
 
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
     #{fun.selector("background", $name)} {
-      background-color: palette.get($name) !important;
+      background-color: #{palette.get($name)}#{fun.maybe-important()};
     }
 
     @each $value in config.get("utility-palette-range") {
       #{fun.selector("background", $name, $value)} {
-        background-color: palette.get($name, $value) !important;
+        background-color: #{palette.get($name, $value)}#{fun.maybe-important()};
       }
     }
   }

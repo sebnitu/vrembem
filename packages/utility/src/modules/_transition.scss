@@ -3,18 +3,18 @@
 
 @if fun.maybe-output("transition") {
   #{fun.selector("transition")} {
-    transition: all css.get("transition-duration") css.get("transition-timing-function") !important;
+    transition: all #{css.get("transition-duration")} #{css.get("transition-timing-function")}#{fun.maybe-important()};
   }
 
   #{fun.selector("transition", "none")} {
-    transition: none !important;
+    transition: none#{fun.maybe-important()};
   }
 
   #{fun.selector("transition", "duration-short")} {
-    transition-duration: css.get("transition-duration-short") !important;
+    transition-duration: #{css.get("transition-duration-short")}#{fun.maybe-important()};
   }
 
   #{fun.selector("transition", "duration-long")} {
-    transition-duration: css.get("transition-duration-long") !important;
+    transition-duration: #{css.get("transition-duration-long")}#{fun.maybe-important()};
   }
 }

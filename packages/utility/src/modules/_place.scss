@@ -3,62 +3,62 @@
 
 @if fun.maybe-output("place") {
   #{fun.selector("place", "content", "start")} {
-    place-content: start !important;
+    place-content: start#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "center")} {
-    place-content: center !important;
+    place-content: center#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "end")} {
-    place-content: end !important;
+    place-content: end#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "between")} {
-    place-content: space-between !important;
+    place-content: space-between#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "around")} {
-    place-content: space-around !important;
+    place-content: space-around#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "evenly")} {
-    place-content: space-evenly !important;
+    place-content: space-evenly#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "content", "stretch")} {
-    place-content: stretch !important;
+    place-content: stretch#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "items", "start")} {
-    place-items: start !important;
+    place-items: start#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "items", "center")} {
-    place-items: center !important;
+    place-items: center#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "items", "end")} {
-    place-items: end !important;
+    place-items: end#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "items", "stretch")} {
-    place-items: stretch !important;
+    place-items: stretch#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "self", "start")} {
-    place-self: start !important;
+    place-self: start#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "self", "center")} {
-    place-self: center !important;
+    place-self: center#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "self", "end")} {
-    place-self: end !important;
+    place-self: end#{fun.maybe-important()};
   }
 
   #{fun.selector("place", "self", "stretch")} {
-    place-self: stretch !important;
+    place-self: stretch#{fun.maybe-important()};
   }
 }

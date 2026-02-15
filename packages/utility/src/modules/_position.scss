@@ -2,22 +2,22 @@
 
 @if fun.maybe-output("position") {
   #{fun.selector("position", "absolute")} {
-    position: absolute !important;
+    position: absolute#{fun.maybe-important()};
   }
 
   #{fun.selector("position", "fixed")} {
-    position: fixed !important;
+    position: fixed#{fun.maybe-important()};
   }
 
   #{fun.selector("position", "relative")} {
-    position: relative !important;
+    position: relative#{fun.maybe-important()};
   }
 
   #{fun.selector("position", "static")} {
-    position: static !important;
+    position: static#{fun.maybe-important()};
   }
 
   #{fun.selector("position", "sticky")} {
-    position: sticky !important;
+    position: sticky#{fun.maybe-important()};
   }
 }

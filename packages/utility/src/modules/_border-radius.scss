@@ -4,31 +4,31 @@
 @if fun.maybe-output("border-radius") {
   @each $key, $value in config.get("utility-border-radius") {
     #{fun.selector("border-radius", $key)} {
-      border-radius: $value !important;
+      border-radius: #{$value}#{fun.maybe-important()};
     }
 
     #{fun.selector("border-radius", $key, "top")},
     #{fun.selector("border-radius", $key, "left")},
     #{fun.selector("border-radius", $key, "top-left")} {
-      border-top-left-radius: $value !important;
+      border-top-left-radius: #{$value}#{fun.maybe-important()};
     }
 
     #{fun.selector("border-radius", $key, "top")},
     #{fun.selector("border-radius", $key, "right")},
     #{fun.selector("border-radius", $key, "top-right")} {
-      border-top-right-radius: $value !important;
+      border-top-right-radius: #{$value}#{fun.maybe-important()};
     }
 
     #{fun.selector("border-radius", $key, "bottom")},
     #{fun.selector("border-radius", $key, "right")},
     #{fun.selector("border-radius", $key, "bottom-right")} {
-      border-bottom-right-radius: $value !important;
+      border-bottom-right-radius: #{$value}#{fun.maybe-important()};
     }
 
     #{fun.selector("border-radius", $key, "bottom")},
     #{fun.selector("border-radius", $key, "left")},
     #{fun.selector("border-radius", $key, "bottom-left")} {
-      border-bottom-left-radius: $value !important;
+      border-bottom-left-radius: #{$value}#{fun.maybe-important()};
     }
   }
 }
