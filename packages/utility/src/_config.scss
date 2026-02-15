@@ -58,6 +58,7 @@ $default: (
   ),
 
   // A map of gap utilities to output
+  // @type map
   "utility-gap": (
     "none": css.get("gap-none"),
     "xs": css.get("gap-xs"),
