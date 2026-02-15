@@ -41,8 +41,8 @@
 
   @each $key, $value in config.get("utility-gap") {
     #{fun.selector("margin", "y", $key)} {
-      margin-top: $value !important;
       margin-bottom: $value !important;
+      margin-top: $value !important;
     }
   }
 
@@ -72,7 +72,7 @@
   }
 
   #{fun.selector("margin", "y", "auto")} {
-    margin-top: auto !important;
     margin-bottom: auto !important;
+    margin-top: auto !important;
   }
 }
