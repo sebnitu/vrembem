@@ -49,6 +49,17 @@ $default: (
     inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
   ),
 
+  // A map of gap utilities to output
+  // @type map
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
+  ),
+
   // A map of max-width utilities to output
   // @type map
   "utility-max-width": (
@@ -61,15 +72,20 @@ $default: (
     "full": 100%
   ),
 
-  // A map of gap utilities to output
+  // A map of font-weight keys and values to output
   // @type map
-  "utility-gap": (
-    "none": css.get("gap-none"),
-    "xs": css.get("gap-xs"),
-    "sm": css.get("gap-sm"),
-    "": css.get("gap"),
-    "lg": css.get("gap-lg"),
-    "xl": css.get("gap-xl")
+  "utility-font-weight": (
+    "thin": 100,
+    "extra-light": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semi-bold": 600,
+    "bold": 700,
+    "extra-bold": 800,
+    "black": 900,
+    "lighter": lighter,
+    "bolder": bolder
   )
 );
 

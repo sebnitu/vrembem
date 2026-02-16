@@ -75,6 +75,17 @@ $config: (
     inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
   ),
 
+  // A map of gap utilities to output
+  // @type map
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
+  ),
+
   // A map of max-width utilities to output
   // @type map
   "utility-max-width": (
@@ -87,15 +98,20 @@ $config: (
     "full": 100%
   ),
 
-  // A map of gap utilities to output
+  // A map of font-weight keys and values to output
   // @type map
-  "utility-gap": (
-    "none": css.get("gap-none"),
-    "xs": css.get("gap-xs"),
-    "sm": css.get("gap-sm"),
-    "": css.get("gap"),
-    "lg": css.get("gap-lg"),
-    "xl": css.get("gap-xl")
+  "utility-font-weight": (
+    "thin": 100,
+    "extra-light": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semi-bold": 600,
+    "bold": 700,
+    "extra-bold": 800,
+    "black": 900,
+    "lighter": lighter,
+    "bolder": bolder
   )
 );
 ```
@@ -192,7 +208,7 @@ It's also possible to provide a prefix to all utility classes using the `utility
 ```
 </ReferenceCard>
 
-{/* TODO: Add documentation for applying !important flag via utility-important  */}
+Vrembem utilities are set with the `!important` flag by default. This can be toggled using the `utility-important` configuration option.
 
 ## Modules
 
@@ -595,546 +611,208 @@ Utilities for setting the gap property of an element. Gap variants are built usi
 
 Utilities for setting the justify-content, justify-items and justify-self properties of an element.
 
-{/*
-.justify-content-start {
-  justify-content: start !important;
-}
+<UtilityTable id="justify" data={{
+  "justify-content-start": "justify-content: start;",
+  "justify-content-center": "justify-content: center;",
+  "justify-content-end": "justify-content: end;",
+  "justify-content-between": "justify-content: space-between;",
+  "justify-content-around": "justify-content: space-around;",
+  "justify-content-evenly": "justify-content: space-evenly;",
+  "justify-content-stretch": "justify-content: stretch;",
 
-.justify-content-center {
-  justify-content: center !important;
-}
+  "justify-items-start": "justify-items: start;",
+  "justify-items-center": "justify-items: center;",
+  "justify-items-end": "justify-items: end;",
+  "justify-items-stretch": "justify-items: stretch;",
 
-.justify-content-end {
-  justify-content: end !important;
-}
-
-.justify-content-between {
-  justify-content: space-between !important;
-}
-
-.justify-content-around {
-  justify-content: space-around !important;
-}
-
-.justify-content-evenly {
-  justify-content: space-evenly !important;
-}
-
-.justify-content-stretch {
-  justify-content: stretch !important;
-}
-
-.justify-items-start {
-  justify-items: start !important;
-}
-
-.justify-items-center {
-  justify-items: center !important;
-}
-
-.justify-items-end {
-  justify-items: end !important;
-}
-
-.justify-items-stretch {
-  justify-items: stretch !important;
-}
-
-.justify-self-start {
-  justify-self: start !important;
-}
-
-.justify-self-center {
-  justify-self: center !important;
-}
-
-.justify-self-end {
-  justify-self: end !important;
-}
-
-.justify-self-stretch {
-  justify-self: stretch !important;
-}
-*/}
+  "justify-self-start": "justify-self: start;",
+  "justify-self-center": "justify-self: center;",
+  "justify-self-end": "justify-self: end;",
+  "justify-self-stretch": "justify-self: stretch;",
+}} />
 
 ### align
 
-...
+Utilities for setting the align-content, align-items and align-self properties of an element.
 
-{/*
-.align-content-start {
-  align-content: start !important;
-}
+<UtilityTable id="align" data={{
+  "align-content-start": "align-content: start;",
+  "align-content-center": "align-content: center;",
+  "align-content-end": "align-content: end;",
+  "align-content-between": "align-content: space-between;",
+  "align-content-around": "align-content: space-around;",
+  "align-content-evenly": "align-content: space-evenly;",
+  "align-content-stretch": "align-content: stretch;",
 
-.align-content-center {
-  align-content: center !important;
-}
+  "align-items-start": "align-items: start;",
+  "align-items-center": "align-items: center;",
+  "align-items-end": "align-items: end;",
+  "align-items-stretch": "align-items: stretch;",
 
-.align-content-end {
-  align-content: end !important;
-}
-
-.align-content-between {
-  align-content: space-between !important;
-}
-
-.align-content-around {
-  align-content: space-around !important;
-}
-
-.align-content-evenly {
-  align-content: space-evenly !important;
-}
-
-.align-content-stretch {
-  align-content: stretch !important;
-}
-
-.align-items-start {
-  align-items: start !important;
-}
-
-.align-items-center {
-  align-items: center !important;
-}
-
-.align-items-end {
-  align-items: end !important;
-}
-
-.align-items-stretch {
-  align-items: stretch !important;
-}
-
-.align-self-start {
-  align-self: start !important;
-}
-
-.align-self-center {
-  align-self: center !important;
-}
-
-.align-self-end {
-  align-self: end !important;
-}
-
-.align-self-stretch {
-  align-self: stretch !important;
-}
-*/}
+  "align-self-start": "align-self: start;",
+  "align-self-center": "align-self: center;",
+  "align-self-end": "align-self: end;",
+  "align-self-stretch": "align-self: stretch;",
+}} />
 
 ### place
 
-...
+Utilities for setting the place-content, place-items and place-self properties of an element.
 
-{/*
-.place-content-start {
-  place-content: start !important;
-}
+<UtilityTable id="place" data={{
+  "place-content-start": "place-content: start;",
+  "place-content-center": "place-content: center;",
+  "place-content-end": "place-content: end;",
+  "place-content-between": "place-content: space-between;",
+  "place-content-around": "place-content: space-around;",
+  "place-content-evenly": "place-content: space-evenly;",
+  "place-content-stretch": "place-content: stretch;",
 
-.place-content-center {
-  place-content: center !important;
-}
+  "place-items-start": "place-items: start;",
+  "place-items-center": "place-items: center;",
+  "place-items-end": "place-items: end;",
+  "place-items-stretch": "place-items: stretch;",
 
-.place-content-end {
-  place-content: end !important;
-}
-
-.place-content-between {
-  place-content: space-between !important;
-}
-
-.place-content-around {
-  place-content: space-around !important;
-}
-
-.place-content-evenly {
-  place-content: space-evenly !important;
-}
-
-.place-content-stretch {
-  place-content: stretch !important;
-}
-
-.place-items-start {
-  place-items: start !important;
-}
-
-.place-items-center {
-  place-items: center !important;
-}
-
-.place-items-end {
-  place-items: end !important;
-}
-
-.place-items-stretch {
-  place-items: stretch !important;
-}
-
-.place-self-start {
-  place-self: start !important;
-}
-
-.place-self-center {
-  place-self: center !important;
-}
-
-.place-self-end {
-  place-self: end !important;
-}
-
-.place-self-stretch {
-  place-self: stretch !important;
-}
-*/}
+  "place-self-start": "place-self: start;",
+  "place-self-center": "place-self: center;",
+  "place-self-end": "place-self: end;",
+  "place-self-stretch": "place-self: stretch;",
+}} />
 
 ### order
 
-...
+Utilities for setting the order property of an element.
 
-{/*
-.order-first {
-  order: -99 !important;
-}
-
-.order-last {
-  order: 99 !important;
-}
-
-.order-0 {
-  order: 0 !important;
-}
-
-.order-1 {
-  order: 1 !important;
-}
-
-.order-2 {
-  order: 2 !important;
-}
-
-.order-3 {
-  order: 3 !important;
-}
-
-.order-4 {
-  order: 4 !important;
-}
-
-.order-5 {
-  order: 5 !important;
-}
-
-.order-6 {
-  order: 6 !important;
-}
-*/}
+<UtilityTable id="order" expandable={false} data={{
+  "order-first": "order: -99;",
+  "order-last": "order: 99;",
+  "order-0": "order: 0;",
+  "order-1": "order: 1;",
+  "order-2": "order: 2;",
+  "order-3": "order: 3;",
+  "order-4": "order: 4;",
+  "order-5": "order: 5;",
+  "order-6": "order: 6;",
+}} />
 
 ### position
 
-...
+Utilities for setting the position property of an element.
 
-{/*
-.position-absolute {
-  position: absolute !important;
-}
-
-.position-fixed {
-  position: fixed !important;
-}
-
-.position-relative {
-  position: relative !important;
-}
-
-.position-static {
-  position: static !important;
-}
-
-.position-sticky {
-  position: sticky !important;
-}
-*/}
+<UtilityTable id="order" expandable={false} data={{
+  "position-absolute": "position: absolute;",
+  "position-fixed": "position: fixed;",
+  "position-relative": "position: relative;",
+  "position-static": "position: static;",
+  "position-sticky": "position: sticky;",
+}} />
 
 ### overflow
 
-...
+Utilities for setting the overflow, overflow-x and overflow-y properties of an element.
 
-{/*
-.overflow-visible {
-  overflow: visible !important;
-}
+<UtilityTable id="order" data={{
+  "overflow-visible": "overflow: visible;",
+  "overflow-x-visible": "overflow-x: visible;",
+  "overflow-y-visible": "overflow-y: visible;",
 
-.overflow-x-visible {
-  overflow-x: visible !important;
-}
+  "overflow-hidden": "overflow: hidden;",
+  "overflow-x-hidden": "overflow-x: hidden;",
+  "overflow-y-hidden": "overflow-y: hidden;",
 
-.overflow-y-visible {
-  overflow-y: visible !important;
-}
+  "overflow-clip": "overflow: clip;",
+  "overflow-x-clip": "overflow-x: clip;",
+  "overflow-y-clip": "overflow-y: clip;",
 
-.overflow-hidden {
-  overflow: hidden !important;
-}
+  "overflow-scroll": "overflow: scroll;",
+  "overflow-x-scroll": "overflow-x: scroll;",
+  "overflow-y-scroll": "overflow-y: scroll;",
 
-.overflow-x-hidden {
-  overflow-x: hidden !important;
-}
-
-.overflow-y-hidden {
-  overflow-y: hidden !important;
-}
-
-.overflow-clip {
-  overflow: clip !important;
-}
-
-.overflow-x-clip {
-  overflow-x: clip !important;
-}
-
-.overflow-y-clip {
-  overflow-y: clip !important;
-}
-
-.overflow-scroll {
-  overflow: scroll !important;
-}
-
-.overflow-x-scroll {
-  overflow-x: scroll !important;
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll !important;
-}
-
-.overflow-auto {
-  overflow: auto !important;
-}
-
-.overflow-x-auto {
-  overflow-x: auto !important;
-}
-
-.overflow-y-auto {
-  overflow-y: auto !important;
-}
-*/}
+  "overflow-auto": "overflow: auto;",
+  "overflow-x-auto": "overflow-x: auto;",
+  "overflow-y-auto": "overflow-y: auto;",
+}} />
 
 ### max-width
 
-...
+Utilities for setting the max-width property of an element. Max-width variants are built using the values set in the `utility-max-width` configuration option.
 
-{/*
-.max-width-none {
-  max-width: none !important;
-}
-
-.max-width-xs {
-  max-width: 45rem !important;
-}
-
-.max-width-sm {
-  max-width: 60rem !important;
-}
-
-.max-width {
-  max-width: 70rem !important;
-}
-
-.max-width-lg {
-  max-width: 80rem !important;
-}
-
-.max-width-xl {
-  max-width: 90rem !important;
-}
-
-.max-width-full {
-  max-width: 100% !important;
-}
-*/}
+<UtilityTable id="order" expandable={false} data={{
+  "max-width-none": "max-width: none;",
+  "max-width-xs": "max-width: 45rem;",
+  "max-width-sm": "max-width: 60rem;",
+  "max-width": "max-width: 70rem;",
+  "max-width-lg": "max-width: 80rem;",
+  "max-width-xl": "max-width: 90rem;",
+  "max-width-full": "max-width: 100%;",
+}} />
 
 ### font
 
-...
+Utilities for setting various font based properties of an element. This includes font-family, font-size, line-height, font-weight and font-style. Font-weight variants are built using the values set in the `utility-font-weight` configuration option.
 
-{/*
-.font-family-sans {
-  font-family: var(--vb-font-family-sans) !important;
-}
+<UtilityTable id="order" data={{
+  "font-family-sans": "font-family: var(--vb-font-family-sans);",
+  "font-family-serif": "font-family: var(--vb-font-family-serif);",
+  "font-family-mono": "font-family: var(--vb-font-family-mono);",
 
-.font-family-serif {
-  font-family: var(--vb-font-family-serif) !important;
-}
+  "font-size-base": "font-size: 1rem;",
+  "font-size-sm": "font-size: var(--vb-font-size-sm);",
+  "font-size-lg": "font-size: var(--vb-font-size-lg);",
+  "font-line-height": "line-height: var(--vb-line-height);",
 
-.font-family-mono {
-  font-family: var(--vb-font-family-mono) !important;
-}
+  "font-line-height": "line-height: var(--vb-line-height);",
 
-.font-size-base {
-  font-size: 1rem !important;
-}
+  "font-weight-thin": "font-weight: 100;",
+  "font-weight-extra-light": "font-weight: 200;",
+  "font-weight-light": "font-weight: 300;",
+  "font-weight-regular": "font-weight: 400;",
+  "font-weight-medium": "font-weight: 500;",
+  "font-weight-semi-bold": "font-weight: 600;",
+  "font-weight-bold": "font-weight: 700;",
+  "font-weight-extra-bold": "font-weight: 800;",
+  "font-weight-black": "font-weight: 900;",
+  "font-weight-lighter": "font-weight: lighter;",
+  "font-weight-bolder": "font-weight: bolder;",
 
-.font-size-sm {
-  font-size: var(--vb-font-size-sm) !important;
-}
-
-.font-size-lg {
-  font-size: var(--vb-font-size-lg) !important;
-}
-
-.font-line-height {
-  line-height: var(--vb-line-height) !important;
-}
-
-.font-weight-thin {
-  font-weight: 100 !important;
-}
-
-.font-weight-extra-light {
-  font-weight: 200 !important;
-}
-
-.font-weight-light {
-  font-weight: 300 !important;
-}
-
-.font-weight-regular {
-  font-weight: 400 !important;
-}
-
-.font-weight-medium {
-  font-weight: 500 !important;
-}
-
-.font-weight-semi-bold {
-  font-weight: 600 !important;
-}
-
-.font-weight-bold {
-  font-weight: 700 !important;
-}
-
-.font-weight-extra-bold {
-  font-weight: 800 !important;
-}
-
-.font-weight-black {
-  font-weight: 900 !important;
-}
-
-.font-weight-lighter {
-  font-weight: lighter !important;
-}
-
-.font-weight-bolder {
-  font-weight: bolder !important;
-}
-
-.font-style-normal {
-  font-style: normal !important;
-}
-
-.font-style-italic {
-  font-style: italic !important;
-}
-*/}
+  "font-style-normal": "font-style: normal;",
+  "font-style-italic": "font-style: italic;",
+}} />
 
 ### text
 
-...
+Utilities for setting various text properties of an element. This includes things like text-transform, text-align, text-decoration, and text-wrap.
 
-{/*
-.text-capitalize {
-  text-transform: capitalize !important;
-}
+<UtilityTable id="order" data={{
+  "text-capitalize": "text-transform: capitalize;",
+  "text-lowercase": "text-transform: lowercase;",
+  "text-uppercase": "text-transform: uppercase;",
 
-.text-lowercase {
-  text-transform: lowercase !important;
-}
+  "text-align-left": "text-align: left;",
+  "text-align-center": "text-align: center;",
+  "text-align-right": "text-align: right;",
 
-.text-uppercase {
-  text-transform: uppercase !important;
-}
+  "text-strike": "text-decoration: line-through;",
+  "text-underline": "text-decoration: underline;",
+  "text-underline-dotted": "text-decoration: underline; text-decoration-style: dotted;",
+  "text-underline-dashed": "text-decoration: underline; text-decoration-style: dashed;",
 
-.text-align-left {
-  text-align: left !important;
-}
+  "text-wrap": "text-wrap: normal;",
+  "text-nowrap": "text-wrap: nowrap;",
+  "text-wrap-balance": "text-wrap: balance;",
+  "text-wrap-pretty": "text-wrap: pretty;",
+  "text-wrap-stable": "text-wrap: stable;",
 
-.text-align-center {
-  text-align: center !important;
-}
-
-.text-align-right {
-  text-align: right !important;
-}
-
-.text-strike {
-  text-decoration: line-through !important;
-}
-
-.text-underline {
-  text-decoration: underline !important;
-}
-
-.text-underline-dotted {
-  text-decoration: underline !important;
-  text-decoration-style: dotted !important;
-}
-
-.text-underline-dashed {
-  text-decoration: underline !important;
-  text-decoration-style: dashed !important;
-}
-
-.text-wrap {
-  text-wrap: normal !important;
-}
-
-.text-nowrap {
-  text-wrap: nowrap !important;
-}
-
-.text-wrap-balance {
-  text-wrap: balance !important;
-}
-
-.text-wrap-pretty {
-  text-wrap: pretty !important;
-}
-
-.text-wrap-stable {
-  text-wrap: stable !important;
-}
-
-.text-overflow-ellipsis {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  text-wrap: nowrap !important;
-}
-*/}
+  "text-overflow-ellipsis": "overflow: hidden; text-overflow: ellipsis; text-wrap: nowrap;",
+}} />
 
 ### transition
 
-...
+Utilities for setting transition and transition-duration properties of an element.
 
-{/*
-.transition {
-  transition: all var(--vb-transition-duration) var(--vb-transition-timing-function) !important;
-}
-
-.transition-none {
-  transition: none !important;
-}
-
-.transition-duration-short {
-  transition-duration: var(--vb-transition-duration-short) !important;
-}
-
-.transition-duration-long {
-  transition-duration: var(--vb-transition-duration-long) !important;
-}
-*/}
+<UtilityTable id="order" expandable={false} data={{
+  "transition": "transition: all var(--vb-transition-duration) var(--vb-transition-timing-function);",
+  "transition-none": "transition: none;",
+  "transition-duration-short": "transition-duration: var(--vb-transition-duration-short);",
+  "transition-duration-long": "transition-duration: var(--vb-transition-duration-long);",
+}} />
