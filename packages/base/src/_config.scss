@@ -20,6 +20,11 @@ $default: (
     "separator": "sep"
   ),
 
+  // A prefix to apply to base class selectors. Provided value is automatically 
+  // suffixed with a "-" character when applied.
+  // @type string
+  "base-prefix": "",
+
   // Used to output the heading styles and their font-size/line-height CSS 
   // variables. Should contain a key of the heading level to output and the 
   // value of a font-size and optional line-height (space separated).

@@ -1,0 +1,92 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Controls whether module styles are output. This can be overridden on a per 
+  // module basis using the `utility-output-exceptions` config option.
+  // @type boolean
+  "utility-output": true,
+
+  // Modules to exclude from the output rule set in `utility-output`
+  // @type list
+  "utility-output-exceptions": (),
+
+  // A map containing module names as keys and their preferred class selectors
+  // @type map
+  "utility-classes": (),
+
+  // A prefix to apply to utility class selectors. Provided value is 
+  // automatically suffixed with a "-" character when applied.
+  // @type string
+  "utility-prefix": "",
+
+  // Whether or not utility styles should be output with the !important flag
+  // @type boolean
+  "utility-important": true,
+
+  // A lightness range list for outputting palette related utilities
+  // @type list
+  "utility-palette-range": (
+    0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
+  ),
+
+  // A map of border-radius utilities to output
+  // @type map
+  "utility-border-radius": (
+    "": css.get("border-radius"),
+    "lg": css.get("border-radius-lg"),
+    "circle": css.get("border-radius-circle"),
+    "square": 0
+  ),
+
+  // A list of display value properties to output
+  // @type list
+  "utility-display": (
+    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+  ),
+
+  // A map of gap utilities to output
+  // @type map
+  "utility-gap": (
+    "none": css.get("gap-none"),
+    "xs": css.get("gap-xs"),
+    "sm": css.get("gap-sm"),
+    "": css.get("gap"),
+    "lg": css.get("gap-lg"),
+    "xl": css.get("gap-xl")
+  ),
+
+  // A map of max-width utilities to output
+  // @type map
+  "utility-max-width": (
+    "none": none,
+    "xs": 45rem,
+    "sm": 60rem,
+    "": 70rem,
+    "lg": 80rem,
+    "xl": 90rem,
+    "full": 100%
+  ),
+
+  // A map of font-weight keys and values to output
+  // @type map
+  "utility-font-weight": (
+    "thin": 100,
+    "extra-light": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semi-bold": 600,
+    "bold": 700,
+    "extra-bold": 800,
+    "black": 900,
+    "lighter": lighter,
+    "bolder": bolder
+  )
+);
+
+@include config.apply($config, $default);

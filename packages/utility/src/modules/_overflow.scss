@@ -1,18 +1,18 @@
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("overflow") {
-  @each $property in var.$overflow-properties {
-    #{fun.utility("overflow", $property)} {
-      overflow: $property !important;
+  @each $property in (visible, hidden, clip, scroll, auto) {
+    #{fun.selector("overflow", $property)} {
+      overflow: fun.maybe-important($property);
     }
 
-    #{fun.utility("overflow", "x", $property)} {
-      overflow-x: $property !important;
+    #{fun.selector("overflow", "x", $property)} {
+      overflow-x: fun.maybe-important($property);
     }
 
-    #{fun.utility("overflow", "y", $property)} {
-      overflow-y: $property !important;
+    #{fun.selector("overflow", "y", $property)} {
+      overflow-y: fun.maybe-important($property);
     }
   }
 }

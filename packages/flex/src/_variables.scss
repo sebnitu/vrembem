@@ -1,7 +1,8 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$breakpoints: core.$breakpoints !default;
+$breakpoints: config.get("breakpoints") !default;
 $gap: 1em !default;
 $gap-map: (
   "none": 0,

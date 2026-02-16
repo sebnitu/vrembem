@@ -1,264 +1,312 @@
 ---
-import Icon from '../components/Icon.astro';
+import Icon from "../components/Icon.astro";
 
 export interface Props {
-	name: string;
+  name: string;
   classes?: string;
 }
 
 const { name, classes = "" } = Astro.props;
-
 ---
 
-{ name == "crud" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Create</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Read</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Update</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Delete</button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="settings" classes="icon_size_sm foreground-primary" />
-        <span>Settings</span>
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "crud" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Create
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Read
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Update
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Delete
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="settings" classes="icon_size_sm foreground-primary" />
+          <span>Settings</span>
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "browser" && (
-  <ul class={`menu ${classes ? classes : 'menu_inline'}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action menu__action_icon">
-        <Icon name="arrow-left" classes="icon_size_sm" />
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action menu__action_icon" disabled>
-        <Icon name="arrow-right" classes="icon_size_sm" />
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action menu__action_icon">
-        <Icon name="rotate-cw" classes="icon_size_sm" />
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action menu__action_icon">
-        <Icon name="home" classes="icon_size_sm" />
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item flex-grow margin-x-md">
-      <input class="input radius-circle padding-x-md" type="url" placeholder="https://" style="min-width: 240px;" />
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action menu__action_icon">
-        <Icon name="more-vertical" classes="icon_size_sm" />
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "browser" && (
+    <ul class={`menu ${classes ? classes : "menu_inline"}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action menu__action_icon">
+          <Icon name="arrow-left" classes="icon_size_sm" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action menu__action_icon" disabled>
+          <Icon name="arrow-right" classes="icon_size_sm" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action menu__action_icon">
+          <Icon name="rotate-cw" classes="icon_size_sm" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action menu__action_icon">
+          <Icon name="home" classes="icon_size_sm" />
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item flex-grow margin-x-md">
+        <input
+          class="input border-radius-circle padding-x-md"
+          type="url"
+          placeholder="https://"
+          style="min-width: 240px;"
+        />
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action menu__action_icon">
+          <Icon name="more-vertical" classes="icon_size_sm" />
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "edit" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Undo</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Redo</button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Cut</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Copy</button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">Paste</button>
-    </li>
-  </ul>
-)}
+{
+  name == "edit" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Undo
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Redo
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Cut
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Copy
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          Paste
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "edit-icons" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Undo</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Redo</span>
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="scissors" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Cut</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="copy" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Copy</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Paste</span>
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "edit-icons" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon
+            name="corner-down-left"
+            classes="icon_size_sm foreground-primary"
+          />
+          <span class="flex-grow">Undo</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon
+            name="corner-down-right"
+            classes="icon_size_sm foreground-primary"
+          />
+          <span class="flex-grow">Redo</span>
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Cut</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="copy" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Copy</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Paste</span>
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "edit-shortcuts" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Undo</span>
-        <span class="foreground-lighter">⌘Z</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Redo</span>
-        <span class="foreground-lighter">&uarr;⌘Z</span>
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Cut</span>
-        <span class="foreground-lighter">⌘X</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Copy</span>
-        <span class="foreground-lighter">⌘C</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Paste</span>
-        <span class="foreground-lighter">⌘V</span>
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "edit-shortcuts" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Undo</span>
+          <span class="foreground-lighter">⌘Z</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Redo</span>
+          <span class="foreground-lighter">&uarr;⌘Z</span>
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Cut</span>
+          <span class="foreground-lighter">⌘X</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Copy</span>
+          <span class="foreground-lighter">⌘C</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Paste</span>
+          <span class="foreground-lighter">⌘V</span>
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "edit-all" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="corner-down-left" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Undo</span>
-        <span class="foreground-lighter">⌘Z</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="corner-down-right" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Redo</span>
-        <span class="foreground-lighter">&uarr;⌘Z</span>
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="scissors" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Cut</span>
-        <span class="foreground-lighter">⌘X</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="copy" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Copy</span>
-        <span class="foreground-lighter">⌘C</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
-        <span class="flex-grow">Paste</span>
-        <span class="foreground-lighter">⌘V</span>
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "edit-all" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon
+            name="corner-down-left"
+            classes="icon_size_sm foreground-primary"
+          />
+          <span class="flex-grow">Undo</span>
+          <span class="foreground-lighter">⌘Z</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon
+            name="corner-down-right"
+            classes="icon_size_sm foreground-primary"
+          />
+          <span class="flex-grow">Redo</span>
+          <span class="foreground-lighter">&uarr;⌘Z</span>
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Cut</span>
+          <span class="foreground-lighter">⌘X</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="copy" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Copy</span>
+          <span class="foreground-lighter">⌘C</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+          <span class="flex-grow">Paste</span>
+          <span class="foreground-lighter">⌘V</span>
+        </button>
+      </li>
+    </ul>
+  )
+}
 
-{ name == "format-text" && (
-  <ul class={`menu ${classes}`.trim()}>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Bold</span>
-        <span class="foreground-lighter">⌘B</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Italic</span> 
-        <span class="foreground-lighter">⌘I</span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Underline</span>
-        <span class="foreground-lighter">⌘U</span>
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Paragraph Styles</span>
-        <span class="foreground-lighter arrow-right"></span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Align</span>
-        <span class="foreground-lighter arrow-right"></span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Line spacing</span>
-        <span class="foreground-lighter arrow-right"></span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Numbered lists</span>
-        <span class="foreground-lighter arrow-right"></span>
-      </button>
-    </li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">List options</span>
-        <span class="foreground-lighter arrow-right"></span>
-      </button>
-    </li>
-    <li class="menu__sep"></li>
-    <li class="menu__item">
-      <button type="button" class="menu__action">
-        <span class="flex-grow">Clear formatting</span>
-        <span class="foreground-lighter">⌘/</span>
-      </button>
-    </li>
-  </ul>
-)}
+{
+  name == "format-text" && (
+    <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Bold</span>
+          <span class="foreground-lighter">⌘B</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Italic</span>
+          <span class="foreground-lighter">⌘I</span>
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Underline</span>
+          <span class="foreground-lighter">⌘U</span>
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Paragraph Styles</span>
+          <span class="foreground-lighter arrow-right" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Align</span>
+          <span class="foreground-lighter arrow-right" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Line spacing</span>
+          <span class="foreground-lighter arrow-right" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Numbered lists</span>
+          <span class="foreground-lighter arrow-right" />
+        </button>
+      </li>
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">List options</span>
+          <span class="foreground-lighter arrow-right" />
+        </button>
+      </li>
+      <li class="menu__sep" />
+      <li class="menu__item">
+        <button type="button" class="menu__action">
+          <span class="flex-grow">Clear formatting</span>
+          <span class="foreground-lighter">⌘/</span>
+        </button>
+      </li>
+    </ul>
+  )
+}

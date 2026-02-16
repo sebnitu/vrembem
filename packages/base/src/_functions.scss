@@ -29,7 +29,8 @@
 ///   A partial CSS selector starting with ", " meant to be appended to an
 ///   existing selector. Will return an empty string if not configured.
 ///
-@function get-type-selector($module) {
+/// @access private
+@function -get-type-selector($module) {
   // Initialize the type selector as an empty string
   $type-selector: "";
 
@@ -61,7 +62,7 @@
 /// Generate a base module selector with a core prefix and optional modifiers.
 ///
 /// @param {string} $module
-///   The base module name. Will search for a shorthand in `config.get("base-classes")`.
+///   The base module name.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class selector.
 ///
@@ -94,7 +95,7 @@
 
     @return list.join($selectors, ", ");
   } @else {
-    // Initialize the name variable
+    // Setup name var since we use `$module` later
     $name: $module;
 
     // Check if there's a shortname for the provided module name
@@ -102,8 +103,14 @@
       $name: map.get(config.get("base-classes"), $name);
     }
 
+    $prefix: config.get("base-prefix");
+
+    @if $prefix and $prefix != "" {
+      $prefix: "#{$prefix}-";
+    }
+
     // Setup the base module class name with prefix
-    $class: '#{config.get("prefix-block")}#{$name}';
+    $class: "#{$prefix}#{$name}";
 
     // Apply all the arguments to class
     @each $arg in $args {
@@ -118,7 +125,7 @@
     }
 
     // Get the type selector if one is required
-    $type-selector: get-type-selector($module);
+    $type-selector: -get-type-selector($module);
 
     // Return the class
     @return ".#{$class}#{$type-selector}";

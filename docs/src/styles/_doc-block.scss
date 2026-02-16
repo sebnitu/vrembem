@@ -10,7 +10,7 @@
   font-size: core.$font-size;
   line-height: css.get("line-height");
   margin: 2rem 0 !important;
-  transition: core.$transition-duration core.$transition-timing-function;
+  transition: css.get("transition");
   transition-property: border-color, box-shadow;
 
   & + & {

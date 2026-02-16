@@ -1,65 +1,23 @@
 @use "@vrembem/core";
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("gap") {
-  #{fun.utility("gap")} {
-    gap: var.$gap !important;
-  }
-
-  #{fun.utility("gap", "x")} {
-    column-gap: var.$gap !important;
-  }
-
-  #{fun.utility("gap", "y")} {
-    row-gap: var.$gap !important;
-  }
-
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("gap", $key)} {
-      gap: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("gap", $key)} {
+      gap: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("gap", "x", $key)} {
-      column-gap: $value !important;
-    }
-
-    #{fun.utility("gap", "y", $key)} {
-      row-gap: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("gap", "x", $key)} {
+      column-gap: fun.maybe-important($value);
     }
   }
 
-  @each $bp, $value in var.$breakpoints {
-    @include core.media-min($value) {
-      #{fun.utility("gap", "#{$bp}:")} {
-        gap: var.$gap !important;
-      }
-
-      #{fun.utility("gap", "x", "#{$bp}:")} {
-        column-gap: var.$gap !important;
-      }
-
-      #{fun.utility("gap", "y", "#{$bp}:")} {
-        row-gap: var.$gap !important;
-      }
-
-      @each $key, $value in var.$gap-map {
-        #{fun.utility("gap", $key, "#{$bp}:")} {
-          gap: $value !important;
-        }
-      }
-
-      @each $key, $value in var.$gap-map {
-        #{fun.utility("gap", "x", $key, "#{$bp}:")} {
-          column-gap: $value !important;
-        }
-
-        #{fun.utility("gap", "y", $key, "#{$bp}:")} {
-          row-gap: $value !important;
-        }
-      }
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("gap", "y", $key)} {
+      row-gap: fun.maybe-important($value);
     }
   }
 }

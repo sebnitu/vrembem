@@ -1,64 +1,64 @@
-@use "../variables" as var;
+@use "../config" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("place") {
-  #{fun.utility("place", "content", "start")} {
-    place-content: start !important;
+  #{fun.selector("place", "content", "start")} {
+    place-content: fun.maybe-important(start);
   }
 
-  #{fun.utility("place", "content", "center")} {
-    place-content: center !important;
+  #{fun.selector("place", "content", "center")} {
+    place-content: fun.maybe-important(center);
   }
 
-  #{fun.utility("place", "content", "end")} {
-    place-content: end !important;
+  #{fun.selector("place", "content", "end")} {
+    place-content: fun.maybe-important(end);
   }
 
-  #{fun.utility("place", "content", "between")} {
-    place-content: space-between !important;
+  #{fun.selector("place", "content", "between")} {
+    place-content: fun.maybe-important(space-between);
   }
 
-  #{fun.utility("place", "content", "around")} {
-    place-content: space-around !important;
+  #{fun.selector("place", "content", "around")} {
+    place-content: fun.maybe-important(space-around);
   }
 
-  #{fun.utility("place", "content", "evenly")} {
-    place-content: space-evenly !important;
+  #{fun.selector("place", "content", "evenly")} {
+    place-content: fun.maybe-important(space-evenly);
   }
 
-  #{fun.utility("place", "content", "stretch")} {
-    place-content: stretch !important;
+  #{fun.selector("place", "content", "stretch")} {
+    place-content: fun.maybe-important(stretch);
   }
 
-  #{fun.utility("place", "items", "start")} {
-    place-items: start !important;
+  #{fun.selector("place", "items", "start")} {
+    place-items: fun.maybe-important(start);
   }
 
-  #{fun.utility("place", "items", "center")} {
-    place-items: center !important;
+  #{fun.selector("place", "items", "center")} {
+    place-items: fun.maybe-important(center);
   }
 
-  #{fun.utility("place", "items", "end")} {
-    place-items: end !important;
+  #{fun.selector("place", "items", "end")} {
+    place-items: fun.maybe-important(end);
   }
 
-  #{fun.utility("place", "items", "stretch")} {
-    place-items: stretch !important;
+  #{fun.selector("place", "items", "stretch")} {
+    place-items: fun.maybe-important(stretch);
   }
 
-  #{fun.utility("place", "self", "start")} {
-    place-self: start !important;
+  #{fun.selector("place", "self", "start")} {
+    place-self: fun.maybe-important(start);
   }
 
-  #{fun.utility("place", "self", "center")} {
-    place-self: center !important;
+  #{fun.selector("place", "self", "center")} {
+    place-self: fun.maybe-important(center);
   }
 
-  #{fun.utility("place", "self", "end")} {
-    place-self: end !important;
+  #{fun.selector("place", "self", "end")} {
+    place-self: fun.maybe-important(end);
   }
 
-  #{fun.utility("place", "self", "stretch")} {
-    place-self: stretch !important;
+  #{fun.selector("place", "self", "stretch")} {
+    place-self: fun.maybe-important(stretch);
   }
 }

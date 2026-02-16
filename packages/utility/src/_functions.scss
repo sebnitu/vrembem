@@ -3,12 +3,27 @@
 @use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "./variables" as var;
+
+/// Conditional logic for when to output the utilities of a specific module.
+///
+/// @param {string} $module
+///   The module name to conditionally toggle output.
+///
+/// @return {boolean}
+///   The resolved condition boolean.
+///
+@function maybe-output($module) {
+  @if list.index(config.get("utility-output-exceptions"), $module) {
+    @return not config.get("utility-output");
+  } @else {
+    @return config.get("utility-output");
+  }
+}
 
 /// Generate a utility class selector with a core prefix and optional modifiers.
 ///
-/// @param {string} $name
-///   Name of the utility. Will search for a shorthand in `var.$classes`.
+/// @param {string} $module
+///   The utility module name.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class name. Add a ":" for
 ///   a prepended modifier such as breakpoints, e.g., "md:".
@@ -16,14 +31,23 @@
 /// @return {selector}
 ///   A valid utility CSS selector.
 ///
-@function utility($name, $args...) {
+@function selector(
+  $module,
+  $args...
+) {
   // Check if there's a shortname for the class name
-  @if map.has-key(var.$classes, $name) {
-    $name: map.get(var.$classes, $name);
+  @if map.has-key(config.get("utility-classes"), $module) {
+    $module: map.get(config.get("utility-classes"), $module);
+  }
+
+  $prefix: config.get("utility-prefix");
+
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
   }
 
   // Setup the base utility class name with prefix
-  $class: '#{config.get("prefix-utility")}#{$name}';
+  $class: "#{$prefix}#{$module}";
 
   // Apply all the arguments to class
   @each $arg in $args {
@@ -49,18 +73,18 @@
   @return ".#{$class}";
 }
 
-/// Conditional logic for when to output the utilities of a specific module.
+/// Returns the important flag if enabled by config options.
 ///
-/// @param {string} $module
-///   The module name to conditionally toggle output.
+/// @param {any} $value
+///   The CSS property value to conditionally apply important flag to.
 ///
-/// @return {boolean}
-///   The resolved condition boolean.
+/// @return {any}
+///   The CSS property value
 ///
-@function maybe-output($module) {
-  @if list.index(var.$output-exceptions, $module) {
-    @return not var.$output;
-  } @else {
-    @return var.$output;
+@function maybe-important($value: "") {
+  @if config.get("utility-important") {
+    $value: $value !important;
   }
+
+  @return $value;
 }

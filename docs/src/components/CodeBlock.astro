@@ -36,7 +36,7 @@ if (icon) classes.push("has-icon");
   }
   <Popover
     triggerClass="code-block__copy-button"
-    aria-label="Copy code example"
+    aria-label="Copy code example to clipboard"
     arrow
   >
     <Fragment slot="trigger">
@@ -53,34 +53,28 @@ if (icon) classes.push("has-icon");
 <script>
   import { popover } from "../modules/usePopover";
 
-  function copyCode(el: HTMLElement) {
-    const trigger = el.closest(".code-block__copy-button") as HTMLButtonElement;
-    const code = el
-      .closest(".code-block")
-      .querySelector("pre code") as HTMLElement;
-    const text = code.innerText;
-    const icons = trigger.querySelectorAll(".icon");
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        trigger.disabled = true;
-        icons.forEach((icon) => icon.classList.toggle("display-none"));
-        setTimeout(() => {
-          trigger.disabled = false;
-          icons.forEach((icon) => icon.classList.toggle("display-none"));
-          popover.close(trigger.getAttribute("data-popover-trigger"));
-        }, 2000);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-
   const btns = document.querySelectorAll(".code-block__copy-button");
-
-  btns.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-      copyCode(event.target as HTMLElement);
+  btns.forEach((btn: HTMLButtonElement) => {
+    btn.addEventListener("click", () => {
+      const code = btn
+        .closest(".code-block")
+        .querySelector("pre code") as HTMLElement;
+      const text = code.innerText;
+      const icons = btn.querySelectorAll(".icon");
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          btn.disabled = true;
+          icons.forEach((icon) => icon.classList.toggle("display-none"));
+          setTimeout(() => {
+            btn.disabled = false;
+            icons.forEach((icon) => icon.classList.toggle("display-none"));
+            popover.close(btn.getAttribute("data-popover-trigger"));
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     });
   });
 </script>

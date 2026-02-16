@@ -1,7 +1,10 @@
 @use "@vrembem/core";
+@use "@vrembem/core/css";
 
 .swatch {
   @include core.size(4rem);
 
+  border: css.get("border");
+  border-radius: css.get("border-radius");
   display: inline-block;
 }

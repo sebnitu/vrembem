@@ -30,6 +30,7 @@ export interface PopoverConfig extends CollectionConfig {
   shiftPadding: number;
   arrowPadding: number;
   toggleDelay: number;
+  virtual: boolean;
 }
 
 export const config: PopoverConfig = {
@@ -51,5 +52,6 @@ export const config: PopoverConfig = {
   flipPadding: 0,
   shiftPadding: 0,
   arrowPadding: 0,
-  toggleDelay: 0
+  toggleDelay: 0,
+  virtual: false
 };

@@ -2,48 +2,46 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("foreground") {
-  #{fun.utility("foreground", "black")} {
-    color: black !important;
+  #{fun.selector("foreground", "black")} {
+    color: fun.maybe-important(black);
   }
 
-  #{fun.utility("foreground", "white")} {
-    color: white !important;
+  #{fun.selector("foreground", "white")} {
+    color: fun.maybe-important(white);
   }
 
-  #{fun.utility("foreground", "transparent")} {
-    color: transparent !important;
+  #{fun.selector("foreground", "transparent")} {
+    color: fun.maybe-important(transparent);
   }
 
   // Theme CSS Variable output
 
-  #{fun.utility("foreground")} {
-    color: css.get("foreground") !important;
+  #{fun.selector("foreground")} {
+    color: fun.maybe-important(css.get("foreground"));
   }
 
-  #{fun.utility("foreground", "light")} {
-    color: css.get("foreground-light") !important;
+  #{fun.selector("foreground", "light")} {
+    color: fun.maybe-important(css.get("foreground-light"));
   }
 
-  #{fun.utility("foreground", "lighter")} {
-    color: css.get("foreground-lighter") !important;
+  #{fun.selector("foreground", "lighter")} {
+    color: fun.maybe-important(css.get("foreground-lighter"));
   }
 
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
-    #{fun.utility("foreground", $name)} {
-      color: palette.get($name) !important;
+    #{fun.selector("foreground", $name)} {
+      color: fun.maybe-important(palette.get($name));
     }
 
-    // TODO: Either add a range config in utilities, or remove this
-    // @each $value in config.get("palette-range") {
-    //   #{fun.utility("foreground", $name, $value)} {
-    //     color: palette.get($name, $value) !important;
-    //   }
-    // }
+    @each $value in config.get("utility-palette-range") {
+      #{fun.selector("foreground", $name, $value)} {
+        color: fun.maybe-important(palette.get($name, $value));
+      }
+    }
   }
 }

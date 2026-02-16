@@ -1,57 +1,60 @@
 @use "@vrembem/core/css";
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("border") {
-  #{fun.utility("border")} {
-    border: css.get("border") !important;
+  #{fun.selector("border")} {
+    border: fun.maybe-important(css.get("border"));
   }
 
-  #{fun.utility("border", "top")} {
-    border-top: css.get("border") !important;
+  #{fun.selector("border", "top")} {
+    border-top: fun.maybe-important(css.get("border"));
   }
 
-  #{fun.utility("border", "bottom")} {
-    border-bottom: css.get("border") !important;
+  #{fun.selector("border", "bottom")} {
+    border-bottom: fun.maybe-important(css.get("border"));
   }
 
-  #{fun.utility("border", "left")} {
-    border-left: css.get("border") !important;
+  #{fun.selector("border", "left")} {
+    border-left: fun.maybe-important(css.get("border"));
   }
 
-  #{fun.utility("border", "right")} {
-    border-right: css.get("border") !important;
+  #{fun.selector("border", "right")} {
+    border-right: fun.maybe-important(css.get("border"));
   }
 
-  #{fun.utility("border", "none")} {
-    border: 0 !important;
+  #{fun.selector("border", "none")} {
+    border: fun.maybe-important(0);
   }
 
-  #{fun.utility("border", "top-none")} {
-    border-top: 0 !important;
+  #{fun.selector("border", "top-none")} {
+    border-top: fun.maybe-important(0);
   }
 
-  #{fun.utility("border", "bottom-none")} {
-    border-bottom: 0 !important;
+  #{fun.selector("border", "bottom-none")} {
+    border-bottom: fun.maybe-important(0);
   }
 
-  #{fun.utility("border", "left-none")} {
-    border-left: 0 !important;
+  #{fun.selector("border", "left-none")} {
+    border-left: fun.maybe-important(0);
   }
 
-  #{fun.utility("border", "right-none")} {
-    border-right: 0 !important;
+  #{fun.selector("border", "right-none")} {
+    border-right: fun.maybe-important(0);
   }
 
-  #{fun.utility("border", "color-dark")} {
-    border-color: css.get("border-color-dark") !important;
+  #{fun.selector("border", "color-dark")} {
+    border-color: fun.maybe-important(css.get("border-color-dark"));
   }
 
-  #{fun.utility("border", "color-darker")} {
-    border-color: css.get("border-color-darker") !important;
+  #{fun.selector("border", "color-darker")} {
+    border-color: fun.maybe-important(css.get("border-color-darker"));
   }
 
-  #{fun.utility("border", "color-transparent")} {
-    border-color: transparent !important;
+  #{fun.selector("border", "color-transparent")} {
+    border-color: fun.maybe-important(transparent);
+  }
+
+  #{fun.selector("border", "color-current")} {
+    border-color: fun.maybe-important(currentcolor);
   }
 }

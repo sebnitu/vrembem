@@ -1,0 +1,147 @@
+---
+import Icon from "../components/Icon.astro";
+import Popover from "./Popover.astro";
+
+interface Props {
+  data: {};
+  id?: string;
+  example?: boolean | string;
+  expandable?: boolean;
+}
+
+const { data, id, example = false, expandable = true } = Astro.props;
+
+// Create a unique ID if one is not provided
+const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
+
+function exampleTemplate(example: string | boolean, key: string) {
+  let tpl =
+    typeof example === "string" ? example : '<span class="swatch ${key}" />';
+  return tpl.replace("${key}", key);
+}
+---
+
+<div
+  id={`utility-table-${uid}`}
+  class={`utility-table${expandable ? " is-expandable" : ""}`}
+  data-expandable={expandable}
+>
+  <table class="table table_style_rowed">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Styles</th>
+        {example && <th>E.g.</th>}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        Object.entries(data).map(([key, value]) => (
+          <tr>
+            <td>
+              <Popover
+                virtual={true}
+                triggerClass="utility-table__code"
+                popoverClass="popover_virtual"
+                label="Copy utility class to clipboard"
+              >
+                <Fragment slot="trigger" type="button">
+                  <code class="text-nowrap">{key}</code>
+                  <Icon name="copy" classes="icon_size_sm" />
+                  <Icon name="check" classes="icon_size_sm display-none" />
+                </Fragment>
+                Copied!
+              </Popover>
+            </td>
+            <td>
+              <Popover
+                virtual={true}
+                triggerClass="utility-table__code"
+                popoverClass="popover_virtual"
+                label="Copy utility styles to clipboard"
+              >
+                <Fragment slot="trigger" type="button">
+                  <code>{value}</code>
+                  <Icon name="copy" classes="icon_size_sm" />
+                  <Icon name="check" classes="icon_size_sm display-none" />
+                </Fragment>
+                Copied!
+              </Popover>
+            </td>
+            {example && <td set:html={exampleTemplate(example, key)} />}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  {
+    expandable && (
+      <div class="utility-table__footer">
+        <button
+          class="button button_color_primary button_size_sm utility-table__toggle"
+          type="button"
+        >
+          Expand
+        </button>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  import { popover } from "../modules/usePopover";
+
+  const btns = document.querySelectorAll(".utility-table__toggle");
+  btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".utility-table") as HTMLElement;
+    const table = parent.querySelector("table") as HTMLElement;
+    const footer = parent.querySelector(
+      ".utility-table__footer"
+    ) as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = table.offsetHeight + footer.offsetHeight + padding;
+
+    btn.addEventListener("click", () => {
+      // Toggle the expand state
+      parent.classList.toggle("is-expanded");
+
+      // Update the state
+      if (parent.classList.contains("is-expanded")) {
+        btn.innerHTML = "Collapse";
+        parent.style.setProperty(
+          "--vb-utility-table-max-height",
+          `${height}px`
+        );
+      } else {
+        btn.innerHTML = "Expand";
+        parent.style.setProperty("--vb-utility-table-max-height", null);
+        parent.scrollIntoView({ behavior: "instant" });
+      }
+    });
+  });
+
+  const codes = document.querySelectorAll(".utility-table__code");
+  codes.forEach((code: HTMLButtonElement) => {
+    const icons = code.querySelectorAll(".icon");
+    code.addEventListener("click", () => {
+      const text = code.querySelector("code").innerText;
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          code.disabled = true;
+          icons.forEach((icon) => icon.classList.toggle("display-none"));
+          setTimeout(() => {
+            code.disabled = false;
+            icons.forEach((icon) => icon.classList.toggle("display-none"));
+            popover.close(code.getAttribute("data-popover-trigger"));
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+  });
+</script>

@@ -1,98 +1,78 @@
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("margin") {
-  #{fun.utility("margin")} {
-    margin: var.$gap !important;
-  }
-
-  #{fun.utility("margin", "top")} {
-    margin-top: var.$gap !important;
-  }
-
-  #{fun.utility("margin", "bottom")} {
-    margin-bottom: var.$gap !important;
-  }
-
-  #{fun.utility("margin", "left")} {
-    margin-left: var.$gap !important;
-  }
-
-  #{fun.utility("margin", "right")} {
-    margin-right: var.$gap !important;
-  }
-
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", $key)} {
-      margin: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", $key)} {
+      margin: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "top", $key)} {
-      margin-top: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "top", $key)} {
+      margin-top: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "bottom", $key)} {
-      margin-bottom: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "bottom", $key)} {
+      margin-bottom: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "left", $key)} {
-      margin-left: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "left", $key)} {
+      margin-left: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "right", $key)} {
-      margin-right: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "right", $key)} {
+      margin-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "x", $key)} {
-      margin-left: $value !important;
-      margin-right: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "x", $key)} {
+      margin-left: fun.maybe-important($value);
+      margin-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in var.$gap-map {
-    #{fun.utility("margin", "y", $key)} {
-      margin-bottom: $value !important;
-      margin-top: $value !important;
+  @each $key, $value in config.get("utility-gap") {
+    #{fun.selector("margin", "y", $key)} {
+      margin-bottom: fun.maybe-important($value);
+      margin-top: fun.maybe-important($value);
     }
   }
 
-  #{fun.utility("margin", "auto")} {
-    margin: auto !important;
+  #{fun.selector("margin", "auto")} {
+    margin: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "top", "auto")} {
-    margin-top: auto !important;
+  #{fun.selector("margin", "top", "auto")} {
+    margin-top: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "bottom", "auto")} {
-    margin-bottom: auto !important;
+  #{fun.selector("margin", "bottom", "auto")} {
+    margin-bottom: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "left", "auto")} {
-    margin-left: auto !important;
+  #{fun.selector("margin", "left", "auto")} {
+    margin-left: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "right", "auto")} {
-    margin-right: auto !important;
+  #{fun.selector("margin", "right", "auto")} {
+    margin-right: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "x", "auto")} {
-    margin-left: auto !important;
-    margin-right: auto !important;
+  #{fun.selector("margin", "x", "auto")} {
+    margin-left: fun.maybe-important(auto);
+    margin-right: fun.maybe-important(auto);
   }
 
-  #{fun.utility("margin", "y", "auto")} {
-    margin-bottom: auto !important;
-    margin-top: auto !important;
+  #{fun.selector("margin", "y", "auto")} {
+    margin-bottom: fun.maybe-important(auto);
+    margin-top: fun.maybe-important(auto);
   }
 }

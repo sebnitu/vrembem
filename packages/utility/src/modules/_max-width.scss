@@ -1,14 +1,10 @@
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("max-width") {
-  #{fun.utility("max-width")} {
-    max-width: var.$max-width !important;
-  }
-
-  @each $key, $value in var.$max-width-scale {
-    #{fun.utility("max-width", $key)} {
-      max-width: $value !important;
+  @each $key, $value in config.get("utility-max-width") {
+    #{fun.selector("max-width", $key)} {
+      max-width: fun.maybe-important($value);
     }
   }
 }

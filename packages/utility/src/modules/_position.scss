@@ -1,24 +1,23 @@
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("position") {
-  #{fun.utility("position", "absolute")} {
-    position: absolute !important;
+  #{fun.selector("position", "absolute")} {
+    position: fun.maybe-important(absolute);
   }
 
-  #{fun.utility("position", "fixed")} {
-    position: fixed !important;
+  #{fun.selector("position", "fixed")} {
+    position: fun.maybe-important(fixed);
   }
 
-  #{fun.utility("position", "relative")} {
-    position: relative !important;
+  #{fun.selector("position", "relative")} {
+    position: fun.maybe-important(relative);
   }
 
-  #{fun.utility("position", "static")} {
-    position: static !important;
+  #{fun.selector("position", "static")} {
+    position: fun.maybe-important(static);
   }
 
-  #{fun.utility("position", "sticky")} {
-    position: sticky !important;
+  #{fun.selector("position", "sticky")} {
+    position: fun.maybe-important(sticky);
   }
 }

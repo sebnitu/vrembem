@@ -1,72 +1,71 @@
-@use "../variables" as var;
 @use "../functions" as fun;
 
 @if fun.maybe-output("text") {
-  #{fun.utility("text", "capitalize")} {
-    text-transform: capitalize !important;
+  #{fun.selector("text", "capitalize")} {
+    text-transform: fun.maybe-important(capitalize);
   }
 
-  #{fun.utility("text", "lowercase")} {
-    text-transform: lowercase !important;
+  #{fun.selector("text", "lowercase")} {
+    text-transform: fun.maybe-important(lowercase);
   }
 
-  #{fun.utility("text", "uppercase")} {
-    text-transform: uppercase !important;
+  #{fun.selector("text", "uppercase")} {
+    text-transform: fun.maybe-important(uppercase);
   }
 
-  #{fun.utility("text", "align", "left")} {
-    text-align: left !important;
+  #{fun.selector("text", "align", "left")} {
+    text-align: fun.maybe-important(left);
   }
 
-  #{fun.utility("text", "align", "center")} {
-    text-align: center !important;
+  #{fun.selector("text", "align", "center")} {
+    text-align: fun.maybe-important(center);
   }
 
-  #{fun.utility("text", "align", "right")} {
-    text-align: right !important;
+  #{fun.selector("text", "align", "right")} {
+    text-align: fun.maybe-important(right);
   }
 
-  #{fun.utility("text", "strike")} {
-    text-decoration: line-through !important;
+  #{fun.selector("text", "strike")} {
+    text-decoration: fun.maybe-important(line-through);
   }
 
-  #{fun.utility("text", "underline")} {
-    text-decoration: underline !important;
+  #{fun.selector("text", "underline")} {
+    text-decoration: fun.maybe-important(underline);
   }
 
-  #{fun.utility("text", "underline", "dotted")} {
-    text-decoration: underline !important;
-    text-decoration-style: dotted !important;
+  #{fun.selector("text", "underline", "dotted")} {
+    text-decoration: fun.maybe-important(underline);
+    text-decoration-style: fun.maybe-important(dotted);
   }
 
-  #{fun.utility("text", "underline", "dashed")} {
-    text-decoration: underline !important;
-    text-decoration-style: dashed !important;
+  #{fun.selector("text", "underline", "dashed")} {
+    text-decoration: fun.maybe-important(underline);
+    text-decoration-style: fun.maybe-important(dashed);
   }
 
-  #{fun.utility("text", "wrap")} {
-    text-wrap: normal !important;
+  #{fun.selector("text", "wrap")} {
+    text-wrap: fun.maybe-important(normal);
   }
 
-  #{fun.utility("text", "nowrap")} {
-    text-wrap: nowrap !important;
+  #{fun.selector("text", "nowrap")} {
+    text-wrap: fun.maybe-important(nowrap);
   }
 
-  #{fun.utility("text", "wrap", "balance")} {
-    text-wrap: balance !important;
+  #{fun.selector("text", "wrap", "balance")} {
+    text-wrap: fun.maybe-important(balance);
   }
 
-  #{fun.utility("text", "wrap", "pretty")} {
-    text-wrap: pretty !important;
+  #{fun.selector("text", "wrap", "pretty")} {
+    text-wrap: fun.maybe-important(pretty);
   }
 
-  #{fun.utility("text", "wrap", "stable")} {
-    text-wrap: stable !important;
+  #{fun.selector("text", "wrap", "stable")} {
+    text-wrap: fun.maybe-important(stable);
   }
 
-  #{fun.utility("text", "overflow", "ellipsis")} {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    text-wrap: nowrap !important;
+  #{fun.selector("text", "overflow", "ellipsis")} {
+    overflow: fun.maybe-important(hidden);
+    text-overflow: fun.maybe-important(ellipsis);
+    text-wrap: fun.maybe-important(nowrap);
   }
 }

@@ -1,34 +1,34 @@
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("border-radius") {
-  @each $key, $value in var.$border-radius-map {
-    #{fun.utility("border-radius", $key)} {
-      border-radius: $value !important;
+  @each $key, $value in config.get("utility-border-radius") {
+    #{fun.selector("border-radius", $key)} {
+      border-radius: fun.maybe-important($value);
     }
 
-    #{fun.utility("border-radius", $key, "top")},
-    #{fun.utility("border-radius", $key, "left")},
-    #{fun.utility("border-radius", $key, "top-left")} {
-      border-top-left-radius: $value !important;
+    #{fun.selector("border-radius", $key, "top")},
+    #{fun.selector("border-radius", $key, "left")},
+    #{fun.selector("border-radius", $key, "top-left")} {
+      border-top-left-radius: fun.maybe-important($value);
     }
 
-    #{fun.utility("border-radius", $key, "top")},
-    #{fun.utility("border-radius", $key, "right")},
-    #{fun.utility("border-radius", $key, "top-right")} {
-      border-top-right-radius: $value !important;
+    #{fun.selector("border-radius", $key, "top")},
+    #{fun.selector("border-radius", $key, "right")},
+    #{fun.selector("border-radius", $key, "top-right")} {
+      border-top-right-radius: fun.maybe-important($value);
     }
 
-    #{fun.utility("border-radius", $key, "bottom")},
-    #{fun.utility("border-radius", $key, "right")},
-    #{fun.utility("border-radius", $key, "bottom-right")} {
-      border-bottom-right-radius: $value !important;
+    #{fun.selector("border-radius", $key, "bottom")},
+    #{fun.selector("border-radius", $key, "right")},
+    #{fun.selector("border-radius", $key, "bottom-right")} {
+      border-bottom-right-radius: fun.maybe-important($value);
     }
 
-    #{fun.utility("border-radius", $key, "bottom")},
-    #{fun.utility("border-radius", $key, "left")},
-    #{fun.utility("border-radius", $key, "bottom-left")} {
-      border-bottom-left-radius: $value !important;
+    #{fun.selector("border-radius", $key, "bottom")},
+    #{fun.selector("border-radius", $key, "left")},
+    #{fun.selector("border-radius", $key, "bottom-left")} {
+      border-bottom-left-radius: fun.maybe-important($value);
     }
   }
 }

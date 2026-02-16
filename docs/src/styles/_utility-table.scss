@@ -1,0 +1,140 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+@use "./variables" as var;
+@include css.set("utility-table", "max-height", 28rem);
+@include theme.set(
+  "utility-table",
+  "light",
+  (
+    "class-foreground": palette.get("primary", 45),
+    "style-foreground": palette.get("secondary", 45)
+  )
+);
+@include theme.set(
+  "utility-table",
+  "dark",
+  (
+    "class-foreground": palette.get("primary", 65),
+    "style-foreground": palette.get("secondary", 65)
+  )
+);
+
+.utility-table {
+  font-size: css.get("font-size");
+  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+
+  thead {
+    background-color: css.get("background");
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
+    tr {
+      border-top: none;
+    }
+  }
+
+  tr {
+    height: 1px;
+  }
+
+  td {
+    height: inherit;
+    padding: 0;
+    vertical-align: middle;
+  }
+
+  td:nth-child(1) {
+    @include css.override("code", "foreground", css.get("utility-table", "class-foreground"));
+
+    .popover_virtual {
+      @include css.override("popover", "background", palette.get("primary"));
+    }
+  }
+
+  td:nth-child(2) {
+    @include css.override("code", "foreground", css.get("utility-table", "style-foreground"));
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    padding: 0.25em 0 0.25em 0.75em;
+    text-align: right;
+  }
+
+  .swatch {
+    @include core.size(2em);
+
+    display: block;
+    margin-left: auto;
+  }
+
+  &.is-expandable {
+    max-height: css.get("utility-table", "max-height");
+    overflow: hidden;
+  }
+
+  &.is-expanded {
+    overflow: visible;
+
+    thead {
+      top: calc(css.get("layout", "toolbar-height") - 1px);
+
+      @include core.media-min(var.$bp-drawer) {
+        top: calc(css.get("layout", "navibar-height") - 1px);
+      }
+    }
+  }
+}
+
+.utility-table__code {
+  @include css.override("code", "background", transparent);
+  @include css.override("code", "padding", 0);
+
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: css.get("gap");
+  height: 100%;
+  justify-content: space-between;
+  padding: 0.5em;
+  width: 100%;
+
+  td:first-child & {
+    padding-left: 0;
+  }
+
+  td:last-child & {
+    padding-right: 0;
+  }
+
+  .icon {
+    @include css.override("icon", "color", css.get("foreground-lighter"));
+
+    opacity: 0;
+    transition: opacity css.get("transition-short");
+
+    &.feather-check {
+      @include css.override("icon", "color", palette.get("primary"));
+
+      opacity: 1;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .icon {
+      opacity: 1;
+    }
+  }
+}
+
+.utility-table__footer {
+  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  bottom: 0;
+  padding: 1.5em 0;
+  position: sticky;
+  text-align: center;
+}

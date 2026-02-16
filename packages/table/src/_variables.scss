@@ -1,9 +1,10 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
-$breakpoints: core.$breakpoints !default;
+$breakpoints: config.get("breakpoints") !default;
 $padding: 0.5em 0.75em !default;
 $background: null !default;
 $background-zebra: null !default;

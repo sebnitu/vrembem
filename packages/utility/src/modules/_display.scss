@@ -1,19 +1,19 @@
 @use "@vrembem/core";
-@use "../variables" as var;
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("display") {
-  @each $property in var.$display-properties {
-    #{fun.utility("display", $property)} {
-      display: $property !important;
+  @each $property in config.get("utility-display") {
+    #{fun.selector("display", $property)} {
+      display: fun.maybe-important($property);
     }
   }
 
-  @each $bp, $value in var.$breakpoints {
+  @each $bp, $value in config.get("breakpoints") {
     @include core.media-min($value) {
-      @each $property in var.$display-properties {
-        #{fun.utility("display", $property, "#{$bp}:")} {
-          display: $property !important;
+      @each $property in config.get("utility-display") {
+        #{fun.selector("display", $property, "#{$bp}:")} {
+          display: fun.maybe-important($property);
         }
       }
     }
