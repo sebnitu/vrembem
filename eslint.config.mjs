@@ -23,15 +23,8 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        global: "readonly",
-        vi: "readonly",
-        it: "readonly",
-        expect: "readonly",
-        test: "readonly",
-        describe: "readonly",
-        beforeAll: "readonly",
-        beforeEach: "readonly",
-        afterEach: "readonly"
+        ...globals.vitest,
+        global: "readonly"
       }
     }
   },
