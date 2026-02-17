@@ -1,12 +1,14 @@
 @use "../modules/css";
 
-$gap-map: (
-  "none": 0,
-  "xs": 0.25em,
-  "sm": 0.5em,
-  "": 1em,
-  "lg": 1.5em,
-  "xl": 2em
-) !default;
-
-@include css.set("core", "gap", $gap-map);
+@include css.set(
+  "core",
+  "gap",
+  (
+    "none": 0,
+    "xs": 0.25em,
+    "sm": 0.5em,
+    "": 1em,
+    "lg": 1.5em,
+    "xl": 2em
+  )
+);

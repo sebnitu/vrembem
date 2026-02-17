@@ -1,44 +1,55 @@
 @use "../modules/css";
 
-$font-family-sans:
-  blinkmacsystemfont,
-  -apple-system,
-  system-ui,
-  "Segoe UI",
-  "Roboto",
-  "Helvetica Neue",
-  arial,
-  sans-serif !default;
-$font-family-serif: constantia, "Lucida Bright", lucidabright, "Lucida Serif", lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", georgia, serif !default;
-$font-family-mono: sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family: css.reference("core", "font-family-sans") !default;
-$font-size: 1rem !default; // 16px
-$font-size-sm: 0.875rem !default; // 14px
-$font-size-lg: 1.125rem !default; // 18px
-$line-height: 1.5 !default;
-$font-weight-map: (
-  "thin": 100,
-  "extra-light": 200,
-  "light": 300,
-  "regular": 400,
-  "medium": 500,
-  "semi-bold": 600,
-  "bold": 700,
-  "extra-bold": 800,
-  "black": 900
-) !default;
-
 @include css.set(
   "core",
   (
-    "font-family": $font-family,
-    "font-family-sans": $font-family-sans,
-    "font-family-serif": $font-family-serif,
-    "font-family-mono": $font-family-mono,
-    "font-size": $font-size,
-    "font-size-sm": $font-size-sm,
-    "font-size-lg": $font-size-lg,
-    "line-height": $line-height,
-    "font-weight": $font-weight-map
+    "font-family-sans": (
+      blinkmacsystemfont,
+      -apple-system,
+      system-ui,
+      "Segoe UI",
+      "Roboto",
+      "Helvetica Neue",
+      arial,
+      sans-serif
+    ),
+    "font-family-serif": (
+      constantia,
+      "Lucida Bright",
+      lucidabright,
+      "Lucida Serif",
+      lucida,
+      "DejaVu Serif",
+      "Bitstream Vera Serif",
+      "Liberation Serif",
+      georgia,
+      serif
+    ),
+    "font-family-mono": (
+      sfmono-regular,
+      menlo,
+      monaco,
+      consolas,
+      "Liberation Mono",
+      "Courier New",
+      monospace
+    ),
+    "font-size": 1rem,
+    "font-size-sm": 0.875rem,
+    "font-size-lg": 1.125rem,
+    "line-height": 1.5,
+    "font-weight": (
+      "thin": 100,
+      "extra-light": 200,
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semi-bold": 600,
+      "bold": 700,
+      "extra-bold": 800,
+      "black": 900
+    )
   )
 );
+
+@include css.set("core", "font-family", css.get("font-family-sans"));

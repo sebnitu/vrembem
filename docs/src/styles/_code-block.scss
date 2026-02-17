@@ -4,7 +4,7 @@
 @use "./variables" as var;
 
 .code-block {
-  font-size: core.$font-size;
+  font-size: css.get("font-size");
   line-height: css.get("line-height");
   position: relative;
   text-align: left;
