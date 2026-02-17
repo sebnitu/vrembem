@@ -155,7 +155,11 @@ interface ThemeStoreConfig {
   Callback run when the theme changes.
 </ReferenceCard>
 
-## themeStore.config
+## Reference
+
+This reference details the available themeStore API, method arguments, and usage examples.
+
+### themeStore.config
 
 <ReferenceBar type="ThemeStoreConfig" />
 
@@ -203,7 +207,7 @@ const defaults: ThemeStoreConfig = {
   ```
 </CodeExample>
 
-## themeStore.theme
+### themeStore.theme
 
 <ReferenceBar type="string" defaults="config.fallback" />
 
@@ -228,7 +232,7 @@ The `theme` property acts as both a getter and setter for the current theme.
   ```
 </CodeExample>
 
-## themeStore.class
+### themeStore.class
 
 <ReferenceBar type="string" />
 
@@ -246,7 +250,7 @@ Returns the current theme class name, including the configured prefix. This prop
   ```
 </CodeExample>
 
-## themeStore.themes
+### themeStore.themes
 
 <ReferenceBar type="string[]" defaults="config.themes" />
 
@@ -265,7 +269,7 @@ An array containing all available theme names. This property is read-only.
   ```
 </CodeExample>
 
-## themeStore.classes
+### themeStore.classes
 
 <ReferenceBar type="string[]" />
 
@@ -284,7 +288,7 @@ An array containing all possible theme class names, each with the configured pre
   ```
 </CodeExample>
 
-## themeStore.add()
+### themeStore.add()
 
 <ReferenceBar type="method" />
 
@@ -315,7 +319,7 @@ Adds a new theme name to the list of available themes. The new theme will be inc
   ```
 </CodeExample>
 
-## themeStore.remove()
+### themeStore.remove()
 
 <ReferenceBar type="method" />
 
