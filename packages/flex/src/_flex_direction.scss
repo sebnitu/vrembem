@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/config";
 
 #{core.bem("flex", null, "direction", "row")} {
   flex-direction: row;
@@ -17,7 +17,7 @@
   flex-direction: column-reverse;
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
     #{core.bem("flex", null, "direction", "row", $bp)} {
       flex-direction: row;

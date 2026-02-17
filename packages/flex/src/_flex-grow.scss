@@ -1,11 +1,11 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/config";
 
 #{core.bem("flex-grow")} {
   flex-grow: 1;
 }
 
-@for $i from 0 through var.$grow-count {
+@for $i from 0 through config.get("flex-grow-count") {
   #{core.bem("flex-grow-#{$i}")} {
     flex-grow: $i;
   }

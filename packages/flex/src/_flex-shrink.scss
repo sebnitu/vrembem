@@ -1,11 +1,11 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/config";
 
 #{core.bem("flex-shrink")} {
   flex-shrink: 1;
 }
 
-@for $i from 0 through var.$shrink-count {
+@for $i from 0 through config.get("flex-shrink-count") {
   #{core.bem("flex-shrink-#{$i}")} {
     flex-shrink: $i;
   }
