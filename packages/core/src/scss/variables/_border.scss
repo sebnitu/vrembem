@@ -1,5 +1,4 @@
 @use "../modules/css";
-
 @include css.set(
   "core",
   (
@@ -7,7 +6,6 @@
     "border-style": solid
   )
 );
-
 @include css.set(
   "core",
   (

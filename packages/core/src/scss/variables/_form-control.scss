@@ -1,7 +1,6 @@
 @use "../modules/css";
 @use "../modules/palette";
 @use "../modules/theme";
-
 @include css.set(
   "core",
   "form-control",
@@ -29,7 +28,6 @@
     "transition-timing-function": css.get("transition-timing-function")
   )
 );
-
 @include css.set(
   "core",
   "form-control",
@@ -38,6 +36,5 @@
     "size": calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2))
   )
 );
-
 @include theme.set("core", "light", "form-control-foreground", palette.get("neutral"));
 @include theme.set("core", "dark", "form-control-foreground", palette.get("neutral", 80));
