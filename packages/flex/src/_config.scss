@@ -6,7 +6,6 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  "flex-wrap": wrap,
   "flex-gap": (
     "none": 0,
     "xs": 1px,
@@ -24,6 +23,6 @@ $defaults: (
   "flex",
   (
     "gap": 1em,
-    "wrap": config.get("flex-wrap")
+    "wrap": wrap
   )
 );
