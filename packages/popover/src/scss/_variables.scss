@@ -11,7 +11,7 @@ $width: 16em !default;
 $max-width: calc(100vw - 20px) !default;
 $padding: 0.5em !default;
 $border: null !default;
-$border-radius: core.$border-radius !default;
+$border-radius: css.get("border-radius") !default;
 $foreground: css.get("foreground") !default;
 $background: css.get("background") !default;
 $box-shadow: css.get("box-shadow-2") !default;

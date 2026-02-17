@@ -4,13 +4,13 @@
 @use "./variables" as var;
 
 .code-example {
-  border: core.$border;
-  border-radius: core.$border-radius;
-  font-size: core.$font-size;
+  border: css.get("border");
+  border-radius: css.get("border-radius");
+  font-size: css.get("font-size");
   line-height: css.get("line-height");
 
   > * + * {
-    border-top: core.$border;
+    border-top: css.get("border");
   }
 
   @include core.media-max(var.$bp-code) {

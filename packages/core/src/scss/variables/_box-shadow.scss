@@ -1,21 +1,13 @@
 @use "../modules/css";
-@use "../modules/theme";
-
-$box-shadow-1: 0 1px 3px css.get("shadow-color") !default;
-$box-shadow-2: 0 2px 6px css.get("shadow-color") !default;
-$box-shadow-3: 0 4px 12px css.get("shadow-color") !default;
-$box-shadow-4: 0 8px 18px css.get("shadow-color") !default;
-$box-shadow-5: 0 12px 24px css.get("shadow-color") !default;
-$box-shadow: $box-shadow-2 !default;
 
 @include css.set(
   "core",
   (
-    "box-shadow": $box-shadow,
-    "box-shadow-1": $box-shadow-1,
-    "box-shadow-2": $box-shadow-2,
-    "box-shadow-3": $box-shadow-3,
-    "box-shadow-4": $box-shadow-4,
-    "box-shadow-5": $box-shadow-5
+    "box-shadow": 0 2px 6px css.get("shadow-color"),
+    "box-shadow-1": 0 1px 3px css.get("shadow-color"),
+    "box-shadow-2": 0 2px 6px css.get("shadow-color"),
+    "box-shadow-3": 0 4px 12px css.get("shadow-color"),
+    "box-shadow-4": 0 8px 18px css.get("shadow-color"),
+    "box-shadow-5": 0 12px 24px css.get("shadow-color")
   )
 );
