@@ -7,6 +7,7 @@ status: "layout"
 
 import CodeExpander from "../../components/CodeExpander.astro";
 import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Grid
 
@@ -696,49 +697,15 @@ This utility also comes with optional media breakpoint variants. This allows cha
 - `lg:row-[value]`
 - `xl:row-[value]`
 
-## Customization
+## Reference
 
-Grid is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+Below is a reference to all CSS variables that are referenced the grid component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="CSS Variables" src="grid/src/_root.scss">
-
-```scss
-:root {
-  --vb-grid-cols: 1;
-  --vb-grid-rows: 1;
-  --vb-grid-flow: dense;
-  --vb-grid-gap: 2em;
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="grid/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-
-$breakpoints: core.$breakpoints !default;
-$cols: 6 !default;
-$rows: 6 !default;
-$flow: dense !default;
-$gap: 2em !default;
-$gap-map: (
-  "none": 0,
-  "xs": 0.5em,
-  "sm": 1em,
-  "md": 2em,
-  "lg": 3em,
-  "xl": 4em
-) !default;
-
-@include css.set("grid", (
-  "cols": 1,
-  "rows": 1,
-  "flow": $flow,
-  "gap": $gap,
-  "gap-x": null,
-  "gap-y": null,
-));
-```
-</DocBlock>
+<ReferenceTable id="cssvar-grid" valueLabel="Fallback" filter={false} data={{
+  "--vb-grid-gap": "2em",
+  "--vb-grid-gap-x": "var(--vb-grid-gap)",
+  "--vb-grid-gap-y": "var(--vb-grid-gap)",
+  "--vb-grid-flow": "dense",
+  "--vb-grid-cols": "1",
+  "--vb-grid-rows": "1",
+}} />

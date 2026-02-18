@@ -7,6 +7,7 @@ import coreData from "../data/cssvar-core.json";
 interface Props {
   data: {};
   id?: string;
+  filter?: boolean;
   keyWidth?: string;
   valueWidth?: string;
   labelWidth?: string;
@@ -16,6 +17,7 @@ interface Props {
 const {
   data,
   id,
+  filter = true,
   keyWidth,
   valueWidth,
   labelWidth = "5em",
@@ -70,28 +72,32 @@ function iconMap(value: string) {
 ---
 
 <div id={`reference-table-${uid}`} class="reference-table">
-  <div class="reference-table__header">
-    <div class="input-group">
-      <input
-        id={`reference-table-filter-${uid}`}
-        name={`reference-table-filter-${uid}`}
-        class="input reference-table__filter"
-        type="text"
-        placeholder="Filter..."
-      />
-      <label class="input-icon" for={`reference-table-filter-${uid}`}>
-        <Icon name="eye" classes="icon_size_sm" />
-        <span class="sr-only">Type to filter the reference table.</span>
-      </label>
-      <button
-        class="button button_icon input-clear display-none"
-        type="button"
-        data-clear={`reference-table-filter-${uid}`}
-      >
-        <Icon name="x" classes="icon_size_sm" />
-      </button>
-    </div>
-  </div>
+  {
+    filter && (
+      <div class="reference-table__header">
+        <div class="input-group">
+          <input
+            id={`reference-table-filter-${uid}`}
+            name={`reference-table-filter-${uid}`}
+            class="input reference-table__filter"
+            type="text"
+            placeholder="Filter..."
+          />
+          <label class="input-icon" for={`reference-table-filter-${uid}`}>
+            <Icon name="eye" classes="icon_size_sm" />
+            <span class="sr-only">Type to filter the reference table.</span>
+          </label>
+          <button
+            class="button button_icon input-clear display-none"
+            type="button"
+            data-clear={`reference-table-filter-${uid}`}
+          >
+            <Icon name="x" classes="icon_size_sm" />
+          </button>
+        </div>
+      </div>
+    )
+  }
   <table
     class="table sm:table_responsive"
     style={`--vb-table-mobile-label-width: ${labelWidth}`}
