@@ -5,6 +5,7 @@ package: "@vrembem/grid"
 status: "layout"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import DocBlock from '../../components/DocBlock.astro';
 
 # Grid
@@ -20,6 +21,35 @@ npm install @vrembem/grid
   @use "@vrembem/grid";
   ```
 </CodeExample>
+
+## Config options
+
+Grid comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Used to build grid column modifiers and col utilities
+  // @type number
+  "grid-cols": 6,
+
+  // Used to build grid row modifiers and row utilities
+  // @type number
+  "grid-rows": 6,
+
+  // A map of gap modifiers to output
+  // @type map
+  "grid-gap": (
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "": 2em,
+    "lg": 3em,
+    "xl": 4em
+  )
+);
+```
+</CodeExpander>
 
 ## Basic usage
 

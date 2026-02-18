@@ -6,11 +6,11 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // ...
+  // Used to build grid column modifiers and col utilities
   // @type number
   "grid-cols": 6,
 
-  // ...
+  // Used to build grid row modifiers and row utilities
   // @type number
   "grid-rows": 6,
 
