@@ -1,6 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 #{core.bem("row-auto")} {
   grid-row: auto;
@@ -10,13 +10,13 @@
   grid-row: span css.get("grid", "rows");
 }
 
-@for $i from 1 through var.$rows {
+@for $i from 1 through config.get("grid-rows") {
   #{core.bem("row-#{$i}")} {
     grid-row: span $i;
   }
 }
 
-@for $i from 1 through (var.$rows + 1) {
+@for $i from 1 through (config.get("grid-rows") + 1) {
   #{core.bem("row-start-#{$i}")} {
     grid-row-start: $i;
   }
@@ -26,7 +26,7 @@
   }
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
     #{core.bem("row-auto", $bp: $bp)} {
       grid-row: auto;
@@ -36,13 +36,13 @@
       grid-row: span css.get("grid", "rows");
     }
 
-    @for $i from 1 through var.$rows {
+    @for $i from 1 through config.get("grid-rows") {
       #{core.bem("row-#{$i}", $bp: $bp)} {
         grid-row: span $i;
       }
     }
 
-    @for $i from 1 through (var.$rows + 1) {
+    @for $i from 1 through (config.get("grid-rows") + 1) {
       #{core.bem("row-start-#{$i}", $bp: $bp)} {
         grid-row-start: $i;
       }

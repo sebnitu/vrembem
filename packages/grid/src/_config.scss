@@ -1,0 +1,38 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$config: () !default;
+
+// prettier-ignore
+$defaults: (
+  // ...
+  // @type number
+  "grid-cols": 6,
+
+  // ...
+  // @type number
+  "grid-rows": 6,
+
+  // A map of gap modifiers to output
+  // @type map
+  "grid-gap": (
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "": 2em,
+    "lg": 3em,
+    "xl": 4em
+  )
+);
+
+@include config.apply($config, $defaults);
+@include css.set(
+  "grid",
+  (
+    "cols": 1,
+    "rows": 1,
+    "flow": dense,
+    "gap": 2em
+  )
+);

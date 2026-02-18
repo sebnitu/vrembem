@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 #{core.bem("grid")} {
   display: grid;
