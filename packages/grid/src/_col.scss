@@ -7,7 +7,7 @@
 }
 
 #{core.bem("col-full")} {
-  grid-column: span css.get("grid", "cols");
+  grid-column: span css.get("grid", "cols", 1);
 }
 
 @for $i from 1 through config.get("grid-cols") {
@@ -33,7 +33,7 @@
     }
 
     #{core.bem("col-full", $bp: $bp)} {
-      grid-column: span css.get("grid", "cols");
+      grid-column: span css.get("grid", "cols", 1);
     }
 
     @for $i from 1 through config.get("grid-cols") {

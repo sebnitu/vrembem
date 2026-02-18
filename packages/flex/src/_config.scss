@@ -27,10 +27,4 @@ $defaults: (
 );
 
 @include config.apply($config, $defaults);
-@include css.set(
-  "flex",
-  (
-    "gap": 1em,
-    "wrap": wrap
-  )
-);
+@include css.register("flex");

@@ -3,10 +3,10 @@
 
 #{core.bem("grid")} {
   display: grid;
-  gap: css.get("grid", "gap-y", "gap") css.get("grid", "gap-x", "gap");
-  grid-auto-flow: css.get("grid", "flow");
-  grid-template-columns: repeat(css.get("grid", "cols"), minmax(0, 1fr));
-  grid-template-rows: repeat(css.get("grid", "rows"), minmax(0, 1fr));
+  gap: css.get("grid", "gap-y", "gap", 2em) css.get("grid", "gap-x", "gap", 2em);
+  grid-auto-flow: css.get("grid", "flow", dense);
+  grid-template-columns: repeat(css.get("grid", "cols", 1), minmax(0, 1fr));
+  grid-template-rows: repeat(css.get("grid", "rows", 1), minmax(0, 1fr));
 }
 
 #{core.bem("grid", null, "inline")} {

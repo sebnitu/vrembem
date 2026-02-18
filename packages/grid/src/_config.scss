@@ -20,19 +20,11 @@ $defaults: (
     "none": 0,
     "xs": 0.5em,
     "sm": 1em,
-    "": 2em,
+    "md": 2em,
     "lg": 3em,
     "xl": 4em
   )
 );
 
 @include config.apply($config, $defaults);
-@include css.set(
-  "grid",
-  (
-    "cols": 1,
-    "rows": 1,
-    "flow": dense,
-    "gap": 2em
-  )
-);
+@include css.register("grid");
