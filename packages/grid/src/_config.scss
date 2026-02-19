@@ -14,9 +14,11 @@ $defaults: (
   // @type number
   "grid-rows": 6,
 
-  // A map of gap modifiers to output
+  // A map of gap modifiers to output. Use the "default" key for a default value.
+  // Default values are not output as modifiers.
   // @type map
   "grid-gap": (
+    "default": 2em,
     "none": 0,
     "xs": 0.5em,
     "sm": 1em,

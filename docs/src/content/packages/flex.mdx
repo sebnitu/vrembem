@@ -30,9 +30,11 @@ Flex comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // A map of gap modifiers to output
+  // A map of gap modifiers to output. Use the "default" key for a default value.
+  // Default values are not output as modifiers.
   // @type map
   "flex-gap": (
+    "default": 1em,
     "none": 0,
     "xs": 1px,
     "sm": 0.5em,

@@ -1,9 +1,10 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
 #{core.bem("grid")} {
   display: grid;
-  gap: css.get("grid", "gap-y", "gap", 2em) css.get("grid", "gap-x", "gap", 2em);
+  gap: css.get("grid", "gap-y", "gap", config.get("grid-gap", "default")) css.get("grid", "gap-x", "gap", config.get("grid-gap", "default"));
   grid-auto-flow: css.get("grid", "flow", dense);
   grid-template-columns: repeat(css.get("grid", "cols", 1), minmax(0, 1fr));
   grid-template-rows: repeat(css.get("grid", "rows", 1), minmax(0, 1fr));
