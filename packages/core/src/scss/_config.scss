@@ -21,9 +21,10 @@ $defaults: (
   // @type string
   "prefix-modifier-value": "_",
 
-  // A prefix to apply to CSS variables. Provided value is automatically 
-  // suffixed with a "-" character when applied.
-  // @type string
+  // A prefix to apply to CSS variables. Map value requires a default key and
+  // value along with any component specific prefixes as needed. Provided
+  // value(s) are automatically suffixed with a "-" character when applied.
+  // @type string | map
   "prefix-cssvar": "vb",
 
   // The palette to build CSS variables from

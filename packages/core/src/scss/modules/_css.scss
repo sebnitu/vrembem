@@ -14,7 +14,10 @@
 $-css-vars: (
   "core": (
     "prefix": (
-      "config": "prefix-cssvar"
+      "config": (
+        "prefix-cssvar",
+        "default"
+      )
     ),
     "breakpoint": (
       "config": "breakpoints"
@@ -68,6 +71,18 @@ $-css-vars: (
 ///
 @function -prefix($component) {
   $prefix: config.get("prefix-cssvar");
+
+  @if meta.type-of($prefix) == "map" {
+    // Get the prefix if a custom component prefix is defined
+    @if map.has-key($prefix, $component) {
+      $prefix: map.get($prefix, $component);
+    }
+
+    // Else, get the default prefix
+    @else {
+      $prefix: map.get($prefix, "default");
+    }
+  }
 
   @if $prefix and $prefix != "" {
     $prefix: "#{$prefix}-";
@@ -166,7 +181,15 @@ $-css-vars: (
 
     // If the map has a key of config, get the value from config directly
     @if meta.type-of($value) == "map" and map.has-key($value, "config") {
-      $config-value: config.get(map.get($value, "config"));
+      // Store the config path and the initial config value
+      $config-path: map.get($value, "config");
+      $config-value: config.get(list.nth($config-path, 1));
+
+      // If the config path is more specific and the returned config value is a map
+      @if list.length($config-path) > 1 and meta.type-of($config-value) == "map" {
+        // Return the specific value based on the provided config path
+        $config-value: config.get($config-path...);
+      }
 
       @if meta.type-of($config-value) == "map" {
         @each $key, $value in $config-value {
