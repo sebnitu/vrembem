@@ -27,7 +27,7 @@
     "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
     "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
     "watch": "npm run watch:styles",
-    "watch:styles": "concurrently 'npm run styles:dev -- --watch ./src' 'npm run styles:dist -- --watch ./src'"
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
     "type": "git",
