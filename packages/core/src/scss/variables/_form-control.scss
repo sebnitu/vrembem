@@ -14,18 +14,22 @@
     "padding-x": 1em,
     "padding-y": 0.5em,
     "accent": palette.get("primary"),
-    "background": css.get("background"),
-    "background-border-radius": css.get("border-radius-circle"),
-    "background-opacity": 0%,
-    "background-opacity-hover": 20%,
-    "background-opacity-focus": 20%,
-    "background-opacity-active": 30%,
-    "transition-property": (
-      box-shadow,
-      outline
+    "background": (
+      "": css.get("background"),
+      "border-radius": css.get("border-radius-circle"),
+      "opacity": 0%,
+      "opacity-hover": 20%,
+      "opacity-focus": 20%,
+      "opacity-active": 30%
     ),
-    "transition-duration": css.get("transition-duration-short"),
-    "transition-timing-function": css.get("transition-timing-function")
+    "transition": (
+      "property": (
+        box-shadow,
+        outline
+      ),
+      "duration": css.get("transition-duration-short"),
+      "timing-function": css.get("transition-timing-function")
+    )
   )
 );
 @include css.set(
