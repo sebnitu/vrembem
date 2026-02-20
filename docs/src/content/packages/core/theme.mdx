@@ -33,7 +33,7 @@ Set a new or modify existing theme custom properties. These are stored as CSS va
 </ReferenceCard>
 
 <ReferenceCard name="$component" type="string">
-  The component to set a property value for. If not provided, "core" is used as the default component.
+  The component to set a property value for. If not provided, `"core"` is used as the default component.
 </ReferenceCard>
 
 <ReferenceCard name="$prop" type="string | map" defaults="null">
@@ -70,16 +70,16 @@ Remove a custom property from themes in a variety of ways.
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string">
-  The component name to search under. Set to "*" for the following `$theme` and `$prop` arguments to apply to all component themes.
+<ReferenceCard name="$theme" type="string">
+  The component theme to search under or remove. Set to `"*"` to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes.
 </ReferenceCard>
 
-<ReferenceCard name="$theme" type="string">
-  The component theme to search under or remove. Set to "*" to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes.
+<ReferenceCard name="$component" type="string">
+  The component name to search under. Set to `"*"` for the following `$theme` and `$prop` arguments to apply to all component themes.
 </ReferenceCard>
 
 <ReferenceCard name="$prop" type="string | map" defaults='"*"'>
-  The property name to remove. Set to "*" to remove the entire theme from the specified component.
+  The property name to remove. Set to `"*"` to remove the entire theme from the specified component.
 </ReferenceCard>
 
 #### Example
@@ -87,13 +87,13 @@ Remove a custom property from themes in a variety of ways.
 <CodeExample lang="scss">
   ```scss
   // Remove the dark theme from buttons component
-  @include theme.remove("button", "dark");
+  @include theme.remove("dark", "button");
 
   // Remove the border-color property from all button themes
-  @include theme.remove("button", "*", "border-color");
+  @include theme.remove("*", "button", "border-color");
 
-  // Remove the background property from the button light theme
-  @include theme.remove("button", "light", "border-color");
+  // Remove the background property from the light button theme
+  @include theme.remove("light", "button", "border-color");
 
   // Remove all themes from all components
   @include theme.remove("*", "*");
@@ -108,12 +108,12 @@ Output all the custom properties and values of a component theme or output a spe
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string" defaults='"*"'>
-  The component to output. Use `"*"` to output a theme from all components.
-</ReferenceCard>
-
 <ReferenceCard name="$theme" type="string" defaults='"light"'>
   The theme to output.
+</ReferenceCard>
+
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  The component to output. Use `"*"` to output a theme from all components.
 </ReferenceCard>
 
 #### Example
@@ -122,12 +122,12 @@ Output all the custom properties and values of a component theme or output a spe
   ```scss
   // Output the custom properties for the button light theme.
   .vb-theme-light {
-    @include theme.output-theme("button", "light");
+    @include theme.output-theme("light", "button");
   }
 
   // Output the custom properties for the light theme from all components.
   .vb-theme-light {
-    @include theme.output-theme("*", "light");
+    @include theme.output-theme("light", "*");
   }
   ```
 </CodeExample>
