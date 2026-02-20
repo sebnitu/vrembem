@@ -5,7 +5,9 @@ package: "@vrembem/flex"
 status: "layout"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Flex
 
@@ -20,6 +22,36 @@ npm install @vrembem/flex
   @use "@vrembem/flex";
   ```
 </CodeExample>
+
+## Config options
+
+Flex comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // A map of gap modifiers to output. Use the "default" key for a default value.
+  // Default values are not output as modifiers.
+  // @type map
+  "flex-gap": (
+    "default": 1em,
+    "none": 0,
+    "xs": 1px,
+    "sm": 0.5em,
+    "lg": 1.5em,
+    "xl": 2em
+  ),
+
+  // The range of flex-grow classes to output
+  // @type number
+  "flex-grow-count": 6,
+
+  // The range of flex-shrink classes to output
+  // @type number
+  "flex-shrink-count": 6
+);
+```
+</CodeExpander>
 
 ## Basic usage
 
@@ -76,12 +108,12 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
     <select id="demo-flex-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap">
-      <option value="flex_gap_none">flex_gap_none</option>
-      <option value="flex_gap_xs">flex_gap_xs</option>
-      <option value="flex_gap_sm">flex_gap_sm</option>
-      <option value="flex_gap_md">flex_gap_md</option>
-      <option value="flex_gap_lg">flex_gap_lg</option>
-      <option value="flex_gap_xl">flex_gap_xl</option>
+      <option value="flex">None</option>
+      <option value="flex flex_gap_none">flex_gap_none</option>
+      <option value="flex flex_gap_xs">flex_gap_xs</option>
+      <option value="flex flex_gap_sm">flex_gap_sm</option>
+      <option value="flex flex_gap_lg">flex_gap_lg</option>
+      <option value="flex flex_gap_xl">flex_gap_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -110,7 +142,6 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 - `flex_gap_none`
 - `flex_gap_xs`
 - `flex_gap_sm`
-- `flex_gap_md`
 - `flex_gap_lg`
 - `flex_gap_xl`
 
@@ -122,12 +153,12 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
     <select id="demo-flex-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-x">
-      <option value="flex_gap-x_none">flex_gap-x_none</option>
-      <option value="flex_gap-x_xs">flex_gap-x_xs</option>
-      <option value="flex_gap-x_sm">flex_gap-x_sm</option>
-      <option value="flex_gap-x_md">flex_gap-x_md</option>
-      <option value="flex_gap-x_lg">flex_gap-x_lg</option>
-      <option value="flex_gap-x_xl">flex_gap-x_xl</option>
+      <option value="flex">None</option>
+      <option value="flex flex_gap-x_none">flex_gap-x_none</option>
+      <option value="flex flex_gap-x_xs">flex_gap-x_xs</option>
+      <option value="flex flex_gap-x_sm">flex_gap-x_sm</option>
+      <option value="flex flex_gap-x_lg">flex_gap-x_lg</option>
+      <option value="flex flex_gap-x_xl">flex_gap-x_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -156,7 +187,6 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 - `flex_gap-x_none`
 - `flex_gap-x_xs`
 - `flex_gap-x_sm`
-- `flex_gap-x_md`
 - `flex_gap-x_lg`
 - `flex_gap-x_xl`
 
@@ -168,12 +198,13 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
     <select id="demo-flex-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-y">
-      <option value="flex_gap-y_none">flex_gap-y_none</option>
-      <option value="flex_gap-y_xs">flex_gap-y_xs</option>
-      <option value="flex_gap-y_sm">flex_gap-y_sm</option>
-      <option value="flex_gap-y_md">flex_gap-y_md</option>
-      <option value="flex_gap-y_lg">flex_gap-y_lg</option>
-      <option value="flex_gap-y_xl">flex_gap-y_xl</option>
+      <option value="flex">None</option>
+      <option value="flex flex_gap-y_none">flex_gap-y_none</option>
+      <option value="flex flex_gap-y_xs">flex_gap-y_xs</option>
+      <option value="flex flex_gap-y_sm">flex_gap-y_sm</option>
+      <option value="flex flex_gap-y_md">flex_gap-y_md</option>
+      <option value="flex flex_gap-y_lg">flex_gap-y_lg</option>
+      <option value="flex flex_gap-y_xl">flex_gap-y_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -202,7 +233,6 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `flex_gap-y_none`
 - `flex_gap-y_xs`
 - `flex_gap-y_sm`
-- `flex_gap-y_md`
 - `flex_gap-y_lg`
 - `flex_gap-y_xl`
 
@@ -610,46 +640,13 @@ Used to control the flex-basis property which sets the initial main size of a fl
 - `flex-basis-auto`: Sets flex-basis to `auto`.
 - `flex-basis-full`: Sets flex-basis to `100%`.
 
-## Customization
+## Reference
 
-Flex is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+Below is a reference to all CSS variables that are referenced the flex component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="CSS Variables" src="flex/src/_root.scss">
-
-```scss
-:root {
-  --vb-flex-gap: 1em;
-  --vb-flex-wrap: wrap;
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="flex/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-
-$breakpoints: core.$breakpoints !default;
-$gap: 1em !default;
-$gap-map: (
-  "none": 0,
-  "xs": 1px,
-  "sm": .5em,
-  "md": 1em,
-  "lg": 1.5em,
-  "xl": 2em,
-) !default;
-$wrap: wrap !default;
-$order-count: 6 !default;
-$grow-count: 6 !default;
-$shrink-count: 6 !default;
-
-@include css.set("flex", (
-  "gap": $gap,
-  "gap-x": null,
-  "gap-y": null,
-  "wrap": $wrap,
-));
-```
-</DocBlock>
+<ReferenceTable id="cssvar-flex" valueLabel="Fallback" filter={false} data={{
+  "--vb-flex-wrap": "wrap",
+  "--vb-flex-gap": "1em",
+  "--vb-flex-gap-x": "var(--vb-flex-gap)",
+  "--vb-flex-gap-y": "var(--vb-flex-gap)",
+}} />

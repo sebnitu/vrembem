@@ -5,7 +5,9 @@ package: "@vrembem/grid"
 status: "layout"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Grid
 
@@ -20,6 +22,36 @@ npm install @vrembem/grid
   @use "@vrembem/grid";
   ```
 </CodeExample>
+
+## Config options
+
+Grid comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Used to build grid column modifiers and col utilities
+  // @type number
+  "grid-cols": 6,
+
+  // Used to build grid row modifiers and row utilities
+  // @type number
+  "grid-rows": 6,
+
+  // A map of gap modifiers to output. Use the "default" key for a default value.
+  // Default values are not output as modifiers.
+  // @type map
+  "grid-gap": (
+    "default": 2em,
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "lg": 3em,
+    "xl": 4em
+  )
+);
+```
+</CodeExpander>
 
 ## Basic usage
 
@@ -230,12 +262,12 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-select">Variants Demo:</label>
     <select id="demo-grid-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap">
-      <option value="grid_gap_none">grid_gap_none</option>
-      <option value="grid_gap_xs">grid_gap_xs</option>
-      <option value="grid_gap_sm">grid_gap_sm</option>
-      <option value="grid_gap_md">grid_gap_md</option>
-      <option value="grid_gap_lg">grid_gap_lg</option>
-      <option value="grid_gap_xl">grid_gap_xl</option>
+      <option value="grid grid_cols_2">None</option>
+      <option value="grid grid_cols_2 grid_gap_none">grid_gap_none</option>
+      <option value="grid grid_cols_2 grid_gap_xs">grid_gap_xs</option>
+      <option value="grid grid_cols_2 grid_gap_sm">grid_gap_sm</option>
+      <option value="grid grid_cols_2 grid_gap_lg">grid_gap_lg</option>
+      <option value="grid grid_cols_2 grid_gap_xl">grid_gap_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -258,7 +290,6 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 - `grid_gap_none`
 - `grid_gap_xs`
 - `grid_gap_sm`
-- `grid_gap_md`
 - `grid_gap_lg`
 - `grid_gap_xl`
 
@@ -270,12 +301,12 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-x-select">Variants Demo:</label>
     <select id="demo-grid-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap-x">
-      <option value="grid_gap-x_none">grid_gap-x_none</option>
-      <option value="grid_gap-x_xs">grid_gap-x_xs</option>
-      <option value="grid_gap-x_sm">grid_gap-x_sm</option>
-      <option value="grid_gap-x_md">grid_gap-x_md</option>
-      <option value="grid_gap-x_lg">grid_gap-x_lg</option>
-      <option value="grid_gap-x_xl">grid_gap-x_xl</option>
+      <option value="grid grid_cols_2">None</option>
+      <option value="grid grid_cols_2 grid_gap-x_none">grid_gap-x_none</option>
+      <option value="grid grid_cols_2 grid_gap-x_xs">grid_gap-x_xs</option>
+      <option value="grid grid_cols_2 grid_gap-x_sm">grid_gap-x_sm</option>
+      <option value="grid grid_cols_2 grid_gap-x_lg">grid_gap-x_lg</option>
+      <option value="grid grid_cols_2 grid_gap-x_xl">grid_gap-x_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -298,7 +329,6 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 - `grid_gap-x_none`
 - `grid_gap-x_xs`
 - `grid_gap-x_sm`
-- `grid_gap-x_md`
 - `grid_gap-x_lg`
 - `grid_gap-x_xl`
 
@@ -310,12 +340,12 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-y-select">Variants Demo:</label>
     <select id="demo-grid-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap-y">
-      <option value="grid_gap-y_none">grid_gap-y_none</option>
-      <option value="grid_gap-y_xs">grid_gap-y_xs</option>
-      <option value="grid_gap-y_sm">grid_gap-y_sm</option>
-      <option value="grid_gap-y_md">grid_gap-y_md</option>
-      <option value="grid_gap-y_lg">grid_gap-y_lg</option>
-      <option value="grid_gap-y_xl">grid_gap-y_xl</option>
+      <option value="grid grid_cols_2">None</option>
+      <option value="grid grid_cols_2 grid_gap-y_none">grid_gap-y_none</option>
+      <option value="grid grid_cols_2 grid_gap-y_xs">grid_gap-y_xs</option>
+      <option value="grid grid_cols_2 grid_gap-y_sm">grid_gap-y_sm</option>
+      <option value="grid grid_cols_2 grid_gap-y_lg">grid_gap-y_lg</option>
+      <option value="grid grid_cols_2 grid_gap-y_xl">grid_gap-y_xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
@@ -338,7 +368,6 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 - `grid_gap-y_none`
 - `grid_gap-y_xs`
 - `grid_gap-y_sm`
-- `grid_gap-y_md`
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
@@ -667,49 +696,15 @@ This utility also comes with optional media breakpoint variants. This allows cha
 - `lg:row-[value]`
 - `xl:row-[value]`
 
-## Customization
+## Reference
 
-Grid is primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+Below is a reference to all CSS variables that are referenced the grid component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="CSS Variables" src="grid/src/_root.scss">
-
-```scss
-:root {
-  --vb-grid-cols: 1;
-  --vb-grid-rows: 1;
-  --vb-grid-flow: dense;
-  --vb-grid-gap: 2em;
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="grid/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-
-$breakpoints: core.$breakpoints !default;
-$cols: 6 !default;
-$rows: 6 !default;
-$flow: dense !default;
-$gap: 2em !default;
-$gap-map: (
-  "none": 0,
-  "xs": 0.5em,
-  "sm": 1em,
-  "md": 2em,
-  "lg": 3em,
-  "xl": 4em
-) !default;
-
-@include css.set("grid", (
-  "cols": 1,
-  "rows": 1,
-  "flow": $flow,
-  "gap": $gap,
-  "gap-x": null,
-  "gap-y": null,
-));
-```
-</DocBlock>
+<ReferenceTable id="cssvar-grid" valueLabel="Fallback" filter={false} data={{
+  "--vb-grid-gap": "2em",
+  "--vb-grid-gap-x": "var(--vb-grid-gap)",
+  "--vb-grid-gap-y": "var(--vb-grid-gap)",
+  "--vb-grid-flow": "dense",
+  "--vb-grid-cols": "1",
+  "--vb-grid-rows": "1",
+}} />

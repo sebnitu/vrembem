@@ -176,7 +176,7 @@
 
   align-items: center;
   background-color: palette.get("primary", 50%, 0%);
-  border-radius: core.$border-radius-circle;
+  border-radius: css.get("border-radius-circle");
   display: inline-flex;
   font-size: 1rem;
   font-weight: 500;

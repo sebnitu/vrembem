@@ -1,16 +1,11 @@
 @use "../modules/css";
 @use "../modules/palette";
-
-$screen-color: palette.get("neutral", 10) !default;
-$screen-opacity: 0.8 !default;
-$screen-padding: 1em !default;
-
 @include css.set(
   "core",
   "screen",
   (
-    "color": $screen-color,
-    "opacity": $screen-opacity,
-    "padding": $screen-padding
+    "color": palette.get("neutral", 10),
+    "opacity": 80%,
+    "padding": 1em
   )
 );

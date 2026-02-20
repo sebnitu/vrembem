@@ -1,0 +1,31 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$config: () !default;
+
+// prettier-ignore
+$defaults: (
+  // Used to build grid column modifiers and col utilities
+  // @type number
+  "grid-cols": 6,
+
+  // Used to build grid row modifiers and row utilities
+  // @type number
+  "grid-rows": 6,
+
+  // A map of gap modifiers to output. Use the "default" key for a default value.
+  // Default values are not output as modifiers.
+  // @type map
+  "grid-gap": (
+    "default": 2em,
+    "none": 0,
+    "xs": 0.5em,
+    "sm": 1em,
+    "lg": 3em,
+    "xl": 4em
+  )
+);
+
+@include config.apply($config, $defaults);
+@include css.register("grid");

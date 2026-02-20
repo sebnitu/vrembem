@@ -1,14 +1,17 @@
+@use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-@each $key, $value in var.$gap-map {
+$-flex-gap: map.remove(config.get("flex-gap"), "default");
+
+@each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap", $key)} {
     @include css.override("flex", "gap", $value);
   }
 }
 
-@each $key, $value in var.$gap-map {
+@each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap-x", $key)} {
     @include css.override("flex", "gap-x", $value);
   }
@@ -18,15 +21,15 @@
   }
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
-    @each $key, $value in var.$gap-map {
+    @each $key, $value in $-flex-gap {
       #{core.bem("flex", null, "gap", $key, $bp)} {
         @include css.override("flex", "gap", $value);
       }
     }
 
-    @each $key, $value in var.$gap-map {
+    @each $key, $value in $-flex-gap {
       #{core.bem("flex", null, "gap-x", $key, $bp)} {
         @include css.override("flex", "gap-x", $value);
       }

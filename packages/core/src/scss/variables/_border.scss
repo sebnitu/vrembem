@@ -1,32 +1,19 @@
 @use "../modules/css";
-@use "../modules/theme";
-
-$border-width: 1px !default;
-$border-style: solid !default;
-
 @include css.set(
   "core",
   (
-    "border-width": $border-width,
-    "border-style": $border-style
+    "border-width": 1px,
+    "border-style": solid
   )
 );
-
-$border: css.get("border-width") css.get("border-style") css.get("border-color") !default;
-$border-dark: css.get("border-width") css.get("border-style") css.get("border-color-dark") !default;
-$border-darker: css.get("border-width") css.get("border-style") css.get("border-color-darker") !default;
-$border-radius: 0.25rem !default;
-$border-radius-lg: 0.5rem !default;
-$border-radius-circle: 9999px !default;
-
 @include css.set(
   "core",
   (
-    "border": $border,
-    "border-dark": $border-dark,
-    "border-darker": $border-darker,
-    "border-radius": $border-radius,
-    "border-radius-lg": $border-radius-lg,
-    "border-radius-circle": $border-radius-circle
+    "border": css.get("border-width") css.get("border-style") css.get("border-color"),
+    "border-dark": css.get("border-width") css.get("border-style") css.get("border-color-dark"),
+    "border-darker": css.get("border-width") css.get("border-style") css.get("border-color-darker"),
+    "border-radius": 0.25rem,
+    "border-radius-lg": 0.5rem,
+    "border-radius-circle": 9999px
   )
 );

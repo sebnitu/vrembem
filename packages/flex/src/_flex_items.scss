@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/config";
 
 #{core.bem("flex", null, "items", "initial")} {
   > * {
@@ -39,7 +39,7 @@
   }
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
     #{core.bem("flex", null, "items", "initial", $bp)} {
       > * {
@@ -105,7 +105,7 @@
   flex: 1 0 100%;
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
     #{core.bem("flex-initial", $bp: $bp)} {
       flex: initial; // Equivalent to setting flex: 0 1 auto

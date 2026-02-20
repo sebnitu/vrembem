@@ -62,7 +62,11 @@ $-watchers: ();
 ///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
-  @return map.get($-config, $keys...);
+  @if map.has-key($-config, $keys...) {
+    @return map.get($-config, $keys...);
+  } @else {
+    @error "Config option has not been set: `#{$keys}`";
+  }
 }
 
 /// Set an option in the configuration map by providing a key and value to
@@ -187,9 +191,13 @@ $-watchers: ();
   $-watchers: map.deep-remove($-watchers, $prop, $id) !global;
 }
 
-/// Log to console the entire configuration map.
+/// Log to console the entire configuration map or a specific value.
+///
+/// @param {string} $value ("*")
+///   A specific value to log.
+///
 @mixin log($value: "*") {
-  @if $value == "*" or $value == "all" {
+  @if $value == "*" {
     @include debug-map($-config, "Config options map");
   } @else {
     @if map.has-key($-config, $value) {

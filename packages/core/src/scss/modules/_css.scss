@@ -3,6 +3,7 @@
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
+@use "../utilities/map-prefix" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
@@ -14,7 +15,10 @@
 $-css-vars: (
   "core": (
     "prefix": (
-      "config": "prefix-cssvar"
+      "config": (
+        "prefix-cssvar",
+        "default"
+      )
     ),
     "breakpoint": (
       "config": "breakpoints"
@@ -30,11 +34,11 @@ $-css-vars: (
 ///   The component to check for its existence.
 ///
 /// @param {boolean} $required (true)
-///   Whether or not the component is required. If set to `true`, will throw an
+///   Whether or not the component is required. If set to `true` will throw an
 ///   error when it's not found, otherwise will return false.
 ///
 /// @return {boolean|error}
-///   If component exists in map, returns true. Otherwise, will throw error.
+///   If component exists in map, returns true. Otherwise will throw error.
 ///
 /// @access private
 ///
@@ -68,6 +72,18 @@ $-css-vars: (
 ///
 @function -prefix($component) {
   $prefix: config.get("prefix-cssvar");
+
+  @if meta.type-of($prefix) == "map" {
+    // Get the prefix if a custom component prefix is defined
+    @if map.has-key($prefix, $component) {
+      $prefix: map.get($prefix, $component);
+    }
+
+    // Else, get the default prefix
+    @else {
+      $prefix: map.get($prefix, "default");
+    }
+  }
 
   @if $prefix and $prefix != "" {
     $prefix: "#{$prefix}-";
@@ -166,7 +182,15 @@ $-css-vars: (
 
     // If the map has a key of config, get the value from config directly
     @if meta.type-of($value) == "map" and map.has-key($value, "config") {
-      $config-value: config.get(map.get($value, "config"));
+      // Store the config path and the initial config value
+      $config-path: map.get($value, "config");
+      $config-value: config.get(list.nth($config-path, 1));
+
+      // If the config path is more specific and the returned config value is a map
+      @if list.length($config-path) > 1 and meta.type-of($config-value) == "map" {
+        // Return the specific value based on the provided config path
+        $config-value: config.get($config-path...);
+      }
 
       @if meta.type-of($config-value) == "map" {
         @each $key, $value in $config-value {
@@ -215,7 +239,7 @@ $-css-vars: (
 ///
 @function get($component, $props...) {
   // Return custom properties map if component is set to "*" value
-  @if $component == "*" or $component == "all" {
+  @if $component == "*" {
     @return $-css-vars;
   }
 
@@ -335,12 +359,20 @@ $-css-vars: (
 ///
 @mixin set($component, $prop, $value: null, $deep: true) {
   // If component is set to "*", update the entire custom properties map
-  @if $component == "*" or $component == "all" {
+  // This primarily allows other modules to more easily modify the CSS var map
+  // by circumventing the limitations of what `set` allows.
+  // Example in core/theme:
+  // @include css.set("*", $result);
+  @if $component == "*" {
     $-css-vars: $prop !global;
   }
 
-  // If prop is set to "*", update the component map in custom properties map
-  @else if $prop == "*" or $prop == "all" {
+  // If prop is set to "*", merge the value map with an entire component map
+  // This primarily allows other modules to more easily modifier a component's
+  // CSS var map by circumventing the limitations of what `set` allows.
+  // Example in core/theme:
+  // @include css.set($component, "*", $result, $deep: false);
+  @else if $prop == "*" {
     @if $deep != true {
       $-css-vars: map.merge(
         $-css-vars,
@@ -359,53 +391,29 @@ $-css-vars: (
   }
 
   // If the provided prop is a map
+  // Scenario: $prop: ("prop": "value")
   @else if meta.type-of($prop) == "map" {
-    // Loop through the prop map
-    @each $propKey, $propValue in $prop {
-      // Scenario: ("prop": ("prop": "value"))
-      @if meta.type-of($propValue) == "map" {
-        @each $key, $value in $propValue {
-          $-css-vars: map.set($-css-vars, $component, "#{$propKey}-#{$key}", $value) !global;
-        }
-      }
-
-      // Scenario: ("prop": "value")
-      @else {
-        $-css-vars: map.set($-css-vars, $component, $propKey, $propValue) !global;
-      }
+    @each $prop, $value in $prop {
+      @include set($component, $prop, $value);
     }
   }
 
-  // Scenario: "prop", ("prop": "value")
-  @else if meta.type-of($value) == "map" {
-    @each $key, $value in $value {
-      // If the map has the value of "config", store the entire map directly
-      @if $component == "core" and $key == "config" {
-        $-css-vars: map.set(
-          $-css-vars,
-          $component,
-          $prop,
-          (
-            $key: $value
-          )
-        ) !global;
-      }
+  // If the provided value is a map and doesn't have a key of "config"
+  // Scenario: "prop", $value: ("prop": "value")
+  @else if meta.type-of($value) == "map" and not map.has-key($value, "config") {
+    $prefixed-map: map-prefix($value, $prop);
 
-      // Else, suffix the custom property with the key
-      @else {
-        $new-key: "#{$prop}-#{$key}";
-
-        @if $key == "" {
-          $new-key: $prop;
-        }
-
-        $-css-vars: map.set($-css-vars, $component, $new-key, $value) !global;
-      }
+    @each $prop, $value in $prefixed-map {
+      @include set($component, $prop, $value);
     }
   }
 
   // Scenario: "prop", "value"
+  // Scenario: "prop", $value: ("config": "config-key")
   @else {
+    // If the map has the key of "config", we store the entire map directly.
+    // This is used for pulling the value directly from the config module when
+    // the CSS variable is output instead of storing it when set.
     $-css-vars: map.set($-css-vars, $component, $prop, $value) !global;
   }
 }
@@ -474,8 +482,7 @@ $-css-vars: (
 ///
 /// @param {string} $component ("*")
 ///   The component to output all custom properties from. If no component is
-///   passed or set to "*" or "all", will output all custom properties for all
-///   components.
+///   passed or set to "*" will output all custom properties for all components.
 ///
 /// @example scss
 ///   // Example value in custom properties map:
@@ -500,7 +507,7 @@ $-css-vars: (
 ///   }
 ///
 @mixin output($component: "*") {
-  @if $component == "*" or $component == "all" {
+  @if $component == "*" {
     // Call output() for every component in $-css-vars
     @each $component in map.keys($-css-vars) {
       @include output($component);
@@ -526,7 +533,7 @@ $-css-vars: (
 ///   properties map.
 ///
 @mixin log($component: "*", $props...) {
-  @if $component == "*" or $component == "all" {
+  @if $component == "*" {
     @include debug-map($-css-vars, 'Custom properties of "*"');
   } @else if -component-exists($component) {
     @if list.length($props) > 0 {

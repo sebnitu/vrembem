@@ -4,10 +4,10 @@
 @use "./variables" as var;
 
 .doc-block {
-  border: core.$border;
-  border-radius: core.$border-radius;
+  border: css.get("border");
+  border-radius: css.get("border-radius");
   box-shadow: 0 0 0 0 palette.get("primary", 90);
-  font-size: core.$font-size;
+  font-size: css.get("font-size");
   line-height: css.get("line-height");
   margin: 2rem 0 !important;
   transition: css.get("transition");
@@ -34,7 +34,7 @@
   }
 
   .type {
-    font-size: core.$font-size;
+    font-size: css.get("font-size");
     line-height: css.get("line-height");
   }
 }
@@ -49,7 +49,7 @@
 }
 
 .doc-block__content {
-  border-top: core.$border;
+  border-top: css.get("border");
   position: relative;
 }
 

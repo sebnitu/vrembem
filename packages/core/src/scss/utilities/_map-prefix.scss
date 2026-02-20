@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:meta";
+
+/// Prefix all map keys with a provided string value.
+///
+/// @param {map} $map - The map to be modified
+/// @param {string} $prefix ("") - The string to prefix all map keys with
+///
+/// @return {map} The modified map with new prefixed key values
+///
+@function map-prefix($map, $prefix: "") {
+  $result: ();
+
+  @each $key, $value in $map {
+    $new-key: "#{$prefix}-#{$key}";
+
+    @if $prefix == "" {
+      $new-key: $key;
+    } @else if $key == "" {
+      $new-key: $prefix;
+    }
+
+    @if meta.type-of($value) == "map" {
+      $value: map-prefix($value, $new-key);
+      $result: map.merge($result, $value);
+    } @else {
+      $result: map.set($result, $new-key, $value);
+    }
+  }
+
+  @return $result;
+}

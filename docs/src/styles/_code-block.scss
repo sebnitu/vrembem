@@ -4,14 +4,14 @@
 @use "./variables" as var;
 
 .code-block {
-  font-size: core.$font-size;
+  font-size: css.get("font-size");
   line-height: css.get("line-height");
   position: relative;
   text-align: left;
 
   .pre {
     background-color: css.get("background-dark");
-    border: core.$border;
+    border: css.get("border");
     padding-right: 4em;
   }
 
@@ -48,7 +48,7 @@
 .code-block__copy-button {
   align-items: center;
   background-color: css.get("background-dark");
-  border-radius: core.$border-radius;
+  border-radius: css.get("border-radius");
   color: css.get("foreground-lighter");
   display: flex;
   inset: 0.8rem;
@@ -108,7 +108,7 @@
 
   @include core.media-max(var.$bp-code) {
     .pre {
-      border: core.$border;
+      border: css.get("border");
       border-radius: css.get("border-radius");
       margin: 0;
     }

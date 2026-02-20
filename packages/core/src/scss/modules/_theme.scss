@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/empty-map" as *;
+@use "../utilities/map-prefix" as *;
 @use "../utilities/remove-nth" as *;
 @use "./config";
 @use "./css";
@@ -16,7 +17,7 @@
   )
 );
 
-/// Used to track theme keys that get added to the `css.$-variables` map.
+/// Used to track theme keys that get added to the `css.$-css-vars` map.
 /// @type list
 /// @access private
 $-theme-keys: "light", "dark";
@@ -109,21 +110,22 @@ $-theme-keys: "light", "dark";
   // Initialize the results var with the custom properties map
   $result: css.get("*");
 
-  // If the value is a map, apply it with deep-merge
-  @if meta.type-of($prop) == "map" {
+  // If no property or value are provided, create a theme with an empty map
+  @if not $prop and not $value {
+    $result: map.set($result, $component, $theme, empty-map());
+  }
+
+  // If the prop is a map, apply it with deep-merge
+  @else if meta.type-of($prop) == "map" {
+    $prefixed-map: map-prefix($prop);
     $result: map.deep-merge(
       $result,
       (
         $component: (
-            $theme: $prop
+            $theme: $prefixed-map
           )
       )
     );
-  }
-
-  // If no property or value are provided, create a theme with an empty map
-  @else if not ($prop) and not ($value) {
-    $result: map.set($result, $component, $theme, empty-map());
   }
 
   // Otherwise, just set the value directly
@@ -165,8 +167,8 @@ $-theme-keys: "light", "dark";
 ///   @include theme.remove("*", "*");
 ///
 @mixin remove($component, $theme, $prop: "*") {
-  @if $component == "*" or $component == "all" {
-    // Call output() for every component in `css.$-variables`
+  @if $component == "*" {
+    // Call remove() for every component in `css.$-css-vars`
     @each $component in map.keys(css.get("*")) {
       @include remove($component, $theme, $prop);
     }
@@ -205,7 +207,7 @@ $-theme-keys: "light", "dark";
       $result: map.deep-remove($result, $theme, $prop);
     }
 
-    // Save the results to `css.$-variables`
+    // Save the results to `css.$-css-vars`
     @include css.set($component, "*", $result, $deep: false);
   }
 }
@@ -215,7 +217,7 @@ $-theme-keys: "light", "dark";
 /// included in the output.
 ///
 /// @param {string} $component ("*")
-///   The component to output. Use "*" or "all" to output a theme from all
+///   The component to output. Use "*" to output a theme from all
 ///   components.
 /// @param {string} $theme
 ///   The theme to output.
@@ -233,8 +235,8 @@ $-theme-keys: "light", "dark";
 ///   }
 ///
 @mixin output-theme($component: "*", $theme) {
-  @if $component == "*" or $component == "all" {
-    // Call output() for every component in `css.$-variables`
+  @if $component == "*" {
+    // Call output-theme() for every component in `css.$-css-vars`
     @each $component in map.keys(css.get("*")) {
       @include output-theme($component, $theme);
     }
@@ -277,7 +279,7 @@ $-theme-keys: "light", "dark";
 ///
 /// @param {string} $component ("*")
 ///   The component to output all applied themes. If no component is passed or
-///   set to "*" or "all", will output all applied themes for all component.
+///   set to "*" will output all applied themes for all component.
 ///
 /// @example scss
 ///   // Output all themes of all components
