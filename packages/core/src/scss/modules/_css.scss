@@ -3,6 +3,7 @@
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
+@use "../utilities/prefix-map" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
@@ -362,7 +363,7 @@ $-css-vars: (
     $-css-vars: $prop !global;
   }
 
-  // If prop is set to "*", update the component map in custom properties map
+  // If prop is set to "*", merge the component map in custom properties map
   @else if $prop == "*" or $prop == "all" {
     @if $deep != true {
       $-css-vars: map.merge(
@@ -385,50 +386,42 @@ $-css-vars: (
   @else if meta.type-of($prop) == "map" {
     // Loop through the prop map
     @each $propKey, $propValue in $prop {
-      // Scenario: ("prop": ("prop": "value"))
+      // Scenario: $prop: ("prop": ("prop": "value"))
       @if meta.type-of($propValue) == "map" {
-        @each $key, $value in $propValue {
-          $-css-vars: map.set($-css-vars, $component, "#{$propKey}-#{$key}", $value) !global;
-        }
+        $prefixed-map: prefix-map($propKey, $propValue);
+        $-css-vars: map.deep-merge(
+          $-css-vars,
+          (
+            $component: $prefixed-map
+          )
+        ) !global;
       }
 
-      // Scenario: ("prop": "value")
+      // Scenario: $prop: ("prop": "value")
       @else {
         $-css-vars: map.set($-css-vars, $component, $propKey, $propValue) !global;
       }
     }
   }
 
-  // Scenario: "prop", ("prop": "value")
-  @else if meta.type-of($value) == "map" {
-    @each $key, $value in $value {
-      // If the map has the value of "config", store the entire map directly
-      @if $component == "core" and $key == "config" {
-        $-css-vars: map.set(
-          $-css-vars,
-          $component,
-          $prop,
-          (
-            $key: $value
-          )
-        ) !global;
-      }
-
-      // Else, suffix the custom property with the key
-      @else {
-        $new-key: "#{$prop}-#{$key}";
-
-        @if $key == "" {
-          $new-key: $prop;
-        }
-
-        $-css-vars: map.set($-css-vars, $component, $new-key, $value) !global;
-      }
-    }
+  // If the provided value is a map and doesn't have a key of "config"
+  // Scenario: "prop", $value: ("prop": "value")
+  @else if meta.type-of($value) == "map" and not map.has-key($value, "config") {
+    $prefixed-map: prefix-map($prop, $value);
+    $-css-vars: map.deep-merge(
+      $-css-vars,
+      (
+        $component: $prefixed-map
+      )
+    ) !global;
   }
 
   // Scenario: "prop", "value"
+  // Scenario: "prop", $value: ("config": "config-key")
   @else {
+    // If the map has the key of "config", we store the entire map directly.
+    // This is used for pulling the value directly from the config module when
+    // the CSS variable is output instead of storing it when set.
     $-css-vars: map.set($-css-vars, $component, $prop, $value) !global;
   }
 }

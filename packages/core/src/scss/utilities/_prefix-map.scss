@@ -2,16 +2,22 @@
 
 /// Prefix all map keys with a provided string value.
 ///
-/// @param {string} $string - The string to prefix all map keys with
+/// @param {string} $prefix - The string to prefix all map keys with
 /// @param {map} $map - The map to be modified
 ///
 /// @return {map} The modified map with new prefixed key values
 ///
-@function prefix-map($string, $map) {
+@function prefix-map($prefix, $map) {
   $result: ();
 
   @each $key, $value in $map {
-    $result: map.set($result, "#{$string}-#{$key}", $value);
+    $new-key: $prefix;
+
+    @if ($key != "") {
+      $new-key: "#{$new-key}-#{$key}";
+    }
+
+    $result: map.set($result, $new-key, $value);
   }
 
   @return $result;
