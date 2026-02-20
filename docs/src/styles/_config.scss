@@ -49,36 +49,42 @@
 @include theme.set(
   "astro",
   "light",
-  (
-    "code-background": css.get("background-dark"),
-    "code-foreground": css.get("foreground"),
-    "code-color-text": css.get("foreground"),
-    "code-token-comment": css.get("foreground-lighter"),
-    "code-token-constant": #1b6bc6,
-    "code-token-string": #1b6bc6,
-    "code-token-keyword": css.get("foreground"),
-    "code-token-parameter": #df7a32,
-    "code-token-function": #794bcf,
-    "code-token-string-expression": #309b4a,
-    "code-token-punctuation": #ce3b4a,
-    "code-token-link": #ce3b4a
+  core.prefix-map(
+    "code",
+    (
+      "background": css.get("background-dark"),
+      "foreground": css.get("foreground"),
+      "color-text": css.get("foreground"),
+      "token-comment": css.get("foreground-lighter"),
+      "token-constant": #1b6bc6,
+      "token-string": #1b6bc6,
+      "token-keyword": css.get("foreground"),
+      "token-parameter": #df7a32,
+      "token-function": #794bcf,
+      "token-string-expression": #309b4a,
+      "token-punctuation": #ce3b4a,
+      "token-link": #ce3b4a
+    )
   )
 );
 @include theme.set(
   "astro",
   "dark",
-  (
-    "code-background": css.get("background-dark"),
-    "code-foreground": css.get("foreground"),
-    "code-color-text": css.get("foreground"),
-    "code-token-comment": css.get("foreground-lighter"),
-    "code-token-constant": #79b8ff,
-    "code-token-string": #79b8ff,
-    "code-token-keyword": css.get("foreground"),
-    "code-token-parameter": #ffab70,
-    "code-token-function": #b392f0,
-    "code-token-string-expression": #85e89d,
-    "code-token-punctuation": #f97583,
-    "code-token-link": #f97583
+  core.prefix-map(
+    "code",
+    (
+      "background": css.get("background-dark"),
+      "foreground": css.get("foreground"),
+      "color-text": css.get("foreground"),
+      "token-comment": css.get("foreground-lighter"),
+      "token-constant": #79b8ff,
+      "token-string": #79b8ff,
+      "token-keyword": css.get("foreground"),
+      "token-parameter": #ffab70,
+      "token-function": #b392f0,
+      "token-string-expression": #85e89d,
+      "token-punctuation": #f97583,
+      "token-link": #f97583
+    )
   )
 );
