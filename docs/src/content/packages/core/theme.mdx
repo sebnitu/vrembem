@@ -24,16 +24,16 @@ Theme colors differ from palette colors in that you can create a semantic color 
 
 <ReferenceBar type="mixin" />
 
-Set a new or modify existing theme properties. These are stored as custom properties in the `core/css` module.
+Set a new or modify existing theme custom properties. These are stored as CSS variables in the `core/css` module.
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string">
-  The component to set a property value for.
-</ReferenceCard>
-
 <ReferenceCard name="$theme" type="string">
   The theme to set a property value for.
+</ReferenceCard>
+
+<ReferenceCard name="$component" type="string">
+  The component to set a property value for. If not provided, "core" is used as the default component.
 </ReferenceCard>
 
 <ReferenceCard name="$prop" type="string | map" defaults="null">
@@ -49,16 +49,16 @@ Set a new or modify existing theme properties. These are stored as custom proper
 <CodeExample lang="scss">
   ```scss
   // Set the foreground custom property for the card dark theme.
-  @include theme.set("card", "dark", "foreground", blue);
+  @include theme.set("dark", "card", "foreground", blue);
 
   // Set the background and foreground custom properties for the card light theme using a map of property/value pairs.
-  @include theme.set("card", "light", (
+  @include theme.set("light", "card", (
     "background": blue,
     "foreground": white,
   ));
 
   // Create an empty theme by not passing a property or value. This will take the properties of the default theme once output.
-  @include theme.set("card", "dark");
+  @include theme.set("dark", "card");
   ```
 </CodeExample>
 

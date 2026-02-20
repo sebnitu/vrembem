@@ -54,8 +54,8 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
 
 // Themes
 @include theme.set(
-  "table",
   "light",
+  "table",
   (
     "background": css.get("background"),
     "background-zebra": palette.get("neutral", 50%, 6%),
@@ -67,8 +67,8 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   )
 );
 @include theme.set(
-  "table",
   "dark",
+  "table",
   (
     "background-zebra": palette.get("neutral", 50%, 10%),
     "background-hover": palette.get("primary", 50%, 20%),

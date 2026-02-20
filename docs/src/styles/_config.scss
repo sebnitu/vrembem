@@ -47,8 +47,8 @@
 @include theme.set("light", "background-glass", palette.get("neutral", 100, 90%));
 @include theme.set("dark", "background-glass", palette.get("neutral", 10, 90%));
 @include theme.set(
-  "astro",
   "light",
+  "astro",
   (
     "code": (
       "background": css.get("background-dark"),
@@ -69,8 +69,8 @@
   )
 );
 @include theme.set(
-  "astro",
   "dark",
+  "astro",
   (
     "code": (
       "background": css.get("background-dark"),

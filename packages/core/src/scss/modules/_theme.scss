@@ -62,13 +62,14 @@ $-theme-keys: "light", "dark";
   @return ".#{$prefix}#{$theme}";
 }
 
-/// Set a new or modify existing theme properties. These are stored as custom
-/// properties in the `core/css` module.
+/// Set a new or modify existing theme custom properties. These are stored as
+/// CSS variables in the `core/css` module.
 ///
-/// @param {string} $component
-///   The component to set a property value for.
 /// @param {string} $theme
 ///   The theme to set a property value for.
+/// @param {string} $component
+///   The component to set a property value for. If not provided, "core" is used
+///   as the default component.
 /// @param {string|map} $prop (null)
 ///   The property value to set for the theme. Can be a map containing
 ///   prop/value pairs.
@@ -77,12 +78,12 @@ $-theme-keys: "light", "dark";
 ///
 /// @example scss
 ///   // Set the foreground custom property for the card dark theme.
-///   @include theme.set("card", "dark", "foreground", blue);
+///   @include theme.set("dark", "card", "foreground", blue);
 ///
 /// @example scss
 ///   // Set the background and foreground custom properties for the card light
 ///   // theme using a map of property/value pairs.
-///   @include theme.set("card", "light", (
+///   @include theme.set("light", "card", (
 ///     "background": blue,
 ///     "foreground": white,
 ///   ));
@@ -90,24 +91,38 @@ $-theme-keys: "light", "dark";
 /// @example scss
 ///   // Create an empty theme by not passing a property or value. This will
 ///   // take the properties of the default theme once output.
-///   @include theme.set("card", "dark");
+///   @include theme.set("dark", "card");
 ///
-@mixin set($component, $theme, $prop: null, $value: null) {
+@mixin set($theme, $component, $prop: null, $value: null) {
   // Set theme to default if the value "default" is passed
   @if $theme == "default" {
     $theme: config.get("theme-default");
   }
 
-  // Shift the values of arguments if component was not passed and sets
-  // component to "core" as the default.
-  @if not($value) and ($prop) and (meta.type-of($prop) != "map") {
-    $value: $prop;
-    $prop: $theme;
-    $theme: $component;
+  // Add the provided theme to the theme key's list
+  @include -add-theme-key($theme);
+
+  // If the component argument is not provided, we want to shift the arguments
+  // and ensure that we use "core" as the default component.
+  //
+  // Scenario
+  // Init  > "theme", ("prop": "value"), null, null
+  // Shift > "theme", "core", ("prop": "value"), null
+  @if meta.type-of($component) == "map" {
+    $prop: $component;
     $component: "core";
   }
 
-  // Initialize the results var with the custom properties map
+  // Scenario:
+  // Init > "theme", "prop", "value", null
+  // Shift > "theme", "core", "prop", "value"
+  @else if not $value and $prop and meta.type-of($prop) != "map" {
+    $value: $prop;
+    $prop: $component;
+    $component: "core";
+  }
+
+  // Initialize the results var with the CSS variables map
   $result: css.get("*");
 
   // If no property or value are provided, create a theme with an empty map
@@ -115,7 +130,7 @@ $-theme-keys: "light", "dark";
     $result: map.set($result, $component, $theme, empty-map());
   }
 
-  // Handle this as a normal theme.set
+  // Handle this as a normal theme.set call
   @else {
     // Build the theme map using the prop and value arguments
     $theme-map: (
@@ -130,7 +145,6 @@ $-theme-keys: "light", "dark";
     $result: map.deep-merge($result, $component-theme-map);
   }
 
-  @include -add-theme-key($theme);
   @include css.set("*", $result);
 }
 
@@ -318,8 +332,8 @@ $-theme-keys: "light", "dark";
 
 /// Initialize the core light theme.
 @include set(
-  "core",
   "light",
+  "core",
   (
     "background": palette.get("neutral", 100%),
     "background-dark": palette.get("neutral", 98%),
@@ -342,8 +356,8 @@ $-theme-keys: "light", "dark";
 
 /// Initialize the core dark theme.
 @include set(
-  "core",
   "dark",
+  "core",
   (
     "background": palette.get("neutral", 10%),
     "background-dark": palette.get("neutral", 12%),

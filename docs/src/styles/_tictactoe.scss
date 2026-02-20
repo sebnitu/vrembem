@@ -8,8 +8,8 @@
   )
 );
 @include theme.set(
-  "tictactoe",
   "light",
+  "tictactoe",
   (
     "background-winner": palette.get("primary", 90),
     "foreground-winner": palette.get("primary", 30),
@@ -18,8 +18,8 @@
   )
 );
 @include theme.set(
-  "tictactoe",
   "dark",
+  "tictactoe",
   (
     "background-winner": palette.get("primary", 15),
     "foreground-winner": palette.get("primary", 70),
