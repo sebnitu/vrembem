@@ -1,8 +1,8 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "../utilities/args-to-map" as *;
 @use "../utilities/empty-map" as *;
-@use "../utilities/map-prefix" as *;
 @use "../utilities/remove-nth" as *;
 @use "./config";
 @use "./css";
@@ -115,22 +115,19 @@ $-theme-keys: "light", "dark";
     $result: map.set($result, $component, $theme, empty-map());
   }
 
-  // If the prop is a map, apply it with deep-merge
-  @else if meta.type-of($prop) == "map" {
-    $prefixed-map: map-prefix($prop);
-    $result: map.deep-merge(
-      $result,
-      (
-        $component: (
-            $theme: $prefixed-map
-          )
-      )
-    );
-  }
-
-  // Otherwise, just set the value directly
+  // Handle this as a normal theme.set
   @else {
-    $result: map.set($result, $component, $theme, $prop, $value);
+    // Build the theme map using the prop and value arguments
+    $theme-map: (
+      $theme: args-to-map($prop, $value)
+    );
+
+    // Assign the theme map to the appropriate component as a map
+    $component-theme-map: (
+      $component: $theme-map
+    );
+
+    $result: map.deep-merge($result, $component-theme-map);
   }
 
   @include -add-theme-key($theme);

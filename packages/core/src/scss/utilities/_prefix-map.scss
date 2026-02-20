@@ -8,7 +8,7 @@
 ///
 /// @return {map} The modified map with new prefixed key values
 ///
-@function map-prefix($map, $prefix: "") {
+@function prefix-map($prefix, $map) {
   $result: ();
 
   @each $key, $value in $map {
@@ -20,12 +20,7 @@
       $new-key: $prefix;
     }
 
-    @if meta.type-of($value) == "map" {
-      $value: map-prefix($value, $new-key);
-      $result: map.merge($result, $value);
-    } @else {
-      $result: map.set($result, $new-key, $value);
-    }
+    $result: map.set($result, $new-key, $value);
   }
 
   @return $result;

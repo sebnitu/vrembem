@@ -1,9 +1,9 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "../utilities/args-to-map" as *;
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
-@use "../utilities/map-prefix" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
@@ -373,48 +373,24 @@ $-css-vars: (
   // Example in core/theme:
   // @include css.set($component, "*", $result, $deep: false);
   @else if $prop == "*" {
+    $component-map: (
+      $component: $value
+    );
     @if $deep != true {
-      $-css-vars: map.merge(
-        $-css-vars,
-        (
-          $component: $value
-        )
-      ) !global;
+      $-css-vars: map.merge($-css-vars, $component-map) !global;
     } @else {
-      $-css-vars: map.deep-merge(
-        $-css-vars,
-        (
-          $component: $value
-        )
-      ) !global;
+      $-css-vars: map.deep-merge($-css-vars, $component-map) !global;
     }
   }
 
-  // If the provided prop is a map
-  // Scenario: $prop: ("prop": "value")
-  @else if meta.type-of($prop) == "map" {
-    @each $prop, $value in $prop {
-      @include set($component, $prop, $value);
-    }
-  }
-
-  // If the provided value is a map and doesn't have a key of "config"
-  // Scenario: "prop", $value: ("prop": "value")
-  @else if meta.type-of($value) == "map" and not map.has-key($value, "config") {
-    $prefixed-map: map-prefix($value, $prop);
-
-    @each $prop, $value in $prefixed-map {
-      @include set($component, $prop, $value);
-    }
-  }
-
-  // Scenario: "prop", "value"
-  // Scenario: "prop", $value: ("config": "config-key")
+  // Handle this as a normal css.set
   @else {
-    // If the map has the key of "config", we store the entire map directly.
-    // This is used for pulling the value directly from the config module when
-    // the CSS variable is output instead of storing it when set.
-    $-css-vars: map.set($-css-vars, $component, $prop, $value) !global;
+    // Build the component map using the prop and value arguments
+    $component-map: (
+      $component: args-to-map($prop, $value)
+    );
+
+    $-css-vars: map.deep-merge($-css-vars, $component-map) !global;
   }
 }
 
