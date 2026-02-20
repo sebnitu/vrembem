@@ -110,9 +110,13 @@ $-theme-keys: "light", "dark";
   // Initialize the results var with the custom properties map
   $result: css.get("*");
 
-  // TODO: Make prop and value set logic align with core/css
-  // If the value is a map, apply it with deep-merge
-  @if meta.type-of($prop) == "map" {
+  // If no property or value are provided, create a theme with an empty map
+  @if not $prop and not $value {
+    $result: map.set($result, $component, $theme, empty-map());
+  }
+
+  // If the prop is a map, apply it with deep-merge
+  @else if meta.type-of($prop) == "map" {
     $prefixed-map: map-prefix($prop);
     $result: map.deep-merge(
       $result,
@@ -122,11 +126,6 @@ $-theme-keys: "light", "dark";
           )
       )
     );
-  }
-
-  // If no property or value are provided, create a theme with an empty map
-  @else if not ($prop) and not ($value) {
-    $result: map.set($result, $component, $theme, empty-map());
   }
 
   // Otherwise, just set the value directly

@@ -402,6 +402,7 @@ $-css-vars: (
   // Scenario: "prop", $value: ("prop": "value")
   @else if meta.type-of($value) == "map" and not map.has-key($value, "config") {
     $prefixed-map: map-prefix($value, $prop);
+
     @each $prop, $value in $prefixed-map {
       @include set($component, $prop, $value);
     }

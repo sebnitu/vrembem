@@ -14,7 +14,7 @@
   @each $key, $value in $map {
     $new-key: "#{$prefix}-#{$key}";
 
-    @if ($prefix == "") {
+    @if $prefix == "" {
       $new-key: $key;
     } @else if $key == "" {
       $new-key: $prefix;
