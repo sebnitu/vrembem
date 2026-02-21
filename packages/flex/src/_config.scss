@@ -6,8 +6,8 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // A map of gap modifiers to output. Use the "default" key for a default value.
-  // Default values are not output as modifiers.
+  // Map for outputting the flex_gap_[keu] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as modifiers.
   // @type map
   "flex-gap": (
     "default": 1em,
@@ -16,6 +16,15 @@ $defaults: (
     "sm": 0.5em,
     "lg": 1.5em,
     "xl": 2em
+  ),
+
+  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as modifiers.
+  // @type map
+  "flex-wrap": (
+    "default": wrap,
+    "no": nowrap,
+    "reverse": wrap-reverse
   ),
 
   // The range of flex-grow classes to output
