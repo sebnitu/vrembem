@@ -30,16 +30,25 @@ Flex comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // A map of gap modifiers to output. Use the "default" key for a default value.
-  // Default values are not output as modifiers.
+  // Map for outputting the flex_gap_[keu] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as modifiers.
   // @type map
   "flex-gap": (
     "default": 1em,
-    "none": 0,
+    "0": 0,
     "xs": 1px,
     "sm": 0.5em,
     "lg": 1.5em,
     "xl": 2em
+  ),
+
+  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as modifiers.
+  // @type map
+  "flex-wrap": (
+    "default": wrap,
+    "no": nowrap,
+    "reverse": wrap-reverse
   ),
 
   // The range of flex-grow classes to output
@@ -266,21 +275,21 @@ Flex gap modifiers also come with optional media breakpoint variants. This allow
   </div>
 </div>
 
-## flex_wrap
+## flex_wrap_[key]
 
-This utility toggles flexbox wrapping so that flex items are forced onto one line or can wrap onto multiple lines. By default, `flex` has wrapping enabled but this can be changed via the `--vb-flex-wrap` custom property or the `flex.$wrap` SCSS variable.
+Modifiers used to set the `flex-wrap` property of a `flex` component. By default, `flex` has wrapping enabled.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-wrap-select">Variants Demo:</label>
     <select id="demo-flex-wrap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-wrap">
-      <option value="flex_nowrap">flex_nowrap</option>
-      <option value="flex_wrap">flex_wrap</option>
-      <option value="flex_wrap-reverse">flex_wrap-reverse</option>
+      <option value="flex">None</option>
+      <option value="flex flex_wrap_no">flex_wrap_no</option>
+      <option value="flex flex_wrap_reverse">flex_wrap-reverse</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-wrap" class="layout-demo flex flex_nowrap">
+    <div id="demo-flex-wrap" class="layout-demo flex flex_wrap_no">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -294,7 +303,7 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_nowrap">
+  <div class="flex flex_wrap_no">
     ...
   </div>
   ```
@@ -302,9 +311,8 @@ This utility toggles flexbox wrapping so that flex items are forced onto one lin
 
 **Available variants**
 
-- `flex_nowrap`
-- `flex_wrap`
-- `flex_wrap-reverse`
+- `flex_wrap_no`
+- `flex_wrap_reverse`
 
 ## flex_direction_[value]
 
@@ -581,13 +589,13 @@ Used to control the flex-shrink property which allows a flex item to shrink if t
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div class="layout-demo flex flex_nowrap">
+    <div class="layout-demo flex flex_wrap_no">
       <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
       <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_nowrap">
+  <div class="flex flex_wrap_no">
     <div class="flex-shrink-3">...</div>
     <div>...</div>
   </div>
