@@ -1,13 +1,10 @@
+@use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
 
-#{core.bem("flex", null, "nowrap")} {
-  flex-wrap: nowrap;
-}
-
-#{core.bem("flex", null, "wrap")} {
-  flex-wrap: wrap;
-}
-
-#{core.bem("flex", null, "wrap-reverse")} {
-  flex-wrap: wrap-reverse;
+@each $key, $value in map.remove(config.get("flex-wrap"), "default") {
+  #{core.bem("flex", null, "wrap", $key)} {
+    @include css.override("flex", "wrap", $value);
+  }
 }

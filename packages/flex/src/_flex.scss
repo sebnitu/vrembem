@@ -4,7 +4,7 @@
 
 #{core.bem("flex")} {
   display: flex;
-  flex-wrap: css.get("flex", "wrap", wrap);
+  flex-wrap: css.get("flex", "wrap", config.get("flex-wrap", "default"));
   gap: css.get("flex", "gap-y", "gap", config.get("flex-gap", "default")) css.get("flex", "gap-x", "gap", config.get("flex-gap", "default"));
 }
 
