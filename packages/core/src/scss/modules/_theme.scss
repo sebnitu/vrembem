@@ -120,7 +120,7 @@ $-theme-keys: "light", "dark";
   }
 
   // Scenario:
-  // Init > "theme", "prop", "value", null
+  // Init  > "theme", "prop", "value", null
   // Shift > "theme", "core", "prop", "value"
   @else if not $value and $prop and meta.type-of($prop) != "map" {
     $value: $prop;
@@ -128,7 +128,7 @@ $-theme-keys: "light", "dark";
     $component: "core";
   }
 
-  // Initialize the results var with the CSS variables map
+  // Initialize the results map with a copy of the CSS variables map
   $result: css.get("*");
 
   // If no property or value are provided, create a theme with an empty map
@@ -148,9 +148,11 @@ $-theme-keys: "light", "dark";
       $component: $theme-map
     );
 
+    // Apply the component theme map to the result
     $result: map.deep-merge($result, $component-theme-map);
   }
 
+  // Replace the CSS variables map with the modified result
   @include css.set("*", $result);
 }
 

@@ -6,10 +6,9 @@
 /// the previous map's key. The only map that isn't flattened and stored
 /// directly are maps with the "config" key.
 ///
-/// @param {map} $map - The map to be modified
-/// @param {string} $prefix ("") - The string to prefix all map keys with
+/// @param {map} $map - The map to be flattened
 ///
-/// @return {map} The new flattened map with prefixed keys
+/// @return {map} A prefixed and flattened map
 ///
 @function flatten-map($map) {
   $result: ();

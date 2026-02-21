@@ -3,10 +3,10 @@
 
 /// Prefix all map keys with a provided string value.
 ///
-/// @param {map} $map - The map to be modified
 /// @param {string} $prefix ("") - The string to prefix all map keys with
+/// @param {map} $map - The map to be modified
 ///
-/// @return {map} The modified map with new prefixed key values
+/// @return {map} A new map with prefixed key values
 ///
 @function prefix-map($prefix, $map) {
   $result: ();
