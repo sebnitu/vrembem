@@ -20,6 +20,34 @@ The most common use-case for themes is providing a light and dark mode but also 
 
 Theme colors differ from palette colors in that you can create a semantic color name that changes it's value depending on the active theme.
 
+### theme.class()
+
+<ReferenceBar type="function" returns="string" />
+
+Function for outputting a theme class. Returns the theme class with appropriate prefix. Throws an error if theme does not exist.
+
+#### Arguments
+
+<ReferenceCard name="$theme" type="string">
+  The name of the theme class to build and return.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Output: .vb-theme-light { ... }
+  #{theme.class("light")} {
+    // ...
+  }
+
+  // Output: .vb-theme-dark { ... }
+  #{theme.class("dark")} {
+    // ...
+  }
+  ```
+</CodeExample>
+
 ### theme.set()
 
 <ReferenceBar type="mixin" />

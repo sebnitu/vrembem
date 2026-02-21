@@ -44,15 +44,21 @@ $-theme-keys: "light", "dark";
   }
 }
 
-/// Function for outputting a theme class.
+/// Function for outputting a theme class. Returns the theme class with
+/// appropriate prefix. Throws an error if theme does not exist.
 ///
 /// @param {string} $theme
-///   The name of the theme.
+///   The name of the theme class to build and return.
 ///
 /// @return {string}
 ///   The theme class with appropriate prefix.
 ///
 @function class($theme) {
+  // Check that the theme exists
+  @if $theme != "root" and not list.index($-theme-keys, $theme) {
+    @error "Theme does not exist: #{$theme}";
+  }
+
   $prefix: config.get("theme-prefix");
 
   @if $prefix and $prefix != "" {

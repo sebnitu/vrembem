@@ -383,7 +383,7 @@ $-css-vars: (
     }
   }
 
-  // Handle this as a normal css.set
+  // Handle this as a normal css.set call
   @else {
     // Build the component map using the prop and value arguments
     $component-map: (
