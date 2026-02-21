@@ -29,19 +29,19 @@
 
   $class: "#{$prefix}#{$b}";
 
-  @if $e {
+  @if $e and $e != "" {
     $class: '#{$class}#{config.get("prefix-element")}#{$e}';
   }
 
-  @if $m {
+  @if $m and $m != "" {
     $class: '#{$class}#{config.get("prefix-modifier")}#{$m}';
   }
 
-  @if $v {
+  @if $v and $v != "" {
     $class: '#{$class}#{config.get("prefix-modifier-value")}#{$v}';
   }
 
-  @if $bp {
+  @if $bp and $bp != "" {
     // Add the colon if it doesn't exist
     @if not string.index($bp, ":") {
       $bp: "#{$bp}:";
