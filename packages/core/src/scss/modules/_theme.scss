@@ -110,8 +110,7 @@ $-theme-keys: "light", "dark";
 
   // If the component argument is not provided, we want to shift the arguments
   // and ensure that we use "core" as the default component.
-  //
-  // Scenario
+  // Scenario:
   // Init  > "theme", ("prop": "value"), null, null
   // Shift > "theme", "core", ("prop": "value"), null
   @if meta.type-of($component) == "map" {

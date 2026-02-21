@@ -376,6 +376,7 @@ $-css-vars: (
     $component-map: (
       $component: $value
     );
+
     @if $deep != true {
       $-css-vars: map.merge($-css-vars, $component-map) !global;
     } @else {
@@ -389,7 +390,6 @@ $-css-vars: (
     $component-map: (
       $component: args-to-map($prop, $value)
     );
-
     $-css-vars: map.deep-merge($-css-vars, $component-map) !global;
   }
 }
