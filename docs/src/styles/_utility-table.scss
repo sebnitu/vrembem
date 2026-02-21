@@ -5,16 +5,16 @@
 @use "./variables" as var;
 @include css.set("utility-table", "max-height", 28rem);
 @include theme.set(
-  "utility-table",
   "light",
+  "utility-table",
   (
     "class-foreground": palette.get("primary", 45),
     "style-foreground": palette.get("secondary", 45)
   )
 );
 @include theme.set(
-  "utility-table",
   "dark",
+  "utility-table",
   (
     "class-foreground": palette.get("primary", 65),
     "style-foreground": palette.get("secondary", 65)

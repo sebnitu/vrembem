@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "sass:meta";
+@use "./prefix-map" as *;
+
+/// A utility function to flatten a multi-level map by prefixing each level with
+/// the previous map's key. The only map that isn't flattened and stored
+/// directly are maps with the "config" key.
+///
+/// @param {map} $map - The map to be flattened
+///
+/// @return {map} A prefixed and flattened map
+///
+@function flatten-map($map) {
+  $result: ();
+
+  @each $key, $value in $map {
+    @if meta.type-of($value) == "map" and not map.has-key($value, "config") {
+      $prefixed-map: prefix-map($key, $value);
+      $flat-map: flatten-map($prefixed-map);
+      $result: map.merge($result, $flat-map);
+    } @else {
+      $result: map.set($result, $key, $value);
+    }
+  }
+
+  @return $result;
+}

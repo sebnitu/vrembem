@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:meta";
+@use "./flatten-map" as *;
+
+/// Converts various combinations of the prop and value arguments into a single
+/// prefixed and flattened map.
+///
+/// @param {string|map} $prop - The map to be modified
+/// @param {any} $value (null) - The string to prefix all map keys with
+///
+/// @return {map} A prefixed and flattened map
+///
+@function args-to-map($prop, $value: null) {
+  // If $prop is a map flatten it ($value is never used in this case)
+  @if meta.type-of($prop) == "map" {
+    @return flatten-map($prop);
+  }
+
+  // If $value is a map, create a map with $prop as the key and flatten it
+  @else if meta.type-of($value) == "map" {
+    @return flatten-map(
+      (
+        $prop: $value
+      )
+    );
+  }
+
+  // If neither are maps, return a map using the prop value
+  @else {
+    @return ($prop: $value);
+  }
+}

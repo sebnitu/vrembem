@@ -56,8 +56,8 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
 
 // Themes
 @include theme.set(
-  "card",
   "light",
+  "card",
   (
     "background": css.get("background"),
     "foreground": css.get("foreground-light"),
@@ -69,8 +69,8 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
   )
 );
 @include theme.set(
-  "card",
   "dark",
+  "card",
   (
     "background": css.get("background-darker"),
     "screen-background": css.get("background-darker"),

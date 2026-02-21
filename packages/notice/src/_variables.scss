@@ -32,16 +32,16 @@ $title-font-weight: css.get("font-weight-semi-bold") !default;
   )
 );
 @include theme.set(
-  "notice",
   "light",
+  "notice",
   (
     "background": palette.get("neutral", 95),
     "foreground": palette.get("neutral", 20)
   )
 );
 @include theme.set(
-  "notice",
   "dark",
+  "notice",
   (
     "background": palette.get("neutral", 20),
     "foreground": palette.get("neutral", 95)

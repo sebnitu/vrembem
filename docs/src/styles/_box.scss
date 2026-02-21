@@ -9,8 +9,8 @@
   )
 );
 @include theme.set(
-  "box",
   "light",
+  "box",
   (
     "border-color": palette.get("primary", 60),
     "background": palette.get("primary", 90),
@@ -19,8 +19,8 @@
   )
 );
 @include theme.set(
-  "box",
   "dark",
+  "box",
   (
     "border-color": palette.get("primary", 40),
     "background": palette.get("primary", 15%),

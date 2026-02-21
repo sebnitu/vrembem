@@ -53,8 +53,8 @@ $size-xl-padding: (
 
 // Themes
 @include theme.set(
-  "section",
   "light",
+  "section",
   (
     "background": transparent,
     "foreground": css.get("foreground"),
@@ -63,8 +63,8 @@ $size-xl-padding: (
   )
 );
 @include theme.set(
-  "section",
   "dark",
+  "section",
   (
     "screen-opacity": 0.7
   )
