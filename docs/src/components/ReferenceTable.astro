@@ -138,7 +138,7 @@ function iconMap(value: string) {
                 <CodeBlock inline={linkifyValue(value)} />
               ) : (
                 Object.entries(value).map(([themeKey, themeValue]) => (
-                  <div class="flex flex_nowrap gap-none align-items-center">
+                  <div class="flex flex_wrap_no gap-none align-items-center">
                     <Popover triggerClass="foreground-lighter flex padding-y-sm margin-left-sm">
                       <Fragment slot="trigger">
                         <Icon name={iconMap(themeKey)} classes="icon_size_sm" />
