@@ -51,6 +51,18 @@ $config: (
     "reverse": wrap-reverse
   ),
 
+  // Map for outputting the flex_direction_[key] modifiers. Use the "default" 
+  // key for setting the default value. Default values are not output as
+  // modifiers.
+  // @type map
+  "flex-direction": (
+    "default": row,
+    "row": row,
+    "row-reverse": row-reverse,
+    "column": column,
+    "column-reverse": column-reverse
+  ),
+
   // The range of flex-grow classes to output
   // @type number
   "flex-grow-count": 6,

@@ -1,38 +1,22 @@
+@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/css";
 
-#{core.bem("flex", null, "direction", "row")} {
-  flex-direction: row;
-}
+$-flex-direction-map: map.remove(config.get("flex-direction"), "default");
 
-#{core.bem("flex", null, "direction", "row-reverse")} {
-  flex-direction: row-reverse;
-}
-
-#{core.bem("flex", null, "direction", "col")} {
-  flex-direction: column;
-}
-
-#{core.bem("flex", null, "direction", "col-reverse")} {
-  flex-direction: column-reverse;
+@each $key, $value in $-flex-direction-map {
+  #{core.bem("flex", null, "direction", $key)} {
+    @include css.override("flex", "direction", $value);
+  }
 }
 
 @each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
-    #{core.bem("flex", null, "direction", "row", $bp)} {
-      flex-direction: row;
-    }
-
-    #{core.bem("flex", null, "direction", "row-reverse", $bp)} {
-      flex-direction: row-reverse;
-    }
-
-    #{core.bem("flex", null, "direction", "col", $bp)} {
-      flex-direction: column;
-    }
-
-    #{core.bem("flex", null, "direction", "col-reverse", $bp)} {
-      flex-direction: column-reverse;
+    @each $key, $value in $-flex-direction-map {
+      #{core.bem("flex", null, "direction", $key, $bp)} {
+        @include css.override("flex", "direction", $value);
+      }
     }
   }
 }
