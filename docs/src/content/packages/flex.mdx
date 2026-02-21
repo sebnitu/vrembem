@@ -102,14 +102,14 @@ Also available is the `flex_inline` modifier. This sets the `display` property t
 
 ## flex_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+Adjusts the gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `flex-gap` config options map. The `default` key sets the gap value of the `flex` class itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
     <select id="demo-flex-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap">
       <option value="flex">None</option>
-      <option value="flex flex_gap_none">flex_gap_none</option>
+      <option value="flex flex_gap_0">flex_gap_0</option>
       <option value="flex flex_gap_xs">flex_gap_xs</option>
       <option value="flex flex_gap_sm">flex_gap_sm</option>
       <option value="flex flex_gap_lg">flex_gap_lg</option>
@@ -139,7 +139,7 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 
 **Available variants**
 
-- `flex_gap_none`
+- `flex_gap_0`
 - `flex_gap_xs`
 - `flex_gap_sm`
 - `flex_gap_lg`
@@ -147,14 +147,14 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 
 ### flex_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+Adjusts the horizontal gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `flex-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
     <select id="demo-flex-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-x">
       <option value="flex">None</option>
-      <option value="flex flex_gap-x_none">flex_gap-x_none</option>
+      <option value="flex flex_gap-x_0">flex_gap-x_0</option>
       <option value="flex flex_gap-x_xs">flex_gap-x_xs</option>
       <option value="flex flex_gap-x_sm">flex_gap-x_sm</option>
       <option value="flex flex_gap-x_lg">flex_gap-x_lg</option>
@@ -184,7 +184,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 
 **Available variants**
 
-- `flex_gap-x_none`
+- `flex_gap-x_0`
 - `flex_gap-x_xs`
 - `flex_gap-x_sm`
 - `flex_gap-x_lg`
@@ -192,14 +192,14 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 
 ### flex_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`flex.$gap-map`](#scss-variables-file) variable map.
+Adjusts the vertical gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `flex-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
     <select id="demo-flex-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-gap-y">
       <option value="flex">None</option>
-      <option value="flex flex_gap-y_none">flex_gap-y_none</option>
+      <option value="flex flex_gap-y_0">flex_gap-y_0</option>
       <option value="flex flex_gap-y_xs">flex_gap-y_xs</option>
       <option value="flex flex_gap-y_sm">flex_gap-y_sm</option>
       <option value="flex flex_gap-y_md">flex_gap-y_md</option>
@@ -230,7 +230,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 **Available variants**
 
-- `flex_gap-y_none`
+- `flex_gap-y_0`
 - `flex_gap-y_xs`
 - `flex_gap-y_sm`
 - `flex_gap-y_lg`
@@ -238,7 +238,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 ### Breakpoint variants
 
-Flex gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+Flex gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 **Available variants**
 
@@ -345,7 +345,7 @@ Used to control the flex-direction property which sets how flex items are placed
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the flex-direction property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+This modifier also comes with optional media breakpoint variants. This allows changing the flex-direction property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -467,7 +467,7 @@ Used for controlling the flex property directly on flex items. These should be a
 
 ### Breakpoint variants
 
-The `flex_items_[value]` and `flex-[value]` also come with optional media breakpoint modifiers. This allows changing the flex property on flex items based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+The `flex_items_[value]` and `flex-[value]` also come with optional media breakpoint modifiers. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
