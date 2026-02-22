@@ -1,134 +1,33 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
+@use "@vrembem/core/css";
 
-#{core.bem("flex", null, "items", "initial")} {
-  > * {
-    flex: initial; // Equivalent to setting flex: 0 1 auto
-  }
-}
+$-flex-items: config.get("flex-items");
 
-#{core.bem("flex", null, "items", "auto")} {
-  > * {
-    flex: auto; // Equivalent to setting flex: 1 1 auto
-  }
-}
+@each $key, $value in $-flex-items {
+  #{core.bem("flex", null, "items", $key)} {
+    @if $key == "full" {
+      @include css.override("flex", "wrap", wrap);
+    }
 
-#{core.bem("flex", null, "items", "none")} {
-  > * {
-    flex: none; // Equivalent to setting flex: 0 0 auto
-  }
-}
-
-#{core.bem("flex", null, "items", "equal")} {
-  > * {
-    flex: 1 1 0;
-  }
-}
-
-#{core.bem("flex", null, "items", "fill")} {
-  > * {
-    flex: 1 0 auto;
-  }
-}
-
-#{core.bem("flex", null, "items", "full")} {
-  flex-wrap: wrap;
-
-  > * {
-    flex: 1 0 100%;
+    > * {
+      flex: $value;
+    }
   }
 }
 
 @each $bp, $value in config.get("breakpoints") {
   @include core.media-min($value) {
-    #{core.bem("flex", null, "items", "initial", $bp)} {
-      > * {
-        flex: initial; // Equivalent to setting flex: 0 1 auto
+    @each $key, $value in $-flex-items {
+      #{core.bem("flex", null, "items", $key, $bp)} {
+        @if $key == "full" {
+          @include css.override("flex", "wrap", wrap);
+        }
+
+        > * {
+          flex: $value;
+        }
       }
-    }
-
-    #{core.bem("flex", null, "items", "auto", $bp)} {
-      > * {
-        flex: auto; // Equivalent to setting flex: 1 1 auto
-      }
-    }
-
-    #{core.bem("flex", null, "items", "none", $bp)} {
-      > * {
-        flex: none; // Equivalent to setting flex: 0 0 auto
-      }
-    }
-
-    #{core.bem("flex", null, "items", "equal", $bp)} {
-      > * {
-        flex: 1 1 0;
-      }
-    }
-
-    #{core.bem("flex", null, "items", "fill", $bp)} {
-      > * {
-        flex: 1 0 auto;
-      }
-    }
-
-    #{core.bem("flex", null, "items", "full", $bp)} {
-      flex-wrap: wrap;
-
-      > * {
-        flex: 1 0 100%;
-      }
-    }
-  }
-}
-
-#{core.bem("flex-initial")} {
-  flex: initial; // Equivalent to setting flex: 0 1 auto
-}
-
-#{core.bem("flex-auto")} {
-  flex: auto; // Equivalent to setting flex: 1 1 auto
-}
-
-#{core.bem("flex-none")} {
-  flex: none; // Equivalent to setting flex: 0 0 auto
-}
-
-#{core.bem("flex-equal")} {
-  flex: 1 1 0;
-}
-
-#{core.bem("flex-fill")} {
-  flex: 1 0 auto;
-}
-
-#{core.bem("flex-full")} {
-  flex: 1 0 100%;
-}
-
-@each $bp, $value in config.get("breakpoints") {
-  @include core.media-min($value) {
-    #{core.bem("flex-initial", $bp: $bp)} {
-      flex: initial; // Equivalent to setting flex: 0 1 auto
-    }
-
-    #{core.bem("flex-auto", $bp: $bp)} {
-      flex: auto; // Equivalent to setting flex: 1 1 auto
-    }
-
-    #{core.bem("flex-none", $bp: $bp)} {
-      flex: none; // Equivalent to setting flex: 0 0 auto
-    }
-
-    #{core.bem("flex-equal", $bp: $bp)} {
-      flex: 1 1 0;
-    }
-
-    #{core.bem("flex-fill", $bp: $bp)} {
-      flex: 1 0 auto;
-    }
-
-    #{core.bem("flex-full", $bp: $bp)} {
-      flex: 1 0 100%;
     }
   }
 }

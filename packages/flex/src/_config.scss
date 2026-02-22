@@ -6,8 +6,8 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Map for outputting the flex_gap_[keu] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as modifiers.
+  // Map for outputting the flex_gap_[keu] modifier. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-gap": (
     "default": 1em,
@@ -18,8 +18,8 @@ $defaults: (
     "xl": 2em
   ),
 
-  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as modifiers.
+  // Map for outputting the flex_wrap_[key] modifier. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-wrap": (
     "default": wrap,
@@ -27,9 +27,9 @@ $defaults: (
     "reverse": wrap-reverse
   ),
 
-  // Map for outputting the flex_direction_[key] modifiers. Use the "default" 
-  // key for setting the default value. Default values are not output as
-  // modifiers.
+  // Map for outputting the flex_direction_[key] modifier. Use the "default" 
+  // key for setting the default value. Default values are not output as a
+  // modifier.
   // @type map
   "flex-direction": (
     "default": row,
@@ -37,6 +37,18 @@ $defaults: (
     "row-reverse": row-reverse,
     "col": column,
     "col-reverse": column-reverse
+  ),
+
+  // Map for outputting the flex_items_[key] modifier as well as the 
+  // flex-item-[key] utility.
+  // @type map
+  "flex-items": (
+    "initial": initial, // Equivalent: 0 1 auto
+    "auto": auto, // Equivalent: 1 1 auto
+    "none": none, // Equivalent: 0 0 auto
+    "equal": 1 1 0,
+    "fill": 1 0 auto,
+    "full": 1 0 100%
   ),
 
   // The range of flex-grow classes to output
