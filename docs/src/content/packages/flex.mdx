@@ -135,7 +135,7 @@ Also available is the `flex_inline` modifier. This sets the `display` property t
 
 ## flex_gap_[key]
 
-Adjusts the gap spacing based on the provided key. The flex gap modifier is generated using key/value pairs of the `flex-gap` config options map. The `default` key sets the gap value of the `flex` class itself and is not output as a modifier.
+Modifier used to set the `gap` property of a flex component. This modifier is generated using key/value pairs of the `flex-gap` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -180,7 +180,7 @@ Adjusts the gap spacing based on the provided key. The flex gap modifier is gene
 
 ### flex_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. The flex gap modifier is generated using key/value pairs of the `flex-gap` config options map.
+Modifier to set the `column-gap` value on a flex component. This modifier is generated using key/value pairs of the `flex-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -225,7 +225,7 @@ Adjusts the horizontal gap spacing based on the provided key. The flex gap modif
 
 ### flex_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. The flex gap modifier is generated using key/value pairs of the `flex-gap` config options map.
+Modifier to set the `row-gap` value on a flex component. This modifier is generated using key/value pairs of the `flex-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -271,7 +271,7 @@ Adjusts the vertical gap spacing based on the provided key. The flex gap modifie
 
 ### Breakpoint variants
 
-This modifier also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This modifier also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 **Available variants**
 
@@ -301,7 +301,7 @@ This modifier also come with optional media breakpoint variants. This allows cha
 
 ## flex_wrap_[key]
 
-Modifier used to set the `flex-wrap` property of a `flex` component. By default, `flex` has wrapping enabled. The flex wrap modifier is generated using key/value pairs of the `flex-wrap` config options map. The `default` key sets the wrap value of the `flex` class itself and is not output as a modifier.
+Modifier used to set the `flex-wrap` property of a flex component. By default, the flex component has wrapping enabled. This modifier is generated using key/value pairs of the `flex-wrap` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -340,7 +340,7 @@ Modifier used to set the `flex-wrap` property of a `flex` component. By default,
 
 ## flex_direction_[key]
 
-Modifier used to set the `flex-direction` property of a `flex` component. By default, `flex` has direction set to `row`. The flex direction modifier is generated using key/value pairs of the `flex-direction` config options map. The `default` key sets the direction value of the `flex` class itself and is not output as a modifier.
+Modifier used to set the `flex-direction` property of a flex component. By default, `flex` has direction set to `row`. This modifier is generated using key/value pairs of the `flex-direction` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -377,7 +377,7 @@ Modifier used to set the `flex-direction` property of a `flex` component. By def
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the flex-direction property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This modifier also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -417,7 +417,7 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 ## flex_items_[key]
 
-Modifier used to set the `flex` property on flex items (direct children of flex containers). The flex items modifier is generated using key/value pairs of the `flex-items` config options map.
+Modifier used to set the `flex` property on flex items (direct children of flex containers). This modifier is generated using key/value pairs of the `flex-items` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -458,7 +458,7 @@ Modifier used to set the `flex` property on flex items (direct children of flex 
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This modifier also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -498,11 +498,11 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 ## Utilities
 
-Flex utilities are intended to be used directly on the children of a flex container (elements with `display: flex` or `display: inline-flex` set on them). Since these only alter a single CSS property, the utility model is used instead of a BEM element class.
+Flex utilities are intended to be used directly on the children of a flex component or flex container (elements with `display: flex` or `display: inline-flex`). Since these only change a single CSS property, utility classes are used instead of BEM element classes.
 
 ### flex-item-[key]
 
-Used for controlling the flex shorthand property directly on flex children. The flex item utility is generated using key/value pairs of the `flex-items` config options map.
+Utility for controlling the `flex` shorthand property. This utility is generated using key/value pairs of the `flex-items` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -543,7 +543,7 @@ Used for controlling the flex shorthand property directly on flex children. The 
 
 #### Breakpoint variants
 
-This utility comes with optional media breakpoint variants. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This utility also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -583,7 +583,7 @@ This utility comes with optional media breakpoint variants. This allows changing
 
 ### flex-grow-[value]
 
-Used to control the flex-grow property which specifies how much of the flex container's remaining space should be assigned to the flex item's main size. The number of variants available is controlled by the `flex.$grow-count` variable.
+Utility for controlling the `flex-grow` property. This utility is generated using the value set in `flex-grow-count` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -628,7 +628,7 @@ Used to control the flex-grow property which specifies how much of the flex cont
 
 ### flex-shrink-[value]
 
-Used to control the flex-shrink property which allows a flex item to shrink if the size of all flex items is larger than the flex container. The number of variants available is controlled by the `flex.$shrink-count` variable.
+Utility for controlling the `flex-shrink` property. This utility is generated using the value set in `flex-shrink-count` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -671,7 +671,7 @@ Used to control the flex-shrink property which allows a flex item to shrink if t
 
 ### flex-basis-[value]
 
-Used to control the flex-basis property which sets the initial main size of a flex item.
+Utility for controlling the `flex-basis` property which sets the initial main size of a flex item.
 
 <CodeExample>
   <Fragment slot="demo">
