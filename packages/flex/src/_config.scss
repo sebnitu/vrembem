@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Map for outputting the flex_gap_[key] modifier. Use the "default" key for 
+  // Map for outputting the flex_gap_[key] modifiers. Use the "default" key for 
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-gap": (
@@ -18,7 +18,7 @@ $defaults: (
     "xl": 2em
   ),
 
-  // Map for outputting the flex_wrap_[key] modifier. Use the "default" key for 
+  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-wrap": (
@@ -27,7 +27,7 @@ $defaults: (
     "reverse": wrap-reverse
   ),
 
-  // Map for outputting the flex_direction_[key] modifier. Use the "default" 
+  // Map for outputting the flex_direction_[key] modifiers. Use the "default" 
   // key for setting the default value. Default values are not output as a
   // modifier.
   // @type map
@@ -39,8 +39,8 @@ $defaults: (
     "col-reverse": column-reverse
   ),
 
-  // Map for outputting the flex_items_[key] modifier as well as the 
-  // flex-item-[key] utility.
+  // Map for outputting the flex_items_[key] modifiers as well as the 
+  // flex-item-[key] utilities.
   // @type map
   "flex-items": (
     "initial": initial, // Equivalent: 0 1 auto
@@ -51,11 +51,11 @@ $defaults: (
     "full": 1 0 100%
   ),
 
-  // The range of flex-grow classes to output
+  // The range of flex-grow utilities to output
   // @type number
   "flex-grow-count": 6,
 
-  // The range of flex-shrink classes to output
+  // The range of flex-shrink utilities to output
   // @type number
   "flex-shrink-count": 6
 );
