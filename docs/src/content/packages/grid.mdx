@@ -30,24 +30,35 @@ Grid comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // Used to build grid column modifiers and col utilities
+  // Used for outputting grid_cols_[num] modifiers and col-[num] utilities
   // @type number
   "grid-cols": 6,
 
-  // Used to build grid row modifiers and row utilities
+  // Used for outputting grid_rows_[num] modifiers and row-[num] utilities
   // @type number
   "grid-rows": 6,
 
-  // A map of gap modifiers to output. Use the "default" key for a default value.
-  // Default values are not output as modifiers.
+  // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
   // @type map
   "grid-gap": (
     "default": 2em,
-    "none": 0,
+    "0": 0,
     "xs": 0.5em,
     "sm": 1em,
     "lg": 3em,
     "xl": 4em
+  ),
+
+  // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
+  // @type map
+  "grid-flow": (
+    "default": dense,
+    "row": row,
+    "col": column,
+    "row-dense": row dense,
+    "col-dense": column dense
   )
 );
 ```
