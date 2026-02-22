@@ -259,7 +259,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap modifiers are ge
 
 ### Breakpoint variants
 
-Flex gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This modifier also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 **Available variants**
 
@@ -289,7 +289,7 @@ Flex gap modifiers also come with optional media breakpoint variants. This allow
 
 ## flex_wrap_[key]
 
-Modifiers used to set the `flex-wrap` property of a `flex` component. By default, `flex` has wrapping enabled.
+Modifier used to set the `flex-wrap` property of a `flex` component. By default, `flex` has wrapping enabled. Wrap modifiers are generated using key/value pairs of the `flex-wrap` config options map. The `default` key sets the wrap value of the `flex` class itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -326,9 +326,9 @@ Modifiers used to set the `flex-wrap` property of a `flex` component. By default
 - `flex_wrap_no`
 - `flex_wrap_reverse`
 
-## flex_direction_[value]
+## flex_direction_[key]
 
-Used to control the flex-direction property which sets how flex items are placed in the flex container defining the main axis and the direction (normal or reversed).
+Modifier used to set the `flex-direction` property of a `flex` component. By default, `flex` has direction set to `row`. Direction modifiers are generated using key/value pairs of the `flex-direction` config options map. The `default` key sets the direction value of the `flex` class itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
