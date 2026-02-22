@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Map for outputting the flex_gap_[keu] modifier. Use the "default" key for 
+  // Map for outputting the flex_gap_[key] modifier. Use the "default" key for 
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-gap": (
