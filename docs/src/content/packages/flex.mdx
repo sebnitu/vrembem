@@ -417,7 +417,7 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 ## flex_items_[key]
 
-Modifier used to set the `flex` property on flex items (direct children of flex containers). The `flex_items_[key]` modifier and `flex-item-[key]` utility are generated using key/value pairs of the `flex-items` config options map.
+Modifier used to set the `flex` property on flex items (direct children of flex containers). The flex items modifier is generated using key/value pairs of the `flex-items` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -456,9 +456,53 @@ Modifier used to set the `flex` property on flex items (direct children of flex 
 - `flex_items_fill`: Sets flex items to `flex: 1 0 auto;`.
 - `flex_items_full`: Sets flex items to `flex: 1 0 100%;`.
 
+### Breakpoint variants
+
+This modifier also comes with optional media breakpoint variants. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-bp-flex-items-select">Variants Demo:</label>
+    <select id="demo-bp-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-items">
+      <option value="xs:flex_items_auto">xs:flex_items_auto</option>
+      <option value="sm:flex_items_auto">sm:flex_items_auto</option>
+      <option value="md:flex_items_auto">md:flex_items_auto</option>
+      <option value="lg:flex_items_auto">lg:flex_items_auto</option>
+      <option value="xl:flex_items_auto">xl:flex_items_auto</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <div id="demo-bp-flex-items" class="layout-demo flex flex_items_full lg:flex_items_auto">
+      <div class="box">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </div>
+  ```html
+  <div class="flex">
+    <div class="flex_items_full lg:flex_items_auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:flex_items_[key]`
+- `sm:flex_items_[key]`
+- `md:flex_items_[key]`
+- `lg:flex_items_[key]`
+- `xl:flex_items_[key]`
+
+## Utilities
+
+Flex utilities are intended to be used directly on the children of a flex container (elements with `display: flex` or `display: inline-flex` set on them). Since these only alter a single CSS property, the utility model is used instead of a BEM element class.
+
 ### flex-item-[key]
 
-Used for controlling the flex property directly on flex items. These should be applied to the direct children of a flex container (elements with `display: flex` or `display: inline-flex` set on them).
+Used for controlling the flex shorthand property directly on flex children. The flex item utility is generated using key/value pairs of the `flex-items` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -497,32 +541,32 @@ Used for controlling the flex property directly on flex items. These should be a
 - `flex-item-fill`: Sets flex to `1 0 auto`.
 - `flex-item-full`: Sets flex to `1 0 100%`.
 
-### Breakpoint variants
+#### Breakpoint variants
 
-The `flex_items_[key]` and `flex-item-[key]` also come with optional media breakpoint variants. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This utility comes with optional media breakpoint variants. This allows changing the flex property on flex items based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-bp-flex-items-select">Variants Demo:</label>
-    <select id="demo-bp-flex-items-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-items">
-      <option value="xs:flex-auto">xs:flex-auto</option>
-      <option value="sm:flex-auto">sm:flex-auto</option>
-      <option value="md:flex-auto">md:flex-auto</option>
-      <option value="lg:flex-auto">lg:flex-auto</option>
-      <option value="xl:flex-auto">xl:flex-auto</option>
+    <label class="text-nowrap" for="demo-bp-flex-item-select">Variants Demo:</label>
+    <select id="demo-bp-flex-item-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-bp-flex-item">
+      <option value="xs:flex-item-auto">xs:flex-item-auto</option>
+      <option value="sm:flex-item-auto">sm:flex-item-auto</option>
+      <option value="md:flex-item-auto">md:flex-item-auto</option>
+      <option value="lg:flex-item-auto">lg:flex-item-auto</option>
+      <option value="xl:flex-item-auto">xl:flex-item-auto</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <div class="layout-demo flex">
-      <div id="demo-bp-flex-items" class="box-alt flex-full lg:flex-auto">1. One</div>
-      <div class="box flex-auto">2. Two</div>
-      <div class="box flex-auto">3. Three</div>
+      <div id="demo-bp-flex-item" class="box-alt flex-item-full lg:flex-item-auto">1. One</div>
+      <div class="box flex-item-auto">2. Two</div>
+      <div class="box flex-item-auto">3. Three</div>
     </div>
   </div>
   ```html
   <div class="flex">
-    <div class="flex-full lg:flex-auto">...</div>
+    <div class="flex-item-full lg:flex-item-auto">...</div>
     <div>...</div>
     <div>...</div>
   </div>
@@ -531,25 +575,13 @@ The `flex_items_[key]` and `flex-item-[key]` also come with optional media break
 
 **Available variants**
 
-<div class="flex flex_items_auto">
-  <div class="type">
-    - `xs:flex_items_[key]`
-    - `sm:flex_items_[key]`
-    - `md:flex_items_[key]`
-    - `lg:flex_items_[key]`
-    - `xl:flex_items_[key]`
-  </div>
-  <div class="type">
-    - `xs:flex-[key]`
-    - `sm:flex-[key]`
-    - `md:flex-[key]`
-    - `lg:flex-[key]`
-    - `xl:flex-[key]`
-  </div>
-</div>
+- `xs:flex-[key]`
+- `sm:flex-[key]`
+- `md:flex-[key]`
+- `lg:flex-[key]`
+- `xl:flex-[key]`
 
-
-## flex-grow-[value]
+### flex-grow-[value]
 
 Used to control the flex-grow property which specifies how much of the flex container's remaining space should be assigned to the flex item's main size. The number of variants available is controlled by the `flex.$grow-count` variable.
 
@@ -594,7 +626,7 @@ Used to control the flex-grow property which specifies how much of the flex cont
 - `flex-grow-5`
 - `flex-grow-6`
 
-## flex-shrink-[value]
+### flex-shrink-[value]
 
 Used to control the flex-shrink property which allows a flex item to shrink if the size of all flex items is larger than the flex container. The number of variants available is controlled by the `flex.$shrink-count` variable.
 
@@ -637,7 +669,7 @@ Used to control the flex-shrink property which allows a flex item to shrink if t
 - `flex-shrink-5`
 - `flex-shrink-6`
 
-## flex-basis-[value]
+### flex-basis-[value]
 
 Used to control the flex-basis property which sets the initial main size of a flex item.
 
