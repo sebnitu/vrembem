@@ -67,7 +67,7 @@ $config: (
 
 ## Basic usage
 
-The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` class to the desired grid container with an optional `grid_cols_[value]` modifier to create a grid layout.
+The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` class to the desired grid container with an optional `grid_cols_[num]` modifier to create a grid layout.
 
 <CodeExample>
   <Fragment slot="output">
@@ -107,9 +107,9 @@ Also available is the `grid_inline` modifier. This sets the `display` property t
   ```
 </CodeExample>
 
-## grid_cols_[value]
+## grid_cols_[num]
 
-By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[value]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
+By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[num]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -182,15 +182,15 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 **Available variants**
 
-- `xs:grid_cols_[value]`
-- `sm:grid_cols_[value]`
-- `md:grid_cols_[value]`
-- `lg:grid_cols_[value]`
-- `xl:grid_cols_[value]`
+- `xs:grid_cols_[num]`
+- `sm:grid_cols_[num]`
+- `md:grid_cols_[num]`
+- `lg:grid_cols_[num]`
+- `xl:grid_cols_[num]`
 
-## grid_rows_[value]
+## grid_rows_[num]
 
-By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[value]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
+By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[num]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -260,11 +260,11 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 **Available variants**
 
-- `xs:grid_rows_[value]`
-- `sm:grid_rows_[value]`
-- `md:grid_rows_[value]`
-- `lg:grid_rows_[value]`
-- `xl:grid_rows_[value]`
+- `xs:grid_rows_[num]`
+- `sm:grid_rows_[num]`
+- `md:grid_rows_[num]`
+- `lg:grid_rows_[num]`
+- `xl:grid_rows_[num]`
 
 ## grid_gap_[key]
 
@@ -458,7 +458,7 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
 - `grid_flow_row-dense`
 - `grid_flow_col-dense`
 
-## col-[value]
+## col-[num]
 
 A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid.$cols`.
 
@@ -580,13 +580,13 @@ This utility also comes with optional media breakpoint variants. This allows cha
 
 **Available variants**
 
-- `xs:col-[value]`
-- `sm:col-[value]`
-- `md:col-[value]`
-- `lg:col-[value]`
-- `xl:col-[value]`
+- `xs:col-[num]`
+- `sm:col-[num]`
+- `md:col-[num]`
+- `lg:col-[num]`
+- `xl:col-[num]`
 
-## row-[value]
+## row-[num]
 
 A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid.$rows`.
 
@@ -708,11 +708,11 @@ This utility also comes with optional media breakpoint variants. This allows cha
 
 **Available variants**
 
-- `xs:row-[value]`
-- `sm:row-[value]`
-- `md:row-[value]`
-- `lg:row-[value]`
-- `xl:row-[value]`
+- `xs:row-[num]`
+- `sm:row-[num]`
+- `md:row-[num]`
+- `lg:row-[num]`
+- `xl:row-[num]`
 
 ## Reference
 
