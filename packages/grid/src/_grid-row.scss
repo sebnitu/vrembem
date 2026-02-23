@@ -1,0 +1,55 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+#{core.bem("grid-row-auto")} {
+  grid-row: auto / auto;
+}
+
+#{core.bem("grid-row-full")} {
+  grid-row: span css.get("grid", "rows", 1) / span css.get("grid", "rows", 1);
+}
+
+@for $i from 1 through config.get("grid-rows") {
+  #{core.bem("grid-row-#{$i}")} {
+    grid-row: span $i / span $i;
+  }
+}
+
+@for $i from 1 through (config.get("grid-rows") + 1) {
+  #{core.bem("grid-row-start-#{$i}")} {
+    grid-row-start: $i;
+  }
+
+  #{core.bem("grid-row-end-#{$i}")} {
+    grid-row-end: $i;
+  }
+}
+
+@each $bp, $value in config.get("breakpoints") {
+  @include core.media-min($value) {
+    #{core.bem("grid-row-auto", $bp: $bp)} {
+      grid-row: auto / auto;
+    }
+
+    #{core.bem("grid-row-full", $bp: $bp)} {
+      grid-row: span css.get("grid", "rows", 1) / span css.get("grid", "rows", 1);
+    }
+
+    @for $i from 1 through config.get("grid-rows") {
+      #{core.bem("grid-row-#{$i}", $bp: $bp)} {
+        grid-row: span $i / span $i;
+      }
+    }
+
+    @for $i from 1 through (config.get("grid-rows") + 1) {
+      #{core.bem("grid-row-start-#{$i}", $bp: $bp)} {
+        grid-row-start: $i;
+      }
+
+      #{core.bem("grid-row-end-#{$i}", $bp: $bp)} {
+        grid-row-end: $i;
+      }
+    }
+  }
+}
