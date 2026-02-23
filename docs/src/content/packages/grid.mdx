@@ -109,7 +109,7 @@ Also available is the `grid_inline` modifier. This sets the `display` property t
 
 ## grid_cols_[num]
 
-By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[num]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
+By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[num]` modifiers. The number of variants available is controlled by the `grid-cols` config option (default: `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -190,7 +190,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 ## grid_rows_[num]
 
-By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[num]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
+By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[num]` modifiers. The number of variants available is controlled by the `grid-rows` config option (default: `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -268,7 +268,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 ## grid_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `grid-gap` config options map. The `default` key sets the gap value of the `grid` class itself and is not output as a modifier.
+Modifiers used to set the `gap` property of a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -309,7 +309,7 @@ Adjusts the gap spacing based on the provided key. Gap modifiers are generated u
 
 ### grid_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `grid-gap` config options map.
+Modifiers to set the `column-gap` value on a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -350,7 +350,7 @@ Adjusts the horizontal gap spacing based on the provided key. Gap modifiers are 
 
 ### grid_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap modifiers are generated using key/value pairs of the `grid-gap` config options map.
+Modifiers to set the `row-gap` value on a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -421,7 +421,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 ## grid_flow_[value]
 
-Used to control the grid-auto-flow property which sets how auto-placed items get flowed into the grid. The default grid-auto-flow value is set to `dense` by the `grid.$flow` variable applied via the `--vb-grid-flow` custom property.
+Modifiers used to set the `grid-auto-flow` property of a grid component. By default, the grid component has auto-flow set to dense. These modifiers are generated using key/value pairs of the `grid-flow` config options map. The `default` key sets the provided value on the grid component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -464,7 +464,7 @@ Grid utilities are intended to be used directly on the children of a grid compon
 
 ### col-[num]
 
-A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid.$cols`.
+A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid-cols` config option.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -592,7 +592,7 @@ This utility also come with media breakpoint variants. This allows changing styl
 
 ### row-[num]
 
-A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid.$rows`.
+A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid-rows` config option.
 
 <CodeExample>
   <Fragment slot="demo">
