@@ -112,7 +112,11 @@ $config: (
     "black": 900,
     "lighter": lighter,
     "bolder": bolder
-  )
+  ),
+
+  // The range of flex-grow and flex-shrink utilities to output
+  // @type number
+  "utility-flex-range": 6
 );
 ```
 </CodeExpander>
@@ -694,6 +698,134 @@ Utilities for setting the order property of an element.
   "order-5": "order: 5;",
   "order-6": "order: 6;",
 }} />
+
+### flex
+
+Utilities for setting the flex specific properties of an element. These pair well with the [`flex` component](/packages/flex) to provide more granular control of flex items.
+
+<UtilityTable id="flex" data={{
+  "flex-nowrap": "flex-wrap: nowrap;",
+  "flex-wrap": "flex-wrap: wrap;",
+  "flex-wrap-reverse": "flex-wrap: wrap-reverse;",
+  "flex-direction-row": "flex-direction: row;",
+  "flex-direction-row-reverse": "flex-direction: row-reverse;",
+  "flex-direction-col": "flex-direction: column;",
+  "flex-direction-col-reverse": "flex-direction: column-reverse;",
+  "flex-grow": "flex-grow: 1;",
+  "flex-grow-0": "flex-grow: 0;",
+  "flex-grow-1": "flex-grow: 1;",
+  "flex-grow-2": "flex-grow: 2;",
+  "flex-grow-3": "flex-grow: 3;",
+  "flex-grow-4": "flex-grow: 4;",
+  "flex-grow-5": "flex-grow: 5;",
+  "flex-grow-6": "flex-grow: 6;",
+  "flex-shrink": "flex-shrink: 1;",
+  "flex-shrink-0": "flex-shrink: 0;",
+  "flex-shrink-1": "flex-shrink: 1;",
+  "flex-shrink-2": "flex-shrink: 2;",
+  "flex-shrink-3": "flex-shrink: 3;",
+  "flex-shrink-4": "flex-shrink: 4;",
+  "flex-shrink-5": "flex-shrink: 5;",
+  "flex-shrink-6": "flex-shrink: 6;",
+  "flex-basis-0": "flex-basis: 0;",
+  "flex-basis-auto": "flex-basis: auto;",
+  "flex-basis-100": "flex-basis: 100;",
+}} />
+
+#### flex-grow-[value]
+
+Utilities for controlling the `flex-grow` property. These utilities are generated using the value set in `utility-flex-range` config options map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-grow-select">Variants Demo:</label>
+    <select id="demo-flex-grow-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-grow">
+      <option value="flex-grow">flex-grow</option>
+      <option value="flex-grow-0">flex-grow-0</option>
+      <option value="flex-grow-1">flex-grow-1</option>
+      <option value="flex-grow-2">flex-grow-2</option>
+      <option value="flex-grow-3">flex-grow-3</option>
+      <option value="flex-grow-4">flex-grow-4</option>
+      <option value="flex-grow-5">flex-grow-5</option>
+      <option value="flex-grow-6">flex-grow-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex">
+      <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
+      <div class="box flex-grow-1">2. Two</div>
+      <div class="box flex-grow-1">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-grow-3">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+#### flex-shrink-[value]
+
+Utilities for controlling the `flex-shrink` property. These utilities are generated using the value set in `utility-flex-range` config options map.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-shrink-select">Variants Demo:</label>
+    <select id="demo-flex-shrink-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-shrink">
+      <option value="flex-shrink">flex-shrink</option>
+      <option value="flex-shrink-0">flex-shrink-0</option>
+      <option value="flex-shrink-1">flex-shrink-1</option>
+      <option value="flex-shrink-2">flex-shrink-2</option>
+      <option value="flex-shrink-3">flex-shrink-3</option>
+      <option value="flex-shrink-4">flex-shrink-4</option>
+      <option value="flex-shrink-5">flex-shrink-5</option>
+      <option value="flex-shrink-6">flex-shrink-6</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex flex-nowrap">
+      <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+      <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex flex-nowrap">
+    <div class="flex-shrink-3">...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
+
+#### flex-basis-[value]
+
+Utilities for controlling the `flex-basis` property which sets the initial main size of a flex item.
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-flex-basis-select">Variants Demo:</label>
+    <select id="demo-flex-basis-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-basis">
+      <option value="flex-basis-0">flex-basis-0</option>
+      <option value="flex-basis-auto">flex-basis-auto</option>
+      <option value="flex-basis-100">flex-basis-100</option>
+    </select>
+  </Fragment>
+  <Fragment slot="output">
+    <div class="layout-demo flex">
+      <div id="demo-flex-basis" class="box-alt flex-basis-auto">1. One</div>
+      <div class="box">2. Two</div>
+      <div class="box">3. Three</div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="flex">
+    <div class="flex-basis-auto">...</div>
+    <div>...</div>
+    <div>...</div>
+  </div>
+  ```
+</CodeExample>
 
 ### position
 

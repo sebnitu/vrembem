@@ -74,15 +74,7 @@ $config: (
     "equal": 1 1 0,
     "fill": 1 0 auto,
     "full": 1 0 100%
-  ),
-
-  // The range of flex-grow utilities to output
-  // @type number
-  "flex-grow-count": 6,
-
-  // The range of flex-shrink utilities to output
-  // @type number
-  "flex-shrink-count": 6
+  )
 );
 ```
 </CodeExpander>
@@ -581,134 +573,11 @@ This utility also come with media breakpoint variants. This allows changing styl
 
 **Available variants**
 
-- `xs:flex-[key]`
-- `sm:flex-[key]`
-- `md:flex-[key]`
-- `lg:flex-[key]`
-- `xl:flex-[key]`
-
-### flex-grow-[value]
-
-Utilities for controlling the `flex-grow` property. These utilities are generated using the value set in `flex-grow-count` config options map.
-
-<CodeExample>
-  <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-flex-grow-select">Variants Demo:</label>
-    <select id="demo-flex-grow-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-grow">
-      <option value="flex-grow">flex-grow</option>
-      <option value="flex-grow-0">flex-grow-0</option>
-      <option value="flex-grow-1">flex-grow-1</option>
-      <option value="flex-grow-2">flex-grow-2</option>
-      <option value="flex-grow-3">flex-grow-3</option>
-      <option value="flex-grow-4">flex-grow-4</option>
-      <option value="flex-grow-5">flex-grow-5</option>
-      <option value="flex-grow-6">flex-grow-6</option>
-    </select>
-  </Fragment>
-  <Fragment slot="output">
-    <div class="layout-demo flex flex_items_auto">
-      <div id="demo-flex-grow" class="box-alt flex-grow-3">1. One</div>
-      <div class="box">2. Two</div>
-      <div class="box">3. Three</div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="flex flex_items_auto">
-    <div class="flex-grow-3">...</div>
-    <div>...</div>
-    <div>...</div>
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `flex-grow`: Shorthand for `flex-grow: 1;`.
-- `flex-grow-0`
-- `flex-grow-1`
-- `flex-grow-2`
-- `flex-grow-3`
-- `flex-grow-4`
-- `flex-grow-5`
-- `flex-grow-6`
-
-### flex-shrink-[value]
-
-Utilities for controlling the `flex-shrink` property. These utilities are generated using the value set in `flex-shrink-count` config options map.
-
-<CodeExample>
-  <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-flex-shrink-select">Variants Demo:</label>
-    <select id="demo-flex-shrink-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-shrink">
-      <option value="flex-shrink">flex-shrink</option>
-      <option value="flex-shrink-0">flex-shrink-0</option>
-      <option value="flex-shrink-1">flex-shrink-1</option>
-      <option value="flex-shrink-2">flex-shrink-2</option>
-      <option value="flex-shrink-3">flex-shrink-3</option>
-      <option value="flex-shrink-4">flex-shrink-4</option>
-      <option value="flex-shrink-5">flex-shrink-5</option>
-      <option value="flex-shrink-6">flex-shrink-6</option>
-    </select>
-  </Fragment>
-  <Fragment slot="output">
-    <div class="layout-demo flex flex_wrap_no">
-      <div id="demo-flex-shrink" class="box-alt font-family-mono flex-shrink-3">1. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
-      <div class="box font-family-mono">2. a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="flex flex_wrap_no">
-    <div class="flex-shrink-3">...</div>
-    <div>...</div>
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `flex-shrink`: Shorthand for `flex-shrink: 1;`.
-- `flex-shrink-0`
-- `flex-shrink-1`
-- `flex-shrink-2`
-- `flex-shrink-3`
-- `flex-shrink-4`
-- `flex-shrink-5`
-- `flex-shrink-6`
-
-### flex-basis-[value]
-
-Utilities for controlling the `flex-basis` property which sets the initial main size of a flex item.
-
-<CodeExample>
-  <Fragment slot="demo">
-    <label class="text-nowrap" for="demo-flex-basis-select">Variants Demo:</label>
-    <select id="demo-flex-basis-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-flex-basis">
-      <option value="flex-basis-0">flex-basis-0</option>
-      <option value="flex-basis-auto">flex-basis-auto</option>
-      <option value="flex-basis-full">flex-basis-full</option>
-    </select>
-  </Fragment>
-  <Fragment slot="output">
-    <div class="layout-demo flex">
-      <div id="demo-flex-basis" class="box-alt flex-basis-auto">1. One</div>
-      <div class="box">2. Two</div>
-      <div class="box">3. Three</div>
-    </div>
-  </Fragment>
-  ```html
-  <div class="flex">
-    <div class="flex-basis-auto">...</div>
-    <div>...</div>
-    <div>...</div>
-  </div>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `flex-basis-0`: Sets flex-basis to `0`.
-- `flex-basis-auto`: Sets flex-basis to `auto`.
-- `flex-basis-full`: Sets flex-basis to `100%`.
+- `xs:flex-item-[key]`
+- `sm:flex-item-[key]`
+- `md:flex-item-[key]`
+- `lg:flex-item-[key]`
+- `xl:flex-item-[key]`
 
 ## Reference
 

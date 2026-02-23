@@ -14,12 +14,13 @@
 @forward "./src/modules/padding"; // 180
 @forward "./src/modules/spacing"; // 24
 
-// Grid and flex (5)
+// Grid and flex (6)
 @forward "./src/modules/gap"; // 72
 @forward "./src/modules/justify"; // 60
 @forward "./src/modules/align"; // 60
 @forward "./src/modules/place"; // 60
 @forward "./src/modules/order"; // 36
+@forward "./src/modules/flex"; // 104
 
 // Miscellaneous (6)
 @forward "./src/modules/position"; // 20
