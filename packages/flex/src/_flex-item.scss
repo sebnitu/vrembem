@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$-flex-items: config.get("flex-items");
+
+@each $key, $value in $-flex-items {
+  #{core.bem("flex-item-#{$key}")} {
+    flex: $value;
+  }
+}
+
+@each $bp, $value in config.get("breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-flex-items {
+      #{core.bem("flex-item-#{$key}", $bp: $bp)} {
+        flex: $value;
+      }
+    }
+  }
+}

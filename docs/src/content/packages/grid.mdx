@@ -30,24 +30,36 @@ Grid comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // Used to build grid column modifiers and col utilities
+  // Used for outputting grid_cols_[num] modifiers and col-[num] utilities
   // @type number
   "grid-cols": 6,
 
-  // Used to build grid row modifiers and row utilities
+  // Used for outputting grid_rows_[num] modifiers and row-[num] utilities
   // @type number
   "grid-rows": 6,
 
-  // A map of gap modifiers to output. Use the "default" key for a default value.
-  // Default values are not output as modifiers.
+  // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
   // @type map
   "grid-gap": (
     "default": 2em,
-    "none": 0,
+    "0": 0,
     "xs": 0.5em,
     "sm": 1em,
+    "md": 2em,
     "lg": 3em,
     "xl": 4em
+  ),
+
+  // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
+  // setting the default value. Default values are not output as a modifier.
+  // @type map
+  "grid-flow": (
+    "default": dense,
+    "row": row,
+    "col": column,
+    "row-dense": row dense,
+    "col-dense": column dense
   )
 );
 ```
@@ -55,7 +67,7 @@ $config: (
 
 ## Basic usage
 
-The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` class to the desired grid container with an optional `grid_cols_[value]` modifier to create a grid layout.
+The most basic implementation of the grid layout consists of the grid container and it's children (grid items). Apply the `grid` class to the desired grid container with an optional `grid_cols_[num]` modifier to create a grid layout.
 
 <CodeExample>
   <Fragment slot="output">
@@ -95,9 +107,9 @@ Also available is the `grid_inline` modifier. This sets the `display` property t
   ```
 </CodeExample>
 
-## grid_cols_[value]
+## grid_cols_[num]
 
-By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[value]` modifier. The number of variants available is controlled by the `grid.$cols` variable (defaults to `6`).
+By default the `grid` class only defines a single column. To add additional columns to the grid layout, use the `grid_cols_[num]` modifiers. The number of variants available is controlled by the `grid-cols` config option (default: `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -140,7 +152,7 @@ By default the `grid` class only defines a single column. To add additional colu
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-columns property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -170,15 +182,15 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 **Available variants**
 
-- `xs:grid_cols_[value]`
-- `sm:grid_cols_[value]`
-- `md:grid_cols_[value]`
-- `lg:grid_cols_[value]`
-- `xl:grid_cols_[value]`
+- `xs:grid_cols_[num]`
+- `sm:grid_cols_[num]`
+- `md:grid_cols_[num]`
+- `lg:grid_cols_[num]`
+- `xl:grid_cols_[num]`
 
-## grid_rows_[value]
+## grid_rows_[num]
 
-By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[value]` modifier. The number of variants available is controlled by the `grid.$rows` variable (defaults to `6`).
+By default the `grid` class only defines a single row. To add additional rows to the grid layout, use the `grid_rows_[num]` modifiers. The number of variants available is controlled by the `grid-rows` config option (default: `6`).
 
 <CodeExample>
   <Fragment slot="demo">
@@ -218,7 +230,7 @@ By default the `grid` class only defines a single row. To add additional rows to
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-rows property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -248,24 +260,25 @@ This modifier also comes with optional media breakpoint variants. This allows ch
 
 **Available variants**
 
-- `xs:grid_rows_[value]`
-- `sm:grid_rows_[value]`
-- `md:grid_rows_[value]`
-- `lg:grid_rows_[value]`
-- `xl:grid_rows_[value]`
+- `xs:grid_rows_[num]`
+- `sm:grid_rows_[num]`
+- `md:grid_rows_[num]`
+- `lg:grid_rows_[num]`
+- `xl:grid_rows_[num]`
 
 ## grid_gap_[key]
 
-Adjusts the gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the `grid.$gap-map` variable map.
+Modifiers used to set the `gap` property of a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-select">Variants Demo:</label>
     <select id="demo-grid-gap-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap">
       <option value="grid grid_cols_2">None</option>
-      <option value="grid grid_cols_2 grid_gap_none">grid_gap_none</option>
+      <option value="grid grid_cols_2 grid_gap_0">grid_gap_0</option>
       <option value="grid grid_cols_2 grid_gap_xs">grid_gap_xs</option>
       <option value="grid grid_cols_2 grid_gap_sm">grid_gap_sm</option>
+      <option value="grid grid_cols_2 grid_gap_md">grid_gap_md</option>
       <option value="grid grid_cols_2 grid_gap_lg">grid_gap_lg</option>
       <option value="grid grid_cols_2 grid_gap_xl">grid_gap_xl</option>
     </select>
@@ -287,24 +300,26 @@ Adjusts the gap spacing based on the provided key. Gap key classes are generated
 
 **Available variants**
 
-- `grid_gap_none`
+- `grid_gap_0`
 - `grid_gap_xs`
 - `grid_gap_sm`
+- `grid_gap_md`
 - `grid_gap_lg`
 - `grid_gap_xl`
 
 ### grid_gap-x_[key]
 
-Adjusts the horizontal gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`grid.$gap-map`](#scss-variables-file) variable map.
+Modifiers to set the `column-gap` value on a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-x-select">Variants Demo:</label>
     <select id="demo-grid-gap-x-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap-x">
       <option value="grid grid_cols_2">None</option>
-      <option value="grid grid_cols_2 grid_gap-x_none">grid_gap-x_none</option>
+      <option value="grid grid_cols_2 grid_gap-x_0">grid_gap-x_0</option>
       <option value="grid grid_cols_2 grid_gap-x_xs">grid_gap-x_xs</option>
       <option value="grid grid_cols_2 grid_gap-x_sm">grid_gap-x_sm</option>
+      <option value="grid grid_cols_2 grid_gap-x_md">grid_gap-x_md</option>
       <option value="grid grid_cols_2 grid_gap-x_lg">grid_gap-x_lg</option>
       <option value="grid grid_cols_2 grid_gap-x_xl">grid_gap-x_xl</option>
     </select>
@@ -326,24 +341,26 @@ Adjusts the horizontal gap spacing based on the provided key. Gap key classes ar
 
 **Available variants**
 
-- `grid_gap-x_none`
+- `grid_gap-x_0`
 - `grid_gap-x_xs`
 - `grid_gap-x_sm`
+- `grid_gap-x_md`
 - `grid_gap-x_lg`
 - `grid_gap-x_xl`
 
 ### grid_gap-y_[key]
 
-Adjusts the vertical gap spacing based on the provided key. Gap key classes are generated using key/value pairs in the [`grid.$gap-map`](#scss-variables-file) variable map.
+Modifiers to set the `row-gap` value on a grid component. These modifiers are generated using key/value pairs of the `grid-gap` config options map.
 
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-grid-gap-y-select">Variants Demo:</label>
     <select id="demo-grid-gap-y-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-gap-y">
       <option value="grid grid_cols_2">None</option>
-      <option value="grid grid_cols_2 grid_gap-y_none">grid_gap-y_none</option>
+      <option value="grid grid_cols_2 grid_gap-y_0">grid_gap-y_0</option>
       <option value="grid grid_cols_2 grid_gap-y_xs">grid_gap-y_xs</option>
       <option value="grid grid_cols_2 grid_gap-y_sm">grid_gap-y_sm</option>
+      <option value="grid grid_cols_2 grid_gap-y_md">grid_gap-y_md</option>
       <option value="grid grid_cols_2 grid_gap-y_lg">grid_gap-y_lg</option>
       <option value="grid grid_cols_2 grid_gap-y_xl">grid_gap-y_xl</option>
     </select>
@@ -365,15 +382,16 @@ Adjusts the vertical gap spacing based on the provided key. Gap key classes are 
 
 **Available variants**
 
-- `grid_gap-y_none`
+- `grid_gap-y_0`
 - `grid_gap-y_xs`
 - `grid_gap-y_sm`
+- `grid_gap-y_md`
 - `grid_gap-y_lg`
 - `grid_gap-y_xl`
 
 ### Breakpoint variants
 
-Grid gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 **Available variants**
 
@@ -403,7 +421,7 @@ Grid gap modifiers also come with optional media breakpoint variants. This allow
 
 ## grid_flow_[value]
 
-Used to control the grid-auto-flow property which sets how auto-placed items get flowed into the grid. The default grid-auto-flow value is set to `dense` by the `grid.$flow` variable applied via the `--vb-grid-flow` custom property.
+Modifiers used to set the `grid-auto-flow` property of a grid component. By default, the grid component has auto-flow set to dense. These modifiers are generated using key/value pairs of the `grid-flow` config options map. The `default` key sets the provided value on the grid component itself and is not output as a modifier.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -440,9 +458,13 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
 - `grid_flow_row-dense`
 - `grid_flow_col-dense`
 
-## col-[value]
+## Utilities
 
-A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid.$cols`.
+Grid utilities are intended to be used directly on the children of a grid component or grid container (elements with `display: grid` or `display: inline-grid`). Since these only change a single CSS property, utility classes are used instead of BEM element classes.
+
+### col-[num]
+
+A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid-cols` config option.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -534,9 +556,9 @@ A utility used to control the grid-column property which handles a grid item's s
   </div>
 </div>
 
-### Breakpoint variants
+#### Breakpoint variants
 
-This utility also comes with optional media breakpoint variants. This allows changing the grid-column property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+This utility also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -562,15 +584,15 @@ This utility also comes with optional media breakpoint variants. This allows cha
 
 **Available variants**
 
-- `xs:col-[value]`
-- `sm:col-[value]`
-- `md:col-[value]`
-- `lg:col-[value]`
-- `xl:col-[value]`
+- `xs:col-[num]`
+- `sm:col-[num]`
+- `md:col-[num]`
+- `lg:col-[num]`
+- `xl:col-[num]`
 
-## row-[value]
+### row-[num]
 
-A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid.$rows`.
+A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid-rows` config option.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -662,9 +684,9 @@ A utility used to control the grid-row property which handles a grid item's size
   </div>
 </div>
 
-### Breakpoint variants
+#### Breakpoint variants
 
-This utility also comes with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`flex.$breakpoints`](#scss-variables-file) map.
+This utility also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -690,11 +712,11 @@ This utility also comes with optional media breakpoint variants. This allows cha
 
 **Available variants**
 
-- `xs:row-[value]`
-- `sm:row-[value]`
-- `md:row-[value]`
-- `lg:row-[value]`
-- `xl:row-[value]`
+- `xs:row-[num]`
+- `sm:row-[num]`
+- `md:row-[num]`
+- `lg:row-[num]`
+- `xl:row-[num]`
 
 ## Reference
 

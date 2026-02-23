@@ -1,22 +1,10 @@
+@use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-#{core.bem("grid", null, "flow", "row")} {
-  @include css.override("grid", "flow", row);
-}
-
-#{core.bem("grid", null, "flow", "col")} {
-  @include css.override("grid", "flow", column);
-}
-
-#{core.bem("grid", null, "flow", "dense")} {
-  @include css.override("grid", "flow", dense);
-}
-
-#{core.bem("grid", null, "flow", "row-dense")} {
-  @include css.override("grid", "flow", row dense);
-}
-
-#{core.bem("grid", null, "flow", "col-dense")} {
-  @include css.override("grid", "flow", column dense);
+@each $key, $value in map.remove(config.get("grid-flow"), "default") {
+  #{core.bem("grid", null, "flow", $key)} {
+    @include css.override("grid", "flow", $value);
+  }
 }
