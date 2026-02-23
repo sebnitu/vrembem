@@ -152,7 +152,7 @@ By default the `grid` class only defines a single column. To add additional colu
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-columns property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -230,7 +230,7 @@ By default the `grid` class only defines a single row. To add additional rows to
 
 ### Breakpoint variants
 
-This modifier also comes with optional media breakpoint variants. This allows changing the grid-template-rows property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <Fragment slot="demo">
@@ -391,7 +391,7 @@ Adjusts the vertical gap spacing based on the provided key. Gap modifiers are ge
 
 ### Breakpoint variants
 
-Grid gap modifiers also come with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`grid.$breakpoints`](#scss-variables-file) map.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 **Available variants**
 
@@ -458,7 +458,11 @@ Used to control the grid-auto-flow property which sets how auto-placed items get
 - `grid_flow_row-dense`
 - `grid_flow_col-dense`
 
-## col-[num]
+## Utilities
+
+Grid utilities are intended to be used directly on the children of a grid component or grid container (elements with `display: grid` or `display: inline-grid`). Since these only change a single CSS property, utility classes are used instead of BEM element classes.
+
+### col-[num]
 
 A utility used to control the grid-column property which handles a grid item's size and location within a grid column. The number of variants available are determined by the value set in `grid.$cols`.
 
@@ -552,9 +556,9 @@ A utility used to control the grid-column property which handles a grid item's s
   </div>
 </div>
 
-### Breakpoint variants
+#### Breakpoint variants
 
-This utility also comes with optional media breakpoint variants. This allows changing the grid-column property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This utility also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -586,7 +590,7 @@ This utility also comes with optional media breakpoint variants. This allows cha
 - `lg:col-[num]`
 - `xl:col-[num]`
 
-## row-[num]
+### row-[num]
 
 A utility used to control the grid-row property which handles a grid item's size and location within a grid row. The number of variants available are determined by the value set in `grid.$rows`.
 
@@ -680,9 +684,9 @@ A utility used to control the grid-row property which handles a grid item's size
   </div>
 </div>
 
-### Breakpoint variants
+#### Breakpoint variants
 
-This utility also comes with optional media breakpoint variants. This allows changing the grid-row property based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
+This utility also come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
