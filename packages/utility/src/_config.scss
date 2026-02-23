@@ -86,7 +86,11 @@ $default: (
     "black": 900,
     "lighter": lighter,
     "bolder": bolder
-  )
+  ),
+
+  // The range of flex-grow and flex-shrink utilities to output
+  // @type number
+  "utility-flex-range": 6
 );
 
 @include config.apply($config, $default);

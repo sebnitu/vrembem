@@ -1,32 +1,64 @@
-@use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("flex") {
-  #{fun.selector("flex-nowrap")} {
+  #{fun.selector("flex", "nowrap")} {
     flex-wrap: fun.maybe-important(nowrap);
   }
 
-  #{fun.selector("flex-wrap")} {
+  #{fun.selector("flex", "wrap")} {
     flex-wrap: fun.maybe-important(wrap);
   }
 
-  #{fun.selector("flex-wrap-reverse")} {
+  #{fun.selector("flex", "wrap", "reverse")} {
     flex-wrap: fun.maybe-important(wrap-reverse);
   }
 
-  #{fun.selector("flex-direction", "row")} {
+  #{fun.selector("flex", "direction", "row")} {
     flex-direction: fun.maybe-important(row);
   }
 
-  #{fun.selector("flex-direction", "row-reverse")} {
+  #{fun.selector("flex", "direction", "row-reverse")} {
     flex-direction: fun.maybe-important(row-reverse);
   }
 
-  #{fun.selector("flex-direction", "col")} {
+  #{fun.selector("flex", "direction", "col")} {
     flex-direction: fun.maybe-important(column);
   }
 
-  #{fun.selector("flex-direction", "col-reverse")} {
+  #{fun.selector("flex", "direction", "col-reverse")} {
     flex-direction: fun.maybe-important(column-reverse);
+  }
+
+  #{fun.selector("flex", "grow")} {
+    flex-grow: fun.maybe-important(1);
+  }
+
+  @for $i from 0 through config.get("utility-flex-range") {
+    #{fun.selector("flex", "grow-#{$i}")} {
+      flex-grow: fun.maybe-important($i);
+    }
+  }
+
+  #{fun.selector("flex", "shrink")} {
+    flex-shrink: fun.maybe-important(1);
+  }
+
+  @for $i from 0 through config.get("utility-flex-range") {
+    #{fun.selector("flex", "shrink-#{$i}")} {
+      flex-shrink: fun.maybe-important($i);
+    }
+  }
+
+  #{fun.selector("flex", "basis", "0")} {
+    flex-basis: fun.maybe-important(0);
+  }
+
+  #{fun.selector("flex", "basis", "auto")} {
+    flex-basis: fun.maybe-important(auto);
+  }
+
+  #{fun.selector("flex", "basis", "100")} {
+    flex-basis: fun.maybe-important(100%);
   }
 }

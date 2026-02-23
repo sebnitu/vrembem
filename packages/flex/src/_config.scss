@@ -50,15 +50,7 @@ $defaults: (
     "equal": 1 1 0,
     "fill": 1 0 auto,
     "full": 1 0 100%
-  ),
-
-  // The range of flex-grow utilities to output
-  // @type number
-  "flex-grow-count": 6,
-
-  // The range of flex-shrink utilities to output
-  // @type number
-  "flex-shrink-count": 6
+  )
 );
 
 @include config.apply($config, $defaults);
