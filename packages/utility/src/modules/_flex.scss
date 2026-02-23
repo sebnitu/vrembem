@@ -1,0 +1,32 @@
+@use "@vrembem/core";
+@use "../functions" as fun;
+
+@if fun.maybe-output("flex") {
+  #{fun.selector("flex-nowrap")} {
+    flex-wrap: fun.maybe-important(nowrap);
+  }
+
+  #{fun.selector("flex-wrap")} {
+    flex-wrap: fun.maybe-important(wrap);
+  }
+
+  #{fun.selector("flex-wrap-reverse")} {
+    flex-wrap: fun.maybe-important(wrap-reverse);
+  }
+
+  #{fun.selector("flex-direction", "row")} {
+    flex-direction: fun.maybe-important(row);
+  }
+
+  #{fun.selector("flex-direction", "row-reverse")} {
+    flex-direction: fun.maybe-important(row-reverse);
+  }
+
+  #{fun.selector("flex-direction", "col")} {
+    flex-direction: fun.maybe-important(column);
+  }
+
+  #{fun.selector("flex-direction", "col-reverse")} {
+    flex-direction: fun.maybe-important(column-reverse);
+  }
+}
