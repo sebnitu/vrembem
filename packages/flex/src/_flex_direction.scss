@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-direction-map: map.remove(config.get("flex-direction"), "default", "breakpoints");
+$-flex-direction-map: config.get("flex-direction");
 
 @each $key, $value in $-flex-direction-map {
   #{core.bem("flex", null, "direction", $key)} {

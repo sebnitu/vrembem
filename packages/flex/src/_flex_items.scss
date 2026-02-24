@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-items: map.remove(config.get("flex-items"), "default", "breakpoints");
+$-flex-items: config.get("flex-items");
 
 @each $key, $value in $-flex-items {
   #{core.bem("flex", null, "items", $key)} {

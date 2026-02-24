@@ -65,9 +65,11 @@ $-watchers: ();
 ///
 @function get($keys...) {
   @if map.has-key($-config, $keys...) {
+    $result: map.get($-config, $keys...);
+
     @if list.length($keys) > 1 {
+      // Breakpoints getter
       @if list.nth($keys, 2) == "breakpoints" {
-        $result: map.get($-config, $keys...);
         @if $result == true {
           @return map.get($-config, "breakpoints");
         }
@@ -83,7 +85,14 @@ $-watchers: ();
         @error "#{list.nth($keys, 1)} > #{list.nth($keys, 2)} > must be a boolean, list, or map. Received: #{$result}";
       }
     }
-    @return map.get($-config, $keys...);
+
+    // Remove the default and breakpoint entries if the result is a map. These
+    // entries can only be accessed directly.
+    @if meta.type-of($result) == "map" {
+      $result: map.remove($result, "default", "breakpoints");
+    }
+
+    @return $result;
   } @else {
     @error "Config option has not been set: #{$keys}";
   }

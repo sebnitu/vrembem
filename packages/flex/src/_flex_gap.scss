@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-gap: map.remove(config.get("flex-gap"), "default", "breakpoints");
+$-flex-gap: config.get("flex-gap");
 
 @each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap", $key)} {
