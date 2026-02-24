@@ -11,13 +11,11 @@ $-flex-direction-map: map.remove(config.get("flex-direction"), "default", "break
   }
 }
 
-@if config.get("flex-direction", "breakpoints") {
-  @each $bp, $value in config.get("breakpoints") {
-    @include core.media-min($value) {
-      @each $key, $value in $-flex-direction-map {
-        #{core.bem("flex", null, "direction", $key, $bp)} {
-          @include css.override("flex", "direction", $value);
-        }
+@each $bp, $value in config.get("flex-direction", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-flex-direction-map {
+      #{core.bem("flex", null, "direction", $key, $bp)} {
+        @include css.override("flex", "direction", $value);
       }
     }
   }

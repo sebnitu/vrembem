@@ -2,6 +2,8 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
+@use "../utilities/filter-map" as *;
 
 /// Stores all library wide configuration options.
 /// @type map
@@ -63,9 +65,27 @@ $-watchers: ();
 ///
 @function get($keys...) {
   @if map.has-key($-config, $keys...) {
+    @if list.length($keys) > 1 {
+      @if list.nth($keys, 2) == "breakpoints" {
+        $result: map.get($-config, $keys...);
+        @if $result == true {
+          @return map.get($-config, "breakpoints");
+        }
+        @if $result == false {
+          @return empty-map();
+        }
+        @if meta.type-of($result) == "list" {
+          @return filter-map(map.get($-config, "breakpoints"), $result);
+        }
+        @if meta.type-of($result) == "map" {
+          @return $result;
+        }
+        @error "#{list.nth($keys, 1)} > #{list.nth($keys, 2)} > must be a boolean, list, or map. Received: #{$result}";
+      }
+    }
     @return map.get($-config, $keys...);
   } @else {
-    @error "Config option has not been set: `#{$keys}`";
+    @error "Config option has not been set: #{$keys}";
   }
 }
 

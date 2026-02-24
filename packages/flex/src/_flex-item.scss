@@ -11,13 +11,11 @@ $-flex-items: map.remove(config.get("flex-items"), "default", "breakpoints");
   }
 }
 
-@if config.get("flex-items", "breakpoints") {
-  @each $bp, $value in config.get("breakpoints") {
-    @include core.media-min($value) {
-      @each $key, $value in $-flex-items {
-        #{core.bem("flex-item-#{$key}", $bp: $bp)} {
-          flex: $value;
-        }
+@each $bp, $value in config.get("flex-items", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-flex-items {
+      #{core.bem("flex-item-#{$key}", $bp: $bp)} {
+        flex: $value;
       }
     }
   }

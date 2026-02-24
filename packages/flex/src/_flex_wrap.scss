@@ -11,13 +11,11 @@ $-flex-wrap: map.remove(config.get("flex-wrap"), "default", "breakpoints");
   }
 }
 
-@if config.get("flex-wrap", "breakpoints") {
-  @each $bp, $value in config.get("breakpoints") {
-    @include core.media-min($value) {
-      @each $key, $value in $-flex-wrap {
-        #{core.bem("flex", null, "wrap", $key, $bp)} {
-          @include css.override("flex", "wrap", $value);
-        }
+@each $bp, $value in config.get("flex-wrap", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-flex-wrap {
+      #{core.bem("flex", null, "wrap", $key, $bp)} {
+        @include css.override("flex", "wrap", $value);
       }
     }
   }
