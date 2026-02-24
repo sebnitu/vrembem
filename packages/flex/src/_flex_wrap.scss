@@ -3,8 +3,22 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@each $key, $value in map.remove(config.get("flex-wrap"), "default") {
+$-flex-wrap: map.remove(config.get("flex-wrap"), "default", "breakpoints");
+
+@each $key, $value in $-flex-wrap {
   #{core.bem("flex", null, "wrap", $key)} {
     @include css.override("flex", "wrap", $value);
+  }
+}
+
+@if config.get("flex-wrap", "breakpoints") {
+  @each $bp, $value in config.get("breakpoints") {
+    @include core.media-min($value) {
+      @each $key, $value in $-flex-wrap {
+        #{core.bem("flex", null, "wrap", $key, $bp)} {
+          @include css.override("flex", "wrap", $value);
+        }
+      }
+    }
   }
 }

@@ -1,8 +1,9 @@
+@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-items: config.get("flex-items");
+$-flex-items: map.remove(config.get("flex-items"), "default", "breakpoints");
 
 @each $key, $value in $-flex-items {
   #{core.bem("flex", null, "items", $key)} {
@@ -16,16 +17,18 @@ $-flex-items: config.get("flex-items");
   }
 }
 
-@each $bp, $value in config.get("breakpoints") {
-  @include core.media-min($value) {
-    @each $key, $value in $-flex-items {
-      #{core.bem("flex", null, "items", $key, $bp)} {
-        @if $key == "full" {
-          @include css.override("flex", "wrap", wrap);
-        }
+@if config.get("flex-items", "breakpoints") {
+  @each $bp, $value in config.get("breakpoints") {
+    @include core.media-min($value) {
+      @each $key, $value in $-flex-items {
+        #{core.bem("flex", null, "items", $key, $bp)} {
+          @if $key == "full" {
+            @include css.override("flex", "wrap", wrap);
+          }
 
-        > * {
-          flex: $value;
+          > * {
+            flex: $value;
+          }
         }
       }
     }
