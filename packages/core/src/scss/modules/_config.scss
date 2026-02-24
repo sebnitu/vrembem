@@ -233,8 +233,22 @@ $-flags: ("modifiers");
     }
   }
 
-  @if meta.type-of($default) == "map" {
-    @each $key, $value in $default {
+  @each $key, $value in $default {
+    // If the value is a map and has already been set
+    @if meta.type-of($value) == "map" and map.has-key($-config, $key) {
+      // Get the current value from config
+      $current: map.get($-config, $key);
+      // Loop through the current values and ensure they match the allowed
+      // default map signature. Otherwise, throw an error.
+      @each $cKey, $cValue in $current {
+        @if not map.has-key($value, $cKey) {
+          @error "`#{$cKey}` is not a valid configuration option in `#{$key}` map";
+        }
+      }
+      // Merge the default value with the current value and set the merged map
+      $merged-values: map.deep-merge($value, $current);
+      @include set($key, $merged-values);
+    } @else {
       @include set-default($key, $value);
     }
   }
