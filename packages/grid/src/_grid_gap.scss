@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-grid-gap: map.remove(config.get("grid-gap"), "default");
+$-grid-gap: config.get("grid-gap", "modifiers");
 
 @each $key, $value in $-grid-gap {
   #{core.bem("grid", null, "gap", $key)} {
@@ -21,7 +21,7 @@ $-grid-gap: map.remove(config.get("grid-gap"), "default");
   }
 }
 
-@each $bp, $value in config.get("breakpoints") {
+@each $bp, $value in config.get("grid-gap", "breakpoints") {
   @include core.media-min($value) {
     @each $key, $value in $-grid-gap {
       #{core.bem("grid", null, "gap", $key, $bp)} {

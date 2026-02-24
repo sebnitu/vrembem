@@ -18,6 +18,7 @@ $defaults: (
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "grid-gap": (
+    "breakpoints": true,
     "default": 2em,
     "0": 0,
     "xs": 0.5em,
