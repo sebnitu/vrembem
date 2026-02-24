@@ -238,6 +238,7 @@ $-flags: ("modifiers");
     @if meta.type-of($value) == "map" and map.has-key($-config, $key) {
       // Get the current value from config
       $current: map.get($-config, $key);
+
       // Loop through the current values and ensure they match the allowed
       // default map signature. Otherwise, throw an error.
       @each $cKey, $cValue in $current {
@@ -245,8 +246,10 @@ $-flags: ("modifiers");
           @error "`#{$cKey}` is not a valid configuration option in `#{$key}` map";
         }
       }
+
       // Merge the default value with the current value and set the merged map
       $merged-values: map.deep-merge($value, $current);
+
       @include set($key, $merged-values);
     } @else {
       @include set-default($key, $value);
