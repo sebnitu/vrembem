@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-gap: config.get("flex-gap");
+$-flex-gap: config.get("flex-gap", "modifiers");
 
 @each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap", $key)} {

@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-items: config.get("flex-items");
+$-flex-items: config.get("flex-items", "modifiers");
 
 @each $key, $value in $-flex-items {
   #{core.bem("flex-item-#{$key}")} {

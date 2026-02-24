@@ -9,6 +9,7 @@
 ///
 @function filter-map($map, $keys) {
   $result: ();
+
   @each $key in $keys {
     @if map.has-key($map, $key) {
       $result: map.merge(
@@ -19,5 +20,6 @@
       );
     }
   }
+
   @return $result;
 }

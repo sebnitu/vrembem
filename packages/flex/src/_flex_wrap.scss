@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-wrap: config.get("flex-wrap");
+$-flex-wrap: config.get("flex-wrap", "modifiers");
 
 @each $key, $value in $-flex-wrap {
   #{core.bem("flex", null, "wrap", $key)} {

@@ -3,7 +3,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-direction-map: config.get("flex-direction");
+$-flex-direction-map: config.get("flex-direction", "modifiers");
 
 @each $key, $value in $-flex-direction-map {
   #{core.bem("flex", null, "direction", $key)} {
