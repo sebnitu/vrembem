@@ -1,45 +1,47 @@
 @use "@vrembem/core/config";
 @use "../functions" as fun;
 
+$-utility-spacing: config.get("utility-spacing");
+
 @if fun.maybe-output("margin") {
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", $key)} {
       margin: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "top", $key)} {
       margin-top: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "bottom", $key)} {
       margin-bottom: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "left", $key)} {
       margin-left: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "right", $key)} {
       margin-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "x", $key)} {
       margin-left: fun.maybe-important($value);
       margin-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("margin", "y", $key)} {
       margin-bottom: fun.maybe-important($value);
       margin-top: fun.maybe-important($value);

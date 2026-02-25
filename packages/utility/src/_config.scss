@@ -61,6 +61,11 @@ $default: (
   // @type map
   "utility-spacing": (
     "0": 0,
+    "xs": css.get("spacing"),
+    "sm": calc(css.get("spacing") * 2),
+    "": calc(css.get("spacing") * 4),
+    "lg": calc(css.get("spacing") * 8),
+    "xl": calc(css.get("spacing") * 12)
   ),
 
   // A map of gap utilities to output

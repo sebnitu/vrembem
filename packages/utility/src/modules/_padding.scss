@@ -1,45 +1,47 @@
 @use "@vrembem/core/config";
 @use "../functions" as fun;
 
+$-utility-spacing: config.get("utility-spacing");
+
 @if fun.maybe-output("padding") {
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", $key)} {
       padding: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "top", $key)} {
       padding-top: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "bottom", $key)} {
       padding-bottom: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "left", $key)} {
       padding-left: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "right", $key)} {
       padding-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "x", $key)} {
       padding-left: fun.maybe-important($value);
       padding-right: fun.maybe-important($value);
     }
   }
 
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "y", $key)} {
       padding-bottom: fun.maybe-important($value);
       padding-top: fun.maybe-important($value);

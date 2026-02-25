@@ -31,13 +31,13 @@ $defaults: (
   // @type map
   "grid-gap": (
     "breakpoints": true,
-    "default": 2em,
+    "default": calc(css.get("spacing") * 8),
     "0": 0,
-    "xs": 0.5em,
-    "sm": 1em,
-    "md": 2em,
-    "lg": 3em,
-    "xl": 4em
+    "xs": calc(css.get("spacing") * 2),
+    "sm": calc(css.get("spacing") * 4),
+    "md": calc(css.get("spacing") * 8),
+    "lg": calc(css.get("spacing") * 12),
+    "xl": calc(css.get("spacing") * 16)
   ),
 
   // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
