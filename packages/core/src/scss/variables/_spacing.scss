@@ -1,5 +1,4 @@
 @use "../modules/css";
-
 @include css.set("core", "spacing", 0.25em);
 @include css.set(
   "core",
