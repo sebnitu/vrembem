@@ -34,6 +34,7 @@ $config: (
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-gap": (
+    "breakpoints": true,
     "default": 1em,
     "0": 0,
     "xs": 1px,
@@ -47,7 +48,9 @@ $config: (
   // setting the default value. Default values are not output as a modifier.
   // @type map
   "flex-wrap": (
+    "breakpoints": true,
     "default": wrap,
+    "": wrap,
     "no": nowrap,
     "reverse": wrap-reverse
   ),
@@ -57,6 +60,7 @@ $config: (
   // modifier.
   // @type map
   "flex-direction": (
+    "breakpoints": true,
     "default": row,
     "row": row,
     "row-reverse": row-reverse,
@@ -68,6 +72,7 @@ $config: (
   // flex-item-[key] utilities.
   // @type map
   "flex-items": (
+    "breakpoints": true,
     "initial": initial, // Equivalent: 0 1 auto
     "auto": auto, // Equivalent: 1 1 auto
     "none": none, // Equivalent: 0 0 auto
