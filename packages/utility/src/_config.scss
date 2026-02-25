@@ -57,10 +57,16 @@ $default: (
     "none": none
   ),
 
+  // A spacing scale used to output margin, padding, and spacing utilities
+  // @type map
+  "utility-spacing": (
+    "0": 0,
+  ),
+
   // A map of gap utilities to output
   // @type map
   "utility-gap": (
-    "none": css.get("gap-none"),
+    "0": 0,
     "xs": css.get("gap-xs"),
     "sm": css.get("gap-sm"),
     "": css.get("gap"),
