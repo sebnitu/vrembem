@@ -9,10 +9,11 @@
 
 // Set config options
 @include config.set(
-  "prefix-cssvar",
   (
-    "default": "vb",
-    "astro": ""
+    "prefix-cssvar": (
+      "default": "vb",
+      "astro": ""
+    )
   )
 );
 
