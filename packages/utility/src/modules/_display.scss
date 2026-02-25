@@ -2,18 +2,20 @@
 @use "@vrembem/core/config";
 @use "../functions" as fun;
 
+$-utility-display: config.get("utility-display", "utilities");
+
 @if fun.maybe-output("display") {
-  @each $property in config.get("utility-display") {
-    #{fun.selector("display", $property)} {
-      display: fun.maybe-important($property);
+  @each $key, $value in $-utility-display {
+    #{fun.selector("display", $key)} {
+      display: fun.maybe-important($value);
     }
   }
 
-  @each $bp, $value in config.get("breakpoints") {
+  @each $bp, $value in config.get("utility-display", "breakpoints") {
     @include core.media-min($value) {
-      @each $property in config.get("utility-display") {
-        #{fun.selector("display", $property, "#{$bp}:")} {
-          display: fun.maybe-important($property);
+      @each $key, $value in $-utility-display {
+        #{fun.selector("display", $key, "#{$bp}:")} {
+          display: fun.maybe-important($value);
         }
       }
     }

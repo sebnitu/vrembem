@@ -46,7 +46,15 @@ $default: (
   // A list of display value properties to output
   // @type list
   "utility-display": (
-    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+    "breakpoints": true,
+    "inline": inline,
+    "flex": flex,
+    "inline-flex": inline-flex,
+    "grid": grid,
+    "inline-grid": inline-grid,
+    "block": block,
+    "inline-block": inline-block,
+    "none": none
   ),
 
   // A map of gap utilities to output
