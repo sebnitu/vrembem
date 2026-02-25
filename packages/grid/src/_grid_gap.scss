@@ -2,7 +2,7 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-grid-gap: config.get("grid-gap", "modifiers");
+$-grid-gap: config.get("grid-gap", "variants");
 
 @each $key, $value in $-grid-gap {
   #{core.bem("grid", null, "gap", $key)} {

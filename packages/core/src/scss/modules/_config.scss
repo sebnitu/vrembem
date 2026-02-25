@@ -21,7 +21,7 @@ $-watchers: ();
 /// direct keys in the config map.
 /// @type list
 /// @access private
-$-flags: ("modifiers", "utilities");
+$-flags: ("variants");
 
 /// Helper function that checks if a value should be set in the config map.
 ///
@@ -129,14 +129,9 @@ $-flags: ("modifiers", "utilities");
         @error "#{$keys}: must be a boolean, list, or map. Received: #{$result}";
       }
 
-      // Modifiers getter
-      @if list.nth($keys, -1) == "modifiers" {
+      // Variants getter
+      @if list.nth($keys, -1) == "variants" {
         $result: map.remove($result, "default", "breakpoints");
-      }
-
-      // Utilities getter
-      @if list.nth($keys, -1) == "utilities" {
-        $result: map.remove($result, "breakpoints");
       }
     }
 

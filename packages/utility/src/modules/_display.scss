@@ -2,7 +2,7 @@
 @use "@vrembem/core/config";
 @use "../functions" as fun;
 
-$-utility-display: config.get("utility-display", "utilities");
+$-utility-display: config.get("utility-display", "variants");
 
 @if fun.maybe-output("display") {
   @each $key, $value in $-utility-display {
