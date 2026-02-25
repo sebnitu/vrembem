@@ -6,13 +6,25 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Used for outputting grid_cols_[num] modifiers and col-[num] utilities
-  // @type number
-  "grid-cols": 6,
+  // Map for outputting grid_cols_[num] modifiers and col-[num] utilities. Use 
+  // the "default" key for setting the default value. Default values are not
+  // output as a modifier.
+  // @type map
+  "grid-cols": (
+    "breakpoints": true,
+    "default": 1,
+    "total": 6
+  ),
 
-  // Used for outputting grid_rows_[num] modifiers and row-[num] utilities
-  // @type number
-  "grid-rows": 6,
+  // Map for outputting grid_rows_[num] modifiers and row-[num] utilities. Use
+  // the "default" key for setting the default value. Default values are not
+  // output as a modifier.
+  // @type map
+  "grid-rows": (
+    "breakpoints": true,
+    "default": 1,
+    "total": 6
+  ),
 
   // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
   // setting the default value. Default values are not output as a modifier.

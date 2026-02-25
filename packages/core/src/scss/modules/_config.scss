@@ -118,7 +118,7 @@ $-flags: ("modifiers");
           @return empty-map();
         }
 
-        @if meta.type-of($result) == "list" {
+        @if meta.type-of($result) == "list" or meta.type-of($result) == "string" {
           @return filter-map(map.get($-config, "breakpoints"), $result);
         }
 
@@ -126,7 +126,7 @@ $-flags: ("modifiers");
           @return $result;
         }
 
-        @error "#{list.nth($keys, 1)} > #{list.nth($keys, -1)} > must be a boolean, list, or map. Received: #{$result}";
+        @error "#{list.nth($keys, 1)} > #{list.nth($keys, -1)}: must be a boolean, list, or map. Received: #{$result}";
       }
 
       // Modifiers getter

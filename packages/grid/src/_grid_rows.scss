@@ -2,15 +2,17 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@for $i from 1 through config.get("grid-rows") {
+$-grid-rows: config.get("grid-rows", "total");
+
+@for $i from 1 through $-grid-rows {
   #{core.bem("grid", null, "rows", $i)} {
     @include css.override("grid", "rows", $i);
   }
 }
 
-@each $bp, $value in config.get("breakpoints") {
+@each $bp, $value in config.get("grid-rows", "breakpoints") {
   @include core.media-min($value) {
-    @for $i from 1 through config.get("grid-rows") {
+    @for $i from 1 through $-grid-rows {
       #{core.bem("grid", null, "rows", $i, $bp)} {
         @include css.override("grid", "rows", $i);
       }

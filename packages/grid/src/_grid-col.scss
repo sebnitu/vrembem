@@ -2,6 +2,8 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
+$-grid-cols: config.get("grid-cols", "total");
+
 #{core.bem("grid-col-auto")} {
   grid-column: auto / auto;
 }
@@ -10,13 +12,13 @@
   grid-column: span css.get("grid", "cols", 1) / span css.get("grid", "cols", 1);
 }
 
-@for $i from 1 through config.get("grid-cols") {
+@for $i from 1 through $-grid-cols {
   #{core.bem("grid-col-#{$i}")} {
     grid-column: span $i / span $i;
   }
 }
 
-@for $i from 1 through (config.get("grid-cols") + 1) {
+@for $i from 1 through ($-grid-cols + 1) {
   #{core.bem("grid-col-start-#{$i}")} {
     grid-column-start: $i;
   }
@@ -26,7 +28,7 @@
   }
 }
 
-@each $bp, $value in config.get("breakpoints") {
+@each $bp, $value in config.get("grid-cols", "breakpoints") {
   @include core.media-min($value) {
     #{core.bem("grid-col-auto", $bp: $bp)} {
       grid-column: auto / auto;
@@ -36,13 +38,13 @@
       grid-column: span css.get("grid", "cols", 1) / span css.get("grid", "cols", 1);
     }
 
-    @for $i from 1 through config.get("grid-cols") {
+    @for $i from 1 through $-grid-cols {
       #{core.bem("grid-col-#{$i}", $bp: $bp)} {
         grid-column: span $i / span $i;
       }
     }
 
-    @for $i from 1 through (config.get("grid-cols") + 1) {
+    @for $i from 1 through ($-grid-cols + 1) {
       #{core.bem("grid-col-start-#{$i}", $bp: $bp)} {
         grid-column-start: $i;
       }
