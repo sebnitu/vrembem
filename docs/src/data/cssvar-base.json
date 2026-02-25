@@ -19,8 +19,8 @@
   "--vb-link-focus-ring": "currentcolor dotted 1px",
   "--vb-link-focus-ring-offset": "0.125rem",
 
-  "--vb-list-indent": "1.5em",
-  "--vb-list-gap": "0.5em",
+  "--vb-list-indent": "var(--vb-spacing-lg)",
+  "--vb-list-spacing": "var(--vb-spacing-sm)",
 
   "--vb-code-background": "var(--vb-background-alt)",
   "--vb-code-foreground": "var(--vb-foreground-alt)",
@@ -33,15 +33,15 @@
   "--vb-pre-foreground": "var(--vb-foreground)",
   "--vb-pre-border": "none",
   "--vb-pre-border-radius": "var(--vb-border-radius)",
-  "--vb-pre-padding": "1em",
+  "--vb-pre-padding": "var(--vb-spacing-md)",
   "--vb-pre-font-size": "var(--vb-font-size-sm)",
 
   "--vb-blockquote-background": "transparent",
   "--vb-blockquote-foreground": "currentcolor",
   "--vb-blockquote-border": "var(--vb-border)",
   "--vb-blockquote-border-radius": "var(--vb-border-radius)",
-  "--vb-blockquote-padding": "1em",
-  "--vb-blockquote-gap": "1em",
+  "--vb-blockquote-padding": "var(--vb-spacing-md)",
+  "--vb-blockquote-spacing": "var(--vb-spacing-md)",
 
   "--vb-separator-border": "var(--vb-border)",
 
@@ -49,7 +49,7 @@
   "--vb-type-font-family": "inherit",
   "--vb-type-font-size": "inherit",
   "--vb-type-line-height": "inherit",
-  "--vb-type-gap": "",
+  "--vb-type-spacing": "",
 
   "--vb-arrow-size": "6px 4px",
   "--vb-arrow-color": "currentcolor",

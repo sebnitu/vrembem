@@ -7,7 +7,7 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: css.get("gap");
+    gap: css.get("spacing-md");
   }
 
   .card__title {

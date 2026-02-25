@@ -72,11 +72,11 @@ $default: (
   // @type map
   "utility-gap": (
     "0": 0,
-    "xs": css.get("gap-xs"),
-    "sm": css.get("gap-sm"),
-    "": css.get("gap"),
-    "lg": css.get("gap-lg"),
-    "xl": css.get("gap-xl")
+    "xs": css.get("spacing"),
+    "sm": css.get("spacing-sm"),
+    "": css.get("spacing-md"),
+    "lg": css.get("spacing-lg"),
+    "xl": css.get("spacing-xl")
   ),
 
   // A map of max-width utilities to output

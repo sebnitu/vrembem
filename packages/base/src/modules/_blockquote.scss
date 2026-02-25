@@ -9,11 +9,11 @@
     border: css.get("blockquote", "border", css.get("border"));
     border-radius: css.get("blockquote", "border-radius", css.get("border-radius"));
     color: css.get("blockquote", "foreground", currentcolor);
-    padding: css.get("blockquote", "padding", 1em);
+    padding: css.get("blockquote", "padding", css.get("spacing-md"));
     position: relative;
 
     > * + * {
-      margin-top: css.get("blockquote", "gap", 1em);
+      margin-top: css.get("blockquote", "spacing", css.get("spacing-md"));
     }
   }
 }

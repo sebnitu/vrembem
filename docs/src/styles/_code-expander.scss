@@ -15,8 +15,8 @@
 
 .code-expander__tools {
   display: flex;
-  gap: css.get("gap-sm");
-  inset: auto css.get("gap") css.get("gap") auto;
+  gap: css.get("spacing-sm");
+  inset: auto css.get("spacing-md") css.get("spacing-md") auto;
   position: absolute;
   z-index: 2;
 }

@@ -11,7 +11,7 @@
     color: css.get("pre", "foreground", css.get("foreground"));
     font-family: css.get("font-family-mono");
     overflow: auto;
-    padding: css.get("pre", "padding", 1em);
+    padding: css.get("pre", "padding", css.get("spacing-md"));
 
     code {
       background: none;

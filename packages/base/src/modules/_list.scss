@@ -5,16 +5,16 @@
   @include css.register("list");
 
   #{fun.selector("list")} {
-    margin-left: css.get("list", "indent", 1.5em);
+    margin-left: css.get("list", "indent", css.get("spacing-lg"));
 
     ul,
     ol {
-      margin-left: css.get("list", "indent", 1.5em);
+      margin-left: css.get("list", "indent", css.get("spacing-lg"));
     }
 
     li li,
     li + li {
-      margin-top: css.get("list", "gap", 0.5em);
+      margin-top: css.get("list", "spacing", css.get("spacing-sm"));
     }
   }
 

@@ -5,13 +5,13 @@
   color: css.get("foreground");
   display: flex;
   flex-wrap: wrap;
-  gap: css.get("gap");
+  gap: css.get("spacing");
   justify-content: space-between;
 
   .link_hash {
     align-items: center;
     display: flex;
-    gap: css.get("gap-sm");
+    gap: css.get("spacing-sm");
   }
 }
 
@@ -19,5 +19,5 @@
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
-  gap: css.get("gap-sm");
+  gap: css.get("spacing-sm");
 }
