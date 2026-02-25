@@ -244,9 +244,9 @@ $-flags: ("modifiers", "utilities");
       // Get the current value from config
       $current: map.get($-config, $key);
 
-      // Throw an error if breakpoints was set when it's not supported
+      // Throw an error if breakpoints was set but are not supported
       @if map.has-key($current, "breakpoints") and not map.has-key($value, "breakpoints") {
-        @error "Breakpoints is not supported in #{$key}";
+        @error "Breakpoint variants are not supported in #{$key}";
       }
 
       // Merge the default value with the current value
