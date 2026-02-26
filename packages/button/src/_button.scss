@@ -7,10 +7,10 @@
   @include core.form-control-properties("button");
   @include mix.button-base;
 
-  background-color: css.get("button", "background", var.$background);
-  border-color: css.get("button", "border-color", var.$border-color);
-  box-shadow: css.get("button", "box-shadow", var.$box-shadow);
-  color: css.get("button", "foreground", var.$foreground);
+  background-color: css.get("button", "background", css.get("background"));
+  border-color: css.get("button", "border-color", css.get("border-color-dark"));
+  box-shadow: css.get("button", "box-shadow", none);
+  color: css.get("button", "foreground", css.get("foreground"));
 
   &:hover {
     background-color: css.get("button", "background-hover", "background", var.$background-hover);
@@ -27,10 +27,10 @@
   }
 
   &:focus-visible {
-    @include core.focus-ring("button", var.$accent);
+    @include core.focus-ring("button", css.get("button", "accent", css.get("form-control-accent")));
 
     background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
-    border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
+    border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("button", "accent", css.get("form-control-accent")));
     box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
     color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
   }
@@ -43,7 +43,7 @@
   }
 
   &:disabled:not(.is-loading) {
-    opacity: css.get("button", "disabled-opacity", var.$disabled-opacity);
+    opacity: css.get("button", "disabled-opacity", 0.6);
     pointer-events: none;
   }
 

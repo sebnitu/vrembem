@@ -1,11 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-#{core.bem("button", null, "size", "sm")} {
-  @include css.override("button", "font-size", var.$size-sm-font-size);
+$-button-size: config.get("button-size", "variants");
+
+@each $key, $value in $-button-size {
+  #{core.bem("button", null, "size", $key)} {
+    @include css.override("button", "font-size", $value);
+  }
 }
 
-#{core.bem("button", null, "size", "lg")} {
-  @include css.override("button", "font-size", var.$size-lg-font-size);
+@each $bp, $value in config.get("button-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-button-size {
+      #{core.bem("button", null, "size", $key, $bp)} {
+        @include css.override("button", "font-size", $value);
+      }
+    }
+  }
 }

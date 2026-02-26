@@ -13,7 +13,7 @@
   display: inline-flex;
   font-family: inherit;
   font-weight: inherit;
-  gap: css.get("button", "gap", var.$gap);
+  gap: css.get("button", "gap", calc(css.get("spacing") * 2));
   justify-content: center;
   position: relative;
   text-decoration: none;

@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 #{core.bem("button", null, "icon")} {
-  @include css.override("button", "padding", var.$icon-padding);
+  @include css.override("button", "padding", css.get("form-control-padding-y"));
 }

@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "./variables" as var;
 
 #{core.bem("button", null, "block")} {
   display: flex;
