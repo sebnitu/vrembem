@@ -1,7 +1,16 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
+
+$config: () !default;
+
+// prettier-ignore
+$default: ();
+
+@include config.apply($config, $default);
 @include css.register("button");
+
+// Legacy ---
 
 $breakpoints: config.get("breakpoints") !default;
 $accent: css.get("button", "accent", css.get("form-control-accent")) !default;
