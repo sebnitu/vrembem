@@ -1,0 +1,27 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  "button-block": (
+    "breakpoints": true
+  ),
+  "button-color": (
+    "primary": palette.get("primary"),
+    "secondary": palette.get("secondary"),
+    "neutral": palette.get("neutral"),
+    "important": palette.get("important")
+  ),
+  "button-size": (
+    "breakpoints": true,
+    "sm": css.get("form-control-font-size-sm"),
+    "lg": css.get("form-control-font-size-lg")
+  )
+);
+
+@include config.apply($config, $default);
+@include css.register("button");
