@@ -5,7 +5,7 @@
 $config: () !default;
 
 // prettier-ignore
-$defaults: (
+$default: (
   // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
   // @type map
   "grid-cols": (
@@ -46,5 +46,5 @@ $defaults: (
   )
 );
 
-@include config.apply($config, $defaults);
+@include config.apply($config, $default);
 @include css.register("grid");

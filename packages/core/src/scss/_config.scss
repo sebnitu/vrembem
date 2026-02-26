@@ -3,7 +3,7 @@
 $config: () !default;
 
 // prettier-ignore
-$defaults: (
+$default: (
   // A prefix to apply to block class names. Provided value is automatically 
   // suffixed with a "-" character when applied.
   // @type string
@@ -60,4 +60,4 @@ $defaults: (
   )
 );
 
-@include config.apply($config, $defaults);
+@include config.apply($config, $default);
