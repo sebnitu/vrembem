@@ -6,9 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Map for outputting grid_cols_[num] modifiers and col-[num] utilities. Use 
-  // the "default" key for setting the default value. Default values are not
-  // output as a modifier.
+  // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
   // @type map
   "grid-cols": (
     "breakpoints": true,
@@ -16,9 +14,7 @@ $defaults: (
     "total": 6
   ),
 
-  // Map for outputting grid_rows_[num] modifiers and row-[num] utilities. Use
-  // the "default" key for setting the default value. Default values are not
-  // output as a modifier.
+  // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
   // @type map
   "grid-rows": (
     "breakpoints": true,
@@ -26,8 +22,7 @@ $defaults: (
     "total": 6
   ),
 
-  // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting the grid_gap_[key] modifier variants
   // @type map
   "grid-gap": (
     "breakpoints": true,
@@ -40,8 +35,7 @@ $defaults: (
     "xl": calc(css.get("spacing") * 16)
   ),
 
-  // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting the grid_flow_[key] modifier variants
   // @type map
   "grid-flow": (
     "default": dense,

@@ -30,8 +30,7 @@ Flex comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // Map for outputting the flex_gap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting flex_gap_[key] modifier variants
   // @type map
   "flex-gap": (
     "breakpoints": true,
@@ -44,8 +43,7 @@ $config: (
     "xl": css.get("spacing-xl")
   ),
 
-  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting flex_wrap_[key] modifier variants
   // @type map
   "flex-wrap": (
     "breakpoints": true,
@@ -55,9 +53,7 @@ $config: (
     "reverse": wrap-reverse
   ),
 
-  // Map for outputting the flex_direction_[key] modifiers. Use the "default" 
-  // key for setting the default value. Default values are not output as a
-  // modifier.
+  // Map for outputting flex_direction_[key] modifier variants
   // @type map
   "flex-direction": (
     "breakpoints": true,
@@ -68,8 +64,8 @@ $config: (
     "col-reverse": column-reverse
   ),
 
-  // Map for outputting the flex_items_[key] modifiers as well as the 
-  // flex-item-[key] utilities.
+  // Map for outputting flex_items_[key] modifier and flex-item-[key] utility 
+  // variants.
   // @type map
   "flex-items": (
     "breakpoints": true,

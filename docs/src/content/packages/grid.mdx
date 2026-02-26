@@ -30,9 +30,7 @@ Grid comes with the following configuration options that can be set using either
 <CodeExpander>
 ```scss
 $config: (
-  // Map for outputting grid_cols_[num] modifiers and col-[num] utilities. Use 
-  // the "default" key for setting the default value. Default values are not
-  // output as a modifier.
+  // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
   // @type map
   "grid-cols": (
     "breakpoints": true,
@@ -40,9 +38,7 @@ $config: (
     "total": 6
   ),
 
-  // Map for outputting grid_rows_[num] modifiers and row-[num] utilities. Use
-  // the "default" key for setting the default value. Default values are not
-  // output as a modifier.
+  // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
   // @type map
   "grid-rows": (
     "breakpoints": true,
@@ -50,8 +46,7 @@ $config: (
     "total": 6
   ),
 
-  // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting the grid_gap_[key] modifier variants
   // @type map
   "grid-gap": (
     "breakpoints": true,
@@ -64,8 +59,7 @@ $config: (
     "xl": calc(css.get("spacing") * 16)
   ),
 
-  // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting the grid_flow_[key] modifier variants
   // @type map
   "grid-flow": (
     "default": dense,
@@ -442,13 +436,12 @@ Modifiers used to set the `grid-auto-flow` property of a grid component. By defa
     <select id="demo-grid-flow-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-grid-flow">
       <option value="grid_flow_row">grid_flow_row</option>
       <option value="grid_flow_col">grid_flow_col</option>
-      <option value="grid_flow_dense">grid_flow_dense</option>
       <option value="grid_flow_row-dense">grid_flow_row-dense</option>
       <option value="grid_flow_col-dense">grid_flow_col-dense</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-grid-flow" class="layout-demo grid grid_cols_3 grid_rows_3 grid_flow_dense">
+    <div id="demo-grid-flow" class="layout-demo grid grid_cols_3 grid_rows_3 grid_flow_row">
       <div class="box col-2">1</div>
       <div class="box col-2">2</div>
       <div class="box">3</div>
@@ -457,7 +450,7 @@ Modifiers used to set the `grid-auto-flow` property of a grid component. By defa
     </div>
   </Fragment>
   ```html
-  <div class="grid grid_cols_3 grid_rows_3 grid_flow_dense">
+  <div class="grid grid_cols_3 grid_rows_3 grid_flow_row">
     ...
   </div>
   ```
@@ -467,7 +460,6 @@ Modifiers used to set the `grid-auto-flow` property of a grid component. By defa
 
 - `grid_flow_row`
 - `grid_flow_col`
-- `grid_flow_dense`
 - `grid_flow_row-dense`
 - `grid_flow_col-dense`
 
