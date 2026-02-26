@@ -4,6 +4,6 @@
 
 @each $key, $value in config.get("button-color", "variants") {
   #{core.bem("button", null, "color", $key)} {
-    @include mix.button-variant($value);
+    @include mix.button-variant($value...);
   }
 }

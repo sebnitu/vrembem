@@ -30,17 +30,18 @@
 ///
 /// @output Override button custom properties using the provided color values.
 ///
-@mixin button-variant($color, $color-dark: hsl(from $color h s 40%), $color-darker: hsl(from $color h s 30%)) {
+@mixin button-variant($background, $foreground: white, $operator: "-") {
   @include css.override(
     "button",
     (
-      "accent": $color,
-      "background": $color,
-      "background-hover": $color-dark,
-      "background-active": $color-darker,
-      "foreground": white,
+      "accent": $background,
+      "background": $background,
+      "background-hover": hsl(from $background h s calc(l #{$operator} 5)),
+      "background-active": hsl(from $background h s calc(l #{$operator} 10)),
+      "foreground": $foreground,
+      "box-shadow": none,
       "border-color": transparent,
-      "loading-border-color": white
+      "loading-border-color": $foreground
     )
   );
 }
