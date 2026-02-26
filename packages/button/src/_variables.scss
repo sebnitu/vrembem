@@ -5,14 +5,17 @@
 $config: () !default;
 
 // prettier-ignore
-$default: ();
+$default: (
+  "button-block": (
+    "breakpoints": true
+  )
+);
 
 @include config.apply($config, $default);
 @include css.register("button");
 
 // Legacy ---
 
-$breakpoints: config.get("breakpoints") !default;
 $accent: css.get("button", "accent", css.get("form-control-accent")) !default;
 $gap: 0.5rem !default;
 
