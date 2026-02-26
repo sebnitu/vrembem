@@ -6,33 +6,33 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Map for outputting the flex_gap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting flex_gap_[key] modifier variants
   // @type map
   "flex-gap": (
-    "default": 1em,
+    "breakpoints": true,
+    "default": css.get("spacing-md"),
     "0": 0,
     "xs": 1px,
-    "sm": 0.5em,
-    "md": 1em,
-    "lg": 1.5em,
-    "xl": 2em
+    "sm": css.get("spacing-sm"),
+    "md": css.get("spacing-md"),
+    "lg": css.get("spacing-lg"),
+    "xl": css.get("spacing-xl")
   ),
 
-  // Map for outputting the flex_wrap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting flex_wrap_[key] modifier variants
   // @type map
   "flex-wrap": (
+    "breakpoints": true,
     "default": wrap,
+    "": wrap,
     "no": nowrap,
     "reverse": wrap-reverse
   ),
 
-  // Map for outputting the flex_direction_[key] modifiers. Use the "default" 
-  // key for setting the default value. Default values are not output as a
-  // modifier.
+  // Map for outputting flex_direction_[key] modifier variants
   // @type map
   "flex-direction": (
+    "breakpoints": true,
     "default": row,
     "row": row,
     "row-reverse": row-reverse,
@@ -40,10 +40,11 @@ $defaults: (
     "col-reverse": column-reverse
   ),
 
-  // Map for outputting the flex_items_[key] modifiers as well as the 
-  // flex-item-[key] utilities.
+  // Map for outputting flex_items_[key] modifier and flex-item-[key] utility 
+  // variants.
   // @type map
   "flex-items": (
+    "breakpoints": true,
     "initial": initial, // Equivalent: 0 1 auto
     "auto": auto, // Equivalent: 1 1 auto
     "none": none, // Equivalent: 0 0 auto

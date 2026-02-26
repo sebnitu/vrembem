@@ -1,0 +1,25 @@
+@use "sass:map";
+
+/// Filters a map using a provided list of keys.
+///
+/// @param {map} $map - The initial map to be filtered
+/// @param {list} $keys - A list of strings to filter the map with
+///
+/// @return {string} - The filtered map
+///
+@function filter-map($map, $keys) {
+  $result: ();
+
+  @each $key in $keys {
+    @if map.has-key($map, $key) {
+      $result: map.merge(
+        $result,
+        (
+          $key: map.get($map, $key)
+        )
+      );
+    }
+  }
+
+  @return $result;
+}

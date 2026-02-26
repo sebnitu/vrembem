@@ -2,6 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../utilities/debug-map" as *;
+@use "../utilities/empty-map" as *;
+@use "../utilities/filter-map" as *;
+@use "../utilities/remove-nth" as *;
 
 /// Stores all library wide configuration options.
 /// @type map
@@ -12,6 +15,13 @@ $-config: ();
 /// @type map
 /// @access private
 $-watchers: ();
+
+/// Stores a list of flags that are allowed in `config.get` calls. These flags
+/// enable custom processing for certain config options, even if they are not
+/// direct keys in the config map.
+/// @type list
+/// @access private
+$-flags: ("variants");
 
 /// Helper function that checks if a value should be set in the config map.
 ///
@@ -56,16 +66,79 @@ $-watchers: ();
   }
 }
 
+/// Checks whether or not a flag exists within the provided keys.
+///
+/// @param {list} $keys...
+///   The list of keys to check if a flag exists.
+///
+/// @return {boolean}
+///
+/// @access private
+@function -has-flag($keys...) {
+  @return list.index($-flags, list.nth($keys, -1)) != null;
+}
+
+/// Removes a flag if it exists within the provided keys.
+///
+/// @param {list} $keys...
+///   The list of keys to remove a flag from.
+///
+/// @return {list}
+///   The remaining keys list.
+///
+/// @access private
+@function -remove-flag($keys...) {
+  // Only remove the flag if the keys don't point to a real value
+  @if -has-flag($keys...) and not map.has-key($-config, $keys...) {
+    $keys: remove-nth($keys, -1);
+  }
+
+  @return $keys;
+}
+
 /// Function to returns the value of an option in the configuration map.
 ///
 /// @param {string} $keys...
 ///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
-  @if map.has-key($-config, $keys...) {
-    @return map.get($-config, $keys...);
+  @if map.has-key($-config, $keys...) or -has-flag($keys...) {
+    // Get the initial result without the flag in keys
+    $result: map.get($-config, -remove-flag($keys...)...);
+
+    // If multiple keys are provided, run them through conditional getters
+    @if list.length($keys) > 1 {
+      // Breakpoints getter
+      @if list.nth($keys, -1) == "breakpoints" {
+        @if $result == true {
+          @return map.get($-config, "breakpoints");
+        }
+
+        @if $result == false {
+          @return empty-map();
+        }
+
+        @if meta.type-of($result) == "list" or meta.type-of($result) == "string" {
+          @return filter-map(map.get($-config, "breakpoints"), $result);
+        }
+
+        @if meta.type-of($result) == "map" {
+          @return $result;
+        }
+
+        @error "#{$keys}: must be a boolean, list, or map. Received: #{$result}";
+      }
+
+      // Variants getter
+      @if list.nth($keys, -1) == "variants" {
+        $result: map.remove($result, "default", "breakpoints");
+      }
+    }
+
+    // Return the final result
+    @return $result;
   } @else {
-    @error "Config option has not been set: `#{$keys}`";
+    @error "Config option has not been set: #{$keys}";
   }
 }
 
@@ -160,8 +233,22 @@ $-watchers: ();
     }
   }
 
-  @if meta.type-of($default) == "map" {
-    @each $key, $value in $default {
+  @each $key, $value in $default {
+    // If the value is a map and has already been set
+    @if meta.type-of($value) == "map" and map.has-key($-config, $key) {
+      // Get the current value from config
+      $current: map.get($-config, $key);
+
+      // Throw an error if breakpoints was set but are not supported
+      @if map.has-key($current, "breakpoints") and not map.has-key($value, "breakpoints") {
+        @error "Breakpoint variants are not supported in #{$key}";
+      }
+
+      // Merge the default value with the current value
+      $merged-values: map.deep-merge($value, $current);
+
+      @include set($key, $merged-values);
+    } @else {
       @include set-default($key, $value);
     }
   }

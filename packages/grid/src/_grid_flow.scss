@@ -1,9 +1,8 @@
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@each $key, $value in map.remove(config.get("grid-flow"), "default") {
+@each $key, $value in config.get("grid-flow", "variants") {
   #{core.bem("grid", null, "flow", $key)} {
     @include css.override("grid", "flow", $value);
   }

@@ -1,10 +1,21 @@
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@each $key, $value in map.remove(config.get("flex-wrap"), "default") {
+$-flex-wrap: config.get("flex-wrap", "variants");
+
+@each $key, $value in $-flex-wrap {
   #{core.bem("flex", null, "wrap", $key)} {
     @include css.override("flex", "wrap", $value);
+  }
+}
+
+@each $bp, $value in config.get("flex-wrap", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-flex-wrap {
+      #{core.bem("flex", null, "wrap", $key, $bp)} {
+        @include css.override("flex", "wrap", $value);
+      }
+    }
   }
 }

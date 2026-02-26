@@ -1,9 +1,8 @@
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-flex-direction-map: map.remove(config.get("flex-direction"), "default");
+$-flex-direction-map: config.get("flex-direction", "variants");
 
 @each $key, $value in $-flex-direction-map {
   #{core.bem("flex", null, "direction", $key)} {
@@ -11,7 +10,7 @@ $-flex-direction-map: map.remove(config.get("flex-direction"), "default");
   }
 }
 
-@each $bp, $value in config.get("breakpoints") {
+@each $bp, $value in config.get("flex-direction", "breakpoints") {
   @include core.media-min($value) {
     @each $key, $value in $-flex-direction-map {
       #{core.bem("flex", null, "direction", $key, $bp)} {

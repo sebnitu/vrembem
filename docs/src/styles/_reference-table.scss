@@ -117,7 +117,7 @@
   border-bottom: css.get("border");
   border-top-left-radius: css.get("border-radius-lg");
   border-top-right-radius: css.get("border-radius-lg");
-  padding: css.get("gap");
+  padding: css.get("spacing-md");
   position: sticky;
   top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;

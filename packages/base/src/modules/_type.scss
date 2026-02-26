@@ -12,7 +12,7 @@
     line-height: css.get("type", "line-height", inherit);
 
     > * + * {
-      margin-top: css.get("type", "gap", null);
+      margin-top: css.get("type", "spacing", null);
     }
   }
 }

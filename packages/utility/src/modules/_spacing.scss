@@ -2,7 +2,7 @@
 @use "../functions" as fun;
 
 @if fun.maybe-output("spacing") {
-  @each $key, $value in config.get("utility-gap") {
+  @each $key, $value in config.get("utility-spacing") {
     #{fun.selector("spacing", $key)} {
       > * + * {
         margin-top: fun.maybe-important($value);

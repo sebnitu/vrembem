@@ -46,18 +46,37 @@ $default: (
   // A list of display value properties to output
   // @type list
   "utility-display": (
-    inline, flex, inline-flex, grid, inline-grid, block, inline-block, none
+    "breakpoints": true,
+    "inline": inline,
+    "flex": flex,
+    "inline-flex": inline-flex,
+    "grid": grid,
+    "inline-grid": inline-grid,
+    "block": block,
+    "inline-block": inline-block,
+    "none": none
+  ),
+
+  // A spacing scale used to output margin, padding, and spacing utilities
+  // @type map
+  "utility-spacing": (
+    "0": 0,
+    "xs": css.get("spacing"),
+    "sm": calc(css.get("spacing") * 2),
+    "": calc(css.get("spacing") * 4),
+    "lg": calc(css.get("spacing") * 8),
+    "xl": calc(css.get("spacing") * 12)
   ),
 
   // A map of gap utilities to output
   // @type map
   "utility-gap": (
-    "none": css.get("gap-none"),
-    "xs": css.get("gap-xs"),
-    "sm": css.get("gap-sm"),
-    "": css.get("gap"),
-    "lg": css.get("gap-lg"),
-    "xl": css.get("gap-xl")
+    "0": 0,
+    "xs": css.get("spacing"),
+    "sm": css.get("spacing-sm"),
+    "": css.get("spacing-md"),
+    "lg": css.get("spacing-lg"),
+    "xl": css.get("spacing-xl")
   ),
 
   // A map of max-width utilities to output

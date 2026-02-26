@@ -6,29 +6,36 @@ $config: () !default;
 
 // prettier-ignore
 $defaults: (
-  // Used for outputting grid_cols_[num] modifiers and col-[num] utilities
-  // @type number
-  "grid-cols": 6,
-
-  // Used for outputting grid_rows_[num] modifiers and row-[num] utilities
-  // @type number
-  "grid-rows": 6,
-
-  // Map for outputting the grid_gap_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
   // @type map
-  "grid-gap": (
-    "default": 2em,
-    "0": 0,
-    "xs": 0.5em,
-    "sm": 1em,
-    "md": 2em,
-    "lg": 3em,
-    "xl": 4em
+  "grid-cols": (
+    "breakpoints": true,
+    "default": 1,
+    "total": 6
   ),
 
-  // Map for outputting the grid_flow_[key] modifiers. Use the "default" key for 
-  // setting the default value. Default values are not output as a modifier.
+  // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
+  // @type map
+  "grid-rows": (
+    "breakpoints": true,
+    "default": 1,
+    "total": 6
+  ),
+
+  // Map for outputting the grid_gap_[key] modifier variants
+  // @type map
+  "grid-gap": (
+    "breakpoints": true,
+    "default": calc(css.get("spacing") * 8),
+    "0": 0,
+    "xs": calc(css.get("spacing") * 2),
+    "sm": calc(css.get("spacing") * 4),
+    "md": calc(css.get("spacing") * 8),
+    "lg": calc(css.get("spacing") * 12),
+    "xl": calc(css.get("spacing") * 16)
+  ),
+
+  // Map for outputting the grid_flow_[key] modifier variants
   // @type map
   "grid-flow": (
     "default": dense,
