@@ -27,7 +27,7 @@
   }
 
   &:focus-visible {
-    @include core.focus-ring("input", var.$accent);
+    @include core.focus-ring-color(var.$accent);
   }
 
   &:read-only {
