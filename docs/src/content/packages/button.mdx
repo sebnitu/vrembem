@@ -5,6 +5,7 @@ package: "@vrembem/button"
 status: "check-square"
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
 import Icon from '../../components/Icon.astro';
 
@@ -21,6 +22,37 @@ npm install @vrembem/button
   @use "@vrembem/button";
   ```
 </CodeExample>
+
+## Config options
+
+Button comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+$config: (
+  // Toggle for outputting button_block modifier breakpoint variants
+  // @type boolean
+  "button-block-breakpoints": true,
+
+  // Map for outputting button_color_[key] modifier variants
+  // @type map
+  "button-color": (
+    "primary": palette.get("primary"),
+    "secondary": palette.get("secondary"),
+    "neutral": palette.get("neutral"),
+    "important": palette.get("important")
+  ),
+
+  // Map for outputting button_size_[key] modifier variants
+  // @type map
+  "button-size": (
+    "breakpoints": true,
+    "sm": css.get("form-control-font-size-sm"),
+    "lg": css.get("form-control-font-size-lg")
+  )
+);
+```
+</CodeExpander>
 
 ## Basic usage
 
