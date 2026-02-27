@@ -30,6 +30,7 @@
 ///
 /// @output Override button custom properties using the provided color values.
 ///
+/// TODO: Allow passing map as first arg to update all properties
 @mixin button-variant($background, $foreground: white, $operator: "-") {
   @include css.override(
     "button",
