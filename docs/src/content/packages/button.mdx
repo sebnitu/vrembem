@@ -5,7 +5,7 @@ package: "@vrembem/button"
 status: "check-square"
 ---
 
-import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 import Icon from '../../components/Icon.astro';
 
 # Button
@@ -176,235 +176,53 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 - `button_size_sm`
 - `button_size_lg`
 
-## Customization
+## Reference
 
-Buttons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+Below is a reference to all CSS variables that are referenced by the `button` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="CSS Variables" src="button/src/_root.scss">
+<ReferenceTable id="cssvar-button" valueLabel="Fallback" data={{
+  // Form control fallbacks
+  "--vb-button-accent": "var(--vb-form-control-accent)",
+  "--vb-button-font-size": "var(--vb-form-control-font-size)",
+  "--vb-button-line-height": "var(--vb-form-control-line-height)",
+  "--vb-button-padding": "var(--vb-form-control-padding)",
+  "--vb-button-border-radius": "var(--vb-form-control-border-radius)",
+  "--vb-button-border-width": "var(--vb-form-control-border-width)",
+  "--vb-button-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-button-transition-property": "var(--vb-form-control-transition-property)",
+  "--vb-button-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
-```css
-:root {
-  --vb-button-size: var(--vb-form-control-size);
-  --vb-button-padding: calc(0.5em - 1px) 1em;
-  --vb-button-gap: 0.5rem;
-  --vb-button-border-width: 1px;
-  --vb-button-border-radius: var(--vb-border-radius);
-  --vb-button-font-size: 1em;
-  --vb-button-font-weight: inherit;
-  --vb-button-line-height: 1.6;
-  --vb-button-transition-property: background, color, border-color, box-shadow;
-  --vb-button-transition-duration: var(--vb-transition-duration);
-  --vb-button-transition-timing-function: var(--vb-transition-timing-function);
-  --vb-button-disabled-opacity: 0.6;
-  --vb-button-loading-size: 1em;
-  --vb-button-loading-border: 2px solid;
-  --vb-button-loading-animation-duration: 0.6s;
-  --vb-button-loading-animation-timing-function: linear;
-}
+  // Button specific
+  "--vb-button-gap": "var(--vb-spacing-sm)",
+  // TODO: Should look into reducing the focus-ring-color chain
+  // "--vb-button-focus-ring-color": "var(--vb-focus-ring-color)",
 
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-button-background: transparent;
-  --vb-button-background-hover: transparent;
-  --vb-button-background-focus: transparent;
-  --vb-button-foreground: var(--vb-foreground);
-  --vb-button-foreground-hover: var(--vb-foreground);
-  --vb-button-foreground-focus: var(--vb-foreground);
-  --vb-button-border-color: var(--vb-border-color-dark);
-  --vb-button-border-color-hover: var(--vb-border-color-darker);
-  --vb-button-border-color-focus: var(--vb-border-color-darker);
-  --vb-button-loading-border-color: var(--vb-foreground);
-  --vb-button-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(0, 0, 0, 0.15);
-}
+  // Theme styles
+  "--vb-button-background": "var(--vb-background)",
+  "--vb-button-border-color": "var(--vb-border-color-dark)",
+  "--vb-button-box-shadow": "none",
+  "--vb-button-foreground": "var(--vb-foreground)",
 
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-button-background: transparent;
-    --vb-button-background-hover: transparent;
-    --vb-button-background-focus: transparent;
-    --vb-button-foreground: var(--vb-foreground);
-    --vb-button-foreground-hover: var(--vb-foreground);
-    --vb-button-foreground-focus: var(--vb-foreground);
-    --vb-button-border-color: var(--vb-border-color-dark);
-    --vb-button-border-color-hover: var(--vb-border-color-darker);
-    --vb-button-border-color-focus: var(--vb-border-color-darker);
-    --vb-button-loading-border-color: var(--vb-foreground);
-    --vb-button-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.15);
-  }
-}
+  // Theme state styles
+  "--vb-button-background-hover": "var(--vb-button-background)",
+  "--vb-button-border-color-hover": "var(--vb-button-border-color)",
+  "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow, var(--vb-box-shadow-1))",
+  "--vb-button-foreground-hover": "var(--vb-button-foreground)",
 
-.vb-theme-dark {
-  --vb-button-background: transparent;
-  --vb-button-background-hover: transparent;
-  --vb-button-background-focus: transparent;
-  --vb-button-foreground: var(--vb-foreground);
-  --vb-button-foreground-hover: var(--vb-foreground);
-  --vb-button-foreground-focus: var(--vb-foreground);
-  --vb-button-border-color: var(--vb-border-color-dark);
-  --vb-button-border-color-hover: var(--vb-border-color-darker);
-  --vb-button-border-color-focus: var(--vb-border-color-darker);
-  --vb-button-loading-border-color: var(--vb-foreground);
-  --vb-button-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  --vb-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 0.15);
-}
-```
-</DocBlock>
+  "--vb-button-background-focus": "var(--vb-button-background-hover)",
+  "--vb-button-border-color-focus": "var(--vb-button-border-color-hover)",
+  "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow-hover)",
+  "--vb-button-foreground-focus": "var(--vb-button-foreground-hover)",
 
-<DocBlock name="SCSS Variables" src="button/src/_variables.scss">
+  "--vb-button-background-focus-visible": "var(--vb-button-background-focus)",
+  "--vb-button-border-color-focus-visible": "var(--vb-button-border-color-focus)",
+  "--vb-button-box-shadow-focus-visible": "var(--vb-button-box-shadow-focus)",
+  "--vb-button-foreground-focus-visible": "var(--vb-button-foreground-focus)",
 
-```scss
-@use "sass:list";
-@use "sass:map";
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
+  "--vb-button-background-active": "var(--vb-button-background)",
+  "--vb-button-border-color-active": "var(--vb-button-border-color)",
+  "--vb-button-box-shadow-active": "var(--vb-button-box-shadow)",
+  "--vb-button-foreground-active": "var(--vb-button-foreground)",
 
-$breakpoints: core.$breakpoints !default;
-$size: css.get("form-control", "size") !default;
-$padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px) list.nth(core.$form-control-padding, 2) !default;
-$gap: 0.5rem !default;
-$background: null !default;
-$background-hover: null !default;
-$background-active: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$foreground-active: null !default;
-$border-color: null !default;
-$border-color-hover: null !default;
-$border-color-active: null !default;
-$border-width: 1px !default;
-$border-radius: css.get("border-radius") !default;
-$box-shadow: null !default;
-$box-shadow-focus: null !default;
-$font-size: 1em !default;
-$font-weight: inherit !default;
-$line-height: 1.6 !default;
-
-// Transition
-$transition-property: background, color, border-color, box-shadow !default;
-$transition-duration: css.get("transition", "duration") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
-
-// Disabled
-$disabled-opacity: 0.6 !default;
-
-// is-loading
-$loading-size: 1em !default;
-$loading-border: 2px solid !default;
-$loading-border-color: null !default;
-$loading-animation-duration: 0.6s !default;
-$loading-animation-timing-function: linear !default;
-
-// button_icon
-$icon-padding: calc(#{list.nth(core.$form-control-padding, 1)} - 1px);
-$icon-padding-sm: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px);
-$icon-padding-lg: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px);
-
-// button_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-padding: calc(#{list.nth(core.$form-control-padding-sm, 1)} - 1px) list.nth(core.$form-control-padding-sm, 2) !default;
-$size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
-
-// button_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
-$size-lg-padding: calc(#{list.nth(core.$form-control-padding-lg, 1)} - 1px) list.nth(core.$form-control-padding-lg, 2) !default;
-$size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
-
-// Custom properties
-@include css.set("button", (
-  "size": $size,
-  "padding": $padding,
-  "gap": $gap,
-  "background": $background,
-  "background-hover": $background-hover,
-  "background-active": $background-active,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "foreground-active": $foreground-active,
-  "border-color": $border-color,
-  "border-color-hover": $border-color-hover,
-  "border-color-active": $border-color-active,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "box-shadow-focus": $box-shadow-focus,
-  "font-size": $font-size,
-  "font-weight": $font-weight,
-  "line-height": $line-height,
-  "disabled-opacity": $disabled-opacity,
-  "transition": (
-    "property": $transition-property,
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
-  ),
-  "loading": (
-    "size": $loading-size,
-    "border": $loading-border,
-    "border-color": $loading-border-color,
-    "animation-duration": $loading-animation-duration,
-    "animation-timing-function": $loading-animation-timing-function,
-  )
-));
-
-// Theme maps
-$theme-shared: (
-  "background": transparent,
-  "background-hover": transparent,
-  "background-focus": transparent,
-  "foreground": theme.get("foreground"),
-  "foreground-hover": theme.get("foreground"),
-  "foreground-focus": theme.get("foreground"),
-  "border-color": theme.get("border-color-dark"),
-  "border-color-hover": theme.get("border-color-darker"),
-  "border-color-focus": theme.get("border-color-darker"),
-  "loading-border-color": theme.get("foreground")
-) !default;
-
-$theme-light: (
-  "box-shadow": 0 0 0 0 rgb(0 0 0 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(0 0 0 / 15%),
-) !default;
-
-$theme-dark: (
-  "box-shadow": 0 0 0 0 rgb(255 255 255 / 0%),
-  "box-shadow-focus": 0 0 0 0.2rem rgb(255 255 255 / 15%),
-) !default;
-
-@include theme.set("light", "button", map.merge($theme-shared, $theme-light));
-@include theme.set("dark", "button", map.merge($theme-shared, $theme-dark));
-```
-</DocBlock>
-
-<DocBlock name="button-variant" type="mixin" src="button/src/_mixins.scss" args={[
-  ["$foreground", "Color", "A color for the foreground of the button."],
-  ["$background", "String", "The color key for the background of the button (should exist in palette map)."]
-]}>
-  Creates a button variant using CSS variables and the palette module.
-
-  <div slot="example">
-
-    ```scss
-    .button-custom {
-      @include button-variant(white, "secondary");
-    }
-
-    // CSS Output
-    .button-custom {
-      --vb-button-background: var(--vb-secondary-50, hsl(214, 50%, 50%));
-      --vb-button-background-hover: var(--vb-secondary-40, hsl(214, 50%, 40%));
-      --vb-button-background-active: var(--vb-secondary-30, hsl(214, 50%, 30%));
-      --vb-button-foreground: white;
-      --vb-button-foreground-hover: white;
-      --vb-button-foreground-active: white;
-      --vb-button-border-color: transparent;
-      --vb-button-border-color-hover: transparent;
-      --vb-button-border-color-active: transparent;
-      --vb-button-box-shadow: 0 0 0 0 hsl(214deg, 50%, 50%, 0%);
-      --vb-button-box-shadow-focus: 0 0 0 0.2rem hsl(214deg, 50%, 50%, 50%);
-    }
-    ```
-  </div>
-</DocBlock>
+  "--vb-button-disabled-opacity": "0.6",
+}} />
