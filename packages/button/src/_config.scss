@@ -7,15 +7,21 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  "button-block": (
-    "breakpoints": true
-  ),
+  // Map for outputting button_block modifier variants
+  // @type boolean
+  "button-block-breakpoints": true,
+
+  // Map for outputting button_color_[key] modifier variants
+  // @type map
   "button-color": (
     "primary": palette.get("primary"),
     "secondary": palette.get("secondary"),
     "neutral": palette.get("neutral"),
     "important": palette.get("important")
   ),
+
+  // Map for outputting button_size_[key] modifier variants
+  // @type map
   "button-size": (
     "breakpoints": true,
     "sm": css.get("form-control-font-size-sm"),
