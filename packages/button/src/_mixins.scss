@@ -12,7 +12,7 @@
   display: inline-flex;
   font-family: inherit;
   font-weight: inherit;
-  gap: css.get("button", "gap", calc(css.get("spacing") * 2));
+  gap: css.get("button", "gap", css.get("spacing-sm"));
   justify-content: center;
   position: relative;
   text-decoration: none;
@@ -40,8 +40,7 @@
       "background-active": hsl(from $background h s calc(l #{$operator} 10)),
       "foreground": $foreground,
       "box-shadow": none,
-      "border-color": transparent,
-      "loading-border-color": $foreground
+      "border-color": transparent
     )
   );
 }
