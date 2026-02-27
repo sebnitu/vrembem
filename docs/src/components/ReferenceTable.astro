@@ -54,15 +54,18 @@ const coreRegExp = buildRegExp(coreData);
 
 // Wrap the matching string value with an anchor element and href hash value
 function linkifyValue(value: string) {
-  if (isRoot || dataRegExp.test(value)) {
-    return value.replace(dataRegExp, (match) => {
+  let result = value;
+  if (isRoot || dataRegExp.test(result)) {
+    result = result.replace(dataRegExp, (match) => {
       return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
-  } else {
-    return value.replace(coreRegExp, (match) => {
+  }
+  if (!isRoot && coreRegExp.test(result)) {
+    result = result.replace(coreRegExp, (match) => {
       return `<a href="/packages/core/css-variables#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
+  return result;
 }
 
 // Map theme names to the icons that represent them
