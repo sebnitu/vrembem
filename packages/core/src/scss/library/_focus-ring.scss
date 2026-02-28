@@ -3,9 +3,7 @@
 
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
-  outline-width: css.get("focus-ring-width");
-  outline-style: css.get("focus-ring-style");
-  outline-color: transparent;
+  outline: css.get("focus-ring-width") css.get("focus-ring-style") transparent;
   outline-offset: css.get("focus-ring-offset");
 }
 

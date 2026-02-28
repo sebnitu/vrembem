@@ -265,9 +265,7 @@ Applies a color to the focus ring styles using the outline-color property. This 
 <Fragment slot="tab-css">
 ```css
 .focus-ring-example {
-  outline-width: var(--vb-focus-ring-width);
-  outline-style: var(--vb-focus-ring-style);
-  outline-color: transparent;
+  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) transparent;
   outline-offset: var(--vb-focus-ring-offset);
   outline-color: hsl(from pink h s l/var(--vb-focus-ring-opacity));
 }
