@@ -97,6 +97,7 @@
       }
     }
 
+    .code-block__copy-button.is-copied,
     &:hover .code-block__copy-button {
       opacity: 1;
     }

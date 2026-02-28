@@ -65,9 +65,11 @@ if (icon) classes.push("has-icon");
         .writeText(text)
         .then(() => {
           btn.disabled = true;
+          btn.classList.add("is-copied");
           icons.forEach((icon) => icon.classList.toggle("display-none"));
           setTimeout(() => {
             btn.disabled = false;
+            btn.classList.remove("is-copied");
             icons.forEach((icon) => icon.classList.toggle("display-none"));
             popover.close(btn.getAttribute("data-popover-trigger"));
           }, 2000);
