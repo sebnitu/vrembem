@@ -25,6 +25,7 @@ $default: (
   "button-size": (
     "breakpoints": true,
     "sm": css.get("form-control-font-size-sm"),
+    "md": css.get("form-control-font-size"),
     "lg": css.get("form-control-font-size-lg")
   )
 );

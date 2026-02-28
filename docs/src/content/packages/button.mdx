@@ -61,7 +61,7 @@ The most basic implementation of the button component consists of the `button` c
 <CodeExample>
   <div slot="output" class="flex">
     <button class="button">Button</button>
-    <a class="button" role="button" href="#">Anchor</a>
+    <a class="button" role="button">Anchor</a>
     <input class="button" type="button" value="Input" />
     <input class="button" type="submit" value="Submit" />
     <input class="button" type="reset" value="Reset" />
@@ -75,7 +75,7 @@ The most basic implementation of the button component consists of the `button` c
   ```
 </CodeExample>
 
-Elements within a button are centered vertically and spaced accordingly using the value set in `$gap` (defaults to `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
+Elements within a button are centered vertically and spaced accordingly using the value set by `--vb-button-gap` (default: `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 <CodeExample>
   <div slot="output">
@@ -120,24 +120,47 @@ Buttons can also be given a loading state by adding the `is-loading` state class
   ```
 </CodeExample>
 
-> Warning: the `is-loading` state class will not work on `<input type="button">` buttons since it uses the `::after` pseudo-element to display the loading spinner.
+Keep in mind that the `is-loading` state class will not work on `<input type="button">` since it uses the `::after` pseudo-element to display the loading spinner.
 
 ## button_block
 
-Gives a button "block" styles so that it spans the full width of its container. Values and class keys are generated using the [`$breakpoints`](#scss-variables-file) map. Using `button_block` will apply block styles in all viewports.
+Modifier that gives a button "block" appearance so that it spans the full width of its container.
 
 <CodeExample>
-  <div slot="output">
+  <Fragment slot="output">
     <button class="button button_block">Button</button>
-  </div>
+  </Fragment>
   ```html
   <button class="button button_block">Button</button>
   ```
 </CodeExample>
 
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. This can be toggled using the `button-block-breakpoints` config option (default: `true`).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-button-block-select">Variants Demo:</label>
+    <select id="demo-button-block-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-button-block">
+      <option value="xs:button_block">xs:button_block</option>
+      <option value="sm:button_block">sm:button_block</option>
+      <option value="md:button_block">md:button_block</option>
+      <option value="lg:button_block">lg:button_block</option>
+      <option value="xl:button_block">xl:button_block</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <button id="demo-button-block" class="button lg:button_block">Button</button>
+  </div>
+  ```html
+  <button class="button lg:button_block">Button</button>
+  ```
+</CodeExample>
+
 **Available variants**
 
-- `button_block`
 - `xs:button_block`
 - `sm:button_block`
 - `md:button_block`
@@ -146,7 +169,7 @@ Gives a button "block" styles so that it spans the full width of its container. 
 
 ## button_color_[key]
 
-Adds styles for changing the look and feel of a button. These are usually done with different background and text colors.
+Modifiers for changing the look and feel of a button. These are usually done with different background and text colors. These modifiers are generated using key/value pairs of the `button-color` config options map.
 
 <CodeExample>
   <div slot="output" class="flex">
@@ -172,7 +195,7 @@ Adds styles for changing the look and feel of a button. These are usually done w
 
 ## button_icon
 
-Adds styles that make icon-only buttons have equal padding. Will be square if the icon used also has equal width and height.
+Adds styles that make icon-only buttons have equal padding. This will result in a square button if the icon used also has an equal width and height.
 
 <CodeExample>
   <div slot="output">
@@ -189,7 +212,7 @@ Adds styles that make icon-only buttons have equal padding. Will be square if th
 
 ## button_size_[key]
 
-Adjust the size of a button by increasing or decreasing its padding and font-size.
+Adjust the size of a button by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `button-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex align-items-center">
@@ -207,6 +230,30 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 
 - `button_size_sm`
 - `button_size_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. This can be toggled using the `breakpoints` key in the `button-size` config options map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <button class="button button_size_sm lg:button_size_md xl:button_size_lg">Button</button>
+  </div>
+  ```html
+  <button class="button button_size_sm lg:button_size_md xl:button_size_lg">
+    Button
+  </button>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:button_size_[key]`
+- `sm:button_size_[key]`
+- `md:button_size_[key]`
+- `lg:button_size_[key]`
+- `xl:button_size_[key]`
 
 ## Reference
 
