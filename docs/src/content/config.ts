@@ -11,6 +11,7 @@ const packages = defineCollection({
     title: z.string(),
     description: z.string(),
     package: z.string(),
+    category: z.string().optional(),
     status: z.string().optional()
   })
 });
