@@ -3,8 +3,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 
-/// Output the base styles for a button component.
-@mixin button-base() {
+/// Output the base styles for a button component. This includes:
+/// - Setup of button specific CSS variables with shared form-control fallbacks.
+/// - Setup of focus-ring CSS variables and initial state.
+/// - Flex layout styles for child elements and consistent gap spacing.
+@mixin button-base {
+  @include core.form-control-properties("button");
   @include core.focus-ring-base;
 
   align-items: center;
