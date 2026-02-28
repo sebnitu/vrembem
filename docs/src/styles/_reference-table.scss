@@ -97,6 +97,7 @@
       }
     }
 
+    .code-block__copy-button.is-copied,
     &:hover .code-block__copy-button {
       opacity: 1;
     }
@@ -148,7 +149,9 @@
   }
 
   .input-clear {
+    background-color: transparent;
     border: none;
+    box-shadow: none;
     inset: 0 0 0 auto;
   }
 

@@ -1,6 +1,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "sass:string";
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
 @use "../utilities/filter-map" as *;
@@ -106,10 +107,13 @@ $-flags: ("variants");
     // Get the initial result without the flag in keys
     $result: map.get($-config, -remove-flag($keys...)...);
 
+    // Store if this is a breakpoints string request
+    $is-breakpoints-string: string.index(list.nth($keys, -1), "-breakpoints");
+
     // If multiple keys are provided, run them through conditional getters
-    @if list.length($keys) > 1 {
+    @if list.length($keys) > 1 or $is-breakpoints-string {
       // Breakpoints getter
-      @if list.nth($keys, -1) == "breakpoints" {
+      @if list.nth($keys, -1) == "breakpoints" or $is-breakpoints-string {
         @if $result == true {
           @return map.get($-config, "breakpoints");
         }

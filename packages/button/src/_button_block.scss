@@ -1,12 +1,12 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "@vrembem/core/config";
 
 #{core.bem("button", null, "block")} {
   display: flex;
   width: 100%;
 }
 
-@each $bp, $value in var.$breakpoints {
+@each $bp, $value in config.get("button-block-breakpoints") {
   @include core.media-max($value) {
     #{core.bem("button", null, "block", $bp: $bp)} {
       display: flex;

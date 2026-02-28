@@ -1,27 +1,6 @@
 @use "../modules/css";
 @use "../variables/focus-ring" as var;
 
-/// Output the focus-ring-color custom property stack with core and value
-/// fallbacks.
-///
-/// @param {string} $component
-///   The name of the component to start the property stack with.
-/// @param {string} $value
-///   The CSS value to use as the final property fallback.
-///
-/// @return {string}
-///   The CSS variable with the provided component and value fallback stack.
-///
-@function focus-ring-color($component, $value) {
-  $result: css.get("core", "focus-ring-color", $value);
-
-  @if $component != "core" {
-    $result: css.get($component, "focus-ring-color", $result);
-  }
-
-  @return $result;
-}
-
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
   outline: css.get("focus-ring-width") css.get("focus-ring-style") transparent;
@@ -38,6 +17,6 @@
 /// @param {number} $opacity (css.get("focus-ring-opacity"))
 ///   The value to set for the opacity of the color.
 ///
-@mixin focus-ring($component, $color, $opacity: css.get("focus-ring-opacity")) {
-  outline: css.get("focus-ring-width") css.get("focus-ring-style") hsl(from focus-ring-color($component, $color) h s l / $opacity);
+@mixin focus-ring-color($color, $opacity: css.get("focus-ring-opacity")) {
+  outline-color: hsl(from $color h s l / $opacity);
 }

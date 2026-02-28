@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
+@use "@vrembem/button";
 
 astro-island {
   display: block !important;
@@ -52,9 +53,15 @@ html {
 
 .focus-ring-example {
   @include core.focus-ring-base;
-  @include core.focus-ring("focus-ring-example", pink);
+  @include core.focus-ring-color(pink);
 
   &:hover {
-    @include core.focus-ring("focus-ring-example", green, 80%);
+    @include core.focus-ring-color(green, 80%);
   }
+}
+
+// Source: button.mdx
+
+.button_color_custom {
+  @include button.button-variant(salmon);
 }

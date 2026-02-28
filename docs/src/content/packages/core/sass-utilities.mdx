@@ -222,22 +222,18 @@ $size-padding: (
 
 <ReferenceBar type="mixin" />
 
-Apply the base styles for focus-ring using the outline properties. This is typically used in conjunction with [`focus-ring`](#focus-ring) as a default transitional state.
+Apply the base styles for focus-ring using the outline properties. This is typically used in conjunction with [`focus-ring-color`](#focus-ring-color) as a default transitional state.
 
-## focus-ring
+## focus-ring-color
 
 <ReferenceBar type="mixin" />
 
-Builds the focus ring styles by applying a number of custom property values and optional component overrides using the outline property.
+Applies a color to the focus ring styles using the outline-color property. This depends on the existing styles of [`focus-ring-base`](#focus-ring-base) to work properly.
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string">
-  The component to allow specific overrides for.
-</ReferenceCard>
-
 <ReferenceCard name="$color" type="string">
-  The color to use as the fallback value.
+  The color to use as the focus-ring outline-color value.
 </ReferenceCard>
 
 <ReferenceCard name="$opacity" type="number" defaults="40%">
@@ -258,10 +254,10 @@ Builds the focus ring styles by applying a number of custom property values and 
 
 .focus-ring-example {
   @include core.focus-ring-base;
-  @include core.focus-ring("focus-ring-example", pink);
+  @include core.focus-ring-color(pink);
 
   &:hover {
-    @include core.focus-ring("focus-ring-example", green, 80%);
+    @include core.focus-ring-color(green, 80%);
   }
 }
 ```
@@ -271,11 +267,11 @@ Builds the focus ring styles by applying a number of custom property values and 
 .focus-ring-example {
   outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) transparent;
   outline-offset: var(--vb-focus-ring-offset);
-  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) hsl(from var(--vb-focus-ring-example-focus-ring-color, var(--vb-focus-ring-color, pink)) h s l / var(--vb-focus-ring-example-focus-ring-opacity, var(--vb-focus-ring-opacity, 40%)));
+  outline-color: hsl(from pink h s l/var(--vb-focus-ring-opacity));
 }
 
 .focus-ring-example:hover {
-  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) hsl(from var(--vb-focus-ring-example-focus-ring-color, var(--vb-focus-ring-color, green)) h s l / var(--vb-focus-ring-example-focus-ring-opacity, var(--vb-focus-ring-opacity, 80%)));
+  outline-color: hsl(from green h s l/var(--vb-focus-ring-opacity));
 }
 ```
 </Fragment>

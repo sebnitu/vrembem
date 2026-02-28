@@ -46,7 +46,7 @@
   }
 
   &:focus-visible {
-    @include core.focus-ring("menu", var.$accent);
+    @include core.focus-ring-color(var.$accent);
 
     background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
     border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);

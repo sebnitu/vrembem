@@ -25,12 +25,13 @@
   transition-timing-function: css.get("transition-timing-function");
   user-select: none;
 
-  &:focus,
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: palette.get("primary", 50%, 20%);
   }
 
   &:hover,
+  &:focus,
   h1:hover &,
   h2:hover &,
   h3:hover &,

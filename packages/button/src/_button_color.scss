@@ -1,19 +1,15 @@
+@use "sass:map";
+@use "sass:meta";
 @use "@vrembem/core";
-@use "@vrembem/core/palette";
+@use "@vrembem/core/config";
 @use "./mixins" as mix;
 
-#{core.bem("button", null, "color", "primary")} {
-  @include mix.button-variant(palette.get("primary"));
-}
-
-#{core.bem("button", null, "color", "secondary")} {
-  @include mix.button-variant(palette.get("secondary"));
-}
-
-#{core.bem("button", null, "color", "neutral")} {
-  @include mix.button-variant(palette.get("neutral"));
-}
-
-#{core.bem("button", null, "color", "important")} {
-  @include mix.button-variant(palette.get("important"));
+@each $key, $value in config.get("button-color", "variants") {
+  #{core.bem("button", null, "color", $key)} {
+    @if meta.type-of($value) == "map" {
+      @include mix.button-variant($value);
+    } @else {
+      @include mix.button-variant($value...);
+    }
+  }
 }
