@@ -1,12 +1,12 @@
 import { getCollection } from "astro:content";
 
-const statusSort = ["settings", "layers", "layout", "check-square", "circle"];
+const categorySort = ["core", "modules", "layout", "form-control", "component"];
 
 function packageOrder(a, b) {
   let result = 0,
     count = 0;
-  while (count < statusSort.length && result == 0) {
-    result = checkString(a, b, statusSort[count]);
+  while (count < categorySort.length && result == 0) {
+    result = checkCategory(a, b, categorySort[count]);
     count++;
   }
   if (result == 0) {
@@ -15,9 +15,9 @@ function packageOrder(a, b) {
   return result;
 }
 
-function checkString(a, b, s) {
-  if (a.data.status == s) return -1;
-  if (b.data.status == s) return 1;
+function checkCategory(a, b, s) {
+  if (a.data.category == s) return -1;
+  if (b.data.category == s) return 1;
   return 0;
 }
 
