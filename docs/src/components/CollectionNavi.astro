@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { currentPage } from "../modules/currentPage";
 import Icon from "./Icon.astro";
+import Popover from "../components/Popover.astro";
 
 interface Props {
   entries: CollectionEntry<"packages">[];
@@ -15,6 +16,17 @@ const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active"
 });
+
+const categoryIcons = {
+  core: "settings",
+  modules: "layers",
+  "form-control": "check-circle",
+  component: "box"
+};
+
+function getIconName(string: string) {
+  return categoryIcons[string] ? categoryIcons[string] : string;
+}
 ---
 
 <nav>
@@ -36,11 +48,16 @@ const cp = currentPage(Astro.url.pathname, {
             href={`/${collection}/${entry.id}`}
           >
             <span class="flex-grow">{entry.data.title}</span>
-            {entry.data.status && (
-              <Icon
-                name={entry.data.status}
-                classes="icon_size_sm foreground-primary"
-              />
+            {entry.data.category && (
+              <Popover placement="left" triggerClass="display-flex">
+                <Fragment slot="trigger">
+                  <Icon
+                    name={getIconName(entry.data.category)}
+                    classes="icon_size_sm foreground-primary"
+                  />
+                </Fragment>
+                <Fragment slot="tooltip">{entry.data.category}</Fragment>
+              </Popover>
             )}
           </a>
         </li>
