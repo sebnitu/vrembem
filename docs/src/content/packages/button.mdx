@@ -6,6 +6,8 @@ status: "check-square"
 ---
 
 import CodeExpander from "../../components/CodeExpander.astro";
+import ReferenceBar from "../../components/ReferenceBar.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
 import Icon from '../../components/Icon.astro';
 
@@ -48,6 +50,7 @@ $config: (
   "button-size": (
     "breakpoints": true,
     "sm": css.get("form-control-font-size-sm"),
+    "md": css.get("form-control-font-size"),
     "lg": css.get("form-control-font-size-lg")
   )
 );
@@ -238,7 +241,12 @@ These modifiers come with media breakpoint variants. This allows changing styles
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <button class="button button_size_sm lg:button_size_md xl:button_size_lg">Button</button>
+    <button class="button button_size_sm lg:button_size_md xl:button_size_lg">
+      <span>Button</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </button>
   </div>
   ```html
   <button class="button button_size_sm lg:button_size_md xl:button_size_lg">
@@ -255,9 +263,110 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `lg:button_size_[key]`
 - `xl:button_size_[key]`
 
-{/* TODO: Add documentation of button mixins */}
-
 ## Reference
+
+Below is a reference to all available button mixins and CSS variables that are referenced along with their fallback values. These can be used to customize the button component or create new variants as needed.
+
+### button-base
+
+<ReferenceBar type="mixin" />
+
+Output the base styles for a button component. This includes:
+- Setup of button specific CSS variables with shared form-control fallbacks.
+- Setup of focus-ring CSS variables and initial state.
+- Flex layout styles for child elements and consistent gap spacing.
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/button";
+
+.custom-button {
+  @include button-base;
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.custom-button {
+  font-size: var(--vb-button-font-size, var(--vb-form-control-font-size));
+  line-height: var(--vb-button-line-height, var(--vb-form-control-line-height));
+  padding: var(--vb-button-padding, var(--vb-form-control-padding));
+  border-radius: var(--vb-button-border-radius, var(--vb-form-control-border-radius));
+  border-width: var(--vb-button-border-width, var(--vb-form-control-border-width));
+  transition-duration: var(--vb-button-transition-duration, var(--vb-form-control-transition-duration));
+  transition-property: var(--vb-button-transition-property, var(--vb-form-control-transition-property));
+  transition-timing-function: var(--vb-button-transition-timing-function, var(--vb-form-control-transition-timing-function));
+  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) transparent;
+  outline-offset: var(--vb-focus-ring-offset);
+  align-items: center;
+  background-clip: border-box;
+  border-style: solid;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-weight: inherit;
+  gap: var(--vb-button-gap, var(--vb-spacing-sm));
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+}
+```
+</Fragment>
+</CodeExample>
+
+### button-variant
+
+<ReferenceBar type="mixin" />
+
+Creates a button variant using custom properties and hsl relative values.
+
+#### Arguments
+
+<ReferenceCard name="$background" type="color | map">
+  The color to use as the button background. Also accepts a map that defines multiple override properties.
+</ReferenceCard>
+
+<ReferenceCard name="$foreground" type="color" defaults="white">
+  The color to use as the foreground override.
+</ReferenceCard>
+
+<ReferenceCard name="$operator" type="string" defaults='"-"'>
+  The operator to use on the lightness value. Can either be `"-"` to darken or `"+"` to lighten the base lightness value.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="output">
+  <button class="button button_color_custom">Custom Button</button>
+</Fragment>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/button";
+
+.button_color_custom {
+  @include button.button-variant(salmon);
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.button_color_custom {
+  --vb-button-background: salmon;
+  --vb-button-foreground: white;
+  --vb-button-border-color: transparent;
+  --vb-button-box-shadow: none;
+  --vb-button-accent: salmon;
+  --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
+  --vb-button-background-active: hsl(from salmon h s calc(l - 10));
+}
+```
+</Fragment>
+</CodeExample>
+
+### CSS Variables
 
 Below is a reference to all CSS variables that are referenced by the `button` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
