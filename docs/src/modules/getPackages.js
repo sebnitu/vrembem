@@ -3,32 +3,25 @@ import { getCollection } from "astro:content";
 const categorySort = ["core", "modules", "layout", "form-control", "component"];
 
 function packageOrder(a, b) {
-  let result = 0,
-    count = 0;
-  while (count < categorySort.length && result == 0) {
-    result = checkCategory(a, b, categorySort[count]);
-    count++;
-  }
-  if (result == 0) {
-    result = checkTitle(a, b);
-  }
-  return result;
-}
+  const aci = categorySort.indexOf(a.data.category);
+  const bci = categorySort.indexOf(b.data.category);
 
-function checkCategory(a, b, s) {
-  if (a.data.category == s) return -1;
-  if (b.data.category == s) return 1;
-  return 0;
-}
+  // If categories are different, sort by category
+  if (aci !== bci) {
+    // If either category is not found, put it at the end
+    if (aci === -1) return 1;
+    if (bci === -1) return -1;
+    return aci - bci;
+  }
 
-function checkTitle(a, b) {
-  if (a.data.title < b.data.title) return -1;
-  if (a.data.title > b.data.title) return 1;
-  return 0;
+  // If categories are the same, sort by title
+  return a.data.title.localeCompare(b.data.title, undefined, {
+    sensitivity: "base"
+  });
 }
 
 export async function getPackages() {
   const entries = await getCollection("packages");
-  entries.reverse().sort(packageOrder);
+  entries.sort(packageOrder);
   return entries;
 }
