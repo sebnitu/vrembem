@@ -1,11 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 #{core.bem("checkbox", null, "size", "sm")} {
-  @include css.override("checkbox", "font-size", var.$size-sm-font-size);
+  @include css.override("checkbox", "font-size", css.get("form-control-font-size-sm"));
 }
 
 #{core.bem("checkbox", null, "size", "lg")} {
-  @include css.override("checkbox", "font-size", var.$size-lg-font-size);
+  @include css.override("checkbox", "font-size", css.get("form-control-font-size-lg"));
 }
