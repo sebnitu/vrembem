@@ -4,7 +4,10 @@
 
 $config: () !default;
 
+// prettier-ignore
 $default: (
+  // Map for outputting checkbox_size_[key] modifier variants
+  // @type map
   "checkbox-size": (
     "default": css.get("form-control-font-size"),
     "sm": css.get("form-control-font-size-sm"),
