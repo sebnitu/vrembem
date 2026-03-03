@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "./functions" as fun;
 
@@ -10,7 +11,7 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("checkbox", "font-size", css.get("form-control-font-size"));
+  font-size: css.get("checkbox", "font-size", config.get("checkbox-size", "default"));
   justify-content: center;
   position: relative;
   vertical-align: middle;

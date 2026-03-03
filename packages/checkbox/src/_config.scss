@@ -6,6 +6,7 @@ $config: () !default;
 
 $default: (
   "checkbox-size": (
+    "default": css.get("form-control-font-size"),
     "sm": css.get("form-control-font-size-sm"),
     "lg": css.get("form-control-font-size-lg")
   )
