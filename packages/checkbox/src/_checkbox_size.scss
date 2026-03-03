@@ -1,10 +1,9 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-#{core.bem("checkbox", null, "size", "sm")} {
-  @include css.override("checkbox", "font-size", css.get("form-control-font-size-sm"));
-}
-
-#{core.bem("checkbox", null, "size", "lg")} {
-  @include css.override("checkbox", "font-size", css.get("form-control-font-size-lg"));
+@each $key, $value in config.get("checkbox-size", "variants") {
+  #{core.bem("checkbox", null, "size", $key)} {
+    @include css.override("checkbox", "font-size", $value);
+  }
 }

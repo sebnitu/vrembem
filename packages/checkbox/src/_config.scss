@@ -1,0 +1,15 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$config: () !default;
+
+$default: (
+  "checkbox-size": (
+    "sm": css.get("form-control-font-size-sm"),
+    "lg": css.get("form-control-font-size-lg")
+  )
+);
+
+@include config.apply($config, $default);
+@include css.register("checkbox");
