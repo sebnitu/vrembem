@@ -6,7 +6,7 @@
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("radio", "font-size", css.get("form-control-font-size"));
+  font-size: css.get("radio", "font-size", css.get("form-control-size"));
   justify-content: center;
   position: relative;
   vertical-align: middle;

@@ -8,7 +8,7 @@ $-thumb-size: calc(css.get("switch", "track-size", var.$track-size) - calc(css.g
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("switch", "font-size", css.get("form-control-font-size"));
+  font-size: css.get("switch", "font-size", css.get("form-control-size"));
   justify-content: center;
   padding-left: calc(var.$size * 0.25);
   padding-right: calc(var.$size * 0.25);

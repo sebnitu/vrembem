@@ -5,9 +5,9 @@
   "core",
   "form-control",
   (
-    "font-size": css.get("font-size"),
-    "font-size-sm": css.get("font-size-sm"),
-    "font-size-lg": css.get("font-size-lg"),
+    "size": css.get("font-size"),
+    "size-sm": css.get("font-size-sm"),
+    "size-lg": css.get("font-size-lg"),
     "line-height": css.get("line-height"),
     "border-width": css.get("border-width"),
     "border-radius": css.get("border-radius"),
@@ -37,7 +37,7 @@
   "form-control",
   (
     "padding": css.get("form-control-padding-y") css.get("form-control-padding-x"),
-    "size": calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2))
+    "size-calc": calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2))
   )
 );
 @include theme.set("light", "core", "form-control-foreground", palette.get("neutral"));
