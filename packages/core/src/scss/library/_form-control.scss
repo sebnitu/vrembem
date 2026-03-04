@@ -41,6 +41,6 @@
   @if $component {
     @include mix.size(css.get($component, "size", css.get("form-control-size-calc")), css.get($component, "size", css.get("form-control-size-calc")), $prefix);
   } @else {
-    @include mix.size(css.get("form-control-size"), css.get("form-control-size-calc"), $prefix);
+    @include mix.size(css.get("form-control-size-calc"), css.get("form-control-size-calc"), $prefix);
   }
 }
