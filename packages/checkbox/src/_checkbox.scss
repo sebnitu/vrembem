@@ -106,6 +106,6 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   }
 
   &:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
-    mask-image: url(core.svg("minus"));
+    mask-image: url(core.svg("-"));
   }
 }
