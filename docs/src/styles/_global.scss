@@ -47,7 +47,7 @@ html {
  * These are styles used specifically in code example blocks
  */
 
-// Source: sass-utilities.mdx
+// Source: sass-utilities.mdx ## focus-ring-color
 
 @include css.register("focus-ring-example");
 
@@ -57,6 +57,41 @@ html {
 
   &:hover {
     @include core.focus-ring-color(green, 80%);
+  }
+}
+
+// Source: sass-utilities.mdx ## svg
+
+.svg-icon {
+  @include core.size(1rem);
+  display: inline-block;
+  background-color: salmon;
+  mask-size: 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  &.svg-check {
+    mask-image: url(core.svg("check"));
+  }
+
+  &.svg-plus {
+    mask-image: url(core.svg("+"));
+  }
+
+  &.svg-minus {
+    mask-image: url(core.svg("-"));
+  }
+
+  &.svg-alert {
+    mask-image: url(core.svg("!"));
+  }
+
+  &.svg-help {
+    mask-image: url(core.svg("?"));
+  }
+
+  &.svg-x {
+    mask-image: url(core.svg("x"));
   }
 }
 
