@@ -3,24 +3,23 @@
 
 // TODO: Move icons into a core svg function: core.svg("name", $size, $stroke)
 // Maybe add more icons, such as:
-// - check
-// - minus
-// - plus
-// - alert
-// - x
-// - ?
+// - [x] check
+// - [x] minus
+// - [ ] plus
+// - [ ] alert
+// - [ ] x
+// - [ ] ?
 
 $-svg-data: (
-  "check": 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="{{SIZE}}" height="{{SIZE}}" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>',
-  "minus": 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="{{SIZE}}" height="{{SIZE}}" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>'
+  "check": 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>',
+  "minus": 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>'
 );
 
-@function svg($name, $size, $stroke) {
+@function svg($name, $stroke: 2.5) {
   // Get the svg string
   $result: map.get($-svg-data, $name);
 
-  // Replace the size and stroke tokens
-  $result: string-replace($result, "{{SIZE}}", $size);
+  // Replace the stroke token
   $result: string-replace($result, "{{STROKE}}", $stroke);
 
   // Return the string
