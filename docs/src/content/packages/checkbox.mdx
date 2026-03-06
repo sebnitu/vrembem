@@ -6,6 +6,7 @@ category: form-control
 ---
 
 import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Checkbox
 
@@ -20,6 +21,24 @@ npm install @vrembem/checkbox
   @use "@vrembem/checkbox";
   ```
 </CodeExample>
+
+## Config options
+
+Checkbox comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+```scss
+$config: (
+  // Map for outputting checkbox_size_[key] modifier variants
+  // @type map
+  "checkbox-size": (
+    "breakpoints": true,
+    "default": css.get("form-control-size"),
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  )
+);
+```
 
 ## Basic usage
 
@@ -79,7 +98,6 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
 
 Indeterminate checkboxes need to be set in JavaScript though styling is provided by Vrembem for the indeterminate states (see example above). Review [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate) for more details.
 
-
 ### Checkbox with labels
 
 For checkboxes with labels, wrap the checkbox component along with the text label using the `<label>` element.
@@ -134,7 +152,7 @@ For checkboxes with labels, wrap the checkbox component along with the text labe
 
 ## checkbox_size_[value]
 
-Adjust the size of a checkbox by increasing or decreasing its width and height. By default, the checkbox scale will provide a checkbox height of 30px (small `checkbox_size_sm`), 40px (default) and 50px (large `checkbox_size_lg`).
+Adjust the size of a checkbox by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `checkbox-size` config options map.
 
 <CodeExample>
   <Fragment slot="output">
@@ -179,175 +197,66 @@ Adjust the size of a checkbox by increasing or decreasing its width and height. 
 - `checkbox_size_sm`
 - `checkbox_size_lg`
 
-## Customization
+### Breakpoint variants
 
-Checkboxes are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `checkbox-size` config options map (default: `true`).
 
-<DocBlock name="CSS Variables" src="checkbox/src/_root.scss">
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+      <span>Checkbox</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </label>
+  </div>
+  ```html
+  <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
 
-```scss
-:root {
-  --vb-checkbox-size: var(--vb-form-control-size);
-  --vb-checkbox-box-size: 18px;
-  --vb-checkbox-icon-size: 12px;
-  --vb-checkbox-icon-stroke: 2.5;
-  --vb-checkbox-color: var(--vb-primary-50);
-  --vb-checkbox-border-width: 2px;
-  --vb-checkbox-border-radius: var(--vb-border-radius);
-  --vb-checkbox-background-border-radius: var(--vb-border-radius-circle);
-  --vb-checkbox-background-opacity: 0%;
-  --vb-checkbox-background-opacity-hover: 20%;
-  --vb-checkbox-background-opacity-focus: 20%;
-  --vb-checkbox-background-opacity-active: 30%;
-  --vb-checkbox-transition-duration: var(--vb-transition-duration-short);
-  --vb-checkbox-transition-timing-function: var(--vb-transition-timing-function);
-}
+**Available variants**
 
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-checkbox-fill: white;
-  --vb-checkbox-border-color: var(--vb-neutral-50);
-  --vb-checkbox-icon-color: white;
-}
+- `xs:checkbox_size_[key]`
+- `sm:checkbox_size_[key]`
+- `md:checkbox_size_[key]`
+- `lg:checkbox_size_[key]`
+- `xl:checkbox_size_[key]`
 
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-checkbox-fill: var(--vb-neutral-10);
-    --vb-checkbox-border-color: var(--vb-neutral-80);
-    --vb-checkbox-icon-color: var(--vb-neutral-10);
-  }
-}
+## Reference
 
-.vb-theme-dark {
-  --vb-checkbox-fill: var(--vb-neutral-10);
-  --vb-checkbox-border-color: var(--vb-neutral-80);
-  --vb-checkbox-icon-color: var(--vb-neutral-10);
-}
-```
-</DocBlock>
+Below is a reference to all CSS variables that are referenced by the `checkbox` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="SCSS Variables" src="checkbox/src/_variables.scss">
+<ReferenceTable id="cssvar-checkbox" valueLabel="Fallback" data={{
+  "--vb-checkbox-accent": "var(--vb-form-control-accent)",
+  "--vb-checkbox-size": "var(--vb-form-control-size)",
+  "--vb-checkbox-size-calc": "var(--vb-form-control-size-calc)",
 
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
+  "--vb-checkbox-background": "var(--vb-form-control-background)",
+  "--vb-checkbox-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-checkbox-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-checkbox-background-border-radius": "var(--vb-form-control-background-border-radius)",
 
-$size: css.get("form-control", "size") !default;
-$box-size: 18px !default;
-$icon-size: 12px !default;
-$icon-color: null !default;
-$icon-stroke: 2.5 !default;
-$color: palette.get("primary") !default;
-$fill: null !default;
-$border-color: null !default;
-$border-width: 2px !default;
-$border-radius: css.get("border-radius") !default;
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
+  "--vb-checkbox-foreground": "var(--vb-form-control-foreground)",
 
-// Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+  "--vb-checkbox-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-checkbox-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
-// checkbox_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-border-width: 2px !default;
-$size-sm-box: 14px !default;
-$size-sm-icon: 10px !default;
-$size-sm-icon-stroke: 2.5 !default;
-
-// checkbox_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
-$size-lg-border-width: 2.5px !default;
-$size-lg-box: 24px !default;
-$size-lg-icon: 18px !default;
-$size-lg-icon-stroke: 2 !default;
-
-// Custom properties
-@include css.set("checkbox", (
-  "size": $size,
-  "box-size": $box-size,
-  "icon-size": $icon-size,
-  "icon-color": $icon-color,
-  "icon-stroke": $icon-stroke,
-  "color": $color,
-  "fill": $fill,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
-  "background": (
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  ),
-  "transition": (
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
-  )
-));
-
-// Theme maps
-$theme-light: (
-  "fill": white,
-  "border-color": palette.get("neutral"),
-  "icon-color": white
-) !default;
-
-$theme-dark: (
-  "fill": palette.get("neutral", 10),
-  "border-color": palette.get("neutral", 80),
-  "icon-color": palette.get("neutral", 10)
-) !default;
-
-@include theme.set("light", "checkbox", $theme-light);
-@include theme.set("dark", "checkbox", $theme-dark);
-```
-</DocBlock>
-
-<DocBlock name="icon-check" type="function" returns="string" src="checkbox/src/_functions.scss" line="9" args={[
-  ["$size", "Number (with unit)", "Value for width and height attributes"],
-  ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
-]}>
-  <p>Outputs data image string for check SVG icon. Used as the value of <code>url()</code> in the <code>mask-image</code> property.</p>
-
-  <Fragment slot="example">
-
-    ```scss
-    .check-icon {
-      mask-image: url("#{icon-check(12px, 2.5)}");
-    }
-
-    // CSS Output
-    .check-icon {
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9.5,3 4.5,8.5 2,6"></polyline></svg>');
-    }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="icon-minus" type="function" returns="string" src="checkbox/src/_functions.scss" line="19" args={[
-  ["$size", "Number (with unit)", "Value for width and height attributes"],
-  ["$stroke", "Number (unitless)", "Value for stroke-width attribute"]
-]}>
-  <p>Outputs data image string for minus SVG icon. Used as the value of <code>url()</code> in the <code>mask-image</code> property.</p>
-
-  <Fragment slot="example">
-
-    ```scss
-    .minus-icon {
-      mask-image: url("#{icon-minus(12px, 2.5)}");
-    }
-
-    // CSS Output
-    .minus-icon {
-      mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>');
-    }
-    ```
-  </Fragment>
-</DocBlock>
+  "--vb-checkbox-box-size": "1.2em",
+  "--vb-checkbox-border-width": "2px",
+  "--vb-checkbox-border-radius": "var(--vb-border-radius)",
+  "--vb-checkbox-icon-size": "0.8em",
+}} />

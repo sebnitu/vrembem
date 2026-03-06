@@ -1,11 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-#{core.bem("checkbox", null, "size", "sm")} {
-  @include css.override("checkbox", "font-size", var.$size-sm-font-size);
+$-checkbox-size: config.get("checkbox-size", "variants");
+
+@each $key, $value in $-checkbox-size {
+  #{core.bem("checkbox", null, "size", $key)} {
+    @include css.override("checkbox", "size", $value);
+  }
 }
 
-#{core.bem("checkbox", null, "size", "lg")} {
-  @include css.override("checkbox", "font-size", var.$size-lg-font-size);
+@each $bp, $value in config.get("checkbox-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-checkbox-size {
+      #{core.bem("checkbox", null, "size", $key, $bp)} {
+        @include css.override("checkbox", "size", $value);
+      }
+    }
+  }
 }

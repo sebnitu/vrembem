@@ -1,23 +1,26 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
-@use "./functions" as fun;
+
+$-accent: css.get("checkbox", "accent", css.get("form-control-accent"));
+$-background: css.get("checkbox", "background", css.get("form-control-background"));
+$-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground"));
 
 #{core.bem("checkbox")} {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("checkbox", "font-size", css.get("form-control-font-size"));
+  font-size: css.get("checkbox", "size", config.get("checkbox-size", "default"));
   justify-content: center;
   position: relative;
   vertical-align: middle;
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.form-control-size("checkbox");
+  @include core.form-control-size;
 
   align-items: center;
-  background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity", css.get("form-control-background-opacity")));
+  background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity", css.get("form-control-background-opacity")));
   border-radius: css.get("checkbox", "background-border-radius", css.get("form-control-background-border-radius"));
   display: flex;
   justify-content: center;
@@ -26,23 +29,23 @@
 }
 
 #{core.bem("checkbox", "box")} {
-  @include core.size(css.get("checkbox", "box-size", var.$box-size));
+  @include core.size(css.get("checkbox", "box-size", 1.2em));
 
   align-items: center;
-  background-color: css.get("checkbox", "background", var.$background);
-  border: css.get("checkbox", "border-width", var.$border-width) solid var.$foreground;
-  border-radius: css.get("checkbox", "border-radius", var.$border-radius);
+  background-color: css.get("checkbox", "background", $-background);
+  border: css.get("checkbox", "border-width", 2px) solid $-foreground;
+  border-radius: css.get("checkbox", "border-radius", css.get("border-radius"));
   color: transparent;
   display: flex;
   justify-content: center;
 }
 
 #{core.bem("checkbox", "icon")} {
-  @include core.size(css.get("checkbox", "icon-size", var.$icon-size));
+  @include core.size(css.get("checkbox", "icon-size", 0.8em));
 
-  background-color: css.get("checkbox", "background", var.$background);
-  mask-image: url("#{fun.icon-check(var.$icon-size, var.$icon-stroke)}");
-  mask-position: center calc(css.get("checkbox", "icon-size", var.$icon-size) * -1);
+  background-color: css.get("checkbox", "background", $-background);
+  mask-image: url(core.svg("check"));
+  mask-position: center calc(css.get("checkbox", "icon-size", 0.8em) * -1);
   mask-repeat: no-repeat;
   mask-size: 100%;
   opacity: 0;
@@ -59,62 +62,50 @@
   z-index: 2;
 
   &:hover + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
+    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
 
     #{core.bem("checkbox", "box")} {
-      background-color: css.get("checkbox", "background", var.$background);
-      border-color: var.$accent;
+      background-color: css.get("checkbox", "background", $-background);
+      border-color: $-accent;
     }
   }
 
   &:focus + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
+    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
 
     #{core.bem("checkbox", "box")} {
-      background-color: css.get("checkbox", "background", var.$background);
-      border-color: var.$accent;
+      background-color: css.get("checkbox", "background", $-background);
+      border-color: $-accent;
     }
   }
 
   &:focus-visible + #{core.bem("checkbox", "background")},
   &:active + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("checkbox", "background-opacity-active", css.get("form-control-background-opacity-active")));
+    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-active", css.get("form-control-background-opacity-active")));
 
     #{core.bem("checkbox", "box")} {
-      background-color: css.get("checkbox", "background", var.$background);
-      border-color: var.$accent;
+      background-color: css.get("checkbox", "background", $-background);
+      border-color: $-accent;
     }
   }
 
-  &:checked + #{core.bem("checkbox", "background")} {
-    #{core.bem("checkbox", "box")} {
-      background-color: var.$accent;
-      border-color: var.$accent;
-    }
-
-    #{core.bem("checkbox", "icon")} {
-      mask-position: center center;
-      opacity: 1;
-      transition-duration: css.get("checkbox", "transition-duration", css.get("form-control-transition-duration"));
-      transition-property: opacity, mask-position;
-      transition-timing-function: css.get("checkbox", "transition-timing-function", css.get("form-control-transition-timing-function"));
-    }
-  }
-
+  &:checked + #{core.bem("checkbox", "background")},
   &:indeterminate + #{core.bem("checkbox", "background")} {
     #{core.bem("checkbox", "box")} {
-      background-color: var.$accent;
-      border-color: var.$accent;
+      background-color: $-accent;
+      border-color: $-accent;
     }
 
     #{core.bem("checkbox", "icon")} {
-      background-color: css.get("checkbox", "background", var.$background);
-      mask-image: url("#{fun.icon-minus(var.$icon-size, var.$icon-stroke)}");
       mask-position: center center;
       opacity: 1;
       transition-duration: css.get("checkbox", "transition-duration", css.get("form-control-transition-duration"));
       transition-property: opacity, mask-position;
       transition-timing-function: css.get("checkbox", "transition-timing-function", css.get("form-control-transition-timing-function"));
     }
+  }
+
+  &:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
+    mask-image: url(core.svg("-"));
   }
 }

@@ -1,0 +1,48 @@
+@use "sass:map";
+@use "../utilities/string-replace" as *;
+
+// This is needed to avoid linting error of the string values in svg data.
+// stylelint-disable scss/operator-no-unspaced
+
+/// A map to store the svg data values meant to be used inside url() image calls
+/// such as in background-image or mask-image properties. String values contain
+/// {{STROKE}} tokens for search/replace of stroke-width values.
+/// @type map
+/// @access private
+$-svg-data: (
+  "check": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>',
+  "-": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>',
+  "+": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="2.5" x2="6" y2="9.5"></line><line x1="2.5" y1="6" x2="9.5" y2="6"></line></svg>',
+  "!": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5V6" /><path d="M6 9.5H6.005" /></svg>',
+  "?": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.83532C4.16131 3.3901 4.47969 3.01467 4.89877 2.77553C5.31784 2.5364 5.81056 2.44898 6.28966 2.52877C6.76875 2.60856 7.2033 2.85041 7.51635 3.21147C7.82939 3.57254 8.00072 4.02952 8 4.50149C8 5.83383 5.94168 6.5 5.94168 6.5" /><path d="M6 9.5H6.005" /></svg>',
+  "x": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="3" x2="3" y2="9"></line><line x1="3" y1="3" x2="9" y2="9"></line></svg>'
+);
+
+/// Function to return a data entry from the svg map.
+///
+/// @param {string} $name
+///   The name of the svg icon to return.
+/// @param {number} $stroke (2)
+///   The stroke width to apply to the svg string.
+///
+/// @return {string}
+///   The requested svg data string with data URI prefix.
+///
+@function svg($name, $stroke: 2) {
+  // Initialize the result with the data URI prefix
+  $result: "data:image/svg+xml;utf8,";
+
+  // Error check if svg data key doesn't exist
+  @if not map.has-key($-svg-data, $name) {
+    @error 'SVG value could not be found: "#{$name}"';
+  }
+
+  // Get the svg string
+  $result: "#{$result}#{map.get($-svg-data, $name)}";
+
+  // Replace the stroke token
+  $result: string-replace($result, "{{STROKE}}", $stroke);
+
+  // Return the string
+  @return $result;
+}

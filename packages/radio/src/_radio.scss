@@ -6,14 +6,14 @@
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("radio", "font-size", css.get("form-control-font-size"));
+  font-size: css.get("radio", "font-size", css.get("form-control-size"));
   justify-content: center;
   position: relative;
   vertical-align: middle;
 }
 
 #{core.bem("radio", "background")} {
-  @include core.form-control-size("radio");
+  @include core.form-control-size;
 
   align-items: center;
   background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));

@@ -49,9 +49,9 @@ $config: (
   // @type map
   "button-size": (
     "breakpoints": true,
-    "sm": css.get("form-control-font-size-sm"),
-    "md": css.get("form-control-font-size"),
-    "lg": css.get("form-control-font-size-lg")
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
   )
 );
 ```
@@ -289,7 +289,7 @@ Output the base styles for a button component. This includes:
 <Fragment slot="tab-css">
 ```css
 .custom-button {
-  font-size: var(--vb-button-font-size, var(--vb-form-control-font-size));
+  font-size: var(--vb-button-font-size, var(--vb-form-control-size));
   line-height: var(--vb-button-line-height, var(--vb-form-control-line-height));
   padding: var(--vb-button-padding, var(--vb-form-control-padding));
   border-radius: var(--vb-button-border-radius, var(--vb-form-control-border-radius));
@@ -373,7 +373,7 @@ Below is a reference to all CSS variables that are referenced by the `button` co
 <ReferenceTable id="cssvar-button" valueLabel="Fallback" data={{
   // Form control fallbacks
   "--vb-button-accent": "var(--vb-form-control-accent)",
-  "--vb-button-font-size": "var(--vb-form-control-font-size)",
+  "--vb-button-size": "var(--vb-form-control-size)",
   "--vb-button-line-height": "var(--vb-form-control-line-height)",
   "--vb-button-padding": "var(--vb-form-control-padding)",
   "--vb-button-border-radius": "var(--vb-form-control-border-radius)",

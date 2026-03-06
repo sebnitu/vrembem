@@ -293,18 +293,13 @@ Output the shared form-control properties with the component specific CSS variab
 
 <ReferenceBar type="mixin" />
 
-Output the width and height with the form-control-size CSS variable value. This can optionally be provided a component name to allow component specific overrides as well as optionally setting min/max width/height instead.
+Output the width and height with the form-control-size CSS variable value. This can optionally be provided a prefix property min/max width/height instead.
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string" defaults="null">
-  Optionally provide a component to allow specific overrides for.
-</ReferenceCard>
-
 <ReferenceCard name="$prefix" type="string" defaults="null">
-  The prefix to apply to the width and height CSS property. Size prefixes incldue `"min"` and `"max"`.
+  The prefix to apply to the width and height CSS property. Size prefixes include `"min"` and `"max"`.
 </ReferenceCard>
-
 
 ## get-side
 
@@ -571,6 +566,91 @@ Output styles for displaying content meant only for screen readers.
   padding: 0;
   position: absolute;
   width: 1px;
+}
+```
+</Fragment>
+</CodeExample>
+
+## svg
+
+<ReferenceBar type="function" returns="string" />
+
+Function to return a data entry from the svg map. The internal svg map stores svg data meant to be used inside `url()` image calls such as in background-image or mask-image properties.
+
+#### Arguments
+
+<ReferenceCard name="$name" type="string">
+  The name of the svg icon to return.
+
+  <table class="table table_size_sm">
+    <thead>
+    <tr>
+      <th>Option</th>
+      <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>`"check"`</td>
+      <td><span class="svg-icon svg-check"></span></td>
+    </tr>
+    <tr>
+      <td>`"+"`</td>
+      <td><span class="svg-icon svg-plus"></span></td>
+    </tr>
+    <tr>
+      <td>`"-"`</td>
+      <td><span class="svg-icon svg-minus"></span></td>
+    </tr>
+    <tr>
+      <td>`"!"`</td>
+      <td><span class="svg-icon svg-alert"></span></td>
+    </tr>
+    <tr>
+      <td>`"?"`</td>
+      <td><span class="svg-icon svg-help"></span></td>
+    </tr>
+    <tr>
+      <td>`"x"`</td>
+      <td><span class="svg-icon svg-x"></span></td>
+    </tr>
+    </tbody>
+  </table>
+
+</ReferenceCard>
+
+<ReferenceCard name="$stroke" type="number" defaults="2">
+  The stroke width to apply to the svg string.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="output">
+  <div class="flex">
+    <span class="svg-icon svg-check"></span>
+    <span class="svg-icon svg-plus"></span>
+    <span class="svg-icon svg-minus"></span>
+    <span class="svg-icon svg-alert"></span>
+    <span class="svg-icon svg-help"></span>
+    <span class="svg-icon svg-x"></span>
+  </div>
+</Fragment>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.svg-check {
+  mask-image: url(core.svg("check"));
+  // ...
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.svg-check {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>');
+  /* ... */
 }
 ```
 </Fragment>

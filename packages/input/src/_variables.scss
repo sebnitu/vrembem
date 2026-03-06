@@ -29,10 +29,10 @@ $background-readonly: css.get("background-dark") !default;
 $background-disabled: css.get("background-darker") !default;
 
 // Modifier: input_size_sm
-$size-sm-font-size: css.get("form-control-font-size-sm") !default;
+$size-sm-font-size: css.get("form-control-size-sm") !default;
 
 // Modifier: input_size_lg
-$size-lg-font-size: css.get("form-control-font-size-lg") !default;
+$size-lg-font-size: css.get("form-control-size-lg") !default;
 
 // Themes
 @include theme.set(
