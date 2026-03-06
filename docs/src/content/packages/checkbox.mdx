@@ -195,6 +195,43 @@ Adjust the size of a checkbox by increasing or decreasing its font-size. These m
 - `checkbox_size_sm`
 - `checkbox_size_lg`
 
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `checkbox-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
+        <input class="checkbox__native" type="checkbox" checked />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+      <span>Checkbox</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </label>
+  </div>
+  ```html
+  <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:checkbox_size_[key]`
+- `sm:checkbox_size_[key]`
+- `md:checkbox_size_[key]`
+- `lg:checkbox_size_[key]`
+- `xl:checkbox_size_[key]`
+
 ## Reference
 
 Below is a reference to all CSS variables that are referenced by the `checkbox` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
