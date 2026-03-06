@@ -44,6 +44,6 @@
   @include core.media-min(var.$bp-code) {
     position: absolute;
     right: calc(100% + 0.5rem);
-    top: calc(60% - calc(css.get("form-control-size") / 2));
+    top: calc(60% - calc(css.get("form-control-size-calc") / 2));
   }
 }
