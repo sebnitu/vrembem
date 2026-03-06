@@ -64,11 +64,12 @@ html {
 
 .svg-icon {
   @include core.size(1rem);
-  display: inline-block;
+
   background-color: salmon;
-  mask-size: 100%;
+  display: inline-block;
   mask-position: center;
   mask-repeat: no-repeat;
+  mask-size: 100%;
 
   &.svg-check {
     mask-image: url(core.svg("check"));

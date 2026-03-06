@@ -1,6 +1,9 @@
 @use "sass:map";
 @use "../utilities/string-replace" as *;
 
+// This is needed to avoid linting error of the string values in svg data.
+// stylelint-disable scss/operator-no-unspaced
+
 /// A map to store the svg data values meant to be used inside url() image calls
 /// such as in background-image or mask-image properties. String values contain
 /// {{STROKE}} tokens for search/replace of stroke-width values.

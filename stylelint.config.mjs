@@ -5,6 +5,7 @@ export default {
   rules: {
     "prettier/prettier": true,
     "order/properties-alphabetical-order": true,
+    "function-url-quotes": null,
     "selector-class-pattern": [
       "^[a-z0-9-_:]+$",
       {
