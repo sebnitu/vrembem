@@ -6,7 +6,7 @@ $-button-size: config.get("button-size", "variants");
 
 @each $key, $value in $-button-size {
   #{core.bem("button", null, "size", $key)} {
-    @include css.override("button", "font-size", $value);
+    @include css.override("button", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-button-size: config.get("button-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-button-size {
       #{core.bem("button", null, "size", $key, $bp)} {
-        @include css.override("button", "font-size", $value);
+        @include css.override("button", "size", $value);
       }
     }
   }

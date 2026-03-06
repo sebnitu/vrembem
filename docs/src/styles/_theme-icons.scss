@@ -2,7 +2,7 @@
 @use "@vrembem/core/theme";
 
 .form-control-size {
-  @include core.form-control-size(null, "min");
+  @include core.form-control-size("min");
 }
 
 .theme-icon {

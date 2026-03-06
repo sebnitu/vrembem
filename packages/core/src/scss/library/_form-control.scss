@@ -28,19 +28,11 @@
 }
 
 /// Output the width and height with the form-control-size CSS variable value.
-/// This can optionally be provided a component name to allow component specific
-/// overrides as well as optionally setting min/max width/height instead.
 ///
-/// @param {string} $component (null)
-///   Optionally provide a component to allow specific overrides for.
 /// @param {string} $prefix (null)
 ///   The prefix to apply to the width and height CSS property. Size prefixes
-///   incldue `"min"` and `"max"`.
+///   include `"min"` and `"max"`.
 ///
-@mixin form-control-size($component: null, $prefix: null) {
-  @if $component {
-    @include mix.size(css.get($component, "size", css.get("form-control-size-calc")), css.get($component, "size", css.get("form-control-size-calc")), $prefix);
-  } @else {
-    @include mix.size(css.get("form-control-size-calc"), css.get("form-control-size-calc"), $prefix);
-  }
+@mixin form-control-size($prefix: null) {
+  @include mix.size(css.get("form-control-size-calc"), css.get("form-control-size-calc"), $prefix);
 }

@@ -10,14 +10,14 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("checkbox", "font-size", config.get("checkbox-size", "default"));
+  font-size: css.get("checkbox", "size", config.get("checkbox-size", "default"));
   justify-content: center;
   position: relative;
   vertical-align: middle;
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.form-control-size("checkbox");
+  @include core.form-control-size;
 
   align-items: center;
   background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity", css.get("form-control-background-opacity")));

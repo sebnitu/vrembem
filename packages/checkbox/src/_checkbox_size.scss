@@ -6,7 +6,7 @@ $-checkbox-size: config.get("checkbox-size", "variants");
 
 @each $key, $value in $-checkbox-size {
   #{core.bem("checkbox", null, "size", $key)} {
-    @include css.override("checkbox", "font-size", $value);
+    @include css.override("checkbox", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-checkbox-size: config.get("checkbox-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-checkbox-size {
       #{core.bem("checkbox", null, "size", $key, $bp)} {
-        @include css.override("checkbox", "font-size", $value);
+        @include css.override("checkbox", "size", $value);
       }
     }
   }
