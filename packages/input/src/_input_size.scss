@@ -1,11 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-#{core.bem("input", null, "size", "sm")} {
-  @include css.override("input", "font-size", var.$size-sm-font-size);
+$-input-size: config.get("input-size", "variants");
+
+@each $key, $value in $-input-size {
+  #{core.bem("input", null, "size", $key)} {
+    @include css.override("input", "size", $value);
+  }
 }
 
-#{core.bem("input", null, "size", "lg")} {
-  @include css.override("input", "font-size", var.$size-lg-font-size);
+@each $bp, $value in config.get("input-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-input-size {
+      #{core.bem("input", null, "size", $key, $bp)} {
+        @include css.override("input", "size", $value);
+      }
+    }
+  }
 }
