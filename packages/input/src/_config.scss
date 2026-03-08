@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
 $config: () !default;
@@ -14,6 +15,13 @@ $default: (
     "sm": css.get("form-control-size-sm"),
     "md": css.get("form-control-size"),
     "lg": css.get("form-control-size-lg"),
+  ),
+
+  // Map for outputting input_state_[key] modifier variants
+  // @type map
+  "input-state": (
+    "success": palette.get("primary"),
+    "error": palette.get("important")
   )
 );
 
