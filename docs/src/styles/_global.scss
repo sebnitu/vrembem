@@ -75,6 +75,10 @@ html {
     mask-image: url(core.svg("check"));
   }
 
+  &.svg-expand {
+    mask-image: url(core.svg("expand"));
+  }
+
   &.svg-plus {
     mask-image: url(core.svg("+"));
   }

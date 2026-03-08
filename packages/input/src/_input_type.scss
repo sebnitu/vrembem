@@ -3,14 +3,14 @@
 
 #{core.bem("input", null, "type", "select")} {
   background-image: css.get("input", "select-icon");
-  background-position: 100% center;
+  background-position: calc(100% - 0.75em) center;
   background-repeat: no-repeat;
   cursor: pointer;
   padding-right: 2em;
   position: relative;
 
   &:read-only {
-    background-color: css.get("input", "background", css.get("background-dark"));
+    background-color: css.get("input", "background", css.get("background"));
   }
 
   &:disabled {
