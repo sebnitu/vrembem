@@ -14,7 +14,7 @@ $default: (
     "breakpoints": true,
     "sm": css.get("form-control-size-sm"),
     "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg"),
+    "lg": css.get("form-control-size-lg")
   ),
 
   // Map for outputting input_state_[key] modifier variants
