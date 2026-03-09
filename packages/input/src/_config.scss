@@ -31,15 +31,11 @@ $default: (
 // Themes
 // prettier-ignore
 @include theme.set(
-  "light",
-  "input",
-  "select-icon",
+  "light", "input", "select-icon",
   url(core.svg("expand", ("color": black)))
 );
 // prettier-ignore
 @include theme.set(
-  "dark",
-  "input",
-  "select-icon"
+  "dark", "input", "select-icon",
   url(core.svg("expand", ("color": white)))
 );
