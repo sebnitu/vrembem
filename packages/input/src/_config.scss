@@ -29,17 +29,17 @@ $default: (
 @include css.register("input");
 
 // Themes
+// prettier-ignore
 @include theme.set(
   "light",
   "input",
-  (
-    "select-icon": url(core.svg("expand", $color: black))
-  )
+  "select-icon",
+  url(core.svg("expand", ("color": black)))
 );
+// prettier-ignore
 @include theme.set(
   "dark",
   "input",
-  (
-    "select-icon": url(core.svg("expand", $color: white))
-  )
+  "select-icon"
+  url(core.svg("expand", ("color": white)))
 );
