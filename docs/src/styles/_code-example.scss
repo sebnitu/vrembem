@@ -9,6 +9,10 @@
   font-size: css.get("font-size");
   line-height: css.get("line-height");
 
+  * {
+    scroll-margin-top: initial;
+  }
+
   > * + * {
     border-top: css.get("border");
   }
