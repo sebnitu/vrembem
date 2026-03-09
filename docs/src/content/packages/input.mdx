@@ -99,7 +99,7 @@ Sets the width of an input to `auto` instead of the base component width of `100
 
 ## input_size_[key]
 
-Adjust the size of an input by increasing or decreasing its padding and font-size. By default, the input scale will provide an input height of 30px (small `input_size_sm`), 40px (default) and 50px (large `input_size_lg`).
+Adjust the size of an input by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `input-size` config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -118,9 +118,37 @@ Adjust the size of an input by increasing or decreasing its padding and font-siz
 - `input_size_sm`
 - `input_size_lg`
 
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `input-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
+    <div class="flex flex_inline flex_gap_sm align-items-center">
+      <span>Current active size modifier:</span>
+      <span class="badge lg:display-none">input_size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">lg:input_size_md</span>
+      <span class="badge display-none xl:display-block">xl:input_size_lg</span>
+    </div>
+  </div>
+  ```html
+  <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:input_size_[key]`
+- `sm:input_size_[key]`
+- `md:input_size_[key]`
+- `lg:input_size_[key]`
+- `xl:input_size_[key]`
+
 ## input_state_[key]
 
-Adds styles for changing the look and feel of an input to better reflect the current state.
+Apply styles for changing the look and feel of an input to better reflect the current state. These modifiers are generated using key/value pairs of the `input-state` config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -140,7 +168,7 @@ Adds styles for changing the look and feel of an input to better reflect the cur
 
 ## input_type_[key]
 
-Adds unique styles for various form input types. These form controls share styles with the basic form input such as [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) HTML elements.
+Apply unique styles for various input types. These form controls share base styles with the basic input, including the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) elements.
 
 <CodeExample resettable>
   <div slot="output" class="spacing">
