@@ -276,44 +276,15 @@ Output the base styles for a button component. This includes:
 - Setup of focus-ring CSS variables and initial state.
 - Flex layout styles for child elements and consistent gap spacing.
 
-<CodeExample tabs>
-<Fragment slot="tab-scss">
+<CodeExample lang="scss">
 ```scss
 @use "@vrembem/button";
 
 .custom-button {
   @include button-base;
+  // Your custom variant styles here...
 }
 ```
-</Fragment>
-<Fragment slot="tab-css">
-```css
-.custom-button {
-  font-size: var(--vb-button-font-size, var(--vb-form-control-size));
-  line-height: var(--vb-button-line-height, var(--vb-form-control-line-height));
-  padding: var(--vb-button-padding, var(--vb-form-control-padding));
-  border-radius: var(--vb-button-border-radius, var(--vb-form-control-border-radius));
-  border-width: var(--vb-button-border-width, var(--vb-form-control-border-width));
-  transition-duration: var(--vb-button-transition-duration, var(--vb-form-control-transition-duration));
-  transition-property: var(--vb-button-transition-property, var(--vb-form-control-transition-property));
-  transition-timing-function: var(--vb-button-transition-timing-function, var(--vb-form-control-transition-timing-function));
-  outline: var(--vb-focus-ring-width) var(--vb-focus-ring-style) transparent;
-  outline-offset: var(--vb-focus-ring-offset);
-  align-items: center;
-  background-clip: border-box;
-  border-style: solid;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: inherit;
-  font-weight: inherit;
-  gap: var(--vb-button-gap, var(--vb-spacing-sm));
-  justify-content: center;
-  position: relative;
-  text-decoration: none;
-  white-space: nowrap;
-}
-```
-</Fragment>
 </CodeExample>
 
 ### button-variant

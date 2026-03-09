@@ -3,7 +3,6 @@
 @use "./mixins" as mix;
 
 #{core.bem("input")} {
-  @include core.form-control-properties("input");
   @include mix.input-base;
 
   background-color: css.get("input", "background", css.get("background"));

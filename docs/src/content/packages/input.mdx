@@ -5,6 +5,8 @@ package: "@vrembem/input"
 category: form-control
 ---
 
+import ReferenceBar from "../../components/ReferenceBar.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Input
@@ -198,6 +200,30 @@ Apply unique styles for various input types. These form controls share base styl
 - `input_type_textarea`
 
 ## Reference
+
+Below is a reference to all available input mixins and CSS variables that are referenced along with their fallback values. These can be used to customize the input component or create new variants as needed.
+
+### input-base
+
+<ReferenceBar type="mixin" />
+
+Output the base styles for an input component. This includes:
+- Setup of input specific CSS variables with shared form-control fallbacks.
+- Setup of focus-ring CSS variables and initial state.
+- Apply base styles and resets so browsers render inputs consistently.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/input";
+
+.custom-input {
+  @include input-base;
+  // Your custom variant styles here...
+}
+```
+</CodeExample>
+
+### CSS Variables
 
 Below is a reference to all CSS variables that are referenced by the `input` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
