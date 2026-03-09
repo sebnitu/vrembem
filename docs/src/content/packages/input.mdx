@@ -191,12 +191,12 @@ Below is a reference to all CSS variables that are referenced by the `input` com
 
   "--vb-input-background-hover": "var(--vb-input-background)",
   "--vb-input-foreground-hover": "var(--vb-input-foreground)",
-  "--vb-input-border-color-hover": "var(--vb-border-color-darker)",
+  "--vb-input-border-color-hover": "var(--vb-input-border-color, var(--vb-border-color-darker))",
   "--vb-input-box-shadow-hover": "inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1)",
 
   "--vb-input-background-focus": "var(--vb-input-background)",
   "--vb-input-foreground-focus": "var(--vb-input-foreground)",
-  "--vb-input-border-color-focus": "var(--vb-input-accent)",
+  "--vb-input-border-color-focus": "var(--vb-input-border-color, var(--vb-input-accent))",
   "--vb-input-box-shadow-focus": "none",
 
   "--vb-input-background-readonly": "var(--vb-background-dark)",

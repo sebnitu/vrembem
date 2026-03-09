@@ -13,14 +13,14 @@
 
   &:hover {
     background-color: css.get("input", "background-hover", "background", css.get("background"));
-    border-color: css.get("input", "border-color-hover", css.get("border-color-darker"));
+    border-color: css.get("input", "border-color-hover", "border-color", css.get("border-color-darker"));
     box-shadow: css.get("input", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
     color: css.get("input", "foreground-hover", "foreground", css.get("foreground"));
   }
 
   &:focus {
     background-color: css.get("input", "background-focus", "background", css.get("background"));
-    border-color: css.get("input", "border-color-focus", css.get("input", "accent", css.get("form-control-accent")));
+    border-color: css.get("input", "border-color-focus", "border-color", css.get("input", "accent", css.get("form-control-accent")));
     box-shadow: css.get("input", "box-shadow-focus", none);
     color: css.get("input", "foreground-focus", "foreground", css.get("foreground"));
   }
