@@ -11,7 +11,7 @@
 /// @access private
 $-svg-data: (
   "check": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,3 5,9 2,6"></polyline></svg>',
-  "expand": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9L6 11L8 9"/><path d="M8 3L6 1L4 3"/></svg>',
+  "expand": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11L4 9L8 9L6 11Z"/><path d="M6 1L8 3H4L6 1Z"/></svg>',
   "-": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="6" x2="10" y2="6" /></svg>',
   "+": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="2.5" x2="6" y2="9.5"></line><line x1="2.5" y1="6" x2="9.5" y2="6"></line></svg>',
   "!": '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="{{COLOR}}" stroke-width="{{STROKE}}" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5V6" /><path d="M6 9.5H6.005" /></svg>',
