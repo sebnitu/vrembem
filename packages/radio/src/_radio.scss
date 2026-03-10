@@ -1,12 +1,16 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+
+$-accent: css.get("radio", "accent", css.get("form-control-accent"));
+$-background: css.get("radio", "background", css.get("form-control-background")) !default;
+$-foreground: css.get("radio", "foreground", css.get("form-control-foreground")) !default;
 
 #{core.bem("radio")} {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: css.get("radio", "font-size", css.get("form-control-size"));
+  font-size: css.get("radio", "size", config.get("radio-size", "default"));
   justify-content: center;
   position: relative;
   vertical-align: middle;
@@ -16,7 +20,7 @@
   @include core.form-control-size;
 
   align-items: center;
-  background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
+  background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
   border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
   display: flex;
   justify-content: center;
@@ -25,12 +29,12 @@
 }
 
 #{core.bem("radio", "circle")} {
-  @include core.size(css.get("radio", "circle-size", var.$circle-size));
+  @include core.size(css.get("radio", "circle-size", 1.25em));
 
   align-items: center;
-  background-color: css.get("radio", "background", var.$background);
-  border: css.get("radio", "border-width", var.$border-width) solid var.$foreground;
-  border-radius: css.get("radio", "circle-size", var.$circle-size);
+  background-color: $-background;
+  border: css.get("radio", "border-width", 2px) solid $-foreground;
+  border-radius: css.get("radio", "circle-size", 1.25em);
   color: transparent;
   display: flex;
   justify-content: center;
@@ -39,8 +43,8 @@
 #{core.bem("radio", "dot")} {
   @include core.size(0);
 
-  background-color: css.get("radio", "background", var.$background);
-  border-radius: css.get("radio", "dot-size", var.$dot-size);
+  background-color: $-background;
+  border-radius: css.get("radio", "dot-size", 0.5em);
   opacity: 0;
 }
 
@@ -55,41 +59,41 @@
   z-index: 2;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
+    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
-      background-color: css.get("radio", "background", var.$background);
-      border-color: css.get("radio", "accent", var.$accent);
+      background-color: $-background;
+      border-color: $-accent;
     }
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
+    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
-      background-color: css.get("radio", "background", var.$background);
-      border-color: css.get("radio", "accent", var.$accent);
+      background-color: $-background;
+      border-color: $-accent;
     }
   }
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from var.$accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
+    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
-      background-color: css.get("radio", "background", var.$background);
-      border-color: css.get("radio", "accent", var.$accent);
+      background-color: $-background;
+      border-color: $-accent;
     }
   }
 
   &:checked + #{core.bem("radio", "background")} {
     #{core.bem("radio", "circle")} {
-      background-color: css.get("radio", "accent", var.$accent);
-      border-color: css.get("radio", "accent", var.$accent);
+      background-color: $-accent;
+      border-color: $-accent;
     }
 
     #{core.bem("radio", "dot")} {
-      @include core.size(css.get("radio", "dot-size", var.$dot-size));
+      @include core.size(css.get("radio", "dot-size", 0.5em));
 
       background-position: center center;
       opacity: 1;
