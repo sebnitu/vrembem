@@ -595,6 +595,14 @@ Function to return a data entry from the svg map. The internal svg map stores sv
       <td><span class="svg-icon svg-check"></span></td>
     </tr>
     <tr>
+      <td>`"chevron"`</td>
+      <td><span class="svg-icon svg-chevron"></span></td>
+    </tr>
+    <tr>
+      <td>`"expand"`</td>
+      <td><span class="svg-icon svg-expand"></span></td>
+    </tr>
+    <tr>
       <td>`"+"`</td>
       <td><span class="svg-icon svg-plus"></span></td>
     </tr>
@@ -619,8 +627,35 @@ Function to return a data entry from the svg map. The internal svg map stores sv
 
 </ReferenceCard>
 
-<ReferenceCard name="$stroke" type="number" defaults="2">
-  The stroke width to apply to the svg string.
+<ReferenceCard name="$attr" type="map" defaults="()">
+  A map of attr/value pairs to search and replace.
+
+  <table class="table table_size_sm">
+    <thead>
+    <tr>
+      <th>Option</th>
+      <th>Default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>`"color"`</td>
+      <td>`black`</td>
+    </tr>
+    <tr>
+      <td>`"stroke"`</td>
+      <td>`2`</td>
+    </tr>
+    <tr>
+      <td>`"linecap"`</td>
+      <td>`round`</td>
+    </tr>
+    <tr>
+      <td>`"linejoin"`</td>
+      <td>`round`</td>
+    </tr>
+    </tbody>
+  </table>
 </ReferenceCard>
 
 #### Example
@@ -629,6 +664,8 @@ Function to return a data entry from the svg map. The internal svg map stores sv
 <Fragment slot="output">
   <div class="flex">
     <span class="svg-icon svg-check"></span>
+    <span class="svg-icon svg-chevron"></span>
+    <span class="svg-icon svg-expand"></span>
     <span class="svg-icon svg-plus"></span>
     <span class="svg-icon svg-minus"></span>
     <span class="svg-icon svg-alert"></span>

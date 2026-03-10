@@ -50,12 +50,12 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     !tabs ? (
       <div class="code-example__toolbar">
-        <div>{label || lang?.toUpperCase()}</div>
+        <div class="flex-grow">{label || lang?.toUpperCase()}</div>
         {
           resettable && (
             <button
               type="button"
-              class="button button_size_sm button_color_secondary"
+              class="link"
               data-reset={`code-example-output-${uid}`}
             >
               Reset <span class="sr-only">example</span>
@@ -129,7 +129,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
           resettable && (
             <button
               type="button"
-              class="button button_size_sm button_color_secondary"
+              class="link"
               data-reset={`code-example-output-${uid}`}
             >
               Reset <span class="sr-only">example</span>

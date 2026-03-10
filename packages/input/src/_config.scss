@@ -1,0 +1,42 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Map for outputting input_size_[key] modifier variants
+  // @type map
+  "input-size": (
+    "breakpoints": true,
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  ),
+
+  // Map for outputting input_state_[key] modifier variants
+  // @type map
+  "input-state": (
+    "success": palette.get("primary"),
+    "error": palette.get("important")
+  )
+);
+
+@include config.apply($config, $default);
+@include css.register("input");
+
+// Themes
+// prettier-ignore
+@include theme.set(
+  "light", "input", "select-icon",
+  url(core.svg("expand", ("color": black)))
+);
+
+// prettier-ignore
+@include theme.set(
+  "dark", "input", "select-icon",
+  url(core.svg("expand", ("color": white)))
+);

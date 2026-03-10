@@ -75,6 +75,14 @@ html {
     mask-image: url(core.svg("check"));
   }
 
+  &.svg-chevron {
+    mask-image: url(core.svg("chevron"));
+  }
+
+  &.svg-expand {
+    mask-image: url(core.svg("expand"));
+  }
+
   &.svg-plus {
     mask-image: url(core.svg("+"));
   }
