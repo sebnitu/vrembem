@@ -34,6 +34,7 @@ $default: (
   "light", "input", "select-icon",
   url(core.svg("expand", ("color": black)))
 );
+
 // prettier-ignore
 @include theme.set(
   "dark", "input", "select-icon",
