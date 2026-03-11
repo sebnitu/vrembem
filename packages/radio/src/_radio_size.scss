@@ -6,7 +6,7 @@ $-radio-size: config.get("radio-size", "variants");
 
 @each $key, $value in $-radio-size {
   #{core.bem("radio", null, "size", $key)} {
-    @include css.override("radio", "font-size", $value);
+    @include css.override("radio", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-radio-size: config.get("radio-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-radio-size {
       #{core.bem("radio", null, "size", $key, $bp)} {
-        @include css.override("radio", "font-size", $value);
+        @include css.override("radio", "size", $value);
       }
     }
   }
