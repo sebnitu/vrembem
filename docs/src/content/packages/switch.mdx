@@ -5,7 +5,7 @@ package: "@vrembem/switch"
 category: form-control
 ---
 
-import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Switch
 
@@ -20,6 +20,24 @@ npm install @vrembem/switch
   @use "@vrembem/switch";
   ```
 </CodeExample>
+
+## Config options
+
+Switch comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+```scss
+$config: (
+  // Map for outputting switch_size_[key] modifier variants
+  // @type map
+  "switch-size": (
+    "breakpoints": true,
+    "default": css.get("form-control-size"),
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  )
+);
+```
 
 ## Basic usage
 
@@ -110,7 +128,7 @@ For switch with labels, just wrap the switch component along with label text usi
 
 ## switch_size_[value]
 
-Adjust the size of a switch by increasing or decreasing its width and height. By default, the switch scale will provide a switch height of 30px (small `switch_size_sm`), 40px (default) and 50px (large `switch_size_lg`).
+Adjust the size of a switch by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `switch-size` config options map.
 
 <CodeExample>
   <Fragment slot="output">
@@ -155,123 +173,64 @@ Adjust the size of a switch by increasing or decreasing its width and height. By
 - `switch_size_sm`
 - `switch_size_lg`
 
-## Customization
+### Breakpoint variants
 
-Switches are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `switch-size` config options map (default: `true`).
 
-<DocBlock name="CSS Variables" src="switch/src/_root.scss">
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg">
+        <input type="checkbox" class="switch__native" />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </label>
+  </div>
+  ```html
+  <span class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
 
-```scss
-:root {
-  --vb-switch-size: var(--vb-form-control-size);
-  --vb-switch-track-size: 20px;
-  --vb-switch-color: var(--vb-primary-50);
-  --vb-switch-border-width: 2px;
-  --vb-switch-border-radius: var(--vb-border-radius-circle);
-  --vb-switch-background-border-radius: var(--vb-border-radius-circle);
-  --vb-switch-background-opacity: 0%;
-  --vb-switch-background-opacity-hover: 20%;
-  --vb-switch-background-opacity-focus: 20%;
-  --vb-switch-background-opacity-active: 30%;
-  --vb-switch-transition-duration: var(--vb-transition-duration-short);
-  --vb-switch-transition-timing-function: var(--vb-transition-timing-function);
-}
+**Available variants**
 
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-switch-thumb-fill: white;
-  --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
-  --vb-switch-border-color: var(--vb-neutral-50);
-}
+- `xs:switch_size_[key]`
+- `sm:switch_size_[key]`
+- `md:switch_size_[key]`
+- `lg:switch_size_[key]`
+- `xl:switch_size_[key]`
 
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-switch-thumb-fill: var(--vb-neutral-10);
-    --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
-    --vb-switch-border-color: var(--vb-neutral-80);
-  }
-}
+## Reference
 
-.vb-theme-dark {
-  --vb-switch-thumb-fill: var(--vb-neutral-10);
-  --vb-switch-track-fill: hsl(var(--vb-neutral-hs) 50% / 20%);
-  --vb-switch-border-color: var(--vb-neutral-80);
-}
-```
-</DocBlock>
+Below is a reference to all CSS variables that are referenced by the `switch` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="SCSS Variables" src="switch/src/_variables.scss">
+<ReferenceTable id="cssvar-switch" valueLabel="Fallback" data={{
+  "--vb-switch-accent": "var(--vb-form-control-accent)",
+  "--vb-switch-size": "var(--vb-form-control-size)",
 
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
+  "--vb-switch-background": "var(--vb-form-control-background)",
+  "--vb-switch-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-switch-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-switch-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-switch-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-switch-background-border-radius": "var(--vb-form-control-background-border-radius)",
 
-$size: css.get("form-control", "size") !default;
-$track-size: 20px !default;
-$color: palette.get("primary") !default;
-$thumb-fill: null !default;
-$track-fill: null !default;
-$border-color: null !default;
-$border-width: 2px !default;
-$border-radius: css.get("border-radius-circle") !default;
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
+  "--vb-switch-foreground": "var(--vb-form-control-foreground)",
 
-// Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+  "--vb-switch-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-switch-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
-// switch_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-border-width: 2px !default;
-$size-sm-track: 16px !default;
-
-// switch_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
-$size-lg-border-width: 2.5px !default;
-$size-lg-track: 26px !default;
-
-// Custom properties
-@include css.set("switch", (
-  "size": $size,
-  "track-size": $track-size,
-  "color": $color,
-  "thumb-fill": $thumb-fill,
-  "track-fill": $track-fill,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "border-radius": $border-radius,
-  "background": (
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  ),
-  "transition": (
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
-  )
-));
-
-// Themes
-$theme-light: (
-  "thumb-fill": white,
-  "track-fill": palette.get("neutral", 50%, 20%),
-  "border-color": palette.get("neutral"),
-) !default;
-
-$theme-dark: (
-  "thumb-fill": palette.get("neutral", 10),
-  "track-fill": palette.get("neutral", 50%, 20%),
-  "border-color": palette.get("neutral", 80),
-) !default;
-
-@include theme.set("light", "switch", $theme-light);
-@include theme.set("dark", "switch", $theme-dark);
-```
-</DocBlock>
+  "--vb-switch-track-size": "1.25em",
+  "--vb-switch-border-width": "2px",
+  "--vb-switch-border-radius": "var(--vb-border-radius-circle)",
+}} />
