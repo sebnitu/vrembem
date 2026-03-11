@@ -1,11 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
-#{core.bem("switch", null, "size", "sm")} {
-  @include css.override("switch", "font-size", var.$size-sm-font-size);
+$-switch-size: config.get("switch-size", "variants");
+
+@each $key, $value in $-switch-size {
+  #{core.bem("switch", null, "size", $key)} {
+    @include css.override("switch", "size", $value);
+  }
 }
 
-#{core.bem("switch", null, "size", "lg")} {
-  @include css.override("switch", "font-size", var.$size-lg-font-size);
+@each $bp, $value in config.get("switch-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-switch-size {
+      #{core.bem("switch", null, "size", $key, $bp)} {
+        @include css.override("switch", "size", $value);
+      }
+    }
+  }
 }

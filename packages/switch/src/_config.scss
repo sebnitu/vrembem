@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Map for outputting switch_size_[key] modifier variants
+  // @type map
+  "switch-size": (
+    "breakpoints": true,
+    "default": css.get("form-control-size"),
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  )
+);
+
+@include config.apply($config, $default);
+@include css.register("switch");
