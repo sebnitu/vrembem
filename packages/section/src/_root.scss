@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
-@use "./variables" as var;
+@use "./config" as var;
 
 :root {
   @include css.output("section");

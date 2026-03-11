@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "./config" as var;
 
 #{core.bem("popover", null, "size", "auto")} {
   @include css.override("popover", "width", auto);

@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "./config" as var;
 
 #{core.bem("modal", null, "full")} {
   #{core.bem("modal", "dialog")} {

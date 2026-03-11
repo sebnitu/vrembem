@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
+@use "./config" as var;
 
 #{core.bem("modal")} {
   align-items: center;
