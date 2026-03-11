@@ -107,5 +107,3 @@ a#{core.bem("card")} {
   opacity: css.get("card", "screen-opacity");
   z-index: 2;
 }
-
-// @include theme.output("card");
