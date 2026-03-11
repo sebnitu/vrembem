@@ -5,7 +5,7 @@ package: "@vrembem/radio"
 category: form-control
 ---
 
-import DocBlock from '../../components/DocBlock.astro';
+import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Radio
 
@@ -20,6 +20,24 @@ npm install @vrembem/radio
   @use "@vrembem/radio";
   ```
 </CodeExample>
+
+## Config options
+
+Radio comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+```scss
+$config: (
+  // Map for outputting radio_size_[key] modifier variants
+  // @type map
+  "radio-size": (
+    "breakpoints": true,
+    "default": css.get("form-control-size"),
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  )
+);
+```
 
 ## Basic usage
 
@@ -108,9 +126,9 @@ For radio buttons with labels, just wrap the radio component along with label te
   ```
 </CodeExample>
 
-## radio_size_[value]
+## radio_size_[key]
 
-Adjust the size of a radio by increasing or decreasing its width and height. By default, the radio scale will provide a radio height of 30px (small `radio_size_sm`), 40px (default) and 50px (large `radio_size_lg`).
+Adjust the size of a radio by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `radio-size` config options map.
 
 <CodeExample>
   <Fragment slot="output">
@@ -187,125 +205,64 @@ Adjust the size of a radio by increasing or decreasing its width and height. By 
 - `radio_size_sm`
 - `radio_size_lg`
 
-## Customization
+### Breakpoint variants
 
-Radios are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `radio-size` config options map (default: `true`).
 
-<DocBlock name="CSS Variables" src="radio/src/_root.scss">
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
+        <input type="radio" class="radio__native" name="example-5" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </label>
+  </div>
+  ```html
+  <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
 
-```scss
-:root {
-  --vb-radio-size: var(--vb-form-control-size);
-  --vb-radio-circle-size: 20px;
-  --vb-radio-dot-size: 8px;
-  --vb-radio-color: var(--vb-primary-50);
-  --vb-radio-border-width: 2px;
-  --vb-radio-background-border-radius: var(--vb-border-radius-circle);
-  --vb-radio-background-opacity: 0%;
-  --vb-radio-background-opacity-hover: 20%;
-  --vb-radio-background-opacity-focus: 20%;
-  --vb-radio-background-opacity-active: 30%;
-  --vb-radio-transition-duration: var(--vb-transition-duration-short);
-  --vb-radio-transition-timing-function: var(--vb-transition-timing-function);
-}
+**Available variants**
 
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-radio-fill: white;
-  --vb-radio-border-color: var(--vb-neutral-50);
-  --vb-radio-dot-color: white;
-}
+- `xs:radio_size_[key]`
+- `sm:radio_size_[key]`
+- `md:radio_size_[key]`
+- `lg:radio_size_[key]`
+- `xl:radio_size_[key]`
 
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-radio-fill: var(--vb-neutral-10);
-    --vb-radio-border-color: var(--vb-neutral-80);
-    --vb-radio-dot-color: var(--vb-neutral-10);
-  }
-}
+## Reference
 
-.vb-theme-dark {
-  --vb-radio-fill: var(--vb-neutral-10);
-  --vb-radio-border-color: var(--vb-neutral-80);
-  --vb-radio-dot-color: var(--vb-neutral-10);
-}
-```
-</DocBlock>
+Below is a reference to all CSS variables that are referenced by the `radio` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
 
-<DocBlock name="SCSS Variables" src="radio/src/_variables.scss">
+<ReferenceTable id="cssvar-radio" valueLabel="Fallback" data={{
+  "--vb-radio-accent": "var(--vb-form-control-accent)",
+  "--vb-radio-size": "var(--vb-form-control-size)",
 
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
+  "--vb-radio-background": "var(--vb-form-control-background)",
+  "--vb-radio-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-radio-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-radio-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-radio-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-radio-background-border-radius": "var(--vb-form-control-background-border-radius)",
 
-$size: css.get("form-control", "size") !default;
-$circle-size: 20px !default;
-$dot-size: 8px !default;
-$dot-color: null !default;
-$color: palette.get("primary") !default;
-$fill: null !default;
-$border-color: null !default;
-$border-width: 2px !default;
-$background-border-radius: css.get("border-radius-circle") !default;
-$background-opacity: 0% !default;
-$background-opacity-hover: 20% !default;
-$background-opacity-focus: 20% !default;
-$background-opacity-active: 30% !default;
+  "--vb-radio-foreground": "var(--vb-form-control-foreground)",
 
-// Transition
-$transition-duration: css.get("transition", "duration-short") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
+  "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
-// radio_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-border-width: 2px !default;
-$size-sm-circle: 16px !default;
-$size-sm-dot: 6px !default;
-
-// radio_size_lg
-$size-lg: css.get("form-control", "size-lg") !default;
-$size-lg-border-width: 2.5px !default;
-$size-lg-circle: 26px !default;
-$size-lg-dot: 10px !default;
-
-// Custom property
-@include css.set("radio", (
-  "size": $size,
-  "circle-size": $circle-size,
-  "dot-size": $dot-size,
-  "dot-color": $dot-color,
-  "color": $color,
-  "fill": $fill,
-  "border-color": $border-color,
-  "border-width": $border-width,
-  "background": (
-    "border-radius": $background-border-radius,
-    "opacity": $background-opacity,
-    "opacity-hover": $background-opacity-hover,
-    "opacity-focus": $background-opacity-focus,
-    "opacity-active": $background-opacity-active,
-  ),
-  "transition": (
-    "duration": $transition-duration,
-    "timing-function": $transition-timing-function,
-  )
-));
-
-// Theme maps
-$theme-light: (
-  "fill": white,
-  "border-color": palette.get("neutral"),
-  "dot-color": white
-) !default;
-
-$theme-dark: (
-  "fill": palette.get("neutral", 10),
-  "border-color": palette.get("neutral", 80),
-  "dot-color": palette.get("neutral", 10)
-) !default;
-
-@include theme.set("light", "radio", $theme-light);
-@include theme.set("dark", "radio", $theme-dark);
-```
-</DocBlock>
+  "--vb-radio-circle-size": "1.25em",
+  "--vb-radio-border-width": "2px",
+  "--vb-radio-dot-size": "0.5em",
+}} />
