@@ -272,20 +272,20 @@ $-theme-keys: "light", "dark";
         $component-theme-map: map.merge(map.get($component-map, config.get("theme-default")), $component-theme-map);
       }
 
+      // Get a reference of the color scheme property
+      $color-scheme: map.get($component-theme-map, "color-scheme");
+
+      // If a color scheme was stored, output it above everything else
+      @if $color-scheme {
+        color-scheme: #{$color-scheme};
+      }
+
       // Output custom properties
       @each $prop, $value in $component-theme-map {
         // Don't output the color-scheme property
         @if $prop != "color-scheme" {
           @include css.define($component, $prop, $value);
         }
-      }
-
-      // Get a reference of the color scheme property and remove it from the map
-      $color-scheme: map.get($component-theme-map, "color-scheme");
-
-      // If a color scheme was stored, output it below everything else
-      @if $color-scheme {
-        color-scheme: #{$color-scheme};
       }
     }
   }
@@ -342,6 +342,7 @@ $-theme-keys: "light", "dark";
   "light",
   "core",
   (
+    "color-scheme": light,
     "background": palette.get("neutral", 100%),
     "background-dark": palette.get("neutral", 98%),
     "background-darker": palette.get("neutral", 95%),
@@ -356,8 +357,7 @@ $-theme-keys: "light", "dark";
     "border-color": rgb(0 0 0 / 10%),
     "border-color-dark": rgb(0 0 0 / 20%),
     "border-color-darker": rgb(0 0 0 / 30%),
-    "shadow-color": palette.get("neutral", 20%, 20%),
-    "color-scheme": light
+    "shadow-color": palette.get("neutral", 20%, 20%)
   )
 );
 
@@ -366,6 +366,7 @@ $-theme-keys: "light", "dark";
   "dark",
   "core",
   (
+    "color-scheme": dark,
     "background": palette.get("neutral", 10%),
     "background-dark": palette.get("neutral", 12%),
     "background-darker": palette.get("neutral", 15%),
@@ -380,7 +381,6 @@ $-theme-keys: "light", "dark";
     "border-color": rgb(255 255 255 / 10%),
     "border-color-dark": rgb(255 255 255 / 20%),
     "border-color-darker": rgb(255 255 255 / 30%),
-    "shadow-color": palette.get("neutral", 0%, 20%),
-    "color-scheme": dark
+    "shadow-color": palette.get("neutral", 0%, 20%)
   )
 );
