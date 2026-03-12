@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
 
 .code-example {
   border: css.get("border");
@@ -17,7 +16,7 @@
     border-top: css.get("border");
   }
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     border-left: none;
     border-radius: 0;
     border-right: none;
@@ -71,7 +70,7 @@
   padding: 2rem;
   width: fit-content;
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     padding: 1rem;
   }
 

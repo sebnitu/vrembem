@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
 
 /**
  * Modal aside
@@ -51,7 +50,7 @@
  * Inline aside
  */
 
-@include core.media-min(var.$bp-aside) {
+@include core.media-min("aside") {
   .layout-aside {
     background-color: transparent;
     box-shadow: none;

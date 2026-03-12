@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 /**
  * Modal drawer
@@ -49,7 +48,7 @@
  * Inline drawer
  */
 
-@include core.media-min(var.$bp-drawer) {
+@include core.media-min("drawer") {
   .layout-drawer {
     box-shadow: none;
     box-sizing: content-box;

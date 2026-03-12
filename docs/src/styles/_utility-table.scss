@@ -2,7 +2,6 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@use "./variables" as var;
 @include css.set("utility-table", "max-height", 28rem);
 @include theme.set(
   "light",
@@ -82,7 +81,7 @@
     thead {
       top: calc(css.get("layout", "toolbar-height") - 1px);
 
-      @include core.media-min(var.$bp-drawer) {
+      @include core.media-min("drawer") {
         top: calc(css.get("layout", "navibar-height") - 1px);
       }
     }
