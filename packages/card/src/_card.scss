@@ -83,6 +83,7 @@ a#{core.bem("card")} {
   flex-grow: 1;
   font-size: css.get("card", "title-font-size", css.get("font-size-lg"));
   font-weight: css.get("card", "title-font-weight", css.get("font-weight-semi-bold"));
+  line-height: css.get("card", "title-line-height", inherit);
 }
 
 #{core.bem("card", "background")},
