@@ -1,6 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
+@include css.register("card");
 @include theme.set(
   "light",
   "card",
