@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "./config" as var;
 
 #{core.bem(var.$class-frame)} {
   display: flex;

@@ -3,7 +3,6 @@
 @use "@vrembem/core/palette";
 @use "@vrembem/base";
 @use "@vrembem/button";
-@use "./variables" as var;
 
 .heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
@@ -41,7 +40,7 @@
     opacity: 1;
   }
 
-  @include core.media-min(var.$bp-code) {
+  @include core.media-min("code") {
     position: absolute;
     right: calc(100% + 0.5rem);
     top: calc(60% - calc(css.get("form-control-size-calc") / 2));

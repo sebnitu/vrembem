@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
 
 /**
  * Modal aside
@@ -15,7 +14,6 @@
   opacity: 0;
   outline: none;
   overflow: hidden auto;
-  overscroll-behavior: contain;
   padding: css.get("layout", "drawer-padding");
   position: fixed;
   scroll-behavior: smooth;
@@ -51,7 +49,7 @@
  * Inline aside
  */
 
-@include core.media-min(var.$bp-aside) {
+@include core.media-min("aside") {
   .layout-aside {
     background-color: transparent;
     box-shadow: none;

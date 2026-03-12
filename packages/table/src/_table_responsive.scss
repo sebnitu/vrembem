@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "./variables" as var;
+@use "./config" as var;
 @use "./mixins";
 
 #{core.bem("table", null, "responsive")} {

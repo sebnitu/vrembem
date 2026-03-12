@@ -1,7 +1,6 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core";
-@use "./variables" as var;
 
 .reference-table {
   background: css.get("background-dark");
@@ -28,7 +27,7 @@
     position: relative;
     scroll-margin-top: calc(css.get("layout", "toolbar-height") + 80px);
 
-    @include core.media-min(var.$bp-drawer) {
+    @include core.media-min("drawer") {
       scroll-margin-top: calc(css.get("layout", "navibar-height") + 81px);
     }
 
@@ -123,7 +122,7 @@
   top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     top: css.get("layout", "navibar-height");
   }
 
@@ -219,7 +218,7 @@
   }
 }
 
-@include core.media-max(var.$bp-code) {
+@include core.media-max("code") {
   .table-anchor,
   .table-anchor-clear {
     left: 3.75rem;

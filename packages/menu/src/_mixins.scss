@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
+@use "./config" as var;
 
 /// Output the base styles for a menu action component element.
 @mixin menu-action-base() {

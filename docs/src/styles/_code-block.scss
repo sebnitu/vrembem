@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
 
 .code-block {
   font-size: css.get("font-size");
@@ -32,7 +31,7 @@
     );
   }
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     .pre {
       border-left: none;
       border-radius: 0;
@@ -60,7 +59,7 @@
   bottom: auto;
   right: auto;
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     left: 0;
   }
 }
@@ -73,7 +72,7 @@
     color: css.get("foreground-light");
   }
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     right: 0;
   }
 }
@@ -106,7 +105,7 @@
     left: auto;
   }
 
-  @include core.media-max(var.$bp-code) {
+  @include core.media-max("code") {
     .pre {
       border: css.get("border");
       border-radius: css.get("border-radius");

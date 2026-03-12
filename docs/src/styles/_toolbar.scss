@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 .toolbar {
   backdrop-filter: blur(8px);
@@ -14,7 +13,7 @@
   top: -1px;
   z-index: 4;
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     display: none;
   }
 }
@@ -35,13 +34,13 @@
     transform 0.25s ease;
   visibility: hidden;
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     opacity: 1;
     transform: translate(0);
     visibility: visible;
   }
 
-  @include core.media-min(var.$bp-aside) {
+  @include core.media-min("aside") {
     opacity: 0;
     transform: translate(100%);
     visibility: hidden;

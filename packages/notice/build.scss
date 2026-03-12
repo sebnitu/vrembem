@@ -1,0 +1,9 @@
+@use "./index";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
+
+:root {
+  @include css.output("notice");
+}
+
+@include theme.output("notice");

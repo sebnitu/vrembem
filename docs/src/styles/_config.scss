@@ -9,11 +9,20 @@
 
 // Set config options
 @include config.set(
+  "prefix-cssvar",
   (
-    "prefix-cssvar": (
-      "default": "vb",
-      "astro": ""
-    )
+    "default": "vb",
+    "astro": ""
+  )
+);
+
+// Set custom breakpoints
+@include config.merge(
+  "breakpoints",
+  (
+    "code": 600px,
+    "drawer": 960px,
+    "aside": 1216px
   )
 );
 

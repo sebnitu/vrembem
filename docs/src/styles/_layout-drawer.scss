@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./variables" as var;
 
 /**
  * Modal drawer
@@ -14,7 +13,6 @@
   opacity: 0;
   outline: none;
   overflow: hidden auto;
-  overscroll-behavior: contain;
   padding: css.get("layout", "drawer-padding");
   position: fixed;
   scroll-behavior: smooth;
@@ -49,7 +47,7 @@
  * Inline drawer
  */
 
-@include core.media-min(var.$bp-drawer) {
+@include core.media-min("drawer") {
   .layout-drawer {
     box-shadow: none;
     box-sizing: content-box;

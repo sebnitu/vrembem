@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "./variables" as var;
 
 .layout {
   display: flex;
@@ -22,7 +21,7 @@
     box-sizing: border-box;
   }
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     padding-top: css.get("layout", "navibar-height");
 
     .has-drawer & {
@@ -40,11 +39,11 @@
   justify-content: center;
   padding: 2rem 0 0;
 
-  @include core.media-min(var.$bp-code) {
+  @include core.media-min("code") {
     padding: 3rem 3rem 0;
   }
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     gap: 3rem;
     padding: 3rem 0 0;
 
@@ -53,7 +52,7 @@
     }
   }
 
-  @include core.media-min(var.$bp-aside) {
+  @include core.media-min("aside") {
     align-items: flex-start;
     flex-flow: row wrap;
     gap: css.get("layout", "gap");
@@ -71,11 +70,11 @@
   scroll-margin-top: css.get("layout", "toolbar-height");
   width: 100%;
 
-  @include core.media-min(var.$bp-aside) {
+  @include core.media-min("aside") {
     width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
   }
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     scroll-margin-top: css.get("layout", "navibar-height");
   }
 
@@ -139,11 +138,11 @@
   width: 100%;
   z-index: 2;
 
-  @include core.media-min(var.$bp-drawer) {
+  @include core.media-min("drawer") {
     padding: 3rem 0;
   }
 
-  @include core.media-min(var.$bp-aside) {
+  @include core.media-min("aside") {
     padding: 4rem 0;
   }
 }
