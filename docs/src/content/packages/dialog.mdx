@@ -28,7 +28,7 @@ Dialog is a highly composable container component that comes with a variety of e
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="dialog" tabindex="0">
+    <div class="dialog">
       <div class="dialog__body">
         <p>Basic dialog example.</p>
       </div>
@@ -43,13 +43,13 @@ Dialog is a highly composable container component that comes with a variety of e
   ```
 </CodeExample>
 
-## Elements
+### Elements
 
 The dialog component comes with a variety of elements to help fit a wide range of use cases and applications. You can mix and match these elements within the dialog component as needed.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="dialog" tabindex="0">
+    <div class="dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Dialog example</h2>
         <button class="button button_icon button_size_sm">
@@ -87,6 +87,57 @@ The dialog component comes with a variety of elements to help fit a wide range o
   - `dialog__title`
 - `dialog__body`
 - `dialog__footer`
+
+### Focusable dialog
+
+There are cases where a dialog needs to be focusable. For these instances, apply `tabindex="0"` to the dialog element itself. Focus ring styles are applied to dialogs for the `:focus-visible` state.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div id="dialog-focus" class="dialog" tabindex="0">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Focusable dialog</h2>
+        <button class="button button_icon button_size_sm">
+          <Icon name="x" classes="icon_size_sm" />
+        </button>
+      </div>
+      <div class="dialog__body">
+        <p>This dialog can be focused by clicking or using keyboard navigation. To see `:focus-visible` styles, click on this dialog and press the `shift` key.</p>
+      </div>
+      <div class="dialog__footer">
+        <button class="button button_color_primary">Submit</button>
+        <button class="button">Cancel</button>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="dialog" tabindex="0">
+    ...
+  </div>
+  ```
+</CodeExample>
+
+Apply `role="alertdialog"` to dialogs that interrupt a user's workflow to communicate an important message and require a response. Dialogs with the `alertdialog` role receive unique styles for emphasis. 
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="dialog" tabindex="0" role="alertdialog">
+      <div class="dialog__body padding-lg spacing text-align-center">
+        <h2 class="dialog__title">Alert dialog!</h2>
+        <p>Are you sure you want to take this action?</p>
+        <div class="flex justify-content-center">
+          <button class="button button_color_important">Agree</button>
+          <button class="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <div class="dialog" tabindex="0" role="alertdialog">
+    ...
+  </div>
+  ```
+</CodeExample>
 
 ## Reference
 
