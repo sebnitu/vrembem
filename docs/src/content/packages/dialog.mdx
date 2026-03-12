@@ -5,6 +5,7 @@ package: "@vrembem/dialog"
 category: component
 ---
 
+import ReferenceTable from "../../components/ReferenceTable.astro";
 import Icon from '../../components/Icon.astro';
 
 # Dialog
@@ -89,4 +90,27 @@ The dialog component comes with a variety of elements to help fit a wide range o
 
 ## Reference
 
-...
+Below is a reference to all CSS variables that are defined or referenced by the `dialog` component along with their fallback values. Some variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
+
+<ReferenceTable id="cssvar-dialog" valueLabel="Fallback" data={{
+  "--vb-dialog-background": "var(--vb-background)",
+  "--vb-dialog-foreground": "var(--vb-foreground)",
+  "--vb-dialog-border": "var(--vb-border)",
+  "--vb-dialog-sep-border": "var(--vb-border)",
+  "--vb-dialog-border-radius": "var(--vb-border-radius)",
+  "--vb-dialog-box-shadow": "var(--vb-box-shadow-4)",
+  "--vb-dialog-padding": "1em",
+  "--vb-dialog-gap": "0.5em",
+  "--vb-dialog-focus-ring-color": "var(--vb-primary)",
+
+  // Transition vars
+  "--vb-dialog-transition-duration": "var(--vb-transition-duration)",
+  "--vb-dialog-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-dialog-transition-property": "background-color, border-color, box-shadow, transform",
+  
+  // Title element
+  "--vb-dialog-title-color": "var(--vb-foreground)",
+  "--vb-dialog-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-dialog-title-font-weight": "var(--vb-font-weight-semi-bold)",
+  "--vb-dialog-title-line-height": "inherit",
+}} />
