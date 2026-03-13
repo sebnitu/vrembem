@@ -1,15 +1,15 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-#{core.bem(var.$class-frame)} {
+#{core.bem(config.get("drawer-classes", "frame"))} {
   display: flex;
-  height: css.get("drawer", "frame-height", var.$frame-height);
+  height: css.get("drawer", "frame-height", 100vh);
   overflow: hidden auto;
   position: relative;
 }
 
-#{core.bem(var.$class-main)} {
+#{core.bem(config.get("drawer-classes", "main"))} {
   flex: 1 1 auto;
   height: 100%;
   overflow: auto;
@@ -26,12 +26,10 @@
   top: 0;
   visibility: hidden;
   width: 0;
-  z-index: css.get("drawer", "z-index", var.$z-index);
+  z-index: css.get("drawer", "z-index", 900);
 }
 
 #{core.bem("drawer", "dialog")} {
-  @include css.override("dialog", var.$dialog-override);
-
   background-clip: border-box;
   border-bottom: none;
   border-radius: 0;
@@ -45,13 +43,19 @@
   -webkit-overflow-scrolling: touch;
   position: absolute;
   top: 0;
-  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
-  width: css.get("drawer", "width", var.$width);
+  transition-duration: css.get("drawer", "transition-duration", css.get("transition-duration"));
+  transition-timing-function: css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
+  width: css.get("drawer", "width", 18em);
 
   // Only target inline (not modal) drawer dialogs
   #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
-    @include css.override("dialog", var.$inline-dialog-override);
+    @include css.override(
+      "dialog",
+      (
+        "background": css.get("background-darker"),
+        "box-shadow": none
+      )
+    );
   }
 }
 
@@ -64,17 +68,17 @@
 #{core.bem("drawer")}.is-closing {
   flex: 0 0 auto;
   height: 100%;
-  max-width: css.get("drawer", "max-width", var.$max-width);
+  max-width: css.get("drawer", "max-width", 80%);
   overflow: visible;
   visibility: visible;
-  width: css.get("drawer", "width", var.$width);
+  width: css.get("drawer", "width", 18em);
 }
 
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-closing {
-  transition-duration: css.get("drawer", "transition-duration", var.$transition-duration);
+  transition-duration: css.get("drawer", "transition-duration", css.get("transition-duration"));
   transition-property: background-color, opacity, transform;
-  transition-timing-function: css.get("drawer", "transition-timing-function", var.$transition-timing-function);
+  transition-timing-function: css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
 
   #{core.bem("drawer", "dialog")} {
     transition-property: opacity, transform;

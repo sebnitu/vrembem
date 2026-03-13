@@ -1,9 +1,8 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 #{core.bem("drawer", null, "modal")} {
-  @include css.override("drawer", "z-index", var.$modal-z-index);
+  @include css.override("drawer", "z-index", 950);
 
   height: 0;
   left: 0;
@@ -23,14 +22,12 @@
   }
 
   #{core.bem("drawer", "dialog")} {
-    @include css.override("dialog", var.$modal-dialog-override);
-
     background-clip: padding-box;
     left: 0;
-    max-width: css.get("drawer", "max-width", var.$max-width);
+    max-width: css.get("drawer", "max-width", 80%);
     position: absolute;
     transform: translateX(-100%);
-    width: css.get("drawer", "width", var.$width);
+    width: css.get("drawer", "width", 18em);
   }
 
   &#{core.bem("drawer", null, "switch")} {
@@ -57,7 +54,7 @@
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-closing {
   &::before {
-    transition: opacity css.get("drawer", "transition-duration", var.$transition-duration) css.get("drawer", "transition-timing-function", var.$transition-timing-function);
+    transition: opacity css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
   }
 }
 
