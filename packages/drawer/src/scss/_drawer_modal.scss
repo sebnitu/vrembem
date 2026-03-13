@@ -23,6 +23,8 @@
   }
 
   #{core.bem("drawer", "dialog")} {
+    @include css.override("dialog", config.get("drawer-modal-dialog-override"));
+
     background-clip: padding-box;
     left: 0;
     max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));

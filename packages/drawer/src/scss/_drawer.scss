@@ -30,6 +30,8 @@
 }
 
 #{core.bem("drawer", "dialog")} {
+  @include css.override("dialog", config.get("drawer-dialog-override"));
+
   background-clip: border-box;
   border-bottom: none;
   border-radius: 0;
@@ -46,17 +48,10 @@
   transition-duration: css.get("drawer", "transition-duration", css.get("transition-duration"));
   transition-timing-function: css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
   width: css.get("drawer", "width", config.get("drawer-width"));
+}
 
-  // Only target inline (not modal) drawer dialogs
-  #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) & {
-    @include css.override(
-      "dialog",
-      (
-        "background": css.get("background-darker"),
-        "box-shadow": none
-      )
-    );
-  }
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) #{core.bem("drawer", "dialog")} {
+  @include css.override("dialog", config.get("drawer-inline-dialog-override"));
 }
 
 #{core.bem("drawer")}.is-closed {

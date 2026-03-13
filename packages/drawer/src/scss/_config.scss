@@ -22,7 +22,21 @@ $default: (
 
   // Used to set the max-width property of drawers
   // @type percentage
-  "drawer-max-width": 80%
+  "drawer-max-width": 80%,
+
+  // A map of CSS variable overrides to pass to the drawer dialog element
+  // @type map
+  "drawer-dialog-override": (),
+
+  // A map of CSS variable overrides to pass to the drawer inline dialog element
+  // @type map
+  "drawer-inline-dialog-override": (
+    "box-shadow": none
+  ),
+
+  // A map of CSS variable overrides to pass to the drawer modal dialog element
+  // @type map
+  "drawer-modal-dialog-override": ()
 );
 
 @include config.apply($config, $default);
