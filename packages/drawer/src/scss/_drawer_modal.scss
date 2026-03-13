@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
 #{core.bem("drawer", null, "modal")} {
@@ -24,10 +25,10 @@
   #{core.bem("drawer", "dialog")} {
     background-clip: padding-box;
     left: 0;
-    max-width: css.get("drawer", "max-width", 80%);
+    max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
     position: absolute;
     transform: translateX(-100%);
-    width: css.get("drawer", "width", 18em);
+    width: css.get("drawer", "width", config.get("drawer-width"));
   }
 
   &#{core.bem("drawer", null, "switch")} {
