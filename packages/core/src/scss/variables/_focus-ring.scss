@@ -1,4 +1,5 @@
 @use "../modules/css";
+@use "../modules/palette";
 @include css.set(
   "core",
   "focus-ring",
@@ -6,6 +7,7 @@
     "width": 3px,
     "style": solid,
     "offset": 0,
+    "color": palette.get("primary"),
     "opacity": 40%
   )
 );

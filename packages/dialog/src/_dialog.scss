@@ -1,34 +1,34 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
+@use "@vrembem/core/palette";
 
 #{core.bem("dialog")} {
   @include core.focus-ring-base;
 
-  background: css.get("dialog", "background", var.$background);
+  background: css.get("dialog", "background", css.get("background"));
   background-clip: padding-box;
-  border: css.get("dialog", "border", var.$border);
-  border-radius: css.get("dialog", "border-radius", var.$border-radius);
-  box-shadow: css.get("dialog", "box-shadow", var.$box-shadow);
-  color: css.get("dialog", "foreground", var.$foreground);
+  border: css.get("dialog", "border", css.get("border"));
+  border-radius: css.get("dialog", "border-radius", css.get("border-radius"));
+  box-shadow: css.get("dialog", "box-shadow", css.get("box-shadow-4"));
+  color: css.get("dialog", "foreground", css.get("foreground"));
   display: flex;
   flex-direction: column;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
-  transition-duration: css.get("dialog", "transition-duration", var.$transition-duration);
-  transition-property: outline, border-color;
-  transition-timing-function: css.get("dialog", "transition-timing-function", var.$transition-timing-function);
+  transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration"));
+  transition-property: css.get("dialog", "transition-duration", (outline, border-color));
+  transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function"));
 
   &:focus-visible,
   &[role="alertdialog"] {
-    @include core.focus-ring-color(var.$focus-ring-color, var.$focus-ring-opacity);
+    @include core.focus-ring-color;
 
-    border-color: var.$focus-ring-color;
+    border-color: css.get("focus-ring-color");
   }
 
   &[role="alertdialog"] {
-    @include css.override("dialog", "focus-ring-color", var.$focus-ring-color-alert);
+    @include css.override("core", "focus-ring-color", palette.get("important"));
   }
 }
 
@@ -36,22 +36,22 @@
 #{core.bem("dialog", "body")},
 #{core.bem("dialog", "footer")} {
   flex: 0 0 auto;
-  padding: css.get("dialog", "padding", var.$padding);
+  padding: css.get("dialog", "padding", 1em);
 }
 
 #{core.bem("dialog", "header")},
 #{core.bem("dialog", "footer")} {
   align-items: center;
-  background: css.get("dialog", "background", var.$background);
+  background: css.get("dialog", "background", css.get("background"));
   display: flex;
-  gap: css.get("dialog", "gap", var.$gap);
+  gap: css.get("dialog", "gap", 0.5em);
   position: sticky;
   vertical-align: middle;
   z-index: 1;
 }
 
 #{core.bem("dialog", "header")} {
-  border-bottom: css.get("dialog", "sep-border", var.$sep-border);
+  border-bottom: css.get("dialog", "sep-border", css.get("border"));
   top: 0;
 }
 
@@ -59,18 +59,19 @@
   flex-grow: 1;
 
   & + & {
-    border-top: css.get("dialog", "sep-border", var.$sep-border);
+    border-top: css.get("dialog", "sep-border", css.get("border"));
   }
 }
 
 #{core.bem("dialog", "footer")} {
-  border-top: css.get("dialog", "sep-border", var.$sep-border);
+  border-top: css.get("dialog", "sep-border", css.get("border"));
   bottom: 0;
 }
 
 #{core.bem("dialog", "title")} {
+  color: css.get("dialog", "title-color", css.get("foreground"));
   flex-grow: 1;
-  font-size: css.get("dialog", "title-font-size", var.$title-font-size);
-  font-weight: css.get("dialog", "title-font-weight", var.$title-font-weight);
-  line-height: css.get("dialog", "title-line-height", var.$title-line-height);
+  font-size: css.get("dialog", "title-font-size", css.get("font-size-lg"));
+  font-weight: css.get("dialog", "title-font-weight", css.get("font-weight-semi-bold"));
+  line-height: css.get("dialog", "title-line-height", inherit);
 }

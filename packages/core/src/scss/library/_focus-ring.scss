@@ -10,13 +10,11 @@
 /// Builds the focus ring styles by applying a number of custom property values
 /// and optional component overrides using the outline property.
 ///
-/// @param {string} $component
-///   The component to allow specific overrides for.
-/// @param {string} $color
+/// @param {string} $color (css.get("focus-ring-color"))
 ///   The color to use as the fallback value.
 /// @param {number} $opacity (css.get("focus-ring-opacity"))
 ///   The value to set for the opacity of the color.
 ///
-@mixin focus-ring-color($color, $opacity: css.get("focus-ring-opacity")) {
+@mixin focus-ring-color($color: css.get("focus-ring-color"), $opacity: css.get("focus-ring-opacity")) {
   outline-color: hsl(from $color h s l / $opacity);
 }
