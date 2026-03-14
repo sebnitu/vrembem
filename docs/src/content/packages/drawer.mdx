@@ -7,7 +7,6 @@ category: component
 
 import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
-import DocBlock from "../../components/DocBlock.astro";
 
 # Drawer
 
@@ -502,7 +501,7 @@ Drawers while in their modal state follow a set of patterns expected from other 
 
 To take full advantage of modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
 
-**Example**
+#### Example
 
 Here's an example where we want the `drawer-main` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
 
@@ -577,216 +576,66 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 
 ## Reference
 
-After the drawer component has been instantiated the drawer object is returned with a robust API to help manage all drawer components on your page.
+Drawer and DrawerEntry extend both the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes respectively and inherit their APIs. This reference contains only drawer specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information. 
 
-### Drawer API
+### activeModal
 
-Drawer API goes here...
+...
 
-<DocBlock name="drawer.collection" type="property" returns="array" src="core/src/js/Collection.js" line="3">
-  Returns an array where all drawer objects are stored when registered. Each drawer object contains the following properties:
+### open
 
-  ```scss
-  {
-    id: String, // The unique ID of the drawer.
-    state: String, // The current state of the drawer ('closing', 'closed', 'opening' or 'opened').
-    el: HTMLElement, // The drawer HTML element.
-    dialog: HTMLElement // The drawer dialog HTML element.
-    trigger: HTMLElement // The trigger element that opened the drawer.
-    breakpoint: String // Returns the set breakpoint of the drawer. If no breakpoint is set, returns 'null'.
-    mode: String // The current mode of the drawer. Either 'inline' or 'modal'.
-    open: Function // Method to open this drawer.
-    close: Function // Method to close this drawer.
-    toggle: Function // Method to toggle this drawer opened and closed.
-    deregister: Function // Method to deregister this drawer.
-    mountBreakpoint: Function // Method to mount the breakpoint feature.
-    unmountBreakpoint: Function // Method to unmount the breakpoint feature.
-    handleBreakpoint: Function // The function that runs whenever the breakpoint media match property is changed. Receives the event parameter.
-  }
-  ```
-</DocBlock>
+...
 
-<DocBlock name="drawer.activeModal" type="property" returns="Object || undefined" src="drawer/src/js/index.js" line="29">
-  Returns the currently active modal drawer. Returns `undefined` if there are no modal drawer open.
-</DocBlock>
+### close
 
-<DocBlock name="drawer.mount" type="method" returns="Object" src="drawer/src/js/index.js" line="35" args={[
-  ["options", "Object (optional)", "An options object for passing custom configurations."]
-]}>
-  Mounts the drawer instance. During mounting, the following processes are run:
+...
 
-  - Register each drawer in the collection by running `registerCollection()`.
-  - Sets up global event listeners by running `mountEventListeners()`.
+### toggle
 
-  <Fragment slot="example">
-    ```js
-    const drawer = new Drawer();
-    await drawer.mount();
-    ```
-  </Fragment>
-</DocBlock>
+...
 
-<DocBlock name="drawer.unmount" type="method" returns="Object" src="drawer/src/js/index.js" line="53">
-  Destroys and cleans up the drawer mount. During cleanup, the following processes are run:
+### entry.dialog
 
-  - Deregister the drawer collection by running `deregisterCollection()`.
-  - Removes global event listeners by running `unmountEventListeners()`.
+...
 
-  <Fragment slot="example">
-    ```js
-    const drawer = new Drawer();
-    await drawer.mount();
-    // ...
-    await drawer.unmount();
-    ```
-  </Fragment>
-</DocBlock>
+### entry.trigger
 
-<DocBlock name="drawer.mountEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="65">
-  Set document event listeners.
+...
 
-  <Fragment slot="example">
-    ```js
-    const drawer = new Drawer({ eventListeners: false });
-    await drawer.mount();
-    drawer.mountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
+### entry.state
 
-<DocBlock name="drawer.unmountEventListeners" type="method" returns="Object" src="drawer/src/js/index.js" line="70">
-  Remove document event listeners.
+...
 
-  <Fragment slot="example">
-    ```js
-    const drawer = new Drawer();
-    await drawer.mount();
-    // ...
-    drawer.unmountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
+### entry.inlineState
 
-<DocBlock name="drawer.register" type="method" returns="Object" src="drawer/src/js/register.js" args={[
-  ["query", "String || Object", "A drawer ID or an HTML element of either the drawer or its trigger."]
-]}>
-  Registers a drawer into the collection. This also sets the initial state, mode, mounts any media match breakpoints and applies missing accessibility attributes. Returns the drawer object that got stored in the collection.
+...
 
-  <Fragment slot="example">
-    ```js
-    const result = await drawer.register("drawer-id");
-    // => Object { id: "drawer-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
+### entry.mode
 
-<DocBlock name="drawer.deregister" type="method" returns="Array" src="drawer/src/js/deregister.js" args={[
-  ["query", "String || Object", "A drawer ID or an HTML element of either the drawer or its trigger."]
-]}>
-  Deregister the drawer from the collection. This closes the drawer if it's opened, removes any active media match breakpoints and removes the entry from the collection. Returns the newly modified collection array.
+...
 
-  <Fragment slot="example">
-    ```js
-    const result = await drawer.deregister("drawer-id");
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
+### entry.open
 
-<DocBlock name="drawer.registerCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="26" args={[
-  ["items", "Array", "An array of drawers or drawer IDs to register."]
-]}>
-  Registers array of drawers to the collection. All drawers in array are run through the `register()` method. Returns the collection array.
+...
 
-  <Fragment slot="example">
-    ```js
-    const drawers = document.querySelectorAll(".drawer");
-    const result = await drawer.registerCollection(drawers);
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
+### entry.close
 
-<DocBlock name="drawer.deregisterCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="33">
-  Deregister all drawers in the collections array. All drawers in collection are run through the `deregister()` method. Returns the empty collection array.
+...
 
-  <Fragment slot="example">
-    ```js
-    const result = await drawer.deregisterCollection();
-    // => Array []
-    ```
-  </Fragment>
-</DocBlock>
+### entry.toggle
 
-<DocBlock name="drawer.get" type="method" returns="Object || undefined" src="core/src/js/Collection.js" line="40" args={[
-  ["value", "String || Object", "The value to search for within the collection."],
-  ["key", "String (optional)", "The property key to search the value against (defaults to 'id')."]
-]}>
-  Used to retrieve a registered drawer entry from the collection. The value should match the key type to search by: e.g. to search by drawer elements, pass the drawer html node with a key of `'el'`. Defaults to `'id'`.
+...
 
-  Returns the first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
+### Events
 
-  <Fragment slot="example">
-    ```js
-    const entry = drawer.get("drawer-id");
-    // => Object { id: "drawer-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="drawer.open" type="method" returns="Object" src="drawer/src/js/open.js" args={[
-  ["id", "String", "The ID of the drawer to open."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Opens a drawer using the provided ID. Returns the drawer object that was opened.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await drawer.open("drawer-key");
-    // => Object { id: "drawer-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="drawer.close" type="method" returns="Object" src="drawer/src/js/close.js" args={[
-  ["id", "String", "The ID of the drawer to close."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Closes a drawer using the provided ID. Returns the drawer object that was closed.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await drawer.close();
-    // => Object { id: "drawer-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="drawer.toggle" type="method" returns="Object" src="drawer/src/js/toggle.js" args={[
-  ["id", "String", "The ID of the drawer to toggle."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Toggles a drawer opened or closed using the provided ID. Returns the drawer object that was toggled.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await drawer.toggle();
-    // => Object { id: "drawer-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-### DrawerEntry API
-
-DrawerEntry API goes here...
-
-### Custom Events
-
-The drawer component also exposes some custom events for hooking into the drawer lifecycle. All drawer events are fired on the root drawer element (i.e. at the `<aside id="[unique-id]" class="drawer">`).
+Drawer fires custom events for hooking into the drawer lifecycle. All drawer events are fired on the root drawer element (i.e. at the `<aside id="[unique-id]" class="drawer">`).
 
 - `drawer:opened` Emits when a drawer has opened.
 - `drawer:closed` Emits when a drawer has closed.
 - `drawer:switchMode` Emits when a drawer's mode changes.
+
+Drawer also fires corresponding lifecycle hooks that can be listened for using the events system.
+
+- `opened` - `drawer.on("opened", callback({ parent, entry }))`
+- `closed` - `drawer.on("closed", callback({ parent, entry }))`
+- `switchMode` - `drawer.on("switchMode", callback({ parent, entry }))`
