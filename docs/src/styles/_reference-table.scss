@@ -23,6 +23,7 @@
 .reference-table {
   font-size: css.get("font-size");
   width: 100%;
+  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   table {
     background-color: transparent;

@@ -9,11 +9,11 @@ interface Props {
   id?: string;
   filter?: boolean;
   expandable?: boolean;
+  keyLabel?: string;
+  valueLabel?: string;
   keyWidth?: string;
   valueWidth?: string;
-  keyLabel?: string;
   labelWidth?: string;
-  valueLabel?: string;
 }
 
 const {
@@ -21,11 +21,11 @@ const {
   id,
   filter = true,
   expandable = false,
+  keyLabel = "Variable",
+  valueLabel = "Value",
   keyWidth,
   valueWidth,
-  labelWidth = "5em",
-  keyLabel = "Variable",
-  valueLabel = "Value"
+  labelWidth = "5em"
 } = Astro.props;
 
 // Create a unique ID if one is not provided
