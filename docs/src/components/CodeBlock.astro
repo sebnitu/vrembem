@@ -35,9 +35,9 @@ if (icon) classes.push("has-icon");
     )
   }
   <Popover
+    virtual={true}
     triggerClass="code-block__copy-button"
     aria-label="Copy code example to clipboard"
-    arrow
   >
     <Fragment slot="trigger">
       <Icon name="copy" classes="icon_size_sm" />

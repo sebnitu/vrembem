@@ -22,7 +22,7 @@
     @include css.override(
       "popover",
       (
-        "placement": left,
+        "placement": top,
         "width": auto,
         "padding": 0.5rem 0.75rem,
         "background": palette.get("primary"),
