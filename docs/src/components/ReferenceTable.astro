@@ -8,24 +8,24 @@ interface Props {
   data: {};
   id?: string;
   filter?: boolean;
+  expandable?: boolean;
   keyWidth?: string;
   valueWidth?: string;
   keyLabel?: string;
   labelWidth?: string;
   valueLabel?: string;
-  expandable?: boolean;
 }
 
 const {
   data,
   id,
   filter = true,
+  expandable = false,
   keyWidth,
   valueWidth,
   labelWidth = "5em",
   keyLabel = "Variable",
-  valueLabel = "Value",
-  expandable = false
+  valueLabel = "Value"
 } = Astro.props;
 
 // Create a unique ID if one is not provided
@@ -81,6 +81,7 @@ function iconMap(value: string) {
 <div
   id={`reference-table-${uid}`}
   class=`reference-table${expandable ? " is-expandable" : ""}`
+  data-config={JSON.stringify({ filter, expandable })}
 >
   {
     filter && (
@@ -188,6 +189,8 @@ function iconMap(value: string) {
 </div>
 
 <script>
+  import "../modules/useReferenceTable";
+
   /**
    * Filter functionality
    */
