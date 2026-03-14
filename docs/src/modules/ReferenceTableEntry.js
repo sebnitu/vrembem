@@ -6,7 +6,7 @@ export class ReferenceTableEntry extends CollectionEntry {
     this.table = this.el.querySelector("table");
     this.filterInput = this.el.querySelector(".reference-table__filter");
     this.filterClearBtn = this.el.querySelector(".input-clear");
-    this.notice = this.el.querySelector(".notice");
+    this.filterNotice = this.el.querySelector(".notice");
     this.keys = [];
     this.rows = this.table.querySelectorAll("tr");
     this.rows.forEach((el) => {
@@ -15,6 +15,10 @@ export class ReferenceTableEntry extends CollectionEntry {
         el: el
       });
     });
+    this.footer = this.el.querySelector(".reference-table__footer");
+    this.expandToggleBtns = this.el.querySelectorAll(
+      ".reference-table__toggle"
+    );
     this.clearHashBtns = this.el.querySelectorAll(".table-anchor-clear");
     this.clearHashBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -39,7 +43,30 @@ export class ReferenceTableEntry extends CollectionEntry {
       });
     }
     if (this.config.get("expandable")) {
-      console.log("Setup expandable functionality...");
+      this.expandToggleBtns.forEach((btn) => {
+        // Get the height variable
+        const padding = 42; // Kind of a magic number atm
+        const height =
+          this.table.offsetHeight + this.footer.offsetHeight + padding;
+
+        btn.addEventListener("click", () => {
+          // Toggle the expand state
+          this.el.classList.toggle("is-expanded");
+
+          // Update the state
+          if (this.el.classList.contains("is-expanded")) {
+            btn.innerHTML = "Collapse";
+            this.el.style.setProperty(
+              "--vb-reference-table-max-height",
+              `${height}px`
+            );
+          } else {
+            btn.innerHTML = "Expand";
+            this.el.style.setProperty("--vb-reference-table-max-height", null);
+            this.el.scrollIntoView({ behavior: "instant" });
+          }
+        });
+      });
     }
   }
 
@@ -76,9 +103,9 @@ export class ReferenceTableEntry extends CollectionEntry {
 
     // Toggle the notice if no items are displayed
     if (visible) {
-      this.notice.classList.add("display-none");
+      this.filterNotice.classList.add("display-none");
     } else {
-      this.notice.classList.remove("display-none");
+      this.filterNotice.classList.remove("display-none");
     }
   }
 
