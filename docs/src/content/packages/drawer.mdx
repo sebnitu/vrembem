@@ -40,50 +40,6 @@ npm install @vrembem/drawer
 
 Drawer is built as a Sass module to handle styles and CSS output along with a corresponding JavaScript class for managing the behavior and plugin integration. Below are the available configuration options for both.
 
-### Sass
-
-Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
-
-<CodeExpander>
-```scss
-@use "@vrembem/drawer" with (
-  $config: (
-    // A map containing drawer elements as keys and their preferred class 
-    // selectors. These are layout elements used to provide the context styles for
-    // drawers but are independent from the drawer component itself.
-    // @type map
-    "drawer-classes": (
-      "frame": "drawer-frame",
-      "main": "drawer-main",
-    ),
-
-    // Used to set the width property of drawers and margin clearance of the 
-    // drawer-main element for inline drawers.
-    // @type number
-    "drawer-width": 18em,
-
-    // Used to set the max-width property of drawers
-    // @type percentage
-    "drawer-max-width": 80%,
-
-    // A map of CSS variable overrides to pass to the drawer dialog element
-    // @type map
-    "drawer-dialog-override": (),
-
-    // A map of CSS variable overrides to pass to the drawer inline dialog element
-    // @type map
-    "drawer-inline-dialog-override": (
-      "box-shadow": none
-    ),
-
-    // A map of CSS variable overrides to pass to the drawer modal dialog element
-    // @type map
-    "drawer-modal-dialog-override": ()
-  )
-);
-```
-</CodeExpander>
-
 ### JavaScript
 
 Drawer comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the drawer collection.
@@ -175,6 +131,65 @@ const drawer = new Drawer({
 });
 ```
 </CodeExpander>
+
+### Sass
+
+Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander>
+```scss
+@use "@vrembem/drawer" with (
+  $config: (
+    // A map containing drawer elements as keys and their preferred class 
+    // selectors. These are layout elements used to provide the context styles for
+    // drawers but are independent from the drawer component itself.
+    // @type map
+    "drawer-classes": (
+      "frame": "drawer-frame",
+      "main": "drawer-main",
+    ),
+
+    // Used to set the width property of drawers and margin clearance of the 
+    // drawer-main element for inline drawers.
+    // @type number
+    "drawer-width": 18em,
+
+    // Used to set the max-width property of drawers
+    // @type percentage
+    "drawer-max-width": 80%,
+
+    // A map of CSS variable overrides to pass to the drawer dialog element
+    // @type map
+    "drawer-dialog-override": (),
+
+    // A map of CSS variable overrides to pass to the drawer inline dialog element
+    // @type map
+    "drawer-inline-dialog-override": (
+      "box-shadow": none
+    ),
+
+    // A map of CSS variable overrides to pass to the drawer modal dialog element
+    // @type map
+    "drawer-modal-dialog-override": ()
+  )
+);
+```
+</CodeExpander>
+
+### CSS Variables
+
+Drawer uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined. Instead they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-drawer" valueLabel="Fallback" filter={false} data={{
+  "--vb-drawer-width": "18em",
+  "--vb-drawer-max-width": "80%",
+  "--vb-drawer-frame-height": "100vh",
+  "--vb-drawer-z-index": "900",
+  "--vb-drawer-transition-duration": "var(--vb-transition-duration)",
+  "--vb-drawer-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-drawer-screen-color": "var(--vb-screen-color)",
+  "--vb-drawer-screen-opacity": "var(--vb-screen-opacity)",
+}} />
 
 ## Basic usage
 
@@ -775,13 +790,3 @@ The drawer component also exposes some custom events for hooking into the drawer
 - `drawer:opened` Emits when a drawer has opened.
 - `drawer:closed` Emits when a drawer has closed.
 - `drawer:switchMode` Emits when a drawer's mode changes.
-
-### CSS Variables
-
-Below is a reference to all CSS variables that are referenced by the `drawer` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-drawer" valueLabel="Fallback" data={{
-  "--vb-drawer-frame-height": "100vh",
-  "--vb-drawer-z-index": "900"
-}} />
-
