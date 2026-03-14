@@ -73,10 +73,6 @@ export class PopoverEntry extends CollectionEntry {
     return close(this);
   }
 
-  async deregister() {
-    return this.parent.deregister(this);
-  }
-
   registerEventListeners() {
     // If event listeners aren't already setup
     if (!this.#eventListeners.length) {

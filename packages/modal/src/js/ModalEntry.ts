@@ -39,10 +39,6 @@ export class ModalEntry extends CollectionEntry {
     return replace(this, transition, focus);
   }
 
-  async deregister() {
-    return this.parent.deregister(this);
-  }
-
   async onCreateEntry() {
     // Set aria-modal attribute to true
     this.dialog.setAttribute("aria-modal", "true");

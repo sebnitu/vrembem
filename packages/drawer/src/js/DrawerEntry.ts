@@ -97,10 +97,6 @@ export class DrawerEntry extends CollectionEntry {
     return toggle(this, transition, focus);
   }
 
-  async deregister() {
-    return this.parent.deregister(this);
-  }
-
   async onCreateEntry() {
     // Set tabindex="-1" so dialog is focusable via JS or click
     if (this.config.get("setTabindex") && this.dialog) {
