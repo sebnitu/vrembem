@@ -46,7 +46,7 @@ function buildRegExp(data) {
   return new RegExp(
     Object.keys(data)
       .sort((a, b) => b.length - a.length)
-      .map((key) => `(?<![\w-])${escapeSpecialChars(key)}(?![\w-])`)
+      .map((key) => `(?<=var\\()${escapeSpecialChars(key)}(?=[,)]|\\s*[,)])`)
       .join("|"),
     "g"
   );
