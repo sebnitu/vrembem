@@ -192,59 +192,6 @@ function iconMap(value: string) {
   import "../modules/useReferenceTable";
 
   /**
-   * Permalink functionality
-   */
-
-  // Build the props from the reference table
-  const props = [];
-  const rows = document.querySelectorAll(".reference-table tr");
-  rows.forEach((el) => {
-    props.push({
-      id: el.id,
-      el: el
-    });
-  });
-
-  // Check for active block function
-  function checkActiveHash() {
-    const result = props.find((el) => {
-      return `#${el.id}` === window.location.hash;
-    });
-
-    props.forEach((item) => {
-      item.el.classList.remove("is-active");
-    });
-
-    if (result) {
-      result.el.classList.add("is-active");
-      result.el.classList.remove("display-none");
-    }
-  }
-
-  // Setup click listener to hash clear buttons
-  const clearBtns = document.querySelectorAll(".table-anchor-clear");
-  clearBtns.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-      // Build URL without the hash
-      const url = window.location.pathname + window.location.search;
-      history.pushState({}, "", url);
-      // Manually fire hashchange event since `history.pushState` doesn't
-      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
-      // Check if the filter needs to be updated
-      // filterTable();
-      console.log("Run filterTable()");
-    });
-  });
-
-  // Setup event listener for hash change
-  window.addEventListener("hashchange", () => {
-    checkActiveHash();
-  });
-
-  // Run an initial active hash check
-  checkActiveHash();
-
-  /**
    * Expandable functionality
    */
 

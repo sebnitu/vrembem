@@ -7,6 +7,20 @@ export class ReferenceTableEntry extends CollectionEntry {
     this.filterInput = this.el.querySelector(".reference-table__filter");
     this.filterClearBtn = this.el.querySelector(".input-clear");
     this.notice = this.el.querySelector(".notice");
+    this.keys = [];
+    this.rows = this.table.querySelectorAll("tr");
+    this.rows.forEach((el) => {
+      this.keys.push({
+        id: el.id,
+        el: el
+      });
+    });
+    this.clearHashBtns = this.el.querySelectorAll(".table-anchor-clear");
+    this.clearHashBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.parent.clearHash();
+      });
+    });
   }
 
   get filterValue() {
@@ -20,6 +34,9 @@ export class ReferenceTableEntry extends CollectionEntry {
         "click",
         this.clearFilter.bind(this)
       );
+      window.addEventListener("hashclear", () => {
+        this.filterTable.call(this);
+      });
     }
     if (this.config.get("expandable")) {
       console.log("Setup expandable functionality...");
@@ -28,20 +45,19 @@ export class ReferenceTableEntry extends CollectionEntry {
 
   filterTable() {
     // Setup the variables
-    const rows = this.table.querySelectorAll("tr");
     let visible = 0;
 
     // Loop through table rows and hide those that don't match the search query
-    for (let i = 0; i < rows.length; i++) {
-      let td = rows[i].querySelector("td code");
+    for (let i = 0; i < this.rows.length; i++) {
+      let td = this.rows[i].querySelector("td code");
       if (td) {
         let txtValue = td.innerText;
         if (txtValue.toUpperCase().trim().indexOf(this.filterValue) > -1) {
-          rows[i].classList.remove("display-none");
+          this.rows[i].classList.remove("display-none");
           visible++;
         } else {
-          if (!rows[i].classList.contains("is-active")) {
-            rows[i].classList.add("display-none");
+          if (!this.rows[i].classList.contains("is-active")) {
+            this.rows[i].classList.add("display-none");
           } else {
             visible++;
           }
@@ -85,5 +101,20 @@ export class ReferenceTableEntry extends CollectionEntry {
       top: rect.top + scrollTop - offset,
       behavior: "instant"
     });
+  }
+
+  checkActiveHash() {
+    const result = this.keys.find((el) => {
+      return `#${el.id}` === window.location.hash;
+    });
+
+    this.keys.forEach((item) => {
+      item.el.classList.remove("is-active");
+    });
+
+    if (result) {
+      result.el.classList.add("is-active");
+      result.el.classList.remove("display-none");
+    }
   }
 }
