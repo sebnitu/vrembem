@@ -1,11 +1,25 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@include theme.set(
+  "light",
+  "reference-table",
+  (
+    "key-foreground": palette.get("secondary", 45),
+    "value-foreground": palette.get("primary", 45)
+  )
+);
+@include theme.set(
+  "dark",
+  "reference-table",
+  (
+    "key-foreground": palette.get("secondary", 65),
+    "value-foreground": palette.get("primary", 65)
+  )
+);
 
 .reference-table {
-  background: css.get("background-dark");
-  border: 3px solid css.get("background-darker");
-  border-radius: css.get("border-radius-lg");
   font-size: css.get("font-size");
   width: 100%;
 
@@ -21,6 +35,7 @@
 
   tr {
     border-top: css.get("table", "border");
+    border-radius: css.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
@@ -32,7 +47,6 @@
     }
 
     &.is-active {
-      background-color: css.get("background");
       box-shadow:
         0 0 0 1px palette.get("primary"),
         0 0 0 0.2rem palette.get("primary", 50%, 20%);
@@ -57,11 +71,12 @@
     position: relative;
 
     &:first-child {
+      @include css.override("pre", "foreground", css.get("reference-table", "key-foreground"));
       text-wrap: nowrap;
     }
 
-    &:hover {
-      background-color: css.get("background");
+    &:last-child {
+      @include css.override("pre", "foreground", css.get("reference-table", "value-foreground"));
     }
   }
 
@@ -112,11 +127,11 @@
 }
 
 .reference-table__header {
-  background: css.get("background-dark");
+  background: css.get("background");
   border-bottom: css.get("border");
   border-top-left-radius: css.get("border-radius-lg");
   border-top-right-radius: css.get("border-radius-lg");
-  padding: css.get("spacing-md");
+  padding: css.get("spacing-md") 0;
   position: sticky;
   top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;

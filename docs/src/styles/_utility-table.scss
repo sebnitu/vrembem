@@ -7,16 +7,16 @@
   "light",
   "utility-table",
   (
-    "class-foreground": palette.get("primary", 45),
-    "style-foreground": palette.get("secondary", 45)
+    "class-foreground": palette.get("secondary", 45),
+    "style-foreground": palette.get("primary", 45)
   )
 );
 @include theme.set(
   "dark",
   "utility-table",
   (
-    "class-foreground": palette.get("primary", 65),
-    "style-foreground": palette.get("secondary", 65)
+    "class-foreground": palette.get("secondary", 65),
+    "style-foreground": palette.get("primary", 65)
   )
 );
 

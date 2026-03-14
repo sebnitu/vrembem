@@ -10,6 +10,7 @@ interface Props {
   filter?: boolean;
   keyWidth?: string;
   valueWidth?: string;
+  keyLabel?: string;
   labelWidth?: string;
   valueLabel?: string;
 }
@@ -21,6 +22,7 @@ const {
   keyWidth,
   valueWidth,
   labelWidth = "5em",
+  keyLabel = "Variable",
   valueLabel = "Value"
 } = Astro.props;
 
@@ -111,7 +113,7 @@ function iconMap(value: string) {
     </colgroup>
     <thead>
       <tr>
-        <th>Var</th>
+        <th>{keyLabel}</th>
         <th>{valueLabel}</th>
       </tr>
     </thead>
