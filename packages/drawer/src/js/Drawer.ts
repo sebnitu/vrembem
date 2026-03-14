@@ -1,5 +1,4 @@
 import { Collection } from "@vrembem/core";
-
 import { config, DrawerConfig } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";

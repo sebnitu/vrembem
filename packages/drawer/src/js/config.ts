@@ -1,29 +1,7 @@
 import type { CollectionConfig } from "@vrembem/core";
 import presets from "./presets";
 
-export interface DrawerConfig extends CollectionConfig {
-  presets: typeof presets;
-  attrOpen: string;
-  attrClose: string;
-  attrToggle: string;
-  selector: string;
-  selectorDialog: string;
-  selectorScreen: string;
-  selectorFocus: string;
-  selectorInert: string | null;
-  selectorOverflow: string;
-  stateOpened: string;
-  stateOpening: string;
-  stateClosing: string;
-  stateClosed: string;
-  classModal: string;
-  customEventPrefix: string;
-  setTabindex: boolean;
-  transition: boolean;
-  transitionDuration: number;
-}
-
-export const config: DrawerConfig = {
+export const config = {
   // An object containing pre-configuration options for plugins. Object should
   // contain the name of the plugin to configure as the key and the config
   // object for that plugin as the value.
@@ -62,12 +40,12 @@ export const config: DrawerConfig = {
 
   // A valid CSS selector for an element or group of elements that should be set
   // to `inert` when a modal drawer is opened.
-  // @type string | null
-  selectorInert: null,
+  // @type string
+  selectorInert: "",
 
   // A valid CSS selector for an element or group of elements that should have
   // overflow style set to "hidden" when a modal drawer is opened.
-  // @type string | null
+  // @type string
   selectorOverflow: "body",
 
   // A CSS class applied as the opened state of a drawer
@@ -106,3 +84,5 @@ export const config: DrawerConfig = {
   // @type number (milliseconds)
   transitionDuration: 300
 };
+
+export type DrawerConfig = CollectionConfig & typeof config;

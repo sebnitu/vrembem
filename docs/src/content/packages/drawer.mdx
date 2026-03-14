@@ -85,8 +85,8 @@ Drawer comes with the following JavaScript configuration options that customize 
 <CodeExpander>
 ```js
 const drawer = new Drawer({
-  // An object containing pre-configuration options for plugins. Object should 
-  // contain the name of the plugin to configure as the key and the config 
+  // An object containing pre-configuration options for plugins. Object should
+  // contain the name of the plugin to configure as the key and the config
   // object for that plugin as the value.
   // @type object
   presets,
@@ -103,7 +103,7 @@ const drawer = new Drawer({
   // @type string
   attrToggle: "drawer-toggle",
 
-  // A valid CSS selector used to query the document for elements to include as 
+  // A valid CSS selector used to query the document for elements to include as
   // entries in the drawer collection.
   // @type string
   selector: ".drawer",
@@ -112,7 +112,7 @@ const drawer = new Drawer({
   // @type string
   selectorDialog: ".drawer__dialog",
 
-  // A valid CSS selector for the element that should be treated as the modal 
+  // A valid CSS selector for the element that should be treated as the modal
   // screen. Clicking the screen closes any open modal drawer.
   // @type string
   selectorScreen: ".drawer",
@@ -123,12 +123,12 @@ const drawer = new Drawer({
 
   // A valid CSS selector for an element or group of elements that should be set
   // to `inert` when a modal drawer is opened.
-  // @type string | null
-  selectorInert: null,
+  // @type string
+  selectorInert: "",
 
   // A valid CSS selector for an element or group of elements that should have
   // overflow style set to "hidden" when a modal drawer is opened.
-  // @type string | null
+  // @type string
   selectorOverflow: "body",
 
   // A CSS class applied as the opened state of a drawer
