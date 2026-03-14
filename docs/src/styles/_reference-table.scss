@@ -41,10 +41,10 @@
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
     position: relative;
-    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 80px);
+    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
 
     @include core.media-min("drawer") {
-      scroll-margin-top: calc(css.get("layout", "navibar-height") + 81px);
+      scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
     }
 
     &.is-active {
@@ -146,9 +146,6 @@
 
 .reference-table__header {
   background: css.get("background");
-  border-bottom: css.get("border");
-  border-top-left-radius: css.get("border-radius-lg");
-  border-top-right-radius: css.get("border-radius-lg");
   padding: css.get("spacing-md") 0;
   position: sticky;
   top: calc(css.get("layout", "toolbar-height") - 1px);
