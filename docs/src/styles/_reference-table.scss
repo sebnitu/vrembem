@@ -2,6 +2,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+@include css.set("reference-table", "max-height", 28rem);
 @include theme.set(
   "light",
   "reference-table",
@@ -124,6 +125,23 @@
   .notice {
     font-size: css.get("font-size");
   }
+
+  &.is-expandable {
+    max-height: css.get("reference-table", "max-height");
+    overflow: hidden;
+  }
+
+  &.is-expanded {
+    overflow: visible;
+
+    thead {
+      top: calc(css.get("layout", "toolbar-height") - 1px);
+
+      @include core.media-min("drawer") {
+        top: calc(css.get("layout", "navibar-height") - 1px);
+      }
+    }
+  }
 }
 
 .reference-table__header {
@@ -238,4 +256,12 @@
     left: 3.75rem;
     right: auto;
   }
+}
+
+.reference-table__footer {
+  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  bottom: 0;
+  padding: 1.5em 0;
+  position: sticky;
+  text-align: center;
 }

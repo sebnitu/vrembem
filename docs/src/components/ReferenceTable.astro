@@ -13,6 +13,7 @@ interface Props {
   keyLabel?: string;
   labelWidth?: string;
   valueLabel?: string;
+  expandable?: boolean;
 }
 
 const {
@@ -23,7 +24,8 @@ const {
   valueWidth,
   labelWidth = "5em",
   keyLabel = "Variable",
-  valueLabel = "Value"
+  valueLabel = "Value",
+  expandable = false
 } = Astro.props;
 
 // Create a unique ID if one is not provided
@@ -76,7 +78,10 @@ function iconMap(value: string) {
 }
 ---
 
-<div id={`reference-table-${uid}`} class="reference-table">
+<div
+  id={`reference-table-${uid}`}
+  class=`reference-table${expandable ? " is-expandable" : ""}`
+>
   {
     filter && (
       <div class="reference-table__header">
@@ -168,11 +173,23 @@ function iconMap(value: string) {
       <p>There are no variables that match your search.</p>
     </div>
   </div>
+  {
+    expandable && (
+      <div class="reference-table__footer">
+        <button
+          class="button button_color_primary button_size_sm reference-table__toggle"
+          type="button"
+        >
+          Expand
+        </button>
+      </div>
+    )
+  }
 </div>
 
 <script>
   /**
-   * Table filter functionality
+   * Filter functionality
    */
 
   function filterTable(event?: KeyboardEvent) {
@@ -271,7 +288,7 @@ function iconMap(value: string) {
   });
 
   /**
-   * Row permalink functionality
+   * Permalink functionality
    */
 
   // Build the props from the reference table
@@ -321,4 +338,40 @@ function iconMap(value: string) {
 
   // Run an initial active hash check
   checkActiveHash();
+
+  /**
+   * Expandable functionality
+   */
+
+  const btns = document.querySelectorAll(".reference-table__toggle");
+  btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".reference-table") as HTMLElement;
+    const table = parent.querySelector("table") as HTMLElement;
+    const footer = parent.querySelector(
+      ".reference-table__footer"
+    ) as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = table.offsetHeight + footer.offsetHeight + padding;
+
+    btn.addEventListener("click", () => {
+      // Toggle the expand state
+      parent.classList.toggle("is-expanded");
+
+      // Update the state
+      if (parent.classList.contains("is-expanded")) {
+        btn.innerHTML = "Collapse";
+        parent.style.setProperty(
+          "--vb-reference-table-max-height",
+          `${height}px`
+        );
+      } else {
+        btn.innerHTML = "Expand";
+        parent.style.setProperty("--vb-reference-table-max-height", null);
+        parent.scrollIntoView({ behavior: "instant" });
+      }
+    });
+  });
 </script>
