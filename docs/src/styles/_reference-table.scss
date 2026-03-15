@@ -22,8 +22,8 @@
 
 .reference-table {
   font-size: css.get("font-size");
-  width: 100%;
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+  width: 100%;
 
   table {
     background-color: transparent;
@@ -36,8 +36,8 @@
   }
 
   tr {
-    border-top: css.get("table", "border");
     border-radius: css.get("border-radius");
+    border-top: css.get("table", "border");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
@@ -74,6 +74,7 @@
 
     &:first-child {
       @include css.override("pre", "foreground", css.get("reference-table", "key-foreground"));
+
       text-wrap: nowrap;
     }
 
