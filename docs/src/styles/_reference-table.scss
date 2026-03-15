@@ -125,7 +125,9 @@
   }
 
   .notice {
+    border-radius: css.get("border-radius");
     font-size: css.get("font-size");
+    margin-top: css.get("spacing-md");
   }
 
   &.is-expandable {
