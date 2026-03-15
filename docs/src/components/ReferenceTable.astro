@@ -28,8 +28,8 @@ const {
   labelWidth = "5em"
 } = Astro.props;
 
-// Create a unique ID if one is not provided
-const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
+// Create a table ID if one is not provided
+const tableId = `reference-table-${id}`;
 
 // Create an array of the provided data object
 const props = Object.entries(data);
@@ -61,15 +61,21 @@ function linkifyValue(value: string) {
   let result = value;
   if (isRoot || dataRegExp.test(result)) {
     result = result.replace(dataRegExp, (match) => {
-      return `<a href="#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+      return `<a href="#${cleanAppend(match)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
   if (!isRoot && coreRegExp.test(result)) {
     result = result.replace(coreRegExp, (match) => {
-      return `<a href="/packages/core/css-variables#${match}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+      return `<a href="/packages/core/css-variables#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
   return result;
+}
+
+// Append the key to the table id. Removes extra `--` when more than 2.
+function cleanAppend(key: string, root: boolean = false) {
+  const prefix = root ? `reference-table-cssvar-core` : tableId;
+  return `${prefix}-${key}`.replace(/-{3}/g, "--");
 }
 
 // Map theme names to the icons that represent them
@@ -78,8 +84,12 @@ function iconMap(value: string) {
 }
 ---
 
+<script>
+  import "../modules/useReferenceTable";
+</script>
+
 <div
-  id={`reference-table-${uid}`}
+  id={tableId}
   class=`reference-table${expandable ? " is-expandable" : ""}`
   data-config={JSON.stringify({ filter, expandable })}
 >
@@ -88,20 +98,20 @@ function iconMap(value: string) {
       <div class="reference-table__header">
         <div class="input-group">
           <input
-            id={`reference-table-filter-${uid}`}
-            name={`reference-table-filter-${uid}`}
+            id={`${tableId}-filter`}
+            name={`${tableId}-filter}`}
             class="input reference-table__filter"
             type="text"
             placeholder="Filter..."
           />
-          <label class="input-icon" for={`reference-table-filter-${uid}`}>
+          <label class="input-icon" for={`${tableId}-filter`}>
             <Icon name="eye" classes="icon_size_sm" />
             <span class="sr-only">Type to filter the reference table.</span>
           </label>
           <button
             class="button button_icon input-clear display-none"
             type="button"
-            data-clear={`reference-table-filter-${uid}`}
+            data-clear={`${tableId}-filter`}
           >
             <Icon name="x" classes="icon_size_sm" />
           </button>
@@ -126,11 +136,11 @@ function iconMap(value: string) {
     <tbody>
       {
         props.map(([key, value]) => (
-          <tr id={key}>
+          <tr id={`${cleanAppend(key)}`}>
             <td data-mobile-label="Var">
               <a
                 class="table-anchor"
-                href={`#${key}`}
+                href={`#${cleanAppend(key)}`}
                 aria-label={`Permalink to '${key}'`}
               >
                 <Icon name="hash" classes="icon_size_sm" />
@@ -187,7 +197,3 @@ function iconMap(value: string) {
     )
   }
 </div>
-
-<script>
-  import "../modules/useReferenceTable";
-</script>
