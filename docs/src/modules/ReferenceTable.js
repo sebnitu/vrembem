@@ -24,13 +24,13 @@ export class ReferenceTable extends Collection {
     });
   }
 
-  clearHash() {
+  async clearHash() {
     // Build URL without the hash
     const url = window.location.pathname + window.location.search;
     history.pushState({}, "", url);
     // Manually fire hashchange event since `history.pushState` doesn't
     window.dispatchEvent(new Event("hashchange", { bubbles: true }));
-    // Fire a custom event since the hash was more specifically cleared
-    window.dispatchEvent(new CustomEvent("hashclear", { bubbles: true }));
+    // Emit the hash:clear event
+    await this.emit("hash:clear");
   }
 }

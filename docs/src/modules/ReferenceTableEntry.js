@@ -37,7 +37,7 @@ export class ReferenceTableEntry extends CollectionEntry {
 
   onRegisterEntry() {
     if (this.config.get("filter")) {
-      window.addEventListener("hashclear", this.filterTable.bind(this));
+      this.parent.on("hash:clear", this.filterTable.bind(this));
       this.filterInput.addEventListener("input", this.filterTable.bind(this));
       this.filterClearBtn.addEventListener(
         "click",
