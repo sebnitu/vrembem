@@ -1,10 +1,18 @@
 ---
 import Icon from "../components/Icon.astro";
 
-// TODO: Add language label to this component (maybe optional?)
+interface Props {
+  lang?: string;
+}
+
+const { lang } = Astro.props;
+
+const classes = ["code-expander", "is-scroll-locked"];
+if (lang) classes.push("has-header");
 ---
 
-<div class="code-expander is-scroll-locked">
+<div class={classes.join(" ")}>
+  {lang && <div class="code-expander__header">{lang.toUpperCase()}</div>}
   <div class="code-expander__tools">
     <button
       type="button"
