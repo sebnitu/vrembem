@@ -6,6 +6,8 @@ category: component
 ---
 
 import CodeExpander from "../../components/CodeExpander.astro";
+import ReferenceBar from "../../components/ReferenceBar.astro";
+import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Drawer
@@ -580,17 +582,61 @@ Drawer and DrawerEntry extend both the [`Collection`](/packages/core/collection-
 
 ### activeModal
 
-...
+<ReferenceBar type="property" returns="DrawerEntry | undefined" />
+
+Returns the an active modal drawer if one exists. Otherwise, returns undefined.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+if (drawer.activeModal) {
+  // This will run if a modal drawer is active...
+}
+```
+</CodeExample>
 
 ### open
 
-...
+<ReferenceBar type="method" returns="Promise<DrawerEntry>" />
+
+Opens a drawer using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the drawer to open.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state would be `is-opening`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `[data-focus]` attribute else the drawer dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await drawer.open("my-drawer");
+// > Opens the drawer with the id="my-drawer"
+
+await drawer.open("fake-drawer");
+// > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
+```
+</CodeExample>
 
 ### close
+
+<ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
 ...
 
 ### toggle
+
+<ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
 ...
 
