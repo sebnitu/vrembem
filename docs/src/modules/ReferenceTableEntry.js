@@ -16,9 +16,7 @@ export class ReferenceTableEntry extends CollectionEntry {
       });
     });
     this.footer = this.el.querySelector(".reference-table__footer");
-    this.expandToggleBtns = this.el.querySelectorAll(
-      ".reference-table__toggle"
-    );
+    this.expandBtn = this.el.querySelector(".reference-table__toggle");
     this.clearHashBtns = this.el.querySelectorAll(".table-anchor-clear");
     this.clearHashBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -27,46 +25,60 @@ export class ReferenceTableEntry extends CollectionEntry {
     });
   }
 
+  get expanded() {
+    return (
+      this.config.get("expandable") && this.el.classList.contains("is-expanded")
+    );
+  }
+
   get filterValue() {
     return this.filterInput.value.toUpperCase().trim();
   }
 
   onRegisterEntry() {
     if (this.config.get("filter")) {
+      window.addEventListener("hashclear", this.filterTable.bind(this));
       this.filterInput.addEventListener("input", this.filterTable.bind(this));
       this.filterClearBtn.addEventListener(
         "click",
         this.clearFilter.bind(this)
       );
-      window.addEventListener("hashclear", () => {
-        this.filterTable.call(this);
-      });
     }
     if (this.config.get("expandable")) {
-      this.expandToggleBtns.forEach((btn) => {
-        // Get the height variable
-        const padding = 42; // Kind of a magic number atm
-        const height =
-          this.table.offsetHeight + this.footer.offsetHeight + padding;
+      // Set the height variable
+      const padding = 42; // Kind of a magic number atm
+      this.expandHeight =
+        this.table.offsetHeight + this.footer.offsetHeight + padding;
 
-        btn.addEventListener("click", () => {
-          // Toggle the expand state
-          this.el.classList.toggle("is-expanded");
-
-          // Update the state
-          if (this.el.classList.contains("is-expanded")) {
-            btn.innerHTML = "Collapse";
-            this.el.style.setProperty(
-              "--vb-reference-table-max-height",
-              `${height}px`
-            );
-          } else {
-            btn.innerHTML = "Expand";
-            this.el.style.setProperty("--vb-reference-table-max-height", null);
-            this.el.scrollIntoView({ behavior: "instant" });
-          }
-        });
+      this.expandBtn.addEventListener("click", () => {
+        this.expandToggle();
       });
+    }
+    if (this.config.get("filter") && this.config.get("expandable")) {
+      this.filterInput.addEventListener("focus", () => {
+        this.expandToggle(true);
+      });
+    }
+  }
+
+  expandToggle(state) {
+    if (this.config.get("expandable")) {
+      // Use provided state otherwise flip the current state
+      state = state === undefined ? !this.expanded : state;
+      this.el.classList.toggle("is-expanded", state);
+      if (state) {
+        this.expandBtn.innerHTML = "Collapse";
+        this.el.style.setProperty(
+          "--vb-reference-table-max-height",
+          `${this.expandHeight}px`
+        );
+      } else {
+        this.clearFilter(false);
+        this.parent.clearHash();
+        this.expandBtn.innerHTML = "Expand";
+        this.el.style.setProperty("--vb-reference-table-max-height", null);
+        this.el.scrollIntoView({ behavior: "instant" });
+      }
     }
   }
 
@@ -109,13 +121,17 @@ export class ReferenceTableEntry extends CollectionEntry {
     }
   }
 
-  clearFilter() {
-    const id = this.filterClearBtn.dataset.clear;
-    const input = document.getElementById(id);
-    if (input) {
-      input.value = "";
-      input.dispatchEvent(new Event("input"));
-      input.focus();
+  clearFilter(setFocus = true) {
+    if (this.config.get("filter")) {
+      const id = this.filterClearBtn.dataset.clear;
+      const input = document.getElementById(id);
+      if (input) {
+        input.value = "";
+        input.dispatchEvent(new Event("input"));
+        if (setFocus) {
+          input.focus();
+        }
+      }
     }
   }
 
@@ -140,6 +156,9 @@ export class ReferenceTableEntry extends CollectionEntry {
     });
 
     if (result) {
+      if (!this.expanded) {
+        this.expandToggle(true);
+      }
       result.el.classList.add("is-active");
       result.el.classList.remove("display-none");
     }

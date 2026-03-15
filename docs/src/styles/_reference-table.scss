@@ -156,6 +156,10 @@
     top: css.get("layout", "navibar-height");
   }
 
+  .is-expandable:not(.is-expanded) & {
+    top: 0;
+  }
+
   .input-group {
     position: relative;
   }

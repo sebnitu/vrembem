@@ -229,7 +229,7 @@ To customize utility class selectors used by modules, map the module name to you
 
 It's also possible to provide a prefix to all utility classes using the `utility-prefix` config option.
 
-<ReferenceCard ref="config" name="utility-prefix" type="map" defaults='""'>
+<ReferenceCard ref="config" name="utility-prefix" type="string" defaults='""'>
   A prefix to apply to utility class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
 
 ```scss
@@ -239,6 +239,18 @@ It's also possible to provide a prefix to all utility classes using the `utility
 </ReferenceCard>
 
 Vrembem utilities are set with the `!important` flag by default. This can be toggled using the `utility-important` configuration option.
+
+<ReferenceCard ref="config" name="utility-important" type="boolean" defaults='true'>
+  Whether or not utility styles should be output with the `!important` flag
+
+```scss
+@include config.set("utility-important", true);
+// > background: black !important;
+
+@include config.set("utility-important", false);
+// > background: black;
+```
+</ReferenceCard>
 
 ## Modules
 
