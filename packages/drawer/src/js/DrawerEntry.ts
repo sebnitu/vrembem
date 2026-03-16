@@ -3,6 +3,7 @@ import { switchMode } from "./switchMode";
 import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
+import { validate } from "./helpers/validate";
 import type { Drawer } from "./Drawer";
 
 export class DrawerEntry extends CollectionEntry {
@@ -31,9 +32,9 @@ export class DrawerEntry extends CollectionEntry {
     return _(this).state;
   }
 
-  // TODO: Maybe add some state validation, only allow specific states to be set
   set state(value: string) {
     if (_(this).state === value) return;
+    validate("state", value);
     _(this).state = value;
 
     // If mode is inline and not in a transitioning state...
@@ -57,6 +58,7 @@ export class DrawerEntry extends CollectionEntry {
 
   set mode(value: string) {
     if (_(this).mode === value) return;
+    validate("mode", value);
     _(this).mode = value;
     switchMode(this);
   }

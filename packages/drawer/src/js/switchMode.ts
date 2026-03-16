@@ -1,14 +1,14 @@
 import { setGlobalState } from "@vrembem/core";
 import type { DrawerEntry } from "./DrawerEntry";
 
-export function switchMode(entry: DrawerEntry): Promise<DrawerEntry> {
+export async function switchMode(entry: DrawerEntry): Promise<DrawerEntry> {
   switch (entry.mode) {
     case "inline":
       return toInline(entry);
     case "modal":
       return toModal(entry);
     default:
-      throw new Error(`"${entry.mode}" is not a valid drawer mode.`);
+      return entry;
   }
 }
 

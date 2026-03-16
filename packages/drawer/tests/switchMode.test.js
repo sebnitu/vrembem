@@ -178,7 +178,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
   } catch (error) {
     result = error.message;
   }
-  expect(result).toBe('"asdf" is not a valid drawer mode.');
+  expect(result).toBe('Not a valid drawer mode: "asdf"');
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
