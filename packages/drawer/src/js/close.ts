@@ -14,7 +14,7 @@ export async function close(
     entry.state === null
   ) {
     // Update drawer state
-    entry.setState("closing");
+    entry.state = "closing";
 
     // Remove focus from active element
     if (
@@ -43,7 +43,7 @@ export async function close(
     }
 
     // Update drawer state
-    entry.setState("closed");
+    entry.state = "closed";
 
     // Update the global state if mode is modal
     if (entry.mode === "modal")

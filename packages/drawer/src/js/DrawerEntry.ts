@@ -8,42 +8,41 @@ import type { Drawer } from "./Drawer";
 // TODO: Turn state prop into a getter/setter and remove the need for setState
 // method. I think the original reason for this was pre-proxy implementation.
 
+const priv = new Map<string, { state: string; mode: string }>();
+const _ = (self: DrawerEntry) => priv.get(self.id)!;
+
 export class DrawerEntry extends CollectionEntry {
-  #mode: string;
+  inlineState: string = "indeterminate";
   dialog: HTMLElement;
   trigger: HTMLElement | null;
-  state: string | null;
-  inlineState: string | null;
 
   constructor(parent: Drawer, query: string | HTMLElement) {
     super(parent, query);
-    this.#mode = "indeterminate";
+
+    // Setup initial states of private variables
+    priv.set(this.id, {
+      state: "indeterminate",
+      mode: "indeterminate"
+    });
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
       this.el.querySelector(this.config.get("selectorDialog")) || this.el;
 
+    // Set the initial state of the trigger element
     this.trigger = null;
-    this.state = null;
-    this.inlineState = null;
   }
 
-  get mode(): string {
-    return this.#mode;
+  get state(): string {
+    return _(this).state;
   }
 
-  set mode(value: string) {
-    if (this.#mode === value) return;
-    this.#mode = value;
-    switchMode(this);
-  }
+  set state(value: string) {
+    if (_(this).state === value) return;
+    _(this).state = value;
 
-  setState(value: string): void {
-    this.state = value;
     // If mode is inline and not in a transitioning state...
-    const ignoreStates = ["opening", "closing"];
-
-    if (this.mode === "inline" && !ignoreStates.includes(value)) {
+    if (this.mode === "inline" && !["opening", "closing"].includes(value)) {
       // Save the inline state
       this.inlineState = value;
     }
@@ -57,7 +56,17 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async applyState(): Promise<DrawerEntry> {
+  get mode(): string {
+    return _(this).mode;
+  }
+
+  set mode(value: string) {
+    if (_(this).mode === value) return;
+    _(this).mode = value;
+    switchMode(this);
+  }
+
+  async applyState(init = false): Promise<DrawerEntry> {
     // Only apply state if mode is not set to "modal"
     if (this.mode === "modal") return this;
 
@@ -71,8 +80,8 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // Determine the state based on the presence of a state class. This handles
-    // the initial state which is the only time `this.state` should be `null`.
-    if (this.state === null) {
+    // the initial state which is the only time `this.state` should be "".
+    if (init) {
       if (this.el.classList.contains(this.config.get("stateOpened"))) {
         return await this.open(false, false);
       }
@@ -82,7 +91,7 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // If state cannot be determined, set it to indeterminate
-    this.setState("indeterminate");
+    this.state = "indeterminate";
 
     // Return the entry for chaining
     return this;
@@ -107,7 +116,7 @@ export class DrawerEntry extends CollectionEntry {
     }
 
     // Apply the initial state
-    await this.applyState();
+    await this.applyState(true);
 
     // Set the inline state
     this.inlineState = this.state;

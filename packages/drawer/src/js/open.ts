@@ -14,7 +14,7 @@ export async function open(
     entry.state === null
   ) {
     // Update drawer state
-    entry.setState("opening");
+    entry.state = "opening";
 
     // Run the open transition
     if (
@@ -35,7 +35,7 @@ export async function open(
     }
 
     // Update drawer state
-    entry.setState("opened");
+    entry.state = "opened";
 
     // Update the global state if mode is modal
     if (entry.mode === "modal")

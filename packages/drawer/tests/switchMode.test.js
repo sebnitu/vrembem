@@ -131,7 +131,7 @@ test("should return local store state when switching modes", async () => {
 test("should apply indeterminate state when going to inline mode", async () => {
   const entry = drawer.get("drawer-1");
   await entry.open();
-  entry.setState("indeterminate");
+  entry.state = "indeterminate";
   expect(entry.mode).toBe("inline");
   expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
@@ -151,7 +151,7 @@ test("should apply indeterminate state when going to inline mode", async () => {
 
   entry.mode = "modal";
   await vi.runAllTimers();
-  entry.setState("closed");
+  entry.state = "closed";
   expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("closed");
   expect(entry.inlineState).toBe("indeterminate");
