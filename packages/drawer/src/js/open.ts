@@ -8,17 +8,13 @@ export async function open(
   focus: boolean = true
 ): Promise<DrawerEntry> {
   // If drawer is closed or indeterminate
-  if (
-    entry.state === "closed" ||
-    entry.state === "indeterminate" ||
-    entry.state === null
-  ) {
+  if (entry.state === "closed" || entry.state === "indeterminate") {
     // Update drawer state
     entry.state = "opening";
 
     // Run the open transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {

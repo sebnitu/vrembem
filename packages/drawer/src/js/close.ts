@@ -8,11 +8,7 @@ export async function close(
   focus: boolean = true
 ): Promise<DrawerEntry> {
   // If drawer is opened or indeterminate
-  if (
-    entry.state === "opened" ||
-    entry.state === "indeterminate" ||
-    entry.state === null
-  ) {
+  if (entry.state === "opened" || entry.state === "indeterminate") {
     // Update drawer state
     entry.state = "closing";
 
@@ -26,7 +22,7 @@ export async function close(
 
     // Run the close transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {

@@ -1,15 +1,9 @@
-import { CollectionEntry } from "@vrembem/core";
+import { CollectionEntry, _ } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 import type { Drawer } from "./Drawer";
-
-// TODO: Turn state prop into a getter/setter and remove the need for setState
-// method. I think the original reason for this was pre-proxy implementation.
-
-const priv = new Map<string, { state: string; mode: string }>();
-const _ = (self: DrawerEntry) => priv.get(self.id)!;
 
 export class DrawerEntry extends CollectionEntry {
   inlineState: string = "indeterminate";
@@ -20,7 +14,7 @@ export class DrawerEntry extends CollectionEntry {
     super(parent, query);
 
     // Setup initial states of private variables
-    priv.set(this.id, {
+    _(this, {
       state: "indeterminate",
       mode: "indeterminate"
     });
@@ -37,6 +31,7 @@ export class DrawerEntry extends CollectionEntry {
     return _(this).state;
   }
 
+  // TODO: Maybe add some state validation, only allow specific states to be set
   set state(value: string) {
     if (_(this).state === value) return;
     _(this).state = value;
