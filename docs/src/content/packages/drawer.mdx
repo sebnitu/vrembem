@@ -584,14 +584,14 @@ Drawer and DrawerEntry extend both the [`Collection`](/packages/core/collection-
 
 <ReferenceBar type="property" returns="DrawerEntry | undefined" />
 
-Returns the an active modal drawer if one exists. Otherwise, returns undefined.
+Returns the active modal drawer if one exists. Otherwise, returns undefined.
 
 #### Example
 
 <CodeExample lang="js">
 ```js
 if (drawer.activeModal) {
-  // This will run if a modal drawer is active...
+  // This block will run if a modal drawer is active...
 }
 ```
 </CodeExample>
@@ -609,7 +609,7 @@ Opens a drawer using the provided drawer ID. Will throw an error if the provided
 </ReferenceCard>
 
 <ReferenceCard name="transition" type="boolean" defaults="true">
-  Whether or not to animate transition between states. The transitional state would be `is-opening`.
+  Whether or not to animate transition between states. The transitional state class used is `is-opening`.
 </ReferenceCard>
 
 <ReferenceCard name="focus" type="boolean" defaults="true">
@@ -621,7 +621,7 @@ Opens a drawer using the provided drawer ID. Will throw an error if the provided
 <CodeExample lang="js">
 ```js
 await drawer.open("my-drawer");
-// > Opens the drawer with the id="my-drawer"
+// > Opens the drawer with id="my-drawer"
 
 await drawer.open("fake-drawer");
 // > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
@@ -632,29 +632,93 @@ await drawer.open("fake-drawer");
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-...
+Closes a drawer using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the drawer to close.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is closed. When true, focus is set to the stored element (if any) that triggered the drawer to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await drawer.close("my-drawer");
+// > Closes the drawer with id="my-drawer"
+
+await drawer.close("fake-drawer");
+// > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
+```
+</CodeExample>
 
 ### toggle
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-...
+Toggles a drawer opened or closed depending on its current state using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the drawer to toggle.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is either `is-opening` or `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is toggled. When true, focus is handled appropriately depending on whether the drawer is being opened or closed.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await drawer.close("my-drawer");
+// > Closes the drawer with id="my-drawer"
+
+await drawer.close("fake-drawer");
+// > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
+```
+</CodeExample>
 
 ### entry.dialog
 
-...
+<ReferenceBar type="property" returns="HTMLEntry" />
+
+Stores a reference to the dialog element (`.drawer__dialog`) of the drawer entry. If a dialog element isn't found, this property points to the drawer element (`.drawer`) itself.
 
 ### entry.trigger
 
-...
+<ReferenceBar type="property" returns="HTMLEntry | null" />
+
+Stores a reference to a trigger element. When a drawer is opened the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the drawer is closed.
 
 ### entry.state
 
-...
+<ReferenceBar type="string" />
+
+Stores the current state of the drawer. Possible states:
+
+- `open`
+- `opening`
+- `closed`
+- `closing`
+- `indeterminate`
 
 ### entry.inlineState
 
-...
+Stores the inline state of the drawer.
 
 ### entry.mode
 

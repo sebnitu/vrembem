@@ -5,6 +5,9 @@ import { close } from "./close";
 import { toggle } from "./toggle";
 import type { Drawer } from "./Drawer";
 
+// TODO: Turn state prop into a getter/setter and remove the need for setState
+// method. I think the original reason for this was pre-proxy implementation.
+
 export class DrawerEntry extends CollectionEntry {
   #mode: string;
   dialog: HTMLElement;
