@@ -29,14 +29,6 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
   // Restore the inline state
   entry.state = entry.inlineState;
 
-  // Dispatch custom switch event
-  entry.el.dispatchEvent(
-    new CustomEvent(entry.config.get("customEventPrefix") + "switchMode", {
-      detail: entry.parent,
-      bubbles: true
-    })
-  );
-
   // Emit the switchMode event
   await entry.parent.emit("switchMode", entry);
 
@@ -53,14 +45,6 @@ async function toModal(entry: DrawerEntry): Promise<DrawerEntry> {
 
   // Modal drawer defaults to closed state
   await entry.close(false, false);
-
-  // Dispatch custom switch event
-  entry.el.dispatchEvent(
-    new CustomEvent(entry.config.get("customEventPrefix") + "switchMode", {
-      detail: entry.parent,
-      bubbles: true
-    })
-  );
 
   // Emit the switchMode event
   await entry.parent.emit("switchMode", entry);

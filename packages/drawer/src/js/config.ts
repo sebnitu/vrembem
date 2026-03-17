@@ -68,10 +68,6 @@ export const config = {
   // @type string
   classModal: "drawer_modal",
 
-  // The prefix to apply to custom events
-  // @type string
-  customEventPrefix: "drawer:",
-
   // Whether or not to set the tabindex attribute of the drawer dialog
   // @type boolean
   setTabindex: true,
