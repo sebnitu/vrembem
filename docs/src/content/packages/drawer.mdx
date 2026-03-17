@@ -1,6 +1,6 @@
 ---
 title: Drawer
-description: "A container component that slides in from the left or right. Typically containing menus, search or other content."
+description: "A container component that slides in from the left or right, typically containing menus, search bars, or other content."
 package: "@vrembem/drawer"
 category: component
 ---
@@ -12,7 +12,7 @@ import ReferenceTable from "../../components/ReferenceTable.astro";
 
 # Drawer
 
-A container component that slides in from the left or right. Typically containing menus, search or other content.
+A container component that slides in from the left or right, typically containing menus, search bars, or other content.
 
 ```sh
 npm install @vrembem/drawer
@@ -39,7 +39,7 @@ npm install @vrembem/drawer
 
 ## Options
 
-Drawer is built as a Sass module to handle styles and CSS output along with a corresponding JavaScript class for managing the behavior and plugin integration. Below are the available configuration options for both.
+Drawer is built as a Sass module to handle styles and CSS output, along with a corresponding JavaScript class for managing behavior and plugin integration. Below are the available configuration options.
 
 ### JavaScript
 
@@ -114,10 +114,6 @@ const drawer = new Drawer({
   // @type string
   classModal: "drawer_modal",
 
-  // The prefix to apply to custom events
-  // @type string
-  customEventPrefix: "drawer:",
-
   // Whether or not to set the tabindex attribute of the drawer dialog
   // @type boolean
   setTabindex: true,
@@ -135,7 +131,7 @@ const drawer = new Drawer({
 
 ### Sass
 
-Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
 <CodeExpander lang="scss">
 ```scss
@@ -179,7 +175,7 @@ Drawer comes with the following Sass configuration options that can be set using
 
 ### CSS Variables
 
-Drawer uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined. Instead they are provided with sensible fallbacks.
+Drawer uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="cssvar-drawer" valueLabel="Fallback" filter={false} data={{
   "--vb-drawer-width": "18em",
@@ -194,7 +190,7 @@ Drawer uses CSS variables in a reference and fallback pattern. Variables are ref
 
 ## Basic usage
 
-Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with an `id` and `drawer` class containing a child element with the `drawer__dialog` class. There are two required structure elements for drawers to work correctly:
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with an `id` and `drawer` class, containing a child element with the `drawer__dialog` class. Two structural elements are required for drawers to work correctly:
 
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
@@ -240,19 +236,19 @@ Drawers are composed using classes and data attributes for their triggers. The b
 
 Drawer triggers are defined using three data attributes:
 
-- `data-drawer-open`: Opens a drawer. Takes the id of the drawer it's meant to open.
-- `data-drawer-close`: Closes a drawer. Will close the parent drawer if left value-less. Can also take an id of a drawer to close.
-- `data-drawer-toggle`: Toggles a drawer opened or closed. Takes the id of the drawer it's meant to toggle.
+- `data-drawer-open`: Opens a drawer. Takes the ID of the drawer to open.
+- `data-drawer-close`: Closes a drawer. It will close the parent drawer if left value-less but can also take the ID of a specific drawer to close.
+- `data-drawer-toggle`: Toggles a drawer open or closed. It takes the ID of the drawer to toggle.
 
 <CodeExample>
   ```html
-  <button data-drawer-open="[unique-id]">...</button>
-  <button data-drawer-close="[unique-id]">...</button>
-  <button data-drawer-toggle="[unique-id]">...</button>
+  <button data-drawer-open="drawer-id">...</button>
+  <button data-drawer-close="drawer-id">...</button>
+  <button data-drawer-toggle="drawer-id">...</button>
   ```
 </CodeExample>
 
-The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a role attribute (e.g. `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility. The `aria-modal` attribute is applied automatically based on if the drawer is currently in modal mode.
+The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a `role` attribute (e.g., `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes, if applicable, to further improve accessibility. The `aria-modal` attribute is applied automatically based on whether the drawer is currently in modal mode.
 
 <CodeExample flush>
   <Fragment slot="output">
@@ -297,11 +293,11 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
   ```
 </CodeExample>
 
-> The [dialog component](/packages/dialog) is a great fit for composing a drawer's dialog.
+> The [dialog component](./dialog) is a great fit for composing a drawer's dialog.
 
 ### Modal drawers
 
-There are multiple ways a modal drawer can be created. The simplest being applying the [`drawer_modal`](#drawer_modal) modifier class to the `drawer` element before its been registered. To change a drawer's mode after its been registered, change the `mode` property of the drawer entry from `'inline'` to `'modal'` (or vice versa) in JavaScript.
+There are multiple ways a modal drawer can be created. The simplest is by applying the [`drawer_modal`](#drawer_modal) modifier class to the `drawer` element before it has been registered. To change a drawer's mode after it has been registered, change the `mode` property of the drawer entry from `"inline"` to `"modal"` (or vice versa) in JavaScript.
 
 <CodeExample tabs flush>
   <Fragment slot="output">
@@ -339,7 +335,7 @@ There are multiple ways a modal drawer can be created. The simplest being applyi
   </Fragment>
 </CodeExample>
 
-In cases where you'd like a drawer to switch modes based on a specific viewport width, use the `data-breakpoint` data attribute with either a width value or a breakpoint key.
+In cases where you'd like a drawer to switch modes based on a specific viewport width, use the [`mediaQuery`](./core/media-query) plugin. Set a `data-breakpoint` data attribute with either a width value or a breakpoint key.
 
 <CodeExample flush>
   <Fragment slot="output">
@@ -392,39 +388,11 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   ```
 </CodeExample>
 
-A custom breakpoints object can be passed in using the `breakpoints` option. Otherwise, breakpoints are resolved by looking up a CSS variable using the passed key (e.g., `--vb-breakpoint-[key]`).
-
-<CodeExample lang="js">
-```js
-const drawer = new Drawer({
-  breakpoints: {
-    xs: "480px",
-    sm: "620px",
-    md: "760px",
-    lg: "990px",
-    xl: "1380px"
-  }
-});
-```
-</CodeExample>
-
-<CodeExample lang="css">
-```css
-:root {
-  --vb-breakpoint-xs: 480px;
-  --vb-breakpoint-sm: 620px;
-  --vb-breakpoint-md: 760px;
-  --vb-breakpoint-lg: 990px;
-  --vb-breakpoint-xl: 1380px;
-}
-```
-</CodeExample>
-
-While a modal drawer is active, the contents obscured by the modal are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the drawer dialog and traverse the content outside of the dialog. This does not apply to inline drawers.
+To help improve accessibility, use the [`focusTrap`](./core/focus-trap) plugin when creating modal drawers. While a modal drawer is active, the content obscured by the modal is made inaccessible to all users via a focus trap. This prevents the `TAB` key and screen reader's virtual cursor (arrow keys) from leaving the drawer dialog.
 
 ### Focus management
 
-Drawer dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once closed.
+Drawer dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once it is closed.
 
 <CodeExample flush>
   <Fragment slot="output">
@@ -486,22 +454,28 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
   ```
 </CodeExample>
 
-> To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` option (defaults to `'[data-focus]'`).
+To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` config option (defaults to `'[data-focus]'`).
 
 ### Drawer state
 
-The state of all drawers are saved to local storage and applied persistently under the `VB:DrawerState` local storage key. Set `store: false` to disable the local storage feature. Use `storeKey: "CUSTOM-KEY"` to change the key that local store is saved under.
+Drawer state is managed using three properties on drawer entries:
+
+- [`entry.mode`](#entrymode): Stores and allows changing the current mode of the drawer.
+- [`entry.state`](#entrystate): Stores the current state of the drawer.
+- [`entry.inlineState`](#entryinlinestate): Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`.
+
+To persist inline drawer state across browser page reloads, use the [`propStore`](./core/prop-store) plugin.
 
 ### Behavior and accessibility
 
-Drawers while in their modal state follow a set of patterns expected from other modals on the web. Here's what to expect:
+Drawers in their modal state follow a set of patterns expected from other modals on the web. Here's what to expect:
 
 1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
-2. Modal drawers provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the modal drawer is active, contents obscured by the modal are inaccessible to all users.
-4. When a modal drawer is closed, focus is returned to the initial trigger element that activated the dialog.
+2. Modal drawers provide standard methods for the user to close, such as using the `esc` key or clicking outside the dialog.
+3. While the modal drawer is active, content obscured by the modal is inaccessible to all users.
+4. When a modal drawer is closed, focus is returned to the initial trigger element that activated it.
 
-To take full advantage of modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of the modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"`, when a modal is opened.
 
 #### Example
 
@@ -521,7 +495,7 @@ Here's an example where we want the `drawer-main` content area to be inaccessibl
 
 ## drawer_modal
 
-Applies modal drawer styles to a drawer. This modifier should be applied before the drawer has been registered to properly setup the modal drawer. For more details on modal drawers and how to create them dynamically, please see the [modal drawer](#modal-drawers) documentation.
+Applies modal drawer styles to a drawer. This modifier should be applied before the drawer has been registered to properly set up the modal drawer. For more details on modal drawers and how to create them dynamically, please see the [modal drawer](#modal-drawers) documentation.
 
 <CodeExample flush>
   <Fragment slot="output">
@@ -578,7 +552,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 
 ## Reference
 
-Drawer and DrawerEntry extend both the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes respectively and inherit their APIs. This reference contains only drawer specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information. 
+`Drawer` and `DrawerEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only drawer-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
 ### activeModal
 
@@ -600,7 +574,7 @@ if (drawer.activeModal) {
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-Opens a drawer using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+Opens a drawer using the provided drawer ID. It will throw an error if the provided ID does not match an existing drawer entry.
 
 #### Arguments
 
@@ -613,7 +587,7 @@ Opens a drawer using the provided drawer ID. Will throw an error if the provided
 </ReferenceCard>
 
 <ReferenceCard name="focus" type="boolean" defaults="true">
-  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `[data-focus]` attribute else the drawer dialog element.
+  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer dialog element.
 </ReferenceCard>
 
 #### Example
@@ -632,7 +606,7 @@ await drawer.open("fake-drawer");
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-Closes a drawer using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+Closes a drawer using the provided drawer ID. It will throw an error if the provided ID does not match an existing drawer entry.
 
 #### Arguments
 
@@ -664,7 +638,7 @@ await drawer.close("fake-drawer");
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-Toggles a drawer opened or closed depending on its current state using the provided drawer ID. Will throw an error if the provided ID does not match an existing drawer entry.
+Toggles a drawer open or closed depending on its current state using the provided drawer ID. It will throw an error if the provided ID does not match an existing drawer entry.
 
 #### Arguments
 
@@ -684,10 +658,10 @@ Toggles a drawer opened or closed depending on its current state using the provi
 
 <CodeExample lang="js">
 ```js
-await drawer.close("my-drawer");
-// > Closes the drawer with id="my-drawer"
+await drawer.toggle("my-drawer");
+// > Toggles the drawer with id="my-drawer"
 
-await drawer.close("fake-drawer");
+await drawer.toggle("fake-drawer");
 // > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
 ```
 </CodeExample>
@@ -696,25 +670,52 @@ await drawer.close("fake-drawer");
 
 <ReferenceBar type="property" returns="string" />
 
-Stores the current mode of the drawer.
+Stores and allows changing the current mode of the drawer. There are two modes a drawer can be in:
+- `inline`: This mode is set within the context of the page, typically rendered as an aside. Though it can still be toggled, when opened, it does not restrict access to other content.
+- `modal`: A modal drawer is initially hidden and is rendered on top of other page elements when opened.
+
+A drawer's mode can be changed at any time but is typically toggled based on a viewport breakpoint using the [`mediaQuery`](./core/media-query) plugin.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the drawer element
+const entry = drawer.get("my-drawer");
+
+// Switch the drawer to inline
+entry.mode = "inline";
+
+// Switch the drawer to modal
+entry.mode = "modal";
+
+// Will throw an error if set to an invalid mode
+entry.mode = "asdf";
+// > Uncaught Error: Not a valid drawer mode: "asdf"
+```
+</CodeExample>
 
 ### entry.state
 
 <ReferenceBar type="property" returns="string" />
 
-Stores the current state of the drawer. Possible states:
+Stores the current state of the drawer. Possible states include:
 
-- `open`
-- `opening`
-- `closed`
-- `closing`
-- `indeterminate`
+- `opened`: The drawer is currently open, and its content is accessible.
+- `opening`: A transitional state from closed to open.
+- `closed`: The drawer is currently closed, and its content is hidden.
+- `closing`: A transitional state from open to closed.
+- `indeterminate`: A state that is not directly managed by JavaScript or cannot be determined. This is typically applied for inline drawers whose visibility is managed by CSS instead of JavaScript.
 
 ### entry.inlineState
 
 <ReferenceBar type="property" returns="string" />
 
-Stores the inline state of the drawer.
+Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`. The inline drawer state can be persisted across page loads using the [`propStore`](./core/prop-store) plugin. Possible states include:
+
+- `opened`: The drawer is currently open, and its content is accessible.
+- `closed`: The drawer is currently closed, and its content is hidden.
+- `indeterminate`: A state that is not directly managed by JavaScript or cannot be determined. This is typically applied for inline drawers whose visibility is managed by CSS instead of JavaScript.
 
 ### entry.dialog
 
@@ -726,36 +727,116 @@ Stores a reference to the dialog element (`.drawer__dialog`) of the drawer entry
 
 <ReferenceBar type="property" returns="HTMLEntry | null" />
 
-Stores a reference to a trigger element. When a drawer is opened the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the drawer is closed.
+Stores a reference to a trigger element. When a drawer is opened, the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the drawer is closed.
 
 ### entry.open
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-...
+Opens the drawer if it is currently closed or indeterminate.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-opening`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the drawer element
+const entry = drawer.get("my-drawer");
+
+// Open the drawer
+await entry.open();
+```
+</CodeExample>
 
 ### entry.close
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-...
+Closes the drawer if it is currently open or indeterminate.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is closed. When true, focus is set to the stored element (if any) that triggered the drawer to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the drawer element
+const entry = drawer.get("my-drawer");
+
+// Close the drawer
+await entry.close();
+```
+</CodeExample>
 
 ### entry.toggle
 
 <ReferenceBar type="method" returns="Promise<DrawerEntry>" />
 
-...
+Toggles the drawer open or closed depending on its current state.
 
-### Events
+#### Arguments
 
-Drawer fires custom events for hooking into the drawer lifecycle. All drawer events are fired on the root drawer element (i.e. at the `<aside id="[unique-id]" class="drawer">`).
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is either `is-opening` or `is-closing`.
+</ReferenceCard>
 
-- `drawer:opened` Emits when a drawer has opened.
-- `drawer:closed` Emits when a drawer has closed.
-- `drawer:switchMode` Emits when a drawer's mode changes.
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the drawer is toggled. When true, focus is handled appropriately depending on whether the drawer is being opened or closed.
+</ReferenceCard>
 
-Drawer also fires corresponding lifecycle hooks that can be listened for using the events system.
+#### Example
 
-- `opened` - `drawer.on("opened", callback({ parent, entry }))`
-- `closed` - `drawer.on("closed", callback({ parent, entry }))`
-- `switchMode` - `drawer.on("switchMode", callback({ parent, entry }))`
+<CodeExample lang="js">
+```js
+// Get the drawer element
+const entry = drawer.get("my-drawer");
+
+// Toggle the drawer
+await entry.toggle();
+```
+</CodeExample>
+
+### Lifecycle Hooks
+
+In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hooks), Drawer provides three of its own events to hook into its lifecycle:
+
+<ReferenceCard name="opened" type="event">
+  Emitted when a drawer is opened.
+
+  ```js
+  drawer.on("opened", callback({ parent, entry }));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="closed" type="event">
+  Emitted when a drawer is closed.
+
+  ```js
+  drawer.on("closed", callback({ parent, entry }));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="switchMode" type="event">
+  Emitted when a drawer switches modes.
+
+  ```js
+  drawer.on("switchMode", callback({ parent, entry }));
+  ```
+</ReferenceCard>
