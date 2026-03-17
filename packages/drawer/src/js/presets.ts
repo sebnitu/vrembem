@@ -29,8 +29,7 @@ const presets: {
     }
   },
   propStore: {
-    prop: "inlineState",
-    onChange: ({ entry }) => entry.applyState()
+    prop: "inlineState"
   }
 };
 

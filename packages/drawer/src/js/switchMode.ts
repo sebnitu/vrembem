@@ -26,8 +26,8 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
     entry.config.get("selectorOverflow")
   );
 
-  // Apply the inline state
-  entry.applyState();
+  // Restore the inline state
+  entry.state = entry.inlineState;
 
   // Dispatch custom switch event
   entry.el.dispatchEvent(

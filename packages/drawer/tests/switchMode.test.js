@@ -76,14 +76,6 @@ test("should switch drawer to modal when entry.mode property is set to modal", a
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 });
 
-test("running applyState on a modal drawer should not change its state", async () => {
-  const entry = drawer.get("drawer-1");
-  expect(entry.mode).toBe("modal");
-  expect(entry.state).toBe("closed");
-  await entry.applyState();
-  expect(entry.state).toBe("closed");
-});
-
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
   const entry = drawer.get("drawer-1");
   expect(entry.el).toHaveClass("drawer_modal");
