@@ -1,0 +1,185 @@
+---
+title: core/theme
+description: "Used to define, manage, and output global and component-level themes powered by custom properties."
+parent: core
+group: sass-modules
+---
+
+import ReferenceCard from "../../components/ReferenceCard.astro";
+import ReferenceBar from "../../components/ReferenceBar.astro";
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core/theme";
+  ```
+</CodeExample>
+
+## Basic usage
+
+The most common use-case for themes is providing a light and dark mode but also any custom theme can be created and used. This module provides mixins for setting, removing, and outputting theme values, supporting dynamic theming and system color scheme preferences.
+
+Theme colors differ from palette colors in that you can create a semantic color name that changes it's value depending on the active theme.
+
+### theme.class()
+
+<ReferenceBar type="function" returns="string" />
+
+Function for outputting a theme class. Returns the theme class with appropriate prefix. Throws an error if theme does not exist.
+
+#### Arguments
+
+<ReferenceCard name="$theme" type="string">
+  The name of the theme class to build and return.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Output: .vb-theme-light { ... }
+  #{theme.class("light")} {
+    // ...
+  }
+
+  // Output: .vb-theme-dark { ... }
+  #{theme.class("dark")} {
+    // ...
+  }
+  ```
+</CodeExample>
+
+### theme.set()
+
+<ReferenceBar type="mixin" />
+
+Set a new or modify existing theme custom properties. These are stored as CSS variables in the `core/css` module.
+
+#### Arguments
+
+<ReferenceCard name="$theme" type="string">
+  The theme to set a property value for.
+</ReferenceCard>
+
+<ReferenceCard name="$component" type="string">
+  The component to set a property value for. If not provided, `"core"` is used as the default component.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map" defaults="null">
+  The property value to set for the theme. Can be a map containing prop/value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any" defaults="null">
+  The value to set for the respective property.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Set the foreground custom property for the card dark theme.
+  @include theme.set("dark", "card", "foreground", blue);
+
+  // Set the background and foreground custom properties for the card light theme using a map of property/value pairs.
+  @include theme.set("light", "card", (
+    "background": blue,
+    "foreground": white,
+  ));
+
+  // Create an empty theme by not passing a property or value. This will take the properties of the default theme once output.
+  @include theme.set("dark", "card");
+  ```
+</CodeExample>
+
+### theme.remove()
+
+<ReferenceBar type="mixin" />
+
+Remove a custom property from themes in a variety of ways.
+
+#### Arguments
+
+<ReferenceCard name="$theme" type="string">
+  The component theme to search under or remove. Set to `"*"` to remove all themes from the specified component or if a `$prop` is provided, all the property from all component themes.
+</ReferenceCard>
+
+<ReferenceCard name="$component" type="string">
+  The component name to search under. Set to `"*"` for the following `$theme` and `$prop` arguments to apply to all component themes.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map" defaults='"*"'>
+  The property name to remove. Set to `"*"` to remove the entire theme from the specified component.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Remove the dark theme from buttons component
+  @include theme.remove("dark", "button");
+
+  // Remove the border-color property from all button themes
+  @include theme.remove("*", "button", "border-color");
+
+  // Remove the background property from the light button theme
+  @include theme.remove("light", "button", "border-color");
+
+  // Remove all themes from all components
+  @include theme.remove("*", "*");
+  ```
+</CodeExample>
+
+### theme.output-theme()
+
+<ReferenceBar type="mixin" />
+
+Output all the custom properties and values of a component theme or output a specific theme from all components. The root selector or theme class is not included in the output.
+
+#### Arguments
+
+<ReferenceCard name="$theme" type="string" defaults='"light"'>
+  The theme to output.
+</ReferenceCard>
+
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  The component to output. Use `"*"` to output a theme from all components.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Output the custom properties for the button light theme.
+  .vb-theme-light {
+    @include theme.output-theme("light", "button");
+  }
+
+  // Output the custom properties for the light theme from all components.
+  .vb-theme-light {
+    @include theme.output-theme("light", "*");
+  }
+  ```
+</CodeExample>
+
+### theme.output()
+
+<ReferenceBar type="mixin" />
+
+Output all the themes for a specific component. Each theme will be wrapped in its own appropriate root selector and theme class. Themes named "light" or "dark" will have a `prefers-color-scheme` media query applied.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string" defaults='"*"'>
+  The component to output all applied themes. If no component is passed will output all applied themes for all components.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+  ```scss
+  // Output all themes of all components.
+  @include theme.output();
+
+  // Output all themes of the notice component.
+  @include theme.output("notice");
+  ```
+</CodeExample>
