@@ -1,0 +1,276 @@
+---
+title: Radio
+description: "Radios allow the user to select a single option from a set."
+package: "@vrembem/radio"
+category: form-control
+---
+
+import ReferenceTable from "../components/ReferenceTable.astro";
+
+# Radio
+
+Radios allow the user to select a single option from a set.
+
+```sh
+npm install @vrembem/radio
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/radio";
+  ```
+</CodeExample>
+
+## Options
+
+Radio is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Radio comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/radio" with (
+  $config: (
+    // Map for outputting radio_size_[key] modifier variants
+    // @type map
+    "radio-size": (
+      "breakpoints": true,
+      "default": css.get("form-control-size"),
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Radio uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-radio" valueLabel="Fallback" expandable={true} data={{
+  "--vb-radio-accent": "var(--vb-form-control-accent)",
+  "--vb-radio-size": "var(--vb-form-control-size)",
+
+  "--vb-radio-background": "var(--vb-form-control-background)",
+  "--vb-radio-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-radio-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-radio-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-radio-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-radio-background-border-radius": "var(--vb-form-control-background-border-radius)",
+
+  "--vb-radio-foreground": "var(--vb-form-control-foreground)",
+
+  "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
+
+  "--vb-radio-circle-size": "1.25em",
+  "--vb-radio-border-width": "2px",
+  "--vb-radio-dot-size": "0.5em",
+}} />
+
+## Basic usage
+
+Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
+
+<CodeExample>
+  <Fragment slot="output">
+    <span class="radio">
+      <input type="radio" class="radio__native" name="example-1" value="1" checked />
+      <span class="radio__background">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+    </span>
+    <span class="radio">
+      <input type="radio" class="radio__native" name="example-1" value="2" />
+      <span class="radio__background">
+        <span class="radio__circle">
+          <span class="radio__dot"></span>
+        </span>
+      </span>
+    </span>
+  </Fragment>
+  ```html
+  <span class="radio">
+    <input type="radio" class="radio__native">
+    <span class="radio__background">
+      <span class="radio__circle">
+        <span class="radio__dot"></span>
+      </span>
+    </span>
+  </span>
+  ```
+</CodeExample>
+
+### Radio with labels
+
+For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="1" checked />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="2" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="radio">
+        <input type="radio" class="radio__native" name="example-2" value="3" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <label>
+    <span class="radio">
+      ...
+    </span>
+    <span>Radio with a label</span>
+  </label>
+  ```
+</CodeExample>
+
+## radio_size_[key]
+
+Adjust the size of a radio by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `radio-size` config options map.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex flex_gap_xl">
+      <div>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_sm">
+          <input type="radio" class="radio__native" name="example-3" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <div>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio">
+          <input type="radio" class="radio__native" name="example-4" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+      <div>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" checked />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+        <span class="radio radio_size_lg">
+          <input type="radio" class="radio__native" name="example-5" />
+          <span class="radio__background">
+            <span class="radio__circle">
+              <span class="radio__dot"></span>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+  </Fragment>
+  ```html
+  <span class="radio radio_size_sm">
+    ...
+  </span>
+
+  <span class="radio radio_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `radio_size_sm`
+- `radio_size_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `radio-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
+        <input type="radio" class="radio__native" name="example-5" />
+        <span class="radio__background">
+          <span class="radio__circle">
+            <span class="radio__dot"></span>
+          </span>
+        </span>
+      </span>
+      <span>Radio</span>
+      <span class="badge lg:display-none">size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
+      <span class="badge display-none xl:display-block">size_lg</span>
+    </label>
+  </div>
+  ```html
+  <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
+    ...
+  </span>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:radio_size_[key]`
+- `sm:radio_size_[key]`
+- `md:radio_size_[key]`
+- `lg:radio_size_[key]`
+- `xl:radio_size_[key]`

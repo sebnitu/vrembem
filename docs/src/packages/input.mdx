@@ -1,0 +1,267 @@
+---
+title: Input
+description: "A component for displaying form input elements."
+package: "@vrembem/input"
+category: form-control
+---
+
+import ReferenceBar from "../components/ReferenceBar.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
+import ReferenceTable from "../components/ReferenceTable.astro";
+
+# Input
+
+A component for displaying form input elements.
+
+```sh
+npm install @vrembem/input
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/input";
+  ```
+</CodeExample>
+
+## Options
+
+Input is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Input comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/input" with (
+  $config: (
+    // Map for outputting input_size_[key] modifier variants
+    // @type map
+    "input-size": (
+      "breakpoints": true,
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg"),
+    ),
+
+    // Map for outputting input_state_[key] modifier variants
+    // @type map
+    "input-state": (
+      "success": palette.get("primary"),
+      "error": palette.get("important")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Input uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-input" valueLabel="Fallback" expandable={true} data={{
+  "--vb-input-accent": "var(--vb-form-control-accent)",
+  "--vb-input-size": "var(--vb-form-control-size)",
+  "--vb-input-line-height": "var(--vb-form-control-line-height)",
+  "--vb-input-padding": "var(--vb-form-control-padding-y)",
+  "--vb-input-border-radius": "var(--vb-form-control-border-radius)",
+  "--vb-input-border-width": "var(--vb-form-control-border-width)",
+  "--vb-input-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-input-transition-property": "var(--vb-form-control-transition-property)",
+  "--vb-input-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
+
+  "--vb-input-background": "var(--vb-background)",
+  "--vb-input-foreground": "var(--vb-foreground)",
+  "--vb-input-border-color": "var(--vb-border-color-dark)",
+  "--vb-input-box-shadow": "inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1)",
+
+  "--vb-input-background-hover": "var(--vb-input-background)",
+  "--vb-input-foreground-hover": "var(--vb-input-foreground)",
+  "--vb-input-border-color-hover": "var(--vb-input-border-color, var(--vb-border-color-darker))",
+  "--vb-input-box-shadow-hover": "inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.1)",
+
+  "--vb-input-background-focus": "var(--vb-input-background)",
+  "--vb-input-foreground-focus": "var(--vb-input-foreground)",
+  "--vb-input-border-color-focus": "var(--vb-input-border-color, var(--vb-input-accent))",
+  "--vb-input-box-shadow-focus": "none",
+
+  "--vb-input-background-readonly": "var(--vb-background-dark)",
+  "--vb-input-background-disabled": "var(--vb-background-darker)",
+  "--vb-input-foreground-placeholder": "var(--vb-foreground-lighter)",
+}} />
+
+## Basic usage
+
+The most basic implementation of the input component consists of the `input` class applied to an `<input>` element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" placeholder="Example input..." />
+  </Fragment>
+  ```html
+  <input class="input" type="text" placeholder="Example input..." />
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the input will provide visual indication that the input is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" disabled />
+  </Fragment>
+  ```html
+  <input class="input" type="text" disabled />
+  ```
+</CodeExample>
+
+### Readonly
+
+Adding the boolean `readonly` attribute to the input will provide visual indication that the user should not be able to edit the value of the input.
+
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input" type="text" value="Readonly example" readonly />
+  </Fragment>
+  ```html
+  <input class="input" type="text" readonly />
+  ```
+</CodeExample>
+
+## input_auto
+
+Sets the width of an input to `auto` instead of the base component width of `100%`.
+
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input input_auto" type="text" />
+  </Fragment>
+  ```html
+  <input class="input input_auto" type="text" />
+  ```
+</CodeExample>
+
+## input_size_[key]
+
+Adjust the size of an input by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `input-size` config options map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <input class="input input_size_sm" type="text" />
+    <input class="input" type="text" />
+    <input class="input input_size_lg" type="text" />
+  </div>
+  ```html
+  <input class="input input_size_sm" type="text" />
+  <input class="input input_size_lg" type="text" />
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `input_size_sm`
+- `input_size_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `input-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
+    <div class="flex flex_inline flex_gap_sm align-items-center">
+      <span>Current active size modifier:</span>
+      <span class="badge lg:display-none">input_size_sm</span>
+      <span class="badge display-none lg:display-block xl:display-none">lg:input_size_md</span>
+      <span class="badge display-none xl:display-block">xl:input_size_lg</span>
+    </div>
+  </div>
+  ```html
+  <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:input_size_[key]`
+- `sm:input_size_[key]`
+- `md:input_size_[key]`
+- `lg:input_size_[key]`
+- `xl:input_size_[key]`
+
+## input_state_[key]
+
+Apply styles for changing the look and feel of an input to better reflect the current state. These modifiers are generated using key/value pairs of the `input-state` config options map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <input class="input input_state_success" type="text" />
+    <input class="input input_state_error" type="text" />
+  </div>
+  ```html
+  <input class="input input_state_success" type="text" />
+  <input class="input input_state_error" type="text" />
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `input_state_success`
+- `input_state_error`
+
+## input_type_[key]
+
+Apply unique styles for various input types. These form controls share base styles with the basic input, including the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) elements.
+
+<CodeExample resettable>
+  <div slot="output" class="spacing">
+    <select class="input input_type_select" name="">
+      <option value="">Select one</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <textarea class="input input_type_textarea" rows="3"></textarea>
+  </div>
+  ```html
+  <select class="input input_type_select" name="">
+    <option value="">Select one</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+
+  <textarea class="input input_type_textarea" rows="3"></textarea>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `input_type_select`
+- `input_type_textarea`
+
+## Reference
+
+Below is a reference to available input mixins.
+
+### input-base
+
+<ReferenceBar type="mixin" />
+
+Output the base styles for an input component. This includes:
+- Setup of input specific CSS variables with shared form-control fallbacks.
+- Setup of focus-ring CSS variables and initial state.
+- Apply base styles and resets so browsers render inputs consistently.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/input";
+
+.custom-input {
+  @include input-base;
+  // Your custom variant styles here...
+}
+```
+</CodeExample>
