@@ -556,7 +556,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 
 ### activeModal
 
-<ReferenceBar type="property" returns="DrawerEntry | undefined" />
+<ReferenceBar type="DrawerEntry | undefined" />
 
 Returns the active modal drawer if one exists. Otherwise, returns undefined.
 
@@ -668,7 +668,7 @@ await drawer.toggle("fake-drawer");
 
 ### entry.mode
 
-<ReferenceBar type="property" returns="string" />
+<ReferenceBar type="string" />
 
 Stores and allows changing the current mode of the drawer. There are two modes a drawer can be in:
 - `inline`: This mode is set within the context of the page, typically rendered as an aside. Though it can still be toggled, when opened, it does not restrict access to other content.
@@ -697,7 +697,7 @@ entry.mode = "asdf";
 
 ### entry.state
 
-<ReferenceBar type="property" returns="string" />
+<ReferenceBar type="string" />
 
 Stores the current state of the drawer. Possible states include:
 
@@ -709,7 +709,7 @@ Stores the current state of the drawer. Possible states include:
 
 ### entry.inlineState
 
-<ReferenceBar type="property" returns="string" />
+<ReferenceBar type="string" />
 
 Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`. The inline drawer state can be persisted across page loads using the [`propStore`](./core/prop-store) plugin. Possible states include:
 
@@ -719,13 +719,13 @@ Stores the inline state of the drawer. This is used to restore the inline state 
 
 ### entry.dialog
 
-<ReferenceBar type="property" returns="HTMLEntry" />
+<ReferenceBar type="HTMLEntry" />
 
 Stores a reference to the dialog element (`.drawer__dialog`) of the drawer entry. If a dialog element isn't found, this property points to the drawer element (`.drawer`) itself.
 
 ### entry.trigger
 
-<ReferenceBar type="property" returns="HTMLEntry | null" />
+<ReferenceBar type="HTMLEntry | null" />
 
 Stores a reference to a trigger element. When a drawer is opened, the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the drawer is closed.
 
