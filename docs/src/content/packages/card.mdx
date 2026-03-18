@@ -22,6 +22,49 @@ npm install @vrembem/card
   ```
 </CodeExample>
 
+## Options
+
+Card uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-card" valueLabel="Fallback" expandable={true} data={{
+  "--vb-card-background": {
+    "light": "var(--vb-background)",
+    "dark": "var(--vb-background-darker)"
+  },
+  "--vb-card-foreground": "var(--vb-foreground-light)",
+  "--vb-card-border": "1px solid var(--vb-border-color)",
+  "--vb-card-sep-border": "1px solid var(--vb-border-color)",
+  "--vb-card-border-radius": "var(--vb-border-radius)",
+  "--vb-card-box-shadow": "none",
+  "--vb-card-padding": "1.25em",
+
+  // Transition vars
+  "--vb-card-transition-duration": "var(--vb-transition-duration)",
+  "--vb-card-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-card-transition-property": "background-color, border-color, box-shadow, transform",
+  
+  // Title element
+  "--vb-card-title-color": "var(--vb-foreground)",
+  "--vb-card-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-card-title-font-weight": "var(--vb-font-weight-semi-bold)",
+  "--vb-card-title-line-height": "inherit",
+
+  // Screen element
+  "--vb-card-screen-background": {
+    "light": "var(--vb-background)",
+    "dark": "var(--vb-background-darker)"
+  },
+  "--vb-card-screen-opacity": {
+    "light": "0.9",
+    "dark": "0.8"
+  },
+
+  // Link element
+  "--vb-card-link-box-shadow": "var(--vb-box-shadow-2)",
+  "--vb-card-link-box-shadow-hover": "var(--vb-box-shadow-3)",
+  "--vb-card-link-offset": "-0.25em",
+}} />
+
 ## Basic usage
 
 Cards are a highly composable container component that comes with a variety of elements. The three most basic are:
@@ -153,46 +196,3 @@ When creating a card using the anchor `<a>` element, additional styles are appli
   </a>
   ```
 </CodeExample>
-
-## Reference
-
-Below is a reference to all CSS variables that are defined or referenced by the `card` component along with their fallback values. Some variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-card" valueLabel="Fallback" data={{
-  "--vb-card-background": {
-    "light": "var(--vb-background)",
-    "dark": "var(--vb-background-darker)"
-  },
-  "--vb-card-foreground": "var(--vb-foreground-light)",
-  "--vb-card-border": "1px solid var(--vb-border-color)",
-  "--vb-card-sep-border": "1px solid var(--vb-border-color)",
-  "--vb-card-border-radius": "var(--vb-border-radius)",
-  "--vb-card-box-shadow": "none",
-  "--vb-card-padding": "1.25em",
-
-  // Transition vars
-  "--vb-card-transition-duration": "var(--vb-transition-duration)",
-  "--vb-card-transition-timing-function": "var(--vb-transition-timing-function)",
-  "--vb-card-transition-property": "background-color, border-color, box-shadow, transform",
-  
-  // Title element
-  "--vb-card-title-color": "var(--vb-foreground)",
-  "--vb-card-title-font-size": "var(--vb-font-size-lg)",
-  "--vb-card-title-font-weight": "var(--vb-font-weight-semi-bold)",
-  "--vb-card-title-line-height": "inherit",
-
-  // Screen element
-  "--vb-card-screen-background": {
-    "light": "var(--vb-background)",
-    "dark": "var(--vb-background-darker)"
-  },
-  "--vb-card-screen-opacity": {
-    "light": "0.9",
-    "dark": "0.8"
-  },
-
-  // Link element
-  "--vb-card-link-box-shadow": "var(--vb-box-shadow-2)",
-  "--vb-card-link-box-shadow-hover": "var(--vb-box-shadow-3)",
-  "--vb-card-link-offset": "-0.25em",
-}} />

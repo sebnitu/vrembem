@@ -21,23 +21,56 @@ npm install @vrembem/switch
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Switch comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Switch is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
 
+### Sass
+
+Switch comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
 ```scss
-$config: (
-  // Map for outputting switch_size_[key] modifier variants
-  // @type map
-  "switch-size": (
-    "breakpoints": true,
-    "default": css.get("form-control-size"),
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+@use "@vrembem/switch" with (
+  $config: (
+    // Map for outputting switch_size_[key] modifier variants
+    // @type map
+    "switch-size": (
+      "breakpoints": true,
+      "default": css.get("form-control-size"),
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg")
+    )
   )
 );
 ```
+</CodeExample>
+
+### CSS Variables
+
+Switch uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-switch" valueLabel="Fallback" expandable={true} data={{
+  "--vb-switch-accent": "var(--vb-form-control-accent)",
+  "--vb-switch-size": "var(--vb-form-control-size)",
+
+  "--vb-switch-background": "var(--vb-form-control-background)",
+  "--vb-switch-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-switch-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-switch-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-switch-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-switch-background-border-radius": "var(--vb-form-control-background-border-radius)",
+
+  "--vb-switch-foreground": "var(--vb-form-control-foreground)",
+
+  "--vb-switch-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-switch-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
+
+  "--vb-switch-track-size": "1.25em",
+  "--vb-switch-border-width": "2px",
+  "--vb-switch-border-radius": "var(--vb-border-radius-circle)",
+}} />
 
 ## Basic usage
 
@@ -209,28 +242,3 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:switch_size_[key]`
 - `lg:switch_size_[key]`
 - `xl:switch_size_[key]`
-
-## Reference
-
-Below is a reference to all CSS variables that are referenced by the `switch` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-switch" valueLabel="Fallback" data={{
-  "--vb-switch-accent": "var(--vb-form-control-accent)",
-  "--vb-switch-size": "var(--vb-form-control-size)",
-
-  "--vb-switch-background": "var(--vb-form-control-background)",
-  "--vb-switch-background-opacity": "var(--vb-form-control-background-opacity)",
-  "--vb-switch-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
-  "--vb-switch-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
-  "--vb-switch-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
-  "--vb-switch-background-border-radius": "var(--vb-form-control-background-border-radius)",
-
-  "--vb-switch-foreground": "var(--vb-form-control-foreground)",
-
-  "--vb-switch-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-switch-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
-
-  "--vb-switch-track-size": "1.25em",
-  "--vb-switch-border-width": "2px",
-  "--vb-switch-border-radius": "var(--vb-border-radius-circle)",
-}} />

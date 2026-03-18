@@ -21,23 +21,56 @@ npm install @vrembem/radio
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Radio comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Radio is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
 
+### Sass
+
+Radio comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
 ```scss
-$config: (
-  // Map for outputting radio_size_[key] modifier variants
-  // @type map
-  "radio-size": (
-    "breakpoints": true,
-    "default": css.get("form-control-size"),
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+@use "@vrembem/radio" with (
+  $config: (
+    // Map for outputting radio_size_[key] modifier variants
+    // @type map
+    "radio-size": (
+      "breakpoints": true,
+      "default": css.get("form-control-size"),
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg")
+    )
   )
 );
 ```
+</CodeExample>
+
+### CSS Variables
+
+Radio uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-radio" valueLabel="Fallback" expandable={true} data={{
+  "--vb-radio-accent": "var(--vb-form-control-accent)",
+  "--vb-radio-size": "var(--vb-form-control-size)",
+
+  "--vb-radio-background": "var(--vb-form-control-background)",
+  "--vb-radio-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-radio-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-radio-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-radio-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-radio-background-border-radius": "var(--vb-form-control-background-border-radius)",
+
+  "--vb-radio-foreground": "var(--vb-form-control-foreground)",
+
+  "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
+
+  "--vb-radio-circle-size": "1.25em",
+  "--vb-radio-border-width": "2px",
+  "--vb-radio-dot-size": "0.5em",
+}} />
 
 ## Basic usage
 
@@ -241,28 +274,3 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:radio_size_[key]`
 - `lg:radio_size_[key]`
 - `xl:radio_size_[key]`
-
-## Reference
-
-Below is a reference to all CSS variables that are referenced by the `radio` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-radio" valueLabel="Fallback" data={{
-  "--vb-radio-accent": "var(--vb-form-control-accent)",
-  "--vb-radio-size": "var(--vb-form-control-size)",
-
-  "--vb-radio-background": "var(--vb-form-control-background)",
-  "--vb-radio-background-opacity": "var(--vb-form-control-background-opacity)",
-  "--vb-radio-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
-  "--vb-radio-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
-  "--vb-radio-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
-  "--vb-radio-background-border-radius": "var(--vb-form-control-background-border-radius)",
-
-  "--vb-radio-foreground": "var(--vb-form-control-foreground)",
-
-  "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
-
-  "--vb-radio-circle-size": "1.25em",
-  "--vb-radio-border-width": "2px",
-  "--vb-radio-dot-size": "0.5em",
-}} />

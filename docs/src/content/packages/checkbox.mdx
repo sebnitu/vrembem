@@ -21,23 +21,57 @@ npm install @vrembem/checkbox
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Checkbox comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Checkbox is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
 
+### Sass
+
+Checkbox comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
 ```scss
-$config: (
-  // Map for outputting checkbox_size_[key] modifier variants
-  // @type map
-  "checkbox-size": (
-    "breakpoints": true,
-    "default": css.get("form-control-size"),
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+@use "@vrembem/checkbox" with (
+  $config: (
+    // Map for outputting checkbox_size_[key] modifier variants
+    // @type map
+    "checkbox-size": (
+      "breakpoints": true,
+      "default": css.get("form-control-size"),
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg")
+    )
   )
 );
 ```
+</CodeExample>
+
+### CSS Variables
+
+Checkbox uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-checkbox" valueLabel="Fallback" expandable={true} data={{
+  "--vb-checkbox-accent": "var(--vb-form-control-accent)",
+  "--vb-checkbox-size": "var(--vb-form-control-size)",
+
+  "--vb-checkbox-background": "var(--vb-form-control-background)",
+  "--vb-checkbox-background-opacity": "var(--vb-form-control-background-opacity)",
+  "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
+  "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
+  "--vb-checkbox-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
+  "--vb-checkbox-background-border-radius": "var(--vb-form-control-background-border-radius)",
+
+  "--vb-checkbox-foreground": "var(--vb-form-control-foreground)",
+
+  "--vb-checkbox-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-checkbox-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
+
+  "--vb-checkbox-box-size": "1.2em",
+  "--vb-checkbox-border-width": "2px",
+  "--vb-checkbox-border-radius": "var(--vb-border-radius)",
+  "--vb-checkbox-icon-size": "0.8em",
+}} />
 
 ## Basic usage
 
@@ -232,29 +266,3 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:checkbox_size_[key]`
 - `lg:checkbox_size_[key]`
 - `xl:checkbox_size_[key]`
-
-## Reference
-
-Below is a reference to all CSS variables that are referenced by the `checkbox` component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-checkbox" valueLabel="Fallback" data={{
-  "--vb-checkbox-accent": "var(--vb-form-control-accent)",
-  "--vb-checkbox-size": "var(--vb-form-control-size)",
-
-  "--vb-checkbox-background": "var(--vb-form-control-background)",
-  "--vb-checkbox-background-opacity": "var(--vb-form-control-background-opacity)",
-  "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
-  "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
-  "--vb-checkbox-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
-  "--vb-checkbox-background-border-radius": "var(--vb-form-control-background-border-radius)",
-
-  "--vb-checkbox-foreground": "var(--vb-form-control-foreground)",
-
-  "--vb-checkbox-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-checkbox-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
-
-  "--vb-checkbox-box-size": "1.2em",
-  "--vb-checkbox-border-width": "2px",
-  "--vb-checkbox-border-radius": "var(--vb-border-radius)",
-  "--vb-checkbox-icon-size": "0.8em",
-}} />

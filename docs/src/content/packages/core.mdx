@@ -27,66 +27,68 @@ npm install @vrembem/core
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Core comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander>
+<CodeExpander lang="scss">
 ```scss
-$config: (
-  // A prefix to apply to block class names. Provided value is automatically 
-  // suffixed with a "-" character when applied.
-  // @type string
-  "prefix-block": "",
+@use "@vrembem/core" with (
+  $config: (
+    // A prefix to apply to block class names. Provided value is automatically 
+    // suffixed with a "-" character when applied.
+    // @type string
+    "prefix-block": "",
 
-  // A prefix to apply to element class names
-  // @type string
-  "prefix-element": "__",
+    // A prefix to apply to element class names
+    // @type string
+    "prefix-element": "__",
 
-  // A prefix to apply to modifier class names
-  // @type string
-  "prefix-modifier": "_",
+    // A prefix to apply to modifier class names
+    // @type string
+    "prefix-modifier": "_",
 
-  // A prefix to apply to modifier value class names
-  // @type string
-  "prefix-modifier-value": "_",
+    // A prefix to apply to modifier value class names
+    // @type string
+    "prefix-modifier-value": "_",
 
-  // A prefix to apply to CSS variables. Map value requires a default key and
-  // value along with any component specific prefixes as needed. Provided
-  // value(s) are automatically suffixed with a "-" character when applied.
-  // @type string | map
-  "prefix-cssvar": "vb",
+    // A prefix to apply to CSS variables. Map value requires a default key and
+    // value along with any component specific prefixes as needed. Provided
+    // value(s) are automatically suffixed with a "-" character when applied.
+    // @type string | map
+    "prefix-cssvar": "vb",
 
-  // The palette to build CSS variables from
-  // @type map
-  "palette": (
-    "primary": hsl(152deg 60% 50%),
-    "secondary": hsl(214deg 50% 50%),
-    "neutral": hsl(214deg 20% 50%),
-    "important": hsl(0deg 80% 50%)
-  ),
+    // The palette to build CSS variables from
+    // @type map
+    "palette": (
+      "primary": hsl(152deg 60% 50%),
+      "secondary": hsl(214deg 50% 50%),
+      "neutral": hsl(214deg 20% 50%),
+      "important": hsl(0deg 80% 50%)
+    ),
 
-  // The default color lightness to use when referencing a color
-  // @type number
-  "palette-default": null,
+    // The default color lightness to use when referencing a color
+    // @type number
+    "palette-default": null,
 
-  // A prefix to apply to theme names. Provided value is automatically suffixed
-  // with a "-" character when applied.
-  // @type string
-  "theme-prefix": "vb-theme",
+    // A prefix to apply to theme names. Provided value is automatically suffixed
+    // with a "-" character when applied.
+    // @type string
+    "theme-prefix": "vb-theme",
 
-  // Sets the default theme option
-  // @type string
-  "theme-default": "light",
+    // Sets the default theme option
+    // @type string
+    "theme-default": "light",
 
-  // A map of breakpoint key/value pairs
-  // @type map
-  "breakpoints": (
-    "xs": 480px,
-    "sm": 620px,
-    "md": 760px,
-    "lg": 990px,
-    "xl": 1380px
+    // A map of breakpoint key/value pairs
+    // @type map
+    "breakpoints": (
+      "xs": 480px,
+      "sm": 620px,
+      "md": 760px,
+      "lg": 990px,
+      "xl": 1380px
+    )
   )
 );
 ```
