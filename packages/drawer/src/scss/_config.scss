@@ -1,42 +1,44 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
 
-// Register the dialog component since we will be providing overrides
-@include css.register("dialog");
+$config: () !default;
 
-$class-frame: "drawer-frame" !default;
-$class-main: "drawer-main" !default;
-$frame-height: 100vh !default;
-$z-index: 900 !default;
-$width: 18em !default;
-$max-width: 80% !default;
-$transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration")) !default;
-$transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function")) !default;
-
-// Dialog override map is used to override `dialog` custom properties. Applies
-// to both inline and modal drawer dialogs.
-$dialog-override: () !default;
-
-// Only applies to inline drawer dialogs
-$inline-dialog-override: (
-  "background": css.get("background-darker"),
-  "box-shadow": none
-) !default;
-
-// Only applies to modal drawer dialogs
-$modal-dialog-override: () !default;
-
-// drawer_modal
-$modal-z-index: 950 !default;
-
-// Custom properties
-@include css.set(
-  "drawer",
-  (
-    "transition-duration": $transition-duration,
-    "transition-timing-function": $transition-timing-function
+// prettier-ignore
+$default: (
+  // A map containing drawer elements as keys and their preferred class 
+  // selectors. These are layout elements used to provide the context styles for
+  // drawers but are independent from the drawer component itself.
+  // @type map
+  "drawer-classes": (
+    "frame": "drawer-frame",
+    "main": "drawer-main",
   ),
-  "required"
+
+  // Used to set the width property of drawers and margin clearance of the 
+  // drawer-main element for inline drawers.
+  // @type number
+  "drawer-width": 18em,
+
+  // Used to set the max-width property of drawers
+  // @type percentage
+  "drawer-max-width": 80%,
+
+  // A map of CSS variable overrides to pass to the drawer dialog element
+  // @type map
+  "drawer-dialog-override": (),
+
+  // A map of CSS variable overrides to pass to the drawer inline dialog element
+  // @type map
+  "drawer-inline-dialog-override": (
+    "box-shadow": none
+  ),
+
+  // A map of CSS variable overrides to pass to the drawer modal dialog element
+  // @type map
+  "drawer-modal-dialog-override": ()
 );
+
+@include config.apply($config, $default);
+@include css.register("drawer");
+@include css.register("dialog");

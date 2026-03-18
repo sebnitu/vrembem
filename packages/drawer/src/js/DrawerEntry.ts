@@ -1,46 +1,55 @@
-import { CollectionEntry } from "@vrembem/core";
+import { CollectionEntry, _ } from "@vrembem/core";
 import { switchMode } from "./switchMode";
 import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
+import { validate } from "./helpers/validate";
 import type { Drawer } from "./Drawer";
 
 export class DrawerEntry extends CollectionEntry {
-  #mode: string;
   dialog: HTMLElement;
   trigger: HTMLElement | null;
-  state: string | null;
-  inlineState: string | null;
 
   constructor(parent: Drawer, query: string | HTMLElement) {
     super(parent, query);
-    this.#mode = "indeterminate";
+
+    // Setup initial states of private variables
+    _(this, {
+      mode: "indeterminate",
+      state: "indeterminate",
+      inlineState: "indeterminate"
+    });
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
       this.el.querySelector(this.config.get("selectorDialog")) || this.el;
 
+    // Set the initial state of the trigger element
     this.trigger = null;
-    this.state = null;
-    this.inlineState = null;
   }
 
   get mode(): string {
-    return this.#mode;
+    return _(this).mode;
   }
 
   set mode(value: string) {
-    if (this.#mode === value) return;
-    this.#mode = value;
+    if (_(this).mode === value) return;
+    validate("mode", value);
+    _(this).mode = value;
     switchMode(this);
   }
 
-  setState(value: string): void {
-    this.state = value;
-    // If mode is inline and not in a transitioning state...
-    const ignoreStates = ["opening", "closing"];
+  get state(): string {
+    return _(this).state;
+  }
 
-    if (this.mode === "inline" && !ignoreStates.includes(value)) {
+  set state(value: string) {
+    if (_(this).state === value) return;
+    validate("state", value);
+    _(this).state = value;
+
+    // If mode is inline and not in a transitioning state...
+    if (this.mode === "inline" && !["opening", "closing"].includes(value)) {
       // Save the inline state
       this.inlineState = value;
     }
@@ -54,35 +63,26 @@ export class DrawerEntry extends CollectionEntry {
     }
   }
 
-  async applyState(): Promise<DrawerEntry> {
-    // Only apply state if mode is not set to "modal"
-    if (this.mode === "modal") return this;
+  get inlineState(): string {
+    return _(this).inlineState;
+  }
 
-    // Check the state stored in inline state
+  set inlineState(value: string) {
+    if (_(this).inlineState === value) return;
+    validate("inlineState", value);
+    _(this).inlineState = value;
+
+    // Return if the current mode is set to "modal"
+    if (this.mode === "modal") return;
+
+    // Apply the inline state
     if (this.inlineState === "opened") {
-      return await this.open(false, false);
+      this.open(false, false);
+    } else if (this.inlineState === "closed") {
+      this.close(false, false);
+    } else {
+      this.state = "indeterminate";
     }
-
-    if (this.inlineState === "closed") {
-      return await this.close(false, false);
-    }
-
-    // Determine the state based on the presence of a state class. This handles
-    // the initial state which is the only time `this.state` should be `null`.
-    if (this.state === null) {
-      if (this.el.classList.contains(this.config.get("stateOpened"))) {
-        return await this.open(false, false);
-      }
-      if (this.el.classList.contains(this.config.get("stateClosed"))) {
-        return await this.close(false, false);
-      }
-    }
-
-    // If state cannot be determined, set it to indeterminate
-    this.setState("indeterminate");
-
-    // Return the entry for chaining
-    return this;
   }
 
   async open(transition?: boolean, focus?: boolean): Promise<DrawerEntry> {
@@ -97,23 +97,25 @@ export class DrawerEntry extends CollectionEntry {
     return toggle(this, transition, focus);
   }
 
-  async deregister() {
-    return this.parent.deregister(this);
-  }
-
   async onCreateEntry() {
     // Set tabindex="-1" so dialog is focusable via JS or click
     if (this.config.get("setTabindex") && this.dialog) {
       this.dialog.setAttribute("tabindex", "-1");
     }
 
-    // Apply the initial state
-    await this.applyState();
+    // Infer the initial state based on state classes
+    if (this.el.classList.contains(this.config.get("stateOpened"))) {
+      await this.open(false, false);
+    } else if (this.el.classList.contains(this.config.get("stateClosed"))) {
+      await this.close(false, false);
+    } else {
+      this.state = "indeterminate";
+    }
 
-    // Set the inline state
+    // Sync up the inline state with the current state
     this.inlineState = this.state;
 
-    // Set the initial mode
+    // Set the initial mode based on the modal class
     this.mode =
       this.el && this.el.classList.contains(this.config.get("classModal"))
         ? "modal"

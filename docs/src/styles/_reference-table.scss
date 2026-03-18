@@ -1,12 +1,28 @@
+@use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/core";
+@use "@vrembem/core/theme";
+@include css.set("reference-table", "max-height", 28rem);
+@include theme.set(
+  "light",
+  "reference-table",
+  (
+    "key-foreground": palette.get("secondary", 45),
+    "value-foreground": palette.get("primary", 45)
+  )
+);
+@include theme.set(
+  "dark",
+  "reference-table",
+  (
+    "key-foreground": palette.get("secondary", 65),
+    "value-foreground": palette.get("primary", 65)
+  )
+);
 
 .reference-table {
-  background: css.get("background-dark");
-  border: 3px solid css.get("background-darker");
-  border-radius: css.get("border-radius-lg");
   font-size: css.get("font-size");
+  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
   width: 100%;
 
   table {
@@ -20,19 +36,19 @@
   }
 
   tr {
+    border-radius: css.get("border-radius");
     border-top: css.get("table", "border");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
     position: relative;
-    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 80px);
+    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
 
     @include core.media-min("drawer") {
-      scroll-margin-top: calc(css.get("layout", "navibar-height") + 81px);
+      scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
     }
 
     &.is-active {
-      background-color: css.get("background");
       box-shadow:
         0 0 0 1px palette.get("primary"),
         0 0 0 0.2rem palette.get("primary", 50%, 20%);
@@ -57,11 +73,13 @@
     position: relative;
 
     &:first-child {
+      @include css.override("pre", "foreground", css.get("reference-table", "key-foreground"));
+
       text-wrap: nowrap;
     }
 
-    &:hover {
-      background-color: css.get("background");
+    &:last-child {
+      @include css.override("pre", "foreground", css.get("reference-table", "value-foreground"));
     }
   }
 
@@ -88,7 +106,6 @@
       background-color: css.get("background");
       opacity: 0;
       right: 0;
-      transition: opacity css.get("transition-duration") css.get("transition-timing-function");
 
       &:hover,
       &:focus {
@@ -108,22 +125,42 @@
   }
 
   .notice {
+    border-radius: css.get("border-radius");
     font-size: css.get("font-size");
+    margin-top: css.get("spacing-md");
+  }
+
+  &.is-expandable {
+    max-height: css.get("reference-table", "max-height");
+    overflow: hidden;
+  }
+
+  &.is-expanded {
+    overflow: visible;
+
+    thead {
+      top: calc(css.get("layout", "toolbar-height") - 1px);
+
+      @include core.media-min("drawer") {
+        top: calc(css.get("layout", "navibar-height") - 1px);
+      }
+    }
   }
 }
 
 .reference-table__header {
-  background: css.get("background-dark");
-  border-bottom: css.get("border");
-  border-top-left-radius: css.get("border-radius-lg");
-  border-top-right-radius: css.get("border-radius-lg");
-  padding: css.get("spacing-md");
+  background: css.get("background");
+  padding: css.get("spacing-md") 0;
   position: sticky;
   top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;
 
   @include core.media-min("drawer") {
     top: css.get("layout", "navibar-height");
+  }
+
+  .is-expandable:not(.is-expanded) & {
+    top: 0;
   }
 
   .input-group {
@@ -224,4 +261,12 @@
     left: 3.75rem;
     right: auto;
   }
+}
+
+.reference-table__footer {
+  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  bottom: 0;
+  padding: 1.5em 0;
+  position: sticky;
+  text-align: center;
 }

@@ -8,13 +8,9 @@ export async function close(
   focus: boolean = true
 ): Promise<DrawerEntry> {
   // If drawer is opened or indeterminate
-  if (
-    entry.state === "opened" ||
-    entry.state === "indeterminate" ||
-    entry.state === null
-  ) {
+  if (entry.state === "opened" || entry.state === "indeterminate") {
     // Update drawer state
-    entry.setState("closing");
+    entry.state = "closing";
 
     // Remove focus from active element
     if (
@@ -26,7 +22,7 @@ export async function close(
 
     // Run the close transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
@@ -43,7 +39,7 @@ export async function close(
     }
 
     // Update drawer state
-    entry.setState("closed");
+    entry.state = "closed";
 
     // Update the global state if mode is modal
     if (entry.mode === "modal")
@@ -57,14 +53,6 @@ export async function close(
     if (focus) {
       updateFocusState(entry);
     }
-
-    // Dispatch custom closed event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
 
     // Emit the closed event
     await entry.parent.emit("closed", entry);

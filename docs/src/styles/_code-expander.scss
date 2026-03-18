@@ -3,14 +3,45 @@
 @include css.set("code-expander", "max-height", 20rem);
 
 .code-expander {
+  border: css.get("border");
+  border-radius: css.get("border-radius");
+  font-size: css.get("font-size");
+  line-height: css.get("line-height");
   position: relative;
+  transition-duration: css.get("transition-duration-short");
+  transition-property: border-color, box-shadow;
+  transition-timing-function: css.get("transition-timing-function");
 
   .pre {
+    border: none;
     max-height: css.get("code-expander", "max-height");
-    transition-duration: css.get("transition-duration"), css.get("transition-duration-short"), css.get("transition-duration-short");
-    transition-property: max-height, border-color, box-shadow;
-    transition-timing-function: css.get("transition-timing-function");
+    transition: max-height css.get("transition-duration") css.get("transition-timing-function");
   }
+
+  &.has-header {
+    .pre {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .code-block__copy-button {
+      background-color: transparent;
+      right: 0.5rem;
+      top: calc(-2.5rem + 2px);
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.code-expander__header {
+  border-bottom: css.get("border");
+  color: css.get("foreground-lighter");
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 3.5rem 0.5rem 1rem;
 }
 
 .code-expander__tools {
@@ -47,10 +78,8 @@
   }
 
   &:hover {
-    .pre {
-      border-color: palette.get("primary");
-      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
-    }
+    border-color: palette.get("primary");
+    box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
 
     .code-expander__unlock-scroll {
       border-color: palette.get("primary");

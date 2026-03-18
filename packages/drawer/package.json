@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/drawer",
-  "description": "A container component that slides in from the left or right. Typically containing menus, search or other content.",
+  "description": "A container component that slides in from the left or right, typically containing menus, search bars, or other content.",
   "version": "4.0.0-next.34",
   "license": "MIT",
   "type": "module",

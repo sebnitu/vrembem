@@ -129,3 +129,9 @@ Sets the priority order for configuration sources. Accepts an array of source ke
 <ReferenceCard name="order" type="string[]">
   The array of source keys to order the configuration hierarchy. 
 </ReferenceCard>
+
+## deregister
+
+<ReferenceBar type="method" returns="CollectionEntry" />
+
+Removes the collection entry from the parent collection. After being removed, the `onDeregisterEntry` lifecycle hook is run. Returns the deregistered entry.

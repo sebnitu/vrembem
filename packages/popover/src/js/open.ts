@@ -62,9 +62,6 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
     // Enable virtual element tracking on parent collection
     if (isVirtual) entry.parent.virtual = true;
 
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
-    // console.log("Race condition?");
-
     // Define the update position function
     function updatePosition() {
       // Remove the mousemove event listener if popover is no longer opened

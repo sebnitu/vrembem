@@ -23,54 +23,73 @@ npm install @vrembem/grid
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Grid comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Grid is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
 
-<CodeExpander>
+### Sass
+
+Grid comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander lang="scss">
 ```scss
-$config: (
-  // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
-  // @type map
-  "grid-cols": (
-    "breakpoints": true,
-    "default": 1,
-    "total": 6
-  ),
+@use "@vrembem/grid" with (
+  $config: (
+    // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
+    // @type map
+    "grid-cols": (
+      "breakpoints": true,
+      "default": 1,
+      "total": 6
+    ),
 
-  // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
-  // @type map
-  "grid-rows": (
-    "breakpoints": true,
-    "default": 1,
-    "total": 6
-  ),
+    // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
+    // @type map
+    "grid-rows": (
+      "breakpoints": true,
+      "default": 1,
+      "total": 6
+    ),
 
-  // Map for outputting the grid_gap_[key] modifier variants
-  // @type map
-  "grid-gap": (
-    "breakpoints": true,
-    "default": calc(css.get("spacing") * 8),
-    "0": 0,
-    "xs": calc(css.get("spacing") * 2),
-    "sm": calc(css.get("spacing") * 4),
-    "md": calc(css.get("spacing") * 8),
-    "lg": calc(css.get("spacing") * 12),
-    "xl": calc(css.get("spacing") * 16)
-  ),
+    // Map for outputting the grid_gap_[key] modifier variants
+    // @type map
+    "grid-gap": (
+      "breakpoints": true,
+      "default": calc(css.get("spacing") * 8),
+      "0": 0,
+      "xs": calc(css.get("spacing") * 2),
+      "sm": calc(css.get("spacing") * 4),
+      "md": calc(css.get("spacing") * 8),
+      "lg": calc(css.get("spacing") * 12),
+      "xl": calc(css.get("spacing") * 16)
+    ),
 
-  // Map for outputting the grid_flow_[key] modifier variants
-  // @type map
-  "grid-flow": (
-    "default": dense,
-    "row": row,
-    "col": column,
-    "row-dense": row dense,
-    "col-dense": column dense
+    // Map for outputting the grid_flow_[key] modifier variants
+    // @type map
+    "grid-flow": (
+      "default": dense,
+      "row": row,
+      "col": column,
+      "row-dense": row dense,
+      "col-dense": column dense
+    )
   )
 );
 ```
 </CodeExpander>
+
+### CSS Variables
+
+Grid uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-grid" valueLabel="Fallback" filter={false} data={{
+  "--vb-grid-gap": "2em",
+  "--vb-grid-gap-x": "var(--vb-grid-gap)",
+  "--vb-grid-gap-y": "var(--vb-grid-gap)",
+  "--vb-grid-flow": "dense",
+  "--vb-grid-cols": "1",
+  "--vb-grid-rows": "1",
+}} />
 
 ## Basic usage
 
@@ -722,16 +741,3 @@ This utility also come with media breakpoint variants. This allows changing styl
 - `md:grid-row-[num]`
 - `lg:grid-row-[num]`
 - `xl:grid-row-[num]`
-
-## Reference
-
-Below is a reference to all CSS variables that are referenced the grid component along with their fallback values. These variables are only referenced and not defined, allowing you to easily customize styles by setting your own values as needed.
-
-<ReferenceTable id="cssvar-grid" valueLabel="Fallback" filter={false} data={{
-  "--vb-grid-gap": "2em",
-  "--vb-grid-gap-x": "var(--vb-grid-gap)",
-  "--vb-grid-gap-y": "var(--vb-grid-gap)",
-  "--vb-grid-flow": "dense",
-  "--vb-grid-cols": "1",
-  "--vb-grid-rows": "1",
-}} />

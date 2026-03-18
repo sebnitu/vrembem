@@ -86,7 +86,7 @@ export function propStore(
         get(target, prop) {
           return Reflect.get(target, prop);
         },
-        set(target, prop, value) {
+        set(target, prop, value, receiver) {
           // Check if:
           // - A property has been set to watch
           // - The watch property matches the one being set
@@ -101,7 +101,7 @@ export function propStore(
 
             // Store the old value and set the new one
             const oldValue = Reflect.get(target, prop);
-            Reflect.set(target, prop, value);
+            Reflect.set(target, prop, value, receiver);
 
             // Setup the context object
             const contextObj = { plugin, parent: entry.parent, entry };
@@ -121,7 +121,7 @@ export function propStore(
             return true;
           }
 
-          return Reflect.set(target, prop, value);
+          return Reflect.set(target, prop, value, receiver);
         }
       };
     }

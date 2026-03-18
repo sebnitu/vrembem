@@ -9,7 +9,14 @@ import Icon from "../../components/Icon.astro";
 import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
-import UtilityTable from "../../components/UtilityTable.astro";
+import ReferenceTable from "../../components/ReferenceTable.astro";
+
+export const UtilityProps = {
+  filter: false,
+  expandable: true,
+  keyLabel: "Class",
+  valueLabel: "Styles"
+};
 
 # Utility
 
@@ -25,117 +32,119 @@ npm install @vrembem/utility
   ```
 </CodeExample>
 
-## Config options
+## Options
 
-Utility comes with the following configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass with clause](/packages/core/config#using-with-clause) methods.
+Utility comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander>
+<CodeExpander lang="scss">
 ```scss
-$config: (
-  // Controls whether module styles are output. This can be overridden on a per 
-  // module basis using the `utility-output-exceptions` config option.
-  // @type boolean
-  "utility-output": true,
+@use "@vrembem/utility" with (
+  $config: (
+    // Controls whether module styles are output. This can be overridden on a per 
+    // module basis using the `utility-output-exceptions` config option.
+    // @type boolean
+    "utility-output": true,
 
-  // Modules to exclude from the output rule set in `utility-output`
-  // @type list
-  "utility-output-exceptions": (),
+    // Modules to exclude from the output rule set in `utility-output`
+    // @type list
+    "utility-output-exceptions": (),
 
-  // A map containing module names as keys and their preferred class selectors
-  // @type map
-  "utility-classes": (),
+    // A map containing module names as keys and their preferred class selectors
+    // @type map
+    "utility-classes": (),
 
-  // A prefix to apply to utility class selectors. Provided value is 
-  // automatically suffixed with a "-" character when applied.
-  // @type string
-  "utility-prefix": "",
+    // A prefix to apply to utility class selectors. Provided value is 
+    // automatically suffixed with a "-" character when applied.
+    // @type string
+    "utility-prefix": "",
 
-  // Whether or not utility styles should be output with the !important flag
-  // @type boolean
-  "utility-important": true,
+    // Whether or not utility styles should be output with the !important flag
+    // @type boolean
+    "utility-important": true,
 
-  // A lightness range list for outputting palette related utilities
-  // @type list
-  "utility-palette-range": (
-    0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
-  ),
+    // A lightness range list for outputting palette related utilities
+    // @type list
+    "utility-palette-range": (
+      0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
+    ),
 
-  // A map of border-radius utilities to output
-  // @type map
-  "utility-border-radius": (
-    "": css.get("border-radius"),
-    "lg": css.get("border-radius-lg"),
-    "circle": css.get("border-radius-circle"),
-    "square": 0
-  ),
+    // A map of border-radius utilities to output
+    // @type map
+    "utility-border-radius": (
+      "": css.get("border-radius"),
+      "lg": css.get("border-radius-lg"),
+      "circle": css.get("border-radius-circle"),
+      "square": 0
+    ),
 
-  // A list of display value properties to output
-  // @type list
-  "utility-display": (
-    "breakpoints": true,
-    "inline": inline,
-    "flex": flex,
-    "inline-flex": inline-flex,
-    "grid": grid,
-    "inline-grid": inline-grid,
-    "block": block,
-    "inline-block": inline-block,
-    "none": none
-  ),
+    // A list of display value properties to output
+    // @type list
+    "utility-display": (
+      "breakpoints": true,
+      "inline": inline,
+      "flex": flex,
+      "inline-flex": inline-flex,
+      "grid": grid,
+      "inline-grid": inline-grid,
+      "block": block,
+      "inline-block": inline-block,
+      "none": none
+    ),
 
-  // A spacing scale used to output margin, padding, and spacing utilities
-  // @type map
-  "utility-spacing": (
-    "0": 0,
-    "xs": css.get("spacing"),
-    "sm": calc(css.get("spacing") * 2),
-    "": calc(css.get("spacing") * 4),
-    "lg": calc(css.get("spacing") * 8),
-    "xl": calc(css.get("spacing") * 12)
-  ),
+    // A spacing scale used to output margin, padding, and spacing utilities
+    // @type map
+    "utility-spacing": (
+      "0": 0,
+      "xs": css.get("spacing"),
+      "sm": calc(css.get("spacing") * 2),
+      "": calc(css.get("spacing") * 4),
+      "lg": calc(css.get("spacing") * 8),
+      "xl": calc(css.get("spacing") * 12)
+    ),
 
-  // A map of gap utilities to output
-  // @type map
-  "utility-gap": (
-    "0": 0,
-    "xs": css.get("spacing"),
-    "sm": css.get("spacing-sm"),
-    "": css.get("spacing-md"),
-    "lg": css.get("spacing-lg"),
-    "xl": css.get("spacing-xl")
-  ),
+    // A map of gap utilities to output
+    // @type map
+    "utility-gap": (
+      "0": 0,
+      "xs": css.get("spacing"),
+      "sm": css.get("spacing-sm"),
+      "": css.get("spacing-md"),
+      "lg": css.get("spacing-lg"),
+      "xl": css.get("spacing-xl")
+    ),
 
-  // A map of max-width utilities to output
-  // @type map
-  "utility-max-width": (
-    "none": none,
-    "xs": 45rem,
-    "sm": 60rem,
-    "": 70rem,
-    "lg": 80rem,
-    "xl": 90rem,
-    "full": 100%
-  ),
+    // A map of max-width utilities to output
+    // @type map
+    "utility-max-width": (
+      "none": none,
+      "xs": 45rem,
+      "sm": 60rem,
+      "": 70rem,
+      "lg": 80rem,
+      "xl": 90rem,
+      "full": 100%
+    ),
 
-  // A map of font-weight keys and values to output
-  // @type map
-  "utility-font-weight": (
-    "thin": 100,
-    "extra-light": 200,
-    "light": 300,
-    "regular": 400,
-    "medium": 500,
-    "semi-bold": 600,
-    "bold": 700,
-    "extra-bold": 800,
-    "black": 900,
-    "lighter": lighter,
-    "bolder": bolder
-  ),
+    // A map of font-weight keys and values to output
+    // @type map
+    "utility-font-weight": (
+      "thin": 100,
+      "extra-light": 200,
+      "light": 300,
+      "regular": 400,
+      "medium": 500,
+      "semi-bold": 600,
+      "bold": 700,
+      "extra-bold": 800,
+      "black": 900,
+      "lighter": lighter,
+      "bolder": bolder
+    ),
 
-  // The range of flex-grow and flex-shrink utilities to output
-  // @type number
-  "utility-flex-range": 6
+    // The range of flex-grow and flex-shrink utilities to output
+    // @type number
+    "utility-flex-range": 6
+  )
 );
 ```
 </CodeExpander>
@@ -222,7 +231,7 @@ To customize utility class selectors used by modules, map the module name to you
 
 It's also possible to provide a prefix to all utility classes using the `utility-prefix` config option.
 
-<ReferenceCard ref="config" name="utility-prefix" type="map" defaults='""'>
+<ReferenceCard ref="config" name="utility-prefix" type="string" defaults='""'>
   A prefix to apply to utility class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
 
 ```scss
@@ -232,6 +241,18 @@ It's also possible to provide a prefix to all utility classes using the `utility
 </ReferenceCard>
 
 Vrembem utilities are set with the `!important` flag by default. This can be toggled using the `utility-important` configuration option.
+
+<ReferenceCard ref="config" name="utility-important" type="boolean" defaults='true'>
+  Whether or not utility styles should be output with the `!important` flag
+
+```scss
+@include config.set("utility-important", true);
+// > background: black !important;
+
+@include config.set("utility-important", false);
+// > background: black;
+```
+</ReferenceCard>
 
 ## Modules
 
@@ -253,7 +274,10 @@ export const background = (() => {
   }, {});
 })();
 
-<UtilityTable id="background-color" example data={{
+<ReferenceTable 
+  id="background-color" 
+  {...UtilityProps}
+  data={{
   // Miscellaneous
   "background-black": "background-color: black;",
   "background-white": "background-color: white;",
@@ -285,7 +309,7 @@ export const background = (() => {
 
 The background utility module also includes options for setting the background-clip property.
 
-<UtilityTable id="background-clip" expandable={false} data={{
+<ReferenceTable id="background-clip" {...UtilityProps} expandable={false} data={{
   // Miscellaneous
   "background-clip-border": "background-clip: border-box;",
   "background-clip-content": "background-clip: content-box;",
@@ -308,9 +332,9 @@ export const foreground = (() => {
   }, {});
 })();
 
-<UtilityTable 
-  id="foreground-color" 
-  example='<span class="${key}">Example</span>' 
+<ReferenceTable 
+  id="foreground-color"
+  {...UtilityProps}
   data={{
   // Miscellaneous
   "foreground-black": "color: black;",
@@ -347,7 +371,7 @@ export const foreground = (() => {
 
 Utilities for setting the border property with optional sides variants of an element. Also includes utilities for setting variants of the border-color property.
 
-<UtilityTable id="border" expandable={false} data={{
+<ReferenceTable id="border" {...UtilityProps} expandable={false} data={{
   "border": "border: var(--vb-border);",
   "border-top": "border-top: var(--vb-border);",
   "border-bottom": "border-bottom: var(--vb-border);",
@@ -370,7 +394,7 @@ Utilities for setting the border property with optional sides variants of an ele
 
 Utilities for setting the border-radius property of an element with optional corner variants. The value and variants used by the border-radius utility is built from the `utility-border-radius` configuration option.
 
-<UtilityTable id="border-radius" data={{
+<ReferenceTable id="border-radius" {...UtilityProps} data={{
   "border-radius": "border-radius: var(--vb-border-radius);",
   "border-radius-top-left": "border-top-left-radius: var(--vb-border-radius);",
   "border-radius-top-right": "border-top-right-radius: var(--vb-border-radius);",
@@ -416,10 +440,10 @@ Utilities for setting the border-radius property of an element with optional cor
 
 Utilities for setting the box-shadow property of an element with optional depth variants.
 
-<UtilityTable 
-  id="box-shadow" 
+<ReferenceTable 
+  id="box-shadow"
+  {...UtilityProps}
   expandable={false} 
-  example={'<span class="swatch background-white background-clip-padding ${key}"></span>'}
   data={{
   "box-shadow": "box-shadow: var(--vb-box-shadow);",
   "box-shadow-flat": "box-shadow: 0 0 0 0 transparent;",
@@ -434,7 +458,7 @@ Utilities for setting the box-shadow property of an element with optional depth 
 
 Utilities for setting the display property of an element with optional breakpoint modifiers. Display variants are built using the values set in the `utility-display` configuration option.
 
-<UtilityTable id="display" expandable={false} data={{
+<ReferenceTable id="display" {...UtilityProps} expandable={false} data={{
   "display-inline": "display: inline;",
   "display-flex": "display: flex;",
   "display-inline-flex": "display: inline-flex;",
@@ -476,7 +500,7 @@ Display utilities also come with breakpoint modifiers. These can be used by pref
 
 Utilities for setting the margin property of an element. Margin variants are built using the values set in the `utility-gap` configuration option.
 
-<UtilityTable id="margin" data={{
+<ReferenceTable id="margin" {...UtilityProps} data={{
   "margin-0": "margin: 0;",
   "margin-xs": "margin: var(--vb-spacing);",
   "margin-sm": "margin: calc(var(--vb-spacing) * 2);",
@@ -539,7 +563,7 @@ Utilities for setting the margin property of an element. Margin variants are bui
 
 Utilities for setting the padding property of an element. Padding variants are built using the values set in the `utility-gap` configuration option.
 
-<UtilityTable id="padding" data={{
+<ReferenceTable id="padding" {...UtilityProps} data={{
   "padding-0": "padding: 0;",
   "padding-xs": "padding: var(--vb-spacing);",
   "padding-sm": "padding: calc(var(--vb-spacing) * 2);",
@@ -594,7 +618,7 @@ Utilities for setting the padding property of an element. Padding variants are b
 
 Utilities for setting the margin-top property of all direct children of an element. Spacing variants are built using the values set in the `utility-gap` configuration option.
 
-<UtilityTable id="spacing" expandable={false} data={{
+<ReferenceTable id="spacing" {...UtilityProps} expandable={false} data={{
   "spacing-0": "margin-top: 0;",
   "spacing-xs": "margin-top: var(--vb-spacing);",
   "spacing-sm": "margin-top: calc(var(--vb-spacing) * 2);",
@@ -607,7 +631,7 @@ Utilities for setting the margin-top property of all direct children of an eleme
 
 Utilities for setting the gap property of an element. Gap variants are built using the values set in the `utility-gap` configuration option.
 
-<UtilityTable id="spacing" data={{
+<ReferenceTable id="spacing" {...UtilityProps} data={{
   "gap-0": "gap: 0;",
   "gap-xs": "gap: var(--vb-spacing);",
   "gap-sm": "gap: var(--vb-spacing-sm);",
@@ -634,7 +658,7 @@ Utilities for setting the gap property of an element. Gap variants are built usi
 
 Utilities for setting the justify-content, justify-items and justify-self properties of an element.
 
-<UtilityTable id="justify" data={{
+<ReferenceTable id="justify" {...UtilityProps} data={{
   "justify-content-start": "justify-content: start;",
   "justify-content-center": "justify-content: center;",
   "justify-content-end": "justify-content: end;",
@@ -658,7 +682,7 @@ Utilities for setting the justify-content, justify-items and justify-self proper
 
 Utilities for setting the align-content, align-items and align-self properties of an element.
 
-<UtilityTable id="align" data={{
+<ReferenceTable id="align" {...UtilityProps} data={{
   "align-content-start": "align-content: start;",
   "align-content-center": "align-content: center;",
   "align-content-end": "align-content: end;",
@@ -682,7 +706,7 @@ Utilities for setting the align-content, align-items and align-self properties o
 
 Utilities for setting the place-content, place-items and place-self properties of an element.
 
-<UtilityTable id="place" data={{
+<ReferenceTable id="place" {...UtilityProps} data={{
   "place-content-start": "place-content: start;",
   "place-content-center": "place-content: center;",
   "place-content-end": "place-content: end;",
@@ -706,7 +730,7 @@ Utilities for setting the place-content, place-items and place-self properties o
 
 Utilities for setting the order property of an element.
 
-<UtilityTable id="order" expandable={false} data={{
+<ReferenceTable id="order" {...UtilityProps} expandable={false} data={{
   "order-first": "order: -99;",
   "order-last": "order: 99;",
   "order-0": "order: 0;",
@@ -722,7 +746,7 @@ Utilities for setting the order property of an element.
 
 Utilities for setting the flex specific properties of an element. These pair well with the [`flex` component](/packages/flex) to provide more granular control of flex items.
 
-<UtilityTable id="flex" data={{
+<ReferenceTable id="flex" {...UtilityProps} data={{
   "flex-nowrap": "flex-wrap: nowrap;",
   "flex-wrap": "flex-wrap: wrap;",
   "flex-wrap-reverse": "flex-wrap: wrap-reverse;",
@@ -850,7 +874,7 @@ Utilities for controlling the `flex-basis` property which sets the initial main 
 
 Utilities for setting the position property of an element.
 
-<UtilityTable id="order" expandable={false} data={{
+<ReferenceTable id="order" {...UtilityProps} expandable={false} data={{
   "position-absolute": "position: absolute;",
   "position-fixed": "position: fixed;",
   "position-relative": "position: relative;",
@@ -862,7 +886,7 @@ Utilities for setting the position property of an element.
 
 Utilities for setting the overflow, overflow-x and overflow-y properties of an element.
 
-<UtilityTable id="order" data={{
+<ReferenceTable id="order" {...UtilityProps} data={{
   "overflow-visible": "overflow: visible;",
   "overflow-x-visible": "overflow-x: visible;",
   "overflow-y-visible": "overflow-y: visible;",
@@ -888,7 +912,7 @@ Utilities for setting the overflow, overflow-x and overflow-y properties of an e
 
 Utilities for setting the max-width property of an element. Max-width variants are built using the values set in the `utility-max-width` configuration option.
 
-<UtilityTable id="order" expandable={false} data={{
+<ReferenceTable id="order" {...UtilityProps} expandable={false} data={{
   "max-width-none": "max-width: none;",
   "max-width-xs": "max-width: 45rem;",
   "max-width-sm": "max-width: 60rem;",
@@ -902,7 +926,7 @@ Utilities for setting the max-width property of an element. Max-width variants a
 
 Utilities for setting various font based properties of an element. This includes font-family, font-size, line-height, font-weight and font-style. Font-weight variants are built using the values set in the `utility-font-weight` configuration option.
 
-<UtilityTable id="order" data={{
+<ReferenceTable id="order" {...UtilityProps} data={{
   "font-family-sans": "font-family: var(--vb-font-family-sans);",
   "font-family-serif": "font-family: var(--vb-font-family-serif);",
   "font-family-mono": "font-family: var(--vb-font-family-mono);",
@@ -934,7 +958,7 @@ Utilities for setting various font based properties of an element. This includes
 
 Utilities for setting various text properties of an element. This includes things like text-transform, text-align, text-decoration, and text-wrap.
 
-<UtilityTable id="order" data={{
+<ReferenceTable id="order" {...UtilityProps} data={{
   "text-capitalize": "text-transform: capitalize;",
   "text-lowercase": "text-transform: lowercase;",
   "text-uppercase": "text-transform: uppercase;",
@@ -961,7 +985,7 @@ Utilities for setting various text properties of an element. This includes thing
 
 Utilities for setting transition and transition-duration properties of an element.
 
-<UtilityTable id="order" expandable={false} data={{
+<ReferenceTable id="order" {...UtilityProps} expandable={false} data={{
   "transition": "transition: all var(--vb-transition-duration) var(--vb-transition-timing-function);",
   "transition-none": "transition: none;",
   "transition-duration-short": "transition-duration: var(--vb-transition-duration-short);",

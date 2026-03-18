@@ -76,14 +76,6 @@ test("should switch drawer to modal when entry.mode property is set to modal", a
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 });
 
-test("running applyState on a modal drawer should not change its state", async () => {
-  const entry = drawer.get("drawer-1");
-  expect(entry.mode).toBe("modal");
-  expect(entry.state).toBe("closed");
-  await entry.applyState();
-  expect(entry.state).toBe("closed");
-});
-
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
   const entry = drawer.get("drawer-1");
   expect(entry.el).toHaveClass("drawer_modal");
@@ -131,7 +123,7 @@ test("should return local store state when switching modes", async () => {
 test("should apply indeterminate state when going to inline mode", async () => {
   const entry = drawer.get("drawer-1");
   await entry.open();
-  entry.setState("indeterminate");
+  entry.state = "indeterminate";
   expect(entry.mode).toBe("inline");
   expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("indeterminate");
@@ -151,7 +143,7 @@ test("should apply indeterminate state when going to inline mode", async () => {
 
   entry.mode = "modal";
   await vi.runAllTimers();
-  entry.setState("closed");
+  entry.state = "closed";
   expect(entry.store).toBe("indeterminate");
   expect(entry.state).toBe("closed");
   expect(entry.inlineState).toBe("indeterminate");
@@ -178,7 +170,7 @@ test("should throw an error when setting mode to an invalid value", async () => 
   } catch (error) {
     result = error.message;
   }
-  expect(result).toBe('"asdf" is not a valid drawer mode.');
+  expect(result).toBe('Not a valid drawer mode: "asdf"');
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {

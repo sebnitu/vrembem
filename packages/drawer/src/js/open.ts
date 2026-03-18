@@ -8,17 +8,13 @@ export async function open(
   focus: boolean = true
 ): Promise<DrawerEntry> {
   // If drawer is closed or indeterminate
-  if (
-    entry.state === "closed" ||
-    entry.state === "indeterminate" ||
-    entry.state === null
-  ) {
+  if (entry.state === "closed" || entry.state === "indeterminate") {
     // Update drawer state
-    entry.setState("opening");
+    entry.state = "opening";
 
     // Run the open transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
@@ -35,7 +31,7 @@ export async function open(
     }
 
     // Update drawer state
-    entry.setState("opened");
+    entry.state = "opened";
 
     // Update the global state if mode is modal
     if (entry.mode === "modal")
@@ -49,14 +45,6 @@ export async function open(
     if (focus) {
       updateFocusState(entry);
     }
-
-    // Dispatch custom opened event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
 
     // Emit the opened event
     await entry.parent.emit("opened", entry);
