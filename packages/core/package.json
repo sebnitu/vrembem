@@ -23,10 +23,10 @@
     "./dist/*": "./dist/*",
     "./sass": "./index.scss",
     "./root": "./root.scss",
-    "./config": "./src/scss/modules/config.scss",
-    "./css": "./src/scss/modules/css.scss",
-    "./palette": "./src/scss/modules/palette.scss",
-    "./theme": "./src/scss/modules/theme.scss",
+    "./config": "./src/scss/modules/_config.scss",
+    "./css": "./src/scss/modules/_css.scss",
+    "./palette": "./src/scss/modules/_palette.scss",
+    "./theme": "./src/scss/modules/_theme.scss",
     "./*": "./src/*"
   },
   "files": [
