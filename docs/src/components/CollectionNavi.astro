@@ -32,14 +32,6 @@ function getIconName(string: string) {
 <nav>
   <h2 class="sr-only">{title}</h2>
   <ul class={`menu menu_collection ${menuClass}`.trim()}>
-    <li class="menu__item">
-      <a
-        class={cp.classes(`/${collection}`).replace("is-parent", "")}
-        href={`/${collection}`}
-      >
-        <strong>{title}</strong>
-      </a>
-    </li>
     {
       entries.map((entry) => (
         <li class="menu__item">
