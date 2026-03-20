@@ -25,10 +25,13 @@ Publish flow for `next` branch
 - Merge branch that contains appropriate PR label
 - Run `npm run sink`
 - Run `npx lerna-changelog`
+- Maybe update github auth token `GITHUB_AUTH`
+  - https://github.com/settings/tokens
 - Copy/paste output from changelog into this file
 - Fix heading levels `###` > `###`
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
+- Login to NPM `npm login`
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
