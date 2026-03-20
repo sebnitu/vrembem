@@ -60,7 +60,7 @@
     box-sizing: content-box;
     max-width: calc(css.get("layout", "drawer-width") + css.get("layout", "drawer-padding"));
     opacity: 1;
-    padding-left: max(0, calc((100% - css.get("layout", "width")) / 2));
+    padding-left: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "drawer-padding") * 2))) / 2));
     transform: translate(0);
     visibility: visible;
     width: 100%;
