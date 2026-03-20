@@ -13,6 +13,7 @@
   opacity: 0;
   outline: none;
   overflow: hidden auto;
+  overscroll-behavior: contain;
   padding: css.get("layout", "drawer-padding");
   position: fixed;
   scroll-behavior: smooth;
