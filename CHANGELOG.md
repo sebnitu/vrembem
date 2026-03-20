@@ -32,12 +32,91 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.34 to CHANGELOG.md
+chore(release): add v4.0.0-next.35 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.35 (2026-03-20)
+
+### :tada: New Feature
+* `core`, `drawer`, `modal`, `popover`, `utility`
+  * [#2705](https://github.com/sebnitu/vrembem/pull/2705) Improve the drawer component and config module integration
+* `switch`, `vrembem`
+  * [#2687](https://github.com/sebnitu/vrembem/pull/2687) Improve the switch component and config module integration
+* `radio`, `vrembem`
+  * [#2686](https://github.com/sebnitu/vrembem/pull/2686) Improve the radio component and config module integration
+* `checkbox`, `core`, `input`, `vrembem`
+  * [#2685](https://github.com/sebnitu/vrembem/pull/2685) Improve the input component and config module integration
+* `button`, `checkbox`, `core`, `input`, `menu`, `radio`, `switch`, `vrembem`
+  * [#2682](https://github.com/sebnitu/vrembem/pull/2682) Improve the checkbox component and config module integration
+* `button`, `core`, `dialog`, `flex`, `grid`, `input`, `menu`, `vrembem`
+  * [#2672](https://github.com/sebnitu/vrembem/pull/2672) Improve the button component and config module integration
+* `base`, `core`, `flex`, `grid`, `utility`
+  * [#2671](https://github.com/sebnitu/vrembem/pull/2671) Add ability to toggle breakpoint variants output
+* `core`, `flex`, `grid`, `vrembem`
+  * [#2665](https://github.com/sebnitu/vrembem/pull/2665) Add new modifier config options to Flex and Grid components
+* `base`, `button`, `core`, `flex`, `grid`, `popover`, `section`, `table`, `utility`
+  * [#2654](https://github.com/sebnitu/vrembem/pull/2654) Improve the utility package and config integration
+* `base`, `core`, `utility`
+  * [#2648](https://github.com/sebnitu/vrembem/pull/2648) Config module expansion and watchers
+* `base`, `core`
+  * [#2647](https://github.com/sebnitu/vrembem/pull/2647) Refactor base variables to use core config module instead
+* `core`, `modal`
+  * [#2621](https://github.com/sebnitu/vrembem/pull/2621) Add new proxyEntry lifecycle hook
+
+### :bug: Bug Fix
+* `core`
+  * [#2708](https://github.com/sebnitu/vrembem/pull/2708) Fix partials importing in package exports field
+
+### :house: Refactor
+* `card`, `core`, `dialog`
+  * [#2689](https://github.com/sebnitu/vrembem/pull/2689) Refactor the dialog component to match new CSS var pattern
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2688](https://github.com/sebnitu/vrembem/pull/2688) Create and apply new build flow
+* `flex`, `grid`, `utility`
+  * [#2669](https://github.com/sebnitu/vrembem/pull/2669) Move flex utilities to the utility component
+* `card`, `core`, `input`, `notice`, `section`, `table`
+  * [#2663](https://github.com/sebnitu/vrembem/pull/2663) Improve how CSS modules handle map flattening
+* `core`, `flex`, `grid`, `popover`, `vrembem`
+  * [#2662](https://github.com/sebnitu/vrembem/pull/2662) Apply config module integration to Flex and Grid components
+* `base`, `core`
+  * [#2646](https://github.com/sebnitu/vrembem/pull/2646) Refactor and add documentation for base component
+* `core`, `switch`
+  * [#2637](https://github.com/sebnitu/vrembem/pull/2637) Add documentation for core Sass utilities
+* `core`, `input`, `table`
+  * [#2629](https://github.com/sebnitu/vrembem/pull/2629) Add documentation for core CSS variables
+* `core`, `drawer`, `modal`
+  * [#2620](https://github.com/sebnitu/vrembem/pull/2620) Refactor propStore plugin and add documentation
+* `core`
+  * [#2619](https://github.com/sebnitu/vrembem/pull/2619) Refactor and add documentation for the mediaQuery plugin
+* `core`, `modal`
+  * [#2609](https://github.com/sebnitu/vrembem/pull/2609) Add documentation for focusTrap plugin
+* `core`, `drawer`, `modal`, `popover`
+  * [#2606](https://github.com/sebnitu/vrembem/pull/2606) General core refactors and idiomatic improvements
+
+### :books: Documentation
+* Other
+  * [#2673](https://github.com/sebnitu/vrembem/pull/2673) Add categories to package documentation
+* `base`, `core`
+  * [#2646](https://github.com/sebnitu/vrembem/pull/2646) Refactor and add documentation for base component
+* `core`, `switch`
+  * [#2637](https://github.com/sebnitu/vrembem/pull/2637) Add documentation for core Sass utilities
+* `core`, `input`, `table`
+  * [#2629](https://github.com/sebnitu/vrembem/pull/2629) Add documentation for core CSS variables
+* `core`
+  * [#2623](https://github.com/sebnitu/vrembem/pull/2623) Add documentation for writing custom plugins
+  * [#2622](https://github.com/sebnitu/vrembem/pull/2622) Add documentation for the teleport plugin
+  * [#2619](https://github.com/sebnitu/vrembem/pull/2619) Refactor and add documentation for the mediaQuery plugin
+* `core`, `drawer`, `modal`
+  * [#2620](https://github.com/sebnitu/vrembem/pull/2620) Refactor propStore plugin and add documentation
+* `core`, `modal`
+  * [#2609](https://github.com/sebnitu/vrembem/pull/2609) Add documentation for focusTrap plugin
+* `core`, `drawer`, `modal`, `popover`
+  * [#2606](https://github.com/sebnitu/vrembem/pull/2606) General core refactors and idiomatic improvements
 
 
 ## v4.0.0-next.34 (2026-01-02)
