@@ -17,7 +17,7 @@ const packages = defineCollection({
 });
 
 const modules = defineCollection({
-  loader: glob({ base: "./src/packages", pattern: "*/*.mdx" }),
+  loader: glob({ base: "./src/packages", pattern: "*/**/*.mdx" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

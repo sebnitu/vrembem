@@ -54,12 +54,12 @@ const layout = {
     entry.data.parent && (
       <div>
         <div class="flex gap-sm">
-          <a href={`../${entry.data.parent}`} class="badge">
+          <a href={`/packages/${entry.data.parent}`} class="badge">
             {entry.data.parent}
           </a>
           {entry.data.group && (
             <a
-              href={`../${entry.data.parent}#${entry.data.group}`}
+              href={`/packages/${entry.data.parent}#${entry.data.group}`}
               class="badge"
             >
               {entry.data.group}
