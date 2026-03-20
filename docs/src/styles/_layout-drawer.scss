@@ -13,23 +13,13 @@
   opacity: 0;
   outline: none;
   position: fixed;
-  scroll-behavior: smooth;
   transform: translate(-100%);
   transition:
     opacity 0.5s,
     transform 0.25s ease;
   visibility: hidden;
-  width: calc(100% - 2rem);
+  width: calc(100% - 4.5rem);
   z-index: 100;
-
-  .layout-drawer__content {
-    height: 100%;
-    overflow: hidden auto;
-    overscroll-behavior: contain;
-    padding: css.get("layout", "drawer-padding");
-    position: absolute;
-    width: 100%;
-  }
 
   &.is-opened,
   &.is-opening {
@@ -50,6 +40,16 @@
   }
 }
 
+.layout-drawer__content {
+  height: 100%;
+  overflow: hidden auto;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  padding: css.get("layout", "drawer-padding");
+  position: absolute;
+  width: 100%;
+}
+
 /**
  * Inline drawer
  */
@@ -66,11 +66,6 @@
     width: 100%;
     z-index: 2;
 
-    .layout-drawer__content {
-      padding: css.get("layout", "navibar-height") css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
-      width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
-    }
-
     * > * {
       box-sizing: border-box;
     }
@@ -86,6 +81,11 @@
       width: 2rem;
       z-index: 2;
     }
+  }
+
+  .layout-drawer__content {
+    padding: css.get("layout", "navibar-height") css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
+    width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
   }
 
   .layout-drawer__mask {
