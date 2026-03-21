@@ -9,10 +9,12 @@
     )
   );
 
-  margin: 0.5rem 0 0.5rem 1rem;
+  margin: 0.5rem 0 0.5rem 1.25rem;
 
   .menu__action {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
 
     &::before {
       background: css.get("border-color");
