@@ -7,15 +7,18 @@ import Popover from "../components/Popover.astro";
 interface Props {
   entries: CollectionEntry<"packages">[];
   collection: string;
+  modules?: CollectionEntry<"modules">[];
   menuClass?: string;
 }
 
-const { entries, collection, menuClass = "" } = Astro.props;
+const { entries, collection, modules = [], menuClass = "" } = Astro.props;
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active"
 });
+
+const hasModules = modules.length && modules[0].data.parent;
 
 const categoryIcons = {
   core: "settings",
@@ -52,6 +55,17 @@ function getIconName(string: string) {
               </Popover>
             )}
           </a>
+          {hasModules === entry.id && (
+            <ul class="menu menu_size_sm margin-left margin-y-sm">
+              {modules.map((item) => (
+                <li class="menu__item">
+                  <a class="menu__action" href={`/${collection}/${item.id}`}>
+                    {item.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
       ))
     }

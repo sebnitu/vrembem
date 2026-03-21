@@ -52,7 +52,7 @@ const layout = {
 ---
 
 <Base title={entry.data.title} {layout}>
-  <Navi entries={packages} collection="packages" slot="drawer" />
+  <Navi entries={packages} {modules} collection="packages" slot="drawer" />
   <OnThisPage {headings} slot="aside" />
 
   {
