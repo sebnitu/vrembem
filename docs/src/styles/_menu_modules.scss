@@ -1,20 +1,50 @@
+@use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
 .menu_modules {
+  @include css.override(
+    "menu",
+    (
+      "gap": 0
+    )
+  );
+
   margin: 0.5rem 0 0.5rem 1rem;
 
-  .menu__action.is-active {
-    background-color: transparent;
+  .menu__action {
+    text-decoration: underline;
 
     &::before {
-      background: palette.get("primary");
-      border-radius: 1rem;
+      background: css.get("border-color");
+      border-radius: 2px;
       content: "";
-      height: 6px;
-      left: 0;
+      inset: 8px auto 8px 0;
       position: absolute;
-      top: calc(50% - 3px);
-      width: 6px;
+      width: 2px;
+    }
+
+    &:hover {
+      background-color: transparent;
+      text-decoration: none;
+
+      &::before {
+        background: css.get("foreground");
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      background-color: transparent;
+    }
+
+    &.is-active {
+      background-color: transparent;
+      text-decoration: none;
+
+      &::before {
+        background: palette.get("primary");
+      }
     }
   }
 }

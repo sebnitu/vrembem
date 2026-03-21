@@ -5,9 +5,9 @@
     display: block;
     overflow: hidden;
     position: relative;
-    text-overflow: ellipsis;
-    scroll-margin-top: 12rem;
     scroll-margin-bottom: 16rem;
+    scroll-margin-top: 12rem;
+    text-overflow: ellipsis;
 
     &.is-active::before {
       background: palette.get("primary");

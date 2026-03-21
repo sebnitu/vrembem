@@ -43,10 +43,10 @@
 .layout-drawer__content {
   height: 100%;
   overflow: hidden auto;
-  scroll-behavior: smooth;
   overscroll-behavior: contain;
   padding: css.get("layout", "drawer-padding");
   position: absolute;
+  scroll-behavior: smooth;
   width: 100%;
 }
 
