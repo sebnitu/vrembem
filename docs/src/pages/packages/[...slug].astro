@@ -13,8 +13,10 @@ import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
 
 interface Props {
-  entry: CollectionEntry<"packages">;
+  entry: CollectionEntry<"packages"> | CollectionEntry<"modules">;
 }
+
+const { entry } = Astro.props;
 
 export async function getStaticPaths() {
   const packages = await getPackages();
@@ -34,11 +36,14 @@ export async function getStaticPaths() {
   return entries;
 }
 
-const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 const packages = await getPackages();
-const modules = await getModules(entry.data.group);
+
+let modules = [];
+if ("parent" in entry.data) {
+  modules = await getModules(entry.data.group);
+}
 
 const layout = {
   hasDrawer: true,
@@ -51,7 +56,7 @@ const layout = {
   <OnThisPage {headings} slot="aside" />
 
   {
-    entry.data.parent && (
+    "parent" in entry.data && (
       <div>
         <div class="flex gap-sm">
           <a href={`/packages/${entry.data.parent}`} class="badge">
@@ -76,8 +81,8 @@ const layout = {
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
     <hr class="sep" />
-    {entry.data.package && <Pagi entries={packages} />}
-    {entry.data.parent && <Pagi entries={modules} />}
+    {"package" in entry.data && <Pagi entries={packages} />}
+    {"parent" in entry.data && <Pagi entries={modules} />}
   </div>
 </Base>
 
