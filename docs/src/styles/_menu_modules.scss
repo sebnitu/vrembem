@@ -1,0 +1,20 @@
+@use "@vrembem/core/palette";
+
+.menu_modules {
+  margin: 0.5rem 0 0.5rem 1rem;
+
+  .menu__action.is-active {
+    background-color: transparent;
+
+    &::before {
+      background: palette.get("primary");
+      border-radius: 1rem;
+      content: "";
+      height: 6px;
+      left: 0;
+      position: absolute;
+      top: calc(50% - 3px);
+      width: 6px;
+    }
+  }
+}

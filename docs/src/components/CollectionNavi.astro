@@ -40,9 +40,16 @@ function getIconName(string: string) {
         <li class="menu__item">
           <a
             class={cp.classes(`/${collection}/${entry.id}`)}
-            href={`/${collection}/${entry.id}`}
+            href={`/${collection}/${entry.id}${hasModules && cp.isParent(`/${collection}/${entry.id}`) ? `#${modules[0].data.group}` : ""}`}
           >
-            <span class="flex-grow">{entry.data.title}</span>
+            <span class="flex-grow">
+              {entry.data.title}
+              {hasModules && cp.isParent(`/${collection}/${entry.id}`) ? (
+                <span class="foreground-lighter">#{modules[0].data.group}</span>
+              ) : (
+                ""
+              )}
+            </span>
             {entry.data.category && (
               <Popover placement="left" triggerClass="display-flex">
                 <Fragment slot="trigger">
@@ -56,10 +63,13 @@ function getIconName(string: string) {
             )}
           </a>
           {hasModules === entry.id && (
-            <ul class="menu menu_size_sm margin-left margin-y-sm">
+            <ul class="menu menu_modules menu_size_sm">
               {modules.map((item) => (
                 <li class="menu__item">
-                  <a class="menu__action" href={`/${collection}/${item.id}`}>
+                  <a
+                    class={cp.classes(`/${collection}/${item.id}`)}
+                    href={`/${collection}/${item.id}`}
+                  >
                     {item.data.title}
                   </a>
                 </li>
@@ -71,3 +81,30 @@ function getIconName(string: string) {
     }
   </ul>
 </nav>
+
+<script>
+  import { drawer } from "../modules/useDrawer";
+
+  document.querySelectorAll(".menu_collection .is-active").forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      // Guard if this is an active module page
+      if (anchor.getAttribute("href").includes("#")) return;
+
+      // Prevent the default behavior
+      event.preventDefault();
+
+      // Clear the hash if one has been set
+      const url = window.location.pathname + window.location.search;
+      history.pushState({}, "", url);
+      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      // Close the modal drawer if open
+      if (drawer.activeModal && drawer.activeModal.id === "layout-drawer") {
+        drawer.activeModal.close();
+      }
+    });
+  });
+</script>
