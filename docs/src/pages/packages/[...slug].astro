@@ -49,6 +49,14 @@ const layout = {
   hasDrawer: true,
   hasAside: true
 };
+
+function slugify(value: string) {
+  return value
+    .toLowerCase() // Make the string all lowercase
+    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with -
+    .replace(/[^\w-]+/g, '') // Remove all non-word chars
+    .trim() // Remove whitespace before and after string
+}
 ---
 
 <Base title={entry.data.title} {layout}>
@@ -71,7 +79,9 @@ const layout = {
             </a>
           )}
         </div>
-        <h1 class="h1">{entry.data.title}</h1>
+        <h1 id={slugify(entry.data.title)} class="h1">
+          {entry.data.title}
+        </h1>
       </div>
       <p>{entry.data.description}</p>
     )
