@@ -9,6 +9,7 @@
     "component",
     "base"
   ],
+  "style": "./dist/index.css",
   "exports": {
     ".": {
       "sass": "./index.scss",
@@ -16,9 +17,15 @@
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
-    "./sass": "./index.scss",
     "./*": "./src/*"
   },
+  "files": [
+    "dev",
+    "dist",
+    "src",
+    "config.scss",
+    "index.scss"
+  ],
   "scripts": {
     "serve": "vite",
     "build": "npm-run-all clean styles",
