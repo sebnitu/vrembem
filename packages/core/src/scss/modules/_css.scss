@@ -12,7 +12,7 @@
 /// stored under component keys with maps of their custom property.
 /// @type map
 /// @access private
-$-css-vars: (
+$-tokens: (
   "core": (
     "prefix": (
       "config": (
@@ -43,7 +43,7 @@ $-css-vars: (
 /// @access private
 ///
 @function -component-exists($component, $required: true) {
-  @if not map.has-key($-css-vars, $component) {
+  @if not map.has-key($-tokens, $component) {
     @if $required {
       @error "Component `#{$component}` has not been registered in custom properties map.";
     } @else {
@@ -103,7 +103,7 @@ $-css-vars: (
 ///   The keys to traverse in the custom properties map.
 ///
 @function has($keys...) {
-  @return map.has-key($-css-vars, $keys...);
+  @return map.has-key($-tokens, $keys...);
 }
 
 /// Register a component in the custom properties map. This is used when a
@@ -115,7 +115,7 @@ $-css-vars: (
 ///
 @mixin register($component) {
   @if not(has($component)) {
-    $-css-vars: map.set($-css-vars, $component, empty-map()) !global;
+    $-tokens: map.set($-tokens, $component, empty-map()) !global;
   }
 }
 
@@ -240,7 +240,7 @@ $-css-vars: (
 @function get($component, $props...) {
   // Return custom properties map if component is set to "*" value
   @if $component == "*" {
-    @return $-css-vars;
+    @return $-tokens;
   }
 
   // Return a nested map in custom properties map if props contains "*" value
@@ -249,7 +249,7 @@ $-css-vars: (
     @if -component-exists($component) {
       $props: remove-nth($props, list.index($props, "*"));
 
-      @return map.get($-css-vars, $component, $props...);
+      @return map.get($-tokens, $component, $props...);
     }
   }
 
@@ -271,10 +271,10 @@ $-css-vars: (
     // Loop through the props and append them to results as nested fallbacks
     @for $i from 1 through $count {
       $prop: list.nth($props, $i);
-      $value: map.get($-css-vars, $component, $prop);
+      $value: map.get($-tokens, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-css-vars, $component, $prop) or map.has-key($-css-vars, $component, config.get("theme-default"), $prop) {
+      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, config.get("theme-default"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
@@ -319,7 +319,7 @@ $-css-vars: (
 ///   @include css.set("button", "background", #000);
 ///
 ///   // Result in custom properties map:
-///   $-css-vars: (
+///   $-tokens: (
 ///     "button": (
 ///       "background": #000
 ///     )
@@ -332,7 +332,7 @@ $-css-vars: (
 ///   ));
 ///
 ///   // Result in custom properties map:
-///   $-css-vars: (
+///   $-tokens: (
 ///     "button": (
 ///       "background": #000,
 ///       "foreground": #fff
@@ -349,7 +349,7 @@ $-css-vars: (
 ///   ));
 ///
 ///   // Result in custom properties map:
-///   $-css-vars: (
+///   $-tokens: (
 ///     "button": (
 ///       "background-hover": #000,
 ///       "background-focus": #555,
@@ -364,7 +364,7 @@ $-css-vars: (
   // Example in core/theme:
   // @include css.set("*", $result);
   @if $component == "*" {
-    $-css-vars: $prop !global;
+    $-tokens: $prop !global;
   }
 
   // If prop is set to "*", merge the value map with an entire component map
@@ -378,9 +378,9 @@ $-css-vars: (
     );
 
     @if $deep != true {
-      $-css-vars: map.merge($-css-vars, $component-map) !global;
+      $-tokens: map.merge($-tokens, $component-map) !global;
     } @else {
-      $-css-vars: map.deep-merge($-css-vars, $component-map) !global;
+      $-tokens: map.deep-merge($-tokens, $component-map) !global;
     }
   }
 
@@ -390,7 +390,7 @@ $-css-vars: (
     $component-map: (
       $component: args-to-map($prop, $value)
     );
-    $-css-vars: map.deep-merge($-css-vars, $component-map) !global;
+    $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 }
 
@@ -400,7 +400,7 @@ $-css-vars: (
 ///   The list of keys to follow and remove from the custom properties map.
 ///
 @mixin remove($keys...) {
-  $-css-vars: map.deep-remove($-css-vars, $keys...) !global;
+  $-tokens: map.deep-remove($-tokens, $keys...) !global;
 }
 
 /// Mixin to override previously defined custom properties. This is primarily
@@ -462,7 +462,7 @@ $-css-vars: (
 ///
 /// @example scss
 ///   // Example value in custom properties map:
-///   $-css-vars: (
+///   $-tokens: (
 ///     "button": (
 ///       "background": #555,
 ///       "foreground": #fff,
@@ -484,13 +484,13 @@ $-css-vars: (
 ///
 @mixin output($component: "*") {
   @if $component == "*" {
-    // Call output() for every component in $-css-vars
-    @each $component in map.keys($-css-vars) {
+    // Call output() for every component in $-tokens
+    @each $component in map.keys($-tokens) {
       @include output($component);
     }
   } @else if -component-exists($component, false) {
     // Get the component's property map
-    $property-map: map.get($-css-vars, $component);
+    $property-map: map.get($-tokens, $component);
 
     // Loop through the property map
     @each $prop, $value in $property-map {
@@ -510,12 +510,12 @@ $-css-vars: (
 ///
 @mixin log($component: "*", $props...) {
   @if $component == "*" {
-    @include debug-map($-css-vars, 'Custom properties of "*"');
+    @include debug-map($-tokens, 'Custom properties of "*"');
   } @else if -component-exists($component) {
     @if list.length($props) > 0 {
-      @include debug-map(map.get($-css-vars, $component, $props...), 'Custom properties of "#{$component}" > "#{$props}"');
+      @include debug-map(map.get($-tokens, $component, $props...), 'Custom properties of "#{$component}" > "#{$props}"');
     } @else {
-      @include debug-map(map.get($-css-vars, $component), 'Custom properties of "#{$component}"');
+      @include debug-map(map.get($-tokens, $component), 'Custom properties of "#{$component}"');
     }
   }
 }
