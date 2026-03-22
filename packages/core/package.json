@@ -11,6 +11,7 @@
     "component",
     "core"
   ],
+  "style": "./dist/index.css",
   "exports": {
     ".": {
       "sass": "./index.scss",
@@ -19,14 +20,17 @@
       "import": "./dist/index.js",
       "require": "./dist/index.umd.cjs"
     },
-    "./dev/*": "./dev/*",
-    "./dist/*": "./dist/*",
-    "./sass": "./index.scss",
-    "./root": "./root.scss",
+    "./tokens": {
+      "sass": "./tokens.scss",
+      "import": "./dist/index.css",
+      "default": "./dist/index.css"
+    },
     "./config": "./src/scss/modules/_config.scss",
     "./css": "./src/scss/modules/_css.scss",
     "./palette": "./src/scss/modules/_palette.scss",
     "./theme": "./src/scss/modules/_theme.scss",
+    "./dev/*": "./dev/*",
+    "./dist/*": "./dist/*",
     "./*": "./src/*"
   },
   "files": [
@@ -39,7 +43,7 @@
     "css.scss",
     "palette.scss",
     "theme.scss",
-    "root.scss"
+    "tokens.scss"
   ],
   "scripts": {
     "serve": "vite",

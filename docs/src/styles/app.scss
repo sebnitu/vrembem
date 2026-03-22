@@ -1,8 +1,8 @@
 // Configure Vrembem
 @forward "./config";
 
-// Import all Vrembem components
-@forward "vrembem/base";
+// Import all Vrembem styles without CSS variables
+@forward "vrembem/styles";
 
 // Miscellaneous global styles
 @forward "./global";
@@ -44,4 +44,4 @@
 // Important!
 // Include this last to catch all custom property references.
 // Output all CSS custom properties
-@forward "vrembem/root";
+@forward "vrembem/tokens";
