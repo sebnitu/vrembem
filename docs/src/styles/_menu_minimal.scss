@@ -1,0 +1,43 @@
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+
+.menu_minimal {
+  @include css.override(
+    "menu",
+    (
+      "gap": 0,
+      "font-size": css.get("font-size-sm")
+    )
+  );
+
+  .menu__action {
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-visible,
+    &.is-active {
+      background-color: transparent;
+    }
+
+    &::before {
+      background: transparent;
+      border-radius: 2px;
+      content: "";
+      inset: 8px auto 8px 0;
+      position: absolute;
+      width: 2px;
+    }
+
+    &:hover::before {
+      background: css.get("foreground");
+    }
+
+    &.is-active::before {
+      background: palette.get("primary");
+    }
+  }
+
+  .menu {
+    margin-left: 1rem;
+  }
+}
