@@ -65,8 +65,8 @@ A plugin is comprised of properties, lifecycle hooks and methods. The only requi
 
 A plugins configuration object is built when added to a collection by merging the values of the `config`, collection `presets`, and `options` properties.
 
-<CodeExample lang="js">
-```js
+<CodeExample lang="ts">
+```ts
 interface Plugin<
   TEntry extends CollectionEntry = CollectionEntry,
   TParent extends Collection<TEntry> = Collection<TEntry>

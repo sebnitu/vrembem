@@ -17,7 +17,6 @@ interface Props {
 }
 
 const { title, layout = {} } = Astro.props;
-
 ---
 
 <Root {title} {layout}>
@@ -59,9 +58,7 @@ const { title, layout = {} } = Astro.props;
                   <Fragment slot="trigger">
                     <Icon name="compass" />
                   </Fragment>
-                  <Fragment slot="tooltip">
-                    On this page
-                  </Fragment>
+                  <Fragment slot="tooltip">On this page</Fragment>
                 </Popover>
               </div>
             )

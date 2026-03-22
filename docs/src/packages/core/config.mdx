@@ -16,17 +16,7 @@ import ReferenceBar from "../../components/ReferenceBar.astro";
 
 ## Basic usage
 
-The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs and can be interfaced with using:
-
-- [`config.get`](#configget)
-- [`config.set`](#configset)
-- [`config.set-default`](#configset-default)
-- [`config.merge`](#configmerge)
-- [`config.remove`](#configremove)
-- [`config.apply`](#configapply)
-- [`config.watch`](#configwatch)
-- [`config.unwatch`](#configunwatch)
-- [`config.log`](#configlog)
+The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs.
 
 There are two primary methods to configure options in the config module. The first is import and use the module API directly and the second is the Sass `@use ... with` clause.
 

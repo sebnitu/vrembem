@@ -36,6 +36,14 @@ $-offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
     width: 100%;
   }
 
+  &.is-virtual {
+    @include css.override("popover", "virtual", true);
+
+    &::before {
+      content: none;
+    }
+  }
+
   &.is-active {
     opacity: 1;
     pointer-events: auto;

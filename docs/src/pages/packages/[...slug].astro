@@ -4,6 +4,7 @@ import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import { getModules } from "../../modules/getModules";
 import Base from "../../layouts/Base.astro";
+import Intro from "../../components/Intro.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
@@ -13,8 +14,10 @@ import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
 
 interface Props {
-  entry: CollectionEntry<"packages">;
+  entry: CollectionEntry<"packages"> | CollectionEntry<"modules">;
 }
+
+const { entry } = Astro.props;
 
 export async function getStaticPaths() {
   const packages = await getPackages();
@@ -34,11 +37,14 @@ export async function getStaticPaths() {
   return entries;
 }
 
-const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 const packages = await getPackages();
-const modules = await getModules(entry.data.group);
+
+let modules = [];
+if ("parent" in entry.data) {
+  modules = await getModules(entry.data.group);
+}
 
 const layout = {
   hasDrawer: true,
@@ -47,56 +53,31 @@ const layout = {
 ---
 
 <Base title={entry.data.title} {layout}>
-  <Navi entries={packages} collection="packages" slot="drawer" />
-  <OnThisPage {headings} slot="aside" />
-
-  {
-    entry.data.parent && (
-      <div>
-        <div class="flex gap-sm">
-          <a href={`../${entry.data.parent}`} class="badge">
-            {entry.data.parent}
-          </a>
-          {entry.data.group && (
-            <a
-              href={`../${entry.data.parent}#${entry.data.group}`}
-              class="badge"
-            >
-              {entry.data.group}
-            </a>
-          )}
-        </div>
-        <h1 class="h1">{entry.data.title}</h1>
-      </div>
-      <p>{entry.data.description}</p>
-    )
-  }
-
+  <Fragment slot="drawer">
+    <Navi collection="packages" entries={packages} {modules} />
+  </Fragment>
+  <Fragment slot="aside">
+    <OnThisPage {headings} />
+  </Fragment>
+  <Intro data={entry.data} />
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
     <hr class="sep" />
-    {entry.data.package && <Pagi entries={packages} />}
-    {entry.data.parent && <Pagi entries={modules} />}
+    {"package" in entry.data && <Pagi entries={packages} />}
+    {"parent" in entry.data && <Pagi entries={modules} />}
   </div>
 </Base>
 
 <script>
-  // @ts-nocheck
-  import { headingAnchor } from "../../modules/headingAnchor";
-  import { toggle } from "../../modules/toggle";
   import "../../modules/currentViewport";
   import "../../modules/dismissible";
   import "../../modules/resettable";
   import "../../modules/demo";
   import "../../modules/demos";
+  import { headingAnchor } from "../../modules/headingAnchor";
+  import { toggle } from "../../modules/toggle";
 
   headingAnchor.mount();
   toggle.mount();
-
-  // Checkboxes
-  const checkboxes = document.querySelectorAll(
-    "input[type='checkbox'][aria-checked='mixed']"
-  );
-  checkboxes.forEach((checkbox) => (checkbox.indeterminate = true));
 </script>

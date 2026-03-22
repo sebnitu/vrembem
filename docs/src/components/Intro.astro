@@ -1,0 +1,20 @@
+---
+interface Props {
+  data: any;
+}
+
+const { data } = Astro.props;
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[\s/]+/g, "-") // Replace spaces and slashes with dash
+    .replace(/[^\w-]+/g, "") // Remove all non-word chars
+    .trim();
+}
+---
+
+<div class={`type ${data.description ? "margin-bottom-lg" : ""}`.trim()}>
+  <h1 id={slugify(data.title)}>{data.title}</h1>
+  {data.description && <p>{data.description}</p>}
+</div>

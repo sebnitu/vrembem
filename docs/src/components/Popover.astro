@@ -18,11 +18,11 @@ const {
   href,
   label,
   triggerClass = "link",
-  popoverClass = "",
-  tooltipClass = "",
   placement,
   ...rest
 } = Astro.props;
+
+let { popoverClass = "", tooltipClass = "" } = Astro.props;
 
 const uid = id ? id : `${Math.floor(Math.random() * Date.now())}`;
 const triggerId = `popover-trigger-${uid}`;
@@ -34,15 +34,16 @@ if (placement) {
   css["--vb-popover-placement"] = placement;
 }
 if (virtual) {
-  css["--vb-popover-virtual"] = String(virtual);
+  popoverClass = `${popoverClass} is-virtual`.trim();
+  tooltipClass = `${tooltipClass} is-virtual`.trim();
 }
 ---
 
 {
   Astro.slots.has("trigger") && !href && (
     <button
-      id={triggerId}
       type="button"
+      id={triggerId}
       data-popover-trigger={popoverId}
       aria-controls={popoverId}
       aria-describedby={tooltipId}
@@ -63,6 +64,7 @@ if (virtual) {
       data-popover-trigger={popoverId}
       aria-controls={popoverId}
       aria-describedby={tooltipId}
+      aria-label={label}
       class={triggerClass}
       {...rest}
     >

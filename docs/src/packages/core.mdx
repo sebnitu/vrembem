@@ -7,10 +7,6 @@ category: core
 
 import CodeExpander from "../components/CodeExpander.astro";
 
-# Core
-
-Vrembem's core package provides a number of Sass and JavaScript modules that make up the shared systems, configurations, and utilities of the Vrembem library.
-
 ```sh
 npm install @vrembem/core
 ```
@@ -123,16 +119,16 @@ CollectionEntry represent an individual component instance within a collection, 
 
 Vrembem provides plugins designed to extend the features of components managed by collections, adding advanced behaviors and integrations to your JavaScript components.
 
-- [`attrConfig`](/packages/core/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
-- [`cssConfig`](/packages/core/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
-- [`focusTrap`](/packages/core/focus-trap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
-- [`mediaQuery`](/packages/core/media-query): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
-- [`propStore`](/packages/core/prop-store): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
-- [`teleport`](/packages/core/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
+- [`attrConfig`](/packages/core/plugins/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
+- [`cssConfig`](/packages/core/plugins/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
+- [`focusTrap`](/packages/core/plugins/focus-trap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
+- [`mediaQuery`](/packages/core/plugins/media-query): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
+- [`propStore`](/packages/core/plugins/prop-store): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
+- [`teleport`](/packages/core/plugins/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
 
 It's also possible to write your own custom plugins. Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements.
 
-[Writing a custom plugin](/packages/core/custom-plugins)
+[Writing a custom plugin](/packages/core/plugins/custom)
 
 ## Reference
 

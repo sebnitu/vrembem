@@ -12,16 +12,13 @@
   max-width: css.get("layout", "drawer-width");
   opacity: 0;
   outline: none;
-  overflow: hidden auto;
-  padding: css.get("layout", "drawer-padding");
   position: fixed;
-  scroll-behavior: smooth;
   transform: translate(-100%);
   transition:
     opacity 0.5s,
     transform 0.25s ease;
   visibility: hidden;
-  width: calc(100% - 4rem);
+  width: calc(100% - 4.5rem);
   z-index: 100;
 
   &.is-opened,
@@ -43,6 +40,16 @@
   }
 }
 
+.layout-drawer__content {
+  height: 100%;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  padding: css.get("layout", "drawer-padding");
+  position: absolute;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
 /**
  * Inline drawer
  */
@@ -51,10 +58,9 @@
   .layout-drawer {
     box-shadow: none;
     box-sizing: content-box;
-    max-width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
+    max-width: calc(css.get("layout", "drawer-width") + css.get("layout", "drawer-padding"));
     opacity: 1;
-    padding: calc(css.get("layout", "drawer-padding") + css.get("layout", "navibar-height")) css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
-    padding-left: max(css.get("layout", "drawer-padding"), calc((100% - css.get("layout", "width")) / 2));
+    padding-left: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "drawer-padding") * 2))) / 2));
     transform: translate(0);
     visibility: visible;
     width: 100%;
@@ -77,11 +83,18 @@
     }
   }
 
+  .layout-drawer__content {
+    padding: css.get("layout", "navibar-height") css.get("layout", "drawer-padding") css.get("layout", "drawer-padding");
+    width: calc(css.get("layout", "drawer-width") - css.get("layout", "drawer-padding"));
+  }
+
   .layout-drawer__mask {
     background-color: css.get("background-darker");
-    height: css.get("layout", "navibar-height");
+    height: calc(css.get("layout", "navibar-height") + css.get("layout", "drawer-padding"));
+    left: 0;
     margin: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1) calc(css.get("layout", "drawer-padding") * -1) css.get("layout", "drawer-padding") calc(css.get("layout", "drawer-padding") * -1);
     position: sticky;
+    right: 0;
     top: calc((css.get("layout", "navibar-height") + css.get("layout", "drawer-padding")) * -1);
     z-index: 2;
 

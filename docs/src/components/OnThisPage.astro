@@ -30,9 +30,9 @@ function build(headings) {
 
 <nav>
   <h2 class="sr-only">On this page</h2>
-  <ul class={`menu menu_otp menu_size_sm ${menuClass}`.trim()}>
+  <ul id="on-this-page-menu" class={`menu menu_minimal ${menuClass}`.trim()}>
     <li>
-      <a href="#main-content" class="menu__action" data-scroll-into-view="">
+      <a href="#main-content" class="menu__action" data-scroll-to-top="">
         <strong>On this page</strong>
       </a>
     </li>
@@ -40,7 +40,7 @@ function build(headings) {
     {filteredHeadings.map((item) => <OnThisPageList {item} />)}
     <li class="menu__sep slide-up scroll-spy"></li>
     <li class="menu__item slide-up scroll-spy">
-      <a href="#main-content" class="menu__action" data-scroll-into-view="">
+      <a href="#main-content" class="menu__action" data-scroll-to-top="">
         Back to top
       </a>
     </li>
@@ -56,10 +56,10 @@ function build(headings) {
   }).mount();
 
   onThisPage({
-    selectorAnchors: ".menu_otp a"
+    selectorAnchors: "#on-this-page-menu a"
   }).mount();
 
-  document.querySelectorAll("[data-scroll-into-view]").forEach((anchor) => {
+  document.querySelectorAll("[data-scroll-to-top]").forEach((anchor) => {
     anchor.addEventListener("click", (event) => {
       // Prevent the default behavior
       event.preventDefault();
@@ -69,15 +69,8 @@ function build(headings) {
       history.pushState({}, "", url);
       window.dispatchEvent(new Event("hashchange", { bubbles: true }));
 
-      // Get the target element
-      const targetId = anchor.getAttribute("href");
-      const targetEl = document.querySelector(targetId) as HTMLElement;
-
-      // Scroll to the specified element if it exists
-      if (targetEl) {
-        targetEl.scrollIntoView();
-        targetEl.focus();
-      }
+      // Scroll to top
+      window.scrollTo(0, 0);
     });
   });
 </script>
