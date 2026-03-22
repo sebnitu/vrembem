@@ -49,44 +49,11 @@ const layout = {
   hasDrawer: true,
   hasAside: true
 };
-
-function slugify(value: string) {
-  return value
-    .toLowerCase() // Make the string all lowercase
-    .replace(/[\s/]+/g, '-') // Replace spaces and slashes with -
-    .replace(/[^\w-]+/g, '') // Remove all non-word chars
-    .trim() // Remove whitespace before and after string
-}
 ---
 
 <Base title={entry.data.title} {layout}>
   <Navi entries={packages} {modules} collection="packages" slot="drawer" />
   <OnThisPage {headings} slot="aside" />
-
-  {
-    "parent" in entry.data && (
-      <div>
-        <div class="flex gap-sm">
-          <a href={`/packages/${entry.data.parent}`} class="badge">
-            {entry.data.parent}
-          </a>
-          {entry.data.group && (
-            <a
-              href={`/packages/${entry.data.parent}#${entry.data.group}`}
-              class="badge"
-            >
-              {entry.data.group}
-            </a>
-          )}
-        </div>
-        <h1 id={slugify(entry.data.title)} class="h1">
-          {entry.data.title}
-        </h1>
-      </div>
-      <p>{entry.data.description}</p>
-    )
-  }
-
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
@@ -97,21 +64,14 @@ function slugify(value: string) {
 </Base>
 
 <script>
-  // @ts-nocheck
-  import { headingAnchor } from "../../modules/headingAnchor";
-  import { toggle } from "../../modules/toggle";
   import "../../modules/currentViewport";
   import "../../modules/dismissible";
   import "../../modules/resettable";
   import "../../modules/demo";
   import "../../modules/demos";
+  import { headingAnchor } from "../../modules/headingAnchor";
+  import { toggle } from "../../modules/toggle";
 
   headingAnchor.mount();
   toggle.mount();
-
-  // Checkboxes
-  const checkboxes = document.querySelectorAll(
-    "input[type='checkbox'][aria-checked='mixed']"
-  );
-  checkboxes.forEach((checkbox) => (checkbox.indeterminate = true));
 </script>

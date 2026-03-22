@@ -1,6 +1,13 @@
 import { TicTacToe } from "./TicTacToe";
 import { Collection, propStore } from "@vrembem/core";
 
+// Checkbox example
+// ---
+const checkboxes = document.querySelectorAll(
+  "input[type='checkbox'][aria-checked='mixed']"
+);
+checkboxes.forEach((checkbox) => (checkbox.indeterminate = true));
+
 // TicTacToe example
 // ---
 const ticTacToe1 = new TicTacToe({
