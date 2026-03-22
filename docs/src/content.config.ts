@@ -10,7 +10,7 @@ const packages = defineCollection({
   loader: glob({ base: "./src/packages", pattern: "*.mdx" }),
   schema: z.object({
     title: z.string(),
-    description: z.string(),
+    description: z.string().optional(),
     package: z.string(),
     category: z.string().optional()
   })
@@ -20,6 +20,7 @@ const modules = defineCollection({
   loader: glob({ base: "./src/packages", pattern: "*/**/*.mdx" }),
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
     parent: z.string(),
     group: z.string().optional(),
     order: z.number().optional()

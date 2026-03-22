@@ -4,6 +4,7 @@ import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import { getModules } from "../../modules/getModules";
 import Base from "../../layouts/Base.astro";
+import Intro from "../../components/Intro.astro";
 import Navi from "../../components/CollectionNavi.astro";
 import Pagi from "../../components/CollectionPagi.astro";
 import OnThisPage from "../../components/OnThisPage.astro";
@@ -52,8 +53,13 @@ const layout = {
 ---
 
 <Base title={entry.data.title} {layout}>
-  <Navi entries={packages} {modules} collection="packages" slot="drawer" />
-  <OnThisPage {headings} slot="aside" />
+  <Fragment slot="drawer">
+    <Navi collection="packages" entries={packages} {modules} />
+  </Fragment>
+  <Fragment slot="aside">
+    <OnThisPage {headings} />
+  </Fragment>
+  <Intro data={entry.data} />
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
