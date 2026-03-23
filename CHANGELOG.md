@@ -35,12 +35,23 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.35 to CHANGELOG.md
+chore(release): add v4.0.0-next.36 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.36 (2026-03-23)
+
+### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2711](https://github.com/sebnitu/vrembem/pull/2711) Refactor vrembem entries and fix package issues
+
+### :books: Documentation
+* `popover`
+  * [#2710](https://github.com/sebnitu/vrembem/pull/2710) Improve documentation UI and general docs bug fixes
 
 
 ## v4.0.0-next.35 (2026-03-20)
