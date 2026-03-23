@@ -7,7 +7,6 @@
     "rootDir": "./",
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "Node",
     "allowJs": true,
     "skipLibCheck": true
   },
