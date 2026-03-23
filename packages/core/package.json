@@ -10,8 +10,8 @@
     "component",
     "core"
   ],
-  "types": "./dist/index.d.ts",
   "style": "./dist/index.css",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "sass": "./index.scss",
