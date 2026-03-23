@@ -17,4 +17,4 @@
 @forward "@vrembem/section/config" as section-*;
 @forward "@vrembem/table/config" as table-*;
 @forward "@vrembem/utility/config" as utility-*;
-@forward "@vrembem/core/root";
+@forward "../tokens";

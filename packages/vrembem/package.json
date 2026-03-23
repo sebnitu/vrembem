@@ -10,27 +10,54 @@
     "component",
     "library"
   ],
+  "types": "./dist/index.d.ts",
+  "style": "./dist/index.css",
   "exports": {
     ".": {
-      "sass": "./index.scss",
-      "style": "./dist/index.css",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs"
+      "require": "./dist/index.umd.cjs",
+      "sass": "./index.scss",
+      "style": "./dist/index.css"
+    },
+    "./styles": {
+      "sass": "./styles.scss",
+      "import": "./dist/styles.css",
+      "default": "./dist/styles.css"
+    },
+    "./tokens": {
+      "sass": "./tokens.scss",
+      "import": "./dist/tokens.css",
+      "default": "./dist/tokens.css"
+    },
+    "./base": {
+      "sass": "./base.scss",
+      "import": "./dist/base.css",
+      "default": "./dist/base.css"
+    },
+    "./components": {
+      "sass": "./components.scss",
+      "import": "./dist/components.css",
+      "default": "./dist/components.css"
+    },
+    "./utilities": {
+      "sass": "./utilities.scss",
+      "import": "./dist/utilities.css",
+      "default": "./dist/utilities.css"
     },
     "./dev/*": "./dev/*",
-    "./dist/*": "./dist/*",
-    "./sass": "./index.scss",
-    "./base": "./base.scss",
-    "./root": "./root.scss"
+    "./dist/*": "./dist/*"
   },
   "files": [
     "dev",
     "dist",
     "index.ts",
     "index.scss",
+    "styles.scss",
+    "tokens.scss",
     "base.scss",
-    "root.scss"
+    "components.scss",
+    "utilities.scss"
   ],
   "scripts": {
     "serve": "vite",

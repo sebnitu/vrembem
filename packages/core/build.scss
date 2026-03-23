@@ -1,7 +1,1 @@
-@use "@vrembem/core";
-
-:root {
-  @include core.css-output;
-}
-
-@include core.theme-output;
+@forward "./tokens";
