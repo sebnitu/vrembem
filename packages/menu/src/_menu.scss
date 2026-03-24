@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
+@use "@vrembem/core/palette";
 @use "./mixins" as mix;
 
 #{core.bem("menu")} {
@@ -8,71 +8,70 @@
   display: flex;
   flex-direction: column;
   font-size: css.get("menu", "font-size", css.get("form-control-size"));
-  gap: css.get("menu", "gap", var.$gap);
+  gap: css.get("menu", "gap", 1px);
   line-height: css.get("menu", "line-height", css.get("form-control-line-height"));
   list-style: none;
 }
 
 #{core.bem("menu", "sep")} {
   align-self: stretch;
-  background: css.get("menu", "sep-background", var.$sep-background);
+  background: css.get("menu", "sep-background", css.get("border-color"));
   flex: 0 0 auto;
-  height: css.get("menu", "sep-size", var.$sep-size);
-  margin: css.get("menu", "sep-gap", var.$sep-gap) 0;
+  height: css.get("menu", "sep-size", 1px);
+  margin: css.get("menu", "sep-gap", 0.5em) 0;
   width: auto;
 }
 
 #{core.bem("menu", "action")} {
-  @include core.form-control-properties("menu");
   @include mix.menu-action-base;
 
-  background-color: css.get("menu", "background", var.$background);
-  border-color: css.get("menu", "border-color", var.$border-color);
-  box-shadow: css.get("menu", "box-shadow", var.$box-shadow);
-  color: css.get("menu", "foreground", var.$foreground);
+  background-color: css.get("menu", "background", transparent);
+  border-color: css.get("menu", "border-color", transparent);
+  box-shadow: css.get("menu", "box-shadow", none);
+  color: css.get("menu", "foreground", css.get("foreground"));
 
   &:hover {
-    background-color: css.get("menu", "background-hover", "background", var.$background-hover);
-    border-color: css.get("menu", "border-color-hover", "border-color", var.$border-color-hover);
-    box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", var.$box-shadow-hover);
-    color: css.get("menu", "foreground-hover", "foreground", var.$foreground-hover);
+    background-color: css.get("menu", "background-hover", "background", css.get("background-hover"));
+    border-color: css.get("menu", "border-color-hover", "border-color", transparent);
+    box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", none);
+    color: css.get("menu", "foreground-hover", "foreground", css.get("foreground"));
   }
 
   &:focus {
-    background-color: css.get("menu", "background-focus", "background-hover", "background", var.$background-focus);
-    border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus);
-    box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus);
-    color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus);
+    background-color: css.get("menu", "background-focus", "background-hover", "background", css.get("background-hover"));
+    border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
+    box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+    color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
   }
 
   &:focus-visible {
-    @include core.focus-ring-color(var.$accent);
+    @include core.focus-ring-color(css.get("menu", "accent", css.get("form-control-accent")));
 
-    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", var.$background-focus-visible);
-    border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", var.$border-color-focus-visible);
-    box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", var.$box-shadow-focus-visible);
-    color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", var.$foreground-focus-visible);
+    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background-hover"));
+    border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("menu", "accent", css.get("form-control-accent")));
+    box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+    color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
   }
 
   &:active {
-    background-color: css.get("menu", "background-active", "background", var.$background-active);
-    border-color: css.get("menu", "border-color-active", "border-color", var.$border-color-active);
-    box-shadow: css.get("menu", "box-shadow-active", "box-shadow", var.$box-shadow-active);
-    color: css.get("menu", "foreground-active", "foreground", var.$foreground-active);
+    background-color: css.get("menu", "background-active", "background", css.get("background-active"));
+    border-color: css.get("menu", "border-color-active", "border-color", transparent);
+    box-shadow: css.get("menu", "box-shadow-active", "box-shadow", none);
+    color: css.get("menu", "foreground-active", "foreground", css.get("foreground"));
   }
 
   &:disabled:not(.is-active) {
-    background-color: css.get("menu", "disabled-background", var.$disabled-background);
-    color: css.get("menu", "disabled-foreground", var.$disabled-foreground);
+    background-color: css.get("menu", "disabled-background", none);
+    color: css.get("menu", "disabled-foreground", css.get("foreground-lighter"));
     pointer-events: none;
   }
 
   &.is-active {
-    background-color: css.get("menu", "active-background", var.$active-background);
-    color: css.get("menu", "active-foreground", var.$active-foreground);
+    background-color: css.get("menu", "active-background", none);
+    color: css.get("menu", "active-foreground", palette.get("primary"));
   }
 }
 
 #{core.bem("menu", "action", "icon")} {
-  @include css.override("menu", "padding", var.$icon-padding);
+  @include css.override("menu", "padding", css.get("form-control-padding-y"));
 }

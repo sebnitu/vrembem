@@ -1,52 +1,24 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Toggle for outputting menu_inline modifier breakpoint variants
+  // @type boolean
+  "menu-inline-breakpoints": true,
+
+  // Map for outputting menu_size_[key] modifier variants
+  // @type map
+  "menu-size": (
+    "breakpoints": true,
+    "sm": css.get("form-control-size-sm"),
+    "md": css.get("form-control-size"),
+    "lg": css.get("form-control-size-lg")
+  )
+);
+
+@include config.apply($config, $default);
 @include css.register("menu");
-
-$accent: css.get("menu", "accent", css.get("form-control-accent")) !default;
-$gap: 1px !default;
-$action-gap: 0.5em !default;
-
-// Appearance
-$background: transparent !default;
-$background-hover: css.get("background-hover") !default;
-$background-focus: $background-hover !default;
-$background-focus-visible: $background-hover !default;
-$background-active: css.get("background-active") !default;
-$foreground: css.get("foreground") !default;
-$foreground-hover: $foreground !default;
-$foreground-focus: $foreground !default;
-$foreground-focus-visible: $foreground !default;
-$foreground-active: $foreground !default;
-$border-color: transparent !default;
-$border-color-hover: $border-color !default;
-$border-color-focus: $border-color !default;
-$border-color-focus-visible: $accent !default;
-$border-color-active: $border-color !default;
-$box-shadow: none !default;
-$box-shadow-hover: $box-shadow !default;
-$box-shadow-focus: $box-shadow !default;
-$box-shadow-focus-visible: $box-shadow !default;
-$box-shadow-active: $box-shadow !default;
-
-// Element modifier: menu__action_icon
-$icon-padding: css.get("form-control-padding-y");
-
-// Element: menu__sep
-$sep-size: 1px !default;
-$sep-gap: 0.5em !default;
-$sep-background: css.get("border-color") !default;
-
-// State: active
-$active-background: none !default;
-$active-foreground: palette.get("primary") !default;
-
-// State: disabled
-$disabled-background: none !default;
-$disabled-foreground: css.get("foreground-lighter") !default;
-
-// Modifier: menu_size_sm
-$size-sm-font-size: css.get("font-size-sm") !default;
-
-// Modifier: menu_size_sm
-$size-lg-font-size: css.get("font-size-lg") !default;
