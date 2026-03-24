@@ -13,7 +13,7 @@
 
 .layout__main {
   box-sizing: content-box;
-  max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
+  max-width: css.get("layout", "width");
   position: relative;
   width: 100%;
 
@@ -25,6 +25,7 @@
     padding-top: css.get("layout", "navibar-height");
 
     .has-drawer & {
+      max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
       padding-left: css.get("layout", "drawer-width");
       width: calc(100% - css.get("layout", "drawer-width"));
     }
@@ -125,7 +126,9 @@
 }
 
 .layout__aside {
+  inset: 0 0 auto auto;
   order: 2;
+  position: relative;
   width: css.get("layout", "aside-width");
 }
 
