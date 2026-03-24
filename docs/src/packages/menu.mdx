@@ -5,7 +5,7 @@ package: "@vrembem/menu"
 category: component
 ---
 
-import DocBlock from '../components/DocBlock.astro';
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Menu from "../examples/Menu.astro";
 
 ```sh
@@ -17,6 +17,96 @@ npm install @vrembem/menu
   @use "@vrembem/menu";
   ```
 </CodeExample>
+
+## Options
+
+Menu is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Menu comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/menu" with (
+  $config: (
+    // Toggle for outputting menu_inline modifier breakpoint variants
+    // @type boolean
+    "menu-inline-breakpoints": true,
+
+    // Toggle for outputting menu_full modifier breakpoint variants
+    // @type boolean
+    "menu-full-breakpoints": true,
+
+    // Map for outputting menu_size_[key] modifier variants
+    // @type map
+    "menu-size": (
+      "breakpoints": true,
+      "sm": css.get("form-control-size-sm"),
+      "md": css.get("form-control-size"),
+      "lg": css.get("form-control-size-lg")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Menu uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-menu" valueLabel="Fallback" expandable={true} data={{
+  // Form control fallbacks
+  "--vb-menu-accent": "var(--vb-form-control-accent)",
+  "--vb-menu-size": "var(--vb-form-control-size)",
+  "--vb-menu-line-height": "var(--vb-form-control-line-height)",
+  "--vb-menu-padding": "var(--vb-form-control-padding)",
+  "--vb-menu-border-radius": "var(--vb-form-control-border-radius)",
+  "--vb-menu-border-width": "var(--vb-form-control-border-width)",
+  "--vb-menu-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-menu-transition-property": "var(--vb-form-control-transition-property)",
+  "--vb-menu-transition-timing-function": "var(--vb-menu-control-transition-timing-function)",
+
+  // Menu specific
+  "--vb-menu-gap": "1px",
+  "--vb-menu-sep-background": "var(--vb-border-color)",
+  "--vb-menu-sep-size": "1px",
+  "--vb-menu-sep-gap": "0.5em",
+  "--vb-menu-action-gap": "0.5em",
+
+  // Theme styles
+  "--vb-menu-background": "transparent",
+  "--vb-menu-foreground": "var(--vb-foreground)",
+  "--vb-menu-border-color": "transparent",
+  "--vb-menu-box-shadow": "none",
+
+  // Theme state styles
+  "--vb-menu-background-hover": "var(--vb-menu-background)",
+  "--vb-menu-foreground-hover": "var(--vb-menu-foreground)",
+  "--vb-menu-border-color-hover": "var(--vb-menu-border-color)",
+  "--vb-menu-box-shadow-hover": "var(--vb-menu-box-shadow)",
+
+  "--vb-menu-background-focus": "var(--vb-menu-background-hover)",
+  "--vb-menu-foreground-focus": "var(--vb-menu-foreground-hover)",
+  "--vb-menu-border-color-focus": "var(--vb-menu-border-color-hover)",
+  "--vb-menu-box-shadow-focus": "var(--vb-menu-box-shadow-hover)",
+
+  "--vb-menu-background-focus-visible": "var(--vb-menu-background-focus)",
+  "--vb-menu-foreground-focus-visible": "var(--vb-menu-foreground-focus)",
+  "--vb-menu-border-color-focus-visible": "var(--vb-menu-border-color-focus)",
+  "--vb-menu-box-shadow-focus-visible": "var(--vb-menu-box-shadow-focus)",
+
+  "--vb-menu-background-active": "var(--vb-menu-background)",
+  "--vb-menu-foreground-active": "var(--vb-menu-foreground)",
+  "--vb-menu-border-color-active": "var(--vb-menu-border-color)",
+  "--vb-menu-box-shadow-active": "var(--vb-menu-box-shadow)",
+
+  // State styles
+  "--vb-menu-disabled-background": "none",
+  "--vb-menu-disabled-foreground": "var(--vb-foreground-lighter)",
+  "--vb-menu-active-background": "none",
+  "--vb-menu-active-foreground": "var(--vb-primary)"
+}} />
 
 ## Basic usage
 
@@ -149,6 +239,38 @@ Used to apply horizontal menu styles. This is typically used for short menus or 
   ```
 </CodeExample>
 
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `menu-inline-breakpoints` config option (default: `true`).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-menu-inline-select">Variants Demo:</label>
+    <select id="demo-menu-inline-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-menu-inline">
+      <option value="xs:menu_inline">xs:menu_inline</option>
+      <option value="sm:menu_inline">sm:menu_inline</option>
+      <option value="md:menu_inline">md:menu_inline</option>
+      <option value="lg:menu_inline">lg:menu_inline</option>
+      <option value="xl:menu_inline">xl:menu_inline</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu id="demo-menu-inline" name="crud" classes="lg:menu_inline" />
+  </div>
+  ```html
+  <ul class="menu lg:menu_inline">...</ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:menu_inline`
+- `sm:menu_inline`
+- `md:menu_inline`
+- `lg:menu_inline`
+- `xl:menu_inline`
+
 ## menu_full
 
 Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
@@ -162,21 +284,75 @@ Used to span a horizontal menu to fill the full width of its container. This mod
   ```
 </CodeExample>
 
-## menu_size_[value]
+### Breakpoint variants
 
-Adjust the size of a menu by increasing or decreasing its padding and font-size. By default, the menu scale will provide an action height of 30px (small `menu_size_sm`), 40px (default) and 50px (large `menu_size_lg`).
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `menu-full-breakpoints` config option (default: `true`).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-menu-full-select">Variants Demo:</label>
+    <select id="demo-menu-full-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-menu-full">
+      <option value="xs:menu_full">xs:menu_full</option>
+      <option value="sm:menu_full">sm:menu_full</option>
+      <option value="md:menu_full">md:menu_full</option>
+      <option value="lg:menu_full">lg:menu_full</option>
+      <option value="xl:menu_full">xl:menu_full</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu id="demo-menu-full" name="crud" classes="menu_inline lg:menu_full" />
+  </div>
+  ```html
+  <ul class="menu menu_inline lg:menu_full">...</ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:menu_full`
+- `sm:menu_full`
+- `md:menu_full`
+- `lg:menu_full`
+- `xl:menu_full`
+
+## menu_size_[key]
+
+Adjust the size of a menu by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `menu-size` config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
     <Menu name="crud" classes="menu_inline menu_size_sm" />
+    <Menu name="crud" classes="menu_inline menu_size_md" />
     <Menu name="crud" classes="menu_inline menu_size_lg" />
   </div>
   ```html
-  <ul class="menu menu_size_sm">
-    ...
-  </ul>
+  <ul class="menu menu_size_sm">...</ul>
+  <ul class="menu menu_size_md">...</ul>
+  <ul class="menu menu_size_lg">...</ul>
+  ```
+</CodeExample>
 
-  <ul class="menu menu_size_lg">
+**Available variants**
+
+- `menu_size_sm`
+- `menu_size_md`
+- `menu_size_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `menu-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu name="crud" classes="menu_inline menu_size_sm lg:menu_size_md xl:menu_size_lg" />
+    <span class="badge lg:display-none">size_sm</span>
+    <span class="badge display-none lg:display-inline-block xl:display-none">size_md</span>
+    <span class="badge display-none xl:display-inline-block">size_lg</span>
+  </div>
+  ```html
+  <ul class="menu menu_inline menu_size_sm lg:menu_size_md xl:menu_size_lg">
     ...
   </ul>
   ```
@@ -184,153 +360,8 @@ Adjust the size of a menu by increasing or decreasing its padding and font-size.
 
 **Available variants**
 
-- `menu_size_sm`
-- `menu_size_lg`
-
-## Customization
-
-Menus are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="menu/src/_root.scss">
-
-```scss
-:root {
-  --vb-menu-size: var(--vb-form-control-size);
-  --vb-menu-padding: var(--vb-form-control-padding);
-  --vb-menu-padding-x: var(--vb-form-control-padding);
-  --vb-menu-gap: 1px;
-  --vb-menu-border-radius: var(--vb-border-radius);
-  --vb-menu-outline-focus: 2px solid var(--vb-focus-visible);
-  --vb-menu-font-size: 1em;
-  --vb-menu-line-height: 1.5;
-  --vb-menu-action-gap: 0.5em;
-  --vb-menu-sep-size: 1px;
-  --vb-menu-sep-gap: 0.5em;
-  --vb-menu-sep-background: var(--vb-border-color);
-  --vb-menu-active-background: none;
-  --vb-menu-active-foreground: var(--vb-primary-50);
-  --vb-menu-disabled-background: none;
-  --vb-menu-disabled-foreground: var(--vb-foreground-lighter);
-}
-
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-menu-background: none;
-  --vb-menu-background-hover: var(--vb-background-hover);
-  --vb-menu-background-focus: var(--vb-background-focus);
-  --vb-menu-background-active: var(--vb-background-active);
-  --vb-menu-foreground: var(--vb-foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-menu-background: none;
-    --vb-menu-background-hover: var(--vb-background-hover);
-    --vb-menu-background-focus: var(--vb-background-focus);
-    --vb-menu-background-active: var(--vb-background-active);
-    --vb-menu-foreground: var(--vb-foreground);
-  }
-}
-
-.vb-theme-dark {
-  --vb-menu-background: none;
-  --vb-menu-background-hover: var(--vb-background-hover);
-  --vb-menu-background-focus: var(--vb-background-focus);
-  --vb-menu-background-active: var(--vb-background-active);
-  --vb-menu-foreground: var(--vb-foreground);
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="menu/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
-
-$size: css.get("form-control", "size") !default;
-$padding: css.get("form-control", "padding") !default;
-$gap: 1px !default;
-$border-radius: css.get("border-radius") !default;
-$background: null !default;
-$background-hover: null !default;
-$background-focus: null !default;
-$background-active: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$foreground-focus: null !default;
-$foreground-active: null !default;
-$outline-focus: 2px solid theme.get("focus-visible") !default;
-$font-size: 1em !default;
-$line-height: 1.5 !default;
-
-// menu__action
-$action-gap: 0.5em !default;
-
-// menu__sep
-$sep-size: 1px !default;
-$sep-gap: 0.5em !default;
-$sep-background: theme.get("border-color") !default;
-
-// is-active
-$active-background: none !default;
-$active-foreground: palette.get("primary") !default;
-
-// disabled
-$disabled-background: none !default;
-$disabled-foreground: theme.get("foreground-lighter") !default;
-
-// menu_size_sm
-$size-sm: css.get("form-control", "size-sm") !default;
-$size-sm-padding: css.get("form-control", "padding-sm") !default;
-$size-sm-font-size: css.get("font-size-sm") !default;
-$size-sm-line-height: css.get("line-height-sm") !default;
-
-// menu_size_sm
-$size-lg: css.get("form-control", "size-lg") !default;
-$size-lg-padding: css.get("form-control", "padding-lg") !default;
-$size-lg-font-size: css.get("font-size-lg") !default;
-$size-lg-line-height: css.get("line-height-lg") !default;
-
-// Custom properties
-@include css.set("menu", (
-  "size": $size,
-  "padding": $padding,
-  "padding-x": core.get-side($padding, top),
-  "gap": $gap,
-  "border-radius": $border-radius,
-  "background": $background,
-  "background-hover": $background-hover,
-  "background-focus": $background-focus,
-  "background-active": $background-active,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "foreground-focus": $foreground-focus,
-  "foreground-active": $foreground-active,
-  "outline-focus": $outline-focus,
-  "font-size": $font-size,
-  "line-height": $line-height,
-  "action-gap": $action-gap,
-  "sep-size": $sep-size,
-  "sep-gap": $sep-gap,
-  "sep-background": $sep-background,
-  "active-background": $active-background,
-  "active-foreground": $active-foreground,
-  "disabled-background": $disabled-background,
-  "disabled-foreground": $disabled-foreground
-));
-
-// Theme maps
-$theme-shared: (
-  "background": none,
-  "background-hover": theme.get("background-hover"),
-  "background-focus": theme.get("background-focus"),
-  "background-active": theme.get("background-active"),
-  "foreground": theme.get("foreground"),
-) !default;
-
-@include theme.set("light", "menu", $theme-shared);
-@include theme.set("dark", "menu", $theme-shared);
-```
-</DocBlock>
+- `xs:menu_size_[key]`
+- `sm:menu_size_[key]`
+- `md:menu_size_[key]`
+- `lg:menu_size_[key]`
+- `xl:menu_size_[key]`

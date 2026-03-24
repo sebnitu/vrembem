@@ -10,6 +10,10 @@ $default: (
   // @type boolean
   "menu-inline-breakpoints": true,
 
+  // Toggle for outputting menu_full modifier breakpoint variants
+  // @type boolean
+  "menu-full-breakpoints": true,
+
   // Map for outputting menu_size_[key] modifier variants
   // @type map
   "menu-size": (
