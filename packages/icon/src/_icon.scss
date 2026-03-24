@@ -4,7 +4,7 @@
 @use "./mixins" as mix;
 
 #{core.bem("icon")} {
-  @include mix.icon-style(config.get("icon-style", "default"));
+  @include mix.style(config.get("icon-style", "default"));
 
   box-sizing: content-box;
   display: inline-block;

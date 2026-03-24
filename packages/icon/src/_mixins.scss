@@ -2,7 +2,12 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@mixin icon-style($style) {
+/// Outputs the required properties for a specific icon style.
+///
+/// @param {string} $style
+///   The name of the styles to apply. Can be either "stroke", "fill" or "both".
+///
+@mixin style($style) {
   @if $style == "stroke" {
     fill: none;
     stroke: css.get("icon", "color", currentcolor);
@@ -11,9 +16,11 @@
     fill: css.get("icon", "color", currentcolor);
     stroke: none;
     stroke-width: 0;
-  } @else {
+  } @else if $style == "both" {
     fill: css.get("icon", "color", currentcolor);
     stroke: css.get("icon", "color", currentcolor);
     stroke-width: css.get("icon", "stroke-width", core.resolve-nth(config.get("icon-size", "default"), 2));
+  } @else {
+    @error 'Not a valid icon style: "#{$style}"';
   }
 }

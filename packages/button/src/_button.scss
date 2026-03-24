@@ -3,7 +3,7 @@
 @use "./mixins" as mix;
 
 #{core.bem("button")} {
-  @include mix.button-base;
+  @include mix.base;
 
   background-color: css.get("button", "background", css.get("background"));
   border-color: css.get("button", "border-color", css.get("border-color-dark"));

@@ -6,11 +6,14 @@
     "menu",
     (
       "gap": 0,
-      "font-size": css.get("font-size-sm")
+      "size": css.get("font-size-sm")
     )
   );
 
   .menu__action {
+    scroll-margin-bottom: 18em;
+    scroll-margin-top: 12em;
+
     &:hover,
     &:active,
     &:focus,

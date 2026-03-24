@@ -7,7 +7,7 @@
 /// - Setup of button specific CSS variables with shared form-control fallbacks.
 /// - Setup of focus-ring CSS variables and initial state.
 /// - Flex layout styles for child elements and consistent gap spacing.
-@mixin button-base {
+@mixin base {
   @include core.form-control-properties("button");
   @include core.focus-ring-base;
 
@@ -36,9 +36,7 @@
 ///   The operator to use on the lightness value. Can either be "-" to darken or
 ///   "+" to lighten the base lightness value.
 ///
-/// @output Override button custom properties using the provided color values.
-///
-@mixin button-variant($background, $foreground: white, $operator: "-") {
+@mixin variant($background, $foreground: white, $operator: "-") {
   // Initialize the default overrides map
   $overrides: (
     "background": $background,

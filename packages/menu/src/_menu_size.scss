@@ -1,11 +1,21 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-#{core.bem("menu", null, "size", "sm")} {
-  @include css.override("menu", "font-size", var.$size-sm-font-size);
+$-menu-size: config.get("menu-size", "variants");
+
+@each $key, $value in $-menu-size {
+  #{core.bem("menu", null, "size", $key)} {
+    @include css.override("menu", "size", $value);
+  }
 }
 
-#{core.bem("menu", null, "size", "lg")} {
-  @include css.override("menu", "font-size", var.$size-lg-font-size);
+@each $bp, $value in config.get("menu-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-menu-size {
+      #{core.bem("menu", null, "size", $key, $bp)} {
+        @include css.override("menu", "size", $value);
+      }
+    }
+  }
 }

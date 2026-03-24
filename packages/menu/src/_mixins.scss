@@ -1,9 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 /// Output the base styles for a menu action component element.
-@mixin menu-action-base() {
+/// - Setup of menu specific CSS variables with shared form-control fallbacks.
+/// - Setup of focus-ring CSS variables and initial state.
+/// - Flex layout styles for child elements and consistent gap spacing.
+@mixin action-base {
+  @include core.form-control-properties("menu");
   @include core.focus-ring-base;
 
   align-items: center;
@@ -13,7 +16,7 @@
   display: flex;
   font-family: inherit;
   font-weight: inherit;
-  gap: css.get("menu", "action-gap", var.$action-gap);
+  gap: css.get("menu", "action-gap", 0.5em);
   justify-content: flex-start;
   position: relative;
   text-decoration: none;

@@ -1,6 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 #{core.bem("menu", null, "inline")} {
   align-items: center;
@@ -8,12 +8,32 @@
 
   #{core.bem("menu", "sep")} {
     height: auto;
-    margin: 0 css.get("menu", "sep-gap", var.$sep-gap);
-    width: css.get("menu", "sep-size", var.$sep-size);
+    margin: 0 css.get("menu", "sep-gap", 0.5em);
+    width: css.get("menu", "sep-size", 1px);
   }
 
   #{core.bem("menu", "action")} {
     justify-content: center;
     white-space: nowrap;
+  }
+}
+
+@each $bp, $value in config.get("menu-inline-breakpoints") {
+  @include core.media-min($value) {
+    #{core.bem("menu", null, "inline", $bp: $bp)} {
+      align-items: center;
+      flex-direction: row;
+
+      #{core.bem("menu", "sep")} {
+        height: auto;
+        margin: 0 css.get("menu", "sep-gap", 0.5em);
+        width: css.get("menu", "sep-size", 1px);
+      }
+
+      #{core.bem("menu", "action")} {
+        justify-content: center;
+        white-space: nowrap;
+      }
+    }
   }
 }

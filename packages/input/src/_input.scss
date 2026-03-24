@@ -3,7 +3,7 @@
 @use "./mixins" as mix;
 
 #{core.bem("input")} {
-  @include mix.input-base;
+  @include mix.base;
 
   background-color: css.get("input", "background", css.get("background"));
   border-color: css.get("input", "border-color", css.get("border-color-dark"));

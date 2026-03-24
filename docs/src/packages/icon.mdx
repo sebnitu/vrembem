@@ -6,6 +6,8 @@ category: component
 ---
 
 import CodeExpander from "../components/CodeExpander.astro";
+import ReferenceBar from "../components/ReferenceBar.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
 import ReferenceTable from "../components/ReferenceTable.astro";
 import Icon from '../components/Icon.astro';
 
@@ -134,3 +136,32 @@ Adjust the icon style to accommodate stroke, filled or stroke and filled style i
 - `icon_style_stroke`
 - `icon_style_fill`
 - `icon_style_both`
+
+## Reference
+
+Below is a reference of all available icon mixins.
+
+### icon.style
+
+<ReferenceBar type="mixin" />
+
+Outputs the required properties for a specific icon style.
+
+#### Arguments
+
+<ReferenceCard name="$style" type="string">
+  The name of the styles to apply. Can be either `"stroke"`, `"fill"` or `"both"`.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/icon";
+
+.custom-icon {
+  @include icon.style("stroke");
+  // Your custom variant styles here...
+}
+```
+</CodeExample>

@@ -3,7 +3,7 @@
 @use "@vrembem/core/css";
 @use "./config" as var;
 
-@mixin table-responsive-styles() {
+@mixin responsive-styles {
   thead,
   tbody,
   tr,

@@ -7,9 +7,9 @@
 @each $key, $value in config.get("button-color", "variants") {
   #{core.bem("button", null, "color", $key)} {
     @if meta.type-of($value) == "map" {
-      @include mix.button-variant($value);
+      @include mix.variant($value);
     } @else {
-      @include mix.button-variant($value...);
+      @include mix.variant($value...);
     }
   }
 }

@@ -4,6 +4,6 @@
 
 @each $key, $value in config.get("icon-style", "variants") {
   #{core.bem("icon", null, "style", $key)} {
-    @include mix.icon-style($value);
+    @include mix.style($value);
   }
 }

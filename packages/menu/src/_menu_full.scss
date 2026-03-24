@@ -1,7 +1,18 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 
 #{core.bem("menu", null, "full")} {
   #{core.bem("menu", "item")} {
     flex: 1 0 auto;
+  }
+}
+
+@each $bp, $value in config.get("menu-full-breakpoints") {
+  @include core.media-max($value) {
+    #{core.bem("menu", null, "full", $bp: $bp)} {
+      #{core.bem("menu", "item")} {
+        flex: 1 0 auto;
+      }
+    }
   }
 }

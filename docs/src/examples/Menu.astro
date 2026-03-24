@@ -3,15 +3,16 @@ import Icon from "../components/Icon.astro";
 
 export interface Props {
   name: string;
+  id?: string;
   classes?: string;
 }
 
-const { name, classes = "" } = Astro.props;
+const { name, id = "", classes = "" } = Astro.props;
 ---
 
 {
   name == "crud" && (
-    <ul class={`menu ${classes}`.trim()}>
+    <ul id={id} class={`menu ${classes}`.trim()}>
       <li class="menu__item">
         <button type="button" class="menu__action">
           Create
@@ -67,9 +68,9 @@ const { name, classes = "" } = Astro.props;
         </button>
       </li>
       <li class="menu__sep" />
-      <li class="menu__item flex-grow margin-x-md">
+      <li class="menu__item flex-grow margin-x">
         <input
-          class="input border-radius-circle padding-x-md"
+          class="input border-radius-circle padding-x"
           type="url"
           placeholder="https://"
           style="min-width: 240px;"

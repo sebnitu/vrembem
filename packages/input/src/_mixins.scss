@@ -4,7 +4,7 @@
 /// - Setup of input specific CSS variables with shared form-control fallbacks.
 /// - Setup of focus-ring CSS variables and initial state.
 /// - Apply base styles and resets so browsers render inputs consistently.
-@mixin input-base() {
+@mixin base {
   @include core.form-control-properties("input");
   @include core.focus-ring-base;
 
