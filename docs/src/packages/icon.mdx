@@ -5,7 +5,8 @@ package: "@vrembem/icon"
 category: component
 ---
 
-import DocBlock from '../components/DocBlock.astro';
+import CodeExpander from "../components/CodeExpander.astro";
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Icon from '../components/Icon.astro';
 
 ```sh
@@ -17,6 +18,52 @@ npm install @vrembem/icon
   @use "@vrembem/icon";
   ```
 </CodeExample>
+
+## Options
+
+Icon is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Icon comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander lang="scss">
+```scss
+@use "@vrembem/icon" with (
+  $config: (
+    // Map for outputting the icon_style_[key] modifier variants
+    // @type map
+    "icon-style": (
+      "default": "stroke",
+      "stroke": "stroke",
+      "fill": "fill",
+      "both": "both"
+    ),
+
+    // Map for outputting the icon_size_[key] modifier variants. Values should 
+    // contain a list of font-size and stroke-width pairs.
+    // @type map
+    "icon-size": (
+      "default": 1.5em 2,
+      "xs": 0.75em 3.5,
+      "sm": 1.125em 2.5,
+      "lg": 2em 1.75,
+      "xl": 3em 1.3
+    )
+  )
+);
+```
+</CodeExpander>
+
+### CSS Variables
+
+Icon uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-icon" valueLabel="Fallback" filter={false} data={{
+  "--vb-icon-color": "currentcolor",
+  "--vb-icon-size": "1.5em",
+  "--vb-icon-stroke-width": "2",
+}} />
 
 ## Basic usage
 
@@ -38,9 +85,9 @@ The most basic implementation of the icon component consists of the `icon` class
   ```
 </CodeExample>
 
-## icon_size_[value]
+## icon_size_[key]
 
-Add a size modifier to adjust the size of your icons. Icon sizes are controlled using the font-size attribute and optionally a stroke width.
+Add a size modifier to adjust the size of your icons. These modifiers are generated using key/value pairs of the `icon-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex flex_gap_xl">
@@ -62,9 +109,9 @@ Add a size modifier to adjust the size of your icons. Icon sizes are controlled 
 - `icon_size_lg`
 - `icon_size_xl`
 
-## icon_style_[value]
+## icon_style_[key]
 
-The default icon style is set using the `$icon-style` variable. You can also use the `icon_style_[value]` modifier to style individual icons.
+Adjust the icon style to accommodate stroke, filled or stroke and filled style icons. These modifiers are generated using key/value pairs of the `icon-style` config options map.
 
 <CodeExample>
   <div slot="output" class="flex flex_gap_xl">
@@ -87,67 +134,3 @@ The default icon style is set using the `$icon-style` variable. You can also use
 - `icon_style_stroke`
 - `icon_style_fill`
 - `icon_style_both`
-
-## Customization
-
-Icons are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="icon/src/_root.scss">
-
-```scss
-:root {
-  --vb-icon-size: 1.5em;
-  --vb-icon-stroke-width: 2;
-  --vb-icon-color: currentcolor;
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="icon/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-
-$style: "stroke" !default;
-$size: 1.5em !default;
-$stroke-width: 2 !default;
-$color: currentcolor !default;
-
-$size-xs: 0.75em !default;
-$size-xs-stroke-width: 3.5 !default;
-$size-sm: 1.125em !default;
-$size-sm-stroke-width: 2.5 !default;
-$size-lg: 2em !default;
-$size-lg-stroke-width: 1.75 !default;
-$size-xl: 3em !default;
-$size-xl-stroke-width: 1.3 !default;
-
-@include css.set("icon", (
-  "size": $size,
-  "stroke-width": $stroke-width,
-  "color": $color
-));
-```
-</DocBlock>
-
-<DocBlock name="icon-style" type="mixin" src="icon/src/_mixins.scss" args={[
-  ["$style", "String", "The icon styles to output. Current options include \"stroke\", \"fill\" and \"both\". Defaults to \"stroke\"."]
-]}>
-  Output unique styles for an icons based on their style type.
-
-  <div slot="example">
-    ```scss
-    .icon-selector {
-      @include icon-style("fill");
-    }
-
-    // CSS Output
-    .icon-selector {
-      stroke: none;
-      stroke-width: 0;
-      fill: currentColor;
-    }
-    ```
-  </div>
-</DocBlock>

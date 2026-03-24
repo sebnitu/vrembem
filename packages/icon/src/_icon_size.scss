@@ -1,23 +1,10 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-#{core.bem("icon", null, "size", "xs")} {
-  @include css.override("icon", "size", var.$size-xs);
-  @include css.override("icon", "stroke-width", var.$size-xs-stroke-width);
-}
-
-#{core.bem("icon", null, "size", "sm")} {
-  @include css.override("icon", "size", var.$size-sm);
-  @include css.override("icon", "stroke-width", var.$size-sm-stroke-width);
-}
-
-#{core.bem("icon", null, "size", "lg")} {
-  @include css.override("icon", "size", var.$size-lg);
-  @include css.override("icon", "stroke-width", var.$size-lg-stroke-width);
-}
-
-#{core.bem("icon", null, "size", "xl")} {
-  @include css.override("icon", "size", var.$size-xl);
-  @include css.override("icon", "stroke-width", var.$size-xl-stroke-width);
+@each $key, $value in config.get("icon-size", "variants") {
+  #{core.bem("icon", null, "size", $key)} {
+    @include css.override("icon", "size", core.resolve-nth($value, 1));
+    @include css.override("icon", "stroke-width", core.resolve-nth($value, 2));
+  }
 }

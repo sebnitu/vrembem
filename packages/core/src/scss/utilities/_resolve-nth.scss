@@ -1,0 +1,20 @@
+@use "sass:list";
+@use "sass:math";
+
+/// Returns the element of a list at a provided index. If that index doesn't
+/// exist, resolves to the nearest index.
+///
+/// @param {list} $list
+///   The list to get the value from.
+/// @param {number} $index
+///   The index of the list to return.
+///
+/// @return {list}
+///   The value of the list.
+///
+@function resolve-nth($list, $index: 1) {
+  $length: list.length($list);
+  $index: math.min($index, $length);
+
+  @return list.nth($list, $index);
+}

@@ -1,14 +1,9 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "./mixins" as mix;
 
-#{core.bem("icon", null, "style", "stroke")} {
-  @include mix.icon-style("stroke");
-}
-
-#{core.bem("icon", null, "style", "fill")} {
-  @include mix.icon-style("fill");
-}
-
-#{core.bem("icon", null, "style", "both")} {
-  @include mix.icon-style("both");
+@each $key, $value in config.get("icon-style", "variants") {
+  #{core.bem("icon", null, "style", $key)} {
+    @include mix.icon-style($value);
+  }
 }

@@ -1,17 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
 @mixin icon-style($style) {
   @if $style == "stroke" {
     fill: none;
-    stroke: css.get("icon", "color");
-    stroke-width: css.get("icon", "stroke-width");
+    stroke: css.get("icon", "color", currentcolor);
+    stroke-width: css.get("icon", "stroke-width", core.resolve-nth(config.get("icon-size", "default"), 2));
   } @else if $style == "fill" {
-    fill: css.get("icon", "color");
+    fill: css.get("icon", "color", currentcolor);
     stroke: none;
     stroke-width: 0;
   } @else {
-    fill: css.get("icon", "color");
-    stroke: css.get("icon", "color");
-    stroke-width: css.get("icon", "stroke-width");
+    fill: css.get("icon", "color", currentcolor);
+    stroke: css.get("icon", "color", currentcolor);
+    stroke-width: css.get("icon", "stroke-width", core.resolve-nth(config.get("icon-size", "default"), 2));
   }
 }
