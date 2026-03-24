@@ -128,8 +128,14 @@
 .layout__aside {
   inset: 0 0 auto auto;
   order: 2;
-  position: relative;
+  position: absolute;
   width: css.get("layout", "aside-width");
+
+  @include core.media-min("drawer") {
+    .has-drawer & {
+      position: relative;
+    }
+  }
 }
 
 .layout__footer {
