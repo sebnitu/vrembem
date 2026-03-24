@@ -23,26 +23,26 @@ const { title, layout = {} } = Astro.props;
   <Navibar />
   <Toolbar {layout} />
   <div class="layout">
-    {
-      layout.hasDrawer && (
-        <div class="layout__drawer">
+    <div class="layout__drawer">
+      {
+        layout.hasDrawer && (
           <LayoutDrawer>
             <slot name="drawer" />
           </LayoutDrawer>
-        </div>
-      )
-    }
+        )
+      }
+    </div>
     <div id="main-content" class="layout__main" tabindex="-1">
       <div class="layout__grid">
-        {
-          layout.hasAside && (
-            <div class="layout__aside">
+        <div class="layout__aside">
+          {
+            layout.hasAside && (
               <LayoutAside>
                 <slot name="aside" />
               </LayoutAside>
-            </div>
-          )
-        }
+            )
+          }
+        </div>
         <div class="layout__content">
           {
             layout.hasAside && (

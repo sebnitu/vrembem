@@ -23,8 +23,20 @@ const layout = {
 ---
 
 <Base {title} {layout}>
-  {layout.hasDrawer && <Navi {entries} collection={collection} slot="drawer" />}
-  {layout.hasAside && <OnThisPage {headings} slot="aside" />}
+  {
+    layout.hasDrawer && (
+      <Fragment slot="drawer">
+        <Navi {entries} collection={collection} />
+      </Fragment>
+    )
+  }
+  {
+    layout.hasAside && (
+      <Fragment slot="aside">
+        <OnThisPage {headings} />
+      </Fragment>
+    )
+  }
   <slot />
   <div slot="append">
     <LinkEditPage dir="pages" {filename} />
