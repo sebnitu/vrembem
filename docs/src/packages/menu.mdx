@@ -5,6 +5,7 @@ package: "@vrembem/menu"
 category: component
 ---
 
+import ReferenceBar from "../components/ReferenceBar.astro";
 import ReferenceTable from "../components/ReferenceTable.astro";
 import Menu from "../examples/Menu.astro";
 
@@ -365,3 +366,27 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:menu_size_[key]`
 - `lg:menu_size_[key]`
 - `xl:menu_size_[key]`
+
+## Reference
+
+Below is a reference of all available menu mixins.
+
+### menu.action-base
+
+<ReferenceBar type="mixin" />
+
+Output the base styles for a menu action component element.
+- Setup of menu specific CSS variables with shared form-control fallbacks.
+- Setup of focus-ring CSS variables and initial state.
+- Flex layout styles for child elements and consistent gap spacing.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/menu";
+
+.custom-menu-action {
+  @include menu.action-base;
+  // Your custom variant styles here...
+}
+```
+</CodeExample>

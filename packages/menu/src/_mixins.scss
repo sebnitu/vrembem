@@ -5,7 +5,7 @@
 /// - Setup of menu specific CSS variables with shared form-control fallbacks.
 /// - Setup of focus-ring CSS variables and initial state.
 /// - Flex layout styles for child elements and consistent gap spacing.
-@mixin menu-action-base() {
+@mixin action-base {
   @include core.form-control-properties("menu");
   @include core.focus-ring-base;
 

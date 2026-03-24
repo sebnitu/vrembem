@@ -23,7 +23,7 @@
 }
 
 #{core.bem("menu", "action")} {
-  @include mix.menu-action-base;
+  @include mix.action-base;
 
   background-color: css.get("menu", "background", transparent);
   border-color: css.get("menu", "border-color", transparent);

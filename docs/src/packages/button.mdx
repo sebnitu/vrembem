@@ -132,13 +132,13 @@ The most basic implementation of the button component consists of the `button` c
 Elements within a button are centered vertically and spaced accordingly using the value set by `--vb-button-gap` (default: `0.5em`). When elements are added inside a button, the button's text should also be wrapped in a `<span>` so that it can be spaced properly.
 
 <CodeExample>
-  <div slot="output">
+  <Fragment slot="output">
     <button class="button">
       <Icon name="anchor" classes="icon_size_sm" />
       <span>Button</span>
       <span class="arrow"></span>
     </button>
-  </div>
+  </Fragment>
   ```html
   <button class="button">
     <svg class="icon icon_size_sm">...</svg>
@@ -153,9 +153,9 @@ Elements within a button are centered vertically and spaced accordingly using th
 When disabled using the `disabled` attribute, a button will inherit styles to visually appear noninteractive.
 
 <CodeExample>
-  <div slot="output">
+  <Fragment slot="output">
     <button class="button" disabled>Button</button>
-  </div>
+  </Fragment>
   ```html
   <button class="button" disabled>Button</button>
   ```
@@ -318,9 +318,9 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 ## Reference
 
-Below is a reference to all available button mixins.
+Below is a reference of all available button mixins.
 
-### button-base
+### button.base
 
 <ReferenceBar type="mixin" />
 
@@ -334,13 +334,13 @@ Output the base styles for a button component. This includes:
 @use "@vrembem/button";
 
 .custom-button {
-  @include button-base;
+  @include button.base;
   // Your custom variant styles here...
 }
 ```
 </CodeExample>
 
-### button-variant
+### button.variant
 
 <ReferenceBar type="mixin" />
 
@@ -371,7 +371,7 @@ Creates a button variant using custom properties and hsl relative values.
 @use "@vrembem/button";
 
 .button_color_custom {
-  @include button.button-variant(salmon);
+  @include button.variant(salmon);
 }
 ```
 </Fragment>
