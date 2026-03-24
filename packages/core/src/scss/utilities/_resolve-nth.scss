@@ -15,5 +15,6 @@
 @function resolve-nth($list, $index: 1) {
   $length: list.length($list);
   $index: math.min($index, $length);
+
   @return list.nth($list, $index);
 }
