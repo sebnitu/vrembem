@@ -7,7 +7,7 @@
   align-items: stretch;
   display: flex;
   flex-direction: column;
-  font-size: css.get("menu", "font-size", css.get("form-control-size"));
+  font-size: css.get("menu", "size", css.get("form-control-size"));
   gap: css.get("menu", "gap", 1px);
   line-height: css.get("menu", "line-height", css.get("form-control-line-height"));
   list-style: none;

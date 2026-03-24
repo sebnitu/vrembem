@@ -6,7 +6,7 @@ $-menu-size: config.get("menu-size", "variants");
 
 @each $key, $value in $-menu-size {
   #{core.bem("menu", null, "size", $key)} {
-    @include css.override("menu", "font-size", $value);
+    @include css.override("menu", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-menu-size: config.get("menu-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-menu-size {
       #{core.bem("menu", null, "size", $key, $bp)} {
-        @include css.override("menu", "font-size", $value);
+        @include css.override("menu", "size", $value);
       }
     }
   }
