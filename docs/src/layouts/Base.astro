@@ -17,12 +17,20 @@ interface Props {
 }
 
 const { title, layout = {} } = Astro.props;
+
+const layoutClasses = ["layout"];
+if (layout.hasDrawer) {
+  layoutClasses.push("has-drawer");
+}
+if (layout.hasAside) {
+  layoutClasses.push("has-aside");
+}
 ---
 
-<Root {title} {layout}>
+<Root {title}>
   <Navibar />
   <Toolbar {layout} />
-  <div class="layout">
+  <div class={layoutClasses.join(" ")}>
     {
       layout.hasDrawer && (
         <div class="layout__drawer">
