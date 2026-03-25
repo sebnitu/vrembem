@@ -1,0 +1,55 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+.content {
+  scroll-margin-top: css.get("layout", "toolbar-height");
+
+  @include core.media-min("drawer") {
+    scroll-margin-top: css.get("layout", "navibar-height");
+  }
+
+  * {
+    scroll-margin-top: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
+}
+
+.content__prepend {
+  margin-bottom: 2rem;
+
+  @include core.media-min("md") {
+    margin-bottom: 3rem;
+  }
+
+  @include core.media-min("lg") {
+    margin-bottom: 4rem;
+  }
+}
+
+.content__append {
+  margin-top: 2rem;
+
+  @include core.media-min("md") {
+    margin-top: 3rem;
+  }
+
+  @include core.media-min("lg") {
+    margin-top: 4rem;
+  }
+}

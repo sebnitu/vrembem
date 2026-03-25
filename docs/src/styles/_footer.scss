@@ -1,0 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+.footer {
+  background-color: css.get("background");
+  border-top: 1px solid css.get("border-color");
+  order: 3;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 2;
+
+  @include core.media-min("drawer") {
+    padding: 3rem 0;
+  }
+
+  @include core.media-min("aside") {
+    padding: 4rem 0;
+  }
+}

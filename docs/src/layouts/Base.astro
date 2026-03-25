@@ -33,25 +33,23 @@ if (layout.hasAside) {
   <div class={layoutClasses.join(" ")}>
     {
       layout.hasDrawer && (
-        <div class="layout__drawer">
-          <LayoutDrawer>
-            <slot name="drawer" />
-          </LayoutDrawer>
-        </div>
+        <LayoutDrawer>
+          <slot name="drawer" />
+        </LayoutDrawer>
       )
     }
     <div id="main-content" class="layout__main" tabindex="-1">
       <div class="layout__grid">
-        {
-          layout.hasAside && (
-            <div class="layout__aside">
+        <div class="aside">
+          {
+            layout.hasAside && (
               <LayoutAside>
                 <slot name="aside" />
               </LayoutAside>
-            </div>
-          )
-        }
-        <div class="layout__content">
+            )
+          }
+        </div>
+        <div class="content">
           {
             layout.hasAside && (
               <div class="toolbar-mini">
@@ -73,7 +71,7 @@ if (layout.hasAside) {
           }
           {
             Astro.slots.has("prepend") && (
-              <div class="layout__prepend">
+              <div class="content__prepend">
                 <slot name="prepend" />
               </div>
             )
@@ -83,13 +81,13 @@ if (layout.hasAside) {
           </div>
           {
             Astro.slots.has("append") && (
-              <div class="layout__append">
+              <div class="content__append">
                 <slot name="append" />
               </div>
             )
           }
         </div>
-        <Footer classes="layout__footer" />
+        <Footer />
       </div>
     </div>
   </div>

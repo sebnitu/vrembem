@@ -45,9 +45,9 @@
   height: 100%;
   overflow: hidden auto;
   overscroll-behavior: contain;
-  padding: css.get("layout", "drawer-padding");
+  padding: css.get("layout", "padding");
   position: absolute;
-  scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
+  scroll-behavior: smooth;
   width: 100%;
 }
 
@@ -57,26 +57,50 @@
 
 @include core.media-min("aside") {
   .layout-aside {
-    background-color: transparent;
+    position: sticky;
+    top: 0;
     box-shadow: none;
-    height: 100vh;
-    inset: 0 auto auto;
+    background-color: transparent;
+    box-sizing: content-box;
     opacity: 1;
-    padding: 0;
-    position: fixed;
     transform: translate(0);
     visibility: visible;
-    width: css.get("layout", "aside-width");
+    width: 100%;
     z-index: 2;
+
+    * > * {
+      box-sizing: border-box;
+    }
   }
 
   .layout-aside__content {
     height: 100vh;
     overflow: hidden auto;
-    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
-    position: fixed;
-    scroll-behavior: smooth;
-    top: 0;
-    width: css.get("layout", "aside-width");
+    scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
+    left: 0;
+    width: calc(css.get("layout", "aside-width") - css.get("layout", "padding"));
+  }
+}
+
+/**
+ * Layout screen
+ */
+
+.layout-aside-screen {
+  background-color: palette.get("neutral", 10%, 0%);
+  inset: auto;
+  position: fixed;
+  transition: background-color 0.25s;
+  z-index: 99;
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ & {
+    background-color: palette.get("neutral", 10%, 80%);
+  }
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ &,
+  .layout-aside.is-closing ~ & {
+    inset: 0;
   }
 }
