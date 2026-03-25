@@ -57,16 +57,6 @@
   flex-grow: 1;
   justify-content: flex-end;
 
-  @include core.media-min("drawer") {
-    backdrop-filter: blur(8px);
-    background-color: css.get("background-glass");
-
-    .is-home & {
-      backdrop-filter: unset;
-      background-color: transparent;
-    }
-  }
-
   .menu__action {
     justify-content: flex-start;
     text-decoration: underline;

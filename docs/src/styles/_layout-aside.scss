@@ -57,18 +57,18 @@
 
 @include core.media-min("aside") {
   .layout-aside {
-    position: sticky;
-    top: 0;
-    box-shadow: none;
     background-color: transparent;
+    box-shadow: none;
     box-sizing: content-box;
+    max-width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     opacity: 1;
+    padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     transform: translate(0);
     visibility: visible;
     width: 100%;
     z-index: 2;
 
-    * > * {
+    > * {
       box-sizing: border-box;
     }
   }
@@ -76,9 +76,9 @@
   .layout-aside__content {
     height: 100vh;
     overflow: hidden auto;
+    padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding"));
     scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
-    left: 0;
-    width: calc(css.get("layout", "aside-width") - css.get("layout", "padding"));
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
   }
 }
 

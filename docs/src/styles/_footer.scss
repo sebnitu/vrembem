@@ -1,19 +1,44 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 
 .footer {
-  background-color: css.get("background");
-  border-top: 1px solid css.get("border-color");
-  order: 3;
-  padding: 2rem 0;
-  position: relative;
-  z-index: 2;
+  color: css.get("foreground-lighter");
+  display: flex;
+}
 
-  @include core.media-min("drawer") {
-    padding: 3rem 0;
+.footer__content {
+  border-top: css.get("border");
+  flex-grow: 1;
+  margin: auto;
+  max-width: css.get("layout", "content-width");
+  padding: 3rem 0;
+  width: 100%;
+
+  .is-home & {
+    max-width: unset;
   }
+}
+
+.footer__logo {
+  border-top: css.get("border");
+  color: palette.get("primary");
+  display: flex;
+  flex-grow: 0;
+  justify-content: center;
+  padding: 3rem 0;
+  text-align: center;
 
   @include core.media-min("aside") {
-    padding: 4rem 0;
+    background-color: css.get("background");
+    position: absolute;
+    right: 0;
+    width: calc(css.get("layout", "aside-width") - css.get("layout", "padding"));
+    z-index: 2;
+
+    .is-home & {
+      background-color: transparent;
+      position: relative;
+    }
   }
 }

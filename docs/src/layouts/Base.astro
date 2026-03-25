@@ -38,17 +38,15 @@ if (layout.hasAside) {
         </LayoutDrawer>
       )
     }
+    {
+      layout.hasAside && (
+        <LayoutAside>
+          <slot name="aside" />
+        </LayoutAside>
+      )
+    }
     <div id="main-content" class="layout__main" tabindex="-1">
-      <div class="layout__grid">
-        <div class="aside">
-          {
-            layout.hasAside && (
-              <LayoutAside>
-                <slot name="aside" />
-              </LayoutAside>
-            )
-          }
-        </div>
+      <div class="layout__container">
         <div class="content">
           {
             layout.hasAside && (

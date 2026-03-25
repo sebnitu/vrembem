@@ -67,26 +67,25 @@
     width: 100%;
     z-index: 2;
 
-    * > * {
+    > * {
       box-sizing: border-box;
-    }
-
-    // Fold shadow
-    &::after {
-      background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
-      content: "";
-      height: 100%;
-      inset: 0 0 auto auto;
-      pointer-events: none;
-      position: absolute;
-      width: 2rem;
-      z-index: 2;
     }
   }
 
   .layout-drawer__content {
     padding: css.get("layout", "navibar-height") css.get("layout", "padding") css.get("layout", "padding");
-    width: calc(css.get("layout", "drawer-width") - css.get("layout", "padding"));
+    width: calc(css.get("layout", "drawer-width") + css.get("layout", "padding"));
+  }
+
+  .layout-drawer::after {
+    background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
+    content: "";
+    height: 100%;
+    inset: 0 0 auto auto;
+    pointer-events: none;
+    position: absolute;
+    width: 2rem;
+    z-index: 2;
   }
 
   .layout-drawer__mask {

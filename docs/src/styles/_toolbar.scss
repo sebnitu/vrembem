@@ -27,12 +27,13 @@
   opacity: 0;
   position: fixed;
   right: css.get("layout", "padding");
-  top: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
+  top: css.get("layout", "navibar-height");
   transform: translate(100%);
   transition:
     opacity 0.5s,
     transform 0.25s ease;
   visibility: hidden;
+  z-index: 6;
 
   @include core.media-min("drawer") {
     opacity: 1;

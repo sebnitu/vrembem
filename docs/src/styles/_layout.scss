@@ -9,46 +9,58 @@
   position: relative;
   width: 100%;
 
+  @include core.media-min("code") {
+    @include css.override("layout", "content-padding", 1rem);
+  }
+
   @include core.media-min("drawer") {
+    @include css.override("layout", "content-padding", 3rem);
+
     &.has-drawer .layout__main {
       padding-left: css.get("layout", "drawer-width");
     }
+
+    &.has-aside .layout__main {
+      padding-right: css.get("form-control-size-calc");
+    }
   }
 
-  // @include core.media-min("aside") {
-  //   &.has-aside .layout__main {
-  //     padding-right: css.get("layout", "aside-width");
-  //   }
-  // }
+  @include core.media-min("aside") {
+    &.has-aside .layout__main {
+      padding-right: css.get("layout", "aside-width");
+    }
+  }
 }
 
 .layout__main {
   margin: auto;
   max-width: css.get("layout", "width");
+  position: relative;
   width: 100%;
 
   @include core.media-min("drawer") {
     padding-top: css.get("layout", "navibar-height");
+
+    &::before {
+      backdrop-filter: blur(8px);
+      background-color: css.get("background-glass");
+      content: "";
+      height: css.get("layout", "navibar-height");
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 3;
+    }
   }
 }
 
-.layout__grid {
-  display: grid;
-  gap: 2em;
-  grid-template-columns: calc(100% - css.get("layout", "aside-width")) css.get("layout", "aside-width");
-  grid-template-areas:
-    "content aside"
-    "footer footer";
+.layout__container {
+  margin: auto;
+  max-width: calc(css.get("layout", "content-width") + (css.get("layout", "content-padding") * 2));
+  padding: css.get("layout", "content-padding") css.get("layout", "content-padding") 0;
+  width: 100%;
 
-  .content {
-    grid-area: content;
-  }
-
-  .aside {
-    grid-area: aside;
-  }
-
-  .footer {
-    grid-area: footer;
+  > * + * {
+    margin-top: calc(css.get("spacing") * 12) !important;
   }
 }
