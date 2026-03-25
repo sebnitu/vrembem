@@ -3,7 +3,7 @@ import { drawer } from "./useDrawer.js";
 function onThisPage(options = {}) {
   const config = {
     selectorAnchors: "",
-    selectorHeadings: ".layout__content",
+    selectorHeadings: ".content",
     classActive: "is-active",
     ...options
   };
