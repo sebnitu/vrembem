@@ -255,7 +255,7 @@
   }
 }
 
-@include core.media-max("code") {
+@include core.media-max("xs") {
   .table-anchor,
   .table-anchor-clear {
     left: 3.75rem;

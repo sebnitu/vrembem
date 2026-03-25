@@ -9,7 +9,7 @@
   position: relative;
   width: 100%;
 
-  @include core.media-min("code") {
+  @include core.media-min("xs") {
     @include css.override("layout", "content-padding", 1rem);
   }
 

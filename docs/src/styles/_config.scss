@@ -21,7 +21,6 @@
 @include config.merge(
   "breakpoints",
   (
-    "code": 600px,
     "drawer": 960px,
     "aside": 1216px
   )

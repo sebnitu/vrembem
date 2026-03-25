@@ -31,7 +31,7 @@
     );
   }
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     .pre {
       border-left: none;
       border-radius: 0;
@@ -59,7 +59,7 @@
   bottom: auto;
   right: auto;
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     left: 0;
   }
 }
@@ -72,7 +72,7 @@
     color: css.get("foreground-light");
   }
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     right: 0;
   }
 }
@@ -105,7 +105,7 @@
     left: auto;
   }
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     .pre {
       border: css.get("border");
       border-radius: css.get("border-radius");

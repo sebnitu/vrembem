@@ -40,7 +40,7 @@
     opacity: 1;
   }
 
-  @include core.media-min("code") {
+  @include core.media-min("xs") {
     position: absolute;
     right: calc(100% + 0.5rem);
     top: calc(60% - calc(css.get("form-control-size-calc") / 2));
