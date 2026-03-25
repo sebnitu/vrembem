@@ -9,7 +9,7 @@
 
 // Set config options
 @include config.set(
-  "prefix-cssvar",
+  "prefix-tokens",
   (
     "default": "vb",
     "astro": ""

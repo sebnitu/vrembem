@@ -16,7 +16,7 @@ $-tokens: (
   "core": (
     "prefix": (
       "config": (
-        "prefix-cssvar",
+        "prefix-tokens",
         "default"
       )
     ),
@@ -71,7 +71,7 @@ $-tokens: (
 /// @access private
 ///
 @function -prefix($component) {
-  $prefix: config.get("prefix-cssvar");
+  $prefix: config.get("prefix-tokens");
 
   @if meta.type-of($prefix) == "map" {
     // Get the prefix if a custom component prefix is defined
