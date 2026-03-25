@@ -9,12 +9,10 @@ interface Props {
 }
 
 const { layout } = Astro.props;
-
-const hasDrawer = layout.hasSidebar || layout.hasAside;
 ---
 
 {
-  hasDrawer && (
+  (layout.hasSidebar || layout.hasAside) && (
     <div class="toolbar">
       <div class="clearfix">
         {layout.hasSidebar && (
