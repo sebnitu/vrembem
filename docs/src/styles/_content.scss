@@ -4,7 +4,7 @@
 .content {
   scroll-margin-top: css.get("layout", "toolbar-height");
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     scroll-margin-top: css.get("layout", "navibar-height");
   }
 

@@ -44,7 +44,7 @@
     position: relative;
     scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
 
-    @include core.media-min("drawer") {
+    @include core.media-min("sidebar") {
       scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
     }
 
@@ -141,7 +141,7 @@
     thead {
       top: calc(css.get("layout", "toolbar-height") - 1px);
 
-      @include core.media-min("drawer") {
+      @include core.media-min("sidebar") {
         top: calc(css.get("layout", "navibar-height") - 1px);
       }
     }
@@ -155,7 +155,7 @@
   top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     top: css.get("layout", "navibar-height");
   }
 

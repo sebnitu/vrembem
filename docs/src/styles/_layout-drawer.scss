@@ -55,7 +55,7 @@
  * Inline drawer
  */
 
-@include core.media-min("drawer") {
+@include core.media-min("sidebar") {
   .layout-drawer {
     box-shadow: none;
     box-sizing: content-box;

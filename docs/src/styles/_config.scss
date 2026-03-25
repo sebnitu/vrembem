@@ -17,12 +17,11 @@
 );
 
 // Set custom breakpoints
-// TODO: Maybe see if we can use default breakpoints instead
 @include config.merge(
   "breakpoints",
   (
-    "drawer": 960px,
-    "aside": 1216px
+    "sidebar": 960px,
+    "aside": 1200px
   )
 );
 

@@ -13,7 +13,7 @@
     @include css.override("layout", "content-padding", 1rem);
   }
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     @include css.override("layout", "content-padding", 3rem);
 
     &.has-drawer .layout__main {
@@ -38,7 +38,7 @@
   position: relative;
   width: 100%;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     padding-top: css.get("layout", "navibar-height");
 
     &::before {

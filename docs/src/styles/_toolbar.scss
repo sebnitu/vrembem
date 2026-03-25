@@ -13,7 +13,7 @@
   top: -1px;
   z-index: 4;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     display: none;
   }
 }
@@ -35,7 +35,7 @@
   visibility: hidden;
   z-index: 6;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     opacity: 1;
     transform: translate(0);
     visibility: visible;
