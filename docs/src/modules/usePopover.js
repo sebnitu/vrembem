@@ -1,11 +1,11 @@
 import { Popover } from "vrembem";
-import { cssConfig } from "@vrembem/core";
+import { cssConfig, teleport } from "@vrembem/core";
 
 let popover = null;
 
 if (typeof window !== "undefined") {
   popover = new Popover({
-    plugins: [cssConfig()]
+    plugins: [cssConfig(), teleport({ where: ".popovers" })]
   });
   window["popover"] = await popover.mount();
 }
