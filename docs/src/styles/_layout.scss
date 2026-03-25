@@ -16,8 +16,8 @@
   @include core.media-min("sidebar") {
     @include css.override("layout", "content-padding", 3rem);
 
-    &.has-drawer .layout__main {
-      padding-left: css.get("layout", "drawer-width");
+    &.has-sidebar .layout__main {
+      padding-left: css.get("layout", "sidebar-width");
     }
 
     &.has-aside .layout__main {

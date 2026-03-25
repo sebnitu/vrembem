@@ -17,15 +17,15 @@ const { headings } = Astro.props;
 const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
-  hasDrawer: !!collection,
+  hasSidebar: !!collection,
   hasAside: !!headings.filter((item) => item.depth === 2).length
 };
 ---
 
 <Base {title} {layout}>
   {
-    layout.hasDrawer && (
-      <Fragment slot="drawer">
+    layout.hasSidebar && (
+      <Fragment slot="sidebar">
         <Navi {entries} collection={collection} />
       </Fragment>
     )
