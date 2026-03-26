@@ -9,11 +9,11 @@
 
   @include core.media-min("sidebar") {
     position: fixed;
+  }
 
-    .is-home & {
-      backdrop-filter: blur(8px);
-      background-color: css.get("background-glass");
-    }
+  .is-home & {
+    backdrop-filter: blur(8px);
+    background-color: css.get("background-glass");
   }
 }
 
