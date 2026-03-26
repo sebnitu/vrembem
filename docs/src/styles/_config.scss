@@ -9,7 +9,7 @@
 
 // Set config options
 @include config.set(
-  "prefix-cssvar",
+  "prefix-tokens",
   (
     "default": "vb",
     "astro": ""
@@ -20,9 +20,8 @@
 @include config.merge(
   "breakpoints",
   (
-    "code": 600px,
-    "drawer": 960px,
-    "aside": 1216px
+    "sidebar": 960px,
+    "aside": 1200px
   )
 );
 
@@ -40,16 +39,13 @@
   (
     "width": 80rem,
     "padding": 1rem,
+    "sidebar-width": 16rem,
+    "aside-width": 14rem,
+    "content-width": 42rem,
+    "content-padding": 0,
     "navibar-height": 5.25rem,
     "toolbar-height": 4.75rem,
-    "footer-height": 6rem,
-    "drawer-width": 16rem,
-    "drawer-padding": 1rem,
-    "gap": 6rem,
-    "aside-width": 12rem,
-    // aside-padding: used to prevent cutoff of focus outline styles
-    "aside-padding": 0.25rem,
-    "content-width": 42rem
+    "footer-height": 8rem
   )
 );
 

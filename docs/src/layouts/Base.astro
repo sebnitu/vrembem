@@ -3,7 +3,7 @@ import Root from "./Root.astro";
 import Navibar from "../components/Navibar.astro";
 import Toolbar from "../components/Toolbar.astro";
 import Footer from "../components/Footer.astro";
-import LayoutDrawer from "../components/LayoutDrawer.astro";
+import LayoutSidebar from "../components/LayoutSidebar.astro";
 import LayoutAside from "../components/LayoutAside.astro";
 import Icon from "../components/Icon.astro";
 import Popover from "../components/Popover.astro";
@@ -12,38 +12,42 @@ interface Props {
   title?: string;
   layout?: {
     hasAside?: boolean;
-    hasDrawer?: boolean;
+    hasSidebar?: boolean;
   };
 }
 
 const { title, layout = {} } = Astro.props;
+
+const layoutClasses = ["layout"];
+if (layout.hasSidebar) {
+  layoutClasses.push("has-sidebar");
+}
+if (layout.hasAside) {
+  layoutClasses.push("has-aside");
+}
 ---
 
-<Root {title} {layout}>
+<Root {title}>
   <Navibar />
   <Toolbar {layout} />
-  <div class="layout">
+  <div class={layoutClasses.join(" ")}>
     {
-      layout.hasDrawer && (
-        <div class="layout__drawer">
-          <LayoutDrawer>
-            <slot name="drawer" />
-          </LayoutDrawer>
-        </div>
+      layout.hasSidebar && (
+        <LayoutSidebar>
+          <slot name="sidebar" />
+        </LayoutSidebar>
+      )
+    }
+    {
+      layout.hasAside && (
+        <LayoutAside>
+          <slot name="aside" />
+        </LayoutAside>
       )
     }
     <div id="main-content" class="layout__main" tabindex="-1">
-      <div class="layout__grid">
-        {
-          layout.hasAside && (
-            <div class="layout__aside">
-              <LayoutAside>
-                <slot name="aside" />
-              </LayoutAside>
-            </div>
-          )
-        }
-        <div class="layout__content">
+      <div class="layout__container">
+        <div class="content">
           {
             layout.hasAside && (
               <div class="toolbar-mini">
@@ -65,7 +69,7 @@ const { title, layout = {} } = Astro.props;
           }
           {
             Astro.slots.has("prepend") && (
-              <div class="layout__prepend">
+              <div class="content__prepend">
                 <slot name="prepend" />
               </div>
             )
@@ -75,13 +79,13 @@ const { title, layout = {} } = Astro.props;
           </div>
           {
             Astro.slots.has("append") && (
-              <div class="layout__append">
+              <div class="content__append">
                 <slot name="append" />
               </div>
             )
           }
         </div>
-        <Footer classes="layout__footer" />
+        <Footer />
       </div>
     </div>
   </div>

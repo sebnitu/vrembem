@@ -5,167 +5,62 @@
 .layout {
   display: flex;
   justify-content: center;
-  padding-left: css.get("layout", "padding");
-  padding-right: css.get("layout", "padding");
+  padding: 0 css.get("layout", "padding");
   position: relative;
   width: 100%;
+
+  @include core.media-min("xs") {
+    @include css.override("layout", "content-padding", 1rem);
+  }
+
+  @include core.media-min("sidebar") {
+    @include css.override("layout", "content-padding", 3rem);
+
+    &.has-sidebar .layout__main {
+      padding-left: css.get("layout", "sidebar-width");
+    }
+
+    &.has-aside .layout__main {
+      padding-right: css.get("form-control-size-calc");
+    }
+  }
+
+  @include core.media-min("aside") {
+    &.has-aside .layout__main {
+      padding-right: css.get("layout", "aside-width");
+    }
+  }
 }
 
 .layout__main {
-  box-sizing: content-box;
-  max-width: calc(css.get("layout", "width") - css.get("layout", "drawer-width"));
+  margin: auto;
+  max-width: css.get("layout", "width");
   position: relative;
   width: 100%;
 
-  * > * {
-    box-sizing: border-box;
-  }
-
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     padding-top: css.get("layout", "navibar-height");
 
-    .has-drawer & {
-      padding-left: css.get("layout", "drawer-width");
-      width: calc(100% - css.get("layout", "drawer-width"));
+    &::before {
+      backdrop-filter: blur(8px);
+      background-color: css.get("background-glass");
+      content: "";
+      height: css.get("layout", "navibar-height");
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 3;
     }
   }
 }
 
-.layout__grid {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  justify-content: center;
-  padding: 2rem 0 0;
-
-  @include core.media-min("code") {
-    padding: 3rem 3rem 0;
-  }
-
-  @include core.media-min("drawer") {
-    gap: 3rem;
-    padding: 3rem 0 0;
-
-    .has-drawer & {
-      padding: 3rem 3.5rem 0 4.5rem;
-    }
-  }
-
-  @include core.media-min("aside") {
-    align-items: flex-start;
-    flex-flow: row wrap;
-    gap: css.get("layout", "gap");
-    padding: 4rem 0 0;
-
-    .has-drawer & {
-      padding: 4rem 0 0 6rem;
-    }
-  }
-}
-
-.layout__content {
-  max-width: css.get("layout", "content-width");
-  order: 1;
-  scroll-margin-top: css.get("layout", "toolbar-height");
+.layout__container {
+  margin: auto;
+  max-width: calc(css.get("layout", "content-width") + (css.get("layout", "content-padding") * 2));
+  padding: css.get("layout", "content-padding") css.get("layout", "content-padding") 0;
   width: 100%;
 
-  @include core.media-min("aside") {
-    width: calc(100% - (css.get("layout", "aside-width") + css.get("layout", "gap")));
-  }
-
-  @include core.media-min("drawer") {
-    scroll-margin-top: css.get("layout", "navibar-height");
-  }
-
-  * {
-    scroll-margin-top: inherit;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    position: relative;
-  }
-
-  h3 {
-    font-weight: 500;
-  }
-
-  h4 {
-    font-size: 1.25em;
-  }
-}
-
-.layout__prepend {
-  margin-bottom: 2rem;
-
-  @include core.media-min("md") {
-    margin-bottom: 3rem;
-  }
-
-  @include core.media-min("lg") {
-    margin-bottom: 4rem;
-  }
-}
-
-.layout__append {
-  margin-top: 2rem;
-
-  @include core.media-min("md") {
-    margin-top: 3rem;
-  }
-
-  @include core.media-min("lg") {
-    margin-top: 4rem;
-  }
-}
-
-.layout__aside {
-  order: 2;
-  width: css.get("layout", "aside-width");
-}
-
-.layout__footer {
-  background-color: css.get("background");
-  border-top: 1px solid css.get("border-color");
-  order: 3;
-  padding: 2rem 0;
-  position: relative;
-  width: 100%;
-  z-index: 2;
-
-  @include core.media-min("drawer") {
-    padding: 3rem 0;
-  }
-
-  @include core.media-min("aside") {
-    padding: 4rem 0;
-  }
-}
-
-/**
- * Layout screen
- */
-
-.layout__screen {
-  background-color: palette.get("neutral", 10%, 0%);
-  inset: auto;
-  position: fixed;
-  transition: background-color 0.25s;
-  z-index: 99;
-
-  .is-opened ~ &,
-  .is-opening ~ & {
-    background-color: palette.get("neutral", 10%, 80%);
-  }
-
-  .is-opened ~ &,
-  .is-opening ~ &,
-  .is-closing ~ & {
-    inset: 0;
+  > * + * {
+    margin-top: calc(css.get("spacing") * 12) !important;
   }
 }

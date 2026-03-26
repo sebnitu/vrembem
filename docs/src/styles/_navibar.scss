@@ -2,20 +2,18 @@
 @use "@vrembem/core/css";
 
 .navibar {
-  backdrop-filter: blur(8px);
-  background-color: css.get("background-glass");
   padding: 0 css.get("layout", "padding");
   position: relative;
   width: 100%;
   z-index: 5;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     position: fixed;
+  }
 
-    .has-drawer & {
-      backdrop-filter: unset;
-      background-color: transparent;
-    }
+  .is-home & {
+    backdrop-filter: blur(8px);
+    background-color: css.get("background-glass");
   }
 }
 
@@ -35,7 +33,7 @@
 
 .navibar__title {
   position: relative;
-  width: css.get("layout", "drawer-width");
+  width: css.get("layout", "sidebar-width");
 }
 
 .navibar__skip {
@@ -69,19 +67,12 @@
       text-decoration: none;
     }
   }
-
-  @include core.media-min("drawer") {
-    .has-drawer & {
-      backdrop-filter: blur(8px);
-      background-color: css.get("background-glass");
-    }
-  }
 }
 
 .navibar-spacer {
   height: 0;
 
-  @include core.media-min("drawer") {
+  @include core.media-min("sidebar") {
     height: css.get("layout", "navibar-height");
   }
 }

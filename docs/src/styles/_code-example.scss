@@ -16,7 +16,7 @@
     border-top: css.get("border");
   }
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     border-left: none;
     border-radius: 0;
     border-right: none;
@@ -70,7 +70,7 @@
   padding: 2rem;
   width: fit-content;
 
-  @include core.media-max("code") {
+  @include core.media-max("xs") {
     padding: 1rem;
   }
 

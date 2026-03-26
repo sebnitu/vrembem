@@ -12,7 +12,7 @@
 @forward "./navibar";
 @forward "./toolbar";
 @forward "./layout";
-@forward "./layout-drawer";
+@forward "./layout-sidebar";
 @forward "./layout-aside";
 
 // Components
@@ -22,9 +22,11 @@
 @forward "./code-block";
 @forward "./code-example";
 @forward "./code-expander";
+@forward "./content";
 @forward "./doc-block";
 @forward "./floats";
 @forward "./fold-shadow";
+@forward "./footer";
 @forward "./heading-anchor";
 @forward "./icon_external";
 @forward "./layout-demo";

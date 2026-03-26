@@ -3,22 +3,19 @@ import Icon from "./Icon.astro";
 
 interface Props {
   layout?: {
+    hasSidebar?: boolean;
     hasAside?: boolean;
-    hasDrawer?: boolean;
   };
 }
 
 const { layout } = Astro.props;
-
-const hasAsideOrDrawer = layout.hasAside || layout.hasDrawer;
-
 ---
 
 {
-  hasAsideOrDrawer && (
+  (layout.hasSidebar || layout.hasAside) && (
     <div class="toolbar">
       <div class="clearfix">
-        {layout.hasDrawer && (
+        {layout.hasSidebar && (
           <button
             data-drawer-open="layout-drawer"
             class="button padding-left-sm float-left"

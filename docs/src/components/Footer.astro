@@ -9,12 +9,14 @@ const { classes = "" } = Astro.props;
 ---
 
 <footer class={`footer ${classes}`.trim()}>
-  <div class="flex align-items-center">
-    <p class="flex-grow foreground-lighter">
+  <div class="footer__content">
+    <p>
       Vrembem is released under the MIT License.<br />
       Copyright 2026 Sebastian Nitu.
     </p>
-    <a href="/" class="flex-item-none foreground-primary">
+  </div>
+  <div class="footer__logo">
+    <a href="/">
       <LogoIcon />
     </a>
   </div>

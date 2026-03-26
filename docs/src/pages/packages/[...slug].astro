@@ -47,13 +47,13 @@ if ("parent" in entry.data) {
 }
 
 const layout = {
-  hasDrawer: true,
+  hasSidebar: true,
   hasAside: true
 };
 ---
 
 <Base title={entry.data.title} {layout}>
-  <Fragment slot="drawer">
+  <Fragment slot="sidebar">
     <Navi collection="packages" entries={packages} {modules} />
   </Fragment>
   <Fragment slot="aside">

@@ -1,19 +1,19 @@
 <aside
-  id="layout-drawer"
-  class="layout-drawer"
-  data-breakpoint="60rem"
+  id="layout-sidebar"
+  class="layout-sidebar"
+  data-breakpoint="sidebar"
   data-config="{'classModal': 'is-modal'}"
 >
-  <div class="layout-drawer__content">
-    <div class="layout-drawer__mask"></div>
+  <div class="layout-sidebar__content">
+    <div class="layout-sidebar__mask"></div>
     <slot />
   </div>
 </aside>
-<div class="layout__screen" data-drawer-close="layout-drawer"></div>
+<div class="layout-sidebar-screen" data-drawer-close="layout-sidebar"></div>
 
 <script>
   import { drawer } from "../modules/useDrawer";
-  const drawerElement = document.getElementById("layout-drawer");
+  const drawerElement = document.getElementById("layout-sidebar");
   if (drawerElement) {
     const entry = await drawer.createEntry(drawerElement);
     const drawerItem = await drawer.register(entry);

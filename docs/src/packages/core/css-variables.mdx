@@ -11,11 +11,11 @@ import data from "../../data/cssvar-core.json";
 
 ## Output
 
-CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS varibales, use the `@vrembem/core/root` export at the bottom of your Sass manifest file.
+CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `@vrembem/core/tokens` export at the bottom of your Sass manifest file.
 
 <CodeExample lang="scss">
 ```scss
-@forward "@vrembem/core/root";
+@forward "@vrembem/core/tokens";
 ```
 </CodeExample>
 

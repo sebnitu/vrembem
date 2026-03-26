@@ -4,17 +4,9 @@ import "../styles/app.scss";
 interface Props {
   title?: string;
   bodyClass?: string;
-  layout?: {
-    hasAside?: boolean;
-    hasDrawer?: boolean;
-  };
 }
 
-const { title, bodyClass, layout = {} } = Astro.props;
-
-let mainClasses = "main";
-mainClasses += layout.hasDrawer ? " has-drawer" : "";
-mainClasses += layout.hasAside ? " has-aside" : "";
+const { title, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -43,9 +35,10 @@ mainClasses += layout.hasAside ? " has-aside" : "";
     </script>
   </head>
   <body class={bodyClass}>
-    <main id="main" class={mainClasses} tabindex="-1">
+    <main id="main" class="main" tabindex="-1">
       <slot />
     </main>
     <div class="modals"></div>
+    <div class="popovers"></div>
   </body>
 </html>

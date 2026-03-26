@@ -2,6 +2,7 @@
 import Navi from "../components/Navi.astro";
 import LogoIcon from "./LogoIcon.astro";
 import Modal from "./Modal.astro";
+import Popover from "../components/Popover.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -9,7 +10,6 @@ interface Props {
 }
 
 const { classes = "" } = Astro.props;
-
 ---
 
 <header class={`navibar ${classes}`.trim()}>
@@ -26,12 +26,16 @@ const { classes = "" } = Astro.props;
     </div>
     <div class="navibar__menu">
       <Navi classes="display-none md:display-flex" inline />
-      <button
+      <Popover
+        placement="left"
+        triggerClass="button button_icon display-block md:display-none"
         data-modal-open="modal-navi"
-        class="button button_icon display-block md:display-none"
       >
-        <Icon name="menu" />
-      </button>
+        <Fragment slot="trigger">
+          <Icon name="menu" />
+        </Fragment>
+        <Fragment slot="tooltip">Menu</Fragment>
+      </Popover>
     </div>
   </div>
 </header>
@@ -39,9 +43,17 @@ const { classes = "" } = Astro.props;
 <Modal id="modal-navi" classes="modal_pos_top">
   <div class="dialog__header">
     <h2 class="dialog__title">Menu</h2>
-    <button data-modal-close class="button button_icon dialog__close">
-      <Icon name="x" />
-    </button>
+    <Popover
+      id="modal-navi-close"
+      placement="left"
+      triggerClass="button button_icon dialog__close"
+      data-modal-close=""
+    >
+      <Fragment slot="trigger">
+        <Icon name="x" />
+      </Fragment>
+      <Fragment slot="tooltip">Close</Fragment>
+    </Popover>
   </div>
   <div class="dialog__body">
     <Navi />

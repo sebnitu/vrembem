@@ -10,7 +10,7 @@
   background-color: css.get("background-darker");
   box-shadow: css.get("box-shadow-5");
   inset: 0 0 0 auto;
-  max-width: css.get("layout", "drawer-width");
+  max-width: css.get("layout", "sidebar-width");
   opacity: 0;
   outline: none;
   position: fixed;
@@ -45,9 +45,9 @@
   height: 100%;
   overflow: hidden auto;
   overscroll-behavior: contain;
-  padding: css.get("layout", "drawer-padding");
+  padding: css.get("layout", "padding");
   position: absolute;
-  scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
+  scroll-behavior: smooth;
   width: 100%;
 }
 
@@ -59,24 +59,49 @@
   .layout-aside {
     background-color: transparent;
     box-shadow: none;
-    height: 100vh;
-    inset: 0 auto auto;
+    box-sizing: content-box;
+    max-width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     opacity: 1;
-    padding: 0;
-    position: fixed;
+    padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     transform: translate(0);
     visibility: visible;
-    width: css.get("layout", "aside-width");
+    width: 100%;
     z-index: 2;
+
+    > * {
+      box-sizing: border-box;
+    }
   }
 
   .layout-aside__content {
-    height: 100vh;
+    height: auto;
+    max-height: 100vh;
     overflow: hidden auto;
-    padding: calc(css.get("layout", "navibar-height") + 2rem) css.get("layout", "aside-padding") calc(css.get("layout", "footer-height") + 8rem);
-    position: fixed;
-    scroll-behavior: smooth;
-    top: 0;
-    width: css.get("layout", "aside-width");
+    padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding"));
+    scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+  }
+}
+
+/**
+ * Layout screen
+ */
+
+.layout-aside-screen {
+  background-color: palette.get("neutral", 10%, 0%);
+  inset: auto;
+  position: fixed;
+  transition: background-color 0.25s;
+  z-index: 99;
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ & {
+    background-color: palette.get("neutral", 10%, 80%);
+  }
+
+  .layout-aside.is-opened ~ &,
+  .layout-aside.is-opening ~ &,
+  .layout-aside.is-closing ~ & {
+    inset: 0;
   }
 }
