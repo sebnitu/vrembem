@@ -35,6 +35,7 @@
 .layout__main {
   margin: auto;
   max-width: css.get("layout", "width");
+  outline: none;
   position: relative;
   width: 100%;
 
