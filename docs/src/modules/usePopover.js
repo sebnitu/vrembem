@@ -11,7 +11,6 @@ if (typeof window !== "undefined") {
   // Return modal popover to prevent stacking issue
   popover.on("teleport", ({ entry }) => {
     if (entry.id === "popover-tooltip-modal-navi-close") {
-      console.log(entry);
       entry.teleportReturn();
     }
   });
