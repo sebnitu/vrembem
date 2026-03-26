@@ -77,7 +77,7 @@
     height: auto;
     max-height: 100vh;
     overflow: hidden auto;
-    padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding"));
+    padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding")) css.get("focus-ring-width");
     scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
     width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
   }
