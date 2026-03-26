@@ -1,8 +1,8 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-@each $key, $value in var.$size-scale {
+@each $key, $value in config.get("modal-size", "variants") {
   #{core.bem("modal", null, "size", $key)} #{core.bem("modal", "dialog")} {
     @include css.override("modal", "width", $value);
   }

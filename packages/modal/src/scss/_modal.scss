@@ -1,7 +1,6 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "./config" as var;
 
 #{core.bem("modal")} {
   align-items: center;
@@ -15,7 +14,7 @@
   top: 0;
   visibility: hidden;
   width: 0;
-  z-index: css.get("modal", "z-index", var.$z-index);
+  z-index: css.get("modal", "z-index", 1000);
 
   &::before {
     background-color: css.get("modal", "screen-color", css.get("screen-color"));
@@ -29,15 +28,15 @@
 }
 
 #{core.bem("modal", "dialog")} {
-  @include css.override("dialog", var.$dialog-override);
+  @include css.override("dialog", config.get("modal-dialog-override"));
 
-  max-width: css.get("modal", "max-width", var.$max-width);
+  max-width: css.get("modal", "width", config.get("modal-size", "default"));
   opacity: 0;
   overflow: auto;
-  transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
-  transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
-  transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
-  width: css.get("modal", "width", var.$width);
+  transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
+  transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
+  transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
+  width: css.get("modal", "max-width", 100%);
 }
 
 #{core.bem("modal")}.is-closed {
@@ -56,13 +55,13 @@
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-closing {
   &::before {
-    transition: opacity css.get("modal", "transition-duration", var.$transition-duration) css.get("modal", "transition-timing-function", var.$transition-timing-function);
+    transition: opacity css.get("modal", "transition-duration", css.get("transition-duration")) css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   }
 
   #{core.bem("modal", "dialog")} {
-    transition-duration: css.get("modal", "transition-duration", var.$transition-duration);
+    transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
     transition-property: opacity, transform;
-    transition-timing-function: css.get("modal", "transition-timing-function", var.$transition-timing-function);
+    transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   }
 }
 
@@ -79,5 +78,5 @@
 }
 
 #{core.bem("modal")}.is-closing #{core.bem("modal", "dialog")} {
-  transform: translateY(calc(css.get("modal", "travel", var.$travel) * -1));
+  transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
 }
