@@ -20,9 +20,7 @@
   background: css.get("drawer", "background", css.get("background"));
   inset: 0 auto 0 0;
   max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
-  overflow: hidden;
   position: absolute;
-  visibility: hidden;
   width: css.get("drawer", "width", config.get("drawer-width"));
   z-index: css.get("drawer", "z-index", 900);
 }

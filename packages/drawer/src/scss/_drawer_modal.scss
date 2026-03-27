@@ -5,7 +5,8 @@
 #{core.bem("drawer", null, "modal")} {
   @include css.override("drawer", "z-index", 950);
 
-  position: css.get("drawer", "modal-position", absolute);
+  position: fixed;
+  visibility: hidden;
 
   #{core.bem("drawer", "dialog")} {
     @include css.override("dialog", config.get("drawer-modal-dialog-override"));
@@ -16,7 +17,7 @@
   background-color: css.get("drawer", "backdrop-color", css.get("backdrop-color"));
   inset: 0;
   opacity: 0;
-  position: css.get("drawer", "modal-position", absolute);
+  position: fixed;
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,
