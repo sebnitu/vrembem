@@ -15,6 +15,14 @@
   visibility: hidden;
   width: 0;
   z-index: css.get("modal", "z-index", 1000);
+
+  &::before {
+    background-color: css.get("modal", "backdrop-color", css.get("backdrop-color"));
+    content: "";
+    inset: 0;
+    opacity: 0;
+    position: fixed;
+  }
 }
 
 #{core.bem("modal", "dialog")} {
@@ -27,13 +35,6 @@
   transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
   transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   width: css.get("modal", "max-width", 100%);
-}
-
-#{core.bem("modal-backdrop")} {
-  background-color: css.get("modal", "backdrop-color", css.get("backdrop-color"));
-  inset: 0;
-  opacity: 0;
-  position: fixed;
 }
 
 #{core.bem("modal")}.is-closed {
@@ -51,7 +52,7 @@
 
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-closing {
-  + #{core.bem("modal-backdrop")} {
+  &::before {
     transition: opacity css.get("modal", "transition-duration", css.get("transition-duration")) css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   }
 
@@ -64,7 +65,7 @@
 
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened {
-  + #{core.bem("modal-backdrop")} {
+  &::before {
     opacity: css.get("modal", "backdrop-opacity", css.get("backdrop-opacity"));
   }
 

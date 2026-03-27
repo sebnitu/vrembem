@@ -5,19 +5,12 @@ import { replace } from "./replace";
 import type { Modal } from "./Modal";
 
 export class ModalEntry extends CollectionEntry {
-  backdrop: HTMLElement;
   state: string;
   dialog: HTMLElement;
 
   constructor(parent: Modal, query: string | HTMLElement) {
     super(parent, query);
     this.state = "closed";
-
-    // Create the backdrop element
-    const backdrop = document.createElement("div");
-    backdrop.classList.add("backdrop", "modal-backdrop");
-    backdrop.setAttribute(`data-${this.config.get("attrClose")}`, this.id);
-    this.backdrop = backdrop;
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =
