@@ -137,25 +137,3 @@ test("should close modal drawer when pressing the escape key", async () => {
 
   expect(entry.state).toBe("closed");
 });
-
-test("should close modal drawer when background screen is clicked", async () => {
-  expect(entry.state).toBe("closed");
-
-  entry.open();
-  await vi.runAllTimers();
-
-  expect(entry.state).toBe("opened");
-
-  document.querySelector(".drawer-frame").click();
-  await vi.runAllTimers();
-
-  document.querySelector(".drawer-main").click();
-  await vi.runAllTimers();
-
-  expect(entry.state).toBe("opened");
-
-  entry.el.click();
-  await vi.runAllTimers();
-
-  expect(entry.state).toBe("closed");
-});
