@@ -44,6 +44,9 @@ export async function close(
     // Update modal state
     entry.state = "closed";
 
+    // Remove the backdrop
+    entry.backdrop.remove();
+
     // Update focus if the focus param is true
     if (focus) {
       updateFocusState(entry.parent);
