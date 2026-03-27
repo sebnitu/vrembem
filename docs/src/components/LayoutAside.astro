@@ -1,14 +1,12 @@
 <aside
   id="layout-aside"
-  class="layout-aside"
+  class="drawer drawer_switch layout-aside"
   data-breakpoint="aside"
-  data-config="{'classModal': 'is-modal'}"
 >
-  <div class="layout-aside__content">
+  <div class="drawer__dialog layout-aside__content">
     <slot />
   </div>
 </aside>
-<div class="layout-aside-screen" data-drawer-close="layout-aside"></div>
 
 <script>
   import { drawer } from "../modules/useDrawer";

@@ -2,53 +2,15 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-/**
- * Modal aside
- */
-
 .layout-aside {
   background-color: css.get("background-darker");
-  box-shadow: css.get("box-shadow-5");
-  inset: 0 0 0 auto;
-  max-width: css.get("layout", "sidebar-width");
-  opacity: 0;
-  outline: none;
   position: fixed;
-  transform: translate(100%);
-  transition:
-    opacity 0.5s,
-    transform 0.25s ease;
   visibility: hidden;
-  width: calc(100% - 4.5rem);
-  z-index: 100;
-
-  &.is-opened,
-  &.is-opening {
-    opacity: 1;
-    transform: translate(0);
-    transition:
-      opacity 0.25s,
-      transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    visibility: visible;
-  }
-
-  &.is-closing {
-    visibility: visible;
-  }
-
-  &.is-closed {
-    visibility: hidden;
-  }
 }
 
 .layout-aside__content {
-  height: 100%;
-  overflow: hidden auto;
   overscroll-behavior: contain;
   padding: css.get("layout", "padding");
-  position: absolute;
-  scroll-behavior: smooth;
-  width: 100%;
 }
 
 /**
@@ -58,14 +20,10 @@
 @include core.media-min("aside") {
   .layout-aside {
     background-color: transparent;
-    box-shadow: none;
     box-sizing: content-box;
-    max-width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
-    opacity: 1;
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
-    transform: translate(0);
     visibility: visible;
-    width: 100%;
     z-index: 2;
 
     > * {
@@ -74,34 +32,11 @@
   }
 
   .layout-aside__content {
-    height: auto;
+    inset: 0 auto auto 0;
     max-height: 100vh;
-    overflow: hidden auto;
     padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding")) css.get("focus-ring-width");
+    scroll-behavior: smooth;
     scrollbar-color: palette.get("primary", 50, 0%) css.get("background");
     width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
-  }
-}
-
-/**
- * Layout screen
- */
-
-.layout-aside-screen {
-  background-color: palette.get("neutral", 10%, 0%);
-  inset: auto;
-  position: fixed;
-  transition: background-color 0.25s;
-  z-index: 99;
-
-  .layout-aside.is-opened ~ &,
-  .layout-aside.is-opening ~ & {
-    background-color: palette.get("neutral", 10%, 80%);
-  }
-
-  .layout-aside.is-opened ~ &,
-  .layout-aside.is-opening ~ &,
-  .layout-aside.is-closing ~ & {
-    inset: 0;
   }
 }

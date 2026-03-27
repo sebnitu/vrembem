@@ -1,15 +1,13 @@
 <div
   id="layout-sidebar"
-  class="layout-sidebar"
+  class="drawer layout-sidebar"
   data-breakpoint="sidebar"
-  data-config="{'classModal': 'is-modal'}"
 >
-  <div class="layout-sidebar__content">
+  <div class="drawer__dialog layout-sidebar__content">
     <div class="layout-sidebar__mask"></div>
     <slot />
   </div>
 </div>
-<div class="layout-sidebar-screen" data-drawer-close="layout-sidebar"></div>
 
 <script>
   import { drawer } from "../modules/useDrawer";
