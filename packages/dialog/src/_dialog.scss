@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   position: relative;
   transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration"));
   transition-property: css.get("dialog", "transition-duration", (outline, border-color));

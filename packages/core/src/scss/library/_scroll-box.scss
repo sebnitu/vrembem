@@ -2,6 +2,5 @@
 @mixin scroll-box {
   display: block;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
   width: 100%;
 }
