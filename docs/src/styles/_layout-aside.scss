@@ -21,9 +21,9 @@
   .layout-aside {
     background-color: transparent;
     box-sizing: content-box;
-    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     visibility: visible;
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     z-index: 2;
 
     > * {

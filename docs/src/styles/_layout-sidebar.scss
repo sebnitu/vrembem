@@ -19,9 +19,9 @@
 @include core.media-min("sidebar") {
   .layout-sidebar {
     box-sizing: content-box;
-    width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));
     padding-left: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     visibility: visible;
+    width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));
     z-index: 2;
 
     > * {
