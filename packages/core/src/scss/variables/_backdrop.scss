@@ -2,10 +2,9 @@
 @use "../modules/palette";
 @include css.set(
   "core",
-  "screen",
+  "backdrop",
   (
     "color": palette.get("neutral", 10),
-    "opacity": 80%,
-    "padding": 1em
+    "opacity": 80%
   )
 );

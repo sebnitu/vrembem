@@ -3,6 +3,7 @@
 @forward "./src/scss/modules/css" as css-*;
 @forward "./src/scss/modules/palette" as palette-*;
 @forward "./src/scss/modules/theme" as theme-*;
+@forward "./src/scss/variables/backdrop";
 @forward "./src/scss/variables/spacing";
 @forward "./src/scss/variables/border";
 @forward "./src/scss/variables/box-shadow";
@@ -10,7 +11,6 @@
 @forward "./src/scss/variables/transition";
 @forward "./src/scss/variables/focus-ring";
 @forward "./src/scss/variables/form-control";
-@forward "./src/scss/variables/screen";
 @forward "./src/scss/utilities/args-to-map";
 @forward "./src/scss/utilities/debug-map";
 @forward "./src/scss/utilities/empty-map";
@@ -24,6 +24,7 @@
 @forward "./src/scss/utilities/reverse";
 @forward "./src/scss/utilities/string-replace";
 @forward "./src/scss/library/arrow";
+@forward "./src/scss/library/backdrop";
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/css-query";
 @forward "./src/scss/library/focus-ring";
