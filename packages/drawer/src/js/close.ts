@@ -42,12 +42,16 @@ export async function close(
     entry.state = "closed";
 
     // Update the global state if mode is modal
-    if (entry.mode === "modal")
+    if (entry.mode === "modal") {
+      // Remove the backdrop
+      entry.backdrop.remove();
+      // Remove the global state
       setGlobalState(
         false,
         entry.config.get("selectorInert"),
         entry.config.get("selectorOverflow")
       );
+    }
 
     // Set focus to the trigger element if the focus param is true
     if (focus) {

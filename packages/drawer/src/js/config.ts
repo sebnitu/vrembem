@@ -29,11 +29,6 @@ export const config = {
   // @type string
   selectorDialog: ".drawer__dialog",
 
-  // A valid CSS selector for the element that should be treated as the modal
-  // screen. Clicking the screen closes any open modal drawer.
-  // @type string
-  selectorScreen: ".drawer",
-
   // A valid CSS selector for setting the focus element of a drawer when opened
   // @type string
   selectorFocus: "[data-focus]",

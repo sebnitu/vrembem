@@ -5,52 +5,41 @@
 #{core.bem("drawer", null, "modal")} {
   @include css.override("drawer", "z-index", 950);
 
+  background-clip: padding-box;
   height: 0;
   left: 0;
+  max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
   overflow: hidden;
+  position: css.get("drawer", "modal-position", absolute);
   right: auto;
-  transform: translateX(0);
+  transform: translateX(-100%);
   width: 0;
+  width: css.get("drawer", "width", config.get("drawer-width"));
 
-  &::before {
-    @include core.backdrop("drawer");
+  &#{core.bem("drawer", null, "switch")} {
+    left: auto;
+    right: 0;
+    transform: translateX(100%);
   }
 
   #{core.bem("drawer", "dialog")} {
     @include css.override("dialog", config.get("drawer-modal-dialog-override"));
 
-    background-clip: padding-box;
-    left: 0;
-    max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
+    inset: 0;
     position: absolute;
-    transform: translateX(-100%);
-    width: css.get("drawer", "width", config.get("drawer-width"));
-  }
-
-  &#{core.bem("drawer", null, "switch")} {
-    left: 0;
-    right: auto;
-    transform: translateX(0);
-
-    #{core.bem("drawer", "dialog")} {
-      left: auto;
-      right: 0;
-      transform: translateX(100%);
-    }
   }
 }
 
-#{core.bem("drawer", null, "modal")}.is-opening,
-#{core.bem("drawer", null, "modal")}.is-opened,
-#{core.bem("drawer", null, "modal")}.is-closing {
-  height: 100%;
-  max-width: 100%;
-  width: 100%;
+#{core.bem(config.get("drawer-classes", "backdrop"))} {
+  background-color: css.get("drawer", "backdrop-color", css.get("backdrop-color"));
+  inset: 0;
+  opacity: 0;
+  position: css.get("drawer", "modal-position", absolute);
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-closing {
-  &::before {
+  + #{core.bem(config.get("drawer-classes", "backdrop"))} {
     transition: opacity css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
   }
 }
@@ -59,27 +48,15 @@
 #{core.bem("drawer", null, "modal")}.is-opened {
   transform: translateX(0);
 
-  &::before {
+  + #{core.bem(config.get("drawer-classes", "backdrop"))} {
     opacity: css.get("drawer", "backdrop-opacity", css.get("backdrop-opacity"));
-  }
-
-  #{core.bem("drawer", "dialog")} {
-    transform: translateX(0);
   }
 }
 
 #{core.bem("drawer", null, "modal")}.is-closing {
-  transform: translateX(0);
+  transform: translateX(-100%);
 
-  #{core.bem("drawer", "dialog")} {
-    transform: translateX(-100%);
-  }
-}
-
-#{core.bem("drawer", null, "modal")}#{core.bem("drawer", null, "switch")}.is-closing {
-  transform: translateX(0);
-
-  #{core.bem("drawer", "dialog")} {
+  &#{core.bem("drawer", null, "switch")} {
     transform: translateX(100%);
   }
 }
