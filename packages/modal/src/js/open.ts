@@ -12,14 +12,11 @@ export async function open(
 
   // If modal is closed
   if (entry.state === "closed") {
-    // Add the backdrop element to the DOM right after the modal
-    entry.el.after(entry.backdrop);
+    // Update modal state
+    entry.state = "opening";
 
     // Add modal to stack
     entry.parent.stack.add(entry);
-
-    // Update modal state
-    entry.state = "opening";
 
     // Run the open transition
     if (

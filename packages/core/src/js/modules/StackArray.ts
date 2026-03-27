@@ -4,11 +4,7 @@ type StackArrayConfig = {
   onChange?: () => void;
 };
 
-interface StackEntry extends CollectionEntry {
-  backdrop: HTMLElement;
-}
-
-export class StackArray<TEntry extends StackEntry> {
+export class StackArray<TEntry extends CollectionEntry> {
   #entries: Array<TEntry>;
   config: StackArrayConfig;
 
@@ -36,10 +32,9 @@ export class StackArray<TEntry extends StackEntry> {
 
       const computed = getComputedStyle(entry.el).getPropertyValue("z-index");
       const base = parseInt(computed, 10);
-      const calculated = (Number.isNaN(base) ? 0 : base) + index * 2 + 1;
+      const calculated = (Number.isNaN(base) ? 0 : base) + index + 1;
 
       entry.el.style.zIndex = String(calculated);
-      entry.backdrop.style.zIndex = String(calculated - 1);
     });
   }
 
