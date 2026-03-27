@@ -5,28 +5,10 @@
 #{core.bem("drawer", null, "modal")} {
   @include css.override("drawer", "z-index", 950);
 
-  background-clip: padding-box;
-  height: 0;
-  left: 0;
-  max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
-  overflow: hidden;
   position: css.get("drawer", "modal-position", absolute);
-  right: auto;
-  transform: translateX(-100%);
-  width: 0;
-  width: css.get("drawer", "width", config.get("drawer-width"));
-
-  &#{core.bem("drawer", null, "switch")} {
-    left: auto;
-    right: 0;
-    transform: translateX(100%);
-  }
 
   #{core.bem("drawer", "dialog")} {
     @include css.override("dialog", config.get("drawer-modal-dialog-override"));
-
-    inset: 0;
-    position: absolute;
   }
 }
 
@@ -46,17 +28,7 @@
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-opened {
-  transform: translateX(0);
-
   + #{core.bem(config.get("drawer-classes", "backdrop"))} {
     opacity: css.get("drawer", "backdrop-opacity", css.get("backdrop-opacity"));
-  }
-}
-
-#{core.bem("drawer", null, "modal")}.is-closing {
-  transform: translateX(-100%);
-
-  &#{core.bem("drawer", null, "switch")} {
-    transform: translateX(100%);
   }
 }

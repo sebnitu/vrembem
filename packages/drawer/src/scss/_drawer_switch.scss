@@ -3,9 +3,7 @@
 @use "@vrembem/core/css";
 
 #{core.bem("drawer", null, "switch")} {
-  left: auto;
-  right: 0;
-  transform: translateX(100%);
+  inset: 0 0 0 auto;
 
   &.is-closing,
   &.is-closed {
