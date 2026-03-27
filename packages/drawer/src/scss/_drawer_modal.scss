@@ -13,7 +13,7 @@
   }
 }
 
-#{core.bem(config.get("drawer-classes", "backdrop"))} {
+#{core.bem("drawer-backdrop")} {
   background-color: css.get("drawer", "backdrop-color", css.get("backdrop-color"));
   inset: 0;
   opacity: 0;
@@ -22,14 +22,14 @@
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-closing {
-  + #{core.bem(config.get("drawer-classes", "backdrop"))} {
+  + #{core.bem("drawer-backdrop")} {
     transition: opacity css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
   }
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-opened {
-  + #{core.bem(config.get("drawer-classes", "backdrop"))} {
+  + #{core.bem("drawer-backdrop")} {
     opacity: css.get("drawer", "backdrop-opacity", css.get("backdrop-opacity"));
   }
 }
