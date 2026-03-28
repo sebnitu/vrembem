@@ -28,9 +28,9 @@
 #{core.bem("drawer", "dialog")} {
   @include css.override("dialog", config.get("drawer-dialog-override"));
 
-  border-top: none;
   border-bottom: none;
   border-radius: 0;
+  border-top: none;
   display: flex;
   flex-direction: column;
   inset: 0;
