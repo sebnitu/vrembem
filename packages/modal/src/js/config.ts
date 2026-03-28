@@ -6,7 +6,7 @@ export interface ModalConfig extends CollectionConfig {
   attrReplace: string;
   selector: string;
   selectorDialog: string;
-  selectorScreen: string;
+  selectorBackdrop: string;
   selectorRequired: string;
   selectorFocus: string;
   selectorInert: string | null;
@@ -30,7 +30,7 @@ export const config: ModalConfig = {
   // Selectors
   selector: ".modal",
   selectorDialog: ".modal__dialog",
-  selectorScreen: ".modal",
+  selectorBackdrop: ".modal",
   selectorRequired: '[role="alertdialog"]',
   selectorFocus: "[data-focus]",
   selectorInert: null,
