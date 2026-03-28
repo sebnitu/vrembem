@@ -15,30 +15,25 @@
   z-index: css.get("modal", "z-index", 1000);
 
   &::before {
-    background-color: css.get("modal", "backdrop-color", css.get("backdrop-color"));
-    content: "";
-    inset: 0;
-    opacity: 0;
-    position: fixed;
+    @include core.backdrop("modal");
   }
 }
 
 #{core.bem("modal", "dialog")} {
   @include css.override("dialog", config.get("modal-dialog-override"));
 
+  display: flex;
+  flex-direction: column;
   max-width: css.get("modal", "width", config.get("modal-size", "default"));
   opacity: 0;
   overflow: auto;
+  position: relative;
   transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
   width: css.get("modal", "max-width", 100%);
 }
 
 #{core.bem("modal", "container")} {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  overflow: auto;
-  position: relative;
+  @include core.scroll-container;
 }
 
 #{core.bem("modal")}.is-closed {
