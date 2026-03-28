@@ -43,8 +43,6 @@ export async function close(
 
     // Update the global state if mode is modal
     if (entry.mode === "modal") {
-      // Remove the backdrop
-      entry.backdrop.remove();
       // Remove the global state
       setGlobalState(
         false,

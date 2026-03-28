@@ -5,8 +5,8 @@
 #{core.bem("drawer", null, "switch")} {
   inset: 0 0 0 auto;
 
-  &.is-closing,
-  &.is-closed {
+  &.is-closing #{core.bem("drawer", "dialog")},
+  &.is-closed #{core.bem("drawer", "dialog")} {
     transform: translateX(100%);
   }
 

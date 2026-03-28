@@ -9,15 +9,6 @@ export async function open(
 ): Promise<DrawerEntry> {
   // If drawer is closed or indeterminate
   if (entry.state === "closed" || entry.state === "indeterminate") {
-    if (entry.mode === "modal") {
-      // Add the backdrop element to the DOM right after the modal drawer
-      entry.el.after(entry.backdrop);
-
-      // Apply z-index for the backdrop element
-      const zIndex = parseInt(window.getComputedStyle(entry.el).zIndex, 10);
-      entry.backdrop.style.zIndex = String((isNaN(zIndex) ? 0 : zIndex) - 1);
-    }
-
     // Update drawer state
     entry.state = "opening";
 

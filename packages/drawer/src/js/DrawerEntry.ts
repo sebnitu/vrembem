@@ -7,7 +7,6 @@ import { validate } from "./helpers/validate";
 import type { Drawer } from "./Drawer";
 
 export class DrawerEntry extends CollectionEntry {
-  backdrop: HTMLElement;
   dialog: HTMLElement;
   trigger: HTMLElement | null;
 
@@ -20,12 +19,6 @@ export class DrawerEntry extends CollectionEntry {
       state: "indeterminate",
       inlineState: "indeterminate"
     });
-
-    // Create the backdrop element
-    const backdrop = document.createElement("div");
-    backdrop.classList.add("backdrop", "drawer-backdrop");
-    backdrop.setAttribute(`data-${this.config.get("attrClose")}`, this.id);
-    this.backdrop = backdrop;
 
     // Set the dialog element. If none is found, use the root element
     this.dialog =

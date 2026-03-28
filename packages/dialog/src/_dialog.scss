@@ -31,6 +31,14 @@
   }
 }
 
+#{core.bem("dialog", "container")} {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  position: relative;
+}
+
 #{core.bem("dialog", "header")},
 #{core.bem("dialog", "body")},
 #{core.bem("dialog", "footer")} {

@@ -76,6 +76,12 @@ export async function handleClick(
 
       return;
     }
+
+    // If there is an active modal drawer and the screen was clicked...
+    if (this.activeModal && target.matches(this.config.selectorBackdrop)) {
+      // Close the modal drawer
+      return this.close(this.activeModal.id);
+    }
   }
 }
 

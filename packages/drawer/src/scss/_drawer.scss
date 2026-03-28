@@ -17,7 +17,6 @@
 }
 
 #{core.bem("drawer")} {
-  background: css.get("drawer", "background", css.get("background"));
   inset: 0 auto 0 0;
   max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
   position: absolute;
@@ -38,6 +37,14 @@
   position: absolute;
 }
 
+#{core.bem("drawer", "container")} {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  position: relative;
+}
+
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) #{core.bem("drawer", "dialog")} {
   @include css.override("dialog", config.get("drawer-inline-dialog-override"));
 }
@@ -54,19 +61,27 @@
 
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-closing {
-  transition-duration: css.get("drawer", "transition-duration", css.get("transition-duration"));
-  transition-property: opacity, transform;
-  transition-timing-function: css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
+  transition: opacity css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
+
+  #{core.bem("drawer", "dialog")} {
+    transition: transform css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
+  }
 }
 
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-opened {
   opacity: 1;
-  transform: translateX(0);
+
+  #{core.bem("drawer", "dialog")} {
+    transform: translateX(0);
+  }
 }
 
 #{core.bem("drawer")}.is-closing,
 #{core.bem("drawer")}.is-closed {
   opacity: 0;
-  transform: translateX(-100%);
+
+  #{core.bem("drawer", "dialog")} {
+    transform: translateX(-100%);
+  }
 }
