@@ -11,12 +11,6 @@
   #{core.bem("modal", "dialog")} {
     transform: translateY(css.get("modal", "travel", 5em));
   }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateY(css.get("modal", "travel", 5em));
-    }
-  }
 }
 
 #{core.bem("modal", null, "pos", "left")},
@@ -36,12 +30,6 @@
     left: 0;
     transform: translateX(-100%);
   }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateX(-100%);
-    }
-  }
 }
 
 #{core.bem("modal", null, "pos", "right")} {
@@ -50,11 +38,5 @@
   #{core.bem("modal", "dialog")} {
     right: 0;
     transform: translateX(100%);
-  }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateX(100%);
-    }
   }
 }

@@ -36,10 +36,6 @@
   @include core.scroll-container;
 }
 
-#{core.bem("modal")}.is-closed {
-  visibility: hidden;
-}
-
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened,
 #{core.bem("modal")}.is-closing {
@@ -72,8 +68,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-#{core.bem("modal")}.is-closing #{core.bem("modal", "dialog")} {
-  transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
 }
