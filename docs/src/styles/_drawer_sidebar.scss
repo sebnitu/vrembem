@@ -6,6 +6,7 @@
   visibility: hidden;
 
   .drawer__dialog {
+    outline: none;
     background-color: css.get("background-darker");
   }
 
