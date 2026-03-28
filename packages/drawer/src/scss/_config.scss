@@ -36,7 +36,9 @@ $default: (
 
   // A map of CSS variable overrides to pass to the drawer modal dialog element
   // @type map
-  "drawer-modal-dialog-override": ()
+  "drawer-modal-dialog-override": (
+    "border": none
+  )
 );
 
 @include config.apply($config, $default);

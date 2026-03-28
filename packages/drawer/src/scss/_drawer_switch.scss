@@ -9,6 +9,14 @@
   &.is-closed {
     transform: translateX(100%);
   }
+
+  #{core.bem("drawer", "dialog")} {
+    border-right: none;
+  }
+}
+
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
+  border-left: none;
 }
 
 // IS .drawer NOT .drawer_switch OR .drawer_modal
