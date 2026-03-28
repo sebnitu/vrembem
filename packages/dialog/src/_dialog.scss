@@ -21,13 +21,13 @@
 
   &:focus-visible,
   &[role="alertdialog"] {
-    @include core.focus-ring-color;
+    @include core.focus-ring-color(css.get("dialog", "focus-ring-color", css.get("focus-ring-color")), css.get("dialog", "focus-ring-opacity", 80%));
 
-    border-color: css.get("focus-ring-color");
+    border-color: css.get("dialog", "focus-ring-color", css.get("focus-ring-color"));
   }
 
   &[role="alertdialog"] {
-    @include css.override("core", "focus-ring-color", palette.get("important"));
+    @include css.override("dialog", "focus-ring-color", palette.get("important"));
   }
 }
 
