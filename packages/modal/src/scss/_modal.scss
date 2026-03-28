@@ -9,7 +9,6 @@
   height: 0;
   inset: 0;
   justify-content: center;
-  overflow: hidden;
   position: fixed;
   visibility: hidden;
   width: 0;
@@ -31,8 +30,6 @@
   opacity: 0;
   overflow: auto;
   transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
-  transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
-  transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   width: css.get("modal", "max-width", 100%);
 }
 
