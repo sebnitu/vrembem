@@ -38,7 +38,7 @@
 }
 
 #{core.bem("drawer", "container")} {
-  @include core.scroll-container;
+  @include core.scroll-flex;
 }
 
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) #{core.bem("drawer", "dialog")} {

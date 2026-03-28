@@ -33,7 +33,7 @@
 }
 
 #{core.bem("modal", "container")} {
-  @include core.scroll-container;
+  @include core.scroll-flex;
 }
 
 #{core.bem("modal")}.is-opening,

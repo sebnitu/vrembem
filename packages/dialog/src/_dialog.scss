@@ -32,7 +32,7 @@
 }
 
 #{core.bem("dialog", "container")} {
-  @include core.scroll-container;
+  @include core.scroll-flex;
 }
 
 #{core.bem("dialog", "header")},

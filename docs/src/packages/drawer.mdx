@@ -193,15 +193,20 @@ Drawers are composed using classes and data attributes for their triggers. The b
 
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
+- `drawer`: The base drawer element representing an individual drawer. In it's modal state this element acts as the drawer's backdrop.
+- `drawer__dialog`: The content container of a drawer. Can be paired with the [dialog component](/package/dialog) for structured layouts with headers, bodies, and footers.
+- `drawer__container`: Provides a scrollable container that separates content scrolling from the dialog's background and border styles, preventing overscroll visual issues.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-1" class="drawer is-closed">
-        <div class="drawer__dialog padding">
-          <div class="flex justify-content-between">
-            <span>Drawer example</span>
-            <button class="link" data-drawer-close="">Close</button>
+        <div class="drawer__dialog">
+          <div class="drawer__container padding">
+            <div class="flex justify-content-between">
+              <span>Drawer example</span>
+              <button class="link" data-drawer-close="">Close</button>
+            </div>
           </div>
         </div>
       </aside>
@@ -221,7 +226,10 @@ Drawers are composed using classes and data attributes for their triggers. The b
     <!-- The drawer element -->
     <aside id="[unique-id]" class="drawer">
       <div class="drawer__dialog">
-        ...
+        <!-- Optional container element for separating scrolling content -->
+        <div class="drawer__container">
+          ...
+        </div>
       </div>
     </aside>
 
@@ -292,7 +300,7 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
   ```
 </CodeExample>
 
-> The [dialog component](./dialog) is a great fit for composing a drawer's dialog.
+The [dialog component](/package/dialog) is a great fit for composing a drawer's dialog. This can be applied directly on the `drawer__dialog` element and expanded as needed.
 
 ### Modal drawers
 
