@@ -8,21 +8,3 @@
     <slot />
   </div>
 </div>
-
-<script>
-  import { drawer } from "../modules/useDrawer";
-  const drawerElement = document.getElementById("layout-sidebar");
-  if (drawerElement) {
-    const entry = await drawer.createEntry(drawerElement);
-    const drawerItem = await drawer.register(entry);
-    if (drawerItem.mode == "inline") {
-      const active = drawerItem.dialog.querySelector(".is-active");
-      if (active) {
-        const space = window.innerHeight - active.offsetTop;
-        if (space < 80) {
-          active.scrollIntoView({ behavior: "instant", block: "center" });
-        }
-      }
-    }
-  }
-</script>
