@@ -7,6 +7,7 @@
   border-radius: css.get("border-radius");
   font-size: css.get("font-size");
   line-height: css.get("line-height");
+  overflow: hidden;
 
   * {
     scroll-margin-top: initial;
@@ -54,7 +55,7 @@
 }
 
 .code-example__output {
-  @include core.scroll-box;
+  overflow: auto;
 
   &.updated {
     animation: 0.6s linear updated;
