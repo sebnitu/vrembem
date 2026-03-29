@@ -20,7 +20,7 @@ export class DrawerEntry extends CollectionEntry {
       inlineState: "indeterminate"
     });
 
-    // Set the dialog element. If none is found, use the root element
+    // Set the dialog element. If none is found, use the root element.
     this.dialog =
       this.el.querySelector(this.config.get("selectorDialog")) || this.el;
 

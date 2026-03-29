@@ -1,0 +1,10 @@
+@use "../modules/css";
+
+/// Output the styles for a backdrop pseudo element.
+@mixin backdrop($component) {
+  background-color: css.get($component, "backdrop-color", css.get("backdrop-color"));
+  content: "";
+  inset: 0;
+  opacity: 0;
+  position: fixed;
+}

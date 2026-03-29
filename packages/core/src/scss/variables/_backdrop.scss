@@ -1,0 +1,10 @@
+@use "../modules/css";
+@use "../modules/palette";
+@include css.set(
+  "core",
+  "backdrop",
+  (
+    "color": palette.get("neutral", 10%),
+    "opacity": 80%
+  )
+);

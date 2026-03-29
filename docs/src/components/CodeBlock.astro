@@ -37,6 +37,7 @@ if (icon) classes.push("has-icon");
   <Popover
     virtual={true}
     triggerClass="code-block__copy-button"
+    popoverClass="popover_copy"
     aria-label="Copy code example to clipboard"
   >
     <Fragment slot="trigger">
@@ -51,7 +52,7 @@ if (icon) classes.push("has-icon");
 </div>
 
 <script>
-  import { popover } from "../modules/usePopover";
+  import { popovers } from "../modules/usePopover";
 
   const btns = document.querySelectorAll(".code-block__copy-button");
   btns.forEach((btn: HTMLButtonElement) => {
@@ -71,7 +72,7 @@ if (icon) classes.push("has-icon");
             btn.disabled = false;
             btn.classList.remove("is-copied");
             icons.forEach((icon) => icon.classList.toggle("display-none"));
-            popover.close(btn.getAttribute("data-popover-trigger"));
+            popovers.close(btn.getAttribute("data-popover-trigger"));
           }, 2000);
         })
         .catch((error) => {

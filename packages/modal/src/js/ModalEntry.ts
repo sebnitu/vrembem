@@ -10,14 +10,16 @@ export class ModalEntry extends CollectionEntry {
 
   constructor(parent: Modal, query: string | HTMLElement) {
     super(parent, query);
+
+    // Set the initial state
     this.state = "closed";
 
-    // Set the dialog element. If none is found, use the root element
+    // Set the dialog element. If none is found, use the root element.
     this.dialog =
       this.el.querySelector(this.config.get("selectorDialog")) || this.el;
   }
 
-  get isRequired() {
+  get isRequired(): boolean {
     return this.dialog.matches(this.config.get("selectorRequired"));
   }
 

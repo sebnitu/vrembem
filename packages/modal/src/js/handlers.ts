@@ -64,7 +64,7 @@ export async function handleClick(
     // If there is an active modal and the screen was clicked...
     if (
       this.active &&
-      target.matches(this.config.selectorScreen) &&
+      target.matches(this.config.selectorBackdrop) &&
       !this.active.isRequired
     ) {
       // Close the modal

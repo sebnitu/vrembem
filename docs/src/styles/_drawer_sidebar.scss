@@ -1,0 +1,77 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+.drawer_sidebar {
+  position: fixed;
+  visibility: hidden;
+
+  .drawer__dialog {
+    background-color: css.get("background-darker");
+    outline: none;
+  }
+
+  .drawer__container {
+    overscroll-behavior: contain;
+    padding: css.get("layout", "padding");
+  }
+}
+
+/**
+ * Inline sidebar
+ */
+
+@include core.media-min("sidebar") {
+  .drawer_sidebar {
+    background-color: css.get("background-darker");
+    box-sizing: content-box;
+    padding-left: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
+    visibility: visible;
+    width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));
+    z-index: 2;
+
+    > * {
+      box-sizing: border-box;
+    }
+
+    .drawer__dialog {
+      background-color: transparent;
+      inset: 0 0 0 auto;
+      width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));
+    }
+
+    .drawer__container {
+      padding: css.get("layout", "navibar-height") css.get("layout", "padding") css.get("layout", "padding");
+    }
+
+    // Fold shadow
+    &::after {
+      background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
+      content: "";
+      height: 100%;
+      inset: 0 0 auto auto;
+      pointer-events: none;
+      position: absolute;
+      width: 2rem;
+      z-index: 2;
+    }
+
+    // Scrolling mask
+    .drawer__mask {
+      background-color: css.get("background-darker");
+      flex-shrink: 0;
+      height: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
+      inset: calc((css.get("layout", "navibar-height") + css.get("layout", "padding")) * -1) 0 auto 0;
+      margin: calc((css.get("layout", "navibar-height") + css.get("layout", "padding")) * -1) calc(css.get("layout", "padding") * -1) css.get("layout", "padding") calc(css.get("layout", "padding") * -1);
+      position: sticky;
+      z-index: 2;
+
+      &::after {
+        border-bottom: 1px solid css.get("border-color");
+        content: "";
+        inset: 100% 0 auto;
+        margin: 0 css.get("layout", "padding");
+        position: absolute;
+      }
+    }
+  }
+}

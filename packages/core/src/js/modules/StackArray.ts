@@ -17,9 +17,8 @@ export class StackArray<TEntry extends CollectionEntry> {
     return [...this.#entries];
   }
 
-  get top(): TEntry | null {
-    const result = this.#entries[this.#entries.length - 1];
-    return result ? result : null;
+  get top(): TEntry | undefined {
+    return this.#entries[this.#entries.length - 1];
   }
 
   get length() {

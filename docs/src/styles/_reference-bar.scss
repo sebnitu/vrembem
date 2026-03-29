@@ -5,7 +5,7 @@
   color: css.get("foreground");
   display: flex;
   flex-wrap: wrap;
-  gap: css.get("spacing");
+  gap: css.get("spacing-sm") css.get("spacing-md");
   justify-content: space-between;
 
   .link_hash {

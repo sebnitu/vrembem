@@ -1,7 +1,7 @@
 import feather from "feather-icons";
 
 const config = {
-  prefix: ".layout__content",
+  prefix: "#main-content",
   headings: ["h1", "h2", "h3"]
 };
 

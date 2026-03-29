@@ -22,7 +22,7 @@ export async function close(
 
     // Run the close transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
@@ -48,14 +48,6 @@ export async function close(
     if (focus) {
       updateFocusState(entry.parent);
     }
-
-    // Dispatch custom closed event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
 
     // Emit the closed event
     await entry.parent.emit("closed", entry);

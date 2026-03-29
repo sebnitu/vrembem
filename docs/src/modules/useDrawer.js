@@ -7,14 +7,14 @@ import {
   propStore
 } from "@vrembem/core";
 
-let drawer = null;
+let drawers = null;
 
 if (typeof window !== "undefined") {
-  drawer = new Drawer({
+  drawers = new Drawer({
     selector: ".drawer",
     plugins: [cssConfig(), attrConfig(), focusTrap(), mediaQuery(), propStore()]
   });
-  window["drawer"] = await drawer.mount();
+  window["drawers"] = await drawers.mount();
 }
 
-export { drawer };
+export { drawers };

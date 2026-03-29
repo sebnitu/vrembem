@@ -5,7 +5,10 @@ package: "@vrembem/modal"
 category: component
 ---
 
-import DocBlock from "../components/DocBlock.astro";
+import CodeExpander from "../components/CodeExpander.astro";
+import ReferenceBar from "../components/ReferenceBar.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Icon from "../components/Icon.astro";
 
 ```sh
@@ -20,10 +23,146 @@ npm install @vrembem/modal
 
 <CodeExample lang="js">
   ```js
+  // Import the modal class
   import Modal from "@vrembem/modal";
-  const modal = new Modal({ autoMount: true });
+
+  // Instantiate the modal collection
+  const modals = new Modal();
+
+  // Mount the modal collection
+  await modals.mount();
   ```
 </CodeExample>
+
+## Options
+
+Modal is built as a Sass module to handle styles and CSS output, along with a corresponding JavaScript class for managing behavior and plugin integration. Below are the available configuration options.
+
+### JavaScript
+
+Modal comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the modal collection.
+
+<CodeExpander lang="js">
+```js
+const modals = new Modal({
+  // The data attribute to use for triggering the open method
+  // @type string
+  attrOpen: "modal-open",
+
+  // The data attribute to use for triggering the close method
+  // @type string
+  attrClose: "modal-close",
+
+  // The data attribute to use for triggering the replace method
+  // @type string
+  attrReplace: "modal-replace",
+
+  // A valid CSS selector used to query the document for elements to include as
+  // entries in the modal collection.
+  // @type string
+  selector: ".modal",
+
+  // A valid CSS selector for the modal dialog element
+  // @type string
+  selectorDialog: ".modal__dialog",
+
+  // A valid CSS selector for the element that should be treated as the modal
+  // backdrop. Clicking the backdrop closes the modal.
+  // @type string
+  selectorBackdrop: ".modal",
+
+  // A valid CSS selector for a required modal dialog. A required modal dialog
+  // requires user confirmation before it can be dismissed.
+  // @type string
+  selectorRequired: '[role="alertdialog"]',
+
+  // A valid CSS selector for setting the focus element of a modal when opened
+  // @type string
+  selectorFocus: "[data-focus]",
+
+  // A valid CSS selector for an element or group of elements that should be set
+  // to `inert` when a modal is opened.
+  // @type string
+  selectorInert: "",
+
+  // A valid CSS selector for an element or group of elements that should have
+  // overflow style set to "hidden" when a modal is opened.
+  // @type string
+  selectorOverflow: "body",
+
+  // A CSS class applied as the opened state of a modal
+  // @type string
+  stateOpened: "is-opened",
+
+  // A CSS class applied as the opening state of a modal
+  // @type string
+  stateOpening: "is-opening",
+
+  // A CSS class applied as the closing state of a modal
+  // @type string
+  stateClosing: "is-closing",
+
+  // A CSS class applied as the closed state of a modal
+  // @type string
+  stateClosed: "is-closed",
+
+  // Whether or not to set the tabindex attribute of the modal dialog
+  // @type boolean
+  setTabindex: true,
+
+  // Whether or not to enable modal transition states and animations
+  // @type boolean
+  transition: true,
+
+  // The duration of transition animations
+  // @type number (milliseconds)
+  transitionDuration: 300
+});
+```
+</CodeExpander>
+
+### Sass
+
+Modal comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/modal" with (
+  $config: (
+    // A map of CSS variable overrides to pass to the modal dialog element
+    // @type map
+    "modal-dialog-override": (),
+
+    // Map for outputting modal_size_[key] modifier variants
+    // @type map
+    "modal-size": (
+      "default": 36em,
+      "xs": 20em,
+      "sm": 24em,
+      "lg": 48em,
+      "xl": 60em
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Modal uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-modal" valueLabel="Fallback" filter={false} data={{
+  "--vb-modal-width": "36em",
+  "--vb-modal-max-width": "100%",
+  "--vb-modal-margin": "1em",
+  "--vb-modal-z-index": "1000",
+  "--vb-modal-travel": "5em",
+  "--vb-modal-full-scale": "0.75",
+  "--vb-modal-transition-duration": "var(--vb-transition-duration)",
+  "--vb-modal-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-modal-backdrop-color": "var(--vb-backdrop-color)",
+  "--vb-modal-backdrop-opacity": "var(--vb-backdrop-opacity)",
+}} />
 
 ## Basic usage
 
@@ -96,7 +235,9 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   ```
 </CodeExample>
 
-> The [dialog component](/packages/dialog) is a great fit for composing a modal’s dialog.
+The [dialog component](/package/dialog) is a great fit for composing a modal's dialog. This can be applied directly on the `modal__dialog` element and expanded as needed.
+
+Also available is the `modal__container` element which provides a scrollable container that separates content scrolling from the dialog's background and border styles, preventing overscroll visual issues.
 
 ### Focus management
 
@@ -489,326 +630,327 @@ Adjusts the size of modals. This modifier provides five options that are output 
 - `modal_size_lg`
 - `modal_size_xl`
 
-## Customization
+## Reference
 
-Modals are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+`Modal` and `ModalEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
-<DocBlock name="CSS Variables" src="modal/src/scss/_root.scss">
+### trigger
 
-```scss
-:root {
-  --vb-modal-transition-duration: var(--vb-transition-duration);
-  --vb-modal-transition-timing-function: var(--vb-transition-timing-function);
+<ReferenceBar type="HTMLElement | null" />
+
+Stores a reference to a trigger element. When a modal is opened, the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the modal is closed.
+
+### stack
+
+<ReferenceBar type="StackArray<ModalEntry>" />
+
+Stores currently open modals in the order they were opened and manages their visual stacking order. When the stack order is changes, the `stackChange` event is emitted.
+
+#### Example
+
+Below is an example implementation of using stack along with the `propStore` plugin to persist the state of open modals across page sessions.
+
+<CodeExample lang="js">
+```js
+const modals = new Modal({
+  plugins: [
+    propStore({
+      // Disable automatic prop watch and local storage
+      prop: false,
+      // Use plugin.store to manually prop watch and local storage
+      async afterMount({ plugin, parent }) {
+        // Open all the modals stored in stackOrder
+        for (const entry of plugin.store.get("stackOrder", [])) {
+          await parent.open(entry, false);
+        }
+        // Add listener for when the stack changes
+        parent.on("stackChange", () => {
+          // Store the current stack value in stackOrder
+          const stackOrder = parent.stack.get("*").map((item) => item.id);
+          plugin.store.set("stackOrder", stackOrder);
+        });
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
+### active
+
+<ReferenceBar type="ModalEntry | undefined" />
+
+Returns the active modal if one exists. Otherwise, returns undefined.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+if (modals.active) {
+  // This block will run if a modal is active...
 }
 ```
-</DocBlock>
+</CodeExample>
 
-<DocBlock name="SCSS Variables" src="modal/src/scss/_variables.scss">
+### open
 
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
+<ReferenceBar type="method" returns="Promise<ModalEntry>" />
 
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
+Opens a modal using the provided modal ID. It will throw an error if the provided ID does not match an existing modal entry.
 
-$z-index: 1000 !default;
-$width: 36em !default;
-$travel: 5em !default;
-$transition-duration: css.get("transition", "duration") !default;
-$transition-timing-function: css.get("transition", "timing-function") !default;
-$shadow: css.get("box-shadow-5") !default;
+#### Arguments
 
-$screen-background: palette.get("neutral", 10) !default;
-$screen-opacity: 0.8 !default;
+<ReferenceCard name="id" type="string">
+  The ID of the modal to open.
+</ReferenceCard>
 
-$outline: 0 solid transparent !default;
-$outline-focus: 4px solid palette.get("primary") !default;
-$outline-focus-alert: 4px solid palette.get("important") !default;
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-opening`.
+</ReferenceCard>
 
-// modal_pos_[value]
-$aside-width: 16em !default;
-$aside-max-width: 90% !default;
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
 
-// modal_size_[key]
-$size-scale: (
-  "xs": 20em, // 288px
-  "sm": 24em, // 384px
-  "md": 36em, // 576px
-  "lg": 48em, // 768px
-  "xl": 60em  // 960px
-) !default;
+#### Example
 
-@include css.set("modal", (
-  "transition-duration": $transition-duration,
-  "transition-timing-function": $transition-timing-function
-));
+<CodeExample lang="js">
+```js
+await modals.open("my-modal");
+// > Opens the modal with id="my-modal"
+
+await modals.open("fake-modal");
+// > Uncaught Error: Modal entry not found in collection with id of "fake-modal"
 ```
-</DocBlock>
+</CodeExample>
 
-<DocBlock name="JS Config" src="modal/src/js/defaults.js">
+### close
+
+<ReferenceBar type="method" returns="Promise<ModalEntry | null>" />
+
+Closes a modal using the provided modal ID. It will throw an error if the provided ID does not match an existing modal entry.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the modal to close.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is closed. When true, focus is set to the stored element (if any) that triggered the modal to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await modals.close("my-modal");
+// > Closes the modal with id="my-modal"
+
+await modals.close("fake-modal");
+// > Uncaught Error: Modal entry not found in collection with id of "fake-modal"
+```
+</CodeExample>
+
+### replace
+
+<ReferenceBar type="method" returns="Promise<{ opened: ModalEntry; closed: ModalEntry[] }>" />
+
+Replaces currently opened modals with a specific modal. Returns an objected containing the `opened` modal and an array of `closed` modals.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the modal to replace currently opened modals.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await modals.replace("my-modal");
+// > Opens the modal with id="my-modal" and closes all currently open modals
+
+await modals.replace("fake-modal");
+// > Uncaught Error: Modal entry not found in collection with id of "fake-modal"
+```
+</CodeExample>
+
+### closeAll
+
+<ReferenceBar type="method" returns="Promise<ModalEntry[]>" />
+
+Closes all currently open modals. Can be passed an ID of a modal to exclude from closing. Returns an array of all modals that were closed.
+
+#### Arguments
+
+<ReferenceCard name="exclude" type="string">
+  The ID of the modal to exclude from closing modals.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await modals.closeAll();
+// > Closes all modals
+
+await modals.closeAll("my-modal");
+// > Closes all modals except for the modal with id="my-modal"
+```
+</CodeExample>
+
+### entry.state
+
+<ReferenceBar type="string" />
+
+Stores the current state of the modal. Possible states include:
+
+- `opened`: The modal is currently open, and its content is accessible.
+- `opening`: A transitional state from closed to opened.
+- `closed`: The modal is currently closed, and its content is hidden.
+- `closing`: A transitional state from opened to closed.
+
+### entry.dialog
+
+<ReferenceBar type="HTMLElement" />
+
+Stores a reference to the dialog element (`.modal__dialog`) of the modal entry. If a dialog element isn't found, this property points to the modal element (`.modal`) itself.
+
+### entry.isRequired
+
+<ReferenceBar type="boolean" />
+
+Returns whether or not the modal is required or not.
+
+### entry.open
+
+<ReferenceBar type="method" returns="Promise<ModalEntry>" />
+
+Opens the modal if it is currently closed.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-opening`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Open the modal
+await entry.open();
+```
+</CodeExample>
+
+### entry.close
+
+<ReferenceBar type="method" returns="Promise<ModalEntry | null>" />
+
+Closes the modal if it is currently opened.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is closed. When true, focus is set to the stored element (if any) that triggered the modal to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Close the modal
+await entry.close();
+```
+</CodeExample>
+
+### entry.replace
+
+<ReferenceBar type="method" returns="Promise<{ opened: ModalEntry; closed: ModalEntry[] }>" />
+
+Replaces currently opened modals with the modal this method is called from. Returns an objected containing the `opened` modal and an array of `closed` modals.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Replace the modal
+await entry.replace();
+```
+</CodeExample>
+
+### Lifecycle Hooks
+
+In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hooks), Modal provides three of its own events to hook into its lifecycle:
+
+<ReferenceCard name="opened" type="event">
+  Emitted when a modal is opened.
 
   ```js
-  export default {
-    autoMount: false,
-
-    // Data attributes
-    attrOpen: "modal-open",
-    attrClose: "modal-close",
-    attrReplace: "modal-replace",
-    attrConfig: "modal-config",
-
-    // Selectors
-    selectorModal: ".modal",
-    selectorDialog: ".modal__dialog",
-    selectorScreen: ".modal",
-    selectorRequired: "[role=\"alertdialog\"]",
-    selectorFocus: "[data-focus]",
-    selectorInert: null,
-    selectorOverflow: "body",
-
-    // State classes
-    stateOpened: "is-opened",
-    stateOpening: "is-opening",
-    stateClosing: "is-closing",
-    stateClosed: "is-closed",
-
-    // Feature configurations
-    customEventPrefix: "modal:",
-    eventListeners: true,
-    teleport: null,
-    teleportMethod: "append",
-    setTabindex: true,
-    transition: true,
-    transitionDuration: "--vb-modal-transition-duration"
-  };
+  modals.on("opened", callback({ parent, entry }));
   ```
-</DocBlock>
+</ReferenceCard>
 
-## JavaScript usage
+<ReferenceCard name="closed" type="event">
+  Emitted when a modal is closed.
 
-After the modal component has been instantiated the modal object is returned with a robust API to help manage all modal components on your page.
-
-<DocBlock name="modal.collection" type="property" returns="array" src="core/src/js/Collection.js" line="3">
-  Returns an array where all modal objects are stored when registered. Each modal object contains the following properties:
-
-  ```scss
-  {
-    id: String, // The unique ID of the modal.
-    state: String, // The current state of the modal ('closing', 'closed', 'opening' or 'opened').
-    el: HTMLElement, // The modal HTML element.
-    dialog: HTMLElement // The modal dialog HTML element.
-    returnRef: HTMLComment // The return reference left when a modal is teleported.
-    config: Object // The modal specific configuration object.
-    open: Function // Method to open this modal.
-    close: Function // Method to close this modal.
-    replace: Function // Method to replace open modal(s) with this modal.
-    deregister: Function // Method to deregister this modal.
-    teleport: Function // Method to teleport this modal.
-    teleportReturn: Function // Method to return this modal to its previous location.
-  }
+  ```js
+  modals.on("closed", callback({ parent, entry }));
   ```
-</DocBlock>
+</ReferenceCard>
 
-<DocBlock name="modal.stack" type="property" returns="Array" src="modal/src/js/stack.js">
-  Returns an array of all currently opened modals. These are sorted in the order they're added to the array (first item was opened first, last item was opened last).
-</DocBlock>
+<ReferenceCard name="stackChange" type="event">
+  Emitted when a modal stack order changes. This happens when a modal is opened, closed or moved to the top of the stack.
 
-<DocBlock name="modal.active" type="property" returns="Object || null" src="modal/src/js/index.js" line="33">
-  Returns the currently active modal or the modal at the top of the stack if multiple modals are open. Will return `null` if no modals are open.
-</DocBlock>
-
-<DocBlock name="modal.mount" type="method" returns="Object" src="modal/src/js/index.js" line="37" args={[
-  ["options", "Object (optional)", "An options object for passing custom configurations."]
-]}>
-  Mounts the modal instance. During mounting, the following processes are run:
-
-  - Register each modal in the collection by running `registerCollection()`.
-  - Sets up global event listeners by running `mountEventListeners()`.
-
-  <Fragment slot="example">
-    ```js
-    const modal = new Modal();
-    await modal.mount();
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.unmount" type="method" returns="Object" src="modal/src/js/index.js" line="55">
-  Destroys and cleans up the modal mount. During cleanup, the following processes are run:
-
-  - Deregister the modal collection by running `deregisterCollection()`.
-  - Removes global event listeners by running `unmountEventListeners()`.
-
-  <Fragment slot="example">
-    ```js
-    const modal = new Modal();
-    await modal.mount();
-    // ...
-    await modal.unmount();
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.mountEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="70">
-  Set document event listeners.
-
-  <Fragment slot="example">
-    ```js
-    const modal = new Modal({ eventListeners: false });
-    await modal.mount();
-    modal.mountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.unmountEventListeners" type="method" returns="Object" src="modal/src/js/index.js" line="75">
-  Remove document event listeners.
-
-  <Fragment slot="example">
-    ```js
-    const modal = new Modal();
-    await modal.mount();
-    // ...
-    modal.unmountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.register" type="method" returns="Object" src="modal/src/js/register.js" args={[
-  ["query", "String || Object", "A modal ID or an HTML element of either the modal or its trigger."]
-]}>
-  Registers a modal into the collection. This also sets the initial state and applies missing accessibility attributes such as `role="dialog"` and `aria-modal="true"`. Returns the modal entry that got stored in the collection.
-
-  <Fragment slot="example">
-    ```js
-    const result = await modal.register('modal-id');
-    // => Object { id: 'modal-id', ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.deregister" type="method" returns="Array" src="modal/src/js/deregister.js" args={[
-  ["query", "String || Object", "A modal ID or an HTML element of either the modal or its trigger."]
-]}>
-  Deregister the modal from the collection. This closes the modal if it's opened, returns a modal if it has been teleported and removes the entry from the collection. Returns the newly modified collection array.
-
-  <Fragment slot="example">
-    ```js
-    const result = await modal.deregister('modal-id');
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.registerCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="26" args={[
-  ["items", "Array", "An array of modals or modal IDs to register."]
-]}>
-  Registers array of modals to the collection. All modals in array are run through the `register()` method. Returns the collection array.
-
-  <Fragment slot="example">
-    ```js
-    const modals = document.querySelectorAll('.modal');
-    const result = await modal.registerCollection(modals);
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.deregisterCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="33">
-  Deregister all modals in the collections array. All modals in collection are run through the `deregister()` method. Returns the empty collection array.
-
-  <Fragment slot="example">
-    ```js
-    const result = await modal.registerCollection();
-    // => Array []
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.get" type="method" returns="Object || undefined" src="core/src/js/Collection.js" line="40" args={[
-  ["value", "String || Object", "The value to search for within the collection."],
-  ["key", "String (optional)", "The property key to search the value against (defaults to 'id')."]
-]}>
-  Used to retrieve a registered modal entry from the collection. The value should match the key type to search by: e.g. to search by modal elements, pass the modal html node with a key of `'el'`. Defaults to `'id'`.
-
-  Returns the first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
-
-  <Fragment slot="example">
-    ```js
-    const entry = modal.get('modal-id');
-    // => Object { id: 'modal-id', ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.open" type="method" returns="Object" src="modal/src/js/open.js" args={[
-  ["id", "String", "The ID of the modal to open."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Opens a modal using the provided ID. Returns the modal object that was opened.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await modal.open('modal-key');
-    // => Object { id: 'modal-id', ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.close" type="method" returns="Object" src="modal/src/js/close.js" args={[
-  ["id", "String", "The ID of the modal to close."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Closes a modal using the provided ID. Can be called without an ID to close most recently opened modal. Returns the modal object that was closed.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await modal.close();
-    // => Object { id: 'modal-id', ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.replace" type="method" returns="Object" src="modal/src/js/replace.js" args={[
-  ["id", "String", "The ID of the modal to open. Will close all other opened modals."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Replaces currently opened modal(s) with the modal of the id provided. This could be used to trigger a modal when modal stacking is not desired. Returns an object with `opened` and `closed` properties whose values will be the opened modal and an array of modals that were closed.
-
-  <Fragment slot="example">
-    ```js
-    const obj = await modal.replace('modal-id');
-    // => Object { opened: { id: 'modal-id', ... }, closed: [...] }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="modal.closeAll" type="method" returns="Object" src="modal/src/js/closeAll.js" args={[
-  ["exclude", "String (optional)", "The ID of a modal to exclude from closing. Will close all other opened modals."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Closes all open modals. Will exclude closing a modal using the provided ID. Returns an array of all modals that were closed.
-
-  <Fragment slot="example">
-    ```js
-    const array = await modal.closeAll();
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
-
-### Custom Events
-
-The modal component also exposes some custom events for hooking into the modal lifecycle. All modal events are fired on the root modal element (i.e. at the `<div id="[unique-id]" class="modal">`).
-
-- `modal:opened` Emits when a modal has opened.
-- `modal:closed` Emits when a modal has closed.
+  ```js
+  modals.on("stackChange", callback({ parent }));
+  ```
+</ReferenceCard>

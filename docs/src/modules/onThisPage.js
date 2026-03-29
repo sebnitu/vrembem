@@ -1,4 +1,4 @@
-import { drawer } from "./useDrawer.js";
+import { drawers } from "./useDrawer.js";
 
 function onThisPage(options = {}) {
   const config = {
@@ -73,8 +73,8 @@ function onThisPage(options = {}) {
     }
 
     // Close the modal drawer if open
-    if (drawer.activeModal && drawer.activeModal.id === "layout-aside") {
-      drawer.activeModal.close();
+    if (drawers.activeModal && drawers.activeModal.id === "layout-aside") {
+      drawers.activeModal.close();
     }
   }
 

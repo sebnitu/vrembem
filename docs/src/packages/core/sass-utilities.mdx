@@ -465,11 +465,11 @@ A media query mixin that defines a query using min-width. You can pass in a key 
 </Fragment>
 </CodeExample>
 
-## scroll-box
+## scroll-flex
 
 <ReferenceBar type="mixin" />
 
-Output styles for creating a scrollable container.
+Styles for creating a scrollable flex container.
 
 #### Example
 
@@ -478,18 +478,19 @@ Output styles for creating a scrollable container.
 ```scss
 @use "@vrembem/core";
 
-.scroll-box {
-  @include core.scroll-box;
+.scroll-flex {
+  @include core.scroll-flex;
 }
 ```
 </Fragment>
 <Fragment slot="tab-css">
 ```css
-.scroll-box {
-  display: block;
+.scroll-flex {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
+  position: relative;
 }
 ```
 </Fragment>

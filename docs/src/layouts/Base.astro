@@ -3,8 +3,8 @@ import Root from "./Root.astro";
 import Navibar from "../components/Navibar.astro";
 import Toolbar from "../components/Toolbar.astro";
 import Footer from "../components/Footer.astro";
-import LayoutSidebar from "../components/LayoutSidebar.astro";
-import LayoutAside from "../components/LayoutAside.astro";
+import DrawerSidebar from "../components/DrawerSidebar.astro";
+import DrawerAside from "../components/DrawerAside.astro";
 import Icon from "../components/Icon.astro";
 import Popover from "../components/Popover.astro";
 
@@ -33,16 +33,16 @@ if (layout.hasAside) {
   <div class={layoutClasses.join(" ")}>
     {
       layout.hasSidebar && (
-        <LayoutSidebar>
+        <DrawerSidebar>
           <slot name="sidebar" />
-        </LayoutSidebar>
+        </DrawerSidebar>
       )
     }
     {
       layout.hasAside && (
-        <LayoutAside>
+        <DrawerAside>
           <slot name="aside" />
-        </LayoutAside>
+        </DrawerAside>
       )
     }
     <div id="main-content" class="layout__main" tabindex="-1">

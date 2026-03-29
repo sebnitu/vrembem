@@ -45,6 +45,7 @@
       "import": "./dist/utilities.css",
       "default": "./dist/utilities.css"
     },
+    "./sass": "./index.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*"
   },
