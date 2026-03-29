@@ -35,7 +35,7 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     });
   }
 
-  get active() {
+  get active(): ModalEntry | undefined {
     return this.stack.top;
   }
 
