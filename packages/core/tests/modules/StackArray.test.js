@@ -50,7 +50,7 @@ describe("StackArray", () => {
     stack.remove(b);
     expect(stack.top).toBe(a);
     stack.remove(a);
-    expect(stack.top).toBeNull();
+    expect(stack.top).toBe(undefined);
   });
 
   it("should return a copy of the stack", () => {
