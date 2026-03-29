@@ -168,9 +168,9 @@ Modal uses CSS variables in a reference and fallback pattern. Variables are refe
 
 Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with a unique `id` and the `modal` class containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open`: Opens a modal. Should take the id of the modal it's meant to open. Will stack modals if triggered from inside an already opened modal.
-- `data-modal-close`: Closes a modal. Will close the last opened modal if left value-less. Can also take a modal id to close a specific modal, or `"*"` to close all open modals.
-- `data-modal-replace`: Replaces currently opened modal(s) with the modal of the id provided.
+- `data-modal-open`: Opens a modal. Takes the ID of the modal to open. Will stack modals if triggered from inside an already opened modal.
+- `data-modal-close`: Closes a modal. Takes the ID of the modal to close or closes the top active modal if left value-less. Setting value to `"*"` will close all open modals.
+- `data-modal-replace`: Replaces currently opened modals with the modal of the id provided.
 
 <CodeExample>
   <Fragment slot="output">
@@ -196,7 +196,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 ```
 </CodeExample>
 
-The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs should also be given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) or [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
+The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs are given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
 <CodeExample>
   <Fragment slot="output">
@@ -219,7 +219,13 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   </Fragment>
   ```html
   <div id="[unique-id]" class="modal">
-    <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <div
+      class="modal__dialog dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
       <div class="dialog__header">
         <h2 class="dialog__title" id="dialog-title">...</h2>
         <button class="link" data-modal-close="">Close</button>
@@ -241,7 +247,7 @@ Also available is the `modal__container` element which provides a scrollable con
 
 ### Focus management
 
-Modal dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once closed.
+Modal dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the modal dialog has `tabindex="-1"` set manually. If focus on a specific element inside a modal is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the modal once it is closed.
 
 <CodeExample>
   <Fragment slot="output">
@@ -294,13 +300,13 @@ Modal dialogs are given focus when opened as long as the `setTabindex` option is
   ```
 </CodeExample>
 
-While a modal is active, the contents obscured by the modal are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader’s virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
+While a modal is active, the contents obscured by the modal are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader's virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
 
-> To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` option (defaults to `'[data-focus]'`).
+To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` config option (defaults to `'[data-focus]'`).
 
 ### Required modals
 
-Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. Required modals are set by giving a dialog the attribute `role` with a value of `alertdialog`.
+Required modals are modals that need an explicit action to be closed. That means clicking on the background or pressing the escape key to close a required modal is disabled. Required modals are set by giving a dialog the attribute `role` with a value of [`alertdialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/alertdialog_role).
 
 <CodeExample>
   <Fragment slot="output">
@@ -328,7 +334,7 @@ Required modals are modals that need an explicit action to be closed. That means
   ```
 </CodeExample>
 
-> To change the selector used in creating required modals, pass your own selector via the `selectorRequired` option (defaults to `'[role="alertdialog"]'`).
+To change the selector used in creating required modals, pass your own selector via the `selectorRequired` config option (defaults to `'[role="alertdialog"]'`).
 
 ### Behavior and accessibility
 
@@ -336,44 +342,38 @@ Modals on the web have an expected set of patterns that this component follows. 
 
 1. When a modal is opened, focus is moved to the dialog or an element inside.
 2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the modal is active, contents obscured by the modal are inaccessible to all users.
-4. When a modal is closed, focus is returned to the initial trigger element that activated the dialog.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/plugins/focus-trap) plugin to enable this behavior.
+4. When a modal is closed, focus is returned to the initial trigger element that opened it.
 
-To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal. If you have modal markup throughout your document, use the `teleport` option to consolidate all modals in the DOM to a single location. All elements that match the `selectorInert` selector will be given the `inert` attribute as well as `aria-hidden="true"` when a modal is opened.
+To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/plugins/teleport) plugin to consolidate all modals in the DOM to a single location.
 
-**Example**
+#### Example
 
-Here's an example where we want the `<main>` content area to be inaccessible while modals are open. We also want all modals to be moved outside the main content element using the `after` method.
+Here's an example where we set the `<main>` content area to be inaccessible while modals are open. We also want all modals to be moved outside the main content element using the `after` method.
 
 <CodeExample lang="js">
-
   ```js
-  const modal = new Modal({
+  import Modal from "@vrembem/modal";
+  import { focusTrap, teleport } from "@vrembem/core";
+
+  const modals = new Modal({
     selectorInert: "main",
-    teleport: "main",
-    teleportMethod: "after"
+    plugins: [
+      focusTrap(),
+      teleport({
+        where: "main",
+        how: "after"
+      })
+    ]
   });
 
-  await modal.mount();
-  ```
-</CodeExample>
-
-To return a modal to its original location, use the collection API method `teleportReturn()`:
-
-<CodeExample lang="js">
-
-  ```js
-  // Get an entry from the modal collection
-  const entry = modal.get("modal-id");
-
-  // Returns the modal to its previously teleported location
-  entry.teleportReturn();
+  await modals.mount();
   ```
 </CodeExample>
 
 ## modal_full
 
-Adds styles to a modal that make it fill the entire viewport when opened.
+Modifier that adds styles to a modal to make it fill the entire viewport when opened.
 
 <CodeExample>
   <Fragment slot="output">
@@ -399,45 +399,51 @@ Adds styles to a modal that make it fill the entire viewport when opened.
   ```
 </CodeExample>
 
-## modal_pos_[value]
+## modal_pos_[key]
 
-The default position of modals is in the center of the viewport. The position modifier allows positioning a modal to the top, bottom, left and right side of the document viewport.
+The default modal position is centered in the viewport. The position modifier allows positioning a modal to the top, bottom, left or right side of the document viewport instead.
 
 <CodeExample>
-  <div slot="output" class="flex">
-    <button class="button" data-modal-open="modal-pos-top">
-      <span>Top</span>
-      <span class="arrow-up"></span>
-    </button>
-    <button class="button" data-modal-open="modal-pos-left">
-      <span>Left</span>
-      <span class="arrow-left"></span>
-    </button>
-    <button class="button" data-modal-open="modal-pos-right">
-      <span>Right</span>
-      <span class="arrow-right"></span>
-    </button>
-    <button class="button" data-modal-open="modal-pos-bottom">
-      <span>Bottom</span>
-      <span class="arrow-down"></span>
-    </button>
+  <Fragment slot="output">
+    <ul class="list">
+      <li>
+        <button class="link" data-modal-open="modal-pos-top">
+          modal_pos_top
+        </button>
+      </li>
+      <li>
+        <button class="link" data-modal-open="modal-pos-right">
+          modal_pos_right
+        </button>
+      </li>
+      <li>
+        <button class="link" data-modal-open="modal-pos-bottom">
+          modal_pos_bottom
+        </button>
+      </li>
+      <li>
+        <button class="link" data-modal-open="left">
+          modal_pos_left
+        </button>
+      </li>
+    </ul>
     <div id="modal-pos-top" class="modal modal_pos_top">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>Top position modal</p>
+             <p>modal_pos_top</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
-            Left modal
+            modal_pos_left
           </button>
           <button class="link" data-modal-open="modal-pos-bottom">
-            Bottom modal
+            modal_pos_bottom
           </button>
           <button class="link" data-modal-open="modal-pos-right">
-            Right modal
+            modal_pos_right
           </button>
         </div>
       </div>
@@ -446,23 +452,23 @@ The default position of modals is in the center of the viewport. The position mo
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>Left position modal</p>
+             <p>modal_pos_left</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-top">
-            Top modal
+            modal_pos_top
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-right">
-            Right modal
+            modal_pos_right
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
-            Bottom modal
+            modal_pos_bottom
           </button>
         </div>
       </div>
@@ -471,23 +477,23 @@ The default position of modals is in the center of the viewport. The position mo
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>Right position modal</p>
+             <p>modal_pos_right</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-top">
-            Top modal
+            modal_pos_top
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-left">
-            Left modal
+            modal_pos_left
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
-            Bottom modal
+            modal_pos_bottom
           </button>
         </div>
       </div>
@@ -496,24 +502,24 @@ The default position of modals is in the center of the viewport. The position mo
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>Bottom position modal</p>
+             <p>modal_pos_bottom</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
-            Left modal
+            modal_pos_left
           </button>
           <button class="link" data-modal-open="modal-pos-top">
-            Top modal
+            modal_pos_top
           </button>
           <button class="link" data-modal-open="modal-pos-right">
-            Right modal
+            modal_pos_right
           </button>
         </div>
       </div>
     </div>
-  </div>
+  </Fragment>
    ```html
    <div id="[unique-id]" class="modal modal_pos_top">...</div>
    <div id="[unique-id]" class="modal modal_pos_left">...</div>
@@ -529,9 +535,9 @@ The default position of modals is in the center of the viewport. The position mo
 - `modal_pos_right`
 - `modal_pos_bottom`
 
-## modal_size_[value]
+## modal_size_[key]
 
-Adjusts the size of modals. This modifier provides five options that are output using the [`$size-scale`](#scss-variables-file) variable map.
+Adjust the size of a modal by increasing or decreasing its width. These modifiers are generated using key/value pairs of the `modal-size` config options map.
 
 <CodeExample>
   <Fragment slot="output">
@@ -644,14 +650,17 @@ Stores a reference to a trigger element. When a modal is opened, the trigger (ty
 
 <ReferenceBar type="StackArray<ModalEntry>" />
 
-Stores currently open modals in the order they were opened and manages their visual stacking order. When the stack order is changes, the `stackChange` event is emitted.
+Stores currently open modals in the order they were opened and manages their visual stacking order. When the stack order changes, the `stackChange` event is emitted.
 
 #### Example
 
-Below is an example implementation of using stack along with the `propStore` plugin to persist the state of open modals across page sessions.
+Below is an example implementation of using stack along with the [`propStore`](/packages/core/plugins/prop-store) plugin to persist the state of open modals across page sessions.
 
 <CodeExample lang="js">
 ```js
+import Modal from "@vrembem/modal";
+import { propStore } from "@vrembem/core";
+
 const modals = new Modal({
   plugins: [
     propStore({
@@ -673,6 +682,8 @@ const modals = new Modal({
     })
   ]
 });
+
+await modals.mount();
 ```
 </CodeExample>
 
@@ -680,7 +691,7 @@ const modals = new Modal({
 
 <ReferenceBar type="ModalEntry | undefined" />
 
-Returns the active modal if one exists. Otherwise, returns undefined.
+Returns the active modal if one exists. Otherwise, returns undefined. An active modal is defined as one that is opened and at the top of the modal stack.
 
 #### Example
 
@@ -728,7 +739,7 @@ await modals.open("fake-modal");
 
 <ReferenceBar type="method" returns="Promise<ModalEntry | undefined>" />
 
-Closes a modal using the provided modal ID. It will throw an error if the provided ID does not match an existing modal entry.
+Closes a modal using the provided modal ID. It will throw an error if the provided ID does not match an existing modal entry. If no ID is provided, the active modal is closed.
 
 #### Arguments
 
@@ -760,12 +771,12 @@ await modals.close("fake-modal");
 
 <ReferenceBar type="method" returns="Promise<{ opened: ModalEntry; closed: ModalEntry[] }>" />
 
-Replaces currently opened modals with a specific modal. Returns an objected containing the `opened` modal and an array of `closed` modals.
+Replaces currently opened modals with a specific modal using the provided modal ID. Returns an objected containing the `opened` modal and an array of `closed` modals.
 
 #### Arguments
 
 <ReferenceCard name="id" type="string">
-  The ID of the modal to replace currently opened modals.
+  The ID of the modal to replace currently opened modals with.
 </ReferenceCard>
 
 <ReferenceCard name="transition" type="boolean" defaults="true">
@@ -797,7 +808,7 @@ Closes all currently open modals. Can be passed an ID of a modal to exclude from
 #### Arguments
 
 <ReferenceCard name="exclude" type="string">
-  The ID of the modal to exclude from closing modals.
+  The ID of the modal to exclude from closing.
 </ReferenceCard>
 
 <ReferenceCard name="transition" type="boolean" defaults="true">
@@ -841,7 +852,7 @@ Stores a reference to the dialog element (`.modal__dialog`) of the modal entry. 
 
 <ReferenceBar type="boolean" />
 
-Returns whether or not the modal is required or not.
+Returns whether or not the modal is required.
 
 ### entry.open
 
@@ -948,7 +959,7 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
 </ReferenceCard>
 
 <ReferenceCard name="stackChange" type="event">
-  Emitted when a modal stack order changes. This happens when a modal is opened, closed or moved to the top of the stack.
+  Emitted when the modals stack order changes. This happens when a modal is opened, closed or moved to the top of the stack array.
 
   ```js
   modals.on("stackChange", callback({ parent }));

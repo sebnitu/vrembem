@@ -24,12 +24,12 @@
 
   display: flex;
   flex-direction: column;
-  max-width: css.get("modal", "width", config.get("modal-size", "default"));
+  max-width: css.get("modal", "max-width", 100%);
   opacity: 0;
   overflow: auto;
   position: relative;
   transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
-  width: css.get("modal", "max-width", 100%);
+  width: css.get("modal", "width", config.get("modal-size", "default"));
 }
 
 #{core.bem("modal", "container")} {

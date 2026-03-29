@@ -478,25 +478,24 @@ Drawers in their modal state follow a set of patterns expected from other modals
 
 1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
 2. Modal drawers provide standard methods for the user to close, such as using the `esc` key or clicking outside the dialog.
-3. While the modal drawer is active, content obscured by the modal is inaccessible to all users.
-4. When a modal drawer is closed, focus is returned to the initial trigger element that activated it.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/plugins/focus-trap) plugin to enable this behavior.
+4. When a modal drawer is closed, focus is returned to the initial trigger element that opened it.
 
-To take full advantage of the modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"`, when a modal is opened.
+To take full advantage of the modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened.
 
 #### Example
 
-Here's an example where we want the `drawer-main` content area to be inaccessible while drawer modals are open. We also want to disable other scrollable elements using the `selectorOverflow` option.
+Here's an example where we set the `drawer-main` content area to be inaccessible while drawer modals are open. We also disable other scrollable elements using the `selectorOverflow` option.
 
 <CodeExample lang="js">
+  ```js
+  const drawers = new Drawer({
+    selectorInert: ".drawer-main",
+    selectorOverflow: "body, .drawer-main"
+  });
 
-   ```js
-   const drawers = new Drawer({
-     selectorInert: ".drawer-main",
-     selectorOverflow: "body, .drawer-main"
-   });
-
-   await drawers.mount();
-   ```
+  await drawers.mount();
+  ```
 </CodeExample>
 
 ## drawer_modal

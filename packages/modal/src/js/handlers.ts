@@ -39,6 +39,14 @@ export async function handleClick(
         return entry.open();
       }
 
+      // If it's a close trigger...
+      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
+        const selector = trigger
+          .getAttribute(`data-${this.config.attrClose}`)
+          ?.trim();
+        return selector === "*" ? this.closeAll() : this.close(selector || "");
+      }
+
       // If it's a replace trigger...
       if (trigger.matches(`[data-${this.config.attrReplace}]`)) {
         const selector = trigger
@@ -51,13 +59,6 @@ export async function handleClick(
         if (!fromModal) this.trigger = trigger;
         // Toggle the drawer
         return entry.replace();
-      }
-
-      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
-        const selector = trigger
-          .getAttribute(`data-${this.config.attrClose}`)
-          ?.trim();
-        return selector === "*" ? this.closeAll() : this.close(selector || "");
       }
     }
 
