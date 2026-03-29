@@ -32,41 +32,41 @@ export const config = {
   // @type string
   selectorRequired: '[role="alertdialog"]',
 
-  // A valid CSS selector for setting the focus element of a drawer when opened
+  // A valid CSS selector for setting the focus element of a modal when opened
   // @type string
   selectorFocus: "[data-focus]",
 
   // A valid CSS selector for an element or group of elements that should be set
-  // to `inert` when a modal drawer is opened.
+  // to `inert` when a modal is opened.
   // @type string
   selectorInert: "",
 
   // A valid CSS selector for an element or group of elements that should have
-  // overflow style set to "hidden" when a modal drawer is opened.
+  // overflow style set to "hidden" when a modal is opened.
   // @type string
   selectorOverflow: "body",
 
-  // A CSS class applied as the opened state of a drawer
+  // A CSS class applied as the opened state of a modal
   // @type string
   stateOpened: "is-opened",
 
-  // A CSS class applied as the opening state of a drawer
+  // A CSS class applied as the opening state of a modal
   // @type string
   stateOpening: "is-opening",
 
-  // A CSS class applied as the closing state of a drawer
+  // A CSS class applied as the closing state of a modal
   // @type string
   stateClosing: "is-closing",
 
-  // A CSS class applied as the closed state of a drawer
+  // A CSS class applied as the closed state of a modal
   // @type string
   stateClosed: "is-closed",
 
-  // Whether or not to set the tabindex attribute of the drawer dialog
+  // Whether or not to set the tabindex attribute of the modal dialog
   // @type boolean
   setTabindex: true,
 
-  // Whether or not to enable drawer transition states and animations
+  // Whether or not to enable modal transition states and animations
   // @type boolean
   transition: true,
 
