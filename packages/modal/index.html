@@ -11,7 +11,7 @@
     import Modal from "./index.ts";
     import { focusTrap, propStore, teleport } from "@vrembem/core";
 
-    const modal = new Modal({
+    const modals = new Modal({
       selectorInert: "main",
       plugins: [
         focusTrap(),
@@ -19,7 +19,7 @@
           // Disable automatic prop watch and local storage
           prop: false,
           // Use plugin.store to manually prop watch and local storage
-          async afterMount({ plugin, parent, entry }) {
+          async afterMount({ plugin, parent }) {
             // Open all the modals stored in stackOrder
             for (const entry of plugin.store.get("stackOrder", [])) {
               await parent.open(entry, false);
@@ -38,7 +38,7 @@
       ]
     });
 
-    window["modal"] = await modal.mount();
+    window["modals"] = await modals.mount();
   </script>
 </head>
 <body>

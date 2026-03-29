@@ -634,6 +634,48 @@ Adjusts the size of modals. This modifier provides five options that are output 
 
 `Modal` and `ModalEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
+### trigger
+
+<ReferenceBar type="HTMLElement | null" />
+
+Stores a reference to a trigger element. When a modal is opened, the trigger (typically a button) is the element that was used to open it. Focus is returned to this element when the modal is closed.
+
+### stack
+
+<ReferenceBar type="StackArray<ModalEntry>" />
+
+Stores currently open modals in the order they were opened and manages their visual stacking order. When the stack order is changes, the `stackChange` event is emitted.
+
+#### Example
+
+Below is an example implementation of using stack along with the `propStore` plugin to persist the state of open modals across page sessions.
+
+<CodeExample lang="js">
+```js
+const modals = new Modal({
+  plugins: [
+    propStore({
+      // Disable automatic prop watch and local storage
+      prop: false,
+      // Use plugin.store to manually prop watch and local storage
+      async afterMount({ plugin, parent }) {
+        // Open all the modals stored in stackOrder
+        for (const entry of plugin.store.get("stackOrder", [])) {
+          await parent.open(entry, false);
+        }
+        // Add listener for when the stack changes
+        parent.on("stackChange", () => {
+          // Store the current stack value in stackOrder
+          const stackOrder = parent.stack.get("*").map((item) => item.id);
+          plugin.store.set("stackOrder", stackOrder);
+        });
+      }
+    })
+  ]
+});
+```
+</CodeExample>
+
 ### active
 
 <ReferenceBar type="ModalEntry | undefined" />
@@ -713,3 +755,202 @@ await modals.close("fake-modal");
 // > Uncaught Error: Modal entry not found in collection with id of "fake-modal"
 ```
 </CodeExample>
+
+### replace
+
+<ReferenceBar type="method" returns="Promise<{ opened: ModalEntry; closed: ModalEntry[] }>" />
+
+Replaces currently opened modals with a specific modal. Returns an objected containing the `opened` modal and an array of `closed` modals.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the modal to replace currently opened modals.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await modals.replace("my-modal");
+// > Opens the modal with id="my-modal" and closes all currently open modals
+
+await modals.replace("fake-modal");
+// > Uncaught Error: Modal entry not found in collection with id of "fake-modal"
+```
+</CodeExample>
+
+### closeAll
+
+<ReferenceBar type="method" returns="Promise<ModalEntry[]>" />
+
+Closes all currently open modals. Can be passed an ID of a modal to exclude from closing. Returns an array of all modals that were closed.
+
+#### Arguments
+
+<ReferenceCard name="exclude" type="string">
+  The ID of the modal to exclude from closing modals.
+</ReferenceCard>
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await modals.closeAll();
+// > Closes all modals
+
+await modals.closeAll("my-modal");
+// > Closes all modals except for the modal with id="my-modal"
+```
+</CodeExample>
+
+### entry.state
+
+<ReferenceBar type="string" />
+
+Stores the current state of the modal. Possible states include:
+
+- `opened`: The modal is currently open, and its content is accessible.
+- `opening`: A transitional state from closed to opened.
+- `closed`: The modal is currently closed, and its content is hidden.
+- `closing`: A transitional state from opened to closed.
+
+### entry.dialog
+
+<ReferenceBar type="HTMLElement" />
+
+Stores a reference to the dialog element (`.modal__dialog`) of the modal entry. If a dialog element isn't found, this property points to the modal element (`.modal`) itself.
+
+### entry.isRequired
+
+<ReferenceBar type="boolean" />
+
+Returns whether or not the modal is required or not.
+
+### entry.open
+
+<ReferenceBar type="method" returns="Promise<ModalEntry>" />
+
+Opens the modal if it is currently closed.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-opening`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Open the modal
+await entry.open();
+```
+</CodeExample>
+
+### entry.close
+
+<ReferenceBar type="method" returns="Promise<ModalEntry | null>" />
+
+Closes the modal if it is currently opened.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states. The transitional state class used is `is-closing`.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is closed. When true, focus is set to the stored element (if any) that triggered the modal to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Close the modal
+await entry.close();
+```
+</CodeExample>
+
+### entry.replace
+
+<ReferenceBar type="method" returns="Promise<{ opened: ModalEntry; closed: ModalEntry[] }>" />
+
+Replaces currently opened modals with the modal this method is called from. Returns an objected containing the `opened` modal and an array of `closed` modals.
+
+#### Arguments
+
+<ReferenceCard name="transition" type="boolean" defaults="true">
+  Whether or not to animate transition between states.
+</ReferenceCard>
+
+<ReferenceCard name="focus" type="boolean" defaults="true">
+  Whether or not to update the focus state after the modal is opened. When true, focus is set to any element inside the modal with the `data-focus` attribute else the modal dialog element.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the modal element
+const entry = modals.get("my-modal");
+
+// Replace the modal
+await entry.replace();
+```
+</CodeExample>
+
+### Lifecycle Hooks
+
+In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hooks), Modal provides three of its own events to hook into its lifecycle:
+
+<ReferenceCard name="opened" type="event">
+  Emitted when a modal is opened.
+
+  ```js
+  modals.on("opened", callback({ parent, entry }));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="closed" type="event">
+  Emitted when a modal is closed.
+
+  ```js
+  modals.on("closed", callback({ parent, entry }));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="stackChange" type="event">
+  Emitted when a modal stack order changes. This happens when a modal is opened, closed or moved to the top of the stack.
+
+  ```js
+  modals.on("stackChange", callback({ parent }));
+  ```
+</ReferenceCard>

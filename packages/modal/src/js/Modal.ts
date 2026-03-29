@@ -71,7 +71,7 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     transition?: boolean,
     focus: boolean = true
   ): Promise<ModalEntry[]> {
-    const result = await closeAll.call(this, exclude, transition);
+    const result = await closeAll(this, exclude, transition);
     // Update focus if the focus param is true
     if (focus) {
       updateFocusState(this);

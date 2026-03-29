@@ -19,7 +19,7 @@ export class ModalEntry extends CollectionEntry {
       this.el.querySelector(this.config.get("selectorDialog")) || this.el;
   }
 
-  get isRequired() {
+  get isRequired(): boolean {
     return this.dialog.matches(this.config.get("selectorRequired"));
   }
 
