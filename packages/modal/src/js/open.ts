@@ -20,7 +20,7 @@ export async function open(
 
     // Run the open transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {

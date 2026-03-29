@@ -22,7 +22,7 @@ export async function close(
 
     // Run the close transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
