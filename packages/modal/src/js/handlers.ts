@@ -76,7 +76,7 @@ export async function handleClick(
 export function handleKeydown(
   this: Modal,
   event: KeyboardEvent
-): Promise<ModalEntry | null> | void {
+): Promise<ModalEntry | undefined> | void {
   // If escape key was pressed
   if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal

@@ -30,7 +30,7 @@ export class ModalEntry extends CollectionEntry {
   async close(
     transition?: boolean,
     focus?: boolean
-  ): Promise<ModalEntry | null> {
+  ): Promise<ModalEntry | undefined> {
     return close(this, transition, focus);
   }
 

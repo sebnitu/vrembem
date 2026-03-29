@@ -726,7 +726,7 @@ await modals.open("fake-modal");
 
 ### close
 
-<ReferenceBar type="method" returns="Promise<ModalEntry | null>" />
+<ReferenceBar type="method" returns="Promise<ModalEntry | undefined>" />
 
 Closes a modal using the provided modal ID. It will throw an error if the provided ID does not match an existing modal entry.
 
@@ -873,7 +873,7 @@ await entry.open();
 
 ### entry.close
 
-<ReferenceBar type="method" returns="Promise<ModalEntry | null>" />
+<ReferenceBar type="method" returns="Promise<ModalEntry | undefined>" />
 
 Closes the modal if it is currently opened.
 

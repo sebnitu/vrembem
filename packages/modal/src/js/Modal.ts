@@ -52,7 +52,7 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     id?: string,
     transition?: boolean,
     focus?: boolean
-  ): Promise<ModalEntry | null> {
+  ): Promise<ModalEntry | undefined> {
     const entry = id ? this.getOrThrow(id) : this.active;
     return close(entry, transition, focus);
   }
