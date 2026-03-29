@@ -37,12 +37,13 @@
 @include css.set(
   "layout",
   (
-    "width": 80rem,
+    "width": 82rem,
     "padding": 1rem,
     "sidebar-width": 16rem,
     "aside-width": 14rem,
-    "content-width": 42rem,
-    "content-padding": 0,
+    "content-width": 48rem,
+    "content-padding-x": 0,
+    "content-padding-y": 0,
     "navibar-height": 5.25rem,
     "toolbar-height": 4.75rem,
     "footer-height": 8rem

@@ -41,7 +41,7 @@
     }
 
     .drawer__container {
-      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding")) css.get("focus-ring-width");
+      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
       scroll-behavior: smooth;
     }
   }

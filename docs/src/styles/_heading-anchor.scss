@@ -1,8 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
-@use "@vrembem/base";
-@use "@vrembem/button";
 
 .heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
@@ -18,11 +16,11 @@
   opacity: 0;
   padding: css.get("form-control-padding-y");
   text-decoration: none !important;
-  transition:
-    color css.get("transition-duration"),
-    opacity css.get("transition-duration");
+  transition-duration: css.get("transition-duration");
+  transition-property: color, opacity;
   transition-timing-function: css.get("transition-timing-function");
   user-select: none;
+  vertical-align: middle;
 
   &:hover,
   &:focus {
@@ -40,7 +38,8 @@
     opacity: 1;
   }
 
-  @include core.media-min("xs") {
+  @include core.media-min("sm") {
+    margin-left: 0;
     position: absolute;
     right: calc(100% + 0.5rem);
     top: calc(60% - calc(css.get("form-control-size-calc") / 2));

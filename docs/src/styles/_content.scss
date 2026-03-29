@@ -2,10 +2,10 @@
 @use "@vrembem/core/css";
 
 .content {
-  scroll-margin-top: css.get("layout", "toolbar-height");
+  scroll-margin-top: calc(css.get("layout", "toolbar-height") + 2rem);
 
   @include core.media-min("sidebar") {
-    scroll-margin-top: css.get("layout", "navibar-height");
+    scroll-margin-top: calc(css.get("layout", "navibar-height") + 2rem);
   }
 
   * {

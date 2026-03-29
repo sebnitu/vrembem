@@ -33,7 +33,7 @@
     background-color: css.get("background");
     position: absolute;
     right: 0;
-    width: calc(css.get("layout", "aside-width") - css.get("layout", "padding"));
+    width: calc(css.get("layout", "aside-width") - css.get("focus-ring-width"));
     z-index: 2;
 
     .is-home & {
