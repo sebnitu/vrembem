@@ -26,10 +26,10 @@ npm install @vrembem/drawer
   import Drawer from "@vrembem/drawer";
 
   // Instantiate the drawer collection
-  const drawer = new Drawer();
+  const drawers = new Drawer();
 
   // Mount the drawer collection
-  await drawer.mount();
+  await drawers.mount();
   ```
 </CodeExample>
 
@@ -43,7 +43,7 @@ Drawer comes with the following JavaScript configuration options that customize 
 
 <CodeExpander lang="js">
 ```js
-const drawer = new Drawer({
+const drawers = new Drawer({
   // An object containing pre-configuration options for plugins. Object should
   // contain the name of the plugin to configure as the key and the config
   // object for that plugin as the value.
@@ -333,10 +333,10 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
   <Fragment slot="tab-js">
     ```js
     // Set a drawer to "modal" mode
-    drawer.get("drawer-id").mode = "modal";
+    drawers.get("drawer-id").mode = "modal";
 
     // Set a drawer to "Inline" mode
-    drawer.get("drawer-id").mode = "inline";
+    drawers.get("drawer-id").mode = "inline";
     ```
   </Fragment>
 </CodeExample>
@@ -490,12 +490,12 @@ Here's an example where we want the `drawer-main` content area to be inaccessibl
 <CodeExample lang="js">
 
    ```js
-   const drawer = new Drawer({
+   const drawers = new Drawer({
      selectorInert: ".drawer-main",
      selectorOverflow: "body, .drawer-main"
    });
 
-   await drawer.mount();
+   await drawers.mount();
    ```
 </CodeExample>
 
@@ -570,7 +570,7 @@ Returns the active modal drawer if one exists. Otherwise, returns undefined.
 
 <CodeExample lang="js">
 ```js
-if (drawer.activeModal) {
+if (drawers.activeModal) {
   // This block will run if a modal drawer is active...
 }
 ```
@@ -600,10 +600,10 @@ Opens a drawer using the provided drawer ID. It will throw an error if the provi
 
 <CodeExample lang="js">
 ```js
-await drawer.open("my-drawer");
+await drawers.open("my-drawer");
 // > Opens the drawer with id="my-drawer"
 
-await drawer.open("fake-drawer");
+await drawers.open("fake-drawer");
 // > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
 ```
 </CodeExample>
@@ -632,10 +632,10 @@ Closes a drawer using the provided drawer ID. It will throw an error if the prov
 
 <CodeExample lang="js">
 ```js
-await drawer.close("my-drawer");
+await drawers.close("my-drawer");
 // > Closes the drawer with id="my-drawer"
 
-await drawer.close("fake-drawer");
+await drawers.close("fake-drawer");
 // > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
 ```
 </CodeExample>
@@ -664,10 +664,10 @@ Toggles a drawer open or closed depending on its current state using the provide
 
 <CodeExample lang="js">
 ```js
-await drawer.toggle("my-drawer");
+await drawers.toggle("my-drawer");
 // > Toggles the drawer with id="my-drawer"
 
-await drawer.toggle("fake-drawer");
+await drawers.toggle("fake-drawer");
 // > Uncaught Error: Drawer entry not found in collection with id of "fake-drawer"
 ```
 </CodeExample>
@@ -687,7 +687,7 @@ A drawer's mode can be changed at any time but is typically toggled based on a v
 <CodeExample lang="js">
 ```js
 // Get the drawer element
-const entry = drawer.get("my-drawer");
+const entry = drawers.get("my-drawer");
 
 // Switch the drawer to inline
 entry.mode = "inline";
@@ -756,7 +756,7 @@ Opens the drawer if it is currently closed or indeterminate.
 <CodeExample lang="js">
 ```js
 // Get the drawer element
-const entry = drawer.get("my-drawer");
+const entry = drawers.get("my-drawer");
 
 // Open the drawer
 await entry.open();
@@ -784,7 +784,7 @@ Closes the drawer if it is currently open or indeterminate.
 <CodeExample lang="js">
 ```js
 // Get the drawer element
-const entry = drawer.get("my-drawer");
+const entry = drawers.get("my-drawer");
 
 // Close the drawer
 await entry.close();
@@ -812,7 +812,7 @@ Toggles the drawer open or closed depending on its current state.
 <CodeExample lang="js">
 ```js
 // Get the drawer element
-const entry = drawer.get("my-drawer");
+const entry = drawers.get("my-drawer");
 
 // Toggle the drawer
 await entry.toggle();
@@ -827,7 +827,7 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
   Emitted when a drawer is opened.
 
   ```js
-  drawer.on("opened", callback({ parent, entry }));
+  drawers.on("opened", callback({ parent, entry }));
   ```
 </ReferenceCard>
 
@@ -835,7 +835,7 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
   Emitted when a drawer is closed.
 
   ```js
-  drawer.on("closed", callback({ parent, entry }));
+  drawers.on("closed", callback({ parent, entry }));
   ```
 </ReferenceCard>
 
@@ -843,6 +843,6 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
   Emitted when a drawer switches modes.
 
   ```js
-  drawer.on("switchMode", callback({ parent, entry }));
+  drawers.on("switchMode", callback({ parent, entry }));
   ```
 </ReferenceCard>
