@@ -62,10 +62,6 @@ export const config = {
   // @type string
   stateClosed: "is-closed",
 
-  // TODO: Deprecate this option
-  // @type string
-  customEventPrefix: "modal:",
-
   // Whether or not to set the tabindex attribute of the drawer dialog
   // @type boolean
   setTabindex: true,

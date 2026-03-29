@@ -45,14 +45,6 @@ export async function open(
     updateFocusState(entry.parent);
   }
 
-  // Dispatch custom opened event
-  entry.el.dispatchEvent(
-    new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
-      detail: entry.parent,
-      bubbles: true
-    })
-  );
-
   // Emit the opened event
   await entry.parent.emit("opened", entry);
 

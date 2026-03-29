@@ -1,5 +1,4 @@
 import { Collection, StackArray, setGlobalState } from "@vrembem/core";
-
 import { config, ModalConfig } from "./config";
 import { ModalEntry } from "./ModalEntry";
 import { handleClick, handleKeydown } from "./handlers";
