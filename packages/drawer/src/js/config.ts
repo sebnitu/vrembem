@@ -30,7 +30,7 @@ export const config = {
   selectorDialog: ".drawer__dialog",
 
   // A valid CSS selector for the element that should be treated as the modal
-  // backdrop. Clicking the backdrop closes any open modal drawer.
+  // backdrop. Clicking the backdrop closes the modal drawer.
   // @type string
   selectorBackdrop: ".drawer",
 
