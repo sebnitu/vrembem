@@ -44,17 +44,4 @@
   .menu {
     margin-left: 1rem;
   }
-
-  // // Only display submenus if the parent or children are active
-  // @include core.media-min("aside") {
-  //   .menu {
-  //     margin-left: 1rem;
-  //     display: none;
-  //   }
-
-  //   .is-active ~ .menu,
-  //   .menu:has(.is-active) {
-  //     display: block;
-  //   }
-  // }
 }
