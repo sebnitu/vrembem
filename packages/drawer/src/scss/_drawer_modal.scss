@@ -15,8 +15,8 @@
     @include css.override("dialog", config.get("drawer-modal-dialog-override"));
 
     inset: 0 auto 0 0;
-    max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
-    width: css.get("drawer", "width", config.get("drawer-width"));
+    max-width: css.get("drawer", "max-width", 80%);
+    width: css.get("drawer", "width", 18em);
   }
 
   &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "dialog")} {

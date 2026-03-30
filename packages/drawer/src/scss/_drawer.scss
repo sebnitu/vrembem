@@ -18,9 +18,9 @@
 
 #{core.bem("drawer")} {
   inset: 0 auto 0 0;
-  max-width: css.get("drawer", "max-width", config.get("drawer-max-width"));
+  max-width: css.get("drawer", "max-width", 80%);
   position: absolute;
-  width: css.get("drawer", "width", config.get("drawer-width"));
+  width: css.get("drawer", "width", 18em);
   z-index: css.get("drawer", "z-index", 900);
 }
 
