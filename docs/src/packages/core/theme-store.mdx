@@ -106,8 +106,7 @@ The last aspect to handle when persisting a user's preferred theme is avoiding t
   <script>
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
-    const class = `vb-theme-${store.theme || "auto"}`;
-    document.documentElement.classList.add(class);
+    document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
   </script>
   ```
 </CodeExample>
