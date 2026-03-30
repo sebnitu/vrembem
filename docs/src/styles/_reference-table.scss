@@ -22,6 +22,7 @@
 
 .reference-table {
   font-size: css.get("font-size");
+  scroll-margin-top: 84px; // Magic number found using JS: `this.el.getBoundingClientRect().top;`
   transition: max-height css.get("transition-duration") css.get("transition-timing-function");
   width: 100%;
 
