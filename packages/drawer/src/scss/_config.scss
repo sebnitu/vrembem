@@ -15,15 +15,6 @@ $default: (
     "main": "drawer-main"
   ),
 
-  // Used to set the width property of drawers and margin clearance of the 
-  // drawer-main element for inline drawers.
-  // @type number
-  "drawer-width": 18em,
-
-  // Used to set the max-width property of drawers
-  // @type percentage
-  "drawer-max-width": 80%,
-
   // A map of CSS variable overrides to pass to the drawer dialog element
   // @type map
   "drawer-dialog-override": (),
