@@ -1,5 +1,5 @@
-import { localStore } from "./modules";
-import { cssVar } from "./helpers";
+import { localStore } from "./localStore";
+import { cssVar } from "../helpers";
 
 interface ThemeStoreApi {
   config: ThemeStoreConfig;
