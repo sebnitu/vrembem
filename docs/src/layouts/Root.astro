@@ -29,7 +29,7 @@ const { title, bodyClass } = Astro.props;
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
         document.documentElement.classList.add(
-          `vb-theme-${store.theme || "root"}`
+          `vb-theme-${store.theme || "auto"}`
         );
       })();
     </script>

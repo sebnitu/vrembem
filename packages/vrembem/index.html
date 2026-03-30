@@ -10,7 +10,7 @@
     // Make this script blocking to prevent flash of pre-themed content
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
-    document.documentElement.classList.add(`vb-theme-${store.theme || "root"}`);
+    document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
   </script>
   <script type="module">
     import "vrembem/sass";
@@ -132,7 +132,7 @@
           </li>
           <li class="menu__sep"></li>
           <li class="menu__item">
-            <button type="button" data-set-theme="root" class="menu__action">
+            <button type="button" data-set-theme="auto" class="menu__action">
               <span>Auto</span>
             </button>
           </li>

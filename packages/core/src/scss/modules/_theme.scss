@@ -55,7 +55,7 @@ $-theme-keys: "light", "dark";
 ///
 @function class($theme) {
   // Check that the theme exists
-  @if $theme != "root" and not list.index($-theme-keys, $theme) {
+  @if $theme != "auto" and not list.index($-theme-keys, $theme) {
     @error "Theme does not exist: #{$theme}";
   }
 
@@ -243,13 +243,13 @@ $-theme-keys: "light", "dark";
 /// @example scss
 ///   // Output the custom properties for the button light theme
 ///   .vb-theme-light {
-///     @include theme.output-theme("button", "light");
+///     @include theme.output-theme("light", "button");
 ///   }
 ///
 /// @example scss
 ///   // Output the custom properties for the light theme from all components
 ///   .vb-theme-light {
-///     @include theme.output-theme("*", "light");
+///     @include theme.output-theme("light", "*");
 ///   }
 ///
 @mixin output-theme($theme, $component: "*") {
@@ -310,7 +310,7 @@ $-theme-keys: "light", "dark";
   // Output the default theme and system preference media query under the using
   // the root selector. This should come before the theme class output.
   :root,
-  #{class("root")} {
+  #{class("auto")} {
     // Output the default theme
     @include output-theme(config.get("theme-default"), $component);
 

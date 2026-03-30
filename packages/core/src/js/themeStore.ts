@@ -26,8 +26,8 @@ interface ThemeStoreConfig extends ThemeStoreCallbacks {
 const defaults: ThemeStoreConfig = {
   prefix: cssVar("theme-prefix", { fallback: "vb-theme" }),
   storeKey: "VB:Profile",
-  fallback: "root",
-  themes: ["root", "light", "dark"],
+  fallback: "auto",
+  themes: ["auto", "light", "dark"],
   onInit() {},
   onChange() {}
 };
