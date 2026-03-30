@@ -11,7 +11,7 @@
     import Modal from "./index.ts";
     import { focusTrap, propStore, teleport } from "@vrembem/core";
 
-    const modal = new Modal({
+    const modals = new Modal({
       selectorInert: "main",
       plugins: [
         focusTrap(),
@@ -19,7 +19,7 @@
           // Disable automatic prop watch and local storage
           prop: false,
           // Use plugin.store to manually prop watch and local storage
-          async afterMount({ plugin, parent, entry }) {
+          async afterMount({ plugin, parent }) {
             // Open all the modals stored in stackOrder
             for (const entry of plugin.store.get("stackOrder", [])) {
               await parent.open(entry, false);
@@ -38,7 +38,7 @@
       ]
     });
 
-    window["modal"] = await modal.mount();
+    window["modals"] = await modals.mount();
   </script>
 </head>
 <body>
@@ -127,7 +127,7 @@
         <div id="modal-focus-inner" class="modal">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body">
-              <div class="flex justify-content-between margin-bottom-md">
+              <div class="flex justify-content-between margin-bottom">
                 <p>Focus input element on open</p>
                 <button data-modal-close class="link">Close</button>
               </div>
@@ -223,49 +223,59 @@
         
         <div id="modal-pos-left" class="modal modal_pos_left">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
-              <div class="flex justify-content-between">
-                <p>modal_pos_left</p>
+            <div class="dialog__container">
+              <div class="dialog__header">
+                <p class="flex-grow">modal_pos_left</p>
                 <button data-modal-close class="link">Close</button>
               </div>
-            </div>
-            <div class="dialog__footer">
-              <button class="link" data-modal-open="modal-pos-top">
-                modal_pos_top
-              </button>
-            </div>
-            <div class="dialog__footer">
-              <button class="link" data-modal-open="modal-pos-right">
-                modal_pos_right
-              </button>
-            </div>
-            <div class="dialog__footer">
-              <button class="link" data-modal-open="modal-pos-bottom">
-                modal_pos_bottom
-              </button>
+              <div class="dialog__body">
+                <ul class="list">
+                  <li>First</li>
+                  <li>...</li>
+                  <li>...</li>
+                  <li>...</li>
+                  <li>Last</li>
+                </ul>
+              </div>
+              <div class="dialog__footer">
+                <button class="link" data-modal-open="modal-pos-top">
+                  modal_pos_top
+                </button>
+              </div>
+              <div class="dialog__footer">
+                <button class="link" data-modal-open="modal-pos-right">
+                  modal_pos_right
+                </button>
+              </div>
+              <div class="dialog__footer">
+                <button class="link" data-modal-open="modal-pos-bottom">
+                  modal_pos_bottom
+                </button>
+              </div>
             </div>
           </div>
         </div>
         
         <div id="modal-pos-right" class="modal modal_pos_right">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
+          <div class="modal__dialog background-white border-radius" role="dialog" aria-modal="true">
+            <div class="modal__container padding spacing">
               <div class="flex justify-content-between">
-                <p>modal_pos_right</p>
+                <p class="flex-grow">modal_pos_right</p>
                 <button data-modal-close class="link">Close</button>
               </div>
-            </div>
-            <div class="dialog__footer">
+              <ul class="list">
+                <li>First</li>
+                <li>...</li>
+                <li>...</li>
+                <li>...</li>
+                <li>Last</li>
+              </ul>
               <button class="link" data-modal-open="modal-pos-top">
                 modal_pos_top
               </button>
-            </div>
-            <div class="dialog__footer">
               <button class="link" data-modal-open="modal-pos-left">
                 modal_pos_left
               </button>
-            </div>
-            <div class="dialog__footer">
               <button class="link" data-modal-open="modal-pos-bottom">
                 modal_pos_bottom
               </button>

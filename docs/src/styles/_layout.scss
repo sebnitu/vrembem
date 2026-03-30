@@ -10,11 +10,18 @@
   width: 100%;
 
   @include core.media-min("xs") {
-    @include css.override("layout", "content-padding", 1rem);
+    @include css.override("layout", "content-padding-x", 1rem);
+    @include css.override("layout", "content-padding-y", 1rem);
+  }
+
+  @include core.media-min("sm") {
+    @include css.override("layout", "content-padding-x", 3rem);
+    @include css.override("layout", "content-padding-y", 2rem);
   }
 
   @include core.media-min("sidebar") {
-    @include css.override("layout", "content-padding", 3rem);
+    @include css.override("layout", "content-padding-x", 4rem);
+    @include css.override("layout", "content-padding-y", 3rem);
 
     &.has-sidebar .layout__main {
       padding-left: css.get("layout", "sidebar-width");
@@ -35,6 +42,7 @@
 .layout__main {
   margin: auto;
   max-width: css.get("layout", "width");
+  outline: none;
   position: relative;
   width: 100%;
 
@@ -56,8 +64,8 @@
 
 .layout__container {
   margin: auto;
-  max-width: calc(css.get("layout", "content-width") + (css.get("layout", "content-padding") * 2));
-  padding: css.get("layout", "content-padding") css.get("layout", "content-padding") 0;
+  max-width: calc(css.get("layout", "content-width"));
+  padding: css.get("layout", "content-padding-y") css.get("layout", "content-padding-x") 0;
   width: 100%;
 
   > * + * {

@@ -18,19 +18,6 @@
     padding-left: 4em;
   }
 
-  .popover {
-    @include css.override(
-      "popover",
-      (
-        "placement": top,
-        "width": auto,
-        "padding": 0.5rem 0.75rem,
-        "background": palette.get("primary"),
-        "foreground": white
-      )
-    );
-  }
-
   @include core.media-max("xs") {
     .pre {
       border-left: none;

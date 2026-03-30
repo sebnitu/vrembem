@@ -3,10 +3,10 @@ import { updateFocusState } from "./helpers/updateFocusState";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function close(
-  entry: ModalEntry | null,
+  entry: ModalEntry | undefined,
   transitionOverride?: boolean,
   focus: boolean = true
-): Promise<ModalEntry | null> {
+): Promise<ModalEntry | undefined> {
   // If a modal exists and its state is opened
   if (entry && entry.state === "opened") {
     // Update modal state
@@ -22,7 +22,7 @@ export async function close(
 
     // Run the close transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
@@ -48,14 +48,6 @@ export async function close(
     if (focus) {
       updateFocusState(entry.parent);
     }
-
-    // Dispatch custom closed event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
 
     // Emit the closed event
     await entry.parent.emit("closed", entry);

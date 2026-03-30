@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 #{core.bem("modal", null, "pos", "top")} {
   justify-content: flex-start;
@@ -10,21 +9,15 @@
   justify-content: flex-end;
 
   #{core.bem("modal", "dialog")} {
-    transform: translateY(css.get("modal", "travel", var.$travel));
-  }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateY(css.get("modal", "travel", var.$travel));
-    }
+    transform: translateY(css.get("modal", "travel", 5em));
   }
 }
 
 #{core.bem("modal", null, "pos", "left")},
 #{core.bem("modal", null, "pos", "right")} {
   #{core.bem("modal", "dialog")} {
-    @include css.override("modal", "width", var.$aside-width);
-    @include css.override("modal", "max-width", var.$aside-max-width);
+    @include css.override("modal", "width", 16em);
+    @include css.override("modal", "max-width", 90%);
 
     height: 100%;
   }
@@ -37,12 +30,6 @@
     left: 0;
     transform: translateX(-100%);
   }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateX(-100%);
-    }
-  }
 }
 
 #{core.bem("modal", null, "pos", "right")} {
@@ -51,11 +38,5 @@
   #{core.bem("modal", "dialog")} {
     right: 0;
     transform: translateX(100%);
-  }
-
-  &.is-closing {
-    #{core.bem("modal", "dialog")} {
-      transform: translateX(100%);
-    }
   }
 }

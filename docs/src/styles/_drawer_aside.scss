@@ -1,0 +1,48 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "@vrembem/core/palette";
+
+.drawer_aside {
+  position: fixed;
+  visibility: hidden;
+
+  .drawer__dialog {
+    background-color: css.get("background-darker");
+    outline: none;
+  }
+
+  .drawer__container {
+    overscroll-behavior: contain;
+    padding: css.get("layout", "padding");
+  }
+}
+
+/**
+ * Inline aside
+ */
+
+@include core.media-min("aside") {
+  .drawer_aside {
+    box-sizing: content-box;
+    padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
+    visibility: visible;
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+    z-index: 2;
+
+    > * {
+      box-sizing: border-box;
+    }
+
+    .drawer__dialog {
+      background-color: transparent;
+      inset: 0 auto auto 0;
+      max-height: 100vh;
+      width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+    }
+
+    .drawer__container {
+      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
+      scroll-behavior: smooth;
+    }
+  }
+}

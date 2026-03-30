@@ -39,6 +39,14 @@ export async function handleClick(
         return entry.open();
       }
 
+      // If it's a close trigger...
+      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
+        const selector = trigger
+          .getAttribute(`data-${this.config.attrClose}`)
+          ?.trim();
+        return selector === "*" ? this.closeAll() : this.close(selector || "");
+      }
+
       // If it's a replace trigger...
       if (trigger.matches(`[data-${this.config.attrReplace}]`)) {
         const selector = trigger
@@ -52,19 +60,12 @@ export async function handleClick(
         // Toggle the drawer
         return entry.replace();
       }
-
-      if (trigger.matches(`[data-${this.config.attrClose}]`)) {
-        const selector = trigger
-          .getAttribute(`data-${this.config.attrClose}`)
-          ?.trim();
-        return selector === "*" ? this.closeAll() : this.close(selector || "");
-      }
     }
 
     // If there is an active modal and the screen was clicked...
     if (
       this.active &&
-      target.matches(this.config.selectorScreen) &&
+      target.matches(this.config.selectorBackdrop) &&
       !this.active.isRequired
     ) {
       // Close the modal
@@ -76,7 +77,7 @@ export async function handleClick(
 export function handleKeydown(
   this: Modal,
   event: KeyboardEvent
-): Promise<ModalEntry | null> | void {
+): Promise<ModalEntry | undefined> | void {
   // If escape key was pressed
   if (event.key === "Escape") {
     // If a modal is opened and not required, close the modal

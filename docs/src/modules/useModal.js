@@ -1,10 +1,10 @@
 import Modal from "@vrembem/modal";
 import { attrConfig, cssConfig, focusTrap, teleport } from "@vrembem/core";
 
-let modal = null;
+let modals = null;
 
 if (typeof window !== "undefined") {
-  modal = new Modal({
+  modals = new Modal({
     selectorInert: "main",
     plugins: [
       cssConfig(),
@@ -16,7 +16,7 @@ if (typeof window !== "undefined") {
       })
     ]
   });
-  window["modal"] = await modal.mount();
+  window["modals"] = await modals.mount();
 }
 
-export { modal };
+export { modals };

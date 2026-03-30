@@ -102,46 +102,44 @@ For basic table styles, only the `table` component class is required. Use [prope
   ```
 </CodeExample>
 
-For simple responsive table styles, wrap your tables in the [`scroll-box` base module](/packages/base#scroll-box) which provides horizontal scrolling when tables can't fit in their container.
+For simple responsive table styles, wrap your tables in a div with the [`overflow-auto`](/packages/utility#overflow) utility. This provides horizontal scrolling when tables can't fit in their container.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="scroll-box">
-      <table class="table" style="width: 64rem">
-        <thead>
-          <tr>
-            <th>Book</th>
-            <th>Pages</th>
-            <th>Quote</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-nowrap">The Hobbit</td>
-            <td>272</td>
-            <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
-          </tr>
-          <tr>
-            <td class="text-nowrap">The Fellowship of the Ring</td>
-            <td>377</td>
-            <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
-          </tr>
-          <tr>
-            <td class="text-nowrap">The Two Towers</td>
-            <td>322</td>
-            <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
-          </tr>
-          <tr>
-            <td class="text-nowrap">The Return of the King</td>
-            <td>277</td>
-            <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table" style="width: 64rem">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Pages</th>
+          <th>Quote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-nowrap">The Hobbit</td>
+          <td>272</td>
+          <td>"Do you wish me a good morning, or mean that it is a good morning whether I want it or not; or that you feel good this morning; or that it is a morning to be good on?"</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Fellowship of the Ring</td>
+          <td>377</td>
+          <td>"I wish it need not have happened in my time," said Frodo. "So do I," said Gandalf, "and so do all who live to see such times. But that is not for them to decide. All we have to decide is what to do with the time that is given us."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Two Towers</td>
+          <td>322</td>
+          <td>"War must be, while we defend our lives against a destroyer who would devour all; but I do not love the bright sword for its sharpness, nor the arrow for its swiftness, nor the warrior for his glory. I love only that which they defend."</td>
+        </tr>
+        <tr>
+          <td class="text-nowrap">The Return of the King</td>
+          <td>277</td>
+          <td>"But I have been too deeply hurt, Sam. I tried to save the Shire, and it has been saved, but not for me. It must often be so, Sam, when things are in danger: some one has to give them up, lose them, so that others may keep them."</td>
+        </tr>
+      </tbody>
+    </table>
   </Fragment>
   ```html
-  <div class="scroll-box">
+  <div class="overflow-auto">
     <table class="table">
       ...
     </table>
@@ -299,7 +297,7 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
 
 ## table_responsive
 
-When the [`scroll-box` base module](/packages/base#scroll-box) isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
+When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
 
 <CodeExample>
   <Fragment slot="output">

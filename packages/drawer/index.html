@@ -57,6 +57,7 @@
             <li><button class="link" data-drawer-toggle="drawer-default">default</button></li>
             <li><button class="link" data-drawer-toggle="drawer-indeterminate">Indeterminate</button></li>
             <li><button class="link" data-drawer-toggle="drawer-modal">modal</button></li>
+            <li><button class="link" data-drawer-toggle="drawer-modal-switch">modal switch</button></li>
             <li><button class="link" data-drawer-toggle="drawer-breakpoint">breakpoint</button></li>
           </ul>
 
@@ -78,9 +79,46 @@
           
           <div id="drawer-modal" class="drawer drawer_modal is-closed">
             <div class="drawer__dialog dialog">
-              <div class="dialog__header flex justify-content-between">
-                <p>drawer-modal</p>
-                <button data-drawer-close class="link">Close</button>
+              <div class="dialog__container">
+                <div class="dialog__header flex justify-content-between">
+                  <p>drawer-modal</p>
+                  <button data-drawer-close class="link">Close</button>
+                </div>
+                <div class="dialog__body">
+                  <ul class="list">
+                    <li>First</li>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>Last</li>
+                  </ul>
+                </div>
+                <div class="dialog__footer">
+                  Footer...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="drawer-modal-switch" class="drawer drawer_modal drawer_switch is-closed">
+            <div class="drawer__dialog background-white">
+              <div class="drawer__container padding spacing">
+                <div class="flex justify-content-between">
+                  <p>drawer-modal</p>
+                  <button data-drawer-close class="link">Close</button>
+                </div>
+                <div>
+                  <ul class="list">
+                    <li>First</li>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>...</li>
+                    <li>Last</li>
+                  </ul>
+                </div>
+                <div>
+                  Footer...
+                </div>
               </div>
             </div>
           </div>

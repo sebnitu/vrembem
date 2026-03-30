@@ -1,20 +1,16 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 #{core.bem("modal", null, "full")} {
   #{core.bem("modal", "dialog")} {
     height: 100%;
-    transform: scale(css.get("modal", "full-scale", var.$full-scale));
+    max-width: none;
+    transform: scale(css.get("modal", "full-scale", 0.75));
     width: 100%;
   }
 
-  &.is-opened #{core.bem("modal", "dialog")},
-  &.is-opening #{core.bem("modal", "dialog")} {
+  &.is-opening #{core.bem("modal", "dialog")},
+  &.is-opened #{core.bem("modal", "dialog")} {
     transform: scale(1);
-  }
-
-  &.is-closing #{core.bem("modal", "dialog")} {
-    transform: scale(css.get("modal", "full-scale", var.$full-scale));
   }
 }

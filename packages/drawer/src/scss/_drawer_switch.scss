@@ -2,36 +2,21 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-#{core.bem("drawer")} {
-  left: 0;
-  transform: translateX(-100%);
-
-  &:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
-    border-left: none;
-  }
-}
-
-#{core.bem("drawer")}.is-opening,
-#{core.bem("drawer")}.is-opened {
-  transform: translateX(0);
-}
-
-#{core.bem("drawer")}.is-closing {
-  transform: translateX(-100%);
-}
-
 #{core.bem("drawer", null, "switch")} {
-  left: auto;
-  right: 0;
-  transform: translateX(100%);
+  inset: 0 0 0 auto;
+
+  &.is-closing #{core.bem("drawer", "dialog")},
+  &.is-closed #{core.bem("drawer", "dialog")} {
+    transform: translateX(100%);
+  }
 
   #{core.bem("drawer", "dialog")} {
     border-right: none;
   }
 }
 
-#{core.bem("drawer", null, "switch")}.is-closing {
-  transform: translateX(100%);
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
+  border-left: none;
 }
 
 // IS .drawer NOT .drawer_switch OR .drawer_modal

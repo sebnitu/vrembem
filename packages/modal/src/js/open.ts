@@ -20,7 +20,7 @@ export async function open(
 
     // Run the open transition
     if (
-      transitionOverride != undefined
+      transitionOverride !== undefined
         ? transitionOverride
         : entry.config.get("transition")
     ) {
@@ -44,14 +44,6 @@ export async function open(
   if (focus) {
     updateFocusState(entry.parent);
   }
-
-  // Dispatch custom opened event
-  entry.el.dispatchEvent(
-    new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
-      detail: entry.parent,
-      bubbles: true
-    })
-  );
 
   // Emit the opened event
   await entry.parent.emit("opened", entry);

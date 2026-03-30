@@ -12,8 +12,8 @@
 @forward "./navibar";
 @forward "./toolbar";
 @forward "./layout";
-@forward "./layout-sidebar";
-@forward "./layout-aside";
+@forward "./drawer_sidebar";
+@forward "./drawer_aside";
 
 // Components
 @forward "./badge";
@@ -34,7 +34,7 @@
 @forward "./menu_minimal";
 @forward "./menu_themes";
 @forward "./pagi";
-@forward "./popover_virtual";
+@forward "./popover_copy";
 @forward "./reference-bar";
 @forward "./reference-table";
 @forward "./swatch";
