@@ -73,6 +73,43 @@ Outputs the styles for an arrow or caret.
 </Fragment>
 </CodeExample>
 
+## backdrop
+
+<ReferenceBar type="mixin" />
+
+Output the styles for a backdrop pseudo element. The initial state of a backdrop is to have an opacity of `0`. This allows for the active state to transition the opacity property.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component specific override option to add in the CSS variable chain with `--vb-backdrop-color` as the fallback.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+.example::before {
+  @include core.backdrop("example");
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```css
+.example::before {
+  background-color: var(--vb-example-backdrop-color, var(--vb-backdrop-color));
+  content: "";
+  inset: 0;
+  opacity: 0;
+  position: fixed;
+}
+```
+</Fragment>
+</CodeExample>
+
 ## bem
 
 <ReferenceBar type="function" returns="selector" />
