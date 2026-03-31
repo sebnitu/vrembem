@@ -5,15 +5,27 @@ collection: packages
 filename: index
 ---
 
+import CodeExample from "../../components/CodeExample.astro";
+import Pre from "../../components/Pre.astro";
+
+export const components = { pre: Pre };
+
 # Packages
 
-Vrembem is a collection of packages that consist of a Sass and JavaScript modules. Most packages can be considered their own self enclosed components but there are some unique packages to consider:
+Vrembem is a collection of packages that consist of a Sass and JavaScript modules. To install and use the entire library, use the `vrembem` package:
 
-- [`@vrembem/core`](/packages/core): Provides a number of Sass and JavaScript modules that make up the shared systems, configurations, and utilities of the Vrembem library.
-- [`@vrembem/base`](/packages/base): A collection of modules that apply global styles and provide classes for styling commonly used HTML elements.
-- [`@vrembem/utility`](/packages/utility): The utility package provides atomic classes that specialize in single functions.
-- `vrembem`: A package to install the entire Vrembem suite via a single entry point package.
+```sh
+npm install vrembem
+```
 
-## Todo
+<CodeExample lang="scss">
+  ```scss
+  @use "vrembem";
+  ```
+</CodeExample>
 
-This page needs more documentation and maybe a full list and description of packages. It may be worth exploring a unique layout for this page.
+<CodeExample lang="js">
+  ```js
+  import * as vb from "vrembem";
+  ```
+</CodeExample>
