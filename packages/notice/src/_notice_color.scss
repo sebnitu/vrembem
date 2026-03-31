@@ -1,23 +1,13 @@
+@use "sass:map";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
 
-#{core.bem("notice", null, "color", "primary")} {
-  @include css.override("notice", "background", palette.get("primary", 95));
-  @include css.override("notice", "foreground", palette.get("primary", 30));
-}
+$-shared: config.get("notice-color", "shared");
 
-#{core.bem("notice", null, "color", "secondary")} {
-  @include css.override("notice", "background", palette.get("secondary", 95));
-  @include css.override("notice", "foreground", palette.get("secondary", 30));
-}
-
-#{core.bem("notice", null, "color", "neutral")} {
-  @include css.override("notice", "background", palette.get("neutral", 95));
-  @include css.override("notice", "foreground", palette.get("neutral", 30));
-}
-
-#{core.bem("notice", null, "color", "important")} {
-  @include css.override("notice", "background", palette.get("important", 95));
-  @include css.override("notice", "foreground", palette.get("important", 30));
+@each $key, $value in config.get("notice-color", "variants") {
+  #{core.bem("notice", null, "color", $key)} {
+    @include css.override("notice", "background", hsl(from $value h s map.get($-shared, "background-lightness")));
+    @include css.override("notice", "foreground", hsl(from $value h s map.get($-shared, "foreground-lightness")));
+  }
 }
