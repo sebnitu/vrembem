@@ -28,9 +28,8 @@ const { title, bodyClass } = Astro.props;
         // Make this script blocking to prevent flash of pre-themed content
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
-        document.documentElement.classList.add(
-          `vb-theme-${store.theme || "auto"}`
-        );
+        const theme = `vb-theme-${store.theme || "auto"}`;
+        document.documentElement.classList.add(theme);
       })();
     </script>
   </head>
