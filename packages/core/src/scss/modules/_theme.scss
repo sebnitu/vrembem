@@ -307,8 +307,8 @@ $-theme-keys: "light", "dark";
 ///   @include theme.output("notice");
 ///
 @mixin output($component: "*") {
-  // Output the default theme and system preference media query under the using
-  // the root selector. This should come before the theme class output.
+  // Output the default theme and system preference media query under the root
+  // selector and auto theme. This should come before the theme class output.
   :root,
   #{class("auto")} {
     // Output the default theme
