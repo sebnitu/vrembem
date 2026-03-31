@@ -135,7 +135,7 @@ $-flags: ("variants");
 
       // Variants getter
       @if list.nth($keys, -1) == "variants" {
-        $result: map.remove($result, "default", "breakpoints");
+        $result: map.remove($result, "breakpoints", "default", "shared");
       }
     }
 
