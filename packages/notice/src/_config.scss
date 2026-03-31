@@ -1,7 +1,16 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
+
+$config: () !default;
+
+// prettier-ignore
+$default: ();
+
+@include config.apply($config, $default);
+@include css.register("notice");
 
 $gap: 0.5em !default;
 $padding: 1em !default;
