@@ -16,8 +16,8 @@
   transition-timing-function: ease;
 }
 
-#{theme.class("root")} {
-  .theme-icon_root {
+#{theme.class("auto")} {
+  .theme-icon_auto {
     opacity: 1;
     transform: translateY(0);
   }

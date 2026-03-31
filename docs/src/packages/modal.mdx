@@ -650,7 +650,7 @@ Stores a reference to a trigger element. When a modal is opened, the trigger (ty
 
 <ReferenceBar type="StackArray<ModalEntry>" />
 
-Stores currently open modals in the order they were opened and manages their visual stacking order. When the stack order changes, the `stackChange` event is emitted.
+Modals implement `StackArray` under the `stack` property to manage open modals in the order they were opened and their visual stacking order. When the stack order changes, the `stackChange` event is emitted.
 
 #### Example
 

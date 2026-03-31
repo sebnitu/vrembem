@@ -5,11 +5,11 @@ let store;
 
 test("should setup a theme store", () => {
   store = themeStore();
-  expect(store.theme).toBe("root");
-  expect(store.class).toBe("vb-theme-root");
-  expect(store.themes).toStrictEqual(["root", "light", "dark"]);
+  expect(store.theme).toBe("auto");
+  expect(store.class).toBe("vb-theme-auto");
+  expect(store.themes).toStrictEqual(["auto", "light", "dark"]);
   expect(store.classes).toStrictEqual([
-    "vb-theme-root",
+    "vb-theme-auto",
     "vb-theme-light",
     "vb-theme-dark"
   ]);
@@ -64,7 +64,7 @@ test("should update the config object when options are passed", () => {
     storeKey: "SN:Key"
   });
   expect(store.config.prefix).toBe("sn-theme");
-  expect(store.class).toBe("sn-theme-root");
+  expect(store.class).toBe("sn-theme-auto");
   store.theme = "light";
   expect(store.class).toBe("sn-theme-light");
   result = JSON.parse(localStorage.getItem("SN:Key"));

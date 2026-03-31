@@ -1,10 +1,11 @@
 ---
 title: themeStore
-description: "A JavaScript utility that manages theme state for your application or website."
+description: "A JavaScript utility module that manages theme state and user preference."
 parent: core
 group: theme-state
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
@@ -14,15 +15,50 @@ import ReferenceBar from "../../components/ReferenceBar.astro";
   ```
 </CodeExample>
 
+## Options
+
+When initializing a new `themeStore`, the following JavaScript configuration options are available to customize.
+
+<CodeExpander lang="js">
+```js
+themeStore({
+  // The class prefix for theme names.
+  // @type string
+  prefix: "vb-theme",
+
+  // Local storage key for saving theme state.
+  // @type string
+  storeKey: "VB:Profile",
+
+  // The default theme if none is set in local storage. Must be an existing 
+  // theme in `themes` array.
+  // @type string
+  fallback: "auto",
+
+  // An array of default theme names to make available.
+  // @type string[]
+  themes: ["auto", "light", "dark"],
+
+  // Callback run on initialization.
+  // @type function
+  onInit() {},
+
+  // Callback run when the theme changes.
+  // @type function
+  onChange() {}
+});
+```
+</CodeExpander>
+
 ## Basic usage
 
-Once you've defined set of themes for your project, you'll want to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
+Once themes are created, it's important to allow users to be able to select their preferred theme and have that choice persisted. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
 
 The first step is to create a UI for users to select a theme. This can be anything from a dropdown to a simple set of buttons. To keep things simple, we'll use a set of buttons.
 
 <CodeExample lang="html">
   ```html
-  <button type="button" data-set-theme="root">Auto</button>
+  <button type="button" data-set-theme="auto">Auto</button>
   <button type="button" data-set-theme="light">Light</button>
   <button type="button" data-set-theme="dark">Dark</button>
   ```
@@ -106,60 +142,18 @@ The last aspect to handle when persisting a user's preferred theme is avoiding t
   <script>
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
-    const class = `vb-theme-${store.theme || "root"}`;
-    document.documentElement.classList.add(class);
+    document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
   </script>
   ```
 </CodeExample>
 
 This script gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
 
-## Configuration
-
-When initializing a new `themeStore`, you can provide an options object with the following configurable properties:
-
-<CodeExample lang="ts">
-```ts
-interface ThemeStoreConfig {
-  prefix: string;
-  storeKey: string;
-  fallback: string;
-  themes: string[];
-  onInit: () => void;
-  onChange: () => void;
-}
-```
-</CodeExample>
-
-<ReferenceCard name="prefix" type="string" defaults='"vb-theme-"'>
-  The class prefix for theme names.
-</ReferenceCard>
-
-<ReferenceCard name="storeKey" type="string" defaults='"VB:Profile"'>
-  Local storage key for saving theme state.
-</ReferenceCard>
-
-<ReferenceCard name="fallback" type="string" defaults='"root"'>
-  The default theme if none is set in local storage. Must be an existing theme in `themes` array.
-</ReferenceCard>
-
-<ReferenceCard name="themes" type="string[]" defaults='["root", "light", "dark"]'>
-  An array of default theme names to make available.
-</ReferenceCard>
-
-<ReferenceCard name="onInit" type="function" returns='void'>
-  Callback run on initialization.
-</ReferenceCard>
-
-<ReferenceCard name="onChange" type="function" returns='void'>
-  Callback run when the theme changes.
-</ReferenceCard>
-
 ## Reference
 
 This reference details the available themeStore API, method arguments, and usage examples.
 
-### themeStore.config
+### config
 
 <ReferenceBar type="ThemeStoreConfig" />
 
@@ -172,8 +166,8 @@ An object that stores the values of `themeStore`'s configurations.
 const defaults: ThemeStoreConfig = {
   prefix: cssVar("theme-prefix", { fallback: "vb-theme" }),
   storeKey: "VB:Profile",
-  fallback: "root",
-  themes: ["root", "light", "dark"],
+  fallback: "auto",
+  themes: ["auto", "light", "dark"],
   onInit() {},
   onChange() {}
 };
@@ -197,7 +191,7 @@ const defaults: ThemeStoreConfig = {
   //   "prefix": "theme-",
   //   "storeKey": "Profile",
   //   "fallback": "default",
-  //   "themes": ["root", "light", "dark"],
+  //   "themes": ["auto", "light", "dark"],
   //   onInit() {},
   //   onChange() {}
   // }
@@ -207,7 +201,7 @@ const defaults: ThemeStoreConfig = {
   ```
 </CodeExample>
 
-### themeStore.theme
+### theme
 
 <ReferenceBar type="string" defaults="config.fallback" />
 
@@ -224,7 +218,7 @@ The `theme` property acts as both a getter and setter for the current theme.
 
   const myTheme = themeStore();
 
-  console.log(myTheme.theme); // Output: "root"
+  console.log(myTheme.theme); // Output: "auto"
 
   myTheme.theme = "light";
 
@@ -232,7 +226,7 @@ The `theme` property acts as both a getter and setter for the current theme.
   ```
 </CodeExample>
 
-### themeStore.class
+### class
 
 <ReferenceBar type="string" />
 
@@ -246,11 +240,11 @@ Returns the current theme class name, including the configured prefix. This prop
 
   const myTheme = themeStore();
 
-  console.log(myTheme.class); // Output: "vb-theme-root"
+  console.log(myTheme.class); // Output: "vb-theme-auto"
   ```
 </CodeExample>
 
-### themeStore.themes
+### themes
 
 <ReferenceBar type="string[]" defaults="config.themes" />
 
@@ -265,11 +259,11 @@ An array containing all available theme names. This property is read-only.
   const myTheme = themeStore();
 
   console.log(myTheme.themes);
-  // Output: ["root", "light", "dark"]
+  // Output: ["auto", "light", "dark"]
   ```
 </CodeExample>
 
-### themeStore.classes
+### classes
 
 <ReferenceBar type="string[]" />
 
@@ -284,11 +278,11 @@ An array containing all possible theme class names, each with the configured pre
   const myTheme = themeStore();
 
   console.log(myTheme.classes);
-  // Output: ["vb-theme-root", "vb-theme-light", "vb-theme-dark"]
+  // Output: ["vb-theme-auto", "vb-theme-light", "vb-theme-dark"]
   ```
 </CodeExample>
 
-### themeStore.add()
+### add()
 
 <ReferenceBar type="method" />
 
@@ -319,7 +313,7 @@ Adds a new theme name to the list of available themes. The new theme will be inc
   ```
 </CodeExample>
 
-### themeStore.remove()
+### remove()
 
 <ReferenceBar type="method" />
 
@@ -343,6 +337,6 @@ Removes a theme name from the list of available themes. The theme will be remove
   myTheme.remove("light");
 
   console.log(myTheme.themes);
-  // Output: ["root", "dark"]
+  // Output: ["auto", "dark"]
   ```
 </CodeExample>

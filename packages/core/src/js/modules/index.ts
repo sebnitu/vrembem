@@ -5,3 +5,4 @@ export * from "./FocusTrap";
 export * from "./localStore";
 export * from "./PluginArray";
 export * from "./StackArray";
+export * from "./themeStore";
