@@ -14,6 +14,41 @@ import ReferenceBar from "../../components/ReferenceBar.astro";
   ```
 </CodeExample>
 
+## Options
+
+When initializing a new `themeStore`, the following JavaScript configuration options are available to customize.
+
+<CodeExample lang="js">
+```js
+themeStore({
+  // The class prefix for theme names.
+  // @type string
+  prefix: "vb-theme",
+
+  // Local storage key for saving theme state.
+  // @type string
+  storeKey: "VB:Profile",
+
+  // The default theme if none is set in local storage. Must be an existing 
+  // theme in `themes` array.
+  // @type string
+  fallback: "auto",
+
+  // An array of default theme names to make available.
+  // @type string[]
+  themes: ["auto", "light", "dark"],
+
+  // Callback run on initialization.
+  // @type function
+  onInit() {},
+
+  // Callback run when the theme changes.
+  // @type function
+  onChange() {}
+});
+```
+</CodeExample>
+
 ## Basic usage
 
 Once you've defined set of themes for your project, you'll want to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
@@ -112,47 +147,6 @@ The last aspect to handle when persisting a user's preferred theme is avoiding t
 </CodeExample>
 
 This script gets the stored value that `themeStore` sets in local storage and adds the appropriate theme class to the root document element.
-
-## Configuration
-
-When initializing a new `themeStore`, you can provide an options object with the following configurable properties:
-
-<CodeExample lang="ts">
-```ts
-interface ThemeStoreConfig {
-  prefix: string;
-  storeKey: string;
-  fallback: string;
-  themes: string[];
-  onInit: () => void;
-  onChange: () => void;
-}
-```
-</CodeExample>
-
-<ReferenceCard name="prefix" type="string" defaults='"vb-theme-"'>
-  The class prefix for theme names.
-</ReferenceCard>
-
-<ReferenceCard name="storeKey" type="string" defaults='"VB:Profile"'>
-  Local storage key for saving theme state.
-</ReferenceCard>
-
-<ReferenceCard name="fallback" type="string" defaults='"auto"'>
-  The default theme if none is set in local storage. Must be an existing theme in `themes` array.
-</ReferenceCard>
-
-<ReferenceCard name="themes" type="string[]" defaults='["auto", "light", "dark"]'>
-  An array of default theme names to make available.
-</ReferenceCard>
-
-<ReferenceCard name="onInit" type="function" returns='void'>
-  Callback run on initialization.
-</ReferenceCard>
-
-<ReferenceCard name="onChange" type="function" returns='void'>
-  Callback run when the theme changes.
-</ReferenceCard>
 
 ## Reference
 

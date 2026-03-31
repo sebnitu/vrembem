@@ -19,7 +19,7 @@
     const buttons = document.querySelectorAll("[data-set-theme]");
 
     // Setup theme switching functionality
-    const myTheme = core.themeStore({
+    core.themeStore({
       onInit() {
         // Loop through the theme set buttons
         buttons.forEach((btn) => {

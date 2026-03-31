@@ -1,80 +1,70 @@
 import { localStore } from "./localStore";
 import { cssVar } from "../helpers";
 
-interface ThemeStoreApi {
-  config: ThemeStoreConfig;
-  add: (value: string) => void;
-  remove: (value: string) => void;
-  readonly class: string;
-  readonly classes: string[];
-  readonly themes: string[];
-  theme: string;
-}
-
-interface ThemeStoreCallbacks {
-  onInit: () => void;
-  onChange: () => void;
-}
-
-interface ThemeStoreConfig extends ThemeStoreCallbacks {
-  prefix: string;
-  storeKey: string;
-  fallback: string;
-  themes: string[];
-}
-
-const defaults: ThemeStoreConfig = {
+const defaults = {
+  // The class prefix for theme names.
+  // @type string
   prefix: cssVar("theme-prefix", { fallback: "vb-theme" }),
+
+  // Local storage key for saving theme state.
+  // @type string
   storeKey: "VB:Profile",
+
+  // The default theme if none is set in local storage. Must be an existing
+  // theme in `themes` array.
+  // @type string
   fallback: "auto",
-  themes: ["auto", "light", "dark"],
+
+  // An array of default theme names to make available.
+  // @type string[]
+  themes: ["auto", "light", "dark"] as string[],
+
+  // Callback run on initialization.
+  // @type function
   onInit() {},
+
+  // Callback run when the theme changes.
+  // @type function
   onChange() {}
 };
 
-export function themeStore(
-  options: Partial<ThemeStoreConfig> = {}
-): ThemeStoreApi {
+export function themeStore(options: Partial<typeof defaults> = {}) {
   // Setup the default config object
-  const config: ThemeStoreConfig = { ...defaults, ...options };
-
-  // Private callback function
-  function callback(name: keyof ThemeStoreCallbacks) {
-    config[name].call(api);
-  }
+  const config = { ...defaults, ...options };
 
   // Get the local storage profile
   const profile = localStore(config.storeKey);
 
   // Setup the API object
-  const api: ThemeStoreApi = {
+  const api = {
     // Store our config in the API
     config,
 
-    // Actions
     add(value: string) {
       config.themes.push(value);
     },
+
     remove(value: string) {
       const index = config.themes.indexOf(value);
       ~index && config.themes.splice(index, 1);
     },
 
-    // Getters
     get class() {
       return `${config.prefix}-${this.theme}`;
     },
+
     get classes() {
       return config.themes.map((theme) => `${config.prefix}-${theme}`);
     },
+
     get themes() {
       return config.themes;
     },
 
-    // Setup the theme get and set methods
     get theme() {
       return profile.get("theme") || config.fallback;
     },
+
     set theme(value: string) {
       // Check if the value exists as a theme option
       if (config.themes.includes(value)) {
@@ -98,6 +88,11 @@ export function themeStore(
       }
     }
   };
+
+  // Private callback function
+  function callback(name: "onInit" | "onChange") {
+    config[name].call(api);
+  }
 
   // Run the on initialization callback
   callback("onInit");
