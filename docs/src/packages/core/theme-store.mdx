@@ -5,6 +5,7 @@ parent: core
 group: theme-state
 ---
 
+import CodeExpander from "../../components/CodeExpander.astro";
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
@@ -18,7 +19,7 @@ import ReferenceBar from "../../components/ReferenceBar.astro";
 
 When initializing a new `themeStore`, the following JavaScript configuration options are available to customize.
 
-<CodeExample lang="js">
+<CodeExpander lang="js">
 ```js
 themeStore({
   // The class prefix for theme names.
@@ -47,11 +48,11 @@ themeStore({
   onChange() {}
 });
 ```
-</CodeExample>
+</CodeExpander>
 
 ## Basic usage
 
-Once you've defined set of themes for your project, you'll want to allow users to select their preferred theme and persist that choice. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
+Once themes are created, it's important to allow users to be able to select their preferred theme and have that choice persisted. This can be accomplished using the `themeStore` module which stores the selected theme using local storage and a simple API to manage the state.
 
 The first step is to create a UI for users to select a theme. This can be anything from a dropdown to a simple set of buttons. To keep things simple, we'll use a set of buttons.
 
