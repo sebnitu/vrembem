@@ -23,26 +23,26 @@
 
 @include core.media-min("aside") {
   .drawer_aside {
+    z-index: 2;
     box-sizing: content-box;
+    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
     padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     visibility: visible;
-    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
-    z-index: 2;
 
     > * {
       box-sizing: border-box;
     }
 
     .drawer__dialog {
-      background-color: transparent;
       inset: 0 auto auto 0;
-      max-height: 100vh;
       width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+      max-height: 100vh;
+      background-color: transparent;
     }
 
     .drawer__container {
-      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
       scroll-behavior: smooth;
+      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
     }
   }
 }

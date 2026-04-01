@@ -1,10 +1,10 @@
 /// Styles for displaying content meant only for screen readers.
 @mixin sr-only {
-  clip-path: inset(50%);
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
   height: 1px;
   margin: -1px;
-  overflow: hidden;
   padding: 0;
-  position: absolute;
-  width: 1px;
+  clip-path: inset(50%);
 }

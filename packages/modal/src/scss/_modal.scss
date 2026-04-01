@@ -3,16 +3,16 @@
 @use "@vrembem/core/css";
 
 #{core.bem("modal")} {
-  align-items: center;
+  position: fixed;
+  z-index: css.get("modal", "z-index", 1000);
+  inset: 0;
   display: flex;
   flex-direction: column;
-  height: 0;
-  inset: 0;
+  align-items: center;
   justify-content: center;
-  position: fixed;
-  visibility: hidden;
   width: 0;
-  z-index: css.get("modal", "z-index", 1000);
+  height: 0;
+  visibility: hidden;
 
   &::before {
     @include core.backdrop("modal");
@@ -22,14 +22,14 @@
 #{core.bem("modal", "dialog")} {
   @include css.override("dialog", config.get("modal-dialog-override"));
 
-  display: flex;
-  flex-direction: column;
-  max-width: css.get("modal", "max-width", 100%);
-  opacity: 0;
-  overflow: auto;
   position: relative;
   transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
   width: css.get("modal", "width", config.get("modal-size", "default"));
+  max-width: css.get("modal", "max-width", 100%);
+  opacity: 0;
 }
 
 #{core.bem("modal", "container")} {
@@ -39,10 +39,10 @@
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened,
 #{core.bem("modal")}.is-closing {
+  width: 100%;
   height: 100%;
   padding: css.get("modal", "margin", 1em);
   visibility: visible;
-  width: 100%;
 }
 
 #{core.bem("modal")}.is-opening,
@@ -52,9 +52,9 @@
   }
 
   #{core.bem("modal", "dialog")} {
+    transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
     transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
     transition-property: opacity, transform;
-    transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
   }
 }
 
@@ -65,7 +65,7 @@
   }
 
   #{core.bem("modal", "dialog")} {
-    opacity: 1;
     transform: translateY(0);
+    opacity: 1;
   }
 }

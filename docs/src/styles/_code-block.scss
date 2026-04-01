@@ -3,15 +3,15 @@
 @use "@vrembem/core/palette";
 
 .code-block {
+  position: relative;
   font-size: css.get("font-size");
   line-height: css.get("line-height");
-  position: relative;
   text-align: left;
 
   .pre {
-    background-color: css.get("background-dark");
-    border: css.get("border");
     padding-right: 4em;
+    border: css.get("border");
+    background-color: css.get("background-dark");
   }
 
   &.has-icon .pre {
@@ -20,10 +20,10 @@
 
   @include core.media-max("xs") {
     .pre {
+      margin: auto calc(css.get("layout", "padding") * -1);
+      border-right: none;
       border-left: none;
       border-radius: 0;
-      border-right: none;
-      margin: auto calc(css.get("layout", "padding") * -1);
     }
   }
 }
@@ -32,19 +32,19 @@
 
 .code-block__icon,
 .code-block__copy-button {
+  position: absolute;
+  inset: 0.8rem;
+  display: flex;
   align-items: center;
-  background-color: css.get("background-dark");
+  padding: 0.5rem;
   border-radius: css.get("border-radius");
   color: css.get("foreground-lighter");
-  display: flex;
-  inset: 0.8rem;
-  padding: 0.5rem;
-  position: absolute;
+  background-color: css.get("background-dark");
 }
 
 .code-block__icon {
-  bottom: auto;
   right: auto;
+  bottom: auto;
 
   @include core.media-max("xs") {
     left: 0;
@@ -80,8 +80,8 @@
   .code-block__icon,
   .code-block__copy-button {
     inset: 1px;
-    padding-left: 1em;
     padding-right: 1em;
+    padding-left: 1em;
   }
 
   .code-block__icon {
@@ -94,9 +94,9 @@
 
   @include core.media-max("xs") {
     .pre {
+      margin: 0;
       border: css.get("border");
       border-radius: css.get("border-radius");
-      margin: 0;
     }
 
     .code-block__icon {

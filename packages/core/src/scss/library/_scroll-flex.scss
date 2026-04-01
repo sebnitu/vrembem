@@ -1,8 +1,8 @@
 /// Output styles for a scrollable flex container.
 @mixin scroll-flex {
+  position: relative;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow: auto;
-  position: relative;
 }

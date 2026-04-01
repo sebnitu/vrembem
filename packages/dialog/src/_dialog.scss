@@ -5,19 +5,19 @@
 #{core.bem("dialog")} {
   @include core.focus-ring-base;
 
-  background: css.get("dialog", "background", css.get("background"));
-  background-clip: padding-box;
-  border: css.get("dialog", "border", css.get("border"));
-  border-radius: css.get("dialog", "border-radius", css.get("border-radius"));
-  box-shadow: css.get("dialog", "box-shadow", css.get("box-shadow-4"));
-  color: css.get("dialog", "foreground", css.get("foreground"));
+  position: relative;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  position: relative;
+  border: css.get("dialog", "border", css.get("border"));
+  border-radius: css.get("dialog", "border-radius", css.get("border-radius"));
+  color: css.get("dialog", "foreground", css.get("foreground"));
+  background: css.get("dialog", "background", css.get("background"));
+  background-clip: padding-box;
+  box-shadow: css.get("dialog", "box-shadow", css.get("box-shadow-4"));
+  transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function"));
   transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration"));
   transition-property: css.get("dialog", "transition-duration", (outline, border-color));
-  transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function"));
 
   &:focus-visible,
   &[role="alertdialog"] {
@@ -44,18 +44,18 @@
 
 #{core.bem("dialog", "header")},
 #{core.bem("dialog", "footer")} {
-  align-items: center;
-  background: css.get("dialog", "background", css.get("background"));
+  position: sticky;
+  z-index: 1;
   display: flex;
   gap: css.get("dialog", "gap", 0.5em);
-  position: sticky;
+  align-items: center;
   vertical-align: middle;
-  z-index: 1;
+  background: css.get("dialog", "background", css.get("background"));
 }
 
 #{core.bem("dialog", "header")} {
-  border-bottom: css.get("dialog", "sep-border", css.get("border"));
   top: 0;
+  border-bottom: css.get("dialog", "sep-border", css.get("border"));
 }
 
 #{core.bem("dialog", "body")} {
@@ -67,14 +67,14 @@
 }
 
 #{core.bem("dialog", "footer")} {
-  border-top: css.get("dialog", "sep-border", css.get("border"));
   bottom: 0;
+  border-top: css.get("dialog", "sep-border", css.get("border"));
 }
 
 #{core.bem("dialog", "title")} {
-  color: css.get("dialog", "title-color", css.get("foreground"));
   flex-grow: 1;
   font-size: css.get("dialog", "title-font-size", css.get("font-size-lg"));
   font-weight: css.get("dialog", "title-font-weight", css.get("font-weight-semi-bold"));
   line-height: css.get("dialog", "title-line-height", inherit);
+  color: css.get("dialog", "title-color", css.get("foreground"));
 }

@@ -3,12 +3,12 @@
 @use "@vrembem/core/palette";
 
 .doc-block {
+  margin: 2rem 0 !important;
   border: css.get("border");
   border-radius: css.get("border-radius");
-  box-shadow: 0 0 0 0 palette.get("primary", 90);
   font-size: css.get("font-size");
   line-height: css.get("line-height");
-  margin: 2rem 0 !important;
+  box-shadow: 0 0 0 0 palette.get("primary", 90);
   transition: css.get("transition");
   transition-property: border-color, box-shadow;
 
@@ -22,10 +22,10 @@
   }
 
   @include core.media-max("xs") {
+    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
+    border-right: none;
     border-left: none;
     border-radius: 0;
-    border-right: none;
-    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
 
     .doc-block__file .pre {
       margin: 0;
@@ -48,8 +48,8 @@
 }
 
 .doc-block__content {
-  border-top: css.get("border");
   position: relative;
+  border-top: css.get("border");
 }
 
 .doc-block__meta {

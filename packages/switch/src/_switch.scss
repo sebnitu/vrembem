@@ -9,35 +9,35 @@ $-size: css.get("switch", "size", config.get("switch-size", "default"));
 $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switch", "border-width", 2px) * 2));
 
 #{core.bem("switch")} {
-  align-items: center;
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: $-size;
+  align-items: center;
   justify-content: center;
-  padding-left: calc(css.get("core", "form-control-size-calc") * 0.25);
   padding-right: calc(css.get("core", "form-control-size-calc") * 0.25);
-  position: relative;
+  padding-left: calc(css.get("core", "form-control-size-calc") * 0.25);
+  font-size: $-size;
   vertical-align: middle;
 }
 
 #{core.bem("switch", "background")} {
   @include core.form-control-size;
 
-  align-items: center;
-  display: flex;
-  justify-content: center;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &::after {
     @include core.form-control-size;
 
-    background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity", css.get("form-control-background-opacity")));
-    border-radius: css.get("switch", "background-border-radius", css.get("form-control-background-border-radius"));
     content: "";
-    left: calc(calc(css.get("core", "form-control-size-calc") * 0.25) * -1);
     position: absolute;
     top: 0;
+    left: calc(calc(css.get("core", "form-control-size-calc") * 0.25) * -1);
+    border-radius: css.get("switch", "background-border-radius", css.get("form-control-background-border-radius"));
+    background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity", css.get("form-control-background-opacity")));
     transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   }
 }
@@ -45,36 +45,36 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 #{core.bem("switch", "track")} {
   @include core.size(100%, css.get("switch", "track-size", 1.25em));
 
-  background-color: hsl(from $-foreground h s l / 20%);
+  position: relative;
+  display: block;
   border: css.get("switch", "border-width", 2px) solid $-foreground;
   border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
-  display: block;
-  position: relative;
+  background-color: hsl(from $-foreground h s l / 20%);
 }
 
 #{core.bem("switch", "thumb")} {
   @include core.size($-thumb-size);
 
-  background-color: $-background;
-  border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
-  box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-foreground;
-  display: block;
-  left: 0;
   position: absolute;
-  top: 0;
-  transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
+  background-color: $-background;
+  box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-foreground;
+  transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
 }
 
 #{core.bem("switch", "native")} {
   @include core.size(100%);
 
   cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  top: 0;
   left: 0;
   opacity: 0;
-  position: absolute;
-  top: 0;
-  z-index: 2;
 
   &:hover + #{core.bem("switch", "background")} {
     &::after {
@@ -113,13 +113,13 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
     }
 
     #{core.bem("switch", "track")} {
-      background-color: $-accent;
       border-color: $-accent;
+      background-color: $-accent;
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
       left: calc(100% - #{$-thumb-size});
+      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
     }
   }
 }

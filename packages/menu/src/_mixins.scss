@@ -9,17 +9,17 @@
   @include core.form-control-properties("menu");
   @include core.focus-ring-base;
 
-  align-items: center;
-  background-clip: border-box;
-  border-style: solid;
   cursor: pointer;
+  position: relative;
   display: flex;
+  gap: css.get("menu", "action-gap", 0.5em);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  border-style: solid;
   font-family: inherit;
   font-weight: inherit;
-  gap: css.get("menu", "action-gap", 0.5em);
-  justify-content: flex-start;
-  position: relative;
   text-decoration: none;
   white-space: normal;
-  width: 100%;
+  background-clip: border-box;
 }

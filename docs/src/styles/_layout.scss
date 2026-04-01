@@ -3,11 +3,11 @@
 @use "@vrembem/core/palette";
 
 .layout {
+  position: relative;
   display: flex;
   justify-content: center;
-  padding: 0 css.get("layout", "padding");
-  position: relative;
   width: 100%;
+  padding: 0 css.get("layout", "padding");
 
   @include core.media-min("xs") {
     @include css.override("layout", "content-padding-x", 1rem);
@@ -40,33 +40,33 @@
 }
 
 .layout__main {
-  margin: auto;
-  max-width: css.get("layout", "width");
-  outline: none;
   position: relative;
   width: 100%;
+  max-width: css.get("layout", "width");
+  margin: auto;
+  outline: none;
 
   @include core.media-min("sidebar") {
     padding-top: css.get("layout", "navibar-height");
 
     &::before {
-      backdrop-filter: blur(8px);
-      background-color: css.get("background-glass");
       content: "";
-      height: css.get("layout", "navibar-height");
       position: fixed;
+      z-index: 4;
       top: 0;
       width: 100%;
-      z-index: 4;
+      height: css.get("layout", "navibar-height");
+      background-color: css.get("background-glass");
+      backdrop-filter: blur(8px);
     }
   }
 }
 
 .layout__container {
-  margin: auto;
-  max-width: calc(css.get("layout", "content-width"));
-  padding: css.get("layout", "content-padding-y") css.get("layout", "content-padding-x") 0;
   width: 100%;
+  max-width: calc(css.get("layout", "content-width"));
+  margin: auto;
+  padding: css.get("layout", "content-padding-y") css.get("layout", "content-padding-x") 0;
 
   > * + * {
     margin-top: calc(css.get("spacing") * 12) !important;

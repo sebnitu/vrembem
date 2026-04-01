@@ -4,10 +4,10 @@
 
 #{core.bem("grid")} {
   display: grid;
-  gap: css.get("grid", "gap-y", "gap", config.get("grid-gap", "default")) css.get("grid", "gap-x", "gap", config.get("grid-gap", "default"));
   grid-auto-flow: css.get("grid", "flow", config.get("grid-flow", "default"));
   grid-template-columns: repeat(css.get("grid", "cols", config.get("grid-cols", "default")), minmax(0, 1fr));
   grid-template-rows: repeat(css.get("grid", "rows", config.get("grid-rows", "default")), minmax(0, 1fr));
+  gap: css.get("grid", "gap-y", "gap", config.get("grid-gap", "default")) css.get("grid", "gap-x", "gap", config.get("grid-gap", "default"));
 }
 
 #{core.bem("grid", null, "inline")} {

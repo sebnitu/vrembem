@@ -21,15 +21,15 @@
 );
 
 .reference-table {
-  font-size: css.get("font-size");
   scroll-margin-top: 84px; // Magic number found using JS: `this.el.getBoundingClientRect().top;`
-  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
   width: 100%;
+  font-size: css.get("font-size");
+  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
 
   table {
-    background-color: transparent;
     position: relative;
     table-layout: fixed;
+    background-color: transparent;
   }
 
   thead {
@@ -37,23 +37,23 @@
   }
 
   tr {
-    border-radius: css.get("border-radius");
+    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
+    position: relative;
     border-top: css.get("table", "border");
+    border-radius: css.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", 50%, 20%);
-    position: relative;
-    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
 
     @include core.media-min("sidebar") {
       scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
     }
 
     &.is-active {
+      z-index: 1;
       box-shadow:
         0 0 0 1px palette.get("primary"),
         0 0 0 0.2rem palette.get("primary", 50%, 20%);
-      z-index: 1;
 
       .table-anchor {
         display: none;
@@ -70,8 +70,8 @@
   }
 
   td {
-    padding: 0;
     position: relative;
+    padding: 0;
 
     &:first-child {
       @include css.override("pre", "foreground", css.get("reference-table", "key-foreground"));
@@ -85,18 +85,18 @@
   }
 
   .code-block {
-    min-width: 0; // Fixes overflow issue
     width: 100%;
+    min-width: 0; // Fixes overflow issue
 
     pre {
-      background-color: transparent;
-      border: 0 none;
       margin: 0;
+      border: 0 none;
+      background-color: transparent;
     }
 
     .code-block__icon {
-      background-color: transparent;
       padding: 0.5em;
+      background-color: transparent;
 
       .icon {
         @include css.override("icon", "size", 1em);
@@ -104,9 +104,9 @@
     }
 
     .code-block__copy-button {
-      background-color: css.get("background");
-      opacity: 0;
       right: 0;
+      opacity: 0;
+      background-color: css.get("background");
 
       &:hover,
       &:focus {
@@ -126,14 +126,14 @@
   }
 
   .notice {
+    margin-top: css.get("spacing-md");
     border-radius: css.get("border-radius");
     font-size: css.get("font-size");
-    margin-top: css.get("spacing-md");
   }
 
   &.is-expandable {
-    max-height: css.get("reference-table", "max-height");
     overflow: hidden;
+    max-height: css.get("reference-table", "max-height");
   }
 
   &.is-expanded {
@@ -150,11 +150,11 @@
 }
 
 .reference-table__header {
-  background: css.get("background");
-  padding: css.get("spacing-md") 0;
   position: sticky;
-  top: calc(css.get("layout", "toolbar-height") - 1px);
   z-index: 2;
+  top: calc(css.get("layout", "toolbar-height") - 1px);
+  padding: css.get("spacing-md") 0;
+  background: css.get("background");
 
   @include core.media-min("sidebar") {
     top: css.get("layout", "navibar-height");
@@ -170,15 +170,15 @@
 
   .input-icon,
   .input-clear {
-    align-items: center;
-    color: css.get("foreground-lighter");
     cursor: pointer;
-    display: flex;
-    inset: 0 auto 0 0;
-    justify-content: center;
-    padding: 0 0.75em;
     position: absolute;
     z-index: 1;
+    inset: 0 auto 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.75em;
+    color: css.get("foreground-lighter");
 
     &:hover {
       color: palette.get("primary");
@@ -186,10 +186,10 @@
   }
 
   .input-clear {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
     inset: 0 0 0 auto;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
   }
 
   .input {
@@ -201,8 +201,8 @@
       )
     );
 
-    font-family: css.get("font-family-mono");
     padding-left: 3.5em;
+    font-family: css.get("font-family-mono");
 
     &:focus ~ .input-icon {
       color: palette.get("primary");
@@ -214,30 +214,30 @@
 .table-anchor-clear {
   @include css.override("core", "form-control-border-width", 0);
 
-  align-items: center;
-  background-color: palette.get("primary", 50%, 0%);
-  border-radius: css.get("border-radius-circle");
+  user-select: none;
+  position: absolute;
+  top: calc(50% - calc(34px / 2));
+  right: calc(100% + 0.5rem);
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  padding: css.get("form-control-padding-y");
+  border-radius: css.get("border-radius-circle");
   font-size: 1rem;
   font-weight: 500;
-  justify-content: center;
   line-height: 1em;
-  margin-left: 0.5rem;
-  opacity: 0;
-  padding: css.get("form-control-padding-y");
-  position: absolute;
-  right: calc(100% + 0.5rem);
   text-decoration: none !important;
-  top: calc(50% - calc(34px / 2));
+  opacity: 0;
+  background-color: palette.get("primary", 50%, 0%);
   transition:
     color 0.25s,
     opacity 0.25s;
-  user-select: none;
 
   &:focus,
   &:hover {
-    background-color: palette.get("primary", 50%, 20%);
     opacity: 1;
+    background-color: palette.get("primary", 50%, 20%);
   }
 
   tr:hover & {
@@ -246,9 +246,9 @@
 }
 
 .table-anchor-clear {
-  background-color: palette.get("important", 50%, 0%);
-  color: palette.get("important");
   display: none;
+  color: palette.get("important");
+  background-color: palette.get("important", 50%, 0%);
 
   &:focus,
   &:hover {
@@ -259,15 +259,15 @@
 @include core.media-max("xs") {
   .table-anchor,
   .table-anchor-clear {
-    left: 3.75rem;
     right: auto;
+    left: 3.75rem;
   }
 }
 
 .reference-table__footer {
-  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  position: sticky;
   bottom: 0;
   padding: 1.5em 0;
-  position: sticky;
   text-align: center;
+  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
 }

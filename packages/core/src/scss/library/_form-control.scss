@@ -20,11 +20,11 @@
     padding: css.get($component, "padding", css.get("form-control-padding"));
   }
 
-  border-radius: css.get($component, "border-radius", css.get("form-control-border-radius"));
   border-width: css.get($component, "border-width", css.get("form-control-border-width"));
+  border-radius: css.get($component, "border-radius", css.get("form-control-border-radius"));
+  transition-timing-function: css.get($component, "transition-timing-function", css.get("form-control-transition-timing-function"));
   transition-duration: css.get($component, "transition-duration", css.get("form-control-transition-duration"));
   transition-property: css.get($component, "transition-property", css.get("form-control-transition-property"));
-  transition-timing-function: css.get($component, "transition-timing-function", css.get("form-control-transition-timing-function"));
 }
 
 /// Output the width and height with the form-control-size CSS variable value.

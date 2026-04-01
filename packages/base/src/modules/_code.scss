@@ -5,13 +5,13 @@
   @include css.register("code");
 
   #{fun.selector("code")} {
-    background: css.get("code", "background", css.get("background-alt"));
+    padding: css.get("code", "padding", 0.125rem 0.375rem);
     border: css.get("code", "border", null);
     border-radius: css.get("code", "border-radius", css.get("border-radius"));
-    color: css.get("code", "foreground", css.get("foreground-alt"));
     font-family: css.get("font-family-mono");
     font-size: css.get("code", "font-size", css.get("font-size-sm"));
+    color: css.get("code", "foreground", css.get("foreground-alt"));
     overflow-wrap: break-word;
-    padding: css.get("code", "padding", 0.125rem 0.375rem);
+    background: css.get("code", "background", css.get("background-alt"));
   }
 }

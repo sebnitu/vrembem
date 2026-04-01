@@ -3,11 +3,11 @@
 @use "@vrembem/core/palette";
 
 .code-example {
+  overflow: hidden;
   border: css.get("border");
   border-radius: css.get("border-radius");
   font-size: css.get("font-size");
   line-height: css.get("line-height");
-  overflow: hidden;
 
   * {
     scroll-margin-top: initial;
@@ -18,10 +18,10 @@
   }
 
   @include core.media-max("xs") {
+    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
+    border-right: none;
     border-left: none;
     border-radius: 0;
-    border-right: none;
-    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
 
     .pre {
       margin: 0;
@@ -36,17 +36,17 @@
     position: static;
 
     .pre {
+      max-height: 34rem;
       border: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
-      max-height: 34rem;
     }
   }
 
   .code-block__copy-button {
-    background-color: transparent;
-    right: 0.5rem;
     top: calc(-2.5rem + 2px);
+    right: 0.5rem;
+    background-color: transparent;
 
     &:hover {
       background-color: transparent;
@@ -67,9 +67,9 @@
 }
 
 .code-example__inner {
+  width: fit-content;
   min-width: 100%;
   padding: 2rem;
-  width: fit-content;
 
   @include core.media-max("xs") {
     padding: 1rem;
@@ -81,18 +81,18 @@
 }
 
 .code-example__demo {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  align-items: center;
   padding: 0.5rem 1rem;
 }
 
 .code-example__toolbar {
-  color: css.get("foreground-lighter");
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
+  color: css.get("foreground-lighter");
 
   [data-reset] {
     margin: -2px 0;

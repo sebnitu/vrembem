@@ -29,9 +29,9 @@
 );
 
 .tictactoe-wrapper {
+  width: fit-content;
   margin: 0 auto;
   text-align: center;
-  width: fit-content;
 
   > * + * {
     margin-top: 2em;
@@ -39,16 +39,16 @@
 }
 
 .tictactoe__cell {
-  box-shadow: inset 0 0 0 0.25em css.get("tictactoe", "box-shadow-color");
   cursor: pointer;
-  font-size: 1.6em;
-  height: 3em;
-  text-align: center;
   width: 3em;
+  height: 3em;
+  font-size: 1.6em;
+  text-align: center;
+  box-shadow: inset 0 0 0 0.25em css.get("tictactoe", "box-shadow-color");
 
   &.is-winner {
-    background-color: css.get("tictactoe", "background-winner");
     color: css.get("tictactoe", "foreground-winner");
+    background-color: css.get("tictactoe", "background-winner");
   }
 
   &:first-child {

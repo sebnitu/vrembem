@@ -36,15 +36,15 @@ $-utility-spacing: config.get("utility-spacing");
 
   @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "x", $key)} {
-      padding-left: fun.maybe-important($value);
       padding-right: fun.maybe-important($value);
+      padding-left: fun.maybe-important($value);
     }
   }
 
   @each $key, $value in $-utility-spacing {
     #{fun.selector("padding", "y", $key)} {
-      padding-bottom: fun.maybe-important($value);
       padding-top: fun.maybe-important($value);
+      padding-bottom: fun.maybe-important($value);
     }
   }
 }

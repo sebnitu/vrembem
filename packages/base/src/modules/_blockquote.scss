@@ -5,12 +5,12 @@
   @include css.register("blockquote");
 
   #{fun.selector("blockquote")} {
-    background: css.get("blockquote", "background", transparent);
+    position: relative;
+    padding: css.get("blockquote", "padding", css.get("spacing-md"));
     border: css.get("blockquote", "border", css.get("border"));
     border-radius: css.get("blockquote", "border-radius", css.get("border-radius"));
     color: css.get("blockquote", "foreground", currentcolor);
-    padding: css.get("blockquote", "padding", css.get("spacing-md"));
-    position: relative;
+    background: css.get("blockquote", "background", transparent);
 
     > * + * {
       margin-top: css.get("blockquote", "spacing", css.get("spacing-md"));

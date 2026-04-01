@@ -9,10 +9,10 @@
 ///
 @mixin size($width, $height: $width, $prefix: null) {
   @if $prefix {
-    #{$prefix}-height: $height;
     #{$prefix}-width: $width;
+    #{$prefix}-height: $height;
   } @else {
-    height: $height;
     width: $width;
+    height: $height;
   }
 }

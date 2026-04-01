@@ -6,11 +6,11 @@
 #{core.bem("icon")} {
   @include mix.style(config.get("icon-style", "default"));
 
-  box-sizing: content-box;
   display: inline-block;
   flex-shrink: 0;
-  font-size: css.get("icon", "size", core.resolve-nth(config.get("icon-size", "default"), 1));
-  height: 1em;
-  vertical-align: top;
+  box-sizing: content-box;
   width: 1em;
+  height: 1em;
+  font-size: css.get("icon", "size", core.resolve-nth(config.get("icon-size", "default"), 1));
+  vertical-align: top;
 }
