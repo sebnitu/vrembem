@@ -24,14 +24,6 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
       entry.parent.trigger = null;
     }
 
-    // Dispatch custom closed event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
-
     // Emit the closed event
     await entry.parent.emit("closed", entry);
   }
