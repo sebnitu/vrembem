@@ -3,10 +3,10 @@
 
 #{core.bem("modal", null, "full")} {
   #{core.bem("modal", "dialog")} {
-    height: 100%;
-    max-width: none;
     transform: scale(css.get("modal", "full-scale", 0.75));
     width: 100%;
+    max-width: none;
+    height: 100%;
   }
 
   &.is-opening #{core.bem("modal", "dialog")},

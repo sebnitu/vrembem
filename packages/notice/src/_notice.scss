@@ -3,12 +3,12 @@
 @use "@vrembem/core/css";
 
 #{core.bem("notice")} {
-  background: hsl(from css.get("notice", "color", config.get("notice-color", "default")) h s css.get("notice", "background-lightness"));
+  padding: css.get("notice", "padding", 1em 1.25em);
   border: css.get("notice", "border", none);
   border-radius: css.get("notice", "border-radius", css.get("border-radius"));
-  box-shadow: css.get("notice", "box-shadow", none);
   color: hsl(from css.get("notice", "color", config.get("notice-color", "default")) h s css.get("notice", "foreground-lightness"));
-  padding: css.get("notice", "padding", 1em 1.25em);
+  background: hsl(from css.get("notice", "color", config.get("notice-color", "default")) h s css.get("notice", "background-lightness"));
+  box-shadow: css.get("notice", "box-shadow", none);
 
   > * + * {
     margin-top: css.get("notice", "spacing", 0.5em);

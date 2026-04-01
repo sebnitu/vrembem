@@ -5,22 +5,22 @@
 .heading-anchor {
   @include css.override("core", "form-control-border-width", 0);
 
-  align-items: center;
-  background-color: palette.get("primary", 50%, 0%);
-  border-radius: css.get("border-radius-circle");
+  user-select: none;
   display: inline-flex;
-  font-size: 1rem;
-  font-weight: 500;
+  align-items: center;
   justify-content: center;
   margin-left: 0.5rem;
-  opacity: 0;
   padding: css.get("form-control-padding-y");
+  border-radius: css.get("border-radius-circle");
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none !important;
+  vertical-align: middle;
+  opacity: 0;
+  background-color: palette.get("primary", 50%, 0%);
+  transition-timing-function: css.get("transition-timing-function");
   transition-duration: css.get("transition-duration");
   transition-property: color, opacity;
-  transition-timing-function: css.get("transition-timing-function");
-  user-select: none;
-  vertical-align: middle;
 
   &:hover,
   &:focus {
@@ -39,9 +39,9 @@
   }
 
   @include core.media-min("sm") {
-    margin-left: 0;
     position: absolute;
-    right: calc(100% + 0.5rem);
     top: calc(60% - calc(css.get("form-control-size-calc") / 2));
+    right: calc(100% + 0.5rem);
+    margin-left: 0;
   }
 }

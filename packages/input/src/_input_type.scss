@@ -2,12 +2,12 @@
 @use "@vrembem/core/css";
 
 #{core.bem("input", null, "type", "select")} {
-  background-image: css.get("input", "select-icon");
-  background-position: calc(100% - 0.75em) center;
-  background-repeat: no-repeat;
   cursor: pointer;
-  padding-right: 2em;
   position: relative;
+  padding-right: 2em;
+  background-image: css.get("input", "select-icon");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.75em) center;
 
   &:read-only {
     background-color: css.get("input", "background", css.get("background"));

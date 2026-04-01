@@ -22,15 +22,15 @@
   html {
     box-sizing: border-box;
     font-size: css.get("base", "font-size", 16px);
-    -moz-osx-font-smoothing: grayscale;
     line-height: css.get("base", "line-height", css.get("line-height"));
     text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    background: css.get("base", "background", css.get("background"));
-    color: css.get("base", "foreground", css.get("foreground"));
     font-family: css.get("font-family");
+    color: css.get("base", "foreground", css.get("foreground"));
+    background: css.get("base", "background", css.get("background"));
   }
 
   // Reset font-size for headings
@@ -45,10 +45,10 @@
 
   // Better default styles for images
   img {
+    max-width: 100%;
+    height: auto;
     border: 0;
     border-style: none;
-    height: auto;
-    max-width: 100%;
     vertical-align: middle;
   }
 
@@ -109,13 +109,13 @@
   }
 
   button {
-    background: none;
-    border: 0;
     cursor: pointer;
-    -webkit-font-smoothing: inherit;
-    letter-spacing: inherit;
+    border: 0;
     text-align: inherit;
     text-transform: none;
+    letter-spacing: inherit;
+    background: none;
+    -webkit-font-smoothing: inherit;
   }
 
   // Correct the inability to style clickable types in iOS and Safari

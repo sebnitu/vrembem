@@ -11,8 +11,17 @@
   );
 
   .menu__action {
-    scroll-margin-bottom: 20rem;
     scroll-margin-top: 14rem;
+    scroll-margin-bottom: 20rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 8px auto 8px 0;
+      width: 2px;
+      border-radius: 2px;
+      background: transparent;
+    }
 
     &:hover,
     &:active,
@@ -20,15 +29,6 @@
     &:focus-visible,
     &.is-active {
       background-color: transparent;
-    }
-
-    &::before {
-      background: transparent;
-      border-radius: 2px;
-      content: "";
-      inset: 8px auto 8px 0;
-      position: absolute;
-      width: 2px;
     }
 
     &:hover::before {

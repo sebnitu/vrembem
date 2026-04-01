@@ -17,16 +17,16 @@ $-output-spin-animation: true;
   @include size(css.get("loading", "size", 1em));
 
   @if $position == absolute or $position == fixed {
-    left: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
     top: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
+    left: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
   }
 
-  animation: spin css.get("loading", "duration", 0.6s) infinite linear;
+  position: $position;
+  display: inline-block;
   border: css.get("loading", "border", 2px solid);
   border-color: css.get("loading", "color", currentcolor) css.get("loading", "color", currentcolor) transparent transparent;
   border-radius: css.get("border-radius-circle");
-  display: inline-block;
-  position: $position;
+  animation: spin css.get("loading", "duration", 0.6s) infinite linear;
 
   // Only output the spin animation once
   @if $-output-spin-animation {

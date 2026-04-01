@@ -8,11 +8,11 @@
   @include css.register("headings");
 
   #{fun.selector(config.get("base-headings"))} {
-    color: css.get("headings", "foreground", css.get("foreground"));
     font-family: css.get("headings", "font-family", inherit);
     font-size: css.get("headings", "font-size", 1em);
     font-weight: css.get("headings", "font-weight", css.get("font-weight-semi-bold"));
     line-height: css.get("headings", "line-height", inherit);
+    color: css.get("headings", "foreground", css.get("foreground"));
   }
 
   @each $key, $value in config.get("base-headings") {

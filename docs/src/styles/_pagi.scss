@@ -14,8 +14,8 @@
 
 .pagi_prev,
 .pagi_next {
-  align-content: stretch;
   flex-basis: calc(50% - (1rem / 2));
+  align-content: stretch;
 }
 
 .pagi_prev {
@@ -27,13 +27,13 @@
 }
 
 .pagi_link {
-  border: 1px solid css.get("border-color");
-  border-radius: css.get("border-radius");
   display: block;
   padding: 1rem;
+  border: 1px solid css.get("border-color");
+  border-radius: css.get("border-radius");
   transition: border-color;
-  transition-duration: css.get("transition-duration");
   transition-timing-function: css.get("transition-timing-function");
+  transition-duration: css.get("transition-duration");
 
   &:hover {
     border-color: palette.get("primary");
@@ -41,11 +41,11 @@
 }
 
 .pagi_label {
-  color: css.get("foreground-lighter");
   font-size: css.get("font-size-sm");
+  color: css.get("foreground-lighter");
 }
 
 .pagi_title {
-  color: palette.get("primary");
   font-size: css.get("font-size-lg");
+  color: palette.get("primary");
 }

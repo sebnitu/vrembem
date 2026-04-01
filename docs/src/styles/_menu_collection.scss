@@ -8,8 +8,8 @@
 
   .menu__action.is-active,
   .menu__action.is-parent {
-    background: css.get("background");
     color: palette.get("primary");
+    background: css.get("background");
   }
 
   .menu {

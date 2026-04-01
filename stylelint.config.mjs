@@ -1,5 +1,5 @@
 export default {
-  extends: ["stylelint-config-standard-scss", "stylelint-config-clean-order"],
+  extends: ["stylelint-config-clean-order", "stylelint-config-standard-scss"],
   plugins: ["stylelint-prettier"],
   ignoreFiles: ["**/dev/**/*", "**/dist/**/*"],
   rules: {

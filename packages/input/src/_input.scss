@@ -3,25 +3,27 @@
 @use "./mixins" as mix;
 
 #{core.bem("input")} {
-  @include mix.base;
-
-  background-color: css.get("input", "background", css.get("background"));
   border-color: css.get("input", "border-color", css.get("border-color-dark"));
-  box-shadow: css.get("input", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
   color: css.get("input", "foreground", css.get("foreground"));
+  background-color: css.get("input", "background", css.get("background"));
+  box-shadow: css.get("input", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
+
+  &::placeholder {
+    color: css.get("input", "foreground-placeholder", css.get("foreground-lighter"));
+  }
 
   &:hover {
-    background-color: css.get("input", "background-hover", "background", css.get("background"));
     border-color: css.get("input", "border-color-hover", "border-color", css.get("border-color-darker"));
-    box-shadow: css.get("input", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
     color: css.get("input", "foreground-hover", "foreground", css.get("foreground"));
+    background-color: css.get("input", "background-hover", "background", css.get("background"));
+    box-shadow: css.get("input", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
   }
 
   &:focus {
-    background-color: css.get("input", "background-focus", "background", css.get("background"));
     border-color: css.get("input", "border-color-focus", "border-color", css.get("input", "accent", css.get("form-control-accent")));
-    box-shadow: css.get("input", "box-shadow-focus", none);
     color: css.get("input", "foreground-focus", "foreground", css.get("foreground"));
+    background-color: css.get("input", "background-focus", "background", css.get("background"));
+    box-shadow: css.get("input", "box-shadow-focus", none);
   }
 
   &:focus-visible {
@@ -33,11 +35,9 @@
   }
 
   &:disabled {
-    background-color: css.get("input", "background-disabled", css.get("background-darker"));
     pointer-events: none;
+    background-color: css.get("input", "background-disabled", css.get("background-darker"));
   }
 
-  &::placeholder {
-    color: css.get("input", "foreground-placeholder", css.get("foreground-lighter"));
-  }
+  @include mix.base;
 }

@@ -5,30 +5,30 @@
 $-transition-property: background-color, border-color, box-shadow, transform;
 
 #{core.bem("card")} {
-  background: css.get("card", "background");
-  background-clip: padding-box;
-  border: css.get("card", "border", 1px solid css.get("border-color"));
-  border-radius: css.get("card", "border-radius", css.get("border-radius"));
-  box-shadow: css.get("card", "box-shadow", none);
-  color: css.get("card", "foreground", css.get("foreground-light"));
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative;
+  border: css.get("card", "border", 1px solid css.get("border-color"));
+  border-radius: css.get("card", "border-radius", css.get("border-radius"));
+  color: css.get("card", "foreground", css.get("foreground-light"));
+  background: css.get("card", "background");
+  background-clip: padding-box;
+  box-shadow: css.get("card", "box-shadow", none);
+  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
   transition-duration: css.get("card", "transition-duration", css.get("transition-duration"));
   transition-property: css.get("card", "transition-property", $-transition-property);
-  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
 }
 
 a#{core.bem("card")} {
-  box-shadow: css.get("card", "link-box-shadow", css.get("box-shadow-2"));
   transform: translate(0, 0);
+  box-shadow: css.get("card", "link-box-shadow", css.get("box-shadow-2"));
 
   &:hover,
   &:focus,
   &:focus-within {
-    box-shadow: css.get("card", "link-box-shadow-hover", css.get("box-shadow-3"));
     transform: translate(0, css.get("card", "link-offset", -0.25em));
+    box-shadow: css.get("card", "link-box-shadow-hover", css.get("box-shadow-3"));
   }
 }
 
@@ -45,8 +45,8 @@ a#{core.bem("card")} {
   }
 
   &:last-child {
-    border-bottom-left-radius: css.get("card", "border-radius", css.get("border-radius"));
     border-bottom-right-radius: css.get("card", "border-radius", css.get("border-radius"));
+    border-bottom-left-radius: css.get("card", "border-radius", css.get("border-radius"));
   }
 }
 
@@ -74,37 +74,37 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "image")} {
   flex: 0 1 auto;
-  height: auto;
   width: 100%;
+  height: auto;
 }
 
 #{core.bem("card", "title")} {
-  color: css.get("card", "title-color", css.get("foreground"));
   flex-grow: 1;
   font-size: css.get("card", "title-font-size", css.get("font-size-lg"));
   font-weight: css.get("card", "title-font-weight", css.get("font-weight-semi-bold"));
   line-height: css.get("card", "title-line-height", inherit);
+  color: css.get("card", "title-color", css.get("foreground"));
 }
 
 #{core.bem("card", "background")},
 #{core.bem("card", "screen")} {
   @include core.size(100%);
 
-  border-radius: css.get("card", "border-radius", css.get("border-radius"));
-  inset: 0;
   position: absolute;
+  inset: 0;
+  border-radius: css.get("card", "border-radius", css.get("border-radius"));
+  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
   transition-duration: css.get("card", "transition-duration", css.get("transition-duration"));
   transition-property: css.get("card", "transition-property", $-transition-property);
-  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
 }
 
 #{core.bem("card", "background")} {
-  object-fit: cover;
   z-index: 1;
+  object-fit: cover;
 }
 
 #{core.bem("card", "screen")} {
-  background: css.get("card", "screen-background");
-  opacity: css.get("card", "screen-opacity");
   z-index: 2;
+  opacity: css.get("card", "screen-opacity");
+  background: css.get("card", "screen-background");
 }

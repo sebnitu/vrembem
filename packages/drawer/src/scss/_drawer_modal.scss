@@ -3,29 +3,29 @@
 @use "@vrembem/core/css";
 
 #{core.bem("drawer", null, "modal")} {
-  @include css.override("drawer", "z-index", 950);
-
-  inset: 0;
-  max-width: none;
   position: fixed;
-  visibility: hidden;
+  inset: 0;
   width: auto;
+  max-width: none;
+  visibility: hidden;
+
+  &::before {
+    @include core.backdrop("drawer");
+  }
 
   #{core.bem("drawer", "dialog")} {
     @include css.override("dialog", config.get("drawer-modal-dialog-override"));
 
     inset: 0 auto 0 0;
-    max-width: css.get("drawer", "max-width", 80%);
     width: css.get("drawer", "width", 18em);
+    max-width: css.get("drawer", "max-width", 80%);
   }
 
   &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "dialog")} {
     inset: 0 0 0 auto;
   }
 
-  &::before {
-    @include core.backdrop("drawer");
-  }
+  @include css.override("drawer", "z-index", 950);
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,

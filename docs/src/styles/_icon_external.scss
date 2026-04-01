@@ -1,10 +1,10 @@
 @use "@vrembem/core/css";
 
 .icon_external {
-  color: css.get("foreground-lighter");
-  font-size: 0.75em;
   position: relative;
   right: -0.25em;
+  font-size: 0.75em;
+  color: css.get("foreground-lighter");
   stroke-width: 2.5;
   transition: transform css.get("transition-duration-short") css.get("transition-timing-function");
 }

@@ -8,18 +8,18 @@
 ///   Valid options: "up", "down", "left", "right".
 ///
 @mixin arrow($direction: "down") {
-  border-width: css.get("arrow", "size", 6px 4px);
-  border-bottom-width: 0;
-  border-color: css.get("arrow", "color", currentcolor) transparent transparent;
-  border-radius: css.get("arrow", "radius", 2px);
-  border-style: solid;
+  pointer-events: none;
+  transform-origin: center;
   display: inline-block;
   flex-grow: 0;
   flex-shrink: 0;
-  height: 0;
-  pointer-events: none;
-  transform-origin: center;
   width: 0;
+  height: 0;
+  border-color: css.get("arrow", "color", currentcolor) transparent transparent;
+  border-style: solid;
+  border-width: css.get("arrow", "size", 6px 4px);
+  border-bottom-width: 0;
+  border-radius: css.get("arrow", "radius", 2px);
 
   @if $direction == "up" {
     transform: rotate(180deg);

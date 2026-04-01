@@ -3,18 +3,18 @@
 @include css.set("code-expander", "max-height", 20rem);
 
 .code-expander {
+  position: relative;
   border: css.get("border");
   border-radius: css.get("border-radius");
   font-size: css.get("font-size");
   line-height: css.get("line-height");
-  position: relative;
+  transition-timing-function: css.get("transition-timing-function");
   transition-duration: css.get("transition-duration-short");
   transition-property: border-color, box-shadow;
-  transition-timing-function: css.get("transition-timing-function");
 
   .pre {
-    border: none;
     max-height: css.get("code-expander", "max-height");
+    border: none;
     transition: max-height css.get("transition-duration") css.get("transition-timing-function");
   }
 
@@ -25,9 +25,9 @@
     }
 
     .code-block__copy-button {
-      background-color: transparent;
-      right: 0.5rem;
       top: calc(-2.5rem + 2px);
+      right: 0.5rem;
+      background-color: transparent;
 
       &:hover {
         background-color: transparent;
@@ -37,35 +37,35 @@
 }
 
 .code-expander__header {
-  border-bottom: css.get("border");
-  color: css.get("foreground-lighter");
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
+  border-bottom: css.get("border");
+  color: css.get("foreground-lighter");
 }
 
 .code-expander__tools {
-  display: flex;
-  gap: css.get("spacing-sm");
-  inset: auto css.get("spacing-md") css.get("spacing-md") auto;
   position: absolute;
   z-index: 2;
+  inset: auto css.get("spacing-md") css.get("spacing-md") auto;
+  display: flex;
+  gap: css.get("spacing-sm");
 }
 
 .code-expander__unlock-scroll {
   display: none;
   opacity: 0;
+  transition-timing-function: css.get("transition-timing-function");
   transition-duration: css.get("transition-duration-short");
   transition-property: opacity, border-color;
-  transition-timing-function: css.get("transition-timing-function");
 }
 
 .code-expander__screen {
   cursor: pointer;
-  display: none;
-  inset: 1px;
   position: absolute;
   z-index: 1;
+  inset: 1px;
+  display: none;
 }
 
 .code-expander.is-scroll-locked {
@@ -82,10 +82,10 @@
     box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
 
     .code-expander__unlock-scroll {
-      border-color: palette.get("primary");
-      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
       display: inline-flex;
+      border-color: palette.get("primary");
       opacity: 1;
+      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
     }
   }
 }

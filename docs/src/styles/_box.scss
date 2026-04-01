@@ -31,17 +31,17 @@
 
 .box,
 .box-alt {
+  padding: css.get("box", "padding");
   border: css.get("box", "border");
   color: css.get("foreground");
-  padding: css.get("box", "padding");
 }
 
 .box {
-  background: css.get("box", "background");
   border-color: css.get("box", "border-color");
+  background: css.get("box", "background");
 }
 
 .box-alt {
-  background: css.get("box", "background-alt");
   border-color: css.get("box", "border-color-alt");
+  background: css.get("box", "background-alt");
 }

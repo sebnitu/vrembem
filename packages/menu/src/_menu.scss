@@ -4,71 +4,71 @@
 @use "./mixins" as mix;
 
 #{core.bem("menu")} {
-  align-items: stretch;
   display: flex;
   flex-direction: column;
-  font-size: css.get("menu", "size", css.get("form-control-size"));
   gap: css.get("menu", "gap", 1px);
+  align-items: stretch;
+  font-size: css.get("menu", "size", css.get("form-control-size"));
   line-height: css.get("menu", "line-height", css.get("form-control-line-height"));
   list-style: none;
 }
 
 #{core.bem("menu", "sep")} {
-  align-self: stretch;
-  background: css.get("menu", "sep-background", css.get("border-color"));
   flex: 0 0 auto;
+  align-self: stretch;
+  width: auto;
   height: css.get("menu", "sep-size", 1px);
   margin: css.get("menu", "sep-gap", 0.5em) 0;
-  width: auto;
+  background: css.get("menu", "sep-background", css.get("border-color"));
 }
 
 #{core.bem("menu", "action")} {
   @include mix.action-base;
 
-  background-color: css.get("menu", "background", transparent);
   border-color: css.get("menu", "border-color", transparent);
-  box-shadow: css.get("menu", "box-shadow", none);
   color: css.get("menu", "foreground", css.get("foreground"));
+  background-color: css.get("menu", "background", transparent);
+  box-shadow: css.get("menu", "box-shadow", none);
 
   &:hover {
-    background-color: css.get("menu", "background-hover", "background", css.get("background-hover"));
     border-color: css.get("menu", "border-color-hover", "border-color", transparent);
-    box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", none);
     color: css.get("menu", "foreground-hover", "foreground", css.get("foreground"));
+    background-color: css.get("menu", "background-hover", "background", css.get("background-hover"));
+    box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus {
-    background-color: css.get("menu", "background-focus", "background-hover", "background", css.get("background-hover"));
     border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
-    box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
     color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
+    background-color: css.get("menu", "background-focus", "background-hover", "background", css.get("background-hover"));
+    box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus-visible {
     @include core.focus-ring-color(css.get("menu", "accent", css.get("form-control-accent")));
 
-    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background-hover"));
     border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("menu", "accent", css.get("form-control-accent")));
-    box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
     color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
+    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background-hover"));
+    box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:active {
-    background-color: css.get("menu", "background-active", "background", css.get("background-active"));
     border-color: css.get("menu", "border-color-active", "border-color", transparent);
-    box-shadow: css.get("menu", "box-shadow-active", "box-shadow", none);
     color: css.get("menu", "foreground-active", "foreground", css.get("foreground"));
+    background-color: css.get("menu", "background-active", "background", css.get("background-active"));
+    box-shadow: css.get("menu", "box-shadow-active", "box-shadow", none);
   }
 
   &:disabled:not(.is-active) {
-    background-color: css.get("menu", "disabled-background", none);
-    color: css.get("menu", "disabled-foreground", css.get("foreground-lighter"));
     pointer-events: none;
+    color: css.get("menu", "disabled-foreground", css.get("foreground-lighter"));
+    background-color: css.get("menu", "disabled-background", none);
   }
 
   &.is-active {
-    background-color: css.get("menu", "active-background", none);
     color: css.get("menu", "active-foreground", palette.get("primary"));
+    background-color: css.get("menu", "active-background", none);
   }
 }
 

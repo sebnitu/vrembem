@@ -3,38 +3,38 @@
 @use "@vrembem/core/css";
 
 #{core.bem(config.get("drawer-classes", "frame"))} {
+  position: relative;
+  overflow: hidden auto;
   display: flex;
   height: css.get("drawer", "frame-height", 100vh);
-  overflow: hidden auto;
-  position: relative;
 }
 
 #{core.bem(config.get("drawer-classes", "main"))} {
+  position: relative;
+  overflow: auto;
   flex: 1 1 auto;
   height: 100%;
-  overflow: auto;
-  position: relative;
 }
 
 #{core.bem("drawer")} {
-  inset: 0 auto 0 0;
-  max-width: css.get("drawer", "max-width", 80%);
   position: absolute;
-  width: css.get("drawer", "width", 18em);
   z-index: css.get("drawer", "z-index", 900);
+  inset: 0 auto 0 0;
+  width: css.get("drawer", "width", 18em);
+  max-width: css.get("drawer", "max-width", 80%);
 }
 
 #{core.bem("drawer", "dialog")} {
   @include css.override("dialog", config.get("drawer-dialog-override"));
 
-  border-bottom: none;
-  border-radius: 0;
-  border-top: none;
-  display: flex;
-  flex-direction: column;
+  position: absolute;
   inset: 0;
   overflow: auto;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0;
 }
 
 #{core.bem("drawer", "container")} {

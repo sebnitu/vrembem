@@ -2,16 +2,16 @@
 @use "@vrembem/core/css";
 
 .toolbar {
-  backdrop-filter: blur(8px);
-  background-clip: padding-box;
-  background-color: css.get("background-glass");
-  border-bottom: 1px solid css.get("border-color");
-  border-top: 1px solid css.get("border-color");
+  position: sticky;
+  z-index: 4;
+  top: -1px;
   display: block;
   padding: css.get("layout", "padding");
-  position: sticky;
-  top: -1px;
-  z-index: 4;
+  border-top: 1px solid css.get("border-color");
+  border-bottom: 1px solid css.get("border-color");
+  background-color: css.get("background-glass");
+  background-clip: padding-box;
+  backdrop-filter: blur(8px);
 
   @include core.media-min("sidebar") {
     display: none;
@@ -24,26 +24,26 @@
  */
 
 .toolbar-mini {
-  opacity: 0;
   position: fixed;
-  right: css.get("layout", "padding");
+  z-index: 6;
   top: css.get("layout", "navibar-height");
+  right: css.get("layout", "padding");
   transform: translate(100%);
+  visibility: hidden;
+  opacity: 0;
   transition:
     opacity 0.5s,
     transform 0.25s ease;
-  visibility: hidden;
-  z-index: 6;
 
   @include core.media-min("sidebar") {
-    opacity: 1;
     transform: translate(0);
     visibility: visible;
+    opacity: 1;
   }
 
   @include core.media-min("aside") {
-    opacity: 0;
     transform: translate(100%);
     visibility: hidden;
+    opacity: 0;
   }
 }

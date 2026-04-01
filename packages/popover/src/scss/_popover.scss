@@ -5,35 +5,35 @@
 $-offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 
 #{core.bem("popover")} {
-  background: css.get("popover", "background", var.$background);
-  background-clip: padding-box;
-  border: css.get("popover", "border", var.$border);
-  border-radius: css.get("popover", "border-radius", var.$border-radius);
-  box-shadow: css.get("popover", "box-shadow", var.$box-shadow);
-  color: css.get("popover", "foreground", var.$foreground);
-  display: block;
-  font-size: css.get("popover", "font-size", var.$font-size);
-  left: 0;
-  line-height: css.get("popover", "line-height", var.$line-height);
-  margin: 0;
-  max-width: css.get("popover", "max-width", var.$max-width);
-  opacity: 0;
-  padding: css.get("popover", "padding", var.$padding);
   pointer-events: none;
   position: absolute;
+  z-index: css.get("popover", "z-index", var.$z-index);
   top: 0;
+  left: 0;
+  display: block;
+  width: css.get("popover", "width", var.$width);
+  max-width: css.get("popover", "max-width", var.$max-width);
+  margin: 0;
+  padding: css.get("popover", "padding", var.$padding);
+  border: css.get("popover", "border", var.$border);
+  border-radius: css.get("popover", "border-radius", var.$border-radius);
+  font-size: css.get("popover", "font-size", var.$font-size);
+  line-height: css.get("popover", "line-height", var.$line-height);
+  color: css.get("popover", "foreground", var.$foreground);
+  opacity: 0;
+  background: css.get("popover", "background", var.$background);
+  background-clip: padding-box;
+  box-shadow: css.get("popover", "box-shadow", var.$box-shadow);
+  transition-timing-function: css.get("popover", "transition-timing-function", var.$transition-timing-function);
   transition-duration: css.get("popover", "transition-duration", var.$transition-duration);
   transition-property: css.get("popover", "transition-property", var.$transition-property);
-  transition-timing-function: css.get("popover", "transition-timing-function", var.$transition-timing-function);
-  width: css.get("popover", "width", var.$width);
-  z-index: css.get("popover", "z-index", var.$z-index);
 
   &::before {
     content: "";
-    height: $-offset;
-    inset: auto 0 100%;
     position: absolute;
+    inset: auto 0 100%;
     width: 100%;
+    height: $-offset;
   }
 
   &.is-virtual {
@@ -45,9 +45,9 @@ $-offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
   }
 
   &.is-active {
-    opacity: 1;
     pointer-events: auto;
     z-index: calc(css.get("popover", "z-index", var.$z-index) + 1);
+    opacity: 1;
   }
 
   &:hover,
@@ -58,25 +58,25 @@ $-offset: calc(calc(css.get("popover", "offset") + 1) * 1px);
 }
 
 #{core.bem("popover")}[data-floating-placement^="top"]::before {
-  height: $-offset;
   inset: 100% 0 auto;
   width: 100%;
+  height: $-offset;
 }
 
 #{core.bem("popover")}[data-floating-placement^="bottom"]::before {
-  height: $-offset;
   inset: auto 0 100%;
   width: 100%;
+  height: $-offset;
 }
 
 #{core.bem("popover")}[data-floating-placement^="left"]::before {
-  height: 100%;
   inset: 0 auto 0 100%;
   width: $-offset;
+  height: 100%;
 }
 
 #{core.bem("popover")}[data-floating-placement^="right"]::before {
-  height: 100%;
   inset: 0 100% 0 auto;
   width: $-offset;
+  height: 100%;
 }
