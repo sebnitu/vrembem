@@ -1,10 +1,9 @@
 export default {
-  extends: ["stylelint-config-standard-scss"],
-  plugins: ["stylelint-prettier", "stylelint-order"],
+  extends: ["stylelint-config-standard-scss", "stylelint-config-clean-order"],
+  plugins: ["stylelint-prettier"],
   ignoreFiles: ["**/dev/**/*", "**/dist/**/*"],
   rules: {
     "prettier/prettier": true,
-    "order/properties-alphabetical-order": true,
     "function-url-quotes": null,
     "selector-class-pattern": [
       "^[a-z0-9-_:]+$",
