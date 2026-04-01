@@ -1,15 +1,9 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-#{core.bem("popover", null, "size", "auto")} {
-  @include css.override("popover", "width", auto);
-}
-
-#{core.bem("popover", null, "size", "sm")} {
-  @include css.override("popover", "width", var.$size-sm-width);
-}
-
-#{core.bem("popover", null, "size", "lg")} {
-  @include css.override("popover", "width", var.$size-lg-width);
+@each $key, $value in config.get("popover-size", "variants") {
+  #{core.bem("popover", null, "size", $key)} {
+    @include css.override("popover", "width", $value);
+  }
 }
