@@ -5,7 +5,7 @@ package: "@vrembem/notice"
 category: component
 ---
 
-import DocBlock from "../components/DocBlock.astro";
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Icon from "../components/Icon.astro";
 
 ```sh
@@ -17,6 +17,55 @@ npm install @vrembem/notice
   @use "@vrembem/notice";
   ```
 </CodeExample>
+
+## Options
+
+Notice is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Notice comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/notice" with (
+  $config: (
+    // Map for outputting notice_color_[key] modifier variants
+    // @type map
+    "notice-color": (
+      "default": palette.get("neutral"),
+      "primary": palette.get("primary"),
+      "secondary": palette.get("secondary"),
+      "important": palette.get("important")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-notice" valueLabel="Fallback" expandable={true} data={{
+  "--vb-notice-color": "var(--vb-neutral)",
+  "--vb-notice-background-lightness": {
+    "light": "95%",
+    "dark": "25%"
+  },
+  "--vb-notice-foreground-lightness": {
+    "light": "25%",
+    "dark": "95%"
+  },
+  "--vb-notice-border": "none",
+  "--vb-notice-border-radius": "var(--vb-border-radius)",
+  "--vb-notice-box-shadow": "none",
+  "--vb-notice-padding": "1em 1.25em",
+  "--vb-notice-spacing": "0.5em",
+  "--vb-notice-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-notice-title-line-height": "var(--vb-font-weight-semi-bold)",
+  "--vb-notice-title-font-weight": "var(--vb-line-height)"
+}} />
 
 ## Basic usage
 
@@ -54,7 +103,7 @@ Add a title to your notice using the `notice__title` element.
 
 ### Using flex layout
 
-For cases where a notice message should be displayed alongside an icon or image, try combining it with the [flex](/packages/flex) component.
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the [flex layout component](/packages/flex).
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -144,9 +193,9 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
   </Fragment>
 </CodeExample>
 
-## notice_color_[value]
+## notice_color_[key]
 
-Adds styles for changing the look and feel to better reflect the urgency or status of a notice.
+Applies a color theme to the notice, useful for conveying different states such as success, info, or error. These modifiers are generated using key/value pairs of the `notice-color` config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
@@ -176,91 +225,3 @@ Adds styles for changing the look and feel to better reflect the urgency or stat
 - `notice_color_secondary`
 - `notice_color_neutral`
 - `notice_color_important`
-
-## Customization
-
-Notices are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="notice/src/_root.scss">
-
-```scss
-:root {
-  --vb-notice-gap: 0.5em;
-  --vb-notice-padding: 1em;
-  --vb-notice-border-radius: var(--vb-border-radius);
-  --vb-notice-title-font-size: var(--vb-font-size-lg);
-  --vb-notice-title-line-height: var(--vb-line-height-lg);
-  --vb-notice-title-font-weight: var(--vb-font-weight-semi-bold);
-}
-
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-notice-background: var(--vb-neutral-95);
-  --vb-notice-foreground: var(--vb-neutral-20);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-notice-background: var(--vb-neutral-20);
-    --vb-notice-foreground: var(--vb-neutral-95);
-  }
-}
-
-.vb-theme-dark {
-  --vb-notice-background: var(--vb-neutral-20);
-  --vb-notice-foreground: var(--vb-neutral-95);
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="notice/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
-@use "@vrembem/core/palette";
-
-$gap: 0.5em !default;
-$padding: 1em !default;
-$background: null !default;
-$foreground: null !default;
-$border: null !default;
-$border-radius: css.get("border-radius") !default;
-$box-shadow: null !default;
-$title-font-size: css.get("font-size-lg") !default;
-$title-line-height: css.get("line-height-lg") !default;
-$title-font-weight: css.get("font-weight-semi-bold") !default;
-
-@include css.set("notice", (
-  "gap": $gap,
-  "padding": $padding,
-  "background": $background,
-  "foreground": $foreground,
-  "border": $border,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "title": (
-    "font-size": $title-font-size,
-    "line-height": $title-line-height,
-    "font-weight": $title-font-weight,
-  ),
-));
-
-$theme-light: (
-  "background": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20),
-  "border": null,
-  "box-shadow": null
-) !default;
-
-$theme-dark: (
-  "background": palette.get("neutral", 20),
-  "foreground": palette.get("neutral", 95),
-  "border": null,
-  "box-shadow": null
-) !default;
-
-@include theme.set("light", "notice", $theme-light);
-@include theme.set("dark", "notice", $theme-dark);
-```
-</DocBlock>

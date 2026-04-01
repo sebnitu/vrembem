@@ -1,49 +1,39 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 @use "@vrembem/core/theme";
 @use "@vrembem/core/palette";
 
-$gap: 0.5em !default;
-$padding: 1em !default;
-$background: null !default;
-$foreground: null !default;
-$border: null !default;
-$border-radius: css.get("border-radius") !default;
-$box-shadow: null !default;
-$title-font-size: css.get("font-size-lg") !default;
-$title-line-height: null !default;
-$title-font-weight: css.get("font-weight-semi-bold") !default;
+$config: () !default;
 
-@include css.set(
-  "notice",
-  (
-    "gap": $gap,
-    "padding": $padding,
-    "background": $background,
-    "foreground": $foreground,
-    "border": $border,
-    "border-radius": $border-radius,
-    "box-shadow": $box-shadow,
-    "title": (
-      "font-size": $title-font-size,
-      "line-height": $title-line-height,
-      "font-weight": $title-font-weight
-    )
+// prettier-ignore
+$default: (
+  // Map for outputting notice_color_[key] modifier variants
+  // @type map
+  "notice-color": (
+    "default": palette.get("neutral"),
+    "primary": palette.get("primary"),
+    "secondary": palette.get("secondary"),
+    "neutral": palette.get("neutral"),
+    "important": palette.get("important")
   )
 );
+
+@include config.apply($config, $default);
+@include css.register("notice");
 @include theme.set(
   "light",
   "notice",
   (
-    "background": palette.get("neutral", 95),
-    "foreground": palette.get("neutral", 20)
+    "background-lightness": 95%,
+    "foreground-lightness": 25%
   )
 );
 @include theme.set(
   "dark",
   "notice",
   (
-    "background": palette.get("neutral", 20),
-    "foreground": palette.get("neutral", 95)
+    "background-lightness": 25%,
+    "foreground-lightness": 95%
   )
 );
