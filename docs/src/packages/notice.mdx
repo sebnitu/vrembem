@@ -5,6 +5,7 @@ package: "@vrembem/notice"
 category: component
 ---
 
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Icon from "../components/Icon.astro";
 
 ```sh
@@ -16,6 +17,55 @@ npm install @vrembem/notice
   @use "@vrembem/notice";
   ```
 </CodeExample>
+
+## Options
+
+Notice is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Notice comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/notice" with (
+  $config: (
+    // Map for outputting notice_color_[key] modifier variants
+    // @type map
+    "notice-color": (
+      "default": palette.get("neutral"),
+      "primary": palette.get("primary"),
+      "secondary": palette.get("secondary"),
+      "important": palette.get("important")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-notice" valueLabel="Fallback" expandable={true} data={{
+  "--vb-notice-color": "var(--vb-neutral)",
+  "--vb-notice-background-lightness": {
+    "light": "95%",
+    "dark": "25%"
+  },
+  "--vb-notice-foreground-lightness": {
+    "light": "25%",
+    "dark": "95%"
+  },
+  "--vb-notice-border": "none",
+  "--vb-notice-border-radius": "var(--vb-border-radius)",
+  "--vb-notice-box-shadow": "none",
+  "--vb-notice-padding": "1em 1.25em",
+  "--vb-notice-spacing": "0.5em",
+  "--vb-notice-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-notice-title-line-height": "var(--vb-font-weight-semi-bold)",
+  "--vb-notice-title-font-weight": "var(--vb-line-height)"
+}} />
 
 ## Basic usage
 
