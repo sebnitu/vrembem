@@ -48,10 +48,10 @@ export const config: PopoverConfig = {
   // Custom properties and their defaults
   placement: "bottom",
   event: "click",
-  offset: 0,
-  flipPadding: 0,
-  shiftPadding: 0,
-  arrowPadding: 0,
+  offset: 8,
+  flipPadding: 10,
+  shiftPadding: 10,
+  arrowPadding: 10,
   toggleDelay: 0,
   virtual: false
 };
