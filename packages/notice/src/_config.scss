@@ -11,13 +11,9 @@ $default: (
   // Map for outputting notice_color_[key] modifier variants
   // @type map
   "notice-color": (
-    "shared": (
-      "background-lightness": 95%,
-      "foreground-lightness": 25%
-    ),
+    "default": palette.get("neutral"),
     "primary": palette.get("primary"),
     "secondary": palette.get("secondary"),
-    "neutral": palette.get("neutral"),
     "important": palette.get("important")
   )
 );
@@ -28,15 +24,15 @@ $default: (
   "light",
   "notice",
   (
-    "background": palette.get("neutral", 95%),
-    "foreground": palette.get("neutral", 25%)
+    "background-lightness": 95%,
+    "foreground-lightness": 25%
   )
 );
 @include theme.set(
   "dark",
   "notice",
   (
-    "background": palette.get("neutral", 25%),
-    "foreground": palette.get("neutral", 95%)
+    "background-lightness": 25%,
+    "foreground-lightness": 95%
   )
 );

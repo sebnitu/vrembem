@@ -5,7 +5,6 @@ package: "@vrembem/notice"
 category: component
 ---
 
-import DocBlock from "../components/DocBlock.astro";
 import Icon from "../components/Icon.astro";
 
 ```sh
@@ -144,7 +143,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
   </Fragment>
 </CodeExample>
 
-## notice_color_[value]
+## notice_color_[key]
 
 Adds styles for changing the look and feel to better reflect the urgency or status of a notice.
 
@@ -176,91 +175,3 @@ Adds styles for changing the look and feel to better reflect the urgency or stat
 - `notice_color_secondary`
 - `notice_color_neutral`
 - `notice_color_important`
-
-## Customization
-
-Notices are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="notice/src/_root.scss">
-
-```scss
-:root {
-  --vb-notice-gap: 0.5em;
-  --vb-notice-padding: 1em;
-  --vb-notice-border-radius: var(--vb-border-radius);
-  --vb-notice-title-font-size: var(--vb-font-size-lg);
-  --vb-notice-title-line-height: var(--vb-line-height-lg);
-  --vb-notice-title-font-weight: var(--vb-font-weight-semi-bold);
-}
-
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-notice-background: var(--vb-neutral-95);
-  --vb-notice-foreground: var(--vb-neutral-20);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-notice-background: var(--vb-neutral-20);
-    --vb-notice-foreground: var(--vb-neutral-95);
-  }
-}
-
-.vb-theme-dark {
-  --vb-notice-background: var(--vb-neutral-20);
-  --vb-notice-foreground: var(--vb-neutral-95);
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="notice/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
-@use "@vrembem/core/palette";
-
-$gap: 0.5em !default;
-$padding: 1em !default;
-$background: null !default;
-$foreground: null !default;
-$border: null !default;
-$border-radius: css.get("border-radius") !default;
-$box-shadow: null !default;
-$title-font-size: css.get("font-size-lg") !default;
-$title-line-height: css.get("line-height-lg") !default;
-$title-font-weight: css.get("font-weight-semi-bold") !default;
-
-@include css.set("notice", (
-  "gap": $gap,
-  "padding": $padding,
-  "background": $background,
-  "foreground": $foreground,
-  "border": $border,
-  "border-radius": $border-radius,
-  "box-shadow": $box-shadow,
-  "title": (
-    "font-size": $title-font-size,
-    "line-height": $title-line-height,
-    "font-weight": $title-font-weight,
-  ),
-));
-
-$theme-light: (
-  "background": palette.get("neutral", 95),
-  "foreground": palette.get("neutral", 20),
-  "border": null,
-  "box-shadow": null
-) !default;
-
-$theme-dark: (
-  "background": palette.get("neutral", 20),
-  "foreground": palette.get("neutral", 95),
-  "border": null,
-  "box-shadow": null
-) !default;
-
-@include theme.set("light", "notice", $theme-light);
-@include theme.set("dark", "notice", $theme-dark);
-```
-</DocBlock>

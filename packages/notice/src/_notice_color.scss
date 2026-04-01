@@ -2,12 +2,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-
-$-shared: config.get("notice-color", "shared");
+@use "@vrembem/core/theme";
 
 @each $key, $value in config.get("notice-color", "variants") {
   #{core.bem("notice", null, "color", $key)} {
-    @include css.override("notice", "background", hsl(from $value h s map.get($-shared, "background-lightness")));
-    @include css.override("notice", "foreground", hsl(from $value h s map.get($-shared, "foreground-lightness")));
+    @include css.override("notice", "color", $value);
   }
 }
