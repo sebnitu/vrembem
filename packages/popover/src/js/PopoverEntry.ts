@@ -17,17 +17,14 @@ type EventObject = {
 
 export class PopoverEntry extends CollectionEntry {
   #eventListeners: EventObject[] = [];
-  #isHovered: {
-    el: boolean;
-    trigger: boolean;
-  } = {
+  #isHovered = {
     el: false,
     trigger: false
   };
-  state: string = "closed";
+  state = "closed";
   trigger: HTMLElement | null = null;
   toggleDelayId: number | null = null;
-  floatingCleanup: () => void = () => {};
+  floatingCleanup = () => {};
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);

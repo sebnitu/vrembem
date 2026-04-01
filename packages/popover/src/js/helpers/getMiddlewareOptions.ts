@@ -1,18 +1,19 @@
-import { getPadding, PaddingObject } from "./getPadding";
+import { getPadding } from "./getPadding";
 import type { PopoverEntry } from "../PopoverEntry";
+import type { Padding } from "@floating-ui/dom";
 
 type getMiddlewareOptions = {
   offset: number;
   flip: {
-    padding: PaddingObject | number | undefined;
+    padding: Padding | number | undefined;
   };
   shift: {
-    padding: PaddingObject | number | undefined;
+    padding: Padding | number | undefined;
   };
   arrow: {
     selector: string;
     element: HTMLElement | null;
-    padding: PaddingObject | number | undefined;
+    padding: Padding | number | undefined;
   };
 };
 

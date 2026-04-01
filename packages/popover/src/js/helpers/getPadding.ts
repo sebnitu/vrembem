@@ -1,15 +1,10 @@
-export type PaddingObject = {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-};
+import type { Padding } from "@floating-ui/dom";
 
 export function getPadding(
   value: string | number
-): PaddingObject | number | undefined {
+): Padding | number | undefined {
   // Initialize the padding var
-  let padding: PaddingObject | number | undefined;
+  let padding: Padding | number | undefined;
 
   // Split the value by spaces if it's a string and convert it into an array of numbers
   const array = (

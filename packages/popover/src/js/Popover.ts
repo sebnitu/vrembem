@@ -10,7 +10,7 @@ import { VirtualElement } from "@floating-ui/dom";
 export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   #handleKeydown: (event: KeyboardEvent) => void;
   #handleMousemove: (event: MouseEvent) => void;
-  #virtual: boolean = false;
+  #virtual = false;
   entryClass = PopoverEntry;
   trigger: HTMLElement | null = null;
   virtualElement: VirtualElement | null = null;

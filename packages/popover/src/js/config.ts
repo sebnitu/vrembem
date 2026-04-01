@@ -51,7 +51,7 @@ export const config = {
   // The number in milliseconds that a popover should delay before opening and
   // closing. Open and close delays can be different by providing two values.
   // Example: [200, 600], "200, 600", "200 600"
-  // @type number | string | (number | string)[];
+  // @type number | string | (number | string)[]
   toggleDelay: 0,
 
   // Whether or not the popover should be positioned to follow the cursor.
