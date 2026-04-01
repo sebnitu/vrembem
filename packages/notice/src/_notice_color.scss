@@ -1,8 +1,6 @@
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
 @each $key, $value in config.get("notice-color", "variants") {
   #{core.bem("notice", null, "color", $key)} {
