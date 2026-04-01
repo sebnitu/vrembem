@@ -11,7 +11,7 @@
     import Popover from "./index.ts";
     import { teleport, cssConfig, attrConfig } from "@vrembem/core";
 
-    const popover = new Popover({
+    const popovers = new Popover({
       plugins: [
         cssConfig(),
         attrConfig(),
@@ -21,7 +21,7 @@
       ]
     });
 
-    window["popover"] = await popover.mount();
+    window["popovers"] = await popovers.mount();
   </script>
 </head>
 <body>
