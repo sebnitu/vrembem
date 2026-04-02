@@ -1,4 +1,4 @@
-import { Collection } from "@vrembem/core";
+import { Collection, _ } from "@vrembem/core";
 
 import { config, PopoverConfig } from "./config";
 import { PopoverEntry } from "./PopoverEntry";
@@ -8,9 +8,6 @@ import { close, closeAll } from "./close";
 import { VirtualElement } from "@floating-ui/dom";
 
 export class Popover extends Collection<PopoverEntry, PopoverConfig> {
-  #handleKeydown: (event: KeyboardEvent) => void;
-  #handleMousemove: (event: MouseEvent) => void;
-  #virtual = false;
   entryClass = PopoverEntry;
   trigger: HTMLElement | null = null;
   virtualElement: VirtualElement | null = null;
@@ -18,8 +15,14 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   constructor(options: Partial<PopoverConfig>) {
     super({ ...config, ...options });
     this.name = "Popover";
-    this.#handleKeydown = handleKeydown.bind(this);
-    this.#handleMousemove = handleMousemove.bind(this);
+
+    _(this, {
+      virtual: false,
+      handlers: {
+        keydown: handleKeydown.bind(this),
+        mousemove: handleMousemove.bind(this)
+      }
+    });
   }
 
   get active(): PopoverEntry | undefined {
@@ -35,18 +38,18 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   }
 
   get virtual() {
-    return this.#virtual;
+    return _(this).virtual;
   }
 
   set virtual(value) {
-    if (value === this.#virtual) return;
+    if (value === _(this).virtual) return;
 
-    this.#virtual = value;
+    _(this).virtual = value;
 
     if (value) {
-      document.addEventListener("mousemove", this.#handleMousemove, false);
+      document.addEventListener("mousemove", _(this).handlers.mousemove);
     } else {
-      document.removeEventListener("mousemove", this.#handleMousemove, false);
+      document.removeEventListener("mousemove", _(this).handlers.mousemove);
     }
   }
 
@@ -65,7 +68,7 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   }
 
   async afterMount() {
-    document.addEventListener("keydown", this.#handleKeydown, false);
+    document.addEventListener("keydown", _(this).handlers.keydown);
   }
 
   async beforeUnmount() {
@@ -74,6 +77,6 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   }
 
   async afterUnmount() {
-    document.removeEventListener("keydown", this.#handleKeydown, false);
+    document.removeEventListener("keydown", _(this).handlers.keydown);
   }
 }

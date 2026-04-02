@@ -24,9 +24,9 @@ export class PopoverEntry extends CollectionEntry {
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
 
-    // Setup initial states of private variables
+    // Set the initial states of private variables
     _(this, {
-      events: [] as EventObject[],
+      events: [],
       hovered: {
         el: false,
         trigger: false
@@ -105,11 +105,8 @@ export class PopoverEntry extends CollectionEntry {
         _(this).events.forEach((eventObj: EventObject) => {
           eventObj.el.forEach((el) => {
             eventObj.type.forEach((type) => {
-              (this[el] as HTMLElement).addEventListener(
-                type,
-                eventObj.listener,
-                false
-              );
+              const target = this[el] as HTMLElement;
+              target.addEventListener(type, eventObj.listener);
             });
           });
         });
@@ -130,11 +127,8 @@ export class PopoverEntry extends CollectionEntry {
         _(this).events.forEach((eventObj: EventObject) => {
           eventObj.el.forEach((el) => {
             eventObj.type.forEach((type) => {
-              (this[el] as HTMLElement).addEventListener(
-                type,
-                eventObj.listener,
-                false
-              );
+              const target = this[el] as HTMLElement;
+              target.addEventListener(type, eventObj.listener);
             });
           });
         });
@@ -149,11 +143,8 @@ export class PopoverEntry extends CollectionEntry {
       _(this).events.forEach((eventObj: EventObject) => {
         eventObj.el.forEach((el) => {
           eventObj.type.forEach((type) => {
-            (this[el] as HTMLElement).removeEventListener(
-              type,
-              eventObj.listener,
-              false
-            );
+            const target = this[el] as HTMLElement;
+            target.removeEventListener(type, eventObj.listener);
           });
         });
       });
