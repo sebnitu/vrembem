@@ -55,7 +55,7 @@ export function handleMouseEnter(
   event: Event
 ) {
   // Ensure that this is a mouse event
-  if (!(event instanceof MouseEvent)) return;
+  if (!(event instanceof MouseEvent) && !(event instanceof FocusEvent)) return;
 
   // Store our hover state
   popover.isHovered = event;
@@ -93,7 +93,7 @@ export function handleMouseEnter(
 
 export function handleMouseLeave(popover: PopoverEntry, event: Event) {
   // Ensure that this is a mouse event
-  if (!(event instanceof MouseEvent)) return;
+  if (!(event instanceof MouseEvent) && !(event instanceof FocusEvent)) return;
 
   // Add a tiny delay to ensure hover isn't being moved to the popover element
   setTimeout(() => {
@@ -137,7 +137,6 @@ export function handleKeydown(this: Popover, event: KeyboardEvent) {
 }
 
 export function handleDocumentClick(this: Popover, popover: PopoverEntry) {
-  const root = this;
   document.addEventListener("click", function _f(event) {
     // Guard if event target property is null
     const target = event.target as HTMLElement | null;
