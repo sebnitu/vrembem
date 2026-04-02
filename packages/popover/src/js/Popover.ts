@@ -16,6 +16,7 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
     super({ ...config, ...options });
     this.name = "Popover";
 
+    // Set the initial state of private store
     _(this, {
       virtual: false,
       handlers: {

@@ -1,4 +1,4 @@
-import { Collection, StackArray, setGlobalState } from "@vrembem/core";
+import { Collection, StackArray, setGlobalState, _ } from "@vrembem/core";
 import { config, ModalConfig } from "./config";
 import { ModalEntry } from "./ModalEntry";
 import { handleClick, handleKeydown } from "./handlers";
@@ -9,8 +9,6 @@ import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection<ModalEntry, ModalConfig> {
-  #handleClick: (event: MouseEvent) => void;
-  #handleKeydown: (event: KeyboardEvent) => void;
   entryClass = ModalEntry;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
@@ -19,8 +17,14 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
     super({ ...config, ...options });
     this.name = "Modal";
     this.trigger = null;
-    this.#handleClick = handleClick.bind(this);
-    this.#handleKeydown = handleKeydown.bind(this);
+
+    // Set the initial state of private store
+    _(this, {
+      handlers: {
+        click: handleClick.bind(this),
+        keydown: handleKeydown.bind(this)
+      }
+    });
 
     // Setup stack property using StackArray
     this.stack = new StackArray({
@@ -80,8 +84,8 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
   }
 
   async afterMount() {
-    document.addEventListener("click", this.#handleClick, false);
-    document.addEventListener("keydown", this.#handleKeydown, false);
+    document.addEventListener("click", _(this).handlers.click);
+    document.addEventListener("keydown", _(this).handlers.keydown);
   }
 
   async beforeUnmount() {
@@ -89,7 +93,7 @@ export class Modal extends Collection<ModalEntry, ModalConfig> {
   }
 
   async afterUnmount() {
-    document.removeEventListener("click", this.#handleClick, false);
-    document.removeEventListener("keydown", this.#handleKeydown, false);
+    document.removeEventListener("click", _(this).handlers.click);
+    document.removeEventListener("keydown", _(this).handlers.keydown);
   }
 }

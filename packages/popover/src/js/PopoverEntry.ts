@@ -24,7 +24,7 @@ export class PopoverEntry extends CollectionEntry {
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
 
-    // Set the initial states of private variables
+    // Set the initial state of private store
     _(this, {
       events: [],
       hovered: {

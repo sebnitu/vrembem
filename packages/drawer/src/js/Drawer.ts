@@ -1,4 +1,4 @@
-import { Collection } from "@vrembem/core";
+import { Collection, _ } from "@vrembem/core";
 import { config, DrawerConfig } from "./config";
 import { DrawerEntry } from "./DrawerEntry";
 import { handleClick, handleKeydown } from "./handlers";
@@ -7,15 +7,19 @@ import { close } from "./close";
 import { toggle } from "./toggle";
 
 export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
-  #handleClick: (event: MouseEvent) => Promise<void | DrawerEntry>;
-  #handleKeydown: (event: KeyboardEvent) => void;
   entryClass = DrawerEntry;
 
   constructor(options: Partial<DrawerConfig>) {
     super({ ...config, ...options });
     this.name = "Drawer";
-    this.#handleClick = handleClick.bind(this);
-    this.#handleKeydown = handleKeydown.bind(this);
+
+    // Set the initial state of private store
+    _(this, {
+      handlers: {
+        click: handleClick.bind(this),
+        keydown: handleKeydown.bind(this)
+      }
+    });
   }
 
   get activeModal(): DrawerEntry | undefined {
@@ -52,12 +56,12 @@ export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
   }
 
   async afterMount() {
-    document.addEventListener("click", this.#handleClick, false);
-    document.addEventListener("keydown", this.#handleKeydown, false);
+    document.addEventListener("click", _(this).handlers.click);
+    document.addEventListener("keydown", _(this).handlers.keydown);
   }
 
   async afterUnmount() {
-    document.removeEventListener("click", this.#handleClick, false);
-    document.removeEventListener("keydown", this.#handleKeydown, false);
+    document.removeEventListener("click", _(this).handlers.click);
+    document.removeEventListener("keydown", _(this).handlers.keydown);
   }
 }
