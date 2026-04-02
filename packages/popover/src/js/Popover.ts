@@ -1,5 +1,4 @@
 import { Collection, _ } from "@vrembem/core";
-
 import { config, PopoverConfig } from "./config";
 import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown, handleMousemove } from "./handlers";
