@@ -2,7 +2,7 @@ import { getPadding } from "./getPadding";
 import type { PopoverEntry } from "../PopoverEntry";
 import type { Padding } from "@floating-ui/dom";
 
-type getMiddlewareOptions = {
+type MiddlewareOptions = {
   offset: number;
   flip: {
     padding: Padding | number | undefined;
@@ -17,9 +17,7 @@ type getMiddlewareOptions = {
   };
 };
 
-export function getMiddlewareOptions(
-  popover: PopoverEntry
-): getMiddlewareOptions {
+export function getMiddlewareOptions(popover: PopoverEntry): MiddlewareOptions {
   return {
     offset: Number(popover.config.get("offset")),
     flip: {
