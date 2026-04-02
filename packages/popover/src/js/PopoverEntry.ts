@@ -1,4 +1,4 @@
-import { CollectionEntry } from "@vrembem/core";
+import { CollectionEntry, _ } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
 import {
@@ -16,11 +16,6 @@ type EventObject = {
 };
 
 export class PopoverEntry extends CollectionEntry {
-  #eventListeners: EventObject[] = [];
-  #isHovered = {
-    el: false,
-    trigger: false
-  };
   state = "closed";
   trigger: HTMLElement | null = null;
   toggleDelayId: number | null = null;
@@ -28,6 +23,15 @@ export class PopoverEntry extends CollectionEntry {
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
+
+    // Setup initial states of private variables
+    _(this, {
+      events: [] as EventObject[],
+      hovered: {
+        el: false,
+        trigger: false
+      }
+    });
   }
 
   get isTooltip(): boolean {
@@ -38,7 +42,7 @@ export class PopoverEntry extends CollectionEntry {
   }
 
   get isHovered(): boolean {
-    return this.#isHovered.el || this.#isHovered.trigger;
+    return _(this).hovered.el || _(this).hovered.trigger;
   }
 
   set isHovered(event: MouseEvent | FocusEvent) {
@@ -54,10 +58,10 @@ export class PopoverEntry extends CollectionEntry {
     // Store the hover state if the event target matches the el or trigger
     switch (event.target) {
       case this.el:
-        this.#isHovered.el = state;
+        _(this).hovered.el = state;
         break;
       case this.trigger:
-        this.#isHovered.trigger = state;
+        _(this).hovered.trigger = state;
         break;
     }
   }
@@ -72,14 +76,14 @@ export class PopoverEntry extends CollectionEntry {
 
   registerEventListeners() {
     // If event listeners aren't already setup
-    if (!this.#eventListeners.length) {
+    if (!_(this).events.length) {
       // Add event listeners based on event type
       const eventType = this.config.get("event");
 
       // If the event type is hover
       if (eventType === "hover") {
         // Setup event listeners object for hover
-        this.#eventListeners = [
+        _(this).events = [
           {
             el: ["el", "trigger"],
             type: ["mouseenter", "focus"],
@@ -98,12 +102,12 @@ export class PopoverEntry extends CollectionEntry {
         ];
 
         // Loop through listeners and apply to the appropriate elements
-        this.#eventListeners.forEach((evObj) => {
-          evObj.el.forEach((el) => {
-            evObj.type.forEach((type) => {
+        _(this).events.forEach((eventObj: EventObject) => {
+          eventObj.el.forEach((el) => {
+            eventObj.type.forEach((type) => {
               (this[el] as HTMLElement).addEventListener(
                 type,
-                evObj.listener,
+                eventObj.listener,
                 false
               );
             });
@@ -114,7 +118,7 @@ export class PopoverEntry extends CollectionEntry {
       // Else the event type is click
       else {
         // Setup event listeners object for click
-        this.#eventListeners = [
+        _(this).events = [
           {
             el: ["trigger"],
             type: ["click"],
@@ -123,12 +127,12 @@ export class PopoverEntry extends CollectionEntry {
         ];
 
         // Loop through listeners and apply to the appropriate elements
-        this.#eventListeners.forEach((evObj) => {
-          evObj.el.forEach((el) => {
-            evObj.type.forEach((type) => {
+        _(this).events.forEach((eventObj: EventObject) => {
+          eventObj.el.forEach((el) => {
+            eventObj.type.forEach((type) => {
               (this[el] as HTMLElement).addEventListener(
                 type,
-                evObj.listener,
+                eventObj.listener,
                 false
               );
             });
@@ -140,14 +144,14 @@ export class PopoverEntry extends CollectionEntry {
 
   deregisterEventListeners() {
     // If event listeners have been setup
-    if (this.#eventListeners) {
+    if (_(this).events) {
       // Loop through listeners and remove from the appropriate elements
-      this.#eventListeners.forEach((evObj) => {
-        evObj.el.forEach((el) => {
-          evObj.type.forEach((type) => {
+      _(this).events.forEach((eventObj: EventObject) => {
+        eventObj.el.forEach((el) => {
+          eventObj.type.forEach((type) => {
             (this[el] as HTMLElement).removeEventListener(
               type,
-              evObj.listener,
+              eventObj.listener,
               false
             );
           });
@@ -155,7 +159,7 @@ export class PopoverEntry extends CollectionEntry {
       });
 
       // Remove eventListeners object from collection
-      this.#eventListeners = [];
+      _(this).events = [];
     }
   }
 
