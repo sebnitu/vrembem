@@ -10,7 +10,7 @@ import {
 import type { Popover } from "./Popover";
 
 type EventObject = {
-  el: string[];
+  el: ("el" | "trigger")[];
   type: string[];
   listener: (event: MouseEvent | Event) => void;
 };
@@ -101,7 +101,7 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+              (this[el] as HTMLElement).addEventListener(
                 type,
                 evObj.listener,
                 false
@@ -126,7 +126,7 @@ export class PopoverEntry extends CollectionEntry {
         this.#eventListeners.forEach((evObj) => {
           evObj.el.forEach((el) => {
             evObj.type.forEach((type) => {
-              (this[el as "el" | "trigger"] as HTMLElement).addEventListener(
+              (this[el] as HTMLElement).addEventListener(
                 type,
                 evObj.listener,
                 false
@@ -145,7 +145,7 @@ export class PopoverEntry extends CollectionEntry {
       this.#eventListeners.forEach((evObj) => {
         evObj.el.forEach((el) => {
           evObj.type.forEach((type) => {
-            (this[el as "el" | "trigger"] as HTMLElement).removeEventListener(
+            (this[el] as HTMLElement).removeEventListener(
               type,
               evObj.listener,
               false
