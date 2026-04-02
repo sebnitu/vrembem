@@ -55,7 +55,7 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
     return open(entry);
   }
 
-  async close(id: string): Promise<PopoverEntry | PopoverEntry[]> {
+  async close(id?: string): Promise<PopoverEntry | PopoverEntry[]> {
     const entry = id ? this.getOrThrow(id) : undefined;
     if (entry) {
       return close(entry);
