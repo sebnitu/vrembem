@@ -93,7 +93,7 @@ export class PopoverEntry extends CollectionEntry {
           {
             el: ["trigger"],
             type: ["click"],
-            listener: handleTooltipClick.bind(this.parent, this)
+            listener: handleTooltipClick.bind(null, this)
           }
         ];
 
