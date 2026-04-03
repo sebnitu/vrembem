@@ -37,16 +37,13 @@ export class PopoverEntry extends CollectionEntry {
     return _(this).hovered.el || _(this).hovered.trigger;
   }
 
-  set isHovered(event: MouseEvent | FocusEvent) {
-    // The state can either be true, false or undefined based on event type
-    const state =
-      event.type == "mouseenter"
-        ? true
-        : event.type == "mouseleave"
-          ? false
-          : undefined;
+  setHovered(event: MouseEvent | FocusEvent) {
     // Guard in case the event type is not "mouseenter" or "mouseleave"
-    if (state == undefined) return;
+    if (event.type !== "mouseenter" && event.type !== "mouseleave") return;
+
+    // Set the boolean state
+    const state = event.type == "mouseenter";
+
     // Store the hover state if the event target matches the el or trigger
     switch (event.target) {
       case this.el:
