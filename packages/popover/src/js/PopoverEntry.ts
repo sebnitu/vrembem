@@ -9,10 +9,10 @@ import {
 } from "./handlers";
 import type { Popover } from "./Popover";
 
-type EventObject = {
-  el: ("el" | "trigger")[];
-  type: string[];
-  listener: (event: MouseEvent | Event) => void;
+type EventBinding = {
+  keys: ("el" | "trigger")[];
+  events: string[];
+  handler: (event: MouseEvent | Event) => void;
 };
 
 export class PopoverEntry extends CollectionEntry {
@@ -85,28 +85,28 @@ export class PopoverEntry extends CollectionEntry {
         // Setup event listeners object for hover
         _(this).events = [
           {
-            el: ["el", "trigger"],
-            type: ["mouseenter", "focus"],
-            listener: handleMouseEnter.bind(this.parent, this)
+            keys: ["el", "trigger"],
+            events: ["mouseenter", "focus"],
+            handler: handleMouseEnter.bind(this.parent, this)
           },
           {
-            el: ["el", "trigger"],
-            type: ["mouseleave", "focusout"],
-            listener: handleMouseLeave.bind(this.parent, this)
+            keys: ["el", "trigger"],
+            events: ["mouseleave", "focusout"],
+            handler: handleMouseLeave.bind(this.parent, this)
           },
           {
-            el: ["trigger"],
-            type: ["click"],
-            listener: handleTooltipClick.bind(null, this)
+            keys: ["trigger"],
+            events: ["click"],
+            handler: handleTooltipClick.bind(null, this)
           }
         ];
 
         // Loop through listeners and apply to the appropriate elements
-        _(this).events.forEach((eventObj: EventObject) => {
-          eventObj.el.forEach((el) => {
-            eventObj.type.forEach((type) => {
-              const target = this[el] as HTMLElement;
-              target.addEventListener(type, eventObj.listener);
+        _(this).events.forEach((eventObj: EventBinding) => {
+          eventObj.keys.forEach((key) => {
+            eventObj.events.forEach((event) => {
+              const target = this[key] as HTMLElement;
+              target.addEventListener(event, eventObj.handler);
             });
           });
         });
@@ -117,18 +117,18 @@ export class PopoverEntry extends CollectionEntry {
         // Setup event listeners object for click
         _(this).events = [
           {
-            el: ["trigger"],
-            type: ["click"],
-            listener: handleClick.bind(this.parent, this)
+            keys: ["trigger"],
+            events: ["click"],
+            handler: handleClick.bind(this.parent, this)
           }
         ];
 
         // Loop through listeners and apply to the appropriate elements
-        _(this).events.forEach((eventObj: EventObject) => {
-          eventObj.el.forEach((el) => {
-            eventObj.type.forEach((type) => {
-              const target = this[el] as HTMLElement;
-              target.addEventListener(type, eventObj.listener);
+        _(this).events.forEach((eventObj: EventBinding) => {
+          eventObj.keys.forEach((key) => {
+            eventObj.events.forEach((event) => {
+              const target = this[key] as HTMLElement;
+              target.addEventListener(event, eventObj.handler);
             });
           });
         });
@@ -140,11 +140,11 @@ export class PopoverEntry extends CollectionEntry {
     // If event listeners have been setup
     if (_(this).events) {
       // Loop through listeners and remove from the appropriate elements
-      _(this).events.forEach((eventObj: EventObject) => {
-        eventObj.el.forEach((el) => {
-          eventObj.type.forEach((type) => {
-            const target = this[el] as HTMLElement;
-            target.removeEventListener(type, eventObj.listener);
+      _(this).events.forEach((eventObj: EventBinding) => {
+        eventObj.keys.forEach((key) => {
+          eventObj.events.forEach((event) => {
+            const target = this[key] as HTMLElement;
+            target.removeEventListener(event, eventObj.handler);
           });
         });
       });
