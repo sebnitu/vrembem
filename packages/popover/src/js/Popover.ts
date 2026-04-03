@@ -4,12 +4,10 @@ import { PopoverEntry } from "./PopoverEntry";
 import { handleKeydown, handleMousemove } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
-import { VirtualElement } from "@floating-ui/dom";
 
 export class Popover extends Collection<PopoverEntry, PopoverConfig> {
   entryClass = PopoverEntry;
   trigger: HTMLElement | null = null;
-  virtualElement: VirtualElement | null = null;
 
   constructor(options: Partial<PopoverConfig>) {
     super({ ...config, ...options });
@@ -18,6 +16,7 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
     // Set the initial state of private store
     _(this, {
       virtual: false,
+      virtualElement: null,
       handlers: {
         keydown: handleKeydown.bind(this),
         mousemove: handleMousemove.bind(this)

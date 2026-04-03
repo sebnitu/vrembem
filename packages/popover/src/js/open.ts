@@ -72,7 +72,7 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
       }
 
       // Get either the virtual element or the entry trigger
-      const refEl = isVirtual ? entry.parent.virtualElement : entry.trigger;
+      const refEl = isVirtual ? _(entry.parent).virtualElement : entry.trigger;
 
       // Setup the compute position API
       computePosition(refEl, entry.el, {

@@ -5,7 +5,7 @@ import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
 function setVirtualElement(parent: Popover, { clientX, clientY }: MouseEvent) {
-  parent.virtualElement = {
+  _(parent).virtualElement = {
     getBoundingClientRect() {
       return {
         width: 0,
