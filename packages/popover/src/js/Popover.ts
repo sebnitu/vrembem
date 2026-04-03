@@ -37,7 +37,7 @@ export class Popover extends Collection<PopoverEntry, PopoverConfig> {
     });
   }
 
-  get virtual() {
+  get virtual(): boolean {
     return _(this).virtual;
   }
 
