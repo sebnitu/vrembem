@@ -63,13 +63,13 @@ const popovers = new Popover({
   // @type string
   stateActive: "is-active",
 
+  // The default event type that triggers popovers
+  // @type string as "click" | "hover"
+  event: "click",
+
   // The preferred placement location of a popover if there is enough space
   // @type string as Placement
   placement: "bottom",
-
-  // The event that should trigger the popover
-  // @type string as "click" | "hover"
-  event: "click",
 
   // A number represents the distance (gutter or margin) between the floating
   // element and the reference element.
@@ -148,6 +148,18 @@ Popover uses CSS variables in a reference and fallback pattern. Variables are re
   "--vb-popover-arrow-size": "8px"
 }} />
 
+When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the following CSS variables can be used to set JavaScript configuration options.
+
+<ReferenceTable id="cssvar-popover-js" valueLabel="JS Equivalent" filter={false} data={{
+  "--vb-popover-event": "event",
+  "--vb-popover-offset": "offset",
+  "--vb-popover-flip-padding": "flipPadding",
+  "--vb-popover-shift-padding": "shiftPadding",
+  "--vb-popover-arrow-padding": "arrowPadding",
+  "--vb-popover-toggle-delay": "toggleDelay",
+  "--vb-popover-virtual": "virtual"
+}} />
+
 ## Basic usage
 
 The popover is a simple container component consisting of the `popover` class and an `id`. Popover triggers should have an `aria-controls` attribute set to the ID of the popover element.
@@ -188,24 +200,21 @@ Add an arrow to a popover using an empty `<div>` or `<span>` with the `popover__
 
 ### Event type
 
-There are two event types that can trigger a popover: `click` (the default) and `hover` (hover also applies focus events). You an set your preferred default event type by passing it as an option on instantiation or mount.
+There are two event types that can trigger a popover: `click` (the default) and `hover` (also applies focus events). Set the default event type using the `event` config option.
 
 <CodeExample lang="js">
 
   ```js
   // Set on instantiation
-  const popover = new Popover({
-    eventType: "click"
+  const popovers = new Popover({
+    event: "click"
   });
 
-  // Set on mount
-  popover.mount({
-    eventType: "hover"
-  });
+  popovers.mount();
   ```
 </CodeExample>
 
-Alternatively, this value can be overridden using the [`--vb-popover-event` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the event option can be provided using the `--vb-popover-event` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -221,26 +230,36 @@ Alternatively, this value can be overridden using the [`--vb-popover-event` CSS 
   ```
 </CodeExample>
 
+**Available options**
+
+- `click`
+- `hover`
+
 ### Placement
 
-Popover uses the [Popper JS positioning engine](https://popper.js.org/) to determine the optimal place to display a popover. The default preference is `bottom` but can be changed by passing it as an option on instantiation or mount.
+Popover uses the [floating UI positioning engine](https://floating-ui.com/) to determine the optimal popover placement. The default popover placement is `bottom` but can be changed a new placement option.
 
 <CodeExample lang="js">
+```js
+// Set on instantiation
+const popover = new Popover({
+  placement: "top"
+});
 
-  ```js
-  // Set on instantiation
-  const popover = new Popover({
-    placement: "top"
-  });
-
-  // Set on mount
-  popover.mount({
-    placement: "bottom"
-  });
-  ```
+popover.mount();
+```
 </CodeExample>
 
-Alternatively, this value can be overridden using the [`--vb-popover-placement` CSS variable](#css-variables). This can be done either through your own custom CSS or using the `style` attribute.
+The available placement options include `top`, `right`, `bottom`, `left` along with `-start` and `-end` variants. 
+
+<CodeExample lang="ts">
+```ts
+// As imported from "@floating-ui/dom"
+type Placement = "bottom" | "top" | "right" | "left" | "bottom-start" | "bottom-end" | "top-start" | "top-end" | "right-start" | "right-end" | "left-start" | "left-end";
+```
+</CodeExample>
+
+When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the placement option can be provided using the `--vb-popover-placement` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -257,68 +276,24 @@ Alternatively, this value can be overridden using the [`--vb-popover-placement` 
   ```
 </CodeExample>
 
-**Available variants**
+**Available options**
 
-- `auto`
-- `auto-start`
-- `auto-end`
-- `top`
-- `top-start`
-- `top-end`
 - `bottom`
 - `bottom-start`
 - `bottom-end`
-- `left`
-- `left-start`
-- `left-end`
+- `top`
+- `top-start`
+- `top-end`
 - `right`
 - `right-start`
 - `right-end`
+- `left`
+- `left-start`
+- `left-end`
 
-### CSS Variables
+## popover_size_[key]
 
-Popover provides CSS variables on the `:root` element for controlling the event type, preferred placement, offset and overflow-padding. They're consumed by the JavaScript implementation to set options dynamically. The following Sass variable are output as CSS variables:
-
-The advantage to having these values set by a CSS variable is that they can be given new values for specific use cases either in your own stylesheet or by setting the variables in a `style` attribute.
-
-<CodeExample>
-  <Fragment slot="output">
-    <div class="flex justify-content-between" style="--vb-popover-offset: 0;">
-      <div style="--vb-popover-placement: right;">
-        <button class="button button_icon button_color_secondary" aria-describedby="popover-5">
-          <span class="arrow-right"></span>
-        </button>
-        <div id="popover-5" class="popover">
-          <Menu name="edit-shortcuts" />
-          <span class="popover__arrow"></span>
-        </div>
-      </div>
-      <div style="--vb-popover-placement: left;">
-        <button class="button button_icon button_color_secondary" aria-describedby="popover-6">
-          <span class="arrow-left"></span>
-        </button>
-        <div id="popover-6" class="popover">
-          <Menu name="edit-shortcuts" />
-          <span class="popover__arrow"></span>
-        </div>
-      </div>
-    </div>
-  </Fragment>
-  ```html
-  <div style="--vb-popover-offset: 0;">
-    <div style="--vb-popover-placement: right;">
-      ...
-    </div>
-    <div style="--vb-popover-placement: left;">
-      ...
-    </div>
-  </div>
-  ```
-</CodeExample>
-
-## popover_size_[value]
-
-Adjusts the size of the popover. There are two options relative to the default size, `popover_size_sm` and `popover_size_lg`. Also available is `popover_size_auto` which allows the popover to adjust size based on its content.
+Adjust the size of a popover by increasing or decreasing its width. These modifiers are generated using key/value pairs of the `popover-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex">
@@ -388,7 +363,9 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
   ```
 </CodeExample>
 
-> For more information regarding tooltip accessibility and best practices, please see: [ARIA: tooltip role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role).
+<div class="notice">
+  For more information regarding tooltip accessibility and best practices, please see: [ARIA: tooltip role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/tooltip_role).
+</div>
 
 ### Multiple popovers
 

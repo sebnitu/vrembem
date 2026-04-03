@@ -19,13 +19,13 @@ export const config = {
   // @type string
   stateActive: "is-active",
 
+  // The default event type that triggers popovers
+  // @type string as "click" | "hover"
+  event: "click" as "click" | "hover",
+
   // The preferred placement location of a popover if there is enough space
   // @type string as Placement
   placement: "bottom" as Placement,
-
-  // The event that should trigger the popover
-  // @type string as "click" | "hover"
-  event: "click" as "click" | "hover",
 
   // A number represents the distance (gutter or margin) between the floating
   // element and the reference element.
