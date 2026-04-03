@@ -52,9 +52,18 @@ export class ReferenceTableEntry extends CollectionEntry {
     if (this.config.get("expandable")) {
       // Set the height variable
       const padding = 42; // Kind of a magic number atm
+
+      // Set the expanded height
       this.expandHeight =
         this.table.offsetHeight + this.footer.offsetHeight + padding;
 
+      // If a header exists, add it to the height
+      const header = this.el.querySelector(".reference-table__header");
+      if (header) {
+        this.expandHeight = this.expandHeight + header.offsetHeight;
+      }
+
+      // Add toggle button event listener
       this.expandBtn.addEventListener("click", () => {
         this.expandToggle();
       });
