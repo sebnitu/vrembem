@@ -5,7 +5,10 @@ package: "@vrembem/popover"
 category: component
 ---
 
-import DocBlock from "../components/DocBlock.astro";
+import CodeExpander from "../components/CodeExpander.astro";
+import ReferenceBar from "../components/ReferenceBar.astro";
+import ReferenceCard from "../components/ReferenceCard.astro";
+import ReferenceTable from "../components/ReferenceTable.astro";
 import Menu from "../examples/Menu.astro";
 import Icon from '../components/Icon.astro';
 
@@ -21,10 +24,129 @@ npm install @vrembem/popover
 
 <CodeExample lang="js">
   ```js
+  // Import the popover class
   import Popover from "@vrembem/popover";
-  const popover = new Popover({ autoMount: true });
+
+  // Instantiate the popover collection
+  const popovers = new Popover();
+
+  // Mount the popover collection
+  await popovers.mount();
   ```
 </CodeExample>
+
+## Options
+
+Popover is built as a Sass module to handle styles and CSS output, along with a corresponding JavaScript class for managing behavior and plugin integration. Below are the available configuration options.
+
+### JavaScript
+
+Popover comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the popover collection.
+
+<CodeExpander lang="js">
+```js
+const popovers = new Popover({
+  // A valid CSS selector used to query the document for elements to include as
+  // entries in the popover collection.
+  // @type string
+  selector: ".popover",
+
+  // A valid CSS selector that should match a popover as a tooltip type
+  // @type string
+  selectorTooltip: ".popover_tooltip",
+
+  // A valid CSS selector for the arrow or carrot element of a popover
+  // @type string
+  selectorArrow: ".popover__arrow",
+
+  // A CSS class applied as the active state of a popover
+  // @type string
+  stateActive: "is-active",
+
+  // The preferred placement location of a popover if there is enough space
+  // @type string as Placement
+  placement: "bottom",
+
+  // The event that should trigger the popover
+  // @type string as "click" | "hover"
+  event: "click",
+
+  // A number represents the distance (gutter or margin) between the floating
+  // element and the reference element.
+  // @type number
+  offset: 8,
+
+  // A number representing the distance from the viewport edge before the
+  // popover is flipped to the opposite position.
+  // @type number
+  flipPadding: 10,
+
+  // A number representing the distance from the viewport edge before the
+  // popover is shifted to remain visible.
+  // @type number
+  shiftPadding: 10,
+
+  // This describes the padding between the arrow and the edges of the floating
+  // element. If your floating element has border-radius, this will prevent it
+  // from overflowing the corners.
+  // @type number
+  arrowPadding: 10,
+
+  // The number in milliseconds that a popover should delay before opening and
+  // closing. Open and close delays can be different by providing two values.
+  // Example: [200, 600], "200, 600", "200 600"
+  // @type number | string | (number | string)[]
+  toggleDelay: 0,
+
+  // Whether or not the popover should be positioned to follow the cursor.
+  // @type boolean
+  virtual: false
+});
+```
+</CodeExpander>
+
+### Sass
+
+Popover comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/popover" with (
+  $config: (
+    // Map for outputting popover_size_[key] modifier variants
+    // @type map
+    "popover-size": (
+      "auto": "auto",
+      "sm": 12em,
+      "lg": 20em
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Popover uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-popover" valueLabel="Fallback" expandable={true} data={{
+  "--vb-popover-z-index": "10",
+  "--vb-popover-width": "16em",
+  "--vb-popover-max-width": "calc(100vw - 2rem)",
+  "--vb-popover-padding": "0.5em",
+  "--vb-popover-border": "none",
+  "--vb-popover-border-radius": "var(--vb-border-radius)",
+  "--vb-popover-font-size": "var(--vb-font-size-sm)",
+  "--vb-popover-line-height": "inherit",
+  "--vb-popover-foreground": "var(--vb-foreground)",
+  "--vb-popover-background": "var(--vb-background)",
+  "--vb-popover-box-shadow": "var(--vb-box-shadow-2)",
+  "--vb-popover-transition-property": "opacity",
+  "--vb-popover-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-popover-transition-duration": "var(--vb-transition-duration-short)",
+  "--vb-popover-offset": "8",
+  "--vb-popover-arrow-size": "8px"
+}} />
 
 ## Basic usage
 
@@ -298,270 +420,78 @@ There are cases where a single popover trigger requires both a tooltip and a cli
   ```
 </CodeExample>
 
-## Customization
+## Reference
 
-Popovers are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
+`Popover` and `PopoverEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only popover-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
-<DocBlock name="CSS Variables" src="popover/src/scss/_root.scss">
+### trigger
 
-```scss
-:root {
-  --vb-popover-offset: 8;
-  --vb-popover-overflow-padding: 10;
-  --vb-popover-flip-padding: 10;
-  --vb-popover-arrow-padding: 10;
-}
-```
-</DocBlock>
+<ReferenceBar type="HTMLElement | null" />
 
-<DocBlock name="SCSS Variables" src="popover/src/scss/_variables.scss">
+Stores a reference to a trigger element. When a click event popover is opened, the trigger is the element that was used to open it. Focus is returned to this element when the popover is closed.
 
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
+### active
 
-$prefix-variable: core.$prefix-variable !default;
-$prefix-block: core.$prefix-block !default;
-$prefix-element: core.$prefix-element !default;
-$prefix-modifier: core.$prefix-modifier !default;
-$prefix-modifier-value: core.$prefix-modifier-value !default;
+<ReferenceBar type="PopoverEntry | undefined" />
 
-$event: null !default;
-$placement: null !default;
-$offset: 8 !default;
-$overflow-padding: 10 !default;
-$flip-padding: 10 !default;
+...
 
-$z-index: 10 !default;
-$width: 16em !default;
-$max-width: calc(100vw - 20px) !default;
-$padding: 0.5em !default;
-$border: null !default;
-$border-radius: core.$border-radius !default;
-$foreground: theme.get("foreground") !default;
-$background: theme.get("background") !default;
-$background-clip: padding-box !default;
-$shadow: css.get("box-shadow-2") !default;
-$font-size: core.$font-size-sm !default;
-$line-height: null !default;
+### activeHover
 
-$arrow-size: 12px !default;
-$arrow-padding: 10 !default;
-$arrow-border: core.$border !default;
+<ReferenceBar type="PopoverEntry | undefined" />
 
-$size-sm-width: 12em !default;
-$size-lg-width: 20em !default;
+...
 
-// Custom properties
-@include css.set("popover", (
-  "event": $event,
-  "placement": $placement,
-  "offset": $offset,
-  "overflow-padding": $overflow-padding,
-  "flip-padding": $flip-padding,
-  "arrow-padding": $arrow-padding
-));
-```
-</DocBlock>
+### virtual
 
-<DocBlock name="JS Config" src="popover/src/js/defaults.js">
+<ReferenceBar type="boolean" />
 
-  ```js
-  export default {
-    autoMount: false,
+...
 
-    // Selectors
-    selectorPopover: ".popover",
-    selectorArrow: ".popover__arrow",
+### open
 
-    // State classes
-    stateActive: "is-active",
+<ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-    // Feature configurations
-    eventListeners: true,
-    eventType: "click",
-    placement: "bottom"
-  };
-  ```
-</DocBlock>
+...
 
-## JavaScript usage
+### close
 
-After the popover component has been instantiated the popover object is returned with a robust API to help manage all the popovers on your page.
+<ReferenceBar type="method" returns="Promise<PopoverEntry | PopoverEntry[]>" />
 
-<DocBlock name="popover.collection" type="property" returns="array" src="core/src/js/Collection.js" line="3">
-  Returns an array where all popover objects are stored when registered. Each popover object contains the following properties:
+...
 
-  ```scss
-  {
-    id: String, // The unique ID of the popover.
-    state: String, // The current state of the popover ('closed' or 'opened').
-    el: HTMLElement, // The popover HTML element.
-    trigger: HTMLElement, // The popover trigger HTML element.
-    popper: Object // The popper JS instance.
-    config: Object // Stores the popover configuration options.
-    open: Function // Method to open this popover.
-    close: Function // Method to close this popover.
-    deregister: Function // Method to deregister this popover.
-  }
-  ```
-</DocBlock>
+### entry.state
 
-<DocBlock name="popover.mount" type="method" returns="Object" src="popover/src/js/index.js" line="23" args={[
-  ["options", "Object (optional)", "An options object for passing custom configurations."]
-]}>
-  Mounts the popover instance. During mounting, the following processes are run:
+<ReferenceBar type='"closed" | "opened"' />
 
-  - Builds the popover collection by running `registerCollection()`
-  - Sets up the global event listeners by running `mountEventListeners()`
+...
 
-  <Fragment slot="example">
-    ```js
-    const popover = new Popover();
-    await popover.mount();
-    ```
-  </Fragment>
-</DocBlock>
+### entry.trigger
 
-<DocBlock name="popover.unmount" type="method" returns="Object" src="popover/src/js/index.js" line="43">
-  Destroys and cleans up the popover mount. During cleanup, the following processes are run:
+<ReferenceBar type="HTMLElement | null" />
 
-  - Deregister the popover collection by running `deregisterCollection()`
-  - Removes global event listeners by running `unmountEventListeners()`
+...
 
-  <Fragment slot="example">
-    ```js
-    const popover = new Popover();
-    await popover.mount();
-    // ...
-    await popover.unmount();
-    ```
-  </Fragment>
-</DocBlock>
+### entry.isTooltip
 
-<DocBlock name="popover.mountEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="60" args={[
-  ["processCollection", "Boolean", "Whether or not to process the event listeners of popover collection. Defaults to true."]
-]}>
-  Set document and collection entry event listeners.
+<ReferenceBar type="boolean" />
 
-  <Fragment slot="example">
-    ```js
-    const popover = new Popover({ eventListeners: false });
-    await popover.mount();
-    popover.mountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
+...
 
-<DocBlock name="popover.unmountEventListeners" type="method" returns="Object" src="popover/src/js/index.js" line="72" args={[
-  ["processCollection", "Boolean", "Whether or not to process the event listeners of popover collection. Defaults to true."]
-]}>
-  Remove document and collection entry event listeners.
+### entry.isHovered
 
-  <Fragment slot="example">
-    ```js
-    const popover = new Popover();
-    await popover.mount();
-    // ...
-    popover.unmountEventListeners();
-    ```
-  </Fragment>
-</DocBlock>
+<ReferenceBar type="boolean" />
 
-<DocBlock name="popover.register" type="method" returns="Object" src="popover/src/js/register.js" args={[
-  ["query", "String || Object", "A popover ID or an HTML element of either a popover or its trigger."]
-]}>
-Registers a popover into the collection. This also sets the initial state, creates the popper instance and attaches event listeners. Returns the popover object that got stored in the collection.
+...
 
-  <Fragment slot="example">
-    ```js
-    const result = await popover.register("popover-id");
-    // => Object { id: "popover-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
+### entry.open
 
-<DocBlock name="popover.deregister" type="method" returns="Array" src="popover/src/js/deregister.js" args={[
-  ["query", "String || Object", "A popover ID or an HTML element of either a popover or its trigger."]
-]}>
-Deregister the popover from the collection. This closes the popover if it's opened, cleans up the popper instance, removes event listeners and then removes the entry from the collection. Returns the newly modified collection array.
+<ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-  <Fragment slot="example">
-    ```js
-    const result = await popover.deregister("popover-id");
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
+...
 
-<DocBlock name="popover.registerCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="26" args={[
-  ["items", "Array", "An array of popovers or popover IDs to register."]
-]}>
-Registers array of popovers to the collection. All popovers in array are run through the `register()` method. Returns the collection array.
+### entry.close
 
-  <Fragment slot="example">
-    ```js
-    const popovers = document.querySelectorAll(".popover");
-    const result = await popover.registerCollection(popovers);
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
+<ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-<DocBlock name="popover.deregisterCollection" type="method" returns="Array" src="core/src/js/Collection.js" line="33">
-Deregister all popovers in the collections array. All popovers in collection are run through the `deregister()` method. Returns an empty collection array.
-
-  <Fragment slot="example">
-    ```js
-    const result = await popover.registerCollection();
-    // => Array []
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="popover.get" type="method" returns="Object || undefined" src="core/src/js/Collection.js" line="40" args={[
-  ["value", "String || Object", "The value to search for within the collection."],
-  ["key", "String (optional)", "The property key to search the value against (defaults to 'id')."]
-]}>
-  Used to retrieve a registered popover object from the collection. Query should match the key type to search by: e.g. to search by popover elements, pass the popover html node with a key of `'el'`. Defaults to `'id'`.
-
-  Returns the first element in the collection that matches the provided query and key. Otherwise, undefined is returned.
-
-  <Fragment slot="example">
-    ```js
-    const entry = popover.get("popover-id");
-    // => Object { id: "popover-id", ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="popover.open" type="method" returns="Object" src="popover/src/js/open.js" args={[
-  ["id", "String", "The ID of the popover to open."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Opens a popover using the provided ID. Returns the popover object that was opened.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await popover.open("popover-id");
-    // => Object { state: 'opened', ... }
-    ```
-  </Fragment>
-</DocBlock>
-
-<DocBlock name="popover.close" type="method" returns="Object" src="popover/src/js/close.js" args={[
-  ["id", "String", "The ID of the popover to close."],
-  ["transition", "Boolean (optional)", "Whether or not to animate the transition."],
-  ["focus", "Boolean (optional)", "Whether or not to handle focus management."]
-]}>
-  Close a popover using the provided ID. Can be called without an ID to close all open popovers. Returns the popover object or array of popover objects that were closed.
-
-  <Fragment slot="example">
-    ```js
-    const entry = await popover.close();
-    // => Array [{}, {}, ...]
-    ```
-  </Fragment>
-</DocBlock>
+...
