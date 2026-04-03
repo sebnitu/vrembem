@@ -9,8 +9,8 @@ import type { PopoverEntry } from "./PopoverEntry";
 
 type EventBinding = {
   keys: ("el" | "trigger")[];
-  events: string[];
-  handler: (event: MouseEvent | Event) => void;
+  events: ("mouseenter" | "mouseleave" | "focus" | "focusout" | "click")[];
+  handler: (event: MouseEvent | FocusEvent) => void;
 };
 
 export function registerEventListeners(entry: PopoverEntry) {
