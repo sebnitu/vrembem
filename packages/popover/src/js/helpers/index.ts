@@ -4,3 +4,4 @@ export * from "./getMiddlewareOptions";
 export * from "./getPadding";
 export * from "./getPopoverElements";
 export * from "./getPopoverID";
+export * from "./setHovered";

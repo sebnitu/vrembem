@@ -1,5 +1,5 @@
 import { _ } from "@vrembem/core";
-import { getDelay } from "./helpers";
+import { getDelay, setHovered } from "./helpers";
 import { closeAll, closeCheck } from "./close";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
@@ -59,7 +59,7 @@ export function handleMouseEnter(
   if (!(event instanceof MouseEvent) && !(event instanceof FocusEvent)) return;
 
   // Store our hover state
-  popover.setHovered(event);
+  setHovered(popover, event);
 
   // Guard to ensure only focus-visible triggers the tooltip on focus events
   if (
@@ -99,7 +99,7 @@ export function handleMouseLeave(popover: PopoverEntry, event: Event) {
   // Add a tiny delay to ensure hover isn't being moved to the popover element
   setTimeout(() => {
     // Update our hover state
-    popover.setHovered(event);
+    setHovered(popover, event);
 
     // Guard to prevent closing popover if either elements are being hovered
     if (popover.isHovered) return;
