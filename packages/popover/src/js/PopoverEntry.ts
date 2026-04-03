@@ -18,8 +18,6 @@ type EventBinding = {
 export class PopoverEntry extends CollectionEntry {
   state = "closed";
   trigger: HTMLElement | null = null;
-  toggleDelayId: number | null = null;
-  floatingCleanup = () => {};
 
   constructor(parent: Popover, query: string | HTMLElement) {
     super(parent, query);
@@ -30,7 +28,9 @@ export class PopoverEntry extends CollectionEntry {
       hovered: {
         el: false,
         trigger: false
-      }
+      },
+      toggleDelayId: null,
+      floatingCleanup: () => {}
     });
   }
 
@@ -193,7 +193,7 @@ export class PopoverEntry extends CollectionEntry {
     }
 
     // Clean up the floating UI instance
-    this.floatingCleanup();
+    _(this).floatingCleanup();
 
     // Remove event listeners
     this.deregisterEventListeners();

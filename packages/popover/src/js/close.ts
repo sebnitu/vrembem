@@ -1,3 +1,4 @@
+import { _ } from "@vrembem/core";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
@@ -14,7 +15,7 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
     }
 
     // Clean up the floating UI instance
-    entry.floatingCleanup();
+    _(entry).floatingCleanup();
 
     // Update popover state
     entry.state = "closed";

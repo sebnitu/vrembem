@@ -1,3 +1,4 @@
+import { _ } from "@vrembem/core";
 import {
   computePosition,
   autoUpdate,
@@ -103,7 +104,7 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
       document.addEventListener("scroll", updatePosition);
     } else {
       // Setup the autoUpdate of popover positioning and store the cleanup function
-      entry.floatingCleanup = autoUpdate(
+      _(entry).floatingCleanup = autoUpdate(
         entry.trigger,
         entry.el,
         updatePosition

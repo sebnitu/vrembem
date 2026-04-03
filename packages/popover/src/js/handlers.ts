@@ -1,3 +1,4 @@
+import { _ } from "@vrembem/core";
 import { getDelay } from "./helpers";
 import { closeAll, closeCheck } from "./close";
 import type { Popover } from "./Popover";
@@ -38,8 +39,8 @@ export function handleClick(
 
 export function handleTooltipClick(popover: PopoverEntry) {
   if (popover.isTooltip) {
-    if (popover.toggleDelayId) {
-      clearTimeout(popover.toggleDelayId);
+    if (_(popover).toggleDelayId) {
+      clearTimeout(_(popover).toggleDelayId);
     }
     popover.close();
   }
@@ -70,8 +71,8 @@ export function handleMouseEnter(
   }
 
   // Clear any existing toggle delays
-  if (popover.toggleDelayId) {
-    clearTimeout(popover.toggleDelayId);
+  if (_(popover).toggleDelayId) {
+    clearTimeout(_(popover).toggleDelayId);
   }
 
   // Guard to ensure a popover is not already open for this trigger
@@ -85,7 +86,7 @@ export function handleMouseEnter(
   if (this.activeHover) this.activeHover.close();
 
   // Set the toggle delay before opening the popover
-  popover.toggleDelayId = setTimeout(() => {
+  _(popover).toggleDelayId = setTimeout(() => {
     // If the popover still exists, open it
     if (popover.id) popover.open();
   }, delay);
@@ -104,12 +105,12 @@ export function handleMouseLeave(popover: PopoverEntry, event: Event) {
     if (popover.isHovered) return;
 
     // Clear any existing toggle delays
-    if (popover.toggleDelayId) {
-      clearTimeout(popover.toggleDelayId);
+    if (_(popover).toggleDelayId) {
+      clearTimeout(_(popover).toggleDelayId);
     }
 
     // Set the toggle delay before closing the popover
-    popover.toggleDelayId = setTimeout(
+    _(popover).toggleDelayId = setTimeout(
       () => closeCheck(popover),
       getDelay(popover, 1)
     );
