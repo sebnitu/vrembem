@@ -9,7 +9,7 @@ import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
 export class Modal extends Collection<ModalEntry, ModalConfig> {
-  entryClass = ModalEntry;
+  readonly entryClass = ModalEntry;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
 

@@ -7,7 +7,7 @@ import { close } from "./close";
 import { toggle } from "./toggle";
 
 export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
-  entryClass = DrawerEntry;
+  readonly entryClass = DrawerEntry;
 
   constructor(options: Partial<DrawerConfig>) {
     super({ ...config, ...options });
