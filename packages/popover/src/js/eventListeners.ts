@@ -77,7 +77,7 @@ export function registerEventListeners(entry: PopoverEntry) {
 
 export function deregisterEventListeners(entry: PopoverEntry) {
   // If event listeners have been setup
-  if (_(entry).events) {
+  if (_(entry).events.length) {
     // Loop through listeners and remove from the appropriate elements
     _(entry).events.forEach((eventObj: EventBinding) => {
       eventObj.keys.forEach((key) => {
