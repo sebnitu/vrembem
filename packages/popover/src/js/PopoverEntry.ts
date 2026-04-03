@@ -16,7 +16,7 @@ type EventBinding = {
 };
 
 export class PopoverEntry extends CollectionEntry {
-  state = "closed";
+  state: "closed" | "opened" = "closed";
   trigger: HTMLElement | null = null;
 
   constructor(parent: Popover, query: string | HTMLElement) {
