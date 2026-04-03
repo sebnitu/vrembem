@@ -434,64 +434,159 @@ Stores a reference to a trigger element. When a click event popover is opened, t
 
 <ReferenceBar type="PopoverEntry | undefined" />
 
-...
+Returns the active popover if one exists. Otherwise, returns undefined. An active popover is defined as one that currently has the `"opened"` state.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+if (popovers.active) {
+  // This block will run if a popover is active...
+}
+```
+</CodeExample>
 
 ### activeHover
 
 <ReferenceBar type="PopoverEntry | undefined" />
 
-...
+Returns the active hover popover if one exists. Otherwise, returns undefined. An active hover popover is defined as one that is currently opened and has its event type set to `"hover"`.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+if (popovers.activeHover) {
+  // This block will run if a hover popover is active...
+}
+```
+</CodeExample>
 
 ### virtual
 
 <ReferenceBar type="boolean" />
 
-...
+Gets or sets the virtual element mode. When enabled, the popover tracks the cursor position using a `mousemove` listener on the document. When disabled, the listener is removed.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Enable virtual element mode
+popovers.virtual = true;
+
+// Disable virtual element mode
+popovers.virtual = false;
+```
+</CodeExample>
 
 ### open
 
 <ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-...
+Opens a popover using the provided popover ID. It will throw an error if the provided ID does not match an existing popover entry.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the popover to open.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await popovers.open("my-popover");
+// > Opens the popover with id="my-popover"
+
+await popovers.open("fake-popover");
+// > Uncaught Error: Popover entry not found in collection with id of "fake-popover"
+```
+</CodeExample>
 
 ### close
 
 <ReferenceBar type="method" returns="Promise<PopoverEntry | PopoverEntry[]>" />
 
-...
+Closes a popover using the provided popover ID. It will throw an error if the provided ID does not match an existing popover entry. If no ID is provided, all open popovers are closed.
+
+#### Arguments
+
+<ReferenceCard name="id" type="string">
+  The ID of the popover to close. If omitted, all open popovers are closed.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="js">
+```js
+await popovers.close("my-popover");
+// > Closes the popover with id="my-popover"
+
+await popovers.close();
+// > Closes all open popovers
+```
+</CodeExample>
 
 ### entry.state
 
 <ReferenceBar type='"closed" | "opened"' />
 
-...
+Stores the current state of the popover. Possible states include:
+
+- `opened`: The popover is currently open, and its content is visible.
+- `closed`: The popover is currently closed, and its content is hidden.
 
 ### entry.trigger
 
 <ReferenceBar type="HTMLElement | null" />
 
-...
+Stores a reference to the trigger element associated with the popover entry. The trigger is resolved during entry creation using the `aria-controls` or `aria-describedby` attribute that matches the popover's ID.
 
 ### entry.isTooltip
 
 <ReferenceBar type="boolean" />
 
-...
+Returns whether or not the popover is a tooltip. A popover is considered a tooltip if it matches the `selectorTooltip` config option or has the `role="tooltip"` attribute.
 
 ### entry.isHovered
 
 <ReferenceBar type="boolean" />
 
-...
+Returns whether or not the popover element or its trigger is currently being hovered over. This is used internally to manage hover event popovers and determine if the popover should remain open.
 
 ### entry.open
 
 <ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-...
+Opens the popover if it is currently closed.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the popover entry
+const entry = popovers.get("my-popover");
+
+// Open the popover
+await entry.open();
+```
+</CodeExample>
 
 ### entry.close
 
 <ReferenceBar type="method" returns="Promise<PopoverEntry>" />
 
-...
+Closes the popover if it is currently opened.
+
+#### Example
+
+<CodeExample lang="js">
+```js
+// Get the popover entry
+const entry = popovers.get("my-popover");
+
+// Close the popover
+await entry.close();
+```
+</CodeExample>
