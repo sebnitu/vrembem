@@ -69,7 +69,7 @@ export class PopoverEntry extends CollectionEntry {
     // Setup event listeners
     registerEventListeners(this);
 
-    // If this popover is set to anchor to he cursor
+    // Setup cursor anchor if enabled
     if (this.config.get("followCursor")) {
       // Enable cursor tracking on the parent collection
       _(this.parent).trackCursor = true;
