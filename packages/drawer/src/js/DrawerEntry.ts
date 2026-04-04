@@ -13,7 +13,7 @@ export class DrawerEntry extends CollectionEntry {
   constructor(parent: Drawer, query: string | HTMLElement) {
     super(parent, query);
 
-    // Setup initial states of private variables
+    // Set the initial state of private store
     _(this, {
       mode: "indeterminate",
       state: "indeterminate",

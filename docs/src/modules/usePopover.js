@@ -15,7 +15,7 @@ if (typeof window !== "undefined") {
     }
   });
 
-  window["popover"] = await popovers.mount();
+  window["popovers"] = await popovers.mount();
 }
 
 export { popovers };

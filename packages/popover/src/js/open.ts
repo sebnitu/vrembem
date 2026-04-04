@@ -1,3 +1,4 @@
+import { _ } from "@vrembem/core";
 import {
   computePosition,
   autoUpdate,
@@ -56,22 +57,21 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
       );
     }
 
-    // Check if this is a virtual trigger
-    const isVirtual = entry.config.get("virtual");
-
-    // Enable virtual element tracking on parent collection
-    if (isVirtual) entry.parent.virtual = true;
+    // Check if popover should be anchored to the cursor
+    const followCursor = entry.config.get("followCursor");
 
     // Define the update position function
     function updatePosition() {
       // Remove the mousemove event listener if popover is no longer opened
-      if (isVirtual && entry.state !== "opened") {
+      if (followCursor && entry.state !== "opened") {
         document.removeEventListener("mousemove", updatePosition);
         document.removeEventListener("scroll", updatePosition);
       }
 
-      // Get either the virtual element or the entry trigger
-      const refEl = isVirtual ? entry.parent.virtualElement : entry.trigger;
+      // Get either the cursor element or the entry trigger
+      const refEl = followCursor
+        ? _(entry.parent).cursorElement
+        : entry.trigger;
 
       // Setup the compute position API
       computePosition(refEl, entry.el, {
@@ -96,14 +96,14 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
       });
     }
 
-    // If this is a virtual trigger, update the position on mouse move
-    if (isVirtual) {
+    // If this is a cursor anchored popover, update the position on mouse move
+    if (followCursor) {
       updatePosition();
       document.addEventListener("mousemove", updatePosition);
       document.addEventListener("scroll", updatePosition);
     } else {
       // Setup the autoUpdate of popover positioning and store the cleanup function
-      entry.floatingCleanup = autoUpdate(
+      _(entry).floatingCleanup = autoUpdate(
         entry.trigger,
         entry.el,
         updatePosition
@@ -118,14 +118,6 @@ export async function open(entry: PopoverEntry): Promise<PopoverEntry> {
   if (entry.config.get("event") === "click") {
     handleDocumentClick.call(entry.parent, entry);
   }
-
-  // Dispatch custom opened event
-  entry.el.dispatchEvent(
-    new CustomEvent(entry.config.get("customEventPrefix") + "opened", {
-      detail: entry.parent,
-      bubbles: true
-    })
-  );
 
   // Emit the opened event
   await entry.parent.emit("opened", entry);

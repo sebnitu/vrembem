@@ -32,8 +32,8 @@ describe("focusTrap", () => {
     await collection.mount();
     expect(collection.plugins.length).toBe(1);
     expect(typeof collection.plugins.get("focusTrap")).toBe("object");
-    expect(collection.events.opened.length).toBe(1);
-    expect(collection.events.closed.length).toBe(1);
+    expect(collection.events.get("opened").length).toBe(1);
+    expect(collection.events.get("closed").length).toBe(1);
   });
 
   it("should run plugin teardown method when collection unmounts", async () => {
@@ -43,8 +43,8 @@ describe("focusTrap", () => {
     expect(collection.plugins.length).toBe(1);
     await collection.unmount();
     expect(collection.plugins.get("focusTrap")).toBe(null);
-    expect(collection.events.opened.length).toBe(0);
-    expect(collection.events.closed.length).toBe(0);
+    expect(collection.events.get("opened").length).toBe(0);
+    expect(collection.events.get("closed").length).toBe(0);
   });
 
   it("should create focusTrap property on create entry lifecycle hook", async () => {

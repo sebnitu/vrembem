@@ -17,6 +17,6 @@
 
 #{core.bem("notice", "title")} {
   font-size: css.get("notice", "title-font-size", css.get("font-size-lg"));
-  font-weight: css.get("notice", "title-line-height", css.get("font-weight-semi-bold"));
-  line-height: css.get("notice", "title-font-weight", css.get("line-height"));
+  font-weight: css.get("notice", "title-font-weight", css.get("font-weight-semi-bold"));
+  line-height: css.get("notice", "title-line-height", inherit);
 }

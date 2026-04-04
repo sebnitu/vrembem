@@ -11,9 +11,9 @@ describe("EventEmitter", () => {
     const mockListener = vi.fn();
     emitter.on("testEvent", mockListener, "arg1", "arg2");
 
-    expect(emitter["events"]["testEvent"]).toHaveLength(1);
-    expect(emitter["events"]["testEvent"][0].listener).toBe(mockListener);
-    expect(emitter["events"]["testEvent"][0].args).toEqual(["arg1", "arg2"]);
+    expect(emitter.events.get("testEvent")).toHaveLength(1);
+    expect(emitter.events.get("testEvent")[0].listener).toBe(mockListener);
+    expect(emitter.events.get("testEvent")[0].args).toEqual(["arg1", "arg2"]);
   });
 
   it("should prevent duplicate listeners for the same event", () => {
@@ -21,7 +21,7 @@ describe("EventEmitter", () => {
     emitter.on("testEvent", mockListener);
     emitter.on("testEvent", mockListener); // Attempt to add a duplicate
 
-    expect(emitter["events"]["testEvent"]).toHaveLength(1);
+    expect(emitter.events.get("testEvent")).toHaveLength(1);
   });
 
   it("should allow different listeners for the same event", () => {
@@ -30,9 +30,9 @@ describe("EventEmitter", () => {
     emitter.on("testEvent", listenerOne);
     emitter.on("testEvent", listenerTwo);
 
-    expect(emitter["events"]["testEvent"]).toHaveLength(2);
-    expect(emitter["events"]["testEvent"][0].listener).toBe(listenerOne);
-    expect(emitter["events"]["testEvent"][1].listener).toBe(listenerTwo);
+    expect(emitter.events.get("testEvent")).toHaveLength(2);
+    expect(emitter.events.get("testEvent")[0].listener).toBe(listenerOne);
+    expect(emitter.events.get("testEvent")[1].listener).toBe(listenerTwo);
   });
 
   it("should remove a listener with off", () => {
@@ -40,7 +40,7 @@ describe("EventEmitter", () => {
     emitter.on("testEvent", mockListener);
     emitter.off("testEvent", mockListener);
 
-    expect(emitter["events"]["testEvent"]).toHaveLength(0);
+    expect(emitter.events.get("testEvent")).toHaveLength(0);
   });
 
   it("should handle off when the event does not exist", () => {

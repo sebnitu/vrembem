@@ -1,3 +1,4 @@
+import { _ } from "@vrembem/core";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
@@ -14,7 +15,7 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
     }
 
     // Clean up the floating UI instance
-    entry.floatingCleanup();
+    _(entry).floatingCleanup();
 
     // Update popover state
     entry.state = "closed";
@@ -23,14 +24,6 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
     if (entry.trigger === entry.parent.trigger) {
       entry.parent.trigger = null;
     }
-
-    // Dispatch custom closed event
-    entry.el.dispatchEvent(
-      new CustomEvent(entry.config.get("customEventPrefix") + "closed", {
-        detail: entry.parent,
-        bubbles: true
-      })
-    );
 
     // Emit the closed event
     await entry.parent.emit("closed", entry);

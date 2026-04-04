@@ -1,10 +1,11 @@
-import { getDelay } from "./helpers";
+import { _ } from "@vrembem/core";
+import { getDelay, setHovered } from "./helpers";
 import { closeAll, closeCheck } from "./close";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
-function setVirtualElement(parent: Popover, { clientX, clientY }: MouseEvent) {
-  parent.virtualElement = {
+function setCursorElement(parent: Popover, { clientX, clientY }: MouseEvent) {
+  _(parent).cursorElement = {
     getBoundingClientRect() {
       return {
         width: 0,
@@ -29,7 +30,7 @@ export function handleClick(
     popover.close();
   } else {
     if (event instanceof MouseEvent) {
-      setVirtualElement(this, event);
+      setCursorElement(this, event);
     }
     this.trigger = popover.trigger;
     popover.open();
@@ -38,15 +39,15 @@ export function handleClick(
 
 export function handleTooltipClick(popover: PopoverEntry) {
   if (popover.isTooltip) {
-    if (popover.toggleDelayId) {
-      clearTimeout(popover.toggleDelayId);
+    if (_(popover).toggleDelayId) {
+      clearTimeout(_(popover).toggleDelayId);
     }
     popover.close();
   }
 }
 
 export function handleMousemove(this: Popover, event: MouseEvent) {
-  setVirtualElement(this, event);
+  setCursorElement(this, event);
 }
 
 export function handleMouseEnter(
@@ -55,10 +56,10 @@ export function handleMouseEnter(
   event: Event
 ) {
   // Ensure that this is a mouse event
-  if (!(event instanceof MouseEvent)) return;
+  if (!(event instanceof MouseEvent) && !(event instanceof FocusEvent)) return;
 
   // Store our hover state
-  popover.isHovered = event;
+  setHovered(popover, event);
 
   // Guard to ensure only focus-visible triggers the tooltip on focus events
   if (
@@ -70,8 +71,8 @@ export function handleMouseEnter(
   }
 
   // Clear any existing toggle delays
-  if (popover.toggleDelayId) {
-    clearTimeout(popover.toggleDelayId);
+  if (_(popover).toggleDelayId) {
+    clearTimeout(_(popover).toggleDelayId);
   }
 
   // Guard to ensure a popover is not already open for this trigger
@@ -85,7 +86,7 @@ export function handleMouseEnter(
   if (this.activeHover) this.activeHover.close();
 
   // Set the toggle delay before opening the popover
-  popover.toggleDelayId = setTimeout(() => {
+  _(popover).toggleDelayId = setTimeout(() => {
     // If the popover still exists, open it
     if (popover.id) popover.open();
   }, delay);
@@ -93,23 +94,23 @@ export function handleMouseEnter(
 
 export function handleMouseLeave(popover: PopoverEntry, event: Event) {
   // Ensure that this is a mouse event
-  if (!(event instanceof MouseEvent)) return;
+  if (!(event instanceof MouseEvent) && !(event instanceof FocusEvent)) return;
 
   // Add a tiny delay to ensure hover isn't being moved to the popover element
   setTimeout(() => {
     // Update our hover state
-    popover.isHovered = event;
+    setHovered(popover, event);
 
     // Guard to prevent closing popover if either elements are being hovered
     if (popover.isHovered) return;
 
     // Clear any existing toggle delays
-    if (popover.toggleDelayId) {
-      clearTimeout(popover.toggleDelayId);
+    if (_(popover).toggleDelayId) {
+      clearTimeout(_(popover).toggleDelayId);
     }
 
     // Set the toggle delay before closing the popover
-    popover.toggleDelayId = setTimeout(
+    _(popover).toggleDelayId = setTimeout(
       () => closeCheck(popover),
       getDelay(popover, 1)
     );
@@ -137,7 +138,6 @@ export function handleKeydown(this: Popover, event: KeyboardEvent) {
 }
 
 export function handleDocumentClick(this: Popover, popover: PopoverEntry) {
-  const root = this;
   document.addEventListener("click", function _f(event) {
     // Guard if event target property is null
     const target = event.target as HTMLElement | null;

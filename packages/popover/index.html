@@ -11,7 +11,7 @@
     import Popover from "./index.ts";
     import { teleport, cssConfig, attrConfig } from "@vrembem/core";
 
-    const popover = new Popover({
+    const popovers = new Popover({
       plugins: [
         cssConfig(),
         attrConfig(),
@@ -21,7 +21,7 @@
       ]
     });
 
-    window["popover"] = await popover.mount();
+    window["popovers"] = await popovers.mount();
   </script>
 </head>
 <body>
@@ -63,12 +63,11 @@
 
       <h2 id="popover-virtual"><a href="#popover-virtual">virtual popover</a></h2>
 
-      <button class="button" aria-describedby="popover-virtual-1">Copy</button>
+      <button class="button" aria-describedby="popover-virtual">Follow cursor</button>
       <div 
-        id="popover-virtual-1" 
+        id="popover-virtual" 
         class="popover popover_tooltip"
-        data-config='{"virtual": true}'
-        style="--vb-popover-event: click;"
+        style="--vb-popover-event: click; --vb-popover-follow-cursor: true;"
       >
         Virtual popover...
       </div>

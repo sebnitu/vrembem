@@ -1,6 +1,6 @@
 import { CollectionEntry, CollectionEntryConstructor } from "./CollectionEntry";
 import { EventEmitter, PluginArray, Plugin } from "./modules";
-import { dispatchLifecycleHook, dispatchProxyEntryHook } from "./helpers";
+import { root, dispatchLifecycleHook, dispatchProxyEntryHook } from "./helpers";
 import { maybeRunMethod } from "./utilities";
 
 export interface CollectionConfig<
@@ -37,6 +37,7 @@ export class Collection<
   entryClass: CollectionEntryConstructor<TEntry>;
   config: TConfig;
   plugins: PluginArray;
+  [root]?: Collection;
 
   constructor(options: Partial<TConfig> = {}) {
     this.config = { ...defaults, ...options } as TConfig;

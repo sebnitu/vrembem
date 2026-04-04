@@ -6,14 +6,9 @@ export function getDelay(popover: PopoverEntry, index: number): number {
 
   // Check if value is a string
   if (typeof value == "string") {
-    // Convert it to an array if value contains a comma
-    if (value.indexOf(",") > -1) {
-      value = value.split(",");
-    }
-    // Convert it to an array if value contains a space
-    if (value.indexOf(" ") > -1) {
-      value = value.split(" ");
-    }
+    // Convert string to an array if value contains a comma and/or space
+    const parts = value.split(/[\s,]+/).filter(Boolean);
+    value = parts.length > 1 ? parts : parts[0];
   }
 
   // Check if value is an array and get the index

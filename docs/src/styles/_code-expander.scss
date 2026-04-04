@@ -77,7 +77,8 @@
     display: block;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     border-color: palette.get("primary");
     box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
 
