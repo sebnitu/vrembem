@@ -69,6 +69,14 @@ export class PopoverEntry extends CollectionEntry {
     // Setup event listeners
     registerEventListeners(this);
 
+    // If this popover is set to anchor to he cursor
+    if (this.config.get("followCursor")) {
+      // Enable cursor tracking on the parent collection
+      _(this.parent).trackCursor = true;
+      // Add the virtual state class to the popover
+      this.el.classList.add(this.config.get("stateVirtual"));
+    }
+
     // Set initial state based on the presence of the active class
     if (this.el.classList.contains(this.config.get("stateActive"))) {
       await this.open();

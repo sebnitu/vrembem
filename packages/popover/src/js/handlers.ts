@@ -4,8 +4,8 @@ import { closeAll, closeCheck } from "./close";
 import type { Popover } from "./Popover";
 import type { PopoverEntry } from "./PopoverEntry";
 
-function setVirtualElement(parent: Popover, { clientX, clientY }: MouseEvent) {
-  _(parent).virtualElement = {
+function setCursorElement(parent: Popover, { clientX, clientY }: MouseEvent) {
+  _(parent).cursorElement = {
     getBoundingClientRect() {
       return {
         width: 0,
@@ -30,7 +30,7 @@ export function handleClick(
     popover.close();
   } else {
     if (event instanceof MouseEvent) {
-      setVirtualElement(this, event);
+      setCursorElement(this, event);
     }
     this.trigger = popover.trigger;
     popover.open();
@@ -47,7 +47,7 @@ export function handleTooltipClick(popover: PopoverEntry) {
 }
 
 export function handleMousemove(this: Popover, event: MouseEvent) {
-  setVirtualElement(this, event);
+  setCursorElement(this, event);
 }
 
 export function handleMouseEnter(

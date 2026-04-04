@@ -2,7 +2,7 @@
 interface Props {
   id?: string;
   arrow?: boolean;
-  virtual?: boolean;
+  followCursor?: boolean;
   href?: string;
   label?: string;
   triggerClass?: string;
@@ -14,7 +14,7 @@ interface Props {
 const {
   id,
   arrow,
-  virtual,
+  followCursor,
   href,
   label,
   triggerClass = "link",
@@ -29,13 +29,12 @@ const triggerId = `popover-trigger-${uid}`;
 const popoverId = Astro.slots.has("default") ? `popover-${uid}` : null;
 const tooltipId = Astro.slots.has("tooltip") ? `popover-tooltip-${uid}` : null;
 
-const css = {};
+const css: Record<string, string> = {};
 if (placement) {
   css["--vb-popover-placement"] = placement;
 }
-if (virtual) {
-  popoverClass = `${popoverClass} is-virtual`.trim();
-  tooltipClass = `${tooltipClass} is-virtual`.trim();
+if (followCursor) {
+  css["--vb-popover-follow-cursor"] = "true";
 }
 ---
 

@@ -63,6 +63,10 @@ const popovers = new Popover({
   // @type string
   stateActive: "is-active",
 
+  // A CSS class applied to popovers that are anchored to a virtual element
+  // @type string
+  stateVirtual: "is-virtual",
+
   // The default event type that triggers popovers
   // @type string as "click" | "hover"
   event: "click",
@@ -98,9 +102,9 @@ const popovers = new Popover({
   // @type number | string | (number | string)[]
   toggleDelay: 0,
 
-  // Whether or not the popover should be positioned to follow the cursor.
+  // Whether or not popovers should be anchored to the cursor.
   // @type boolean
-  virtual: false
+  followCursor: false
 });
 ```
 </CodeExpander>
@@ -157,7 +161,7 @@ When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the foll
   "--vb-popover-shift-padding": "shiftPadding",
   "--vb-popover-arrow-padding": "arrowPadding",
   "--vb-popover-toggle-delay": "toggleDelay",
-  "--vb-popover-virtual": "virtual"
+  "--vb-popover-follow-cursor": "followCursor"
 }} />
 
 ## Basic usage
@@ -397,6 +401,38 @@ There are cases where a single popover trigger requires both a tooltip and a cli
   ```
 </CodeExample>
 
+### Follow cursor
+
+Popovers can be anchored to the cursor element by setting the `followCursor` config option to `true`. When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the followCursor option can be provided using the `--vb-popover-follow-cursor` CSS variable.
+
+<CodeExample>
+  <Fragment slot="output">
+    <button type="button" class="button button_icon" aria-controls="popover-virtual">
+      <Icon name="coffee" />
+    </button>
+    <div 
+      id="popover-virtual" 
+      class="popover popover_tooltip" 
+      style="
+        --vb-popover-event: click;
+        --vb-popover-follow-cursor: true;
+      "
+    >
+      Virtual popover!
+    </div>
+  </Fragment>
+  ```html
+  <div 
+    id="unique-id" 
+    class="popover popover_tooltip" 
+    style="
+      --vb-popover-event: click;
+      --vb-popover-follow-cursor: true;
+    "
+  >...</div>
+  ```
+</CodeExample>
+
 ## Reference
 
 `Popover` and `PopoverEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only popover-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
@@ -436,24 +472,6 @@ Returns the active hover popover if one exists. Otherwise, returns undefined. An
 if (popovers.activeHover) {
   // This block will run if a hover popover is active...
 }
-```
-</CodeExample>
-
-### virtual
-
-<ReferenceBar type="boolean" />
-
-Gets or sets the virtual element mode. When enabled, the popover tracks the cursor position using a `mousemove` listener on the document. When disabled, the listener is removed.
-
-#### Example
-
-<CodeExample lang="js">
-```js
-// Enable virtual element mode
-popovers.virtual = true;
-
-// Disable virtual element mode
-popovers.virtual = false;
 ```
 </CodeExample>
 

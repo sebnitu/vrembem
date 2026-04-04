@@ -35,12 +35,8 @@ $-offset: calc((css.get("popover", "offset", 8) + 1) * 1px);
     height: $-offset;
   }
 
-  &.is-virtual {
-    @include css.override("popover", "virtual", true);
-
-    &::before {
-      content: none;
-    }
+  &.is-virtual::before {
+    content: none;
   }
 
   &.is-active {

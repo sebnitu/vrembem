@@ -19,6 +19,10 @@ export const config = {
   // @type string
   stateActive: "is-active",
 
+  // A CSS class applied to popovers that are anchored to a virtual element
+  // @type string
+  stateVirtual: "is-virtual",
+
   // The default event type that triggers popovers
   // @type string as "click" | "hover"
   event: "click" as "click" | "hover",
@@ -54,9 +58,9 @@ export const config = {
   // @type number | string | (number | string)[]
   toggleDelay: 0,
 
-  // Whether or not the popover should be positioned to follow the cursor.
+  // Whether or not popovers should be anchored to the cursor.
   // @type boolean
-  virtual: false
+  followCursor: false
 };
 
 export type PopoverConfig = CollectionConfig & typeof config;
