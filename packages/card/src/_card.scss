@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
 $-transition-property: background-color, border-color, box-shadow, transform;
 
@@ -12,7 +11,7 @@ $-transition-property: background-color, border-color, box-shadow, transform;
   border: css.get("card", "border", 1px solid css.get("border-color"));
   border-radius: css.get("card", "border-radius", css.get("border-radius"));
   color: css.get("card", "foreground", css.get("foreground-light"));
-  background: css.get("card", "background");
+  background: css.get("card", "background", css.get("background"));
   background-clip: padding-box;
   box-shadow: css.get("card", "box-shadow", none);
   transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
@@ -105,6 +104,6 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "screen")} {
   z-index: 2;
-  opacity: css.get("card", "screen-opacity");
-  background: css.get("card", "screen-background");
+  opacity: css.get("card", "screen-opacity", 0.8);
+  background: css.get("card", "screen-background", css.get("background"));
 }

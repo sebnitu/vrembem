@@ -1,22 +1,3 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 @include css.register("card");
-@include theme.set(
-  "light",
-  "card",
-  (
-    "background": css.get("background"),
-    "screen-background": css.get("background"),
-    "screen-opacity": 0.9
-  )
-);
-@include theme.set(
-  "dark",
-  "card",
-  (
-    "background": css.get("background-darker"),
-    "screen-background": css.get("background-darker"),
-    "screen-opacity": 0.8
-  )
-);
