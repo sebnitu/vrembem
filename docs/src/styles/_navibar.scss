@@ -9,6 +9,7 @@
 
   @include core.media-min("sidebar") {
     @include css.override("layout", "padding", 1.5rem);
+
     position: fixed;
   }
 
