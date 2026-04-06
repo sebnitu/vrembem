@@ -1,5 +1,12 @@
 @use "../modules/css";
 
+/// Output an opinionated reset that removes user agent defaults in favor of
+/// minimalistic base styles. This creates a clean starting point for the UI and
+/// components to build from.
+/// Inspired by:
+/// - https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css
+/// - https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css
+/// - https://gist.github.com/Asjas/4b0736108d56197fce0ec9068145b421
 @mixin reset {
   // 1) Set the preferred box-sizing value
   //    - https://github.com/jensimmons/cssremedy/issues/4
