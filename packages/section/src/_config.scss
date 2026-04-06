@@ -1,71 +1,39 @@
-@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
 
-$breakpoints: config.get("breakpoints") !default;
-$max-width: 70rem !default;
-$padding: (
-  "sm": 1.5em,
-  "md": 2em 1.5em,
-  "lg": 3em 1.5em
-) !default;
-$background: null !default;
-$foreground: null !default;
-$image-opacity: 1 !default;
-$screen-background: null !default;
-$screen-opacity: null !default;
+$config: () !default;
 
-// section_size_[key]
-$size-xs-padding: null !default;
-$size-sm-padding: 1em !default;
-$size-md-padding: (
-  "sm": 1.5em,
-  "md": 2em 1.5em,
-  "lg": 3em 1.5em
-) !default;
-$size-lg-padding: (
-  "sm": 1.5em,
-  "md": 4em 1.5em,
-  "lg": 6em 1.5em
-) !default;
-$size-xl-padding: (
-  "xs": 1.5em,
-  "sm": 3em 1.5em,
-  "md": 8em 2em,
-  "lg": 12em 2em
-) !default;
-
-// Custom properties
-@include css.set(
-  "section",
-  (
-    "max-width": $max-width,
-    "padding": map.get($padding, "sm"),
-    "background": $background,
-    "foreground": $foreground,
-    "image-opacity": $image-opacity,
-    "screen-background": $screen-background,
-    "screen-opacity": $screen-opacity
+// prettier-ignore
+$default: (
+  // Map for outputting section_size_[key] modifier variants
+  // @type map
+  "section-size": (
+    "breakpoints": true,
+    "default": (
+      "sm": 1.5em,
+      "md": 2em 1.5em,
+      "lg": 3em 1.5em
+    ),
+    "sm": 1em,
+    "md": (
+      "sm": 1.5em,
+      "md": 2em 1.5em,
+      "lg": 3em 1.5em
+    ),
+    "lg": (
+      "sm": 1.5em,
+      "md": 4em 1.5em,
+      "lg": 6em 1.5em
+    ),
+    "xl": (
+      "xs": 1.5em,
+      "sm": 3em 1.5em,
+      "md": 8em 2em,
+      "lg": 12em 2em
+    )
   )
 );
 
-// Themes
-@include theme.set(
-  "light",
-  "section",
-  (
-    "background": transparent,
-    "foreground": css.get("foreground"),
-    "screen-background": css.get("background"),
-    "screen-opacity": 0.8
-  )
-);
-@include theme.set(
-  "dark",
-  "section",
-  (
-    "screen-opacity": 0.7
-  )
-);
+@include config.apply($config, $default);
+@include css.register("section");
