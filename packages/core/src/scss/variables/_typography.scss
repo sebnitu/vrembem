@@ -3,34 +3,16 @@
   "core",
   (
     "font-family-sans": (
-      blinkmacsystemfont,
-      -apple-system,
       system-ui,
-      "Segoe UI",
-      "Roboto",
-      "Helvetica Neue",
-      arial,
+      ui-sans-serif,
       sans-serif
     ),
     "font-family-serif": (
-      constantia,
-      "Lucida Bright",
-      lucidabright,
-      "Lucida Serif",
-      lucida,
-      "DejaVu Serif",
-      "Bitstream Vera Serif",
-      "Liberation Serif",
-      georgia,
+      ui-serif,
       serif
     ),
     "font-family-mono": (
-      sfmono-regular,
-      menlo,
-      monaco,
-      consolas,
-      "Liberation Mono",
-      "Courier New",
+      ui-monospace,
       monospace
     ),
     "font-size": 1rem,
