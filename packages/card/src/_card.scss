@@ -104,6 +104,6 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "screen")} {
   z-index: 2;
-  opacity: css.get("card", "screen-opacity", 80%);
+  opacity: css.get("card", "screen-opacity", 0.8);
   background: css.get("card", "screen-background", css.get("background"));
 }
