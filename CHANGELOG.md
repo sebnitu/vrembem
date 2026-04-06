@@ -35,12 +35,53 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.37 to CHANGELOG.md
+chore(release): add v4.0.0-next.38 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.38 (2026-04-06)
+
+### :tada: New Feature
+* `base`, `core`
+  * [#2747](https://github.com/sebnitu/vrembem/pull/2747) Add reset mixin, entry and build to core
+* `base`, `core`, `dialog`, `drawer`, `modal`, `table`, `vrembem`
+  * [#2726](https://github.com/sebnitu/vrembem/pull/2726) Improve the modal component and config module integration
+
+### :bug: Bug Fix
+* Other
+  * [#2728](https://github.com/sebnitu/vrembem/pull/2728) Add missing filter event handling on reference table component
+* `core`, `drawer`, `modal`, `popover`, `vrembem`
+  * [#2721](https://github.com/sebnitu/vrembem/pull/2721) Fix order of default root exports
+
+### :house: Refactor
+* `core`, `drawer`, `modal`, `notice`, `popover`
+  * [#2744](https://github.com/sebnitu/vrembem/pull/2744) Improve the popover component and config module integration
+* `core`, `notice`
+  * [#2741](https://github.com/sebnitu/vrembem/pull/2741) Improve the notice component and config module integration
+* `core`, `vrembem`
+  * [#2740](https://github.com/sebnitu/vrembem/pull/2740) Refactor themeStore module and update documentation
+* `drawer`
+  * [#2730](https://github.com/sebnitu/vrembem/pull/2730) Remove style based config options from Drawer component
+* `button`, `icon`, `input`, `menu`, `table`, `utility`
+  * [#2723](https://github.com/sebnitu/vrembem/pull/2723) Apply config module integration to Menu component
+* `core`, `icon`
+  * [#2722](https://github.com/sebnitu/vrembem/pull/2722) Refactor the icon component to match new CSS var pattern and apply config module
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2711](https://github.com/sebnitu/vrembem/pull/2711) Refactor vrembem entries and fix package issues
+
+### :books: Documentation
+* `core`
+  * [#2724](https://github.com/sebnitu/vrembem/pull/2724) Refactor documentation layout component
+* `popover`
+  * [#2710](https://github.com/sebnitu/vrembem/pull/2710) Improve documentation UI and general docs bug fixes
+
+### :hammer: Chore
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`
+  * [#2743](https://github.com/sebnitu/vrembem/pull/2743) Implement stylelint-config-clean-order in place of alphabetical order
 
 
 ## v4.0.0-next.37 (2026-03-23)
