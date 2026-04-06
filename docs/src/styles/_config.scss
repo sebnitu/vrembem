@@ -26,7 +26,7 @@
 );
 
 // Set CSS variables
-@include css.set("core", "font-family", #{'"Barlow", sans-serif'});
+@include css.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
 @include css.set(
   "type",
   (

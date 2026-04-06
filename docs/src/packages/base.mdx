@@ -194,7 +194,7 @@ It's also possible to provide a prefix to all base classes using the `base-prefi
 
 Below is a list of each base module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
 
-### normalize
+### global
 
 <ReferenceBar selector="n/a" hash={{
   target: "reference-table-cssvar-base",
@@ -204,21 +204,17 @@ Below is a list of each base module, their class selectors, CSS variables, and i
   }
 }} />
 
-A module that helps ensure HTML elements are rendered consistently across browsers by resetting and standardizing their default styles. This provides a reliable foundation for building components, making elements more predictable and easier to work with by:
+A module to output an opinionated reset that removes user agent defaults in favor of minimalistic base styles. This creates a clean starting point for the UI and components to build from that includes:
 
-- Resetting margin, padding, and box-sizing for all elements.
-- Setting default html/body height, font, and background styles.
-- Normalizing heading, image, table and caption elements.
-- Creating consistent typography styles for code and pre elements.
-- Normalizing form-control element appearance and font styles.
+- Sets the box-sizing property to border-box for all elements.
+- Removes default margin and padding from all elements.
+- Sets the root typography styles.
+- Prevent font size inflation by setting text-size-adjust to none.
+- Applies base foreground and background CSS variables.
 
 #### Variables
 
 The following CSS variables are referenced with a fallback for more easily overriding base properties:
-
-<ReferenceCard name="--vb-base-height" type="height value" fallback="100%">
-  Used to set the height property on both the `html` and `body` elements.
-</ReferenceCard>
 
 <ReferenceCard name="--vb-base-background" type="color" fallback="var(--vb-background)">
   Used to set the background property on the `body` element.
@@ -226,14 +222,6 @@ The following CSS variables are referenced with a fallback for more easily overr
 
 <ReferenceCard name="--vb-base-foreground" type="color" fallback="var(--vb-foreground)">
   Used to set the color property on the `body` element.
-</ReferenceCard>
-
-<ReferenceCard name="--vb-base-font-size" type="font-size value" fallback="16px">
-  Used to set the font-size property on the `html` element.
-</ReferenceCard>
-
-<ReferenceCard name="--vb-base-line-height" type="line-height value" fallback="var(--vb-line-height)">
-  Used to set the line-height property on the `html` element.
 </ReferenceCard>
 
 ### headings

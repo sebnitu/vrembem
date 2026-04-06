@@ -41,10 +41,6 @@
       background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
     }
 
-    > * {
-      box-sizing: border-box;
-    }
-
     .drawer__dialog {
       inset: 0 0 0 auto;
       width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));

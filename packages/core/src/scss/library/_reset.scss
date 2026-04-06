@@ -1,0 +1,120 @@
+@use "../modules/css";
+
+@mixin reset {
+  // 1) Set the preferred box-sizing value
+  //    - https://github.com/jensimmons/cssremedy/issues/4
+  // 2) Remove default margin and padding
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box; // 1
+    margin: 0; // 2
+    padding: 0; // 2
+  }
+
+  // 1) Set the base font family CSS var chain
+  // 2) Correct the line height in all browsers
+  // 3) Prevent font size inflation
+  //    - https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/
+  //    - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust
+  html,
+  :host {
+    font-family: css.get("core", "font-family", (system-ui, sans-serif)); // 1
+    line-height: css.get("core", "line-height", 1.5); // 2
+    text-size-adjust: none; // 3
+  }
+
+  // Provides the reference for the body
+  html {
+    height: 100%;
+  }
+
+  // Allows the body to be at least the screen height but grow if needed
+  body {
+    min-height: 100vh;
+  }
+
+  // Make media elements display block by default
+  // - https://github.com/mozdevs/cssremedy/issues/14
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    display: block;
+  }
+
+  // Improve default image/video media styles
+  img,
+  video,
+  picture {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  // Inherit font styles for inputs and buttons
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  // Improve default button styles
+  button {
+    cursor: pointer;
+    border: 0;
+    background: none;
+  }
+
+  // Prevent resizing textarea horizontally by default
+  textarea {
+    resize: vertical;
+  }
+
+  // Improve default anchor styles
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  // Reset font-size for headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+  }
+
+  // Global font weight for Chrome, Edge, and Safari
+  b,
+  strong {
+    font-weight: bold;
+  }
+
+  // Set small element font-size
+  small {
+    font-size: css.get("core", "font-size-sm", 0.875rem);
+  }
+
+  // Default font family and font size for code and pre elements
+  code,
+  pre {
+    font-family: css.get("core", "font-family-mono", (ui-monospace, monospace));
+    font-size: 1em;
+  }
+
+  // 1) Remove gaps between table borders by default
+  // 2) Correct table border color inheritance in all Chrome and Safari
+  table {
+    border-collapse: collapse; // 1
+    border-color: inherit; // 2
+  }
+}

@@ -1,9 +1,6 @@
 {
-  "--vb-base-height": "100%",
   "--vb-base-background": "var(--vb-background)",
   "--vb-base-foreground": "var(--vb-foreground)",
-  "--vb-base-font-size": "16px",
-  "--vb-base-line-height": "var(--vb-line-height)",
 
   "--vb-headings-foreground": "var(--vb-foreground)",
   "--vb-headings-font-family": "inherit",

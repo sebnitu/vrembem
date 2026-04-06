@@ -1,0 +1,13 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+@use "../functions" as fun;
+
+@if fun.maybe-output("global") {
+  @include css.register("base");
+  @include core.reset;
+
+  body {
+    color: css.get("base", "foreground", css.get("foreground"));
+    background: css.get("base", "background", css.get("background"));
+  }
+}
