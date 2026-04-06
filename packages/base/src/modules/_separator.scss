@@ -8,6 +8,6 @@
     display: block;
     height: 0;
     border: none;
-    border-top: css.get("separator", "border", css.get("border"));
+    border-top: css.get("separator", "border-width", css.get("border-width")) css.get("separator", "border-style", css.get("border-style")) css.get("separator", "border-color", css.get("border-color"));
   }
 }
