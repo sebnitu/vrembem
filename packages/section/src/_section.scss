@@ -10,7 +10,7 @@
   color: css.get("section", "foreground", css.get("foreground"));
   background: css.get("section", "background", transparent);
 
-  @include core.css-query("section", "padding", config.get("section-size", "default"), config.get("section-size", "breakpoints"));
+  @include core.css-query("section", "padding", config.get("section-padding", "default"), config.get("section-padding", "breakpoints"));
 }
 
 #{core.bem("section", "container")} {

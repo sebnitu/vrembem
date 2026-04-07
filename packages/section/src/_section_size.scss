@@ -1,8 +1,0 @@
-@use "@vrembem/core";
-@use "@vrembem/core/config";
-
-@each $key, $value in config.get("section-size", "variants") {
-  #{core.bem("section", null, "size", $key)} {
-    @include core.css-query("section", "padding", $value, config.get("section-size", "breakpoints"));
-  }
-}

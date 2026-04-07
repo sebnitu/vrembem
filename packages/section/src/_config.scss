@@ -6,20 +6,18 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting section_size_[key] modifier variants
+  // Map for outputting section_padding_[key] modifier variants
   // @type map
-  "section-size": (
+  "section-padding": (
     "breakpoints": true,
     "default": (
       "sm": 1.5em,
       "md": 2em 1.5em,
       "lg": 3em 1.5em
     ),
-    "sm": 1em,
-    "md": (
-      "sm": 1.5em,
-      "md": 2em 1.5em,
-      "lg": 3em 1.5em
+    "sm": (
+      "sm": 1em 1.5em,
+      "md": 1.5em
     ),
     "lg": (
       "sm": 1.5em,
