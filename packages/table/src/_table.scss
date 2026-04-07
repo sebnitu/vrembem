@@ -17,6 +17,12 @@
   th {
     font-weight: css.get("font-weight-bold");
   }
+
+  caption {
+    caption-side: bottom;
+    color: css.get("foreground-lighter");
+    text-align: left;
+  }
 }
 
 #{core.bem("table", "auto")} {
