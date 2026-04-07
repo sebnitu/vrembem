@@ -457,6 +457,8 @@ $-tokens: (
         // Output the initial keyed value in the map
         @if map.has-key($value, "initial") {
           @include define($component, $prop, map.get($value, "initial"));
+
+          // Remove the initial value from the value map
           $value: map.remove($value, "initial");
         }
 
