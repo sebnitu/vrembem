@@ -191,69 +191,6 @@ Output a valid BEM class selector using core prefixes and the provided parameter
 </Fragment>
 </CodeExample>
 
-## css-query
-
-<ReferenceBar type="mixin" />
-
-Define a dynamic CSS variable using maps and breakpoints.
-
-#### Arguments
-
-<ReferenceCard name="$component" type="string">
-  The component name to prefix the CSS variable with.
-</ReferenceCard>
-
-<ReferenceCard name="$prop" type="string">
-  The custom property name.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="map|any">
-  The value of the custom property or a map of valid variables with breakpoints as the key.
-</ReferenceCard>
-
-<ReferenceCard name="$breakpoints" type="map">
-  A breakpoints map (e.g., `core.$breakpoints`).
-</ReferenceCard>
-
-#### Example
-
-<CodeExample tabs>
-<Fragment slot="tab-scss">
-```scss
-@use "@vrembem/core";
-
-$size-padding: (
-  "sm": 1.5em,
-  "md": 2em 1.5em,
-  "lg": 3em 1.5em
-) !default;
-
-#{core.bem("section", null, "size", "md")} {
-  @include core.css-query("section", "padding", $size-padding, core.$breakpoints);
-}
-```
-</Fragment>
-<Fragment slot="tab-css">
-```css
-.section_padding_lg {
-  --vb-section-padding: 1.5em;
-}
-
-@media (min-width: 760px) {
-  .section_padding_lg {
-    --vb-section-padding: 4em 1.5em;
-  }
-}
-
-@media (min-width: 990px) {
-  .section_padding_lg {
-    --vb-section-padding: 6em 1.5em;
-  }
-}
-```
-</Fragment>
-</CodeExample>
-
 ## focus-ring-base
 
 <ReferenceBar type="mixin" />

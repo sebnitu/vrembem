@@ -11,21 +11,18 @@ $default: (
   "section-padding": (
     "breakpoints": true,
     "default": (
-      "sm": 1.5em,
       "md": 2em 1.5em,
       "lg": 3em 1.5em
     ),
     "sm": (
-      "sm": 1em 1.5em,
+      "initial": 1em 1.5em,
       "md": 1.5em
     ),
     "lg": (
-      "sm": 1.5em,
       "md": 4em 1.5em,
       "lg": 6em 1.5em
     ),
     "xl": (
-      "xs": 1.5em,
       "sm": 3em 1.5em,
       "md": 8em 2em,
       "lg": 12em 2em
