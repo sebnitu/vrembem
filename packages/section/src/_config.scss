@@ -15,17 +15,16 @@ $default: (
       "lg": 3em 1.5em
     ),
     "sm": (
-      "initial": 1em 1.5em,
-      "md": 1.5em
+      "initial": 1.5em,
     ),
     "lg": (
       "md": 4em 1.5em,
-      "lg": 6em 1.5em
+      "lg": 6em 2em
     ),
     "xl": (
       "sm": 3em 1.5em,
       "md": 8em 2em,
-      "lg": 12em 2em
+      "lg": 12em 4em
     )
   )
 );
