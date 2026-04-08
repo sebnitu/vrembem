@@ -48,6 +48,7 @@ Table uses CSS variables in a reference and fallback pattern. Variables are refe
   "--vb-table-foreground": "inherit",
   "--vb-table-background": "var(--vb-background)",
   "--vb-table-padding": "0.5em 0.75em",
+  "--vb-table-vertical-align": "top",
 
   "--vb-table-border-width": "var(--vb-border-width)",
   "--vb-table-border-style": "var(--vb-border-style)",
@@ -294,13 +295,14 @@ Space will be split equally between columns when `table_ellipsis` is applied. Fo
 
 ## table_hover
 
-Adds hover and focus state styles for table row (`<tr>`) elements.
+Adds hover, focus and focus-within state styles for table row (`<tr>`) elements.
 
 <CodeExample>
   <Fragment slot="output">
     <table class="table table_hover">
       <thead>
         <tr>
+          <th class="hug-content"></th>
           <th>Name</th>
           <th>Mass</th>
           <th>Class</th>
@@ -309,24 +311,36 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
       </thead>
       <tbody>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Jenner</td>
           <td>35t</td>
           <td>Light</td>
           <td>JR7-D</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Hunchback</td>
           <td>50t</td>
           <td>Medium</td>
           <td>HBK-4G</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Catapult</td>
           <td>65t</td>
           <td>Heavy</td>
           <td>CPLT-C1</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Atlas</td>
           <td>100t</td>
           <td>Assault</td>
@@ -344,7 +358,7 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
 
 ## table_mobile
 
-When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_mobile` modifier to apply these styles universally.
+A modifier that adds mobile styles to a table so that it's easier to read on mobile devices. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell.
 
 <CodeExample>
   <Fragment slot="output">
@@ -391,11 +405,14 @@ When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendl
   ```
 </CodeExample>
 
-The mobile label value will be truncated if it exceeds the width set by `$mobile-label-width`, so keep the label short when possible.
+The mobile label value will be truncated if it exceeds the width set by `--vb-table-mobile-label-width` CSS variable. The mobile label attribute used can be changed using the `attr` key in the `table-mobile` config options map.
+
+### Breakpoint variants
+
+This modifier come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `table-mobile` config options map (default: `true`).
 
 **Available variants**
 
-- `table_mobile`
 - `xs:table_mobile`
 - `sm:table_mobile`
 - `md:table_mobile`
