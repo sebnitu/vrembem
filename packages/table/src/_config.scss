@@ -7,7 +7,7 @@
 $breakpoints: config.get("breakpoints") !default;
 $padding: 0.5em 0.75em !default;
 $background: null !default;
-$background-zebra: null !default;
+$background-striped: null !default;
 $background-hover: null !default;
 $foreground: null !default;
 $foreground-hover: null !default;
@@ -37,7 +37,7 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   (
     "padding": $padding,
     "background": $background,
-    "background-zebra": $background-zebra,
+    "background-striped": $background-striped,
     "background-hover": $background-hover,
     "foreground": $foreground,
     "foreground-hover": $foreground-hover,
@@ -58,7 +58,7 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   "table",
   (
     "background": css.get("background"),
-    "background-zebra": palette.get("neutral", 50%, 6%),
+    "background-striped": palette.get("neutral", 50%, 6%),
     "background-hover": palette.get("primary", 50%, 10%),
     "border": 1px solid css.get("border-color"),
     "border-alt": 1px dotted css.get("border-color"),
@@ -70,7 +70,7 @@ $size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
   "dark",
   "table",
   (
-    "background-zebra": palette.get("neutral", 50%, 10%),
+    "background-striped": palette.get("neutral", 50%, 10%),
     "background-hover": palette.get("primary", 50%, 20%),
     "border": 1px solid css.get("border-color-dark"),
     "border-alt": 1px dotted css.get("border-color-dark")

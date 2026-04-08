@@ -5,8 +5,6 @@ package: "@vrembem/table"
 category: component
 ---
 
-import DocBlock from '../components/DocBlock.astro';
-
 ```sh
 npm install @vrembem/table
 ```
@@ -432,6 +430,56 @@ Adjust the size of a table by increasing or decreasing cell padding.
 - `table_size_sm`
 - `table_size_lg`
 
+## table_striped
+
+Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
+
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Firestarter</td>
+          <td>35t</td>
+          <td>Light</td>
+          <td>FS9-A</td>
+        </tr>
+        <tr>
+          <td>Uziel</td>
+          <td>50t</td>
+          <td>Medium</td>
+          <td>UZL-6P</td>
+        </tr>
+        <tr>
+          <td>Crusader</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>CRD-6T</td>
+        </tr>
+        <tr>
+          <td>Cyclops</td>
+          <td>90t</td>
+          <td>Assault</td>
+          <td>CP-11-P</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_striped">
+    ...
+  </table>
+  ```
+</CodeExample>
+
 ## table_style_[value]
 
 Adds table styles based on the provided value.
@@ -508,176 +556,3 @@ Adds table styles based on the provided value.
 
 - `table_style_rowed`
 - `table_style_bordered`
-
-## table_zebra
-
-Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
-
-<CodeExample>
-  <Fragment slot="output">
-    <table class="table table_zebra">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Mass</th>
-          <th>Class</th>
-          <th>Variant</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Firestarter</td>
-          <td>35t</td>
-          <td>Light</td>
-          <td>FS9-A</td>
-        </tr>
-        <tr>
-          <td>Uziel</td>
-          <td>50t</td>
-          <td>Medium</td>
-          <td>UZL-6P</td>
-        </tr>
-        <tr>
-          <td>Crusader</td>
-          <td>65t</td>
-          <td>Heavy</td>
-          <td>CRD-6T</td>
-        </tr>
-        <tr>
-          <td>Cyclops</td>
-          <td>90t</td>
-          <td>Assault</td>
-          <td>CP-11-P</td>
-        </tr>
-      </tbody>
-    </table>
-  </Fragment>
-  ```html
-  <table class="table table_zebra">
-    ...
-  </table>
-  ```
-</CodeExample>
-
-## Customization
-
-Tables are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="table/src/_root.scss">
-
-```scss
-:root {
-  --vb-table-padding: 0.5em 0.75em;
-  --vb-table-mobile-label-width: 8em;
-  --vb-table-mobile-label-spacing: 0.75em;
-}
-
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-table-background: var(--vb-background);
-  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 6%);
-  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-  --vb-table-border: 1px solid var(--vb-border-color);
-  --vb-table-border-alt: 1px dotted var(--vb-border-color);
-  --vb-table-foreground: var(--vb-foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-table-background: var(--vb-background);
-    --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
-    --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-    --vb-table-border: 1px solid var(--vb-border-color-dark);
-    --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
-    --vb-table-foreground: var(--vb-foreground);
-  }
-}
-
-.vb-theme-dark {
-  --vb-table-background: var(--vb-background);
-  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
-  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-  --vb-table-border: 1px solid var(--vb-border-color-dark);
-  --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
-  --vb-table-foreground: var(--vb-foreground);
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="table/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
-
-$breakpoints: core.$breakpoints !default;
-$padding: 0.5em 0.75em !default;
-$background: null !default;
-$background-zebra: null !default;
-$background-hover: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$border: null !default;
-$border-alt: null !default;
-
-// table_responsive
-$mobile-label-attr: "data-mobile-label" !default;
-$mobile-label-width: 8em !default;
-$mobile-label-spacing: core.get-side($padding, left) !default;
-$mobile-label-background: null !default;
-$mobile-label-foreground: null !default;
-
-// table_size_sm
-$size-sm-padding: 0.25em 0.5em !default;
-$size-sm-mobile-label-width: $mobile-label-width !default;
-$size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
-
-// table_size_lg
-$size-lg-padding: 1em 1.25em !default;
-$size-lg-mobile-label-width: $mobile-label-width !default;
-$size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
-
-// Custom properties
-@include css.set("table", (
-  "padding": $padding,
-  "background": $background,
-  "background-zebra": $background-zebra,
-  "background-hover": $background-hover,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "border": $border,
-  "border-alt": $border-alt,
-  "mobile-label": (
-    "width": $mobile-label-width,
-    "spacing": $mobile-label-spacing,
-    "background": $mobile-label-background,
-    "foreground": $mobile-label-foreground,
-  )
-));
-
-// Theme maps
-$theme-light: (
-  "background": theme.get("background"),
-  "background-zebra": palette.get("neutral", 50%, 6%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color"),
-  "border-alt": 1px dotted theme.get("border-color"),
-  "foreground": theme.get("foreground"),
-  "foreground-hover": null
-) !default;
-
-$theme-dark: (
-  "background": theme.get("background"),
-  "background-zebra": palette.get("neutral", 50%, 10%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color-dark"),
-  "border-alt": 1px dotted theme.get("border-color-dark"),
-  "foreground": theme.get("foreground"),
-  "foreground-hover": null
-) !default;
-
-@include theme.set("light", "table", $theme-light);
-@include theme.set("dark", "table", $theme-dark);
-```
-</DocBlock>
