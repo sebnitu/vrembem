@@ -11,7 +11,7 @@
   td,
   caption {
     padding: css.get("table", "padding", 0.5em 0.75em);
-    vertical-align: top;
+    vertical-align: css.get("table", "vertical-align", top);
   }
 
   th {
