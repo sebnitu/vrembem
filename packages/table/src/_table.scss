@@ -23,9 +23,9 @@
     color: css.get("foreground-lighter");
     text-align: left;
   }
-}
 
-#{core.bem("table", "auto")} {
-  width: 0;
-  white-space: nowrap;
+  .hug-content {
+    width: 0;
+    white-space: nowrap;
+  }
 }
