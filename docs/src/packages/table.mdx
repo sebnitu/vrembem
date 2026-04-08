@@ -5,6 +5,8 @@ package: "@vrembem/table"
 category: component
 ---
 
+import ReferenceTable from "../components/ReferenceTable.astro";
+
 ```sh
 npm install @vrembem/table
 ```
@@ -14,6 +16,53 @@ npm install @vrembem/table
 @use "@vrembem/table";
 ```
 </CodeExample>
+
+## Options
+
+Table is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Table comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/table" with (
+  $config: (
+    // Toggle for outputting table_mobile modifier breakpoint variants
+    // @type boolean
+    "table-mobile": (
+      "breakpoints": true,
+      "attr": "data-mobile-label"
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Table uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-table" valueLabel="Fallback" expandable={true} data={{
+  "--vb-table-foreground": "inherit",
+  "--vb-table-background": "var(--vb-background)",
+  "--vb-table-padding": "0.5em 0.75em",
+
+  "--vb-table-border-width": "var(--vb-border-width)",
+  "--vb-table-border-style": "var(--vb-border-style)",
+  "--vb-table-border-color": "var(--vb-border-color)",
+
+  "--vb-table-foreground-hover": "inherit",
+  "--vb-table-background-hover": "hsl(var(--vb-primary-hs) 50% / 15%)",
+
+  "--vb-table-background-striped": "var(--vb-background-dark)",
+
+  "--vb-table-mobile-label-width": "8em",
+  "--vb-table-mobile-label-spacing": "0.75em",
+  "--vb-table-mobile-label-foreground": "inherit",
+  "--vb-table-mobile-label-background": "transparent"
+}} />
 
 ## Basic usage
 

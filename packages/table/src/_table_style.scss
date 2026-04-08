@@ -4,10 +4,10 @@
 $-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
 
 #{core.bem("table", null, "style", "rowed")} {
-  border-bottom: css.get("table", "border", $-border);
+  border-bottom: $-border;
 
   tr {
-    border-top: css.get("table", "border", $-border);
+    border-top: $-border;
   }
 
   th:first-child,
@@ -24,6 +24,6 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
 #{core.bem("table", null, "style", "bordered")} {
   th,
   td {
-    border: css.get("table", "border", $-border);
+    border: $-border;
   }
 }

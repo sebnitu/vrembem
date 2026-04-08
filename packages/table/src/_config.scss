@@ -8,7 +8,10 @@ $config: () !default;
 $default: (
   // Toggle for outputting table_mobile modifier breakpoint variants
   // @type boolean
-  "table-mobile-breakpoints": true,
+  "table-mobile": (
+    "breakpoints": true,
+    "attr": "data-mobile-label"
+  )
 );
 
 @include config.apply($config, $default);

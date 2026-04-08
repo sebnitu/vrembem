@@ -1,6 +1,8 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
+$-attr: config.get("table-mobile", "attr");
 $-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
 
 @mixin mobile-styles {
@@ -23,13 +25,13 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
     left: -9999px;
   }
 
-  [data-mobile-label] {
+  [#{$-attr}] {
     position: relative;
     padding-left: calc(css.get("table", "mobile-label-width", 8em) + css.get("table", "mobile-label-spacing", 0.75em));
     white-space: normal;
 
     &::before {
-      content: attr(data-mobile-label);
+      content: attr(#{$-attr});
       position: absolute;
       top: 0;
       bottom: 0;
@@ -46,7 +48,7 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
   }
 
   &#{core.bem("table", null, "style", "bordered")} {
-    border: css.get("table", "border", $-border);
+    border: $-border;
 
     td {
       border: none;
@@ -54,15 +56,15 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
 
     td + td,
     th + td {
-      border-top: css.get("table", "border-alt", 1px dotted css.get("table", "border-color", css.get("border-color")));
+      border-top: 1px dotted css.get("table", "border-color", css.get("border-color"));
     }
 
-    [data-mobile-label]::before {
-      border-right: css.get("table", "border", $-border);
+    [#{$-attr}]::before {
+      border-right: $-border;
     }
 
     tr + tr {
-      border-top: css.get("table", "border", $-border);
+      border-top: $-border;
     }
   }
 }
