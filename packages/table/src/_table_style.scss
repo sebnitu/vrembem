@@ -1,11 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
 
+$-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
+
 #{core.bem("table", null, "style", "rowed")} {
-  border-bottom: css.get("table", "border");
+  border-bottom: css.get("table", "border", $-border);
 
   tr {
-    border-top: css.get("table", "border");
+    border-top: css.get("table", "border", $-border);
   }
 
   th:first-child,
@@ -22,6 +24,6 @@
 #{core.bem("table", null, "style", "bordered")} {
   th,
   td {
-    border: css.get("table", "border");
+    border: css.get("table", "border", $-border);
   }
 }

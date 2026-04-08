@@ -1,14 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
 #{core.bem("table", null, "size", "sm")} {
   th,
   td,
   caption {
-    @include css.override("table", "padding", var.$size-sm-padding);
-    @include css.override("table", "mobile-label-width", var.$size-sm-mobile-label-width);
-    @include css.override("table", "mobile-label-spacing", var.$size-sm-mobile-label-spacing);
+    @include css.override("table", "padding", 0.25em 0.5em);
+    @include css.override("table", "mobile-label-width", 8em);
+    @include css.override("table", "mobile-label-spacing", 0.5em);
   }
 }
 
@@ -16,8 +15,8 @@
   th,
   td,
   caption {
-    @include css.override("table", "padding", var.$size-lg-padding);
-    @include css.override("table", "mobile-label-width", var.$size-lg-mobile-label-width);
-    @include css.override("table", "mobile-label-spacing", var.$size-lg-mobile-label-spacing);
+    @include css.override("table", "padding", 1em 1.25em);
+    @include css.override("table", "mobile-label-width", 8em);
+    @include css.override("table", "mobile-label-spacing", 1.25em);
   }
 }

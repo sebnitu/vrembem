@@ -33,13 +33,13 @@
   }
 
   thead {
-    border-bottom: css.get("table", "border");
+    border-bottom: 1px solid css.get("border-color");
   }
 
   tr {
     scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
     position: relative;
-    border-top: css.get("table", "border");
+    border-top: 1px solid css.get("border-color");
     border-radius: css.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),

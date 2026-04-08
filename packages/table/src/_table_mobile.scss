@@ -1,0 +1,15 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "./mixins" as mix;
+
+#{core.bem("table", null, "mobile")} {
+  @include mix.mobile-styles;
+}
+
+@each $bp, $value in config.get("table-mobile-breakpoints") {
+  #{core.bem("table", null, "mobile", $bp: $bp)} {
+    @include core.media-max($value) {
+      @include mix.mobile-styles;
+    }
+  }
+}

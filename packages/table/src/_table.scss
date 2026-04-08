@@ -3,14 +3,14 @@
 
 #{core.bem("table")} {
   width: 100%;
-  color: css.get("table", "foreground");
+  color: css.get("table", "foreground", inherit);
   text-align: left;
-  background-color: css.get("table", "background");
+  background-color: css.get("table", "background", css.get("background"));
 
   th,
   td,
   caption {
-    padding: css.get("table", "padding");
+    padding: css.get("table", "padding", 0.5em 0.75em);
     vertical-align: top;
   }
 
