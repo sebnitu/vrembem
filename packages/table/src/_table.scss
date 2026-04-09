@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
 #{core.bem("table")} {
@@ -10,7 +11,7 @@
   th,
   td,
   caption {
-    padding: css.get("table", "padding", 0.5em 0.75em);
+    padding: css.get("table", "padding", config.get("table-padding", "default"));
     vertical-align: css.get("table", "vertical-align", top);
   }
 

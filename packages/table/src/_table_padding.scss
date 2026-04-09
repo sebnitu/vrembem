@@ -1,0 +1,31 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/css";
+
+$-table-padding: config.get("table-padding", "variants");
+
+@each $key, $value in $-table-padding {
+  #{core.bem("table", null, "padding", $key)} {
+    th,
+    td,
+    caption {
+      @include css.override("table", "padding", $value);
+      @include css.override("table", "mobile-label-spacing", core.get-side($value, "left"));
+    }
+  }
+}
+
+@each $bp, $value in config.get("table-padding", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-table-padding {
+      #{core.bem("table", null, "padding", $key, $bp)} {
+        th,
+        td,
+        caption {
+          @include css.override("table", "padding", $value);
+          @include css.override("table", "mobile-label-spacing", core.get-side($value, "left"));
+        }
+      }
+    }
+  }
+}
