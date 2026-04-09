@@ -1,9 +1,11 @@
-@use "sass:list";
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "./config" as var;
 
-@mixin responsive-styles {
+$-attr: config.get("table-mobile", "attr");
+$-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
+
+@mixin mobile-styles {
   thead,
   tbody,
   tr,
@@ -23,30 +25,30 @@
     left: -9999px;
   }
 
-  [#{var.$mobile-label-attr}] {
+  [#{$-attr}] {
     position: relative;
-    padding-left: calc(css.get("table", "mobile-label-width") + css.get("table", "mobile-label-spacing"));
+    padding-left: calc(css.get("table", "mobile-label-width", 8em) + css.get("table", "mobile-label-spacing", 0.75em));
     white-space: normal;
 
     &::before {
-      content: attr(#{var.$mobile-label-attr});
+      content: attr(#{$-attr});
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       overflow: hidden;
-      width: css.get("table", "mobile-label-width");
-      padding: css.get("table", "padding");
+      width: css.get("table", "mobile-label-width", 8em);
+      padding: css.get("table", "padding", 0.5em 0.75em);
       font-weight: css.get("font-weight-bold");
-      color: css.get("table", "mobile-label-foreground");
+      color: css.get("table", "mobile-label-foreground", inherit);
       text-overflow: ellipsis;
       white-space: nowrap;
-      background-color: css.get("table", "mobile-label-background");
+      background-color: css.get("table", "mobile-label-background", transparent);
     }
   }
 
   &#{core.bem("table", null, "style", "bordered")} {
-    border: css.get("table", "border");
+    border: $-border;
 
     td {
       border: none;
@@ -54,15 +56,15 @@
 
     td + td,
     th + td {
-      border-top: css.get("table", "border-alt");
+      border-top: 1px dotted css.get("table", "border-color", css.get("border-color"));
     }
 
-    [#{var.$mobile-label-attr}]::before {
-      border-right: css.get("table", "border");
+    [#{$-attr}]::before {
+      border-right: $-border;
     }
 
     tr + tr {
-      border-top: css.get("table", "border");
+      border-top: $-border;
     }
   }
 }

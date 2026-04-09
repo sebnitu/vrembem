@@ -1,78 +1,29 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
-$breakpoints: config.get("breakpoints") !default;
-$padding: 0.5em 0.75em !default;
-$background: null !default;
-$background-zebra: null !default;
-$background-hover: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$border: null !default;
-$border-alt: null !default;
+$config: () !default;
 
-// table_responsive
-$mobile-label-attr: "data-mobile-label" !default;
-$mobile-label-width: 8em !default;
-$mobile-label-spacing: core.get-side($padding, left) !default;
-$mobile-label-background: null !default;
-$mobile-label-foreground: null !default;
+// prettier-ignore
+$default: (
+  // Toggle for outputting table_mobile modifier breakpoint variants and setting
+  // data attribute for mobile labels.
+  // @type map
+  "table-mobile": (
+    "breakpoints": true,
+    "attr": "data-mobile-label"
+  ),
 
-// table_size_sm
-$size-sm-padding: 0.25em 0.5em !default;
-$size-sm-mobile-label-width: $mobile-label-width !default;
-$size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
-
-// table_size_lg
-$size-lg-padding: 1em 1.25em !default;
-$size-lg-mobile-label-width: $mobile-label-width !default;
-$size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
-
-// Custom properties
-@include css.set(
-  "table",
-  (
-    "padding": $padding,
-    "background": $background,
-    "background-zebra": $background-zebra,
-    "background-hover": $background-hover,
-    "foreground": $foreground,
-    "foreground-hover": $foreground-hover,
-    "border": $border,
-    "border-alt": $border-alt,
-    "mobile-label": (
-      "width": $mobile-label-width,
-      "spacing": $mobile-label-spacing,
-      "background": $mobile-label-background,
-      "foreground": $mobile-label-foreground
-    )
+  // Map for outputting table_padding_[key] modifier variants
+  // @type map
+  "table-padding": (
+    "breakpoints": true,
+    "default": 0.5em 0.75em,
+    "sm": 0.25em 0.5em,
+    "md": 0.5em 0.75em,
+    "lg": 1em 1.25em
   )
 );
 
-// Themes
-@include theme.set(
-  "light",
-  "table",
-  (
-    "background": css.get("background"),
-    "background-zebra": palette.get("neutral", 50%, 6%),
-    "background-hover": palette.get("primary", 50%, 10%),
-    "border": 1px solid css.get("border-color"),
-    "border-alt": 1px dotted css.get("border-color"),
-    "foreground": css.get("foreground"),
-    "foreground-hover": null
-  )
-);
-@include theme.set(
-  "dark",
-  "table",
-  (
-    "background-zebra": palette.get("neutral", 50%, 10%),
-    "background-hover": palette.get("primary", 50%, 20%),
-    "border": 1px solid css.get("border-color-dark"),
-    "border-alt": 1px dotted css.get("border-color-dark")
-  )
-);
+@include config.apply($config, $default);
+@include css.register("table");

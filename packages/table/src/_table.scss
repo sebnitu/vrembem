@@ -1,25 +1,32 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
 #{core.bem("table")} {
   width: 100%;
-  color: css.get("table", "foreground");
+  color: css.get("table", "foreground", inherit);
   text-align: left;
-  background-color: css.get("table", "background");
+  background-color: css.get("table", "background", css.get("background"));
 
   th,
   td,
   caption {
-    padding: css.get("table", "padding");
-    vertical-align: top;
+    padding: css.get("table", "padding", config.get("table-padding", "default"));
+    vertical-align: css.get("table", "vertical-align", top);
   }
 
   th {
     font-weight: css.get("font-weight-bold");
   }
-}
 
-#{core.bem("table", "auto")} {
-  width: 0;
-  white-space: nowrap;
+  caption {
+    caption-side: bottom;
+    color: css.get("foreground-lighter");
+    text-align: left;
+  }
+
+  .hug-content {
+    width: 0;
+    white-space: nowrap;
+  }
 }

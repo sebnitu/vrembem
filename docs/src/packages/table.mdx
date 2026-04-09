@@ -5,17 +5,65 @@ package: "@vrembem/table"
 category: component
 ---
 
-import DocBlock from '../components/DocBlock.astro';
+import ReferenceTable from "../components/ReferenceTable.astro";
 
 ```sh
 npm install @vrembem/table
 ```
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/table";
-  ```
+```scss
+@use "@vrembem/table";
+```
 </CodeExample>
+
+## Options
+
+Table is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Table comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/table" with (
+  $config: (
+    // Toggle for outputting table_mobile modifier breakpoint variants
+    // @type boolean
+    "table-mobile": (
+      "breakpoints": true,
+      "attr": "data-mobile-label"
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Table uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="cssvar-table" valueLabel="Fallback" expandable={true} data={{
+  "--vb-table-foreground": "inherit",
+  "--vb-table-background": "var(--vb-background)",
+  "--vb-table-padding": "0.5em 0.75em",
+  "--vb-table-vertical-align": "top",
+
+  "--vb-table-border-width": "var(--vb-border-width)",
+  "--vb-table-border-style": "var(--vb-border-style)",
+  "--vb-table-border-color": "var(--vb-border-color)",
+
+  "--vb-table-foreground-hover": "inherit",
+  "--vb-table-background-hover": "hsl(var(--vb-primary-hs) 50% / 15%)",
+
+  "--vb-table-background-striped": "var(--vb-background-dark)",
+
+  "--vb-table-mobile-label-width": "8em",
+  "--vb-table-mobile-label-spacing": "0.75em",
+  "--vb-table-mobile-label-foreground": "inherit",
+  "--vb-table-mobile-label-background": "transparent"
+}} />
 
 ## Basic usage
 
@@ -102,6 +150,8 @@ For basic table styles, only the `table` component class is required. Use [prope
   ```
 </CodeExample>
 
+### Overflow utility
+
 For simple responsive table styles, wrap your tables in a div with the [`overflow-auto`](/packages/utility#overflow) utility. This provides horizontal scrolling when tables can't fit in their container.
 
 <CodeExample>
@@ -144,6 +194,69 @@ For simple responsive table styles, wrap your tables in a div with the [`overflo
       ...
     </table>
   </div>
+  ```
+</CodeExample>
+
+### Hug content
+
+Use the `hug-content` table utility when a table cell should fit the size of its contents. This is useful for columns with compact content like checkboxes, icons, or action buttons that shouldn't take up more space than necessary.
+
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="hug-content"></th>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Locust</td>
+          <td>20t</td>
+          <td>Light</td>
+          <td>LCT-1V</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Shadow Hawk</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>SHD-2H</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Thunderbolt</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>TDR-5S</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>BattleMaster</td>
+          <td>85t</td>
+          <td>Assault</td>
+          <td>BLR-1G</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="hug-content"></th>
+        ...
+      </tr>
+    </thead>
+    <tbody>
+      ...
+    </tbody>
+  </table>
   ```
 </CodeExample>
 
@@ -247,13 +360,14 @@ Space will be split equally between columns when `table_ellipsis` is applied. Fo
 
 ## table_hover
 
-Adds hover and focus state styles for table row (`<tr>`) elements.
+Adds hover, focus and focus-within state styles for table row (`<tr>`) elements.
 
 <CodeExample>
   <Fragment slot="output">
     <table class="table table_hover">
       <thead>
         <tr>
+          <th class="hug-content"></th>
           <th>Name</th>
           <th>Mass</th>
           <th>Class</th>
@@ -262,24 +376,36 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
       </thead>
       <tbody>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Jenner</td>
           <td>35t</td>
           <td>Light</td>
           <td>JR7-D</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Hunchback</td>
           <td>50t</td>
           <td>Medium</td>
           <td>HBK-4G</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Catapult</td>
           <td>65t</td>
           <td>Heavy</td>
           <td>CPLT-C1</td>
         </tr>
         <tr>
+          <td>
+            <input type="checkbox" />
+          </td>
           <td>Atlas</td>
           <td>100t</td>
           <td>Assault</td>
@@ -295,13 +421,13 @@ Adds hover and focus state styles for table row (`<tr>`) elements.
   ```
 </CodeExample>
 
-## table_responsive
+## table_mobile
 
-When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendly enough, this modifier adds responsive styles to a table so that it's easier to read on specific breakpoints. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell. Use the value-less `table_responsive` modifier to apply these styles universally.
+A modifier that adds mobile styles to a table so that it's easier to read on mobile devices. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_responsive table_style_bordered">
+    <table class="table table_mobile table_style_bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -327,7 +453,7 @@ When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendl
     </table>
   </Fragment>
   ```html
-  <table class="table table_responsive">
+  <table class="table table_mobile">
     <thead>
       <tr>
         <th>key</th>
@@ -344,24 +470,27 @@ When the [`overflow-auto`](/packages/base#overflow) utility isn't mobile friendl
   ```
 </CodeExample>
 
-The mobile label value will be truncated if it exceeds the width set by `$mobile-label-width`, so keep the label short when possible.
+The mobile label value will be truncated if it exceeds the width set by `--vb-table-mobile-label-width` CSS variable. The mobile label attribute used can be changed using the `attr` key in the `table-mobile` config options map.
+
+### Breakpoint variants
+
+This modifier come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `table-mobile` config options map (default: `true`).
 
 **Available variants**
 
-- `table_responsive`
-- `xs:table_responsive`
-- `sm:table_responsive`
-- `md:table_responsive`
-- `lg:table_responsive`
-- `xl:table_responsive`
+- `xs:table_mobile`
+- `sm:table_mobile`
+- `md:table_mobile`
+- `lg:table_mobile`
+- `xl:table_mobile`
 
-## table_size_[value]
+## table_padding_[key]
 
-Adjust the size of a table by increasing or decreasing cell padding.
+Adjust the padding of a table's `<th>`, `<td>`, and `<caption>` elements. These modifiers are generated using key/value pairs of the `table-padding` config options map.
 
 <CodeExample>
-  <Fragment slot="output">
-    <table class="table table_size_sm table_style_bordered">
+  <div slot="output" class="spacing">
+    <table class="table table_padding_sm table_style_bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -385,17 +514,8 @@ Adjust the size of a table by increasing or decreasing cell padding.
         </tr>
       </tbody>
     </table>
-  </Fragment>
-  ```html
-  <table class="table table_size_sm">
-    ...
-  </table>
-  ```
-</CodeExample>
 
-<CodeExample>
-  <Fragment slot="output">
-    <table class="table table_size_lg table_style_bordered">
+    <table class="table table_padding_lg table_style_bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -419,9 +539,53 @@ Adjust the size of a table by increasing or decreasing cell padding.
         </tr>
       </tbody>
     </table>
-  </Fragment>
+  </div>
   ```html
-  <table class="table table_size_lg">
+  <table class="table table_padding_sm">...</table>
+  <table class="table table_padding_lg">...</table>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `table_padding_sm`
+- `table_padding_md`
+- `table_padding_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `table-padding` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <table class="table table_padding_sm lg:table_padding_md xl:table_padding_lg table_style_bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Griffin</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>GRF-1N</td>
+        </tr>
+        <tr>
+          <td>Wolverine</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>WVR-6R</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  ```html
+  <table class="table table_padding_sm lg:table_padding_md xl:table_padding_lg">
     ...
   </table>
   ```
@@ -429,10 +593,61 @@ Adjust the size of a table by increasing or decreasing cell padding.
 
 **Available variants**
 
-- `table_size_sm`
-- `table_size_lg`
+- `sm:table_padding_[key]`
+- `md:table_padding_[key]`
+- `lg:table_padding_[key]`
 
-## table_style_[value]
+## table_striped
+
+Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
+
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table table_striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Firestarter</td>
+          <td>35t</td>
+          <td>Light</td>
+          <td>FS9-A</td>
+        </tr>
+        <tr>
+          <td>Uziel</td>
+          <td>50t</td>
+          <td>Medium</td>
+          <td>UZL-6P</td>
+        </tr>
+        <tr>
+          <td>Crusader</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>CRD-6T</td>
+        </tr>
+        <tr>
+          <td>Cyclops</td>
+          <td>90t</td>
+          <td>Assault</td>
+          <td>CP-11-P</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table table_striped">
+    ...
+  </table>
+  ```
+</CodeExample>
+
+## table_style_[key]
 
 Adds table styles based on the provided value.
 
@@ -508,176 +723,3 @@ Adds table styles based on the provided value.
 
 - `table_style_rowed`
 - `table_style_bordered`
-
-## table_zebra
-
-Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
-
-<CodeExample>
-  <Fragment slot="output">
-    <table class="table table_zebra">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Mass</th>
-          <th>Class</th>
-          <th>Variant</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Firestarter</td>
-          <td>35t</td>
-          <td>Light</td>
-          <td>FS9-A</td>
-        </tr>
-        <tr>
-          <td>Uziel</td>
-          <td>50t</td>
-          <td>Medium</td>
-          <td>UZL-6P</td>
-        </tr>
-        <tr>
-          <td>Crusader</td>
-          <td>65t</td>
-          <td>Heavy</td>
-          <td>CRD-6T</td>
-        </tr>
-        <tr>
-          <td>Cyclops</td>
-          <td>90t</td>
-          <td>Assault</td>
-          <td>CP-11-P</td>
-        </tr>
-      </tbody>
-    </table>
-  </Fragment>
-  ```html
-  <table class="table table_zebra">
-    ...
-  </table>
-  ```
-</CodeExample>
-
-## Customization
-
-Tables are primarily customized using CSS variables but can also be modified using Sass variables. All CSS variables are given the Vrembem vendor prefix `"vb-"`. This can be changed by setting the `$prefix-variable` variable via the `core` module.
-
-<DocBlock name="CSS Variables" src="table/src/_root.scss">
-
-```scss
-:root {
-  --vb-table-padding: 0.5em 0.75em;
-  --vb-table-mobile-label-width: 8em;
-  --vb-table-mobile-label-spacing: 0.75em;
-}
-
-:root, .vb-theme-root, .vb-theme-light {
-  --vb-table-background: var(--vb-background);
-  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 6%);
-  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-  --vb-table-border: 1px solid var(--vb-border-color);
-  --vb-table-border-alt: 1px dotted var(--vb-border-color);
-  --vb-table-foreground: var(--vb-foreground);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root, .vb-theme-root {
-    --vb-table-background: var(--vb-background);
-    --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
-    --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-    --vb-table-border: 1px solid var(--vb-border-color-dark);
-    --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
-    --vb-table-foreground: var(--vb-foreground);
-  }
-}
-
-.vb-theme-dark {
-  --vb-table-background: var(--vb-background);
-  --vb-table-background-zebra: hsl(var(--vb-neutral-hs) 50% / 10%);
-  --vb-table-background-hover: hsl(var(--vb-primary-hs) 50% / 20%);
-  --vb-table-border: 1px solid var(--vb-border-color-dark);
-  --vb-table-border-alt: 1px dotted var(--vb-border-color-dark);
-  --vb-table-foreground: var(--vb-foreground);
-}
-```
-</DocBlock>
-
-<DocBlock name="SCSS Variables" src="table/src/_variables.scss">
-
-```scss
-@use "@vrembem/core";
-@use "@vrembem/core/css";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
-
-$breakpoints: core.$breakpoints !default;
-$padding: 0.5em 0.75em !default;
-$background: null !default;
-$background-zebra: null !default;
-$background-hover: null !default;
-$foreground: null !default;
-$foreground-hover: null !default;
-$border: null !default;
-$border-alt: null !default;
-
-// table_responsive
-$mobile-label-attr: "data-mobile-label" !default;
-$mobile-label-width: 8em !default;
-$mobile-label-spacing: core.get-side($padding, left) !default;
-$mobile-label-background: null !default;
-$mobile-label-foreground: null !default;
-
-// table_size_sm
-$size-sm-padding: 0.25em 0.5em !default;
-$size-sm-mobile-label-width: $mobile-label-width !default;
-$size-sm-mobile-label-spacing: core.get-side($size-sm-padding, left) !default;
-
-// table_size_lg
-$size-lg-padding: 1em 1.25em !default;
-$size-lg-mobile-label-width: $mobile-label-width !default;
-$size-lg-mobile-label-spacing: core.get-side($size-lg-padding, left) !default;
-
-// Custom properties
-@include css.set("table", (
-  "padding": $padding,
-  "background": $background,
-  "background-zebra": $background-zebra,
-  "background-hover": $background-hover,
-  "foreground": $foreground,
-  "foreground-hover": $foreground-hover,
-  "border": $border,
-  "border-alt": $border-alt,
-  "mobile-label": (
-    "width": $mobile-label-width,
-    "spacing": $mobile-label-spacing,
-    "background": $mobile-label-background,
-    "foreground": $mobile-label-foreground,
-  )
-));
-
-// Theme maps
-$theme-light: (
-  "background": theme.get("background"),
-  "background-zebra": palette.get("neutral", 50%, 6%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color"),
-  "border-alt": 1px dotted theme.get("border-color"),
-  "foreground": theme.get("foreground"),
-  "foreground-hover": null
-) !default;
-
-$theme-dark: (
-  "background": theme.get("background"),
-  "background-zebra": palette.get("neutral", 50%, 10%),
-  "background-hover": palette.get("primary", 50%, 20%),
-  "border": 1px solid theme.get("border-color-dark"),
-  "border-alt": 1px dotted theme.get("border-color-dark"),
-  "foreground": theme.get("foreground"),
-  "foreground-hover": null
-) !default;
-
-@include theme.set("light", "table", $theme-light);
-@include theme.set("dark", "table", $theme-dark);
-```
-</DocBlock>

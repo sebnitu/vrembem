@@ -1,0 +1,12 @@
+@use "@vrembem/core";
+@use "@vrembem/core/css";
+
+#{core.bem("table", null, "striped")} {
+  thead tr {
+    background-color: css.get("table", "background-striped", css.get("background-dark"));
+  }
+
+  tr:nth-child(even) {
+    background-color: css.get("table", "background-striped", css.get("background-dark"));
+  }
+}
