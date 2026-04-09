@@ -35,12 +35,28 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.38 to CHANGELOG.md
+chore(release): add v4.0.0-next.39 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.39 (2026-04-09)
+
+### :bug: Bug Fix
+* `button`, `menu`
+  * [#2749](https://github.com/sebnitu/vrembem/pull/2749) Remove font inherit since it's already being set by the reset
+  * [#2748](https://github.com/sebnitu/vrembem/pull/2748) Fix text alignment of button and menu action base styles
+
+### :house: Refactor
+* `table`
+  * [#2757](https://github.com/sebnitu/vrembem/pull/2757) Improve the table component and config module integration
+* `base`, `core`, `section`, `vrembem`
+  * [#2756](https://github.com/sebnitu/vrembem/pull/2756) Improve the section component and config module integration
+* `card`
+  * [#2750](https://github.com/sebnitu/vrembem/pull/2750) Remove card specific theme variable definitions 
 
 
 ## v4.0.0-next.38 (2026-04-06)
