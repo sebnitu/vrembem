@@ -150,6 +150,8 @@ For basic table styles, only the `table` component class is required. Use [prope
   ```
 </CodeExample>
 
+### Overflow utility
+
 For simple responsive table styles, wrap your tables in a div with the [`overflow-auto`](/packages/utility#overflow) utility. This provides horizontal scrolling when tables can't fit in their container.
 
 <CodeExample>
@@ -192,6 +194,69 @@ For simple responsive table styles, wrap your tables in a div with the [`overflo
       ...
     </table>
   </div>
+  ```
+</CodeExample>
+
+### Hug content
+
+Use the `hug-content` table utility when a table cell should fit the size of its contents. This is useful for columns with compact content like checkboxes, icons, or action buttons that shouldn't take up more space than necessary.
+
+<CodeExample>
+  <Fragment slot="output">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="hug-content"></th>
+          <th>Name</th>
+          <th>Mass</th>
+          <th>Class</th>
+          <th>Variant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Locust</td>
+          <td>20t</td>
+          <td>Light</td>
+          <td>LCT-1V</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Shadow Hawk</td>
+          <td>55t</td>
+          <td>Medium</td>
+          <td>SHD-2H</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>Thunderbolt</td>
+          <td>65t</td>
+          <td>Heavy</td>
+          <td>TDR-5S</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>BattleMaster</td>
+          <td>85t</td>
+          <td>Assault</td>
+          <td>BLR-1G</td>
+        </tr>
+      </tbody>
+    </table>
+  </Fragment>
+  ```html
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="hug-content"></th>
+        ...
+      </tr>
+    </thead>
+    <tbody>
+      ...
+    </tbody>
+  </table>
   ```
 </CodeExample>
 
