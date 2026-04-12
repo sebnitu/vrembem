@@ -3,9 +3,11 @@
 @use "./mixins" as mix;
 
 #{core.bem("input")} {
+  @include mix.base;
+
   border-color: css.get("input", "border-color", css.get("border-color-dark"));
-  color: css.get("input", "foreground", css.get("foreground"));
-  background-color: css.get("input", "background", css.get("background"));
+  color: css.get("input", "foreground", css.get("form-control-foreground"));
+  background-color: css.get("input", "background", css.get("form-control-background"));
   box-shadow: css.get("input", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
 
   &::placeholder {
@@ -14,15 +16,15 @@
 
   &:hover {
     border-color: css.get("input", "border-color-hover", "border-color", css.get("border-color-darker"));
-    color: css.get("input", "foreground-hover", "foreground", css.get("foreground"));
-    background-color: css.get("input", "background-hover", "background", css.get("background"));
+    color: css.get("input", "foreground-hover", "foreground", css.get("form-control-foreground"));
+    background-color: css.get("input", "background-hover", "background", css.get("form-control-background"));
     box-shadow: css.get("input", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
   }
 
   &:focus {
     border-color: css.get("input", "border-color-focus", "border-color", css.get("input", "accent", css.get("form-control-accent")));
-    color: css.get("input", "foreground-focus", "foreground", css.get("foreground"));
-    background-color: css.get("input", "background-focus", "background", css.get("background"));
+    color: css.get("input", "foreground-focus", "foreground", css.get("form-control-foreground"));
+    background-color: css.get("input", "background-focus", "background", css.get("form-control-background"));
     box-shadow: css.get("input", "box-shadow-focus", none);
   }
 
@@ -31,13 +33,12 @@
   }
 
   &:read-only {
-    background-color: css.get("input", "background-readonly", css.get("background-dark"));
+    background-color: css.get("input", "background-readonly", css.get("form-control-background-readonly"));
   }
 
   &:disabled {
     pointer-events: none;
-    background-color: css.get("input", "background-disabled", css.get("background-darker"));
+    opacity: css.get("input", "opacity-disabled", css.get("form-control-opacity-disabled"));
+    background-color: css.get("input", "background-disabled", css.get("form-control-background-disabled"));
   }
-
-  @include mix.base;
 }

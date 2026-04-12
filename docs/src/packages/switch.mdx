@@ -48,17 +48,17 @@ Switch comes with the following Sass configuration options that can be set using
 Switch uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="cssvar-switch" valueLabel="Fallback" expandable={true} data={{
-  "--vb-switch-accent": "var(--vb-form-control-accent)",
+  "--vb-switch-color": "var(--vb-form-control-choice-color)",
+  "--vb-switch-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-switch-fill": "var(--vb-form-control-choice-fill)",
   "--vb-switch-size": "var(--vb-form-control-size)",
 
-  "--vb-switch-background": "var(--vb-form-control-background)",
-  "--vb-switch-background-opacity": "var(--vb-form-control-background-opacity)",
-  "--vb-switch-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
-  "--vb-switch-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
-  "--vb-switch-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
-  "--vb-switch-background-border-radius": "var(--vb-form-control-background-border-radius)",
-
-  "--vb-switch-foreground": "var(--vb-form-control-foreground)",
+  "--vb-switch-background-opacity": "var(--vb-form-control-choice-background-opacity)",
+  "--vb-switch-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
+  "--vb-switch-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
+  "--vb-switch-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
+  "--vb-switch-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
+  "--vb-switch-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
 
   "--vb-switch-transition-duration": "var(--vb-form-control-transition-duration)",
   "--vb-switch-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
@@ -103,7 +103,7 @@ Switch form controls are composed using a set of `<span>` elements alongside the
   ```
 </CodeExample>
 
-### Switch with labels
+### Labels
 
 For switch with labels, just wrap the switch component along with label text using the `<label>` element.
 
@@ -152,6 +152,65 @@ For switch with labels, just wrap the switch component along with label text usi
     </span>
     <span>Switch with a label</span>
   </label>
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the input element will provide visual indication that the switch is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <span class="switch">
+      <input type="checkbox" class="switch__native" checked disabled />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+    <span class="switch">
+      <input type="checkbox" class="switch__native" disabled />
+      <span class="switch__background">
+        <span class="switch__track">
+          <span class="switch__thumb"></span>
+        </span>
+      </span>
+    </span>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="switch">
+        <input type="checkbox" class="switch__native" disabled checked />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch with a label</span>
+    </label>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="switch">
+        <input type="checkbox" class="switch__native" disabled />
+        <span class="switch__background">
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+        </span>
+      </span>
+      <span>Switch with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <span class="switch">
+    <input type="checkbox" class="switch__native" disabled />
+    <span class="switch__background">
+      <span class="switch__track">
+        <span class="switch__thumb"></span>
+      </span>
+    </span>
+  </span>
   ```
 </CodeExample>
 

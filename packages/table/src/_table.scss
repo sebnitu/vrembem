@@ -16,6 +16,7 @@
   }
 
   th {
+    color: css.get("table", "header-foreground", css.get("foreground"));
     font-weight: css.get("font-weight-bold");
   }
 

@@ -1,6 +1,8 @@
 @use "../modules/css";
 @use "../modules/palette";
 @use "../modules/theme";
+
+// Base form-control variables shared by all controls
 @include css.set(
   "core",
   "form-control",
@@ -14,24 +16,39 @@
     "padding-x": 1em,
     "padding-y": 0.5em,
     "accent": palette.get("primary"),
+    "foreground": css.get("foreground"),
+    "background": css.get("background"),
+    "background-disabled": css.get("background-darker"),
+    "background-readonly": css.get("background-darker"),
+    "opacity-disabled": 0.6,
+    "transition-property": (
+      box-shadow,
+      outline
+    ),
+    "transition-duration": css.get("transition-duration-short"),
+    "transition-timing-function": css.get("transition-timing-function")
+  )
+);
+
+// Form-control choice (checkbox, radio and switch) variables
+@include css.set(
+  "core",
+  "form-control-choice",
+  (
+    "color": css.get("foreground-lighter"),
+    "color-checked": css.get("form-control-accent"),
+    "fill": css.get("form-control-background"),
     "background": (
-      "": css.get("background"),
       "border-radius": css.get("border-radius-circle"),
       "opacity": 0%,
       "opacity-hover": 20%,
       "opacity-focus": 20%,
       "opacity-active": 30%
-    ),
-    "transition": (
-      "property": (
-        box-shadow,
-        outline
-      ),
-      "duration": css.get("transition-duration-short"),
-      "timing-function": css.get("transition-timing-function")
     )
   )
 );
+
+// Form-control composition variables
 @include css.set(
   "core",
   "form-control",
@@ -40,5 +57,3 @@
     "size-calc": calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2))
   )
 );
-@include theme.set("light", "core", "form-control-foreground", palette.get("neutral"));
-@include theme.set("dark", "core", "form-control-foreground", palette.get("neutral", 80));
