@@ -114,7 +114,7 @@ Output the styles for a backdrop pseudo element. The initial state of a backdrop
 
 <ReferenceBar type="function" returns="selector" />
 
-Output a valid BEM class selector using core prefixes and the provided parameters; block, element, modifier and modifier-value. Returns a valid BEM CSS selector using the provided parameters.
+Returns a valid BEM class selector using core prefixes and the provided parameters; block, element, modifier and modifier-value.
 
 #### Arguments
 
@@ -185,6 +185,41 @@ Output a valid BEM class selector using core prefixes and the provided parameter
 
 // Generate selector for modifier value
 .menu_size_lg {
+  // ...
+}
+```
+</Fragment>
+</CodeExample>
+
+## ce
+
+<ReferenceBar type="function" returns="string" />
+
+Returns a valid custom element selector using the core custom elements prefix and the provided component name.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component name.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample tabs>
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core";
+
+// Generate custom element selector
+#{core.ce("checkbox")} {
+  // ...
+}
+```
+</Fragment>
+<Fragment slot="tab-css">
+```scss
+// Generate custom element selector
+vb-checkbox {
   // ...
 }
 ```
