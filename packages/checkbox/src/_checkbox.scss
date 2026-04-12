@@ -2,9 +2,9 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-accent: css.get("checkbox", "accent", css.get("form-control-accent"));
+$-color: css.get("checkbox", "color", css.get("form-control-choice-color"));
+$-color-checked: css.get("checkbox", "color-selected", css.get("form-control-choice-color-checked"));
 $-background: css.get("checkbox", "background", css.get("form-control-background"));
-$-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground"));
 
 #{core.bem("checkbox")} {
   position: relative;
@@ -14,6 +14,11 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   justify-content: center;
   font-size: css.get("checkbox", "size", config.get("checkbox-size", "default"));
   vertical-align: middle;
+
+  &:has(:disabled) {
+    pointer-events: none;
+    opacity: css.get("checkbox", "opacity-disabled", css.get("form-control-opacity-disabled"));
+  }
 }
 
 #{core.bem("checkbox", "background")} {
@@ -24,8 +29,8 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("checkbox", "background-border-radius", css.get("form-control-background-border-radius"));
-  background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity", css.get("form-control-background-opacity")));
+  border-radius: css.get("checkbox", "background-border-radius", css.get("form-control-choice-background-border-radius"));
+  background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity", css.get("form-control-choice-background-opacity")));
 }
 
 #{core.bem("checkbox", "box")} {
@@ -34,7 +39,7 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("checkbox", "border-width", 2px) solid $-foreground;
+  border: css.get("checkbox", "border-width", 2px) solid $-color;
   border-radius: css.get("checkbox", "border-radius", css.get("border-radius"));
   color: transparent;
   background-color: $-background;
@@ -62,29 +67,29 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   opacity: 0;
 
   &:hover + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
+    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
 
     #{core.bem("checkbox", "box")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
 
   &:focus + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
+    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
 
     #{core.bem("checkbox", "box")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
 
   &:focus-visible + #{core.bem("checkbox", "background")},
   &:active + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("checkbox", "background-opacity-active", css.get("form-control-background-opacity-active")));
+    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
 
     #{core.bem("checkbox", "box")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
@@ -92,8 +97,8 @@ $-foreground: css.get("checkbox", "foreground", css.get("form-control-foreground
   &:checked + #{core.bem("checkbox", "background")},
   &:indeterminate + #{core.bem("checkbox", "background")} {
     #{core.bem("checkbox", "box")} {
-      border-color: $-accent;
-      background-color: $-accent;
+      border-color: $-color-checked;
+      background-color: $-color-checked;
     }
 
     #{core.bem("checkbox", "icon")} {

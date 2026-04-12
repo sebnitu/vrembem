@@ -2,9 +2,9 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-accent: css.get("switch", "accent", css.get("form-control-accent"));
+$-color: css.get("switch", "color", css.get("form-control-choice-color"));
+$-color-checked: css.get("switch", "color-checked", css.get("form-control-choice-color-checked"));
 $-background: css.get("switch", "background", css.get("form-control-background"));
-$-foreground: css.get("switch", "foreground", css.get("form-control-foreground"));
 $-size: css.get("switch", "size", config.get("switch-size", "default"));
 $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switch", "border-width", 2px) * 2));
 
@@ -18,6 +18,11 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
   padding-left: calc(css.get("core", "form-control-size-calc") * 0.25);
   font-size: $-size;
   vertical-align: middle;
+
+  &:has(:disabled) {
+    pointer-events: none;
+    opacity: css.get("switch", "opacity-disabled", css.get("form-control-opacity-disabled"));
+  }
 }
 
 #{core.bem("switch", "background")} {
@@ -36,8 +41,8 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
     position: absolute;
     top: 0;
     left: calc(calc(css.get("core", "form-control-size-calc") * 0.25) * -1);
-    border-radius: css.get("switch", "background-border-radius", css.get("form-control-background-border-radius"));
-    background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity", css.get("form-control-background-opacity")));
+    border-radius: css.get("switch", "background-border-radius", css.get("form-control-choice-background-border-radius"));
+    background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity", css.get("form-control-choice-background-opacity")));
     transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   }
 }
@@ -47,9 +52,9 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 
   position: relative;
   display: block;
-  border: css.get("switch", "border-width", 2px) solid $-foreground;
+  border: css.get("switch", "border-width", 2px) solid $-color;
   border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
-  background-color: hsl(from $-foreground h s l / 20%);
+  background-color: hsl(from $-color h s l / 20%);
 }
 
 #{core.bem("switch", "thumb")} {
@@ -62,7 +67,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
   display: block;
   border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
   background-color: $-background;
-  box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-foreground;
+  box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color;
   transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
 }
 
@@ -78,32 +83,32 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 
   &:hover + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
+      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
+      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color-checked;
     }
   }
 
   &:focus + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
+      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
+      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color-checked;
     }
   }
 
   &:focus-visible + #{core.bem("switch", "background")},
   &:active + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-accent h s l / css.get("switch", "background-opacity-active", css.get("form-control-background-opacity-active")));
+      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
     }
 
     #{core.bem("switch", "thumb")} {
-      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
+      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color-checked;
     }
   }
 
@@ -113,13 +118,13 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
     }
 
     #{core.bem("switch", "track")} {
-      border-color: $-accent;
-      background-color: $-accent;
+      border-color: $-color-checked;
+      background-color: $-color-checked;
     }
 
     #{core.bem("switch", "thumb")} {
       left: calc(100% - #{$-thumb-size});
-      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-accent;
+      box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color-checked;
     }
   }
 }

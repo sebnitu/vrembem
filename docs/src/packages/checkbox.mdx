@@ -52,11 +52,11 @@ Checkbox uses CSS variables in a reference and fallback pattern. Variables are r
   "--vb-checkbox-size": "var(--vb-form-control-size)",
 
   "--vb-checkbox-background": "var(--vb-form-control-background)",
-  "--vb-checkbox-background-opacity": "var(--vb-form-control-background-opacity)",
-  "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-background-opacity-hover)",
-  "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-background-opacity-focus)",
-  "--vb-checkbox-background-opacity-active": "var(--vb-form-control-background-opacity-active)",
-  "--vb-checkbox-background-border-radius": "var(--vb-form-control-background-border-radius)",
+  "--vb-checkbox-background-opacity": "var(--vb-form-control-choice-background-opacity)",
+  "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
+  "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
+  "--vb-checkbox-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
+  "--vb-checkbox-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
 
   "--vb-checkbox-foreground": "var(--vb-form-control-foreground)",
 
@@ -127,7 +127,7 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
 
 Indeterminate checkboxes need to be set in JavaScript though styling is provided by Vrembem for the indeterminate states (see example above). Review [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate) for more details.
 
-### Checkbox with labels
+### Labels
 
 For checkboxes with labels, wrap the checkbox component along with the text label using the `<label>` element.
 
@@ -176,6 +176,65 @@ For checkboxes with labels, wrap the checkbox component along with the text labe
     </span>
     <span>Checkbox with a label</span>
   </label>
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the input element will provide visual indication that the checkbox is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <span class="checkbox">
+      <input class="checkbox__native" type="checkbox" checked disabled />
+      <span class="checkbox__background">
+        <span class="checkbox__box">
+          <span class="checkbox__icon"></span>
+        </span>
+      </span>
+    </span>
+    <span class="checkbox">
+      <input class="checkbox__native" type="checkbox" disabled />
+      <span class="checkbox__background">
+        <span class="checkbox__box">
+          <span class="checkbox__icon"></span>
+        </span>
+      </span>
+    </span>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" checked disabled />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+      <span>Checkbox with a label</span>
+    </label>
+    <br />
+    <label class="flex flex_inline flex_gap_sm align-items-center">
+      <span class="checkbox">
+        <input class="checkbox__native" type="checkbox" disabled />
+        <span class="checkbox__background">
+          <span class="checkbox__box">
+            <span class="checkbox__icon"></span>
+          </span>
+        </span>
+      </span>
+      <span>Checkbox with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <span class="checkbox">
+    <input class="checkbox__native" type="checkbox" disabled />
+    <span class="checkbox__background">
+      <span class="checkbox__box">
+        <span class="checkbox__icon"></span>
+      </span>
+    </span>
+  </span>
   ```
 </CodeExample>
 

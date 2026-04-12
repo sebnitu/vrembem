@@ -2,9 +2,9 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-$-accent: css.get("radio", "accent", css.get("form-control-accent"));
+$-color: css.get("radio", "color", css.get("form-control-choice-color")) !default;
+$-color-checked: css.get("radio", "color-checked", css.get("form-control-choice-color-checked"));
 $-background: css.get("radio", "background", css.get("form-control-background")) !default;
-$-foreground: css.get("radio", "foreground", css.get("form-control-foreground")) !default;
 
 #{core.bem("radio")} {
   position: relative;
@@ -14,6 +14,11 @@ $-foreground: css.get("radio", "foreground", css.get("form-control-foreground"))
   justify-content: center;
   font-size: css.get("radio", "size", config.get("radio-size", "default"));
   vertical-align: middle;
+
+  &:has(:disabled) {
+    pointer-events: none;
+    opacity: css.get("radio", "opacity-disabled", css.get("form-control-opacity-disabled"));
+  }
 }
 
 #{core.bem("radio", "background")} {
@@ -24,8 +29,8 @@ $-foreground: css.get("radio", "foreground", css.get("form-control-foreground"))
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("radio", "background-border-radius", css.get("form-control-background-border-radius"));
-  background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity", css.get("form-control-background-opacity")));
+  border-radius: css.get("radio", "background-border-radius", css.get("form-control-choice-background-border-radius"));
+  background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity", css.get("form-control-choice-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
@@ -34,7 +39,7 @@ $-foreground: css.get("radio", "foreground", css.get("form-control-foreground"))
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("radio", "border-width", 2px) solid $-foreground;
+  border: css.get("radio", "border-width", 2px) solid $-color;
   border-radius: css.get("radio", "circle-size", 1.25em);
   color: transparent;
   background-color: $-background;
@@ -59,37 +64,37 @@ $-foreground: css.get("radio", "foreground", css.get("form-control-foreground"))
   opacity: 0;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-hover", css.get("form-control-background-opacity-hover")));
+    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-focus", css.get("form-control-background-opacity-focus")));
+    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-accent h s l / css.get("radio", "background-opacity-active", css.get("form-control-background-opacity-active")));
+    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
-      border-color: $-accent;
+      border-color: $-color-checked;
       background-color: $-background;
     }
   }
 
   &:checked + #{core.bem("radio", "background")} {
     #{core.bem("radio", "circle")} {
-      border-color: $-accent;
-      background-color: $-accent;
+      border-color: $-color-checked;
+      background-color: $-color-checked;
     }
 
     #{core.bem("radio", "dot")} {
