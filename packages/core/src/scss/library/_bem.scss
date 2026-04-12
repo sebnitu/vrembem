@@ -2,7 +2,7 @@
 @use "../utilities/escape-colon" as *;
 @use "../modules/config";
 
-/// Output a valid BEM class selector using core prefixes and the provided
+/// Returns a valid BEM class selector using core prefixes and the provided
 /// parameters; block, element, modifier and modifier-value.
 ///
 /// @param {string} $b

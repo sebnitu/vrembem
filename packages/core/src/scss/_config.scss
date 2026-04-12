@@ -27,6 +27,10 @@ $default: (
   // @type string | map
   "prefix-tokens": "vb",
 
+  // The prefix to apply to custom element selectors, e.g.: <vb-checkbox></vb-checkbox>
+  // @type string
+  "prefix-custom-elements": "vb",
+
   // The palette to build CSS variables from
   // @type map
   "palette": (

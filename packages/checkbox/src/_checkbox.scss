@@ -6,7 +6,10 @@ $-color: css.get("checkbox", "color", css.get("form-control-choice-color"));
 $-color-checked: css.get("checkbox", "color-checked", css.get("form-control-choice-color-checked"));
 $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
 
+#{core.ce("checkbox")},
 #{core.bem("checkbox")} {
+  @include core.form-control-size;
+
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -22,7 +25,7 @@ $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
 }
 
 #{core.bem("checkbox", "background")} {
-  @include core.form-control-size;
+  @include core.size(100%);
 
   position: relative;
   z-index: 1;

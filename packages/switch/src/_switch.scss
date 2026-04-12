@@ -8,12 +8,16 @@ $-fill: css.get("switch", "fill", css.get("form-control-choice-fill"));
 $-size: css.get("switch", "size", config.get("switch-size", "default"));
 $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switch", "border-width", 2px) * 2));
 
+#{core.ce("switch")},
 #{core.bem("switch")} {
+  @include core.form-control-size;
+
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  box-sizing: content-box;
   padding-right: calc(css.get("core", "form-control-size-calc") * 0.25);
   padding-left: calc(css.get("core", "form-control-size-calc") * 0.25);
   font-size: $-size;
