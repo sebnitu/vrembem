@@ -35,12 +35,21 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.39 to CHANGELOG.md
+chore(release): add v4.0.0-next.40 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.40 (2026-04-12)
+
+### :tada: New Feature
+* `checkbox`, `core`, `radio`, `switch`, `table`
+  * [#2759](https://github.com/sebnitu/vrembem/pull/2759) Add custom element style support to form-control choice components
+* `button`, `checkbox`, `core`, `input`, `radio`, `switch`, `table`
+  * [#2758](https://github.com/sebnitu/vrembem/pull/2758) Add disabled styles to form-control choice components
 
 
 ## v4.0.0-next.39 (2026-04-09)
