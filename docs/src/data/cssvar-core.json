@@ -65,10 +65,16 @@
   "--vb-form-control-border-radius": "var(--vb-border-radius)",
   "--vb-form-control-padding-x": "1em",
   "--vb-form-control-padding-y": "0.5em",
-  "--vb-form-control-padding": "0.5em 1em",
+  "--vb-form-control-padding": "var(--vb-form-control-padding-y) var(--vb-form-control-padding-x)",
   "--vb-form-control-size-calc": "calc(1em * var(--vb-form-control-line-height) + (var(--vb-form-control-padding-y) + var(--vb-form-control-border-width)) * 2)",
   "--vb-form-control-accent": "var(--vb-primary)",
+  "--vb-form-control-foreground": "var(--vb-foreground)",
   "--vb-form-control-background": "var(--vb-background)",
+  "--vb-form-control-background-disabled": "var(--vb-background-darker)",
+  "--vb-form-control-background-readonly": "var(--vb-background-darker)",
+  "--vb-form-control-opacity-disabled": 0.6,
+  "--vb-form-control-choice-color": "var(--vb-foreground-lighter)",
+  "--vb-form-control-choice-color-checked": "var(--vb-form-control-accent)",
   "--vb-form-control-choice-background-border-radius": "var(--vb-border-radius-circle)",
   "--vb-form-control-choice-background-opacity": "0%",
   "--vb-form-control-choice-background-opacity-hover": "20%",
@@ -144,9 +150,5 @@
   "--vb-shadow-color": {
     "light": "hsl(var(--vb-neutral-hs) 20% / 20%)",
     "dark": "hsl(var(--vb-neutral-hs) 0% / 20%)"
-  },
-  "--vb-form-control-foreground": {
-    "light": "hsl(var(--vb-neutral-hs) 50%)",
-    "dark": "hsl(var(--vb-neutral-hs) 80%)"
   }
 }
