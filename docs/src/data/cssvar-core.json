@@ -72,7 +72,7 @@
   "--vb-form-control-background": "var(--vb-background)",
   "--vb-form-control-background-disabled": "var(--vb-background-darker)",
   "--vb-form-control-background-readonly": "var(--vb-background-darker)",
-  "--vb-form-control-opacity-disabled": 0.6,
+  "--vb-form-control-opacity-disabled": "0.6",
   "--vb-form-control-choice-color": "var(--vb-foreground-lighter)",
   "--vb-form-control-choice-color-checked": "var(--vb-form-control-accent)",
   "--vb-form-control-choice-fill": "var(--vb-form-control-background)",
