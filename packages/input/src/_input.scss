@@ -3,6 +3,8 @@
 @use "./mixins" as mix;
 
 #{core.bem("input")} {
+  @include mix.base;
+
   border-color: css.get("input", "border-color", css.get("border-color-dark"));
   color: css.get("input", "foreground", css.get("form-control-foreground"));
   background-color: css.get("input", "background", css.get("form-control-background"));
@@ -39,6 +41,4 @@
     opacity: css.get("input", "opacity-disabled", css.get("form-control-opacity-disabled"));
     background-color: css.get("input", "background-disabled", css.get("form-control-background-disabled"));
   }
-
-  @include mix.base;
 }
