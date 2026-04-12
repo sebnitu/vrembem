@@ -48,17 +48,17 @@ Checkbox comes with the following Sass configuration options that can be set usi
 Checkbox uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="cssvar-checkbox" valueLabel="Fallback" expandable={true} data={{
-  "--vb-checkbox-accent": "var(--vb-form-control-accent)",
+  "--vb-checkbox-color": "var(--vb-form-control-choice-color)",
+  "--vb-checkbox-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-checkbox-fill": "var(--vb-form-control-choice-fill)",
   "--vb-checkbox-size": "var(--vb-form-control-size)",
 
-  "--vb-checkbox-background": "var(--vb-form-control-background)",
   "--vb-checkbox-background-opacity": "var(--vb-form-control-choice-background-opacity)",
   "--vb-checkbox-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
   "--vb-checkbox-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
   "--vb-checkbox-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
   "--vb-checkbox-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
-
-  "--vb-checkbox-foreground": "var(--vb-form-control-foreground)",
+  "--vb-checkbox-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
 
   "--vb-checkbox-transition-duration": "var(--vb-form-control-transition-duration)",
   "--vb-checkbox-transition-timing-function": "var(--vb-form-control-transition-timing-function)",

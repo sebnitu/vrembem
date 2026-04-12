@@ -4,7 +4,7 @@
 
 $-color: css.get("radio", "color", css.get("form-control-choice-color")) !default;
 $-color-checked: css.get("radio", "color-checked", css.get("form-control-choice-color-checked"));
-$-background: css.get("radio", "background", css.get("form-control-background")) !default;
+$-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
   position: relative;
@@ -42,7 +42,7 @@ $-background: css.get("radio", "background", css.get("form-control-background"))
   border: css.get("radio", "border-width", 2px) solid $-color;
   border-radius: css.get("radio", "circle-size", 1.25em);
   color: transparent;
-  background-color: $-background;
+  background-color: $-fill;
 }
 
 #{core.bem("radio", "dot")} {
@@ -50,7 +50,7 @@ $-background: css.get("radio", "background", css.get("form-control-background"))
 
   border-radius: css.get("radio", "dot-size", 0.5em);
   opacity: 0;
-  background-color: $-background;
+  background-color: $-fill;
 }
 
 #{core.bem("radio", "native")} {
@@ -68,7 +68,7 @@ $-background: css.get("radio", "background", css.get("form-control-background"))
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 
@@ -77,7 +77,7 @@ $-background: css.get("radio", "background", css.get("form-control-background"))
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 
@@ -87,7 +87,7 @@ $-background: css.get("radio", "background", css.get("form-control-background"))
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 

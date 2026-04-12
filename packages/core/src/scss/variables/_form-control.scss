@@ -37,6 +37,7 @@
   (
     "color": css.get("foreground-lighter"),
     "color-checked": css.get("form-control-accent"),
+    "fill": css.get("form-control-background"),
     "background": (
       "border-radius": css.get("border-radius-circle"),
       "opacity": 0%,

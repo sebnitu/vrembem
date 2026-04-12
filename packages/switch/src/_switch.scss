@@ -4,7 +4,7 @@
 
 $-color: css.get("switch", "color", css.get("form-control-choice-color"));
 $-color-checked: css.get("switch", "color-checked", css.get("form-control-choice-color-checked"));
-$-background: css.get("switch", "background", css.get("form-control-background"));
+$-fill: css.get("switch", "fill", css.get("form-control-choice-fill"));
 $-size: css.get("switch", "size", config.get("switch-size", "default"));
 $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switch", "border-width", 2px) * 2));
 
@@ -66,7 +66,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
   left: 0;
   display: block;
   border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
-  background-color: $-background;
+  background-color: $-fill;
   box-shadow: 0 0 0 css.get("switch", "border-width", 2px) $-color;
   transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
 }

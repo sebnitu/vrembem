@@ -48,17 +48,17 @@ Radio comes with the following Sass configuration options that can be set using 
 Radio uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="cssvar-radio" valueLabel="Fallback" expandable={true} data={{
-  "--vb-radio-accent": "var(--vb-form-control-accent)",
+  "--vb-radio-color": "var(--vb-form-control-choice-color)",
+  "--vb-radio-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-radio-fill": "var(--vb-form-control-choice-fill)",
   "--vb-radio-size": "var(--vb-form-control-size)",
 
-  "--vb-radio-background": "var(--vb-form-control-background)",
   "--vb-radio-background-opacity": "var(--vb-form-control-choice-background-opacity)",
   "--vb-radio-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
   "--vb-radio-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
   "--vb-radio-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
   "--vb-radio-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
-
-  "--vb-radio-foreground": "var(--vb-form-control-foreground)",
+  "--vb-radio-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
 
   "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
   "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",

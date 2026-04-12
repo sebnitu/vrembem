@@ -3,8 +3,8 @@
 @use "@vrembem/core/css";
 
 $-color: css.get("checkbox", "color", css.get("form-control-choice-color"));
-$-color-checked: css.get("checkbox", "color-selected", css.get("form-control-choice-color-checked"));
-$-background: css.get("checkbox", "background", css.get("form-control-background"));
+$-color-checked: css.get("checkbox", "color-checked", css.get("form-control-choice-color-checked"));
+$-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
   position: relative;
@@ -42,14 +42,14 @@ $-background: css.get("checkbox", "background", css.get("form-control-background
   border: css.get("checkbox", "border-width", 2px) solid $-color;
   border-radius: css.get("checkbox", "border-radius", css.get("border-radius"));
   color: transparent;
-  background-color: $-background;
+  background-color: $-fill;
 }
 
 #{core.bem("checkbox", "icon")} {
   @include core.size(css.get("checkbox", "icon-size", 0.8em));
 
   opacity: 0;
-  background-color: $-background;
+  background-color: $-fill;
   mask-image: url(core.svg("check"));
   mask-repeat: no-repeat;
   mask-position: center calc(css.get("checkbox", "icon-size", 0.8em) * -1);
@@ -71,7 +71,7 @@ $-background: css.get("checkbox", "background", css.get("form-control-background
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 
@@ -80,7 +80,7 @@ $-background: css.get("checkbox", "background", css.get("form-control-background
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 
@@ -90,7 +90,7 @@ $-background: css.get("checkbox", "background", css.get("form-control-background
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;
-      background-color: $-background;
+      background-color: $-fill;
     }
   }
 
