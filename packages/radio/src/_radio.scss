@@ -6,7 +6,10 @@ $-color: css.get("radio", "color", css.get("form-control-choice-color")) !defaul
 $-color-checked: css.get("radio", "color-checked", css.get("form-control-choice-color-checked"));
 $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 
+#{core.ce("radio")},
 #{core.bem("radio")} {
+  @include core.form-control-size;
+
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
@@ -22,7 +25,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 }
 
 #{core.bem("radio", "background")} {
-  @include core.form-control-size;
+  @include core.size(100%);
 
   position: relative;
   z-index: 1;

@@ -1,0 +1,22 @@
+@use "../modules/config";
+
+/// Output a valid custom element name using the core custom elements prefix
+/// and the provided component name.
+///
+/// @param {string} $component
+///   The component name.
+///
+/// @return {string}
+///   A valid custom element name using the provided component name.
+///
+@function ce($component) {
+  $prefix: config.get("prefix-custom-elements");
+
+  @if $prefix and $prefix != "" {
+    $prefix: "#{$prefix}-";
+  }
+
+  $result: "#{$prefix}#{$component}";
+
+  @return $result;
+}
