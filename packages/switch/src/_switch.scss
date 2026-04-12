@@ -12,12 +12,12 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 #{core.bem("switch")} {
   @include core.form-control-size;
 
-  box-sizing: content-box;
   position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
+  box-sizing: content-box;
   padding-right: calc(css.get("core", "form-control-size-calc") * 0.25);
   padding-left: calc(css.get("core", "form-control-size-calc") * 0.25);
   font-size: $-size;
