@@ -42,7 +42,7 @@
 
   &:disabled:not(.is-loading) {
     pointer-events: none;
-    opacity: css.get("button", "opacity-disabled", 0.6);
+    opacity: css.get("button", "opacity-disabled", css.get("form-control-opacity-disabled"));
   }
 
   &.is-loading {
