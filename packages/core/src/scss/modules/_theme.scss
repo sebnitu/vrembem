@@ -343,10 +343,10 @@ $-theme-keys: "light", "dark";
   "core",
   (
     "color-scheme": light,
-    "background": palette.get("neutral", 100%),
-    "background-dark": palette.get("neutral", 98%),
-    "background-darker": palette.get("neutral", 95%),
-    "background-alt": palette.get("secondary", 60%, 10%),
+    "background": palette.get("neutral", 100%, 0),
+    "background-dark": palette.get("neutral", 98%, 0.002),
+    "background-darker": palette.get("neutral", 96%, 0.002),
+    "background-alt": palette.get("secondary", 60%, $a: 10%),
     "background-hover": rgb(0 0 0 / 5%),
     "background-focus": rgb(0 0 0 / 5%),
     "background-active": rgb(0 0 0 / 10%),
@@ -357,7 +357,7 @@ $-theme-keys: "light", "dark";
     "border-color": rgb(0 0 0 / 10%),
     "border-color-dark": rgb(0 0 0 / 20%),
     "border-color-darker": rgb(0 0 0 / 30%),
-    "shadow-color": palette.get("neutral", 20%, 20%)
+    "shadow-color": palette.get("neutral", 20%, $a: 20%)
   )
 );
 
@@ -370,7 +370,7 @@ $-theme-keys: "light", "dark";
     "background": palette.get("neutral", 10%),
     "background-dark": palette.get("neutral", 12%),
     "background-darker": palette.get("neutral", 15%),
-    "background-alt": palette.get("secondary", 70%, 10%),
+    "background-alt": palette.get("secondary", 70%, $a: 10%),
     "background-hover": rgb(255 255 255 / 5%),
     "background-focus": rgb(255 255 255 / 5%),
     "background-active": rgb(255 255 255 / 1%),
@@ -381,6 +381,6 @@ $-theme-keys: "light", "dark";
     "border-color": rgb(255 255 255 / 10%),
     "border-color-dark": rgb(255 255 255 / 20%),
     "border-color-darker": rgb(255 255 255 / 30%),
-    "shadow-color": palette.get("neutral", 0%, 20%)
+    "shadow-color": palette.get("neutral", 0%, $a: 20%)
   )
 );

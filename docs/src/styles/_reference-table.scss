@@ -7,16 +7,16 @@
   "light",
   "reference-table",
   (
-    "key-foreground": palette.get("secondary", 45),
-    "value-foreground": palette.get("primary", 45)
+    "key-foreground": palette.get("secondary", 45%),
+    "value-foreground": palette.get("primary", 45%)
   )
 );
 @include theme.set(
   "dark",
   "reference-table",
   (
-    "key-foreground": palette.get("secondary", 65),
-    "value-foreground": palette.get("primary", 65)
+    "key-foreground": palette.get("secondary", 65%),
+    "value-foreground": palette.get("primary", 65%)
   )
 );
 
@@ -43,7 +43,7 @@
     border-radius: css.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),
-      0 0 0 0 palette.get("primary", 50%, 20%);
+      0 0 0 0 palette.get("primary", $a: 20%);
 
     @include core.media-min("sidebar") {
       scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
@@ -53,7 +53,7 @@
       z-index: 1;
       box-shadow:
         0 0 0 1px palette.get("primary"),
-        0 0 0 0.2rem palette.get("primary", 50%, 20%);
+        0 0 0 0.2rem palette.get("primary", $a: 20%);
 
       .table-anchor {
         display: none;
@@ -229,7 +229,7 @@
   line-height: 1em;
   text-decoration: none !important;
   opacity: 0;
-  background-color: palette.get("primary", 50%, 0%);
+  background-color: palette.get("primary", $a: 0%);
   transition:
     color 0.25s,
     opacity 0.25s;
@@ -237,7 +237,7 @@
   &:focus,
   &:hover {
     opacity: 1;
-    background-color: palette.get("primary", 50%, 20%);
+    background-color: palette.get("primary", $a: 20%);
   }
 
   tr:hover & {
@@ -248,11 +248,11 @@
 .table-anchor-clear {
   display: none;
   color: palette.get("important");
-  background-color: palette.get("important", 50%, 0%);
+  background-color: palette.get("important", $a: 0%);
 
   &:focus,
   &:hover {
-    background-color: palette.get("important", 50%, 10%);
+    background-color: palette.get("important", $a: 10%);
   }
 }
 

@@ -17,14 +17,14 @@
   text-decoration: none !important;
   vertical-align: middle;
   opacity: 0;
-  background-color: palette.get("primary", 50%, 0%);
+  background-color: palette.get("primary", $a: 0%);
   transition-timing-function: css.get("transition-timing-function");
   transition-duration: css.get("transition-duration");
   transition-property: color, opacity;
 
   &:hover,
   &:focus {
-    background-color: palette.get("primary", 50%, 20%);
+    background-color: palette.get("primary", $a: 20%);
   }
 
   &:hover,

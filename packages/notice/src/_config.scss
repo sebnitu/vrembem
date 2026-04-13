@@ -26,14 +26,14 @@ $default: (
   "notice",
   (
     "background-lightness": 95%,
-    "foreground-lightness": 25%
+    "foreground-lightness": 20%
   )
 );
 @include theme.set(
   "dark",
   "notice",
   (
-    "background-lightness": 25%,
+    "background-lightness": 20%,
     "foreground-lightness": 95%
   )
 );

@@ -51,8 +51,8 @@
 );
 
 // Set CSS variable themes
-@include theme.set("light", "background-glass", palette.get("neutral", 100, 90%));
-@include theme.set("dark", "background-glass", palette.get("neutral", 10, 90%));
+@include theme.set("light", "background-glass", palette.get("neutral", 100%, 0, $a: 90%));
+@include theme.set("dark", "background-glass", palette.get("neutral", 10%, $a: 90%));
 @include theme.set(
   "light",
   "astro",

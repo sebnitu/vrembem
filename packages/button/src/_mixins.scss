@@ -24,7 +24,7 @@
   background-clip: border-box;
 }
 
-/// Creates a button variant using custom properties and hsl relative values.
+/// Creates a button variant using custom properties and oklch relative values.
 ///
 /// @param {color | map} $background
 ///   The color to use as the button background. Also accepts a map that defines
@@ -68,13 +68,13 @@
   // Set the default background-hover value if it was not provided
   @if not map.has-key($overrides, "background-hover") {
     $color: map.get($overrides, "background");
-    $overrides: map.set($overrides, "background-hover", hsl(from $color h s calc(l #{$operator} 5)));
+    $overrides: map.set($overrides, "background-hover", oklch(from $color calc(l #{$operator} 0.05) c h));
   }
 
   // Set the default background-active value if it was not provided
   @if not map.has-key($overrides, "background-active") {
     $color: map.get($overrides, "background");
-    $overrides: map.set($overrides, "background-active", hsl(from $color h s calc(l #{$operator} 10)));
+    $overrides: map.set($overrides, "background-active", oklch(from $color calc(l #{$operator} 0.1) c h));
   }
 
   // Define the overrides CSS variables

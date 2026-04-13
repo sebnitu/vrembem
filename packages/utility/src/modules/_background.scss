@@ -52,7 +52,7 @@
 
     @each $value in config.get("utility-palette-range") {
       #{fun.selector("background", $name, $value)} {
-        background-color: fun.maybe-important(palette.get($name, $value));
+        background-color: fun.maybe-important(palette.get($name, $value * 1%));
       }
     }
   }

@@ -12,19 +12,19 @@
   "light",
   "box",
   (
-    "border-color": palette.get("primary", 60),
-    "background": palette.get("primary", 90),
-    "border-color-alt": palette.get("secondary", 60),
-    "background-alt": palette.get("secondary", 90)
+    "border-color": palette.get("primary", 60%),
+    "background": palette.get("primary", 90%),
+    "border-color-alt": palette.get("secondary", 60%),
+    "background-alt": palette.get("secondary", 90%)
   )
 );
 @include theme.set(
   "dark",
   "box",
   (
-    "border-color": palette.get("primary", 40),
+    "border-color": palette.get("primary", 40%),
     "background": palette.get("primary", 15%),
-    "border-color-alt": palette.get("secondary", 40),
+    "border-color-alt": palette.get("secondary", 40%),
     "background-alt": palette.get("secondary", 15%)
   )
 );

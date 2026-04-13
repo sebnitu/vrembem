@@ -8,7 +8,7 @@
   border-radius: css.get("border-radius");
   font-size: css.get("font-size");
   line-height: css.get("line-height");
-  box-shadow: 0 0 0 0 palette.get("primary", 90);
+  box-shadow: 0 0 0 0 palette.get("primary", 90%);
   transition: css.get("transition");
   transition-property: border-color, box-shadow;
 
@@ -18,7 +18,7 @@
 
   &.is-active {
     border-color: palette.get("primary");
-    box-shadow: 0 0 0 0.2rem palette.get("primary", 50%, 20%);
+    box-shadow: 0 0 0 0.2rem palette.get("primary", 50%, $a: 20%);
   }
 
   @include core.media-max("xs") {

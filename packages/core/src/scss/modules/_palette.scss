@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "sass:meta";
-@use "../utilities/get-hs" as *;
+@use "sass:color";
 @use "./config";
 @use "./css";
 
@@ -8,7 +8,9 @@
 @if config.get("palette") {
   @each $name, $value in config.get("palette") {
     @include css.set("palette", "#{$name}", $value);
-    @include css.set("palette", "#{$name}-hs", get-hs($value));
+    @include css.set("palette", "#{$name}-l", color.channel($value, "lightness", $space: oklch));
+    @include css.set("palette", "#{$name}-c", color.channel($value, "chroma", $space: oklch));
+    @include css.set("palette", "#{$name}-h", color.channel($value, "hue", $space: oklch));
   }
 }
 
@@ -26,7 +28,9 @@
   // Loop through the seeds and set the variables for each item in $seeds
   @each $name, $value in config.get("palette") {
     @include css.set("palette", "#{$name}", $value);
-    @include css.set("palette", "#{$name}-hs", get-hs($value));
+    @include css.set("palette", "#{$name}-l", color.channel($value, "lightness", $space: oklch));
+    @include css.set("palette", "#{$name}-c", color.channel($value, "chroma", $space: oklch));
+    @include css.set("palette", "#{$name}-h", color.channel($value, "hue", $space: oklch));
   }
 }
 
@@ -61,24 +65,28 @@
 ///   $value: palette.get("primary", 20%, 30%);
 ///   // Returns: hsl(var(--vb-primary-hs) 20% / 30%)
 ///
-@function get($name, $lightness: config.get("palette-default"), $alpha: null) {
+@function get($name, $l: null, $c: null, $h: null, $a: null) {
   // Throw error if palette name doesn't exist in palette map
   @if not map.has-key(config.get("palette"), $name) {
     @error 'Palette value could not be found: "#{$name}"';
   }
 
-  // If an alpha value is passed, return hsl with the alpha
-  @else if $alpha and $lightness {
-    @return hsl(#{css.get("palette", "#{$name}-hs") $lightness + " / " + $alpha});
+  @if (not $l) {
+    $l: css.get("palette", "#{$name}-l");
   }
 
-  // If a query value is passed, return hsl with the lightness
-  @else if $lightness {
-    @return hsl(#{css.get("palette", "#{$name}-hs") $lightness});
+  @if (not $c) {
+    $c: css.get("palette", "#{$name}-c");
   }
 
-  // Else return the value stored in config
-  @else {
-    @return css.get("palette", $name);
+  @if (not $h) {
+    $h: css.get("palette", "#{$name}-h");
+  }
+
+  // If an alpha value is passed, return oklch with the alpha
+  @if $a {
+    @return oklch($l $c $h / $a);
+  } @else {
+    @return oklch($l $c $h);
   }
 }

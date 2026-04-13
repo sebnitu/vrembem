@@ -46,7 +46,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
     top: 0;
     left: calc(calc(css.get("core", "form-control-size-calc") * 0.25) * -1);
     border-radius: css.get("switch", "background-border-radius", css.get("form-control-choice-background-border-radius"));
-    background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity", css.get("form-control-choice-background-opacity")));
+    background-color: oklch(from $-color-checked l c h / css.get("switch", "background-opacity", css.get("form-control-choice-background-opacity")));
     transition: left css.get("switch", "transition-duration", css.get("form-control-transition-duration")) css.get("switch", "transition-timing-function", css.get("form-control-transition-timing-function"));
   }
 }
@@ -58,7 +58,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
   display: block;
   border: css.get("switch", "border-width", 2px) solid $-color;
   border-radius: css.get("switch", "border-radius", css.get("border-radius-circle"));
-  background-color: hsl(from $-color h s l / 20%);
+  background-color: oklch(from $-color l c h / 20%);
 }
 
 #{core.bem("switch", "thumb")} {
@@ -87,7 +87,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 
   &:hover + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
+      background-color: oklch(from $-color-checked l c h / css.get("switch", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
     }
 
     #{core.bem("switch", "thumb")} {
@@ -97,7 +97,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
 
   &:focus + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
+      background-color: oklch(from $-color-checked l c h / css.get("switch", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
     }
 
     #{core.bem("switch", "thumb")} {
@@ -108,7 +108,7 @@ $-thumb-size: calc(css.get("switch", "track-size", 1.25em) - calc(css.get("switc
   &:focus-visible + #{core.bem("switch", "background")},
   &:active + #{core.bem("switch", "background")} {
     &::after {
-      background-color: hsl(from $-color-checked h s l / css.get("switch", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
+      background-color: oklch(from $-color-checked l c h / css.get("switch", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
     }
 
     #{core.bem("switch", "thumb")} {

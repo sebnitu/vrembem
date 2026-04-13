@@ -34,10 +34,10 @@ $default: (
   // The palette to build CSS variables from
   // @type map
   "palette": (
-    "primary": hsl(152deg 60% 50%),
-    "secondary": hsl(214deg 50% 50%),
-    "neutral": hsl(214deg 20% 50%),
-    "important": hsl(0deg 80% 50%)
+    "primary": oklch(75% 0.18 158deg),
+    "secondary": oklch(60% 0.16 256deg),
+    "neutral": oklch(60% 0.04 256deg),
+    "important": oklch(60% 0.2 28deg),
   ),
 
   // The default color lightness to use when referencing a color
