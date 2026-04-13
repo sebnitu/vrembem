@@ -33,14 +33,14 @@
   &:hover {
     border-color: css.get("menu", "border-color-hover", "border-color", transparent);
     color: css.get("menu", "foreground-hover", "foreground", css.get("foreground"));
-    background-color: css.get("menu", "background-hover", "background", css.get("background-hover"));
+    background-color: css.get("menu", "background-hover", "background", oklch(from currentcolor l c h / 5%));
     box-shadow: css.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus {
     border-color: css.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
     color: css.get("menu", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
-    background-color: css.get("menu", "background-focus", "background-hover", "background", css.get("background-hover"));
+    background-color: css.get("menu", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
     box-shadow: css.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
@@ -49,14 +49,14 @@
 
     border-color: css.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("menu", "accent", css.get("form-control-accent")));
     color: css.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
-    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background-hover"));
+    background-color: css.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
     box-shadow: css.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:active {
     border-color: css.get("menu", "border-color-active", "border-color", transparent);
     color: css.get("menu", "foreground-active", "foreground", css.get("foreground"));
-    background-color: css.get("menu", "background-active", "background", css.get("background-active"));
+    background-color: css.get("menu", "background-active", "background", oklch(from currentcolor l c h / 10%));
     box-shadow: css.get("menu", "box-shadow-active", "box-shadow", none);
   }
 
