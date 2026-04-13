@@ -18,11 +18,11 @@
 
     &:hover,
     &:focus {
-      color: css.get("link", "foreground-hover", palette.get("primary", 40%));
+      color: css.get("link", "foreground-hover", oklch(from palette.get("primary") calc(l - 0.1) c h));
       text-decoration: css.get("link", "decoration-hover", none);
 
       code {
-        color: css.get("link", "foreground-hover", palette.get("primary", 40%));
+        color: css.get("link", "foreground-hover", oklch(from palette.get("primary") calc(l - 0.1) c h));
       }
     }
 
