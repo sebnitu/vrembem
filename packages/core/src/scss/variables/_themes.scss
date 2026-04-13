@@ -1,0 +1,38 @@
+@use "../modules/theme";
+@use "../modules/palette";
+
+/// Initialize the core light theme.
+@include theme.set(
+  "light",
+  "core",
+  (
+    "color-scheme": light,
+    "background": palette.get("neutral", 100%, 0),
+    "background-dark": palette.get("neutral", 98%, 0.005),
+    "background-darker": palette.get("neutral", 96%, 0.01),
+    "foreground": palette.get("neutral", 25%),
+    "foreground-light": palette.get("neutral", 50%),
+    "foreground-lighter": palette.get("neutral", 75%),
+    "border-color": rgb(0 0 0 / 10%),
+    "border-color-dark": rgb(0 0 0 / 20%),
+    "border-color-darker": rgb(0 0 0 / 30%)
+  )
+);
+
+/// Initialize the core dark theme.
+@include theme.set(
+  "dark",
+  "core",
+  (
+    "color-scheme": dark,
+    "background": palette.get("neutral", 16%, 0.03),
+    "background-dark": palette.get("neutral", 18%, 0.03),
+    "background-darker": palette.get("neutral", 20%, 0.03),
+    "foreground": palette.get("neutral", 90%),
+    "foreground-light": palette.get("neutral", 70%),
+    "foreground-lighter": palette.get("neutral", 50%),
+    "border-color": rgb(255 255 255 / 10%),
+    "border-color-dark": rgb(255 255 255 / 20%),
+    "border-color-darker": rgb(255 255 255 / 30%)
+  )
+);

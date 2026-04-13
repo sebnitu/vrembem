@@ -3,6 +3,7 @@
 @forward "./src/scss/modules/css" as css-*;
 @forward "./src/scss/modules/palette" as palette-*;
 @forward "./src/scss/modules/theme" as theme-*;
+@forward "./src/scss/variables/themes";
 @forward "./src/scss/variables/backdrop";
 @forward "./src/scss/variables/spacing";
 @forward "./src/scss/variables/border";
