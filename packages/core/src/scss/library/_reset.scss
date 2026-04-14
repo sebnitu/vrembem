@@ -103,6 +103,7 @@
   h5,
   h6 {
     font-size: inherit;
+    color: css.get("foreground-strong");
   }
 
   // Global font weight for Chrome, Edge, and Safari

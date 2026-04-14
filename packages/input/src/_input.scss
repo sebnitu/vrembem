@@ -5,17 +5,17 @@
 #{core.bem("input")} {
   @include mix.base;
 
-  border-color: css.get("input", "border-color", css.get("border-color-dark"));
+  border-color: css.get("input", "border-color", css.get("border-color-20"));
   color: css.get("input", "foreground", css.get("form-control-foreground"));
   background-color: css.get("input", "background", css.get("form-control-background"));
   box-shadow: css.get("input", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
 
   &::placeholder {
-    color: css.get("input", "foreground-placeholder", css.get("foreground-lighter"));
+    color: css.get("input", "foreground-placeholder", css.get("foreground-subtle"));
   }
 
   &:hover {
-    border-color: css.get("input", "border-color-hover", "border-color", css.get("border-color-darker"));
+    border-color: css.get("input", "border-color-hover", "border-color", css.get("border-color-30"));
     color: css.get("input", "foreground-hover", "foreground", css.get("form-control-foreground"));
     background-color: css.get("input", "background-hover", "background", css.get("form-control-background"));
     box-shadow: css.get("input", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));

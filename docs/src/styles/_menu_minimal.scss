@@ -32,7 +32,7 @@
     }
 
     &:hover::before {
-      background: css.get("foreground");
+      background: css.get("foreground-strong");
     }
 
     &.is-active::before {

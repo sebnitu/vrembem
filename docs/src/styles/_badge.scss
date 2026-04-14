@@ -8,8 +8,8 @@
   padding: 0 0.75em;
   border-radius: css.get("border-radius-circle");
   font-size: css.get("font-size-sm");
-  color: css.get("foreground-lighter");
-  background-color: css.get("background-darker");
+  color: css.get("foreground-subtle");
+  background-color: css.get("background-shift");
 }
 
 a.badge:hover {

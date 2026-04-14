@@ -35,12 +35,12 @@
     background-color: fun.maybe-important(css.get("background"));
   }
 
-  #{fun.selector("background", "dark")} {
-    background-color: fun.maybe-important(css.get("background-dark"));
+  #{fun.selector("background", "alt")} {
+    background-color: fun.maybe-important(css.get("background-alt"));
   }
 
-  #{fun.selector("background", "darker")} {
-    background-color: fun.maybe-important(css.get("background-darker"));
+  #{fun.selector("background", "shift")} {
+    background-color: fun.maybe-important(css.get("background-shift"));
   }
 
   // Palette CSS Variable output

@@ -10,7 +10,7 @@ $-transition-property: background-color, border-color, box-shadow, transform;
   flex-direction: column;
   border: css.get("card", "border", 1px solid css.get("border-color"));
   border-radius: css.get("card", "border-radius", css.get("border-radius"));
-  color: css.get("card", "foreground", css.get("foreground-light"));
+  color: css.get("card", "foreground", css.get("foreground"));
   background: css.get("card", "background", css.get("background"));
   background-clip: padding-box;
   box-shadow: css.get("card", "box-shadow", none);
@@ -82,7 +82,7 @@ a#{core.bem("card")} {
   font-size: css.get("card", "title-font-size", css.get("font-size-lg"));
   font-weight: css.get("card", "title-font-weight", css.get("font-weight-semi-bold"));
   line-height: css.get("card", "title-line-height", inherit);
-  color: css.get("card", "title-color", css.get("foreground"));
+  color: css.get("card", "title-color", css.get("foreground-strong"));
 }
 
 #{core.bem("card", "background")},

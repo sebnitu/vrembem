@@ -17,8 +17,8 @@
   "--vb-border-width": "1px",
   "--vb-border-style": "solid",
   "--vb-border": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color)",
-  "--vb-border-dark": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-dark)",
-  "--vb-border-darker": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-darker)",
+  "--vb-border-dark": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-20)",
+  "--vb-border-darker": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-30)",
   "--vb-border-radius": "0.25rem",
   "--vb-border-radius-lg": "0.5rem",
   "--vb-border-radius-circle": "9999px",
@@ -70,10 +70,10 @@
   "--vb-form-control-accent": "var(--vb-primary)",
   "--vb-form-control-foreground": "var(--vb-foreground)",
   "--vb-form-control-background": "var(--vb-background)",
-  "--vb-form-control-background-disabled": "var(--vb-background-darker)",
-  "--vb-form-control-background-readonly": "var(--vb-background-darker)",
+  "--vb-form-control-background-disabled": "var(--vb-background-shift)",
+  "--vb-form-control-background-readonly": "var(--vb-background-shift)",
   "--vb-form-control-opacity-disabled": "0.6",
-  "--vb-form-control-choice-color": "var(--vb-foreground-lighter)",
+  "--vb-form-control-choice-color": "var(--vb-foreground-subtle)",
   "--vb-form-control-choice-color-checked": "var(--vb-form-control-accent)",
   "--vb-form-control-choice-fill": "var(--vb-form-control-background)",
   "--vb-form-control-choice-background-border-radius": "var(--vb-border-radius-circle)",
@@ -96,55 +96,39 @@
     "light": "hsl(var(--vb-neutral-hs) 100%)",
     "dark": "hsl(var(--vb-neutral-hs) 10%)"
   },
-  "--vb-background-dark": {
+  "--vb-background-alt": {
     "light": "hsl(var(--vb-neutral-hs) 98%)",
     "dark": "hsl(var(--vb-neutral-hs) 12%)"
   },
-  "--vb-background-darker": {
+  "--vb-background-shift": {
     "light": "hsl(var(--vb-neutral-hs) 95%)",
     "dark": "hsl(var(--vb-neutral-hs) 15%)"
   },
-  "--vb-background-alt": {
-    "light": "hsl(var(--vb-secondary-hs) 60% / 10%)",
-    "dark": "hsl(var(--vb-secondary-hs) 70% / 10%)"
-  },
-  "--vb-background-hover": {
-    "light": "rgba(0, 0, 0, 0.05)",
-    "dark": "rgba(255, 255, 255, 0.05)"
-  },
-  "--vb-background-focus": {
-    "light": "rgba(0, 0, 0, 0.05)",
-    "dark": "rgba(255, 255, 255, 0.05)"
-  },
-  "--vb-background-active": {
-    "light": "rgba(0, 0, 0, 0.1)",
-    "dark": "rgba(255, 255, 255, 0.01)"
-  },
-  "--vb-foreground": {
+  "--vb-foreground-strong": {
     "light": "hsl(var(--vb-neutral-hs) 20%)",
     "dark": "hsl(var(--vb-neutral-hs) 90%)"
   },
-  "--vb-foreground-light": {
+  "--vb-foreground": {
     "light": "hsl(var(--vb-neutral-hs) 40%)",
     "dark": "hsl(var(--vb-neutral-hs) 70%)"
   },
-  "--vb-foreground-lighter": {
+  "--vb-foreground-subtle": {
     "light": "hsl(var(--vb-neutral-hs) 60%)",
     "dark": "hsl(var(--vb-neutral-hs) 50%)"
-  },
-  "--vb-foreground-alt": {
-    "light": "hsl(var(--vb-secondary-hs) 50%)",
-    "dark": "hsl(var(--vb-secondary-hs) 60%)"
   },
   "--vb-border-color": {
     "light": "rgba(0, 0, 0, 0.1)",
     "dark": "rgba(255, 255, 255, 0.1)"
   },
-  "--vb-border-color-dark": {
+  "--vb-border-color-10": {
+    "light": "rgba(0, 0, 0, 0.1)",
+    "dark": "rgba(255, 255, 255, 0.1)"
+  },
+  "--vb-border-color-20": {
     "light": "rgba(0, 0, 0, 0.2)",
     "dark": "rgba(255, 255, 255, 0.2)"
   },
-  "--vb-border-color-darker": {
+  "--vb-border-color-30": {
     "light": "rgba(0, 0, 0, 0.3)",
     "dark": "rgba(255, 255, 255, 0.3)"
   },

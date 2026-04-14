@@ -11,7 +11,7 @@
   .pre {
     padding-right: 4em;
     border: css.get("border");
-    background-color: css.get("background-dark");
+    background-color: css.get("background-alt");
   }
 
   &.has-icon .pre {
@@ -38,8 +38,8 @@
   align-items: center;
   padding: 0.5rem;
   border-radius: css.get("border-radius");
-  color: css.get("foreground-lighter");
-  background-color: css.get("background-dark");
+  color: css.get("foreground-subtle");
+  background-color: css.get("background-alt");
 }
 
 .code-block__icon {
@@ -56,7 +56,7 @@
   left: auto;
 
   &:hover {
-    color: css.get("foreground-light");
+    color: css.get("foreground-strong");
   }
 
   @include core.media-max("xs") {

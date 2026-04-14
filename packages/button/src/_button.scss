@@ -5,21 +5,21 @@
 #{core.bem("button")} {
   @include mix.base;
 
-  border-color: css.get("button", "border-color", css.get("border-color-dark"));
-  color: css.get("button", "foreground", css.get("foreground"));
+  border-color: css.get("button", "border-color", css.get("border-color-20"));
+  color: css.get("button", "foreground", css.get("foreground-strong"));
   background-color: css.get("button", "background", css.get("background"));
   box-shadow: css.get("button", "box-shadow", none);
 
   &:hover {
-    border-color: css.get("button", "border-color-hover", "border-color", css.get("border-color-darker"));
-    color: css.get("button", "foreground-hover", "foreground", css.get("foreground"));
+    border-color: css.get("button", "border-color-hover", "border-color", css.get("border-color-30"));
+    color: css.get("button", "foreground-hover", "foreground", css.get("foreground-strong"));
     background-color: css.get("button", "background-hover", "background", css.get("background"));
     box-shadow: css.get("button", "box-shadow-hover", "box-shadow", css.get("box-shadow-1"));
   }
 
   &:focus {
-    border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", css.get("border-color-darker"));
-    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
+    border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", css.get("border-color-30"));
+    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", css.get("foreground-strong"));
     background-color: css.get("button", "background-focus", "background-hover", "background", css.get("background"));
     box-shadow: css.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", css.get("box-shadow-1"));
   }
@@ -28,14 +28,14 @@
     @include core.focus-ring-color(css.get("button", "accent", css.get("form-control-accent")));
 
     border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("button", "accent", css.get("form-control-accent")));
-    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground"));
+    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground-strong"));
     background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background"));
     box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:active {
-    border-color: css.get("button", "border-color-active", "border-color", css.get("foreground"));
-    color: css.get("button", "foreground-active", "foreground", css.get("foreground"));
+    border-color: css.get("button", "border-color-active", "border-color", css.get("foreground-strong"));
+    color: css.get("button", "foreground-active", "foreground", css.get("foreground-strong"));
     background-color: css.get("button", "background-active", "background", css.get("background"));
     box-shadow: css.get("button", "box-shadow-active", "box-shadow", none);
   }
@@ -52,7 +52,7 @@
     &::after {
       content: "";
 
-      @include css.override("loading", "color", css.get("button", "foreground", css.get("foreground")));
+      @include css.override("loading", "color", css.get("button", "foreground", css.get("foreground-strong")));
       @include core.loading-spinner;
     }
   }

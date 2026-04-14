@@ -14,7 +14,7 @@
   }
 
   &:disabled {
-    background-color: css.get("input", "background-disabled", css.get("background-darker"));
+    background-color: css.get("input", "background-disabled", css.get("background-shift"));
   }
 }
 

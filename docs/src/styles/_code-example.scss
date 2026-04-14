@@ -92,7 +92,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
-  color: css.get("foreground-lighter");
+  color: css.get("foreground-subtle");
 
   [data-reset] {
     margin: -2px 0;

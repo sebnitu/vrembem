@@ -160,7 +160,7 @@ function iconMap(value: string) {
               ) : (
                 Object.entries(value).map(([themeKey, themeValue]) => (
                   <div class="flex flex_wrap_no gap-0 align-items-center">
-                    <Popover triggerClass="foreground-lighter flex padding-y-sm margin-left-sm">
+                    <Popover triggerClass="foreground-subtle flex padding-y-sm margin-left-sm">
                       <Fragment slot="trigger">
                         <Icon name={iconMap(themeKey)} classes="icon_size_sm" />
                       </Fragment>

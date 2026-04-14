@@ -11,8 +11,12 @@
   color: palette.get("primary");
 }
 
+.brand__name {
+  color: css.get("foreground-strong");
+}
+
 .brand__version {
-  color: css.get("foreground-lighter");
+  color: css.get("foreground-subtle");
 }
 
 .brand:hover,

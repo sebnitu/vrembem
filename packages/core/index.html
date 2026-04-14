@@ -45,20 +45,32 @@
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
+
+    customElements.define("vb-swatch-content", class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <h2>vb-theme-${this.getAttribute("theme")}</h2>
+          <hr class="sep margin-y" />
+          <p class="foreground-strong">foreground-strong</p>
+          <p class="foreground">foreground</p>
+          <p class="foreground-subtle">foreground-subtle</p>
+        `;
+      }
+    });
   </script>
 </head>
 <body>
 
-  <header class="section background-dark">
+  <header class="section background-shift">
     <div class="section__container max-width-xs spacing-sm">
-      <h1 class="text-size-lg">%VITE_NAME%</h1>
-      <p class="foreground-light">%VITE_DESCRIPTION%</p>
-      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+      <h1 class="font-size-lg">%VITE_NAME%</h1>
+      <p>%VITE_DESCRIPTION%</p>
+      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
         </li>
-        <li class="foreground-neutral-80">/</li>
+        <li class="foreground-subtle">/</li>
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
@@ -67,8 +79,7 @@
     </div>
   </header>
 
-  <section class="section">
-
+  <div class="section section_padding_sm background-alt">
     <div class="section__container max-width-xs">
       <ul class="menu menu_inline">
         <li class="menu__item">
@@ -88,7 +99,101 @@
         </li>
       </ul>
     </div>
+  </div>
 
+  <section class="section">
+    <style>
+      .box {
+        background-color: var(--box-background, var(--vb-background));
+        color: var(--box-foreground, var(--vb-foreground));
+        padding: 1.5em 4em 4em 1.5em;
+      }
+
+      .box-default {
+        --box-background: var(--vb-background);
+        --box-foreground: var(--vb-foreground);
+      }
+      .box-default-alt {
+        --box-background: var(--vb-background-alt);
+        --box-foreground: var(--vb-foreground);
+      }
+      .box-default-subtle {
+        --box-background: var(--vb-background-shift);
+        --box-foreground: var(--vb-foreground-subtle);
+      }
+
+      .box-primary {
+        --box-background: var(--vb-primary);
+        --box-foreground: var(--vb-primary-foreground);
+      }
+      .box-secondary {
+        --box-background: var(--vb-secondary);
+        --box-foreground: var(--vb-secondary-foreground);
+      }
+      .box-important {
+        --box-background: var(--vb-important);
+        --box-foreground: var(--vb-important-foreground);
+      }
+    </style>
+    <div class="section__container max-width-xs spacing">
+      
+      <h1>Default</h1>
+
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light box box-default">
+          <vb-swatch-content theme="light"></vb-swatch-content>
+        </div>
+        <div class="vb-theme-dark box box-default">
+          <vb-swatch-content theme="dark"></vb-swatch-content>
+        </div>
+        <div class="vb-theme-light box box-default-alt">
+          <vb-swatch-content theme="light"></vb-swatch-content>
+        </div>
+        <div class="vb-theme-dark box box-default-alt">
+          <vb-swatch-content theme="dark"></vb-swatch-content>
+        </div>
+        <div class="vb-theme-light box box-default-subtle">
+          <vb-swatch-content theme="light"></vb-swatch-content>
+        </div>
+        <div class="vb-theme-dark box box-default-subtle">
+          <vb-swatch-content theme="dark"></vb-swatch-content>
+        </div>
+      </div>
+      
+      <h1>Primary</h1>
+
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light box box-primary">
+          <p>vb-theme-light</p>
+        </div>
+        <div class="vb-theme-dark box box-primary">
+          <p>vb-theme-dark</p>
+        </div>
+      </div>
+
+      <h1>Secondary</h1>
+
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light box box-secondary">
+          <p>vb-theme-light</p>
+        </div>
+        <div class="vb-theme-dark box box-secondary">
+          <p>vb-theme-dark</p>
+        </div>
+      </div>
+
+      <h1>Important</h1>
+
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light box box-important">
+          <p>vb-theme-light</p>
+        </div>
+        <div class="vb-theme-dark box box-important">
+          <p>vb-theme-dark</p>
+        </div>
+      </div>
+
+    </div>
   </section>
 
 </body>

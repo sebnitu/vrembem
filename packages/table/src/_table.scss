@@ -17,12 +17,12 @@
 
   th {
     font-weight: css.get("font-weight-bold");
-    color: css.get("table", "header-foreground", css.get("foreground"));
+    color: css.get("table", "header-foreground", css.get("foreground-strong"));
   }
 
   caption {
     caption-side: bottom;
-    color: css.get("foreground-lighter");
+    color: css.get("foreground-subtle");
     text-align: left;
   }
 

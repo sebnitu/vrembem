@@ -43,11 +43,11 @@
   }
 
   #{fun.selector("border", "color-dark")} {
-    border-color: fun.maybe-important(css.get("border-color-dark"));
+    border-color: fun.maybe-important(css.get("border-color-20"));
   }
 
   #{fun.selector("border", "color-darker")} {
-    border-color: fun.maybe-important(css.get("border-color-darker"));
+    border-color: fun.maybe-important(css.get("border-color-30"));
   }
 
   #{fun.selector("border", "color-transparent")} {

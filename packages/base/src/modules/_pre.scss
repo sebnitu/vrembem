@@ -10,8 +10,8 @@
     border: css.get("pre", "border", none);
     border-radius: css.get("pre", "border-radius", css.get("border-radius"));
     font-family: css.get("font-family-mono");
-    color: css.get("pre", "foreground", css.get("foreground"));
-    background: css.get("pre", "background", css.get("background-dark"));
+    color: css.get("pre", "foreground", css.get("foreground-strong"));
+    background: css.get("pre", "background", css.get("background-alt"));
 
     code {
       padding: 0;

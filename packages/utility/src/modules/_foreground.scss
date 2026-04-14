@@ -23,12 +23,12 @@
     color: fun.maybe-important(css.get("foreground"));
   }
 
-  #{fun.selector("foreground", "light")} {
-    color: fun.maybe-important(css.get("foreground-light"));
+  #{fun.selector("foreground", "strong")} {
+    color: fun.maybe-important(css.get("foreground-strong"));
   }
 
-  #{fun.selector("foreground", "lighter")} {
-    color: fun.maybe-important(css.get("foreground-lighter"));
+  #{fun.selector("foreground", "subtle")} {
+    color: fun.maybe-important(css.get("foreground-subtle"));
   }
 
   // Palette CSS Variable output

@@ -5,7 +5,7 @@
   position: relative;
   margin: -0.5rem 0;
   padding: 0.5rem;
-  color: css.get("foreground-lighter");
+  color: css.get("foreground-subtle");
 
   &::after {
     content: "";
@@ -16,7 +16,7 @@
   }
 
   &:hover {
-    color: css.get("foreground");
+    color: css.get("foreground-strong");
   }
 
   &[aria-selected="true"] {

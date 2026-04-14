@@ -76,5 +76,5 @@
   font-size: css.get("dialog", "title-font-size", css.get("font-size-lg"));
   font-weight: css.get("dialog", "title-font-weight", css.get("font-weight-semi-bold"));
   line-height: css.get("dialog", "title-line-height", inherit);
-  color: css.get("dialog", "title-color", css.get("foreground"));
+  color: css.get("dialog", "title-color", css.get("foreground-strong"));
 }

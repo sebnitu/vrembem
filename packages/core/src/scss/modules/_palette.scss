@@ -71,7 +71,8 @@
     @error 'Palette value could not be found: "#{$name}"';
   }
 
-  @if $l == 100% {
+  // If lightness is set to 100% or 0%, ensure chroma is also set to 0
+  @if $l == 100% or $l == 0% {
     $c: 0;
   }
 

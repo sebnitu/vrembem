@@ -45,7 +45,7 @@ function getIconName(string: string) {
             <span class="flex-grow">
               {entry.data.title}
               {hasModules && cp.isParent(`/${collection}/${entry.id}`) ? (
-                <span class="foreground-lighter">#{modules[0].data.group}</span>
+                <span class="foreground-subtle">#{modules[0].data.group}</span>
               ) : (
                 ""
               )}
