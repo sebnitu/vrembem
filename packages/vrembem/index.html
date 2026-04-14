@@ -14,8 +14,6 @@
   </script>
   <script type="module">
     import "vrembem/sass";
-
-    // Load JS and attach instance to window
     window["vb"] = await import("./index.ts");
 
     /**
@@ -26,10 +24,11 @@
     const buttons = document.querySelectorAll("[data-set-theme]");
 
     // Setup theme switching functionality
-    const themeStore = vb.core.themeStore({
+    vb.core.themeStore({
       onInit() {
+        // Loop through the theme set buttons
         buttons.forEach((btn) => {
-          // Set current menu item active
+          // Toggle the state of our button set
           toggleState.call(this, btn);
           // Add click event listener for changing the current theme
           btn.addEventListener(("click"), () => {
@@ -39,7 +38,7 @@
       },
       onChange() {
         buttons.forEach((btn) => {
-          // Set current menu item active
+          // Toggle the state of our button set
           toggleState.call(this, btn);
         });
       }
@@ -51,9 +50,6 @@
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
-
-    // Attach themeStore to window for testing purposes
-    window["themeStore"] = themeStore;
 
     /**
      * Instantiate and mount Vrembem components
@@ -78,6 +74,10 @@
 
     window["modal"] = await modal.mount();
     window["drawer"] = await drawer.mount();
+
+    /**
+     * Setup drawer form updater
+     */
 
     // Get the drawer entry and drawer from
     const drawerEntry = drawer.get("drawer-dialog");

@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script>
+    // Make this script blocking to prevent flash of pre-themed content
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
     document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
@@ -14,6 +15,10 @@
   <script type="module">
     import "vrembem/sass";
     window["core"] = await import("./index.ts");
+
+    /**
+     * Setup themeStore functionality
+     */
 
     // Get all the theme set button elements
     const buttons = document.querySelectorAll("[data-set-theme]");
@@ -45,6 +50,10 @@
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
+
+    /**
+     * Create custom elements
+     */
 
     customElements.define("vb-swatch-content", class extends HTMLElement {
       connectedCallback() {
