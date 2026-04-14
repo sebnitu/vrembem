@@ -14,7 +14,7 @@
     "background-winner": palette.get("primary", 90%),
     "foreground-winner": palette.get("primary", 30%),
     "border-color": palette.get("neutral", 90%),
-    "box-shadow-color": palette.get("neutral", 100%, 0)
+    "box-shadow-color": palette.get("neutral", 100%)
   )
 );
 @include theme.set(

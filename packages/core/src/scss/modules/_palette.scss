@@ -71,6 +71,10 @@
     @error 'Palette value could not be found: "#{$name}"';
   }
 
+  @if $l == 100% {
+    $c: 0;
+  }
+
   @if (not $l) {
     $l: css.get("palette", "#{$name}-l");
   }
