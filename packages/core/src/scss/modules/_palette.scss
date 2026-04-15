@@ -76,15 +76,15 @@
     $c: 0;
   }
 
-  @if (not $l) {
+  @if not $l {
     $l: css.get("palette", "#{$name}-l");
   }
 
-  @if (not $c) {
+  @if not $c {
     $c: css.get("palette", "#{$name}-c");
   }
 
-  @if (not $h) {
+  @if not $h {
     $h: css.get("palette", "#{$name}-h");
   }
 
