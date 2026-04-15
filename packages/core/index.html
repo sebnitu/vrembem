@@ -58,8 +58,6 @@
     customElements.define("vb-swatch-content", class extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `
-          <h2>vb-theme-${this.getAttribute("theme")}</h2>
-          <hr class="sep margin-y" />
           <p class="foreground-strong">foreground-strong</p>
           <p class="foreground">foreground</p>
           <p class="foreground-subtle">foreground-subtle</p>
@@ -71,7 +69,7 @@
 <body>
 
   <header class="section background-shift">
-    <div class="section__container max-width-xs spacing-sm">
+    <div class="section__container max-width-xs spacing-sm margin-left-0">
       <h1 class="font-size-lg">%VITE_NAME%</h1>
       <p>%VITE_DESCRIPTION%</p>
       <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
@@ -89,124 +87,114 @@
   </header>
 
   <aside class="section section_padding_sm background-alt">
-    <div class="section__container max-width-xs">
-      <ul class="menu menu_inline">
-        <li class="menu__item">
-          <span class="padding-right foreground-strong font-weight-bold">Themes</span>
-        </li>
-        <li class="menu__sep"></li>
-        <li class="menu__item">
-          <button class="menu__action" type="button" data-set-theme="auto">
-            Auto
-          </button>
-        </li>
-        <li class="menu__item">
-          <button class="menu__action" type="button" data-set-theme="light">
-            Light
-          </button>
-        </li>
-        <li class="menu__item">
-          <button class="menu__action" type="button" data-set-theme="dark">
-            Dark
-          </button>
-        </li>
-      </ul>
-    </div>
+    <ul class="menu menu_inline">
+      <li class="menu__item">
+        <span class="padding-right foreground-strong font-weight-bold">Themes</span>
+      </li>
+      <li class="menu__sep"></li>
+      <li class="menu__item">
+        <button class="menu__action" type="button" data-set-theme="auto">
+          Auto
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action" type="button" data-set-theme="light">
+          Light
+        </button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action" type="button" data-set-theme="dark">
+          Dark
+        </button>
+      </li>
+    </ul>
   </aside>
 
-  <section class="section">
-    <style>
-      .box {
-        background-color: var(--box-background, var(--vb-background));
-        color: var(--box-foreground, var(--vb-foreground));
-        padding: 1.5em 4em 4em 1.5em;
-      }
+  <style>
+    .swatch {
+      background-color: var(--swatch-background, var(--vb-background));
+      color: var(--swatch-foreground, var(--vb-foreground));
+      padding: 1.5em 1.5em 4em 1.5em;
+    }
 
-      .box-default {
-        --box-background: var(--vb-background);
-        --box-foreground: var(--vb-foreground);
-      }
-      .box-default-alt {
-        --box-background: var(--vb-background-alt);
-        --box-foreground: var(--vb-foreground);
-      }
-      .box-default-subtle {
-        --box-background: var(--vb-background-shift);
-        --box-foreground: var(--vb-foreground-subtle);
-      }
+    .swatch_alt {
+      --swatch-background: var(--vb-background-alt);
+    }
 
-      .box-primary {
-        --box-background: var(--vb-primary);
-        --box-foreground: var(--vb-primary-foreground);
-      }
-      .box-secondary {
-        --box-background: var(--vb-secondary);
-        --box-foreground: var(--vb-secondary-foreground);
-      }
-      .box-important {
-        --box-background: var(--vb-important);
-        --box-foreground: var(--vb-important-foreground);
-      }
-    </style>
-    <div class="section__container max-width-xs spacing">
-      
-      <h1>Default</h1>
+    .swatch_subtle {
+      --swatch-background: var(--vb-background-shift);
+    }
 
-      <div class="grid grid_cols_2 grid_gap_0">
-        <div class="vb-theme-light box box-default">
-          <vb-swatch-content theme="light"></vb-swatch-content>
-        </div>
-        <div class="vb-theme-dark box box-default">
-          <vb-swatch-content theme="dark"></vb-swatch-content>
-        </div>
-        <div class="vb-theme-light box box-default-alt">
-          <vb-swatch-content theme="light"></vb-swatch-content>
-        </div>
-        <div class="vb-theme-dark box box-default-alt">
-          <vb-swatch-content theme="dark"></vb-swatch-content>
-        </div>
-        <div class="vb-theme-light box box-default-subtle">
-          <vb-swatch-content theme="light"></vb-swatch-content>
-        </div>
-        <div class="vb-theme-dark box box-default-subtle">
-          <vb-swatch-content theme="dark"></vb-swatch-content>
-        </div>
+    .swatch_primary {
+      --swatch-background: var(--vb-primary);
+      --swatch-foreground: var(--vb-primary-foreground);
+    }
+
+    .swatch_secondary {
+      --swatch-background: var(--vb-secondary);
+      --swatch-foreground: var(--vb-secondary-foreground);
+    }
+
+    .swatch_important {
+      --swatch-background: var(--vb-important);
+      --swatch-foreground: var(--vb-important-foreground);
+    }
+  </style>
+
+  <section class="grid grid_cols_2 grid_gap_0">
+
+    <div class="vb-theme-light">
+      <div class="swatch">
+        <h2>vb-theme-light</h2>
+        <hr class="sep margin-y" />
+        <vb-swatch-content></vb-swatch-content>
       </div>
-      
-      <h1>Primary</h1>
-
-      <div class="grid grid_cols_2 grid_gap_0">
-        <div class="vb-theme-light box box-primary">
-          <p>vb-theme-light</p>
-        </div>
-        <div class="vb-theme-dark box box-primary">
-          <p>vb-theme-dark</p>
-        </div>
+      <div class="swatch swatch_alt">
+        <vb-swatch-content></vb-swatch-content>
       </div>
-
-      <h1>Secondary</h1>
-
-      <div class="grid grid_cols_2 grid_gap_0">
-        <div class="vb-theme-light box box-secondary">
-          <p>vb-theme-light</p>
-        </div>
-        <div class="vb-theme-dark box box-secondary">
-          <p>vb-theme-dark</p>
-        </div>
+      <div class="swatch swatch_subtle">
+        <vb-swatch-content></vb-swatch-content>
       </div>
-
-      <h1>Important</h1>
-
-      <div class="grid grid_cols_2 grid_gap_0">
-        <div class="vb-theme-light box box-important">
-          <p>vb-theme-light</p>
-        </div>
-        <div class="vb-theme-dark box box-important">
-          <p>vb-theme-dark</p>
-        </div>
+      <div class="swatch swatch_primary">
+        <p>--swatch-background: var(--vb-primary);</p>
+        <p>--swatch-foreground: var(--vb-primary-foreground);</p>
       </div>
-
+      <div class="swatch swatch_secondary">
+        <p>--swatch-background: var(--vb-secondary);</p>
+        <p>--swatch-foreground: var(--vb-secondary-foreground);</p>
+      </div>
+      <div class="swatch swatch_important">
+        <p>--swatch-background: var(--vb-important);</p>
+        <p>--swatch-foreground: var(--vb-important-foreground);</p>
+      </div>
     </div>
+
+    <div class="vb-theme-dark">
+      <div class="swatch">
+        <h2>vb-theme-dark</h2>
+        <hr class="sep margin-y" />
+        <vb-swatch-content></vb-swatch-content>
+      </div>
+      <div class="swatch swatch_alt">
+        <vb-swatch-content></vb-swatch-content>
+      </div>
+      <div class="swatch swatch_subtle">
+        <vb-swatch-content></vb-swatch-content>
+      </div>
+      <div class="swatch swatch_primary">
+        <p>--swatch-background: var(--vb-primary);</p>
+        <p>--swatch-foreground: var(--vb-primary-foreground);</p>
+      </div>
+      <div class="swatch swatch_secondary">
+        <p>--swatch-background: var(--vb-secondary);</p>
+        <p>--swatch-foreground: var(--vb-secondary-foreground);</p>
+      </div>
+      <div class="swatch swatch_important">
+        <p>--swatch-background: var(--vb-important);</p>
+        <p>--swatch-foreground: var(--vb-important-foreground);</p>
+      </div>
+    </div>
+
   </section>
 
 </body>
