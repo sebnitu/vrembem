@@ -44,13 +44,23 @@ $default: (
   // @type number
   "palette-round-decimal": 6,
 
+  // The key/value pairs of palette variants to create CSS variables for where 
+  // key is used in the token variant name (--vb-primary-[key]) and value is 
+  // passed to the palette get function as lightness/chroma arguments.
   // @type map
   "palette-variants": (
-    "10": (10%, 10%),
-    "40": 40%,
-    "50": 50%,
-    "60": 60%,
-    "98": (98%, 10%),
+    "50":  (98%, 10%), // The lightest variant in the palette
+    "75":  (96%, 20%),
+    "100": (90%, 40%),
+    "200": (80%, 80%),
+    "300": 70%,
+    "400": 60%,
+    "500": 50%,
+    "600": 40%,
+    "700": 30%,
+    "800": (20%, 80%),
+    "900": (18%, 70%),
+    "950": (14%, 60%), // The darkest variant in the palette
   ),
 
   // A prefix to apply to theme names. Provided value is automatically suffixed

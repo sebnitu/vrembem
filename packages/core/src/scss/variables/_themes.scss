@@ -9,21 +9,21 @@
   (
     "color-scheme": light,
 
-    "background": palette.get("neutral", 100%),
-    "background-alt": palette.get("neutral", 98%, 1%),
-    "background-shift": palette.get("neutral", 96%, 2%),
+    "background": palette.get("white"),
+    "background-alt": palette.get("neutral", "50"),
+    "background-shift": palette.get("neutral", "75"),
 
-    "foreground-strong": palette.get("neutral", 20%),
-    "foreground": palette.get("neutral", 50%),
-    "foreground-subtle": palette.get("neutral", 70%),
+    "foreground-strong": palette.get("neutral", "950"),
+    "foreground": palette.get("neutral", "500"),
+    "foreground-subtle": palette.get("neutral", "300"),
 
-    "primary-background": palette.get("primary", 94%, 20%),
+    "primary-background": palette.get("primary", 94%, 50%),
     "primary-foreground": palette.get("primary", 50%),
 
-    "secondary-background": palette.get("secondary", 94%, 20%),
+    "secondary-background": palette.get("secondary", 94%, 50%),
     "secondary-foreground": palette.get("secondary", 50%),
 
-    "important-background": palette.get("important", 94%, 20%),
+    "important-background": palette.get("important", 94%, 50%),
     "important-foreground": palette.get("important", 50%),
 
     "border-color": oklch(0 0 0 / 10%),
@@ -41,22 +41,22 @@
   (
     "color-scheme": dark,
 
-    "background": palette.get("neutral", 16%, 6%),
-    "background-alt": palette.get("neutral", 18%, 6%),
-    "background-shift": palette.get("neutral", 22%, 8%),
+    "background": palette.get("neutral", "950"),
+    "background-alt": palette.get("neutral", "900"),
+    "background-shift": palette.get("neutral", "800"),
 
-    "foreground-strong": palette.get("neutral", 100%),
-    "foreground": palette.get("neutral", 80%),
-    "foreground-subtle": palette.get("neutral", 60%),
+    "foreground-strong": palette.get("white"),
+    "foreground": palette.get("neutral", "200"),
+    "foreground-subtle": palette.get("neutral", "400"),
 
     "primary-background": palette.get("primary", 50%),
-    "primary-foreground": palette.get("primary", 94%, 20%),
+    "primary-foreground": palette.get("primary", 94%, 50%),
 
     "secondary-background": palette.get("secondary", 50%),
-    "secondary-foreground": palette.get("secondary", 94%, 20%),
+    "secondary-foreground": palette.get("secondary", 94%, 50%),
 
     "important-background": palette.get("important", 50%),
-    "important-foreground": palette.get("important", 94%, 20%),
+    "important-foreground": palette.get("important", 94%, 50%),
 
     "border-color": oklch(100% 0 0 / 10%),
     "border-color-10": oklch(100% 0 0 / 10%),

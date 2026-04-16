@@ -17,6 +17,10 @@
   // Remove the palette component before building
   @include css.remove("palette");
 
+  // Black and white variants
+  @include css.set("palette", "black", oklch(0% 0 0));
+  @include css.set("palette", "white", oklch(100% 0 0));
+
   // Loop through the seeds and set the variables for each item in $seeds
   @each $name, $value in config.get("palette") {
     // Set the raw value
@@ -27,6 +31,7 @@
     @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
     @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
 
+    // Palette variants
     @each $key, $args in config.get("palette-variants") {
       @include css.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
     }
@@ -36,6 +41,7 @@
 /// Setup a config watcher for when the palette property changes.
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
+// TODO: Update documentation for new get calls
 /// Returns a color value from the palette in various formats, based on the
 /// provided name, lightness, and alpha values.
 ///
@@ -67,10 +73,20 @@
 @function get($name, $l: null, $c: null, $h: null, $a: null) {
   // Throw error if palette name doesn't exist in palette map
   @if not map.has-key(config.get("palette"), $name) {
+    @if css.has("palette", $name) {
+      @return css.get("palette", $name);
+    }
     @error 'Palette value could not be found: "#{$name}"';
   }
 
-  // If lightness is set to 100% or 0%, ensure chroma is also set to 0
+  // If the lightness is a string, try and return the stored token.
+  // E.g.: palette.get("primary", "400") => css.get("palette", "primary-400")
+  @if meta.type-of($l) == "string" {
+    @return css.get("palette", "#{$name}-#{$l}");
+  }
+
+  // If lightness is set to 100% or 0%, ensure chroma is also set to 0. This
+  // will result in a true white or black respectively.
   @if $l == 100% or $l == 0% {
     $c: 0;
   }
@@ -81,6 +97,9 @@
 
   @if not $c {
     $c: css.get("palette", "#{$name}-c");
+  } @else if $c != 0 {
+    // Adjust the chroma based on the seeded value
+    $c: calc(#{css.get("palette", "#{$name}-c")} * ($c / 100%));
   }
 
   @if not $h {
