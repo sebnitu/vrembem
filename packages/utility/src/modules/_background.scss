@@ -50,7 +50,7 @@
       background-color: fun.maybe-important(palette.get($name));
     }
 
-    @each $key, $args in config.get("palette-variants") {
+    @each $key in map.keys(config.get("palette-variants")) {
       #{fun.selector("background", $name, $key)} {
         background-color: fun.maybe-important(css.get("palette", "#{$name}-#{$key}"));
       }
