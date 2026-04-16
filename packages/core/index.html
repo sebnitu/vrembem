@@ -64,6 +64,48 @@
         `;
       }
     });
+
+    customElements.define("vb-palette-variants", class extends HTMLElement {
+      static _injectStyles = true;
+
+      connectedCallback() {
+        // Only inject the styles once
+        if (this.constructor._injectStyles) {
+          this.constructor._injectStyles = false;
+          const style = document.createElement("style");
+          style.textContent = `
+            vb-palette-variants {
+              display: flex;
+
+              & div {
+                height: 4rem;
+                flex: auto;
+              }
+            }
+          `.replace(/\s+/g, " ").trim();
+          document.head.appendChild(style);
+        }
+
+        // Get the provided color
+        const color = this.getAttribute("color");
+
+        // Build the variant markup
+        this.innerHTML = `
+          <div class="background-${color}-50"></div>
+          <div class="background-${color}-75"></div>
+          <div class="background-${color}-100"></div>
+          <div class="background-${color}-200"></div>
+          <div class="background-${color}-300"></div>
+          <div class="background-${color}-400"></div>
+          <div class="background-${color}-500"></div>
+          <div class="background-${color}-600"></div>
+          <div class="background-${color}-700"></div>
+          <div class="background-${color}-800"></div>
+          <div class="background-${color}-900"></div>
+          <div class="background-${color}-950"></div>
+        `;
+      }
+    });
   </script>
 </head>
 <body>
@@ -109,6 +151,11 @@
       </li>
     </ul>
   </aside>
+
+  <vb-palette-variants color="primary"></vb-palette-variants>
+  <vb-palette-variants color="secondary"></vb-palette-variants>
+  <vb-palette-variants color="neutral"></vb-palette-variants>
+  <vb-palette-variants color="important"></vb-palette-variants>
 
   <style>
     .swatch {
