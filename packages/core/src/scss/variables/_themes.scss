@@ -17,14 +17,17 @@
     "foreground": palette.get("neutral", "500"),
     "foreground-subtle": palette.get("neutral", "300"),
 
-    "primary-background": palette.get("primary", 94%, 50%),
-    "primary-foreground": palette.get("primary", 50%),
+    "primary-background": palette.get("primary", "100"),
+    "primary-foreground": palette.get("primary", "700"),
 
-    "secondary-background": palette.get("secondary", 94%, 50%),
-    "secondary-foreground": palette.get("secondary", 50%),
+    "secondary-background": palette.get("secondary", "100"),
+    "secondary-foreground": palette.get("secondary", "700"),
 
-    "important-background": palette.get("important", 94%, 50%),
-    "important-foreground": palette.get("important", 50%),
+    "neutral-background": palette.get("neutral", "100"),
+    "neutral-foreground": palette.get("neutral", "700"),
+
+    "important-background": palette.get("important", "100"),
+    "important-foreground": palette.get("important", "700"),
 
     "border-color": oklch(0 0 0 / 10%),
     "border-color-10": oklch(0 0 0 / 10%),
@@ -49,14 +52,17 @@
     "foreground": palette.get("neutral", "200"),
     "foreground-subtle": palette.get("neutral", "400"),
 
-    "primary-background": palette.get("primary", 50%),
-    "primary-foreground": palette.get("primary", 94%, 50%),
+    "primary-background": palette.get("primary", "700"),
+    "primary-foreground": palette.get("primary", "100"),
 
-    "secondary-background": palette.get("secondary", 50%),
-    "secondary-foreground": palette.get("secondary", 94%, 50%),
+    "secondary-background": palette.get("secondary", "700"),
+    "secondary-foreground": palette.get("secondary", "100"),
 
-    "important-background": palette.get("important", 50%),
-    "important-foreground": palette.get("important", 94%, 50%),
+    "neutral-background": palette.get("neutral", "700"),
+    "neutral-foreground": palette.get("neutral", "100"),
+
+    "important-background": palette.get("important", "700"),
+    "important-foreground": palette.get("important", "100"),
 
     "border-color": oklch(100% 0 0 / 10%),
     "border-color-10": oklch(100% 0 0 / 10%),
