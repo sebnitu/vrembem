@@ -44,6 +44,15 @@ $default: (
   // @type number
   "palette-round-decimal": 6,
 
+  // @type map
+  "palette-variants": (
+    "10": (10%, 10%),
+    "40": 40%,
+    "50": 50%,
+    "60": 60%,
+    "98": (98%, 10%),
+  ),
+
   // A prefix to apply to theme names. Provided value is automatically suffixed
   // with a "-" character when applied.
   // @type string

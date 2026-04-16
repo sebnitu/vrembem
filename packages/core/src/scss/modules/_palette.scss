@@ -5,27 +5,15 @@
 @use "./config";
 @use "./css";
 
-// Set the initial CSS variables for the palette map
-@if config.get("palette") {
-  @each $name, $value in config.get("palette") {
-    // Set the raw value
-    @include css.set("palette", "#{$name}", $value);
-
-    // Set the lightness, chroma and hue parts
-    @include css.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
-    @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
-    @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
-  }
-}
-
 /// Builds a palette map using values set in `config.get("palette")`.
 ///
-/// @param {map} $seeds (config.get("palette"))
-///   The seeds to generate a palette map from.
+/// @param {string} $action ("")
+///   The action being taken that triggered the rebuild. Currently not in use,
+///   set as a placeholder for possible future logging or conditional logic.
 ///
 /// @access private
 ///
-@mixin -rebuild-palette($action) {
+@mixin -rebuild-palette($action: "") {
   // Remove the palette component before building
   @include css.remove("palette");
 
@@ -38,6 +26,10 @@
     @include css.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
     @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
     @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
+
+    @each $key, $args in config.get("palette-variants") {
+      @include css.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
+    }
   }
 }
 
@@ -101,4 +93,9 @@
   } @else {
     @return oklch($l $c $h);
   }
+}
+
+// Set the initial CSS variables for the palette map
+@if config.get("palette") {
+  @include -rebuild-palette("initial");
 }
