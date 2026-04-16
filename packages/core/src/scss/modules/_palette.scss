@@ -1,16 +1,20 @@
 @use "sass:map";
 @use "sass:meta";
 @use "sass:color";
+@use "../utilities//round-to" as *;
 @use "./config";
 @use "./css";
 
 // Set the initial CSS variables for the palette map
 @if config.get("palette") {
   @each $name, $value in config.get("palette") {
+    // Set the raw value
     @include css.set("palette", "#{$name}", $value);
-    @include css.set("palette", "#{$name}-l", color.channel($value, "lightness", $space: oklch));
-    @include css.set("palette", "#{$name}-c", color.channel($value, "chroma", $space: oklch));
-    @include css.set("palette", "#{$name}-h", color.channel($value, "hue", $space: oklch));
+
+    // Set the lightness, chroma and hue parts
+    @include css.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
+    @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
+    @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
   }
 }
 
@@ -27,10 +31,13 @@
 
   // Loop through the seeds and set the variables for each item in $seeds
   @each $name, $value in config.get("palette") {
+    // Set the raw value
     @include css.set("palette", "#{$name}", $value);
-    @include css.set("palette", "#{$name}-l", color.channel($value, "lightness", $space: oklch));
-    @include css.set("palette", "#{$name}-c", color.channel($value, "chroma", $space: oklch));
-    @include css.set("palette", "#{$name}-h", color.channel($value, "hue", $space: oklch));
+
+    // Set the lightness, chroma and hue parts
+    @include css.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
+    @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
+    @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
   }
 }
 

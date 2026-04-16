@@ -34,15 +34,15 @@ $default: (
   // The palette to build CSS variables from
   // @type map
   "palette": (
-    "primary": oklch(75% 40% 158deg),
-    "secondary": oklch(60% 40% 256deg),
-    "neutral": oklch(60% 10% 256deg),
-    "important": oklch(60% 40% 28deg),
+    "primary": oklch(75% 40% 158deg),   // #35cc86
+    "secondary": oklch(60% 40% 256deg), // #3680dd
+    "neutral": oklch(60% 10% 256deg),   // #718298
+    "important": oklch(60% 40% 28deg),  // #ce5247
   ),
 
-  // The default color lightness to use when referencing a color
+  // Number of decimal places to round colors converted to oklch color space.
   // @type number
-  "palette-default": null,
+  "palette-round-decimal": 6,
 
   // A prefix to apply to theme names. Provided value is automatically suffixed
   // with a "-" character when applied.
