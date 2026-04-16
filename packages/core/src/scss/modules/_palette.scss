@@ -41,41 +41,57 @@
 /// Setup a config watcher for when the palette property changes.
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
-// TODO: Update documentation for new get calls
-/// Returns a color value from the palette in various formats, based on the
-/// provided name, lightness, and alpha values.
+/// Returns a color value from the palette as an oklch color, allowing overrides
+/// for lightness, chroma adjustments, and alpha.
 ///
 /// @param {string} $name
-///   The color name to return a value for.
-/// @param {percentage} $lightness (null)
-///   The value to use for the lightness value.
-/// @param {percentage} $alpha (null)
+///   The palette color name (e.g., "primary", "neutral").
+/// @param {percentage | string} $l (null)
+///   The lightness value. Pass a percentage to set lightness directly, or a
+///   string to reference a stored variant (e.g., "400").
+/// @param {percentage} $c (null)
+///   The chroma value as a percentage of the seed color's chroma. E.g., 50%
+///   returns half the seed's chroma. Set to 0 to remove chroma entirely.
+/// @param {percentage} $a (null)
 ///   Optional alpha (opacity) value to apply to the returned color.
 ///
 /// @return {color}
-///   Return format depends on the requested value.
+///   An oklch color value using CSS custom properties for dynamic theming.
 ///
 /// @example scss
-///   // Return a color with the default lightness value or the raw value
-///   $value: palette.get("primary");
-///   // Returns: var(--vb-primary)
+///   // Return the raw palette color
+///   palette.get("primary");
+///   // => var(--vb-primary)
 ///
 /// @example scss
-///   // Return a color with a specified lightness value
-///   $value: palette.get("primary", 20%);
-///   // Returns: hsl(var(--vb-primary-hs) 20%)
+///   // Return a stored variant by name
+///   palette.get("primary", "400");
+///   // => var(--vb-primary-400)
 ///
 /// @example scss
-///   // Return a color with a specified lightness and alpha value
-///   $value: palette.get("primary", 20%, 30%);
-///   // Returns: hsl(var(--vb-primary-hs) 20% / 30%)
+///   // Return a color with a specific lightness
+///   palette.get("primary", 80%);
+///   // => oklch(80% var(--vb-primary-c) var(--vb-primary-h))
 ///
-@function get($name, $l: null, $c: null, $h: null, $a: null) {
-  // Throw error if palette name doesn't exist in palette map
+/// @example scss
+///   // Return a color with lightness and scaled chroma
+///   palette.get("primary", 90%, 20%);
+///   // => oklch(90% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))
+///
+/// @example scss
+///   // Return a color with alpha transparency
+///   palette.get("primary", $a: 50%);
+///   // => oklch(var(--vb-primary-l) var(--vb-primary-c) var(--vb-primary-h) / 50%)
+///
+@function get($name, $l: null, $c: null, $a: null) {
+  // Check if the color name exists in the palette map
   @if not map.has-key(config.get("palette"), $name) {
+    // If a stored palette value exists, return it
     @if css.has("palette", $name) {
       @return css.get("palette", $name);
     }
+    // Throw error if palette name doesn't exist in palette map and is not a
+    // direct reference to a palette value.
     @error 'Palette value could not be found: "#{$name}"';
   }
 
@@ -102,15 +118,11 @@
     $c: calc(#{css.get("palette", "#{$name}-c")} * ($c / 100%));
   }
 
-  @if not $h {
-    $h: css.get("palette", "#{$name}-h");
-  }
-
   // If an alpha value is passed, return oklch with the alpha
   @if $a {
-    @return oklch($l $c $h / $a);
+    @return oklch($l $c css.get("palette", "#{$name}-h") / $a);
   } @else {
-    @return oklch($l $c $h);
+    @return oklch($l $c css.get("palette", "#{$name}-h"));
   }
 }
 
