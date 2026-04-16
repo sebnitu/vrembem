@@ -58,12 +58,6 @@ Utility comes with the following Sass configuration options that can be set usin
     // @type boolean
     "utility-important": true,
 
-    // A lightness range list for outputting palette related utilities
-    // @type list
-    "utility-palette-range": (
-      0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
-    ),
-
     // A map of border-radius utilities to output
     // @type map
     "utility-border-radius": (
@@ -256,7 +250,7 @@ Below is a list of each utility module, their available variants and intended us
 
 ### background
 
-Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
+Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `palette-variants` configuration options.
 
 export const background = (() => {
   const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
@@ -314,7 +308,7 @@ The background utility module also includes options for setting the background-c
 
 ### foreground
 
-Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
+Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `palette-variants` configuration options.
 
 export const foreground = (() => {
   const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];

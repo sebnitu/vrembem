@@ -38,9 +38,9 @@
       color: fun.maybe-important(palette.get($name));
     }
 
-    @each $value in config.get("utility-palette-range") {
-      #{fun.selector("foreground", $name, $value)} {
-        color: fun.maybe-important(palette.get($name, $value));
+    @each $key in map.keys(config.get("palette-variants")) {
+      #{fun.selector("foreground", $name, $key)} {
+        color: fun.maybe-important(css.get("palette", "#{$name}-#{$key}"));
       }
     }
   }
