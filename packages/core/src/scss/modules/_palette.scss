@@ -17,7 +17,7 @@
   // Remove the palette component before building
   @include css.remove("palette");
 
-  // Black and white variants
+  // Set the black and white tokens
   @include css.set("palette", "black", oklch(0% 0 0));
   @include css.set("palette", "white", oklch(100% 0 0));
 
@@ -37,9 +37,6 @@
     }
   }
 }
-
-/// Setup a config watcher for when the palette property changes.
-@include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
 /// Returns a color value from the palette as an oklch color, allowing overrides
 /// for lightness, chroma adjustments, and alpha.
@@ -125,6 +122,9 @@
     @return oklch($l $c css.get("palette", "#{$name}-h"));
   }
 }
+
+/// Setup a config watcher for when the palette property changes.
+@include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
 // Set the initial CSS variables for the palette map
 @if config.get("palette") {
