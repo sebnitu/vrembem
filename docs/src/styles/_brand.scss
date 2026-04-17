@@ -22,6 +22,6 @@
 .brand:hover,
 .brand:focus {
   .brand__version {
-    color: palette.get("primary");
+    color: css.get("foreground-accent");
   }
 }
