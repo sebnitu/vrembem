@@ -1,39 +1,3 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/css";
-@use "@vrembem/core/theme";
-@use "@vrembem/core/palette";
-
-$config: () !default;
-
-// prettier-ignore
-$default: (
-  // Map for outputting notice_color_[key] modifier variants
-  // @type map
-  "notice-color": (
-    "default": palette.get("neutral"),
-    "primary": palette.get("primary"),
-    "secondary": palette.get("secondary"),
-    "neutral": palette.get("neutral"),
-    "important": palette.get("important")
-  )
-);
-
-@include config.apply($config, $default);
 @include css.register("notice");
-@include theme.set(
-  "light",
-  "notice",
-  (
-    "background-lightness": 95%,
-    "foreground-lightness": 20%
-  )
-);
-@include theme.set(
-  "dark",
-  "notice",
-  (
-    "background-lightness": 20%,
-    "foreground-lightness": 95%
-  )
-);
