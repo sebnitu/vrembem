@@ -10,8 +10,8 @@
     border-radius: css.get("code", "border-radius", css.get("border-radius"));
     font-family: css.get("font-family-mono");
     font-size: css.get("code", "font-size", css.get("font-size-sm"));
-    color: css.get("code", "foreground", css.get("palette", "secondary"));
+    color: css.get("code", "foreground", css.get("foreground-accent-alt"));
     overflow-wrap: break-word;
-    background: css.get("code", "background", css.get("background-shift"));
+    background: css.get("code", "background", css.get("background-alt"));
   }
 }

@@ -16,6 +16,8 @@
     "foreground-strong": palette.get("neutral", "950"),
     "foreground": palette.get("neutral", "500"),
     "foreground-subtle": palette.get("neutral", "300"),
+    "foreground-accent": palette.get("primary"),
+    "foreground-accent-alt": palette.get("secondary"),
 
     "primary-background": palette.get("primary", "100"),
     "primary-foreground": palette.get("primary", "700"),
@@ -51,6 +53,8 @@
     "foreground-strong": palette.get("white"),
     "foreground": palette.get("neutral", "200"),
     "foreground-subtle": palette.get("neutral", "400"),
+    "foreground-accent": palette.get("primary", "200"),
+    "foreground-accent-alt": palette.get("secondary", "200"),
 
     "primary-background": palette.get("primary", "700"),
     "primary-foreground": palette.get("primary", "100"),

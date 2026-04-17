@@ -31,6 +31,14 @@
     color: fun.maybe-important(css.get("foreground-subtle"));
   }
 
+  #{fun.selector("foreground", "accent")} {
+    color: fun.maybe-important(css.get("foreground-accent"));
+  }
+
+  #{fun.selector("foreground", "accent-alt")} {
+    color: fun.maybe-important(css.get("foreground-accent-alt"));
+  }
+
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
