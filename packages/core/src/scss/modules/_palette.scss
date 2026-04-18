@@ -38,8 +38,10 @@
   }
 }
 
+/// TODO: Allow passing an alpha value even when referencing a stored variant
+
 /// Returns a color value from the palette as an oklch color, allowing overrides
-/// for lightness, chroma adjustments, and alpha.
+/// for lightness, chroma adjustments, and alpha channels.
 ///
 /// @param {string} $name
 ///   The palette color name (e.g., "primary", "neutral").
