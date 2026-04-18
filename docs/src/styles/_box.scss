@@ -9,11 +9,11 @@
 }
 
 .box {
-  background: css.get("primary-background");
   color: css.get("primary-foreground");
+  background: css.get("primary-background");
 }
 
 .box-alt {
-  background: css.get("secondary-background");
   color: css.get("secondary-foreground");
+  background: css.get("secondary-background");
 }
