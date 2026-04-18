@@ -113,7 +113,7 @@
 <body>
 
   <header class="section background-shift">
-    <div class="section__container max-width-xs spacing-sm margin-left-0">
+    <div class="section__container max-width-xs spacing-sm">
       <h1 class="font-size-lg">%VITE_NAME%</h1>
       <p>%VITE_DESCRIPTION%</p>
       <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
@@ -131,27 +131,29 @@
   </header>
 
   <aside class="section section_padding_sm background-alt">
-    <ul class="menu menu_inline">
-      <li class="menu__item">
-        <span class="padding-right foreground-strong font-weight-bold">Themes</span>
-      </li>
-      <li class="menu__sep"></li>
-      <li class="menu__item">
-        <button class="menu__action" type="button" data-set-theme="auto">
-          Auto
-        </button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action" type="button" data-set-theme="light">
-          Light
-        </button>
-      </li>
-      <li class="menu__item">
-        <button class="menu__action" type="button" data-set-theme="dark">
-          Dark
-        </button>
-      </li>
-    </ul>
+    <div class="section__container max-width-xs">
+      <ul class="menu menu_inline">
+        <li class="menu__item">
+          <span class="padding-right foreground-strong font-weight-bold">Themes</span>
+        </li>
+        <li class="menu__sep"></li>
+        <li class="menu__item">
+          <button class="menu__action" type="button" data-set-theme="auto">
+            Auto
+          </button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" type="button" data-set-theme="light">
+            Light
+          </button>
+        </li>
+        <li class="menu__item">
+          <button class="menu__action" type="button" data-set-theme="dark">
+            Dark
+          </button>
+        </li>
+      </ul>
+    </div>
   </aside>
 
   <vb-palette-variants color="primary"></vb-palette-variants>
