@@ -70,7 +70,7 @@ Returns a color value from the palette as an oklch color, allowing overrides for
 
 <CodeExample lang="scss">
 ```scss
-// Return the raw palette color
+// Return the seeded palette color
 palette.get("primary");
 // => var(--vb-primary)
 
@@ -88,6 +88,6 @@ palette.get("primary", 90%, 20%);
 
 // Return a color with alpha transparency
 palette.get("primary", $a: 50%);
-// => oklch(var(--vb-primary-l) var(--vb-primary-c) var(--vb-primary-h) / 50%)
+// => oklch(from var(--vb-primary) l c h/50%)
 ```
 </CodeExample>

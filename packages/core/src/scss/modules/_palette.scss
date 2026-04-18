@@ -38,8 +38,6 @@
   }
 }
 
-/// TODO: Allow passing an alpha value even when referencing a stored variant
-
 /// Returns a color value from the palette as an oklch color, allowing overrides
 /// for lightness, chroma adjustments, and alpha channels.
 ///
@@ -58,7 +56,7 @@
 ///   An oklch color value using CSS custom properties for dynamic theming.
 ///
 /// @example scss
-///   // Return the raw palette color
+///   // Return the seeded palette color
 ///   palette.get("primary");
 ///   // => var(--vb-primary)
 ///
@@ -80,30 +78,35 @@
 /// @example scss
 ///   // Return a color with alpha transparency
 ///   palette.get("primary", $a: 50%);
-///   // => oklch(var(--vb-primary-l) var(--vb-primary-c) var(--vb-primary-h) / 50%)
+///   // => oklch(from var(--vb-primary) l c h/50%)
 ///
 @function get($name, $l: null, $c: null, $a: null) {
   // Check if the color name exists in the palette map
-  @if not map.has-key(config.get("palette"), $name) {
-    // If a stored palette value exists, return it
-    @if css.has("palette", $name) {
-      @return css.get("palette", $name);
-    }
-
-    // Throw error if palette name doesn't exist in palette map and is not a
-    // direct reference to a palette value.
+  @if not css.has("palette", $name) {
     @error 'Palette value could not be found: "#{$name}"';
   }
 
-  // Return the seed if lightness, chroma or alpha are not altered
-  @if not $l and not $c and not $a {
-    @return css.get("palette", $name);
+  // Initialize the color var
+  $color: null;
+
+  // Set color as the seed value if lightness or chroma are not provided
+  @if not $l and not $c {
+    $color: css.get("palette", $name);
   }
 
   // If the lightness is a string, try and return the stored token.
   // E.g.: palette.get("primary", "400") => css.get("palette", "primary-400")
   @if meta.type-of($l) == "string" {
-    @return css.get("palette", "#{$name}-#{$l}");
+    $color: css.get("palette", "#{$name}-#{$l}");
+  }
+
+  // If the color value was set, return it along with alpha channel if provided
+  @if $color {
+    @if $a {
+      @return oklch(from $color l c h / $a);
+    } @else {
+      @return $color;
+    }
   }
 
   // If lightness is set to 100% or 0%, ensure chroma is also set to 0. This
@@ -123,7 +126,7 @@
     $c: calc(#{css.get("palette", "#{$name}-c")} * ($c / 100%));
   }
 
-  // If an alpha value is passed, return oklch with the alpha
+  // If an alpha channel is provided, return oklch with the alpha
   @if $a {
     @return oklch($l $c css.get("palette", "#{$name}-h") / $a);
   } @else {
