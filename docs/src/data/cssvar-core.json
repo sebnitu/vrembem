@@ -17,8 +17,8 @@
   "--vb-border-width": "1px",
   "--vb-border-style": "solid",
   "--vb-border": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color)",
-  "--vb-border-dark": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-20)",
-  "--vb-border-darker": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-30)",
+  "--vb-border-strong": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-strong)",
+  "--vb-border-stronger": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color-stronger)",
   "--vb-border-radius": "0.25rem",
   "--vb-border-radius-lg": "0.5rem",
   "--vb-border-radius-circle": "9999px",
@@ -219,15 +219,11 @@
     "light": "oklch(0% 0 0deg / 0.1)",
     "dark": "oklch(100% 0 0deg / 0.1)"
   },
-  "--vb-border-color-10": {
-    "light": "oklch(0% 0 0deg / 0.1)",
-    "dark": "oklch(100% 0 0deg / 0.1)"
-  },
-  "--vb-border-color-20": {
+  "--vb-border-color-strong": {
     "light": "oklch(0% 0 0deg / 0.2)",
     "dark": "oklch(100% 0 0deg / 0.2)"
   },
-  "--vb-border-color-30": {
+  "--vb-border-color-stronger": {
     "light": "oklch(0% 0 0deg / 0.3)",
     "dark": "oklch(100% 0 0deg / 0.3)"
   }

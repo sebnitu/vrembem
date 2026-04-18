@@ -42,12 +42,12 @@
     border-right: fun.maybe-important(0);
   }
 
-  #{fun.selector("border", "color-dark")} {
-    border-color: fun.maybe-important(css.get("border-color-20"));
+  #{fun.selector("border", "color-strong")} {
+    border-color: fun.maybe-important(css.get("border-color-strong"));
   }
 
-  #{fun.selector("border", "color-darker")} {
-    border-color: fun.maybe-important(css.get("border-color-30"));
+  #{fun.selector("border", "color-stronger")} {
+    border-color: fun.maybe-important(css.get("border-color-stronger"));
   }
 
   #{fun.selector("border", "color-transparent")} {

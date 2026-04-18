@@ -13,8 +13,8 @@
     "background-alt": palette.get("neutral", "50"),
     "background-shift": palette.get("neutral", "75"),
 
-    "foreground-strong": palette.get("neutral", "950"),
     "foreground": palette.get("neutral", "500"),
+    "foreground-strong": palette.get("neutral", "950"),
     "foreground-subtle": palette.get("neutral", "300"),
     "foreground-accent": palette.get("primary"),
     "foreground-accent-alt": palette.get("secondary"),
@@ -32,9 +32,8 @@
     "important-foreground": palette.get("important", "600"),
 
     "border-color": oklch(0 0 0 / 10%),
-    "border-color-10": oklch(0 0 0 / 10%),
-    "border-color-20": oklch(0 0 0 / 20%),
-    "border-color-30": oklch(0 0 0 / 30%),
+    "border-color-strong": oklch(0 0 0 / 20%),
+    "border-color-stronger": oklch(0 0 0 / 30%),
   )
 );
 
@@ -50,8 +49,8 @@
     "background-alt": palette.get("neutral", "900"),
     "background-shift": palette.get("neutral", "800"),
 
-    "foreground-strong": palette.get("white"),
     "foreground": palette.get("neutral", "200"),
+    "foreground-strong": palette.get("white"),
     "foreground-subtle": palette.get("neutral", "400"),
     "foreground-accent": palette.get("primary", "200"),
     "foreground-accent-alt": palette.get("secondary", "200"),
@@ -69,8 +68,7 @@
     "important-foreground": palette.get("important", "100"),
 
     "border-color": oklch(100% 0 0 / 10%),
-    "border-color-10": oklch(100% 0 0 / 10%),
-    "border-color-20": oklch(100% 0 0 / 20%),
-    "border-color-30": oklch(100% 0 0 / 30%),
+    "border-color-strong": oklch(100% 0 0 / 20%),
+    "border-color-stronger": oklch(100% 0 0 / 30%),
   )
 );
