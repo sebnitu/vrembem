@@ -9,9 +9,9 @@ import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core/palette";
-  ```
+```scss
+@use "@vrembem/core/palette";
+```
 </CodeExample>
 
 ## Basic usage
@@ -69,25 +69,25 @@ Returns a color value from the palette as an oklch color, allowing overrides for
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Return the raw palette color
-  palette.get("primary");
-  // => var(--vb-primary)
+```scss
+// Return the raw palette color
+palette.get("primary");
+// => var(--vb-primary)
 
-  // Return a stored variant by name
-  palette.get("primary", "400");
-  // => var(--vb-primary-400)
+// Return a stored variant by name
+palette.get("primary", "400");
+// => var(--vb-primary-400)
 
-  // Return a color with a specific lightness
-  palette.get("primary", 80%);
-  // => oklch(80% var(--vb-primary-c) var(--vb-primary-h))
+// Return a color with a specific lightness
+palette.get("primary", 80%);
+// => oklch(80% var(--vb-primary-c) var(--vb-primary-h))
 
-  // Return a color with lightness and scaled chroma
-  palette.get("primary", 90%, 20%);
-  // => oklch(90% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))
+// Return a color with lightness and scaled chroma
+palette.get("primary", 90%, 20%);
+// => oklch(90% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))
 
-  // Return a color with alpha transparency
-  palette.get("primary", $a: 50%);
-  // => oklch(var(--vb-primary-l) var(--vb-primary-c) var(--vb-primary-h) / 50%)
-  ```
+// Return a color with alpha transparency
+palette.get("primary", $a: 50%);
+// => oklch(var(--vb-primary-l) var(--vb-primary-c) var(--vb-primary-h) / 50%)
+```
 </CodeExample>
