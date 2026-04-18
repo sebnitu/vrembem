@@ -6,7 +6,7 @@
   "--vb-breakpoint-md": "760px",
   "--vb-breakpoint-lg": "990px",
   "--vb-breakpoint-xl": "1380px",
-  "--vb-backdrop-color": "hsl(var(--vb-neutral-hs) 10%)",
+  "--vb-backdrop-color": "var(--vb-neutral-950)",
   "--vb-backdrop-opacity": "80%",
   "--vb-spacing": "0.25em",
   "--vb-spacing-xs": "var(--vb-spacing)",
@@ -22,16 +22,17 @@
   "--vb-border-radius": "0.25rem",
   "--vb-border-radius-lg": "0.5rem",
   "--vb-border-radius-circle": "9999px",
-  "--vb-box-shadow": "0 2px 6px var(--vb-shadow-color)",
-  "--vb-box-shadow-1": "0 1px 3px var(--vb-shadow-color)",
-  "--vb-box-shadow-2": "0 2px 6px var(--vb-shadow-color)",
-  "--vb-box-shadow-3": "0 4px 12px var(--vb-shadow-color)",
-  "--vb-box-shadow-4": "0 8px 18px var(--vb-shadow-color)",
-  "--vb-box-shadow-5": "0 12px 24px var(--vb-shadow-color)",
+  "--vb-box-shadow-color": "oklch(20% var(--vb-neutral-c) var(--vb-neutral-h) / 20%)",
+  "--vb-box-shadow": "0 2px 6px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-1": "0 1px 3px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-2": "0 2px 6px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-3": "0 4px 12px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-4": "0 8px 18px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-5": "0 12px 24px var(--vb-box-shadow-color)",
   "--vb-font-family": "var(--vb-font-family-sans)",
-  "--vb-font-family-sans": "blinkmacsystemfont, -apple-system, system-ui, Segoe UI, Roboto, Helvetica Neue, arial, sans-serif",
-  "--vb-font-family-serif": "constantia, Lucida Bright, lucidabright, Lucida Serif, lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, georgia, serif",
-  "--vb-font-family-mono": "sfmono-regular, menlo, monaco, consolas, Liberation Mono, Courier New, monospace",
+  "--vb-font-family-sans": "system-ui, ui-sans-serif, sans-serif",
+  "--vb-font-family-serif": "ui-serif, serif",
+  "--vb-font-family-mono": "ui-monospace, monospace",
   "--vb-font-size": "1rem",
   "--vb-font-size-sm": "0.875rem",
   "--vb-font-size-lg": "1.125rem",
@@ -68,11 +69,14 @@
   "--vb-form-control-padding": "var(--vb-form-control-padding-y) var(--vb-form-control-padding-x)",
   "--vb-form-control-size-calc": "calc(1em * var(--vb-form-control-line-height) + (var(--vb-form-control-padding-y) + var(--vb-form-control-border-width)) * 2)",
   "--vb-form-control-accent": "var(--vb-primary)",
-  "--vb-form-control-foreground": "var(--vb-foreground)",
+  "--vb-form-control-foreground": "var(--vb-foreground-strong)",
   "--vb-form-control-background": "var(--vb-background)",
   "--vb-form-control-background-disabled": "var(--vb-background-shift)",
   "--vb-form-control-background-readonly": "var(--vb-background-shift)",
   "--vb-form-control-opacity-disabled": "0.6",
+  "--vb-form-control-transition-property": "box-shadow, outline",
+  "--vb-form-control-transition-duration": "var(--vb-transition-duration-short)",
+  "--vb-form-control-transition-timing-function": "var(--vb-transition-timing-function)",
   "--vb-form-control-choice-color": "var(--vb-foreground-subtle)",
   "--vb-form-control-choice-color-checked": "var(--vb-form-control-accent)",
   "--vb-form-control-choice-fill": "var(--vb-form-control-background)",
@@ -81,59 +85,150 @@
   "--vb-form-control-choice-background-opacity-hover": "20%",
   "--vb-form-control-choice-background-opacity-focus": "20%",
   "--vb-form-control-choice-background-opacity-active": "30%",
-  "--vb-form-control-transition-property": "box-shadow, outline",
-  "--vb-form-control-transition-duration": "var(--vb-transition-duration-short)",
-  "--vb-form-control-transition-timing-function": "var(--vb-transition-timing-function)",
-  "--vb-primary": "hsl(152, 60%, 50%)",
-  "--vb-primary-hs": "152deg 60%",
-  "--vb-secondary": "hsl(214, 50%, 50%)",
-  "--vb-secondary-hs": "214deg 50%",
-  "--vb-neutral": "hsl(214, 20%, 50%)",
-  "--vb-neutral-hs": "214deg 20%",
-  "--vb-important": "hsl(0, 80%, 50%)",
-  "--vb-important-hs": "0deg 80%",
+  "--vb-black": "oklch(0% 0 0deg)",
+  "--vb-white": "oklch(100% 0 0deg)",
+  "--vb-primary": "oklch(75% 0.16 158deg)",
+  "--vb-primary-l": "75%",
+  "--vb-primary-c": "0.16",
+  "--vb-primary-h": "158deg",
+  "--vb-primary-50": "oklch(98% calc(var(--vb-primary-c) * 0.1) var(--vb-primary-h))",
+  "--vb-primary-75": "oklch(96% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))",
+  "--vb-primary-100": "oklch(90% calc(var(--vb-primary-c) * 0.4) var(--vb-primary-h))",
+  "--vb-primary-200": "oklch(80% calc(var(--vb-primary-c) * 0.8) var(--vb-primary-h))",
+  "--vb-primary-300": "oklch(70% var(--vb-primary-c) var(--vb-primary-h))",
+  "--vb-primary-400": "oklch(60% var(--vb-primary-c) var(--vb-primary-h))",
+  "--vb-primary-500": "oklch(50% var(--vb-primary-c) var(--vb-primary-h))",
+  "--vb-primary-600": "oklch(40% var(--vb-primary-c) var(--vb-primary-h))",
+  "--vb-primary-700": "oklch(30% var(--vb-primary-c) var(--vb-primary-h))",
+  "--vb-primary-800": "oklch(20% calc(var(--vb-primary-c) * 0.8) var(--vb-primary-h))",
+  "--vb-primary-900": "oklch(18% calc(var(--vb-primary-c) * 0.7) var(--vb-primary-h))",
+  "--vb-primary-950": "oklch(16% calc(var(--vb-primary-c) * 0.6) var(--vb-primary-h))",
+  "--vb-secondary": "oklch(60% 0.16 256deg)",
+  "--vb-secondary-l": "60%",
+  "--vb-secondary-c": "0.16",
+  "--vb-secondary-h": "256deg",
+  "--vb-secondary-50": "oklch(98% calc(var(--vb-secondary-c) * 0.1) var(--vb-secondary-h))",
+  "--vb-secondary-75": "oklch(96% calc(var(--vb-secondary-c) * 0.2) var(--vb-secondary-h))",
+  "--vb-secondary-100": "oklch(90% calc(var(--vb-secondary-c) * 0.4) var(--vb-secondary-h))",
+  "--vb-secondary-200": "oklch(80% calc(var(--vb-secondary-c) * 0.8) var(--vb-secondary-h))",
+  "--vb-secondary-300": "oklch(70% var(--vb-secondary-c) var(--vb-secondary-h))",
+  "--vb-secondary-400": "oklch(60% var(--vb-secondary-c) var(--vb-secondary-h))",
+  "--vb-secondary-500": "oklch(50% var(--vb-secondary-c) var(--vb-secondary-h))",
+  "--vb-secondary-600": "oklch(40% var(--vb-secondary-c) var(--vb-secondary-h))",
+  "--vb-secondary-700": "oklch(30% var(--vb-secondary-c) var(--vb-secondary-h))",
+  "--vb-secondary-800": "oklch(20% calc(var(--vb-secondary-c) * 0.8) var(--vb-secondary-h))",
+  "--vb-secondary-900": "oklch(18% calc(var(--vb-secondary-c) * 0.7) var(--vb-secondary-h))",
+  "--vb-secondary-950": "oklch(16% calc(var(--vb-secondary-c) * 0.6) var(--vb-secondary-h))",
+  "--vb-neutral": "oklch(60% 0.04 256deg)",
+  "--vb-neutral-l": "60%",
+  "--vb-neutral-c": "0.04",
+  "--vb-neutral-h": "256deg",
+  "--vb-neutral-50": "oklch(98% calc(var(--vb-neutral-c) * 0.1) var(--vb-neutral-h))",
+  "--vb-neutral-75": "oklch(96% calc(var(--vb-neutral-c) * 0.2) var(--vb-neutral-h))",
+  "--vb-neutral-100": "oklch(90% calc(var(--vb-neutral-c) * 0.4) var(--vb-neutral-h))",
+  "--vb-neutral-200": "oklch(80% calc(var(--vb-neutral-c) * 0.8) var(--vb-neutral-h))",
+  "--vb-neutral-300": "oklch(70% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-400": "oklch(60% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-500": "oklch(50% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-600": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-700": "oklch(30% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-800": "oklch(20% calc(var(--vb-neutral-c) * 0.8) var(--vb-neutral-h))",
+  "--vb-neutral-900": "oklch(18% calc(var(--vb-neutral-c) * 0.7) var(--vb-neutral-h))",
+  "--vb-neutral-950": "oklch(16% calc(var(--vb-neutral-c) * 0.6) var(--vb-neutral-h))",
+  "--vb-important": "oklch(60% 0.16 28deg)",
+  "--vb-important-l": "60%",
+  "--vb-important-c": "0.16",
+  "--vb-important-h": "28deg",
+  "--vb-important-50": "oklch(98% calc(var(--vb-important-c) * 0.1) var(--vb-important-h))",
+  "--vb-important-75": "oklch(96% calc(var(--vb-important-c) * 0.2) var(--vb-important-h))",
+  "--vb-important-100": "oklch(90% calc(var(--vb-important-c) * 0.4) var(--vb-important-h))",
+  "--vb-important-200": "oklch(80% calc(var(--vb-important-c) * 0.8) var(--vb-important-h))",
+  "--vb-important-300": "oklch(70% var(--vb-important-c) var(--vb-important-h))",
+  "--vb-important-400": "oklch(60% var(--vb-important-c) var(--vb-important-h))",
+  "--vb-important-500": "oklch(50% var(--vb-important-c) var(--vb-important-h))",
+  "--vb-important-600": "oklch(40% var(--vb-important-c) var(--vb-important-h))",
+  "--vb-important-700": "oklch(30% var(--vb-important-c) var(--vb-important-h))",
+  "--vb-important-800": "oklch(20% calc(var(--vb-important-c) * 0.8) var(--vb-important-h))",
+  "--vb-important-900": "oklch(18% calc(var(--vb-important-c) * 0.7) var(--vb-important-h))",
+  "--vb-important-950": "oklch(16% calc(var(--vb-important-c) * 0.6) var(--vb-important-h))",
   "--vb-background": {
-    "light": "hsl(var(--vb-neutral-hs) 100%)",
-    "dark": "hsl(var(--vb-neutral-hs) 10%)"
+    "light": "var(--vb-white)",
+    "dark": "var(--vb-neutral-950)"
   },
   "--vb-background-alt": {
-    "light": "hsl(var(--vb-neutral-hs) 98%)",
-    "dark": "hsl(var(--vb-neutral-hs) 12%)"
+    "light": "var(--vb-neutral-50)",
+    "dark": "var(--vb-neutral-900)"
   },
   "--vb-background-shift": {
-    "light": "hsl(var(--vb-neutral-hs) 95%)",
-    "dark": "hsl(var(--vb-neutral-hs) 15%)"
+    "light": "var(--vb-neutral-75)",
+    "dark": "var(--vb-neutral-800)"
   },
   "--vb-foreground-strong": {
-    "light": "hsl(var(--vb-neutral-hs) 20%)",
-    "dark": "hsl(var(--vb-neutral-hs) 90%)"
+    "light": "var(--vb-neutral-950)",
+    "dark": "var(--vb-white)"
   },
   "--vb-foreground": {
-    "light": "hsl(var(--vb-neutral-hs) 40%)",
-    "dark": "hsl(var(--vb-neutral-hs) 70%)"
+    "light": "var(--vb-neutral-500)",
+    "dark": "var(--vb-neutral-200)"
   },
   "--vb-foreground-subtle": {
-    "light": "hsl(var(--vb-neutral-hs) 60%)",
-    "dark": "hsl(var(--vb-neutral-hs) 50%)"
+    "light": "var(--vb-neutral-300)",
+    "dark": "var(--vb-neutral-400)"
+  },
+  "--vb-foreground-accent": {
+    "light": "var(--vb-primary)",
+    "dark": "var(--vb-primary-200)"
+  },
+  "--vb-foreground-accent-alt": {
+    "light": "var(--vb-secondary)",
+    "dark": "var(--vb-secondary-200)"
+  },
+  "--vb-primary-background": {
+    "light": "var(--vb-primary-100)",
+    "dark": "var(--vb-primary-600)"
+  },
+  "--vb-primary-foreground": {
+    "light": "var(--vb-primary-600)",
+    "dark": "var(--vb-primary-100)"
+  },
+  "--vb-secondary-background": {
+    "light": "var(--vb-secondary-100)",
+    "dark": "var(--vb-secondary-600)"
+  },
+  "--vb-secondary-foreground": {
+    "light": "var(--vb-secondary-600)",
+    "dark": "var(--vb-secondary-100)"
+  },
+  "--vb-neutral-background": {
+    "light": "var(--vb-neutral-100)",
+    "dark": "var(--vb-neutral-600)"
+  },
+  "--vb-neutral-foreground": {
+    "light": "var(--vb-neutral-600)",
+    "dark": "var(--vb-neutral-100)"
+  },
+  "--vb-important-background": {
+    "light": "var(--vb-important-100)",
+    "dark": "var(--vb-important-600)"
+  },
+  "--vb-important-foreground": {
+    "light": "var(--vb-important-600)",
+    "dark": "var(--vb-important-100)"
   },
   "--vb-border-color": {
-    "light": "rgba(0, 0, 0, 0.1)",
-    "dark": "rgba(255, 255, 255, 0.1)"
+    "light": "oklch(0% 0 0deg / 0.1)",
+    "dark": "oklch(100% 0 0deg / 0.1)"
   },
   "--vb-border-color-10": {
-    "light": "rgba(0, 0, 0, 0.1)",
-    "dark": "rgba(255, 255, 255, 0.1)"
+    "light": "oklch(0% 0 0deg / 0.1)",
+    "dark": "oklch(100% 0 0deg / 0.1)"
   },
   "--vb-border-color-20": {
-    "light": "rgba(0, 0, 0, 0.2)",
-    "dark": "rgba(255, 255, 255, 0.2)"
+    "light": "oklch(0% 0 0deg / 0.2)",
+    "dark": "oklch(100% 0 0deg / 0.2)"
   },
   "--vb-border-color-30": {
-    "light": "rgba(0, 0, 0, 0.3)",
-    "dark": "rgba(255, 255, 255, 0.3)"
-  },
-  "--vb-shadow-color": {
-    "light": "hsl(var(--vb-neutral-hs) 20% / 20%)",
-    "dark": "hsl(var(--vb-neutral-hs) 0% / 20%)"
+    "light": "oklch(0% 0 0deg / 0.3)",
+    "dark": "oklch(100% 0 0deg / 0.3)"
   }
 }
