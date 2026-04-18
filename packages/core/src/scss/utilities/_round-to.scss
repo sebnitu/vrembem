@@ -12,7 +12,7 @@
 ///   - 3 for the thousandths place (0.123)
 ///   - etc...
 ///
-/// @return {list}
+/// @return {number}
 ///   The number rounded to the appropriate decimal
 ///
 @function round-to($value, $decimals: 4) {
