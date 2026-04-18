@@ -87,9 +87,15 @@
     @if css.has("palette", $name) {
       @return css.get("palette", $name);
     }
+
     // Throw error if palette name doesn't exist in palette map and is not a
     // direct reference to a palette value.
     @error 'Palette value could not be found: "#{$name}"';
+  }
+
+  // Return the seed if lightness, chroma or alpha are not altered
+  @if not $l and not $c and not $a {
+    @return css.get("palette", $name);
   }
 
   // If the lightness is a string, try and return the stored token.
