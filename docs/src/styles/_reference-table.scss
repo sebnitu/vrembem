@@ -2,6 +2,7 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
+@include css.set("reference-table", "max-height", 28rem);
 
 .reference-table {
   scroll-margin-top: 84px; // Magic number found using JS: `this.el.getBoundingClientRect().top;`
@@ -116,7 +117,7 @@
 
   &.is-expandable {
     overflow: hidden;
-    max-height: 28rem;
+    max-height: css.get("reference-table", "max-height");
   }
 
   &.is-expanded {
