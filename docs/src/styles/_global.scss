@@ -63,7 +63,7 @@ html {
   );
   background-repeat:repeat-x;
   background-size: calc(var(--background-size) * 100%) 100%;
-  mask-image: url("vrembem-logo.svg");
+  mask-image: url("/vrembem-logo.svg");
   mask-repeat: no-repeat;
   mask-size: contain;
   animation: logo-gradient 20s linear infinite;
