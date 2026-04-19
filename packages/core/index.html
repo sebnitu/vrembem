@@ -55,18 +55,6 @@
      * Create custom elements
      */
 
-    customElements.define("vb-swatch-content", class extends HTMLElement {
-      connectedCallback() {
-        this.innerHTML = `
-          <p class="foreground-strong">foreground-strong</p>
-          <p class="foreground">foreground</p>
-          <p class="foreground-subtle">foreground-subtle</p>
-          <p class="foreground-accent">foreground-accent</p>
-          <p class="foreground-accent-alt">foreground-accent-alt</p>
-        `;
-      }
-    });
-
     customElements.define("vb-palette-variants", class extends HTMLElement {
       static _injectStyles = true;
 
@@ -105,6 +93,49 @@
           <div class="background-${color}-800"></div>
           <div class="background-${color}-900"></div>
           <div class="background-${color}-950"></div>
+        `;
+      }
+    });
+
+    customElements.define("vb-swatch-content", class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <p class="foreground-strong">foreground-strong</p>
+          <p class="foreground">foreground</p>
+          <p class="foreground-subtle">foreground-subtle</p>
+          <p class="foreground-accent">foreground-accent</p>
+          <p class="foreground-accent-alt">foreground-accent-alt</p>
+        `;
+      }
+    });
+
+    customElements.define("vb-palette-theme", class extends HTMLElement {
+      static _injectStyles = true;
+
+      connectedCallback() {
+        // Only inject the styles once
+        if (this.constructor._injectStyles) {
+          this.constructor._injectStyles = false;
+          const style = document.createElement("style");
+          style.textContent = "vb-palette-theme { display: block; }";
+          document.head.appendChild(style);
+        }
+
+        // Get the provided color
+        const color = this.getAttribute("color");
+
+        // Build the theme markup
+        this.innerHTML = `
+          <div class="grid grid_cols_2 grid_gap_0">
+            <div class="vb-theme-light padding-lg background-${color}-auto foreground-${color}-auto">
+              <p>--vb-${color}-background</p>
+              <p>--vb-${color}-foreground</p>
+            </div>
+            <div class="vb-theme-dark padding-lg background-${color}-auto foreground-${color}-auto">
+              <p>--vb-${color}-background</p>
+              <p>--vb-${color}-foreground</p>
+            </div>
+          </div>
         `;
       }
     });
@@ -157,7 +188,7 @@
   </aside>
 
   <section class="section">
-    <div class="section__container max-width-xs">
+    <div class="section__container max-width-xs spacing">
 
       <vb-palette-variants color="primary"></vb-palette-variants>
       <vb-palette-variants color="secondary"></vb-palette-variants>
@@ -177,22 +208,6 @@
           <div class="padding-lg background-shift">
             <vb-swatch-content></vb-swatch-content>
           </div>
-          <div class="padding-lg background-primary-auto foreground-primary-auto">
-            <p>primary-background</p>
-            <p>primary-foreground</p>
-          </div>
-          <div class="padding-lg background-secondary-auto foreground-secondary-auto">
-            <p>secondary-background</p>
-            <p>secondary-foreground</p>
-          </div>
-          <div class="padding-lg background-neutral-auto foreground-neutral-auto">
-            <p>neutral-background</p>
-            <p>neutral-foreground</p>
-          </div>
-          <div class="padding-lg background-important-auto foreground-important-auto">
-            <p>important-background</p>
-            <p>important-foreground</p>
-          </div>
         </div>
         <div class="vb-theme-dark">
           <div class="padding-lg background">
@@ -206,24 +221,13 @@
           <div class="padding-lg background-shift">
             <vb-swatch-content></vb-swatch-content>
           </div>
-          <div class="padding-lg background-primary-auto foreground-primary-auto">
-            <p>primary-background</p>
-            <p>primary-foreground</p>
-          </div>
-          <div class="padding-lg background-secondary-auto foreground-secondary-auto">
-            <p>secondary-background</p>
-            <p>secondary-foreground</p>
-          </div>
-          <div class="padding-lg background-neutral-auto foreground-neutral-auto">
-            <p>neutral-background</p>
-            <p>neutral-foreground</p>
-          </div>
-          <div class="padding-lg background-important-auto foreground-important-auto">
-            <p>important-background</p>
-            <p>important-foreground</p>
-          </div>
         </div>
       </div>
+
+      <vb-palette-theme color="primary"></vb-palette-theme>
+      <vb-palette-theme color="secondary"></vb-palette-theme>
+      <vb-palette-theme color="neutral"></vb-palette-theme>
+      <vb-palette-theme color="important"></vb-palette-theme>
 
     </div>
   </section>
