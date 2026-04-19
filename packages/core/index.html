@@ -156,109 +156,76 @@
     </div>
   </aside>
 
-  <vb-palette-variants color="primary"></vb-palette-variants>
-  <vb-palette-variants color="secondary"></vb-palette-variants>
-  <vb-palette-variants color="neutral"></vb-palette-variants>
-  <vb-palette-variants color="important"></vb-palette-variants>
+  <section class="section">
+    <div class="section__container max-width-xs">
 
-  <style>
-    .swatch {
-      background-color: var(--swatch-background, var(--vb-background));
-      color: var(--swatch-foreground, var(--vb-foreground));
-      padding: 1.5em 1.5em 4em 1.5em;
-    }
+      <vb-palette-variants color="primary"></vb-palette-variants>
+      <vb-palette-variants color="secondary"></vb-palette-variants>
+      <vb-palette-variants color="neutral"></vb-palette-variants>
+      <vb-palette-variants color="important"></vb-palette-variants>
 
-    .swatch_alt {
-      --swatch-background: var(--vb-background-alt);
-    }
-
-    .swatch_subtle {
-      --swatch-background: var(--vb-background-shift);
-    }
-
-    .swatch_primary {
-      --swatch-background: var(--vb-primary-background);
-      --swatch-foreground: var(--vb-primary-foreground);
-    }
-
-    .swatch_secondary {
-      --swatch-background: var(--vb-secondary-background);
-      --swatch-foreground: var(--vb-secondary-foreground);
-    }
-
-    .swatch_neutral {
-      --swatch-background: var(--vb-neutral-background);
-      --swatch-foreground: var(--vb-neutral-foreground);
-    }
-
-    .swatch_important {
-      --swatch-background: var(--vb-important-background);
-      --swatch-foreground: var(--vb-important-foreground);
-    }
-  </style>
-
-  <section class="grid grid_cols_2 grid_gap_0">
-
-    <div class="vb-theme-light">
-      <div class="swatch">
-        <h2>vb-theme-light</h2>
-        <hr class="sep margin-y" />
-        <vb-swatch-content></vb-swatch-content>
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light">
+          <div class="padding-lg">
+            <h2>vb-theme-light</h2>
+            <hr class="sep margin-y" />
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-alt">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-shift">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg primary-background primary-foreground">
+            <p>primary-background</p>
+            <p>primary-foreground</p>
+          </div>
+          <div class="padding-lg secondary-background secondary-foreground">
+            <p>secondary-background</p>
+            <p>secondary-foreground</p>
+          </div>
+          <div class="padding-lg neutral-background neutral-foreground">
+            <p>neutral-background</p>
+            <p>neutral-foreground</p>
+          </div>
+          <div class="padding-lg important-background important-foreground">
+            <p>important-background</p>
+            <p>important-foreground</p>
+          </div>
+        </div>
+        <div class="vb-theme-dark">
+          <div class="padding-lg background">
+            <h2>vb-theme-dark</h2>
+            <hr class="sep margin-y" />
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-alt">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-shift">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg primary-background primary-foreground">
+            <p>primary-background</p>
+            <p>primary-foreground</p>
+          </div>
+          <div class="padding-lg secondary-background secondary-foreground">
+            <p>secondary-background</p>
+            <p>secondary-foreground</p>
+          </div>
+          <div class="padding-lg neutral-background neutral-foreground">
+            <p>neutral-background</p>
+            <p>neutral-foreground</p>
+          </div>
+          <div class="padding-lg important-background important-foreground">
+            <p>important-background</p>
+            <p>important-foreground</p>
+          </div>
+        </div>
       </div>
-      <div class="swatch swatch_alt">
-        <vb-swatch-content></vb-swatch-content>
-      </div>
-      <div class="swatch swatch_subtle">
-        <vb-swatch-content></vb-swatch-content>
-      </div>
-      <div class="swatch swatch_primary">
-        <p>primary-background</p>
-        <p>primary-foreground</p>
-      </div>
-      <div class="swatch swatch_secondary">
-        <p>secondary-background</p>
-        <p>secondary-foreground</p>
-      </div>
-      <div class="swatch swatch_neutral">
-        <p>neutral-background</p>
-        <p>neutral-foreground</p>
-      </div>
-      <div class="swatch swatch_important">
-        <p>important-background</p>
-        <p>important-foreground</p>
-      </div>
+
     </div>
-
-    <div class="vb-theme-dark">
-      <div class="swatch">
-        <h2>vb-theme-dark</h2>
-        <hr class="sep margin-y" />
-        <vb-swatch-content></vb-swatch-content>
-      </div>
-      <div class="swatch swatch_alt">
-        <vb-swatch-content></vb-swatch-content>
-      </div>
-      <div class="swatch swatch_subtle">
-        <vb-swatch-content></vb-swatch-content>
-      </div>
-      <div class="swatch swatch_primary">
-        <p>primary-background</p>
-        <p>primary-foreground</p>
-      </div>
-      <div class="swatch swatch_secondary">
-        <p>secondary-background</p>
-        <p>secondary-foreground</p>
-      </div>
-      <div class="swatch swatch_neutral">
-        <p>neutral-background</p>
-        <p>neutral-foreground</p>
-      </div>
-      <div class="swatch swatch_important">
-        <p>important-background</p>
-        <p>important-foreground</p>
-      </div>
-    </div>
-
   </section>
 
 </body>
