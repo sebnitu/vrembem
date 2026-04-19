@@ -42,15 +42,12 @@
   // Palette CSS Variable output
 
   @each $name in map.keys(config.get("palette")) {
-    // TODO: These utilities are a little confusing. Maybe there's a better way?
-    // - [name]-foreground: Used to set the palette theme foreground
-    // - foreground-[name]: Used to set the palette seed as the fixed foreground
-    #{fun.selector($name, "foreground")} {
-      color: fun.maybe-important(css.get("#{$name}-foreground"));
-    }
-
     #{fun.selector("foreground", $name)} {
       color: fun.maybe-important(palette.get($name));
+    }
+
+    #{fun.selector("foreground", $name, "auto")} {
+      color: fun.maybe-important(css.get("#{$name}-foreground"));
     }
 
     @each $key in map.keys(config.get("palette-variants")) {
