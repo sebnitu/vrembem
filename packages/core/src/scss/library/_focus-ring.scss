@@ -1,5 +1,4 @@
 @use "../modules/css";
-@use "../variables/focus-ring" as var;
 
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
