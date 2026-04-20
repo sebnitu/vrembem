@@ -56,7 +56,7 @@ Utility comes with the following Sass configuration options that can be set usin
 
     // Whether or not utility styles should be output with the !important flag
     // @type boolean
-    "utility-important": true,
+    "utility-important": false,
 
     // A map of border-radius utilities to output
     // @type map
@@ -227,20 +227,6 @@ It's also possible to provide a prefix to all utility classes using the `utility
 ```scss
 @include config.set("utility-prefix", "u");
 // Result: .display-none > .u-display-none
-```
-</ReferenceCard>
-
-Vrembem utilities are set with the `!important` flag by default. This can be toggled using the `utility-important` configuration option.
-
-<ReferenceCard ref="config" name="utility-important" type="boolean" defaults='true'>
-  Whether or not utility styles should be output with the `!important` flag
-
-```scss
-@include config.set("utility-important", true);
-// > background: black !important;
-
-@include config.set("utility-important", false);
-// > background: black;
 ```
 </ReferenceCard>
 
