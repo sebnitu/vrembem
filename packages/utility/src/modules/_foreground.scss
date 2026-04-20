@@ -23,12 +23,20 @@
     color: fun.maybe-important(css.get("foreground"));
   }
 
-  #{fun.selector("foreground", "light")} {
-    color: fun.maybe-important(css.get("foreground-light"));
+  #{fun.selector("foreground", "strong")} {
+    color: fun.maybe-important(css.get("foreground-strong"));
   }
 
-  #{fun.selector("foreground", "lighter")} {
-    color: fun.maybe-important(css.get("foreground-lighter"));
+  #{fun.selector("foreground", "subtle")} {
+    color: fun.maybe-important(css.get("foreground-subtle"));
+  }
+
+  #{fun.selector("foreground", "accent")} {
+    color: fun.maybe-important(css.get("foreground-accent"));
+  }
+
+  #{fun.selector("foreground", "accent-alt")} {
+    color: fun.maybe-important(css.get("foreground-accent-alt"));
   }
 
   // Palette CSS Variable output
@@ -38,9 +46,13 @@
       color: fun.maybe-important(palette.get($name));
     }
 
-    @each $value in config.get("utility-palette-range") {
-      #{fun.selector("foreground", $name, $value)} {
-        color: fun.maybe-important(palette.get($name, $value));
+    #{fun.selector("foreground", $name, "auto")} {
+      color: fun.maybe-important(css.get("#{$name}-foreground"));
+    }
+
+    @each $key in map.keys(config.get("palette-variants")) {
+      #{fun.selector("foreground", $name, $key)} {
+        color: fun.maybe-important(css.get("palette", "#{$name}-#{$key}"));
       }
     }
   }

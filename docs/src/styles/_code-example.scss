@@ -92,7 +92,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
-  color: css.get("foreground-lighter");
+  color: css.get("foreground-subtle");
 
   [data-reset] {
     margin: -2px 0;
@@ -101,10 +101,10 @@
 
 @keyframes updated {
   from {
-    box-shadow: 0 0 0 3px palette.get("primary", 50%, 100%) inset;
+    box-shadow: 0 0 0 3px palette.get("primary", $a: 100%) inset;
   }
 
   to {
-    box-shadow: 0 0 0 3px palette.get("primary", 50%, 0%) inset;
+    box-shadow: 0 0 0 3px palette.get("primary", $a: 0%) inset;
   }
 }

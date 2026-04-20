@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script>
+    // Make this script blocking to prevent flash of pre-themed content
     const local = localStorage.getItem("VB:Profile");
     const store = local ? JSON.parse(local) : {};
     document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
@@ -14,6 +15,10 @@
   <script type="module">
     import "vrembem/sass";
     window["core"] = await import("./index.ts");
+
+    /**
+     * Setup themeStore functionality
+     */
 
     // Get all the theme set button elements
     const buttons = document.querySelectorAll("[data-set-theme]");
@@ -45,20 +50,109 @@
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
+
+    /**
+     * Create custom elements
+     */
+
+    customElements.define("vb-palette-variants", class extends HTMLElement {
+      static _injectStyles = true;
+
+      connectedCallback() {
+        // Only inject the styles once
+        if (this.constructor._injectStyles) {
+          this.constructor._injectStyles = false;
+          const style = document.createElement("style");
+          style.textContent = `
+            vb-palette-variants {
+              display: flex;
+
+              & div {
+                height: 4rem;
+                flex: auto;
+              }
+            }
+          `.replace(/\s+/g, " ").trim();
+          document.head.appendChild(style);
+        }
+
+        // Get the provided color
+        const color = this.getAttribute("color");
+
+        // Build the variant markup
+        this.innerHTML = `
+          <div class="background-${color}-50"></div>
+          <div class="background-${color}-75"></div>
+          <div class="background-${color}-100"></div>
+          <div class="background-${color}-200"></div>
+          <div class="background-${color}-300"></div>
+          <div class="background-${color}-400"></div>
+          <div class="background-${color}-500"></div>
+          <div class="background-${color}-600"></div>
+          <div class="background-${color}-700"></div>
+          <div class="background-${color}-800"></div>
+          <div class="background-${color}-900"></div>
+          <div class="background-${color}-950"></div>
+        `;
+      }
+    });
+
+    customElements.define("vb-swatch-content", class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <p class="foreground-strong">foreground-strong</p>
+          <p class="foreground">foreground</p>
+          <p class="foreground-subtle">foreground-subtle</p>
+          <p class="foreground-accent">foreground-accent</p>
+          <p class="foreground-accent-alt">foreground-accent-alt</p>
+        `;
+      }
+    });
+
+    customElements.define("vb-palette-theme", class extends HTMLElement {
+      static _injectStyles = true;
+
+      connectedCallback() {
+        // Only inject the styles once
+        if (this.constructor._injectStyles) {
+          this.constructor._injectStyles = false;
+          const style = document.createElement("style");
+          style.textContent = "vb-palette-theme { display: block; }";
+          document.head.appendChild(style);
+        }
+
+        // Get the provided color
+        const color = this.getAttribute("color");
+
+        // Build the theme markup
+        this.innerHTML = `
+          <div class="grid grid_cols_2 grid_gap_0">
+            <div class="vb-theme-light padding-lg background-${color}-auto foreground-${color}-auto">
+              <p>--vb-${color}-background</p>
+              <p>--vb-${color}-foreground</p>
+            </div>
+            <div class="vb-theme-dark padding-lg background-${color}-auto foreground-${color}-auto">
+              <p>--vb-${color}-background</p>
+              <p>--vb-${color}-foreground</p>
+            </div>
+          </div>
+        `;
+      }
+    });
   </script>
 </head>
 <body>
 
-  <header class="section background-dark">
+  <header class="section background-shift">
     <div class="section__container max-width-xs spacing-sm">
-      <h1 class="text-size-lg">%VITE_NAME%</h1>
-      <p class="foreground-light">%VITE_DESCRIPTION%</p>
-      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+      <h1 class="font-size-lg">%VITE_NAME%</h1>
+      <p>%VITE_DESCRIPTION%</p>
+      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
         </li>
-        <li class="foreground-neutral-80">/</li>
+        <li class="foreground-subtle">/</li>
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
@@ -67,10 +161,13 @@
     </div>
   </header>
 
-  <section class="section">
-
+  <aside class="section section_padding_sm background-alt">
     <div class="section__container max-width-xs">
       <ul class="menu menu_inline">
+        <li class="menu__item">
+          <span class="padding-right foreground-strong font-weight-bold">Themes</span>
+        </li>
+        <li class="menu__sep"></li>
         <li class="menu__item">
           <button class="menu__action" type="button" data-set-theme="auto">
             Auto
@@ -88,7 +185,51 @@
         </li>
       </ul>
     </div>
+  </aside>
 
+  <section class="section">
+    <div class="section__container max-width-xs spacing">
+
+      <vb-palette-variants color="primary"></vb-palette-variants>
+      <vb-palette-variants color="secondary"></vb-palette-variants>
+      <vb-palette-variants color="neutral"></vb-palette-variants>
+      <vb-palette-variants color="important"></vb-palette-variants>
+
+      <div class="grid grid_cols_2 grid_gap_0">
+        <div class="vb-theme-light">
+          <div class="padding-lg">
+            <h2>vb-theme-light</h2>
+            <hr class="sep margin-y" />
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-alt">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-shift">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+        </div>
+        <div class="vb-theme-dark">
+          <div class="padding-lg background">
+            <h2>vb-theme-dark</h2>
+            <hr class="sep margin-y" />
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-alt">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+          <div class="padding-lg background-shift">
+            <vb-swatch-content></vb-swatch-content>
+          </div>
+        </div>
+      </div>
+
+      <vb-palette-theme color="primary"></vb-palette-theme>
+      <vb-palette-theme color="secondary"></vb-palette-theme>
+      <vb-palette-theme color="neutral"></vb-palette-theme>
+      <vb-palette-theme color="important"></vb-palette-theme>
+
+    </div>
   </section>
 
 </body>

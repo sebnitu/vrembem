@@ -72,7 +72,7 @@
       display: inline-block;
       width: 64px;
       height: 64px;
-      background-color: var(--vb-background-dark);
+      background-color: var(--vb-background-alt);
     }
 
     .row {
@@ -98,16 +98,16 @@
 </head>
 <body>
 
-  <header class="section background-dark">
+  <header class="section background-shift">
     <div class="section__container max-width-xs spacing-sm">
-      <h1 class="text-size-lg">%VITE_NAME%</h1>
-      <p class="foreground-light">%VITE_DESCRIPTION%</p>
-      <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+      <h1 class="font-size-lg">%VITE_NAME%</h1>
+      <p>%VITE_DESCRIPTION%</p>
+      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
         </li>
-        <li class="foreground-neutral-80">/</li>
+        <li class="foreground-subtle">/</li>
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
@@ -126,8 +126,8 @@
         <div class="swatch background-white"></div>
         <div class="swatch background-transparent"></div>
         <div class="swatch background"></div>
-        <div class="swatch background-dark"></div>
-        <div class="swatch background-darker"></div>
+        <div class="swatch background-alt"></div>
+        <div class="swatch background-shift"></div>
       </div>
 
       <h3 class="font-weight-regular">background-clip</h3>
@@ -145,9 +145,9 @@
         <code class="code">foreground-black</code>
         <code class="code">foreground-white</code>
         <code class="code">foreground-transparent</code>
+        <code class="code">foreground-strong</code>
         <code class="code">foreground</code>
-        <code class="code">foreground-light</code>
-        <code class="code">foreground-lighter</code>
+        <code class="code">foreground-subtle</code>
       </div>
 
       <h2 id="border"><a href="#border">border</a></h2>
@@ -163,8 +163,8 @@
         <div class="box border border-bottom-none"></div>
         <div class="box border border-left-none"></div>
         <div class="box border border-right-none"></div>
-        <div class="box border border-color-dark"></div>
-        <div class="box border border-color-darker"></div>
+        <div class="box border border-color-strong"></div>
+        <div class="box border border-color-stronger"></div>
         <div class="box border border-color-transparent"></div>
       </div>
 

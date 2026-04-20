@@ -16,10 +16,10 @@
     "padding-x": 1em,
     "padding-y": 0.5em,
     "accent": palette.get("primary"),
-    "foreground": css.get("foreground"),
+    "foreground": css.get("foreground-strong"),
     "background": css.get("background"),
-    "background-disabled": css.get("background-darker"),
-    "background-readonly": css.get("background-darker"),
+    "background-disabled": css.get("background-shift"),
+    "background-readonly": css.get("background-shift"),
     "opacity-disabled": 0.6,
     "transition-property": (
       box-shadow,
@@ -35,7 +35,7 @@
   "core",
   "form-control-choice",
   (
-    "color": css.get("foreground-lighter"),
+    "color": css.get("foreground-subtle"),
     "color-checked": css.get("form-control-accent"),
     "fill": css.get("form-control-background"),
     "background": (

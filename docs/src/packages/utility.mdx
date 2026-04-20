@@ -58,12 +58,6 @@ Utility comes with the following Sass configuration options that can be set usin
     // @type boolean
     "utility-important": true,
 
-    // A lightness range list for outputting palette related utilities
-    // @type list
-    "utility-palette-range": (
-      0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100
-    ),
-
     // A map of border-radius utilities to output
     // @type map
     "utility-border-radius": (
@@ -256,15 +250,16 @@ Below is a list of each utility module, their available variants and intended us
 
 ### background
 
-Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
+Utilities for setting the background-color property of an element. Variants are built from both the core `palette` as well as the `palette-variants` configuration options.
 
 export const background = (() => {
-  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const range = [50, 75, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
   const palette = ["primary", "secondary", "neutral", "important"];
   return palette.reduce((acc, pal) => {
     acc[`background-${pal}`] = `background-color: var(--vb-${pal});`
+    acc[`background-${pal}-auto`] = `background-color: var(--vb-${pal}-background);`
     range.forEach(val => {
-      acc[`background-${pal}-${val}`] = `background-color: hsl(var(--vb-${pal}-hs) ${val});`;
+      acc[`background-${pal}-${val}`] = `background-color: var(--vb-${pal}-${val});`;
     });
     return acc;
   }, {});
@@ -281,8 +276,8 @@ export const background = (() => {
 
   // Theme utilities
   "background": "background-color: var(--vb-background);",
-  "background-dark": "background-color: var(--vb-background-dark);",
-  "background-darker": "background-color: var(--vb-background-darker);",
+  "background-alt": "background-color: var(--vb-background-alt);",
+  "background-shift": "background-color: var(--vb-background-shift);",
 
   // Palette utilities
   ...background
@@ -292,14 +287,14 @@ export const background = (() => {
   <Fragment slot="output">
     <div class="flex gap">
       <button class="button foreground-white background-primary">Button 1</button>
-      <button class="button foreground-white background-secondary-40">Button 2</button>
-      <button class="button foreground-white background-neutral-60 ">Button 3</button>
+      <button class="button foreground-black background-secondary-100">Button 2</button>
+      <button class="button foreground-white background-neutral-600">Button 3</button>
     </div>
   </Fragment>
 ```html
 <button class="background-primary ...">Button 1</button>
-<button class="background-secondary-40 ...">Button 2</button>
-<button class="background-neutral-60 ...">Button 3</button>
+<button class="background-secondary-100 ...">Button 2</button>
+<button class="background-neutral-600 ...">Button 3</button>
 ```
 </CodeExample>
 
@@ -314,15 +309,16 @@ The background utility module also includes options for setting the background-c
 
 ### foreground
 
-Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `utility-palette-range` configuration options.
+Utilities for setting the color property of an element. Variants are built from both the core `palette` as well as the `palette-variants` configuration options.
 
 export const foreground = (() => {
-  const range = [0, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 95, 100];
+  const range = [50, 75, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
   const palette = ["primary", "secondary", "neutral", "important"];
   return palette.reduce((acc, pal) => {
     acc[`foreground-${pal}`] = `color: var(--vb-${pal});`
+    acc[`foreground-${pal}-auto`] = `color: var(--vb-${pal}-foreground);`
     range.forEach(val => {
-      acc[`foreground-${pal}-${val}`] = `color: hsl(var(--vb-${pal}-hs) ${val});`;
+      acc[`foreground-${pal}-${val}`] = `color: var(--vb-${pal}-${val});`;
     });
     return acc;
   }, {});
@@ -339,8 +335,10 @@ export const foreground = (() => {
 
   // Theme utilities
   "foreground": "color: var(--vb-foreground);",
-  "foreground-light": "color: var(--vb-foreground-light);",
-  "foreground-lighter": "color: var(--vb-foreground-lighter);",
+  "foreground-strong": "color: var(--vb-foreground-strong);",
+  "foreground-subtle": "color: var(--vb-foreground-subtle);",
+  "foreground-accent": "color: var(--vb-foreground-accent);",
+  "foreground-accent-alt": "color: var(--vb-foreground-accent-alt);",
 
   // Palette utilities
   ...foreground

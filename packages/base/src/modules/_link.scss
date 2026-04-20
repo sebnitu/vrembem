@@ -1,28 +1,35 @@
-@use "@vrembem/core/palette";
 @use "@vrembem/core/css";
+@use "@vrembem/core/palette";
 @use "../functions" as fun;
 
 @if fun.maybe-output("link") {
   @include css.register("link");
 
   #{fun.selector("link")} {
-    color: css.get("link", "foreground", palette.get("primary"));
+    color: css.get("link", "foreground", css.get("foreground-accent"));
     text-decoration: css.get("link", "decoration", underline);
     text-decoration-thickness: css.get("link", "decoration-thickness", 1px);
     text-underline-offset: css.get("link", "underline-offset", 2px);
 
     code {
-      color: css.get("link", "foreground", palette.get("primary"));
-      background-color: palette.get("primary", 50%, 10%);
+      color: css.get("link", "foreground", css.get("foreground-accent"));
+      background-color: css.get("background-alt");
     }
 
+    // prettier-ignore
     &:hover,
     &:focus {
-      color: css.get("link", "foreground-hover", palette.get("primary", 40));
+      color: css.get("link", "foreground-hover", light-dark(
+        oklch(from css.get("foreground-accent") calc(l - 0.1) c h),
+        oklch(from css.get("foreground-accent") calc(l + 0.1) c h),
+      ));
       text-decoration: css.get("link", "decoration-hover", none);
 
       code {
-        color: css.get("link", "foreground-hover", palette.get("primary", 40));
+        color: css.get("link", "foreground-hover", light-dark(
+          oklch(from css.get("foreground-accent") calc(l - 0.1) c h),
+          oklch(from css.get("foreground-accent") calc(l + 0.1) c h)
+        ));
       }
     }
 

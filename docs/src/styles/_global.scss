@@ -9,7 +9,7 @@ astro-island {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: palette.get("primary", 50, 50%) transparent;
+  scrollbar-color: palette.get("primary", $a: 50%) transparent;
   text-wrap: pretty;
 
   @media screen and (prefers-reduced-motion: reduce) {
@@ -35,6 +35,47 @@ html {
   &.is-active {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/**
+ * Vrembem Logo with Gradient Animation
+ */
+
+// prettier-ignore
+.vrembem-logo {
+  --background-size: 12; // This should be a multiplier value (5 = 500%)
+  --gradient-color-1: #{palette.get("primary")};
+  --gradient-color-2: #{palette.get("secondary")};
+  --gradient-color-3: #{palette.get("important")};
+
+  display: inline-block;
+  aspect-ratio: 780 / 234;
+  width: 100%;
+  max-width: 780px;
+  background: linear-gradient(
+    90deg, 
+    var(--gradient-color-1),
+    var(--gradient-color-2),
+    var(--gradient-color-3),
+    var(--gradient-color-2),
+    var(--gradient-color-1)
+  );
+  background-repeat:repeat-x;
+  background-size: calc(var(--background-size) * 100%) 100%;
+  mask-image: url("/vrembem-logo.svg");
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  animation: logo-gradient 20s linear infinite;
+}
+
+@keyframes logo-gradient {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: calc((var(--background-size) * 100%) / (var(--background-size) - 1)) center;
   }
 }
 

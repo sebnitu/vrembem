@@ -1,5 +1,4 @@
 @use "../modules/css";
-@use "../variables/focus-ring" as var;
 
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
@@ -16,5 +15,5 @@
 ///   The value to set for the opacity of the color.
 ///
 @mixin focus-ring-color($color: css.get("focus-ring-color"), $opacity: css.get("focus-ring-opacity")) {
-  outline-color: hsl(from $color h s l / $opacity);
+  outline-color: oklch(from $color l c h / $opacity);
 }

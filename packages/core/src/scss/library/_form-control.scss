@@ -1,5 +1,4 @@
 @use "../modules/css";
-@use "../variables/form-control" as *;
 @use "./size" as mix;
 
 /// Output the shared form-control properties with the component specific CSS

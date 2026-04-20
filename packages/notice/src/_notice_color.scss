@@ -1,9 +1,11 @@
+@use "sass:map";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/css";
 
-@each $key, $value in config.get("notice-color", "variants") {
+@each $key in map.keys(config.get("palette")) {
   #{core.bem("notice", null, "color", $key)} {
-    @include css.override("notice", "color", $value);
+    @include css.override("notice", "foreground", css.get("#{$key}-foreground"));
+    @include css.override("notice", "background", css.get("#{$key}-background"));
   }
 }

@@ -33,7 +33,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   align-items: center;
   justify-content: center;
   border-radius: css.get("radio", "background-border-radius", css.get("form-control-choice-background-border-radius"));
-  background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity", css.get("form-control-choice-background-opacity")));
+  background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity", css.get("form-control-choice-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
@@ -67,7 +67,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   opacity: 0;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
+    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
@@ -76,7 +76,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
+    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
@@ -86,7 +86,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("radio", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
+    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;

@@ -33,7 +33,7 @@ $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
   align-items: center;
   justify-content: center;
   border-radius: css.get("checkbox", "background-border-radius", css.get("form-control-choice-background-border-radius"));
-  background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity", css.get("form-control-choice-background-opacity")));
+  background-color: oklch(from $-color-checked l c h / css.get("checkbox", "background-opacity", css.get("form-control-choice-background-opacity")));
 }
 
 #{core.bem("checkbox", "box")} {
@@ -70,7 +70,7 @@ $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
   opacity: 0;
 
   &:hover + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
+    background-color: oklch(from $-color-checked l c h / css.get("checkbox", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;
@@ -79,7 +79,7 @@ $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
   }
 
   &:focus + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
+    background-color: oklch(from $-color-checked l c h / css.get("checkbox", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;
@@ -89,7 +89,7 @@ $-fill: css.get("checkbox", "fill", css.get("form-control-choice-fill"));
 
   &:focus-visible + #{core.bem("checkbox", "background")},
   &:active + #{core.bem("checkbox", "background")} {
-    background-color: hsl(from $-color-checked h s l / css.get("checkbox", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
+    background-color: oklch(from $-color-checked l c h / css.get("checkbox", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
 
     #{core.bem("checkbox", "box")} {
       border-color: $-color-checked;

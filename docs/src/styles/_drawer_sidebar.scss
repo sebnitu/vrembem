@@ -6,7 +6,7 @@
   visibility: hidden;
 
   .drawer__dialog {
-    background-color: css.get("background-darker");
+    background-color: css.get("background-shift");
     outline: none;
   }
 
@@ -27,7 +27,7 @@
     width: calc(css.get("layout", "sidebar-width") + css.get("layout", "padding"));
     padding-left: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
     visibility: visible;
-    background-color: css.get("background-darker");
+    background-color: css.get("background-shift");
 
     // Fold shadow
     &::after {
@@ -59,7 +59,7 @@
       flex-shrink: 0;
       height: calc(css.get("layout", "navibar-height") + css.get("layout", "padding"));
       margin: calc((css.get("layout", "navibar-height") + css.get("layout", "padding")) * -1) calc(css.get("layout", "padding") * -1) css.get("layout", "padding") calc(css.get("layout", "padding") * -1);
-      background-color: css.get("background-darker");
+      background-color: css.get("background-shift");
 
       &::after {
         content: "";

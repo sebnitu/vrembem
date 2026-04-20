@@ -42,14 +42,7 @@ function getIconName(string: string) {
             class={cp.classes(`/${collection}/${entry.id}`)}
             href={`/${collection}/${entry.id}${hasModules && cp.isParent(`/${collection}/${entry.id}`) ? `#${modules[0].data.group}` : ""}`}
           >
-            <span class="flex-grow">
-              {entry.data.title}
-              {hasModules && cp.isParent(`/${collection}/${entry.id}`) ? (
-                <span class="foreground-lighter">#{modules[0].data.group}</span>
-              ) : (
-                ""
-              )}
-            </span>
+            <span class="flex-grow">{entry.data.title}</span>
             {entry.data.category && (
               <Popover placement="left" triggerClass="display-flex">
                 <Fragment slot="trigger">

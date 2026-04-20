@@ -9,9 +9,9 @@ import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core/palette";
-  ```
+```scss
+@use "@vrembem/core/palette";
+```
 </CodeExample>
 
 ## Basic usage
@@ -46,36 +46,48 @@ The default color palette defines four colors under semantic names that are used
 
 <ReferenceBar type="function" returns="color" />
 
-Returns a color value from the palette in various formats, based on the provided name, lightness, and alpha values.
+Returns a color value from the palette as an oklch color, allowing overrides for lightness, chroma adjustments, and alpha channels.
 
 #### Arguments
 
 <ReferenceCard name="$name" type="string">
-  The color name to return a value for.
+  The palette color name (e.g., "primary", "neutral").
 </ReferenceCard>
 
-<ReferenceCard name="$lightness" type="percentage" defaults="null">
-  The value to use for the lightness value.
+<ReferenceCard name="$l" type="percentage | string" defaults="null">
+  The lightness value. Pass a percentage to set lightness directly, or a string to reference a stored variant (e.g., "400").
 </ReferenceCard>
 
-<ReferenceCard name="$alpha" type="percentage" defaults="null">
+<ReferenceCard name="$c" type="percentage" defaults="null">
+  The chroma value as a percentage of the seed color's chroma. E.g., 50% returns half the seed's chroma. Set to 0 to remove chroma entirely.
+</ReferenceCard>
+
+<ReferenceCard name="$a" type="percentage" defaults="null">
   Optional alpha (opacity) value to apply to the returned color.
 </ReferenceCard>
 
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Return a color with the default lightness value or the raw value
-  $value: palette.get("primary");
-  // Returns: var(--vb-primary)
+```scss
+// Return the seeded palette color
+palette.get("primary");
+// => var(--vb-primary)
 
-  // Return a color with a specified lightness value
-  $value: palette.get("primary", 20%);
-  // Returns: hsl(var(--vb-primary-hs) 20%)
+// Return a stored variant by name
+palette.get("primary", "400");
+// => var(--vb-primary-400)
 
-  // Return a color with a specified lightness and alpha value
-  $value: palette.get("primary", 20%, 30%);
-  // Returns: hsl(var(--vb-primary-hs) 20% / 30%)
-  ```
+// Return a color with a specific lightness
+palette.get("primary", 80%);
+// => oklch(80% var(--vb-primary-c) var(--vb-primary-h))
+
+// Return a color with lightness and scaled chroma
+palette.get("primary", 90%, 20%);
+// => oklch(90% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))
+
+// Return a color with alpha transparency
+palette.get("primary", $a: 50%);
+// => oklch(from var(--vb-primary) l c h/50%)
+```
 </CodeExample>

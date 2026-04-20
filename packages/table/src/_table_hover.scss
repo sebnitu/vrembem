@@ -13,6 +13,6 @@
   tbody tr:focus-within {
     z-index: 2;
     color: css.get("table", "foreground-hover", inherit);
-    background-color: css.get("table", "background-hover", palette.get("primary", 50%, 15%));
+    background-color: css.get("table", "background-hover", palette.get("primary", $a: 15%));
   }
 }

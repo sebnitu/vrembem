@@ -20,43 +20,15 @@ npm install @vrembem/notice
 
 ## Options
 
-Notice is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
-
-### Sass
-
-Notice comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/notice" with (
-  $config: (
-    // Map for outputting notice_color_[key] modifier variants
-    // @type map
-    "notice-color": (
-      "default": palette.get("neutral"),
-      "primary": palette.get("primary"),
-      "secondary": palette.get("secondary"),
-      "important": palette.get("important")
-    )
-  )
-);
-```
-</CodeExample>
+Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 ### CSS Variables
 
 Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="cssvar-notice" valueLabel="Fallback" expandable={true} data={{
-  "--vb-notice-color": "var(--vb-neutral)",
-  "--vb-notice-background-lightness": {
-    "light": "95%",
-    "dark": "25%"
-  },
-  "--vb-notice-foreground-lightness": {
-    "light": "25%",
-    "dark": "95%"
-  },
+  "--vb-notice-foreground": "var(--vb-foreground-strong)",
+  "--vb-notice-background": "var(--vb-background-shift)",
   "--vb-notice-border": "none",
   "--vb-notice-border-radius": "var(--vb-border-radius)",
   "--vb-notice-box-shadow": "none",
@@ -195,7 +167,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
 
 ## notice_color_[key]
 
-Applies a color theme to the notice, useful for conveying different states such as success, info, or error. These modifiers are generated using key/value pairs of the `notice-color` config options map.
+Applies a color theme to the notice, useful for conveying different states such as success, info, or error. These modifiers are generated using the palette theme tokens.
 
 <CodeExample>
   <div slot="output" class="spacing">

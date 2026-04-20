@@ -14,8 +14,6 @@
   </script>
   <script type="module">
     import "vrembem/sass";
-
-    // Load JS and attach instance to window
     window["vb"] = await import("./index.ts");
 
     /**
@@ -26,10 +24,11 @@
     const buttons = document.querySelectorAll("[data-set-theme]");
 
     // Setup theme switching functionality
-    const themeStore = vb.core.themeStore({
+    vb.core.themeStore({
       onInit() {
+        // Loop through the theme set buttons
         buttons.forEach((btn) => {
-          // Set current menu item active
+          // Toggle the state of our button set
           toggleState.call(this, btn);
           // Add click event listener for changing the current theme
           btn.addEventListener(("click"), () => {
@@ -39,7 +38,7 @@
       },
       onChange() {
         buttons.forEach((btn) => {
-          // Set current menu item active
+          // Toggle the state of our button set
           toggleState.call(this, btn);
         });
       }
@@ -51,9 +50,6 @@
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
-
-    // Attach themeStore to window for testing purposes
-    window["themeStore"] = themeStore;
 
     /**
      * Instantiate and mount Vrembem components
@@ -79,6 +75,10 @@
     window["modal"] = await modal.mount();
     window["drawer"] = await drawer.mount();
 
+    /**
+     * Setup drawer form updater
+     */
+
     // Get the drawer entry and drawer from
     const drawerEntry = drawer.get("drawer-dialog");
     const drawerForm = document.getElementById("form-drawer-state");
@@ -103,323 +103,323 @@
 </head>
 <body>
 
-<div class="drawer-frame">
-  <div class="drawer-main">
+  <main class="drawer-frame">
+    <div class="drawer-main">
 
-    <header class="section background-dark">
-      <div class="section__container max-width-xs spacing-sm">
-        <h1 class="text-size-lg">%VITE_NAME%</h1>
-        <p class="foreground-light">%VITE_DESCRIPTION%</p>
-        <ol class="foreground-lighter flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
-          <li class="flex flex_gap_sm align-items-center">
-            <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-            <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
-          </li>
-          <li class="foreground-neutral-80">/</li>
-          <li class="flex flex_gap_sm align-items-center">
-            <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
-          </li>
-        </ol>
-      </div>
-    </header>
-
-    <aside class="section section_padding_sm background-darker">
-      <div class="section__container max-width-xs">
-        <ul class="menu menu_inline menu_themes">
-          <li class="menu__item">
-            <span class="padding-right font-weight-bold">Themes</span>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button type="button" data-set-theme="auto" class="menu__action">
-              <span>Auto</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" data-set-theme="light" class="menu__action">
-              <span>Light</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" data-set-theme="dark" class="menu__action">
-              <span>Dark</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </aside>
-
-    <section class="section">
-      <div class="section__container max-width-xs spacing-xl">
-
-        <!-- Dialog, Modal and Drawer -->
-
-        <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description" tabindex="-1">
-          <div class="dialog__header">
-            <h2 class="dialog__title" id="dialog-title">Dialog title</h2>
-            <button class="button button_icon button_size_sm">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-          </div>
-          <div class="dialog__body">
-            <p id="dialog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
-          </div>
-          <div class="dialog__footer">
-            <button class="button button_color_primary">Submit</button>
-            <button class="button">Cancel</button>
-          </div>
-        </div><!-- .dialog -->
-
-        <ul class="list">
-          <li>
-            <button class="link" data-modal-open="modal-dialog">Modal dialog</button>
-          </li>
-          <li>
-            <div class="flex align-items-center">
-              <button class="link" data-drawer-toggle="drawer-dialog">Drawer dialog</button>
-              <form id="form-drawer-state" class="flex align-items-center">
-                <label class="flex flex_gap_xs align-items-center">
-                  <span class="checkbox">
-                    <input name="toggle-drawer-modal" class="checkbox__native" type="checkbox" />
-                    <span class="checkbox__background">
-                      <span class="checkbox__box">
-                        <span class="checkbox__icon"></span>
-                      </span>
-                    </span>
-                  </span>
-                  <span>Modal</span>
-                </label>
-                <label class="flex flex_gap_xs align-items-center">
-                  <span class="checkbox">
-                    <input name="toggle-drawer-switch" class="checkbox__native" type="checkbox" />
-                    <span class="checkbox__background">
-                      <span class="checkbox__box">
-                        <span class="checkbox__icon"></span>
-                      </span>
-                    </span>
-                  </span>
-                  <span>Switch</span>
-                </label>
-              </form>
-            </div>
-          </li>
-        </ul>
-
-        <div id="modal-dialog" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
-            <div class="dialog__header">
-              <h2 class="dialog__title" id="modal-dialog-title">Modal title</h2>
-              <button data-modal-close class="button button_icon button_size_sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-            </div>
-            <div class="dialog__body">
-              <p id="modal-dialog-description">...</p>
-            </div>
-            <div class="dialog__footer">
-              ...
-            </div>
-          </div>
-        </div><!-- .modal -->
-
-        <aside id="drawer-dialog" class="drawer">
-          <div class="drawer__dialog dialog" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
-            <div class="dialog__header">
-              <h2 class="dialog__title" id="drawer-dialog-title">Drawer title</h2>
-              <button data-drawer-close class="button button_icon button_size_sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-            </div>
-            <div class="dialog__body">
-              <p id="drawer-dialog-description">...</p>
-            </div>
-            <div class="dialog__footer">
-              ...
-            </div>
-          </div>
-        </aside><!-- .drawer -->
-
-        <!-- Form Controls (SM) -->
-
-        <div class="flex align-items-center">
-          <label class="font-size-sm flex-item-full">Form control label</label>
-          <input class="input input_auto input_size_sm" type="text" value="35" />
-          <select class="input input_auto input_type_select input_size_sm">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button button_size_sm">Button</button>
-          <ul class="menu menu_inline menu_size_sm">
-            <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
+      <header class="section background-shift">
+        <div class="section__container max-width-xs spacing-sm">
+          <h1 class="font-size-lg">%VITE_NAME%</h1>
+          <p>%VITE_DESCRIPTION%</p>
+          <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+            <li class="flex flex_gap_sm align-items-center">
+              <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
             </li>
-          </ul>
-          <span class="checkbox checkbox_size_sm">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_sm">
-            <input class="radio__native" type="radio"  name="example-3" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_sm">
-            <input class="radio__native" type="radio"  name="example-3" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="switch switch_size_sm">
-            <input class="switch__native" type="checkbox"  />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
-            </span>
-          </span>
-          <textarea class="input input_type_textarea input_size_sm"></textarea>
+            <li class="foreground-subtle">/</li>
+            <li class="flex flex_gap_sm align-items-center">
+              <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+            </li>
+          </ol>
         </div>
+      </header>
 
-        <!-- Form Controls -->
-
-        <div class="flex align-items-center">
-          <label class="flex-item-full">Form control label</label>
-          <input class="input input_auto" type="text" value="40" />
-          <select class="input input_auto input_type_select">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button">Button</button>
+      <aside class="section section_padding_sm background-alt">
+        <div class="section__container max-width-xs">
           <ul class="menu menu_inline">
             <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
+              <span class="padding-right foreground-strong font-weight-bold">Themes</span>
             </li>
-          </ul>
-          <span class="checkbox">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio">
-            <input class="radio__native" type="radio"  name="example-4" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio">
-            <input class="radio__native" type="radio"  name="example-4" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="switch">
-            <input class="switch__native" type="checkbox"  />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
-            </span>
-          </span>
-          <textarea class="input input_type_textarea"></textarea>
-        </div>
-
-        <!-- Form Controls (LG) -->
-
-        <div class="flex align-items-center">
-          <label class="font-size-lg flex-item-full">Form control label</label>
-          <input class="input input_auto input_size_lg" type="text" value="45" />
-          <select class="input input_auto input_type_select input_size_lg">
-            <option>1. One</option>
-            <option>2. Two</option>
-            <option>3. Three</option>
-          </select>
-          <button class="button button_size_lg">Button</button>
-          <ul class="menu menu_inline menu_size_lg">
+            <li class="menu__sep"></li>
             <li class="menu__item">
-              <a class="menu__action" href="#">Menu Item</a>
+              <button class="menu__action" type="button" data-set-theme="auto">
+                Auto
+              </button>
+            </li>
+            <li class="menu__item">
+              <button class="menu__action" type="button" data-set-theme="light">
+                Light
+              </button>
+            </li>
+            <li class="menu__item">
+              <button class="menu__action" type="button" data-set-theme="dark">
+                Dark
+              </button>
             </li>
           </ul>
-          <span class="checkbox checkbox_size_lg">
-            <input class="checkbox__native" type="checkbox" checked />
-            <span class="checkbox__background">
-              <span class="checkbox__box">
-                <span class="checkbox__icon"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_lg">
-            <input class="radio__native" type="radio"  name="example-5" checked />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="radio radio_size_lg">
-            <input class="radio__native" type="radio"  name="example-5" />
-            <span class="radio__background">
-              <span class="radio__circle">
-                <span class="radio__dot"></span>
-              </span>
-            </span>
-          </span>
-          <span class="switch switch_size_lg">
-            <input class="switch__native" type="checkbox"  />
-            <span class="switch__background">
-              <span class="switch__track">
-                <span class="switch__thumb"></span>
-              </span>
-            </span>
-          </span>
-          <textarea class="input input_type_textarea input_size_lg"></textarea>
         </div>
+      </aside>
 
-        <!-- Typography -->
+      <section class="section">
+        <div class="section__container max-width-xs spacing-xl">
 
-        <div class="flex align-items-center">
-          <p class="font-size-sm">This is some text.</p>
-          <p>This is some text.</p>
-          <p class="font-size-lg">This is some text.</p>
+          <!-- Dialog, Modal and Drawer -->
+
+          <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description" tabindex="-1">
+            <div class="dialog__header">
+              <h2 class="dialog__title" id="dialog-title">Dialog title</h2>
+              <button class="button button_icon button_size_sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="dialog__body">
+              <p id="dialog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+            </div>
+            <div class="dialog__footer">
+              <button class="button button_color_primary">Submit</button>
+              <button class="button">Cancel</button>
+            </div>
+          </div><!-- .dialog -->
+
+          <ul class="list">
+            <li>
+              <button class="link" data-modal-open="modal-dialog">Modal dialog</button>
+            </li>
+            <li>
+              <div class="flex align-items-center">
+                <button class="link" data-drawer-toggle="drawer-dialog">Drawer dialog</button>
+                <form id="form-drawer-state" class="flex align-items-center">
+                  <label class="flex flex_gap_xs align-items-center">
+                    <span class="checkbox">
+                      <input name="toggle-drawer-modal" class="checkbox__native" type="checkbox" />
+                      <span class="checkbox__background">
+                        <span class="checkbox__box">
+                          <span class="checkbox__icon"></span>
+                        </span>
+                      </span>
+                    </span>
+                    <span>Modal</span>
+                  </label>
+                  <label class="flex flex_gap_xs align-items-center">
+                    <span class="checkbox">
+                      <input name="toggle-drawer-switch" class="checkbox__native" type="checkbox" />
+                      <span class="checkbox__background">
+                        <span class="checkbox__box">
+                          <span class="checkbox__icon"></span>
+                        </span>
+                      </span>
+                    </span>
+                    <span>Switch</span>
+                  </label>
+                </form>
+              </div>
+            </li>
+          </ul>
+
+          <div id="modal-dialog" class="modal">
+            <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
+              <div class="dialog__header">
+                <h2 class="dialog__title" id="modal-dialog-title">Modal title</h2>
+                <button data-modal-close class="button button_icon button_size_sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+              <div class="dialog__body">
+                <p id="modal-dialog-description">...</p>
+              </div>
+              <div class="dialog__footer">
+                ...
+              </div>
+            </div>
+          </div><!-- .modal -->
+
+          <aside id="drawer-dialog" class="drawer">
+            <div class="drawer__dialog dialog" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
+              <div class="dialog__header">
+                <h2 class="dialog__title" id="drawer-dialog-title">Drawer title</h2>
+                <button data-drawer-close class="button button_icon button_size_sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon_size_sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </div>
+              <div class="dialog__body">
+                <p id="drawer-dialog-description">...</p>
+              </div>
+              <div class="dialog__footer">
+                ...
+              </div>
+            </div>
+          </aside><!-- .drawer -->
+
+          <!-- Form Controls (SM) -->
+
+          <div class="flex align-items-center">
+            <label class="font-size-sm flex-item-full">Form control label</label>
+            <input class="input input_auto input_size_sm" type="text" value="35" />
+            <select class="input input_auto input_type_select input_size_sm">
+              <option>1. One</option>
+              <option>2. Two</option>
+              <option>3. Three</option>
+            </select>
+            <button class="button button_size_sm">Button</button>
+            <ul class="menu menu_inline menu_size_sm">
+              <li class="menu__item">
+                <a class="menu__action" href="#">Menu Item</a>
+              </li>
+            </ul>
+            <span class="checkbox checkbox_size_sm">
+              <input class="checkbox__native" type="checkbox" checked />
+              <span class="checkbox__background">
+                <span class="checkbox__box">
+                  <span class="checkbox__icon"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio radio_size_sm">
+              <input class="radio__native" type="radio"  name="example-3" checked />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio radio_size_sm">
+              <input class="radio__native" type="radio"  name="example-3" />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="switch switch_size_sm">
+              <input class="switch__native" type="checkbox"  />
+              <span class="switch__background">
+                <span class="switch__track">
+                  <span class="switch__thumb"></span>
+                </span>
+              </span>
+            </span>
+            <textarea class="input input_type_textarea input_size_sm"></textarea>
+          </div>
+
+          <!-- Form Controls -->
+
+          <div class="flex align-items-center">
+            <label class="flex-item-full">Form control label</label>
+            <input class="input input_auto" type="text" value="40" />
+            <select class="input input_auto input_type_select">
+              <option>1. One</option>
+              <option>2. Two</option>
+              <option>3. Three</option>
+            </select>
+            <button class="button">Button</button>
+            <ul class="menu menu_inline">
+              <li class="menu__item">
+                <a class="menu__action" href="#">Menu Item</a>
+              </li>
+            </ul>
+            <span class="checkbox">
+              <input class="checkbox__native" type="checkbox" checked />
+              <span class="checkbox__background">
+                <span class="checkbox__box">
+                  <span class="checkbox__icon"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio">
+              <input class="radio__native" type="radio"  name="example-4" checked />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio">
+              <input class="radio__native" type="radio"  name="example-4" />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="switch">
+              <input class="switch__native" type="checkbox"  />
+              <span class="switch__background">
+                <span class="switch__track">
+                  <span class="switch__thumb"></span>
+                </span>
+              </span>
+            </span>
+            <textarea class="input input_type_textarea"></textarea>
+          </div>
+
+          <!-- Form Controls (LG) -->
+
+          <div class="flex align-items-center">
+            <label class="font-size-lg flex-item-full">Form control label</label>
+            <input class="input input_auto input_size_lg" type="text" value="45" />
+            <select class="input input_auto input_type_select input_size_lg">
+              <option>1. One</option>
+              <option>2. Two</option>
+              <option>3. Three</option>
+            </select>
+            <button class="button button_size_lg">Button</button>
+            <ul class="menu menu_inline menu_size_lg">
+              <li class="menu__item">
+                <a class="menu__action" href="#">Menu Item</a>
+              </li>
+            </ul>
+            <span class="checkbox checkbox_size_lg">
+              <input class="checkbox__native" type="checkbox" checked />
+              <span class="checkbox__background">
+                <span class="checkbox__box">
+                  <span class="checkbox__icon"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio radio_size_lg">
+              <input class="radio__native" type="radio"  name="example-5" checked />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="radio radio_size_lg">
+              <input class="radio__native" type="radio"  name="example-5" />
+              <span class="radio__background">
+                <span class="radio__circle">
+                  <span class="radio__dot"></span>
+                </span>
+              </span>
+            </span>
+            <span class="switch switch_size_lg">
+              <input class="switch__native" type="checkbox"  />
+              <span class="switch__background">
+                <span class="switch__track">
+                  <span class="switch__thumb"></span>
+                </span>
+              </span>
+            </span>
+            <textarea class="input input_type_textarea input_size_lg"></textarea>
+          </div>
+
+          <!-- Typography -->
+
+          <div class="flex align-items-center">
+            <p class="font-size-sm">This is some text.</p>
+            <p>This is some text.</p>
+            <p class="font-size-lg">This is some text.</p>
+          </div>
+          
+          <div class="spacing">
+            <p class="font-size-sm">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+            </p>
+            <p class="font-size-lg">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
+            </p>
+          </div>
+
         </div>
-        
-        <div class="spacing">
-          <p class="font-size-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-          <p class="font-size-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget urna in justo consectetur suscipit cursus vel lectus. Sed semper elementum semper. Etiam eget venenatis orci. Morbi hendrerit magna sed purus porta dictum. In accumsan, leo et ultrices auctor, felis augue blandit arcu, a consequat nunc nisi vel lorem.
-          </p>
-        </div>
+      </section>
 
-      </div>
-    </section>
+    </div>
+  </main>
 
-  </div><!-- .drawer-main -->
-</div><!-- .drawer-frame -->
-
-<div class="modals"></div>
+  <div class="modals"></div>
 
 </body>
 </html>

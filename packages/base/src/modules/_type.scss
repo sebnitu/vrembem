@@ -9,7 +9,7 @@
     font-family: css.get("type", "font-family", inherit);
     font-size: css.get("type", "font-size", inherit);
     line-height: css.get("type", "line-height", inherit);
-    color: css.get("type", "foreground", css.get("foreground-light"));
+    color: css.get("type", "foreground", css.get("foreground"));
 
     > * + * {
       margin-top: css.get("type", "spacing", null);

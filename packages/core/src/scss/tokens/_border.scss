@@ -10,8 +10,8 @@
   "core",
   (
     "border": css.get("border-width") css.get("border-style") css.get("border-color"),
-    "border-dark": css.get("border-width") css.get("border-style") css.get("border-color-dark"),
-    "border-darker": css.get("border-width") css.get("border-style") css.get("border-color-darker"),
+    "border-strong": css.get("border-width") css.get("border-style") css.get("border-color-strong"),
+    "border-stronger": css.get("border-width") css.get("border-style") css.get("border-color-stronger"),
     "border-radius": 0.25rem,
     "border-radius-lg": 0.5rem,
     "border-radius-circle": 9999px

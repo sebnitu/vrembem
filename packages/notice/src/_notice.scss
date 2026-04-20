@@ -6,8 +6,8 @@
   padding: css.get("notice", "padding", 1em 1.25em);
   border: css.get("notice", "border", none);
   border-radius: css.get("notice", "border-radius", css.get("border-radius"));
-  color: hsl(from css.get("notice", "color", config.get("notice-color", "default")) h s css.get("notice", "foreground-lightness"));
-  background: hsl(from css.get("notice", "color", config.get("notice-color", "default")) h s css.get("notice", "background-lightness"));
+  color: css.get("notice", "foreground", css.get("foreground-strong"));
+  background: css.get("notice", "background", css.get("background-shift"));
   box-shadow: css.get("notice", "box-shadow", none);
 
   > * + * {

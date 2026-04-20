@@ -155,23 +155,24 @@ function iconMap(value: string) {
               <CodeBlock inline={key} />
             </td>
             <td data-mobile-label={valueLabel}>
-              {typeof value === "string" ? (
-                <CodeBlock inline={linkifyValue(value)} />
-              ) : (
-                Object.entries(value).map(([themeKey, themeValue]) => (
-                  <div class="flex flex_wrap_no gap-0 align-items-center">
-                    <Popover triggerClass="foreground-lighter flex padding-y-sm margin-left-sm">
-                      <Fragment slot="trigger">
-                        <Icon name={iconMap(themeKey)} classes="icon_size_sm" />
-                      </Fragment>
-                      <Fragment slot="tooltip">
-                        {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
-                      </Fragment>
-                    </Popover>
-                    <CodeBlock inline={linkifyValue(themeValue)} />
-                  </div>
-                ))
-              )}
+              {typeof value === "string"
+                ? value && <CodeBlock inline={linkifyValue(value)} />
+                : Object.entries(value).map(([themeKey, themeValue]) => (
+                    <div class="flex flex_wrap_no gap-0 align-items-center">
+                      <Popover triggerClass="foreground-subtle flex padding-y-sm margin-left-sm">
+                        <Fragment slot="trigger">
+                          <Icon
+                            name={iconMap(themeKey)}
+                            classes="icon_size_sm"
+                          />
+                        </Fragment>
+                        <Fragment slot="tooltip">
+                          {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
+                        </Fragment>
+                      </Popover>
+                      <CodeBlock inline={linkifyValue(themeValue)} />
+                    </div>
+                  ))}
             </td>
           </tr>
         ))

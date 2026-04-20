@@ -2,13 +2,13 @@
   "--vb-base-background": "var(--vb-background)",
   "--vb-base-foreground": "var(--vb-foreground)",
 
-  "--vb-headings-foreground": "var(--vb-foreground)",
+  "--vb-headings-foreground": "var(--vb-foreground-strong)",
   "--vb-headings-font-family": "inherit",
   "--vb-headings-font-weight": "var(--vb-font-weight-semi-bold)",
   "--vb-headings-line-height": "inherit",
 
-  "--vb-link-foreground": "var(--vb-primary-50)",
-  "--vb-link-foreground-hover": "var(--vb-primary-40)",
+  "--vb-link-foreground": "var(--vb-foreground-accent)",
+  "--vb-link-foreground-hover": "light-dark(oklch(from var(--vb-foreground-accent) calc(l - 0.1) c h), var(--vb-foreground-accent) calc(l + 0.1) c h)))",
   "--vb-link-decoration": "underline",
   "--vb-link-decoration-hover": "none",
   "--vb-link-decoration-thickness": "1px",
@@ -20,14 +20,14 @@
   "--vb-list-spacing": "var(--vb-spacing-sm)",
 
   "--vb-code-background": "var(--vb-background-alt)",
-  "--vb-code-foreground": "var(--vb-foreground-alt)",
+  "--vb-code-foreground": "var(--vb-foreground-accent-alt)",
   "--vb-code-border": "var(--vb-border)",
   "--vb-code-border-radius": "var(--vb-border-radius)",
   "--vb-code-font-size": "var(--vb-font-size-sm)",
   "--vb-code-padding": "0.125rem 0.375rem",
 
-  "--vb-pre-background": "var(--vb-background-dark)",
-  "--vb-pre-foreground": "var(--vb-foreground)",
+  "--vb-pre-background": "var(--vb-background-alt)",
+  "--vb-pre-foreground": "var(--vb-foreground-strong)",
   "--vb-pre-border": "none",
   "--vb-pre-border-radius": "var(--vb-border-radius)",
   "--vb-pre-padding": "var(--vb-spacing-md)",
@@ -40,9 +40,11 @@
   "--vb-blockquote-padding": "var(--vb-spacing-md)",
   "--vb-blockquote-spacing": "var(--vb-spacing-md)",
 
-  "--vb-separator-border": "var(--vb-border)",
+  "--vb-separator-border-width": "var(--vb-border-width)",
+  "--vb-separator-border-style": "var(--vb-border-style)",
+  "--vb-separator-border-color": "var(--vb-border-color)",
 
-  "--vb-type-foreground": "var(--vb-foreground-light)",
+  "--vb-type-foreground": "var(--vb-foreground)",
   "--vb-type-font-family": "inherit",
   "--vb-type-font-size": "inherit",
   "--vb-type-line-height": "inherit",

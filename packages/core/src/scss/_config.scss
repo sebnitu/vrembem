@@ -34,15 +34,34 @@ $default: (
   // The palette to build CSS variables from
   // @type map
   "palette": (
-    "primary": hsl(152deg 60% 50%),
-    "secondary": hsl(214deg 50% 50%),
-    "neutral": hsl(214deg 20% 50%),
-    "important": hsl(0deg 80% 50%)
+    "primary": oklch(75% 40% 158deg),   // #35cc86
+    "secondary": oklch(60% 40% 256deg), // #3680dd
+    "neutral": oklch(60% 10% 256deg),   // #718298
+    "important": oklch(60% 40% 28deg),  // #ce5247
   ),
 
-  // The default color lightness to use when referencing a color
+  // Number of decimal places to round colors converted to oklch color space.
   // @type number
-  "palette-default": null,
+  "palette-round-decimal": 6,
+
+  // The key/value pairs of palette variants to create CSS variables for where 
+  // key is used in the token variant name (--vb-primary-[key]) and value is 
+  // passed to the palette get function as lightness/chroma arguments.
+  // @type map
+  "palette-variants": (
+    "50":  (98%, 10%), // The lightest variant in the palette
+    "75":  (96%, 20%),
+    "100": (90%, 40%),
+    "200": (80%, 80%),
+    "300": 70%,
+    "400": 60%,
+    "500": 50%,
+    "600": 40%,
+    "700": 30%,
+    "800": (20%, 80%),
+    "900": (18%, 70%),
+    "950": (16%, 60%), // The darkest variant in the palette
+  ),
 
   // A prefix to apply to theme names. Provided value is automatically suffixed
   // with a "-" character when applied.

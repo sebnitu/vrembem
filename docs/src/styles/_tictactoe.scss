@@ -11,20 +11,20 @@
   "light",
   "tictactoe",
   (
-    "background-winner": palette.get("primary", 90),
-    "foreground-winner": palette.get("primary", 30),
-    "border-color": palette.get("neutral", 90),
-    "box-shadow-color": palette.get("neutral", 100)
+    "background-winner": palette.get("primary", 90%),
+    "foreground-winner": palette.get("primary", 30%),
+    "border-color": palette.get("neutral", 90%),
+    "box-shadow-color": palette.get("neutral", 100%)
   )
 );
 @include theme.set(
   "dark",
   "tictactoe",
   (
-    "background-winner": palette.get("primary", 15),
-    "foreground-winner": palette.get("primary", 70),
-    "border-color": palette.get("neutral", 30),
-    "box-shadow-color": palette.get("neutral", 10)
+    "background-winner": palette.get("primary", 15%),
+    "foreground-winner": palette.get("primary", 70%),
+    "border-color": palette.get("neutral", 30%),
+    "box-shadow-color": palette.get("neutral", 10%)
   )
 );
 

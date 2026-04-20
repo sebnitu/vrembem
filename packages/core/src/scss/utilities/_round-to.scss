@@ -1,0 +1,22 @@
+@use "sass:math";
+
+/// Rounds a number to a specified decimal.
+///
+/// @param {number} $value
+///   The number value to round.
+/// @param {number} $decimals (4)
+///   The decimal place to round to. This can be:
+///   - 0 for a whole number
+///   - 1 for the tenths place (0.1)
+///   - 2 for the hundreds place (0.12)
+///   - 3 for the thousandths place (0.123)
+///   - etc...
+///
+/// @return {number}
+///   The number rounded to the appropriate decimal
+///
+@function round-to($value, $decimals: 4) {
+  $n: math.pow(10, $decimals);
+
+  @return math.div(math.round($value * $n), $n);
+}

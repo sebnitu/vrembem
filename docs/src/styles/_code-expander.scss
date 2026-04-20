@@ -41,7 +41,7 @@
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
   border-bottom: css.get("border");
-  color: css.get("foreground-lighter");
+  color: css.get("foreground-subtle");
 }
 
 .code-expander__tools {
@@ -80,13 +80,13 @@
   &:hover,
   &:focus-within {
     border-color: palette.get("primary");
-    box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
+    box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", $a: css.get("focus-ring-opacity"));
 
     .code-expander__unlock-scroll {
       display: inline-flex;
       border-color: palette.get("primary");
       opacity: 1;
-      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", 50%, css.get("focus-ring-opacity"));
+      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", $a: css.get("focus-ring-opacity"));
     }
   }
 }
