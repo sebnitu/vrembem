@@ -1,9 +1,0 @@
-@use "./index";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
-
-:root {
-  @include css.output("menu");
-}
-
-@include theme.output("menu");
