@@ -1,14 +1,24 @@
+@use "sass:meta";
 @forward "./src/config";
 @forward "./src/functions";
-@forward "./src/modules/global";
-@forward "./src/modules/headings";
-@forward "./src/modules/link";
-@forward "./src/modules/list";
-@forward "./src/modules/code";
-@forward "./src/modules/pre";
-@forward "./src/modules/blockquote";
-@forward "./src/modules/separator";
-@forward "./src/modules/arrow";
-@forward "./src/modules/loading-spinner";
-@forward "./src/modules/sr-only";
-@forward "./src/modules/type";
+
+$-output: true;
+
+@if $-output {
+  $-output: false !global;
+
+  @layer base {
+    @include meta.load-css("./src/modules/global");
+    @include meta.load-css("./src/modules/headings");
+    @include meta.load-css("./src/modules/link");
+    @include meta.load-css("./src/modules/list");
+    @include meta.load-css("./src/modules/code");
+    @include meta.load-css("./src/modules/pre");
+    @include meta.load-css("./src/modules/blockquote");
+    @include meta.load-css("./src/modules/separator");
+    @include meta.load-css("./src/modules/arrow");
+    @include meta.load-css("./src/modules/loading-spinner");
+    @include meta.load-css("./src/modules/sr-only");
+    @include meta.load-css("./src/modules/type");
+  }
+}

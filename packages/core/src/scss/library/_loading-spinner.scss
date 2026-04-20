@@ -29,6 +29,8 @@ $-output-spin-animation: true;
 
   // Only output the spin animation once
   @if $-output-spin-animation {
+    $-output-spin-animation: false !global;
+
     @keyframes spin {
       from {
         transform: rotate(0deg);
@@ -38,7 +40,5 @@ $-output-spin-animation: true;
         transform: rotate(360deg);
       }
     }
-
-    $-output-spin-animation: false !global;
   }
 }
