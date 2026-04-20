@@ -25,6 +25,11 @@
       "import": "./dist/styles.css",
       "default": "./dist/styles.css"
     },
+    "./layers": {
+      "sass": "./layers.scss",
+      "import": "./dist/layers.css",
+      "default": "./dist/layers.css"
+    },
     "./tokens": {
       "sass": "./tokens.scss",
       "import": "./dist/tokens.css",
@@ -55,6 +60,7 @@
     "index.ts",
     "index.scss",
     "styles.scss",
+    "layers.scss",
     "tokens.scss",
     "base.scss",
     "components.scss",
