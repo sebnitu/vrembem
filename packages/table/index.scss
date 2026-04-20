@@ -1,9 +1,13 @@
+@use "sass:meta";
 @forward "./src/config";
 @forward "./src/mixins";
-@forward "./src/table";
-@forward "./src/table_ellipsis";
-@forward "./src/table_hover";
-@forward "./src/table_mobile";
-@forward "./src/table_padding";
-@forward "./src/table_striped";
-@forward "./src/table_style";
+
+@layer components {
+  @include meta.load-css("./src/table");
+  @include meta.load-css("./src/table_ellipsis");
+  @include meta.load-css("./src/table_hover");
+  @include meta.load-css("./src/table_mobile");
+  @include meta.load-css("./src/table_padding");
+  @include meta.load-css("./src/table_striped");
+  @include meta.load-css("./src/table_style");
+}

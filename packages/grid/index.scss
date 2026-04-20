@@ -1,8 +1,12 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/grid";
-@forward "./src/grid_cols";
-@forward "./src/grid_rows";
-@forward "./src/grid_gap";
-@forward "./src/grid_flow";
-@forward "./src/grid-col";
-@forward "./src/grid-row";
+
+@layer components {
+  @include meta.load-css("./src/grid");
+  @include meta.load-css("./src/grid_cols");
+  @include meta.load-css("./src/grid_rows");
+  @include meta.load-css("./src/grid_gap");
+  @include meta.load-css("./src/grid_flow");
+  @include meta.load-css("./src/grid-col");
+  @include meta.load-css("./src/grid-row");
+}

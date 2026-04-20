@@ -1,3 +1,7 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/notice";
-@forward "./src/notice_color";
+
+@layer components {
+  @include meta.load-css("./src/notice");
+  @include meta.load-css("./src/notice_color");
+}

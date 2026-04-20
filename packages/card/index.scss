@@ -1,2 +1,6 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/card";
+
+@layer components {
+  @include meta.load-css("./src/card");
+}

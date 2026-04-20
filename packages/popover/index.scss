@@ -1,5 +1,9 @@
+@use "sass:meta";
 @forward "./src/scss/config";
-@forward "./src/scss/popover";
-@forward "./src/scss/popover__arrow";
-@forward "./src/scss/popover_size";
-@forward "./src/scss/popover_tooltip";
+
+@layer components {
+  @include meta.load-css("./src/scss/popover");
+  @include meta.load-css("./src/scss/popover__arrow");
+  @include meta.load-css("./src/scss/popover_size");
+  @include meta.load-css("./src/scss/popover_tooltip");
+}
