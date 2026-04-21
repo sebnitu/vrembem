@@ -1,9 +1,9 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("modal", null, "full")} {
   #{core.bem("modal", "dialog")} {
-    transform: scale(css.get("modal", "full-scale", 0.75));
+    transform: scale(tokens.get("modal", "full-scale", 0.75));
     width: 100%;
     max-width: none;
     height: 100%;

@@ -1,12 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-input-size: config.get("input-size", "variants");
 
 @each $key, $value in $-input-size {
   #{core.bem("input", null, "size", $key)} {
-    @include css.override("input", "size", $value);
+    @include tokens.override("input", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-input-size: config.get("input-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-input-size {
       #{core.bem("input", null, "size", $key, $bp)} {
-        @include css.override("input", "size", $value);
+        @include tokens.override("input", "size", $value);
       }
     }
   }

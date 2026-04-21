@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("modal", null, "pos", "top")} {
   justify-content: flex-start;
@@ -9,15 +9,15 @@
   justify-content: flex-end;
 
   #{core.bem("modal", "dialog")} {
-    transform: translateY(css.get("modal", "travel", 5em));
+    transform: translateY(tokens.get("modal", "travel", 5em));
   }
 }
 
 #{core.bem("modal", null, "pos", "left")},
 #{core.bem("modal", null, "pos", "right")} {
   #{core.bem("modal", "dialog")} {
-    @include css.override("modal", "width", 16em);
-    @include css.override("modal", "max-width", 90%);
+    @include tokens.override("modal", "width", 16em);
+    @include tokens.override("modal", "max-width", 90%);
 
     height: 100%;
   }

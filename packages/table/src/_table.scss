@@ -1,28 +1,28 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("table")} {
   width: 100%;
-  color: css.get("table", "foreground", inherit);
+  color: tokens.get("table", "foreground", inherit);
   text-align: left;
-  background-color: css.get("table", "background", css.get("background"));
+  background-color: tokens.get("table", "background", tokens.get("background"));
 
   th,
   td,
   caption {
-    padding: css.get("table", "padding", config.get("table-padding", "default"));
-    vertical-align: css.get("table", "vertical-align", top);
+    padding: tokens.get("table", "padding", config.get("table-padding", "default"));
+    vertical-align: tokens.get("table", "vertical-align", top);
   }
 
   th {
-    font-weight: css.get("font-weight-bold");
-    color: css.get("table", "header-foreground", css.get("foreground-strong"));
+    font-weight: tokens.get("font-weight-bold");
+    color: tokens.get("table", "header-foreground", tokens.get("foreground-strong"));
   }
 
   caption {
     caption-side: bottom;
-    color: css.get("foreground-subtle");
+    color: tokens.get("foreground-subtle");
     text-align: left;
   }
 

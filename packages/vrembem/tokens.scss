@@ -2,7 +2,7 @@
 
 @layer tokens {
   :root {
-    @include core.css-output;
+    @include core.tokens-output;
   }
 
   @include core.theme-output;

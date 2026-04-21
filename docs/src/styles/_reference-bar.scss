@@ -1,16 +1,16 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .reference-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: css.get("spacing-sm") css.get("spacing-md");
+  gap: tokens.get("spacing-sm") tokens.get("spacing-md");
   align-items: center;
   justify-content: space-between;
-  color: css.get("foreground-strong");
+  color: tokens.get("foreground-strong");
 
   .link_hash {
     display: flex;
-    gap: css.get("spacing-sm");
+    gap: tokens.get("spacing-sm");
     align-items: center;
   }
 }
@@ -18,6 +18,6 @@
 .reference-bar__item {
   display: flex;
   flex-wrap: nowrap;
-  gap: css.get("spacing-sm");
+  gap: tokens.get("spacing-sm");
   align-items: center;
 }

@@ -1,10 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("modal")} {
   position: fixed;
-  z-index: css.get("modal", "z-index", 1000);
+  z-index: tokens.get("modal", "z-index", 1000);
   inset: 0;
   display: flex;
   flex-direction: column;
@@ -20,15 +20,15 @@
 }
 
 #{core.bem("modal", "dialog")} {
-  @include css.override("dialog", config.get("modal-dialog-override"));
+  @include tokens.override("dialog", config.get("modal-dialog-override"));
 
   position: relative;
-  transform: translateY(calc(css.get("modal", "travel", 5em) * -1));
+  transform: translateY(calc(tokens.get("modal", "travel", 5em) * -1));
   overflow: auto;
   display: flex;
   flex-direction: column;
-  width: css.get("modal", "width", config.get("modal-size", "default"));
-  max-width: css.get("modal", "max-width", 100%);
+  width: tokens.get("modal", "width", config.get("modal-size", "default"));
+  max-width: tokens.get("modal", "max-width", 100%);
   opacity: 0;
 }
 
@@ -41,19 +41,19 @@
 #{core.bem("modal")}.is-closing {
   width: 100%;
   height: 100%;
-  padding: css.get("modal", "margin", 1em);
+  padding: tokens.get("modal", "margin", 1em);
   visibility: visible;
 }
 
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-closing {
   &::before {
-    transition: opacity css.get("modal", "transition-duration", css.get("transition-duration")) css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
+    transition: opacity tokens.get("modal", "transition-duration", tokens.get("transition-duration")) tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
   }
 
   #{core.bem("modal", "dialog")} {
-    transition-timing-function: css.get("modal", "transition-timing-function", css.get("transition-timing-function"));
-    transition-duration: css.get("modal", "transition-duration", css.get("transition-duration"));
+    transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
+    transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
     transition-property: opacity, transform;
   }
 }
@@ -61,7 +61,7 @@
 #{core.bem("modal")}.is-opening,
 #{core.bem("modal")}.is-opened {
   &::before {
-    opacity: css.get("modal", "backdrop-opacity", css.get("backdrop-opacity"));
+    opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
   }
 
   #{core.bem("modal", "dialog")} {

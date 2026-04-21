@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-transition-property: background-color, border-color, box-shadow, transform;
 
@@ -8,26 +8,26 @@ $-transition-property: background-color, border-color, box-shadow, transform;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: css.get("card", "border", 1px solid css.get("border-color"));
-  border-radius: css.get("card", "border-radius", css.get("border-radius"));
-  color: css.get("card", "foreground", css.get("foreground"));
-  background: css.get("card", "background", css.get("background"));
+  border: tokens.get("card", "border", 1px solid tokens.get("border-color"));
+  border-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
+  color: tokens.get("card", "foreground", tokens.get("foreground"));
+  background: tokens.get("card", "background", tokens.get("background"));
   background-clip: padding-box;
-  box-shadow: css.get("card", "box-shadow", none);
-  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
-  transition-duration: css.get("card", "transition-duration", css.get("transition-duration"));
-  transition-property: css.get("card", "transition-property", $-transition-property);
+  box-shadow: tokens.get("card", "box-shadow", none);
+  transition-timing-function: tokens.get("card", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("card", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("card", "transition-property", $-transition-property);
 }
 
 a#{core.bem("card")} {
   transform: translate(0, 0);
-  box-shadow: css.get("card", "link-box-shadow", css.get("box-shadow-2"));
+  box-shadow: tokens.get("card", "link-box-shadow", tokens.get("box-shadow-2"));
 
   &:hover,
   &:focus,
   &:focus-within {
-    transform: translate(0, css.get("card", "link-offset", -0.25em));
-    box-shadow: css.get("card", "link-box-shadow-hover", css.get("box-shadow-3"));
+    transform: translate(0, tokens.get("card", "link-offset", -0.25em));
+    box-shadow: tokens.get("card", "link-box-shadow-hover", tokens.get("box-shadow-3"));
   }
 }
 
@@ -39,36 +39,36 @@ a#{core.bem("card")} {
   z-index: 3;
 
   &:first-child {
-    border-top-left-radius: css.get("card", "border-radius", css.get("border-radius"));
-    border-top-right-radius: css.get("card", "border-radius", css.get("border-radius"));
+    border-top-left-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
+    border-top-right-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
   }
 
   &:last-child {
-    border-bottom-right-radius: css.get("card", "border-radius", css.get("border-radius"));
-    border-bottom-left-radius: css.get("card", "border-radius", css.get("border-radius"));
+    border-bottom-right-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
+    border-bottom-left-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
   }
 }
 
 #{core.bem("card", "header")},
 #{core.bem("card", "body")},
 #{core.bem("card", "footer")} {
-  padding: css.get("card", "padding", 1.25em);
+  padding: tokens.get("card", "padding", 1.25em);
 }
 
 #{core.bem("card", "body")} {
   flex: 1 1 auto;
 
   & + & {
-    border-top: css.get("card", "sep-border", 1px solid css.get("border-color"));
+    border-top: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
   }
 }
 
 #{core.bem("card", "header")} {
-  border-bottom: css.get("card", "sep-border", 1px solid css.get("border-color"));
+  border-bottom: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
 }
 
 #{core.bem("card", "footer")} {
-  border-top: css.get("card", "sep-border", 1px solid css.get("border-color"));
+  border-top: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
 }
 
 #{core.bem("card", "image")} {
@@ -79,10 +79,10 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "title")} {
   flex-grow: 1;
-  font-size: css.get("card", "title-font-size", css.get("font-size-lg"));
-  font-weight: css.get("card", "title-font-weight", css.get("font-weight-semi-bold"));
-  line-height: css.get("card", "title-line-height", inherit);
-  color: css.get("card", "title-color", css.get("foreground-strong"));
+  font-size: tokens.get("card", "title-font-size", tokens.get("font-size-lg"));
+  font-weight: tokens.get("card", "title-font-weight", tokens.get("font-weight-semi-bold"));
+  line-height: tokens.get("card", "title-line-height", inherit);
+  color: tokens.get("card", "title-color", tokens.get("foreground-strong"));
 }
 
 #{core.bem("card", "background")},
@@ -91,10 +91,10 @@ a#{core.bem("card")} {
 
   position: absolute;
   inset: 0;
-  border-radius: css.get("card", "border-radius", css.get("border-radius"));
-  transition-timing-function: css.get("card", "transition-timing-function", css.get("transition-timing-function"));
-  transition-duration: css.get("card", "transition-duration", css.get("transition-duration"));
-  transition-property: css.get("card", "transition-property", $-transition-property);
+  border-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
+  transition-timing-function: tokens.get("card", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("card", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("card", "transition-property", $-transition-property);
 }
 
 #{core.bem("card", "background")} {
@@ -104,6 +104,6 @@ a#{core.bem("card")} {
 
 #{core.bem("card", "screen")} {
   z-index: 2;
-  opacity: css.get("card", "screen-opacity", 0.8);
-  background: css.get("card", "screen-background", css.get("background"));
+  opacity: tokens.get("card", "screen-opacity", 0.8);
+  background: tokens.get("card", "screen-background", tokens.get("background"));
 }

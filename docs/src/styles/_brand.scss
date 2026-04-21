@@ -1,4 +1,4 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .brand {
@@ -12,16 +12,16 @@
 }
 
 .brand__name {
-  color: css.get("foreground-strong");
+  color: tokens.get("foreground-strong");
 }
 
 .brand__version {
-  color: css.get("foreground-subtle");
+  color: tokens.get("foreground-subtle");
 }
 
 .brand:hover,
 .brand:focus {
   .brand__version {
-    color: css.get("foreground-accent");
+    color: tokens.get("foreground-accent");
   }
 }

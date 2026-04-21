@@ -1,21 +1,21 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .card_reference {
   .card__header {
-    @include css.override("card", "padding", 0.75em 1em);
+    @include tokens.override("card", "padding", 0.75em 1em);
 
     display: flex;
     flex-wrap: wrap;
-    gap: css.get("spacing-md");
+    gap: tokens.get("spacing-md");
     align-items: center;
   }
 
   .card__title {
-    @include css.override("link", "decoration-thickness", 1.5px);
+    @include tokens.override("link", "decoration-thickness", 1.5px);
 
     padding: 0;
     font-size: 1rem;
-    color: css.get("foreground-strong");
+    color: tokens.get("foreground-strong");
     background: transparent;
   }
 }

@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -10,12 +10,12 @@ $default: (
   // @type map
   "switch-size": (
     "breakpoints": true,
-    "default": css.get("form-control-size"),
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+    "default": tokens.get("form-control-size"),
+    "sm": tokens.get("form-control-size-sm"),
+    "md": tokens.get("form-control-size"),
+    "lg": tokens.get("form-control-size-lg")
   )
 );
 
 @include config.apply($config, $default);
-@include css.register("switch");
+@include tokens.register("switch");

@@ -1,11 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("flex")} {
   display: flex;
-  flex-flow: css.get("flex", "direction", config.get("flex-direction", "default")) css.get("flex", "wrap", config.get("flex-wrap", "default"));
-  gap: css.get("flex", "gap-y", "gap", config.get("flex-gap", "default")) css.get("flex", "gap-x", "gap", config.get("flex-gap", "default"));
+  flex-flow: tokens.get("flex", "direction", config.get("flex-direction", "default")) tokens.get("flex", "wrap", config.get("flex-wrap", "default"));
+  gap: tokens.get("flex", "gap-y", "gap", config.get("flex-gap", "default")) tokens.get("flex", "gap-x", "gap", config.get("flex-gap", "default"));
 }
 
 #{core.bem("flex", null, "inline")} {

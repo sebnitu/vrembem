@@ -1,22 +1,22 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("pre") {
-  @include css.register("pre");
+  @include tokens.register("pre");
 
   #{fun.selector("pre")} {
     overflow: auto;
-    padding: css.get("pre", "padding", css.get("spacing-md"));
-    border: css.get("pre", "border", none);
-    border-radius: css.get("pre", "border-radius", css.get("border-radius"));
-    font-family: css.get("font-family-mono");
-    color: css.get("pre", "foreground", css.get("foreground-strong"));
-    background: css.get("pre", "background", css.get("background-alt"));
+    padding: tokens.get("pre", "padding", tokens.get("spacing-md"));
+    border: tokens.get("pre", "border", none);
+    border-radius: tokens.get("pre", "border-radius", tokens.get("border-radius"));
+    font-family: tokens.get("font-family-mono");
+    color: tokens.get("pre", "foreground", tokens.get("foreground-strong"));
+    background: tokens.get("pre", "background", tokens.get("background-alt"));
 
     code {
       padding: 0;
       border: none;
-      font-size: css.get("pre", "font-size", css.get("font-size-sm"));
+      font-size: tokens.get("pre", "font-size", tokens.get("font-size-sm"));
       color: inherit;
       background: none;
     }

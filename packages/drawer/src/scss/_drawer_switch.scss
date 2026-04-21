@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("drawer", null, "switch")} {
   inset: 0 0 0 auto;
@@ -23,7 +23,7 @@
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}, #{core.bem("drawer", null, "modal")}) {
   &.is-opening ~ #{core.bem(config.get("drawer-classes", "main"))},
   &.is-opened ~ #{core.bem(config.get("drawer-classes", "main"))} {
-    margin-left: css.get("drawer", "width", 18em);
+    margin-left: tokens.get("drawer", "width", 18em);
   }
 }
 
@@ -31,6 +31,6 @@
 #{core.bem("drawer")}#{core.bem("drawer", null, "switch")}:not(#{core.bem("drawer", null, "modal")}) {
   &.is-opening ~ #{core.bem(config.get("drawer-classes", "main"))},
   &.is-opened ~ #{core.bem(config.get("drawer-classes", "main"))} {
-    margin-right: css.get("drawer", "width", 18em);
+    margin-right: tokens.get("drawer", "width", 18em);
   }
 }

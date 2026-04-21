@@ -1,23 +1,23 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("section")} {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: css.get("section", "padding", 1.5em);
-  color: css.get("section", "foreground", css.get("foreground"));
-  background: css.get("section", "background", transparent);
+  padding: tokens.get("section", "padding", 1.5em);
+  color: tokens.get("section", "foreground", tokens.get("foreground"));
+  background: tokens.get("section", "background", transparent);
 
-  @include css.override("section", "padding", config.get("section-padding", "default"), config.get("section-padding", "breakpoints"));
+  @include tokens.override("section", "padding", config.get("section-padding", "default"), config.get("section-padding", "breakpoints"));
 }
 
 #{core.bem("section", "container")} {
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: css.get("section", "max-width", 70rem);
+  max-width: tokens.get("section", "max-width", 70rem);
   margin: auto;
 }
 
@@ -36,6 +36,6 @@
 
 #{core.bem("section", "screen")} {
   z-index: 2;
-  opacity: css.get("section", "screen-opacity", 0.8);
-  background: css.get("section", "screen-background", css.get("background"));
+  opacity: tokens.get("section", "screen-opacity", 0.8);
+  background: tokens.get("section", "screen-background", tokens.get("background"));
 }

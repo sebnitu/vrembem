@@ -1,19 +1,19 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("font") {
   #{fun.selector("font", "family", "sans")} {
-    font-family: fun.maybe-important(css.get("font-family-sans"));
+    font-family: fun.maybe-important(tokens.get("font-family-sans"));
   }
 
   #{fun.selector("font", "family", "serif")} {
-    font-family: fun.maybe-important(css.get("font-family-serif"));
+    font-family: fun.maybe-important(tokens.get("font-family-serif"));
   }
 
   #{fun.selector("font", "family", "mono")} {
-    font-family: fun.maybe-important(css.get("font-family-mono"));
+    font-family: fun.maybe-important(tokens.get("font-family-mono"));
   }
 
   #{fun.selector("font", "size", "base")} {
@@ -21,15 +21,15 @@
   }
 
   #{fun.selector("font", "size", "sm")} {
-    font-size: fun.maybe-important(css.get("font-size-sm"));
+    font-size: fun.maybe-important(tokens.get("font-size-sm"));
   }
 
   #{fun.selector("font", "size", "lg")} {
-    font-size: fun.maybe-important(css.get("font-size-lg"));
+    font-size: fun.maybe-important(tokens.get("font-size-lg"));
   }
 
   #{fun.selector("font", "line-height")} {
-    line-height: fun.maybe-important(css.get("line-height"));
+    line-height: fun.maybe-important(tokens.get("line-height"));
   }
 
   @each $key, $value in config.get("utility-font-weight") {

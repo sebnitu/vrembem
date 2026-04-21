@@ -1,10 +1,10 @@
 @use "./index";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/theme";
 
 @layer tokens {
   :root {
-    @include css.output("input");
+    @include tokens.output("input");
   }
 
   @include theme.output("input");

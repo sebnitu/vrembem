@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-table-padding: config.get("table-padding", "variants");
 
@@ -9,8 +9,8 @@ $-table-padding: config.get("table-padding", "variants");
     th,
     td,
     caption {
-      @include css.override("table", "padding", $value);
-      @include css.override("table", "mobile-label-spacing", core.get-side($value, "left"));
+      @include tokens.override("table", "padding", $value);
+      @include tokens.override("table", "mobile-label-spacing", core.get-side($value, "left"));
     }
   }
 }
@@ -22,8 +22,8 @@ $-table-padding: config.get("table-padding", "variants");
         th,
         td,
         caption {
-          @include css.override("table", "padding", $value);
-          @include css.override("table", "mobile-label-spacing", core.get-side($value, "left"));
+          @include tokens.override("table", "padding", $value);
+          @include tokens.override("table", "mobile-label-spacing", core.get-side($value, "left"));
         }
       }
     }

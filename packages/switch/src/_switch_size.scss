@@ -1,12 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-switch-size: config.get("switch-size", "variants");
 
 @each $key, $value in $-switch-size {
   #{core.bem("switch", null, "size", $key)} {
-    @include css.override("switch", "size", $value);
+    @include tokens.override("switch", "size", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-switch-size: config.get("switch-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-switch-size {
       #{core.bem("switch", null, "size", $key, $bp)} {
-        @include css.override("switch", "size", $value);
+        @include tokens.override("switch", "size", $value);
       }
     }
   }

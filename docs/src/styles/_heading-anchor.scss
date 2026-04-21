@@ -1,25 +1,25 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .heading-anchor {
-  @include css.override("core", "form-control-border-width", 0);
+  @include tokens.override("core", "form-control-border-width", 0);
 
   user-select: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-left: 0.5rem;
-  padding: css.get("form-control-padding-y");
-  border-radius: css.get("border-radius-circle");
+  padding: tokens.get("form-control-padding-y");
+  border-radius: tokens.get("border-radius-circle");
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none !important;
   vertical-align: middle;
   opacity: 0;
   background-color: palette.get("primary", $a: 0%);
-  transition-timing-function: css.get("transition-timing-function");
-  transition-duration: css.get("transition-duration");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration");
   transition-property: color, opacity;
 
   &:hover,
@@ -40,7 +40,7 @@
 
   @include core.media-min("sm") {
     position: absolute;
-    top: calc(60% - calc(css.get("form-control-size-calc") / 2));
+    top: calc(60% - calc(tokens.get("form-control-size-calc") / 2));
     right: calc(100% + 0.5rem);
     margin-left: 0;
   }

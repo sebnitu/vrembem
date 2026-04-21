@@ -1,20 +1,20 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("input", null, "type", "select")} {
   cursor: pointer;
   position: relative;
   padding-right: 2em;
-  background-image: css.get("input", "select-icon");
+  background-image: tokens.get("input", "select-icon");
   background-repeat: no-repeat;
   background-position: calc(100% - 0.75em) center;
 
   &:read-only {
-    background-color: css.get("input", "background", css.get("background"));
+    background-color: tokens.get("input", "background", tokens.get("background"));
   }
 
   &:disabled {
-    background-color: css.get("input", "background-disabled", css.get("background-shift"));
+    background-color: tokens.get("input", "background-disabled", tokens.get("background-shift"));
   }
 }
 

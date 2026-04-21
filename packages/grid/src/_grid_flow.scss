@@ -1,9 +1,9 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 @each $key, $value in config.get("grid-flow", "variants") {
   #{core.bem("grid", null, "flow", $key)} {
-    @include css.override("grid", "flow", $value);
+    @include tokens.override("grid", "flow", $value);
   }
 }

@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("drawer", null, "modal")} {
   position: fixed;
@@ -14,30 +14,30 @@
   }
 
   #{core.bem("drawer", "dialog")} {
-    @include css.override("dialog", config.get("drawer-modal-dialog-override"));
+    @include tokens.override("dialog", config.get("drawer-modal-dialog-override"));
 
     inset: 0 auto 0 0;
-    width: css.get("drawer", "width", 18em);
-    max-width: css.get("drawer", "max-width", 80%);
+    width: tokens.get("drawer", "width", 18em);
+    max-width: tokens.get("drawer", "max-width", 80%);
   }
 
   &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "dialog")} {
     inset: 0 0 0 auto;
   }
 
-  @include css.override("drawer", "z-index", 950);
+  @include tokens.override("drawer", "z-index", 950);
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-closing {
   &::before {
-    transition: opacity css.get("drawer", "transition-duration", css.get("transition-duration")) css.get("drawer", "transition-timing-function", css.get("transition-timing-function"));
+    transition: opacity tokens.get("drawer", "transition-duration", tokens.get("transition-duration")) tokens.get("drawer", "transition-timing-function", tokens.get("transition-timing-function"));
   }
 }
 
 #{core.bem("drawer", null, "modal")}.is-opening,
 #{core.bem("drawer", null, "modal")}.is-opened {
   &::before {
-    opacity: css.get("drawer", "backdrop-opacity", css.get("backdrop-opacity"));
+    opacity: tokens.get("drawer", "backdrop-opacity", tokens.get("backdrop-opacity"));
   }
 }

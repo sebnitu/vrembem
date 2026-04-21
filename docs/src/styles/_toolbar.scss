@@ -1,15 +1,15 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .toolbar {
   position: sticky;
   z-index: 4;
   top: -1px;
   display: block;
-  padding: css.get("layout", "padding");
-  border-top: 1px solid css.get("border-color");
-  border-bottom: 1px solid css.get("border-color");
-  background-color: css.get("background-glass");
+  padding: tokens.get("layout", "padding");
+  border-top: 1px solid tokens.get("border-color");
+  border-bottom: 1px solid tokens.get("border-color");
+  background-color: tokens.get("background-glass");
   background-clip: padding-box;
   backdrop-filter: blur(8px);
 
@@ -26,8 +26,8 @@
 .toolbar-mini {
   position: fixed;
   z-index: 6;
-  top: css.get("layout", "navibar-height");
-  right: css.get("layout", "padding");
+  top: tokens.get("layout", "navibar-height");
+  right: tokens.get("layout", "padding");
   transform: translate(100%);
   visibility: hidden;
   opacity: 0;

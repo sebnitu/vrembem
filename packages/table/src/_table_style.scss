@@ -1,7 +1,7 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
-$-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
+$-border: tokens.get("table", "border-width", tokens.get("border-width")) tokens.get("table", "border-style", tokens.get("border-style")) tokens.get("table", "border-color", tokens.get("border-color"));
 
 #{core.bem("table", null, "style", "rowed")} {
   border-bottom: $-border;

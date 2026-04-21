@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
@@ -12,9 +12,9 @@ $default: (
   // @type map
   "input-size": (
     "breakpoints": true,
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+    "sm": tokens.get("form-control-size-sm"),
+    "md": tokens.get("form-control-size"),
+    "lg": tokens.get("form-control-size-lg")
   ),
 
   // Map for outputting input_state_[key] modifier variants
@@ -26,7 +26,7 @@ $default: (
 );
 
 @include config.apply($config, $default);
-@include css.register("input");
+@include tokens.register("input");
 
 // Themes
 // prettier-ignore

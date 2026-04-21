@@ -1,19 +1,19 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("blockquote") {
-  @include css.register("blockquote");
+  @include tokens.register("blockquote");
 
   #{fun.selector("blockquote")} {
     position: relative;
-    padding: css.get("blockquote", "padding", css.get("spacing-md"));
-    border: css.get("blockquote", "border", css.get("border"));
-    border-radius: css.get("blockquote", "border-radius", css.get("border-radius"));
-    color: css.get("blockquote", "foreground", currentcolor);
-    background: css.get("blockquote", "background", transparent);
+    padding: tokens.get("blockquote", "padding", tokens.get("spacing-md"));
+    border: tokens.get("blockquote", "border", tokens.get("border"));
+    border-radius: tokens.get("blockquote", "border-radius", tokens.get("border-radius"));
+    color: tokens.get("blockquote", "foreground", currentcolor);
+    background: tokens.get("blockquote", "background", transparent);
 
     > * + * {
-      margin-top: css.get("blockquote", "spacing", css.get("spacing-md"));
+      margin-top: tokens.get("blockquote", "spacing", tokens.get("spacing-md"));
     }
   }
 }

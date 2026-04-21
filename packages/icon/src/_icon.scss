@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "./mixins" as mix;
 
 #{core.bem("icon")} {
@@ -11,6 +11,6 @@
   box-sizing: content-box;
   width: 1em;
   height: 1em;
-  font-size: css.get("icon", "size", core.resolve-nth(config.get("icon-size", "default"), 1));
+  font-size: tokens.get("icon", "size", core.resolve-nth(config.get("icon-size", "default"), 1));
   vertical-align: top;
 }

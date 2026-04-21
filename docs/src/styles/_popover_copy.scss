@@ -1,8 +1,8 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .popover_copy {
-  @include css.override(
+  @include tokens.override(
     "popover",
     (
       "placement": top,

@@ -3,7 +3,7 @@
 
 // Import modules to configure
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
@@ -26,16 +26,16 @@
 );
 
 // Set CSS variables
-@include css.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
-@include css.set("core", "background-glass", oklch(from css.get("background") l c h / 90%));
-@include css.set(
+@include tokens.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
+@include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 90%));
+@include tokens.set(
   "type",
   (
-    "font-size": css.get("font-size-lg"),
+    "font-size": tokens.get("font-size-lg"),
     "line-height": 1.7778
   )
 );
-@include css.set(
+@include tokens.set(
   "layout",
   (
     "width": 82rem,
@@ -57,14 +57,14 @@
   "astro",
   (
     "code": (
-      "background": css.get("background-alt"),
-      "foreground": css.get("foreground-strong"),
-      "color-text": css.get("foreground-strong"),
+      "background": tokens.get("background-alt"),
+      "foreground": tokens.get("foreground-strong"),
+      "color-text": tokens.get("foreground-strong"),
       "token": (
-        "comment": css.get("foreground-subtle"),
+        "comment": tokens.get("foreground-subtle"),
         "constant": #1b6bc6,
         "string": #1b6bc6,
-        "keyword": css.get("foreground-strong"),
+        "keyword": tokens.get("foreground-strong"),
         "parameter": #df7a32,
         "function": #794bcf,
         "string-expression": #309b4a,
@@ -79,14 +79,14 @@
   "astro",
   (
     "code": (
-      "background": css.get("background-alt"),
-      "foreground": css.get("foreground-strong"),
-      "color-text": css.get("foreground-strong"),
+      "background": tokens.get("background-alt"),
+      "foreground": tokens.get("foreground-strong"),
+      "color-text": tokens.get("foreground-strong"),
       "token": (
-        "comment": css.get("foreground-subtle"),
+        "comment": tokens.get("foreground-subtle"),
         "constant": #79b8ff,
         "string": #79b8ff,
-        "keyword": css.get("foreground-strong"),
+        "keyword": tokens.get("foreground-strong"),
         "parameter": #ffab70,
         "function": #b392f0,
         "string-expression": #85e89d,

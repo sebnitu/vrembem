@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-grid-rows: config.get("grid-rows", "total");
 
@@ -9,7 +9,7 @@ $-grid-rows: config.get("grid-rows", "total");
 }
 
 #{core.bem("grid-row-full")} {
-  grid-row: span css.get("grid", "rows", 1) / span css.get("grid", "rows", 1);
+  grid-row: span tokens.get("grid", "rows", 1) / span tokens.get("grid", "rows", 1);
 }
 
 @for $i from 1 through $-grid-rows {
@@ -35,7 +35,7 @@ $-grid-rows: config.get("grid-rows", "total");
     }
 
     #{core.bem("grid-row-full", $bp: $bp)} {
-      grid-row: span css.get("grid", "rows", 1) / span css.get("grid", "rows", 1);
+      grid-row: span tokens.get("grid", "rows", 1) / span tokens.get("grid", "rows", 1);
     }
 
     @for $i from 1 through $-grid-rows {

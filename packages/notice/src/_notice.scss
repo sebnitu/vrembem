@@ -1,22 +1,22 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("notice")} {
-  padding: css.get("notice", "padding", 1em 1.25em);
-  border: css.get("notice", "border", none);
-  border-radius: css.get("notice", "border-radius", css.get("border-radius"));
-  color: css.get("notice", "foreground", css.get("foreground-strong"));
-  background: css.get("notice", "background", css.get("background-shift"));
-  box-shadow: css.get("notice", "box-shadow", none);
+  padding: tokens.get("notice", "padding", 1em 1.25em);
+  border: tokens.get("notice", "border", none);
+  border-radius: tokens.get("notice", "border-radius", tokens.get("border-radius"));
+  color: tokens.get("notice", "foreground", tokens.get("foreground-strong"));
+  background: tokens.get("notice", "background", tokens.get("background-shift"));
+  box-shadow: tokens.get("notice", "box-shadow", none);
 
   > * + * {
-    margin-top: css.get("notice", "spacing", 0.5em);
+    margin-top: tokens.get("notice", "spacing", 0.5em);
   }
 }
 
 #{core.bem("notice", "title")} {
-  font-size: css.get("notice", "title-font-size", css.get("font-size-lg"));
-  font-weight: css.get("notice", "title-font-weight", css.get("font-weight-semi-bold"));
-  line-height: css.get("notice", "title-line-height", inherit);
+  font-size: tokens.get("notice", "title-font-size", tokens.get("font-size-lg"));
+  font-weight: tokens.get("notice", "title-font-weight", tokens.get("font-weight-semi-bold"));
+  line-height: tokens.get("notice", "title-line-height", inherit);
 }

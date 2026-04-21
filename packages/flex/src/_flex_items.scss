@@ -1,13 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-flex-items: config.get("flex-items", "variants");
 
 @each $key, $value in $-flex-items {
   #{core.bem("flex", null, "items", $key)} {
     @if $key == "full" {
-      @include css.override("flex", "wrap", wrap);
+      @include tokens.override("flex", "wrap", wrap);
     }
 
     > * {
@@ -21,7 +21,7 @@ $-flex-items: config.get("flex-items", "variants");
     @each $key, $value in $-flex-items {
       #{core.bem("flex", null, "items", $key, $bp)} {
         @if $key == "full" {
-          @include css.override("flex", "wrap", wrap);
+          @include tokens.override("flex", "wrap", wrap);
         }
 
         > * {

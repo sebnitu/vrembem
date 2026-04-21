@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -22,5 +22,5 @@ $default: (
 );
 
 @include config.apply($config, $default);
-@include css.register("modal");
-@include css.register("dialog");
+@include tokens.register("modal");
+@include tokens.register("dialog");

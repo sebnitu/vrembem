@@ -1,18 +1,18 @@
 @use "sass:list";
 @use "sass:meta";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/config";
 @use "../functions" as fun;
 
 @if fun.maybe-output("headings") {
-  @include css.register("headings");
+  @include tokens.register("headings");
 
   #{fun.selector(config.get("base-headings"))} {
-    font-family: css.get("headings", "font-family", inherit);
-    font-size: css.get("headings", "font-size", 1em);
-    font-weight: css.get("headings", "font-weight", css.get("font-weight-semi-bold"));
-    line-height: css.get("headings", "line-height", inherit);
-    color: css.get("headings", "foreground", css.get("foreground-strong"));
+    font-family: tokens.get("headings", "font-family", inherit);
+    font-size: tokens.get("headings", "font-size", 1em);
+    font-weight: tokens.get("headings", "font-weight", tokens.get("font-weight-semi-bold"));
+    line-height: tokens.get("headings", "line-height", inherit);
+    color: tokens.get("headings", "foreground", tokens.get("foreground-strong"));
   }
 
   @each $key, $value in config.get("base-headings") {
@@ -25,8 +25,8 @@
     }
 
     #{fun.selector($key)} {
-      @include css.override("headings", "font-size", $font-size);
-      @include css.override("headings", "line-height", $line-height);
+      @include tokens.override("headings", "font-size", $font-size);
+      @include tokens.override("headings", "line-height", $line-height);
     }
   }
 }

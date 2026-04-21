@@ -1,10 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
-$-color: css.get("radio", "color", css.get("form-control-choice-color")) !default;
-$-color-checked: css.get("radio", "color-checked", css.get("form-control-choice-color-checked"));
-$-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
+$-color: tokens.get("radio", "color", tokens.get("form-control-choice-color")) !default;
+$-color-checked: tokens.get("radio", "color-checked", tokens.get("form-control-choice-color-checked"));
+$-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.ce("radio")},
 #{core.bem("radio")} {
@@ -15,12 +15,12 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  font-size: css.get("radio", "size", config.get("radio-size", "default"));
+  font-size: tokens.get("radio", "size", config.get("radio-size", "default"));
   vertical-align: middle;
 
   &:has(:disabled) {
     pointer-events: none;
-    opacity: css.get("radio", "opacity-disabled", css.get("form-control-opacity-disabled"));
+    opacity: tokens.get("radio", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
   }
 }
 
@@ -32,18 +32,18 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: css.get("radio", "background-border-radius", css.get("form-control-choice-background-border-radius"));
-  background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity", css.get("form-control-choice-background-opacity")));
+  border-radius: tokens.get("radio", "background-border-radius", tokens.get("form-control-choice-background-border-radius"));
+  background-color: oklch(from $-color-checked l c h / tokens.get("radio", "background-opacity", tokens.get("form-control-choice-background-opacity")));
 }
 
 #{core.bem("radio", "circle")} {
-  @include core.size(css.get("radio", "circle-size", 1.25em));
+  @include core.size(tokens.get("radio", "circle-size", 1.25em));
 
   display: flex;
   align-items: center;
   justify-content: center;
-  border: css.get("radio", "border-width", 2px) solid $-color;
-  border-radius: css.get("radio", "circle-size", 1.25em);
+  border: tokens.get("radio", "border-width", 2px) solid $-color;
+  border-radius: tokens.get("radio", "circle-size", 1.25em);
   color: transparent;
   background-color: $-fill;
 }
@@ -51,7 +51,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 #{core.bem("radio", "dot")} {
   @include core.size(0);
 
-  border-radius: css.get("radio", "dot-size", 0.5em);
+  border-radius: tokens.get("radio", "dot-size", 0.5em);
   opacity: 0;
   background-color: $-fill;
 }
@@ -67,7 +67,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   opacity: 0;
 
   &:hover + #{core.bem("radio", "background")} {
-    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-hover", css.get("form-control-choice-background-opacity-hover")));
+    background-color: oklch(from $-color-checked l c h / tokens.get("radio", "background-opacity-hover", tokens.get("form-control-choice-background-opacity-hover")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
@@ -76,7 +76,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
   }
 
   &:focus + #{core.bem("radio", "background")} {
-    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-focus", css.get("form-control-choice-background-opacity-focus")));
+    background-color: oklch(from $-color-checked l c h / tokens.get("radio", "background-opacity-focus", tokens.get("form-control-choice-background-opacity-focus")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
@@ -86,7 +86,7 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
 
   &:focus-visible + #{core.bem("radio", "background")},
   &:active + #{core.bem("radio", "background")} {
-    background-color: oklch(from $-color-checked l c h / css.get("radio", "background-opacity-active", css.get("form-control-choice-background-opacity-active")));
+    background-color: oklch(from $-color-checked l c h / tokens.get("radio", "background-opacity-active", tokens.get("form-control-choice-background-opacity-active")));
 
     #{core.bem("radio", "circle")} {
       border-color: $-color-checked;
@@ -101,12 +101,12 @@ $-fill: css.get("radio", "fill", css.get("form-control-choice-fill")) !default;
     }
 
     #{core.bem("radio", "dot")} {
-      @include core.size(css.get("radio", "dot-size", 0.5em));
+      @include core.size(tokens.get("radio", "dot-size", 0.5em));
 
       opacity: 1;
       background-position: center center;
-      transition-timing-function: css.get("radio", "transition-timing-function", css.get("form-control-transition-timing-function"));
-      transition-duration: css.get("radio", "transition-duration", css.get("form-control-transition-duration"));
+      transition-timing-function: tokens.get("radio", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+      transition-duration: tokens.get("radio", "transition-duration", tokens.get("form-control-transition-duration"));
       transition-property: opacity, width, height;
     }
   }

@@ -1,13 +1,13 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("separator") {
-  @include css.register("separator");
+  @include tokens.register("separator");
 
   #{fun.selector("separator")} {
     display: block;
     height: 0;
     border: none;
-    border-top: css.get("separator", "border-width", css.get("border-width")) css.get("separator", "border-style", css.get("border-style")) css.get("separator", "border-color", css.get("border-color"));
+    border-top: tokens.get("separator", "border-width", tokens.get("border-width")) tokens.get("separator", "border-style", tokens.get("border-style")) tokens.get("separator", "border-color", tokens.get("border-color"));
   }
 }

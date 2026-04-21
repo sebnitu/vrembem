@@ -1,9 +1,9 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-attr: config.get("table-mobile", "attr");
-$-border: css.get("table", "border-width", css.get("border-width")) css.get("table", "border-style", css.get("border-style")) css.get("table", "border-color", css.get("border-color"));
+$-border: tokens.get("table", "border-width", tokens.get("border-width")) tokens.get("table", "border-style", tokens.get("border-style")) tokens.get("table", "border-color", tokens.get("border-color"));
 
 @mixin mobile-styles {
   thead,
@@ -27,7 +27,7 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
 
   [#{$-attr}] {
     position: relative;
-    padding-left: calc(css.get("table", "mobile-label-width", 8em) + css.get("table", "mobile-label-spacing", 0.75em));
+    padding-left: calc(tokens.get("table", "mobile-label-width", 8em) + tokens.get("table", "mobile-label-spacing", 0.75em));
     white-space: normal;
 
     &::before {
@@ -37,13 +37,13 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
       bottom: 0;
       left: 0;
       overflow: hidden;
-      width: css.get("table", "mobile-label-width", 8em);
-      padding: css.get("table", "padding", 0.5em 0.75em);
-      font-weight: css.get("font-weight-bold");
-      color: css.get("table", "mobile-label-foreground", inherit);
+      width: tokens.get("table", "mobile-label-width", 8em);
+      padding: tokens.get("table", "padding", 0.5em 0.75em);
+      font-weight: tokens.get("font-weight-bold");
+      color: tokens.get("table", "mobile-label-foreground", inherit);
       text-overflow: ellipsis;
       white-space: nowrap;
-      background-color: css.get("table", "mobile-label-background", transparent);
+      background-color: tokens.get("table", "mobile-label-background", transparent);
     }
   }
 
@@ -56,7 +56,7 @@ $-border: css.get("table", "border-width", css.get("border-width")) css.get("tab
 
     td + td,
     th + td {
-      border-top: 1px dotted css.get("table", "border-color", css.get("border-color"));
+      border-top: 1px dotted tokens.get("table", "border-color", tokens.get("border-color"));
     }
 
     [#{$-attr}]::before {

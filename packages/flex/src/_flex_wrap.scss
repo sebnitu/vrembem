@@ -1,12 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-flex-wrap: config.get("flex-wrap", "variants");
 
 @each $key, $value in $-flex-wrap {
   #{core.bem("flex", null, "wrap", $key)} {
-    @include css.override("flex", "wrap", $value);
+    @include tokens.override("flex", "wrap", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-flex-wrap: config.get("flex-wrap", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-flex-wrap {
       #{core.bem("flex", null, "wrap", $key, $bp)} {
-        @include css.override("flex", "wrap", $value);
+        @include tokens.override("flex", "wrap", $value);
       }
     }
   }

@@ -1,20 +1,20 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .navibar {
   position: relative;
   z-index: 5;
   width: 100%;
-  padding: 0 css.get("layout", "padding");
+  padding: 0 tokens.get("layout", "padding");
 
   @include core.media-min("sidebar") {
-    @include css.override("layout", "padding", 1.5rem);
+    @include tokens.override("layout", "padding", 1.5rem);
 
     position: fixed;
   }
 
   .is-home & {
-    background-color: css.get("background-glass");
+    background-color: tokens.get("background-glass");
     backdrop-filter: blur(8px);
   }
 }
@@ -22,7 +22,7 @@
 .navibar__container {
   display: flex;
   width: 100%;
-  max-width: css.get("layout", "width");
+  max-width: tokens.get("layout", "width");
   margin: auto;
 }
 
@@ -30,12 +30,12 @@
 .navibar__menu {
   display: flex;
   align-items: center;
-  height: css.get("layout", "navibar-height");
+  height: tokens.get("layout", "navibar-height");
 }
 
 .navibar__title {
   position: relative;
-  width: css.get("layout", "sidebar-width");
+  width: tokens.get("layout", "sidebar-width");
 }
 
 .navibar__skip {
@@ -45,12 +45,12 @@
   width: calc(100% - 1em);
   margin-right: 1em;
   opacity: 0;
-  transition-timing-function: css.get("transition-timing-function");
-  transition-duration: css.get("transition-duration");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration");
   transition-property: top, opacity;
 
   &:focus {
-    top: calc(calc(css.get("layout", "navibar-height") - css.get("form-control-size-calc")) / 2);
+    top: calc(calc(tokens.get("layout", "navibar-height") - tokens.get("form-control-size-calc")) / 2);
     opacity: 1;
   }
 }
@@ -75,6 +75,6 @@
   height: 0;
 
   @include core.media-min("sidebar") {
-    height: css.get("layout", "navibar-height");
+    height: tokens.get("layout", "navibar-height");
   }
 }

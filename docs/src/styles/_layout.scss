@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .layout {
@@ -7,35 +7,35 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0 css.get("layout", "padding");
+  padding: 0 tokens.get("layout", "padding");
 
   @include core.media-min("xs") {
-    @include css.override("layout", "content-padding-x", 1rem);
-    @include css.override("layout", "content-padding-y", 1rem);
+    @include tokens.override("layout", "content-padding-x", 1rem);
+    @include tokens.override("layout", "content-padding-y", 1rem);
   }
 
   @include core.media-min("sm") {
-    @include css.override("layout", "content-padding-x", 3rem);
-    @include css.override("layout", "content-padding-y", 2rem);
+    @include tokens.override("layout", "content-padding-x", 3rem);
+    @include tokens.override("layout", "content-padding-y", 2rem);
   }
 
   @include core.media-min("sidebar") {
-    @include css.override("layout", "content-padding-x", 4rem);
-    @include css.override("layout", "content-padding-y", 3rem);
-    @include css.override("layout", "padding", 1.5rem);
+    @include tokens.override("layout", "content-padding-x", 4rem);
+    @include tokens.override("layout", "content-padding-y", 3rem);
+    @include tokens.override("layout", "padding", 1.5rem);
 
     &.has-sidebar .layout__main {
-      padding-left: css.get("layout", "sidebar-width");
+      padding-left: tokens.get("layout", "sidebar-width");
     }
 
     &.has-aside .layout__main {
-      padding-right: css.get("form-control-size-calc");
+      padding-right: tokens.get("form-control-size-calc");
     }
   }
 
   @include core.media-min("aside") {
     &.has-aside .layout__main {
-      padding-right: css.get("layout", "aside-width");
+      padding-right: tokens.get("layout", "aside-width");
     }
   }
 }
@@ -43,12 +43,12 @@
 .layout__main {
   position: relative;
   width: 100%;
-  max-width: css.get("layout", "width");
+  max-width: tokens.get("layout", "width");
   margin: auto;
   outline: none;
 
   @include core.media-min("sidebar") {
-    padding-top: css.get("layout", "navibar-height");
+    padding-top: tokens.get("layout", "navibar-height");
 
     &::before {
       content: "";
@@ -56,8 +56,8 @@
       z-index: 4;
       top: 0;
       width: 100%;
-      height: css.get("layout", "navibar-height");
-      background-color: css.get("background-glass");
+      height: tokens.get("layout", "navibar-height");
+      background-color: tokens.get("background-glass");
       backdrop-filter: blur(8px);
     }
   }
@@ -65,11 +65,11 @@
 
 .layout__container {
   width: 100%;
-  max-width: calc(css.get("layout", "content-width"));
+  max-width: calc(tokens.get("layout", "content-width"));
   margin: auto;
-  padding: css.get("layout", "content-padding-y") css.get("layout", "content-padding-x") 0;
+  padding: tokens.get("layout", "content-padding-y") tokens.get("layout", "content-padding-x") 0;
 
   > * + * {
-    margin-top: calc(css.get("spacing") * 12) !important;
+    margin-top: calc(tokens.get("spacing") * 12) !important;
   }
 }

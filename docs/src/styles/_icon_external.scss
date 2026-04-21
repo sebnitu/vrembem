@@ -1,12 +1,12 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .icon_external {
   position: relative;
   right: -0.25em;
   font-size: 0.75em;
-  color: css.get("foreground-subtle");
+  color: tokens.get("foreground-subtle");
   stroke-width: 2.5;
-  transition: transform css.get("transition-duration-short") css.get("transition-timing-function");
+  transition: transform tokens.get("transition-duration-short") tokens.get("transition-timing-function");
 }
 
 a:hover > .icon_external {

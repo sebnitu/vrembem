@@ -1,18 +1,18 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("type") {
-  @include css.register("type");
-  @include css.register("heading");
+  @include tokens.register("type");
+  @include tokens.register("heading");
 
   #{fun.selector("type")} {
-    font-family: css.get("type", "font-family", inherit);
-    font-size: css.get("type", "font-size", inherit);
-    line-height: css.get("type", "line-height", inherit);
-    color: css.get("type", "foreground", css.get("foreground"));
+    font-family: tokens.get("type", "font-family", inherit);
+    font-size: tokens.get("type", "font-size", inherit);
+    line-height: tokens.get("type", "line-height", inherit);
+    color: tokens.get("type", "foreground", tokens.get("foreground"));
 
     > * + * {
-      margin-top: css.get("type", "spacing", null);
+      margin-top: tokens.get("type", "spacing", null);
     }
   }
 }

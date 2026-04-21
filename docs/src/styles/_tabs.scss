@@ -1,11 +1,11 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 [role="tab"] {
   position: relative;
   margin: -0.5rem 0;
   padding: 0.5rem;
-  color: css.get("foreground-subtle");
+  color: tokens.get("foreground-subtle");
 
   &::after {
     content: "";
@@ -16,7 +16,7 @@
   }
 
   &:hover {
-    color: css.get("foreground-strong");
+    color: tokens.get("foreground-strong");
   }
 
   &[aria-selected="true"] {

@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 /// Output the base styles for a button component. This includes:
 /// - Setup of button specific CSS variables with shared form-control fallbacks.
@@ -14,7 +14,7 @@
   cursor: pointer;
   position: relative;
   display: inline-flex;
-  gap: css.get("button", "gap", css.get("spacing-sm"));
+  gap: tokens.get("button", "gap", tokens.get("spacing-sm"));
   align-items: center;
   justify-content: center;
   border-style: solid;
@@ -78,5 +78,5 @@
   }
 
   // Define the overrides CSS variables
-  @include css.override("button", $overrides);
+  @include tokens.override("button", $overrides);
 }

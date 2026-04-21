@@ -1,8 +1,8 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("popover", null, "tooltip")} {
-  @include css.override(
+  @include tokens.override(
     "popover",
     (
       "event": "hover",
@@ -11,8 +11,8 @@
       "width": auto,
       "max-width": 16rem,
       "padding": 0.5rem 0.75rem,
-      "background": css.get("foreground-strong"),
-      "foreground": css.get("background")
+      "background": tokens.get("foreground-strong"),
+      "foreground": tokens.get("background")
     )
   );
 

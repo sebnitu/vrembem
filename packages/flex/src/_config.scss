@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -10,13 +10,13 @@ $default: (
   // @type map
   "flex-gap": (
     "breakpoints": true,
-    "default": css.get("spacing-md"),
+    "default": tokens.get("spacing-md"),
     "0": 0,
     "xs": 1px,
-    "sm": css.get("spacing-sm"),
-    "md": css.get("spacing-md"),
-    "lg": css.get("spacing-lg"),
-    "xl": css.get("spacing-xl")
+    "sm": tokens.get("spacing-sm"),
+    "md": tokens.get("spacing-md"),
+    "lg": tokens.get("spacing-lg"),
+    "xl": tokens.get("spacing-xl")
   ),
 
   // Map for outputting flex_wrap_[key] modifier variants
@@ -55,4 +55,4 @@ $default: (
 );
 
 @include config.apply($config, $default);
-@include css.register("flex");
+@include tokens.register("flex");

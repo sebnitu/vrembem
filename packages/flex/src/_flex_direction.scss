@@ -1,12 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-flex-direction-map: config.get("flex-direction", "variants");
 
 @each $key, $value in $-flex-direction-map {
   #{core.bem("flex", null, "direction", $key)} {
-    @include css.override("flex", "direction", $value);
+    @include tokens.override("flex", "direction", $value);
   }
 }
 
@@ -14,7 +14,7 @@ $-flex-direction-map: config.get("flex-direction", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-flex-direction-map {
       #{core.bem("flex", null, "direction", $key, $bp)} {
-        @include css.override("flex", "direction", $value);
+        @include tokens.override("flex", "direction", $value);
       }
     }
   }
