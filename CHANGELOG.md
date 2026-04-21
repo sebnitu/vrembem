@@ -35,12 +35,20 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.40 to CHANGELOG.md
+chore(release): add v4.0.0-next.41 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.41 (2026-04-21)
+
+### :tada: New Feature
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2778](https://github.com/sebnitu/vrembem/pull/2778) Implement CSS @layer for cascade layers
+  * [#2771](https://github.com/sebnitu/vrembem/pull/2771) Migrate from using HSL to OKLCH color space
 
 
 ## v4.0.0-next.40 (2026-04-12)
