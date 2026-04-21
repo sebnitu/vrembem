@@ -1,13 +1,13 @@
-@use "../modules/css";
-@include css.set("core", "spacing", 0.25em);
-@include css.set(
+@use "../modules/tokens";
+@include tokens.set("core", "spacing", 0.25em);
+@include tokens.set(
   "core",
   "spacing",
   (
-    "xs": css.get("spacing"),
-    "sm": calc(css.get("spacing") * 2),
-    "md": calc(css.get("spacing") * 4),
-    "lg": calc(css.get("spacing") * 6),
-    "xl": calc(css.get("spacing") * 8)
+    "xs": tokens.get("spacing"),
+    "sm": calc(tokens.get("spacing") * 2),
+    "md": calc(tokens.get("spacing") * 4),
+    "lg": calc(tokens.get("spacing") * 6),
+    "xl": calc(tokens.get("spacing") * 8)
   )
 );

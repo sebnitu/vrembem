@@ -1,5 +1,5 @@
-@use "../modules/css";
-@include css.set(
+@use "../modules/tokens";
+@include tokens.set(
   "core",
   (
     "font-family-sans": (
@@ -32,4 +32,4 @@
     )
   )
 );
-@include css.set("core", "font-family", css.get("font-family-sans"));
+@include tokens.set("core", "font-family", tokens.get("font-family-sans"));

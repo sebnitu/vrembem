@@ -3,7 +3,7 @@
 @use "sass:color";
 @use "../utilities/round-to" as *;
 @use "./config";
-@use "./css";
+@use "./tokens";
 
 /// Builds a palette map using values set in `config.get("palette")`.
 ///
@@ -15,25 +15,25 @@
 ///
 @mixin -rebuild-palette($action: "") {
   // Remove the palette component before building
-  @include css.remove("palette");
+  @include tokens.remove("palette");
 
   // Set the black and white tokens
-  @include css.set("palette", "black", oklch(0% 0 0));
-  @include css.set("palette", "white", oklch(100% 0 0));
+  @include tokens.set("palette", "black", oklch(0% 0 0));
+  @include tokens.set("palette", "white", oklch(100% 0 0));
 
   // Loop through the seeds and set the variables for each item in $seeds
   @each $name, $value in config.get("palette") {
     // Set the raw value
-    @include css.set("palette", "#{$name}", $value);
+    @include tokens.set("palette", "#{$name}", $value);
 
     // Set the lightness, chroma and hue parts
-    @include css.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
-    @include css.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
-    @include css.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
+    @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
+    @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
+    @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
 
     // Palette variants
     @each $key, $args in config.get("palette-variants") {
-      @include css.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
+      @include tokens.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
     }
   }
 }
@@ -82,7 +82,7 @@
 ///
 @function get($name, $l: null, $c: null, $a: null) {
   // Check if the color name exists in the palette map
-  @if not css.has("palette", $name) {
+  @if not tokens.has("palette", $name) {
     @error 'Palette value could not be found: "#{$name}"';
   }
 
@@ -91,13 +91,13 @@
 
   // Set color as the seed value if lightness or chroma are not provided
   @if not $l and not $c {
-    $color: css.get("palette", $name);
+    $color: tokens.get("palette", $name);
   }
 
   // If the lightness is a string, try and return the stored token.
-  // E.g.: palette.get("primary", "400") => css.get("palette", "primary-400")
+  // E.g.: palette.get("primary", "400") => tokens.get("palette", "primary-400")
   @if meta.type-of($l) == "string" {
-    $color: css.get("palette", "#{$name}-#{$l}");
+    $color: tokens.get("palette", "#{$name}-#{$l}");
   }
 
   // If the color value was set, return it along with alpha channel if provided
@@ -116,21 +116,21 @@
   }
 
   @if not $l {
-    $l: css.get("palette", "#{$name}-l");
+    $l: tokens.get("palette", "#{$name}-l");
   }
 
   @if not $c {
-    $c: css.get("palette", "#{$name}-c");
+    $c: tokens.get("palette", "#{$name}-c");
   } @else if $c != 0 {
     // Adjust the chroma based on the seeded value
-    $c: calc(#{css.get("palette", "#{$name}-c")} * ($c / 100%));
+    $c: calc(#{tokens.get("palette", "#{$name}-c")} * ($c / 100%));
   }
 
   // If an alpha channel is provided, return oklch with the alpha
   @if $a {
-    @return oklch($l $c css.get("palette", "#{$name}-h") / $a);
+    @return oklch($l $c tokens.get("palette", "#{$name}-h") / $a);
   } @else {
-    @return oklch($l $c css.get("palette", "#{$name}-h"));
+    @return oklch($l $c tokens.get("palette", "#{$name}-h"));
   }
 }
 

@@ -1,45 +1,45 @@
-@use "../modules/css";
+@use "../modules/tokens";
 @use "../modules/palette";
 @use "../modules/theme";
 
 // Base form-control variables shared by all controls
-@include css.set(
+@include tokens.set(
   "core",
   "form-control",
   (
-    "size": css.get("font-size"),
-    "size-sm": css.get("font-size-sm"),
-    "size-lg": css.get("font-size-lg"),
-    "line-height": css.get("line-height"),
-    "border-width": css.get("border-width"),
-    "border-radius": css.get("border-radius"),
+    "size": tokens.get("font-size"),
+    "size-sm": tokens.get("font-size-sm"),
+    "size-lg": tokens.get("font-size-lg"),
+    "line-height": tokens.get("line-height"),
+    "border-width": tokens.get("border-width"),
+    "border-radius": tokens.get("border-radius"),
     "padding-x": 1em,
     "padding-y": 0.5em,
     "accent": palette.get("primary"),
-    "foreground": css.get("foreground-strong"),
-    "background": css.get("background"),
-    "background-disabled": css.get("background-shift"),
-    "background-readonly": css.get("background-shift"),
+    "foreground": tokens.get("foreground-strong"),
+    "background": tokens.get("background"),
+    "background-disabled": tokens.get("background-shift"),
+    "background-readonly": tokens.get("background-shift"),
     "opacity-disabled": 0.6,
     "transition-property": (
       box-shadow,
       outline
     ),
-    "transition-duration": css.get("transition-duration-short"),
-    "transition-timing-function": css.get("transition-timing-function")
+    "transition-duration": tokens.get("transition-duration-short"),
+    "transition-timing-function": tokens.get("transition-timing-function")
   )
 );
 
 // Form-control choice (checkbox, radio and switch) variables
-@include css.set(
+@include tokens.set(
   "core",
   "form-control-choice",
   (
-    "color": css.get("foreground-subtle"),
-    "color-checked": css.get("form-control-accent"),
-    "fill": css.get("form-control-background"),
+    "color": tokens.get("foreground-subtle"),
+    "color-checked": tokens.get("form-control-accent"),
+    "fill": tokens.get("form-control-background"),
     "background": (
-      "border-radius": css.get("border-radius-circle"),
+      "border-radius": tokens.get("border-radius-circle"),
       "opacity": 0%,
       "opacity-hover": 20%,
       "opacity-focus": 20%,
@@ -49,11 +49,11 @@
 );
 
 // Form-control composition variables
-@include css.set(
+@include tokens.set(
   "core",
   "form-control",
   (
-    "padding": css.get("form-control-padding-y") css.get("form-control-padding-x"),
-    "size-calc": calc(calc(1em * css.get("form-control-line-height")) + calc(calc(css.get("form-control-padding-y") + css.get("form-control-border-width")) * 2))
+    "padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x"),
+    "size-calc": calc(calc(1em * tokens.get("form-control-line-height")) + calc(calc(tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2))
   )
 );

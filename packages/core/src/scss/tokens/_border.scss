@@ -1,17 +1,17 @@
-@use "../modules/css";
-@include css.set(
+@use "../modules/tokens";
+@include tokens.set(
   "core",
   (
     "border-width": 1px,
     "border-style": solid
   )
 );
-@include css.set(
+@include tokens.set(
   "core",
   (
-    "border": css.get("border-width") css.get("border-style") css.get("border-color"),
-    "border-strong": css.get("border-width") css.get("border-style") css.get("border-color-strong"),
-    "border-stronger": css.get("border-width") css.get("border-style") css.get("border-color-stronger"),
+    "border": tokens.get("border-width") tokens.get("border-style") tokens.get("border-color"),
+    "border-strong": tokens.get("border-width") tokens.get("border-style") tokens.get("border-color-strong"),
+    "border-stronger": tokens.get("border-width") tokens.get("border-style") tokens.get("border-color-stronger"),
     "border-radius": 0.25rem,
     "border-radius-lg": 0.5rem,
     "border-radius-circle": 9999px

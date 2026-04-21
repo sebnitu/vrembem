@@ -1,4 +1,4 @@
-@use "../modules/css";
+@use "../modules/tokens";
 
 /// Output an opinionated reset that removes user agent defaults in favor of
 /// minimalistic base styles. This creates a clean starting point for the UI and
@@ -26,8 +26,8 @@
   //    - https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-size-adjust
   html,
   :host {
-    font-family: css.get("core", "font-family", (system-ui, sans-serif)); // 1
-    line-height: css.get("core", "line-height", 1.5); // 2
+    font-family: tokens.get("core", "font-family", (system-ui, sans-serif)); // 1
+    line-height: tokens.get("core", "line-height", 1.5); // 2
     text-size-adjust: none; // 3
   }
 
@@ -103,7 +103,7 @@
   h5,
   h6 {
     font-size: inherit;
-    color: css.get("foreground-strong");
+    color: tokens.get("foreground-strong");
   }
 
   // Global font weight for Chrome, Edge, and Safari
@@ -114,13 +114,13 @@
 
   // Set small element font-size
   small {
-    font-size: css.get("core", "font-size-sm", 0.875rem);
+    font-size: tokens.get("core", "font-size-sm", 0.875rem);
   }
 
   // Default font family and font size for code and pre elements
   code,
   pre {
-    font-family: css.get("core", "font-family-mono", (ui-monospace, monospace));
+    font-family: tokens.get("core", "font-family-mono", (ui-monospace, monospace));
     font-size: 1em;
   }
 

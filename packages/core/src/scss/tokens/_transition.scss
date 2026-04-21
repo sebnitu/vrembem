@@ -1,5 +1,5 @@
-@use "../modules/css";
-@include css.set(
+@use "../modules/tokens";
+@include tokens.set(
   "core",
   "transition",
   (
@@ -9,12 +9,12 @@
     "timing-function": cubic-bezier(0.4, 0, 0.2, 1)
   )
 );
-@include css.set(
+@include tokens.set(
   "core",
   "transition",
   (
-    "": css.get("transition-duration") css.get("transition-timing-function"),
-    "short": css.get("transition-duration-short") css.get("transition-timing-function"),
-    "long": css.get("transition-duration-long") css.get("transition-timing-function")
+    "": tokens.get("transition-duration") tokens.get("transition-timing-function"),
+    "short": tokens.get("transition-duration-short") tokens.get("transition-timing-function"),
+    "long": tokens.get("transition-duration-long") tokens.get("transition-timing-function")
   )
 );

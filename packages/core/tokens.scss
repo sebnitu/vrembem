@@ -1,9 +1,1 @@
-@use "@vrembem/core";
-
-@layer tokens {
-  :root {
-    @include core.css-output;
-  }
-
-  @include core.theme-output;
-}
+@forward "./src/scss/modules/tokens";

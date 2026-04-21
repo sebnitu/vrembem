@@ -1,4 +1,4 @@
-@use "../modules/css";
+@use "../modules/tokens";
 
 /// Output the styles for a backdrop pseudo element.
 ///
@@ -10,5 +10,5 @@
   position: fixed;
   inset: 0;
   opacity: 0;
-  background-color: css.get($component, "backdrop-color", css.get("backdrop-color"));
+  background-color: tokens.get($component, "backdrop-color", tokens.get("backdrop-color"));
 }

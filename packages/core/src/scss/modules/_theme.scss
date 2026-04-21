@@ -5,11 +5,11 @@
 @use "../utilities/empty-map" as *;
 @use "../utilities/remove-nth" as *;
 @use "./config";
-@use "./css";
+@use "./tokens";
 @use "./palette";
 
 // Add to custom properties map for output as a config output
-@include css.set(
+@include tokens.set(
   "core",
   "theme-prefix",
   (
@@ -17,7 +17,7 @@
   )
 );
 
-/// Used to track theme keys that get added to the `css.$-css-vars` map.
+/// Used to track theme keys that get added to the `tokens.$-css-vars` map.
 /// @type list
 /// @access private
 $-theme-keys: "light", "dark";
@@ -128,7 +128,7 @@ $-theme-keys: "light", "dark";
   }
 
   // Initialize the results map with a copy of the CSS variables map
-  $result: css.get("*");
+  $result: tokens.get("*");
 
   // If no property or value are provided, create a theme with an empty map
   @if not $prop and not $value {
@@ -152,7 +152,7 @@ $-theme-keys: "light", "dark";
   }
 
   // Replace the CSS variables map with the modified result
-  @include css.set("*", $result);
+  @include tokens.set("*", $result);
 }
 
 /// Remove a custom property from themes in a variety of ways.
@@ -186,8 +186,8 @@ $-theme-keys: "light", "dark";
 ///
 @mixin remove($theme, $component, $prop: "*") {
   @if $component == "*" {
-    // Call remove() for every component in `css.$-css-vars`
-    @each $component in map.keys(css.get("*")) {
+    // Call remove() for every component in `tokens.$-css-vars`
+    @each $component in map.keys(tokens.get("*")) {
       @include remove($component, $theme, $prop);
     }
 
@@ -195,7 +195,7 @@ $-theme-keys: "light", "dark";
     @include -remove-theme-key($theme);
   } @else {
     // Initialize the result with the component map
-    $result: css.get($component, "*");
+    $result: tokens.get($component, "*");
 
     // Remove all themes from component
     // Example: theme.remove("component", "*")
@@ -225,8 +225,8 @@ $-theme-keys: "light", "dark";
       $result: map.deep-remove($result, $theme, $prop);
     }
 
-    // Save the results to `css.$-css-vars`
-    @include css.set($component, "*", $result, $deep: false);
+    // Save the results to `tokens.$-css-vars`
+    @include tokens.set($component, "*", $result, $deep: false);
   }
 }
 
@@ -254,13 +254,13 @@ $-theme-keys: "light", "dark";
 ///
 @mixin output-theme($theme, $component: "*") {
   @if $component == "*" {
-    // Call output-theme() for every component in `css.$-css-vars`
-    @each $component in map.keys(css.get("*")) {
+    // Call output-theme() for every component in `tokens.$-css-vars`
+    @each $component in map.keys(tokens.get("*")) {
       @include output-theme($theme, $component);
     }
   } @else {
     // Initialize the component map
-    $component-map: css.get($component, "*");
+    $component-map: tokens.get($component, "*");
 
     // Check if the theme exists for the component map
     @if map.has-key($component-map, $theme) {
@@ -284,7 +284,7 @@ $-theme-keys: "light", "dark";
       @each $prop, $value in $component-theme-map {
         // Don't output the color-scheme property
         @if $prop != "color-scheme" {
-          @include css.define($component, $prop, $value);
+          @include tokens.define($component, $prop, $value);
         }
       }
     }

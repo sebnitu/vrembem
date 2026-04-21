@@ -136,12 +136,12 @@ $-tokens: (
 ///   Custom property variable reference using var().
 ///
 /// @example scss
-///   css.reference("core", "background");
+///   tokens.reference("core", "background");
 ///   // CSS Output
 ///   var(--vb-background);
 ///
 /// @example scss
-///   css.reference("button", "background-hover", "background");
+///   tokens.reference("button", "background-hover", "background");
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
@@ -165,12 +165,12 @@ $-tokens: (
 ///   The value of the custom property.
 ///
 /// @example scss
-///   css.define("core", "background", #000);
+///   tokens.define("core", "background", #000);
 ///   // CSS Output
 ///   --vb-background: #000;
 ///
 /// @example scss
-///   css.define("button", "background", #fff);
+///   tokens.define("button", "background", #fff);
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
@@ -219,22 +219,22 @@ $-tokens: (
 ///   Custom property variable reference using var().
 ///
 /// @example scss
-///   css.get("background");
+///   tokens.get("background");
 ///   // CSS Output
 ///   var(--vb-background);
 ///
 /// @example scss
-///   css.get("button", "background");
+///   tokens.get("button", "background");
 ///   // CSS Output
 ///   var(--vb-button-background);
 ///
 /// @example scss
-///   css.get("button", "background-hover", "background");
+///   tokens.get("button", "background-hover", "background");
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background));
 ///
 /// @example scss
-///   css.get("button", "background-hover", "background", pink);
+///   tokens.get("button", "background-hover", "background", pink);
 ///   // CSS Output
 ///   var(--vb-button-background-hover, var(--vb-button-background, pink));
 ///
@@ -317,7 +317,7 @@ $-tokens: (
 ///   Whether or not to use `merge` or `deep-merge` when combining maps.
 ///
 /// @example scss
-///   @include css.set("button", "background", #000);
+///   @include tokens.set("button", "background", #000);
 ///
 ///   // Result in custom properties map:
 ///   $-tokens: (
@@ -327,7 +327,7 @@ $-tokens: (
 ///   );
 ///
 /// @example scss
-///   @include css.set("button", (
+///   @include tokens.set("button", (
 ///     "background": #000,
 ///     "foreground": #fff,
 ///   ));
@@ -341,7 +341,7 @@ $-tokens: (
 ///   );
 ///
 /// @example scss
-///   @include css.set("button", (
+///   @include tokens.set("button", (
 ///     "background": (
 ///       "hover": #000,
 ///       "focus": #555,
@@ -363,7 +363,7 @@ $-tokens: (
   // This primarily allows other modules to more easily modify the CSS var map
   // by circumventing the limitations of what `set` allows.
   // Example in core/theme:
-  // @include css.set("*", $result);
+  // @include tokens.set("*", $result);
   @if $component == "*" {
     $-tokens: $prop !global;
   }
@@ -372,7 +372,7 @@ $-tokens: (
   // This primarily allows other modules to more easily modifier a component's
   // CSS var map by circumventing the limitations of what `set` allows.
   // Example in core/theme:
-  // @include css.set($component, "*", $result, $deep: false);
+  // @include tokens.set($component, "*", $result, $deep: false);
   @else if $prop == "*" {
     $component-map: (
       $component: $value
@@ -385,7 +385,7 @@ $-tokens: (
     }
   }
 
-  // Handle this as a normal css.set call
+  // Handle this as a normal tokens.set call
   @else {
     // Build the component map using the prop and value arguments
     $component-map: (
@@ -417,19 +417,19 @@ $-tokens: (
 ///   The property value to override with.
 ///
 /// @example scss
-///   @include css.override("core", "background", #000);
+///   @include tokens.override("core", "background", #000);
 ///
 ///   // CSS Output
 ///   --vb-background: #000;
 ///
 /// @example scss
-///   @include css.override("button", "background", #fff);
+///   @include tokens.override("button", "background", #fff);
 ///
 ///   // CSS Output
 ///   --vb-button-background: #fff;
 ///
 /// @example scss
-///   @include css.override("button", (
+///   @include tokens.override("button", (
 ///     "background": #000,
 ///     "foreground": #fff
 ///   ));
@@ -495,7 +495,7 @@ $-tokens: (
 ///
 ///   // SCSS input
 ///   :root {
-///     @include css.output("button");
+///     @include tokens.output("button");
 ///   }
 ///
 ///   // CSS output
