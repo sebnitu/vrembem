@@ -1,2 +1,5 @@
 @use "@vrembem/core";
-@include core.reset;
+
+@layer base {
+  @include core.reset;
+}

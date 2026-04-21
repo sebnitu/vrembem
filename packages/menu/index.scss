@@ -1,6 +1,10 @@
+@use "sass:meta";
 @forward "./src/config";
 @forward "./src/mixins";
-@forward "./src/menu";
-@forward "./src/menu_full";
-@forward "./src/menu_inline";
-@forward "./src/menu_size";
+
+@layer components {
+  @include meta.load-css("./src/menu");
+  @include meta.load-css("./src/menu_full");
+  @include meta.load-css("./src/menu_inline");
+  @include meta.load-css("./src/menu_size");
+}

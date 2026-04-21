@@ -1,9 +1,0 @@
-@use "./index";
-@use "@vrembem/core/css";
-@use "@vrembem/core/theme";
-
-:root {
-  @include css.output("button");
-}
-
-@include theme.output("button");

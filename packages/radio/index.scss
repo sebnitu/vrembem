@@ -1,3 +1,7 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/radio";
-@forward "./src/radio_size";
+
+@layer components {
+  @include meta.load-css("./src/radio");
+  @include meta.load-css("./src/radio_size");
+}

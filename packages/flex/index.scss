@@ -1,7 +1,11 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/flex";
-@forward "./src/flex_gap";
-@forward "./src/flex_wrap";
-@forward "./src/flex_direction";
-@forward "./src/flex_items";
-@forward "./src/flex-item";
+
+@layer components {
+  @include meta.load-css("./src/flex");
+  @include meta.load-css("./src/flex_gap");
+  @include meta.load-css("./src/flex_wrap");
+  @include meta.load-css("./src/flex_direction");
+  @include meta.load-css("./src/flex_items");
+  @include meta.load-css("./src/flex-item");
+}

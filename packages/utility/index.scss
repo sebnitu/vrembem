@@ -1,31 +1,34 @@
+@use "sass:meta";
 @forward "./src/config";
 @forward "./src/functions";
 
-// Appearance (5)
-@forward "./src/modules/background"; // 312
-@forward "./src/modules/foreground"; // 296
-@forward "./src/modules/border"; // 52
-@forward "./src/modules/border-radius"; // 112
-@forward "./src/modules/box-shadow"; // 28
+@layer utilities {
+  // Appearance (5)
+  @include meta.load-css("./src/modules/background");
+  @include meta.load-css("./src/modules/foreground");
+  @include meta.load-css("./src/modules/border");
+  @include meta.load-css("./src/modules/border-radius");
+  @include meta.load-css("./src/modules/box-shadow");
 
-// Display and spacing (4)
-@forward "./src/modules/display"; // 163
-@forward "./src/modules/margin"; // 210
-@forward "./src/modules/padding"; // 180
-@forward "./src/modules/spacing"; // 24
+  // Display and spacing (4)
+  @include meta.load-css("./src/modules/display");
+  @include meta.load-css("./src/modules/margin");
+  @include meta.load-css("./src/modules/padding");
+  @include meta.load-css("./src/modules/spacing");
 
-// Grid and flex (6)
-@forward "./src/modules/gap"; // 72
-@forward "./src/modules/justify"; // 60
-@forward "./src/modules/align"; // 60
-@forward "./src/modules/place"; // 60
-@forward "./src/modules/order"; // 36
-@forward "./src/modules/flex"; // 104
+  // Grid and flex (6)
+  @include meta.load-css("./src/modules/gap");
+  @include meta.load-css("./src/modules/justify");
+  @include meta.load-css("./src/modules/align");
+  @include meta.load-css("./src/modules/place");
+  @include meta.load-css("./src/modules/order");
+  @include meta.load-css("./src/modules/flex");
 
-// Miscellaneous (6)
-@forward "./src/modules/position"; // 20
-@forward "./src/modules/overflow"; // 60
-@forward "./src/modules/max-width"; // 28
-@forward "./src/modules/font"; // 80
-@forward "./src/modules/text"; // 68
-@forward "./src/modules/transition"; // 16
+  // Miscellaneous (6)
+  @include meta.load-css("./src/modules/position");
+  @include meta.load-css("./src/modules/overflow");
+  @include meta.load-css("./src/modules/max-width");
+  @include meta.load-css("./src/modules/font");
+  @include meta.load-css("./src/modules/text");
+  @include meta.load-css("./src/modules/transition");
+}

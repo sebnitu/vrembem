@@ -1,6 +1,10 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/input";
-@forward "./src/input_auto";
-@forward "./src/input_size";
-@forward "./src/input_state";
-@forward "./src/input_type";
+
+@layer components {
+  @include meta.load-css("./src/input");
+  @include meta.load-css("./src/input_auto");
+  @include meta.load-css("./src/input_size");
+  @include meta.load-css("./src/input_state");
+  @include meta.load-css("./src/input_type");
+}

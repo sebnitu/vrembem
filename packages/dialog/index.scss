@@ -1,2 +1,6 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/dialog";
+
+@layer components {
+  @include meta.load-css("./src/dialog");
+}

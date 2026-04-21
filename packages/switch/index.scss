@@ -1,3 +1,7 @@
+@use "sass:meta";
 @forward "./src/config";
-@forward "./src/switch";
-@forward "./src/switch_size";
+
+@layer components {
+  @include meta.load-css("./src/switch");
+  @include meta.load-css("./src/switch_size");
+}

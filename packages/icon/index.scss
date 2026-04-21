@@ -1,5 +1,9 @@
+@use "sass:meta";
 @forward "./src/config";
 @forward "./src/mixins";
-@forward "./src/icon";
-@forward "./src/icon_size";
-@forward "./src/icon_style";
+
+@layer components {
+  @include meta.load-css("./src/icon");
+  @include meta.load-css("./src/icon_size");
+  @include meta.load-css("./src/icon_style");
+}

@@ -1,4 +1,8 @@
+@use "sass:meta";
 @forward "./src/scss/config";
-@forward "./src/scss/drawer";
-@forward "./src/scss/drawer_switch";
-@forward "./src/scss/drawer_modal";
+
+@layer components {
+  @include meta.load-css("./src/scss/drawer");
+  @include meta.load-css("./src/scss/drawer_switch");
+  @include meta.load-css("./src/scss/drawer_modal");
+}
