@@ -1,0 +1,11 @@
+@forward "./index";
+@use "@vrembem/core/css";
+@use "@vrembem/core/theme";
+
+@layer tokens {
+  :root {
+    @include css.output("input");
+  }
+
+  @include theme.output("input");
+}
