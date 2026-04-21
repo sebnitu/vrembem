@@ -1,4 +1,4 @@
-@forward "@vrembem/core/layers";
+@forward "./layers";
 @forward "@vrembem/core" as core-*;
 @forward "@vrembem/base" as base-*;
 @forward "@vrembem/flex" as flex-*;
@@ -19,4 +19,4 @@
 @forward "@vrembem/section" as section-*;
 @forward "@vrembem/table" as table-*;
 @forward "@vrembem/utility" as utility-*;
-@forward "@vrembem/core/tokens";
+@forward "./tokens";

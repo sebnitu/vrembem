@@ -1,1 +1,9 @@
-@forward "@vrembem/core/tokens";
+@use "@vrembem/core";
+
+@layer tokens {
+  :root {
+    @include core.css-output;
+  }
+
+  @include core.theme-output;
+}
