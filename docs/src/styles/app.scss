@@ -1,3 +1,6 @@
+// Import the Vrembem defined layers
+@forward "vrembem/layers";
+
 // Configure Vrembem
 @forward "./config";
 

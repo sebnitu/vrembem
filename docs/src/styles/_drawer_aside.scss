@@ -2,43 +2,45 @@
 @use "@vrembem/core/css";
 @use "@vrembem/core/palette";
 
-.drawer_aside {
-  position: fixed;
-  visibility: hidden;
-
-  .drawer__dialog {
-    background-color: css.get("background-shift");
-    outline: none;
-  }
-
-  .drawer__container {
-    overscroll-behavior: contain;
-    padding: css.get("layout", "padding");
-  }
-}
-
-/**
- * Inline aside
- */
-
-@include core.media-min("aside") {
+@layer components {
   .drawer_aside {
-    z-index: 2;
-    box-sizing: content-box;
-    width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
-    padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
-    visibility: visible;
+    position: fixed;
+    visibility: hidden;
 
     .drawer__dialog {
-      inset: 0 auto auto 0;
-      width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
-      max-height: 100vh;
-      background-color: transparent;
+      background-color: css.get("background-shift");
+      outline: none;
     }
 
     .drawer__container {
-      scroll-behavior: smooth;
-      padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
+      overscroll-behavior: contain;
+      padding: css.get("layout", "padding");
+    }
+  }
+
+  /**
+  * Inline aside
+  */
+
+  @include core.media-min("aside") {
+    .drawer_aside {
+      z-index: 2;
+      box-sizing: content-box;
+      width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+      padding-right: max(0px, calc((100% - (css.get("layout", "width") + (css.get("layout", "padding") * 2))) / 2));
+      visibility: visible;
+
+      .drawer__dialog {
+        inset: 0 auto auto 0;
+        width: calc(css.get("layout", "aside-width") + css.get("layout", "padding"));
+        max-height: 100vh;
+        background-color: transparent;
+      }
+
+      .drawer__container {
+        scroll-behavior: smooth;
+        padding: calc(css.get("layout", "navibar-height") + css.get("layout", "content-padding-y")) css.get("layout", "padding") calc(css.get("layout", "footer-height") + css.get("layout", "content-padding-y")) css.get("focus-ring-width");
+      }
     }
   }
 }
