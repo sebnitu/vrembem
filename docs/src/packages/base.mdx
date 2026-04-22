@@ -110,7 +110,7 @@ Base modules each have their own output styles. These are all output by default 
 
 ```scss
 @include config.set("base-output-exceptions", (
-  "normalize", "headings"
+  "global", "headings"
 ));
 ```
 </ReferenceCard>
@@ -132,11 +132,11 @@ Use the `base-output` configuration to toggle output for all modules. Add except
   "pre"
 ));
 
-// Disable the output of all modules except for "normalize" and "headings"
+// Disable the output of all modules except for "global" and "headings"
 @include config.set((
   "base-output": false
   "base-output-exceptions": (
-    "normalize",
+    "global",
     "headings"
   )
 ));
