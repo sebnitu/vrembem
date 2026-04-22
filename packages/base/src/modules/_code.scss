@@ -1,17 +1,17 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("code") {
-  @include css.register("code");
+  @include tokens.register("code");
 
   #{fun.selector("code")} {
-    padding: css.get("code", "padding", 0.125rem 0.375rem);
-    border: css.get("code", "border", null);
-    border-radius: css.get("code", "border-radius", css.get("border-radius"));
-    font-family: css.get("font-family-mono");
-    font-size: css.get("code", "font-size", css.get("font-size-sm"));
-    color: css.get("code", "foreground", css.get("foreground-accent-alt"));
+    padding: tokens.get("code", "padding", 0.125rem 0.375rem);
+    border: tokens.get("code", "border", null);
+    border-radius: tokens.get("code", "border-radius", tokens.get("border-radius"));
+    font-family: tokens.get("font-family-mono");
+    font-size: tokens.get("code", "font-size", tokens.get("font-size-sm"));
+    color: tokens.get("code", "foreground", tokens.get("foreground-accent-alt"));
     overflow-wrap: break-word;
-    background: css.get("code", "background", css.get("background-alt"));
+    background: tokens.get("code", "background", tokens.get("background-alt"));
   }
 }

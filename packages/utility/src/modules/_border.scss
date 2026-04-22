@@ -1,25 +1,25 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("border") {
   #{fun.selector("border")} {
-    border: fun.maybe-important(css.get("border"));
+    border: fun.maybe-important(tokens.get("border"));
   }
 
   #{fun.selector("border", "top")} {
-    border-top: fun.maybe-important(css.get("border"));
+    border-top: fun.maybe-important(tokens.get("border"));
   }
 
   #{fun.selector("border", "bottom")} {
-    border-bottom: fun.maybe-important(css.get("border"));
+    border-bottom: fun.maybe-important(tokens.get("border"));
   }
 
   #{fun.selector("border", "left")} {
-    border-left: fun.maybe-important(css.get("border"));
+    border-left: fun.maybe-important(tokens.get("border"));
   }
 
   #{fun.selector("border", "right")} {
-    border-right: fun.maybe-important(css.get("border"));
+    border-right: fun.maybe-important(tokens.get("border"));
   }
 
   #{fun.selector("border", "none")} {
@@ -43,11 +43,11 @@
   }
 
   #{fun.selector("border", "color-strong")} {
-    border-color: fun.maybe-important(css.get("border-color-strong"));
+    border-color: fun.maybe-important(tokens.get("border-color-strong"));
   }
 
   #{fun.selector("border", "color-stronger")} {
-    border-color: fun.maybe-important(css.get("border-color-stronger"));
+    border-color: fun.maybe-important(tokens.get("border-color-stronger"));
   }
 
   #{fun.selector("border", "color-transparent")} {

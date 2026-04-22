@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 /// Output the base styles for a menu action component element.
 /// - Setup of menu specific CSS variables with shared form-control fallbacks.
@@ -12,7 +12,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: css.get("menu", "action-gap", 0.5em);
+  gap: tokens.get("menu", "action-gap", 0.5em);
   align-items: center;
   justify-content: flex-start;
   width: 100%;

@@ -1,10 +1,10 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@include css.set(
+@include tokens.set(
   "tictactoe",
   (
-    "border": 0.25em solid css.reference("tictactoe", "border-color")
+    "border": 0.25em solid tokens.reference("tictactoe", "border-color")
   )
 );
 @include theme.set(
@@ -44,26 +44,26 @@
   height: 3em;
   font-size: 1.6em;
   text-align: center;
-  box-shadow: inset 0 0 0 0.25em css.get("tictactoe", "box-shadow-color");
+  box-shadow: inset 0 0 0 0.25em tokens.get("tictactoe", "box-shadow-color");
 
   &.is-winner {
-    color: css.get("tictactoe", "foreground-winner");
-    background-color: css.get("tictactoe", "background-winner");
+    color: tokens.get("tictactoe", "foreground-winner");
+    background-color: tokens.get("tictactoe", "background-winner");
   }
 
   &:first-child {
-    border-right: css.get("tictactoe", "border");
+    border-right: tokens.get("tictactoe", "border");
   }
 
   &:last-child {
-    border-left: css.get("tictactoe", "border");
+    border-left: tokens.get("tictactoe", "border");
   }
 
   tr:first-child & {
-    border-bottom: css.get("tictactoe", "border");
+    border-bottom: tokens.get("tictactoe", "border");
   }
 
   tr:last-child & {
-    border-top: css.get("tictactoe", "border");
+    border-top: tokens.get("tictactoe", "border");
   }
 }

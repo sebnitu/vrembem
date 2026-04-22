@@ -1,19 +1,19 @@
-@use "../modules/css";
+@use "../modules/tokens";
 
 /// Apply the base styles for focus-ring using the outline properties.
 @mixin focus-ring-base() {
-  outline: css.get("focus-ring-width") css.get("focus-ring-style") transparent;
-  outline-offset: css.get("focus-ring-offset");
+  outline: tokens.get("focus-ring-width") tokens.get("focus-ring-style") transparent;
+  outline-offset: tokens.get("focus-ring-offset");
 }
 
 /// Builds the focus ring styles by applying a number of custom property values
 /// and optional component overrides using the outline property.
 ///
-/// @param {string} $color (css.get("focus-ring-color"))
+/// @param {string} $color (tokens.get("focus-ring-color"))
 ///   The color to use as the fallback value.
-/// @param {number} $opacity (css.get("focus-ring-opacity"))
+/// @param {number} $opacity (tokens.get("focus-ring-opacity"))
 ///   The value to set for the opacity of the color.
 ///
-@mixin focus-ring-color($color: css.get("focus-ring-color"), $opacity: css.get("focus-ring-opacity")) {
+@mixin focus-ring-color($color: tokens.get("focus-ring-color"), $opacity: tokens.get("focus-ring-opacity")) {
   outline-color: oklch(from $color l c h / $opacity);
 }

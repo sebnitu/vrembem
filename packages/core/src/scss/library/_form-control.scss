@@ -1,4 +1,4 @@
-@use "../modules/css";
+@use "../modules/tokens";
 @use "./size" as mix;
 
 /// Output the shared form-control properties with the component specific CSS
@@ -11,21 +11,21 @@
   // These styles are not needed by menu actions (button) elements because
   // they're set on the root menu component directly and are inherited.
   @if $component != "menu" {
-    font-size: css.get($component, "size", css.get("form-control-size"));
-    line-height: css.get($component, "line-height", css.get("form-control-line-height"));
+    font-size: tokens.get($component, "size", tokens.get("form-control-size"));
+    line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
   }
 
   @if $component == "input" {
-    padding: css.get($component, "padding", css.get("form-control-padding-y"));
+    padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
   } @else {
-    padding: css.get($component, "padding", css.get("form-control-padding"));
+    padding: tokens.get($component, "padding", tokens.get("form-control-padding"));
   }
 
-  border-width: css.get($component, "border-width", css.get("form-control-border-width"));
-  border-radius: css.get($component, "border-radius", css.get("form-control-border-radius"));
-  transition-timing-function: css.get($component, "transition-timing-function", css.get("form-control-transition-timing-function"));
-  transition-duration: css.get($component, "transition-duration", css.get("form-control-transition-duration"));
-  transition-property: css.get($component, "transition-property", css.get("form-control-transition-property"));
+  border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
+  border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
+  transition-timing-function: tokens.get($component, "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+  transition-duration: tokens.get($component, "transition-duration", tokens.get("form-control-transition-duration"));
+  transition-property: tokens.get($component, "transition-property", tokens.get("form-control-transition-property"));
 }
 
 /// Output the width and height with the form-control-size CSS variable value.
@@ -35,5 +35,5 @@
 ///   include `"min"` and `"max"`.
 ///
 @mixin form-control-size($prefix: null) {
-  @include mix.size(css.get("form-control-size-calc"), css.get("form-control-size-calc"), $prefix);
+  @include mix.size(tokens.get("form-control-size-calc"), tokens.get("form-control-size-calc"), $prefix);
 }

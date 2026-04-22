@@ -1,10 +1,10 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 @each $key, $value in config.get("icon-size", "variants") {
   #{core.bem("icon", null, "size", $key)} {
-    @include css.override("icon", "size", core.resolve-nth($value, 1));
-    @include css.override("icon", "stroke-width", core.resolve-nth($value, 2));
+    @include tokens.override("icon", "size", core.resolve-nth($value, 1));
+    @include tokens.override("icon", "stroke-width", core.resolve-nth($value, 2));
   }
 }

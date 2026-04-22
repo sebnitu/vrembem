@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 #{core.bem("table", null, "hover")} {
@@ -12,7 +12,7 @@
   tbody tr:focus,
   tbody tr:focus-within {
     z-index: 2;
-    color: css.get("table", "foreground-hover", inherit);
-    background-color: css.get("table", "background-hover", palette.get("primary", $a: 15%));
+    color: tokens.get("table", "foreground-hover", inherit);
+    background-color: tokens.get("table", "background-hover", palette.get("primary", $a: 15%));
   }
 }

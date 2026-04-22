@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -30,4 +30,4 @@ $default: (
 );
 
 @include config.apply($config, $default);
-@include css.register("section");
+@include tokens.register("section");

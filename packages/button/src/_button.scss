@@ -1,48 +1,48 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "./mixins" as mix;
 
 #{core.bem("button")} {
   @include mix.base;
 
-  border-color: css.get("button", "border-color", css.get("border-color-strong"));
-  color: css.get("button", "foreground", css.get("foreground-strong"));
-  background-color: css.get("button", "background", css.get("background"));
-  box-shadow: css.get("button", "box-shadow", none);
+  border-color: tokens.get("button", "border-color", tokens.get("border-color-strong"));
+  color: tokens.get("button", "foreground", tokens.get("foreground-strong"));
+  background-color: tokens.get("button", "background", tokens.get("background"));
+  box-shadow: tokens.get("button", "box-shadow", none);
 
   &:hover {
-    border-color: css.get("button", "border-color-hover", "border-color", css.get("border-color-stronger"));
-    color: css.get("button", "foreground-hover", "foreground", css.get("foreground-strong"));
-    background-color: css.get("button", "background-hover", "background", css.get("background"));
-    box-shadow: css.get("button", "box-shadow-hover", "box-shadow", css.get("box-shadow-1"));
+    border-color: tokens.get("button", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
+    color: tokens.get("button", "foreground-hover", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("button", "background-hover", "background", tokens.get("background"));
+    box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", tokens.get("box-shadow-1"));
   }
 
   &:focus {
-    border-color: css.get("button", "border-color-focus", "border-color-hover", "border-color", css.get("border-color-stronger"));
-    color: css.get("button", "foreground-focus", "foreground-hover", "foreground", css.get("foreground-strong"));
-    background-color: css.get("button", "background-focus", "background-hover", "background", css.get("background"));
-    box-shadow: css.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", css.get("box-shadow-1"));
+    border-color: tokens.get("button", "border-color-focus", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
+    color: tokens.get("button", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("button", "background-focus", "background-hover", "background", tokens.get("background"));
+    box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", tokens.get("box-shadow-1"));
   }
 
   &:focus-visible {
-    @include core.focus-ring-color(css.get("button", "accent", css.get("form-control-accent")));
+    @include core.focus-ring-color(tokens.get("button", "accent", tokens.get("form-control-accent")));
 
-    border-color: css.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", css.get("button", "accent", css.get("form-control-accent")));
-    color: css.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", css.get("foreground-strong"));
-    background-color: css.get("button", "background-focus-visible", "background-focus", "background-hover", "background", css.get("background"));
-    box-shadow: css.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+    border-color: tokens.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", tokens.get("button", "accent", tokens.get("form-control-accent")));
+    color: tokens.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("button", "background-focus-visible", "background-focus", "background-hover", "background", tokens.get("background"));
+    box-shadow: tokens.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:active {
-    border-color: css.get("button", "border-color-active", "border-color", css.get("foreground-strong"));
-    color: css.get("button", "foreground-active", "foreground", css.get("foreground-strong"));
-    background-color: css.get("button", "background-active", "background", css.get("background"));
-    box-shadow: css.get("button", "box-shadow-active", "box-shadow", none);
+    border-color: tokens.get("button", "border-color-active", "border-color", tokens.get("foreground-strong"));
+    color: tokens.get("button", "foreground-active", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("button", "background-active", "background", tokens.get("background"));
+    box-shadow: tokens.get("button", "box-shadow-active", "box-shadow", none);
   }
 
   &:disabled:not(.is-loading) {
     pointer-events: none;
-    opacity: css.get("button", "opacity-disabled", css.get("form-control-opacity-disabled"));
+    opacity: tokens.get("button", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
   }
 
   &.is-loading {
@@ -52,7 +52,7 @@
     &::after {
       content: "";
 
-      @include css.override("loading", "color", css.get("button", "foreground", css.get("foreground-strong")));
+      @include tokens.override("loading", "color", tokens.get("button", "foreground", tokens.get("foreground-strong")));
       @include core.loading-spinner;
     }
   }

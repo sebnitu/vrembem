@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/button";
 
@@ -29,7 +29,7 @@ html {
   position: relative;
   transform: translateY(1rem);
   opacity: 0;
-  transition: css.get("transition");
+  transition: tokens.get("transition");
   transition-property: transform, opacity;
 
   &.is-active {
@@ -86,7 +86,7 @@ html {
 
 // Source: sass-utilities.mdx ## focus-ring-color
 
-@include css.register("focus-ring-example");
+@include tokens.register("focus-ring-example");
 
 .focus-ring-example {
   @include core.focus-ring-base;

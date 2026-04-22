@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "../functions" as fun;
 
@@ -32,15 +32,15 @@
   // Theme CSS Variable output
 
   #{fun.selector("background")} {
-    background-color: fun.maybe-important(css.get("background"));
+    background-color: fun.maybe-important(tokens.get("background"));
   }
 
   #{fun.selector("background", "alt")} {
-    background-color: fun.maybe-important(css.get("background-alt"));
+    background-color: fun.maybe-important(tokens.get("background-alt"));
   }
 
   #{fun.selector("background", "shift")} {
-    background-color: fun.maybe-important(css.get("background-shift"));
+    background-color: fun.maybe-important(tokens.get("background-shift"));
   }
 
   // Palette CSS Variable output
@@ -51,12 +51,12 @@
     }
 
     #{fun.selector("background", $name, "auto")} {
-      background-color: fun.maybe-important(css.get("#{$name}-background"));
+      background-color: fun.maybe-important(tokens.get("#{$name}-background"));
     }
 
     @each $key in map.keys(config.get("palette-variants")) {
       #{fun.selector("background", $name, $key)} {
-        background-color: fun.maybe-important(css.get("palette", "#{$name}-#{$key}"));
+        background-color: fun.maybe-important(tokens.get("palette", "#{$name}-#{$key}"));
       }
     }
   }

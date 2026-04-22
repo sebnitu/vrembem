@@ -1,9 +1,9 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("box-shadow") {
   #{fun.selector("box-shadow")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow"));
   }
 
   #{fun.selector("box-shadow", "flat")} {
@@ -11,22 +11,22 @@
   }
 
   #{fun.selector("box-shadow", "1")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow-1"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-1"));
   }
 
   #{fun.selector("box-shadow", "2")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow-2"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-2"));
   }
 
   #{fun.selector("box-shadow", "3")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow-3"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-3"));
   }
 
   #{fun.selector("box-shadow", "4")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow-4"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-4"));
   }
 
   #{fun.selector("box-shadow", "5")} {
-    box-shadow: fun.maybe-important(css.get("box-shadow-5"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-5"));
   }
 }

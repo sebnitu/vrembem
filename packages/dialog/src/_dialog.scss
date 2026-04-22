@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 #{core.bem("dialog")} {
@@ -9,25 +9,25 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  border: css.get("dialog", "border", css.get("border"));
-  border-radius: css.get("dialog", "border-radius", css.get("border-radius"));
-  color: css.get("dialog", "foreground", css.get("foreground"));
-  background: css.get("dialog", "background", css.get("background"));
+  border: tokens.get("dialog", "border", tokens.get("border"));
+  border-radius: tokens.get("dialog", "border-radius", tokens.get("border-radius"));
+  color: tokens.get("dialog", "foreground", tokens.get("foreground"));
+  background: tokens.get("dialog", "background", tokens.get("background"));
   background-clip: padding-box;
-  box-shadow: css.get("dialog", "box-shadow", css.get("box-shadow-4"));
-  transition-timing-function: css.get("dialog", "transition-timing-function", css.get("transition-timing-function"));
-  transition-duration: css.get("dialog", "transition-duration", css.get("transition-duration"));
-  transition-property: css.get("dialog", "transition-duration", (outline, border-color));
+  box-shadow: tokens.get("dialog", "box-shadow", tokens.get("box-shadow-4"));
+  transition-timing-function: tokens.get("dialog", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("dialog", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("dialog", "transition-duration", (outline, border-color));
 
   &:focus-visible,
   &[role="alertdialog"] {
-    @include core.focus-ring-color(css.get("dialog", "focus-ring-color", css.get("focus-ring-color")), css.get("dialog", "focus-ring-opacity", 80%));
+    @include core.focus-ring-color(tokens.get("dialog", "focus-ring-color", tokens.get("focus-ring-color")), tokens.get("dialog", "focus-ring-opacity", 80%));
 
-    border-color: css.get("dialog", "focus-ring-color", css.get("focus-ring-color"));
+    border-color: tokens.get("dialog", "focus-ring-color", tokens.get("focus-ring-color"));
   }
 
   &[role="alertdialog"] {
-    @include css.override("dialog", "focus-ring-color", palette.get("important"));
+    @include tokens.override("dialog", "focus-ring-color", palette.get("important"));
   }
 }
 
@@ -39,7 +39,7 @@
 #{core.bem("dialog", "body")},
 #{core.bem("dialog", "footer")} {
   flex: 0 0 auto;
-  padding: css.get("dialog", "padding", 1em);
+  padding: tokens.get("dialog", "padding", 1em);
 }
 
 #{core.bem("dialog", "header")},
@@ -47,34 +47,34 @@
   position: sticky;
   z-index: 1;
   display: flex;
-  gap: css.get("dialog", "gap", 0.5em);
+  gap: tokens.get("dialog", "gap", 0.5em);
   align-items: center;
   vertical-align: middle;
-  background: css.get("dialog", "background", css.get("background"));
+  background: tokens.get("dialog", "background", tokens.get("background"));
 }
 
 #{core.bem("dialog", "header")} {
   top: 0;
-  border-bottom: css.get("dialog", "sep-border", css.get("border"));
+  border-bottom: tokens.get("dialog", "sep-border", tokens.get("border"));
 }
 
 #{core.bem("dialog", "body")} {
   flex-grow: 1;
 
   & + & {
-    border-top: css.get("dialog", "sep-border", css.get("border"));
+    border-top: tokens.get("dialog", "sep-border", tokens.get("border"));
   }
 }
 
 #{core.bem("dialog", "footer")} {
   bottom: 0;
-  border-top: css.get("dialog", "sep-border", css.get("border"));
+  border-top: tokens.get("dialog", "sep-border", tokens.get("border"));
 }
 
 #{core.bem("dialog", "title")} {
   flex-grow: 1;
-  font-size: css.get("dialog", "title-font-size", css.get("font-size-lg"));
-  font-weight: css.get("dialog", "title-font-weight", css.get("font-weight-semi-bold"));
-  line-height: css.get("dialog", "title-line-height", inherit);
-  color: css.get("dialog", "title-color", css.get("foreground-strong"));
+  font-size: tokens.get("dialog", "title-font-size", tokens.get("font-size-lg"));
+  font-weight: tokens.get("dialog", "title-font-weight", tokens.get("font-weight-semi-bold"));
+  line-height: tokens.get("dialog", "title-line-height", inherit);
+  color: tokens.get("dialog", "title-color", tokens.get("foreground-strong"));
 }

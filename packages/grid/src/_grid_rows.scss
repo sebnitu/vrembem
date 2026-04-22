@@ -1,12 +1,12 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-grid-rows: config.get("grid-rows", "total");
 
 @for $i from 1 through $-grid-rows {
   #{core.bem("grid", null, "rows", $i)} {
-    @include css.override("grid", "rows", $i);
+    @include tokens.override("grid", "rows", $i);
   }
 }
 
@@ -14,7 +14,7 @@ $-grid-rows: config.get("grid-rows", "total");
   @include core.media-min($value) {
     @for $i from 1 through $-grid-rows {
       #{core.bem("grid", null, "rows", $i, $bp)} {
-        @include css.override("grid", "rows", $i);
+        @include tokens.override("grid", "rows", $i);
       }
     }
   }

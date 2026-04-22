@@ -1,9 +1,9 @@
-@use "../modules/css";
+@use "../modules/tokens";
 @use "./size" as *;
 
 $-output-spin-animation: true;
 
-@include css.register("loading");
+@include tokens.register("loading");
 
 /// Output the styles for a loading spinner. If a position argument is provided
 /// with a value of "absolute" or "fixed" the spinner will be centered to its
@@ -13,19 +13,19 @@ $-output-spin-animation: true;
 ///   The value of the position property to use.
 ///
 @mixin loading-spinner($position: absolute) {
-  @include size(css.get("loading", "size", 1em));
+  @include size(tokens.get("loading", "size", 1em));
 
   @if $position == absolute or $position == fixed {
-    top: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
-    left: calc(50% - calc(css.get("loading", "size", 1em) * 0.5));
+    top: calc(50% - calc(tokens.get("loading", "size", 1em) * 0.5));
+    left: calc(50% - calc(tokens.get("loading", "size", 1em) * 0.5));
   }
 
   position: $position;
   display: inline-block;
-  border: css.get("loading", "border", 2px solid);
-  border-color: css.get("loading", "color", currentcolor) css.get("loading", "color", currentcolor) transparent transparent;
-  border-radius: css.get("border-radius-circle");
-  animation: spin css.get("loading", "duration", 0.6s) infinite linear;
+  border: tokens.get("loading", "border", 2px solid);
+  border-color: tokens.get("loading", "color", currentcolor) tokens.get("loading", "color", currentcolor) transparent transparent;
+  border-radius: tokens.get("border-radius-circle");
+  animation: spin tokens.get("loading", "duration", 0.6s) infinite linear;
 
   // Only output the spin animation once
   @if $-output-spin-animation {

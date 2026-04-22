@@ -1,14 +1,14 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
-@include css.set("reference-table", "max-height", 28rem);
+@include tokens.set("reference-table", "max-height", 28rem);
 
 .reference-table {
   scroll-margin-top: 84px; // Magic number found using JS: `this.el.getBoundingClientRect().top;`
   width: 100%;
-  font-size: css.get("font-size");
-  transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+  font-size: tokens.get("font-size");
+  transition: max-height tokens.get("transition-duration") tokens.get("transition-timing-function");
 
   table {
     position: relative;
@@ -17,20 +17,20 @@
   }
 
   thead {
-    border-bottom: 1px solid css.get("border-color");
+    border-bottom: 1px solid tokens.get("border-color");
   }
 
   tr {
-    scroll-margin-top: calc(css.get("layout", "toolbar-height") + 81px);
+    scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
     position: relative;
-    border-top: 1px solid css.get("border-color");
-    border-radius: css.get("border-radius");
+    border-top: 1px solid tokens.get("border-color");
+    border-radius: tokens.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", $a: 20%);
 
     @include core.media-min("sidebar") {
-      scroll-margin-top: calc(css.get("layout", "navibar-height") + 82px);
+      scroll-margin-top: calc(tokens.get("layout", "navibar-height") + 82px);
     }
 
     &.is-active {
@@ -58,13 +58,13 @@
     padding: 0;
 
     &:first-child {
-      @include css.override("pre", "foreground", css.get("foreground-accent-alt"));
+      @include tokens.override("pre", "foreground", tokens.get("foreground-accent-alt"));
 
       text-wrap: nowrap;
     }
 
     &:last-child {
-      @include css.override("pre", "foreground", css.get("foreground-accent"));
+      @include tokens.override("pre", "foreground", tokens.get("foreground-accent"));
     }
   }
 
@@ -83,14 +83,14 @@
       background-color: transparent;
 
       .icon {
-        @include css.override("icon", "size", 1em);
+        @include tokens.override("icon", "size", 1em);
       }
     }
 
     .code-block__copy-button {
       right: 0;
       opacity: 0;
-      background-color: css.get("background");
+      background-color: tokens.get("background");
 
       &:hover,
       &:focus {
@@ -110,24 +110,24 @@
   }
 
   .notice {
-    margin-top: css.get("spacing-md");
-    border-radius: css.get("border-radius");
-    font-size: css.get("font-size");
+    margin-top: tokens.get("spacing-md");
+    border-radius: tokens.get("border-radius");
+    font-size: tokens.get("font-size");
   }
 
   &.is-expandable {
     overflow: hidden;
-    max-height: css.get("reference-table", "max-height");
+    max-height: tokens.get("reference-table", "max-height");
   }
 
   &.is-expanded {
     overflow: visible;
 
     thead {
-      top: calc(css.get("layout", "toolbar-height") - 1px);
+      top: calc(tokens.get("layout", "toolbar-height") - 1px);
 
       @include core.media-min("sidebar") {
-        top: calc(css.get("layout", "navibar-height") - 1px);
+        top: calc(tokens.get("layout", "navibar-height") - 1px);
       }
     }
   }
@@ -136,12 +136,12 @@
 .reference-table__header {
   position: sticky;
   z-index: 2;
-  top: calc(css.get("layout", "toolbar-height") - 1px);
-  padding: css.get("spacing-md") 0;
-  background: css.get("background");
+  top: calc(tokens.get("layout", "toolbar-height") - 1px);
+  padding: tokens.get("spacing-md") 0;
+  background: tokens.get("background");
 
   @include core.media-min("sidebar") {
-    top: css.get("layout", "navibar-height");
+    top: tokens.get("layout", "navibar-height");
   }
 
   .is-expandable:not(.is-expanded) & {
@@ -162,7 +162,7 @@
     align-items: center;
     justify-content: center;
     padding: 0 0.75em;
-    color: css.get("foreground-subtle");
+    color: tokens.get("foreground-subtle");
 
     &:hover {
       color: palette.get("primary");
@@ -177,16 +177,16 @@
   }
 
   .input {
-    @include css.override(
+    @include tokens.override(
       "input",
       (
         "padding": 0.75rem,
-        "size": css.get("font-size-sm")
+        "size": tokens.get("font-size-sm")
       )
     );
 
     padding-left: 3.5em;
-    font-family: css.get("font-family-mono");
+    font-family: tokens.get("font-family-mono");
 
     &:focus ~ .input-icon {
       color: palette.get("primary");
@@ -196,7 +196,7 @@
 
 .table-anchor,
 .table-anchor-clear {
-  @include css.override("core", "form-control-border-width", 0);
+  @include tokens.override("core", "form-control-border-width", 0);
 
   user-select: none;
   position: absolute;
@@ -206,8 +206,8 @@
   align-items: center;
   justify-content: center;
   margin-left: 0.5rem;
-  padding: css.get("form-control-padding-y");
-  border-radius: css.get("border-radius-circle");
+  padding: tokens.get("form-control-padding-y");
+  border-radius: tokens.get("border-radius-circle");
   font-size: 1rem;
   font-weight: 500;
   line-height: 1em;
@@ -253,5 +253,5 @@
   bottom: 0;
   padding: 1.5em 0;
   text-align: center;
-  background: linear-gradient(to bottom, transparent, css.reference("core", "background") 70%);
+  background: linear-gradient(to bottom, transparent, tokens.reference("core", "background") 70%);
 }

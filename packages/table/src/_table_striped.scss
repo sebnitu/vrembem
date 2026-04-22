@@ -1,12 +1,12 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("table", null, "striped")} {
   thead tr {
-    background-color: css.get("table", "background-striped", css.get("background-alt"));
+    background-color: tokens.get("table", "background-striped", tokens.get("background-alt"));
   }
 
   tr:nth-child(even) {
-    background-color: css.get("table", "background-striped", css.get("background-alt"));
+    background-color: tokens.get("table", "background-striped", tokens.get("background-alt"));
   }
 }

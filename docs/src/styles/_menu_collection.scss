@@ -1,14 +1,14 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .menu_collection {
-  @include css.override("menu", "gap", 0);
+  @include tokens.override("menu", "gap", 0);
 
   margin-top: 0.5rem;
 
   .menu__action.is-active,
   .menu__action.is-parent {
-    color: css.get("foreground-accent");
-    background: css.get("background");
+    color: tokens.get("foreground-accent");
+    background: tokens.get("background");
   }
 
   .menu {

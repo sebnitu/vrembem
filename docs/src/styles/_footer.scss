@@ -1,19 +1,19 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .footer {
   display: flex;
-  color: css.get("foreground-subtle");
+  color: tokens.get("foreground-subtle");
 }
 
 .footer__content {
   flex-grow: 1;
   width: 100%;
-  max-width: css.get("layout", "content-width");
+  max-width: tokens.get("layout", "content-width");
   margin: auto;
   padding: 3rem 0;
-  border-top: css.get("border");
+  border-top: tokens.get("border");
 
   .is-home & {
     max-width: unset;
@@ -25,7 +25,7 @@
   flex-grow: 0;
   justify-content: center;
   padding: 3rem 0;
-  border-top: css.get("border");
+  border-top: tokens.get("border");
   color: palette.get("primary");
   text-align: center;
 
@@ -34,8 +34,8 @@
       position: absolute;
       z-index: 2;
       right: 0;
-      width: calc(css.get("layout", "aside-width") - css.get("focus-ring-width"));
-      background-color: css.get("background");
+      width: calc(tokens.get("layout", "aside-width") - tokens.get("focus-ring-width"));
+      background-color: tokens.get("background");
     }
 
     .is-home & {

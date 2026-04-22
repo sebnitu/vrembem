@@ -1,9 +1,9 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("transition") {
   #{fun.selector("transition")} {
-    transition: fun.maybe-important(all #{css.get("transition-duration")} #{css.get("transition-timing-function")});
+    transition: fun.maybe-important(all #{tokens.get("transition-duration")} #{tokens.get("transition-timing-function")});
   }
 
   #{fun.selector("transition", "none")} {
@@ -11,10 +11,10 @@
   }
 
   #{fun.selector("transition", "duration-short")} {
-    transition-duration: fun.maybe-important(css.get("transition-duration-short"));
+    transition-duration: fun.maybe-important(tokens.get("transition-duration-short"));
   }
 
   #{fun.selector("transition", "duration-long")} {
-    transition-duration: fun.maybe-important(css.get("transition-duration-long"));
+    transition-duration: fun.maybe-important(tokens.get("transition-duration-long"));
   }
 }

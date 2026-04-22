@@ -1,24 +1,25 @@
 ---
-title: core/css
-description: "Used to define, manage, and output global and component-level custom properties."
+title: core/tokens
+description: "Used to define, manage, and output global and component-level design tokens expressed as CSS variables."
 parent: core
 group: sass-modules
+order: 2
 ---
 
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core/css";
-  ```
+```scss
+@use "@vrembem/core/tokens";
+```
 </CodeExample>
 
 ## Basic usage
 
-For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
+For most use-cases, `core/tokens` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
 
-### css.get()
+### tokens.get()
 
 <ReferenceBar type="function" />
 
@@ -40,8 +41,8 @@ Function to return a custom property reference that has been stored in the custo
   <Fragment slot="tab-scss">
     ```scss
     .block {
-      background: css.get("block", "background");
-      color: css.get("block", "foreground-hover", "foreground");
+      background: tokens.get("block", "background");
+      color: tokens.get("block", "foreground-hover", "foreground");
     }
     ```
   </Fragment>
@@ -56,7 +57,7 @@ Function to return a custom property reference that has been stored in the custo
 </CodeExample>
 
 
-### css.set()
+### tokens.set()
 
 <ReferenceBar type="mixin" />
 
@@ -83,20 +84,20 @@ Mixin to store custom properties for later definition and reference. Can also up
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Set a single option
-  @include css.set("block", "accent", teal);
+```scss
+// Set a single option
+@include tokens.set("block", "accent", teal);
 
-  // Set multiple options at once
-  @include css.set("block", (
-    "background": darkGreen,
-    "foreground": lightPink
-  ));
-  ```
+// Set multiple options at once
+@include tokens.set("block", (
+  "background": darkGreen,
+  "foreground": lightPink
+));
+```
 </CodeExample>
 
 
-### css.output()
+### tokens.output()
 
 <ReferenceBar type="mixin" />
 
@@ -114,7 +115,7 @@ Output all custom properties of a provided component. Or output all custom prope
   <Fragment slot="tab-scss">
     ```scss
     :root {
-      @include css.output("block");
+      @include tokens.output("block");
     }
     ```
   </Fragment>
@@ -129,7 +130,7 @@ Output all custom properties of a provided component. Or output all custom prope
 </CodeExample>
 
 
-### css.override()
+### tokens.override()
 
 <ReferenceBar type="mixin" />
 
@@ -155,7 +156,7 @@ Mixin to override previously defined custom properties. This is primarily used i
   <Fragment slot="tab-scss">
     ```scss
     .block_modifier {
-      @include css.override("block", (
+      @include tokens.override("block", (
         "background": darkGreen,
         "foreground": lightPink
       ));
@@ -175,10 +176,9 @@ Mixin to override previously defined custom properties. This is primarily used i
 
 ## Advanced usage
 
-For more advanced use-cases, `core/css` provides a more primitive API for fine grained custom property management.
+For more advanced use-cases, `core/tokens` provides a more primitive API for fine grained custom property management.
 
-
-### css.register()
+### tokens.register()
 
 <ReferenceBar type="mixin" />
 
@@ -196,11 +196,11 @@ Register a component in the custom properties map. This is used when a component
   <Fragment slot="tab-scss">
     ```scss
     // Register the component's namespace if there are no properties set.
-    @include css.register("block");
+    @include tokens.register("block");
 
     // Provide a fallback if a specific property has not been set.
     .block {
-      padding: css.get("block", "padding", 1em);
+      padding: tokens.get("block", "padding", 1em);
     }
     ```
   </Fragment>
@@ -214,11 +214,11 @@ Register a component in the custom properties map. This is used when a component
 </CodeExample>
 
 
-### css.define()
+### tokens.define()
 
 <ReferenceBar type="mixin" />
 
-Mixin to define a custom property using the provided property name and value. Automatically applied with prefix and component name if provided. This is used internally by `css.output` and `css.override`.
+Mixin to define a custom property using the provided property name and value. Automatically applied with prefix and component name if provided. This is used internally by `tokens.output` and `tokens.override`.
 
 #### Arguments
 
@@ -240,7 +240,7 @@ Mixin to define a custom property using the provided property name and value. Au
   <Fragment slot="tab-scss">
     ```scss
     .block {
-      @include css.define("block", "accent", orange);
+      @include tokens.define("block", "accent", orange);
     }
     ```
   </Fragment>
@@ -254,7 +254,7 @@ Mixin to define a custom property using the provided property name and value. Au
 </CodeExample>
 
 
-### css.reference()
+### tokens.reference()
 
 <ReferenceBar type="function" />
 
@@ -280,7 +280,7 @@ Function to create reference to a custom property using the provided component n
   <Fragment slot="tab-scss">
     ```scss
     .block {
-      background: css.reference("block", "accent", orange);
+      background: tokens.reference("block", "accent", orange);
     }
     ```
   </Fragment>
@@ -294,7 +294,7 @@ Function to create reference to a custom property using the provided component n
 </CodeExample>
 
 
-### css.has()
+### tokens.has()
 
 <ReferenceBar type="function" />
 
@@ -309,16 +309,16 @@ Function used to check if a custom property has been set.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @include css.set("block", "background", darkGreen);
+```scss
+@include tokens.set("block", "background", darkGreen);
 
-  @debug css.has("block", "background"); // Returns true
-  @debug css.has("block", "border"); // Returns false
-  ```
+@debug tokens.has("block", "background"); // Returns true
+@debug tokens.has("block", "border"); // Returns false
+```
 </CodeExample>
 
 
-### css.remove()
+### tokens.remove()
 
 <ReferenceBar type="mixin" />
 
@@ -333,14 +333,14 @@ Mixin used to remove a previously set custom property.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Remove the "background" property from the "block" component.
-  @include css.remove("block", "background");
-  ```
+```scss
+// Remove the "background" property from the "block" component.
+@include tokens.remove("block", "background");
+```
 </CodeExample>
 
 
-### css.log()
+### tokens.log()
 
 <ReferenceBar type="mixin" />
 
@@ -359,13 +359,13 @@ Log to console all custom properties, a component map or component theme. Provid
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @include css.log("block");
+```scss
+@include tokens.log("block");
 
-  // Debug output:
-  // Custom properties of "block": (
-  //   "background": blue,
-  //   "foreground": green,
-  // )
-  ```
+// Debug output:
+// Custom properties of "block": (
+//   "background": blue,
+//   "foreground": green,
+// )
+```
 </CodeExample>

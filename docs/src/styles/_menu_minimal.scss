@@ -1,12 +1,12 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .menu_minimal {
-  @include css.override(
+  @include tokens.override(
     "menu",
     (
       "gap": 0,
-      "size": css.get("font-size-sm")
+      "size": tokens.get("font-size-sm")
     )
   );
 
@@ -32,7 +32,7 @@
     }
 
     &:hover::before {
-      background: css.get("foreground-strong");
+      background: tokens.get("foreground-strong");
     }
 
     &.is-active::before {

@@ -1,5 +1,5 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .pagi {
@@ -29,11 +29,11 @@
 .pagi_link {
   display: block;
   padding: 1rem;
-  border: 1px solid css.get("border-color");
-  border-radius: css.get("border-radius");
+  border: 1px solid tokens.get("border-color");
+  border-radius: tokens.get("border-radius");
   transition: border-color;
-  transition-timing-function: css.get("transition-timing-function");
-  transition-duration: css.get("transition-duration");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration");
 
   &:hover {
     border-color: palette.get("primary");
@@ -41,11 +41,11 @@
 }
 
 .pagi_label {
-  font-size: css.get("font-size-sm");
-  color: css.get("foreground-subtle");
+  font-size: tokens.get("font-size-sm");
+  color: tokens.get("foreground-subtle");
 }
 
 .pagi_title {
-  font-size: css.get("font-size-lg");
+  font-size: tokens.get("font-size-lg");
   color: palette.get("primary");
 }

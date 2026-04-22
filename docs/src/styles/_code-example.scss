@@ -1,24 +1,24 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
 .code-example {
   overflow: hidden;
-  border: css.get("border");
-  border-radius: css.get("border-radius");
-  font-size: css.get("font-size");
-  line-height: css.get("line-height");
+  border: tokens.get("border");
+  border-radius: tokens.get("border-radius");
+  font-size: tokens.get("font-size");
+  line-height: tokens.get("line-height");
 
   * {
     scroll-margin-top: initial;
   }
 
   > * + * {
-    border-top: css.get("border");
+    border-top: tokens.get("border");
   }
 
   @include core.media-max("xs") {
-    margin: 2rem calc(css.get("layout", "padding") * -1) !important;
+    margin: 2rem calc(tokens.get("layout", "padding") * -1) !important;
     border-right: none;
     border-left: none;
     border-radius: 0;
@@ -76,7 +76,7 @@
   }
 
   > *:not(.popover) {
-    transition: all css.get("transition-duration") css.get("transition-timing-function");
+    transition: all tokens.get("transition-duration") tokens.get("transition-timing-function");
   }
 }
 
@@ -92,7 +92,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
-  color: css.get("foreground-subtle");
+  color: tokens.get("foreground-subtle");
 
   [data-reset] {
     margin: -2px 0;

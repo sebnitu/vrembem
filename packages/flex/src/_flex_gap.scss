@@ -1,22 +1,22 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-flex-gap: config.get("flex-gap", "variants");
 
 @each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap", $key)} {
-    @include css.override("flex", "gap", $value);
+    @include tokens.override("flex", "gap", $value);
   }
 }
 
 @each $key, $value in $-flex-gap {
   #{core.bem("flex", null, "gap-x", $key)} {
-    @include css.override("flex", "gap-x", $value);
+    @include tokens.override("flex", "gap-x", $value);
   }
 
   #{core.bem("flex", null, "gap-y", $key)} {
-    @include css.override("flex", "gap-y", $value);
+    @include tokens.override("flex", "gap-y", $value);
   }
 }
 
@@ -24,17 +24,17 @@ $-flex-gap: config.get("flex-gap", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-flex-gap {
       #{core.bem("flex", null, "gap", $key, $bp)} {
-        @include css.override("flex", "gap", $value);
+        @include tokens.override("flex", "gap", $value);
       }
     }
 
     @each $key, $value in $-flex-gap {
       #{core.bem("flex", null, "gap-x", $key, $bp)} {
-        @include css.override("flex", "gap-x", $value);
+        @include tokens.override("flex", "gap-x", $value);
       }
 
       #{core.bem("flex", null, "gap-y", $key, $bp)} {
-        @include css.override("flex", "gap-y", $value);
+        @include tokens.override("flex", "gap-y", $value);
       }
     }
   }

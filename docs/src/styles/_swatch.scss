@@ -1,10 +1,10 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .swatch {
   @include core.size(4rem);
 
   display: inline-block;
-  border: css.get("border");
-  border-radius: css.get("border-radius");
+  border: tokens.get("border");
+  border-radius: tokens.get("border-radius");
 }

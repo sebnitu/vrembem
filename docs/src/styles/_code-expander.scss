@@ -1,21 +1,21 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-@include css.set("code-expander", "max-height", 20rem);
+@include tokens.set("code-expander", "max-height", 20rem);
 
 .code-expander {
   position: relative;
-  border: css.get("border");
-  border-radius: css.get("border-radius");
-  font-size: css.get("font-size");
-  line-height: css.get("line-height");
-  transition-timing-function: css.get("transition-timing-function");
-  transition-duration: css.get("transition-duration-short");
+  border: tokens.get("border");
+  border-radius: tokens.get("border-radius");
+  font-size: tokens.get("font-size");
+  line-height: tokens.get("line-height");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
   transition-property: border-color, box-shadow;
 
   .pre {
-    max-height: css.get("code-expander", "max-height");
+    max-height: tokens.get("code-expander", "max-height");
     border: none;
-    transition: max-height css.get("transition-duration") css.get("transition-timing-function");
+    transition: max-height tokens.get("transition-duration") tokens.get("transition-timing-function");
   }
 
   &.has-header {
@@ -40,23 +40,23 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
-  border-bottom: css.get("border");
-  color: css.get("foreground-subtle");
+  border-bottom: tokens.get("border");
+  color: tokens.get("foreground-subtle");
 }
 
 .code-expander__tools {
   position: absolute;
   z-index: 2;
-  inset: auto css.get("spacing-md") css.get("spacing-md") auto;
+  inset: auto tokens.get("spacing-md") tokens.get("spacing-md") auto;
   display: flex;
-  gap: css.get("spacing-sm");
+  gap: tokens.get("spacing-sm");
 }
 
 .code-expander__unlock-scroll {
   display: none;
   opacity: 0;
-  transition-timing-function: css.get("transition-timing-function");
-  transition-duration: css.get("transition-duration-short");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
   transition-property: opacity, border-color;
 }
 
@@ -80,13 +80,13 @@
   &:hover,
   &:focus-within {
     border-color: palette.get("primary");
-    box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", $a: css.get("focus-ring-opacity"));
+    box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
 
     .code-expander__unlock-scroll {
       display: inline-flex;
       border-color: palette.get("primary");
       opacity: 1;
-      box-shadow: 0 0 0 css.get("focus-ring-width") palette.get("primary", $a: css.get("focus-ring-opacity"));
+      box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
     }
   }
 }

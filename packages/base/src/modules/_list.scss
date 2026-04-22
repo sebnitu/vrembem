@@ -1,20 +1,20 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "../functions" as fun;
 
 @if fun.maybe-output("list") {
-  @include css.register("list");
+  @include tokens.register("list");
 
   #{fun.selector("list")} {
-    margin-left: css.get("list", "indent", css.get("spacing-lg"));
+    margin-left: tokens.get("list", "indent", tokens.get("spacing-lg"));
 
     ul,
     ol {
-      margin-left: css.get("list", "indent", css.get("spacing-lg"));
+      margin-left: tokens.get("list", "indent", tokens.get("spacing-lg"));
     }
 
     li li,
     li + li {
-      margin-top: css.get("list", "spacing", css.get("spacing-sm"));
+      margin-top: tokens.get("list", "spacing", tokens.get("spacing-sm"));
     }
   }
 

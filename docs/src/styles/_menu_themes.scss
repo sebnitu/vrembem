@@ -1,7 +1,7 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .menu_themes {
-  @include css.override("menu", "action-gap", 1rem);
+  @include tokens.override("menu", "action-gap", 1rem);
 
   .popover & {
     font-size: 0.875rem;

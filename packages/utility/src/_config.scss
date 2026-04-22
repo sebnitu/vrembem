@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -31,9 +31,9 @@ $default: (
   // A map of border-radius utilities to output
   // @type map
   "utility-border-radius": (
-    "": css.get("border-radius"),
-    "lg": css.get("border-radius-lg"),
-    "circle": css.get("border-radius-circle"),
+    "": tokens.get("border-radius"),
+    "lg": tokens.get("border-radius-lg"),
+    "circle": tokens.get("border-radius-circle"),
     "square": 0
   ),
 
@@ -55,22 +55,22 @@ $default: (
   // @type map
   "utility-spacing": (
     "0": 0,
-    "xs": css.get("spacing"),
-    "sm": calc(css.get("spacing") * 2),
-    "": calc(css.get("spacing") * 4),
-    "lg": calc(css.get("spacing") * 8),
-    "xl": calc(css.get("spacing") * 12)
+    "xs": tokens.get("spacing"),
+    "sm": calc(tokens.get("spacing") * 2),
+    "": calc(tokens.get("spacing") * 4),
+    "lg": calc(tokens.get("spacing") * 8),
+    "xl": calc(tokens.get("spacing") * 12)
   ),
 
   // A map of gap utilities to output
   // @type map
   "utility-gap": (
     "0": 0,
-    "xs": css.get("spacing"),
-    "sm": css.get("spacing-sm"),
-    "": css.get("spacing-md"),
-    "lg": css.get("spacing-lg"),
-    "xl": css.get("spacing-xl")
+    "xs": tokens.get("spacing"),
+    "sm": tokens.get("spacing-sm"),
+    "": tokens.get("spacing-md"),
+    "lg": tokens.get("spacing-lg"),
+    "xl": tokens.get("spacing-xl")
   ),
 
   // A map of max-width utilities to output

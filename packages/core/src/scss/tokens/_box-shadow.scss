@@ -1,14 +1,14 @@
-@use "../modules/css";
+@use "../modules/tokens";
 @use "../modules/palette";
-@include css.set("core", "box-shadow-color", palette.get("neutral", 20%, $a: 20%));
-@include css.set(
+@include tokens.set("core", "box-shadow-color", palette.get("neutral", 20%, $a: 20%));
+@include tokens.set(
   "core",
   (
-    "box-shadow": 0 2px 6px css.get("box-shadow-color"),
-    "box-shadow-1": 0 1px 3px css.get("box-shadow-color"),
-    "box-shadow-2": 0 2px 6px css.get("box-shadow-color"),
-    "box-shadow-3": 0 4px 12px css.get("box-shadow-color"),
-    "box-shadow-4": 0 8px 18px css.get("box-shadow-color"),
-    "box-shadow-5": 0 12px 24px css.get("box-shadow-color")
+    "box-shadow": 0 2px 6px tokens.get("box-shadow-color"),
+    "box-shadow-1": 0 1px 3px tokens.get("box-shadow-color"),
+    "box-shadow-2": 0 2px 6px tokens.get("box-shadow-color"),
+    "box-shadow-3": 0 4px 12px tokens.get("box-shadow-color"),
+    "box-shadow-4": 0 8px 18px tokens.get("box-shadow-color"),
+    "box-shadow-5": 0 12px 24px tokens.get("box-shadow-color")
   )
 );

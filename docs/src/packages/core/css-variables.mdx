@@ -11,33 +11,39 @@ import data from "../../data/cssvar-core.json";
 
 ## Output
 
-CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `@vrembem/core/tokens` export at the bottom of your Sass manifest file.
+CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `vrembem/tokens` entry at the end of your Sass manifest file.
 
 <CodeExample lang="scss">
 ```scss
-@forward "@vrembem/core/tokens";
+@forward "vrembem/tokens";
 ```
 </CodeExample>
 
-Alternatively, custom properties can also be output manually using the `core/css` and `core/theme` modules:
+Alternatively, custom properties can also be output manually using the `core/tokens` and `core/theme` modules:
 
 <CodeExample lang="scss">
 ```scss
-@use "@vrembem/core"; // Includes all core CSS variable definitions
-@use "@vrembem/core/css";
+// Import core to bootstrap all modules
+@use "@vrembem/core";
+
+// Import core modules for use
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/theme";
 
-// Output all registered CSS variables
-:root {
-  @include css.output;
-}
+// Wrap these in the tokens layer
+@layer tokens {
+  // Output all registered CSS variables
+  :root {
+    @include tokens.output;
+  }
 
-// Output all registered theme CSS variables
-@include theme.output;
+  // Output all registered theme CSS variables
+  @include theme.output;
+}
 ```
 </CodeExample>
 
-It is recommended to output CSS variables at the end of your Sass manifest file. This is to ensure that all uses of registered properties are included in the output.
+It is recommended to output CSS variables at the end of your Sass manifest file. This is to ensure that all defined properties are included in the output.
 
 ## Reference
 

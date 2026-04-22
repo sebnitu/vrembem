@@ -1,9 +1,9 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 #{core.bem("popover", "arrow")},
 #{core.bem("popover", "arrow")}::after {
-  @include core.size(css.get("popover", "arrow-size", 8px));
+  @include core.size(tokens.get("popover", "arrow-size", 8px));
 
   position: absolute;
   z-index: -1;
@@ -19,7 +19,7 @@
 }
 
 [data-floating-placement^="top"] > #{core.bem("popover", "arrow")} {
-  bottom: calc(css.get("popover", "arrow-size", 8px) * -0.5);
+  bottom: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
 
   &::after {
     transform: rotate(-135deg);
@@ -27,7 +27,7 @@
 }
 
 [data-floating-placement^="bottom"] > #{core.bem("popover", "arrow")} {
-  top: calc(css.get("popover", "arrow-size", 8px) * -0.5);
+  top: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
 
   &::after {
     transform: rotate(45deg);
@@ -35,7 +35,7 @@
 }
 
 [data-floating-placement^="left"] > #{core.bem("popover", "arrow")} {
-  right: calc(css.get("popover", "arrow-size", 8px) * -0.5);
+  right: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
 
   &::after {
     transform: rotate(135deg);
@@ -43,7 +43,7 @@
 }
 
 [data-floating-placement^="right"] > #{core.bem("popover", "arrow")} {
-  left: calc(css.get("popover", "arrow-size", 8px) * -0.5);
+  left: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
 
   &::after {
     transform: rotate(-45deg);

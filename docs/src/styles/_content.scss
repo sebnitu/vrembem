@@ -1,11 +1,11 @@
 @use "@vrembem/core";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 .content {
-  scroll-margin-top: calc(css.get("layout", "toolbar-height") + 2rem);
+  scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 2rem);
 
   @include core.media-min("sidebar") {
-    scroll-margin-top: calc(css.get("layout", "navibar-height") + 2rem);
+    scroll-margin-top: calc(tokens.get("layout", "navibar-height") + 2rem);
   }
 
   * {

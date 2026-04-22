@@ -1,6 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $config: () !default;
 
@@ -18,11 +18,11 @@ $default: (
   // @type map
   "menu-size": (
     "breakpoints": true,
-    "sm": css.get("form-control-size-sm"),
-    "md": css.get("form-control-size"),
-    "lg": css.get("form-control-size-lg")
+    "sm": tokens.get("form-control-size-sm"),
+    "md": tokens.get("form-control-size"),
+    "lg": tokens.get("form-control-size-lg")
   )
 );
 
 @include config.apply($config, $default);
-@include css.register("menu");
+@include tokens.register("menu");

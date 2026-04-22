@@ -1,4 +1,4 @@
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 @use "@vrembem/core/theme";
 
@@ -9,11 +9,11 @@
 }
 
 .box {
-  color: css.get("primary-foreground");
-  background: css.get("primary-background");
+  color: tokens.get("primary-foreground");
+  background: tokens.get("primary-background");
 }
 
 .box-alt {
-  color: css.get("secondary-foreground");
-  background: css.get("secondary-background");
+  color: tokens.get("secondary-foreground");
+  background: tokens.get("secondary-background");
 }

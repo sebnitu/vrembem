@@ -1,6 +1,6 @@
-@use "../modules/css";
+@use "../modules/tokens";
 @use "../modules/palette";
-@include css.set(
+@include tokens.set(
   "core",
   "focus-ring",
   (

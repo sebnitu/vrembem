@@ -1,22 +1,22 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
-@use "@vrembem/core/css";
+@use "@vrembem/core/tokens";
 
 $-grid-gap: config.get("grid-gap", "variants");
 
 @each $key, $value in $-grid-gap {
   #{core.bem("grid", null, "gap", $key)} {
-    @include css.override("grid", "gap", $value);
+    @include tokens.override("grid", "gap", $value);
   }
 }
 
 @each $key, $value in $-grid-gap {
   #{core.bem("grid", null, "gap-x", $key)} {
-    @include css.override("grid", "gap-x", $value);
+    @include tokens.override("grid", "gap-x", $value);
   }
 
   #{core.bem("grid", null, "gap-y", $key)} {
-    @include css.override("grid", "gap-y", $value);
+    @include tokens.override("grid", "gap-y", $value);
   }
 }
 
@@ -24,17 +24,17 @@ $-grid-gap: config.get("grid-gap", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-grid-gap {
       #{core.bem("grid", null, "gap", $key, $bp)} {
-        @include css.override("grid", "gap", $value);
+        @include tokens.override("grid", "gap", $value);
       }
     }
 
     @each $key, $value in $-grid-gap {
       #{core.bem("grid", null, "gap-x", $key, $bp)} {
-        @include css.override("grid", "gap-x", $value);
+        @include tokens.override("grid", "gap-x", $value);
       }
 
       #{core.bem("grid", null, "gap-y", $key, $bp)} {
-        @include css.override("grid", "gap-y", $value);
+        @include tokens.override("grid", "gap-y", $value);
       }
     }
   }
