@@ -1,14 +1,15 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { getPackages } from "../modules/getPackages";
 import Base from "./Base.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import LinkEditPage from "../components/LinkEditPage.astro";
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
 
 interface Props {
   entry: CollectionEntry<"packages">;
-  headings?: any;
+  headings?: MarkdownHeading[];
   frontmatter?: any;
 }
 
@@ -18,7 +19,7 @@ const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
   hasSidebar: !!collection,
-  hasAside: !!headings.filter((item) => item.depth === 2).length
+  hasAside: !!headings?.filter((item) => item.depth === 2).length
 };
 ---
 
