@@ -28,7 +28,7 @@ const categoryIcons = {
 };
 
 function getIconName(string: string) {
-  return categoryIcons[string] ? categoryIcons[string] : string;
+  return categoryIcons[string as keyof typeof categoryIcons] ?? string;
 }
 ---
 
