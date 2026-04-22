@@ -75,36 +75,57 @@ While the main focus of this example is the Collections API, it's important to s
 <button type="button" class="tictactoe-reset link">Reset</button>
 ```
 </Fragment>
-<Fragment slot="tab-css">
-```css
+<Fragment slot="tab-scss">
+```scss
+@use "@vrembem/core/tokens";
+
+@include tokens.set(
+  "tictactoe",
+  (
+    "background-winner": tokens.get("primary-background"),
+    "foreground-winner": tokens.get("primary-foreground"),
+    "border": 0.25em solid tokens.get("neutral-background"),
+    "box-shadow-color": tokens.get("background")
+  )
+);
+
+.tictactoe-wrapper {
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+
+  > * + * {
+    margin-top: 2em;
+  }
+}
+
 .tictactoe__cell {
-  --ttt-border: 0.25em solid var(--vb-neutral-95);
-  box-shadow: inset 0 0 0 0.25em white;
   cursor: pointer;
+  width: 3em;
+  height: 3em;
   font-size: 1.6em;
   text-align: center;
-  height: 3em;
-  width: 3em;
+  box-shadow: inset 0 0 0 0.25em tokens.get("tictactoe", "box-shadow-color");
 
   &.is-winner {
-    background-color: var(--vb-primary-90);
-    color: var(--vb-primary-20);
+    color: tokens.get("tictactoe", "foreground-winner");
+    background-color: tokens.get("tictactoe", "background-winner");
   }
 
   &:first-child {
-    border-right: var(--ttt-border);
+    border-right: tokens.get("tictactoe", "border");
   }
 
   &:last-child {
-    border-left: var(--ttt-border);
+    border-left: tokens.get("tictactoe", "border");
   }
 
   tr:first-child & {
-    border-bottom: var(--ttt-border);
+    border-bottom: tokens.get("tictactoe", "border");
   }
 
   tr:last-child & {
-    border-top: var(--ttt-border);
+    border-top: tokens.get("tictactoe", "border");
   }
 }
 ```
