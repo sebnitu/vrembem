@@ -7,7 +7,7 @@ import { glob } from "astro/loaders";
 
 // 3. Define a schema for each collection you'd like to validate
 const packages = defineCollection({
-  loader: glob({ base: "./src/packages", pattern: "*.mdx" }),
+  loader: glob({ base: "./src/content/packages", pattern: "*.mdx" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -17,7 +17,7 @@ const packages = defineCollection({
 });
 
 const modules = defineCollection({
-  loader: glob({ base: "./src/packages", pattern: "*/**/*.mdx" }),
+  loader: glob({ base: "./src/content/modules", pattern: "**/*.mdx" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),

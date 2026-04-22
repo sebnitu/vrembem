@@ -25,11 +25,11 @@ export async function getStaticPaths() {
 
   const entries = [
     ...packages.map((entry) => ({
-      params: { id: entry.id, slug: entry.id },
+      params: { slug: entry.id },
       props: { entry }
     })),
     ...modules.map((entry) => ({
-      params: { id: entry.id, slug: entry.id },
+      params: { slug: `${entry.data.parent}/${entry.id}` },
       props: { entry }
     }))
   ];

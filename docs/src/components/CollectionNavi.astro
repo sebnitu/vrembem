@@ -60,8 +60,10 @@ function getIconName(string: string) {
               {modules.map((item) => (
                 <li class="menu__item">
                   <a
-                    class={cp.classes(`/${collection}/${item.id}`)}
-                    href={`/${collection}/${item.id}`}
+                    class={cp.classes(
+                      `/${collection}/${item.data.parent}/${item.id}`
+                    )}
+                    href={`/${collection}/${item.data.parent}/${item.id}`}
                   >
                     {item.data.title}
                   </a>
