@@ -41,7 +41,7 @@ const { Content, headings } = await render(entry);
 
 const packages = await getPackages();
 
-let modules = [];
+let modules: CollectionEntry<"modules">[] = [];
 if ("parent" in entry.data) {
   modules = await getModules(entry.data.group);
 }
