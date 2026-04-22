@@ -9,7 +9,7 @@ import CodeExpander from "../components/CodeExpander.astro";
 import ReferenceBar from "../components/ReferenceBar.astro";
 import ReferenceCard from "../components/ReferenceCard.astro";
 import ReferenceTable from "../components/ReferenceTable.astro";
-import data from "../data/cssvar-base.json";
+import data from "../data/tokens-base.json";
 
 ```sh
 npm install @vrembem/base
@@ -91,7 +91,7 @@ Base comes with the following Sass configuration options that can be set using e
 
 Base uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
-<ReferenceTable id="cssvar-base" data={data} expandable={true} valueLabel="Fallback" />
+<ReferenceTable id="tokens-base" data={data} expandable={true} valueLabel="Fallback" />
 
 ## Output
 
@@ -197,7 +197,7 @@ Below is a list of each base module, their class selectors, CSS variables, and i
 ### global
 
 <ReferenceBar selector="n/a" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-base"
@@ -227,7 +227,7 @@ The following CSS variables are referenced with a fallback for more easily overr
 ### headings
 
 <ReferenceBar selector=".h1 - .h6" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-headings"
@@ -288,7 +288,7 @@ Headings output and scale is controlled by the `base-headings` configuration opt
 ### link
 
 <ReferenceBar selector=".link" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-link"
@@ -309,7 +309,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 ### list
 
 <ReferenceBar selector=".list" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-list"
@@ -367,7 +367,7 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 ### code
 
 <ReferenceBar selector=".code" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-code"
@@ -388,7 +388,7 @@ The HTML code element displays its contents styled in a fashion intended to indi
 ### pre
 
 <ReferenceBar selector=".pre" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-pre"
@@ -415,7 +415,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 ### blockquote
 
 <ReferenceBar selector=".blockquote" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-blockquote"
@@ -445,7 +445,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 ### separator
 
 <ReferenceBar selector=".sep" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-sep"
@@ -466,7 +466,7 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
 ### type
 
 <ReferenceBar selector=".type" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-type"
@@ -536,7 +536,7 @@ The type module only applies styles to its direct children using the `>` child c
 ### arrow
 
 <ReferenceBar selector=".arrow" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-arrow"
@@ -580,7 +580,7 @@ Arrows are great for buttons or menu items to visually indicate when it reveals 
 ### loading-spinner
 
 <ReferenceBar selector=".loading-spinner" hash={{
-  target: "reference-table-cssvar-base",
+  target: "reference-table-tokens-base",
   event: "filter",
   detail: {
     value: "--vb-loading"

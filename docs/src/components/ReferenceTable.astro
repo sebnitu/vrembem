@@ -2,7 +2,7 @@
 import Icon from "./Icon.astro";
 import Popover from "./Popover.astro";
 import CodeBlock from "./CodeBlock.astro";
-import coreData from "../data/cssvar-core.json";
+import coreData from "../data/tokens-core.json";
 
 interface Props {
   data: {};
@@ -74,7 +74,7 @@ function linkifyValue(value: string) {
 
 // Append the key to the table id. Removes extra `--` when more than 2.
 function cleanAppend(key: string, root: boolean = false) {
-  const prefix = root ? `reference-table-cssvar-core` : tableId;
+  const prefix = root ? `reference-table-tokens-core` : tableId;
   return `${prefix}-${key}`.replace(/-{3}/g, "--");
 }
 
