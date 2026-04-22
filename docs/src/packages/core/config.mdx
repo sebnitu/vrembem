@@ -3,15 +3,16 @@ title: core/config
 description: "Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options."
 parent: core
 group: sass-modules
+order: 1
 ---
 
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core/config";
-  ```
+```scss
+@use "@vrembem/core/config";
+```
 </CodeExample>
 
 ## Basic usage
@@ -25,33 +26,33 @@ There are two primary methods to configure options in the config module. The fir
 To use the configuration module directly, import the `core/config` module. Once imported you can use the API to `set` and `get` values in the configuration map.
 
 <CodeExample label="_config.scss">
-  ```scss
-  // 1. Import the module
-  @use "@vrembem/core/config";
+```scss
+// 1. Import the module
+@use "@vrembem/core/config";
 
-  // 2. Set a configuration value
-  @include config.set("theme-prefix", "theme");
+// 2. Set a configuration value
+@include config.set("theme-prefix", "theme");
 
-  // 3. Get a configuration value
-  @debug config.get("theme-prefix"); // => "theme"
-  ```
+// 3. Get a configuration value
+@debug config.get("theme-prefix"); // => "theme"
+```
 </CodeExample>
 
 Changes to the global config should be done in a file that is loaded before other Vrembem or custom components. This ensures that components use the correct configuration values.
 
 <CodeExample label="style.scss">
-  ```scss
-  // 1. Make all your custom configurations
-  @use "./config";
+```scss
+// 1. Make all your custom configurations
+@use "./config";
 
-  // 2. Import components or other custom modules
-  @use "@vrembem/base";
-  @use "@vrembem/modal";
-  // ...
+// 2. Import components or other custom modules
+@use "@vrembem/base";
+@use "@vrembem/modal";
+// ...
 
-  // 3. Output CSS variables
-  @use "@vrembem/core/tokens";
-  ```
+// 3. Output CSS variables
+@use "@vrembem/core/tokens";
+```
 </CodeExample>
 
 ### Using with clause
@@ -59,21 +60,21 @@ Changes to the global config should be done in a file that is loaded before othe
 To set configuration options via the Sass `@use ... with` clause, define and set options in the `$config` map. Options set in the `$config` map are stored in the config module.
 
 <CodeExample label="app.scss">
-  ```scss
-  @use "@vrembem/core" with (
-    $config: (
-      "prefix-block": "vb"
-    )
-  );
-  @use "@vrembem/base" with (
-    $config: (
-      "base-output": false
-    )
-  );
+```scss
+@use "@vrembem/core" with (
+  $config: (
+    "prefix-block": "vb"
+  )
+);
+@use "@vrembem/base" with (
+  $config: (
+    "base-output": false
+  )
+);
 
-  @debug core.config-get("prefix-block"); // => "vb"
-  @debug core.config-get("base-output"); // => false
-  ```
+@debug core.config-get("prefix-block"); // => "vb"
+@debug core.config-get("base-output"); // => false
+```
 </CodeExample>
 
 Changes to the global config should be done before loading other Vrembem or custom components. This ensures that components use the correct configuration values.
@@ -97,13 +98,13 @@ Function to returns the value of an option in the configuration map.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @debug config.get("theme-default");
-  // Debug: light
+```scss
+@debug config.get("theme-default");
+// Debug: light
 
-  @debug config.get("prefix-tokens");
-  // Debug: vb
-  ```
+@debug config.get("prefix-tokens");
+// Debug: vb
+```
 </CodeExample>
 
 ### config.set()
@@ -129,16 +130,16 @@ Set an option in the configuration map by providing a key and value to store, or
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Set a single option
-  @include config.set("theme-default", "dark");
+```scss
+// Set a single option
+@include config.set("theme-default", "dark");
 
-  // Set multiple options using a map
-  @include config.set((
-    "prefix-tokens": "custom",
-    "theme-default": "light"
-  ));
-  ```
+// Set multiple options using a map
+@include config.set((
+  "prefix-tokens": "custom",
+  "theme-default": "light"
+));
+```
 </CodeExample>
 
 ### config.set-default()
@@ -160,18 +161,18 @@ An alias mixin for `config.set()` with predefined default argument to `true`. Ru
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Set the default value of the provided key
-  @include config.set-default("theme-default", "light");
+```scss
+// Set the default value of the provided key
+@include config.set-default("theme-default", "light");
 
-  // This set call will override the default value of "light"
-  @include config.set("theme-default", "dark");
+// This set call will override the default value of "light"
+@include config.set("theme-default", "dark");
 
-  // This will have no effect since "theme-default" has already been set
-  @include config.set-default("theme-default", "high-contrast");
+// This will have no effect since "theme-default" has already been set
+@include config.set-default("theme-default", "high-contrast");
 
-  @debug config.get("theme-default"); // Debug: dark
-  ```
+@debug config.get("theme-default"); // Debug: dark
+```
 </CodeExample>
 
 ### config.merge()
@@ -205,10 +206,10 @@ Remove an option from the configuration map.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Remove the theme default option
-  @include config.remove("theme-default");
-  ```
+```scss
+// Remove the theme default option
+@include config.remove("theme-default");
+```
 </CodeExample>
 
 ### config.apply()
@@ -334,15 +335,15 @@ Log to console the entire or a specific value in the configuration map.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @include config.log();
-  // Debug: 
-  // Config options map: (
-  //   "prefix-block": ,
-  //   "prefix-element": __,
-  //   "prefix-modifier": _,
-  //   "prefix-modifier-value": _,
-  //   ...
-  // )
-  ```
+```scss
+@include config.log();
+// Debug: 
+// Config options map: (
+//   "prefix-block": ,
+//   "prefix-element": __,
+//   "prefix-modifier": _,
+//   "prefix-modifier-value": _,
+//   ...
+// )
+```
 </CodeExample>

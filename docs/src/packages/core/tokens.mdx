@@ -1,22 +1,23 @@
 ---
-title: core/css
-description: "Used to define, manage, and output global and component-level custom properties."
+title: core/tokens
+description: "Used to define, manage, and output global and component-level design tokens expressed as CSS variables."
 parent: core
 group: sass-modules
+order: 2
 ---
 
 import ReferenceCard from "../../components/ReferenceCard.astro";
 import ReferenceBar from "../../components/ReferenceBar.astro";
 
 <CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/core/tokens";
-  ```
+```scss
+@use "@vrembem/core/tokens";
+```
 </CodeExample>
 
 ## Basic usage
 
-For most use-cases, `core/css` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
+For most use-cases, `core/tokens` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
 
 ### tokens.get()
 
@@ -83,16 +84,16 @@ Mixin to store custom properties for later definition and reference. Can also up
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Set a single option
-  @include tokens.set("block", "accent", teal);
+```scss
+// Set a single option
+@include tokens.set("block", "accent", teal);
 
-  // Set multiple options at once
-  @include tokens.set("block", (
-    "background": darkGreen,
-    "foreground": lightPink
-  ));
-  ```
+// Set multiple options at once
+@include tokens.set("block", (
+  "background": darkGreen,
+  "foreground": lightPink
+));
+```
 </CodeExample>
 
 
@@ -175,8 +176,7 @@ Mixin to override previously defined custom properties. This is primarily used i
 
 ## Advanced usage
 
-For more advanced use-cases, `core/css` provides a more primitive API for fine grained custom property management.
-
+For more advanced use-cases, `core/tokens` provides a more primitive API for fine grained custom property management.
 
 ### tokens.register()
 
@@ -309,12 +309,12 @@ Function used to check if a custom property has been set.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @include tokens.set("block", "background", darkGreen);
+```scss
+@include tokens.set("block", "background", darkGreen);
 
-  @debug tokens.has("block", "background"); // Returns true
-  @debug tokens.has("block", "border"); // Returns false
-  ```
+@debug tokens.has("block", "background"); // Returns true
+@debug tokens.has("block", "border"); // Returns false
+```
 </CodeExample>
 
 
@@ -333,10 +333,10 @@ Mixin used to remove a previously set custom property.
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  // Remove the "background" property from the "block" component.
-  @include tokens.remove("block", "background");
-  ```
+```scss
+// Remove the "background" property from the "block" component.
+@include tokens.remove("block", "background");
+```
 </CodeExample>
 
 
@@ -359,13 +359,13 @@ Log to console all custom properties, a component map or component theme. Provid
 #### Example
 
 <CodeExample lang="scss">
-  ```scss
-  @include tokens.log("block");
+```scss
+@include tokens.log("block");
 
-  // Debug output:
-  // Custom properties of "block": (
-  //   "background": blue,
-  //   "foreground": green,
-  // )
-  ```
+// Debug output:
+// Custom properties of "block": (
+//   "background": blue,
+//   "foreground": green,
+// )
+```
 </CodeExample>

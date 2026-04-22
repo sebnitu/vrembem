@@ -69,7 +69,7 @@ $-theme-keys: "light", "dark";
 }
 
 /// Set a new or modify existing theme custom properties. These are stored as
-/// CSS variables in the `core/css` module.
+/// CSS variables in the `core/tokens` module.
 ///
 /// @param {string} $theme
 ///   The theme to set a property value for.

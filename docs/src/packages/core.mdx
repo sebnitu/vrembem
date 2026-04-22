@@ -63,10 +63,6 @@ Core comes with the following Sass configuration options that can be set using e
       "important": hsl(0deg 80% 50%)
     ),
 
-    // The default color lightness to use when referencing a color
-    // @type number
-    "palette-default": null,
-
     // A prefix to apply to theme names. Provided value is automatically suffixed
     // with a "-" character when applied.
     // @type string
@@ -95,9 +91,9 @@ Core comes with the following Sass configuration options that can be set using e
 Vrembem uses Sass modules to manage global configuration and custom properties throughout the library.
 
 - [`@vrembem/core/config`](/packages/core/config): Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
-- [`@vrembem/core/css`](/packages/core/css): Used to define, manage, and output global and component-level custom properties.
-- [`@vrembem/core/palette`](/packages/core/palette): Used to build and return color palette values by leveraging both config and CSS modules.
-- [`@vrembem/core/theme`](/packages/core/theme): Used to define, manage, and output global and component-level themes powered by custom properties.
+- [`@vrembem/core/tokens`](/packages/core/tokens): Used to define, manage, and output global and component-level design tokens expressed as CSS variables.
+- [`@vrembem/core/palette`](/packages/core/palette): Used to build and return color palette values by leveraging both the config and tokens module.
+- [`@vrembem/core/theme`](/packages/core/theme): Used to define, manage, and output global and component-level themes powered by the tokens module.
 
 ### Theme state
 
