@@ -1,74 +1,72 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-@layer components {
+.drawer_sidebar {
+  position: fixed;
+  visibility: hidden;
+
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
+
+  .drawer__container {
+    overscroll-behavior: contain;
+    padding: tokens.get("layout", "padding");
+  }
+}
+
+/**
+* Inline sidebar
+*/
+
+@include core.media-min("sidebar") {
   .drawer_sidebar {
-    position: fixed;
-    visibility: hidden;
+    z-index: 2;
+    box-sizing: content-box;
+    width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
+    padding-left: max(0px, calc((100% - (tokens.get("layout", "width") + (tokens.get("layout", "padding") * 2))) / 2));
+    visibility: visible;
+    background-color: tokens.get("background-shift");
+
+    // Fold shadow
+    &::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0 0 auto auto;
+      width: 2rem;
+      height: 100%;
+      background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
+    }
 
     .drawer__dialog {
-      background-color: tokens.get("background-shift");
-      outline: none;
+      inset: 0 0 0 auto;
+      width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
+      background-color: transparent;
     }
 
     .drawer__container {
-      overscroll-behavior: contain;
-      padding: tokens.get("layout", "padding");
+      padding: tokens.get("layout", "navibar-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
     }
-  }
 
-  /**
-  * Inline sidebar
-  */
-
-  @include core.media-min("sidebar") {
-    .drawer_sidebar {
+    // Scrolling mask
+    .drawer__mask {
+      position: sticky;
       z-index: 2;
-      box-sizing: content-box;
-      width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
-      padding-left: max(0px, calc((100% - (tokens.get("layout", "width") + (tokens.get("layout", "padding") * 2))) / 2));
-      visibility: visible;
+      inset: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) 0 auto 0;
+      flex-shrink: 0;
+      height: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "padding"));
+      margin: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) calc(tokens.get("layout", "padding") * -1) tokens.get("layout", "padding") calc(tokens.get("layout", "padding") * -1);
       background-color: tokens.get("background-shift");
 
-      // Fold shadow
       &::after {
-        pointer-events: none;
         content: "";
         position: absolute;
-        z-index: 2;
-        inset: 0 0 auto auto;
-        width: 2rem;
-        height: 100%;
-        background: linear-gradient(268deg, rgb(0 0 0 / 8%) 0, rgb(0 0 0 / 0%) 2rem);
-      }
-
-      .drawer__dialog {
-        inset: 0 0 0 auto;
-        width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
-        background-color: transparent;
-      }
-
-      .drawer__container {
-        padding: tokens.get("layout", "navibar-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
-      }
-
-      // Scrolling mask
-      .drawer__mask {
-        position: sticky;
-        z-index: 2;
-        inset: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) 0 auto 0;
-        flex-shrink: 0;
-        height: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "padding"));
-        margin: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) calc(tokens.get("layout", "padding") * -1) tokens.get("layout", "padding") calc(tokens.get("layout", "padding") * -1);
-        background-color: tokens.get("background-shift");
-
-        &::after {
-          content: "";
-          position: absolute;
-          inset: 100% 0 auto;
-          margin: 0 tokens.get("layout", "padding");
-          border-bottom: 1px solid tokens.get("border-color");
-        }
+        inset: 100% 0 auto;
+        margin: 0 tokens.get("layout", "padding");
+        border-bottom: 1px solid tokens.get("border-color");
       }
     }
   }

@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 // Import the Vrembem defined layers
 @forward "vrembem/layers";
 
@@ -10,43 +12,45 @@
 // Miscellaneous global styles
 @forward "./global";
 
-// Layout
-@forward "./brand";
-@forward "./navibar";
-@forward "./toolbar";
-@forward "./layout";
-@forward "./drawer_sidebar";
-@forward "./drawer_aside";
+@layer components {
+  // Layout
+  @include meta.load-css("./brand");
+  @include meta.load-css("./navibar");
+  @include meta.load-css("./toolbar");
+  @include meta.load-css("./layout");
+  @include meta.load-css("./drawer_sidebar");
+  @include meta.load-css("./drawer_aside");
 
-// Components
-@forward "./badge";
-@forward "./box";
-@forward "./card_reference";
-@forward "./code-block";
-@forward "./code-example";
-@forward "./code-expander";
-@forward "./content";
-@forward "./doc-block";
-@forward "./floats";
-@forward "./fold-shadow";
-@forward "./footer";
-@forward "./heading-anchor";
-@forward "./icon_external";
-@forward "./layout-demo";
-@forward "./menu_collection";
-@forward "./menu_minimal";
-@forward "./menu_themes";
-@forward "./pagi";
-@forward "./popover_copy";
-@forward "./reference-bar";
-@forward "./reference-table";
-@forward "./swatch";
-@forward "./tabs";
-@forward "./theme-icons";
-@forward "./tictactoe";
-@forward "./toggle";
+  // Components
+  @include meta.load-css("./badge");
+  @include meta.load-css("./box");
+  @include meta.load-css("./card_reference");
+  @include meta.load-css("./code-block");
+  @include meta.load-css("./code-example");
+  @include meta.load-css("./code-expander");
+  @include meta.load-css("./content");
+  @include meta.load-css("./doc-block");
+  @include meta.load-css("./floats");
+  @include meta.load-css("./fold-shadow");
+  @include meta.load-css("./footer");
+  @include meta.load-css("./heading-anchor");
+  @include meta.load-css("./icon_external");
+  @include meta.load-css("./layout-demo");
+  @include meta.load-css("./menu_collection");
+  @include meta.load-css("./menu_minimal");
+  @include meta.load-css("./menu_themes");
+  @include meta.load-css("./pagi");
+  @include meta.load-css("./popover_copy");
+  @include meta.load-css("./reference-bar");
+  @include meta.load-css("./reference-table");
+  @include meta.load-css("./swatch");
+  @include meta.load-css("./tabs");
+  @include meta.load-css("./theme-icons");
+  @include meta.load-css("./tictactoe");
+  @include meta.load-css("./toggle");
+}
 
 // Important!
 // Include this last to catch all defined custom properties
 // Output all CSS custom properties
-@forward "vrembem/tokens";
+@include meta.load-css("vrembem/tokens");

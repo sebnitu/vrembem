@@ -2,45 +2,43 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
-@layer components {
+.drawer_aside {
+  position: fixed;
+  visibility: hidden;
+
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
+
+  .drawer__container {
+    overscroll-behavior: contain;
+    padding: tokens.get("layout", "padding");
+  }
+}
+
+/**
+* Inline aside
+*/
+
+@include core.media-min("aside") {
   .drawer_aside {
-    position: fixed;
-    visibility: hidden;
+    z-index: 2;
+    box-sizing: content-box;
+    width: calc(tokens.get("layout", "aside-width") + tokens.get("layout", "padding"));
+    padding-right: max(0px, calc((100% - (tokens.get("layout", "width") + (tokens.get("layout", "padding") * 2))) / 2));
+    visibility: visible;
 
     .drawer__dialog {
-      background-color: tokens.get("background-shift");
-      outline: none;
+      inset: 0 auto auto 0;
+      width: calc(tokens.get("layout", "aside-width") + tokens.get("layout", "padding"));
+      max-height: 100vh;
+      background-color: transparent;
     }
 
     .drawer__container {
-      overscroll-behavior: contain;
-      padding: tokens.get("layout", "padding");
-    }
-  }
-
-  /**
-  * Inline aside
-  */
-
-  @include core.media-min("aside") {
-    .drawer_aside {
-      z-index: 2;
-      box-sizing: content-box;
-      width: calc(tokens.get("layout", "aside-width") + tokens.get("layout", "padding"));
-      padding-right: max(0px, calc((100% - (tokens.get("layout", "width") + (tokens.get("layout", "padding") * 2))) / 2));
-      visibility: visible;
-
-      .drawer__dialog {
-        inset: 0 auto auto 0;
-        width: calc(tokens.get("layout", "aside-width") + tokens.get("layout", "padding"));
-        max-height: 100vh;
-        background-color: transparent;
-      }
-
-      .drawer__container {
-        scroll-behavior: smooth;
-        padding: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "content-padding-y")) tokens.get("layout", "padding") calc(tokens.get("layout", "footer-height") + tokens.get("layout", "content-padding-y")) tokens.get("focus-ring-width");
-      }
+      scroll-behavior: smooth;
+      padding: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "content-padding-y")) tokens.get("layout", "padding") calc(tokens.get("layout", "footer-height") + tokens.get("layout", "content-padding-y")) tokens.get("focus-ring-width");
     }
   }
 }
