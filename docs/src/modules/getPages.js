@@ -1,15 +1,29 @@
 import { getCollection } from "astro:content";
 
-export async function getPages(group) {
+function byTitle(a, b) {
+  if (a.data.title < b.data.title) return -1;
+  if (a.data.title > b.data.title) return 1;
+  return 0;
+}
+
+function byOrder(a, b) {
+  const aOrder = typeof a.data.order === "number" ? a.data.order : null;
+  const bOrder = typeof b.data.order === "number" ? b.data.order : null;
+  if (aOrder === null && bOrder === null) return 0;
+  if (aOrder === null) return -1;
+  if (bOrder === null) return 1;
+  return aOrder - bOrder;
+}
+
+export async function getPages(dir) {
   let entries = await getCollection("pages");
-  if (group) {
-    const prefix = group + "/";
+  // Filter the pages based on the provided directory name
+  if (dir) {
+    const prefix = dir + "/";
     entries = entries.filter(
-      (entry) => entry.id.startsWith(prefix) || entry.id === group
+      (entry) => entry.id.startsWith(prefix) || entry.id === dir
     );
   }
-  entries.sort((a, b) =>
-    a.data.title.localeCompare(b.data.title, undefined, { sensitivity: "base" })
-  );
+  entries.reverse().sort(byTitle).sort(byOrder);
   return entries;
 }

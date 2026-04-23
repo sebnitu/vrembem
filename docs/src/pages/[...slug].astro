@@ -30,7 +30,7 @@ const pages = await getPages();
 
 const layout = {
   hasSidebar: true,
-  hasAside: true
+  hasAside: !!headings?.filter((item) => item.depth === 2).length
 };
 ---
 
@@ -38,9 +38,13 @@ const layout = {
   <Fragment slot="sidebar">
     <Navi collection="pages" entries={pages} />
   </Fragment>
-  <Fragment slot="aside">
-    <OnThisPage {headings} />
-  </Fragment>
+  {
+    layout.hasAside && (
+      <Fragment slot="aside">
+        <OnThisPage {headings} />
+      </Fragment>
+    )
+  }
   <Content components={{ pre: Pre, table: Table }} />
   <div slot="append">
     <LinkEditPage />

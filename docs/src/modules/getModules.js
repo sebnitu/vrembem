@@ -17,6 +17,7 @@ function byOrder(a, b) {
 
 export async function getModules(group) {
   let entries = await getCollection("modules");
+  // Filter the modules based on the provided group frontmatter
   if (group) {
     entries = entries.filter((entry) => entry.data.group === group);
   }
