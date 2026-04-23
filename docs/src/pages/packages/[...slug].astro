@@ -18,6 +18,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
+const { title } = entry.data;
 
 export async function getStaticPaths() {
   const packages = await getPackages();
@@ -52,7 +53,7 @@ const layout = {
 };
 ---
 
-<Base title={entry.data.title} {layout}>
+<Base {title} {layout}>
   <Fragment slot="sidebar">
     <Navi collection="packages" entries={packages} {modules} />
   </Fragment>
