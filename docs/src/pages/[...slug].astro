@@ -2,11 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { getPages } from "../modules/getPages";
-import Base from "../layouts/Base.astro";
-import Intro from "../components/Intro.astro";
-import Navi from "../components/CollectionNavi.astro";
-import OnThisPage from "../components/OnThisPage.astro";
-import LinkEditPage from "../components/LinkEditPage.astro";
+import Page from "../layouts/Page.astro";
 import Pre from "../components/Pre.astro";
 import Table from "../components/Table.astro";
 
@@ -15,7 +11,6 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title } = entry.data;
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -27,34 +22,8 @@ export async function getStaticPaths() {
 }
 
 const { Content, headings } = await render(entry);
-
-const pages = await getPages();
-
-const layout = {
-  hasSidebar: true,
-  hasAside: !!headings?.filter((item) => item.depth === 2).length
-};
 ---
 
-<Base {title} {layout}>
-  <Fragment slot="sidebar">
-    <Navi collection="pages" entries={pages} />
-  </Fragment>
-  {
-    layout.hasAside && (
-      <Fragment slot="aside">
-        <OnThisPage {headings} />
-      </Fragment>
-    )
-  }
-  <Intro data={entry.data} />
+<Page {entry} {headings}>
   <Content components={{ pre: Pre, table: Table }} />
-  <div slot="append">
-    <LinkEditPage />
-  </div>
-</Base>
-
-<script>
-  import { headingAnchor } from "../modules/headingAnchor";
-  headingAnchor.mount();
-</script>
+</Page>

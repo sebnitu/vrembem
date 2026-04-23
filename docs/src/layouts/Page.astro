@@ -14,8 +14,13 @@ interface Props {
 }
 
 const { entry, headings } = Astro.props;
-const { title, description, collection } =
-  Astro.props.frontmatter || Astro.props;
+const { title, description, collection } = {
+  ...entry,
+  ...entry?.data,
+  ...Astro.props,
+  ...Astro.props.frontmatter
+};
+
 const entries = await getPackages();
 
 const layout = {
@@ -42,7 +47,7 @@ const layout = {
   <Intro data={{ title, description }} />
   <slot />
   <div slot="append">
-    <LinkEditPage dir="pages" />
+    <LinkEditPage />
   </div>
 </Base>
 

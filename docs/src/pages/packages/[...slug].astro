@@ -3,11 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import { getModules } from "../../modules/getModules";
-import Base from "../../layouts/Base.astro";
-import Intro from "../../components/Intro.astro";
-import Navi from "../../components/CollectionNavi.astro";
+import Page from "../../layouts/Page.astro";
 import Pagi from "../../components/CollectionPagi.astro";
-import OnThisPage from "../../components/OnThisPage.astro";
 import LinkEditPage from "../../components/LinkEditPage.astro";
 import CodeExample from "../../components/CodeExample.astro";
 import Pre from "../../components/Pre.astro";
@@ -18,7 +15,6 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title } = entry.data;
 
 export async function getStaticPaths() {
   const packages = await getPackages();
@@ -46,21 +42,9 @@ let modules: CollectionEntry<"modules">[] = [];
 if ("parent" in entry.data) {
   modules = await getModules(entry.data.group);
 }
-
-const layout = {
-  hasSidebar: true,
-  hasAside: true
-};
 ---
 
-<Base {title} {layout}>
-  <Fragment slot="sidebar">
-    <Navi collection="packages" entries={packages} {modules} />
-  </Fragment>
-  <Fragment slot="aside">
-    <OnThisPage {headings} />
-  </Fragment>
-  <Intro data={entry.data} />
+<Page {entry} {headings}>
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
     <LinkEditPage />
@@ -68,7 +52,7 @@ const layout = {
     {"package" in entry.data && <Pagi entries={packages} />}
     {"parent" in entry.data && <Pagi entries={modules} />}
   </div>
-</Base>
+</Page>
 
 <script>
   import "../../modules/currentViewport";
