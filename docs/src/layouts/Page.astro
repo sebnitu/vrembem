@@ -5,7 +5,7 @@ import Base from "./Base.astro";
 import Intro from "../components/Intro.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
-import LinkEditPage from "../components/LinkEditPage.astro";
+import EditPageLink from "../components/EditPageLink.astro";
 
 interface Props {
   entry: CollectionEntry<CollectionKey>;
@@ -47,7 +47,7 @@ const layout = {
   <Intro data={{ title, description }} />
   <slot />
   <div slot="append">
-    <LinkEditPage />
+    <EditPageLink />
   </div>
 </Base>
 

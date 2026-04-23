@@ -5,7 +5,7 @@ import { getPackages } from "../../modules/getPackages";
 import { getModules } from "../../modules/getModules";
 import Page from "../../layouts/Page.astro";
 import Pagi from "../../components/CollectionPagi.astro";
-import LinkEditPage from "../../components/LinkEditPage.astro";
+import EditPageLink from "../../components/EditPageLink.astro";
 import CodeExample from "../../components/CodeExample.astro";
 import Pre from "../../components/Pre.astro";
 import Table from "../../components/Table.astro";
@@ -47,7 +47,7 @@ if ("parent" in entry.data) {
 <Page {entry} {headings}>
   <Content components={{ CodeExample, pre: Pre, table: Table }} />
   <div slot="append" class="spacing-xl">
-    <LinkEditPage />
+    <EditPageLink />
     <hr class="sep" />
     {"package" in entry.data && <Pagi entries={packages} />}
     {"parent" in entry.data && <Pagi entries={modules} />}
