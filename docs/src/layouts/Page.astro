@@ -3,6 +3,7 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 import Base from "./Base.astro";
 import Intro from "../components/Intro.astro";
 import CollectionNavi from "../components/CollectionNavi.astro";
+import CollectionPagi from "../components/CollectionPagi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import EditPageLink from "../components/EditPageLink.astro";
 
@@ -50,6 +51,7 @@ const layout = {
   <Intro data={{ title, description }} />
   <slot />
   <div slot="append">
+    {/* TODO: Add add CollectionPagi here by default  */}
     <EditPageLink />
   </div>
 </Base>
