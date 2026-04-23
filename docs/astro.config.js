@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
@@ -7,16 +6,6 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: "css-variables"
-    },
-    extendDefaultPlugins: true
-  },
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: "modern"
-        }
-      }
     }
   }
 });
