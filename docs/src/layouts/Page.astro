@@ -7,18 +7,24 @@ import OnThisPage from "../components/OnThisPage.astro";
 import EditPageLink from "../components/EditPageLink.astro";
 
 interface Props {
-  entry: CollectionEntry<CollectionKey>;
+  entry?: CollectionEntry<CollectionKey>;
   headings?: { depth: number; slug: string; text: string }[];
-  frontmatter?: any;
+  frontmatter?: {
+    title: string;
+    description?: string;
+    collection?: CollectionKey;
+  };
 }
 
 const { entry, headings } = Astro.props;
-const { title, description, collection } = {
-  ...entry,
-  ...entry?.data,
-  ...Astro.props,
-  ...Astro.props.frontmatter
-};
+const { collection } = entry || Astro.props.frontmatter || {};
+const { title, description } = entry?.data || Astro.props.frontmatter || {};
+
+// Check and store if this is a module
+const module =
+  entry?.data && "parent" in entry.data
+    ? (entry as CollectionEntry<"modules">)
+    : undefined;
 
 const layout = {
   hasSidebar: !!collection,
@@ -28,9 +34,9 @@ const layout = {
 
 <Base {title} {layout}>
   {
-    layout.hasSidebar && (
+    collection && (
       <Fragment slot="sidebar">
-        <CollectionNavi {entry} />
+        <CollectionNavi {collection} {module} />
       </Fragment>
     )
   }

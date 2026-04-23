@@ -6,26 +6,33 @@ import { getCollection } from "astro:content";
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<CollectionKey>;
+  collection: CollectionKey;
+  module?: CollectionEntry<"modules">;
 }
 
-const { entry } = Astro.props;
+const { collection, module } = Astro.props;
 
 // Get all the collection entries of the current page
-const entries = await getCollection(entry.collection);
+const entries = await getCollection(module ? "packages" : collection);
+
+let modules: CollectionEntry<"modules">[] = [];
+if (module) {
+  modules = await getCollection("modules", (entry) => {
+    return (
+      entry.data.parent === module.data.parent &&
+      entry.data.group === module.data.group
+    );
+  });
+}
 
 // Create the title for the collection
-const title =
-  entry.collection.charAt(0).toUpperCase() + entry.collection.slice(1);
+const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 
-// Define the path prefix
-let prefixPath = "";
-if (entry.collection === "packages") {
-  prefixPath = "/packages";
-}
-if (entry.collection === "modules") {
-  prefixPath = `/packages/${entry.data.parent}`;
-}
+// Build path prefix and suffix
+const prefixPath = ["packages", "modules"].includes(collection)
+  ? "/packages"
+  : "";
+const suffixPath = collection === "modules" ? `#${module?.data.group}` : "";
 
 // Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
@@ -54,7 +61,7 @@ function getIconName(string: string) {
         <li class="menu__item">
           <a
             class={cp.classes(`${prefixPath}/${entry.id}`)}
-            href={`${prefixPath}/${entry.id}`}
+            href={`${prefixPath}/${entry.id}${suffixPath}`}
           >
             <span class="flex-grow">{entry.data.title}</span>
             {"category" in entry.data && entry.data.category && (
@@ -69,22 +76,22 @@ function getIconName(string: string) {
               </Popover>
             )}
           </a>
-          {/* {hasModules === entry.id && (
+          {module?.data.parent === entry.id && (
             <ul class="menu menu_minimal">
               {modules.map((item) => (
                 <li class="menu__item">
                   <a
                     class={cp.classes(
-                      `${pathPrefix}/${item.data.parent}/${item.id}`
+                      `${prefixPath}/${module.data.parent}/${item.id}`
                     )}
-                    href={`${pathPrefix}/${item.data.parent}/${item.id}`}
+                    href={`${prefixPath}/${module.data.parent}/${item.id}`}
                   >
                     {item.data.title}
                   </a>
                 </li>
               ))}
             </ul>
-          )} */}
+          )}
         </li>
       ))
     }
