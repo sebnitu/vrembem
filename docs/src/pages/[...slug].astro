@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { getPages } from "../modules/getPages";
 import Base from "../layouts/Base.astro";
+import Intro from "../components/Intro.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import LinkEditPage from "../components/LinkEditPage.astro";
@@ -46,6 +47,7 @@ const layout = {
       </Fragment>
     )
   }
+  <Intro data={entry.data} />
   <Content components={{ pre: Pre, table: Table }} />
   <div slot="append">
     <LinkEditPage />
