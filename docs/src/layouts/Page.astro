@@ -1,11 +1,11 @@
 ---
+import type { CollectionEntry, CollectionKey } from "astro:content";
 import { getPackages } from "../modules/getPackages";
 import Base from "./Base.astro";
 import Intro from "../components/Intro.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import LinkEditPage from "../components/LinkEditPage.astro";
-import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<CollectionKey>;
