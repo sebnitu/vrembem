@@ -1,22 +1,16 @@
 ---
+// TODO: Ensure that this is pointing to the correct file in the repo
 import Icon from "./Icon.astro";
 
 interface Props {
   dir?: string;
-  filename?: string;
   ext?: string;
 }
 
 const { dir = "content", ext = ".mdx" } = Astro.props;
 
-let { filename = "" } = Astro.props;
-
-if (filename) {
-  filename = "/" + filename;
-}
-
 const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
-const url = `${ghPath}${dir}${Astro.url.pathname}${filename}${ext}`;
+const url = `${ghPath}${dir}${Astro.url.pathname}${ext}`;
 ---
 
 <a
