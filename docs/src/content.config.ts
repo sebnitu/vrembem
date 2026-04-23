@@ -27,5 +27,13 @@ const modules = defineCollection({
   })
 });
 
+const pages = defineCollection({
+  loader: glob({ base: "./src/content/pages", pattern: "**/*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional()
+  })
+});
+
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { packages, modules };
+export const collections = { packages, modules, pages };
