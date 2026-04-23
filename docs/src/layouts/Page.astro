@@ -1,9 +1,8 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { getPackages } from "../modules/getPackages";
 import Base from "./Base.astro";
 import Intro from "../components/Intro.astro";
-import Navi from "../components/CollectionNavi.astro";
+import CollectionNavi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import EditPageLink from "../components/EditPageLink.astro";
 
@@ -21,8 +20,6 @@ const { title, description, collection } = {
   ...Astro.props.frontmatter
 };
 
-const entries = await getPackages();
-
 const layout = {
   hasSidebar: !!collection,
   hasAside: !!headings?.filter((item) => item.depth === 2).length
@@ -33,7 +30,7 @@ const layout = {
   {
     layout.hasSidebar && (
       <Fragment slot="sidebar">
-        <Navi {entries} {collection} />
+        <CollectionNavi {entry} />
       </Fragment>
     )
   }

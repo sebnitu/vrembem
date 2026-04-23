@@ -2,25 +2,38 @@
 import { currentPage } from "../modules/currentPage";
 import Icon from "./Icon.astro";
 import Popover from "../components/Popover.astro";
-import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
-  entries: CollectionEntry<"packages">[] | CollectionEntry<"pages">[];
-  collection: string;
-  modules?: CollectionEntry<"modules">[];
-  menuClass?: string;
+  entry: CollectionEntry<CollectionKey>;
 }
 
-const { entries, collection, modules = [], menuClass = "" } = Astro.props;
-const title = collection.charAt(0).toUpperCase() + collection.slice(1);
+const { entry } = Astro.props;
+
+// Get all the collection entries of the current page
+const entries = await getCollection(entry.collection);
+
+// Create the title for the collection
+const title =
+  entry.collection.charAt(0).toUpperCase() + entry.collection.slice(1);
+
+// Define the path prefix
+let prefixPath = "";
+if (entry.collection === "packages") {
+  prefixPath = "/packages";
+}
+if (entry.collection === "modules") {
+  prefixPath = `/packages/${entry.data.parent}`;
+}
+
+// Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active"
 });
 
-const pathPrefix = collection === "packages" ? `/${collection}` : "";
-const hasModules = modules.length && modules[0].data.parent;
-
+// Setup the category icon logic
 const categoryIcons = {
   core: "settings",
   modules: "layers",
@@ -35,13 +48,13 @@ function getIconName(string: string) {
 
 <nav>
   <h2 class="sr-only">{title}</h2>
-  <ul class={`menu menu_collection ${menuClass}`.trim()}>
+  <ul class="menu menu_collection">
     {
       entries.map((entry) => (
         <li class="menu__item">
           <a
-            class={cp.classes(`${pathPrefix}/${entry.id}`)}
-            href={`${pathPrefix}/${entry.id}${hasModules && cp.isParent(`${pathPrefix}/${entry.id}`) ? `#${modules[0].data.group}` : ""}`}
+            class={cp.classes(`${prefixPath}/${entry.id}`)}
+            href={`${prefixPath}/${entry.id}`}
           >
             <span class="flex-grow">{entry.data.title}</span>
             {"category" in entry.data && entry.data.category && (
@@ -56,7 +69,7 @@ function getIconName(string: string) {
               </Popover>
             )}
           </a>
-          {hasModules === entry.id && (
+          {/* {hasModules === entry.id && (
             <ul class="menu menu_minimal">
               {modules.map((item) => (
                 <li class="menu__item">
@@ -71,7 +84,7 @@ function getIconName(string: string) {
                 </li>
               ))}
             </ul>
-          )}
+          )} */}
         </li>
       ))
     }
