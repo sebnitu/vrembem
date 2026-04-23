@@ -17,7 +17,6 @@ if (filename) {
 
 const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
 const url = `${ghPath}${dir}${Astro.url.pathname}${filename}${ext}`;
-
 ---
 
 <a
@@ -26,5 +25,5 @@ const url = `${ghPath}${dir}${Astro.url.pathname}${filename}${ext}`;
   class="link flex flex_inline flex_gap_sm align-items-center"
 >
   <Icon name="edit" classes="icon_size_sm" />
-  <span>Suggest changes to this page</span>
+  <span>Edit page</span>
 </a>
