@@ -1,20 +1,22 @@
 ---
 import { getPackages } from "../modules/getPackages";
 import Base from "./Base.astro";
+import Intro from "../components/Intro.astro";
 import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import LinkEditPage from "../components/LinkEditPage.astro";
-import type { CollectionEntry } from "astro:content";
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<"packages">;
+  entry: CollectionEntry<CollectionKey>;
   headings?: { depth: number; slug: string; text: string }[];
   frontmatter?: any;
 }
 
+const { entry, headings } = Astro.props;
+const { title, description, collection, filename } =
+  Astro.props.frontmatter || Astro.props;
 const entries = await getPackages();
-const { headings } = Astro.props;
-const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
 
 const layout = {
   hasSidebar: !!collection,
@@ -37,6 +39,7 @@ const layout = {
       </Fragment>
     )
   }
+  <Intro data={{ title, description }} />
   <slot />
   <div slot="append">
     <LinkEditPage dir="pages" {filename} />
