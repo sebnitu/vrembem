@@ -5,11 +5,10 @@ import Navi from "../components/CollectionNavi.astro";
 import OnThisPage from "../components/OnThisPage.astro";
 import LinkEditPage from "../components/LinkEditPage.astro";
 import type { CollectionEntry } from "astro:content";
-import type { MarkdownHeading } from "astro";
 
 interface Props {
   entry: CollectionEntry<"packages">;
-  headings?: MarkdownHeading[];
+  headings?: { depth: number; slug: string; text: string }[];
   frontmatter?: any;
 }
 
