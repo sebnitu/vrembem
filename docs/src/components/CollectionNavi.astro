@@ -33,9 +33,6 @@ if (baseCollection === "packages") {
 // Get the module meta if a module was provided
 const moduleMeta = module ? getModuleMeta(module) : undefined;
 
-// Create the title for the collection
-const title = collection.charAt(0).toUpperCase() + collection.slice(1);
-
 // Build path prefix and suffix
 const prefixPath = ["packages", "modules"].includes(collection)
   ? "/packages"
@@ -62,7 +59,6 @@ function getIconName(string: string) {
 ---
 
 <nav>
-  <h2 class="sr-only">{title}</h2>
   <ul class="menu menu_collection">
     {
       entries.map((entry) => (
@@ -97,27 +93,22 @@ function getIconName(string: string) {
   import { drawers } from "../modules/useDrawer";
 
   document.querySelectorAll(".menu_collection .is-active").forEach((anchor) => {
+    // Handles a navi click when we're already on the current page
     anchor.addEventListener("click", (event) => {
-      // Guard if this is an active module page
-      if (anchor.getAttribute("href")?.includes("#")) return;
-
-      // Prevent the default behavior
       event.preventDefault();
 
       // Clear the hash if one has been set
-      const url = window.location.pathname + window.location.search;
-      history.pushState({}, "", url);
-      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      if (window.location.hash) {
+        const url = window.location.pathname + window.location.search;
+        history.pushState({}, "", url);
+        window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      }
 
-      // Scroll to top
+      // Scroll to the top of the page
       window.scrollTo(0, 0);
 
       // Close the modal drawer if open
-      if (
-        drawers &&
-        drawers.activeModal &&
-        drawers.activeModal.id === "layout-sidebar"
-      ) {
+      if (drawers?.activeModal?.id === "layout-sidebar") {
         drawers.activeModal.close();
       }
     });
