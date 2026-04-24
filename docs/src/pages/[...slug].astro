@@ -1,11 +1,10 @@
 ---
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
-import { getPages } from "../modules/getPages";
-import Page from "../layouts/Page.astro";
-import CodeExample from "../components/CodeExample.astro";
-import Pre from "../components/Pre.astro";
-import Table from "../components/Table.astro";
+import Page from "@/layouts/Page.astro";
+import CodeExample from "@/components/CodeExample.astro";
+import Pre from "@/components/Pre.astro";
+import Table from "@/components/Table.astro";
 
 interface Props {
   entry: CollectionEntry<"pages">;
@@ -15,8 +14,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 export async function getStaticPaths() {
-  const pages = await getPages();
-
+  const pages = await getCollection("pages");
   return pages.map((entry) => ({
     params: { slug: entry.id },
     props: { entry }

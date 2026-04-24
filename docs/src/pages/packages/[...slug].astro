@@ -1,8 +1,6 @@
 ---
+import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { render } from "astro:content";
-import { getPackages } from "../../modules/getPackages";
-import { getModules } from "../../modules/getModules";
 import { getModuleMeta } from "../../helpers/getModuleMeta";
 import Page from "../../layouts/Page.astro";
 import CodeExample from "../../components/CodeExample.astro";
@@ -17,8 +15,8 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 export async function getStaticPaths() {
-  const packages = await getPackages();
-  const modules = await getModules();
+  const packages = await getCollection("packages");
+  const modules = await getCollection("modules");
 
   return [
     ...packages.map((entry) => ({

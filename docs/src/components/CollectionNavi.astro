@@ -1,10 +1,11 @@
 ---
-import { currentPage } from "../modules/currentPage";
-import Icon from "./Icon.astro";
-import Popover from "../components/Popover.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry, CollectionKey } from "astro:content";
+import { currentPage } from "@/modules/currentPage";
+import Icon from "@/components/Icon.astro";
+import Popover from "@/components/Popover.astro";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
+import { byCategory, byOrder, byTitle } from "@/helpers/sortBy";
 
 interface Props {
   collection: CollectionKey;
@@ -13,9 +14,20 @@ interface Props {
 
 const { collection, module } = Astro.props;
 
-// TODO: Fix collection and module sorting
+// Set the base collection
+const baseCollection = module ? "packages" : collection;
+
 // Get all the collection entries of the current page
-const entries = await getCollection(module ? "packages" : collection);
+const entries = await getCollection(baseCollection);
+
+// Sort packages by category, otherwise sort by title/order
+if (baseCollection === "packages") {
+  entries.sort(
+    byCategory(["core", "modules", "layout", "form-control", "component"])
+  );
+} else {
+  entries.sort(byTitle).sort(byOrder);
+}
 
 // TODO: Create a modules menu component and maybe move all this logic there
 // Get all the sibling modules if the current page is a module
@@ -30,6 +42,7 @@ if (module) {
       entryMeta.group === moduleMeta?.group
     );
   });
+  modules.sort(byTitle).sort(byOrder);
 }
 
 // Create the title for the collection
