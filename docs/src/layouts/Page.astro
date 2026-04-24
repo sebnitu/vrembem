@@ -3,6 +3,7 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 import Base from "@/layouts/Base.astro";
 import Intro from "@/components/Intro.astro";
 import CollectionNavi from "@/components/CollectionNavi.astro";
+// TODO: Add add CollectionPagi to the default append slot
 import CollectionPagi from "@/components/CollectionPagi.astro";
 import OnThisPage from "@/components/OnThisPage.astro";
 import EditPageLink from "@/components/EditPageLink.astro";
@@ -30,7 +31,7 @@ const module =
 // Create our layout state object
 const layout = {
   hasSidebar: !!collection,
-  hasAside: !!headings?.filter((item) => item.depth === 2).length
+  hasAside: headings?.some((item) => item.depth === 2) ?? false
 };
 ---
 
@@ -52,7 +53,6 @@ const layout = {
   <Intro data={{ title, description }} />
   <slot />
   <div slot="append">
-    {/* TODO: Add add CollectionPagi here by default  */}
     <EditPageLink />
   </div>
 </Base>

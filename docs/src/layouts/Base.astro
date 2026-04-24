@@ -10,13 +10,13 @@ import Popover from "@/components/Popover.astro";
 
 interface Props {
   title?: string;
-  layout?: {
-    hasAside?: boolean;
-    hasSidebar?: boolean;
+  layout: {
+    hasAside: boolean;
+    hasSidebar: boolean;
   };
 }
 
-const { title, layout = {} } = Astro.props;
+const { title, layout } = Astro.props;
 
 const layoutClasses = ["layout"];
 if (layout.hasSidebar) {
