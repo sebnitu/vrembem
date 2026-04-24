@@ -23,7 +23,7 @@ const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
 // Check and store if this is a module
 const module =
-  entry?.data && "parent" in entry.data
+  entry?.collection === "modules"
     ? (entry as CollectionEntry<"modules">)
     : undefined;
 

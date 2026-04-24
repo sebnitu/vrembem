@@ -4,6 +4,7 @@ import Icon from "./Icon.astro";
 import Popover from "../components/Popover.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry, CollectionKey } from "astro:content";
+import { getModuleMeta } from "@/helpers/getModuleMeta";
 
 interface Props {
   collection: CollectionKey;
@@ -12,15 +13,21 @@ interface Props {
 
 const { collection, module } = Astro.props;
 
+// TODO: Fix collection and module sorting
 // Get all the collection entries of the current page
 const entries = await getCollection(module ? "packages" : collection);
 
+// TODO: Create a modules menu component and maybe move all this logic there
+// Get all the sibling modules if the current page is a module
+let moduleMeta: ReturnType<typeof getModuleMeta> | undefined;
 let modules: CollectionEntry<"modules">[] = [];
 if (module) {
+  moduleMeta = getModuleMeta(module);
   modules = await getCollection("modules", (entry) => {
+    const entryMeta = getModuleMeta(entry);
     return (
-      entry.data.parent === module.data.parent &&
-      entry.data.group === module.data.group
+      entryMeta.parent === moduleMeta?.parent &&
+      entryMeta.group === moduleMeta?.group
     );
   });
 }
@@ -32,7 +39,7 @@ const title = collection.charAt(0).toUpperCase() + collection.slice(1);
 const prefixPath = ["packages", "modules"].includes(collection)
   ? "/packages"
   : "";
-const suffixPath = collection === "modules" ? `#${module?.data.group}` : "";
+const suffixPath = collection === "modules" ? `#${moduleMeta?.group}` : "";
 
 // Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
@@ -76,15 +83,15 @@ function getIconName(string: string) {
               </Popover>
             )}
           </a>
-          {module?.data.parent === entry.id && (
+          {moduleMeta?.parent === entry.id && (
             <ul class="menu menu_minimal">
               {modules.map((item) => (
                 <li class="menu__item">
                   <a
                     class={cp.classes(
-                      `${prefixPath}/${module.data.parent}/${item.id}`
+                      `${prefixPath}/${getModuleMeta(item).path}`
                     )}
-                    href={`${prefixPath}/${module.data.parent}/${item.id}`}
+                    href={`${prefixPath}/${getModuleMeta(item).path}`}
                   >
                     {item.data.title}
                   </a>

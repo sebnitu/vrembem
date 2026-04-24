@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import { getPackages } from "../../modules/getPackages";
 import { getModules } from "../../modules/getModules";
+import { getModuleMeta } from "../../helpers/getModuleMeta";
 import Page from "../../layouts/Page.astro";
 import CodeExample from "../../components/CodeExample.astro";
 import Pre from "../../components/Pre.astro";
@@ -24,10 +25,13 @@ export async function getStaticPaths() {
       params: { slug: entry.id },
       props: { entry }
     })),
-    ...modules.map((entry) => ({
-      params: { slug: `${entry.data.parent}/${entry.id}` },
-      props: { entry }
-    }))
+    ...modules.map((entry) => {
+      const { parent } = getModuleMeta(entry);
+      return {
+        params: { slug: `${parent}/${entry.id.split("/").pop()}` },
+        props: { entry }
+      };
+    })
   ];
 }
 ---
