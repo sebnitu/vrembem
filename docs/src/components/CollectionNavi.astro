@@ -6,6 +6,7 @@ import Icon from "@/components/Icon.astro";
 import Popover from "@/components/Popover.astro";
 import { currentPage } from "@/modules/currentPage";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
 interface Props {
@@ -33,11 +34,8 @@ if (baseCollection === "packages") {
 // Get the module meta if a module was provided
 const moduleMeta = module ? getModuleMeta(module) : undefined;
 
-// Build path prefix and suffix
-const prefixPath = ["packages", "modules"].includes(collection)
-  ? "/packages"
-  : "";
-const suffixPath = collection === "modules" ? `#${moduleMeta?.group}` : "";
+// Build the hash var
+const hash = collection === "modules" ? `#${moduleMeta?.group}` : "";
 
 // Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
@@ -65,8 +63,8 @@ function getIconName(string: string) {
       entries.map((entry) => (
         <li class="menu__item">
           <a
-            class={cp.classes(`${prefixPath}/${entry.id}`)}
-            href={`${prefixPath}/${entry.id}${suffixPath}`}
+            class={cp.classes(getCollectionPath(entry))}
+            href={getCollectionPath(entry, hash)}
           >
             <span class="flex-grow">{entry.data.title}</span>
             {"category" in entry.data && entry.data.category && (

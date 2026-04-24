@@ -2,7 +2,8 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { currentPage } from "@/modules/currentPage";
-import { getModuleMeta } from "@/helpers/getModuleMeta";
+import { filterCollection } from "@/helpers/filterCollection";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byTitle, byOrder } from "@/helpers/sortCollectionBy";
 
 interface Props {
@@ -11,14 +12,7 @@ interface Props {
 
 const { module } = Astro.props;
 
-const moduleMeta = getModuleMeta(module);
-const modules = await getCollection("modules", (entry) => {
-  const entryMeta = getModuleMeta(entry);
-  return (
-    entryMeta.parent === moduleMeta?.parent &&
-    entryMeta.group === moduleMeta?.group
-  );
-});
+const modules = await getCollection("modules", filterCollection(module));
 modules.sort(byTitle).sort(byOrder);
 
 // Setup the current page instance
@@ -33,8 +27,8 @@ const cp = currentPage(Astro.url.pathname, {
     modules.map((item) => (
       <li class="menu__item">
         <a
-          class={cp.classes(`/packages/${getModuleMeta(item).path}`)}
-          href={`/packages/${getModuleMeta(item).path}`}
+          class={cp.classes(getCollectionPath(item))}
+          href={getCollectionPath(item)}
         >
           {item.data.title}
         </a>

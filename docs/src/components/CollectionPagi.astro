@@ -1,19 +1,37 @@
 ---
-// TODO: Fix this so that it works on all collections and pages
-import type { CollectionEntry } from "astro:content";
-import { currentPage } from "@/modules/currentPage";
+import { getCollection } from "astro:content";
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import { filterCollection } from "@/helpers/filterCollection";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { byCategory, byTitle, byOrder } from "@/helpers/sortCollectionBy";
 
 interface Props {
-  entries: CollectionEntry<"packages">[] | CollectionEntry<"modules">[];
-  path?: string;
+  entry: CollectionEntry<CollectionKey>;
 }
 
-const { entries, path = "packages" } = Astro.props;
-const pagi = { prev: null, next: null };
-const cp = currentPage(Astro.url.pathname);
+const { entry } = Astro.props;
 
+// Get all the collection entries of the current page
+const entries = await getCollection(entry.collection, filterCollection(entry));
+
+// Sort packages by category, otherwise sort by title/order
+if (entry.collection === "packages") {
+  entries.sort(
+    byCategory(["core", "modules", "layout", "form-control", "component"])
+  );
+} else {
+  entries.sort(byTitle).sort(byOrder);
+}
+
+// Setup pagi object to store prev and next entries
+const pagi: {
+  prev?: CollectionEntry<CollectionKey>;
+  next?: CollectionEntry<CollectionKey>;
+} = {};
+
+// Populate the prev and next entries if they exist
 entries.find((entry, index) => {
-  if (cp.isCurrent(`/${path}/${entry.id}`)) {
+  if (getCollectionPath(entry) === Astro.url.pathname) {
     pagi.prev = entries[index - 1];
     pagi.next = entries[index + 1];
   }
@@ -24,7 +42,7 @@ entries.find((entry, index) => {
   <div class="pagi_prev">
     {
       pagi.prev && (
-        <a class="pagi_link" href={`/${path}/${pagi.prev.id}`}>
+        <a class="pagi_link" href={getCollectionPath(pagi.prev)}>
           <div class="pagi_label">Previous</div>
           <div class="pagi_title">{pagi.prev.data.title}</div>
         </a>
@@ -34,7 +52,7 @@ entries.find((entry, index) => {
   <div class="pagi_next">
     {
       pagi.next && (
-        <a class="pagi_link" href={`/${path}/${pagi.next.id}`}>
+        <a class="pagi_link" href={getCollectionPath(pagi.next)}>
           <div class="pagi_label">Next</div>
           <div class="pagi_title">{pagi.next.data.title}</div>
         </a>

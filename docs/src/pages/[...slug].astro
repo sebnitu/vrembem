@@ -14,8 +14,7 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 export async function getStaticPaths() {
-  const pages = await getCollection("pages");
-  return pages.map((entry) => ({
+  return (await getCollection("pages")).map((entry) => ({
     params: { slug: entry.id },
     props: { entry }
   }));
