@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { currentPage } from "@/modules/currentPage";
+import { getModuleMeta } from "@/helpers/getModuleMeta";
+import { byTitle, byOrder } from "@/helpers/sortCollectionBy";
+
+interface Props {
+  module: CollectionEntry<"modules">;
+}
+
+const { module } = Astro.props;
+
+const moduleMeta = getModuleMeta(module);
+const modules = await getCollection("modules", (entry) => {
+  const entryMeta = getModuleMeta(entry);
+  return (
+    entryMeta.parent === moduleMeta?.parent &&
+    entryMeta.group === moduleMeta?.group
+  );
+});
+modules.sort(byTitle).sort(byOrder);
+
+// Setup the current page instance
+const cp = currentPage(Astro.url.pathname, {
+  classBase: "menu__action",
+  classCurrent: "is-active"
+});
+---
+
+<ul class="menu menu_minimal">
+  {
+    modules.map((item) => (
+      <li class="menu__item">
+        <a
+          class={cp.classes(`/packages/${getModuleMeta(item).path}`)}
+          href={`/packages/${getModuleMeta(item).path}`}
+        >
+          {item.data.title}
+        </a>
+      </li>
+    ))
+  }
+</ul>

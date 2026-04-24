@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { currentPage } from "@/modules/currentPage";
+import ModulesMenu from "@/components/ModulesMenu.astro";
 import Icon from "@/components/Icon.astro";
 import Popover from "@/components/Popover.astro";
+import { currentPage } from "@/modules/currentPage";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
@@ -29,21 +30,8 @@ if (baseCollection === "packages") {
   entries.sort(byTitle).sort(byOrder);
 }
 
-// TODO: Create a modules menu component and maybe move all this logic there
-// Get all the sibling modules if the current page is a module
-let moduleMeta: ReturnType<typeof getModuleMeta> | undefined;
-let modules: CollectionEntry<"modules">[] = [];
-if (module) {
-  moduleMeta = getModuleMeta(module);
-  modules = await getCollection("modules", (entry) => {
-    const entryMeta = getModuleMeta(entry);
-    return (
-      entryMeta.parent === moduleMeta?.parent &&
-      entryMeta.group === moduleMeta?.group
-    );
-  });
-  modules.sort(byTitle).sort(byOrder);
-}
+// Get the module meta if a module was provided
+const moduleMeta = module ? getModuleMeta(module) : undefined;
 
 // Create the title for the collection
 const title = collection.charAt(0).toUpperCase() + collection.slice(1);
@@ -96,21 +84,8 @@ function getIconName(string: string) {
               </Popover>
             )}
           </a>
-          {moduleMeta?.parent === entry.id && (
-            <ul class="menu menu_minimal">
-              {modules.map((item) => (
-                <li class="menu__item">
-                  <a
-                    class={cp.classes(
-                      `${prefixPath}/${getModuleMeta(item).path}`
-                    )}
-                    href={`${prefixPath}/${getModuleMeta(item).path}`}
-                  >
-                    {item.data.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {module && moduleMeta?.parent === entry.id && (
+            <ModulesMenu {module} />
           )}
         </li>
       ))
