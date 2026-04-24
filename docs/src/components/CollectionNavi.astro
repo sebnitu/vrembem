@@ -34,9 +34,6 @@ if (baseCollection === "packages") {
 // Get the module meta if a module was provided
 const moduleMeta = module ? getModuleMeta(module) : undefined;
 
-// Build the hash var
-const hash = collection === "modules" ? `#${moduleMeta?.group}` : "";
-
 // Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
@@ -64,7 +61,7 @@ function getIconName(string: string) {
         <li class="menu__item">
           <a
             class={cp.classes(getCollectionPath(entry))}
-            href={getCollectionPath(entry, hash)}
+            href={getCollectionPath(entry, moduleMeta?.group)}
           >
             <span class="flex-grow">{entry.data.title}</span>
             {"category" in entry.data && entry.data.category && (

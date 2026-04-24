@@ -5,6 +5,6 @@ export function getModuleMeta(entry: CollectionEntry<"modules">) {
   return {
     path: `${parts[0]}/${parts[parts.length - 1]}`,
     parent: parts[0],
-    group: entry.data.anchor ?? (parts.length > 2 ? parts[1] : null)
+    group: entry.data.anchor ?? (parts.length > 2 ? parts[1] : undefined)
   };
 }

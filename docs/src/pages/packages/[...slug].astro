@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { getModuleMeta } from "@/helpers/getModuleMeta";
 import Page from "@/layouts/Page.astro";
 import CodeExample from "@/components/CodeExample.astro";
 import Pre from "@/components/Pre.astro";
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
     })),
     ...modules.map((entry) => {
       return {
-        params: { slug: getCollectionPath(entry) },
+        params: { slug: getModuleMeta(entry).path },
         props: { entry }
       };
     })
