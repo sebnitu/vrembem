@@ -45,10 +45,10 @@ const layout = {
   }
   <Intro data={{ title, description }} />
   <slot />
-  <div slot="append" class="spacing-lg">
-    <EditPageLink />
+  <Fragment slot="append">
+    <EditPageLink {entry} />
     {entry && <CollectionPagi {entry} />}
-  </div>
+  </Fragment>
 </Base>
 
 <script>

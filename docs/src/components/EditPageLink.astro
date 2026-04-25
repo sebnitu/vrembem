@@ -1,16 +1,18 @@
 ---
-// TODO: Ensure that this is pointing to the correct file in the repo
+import type { CollectionEntry, CollectionKey } from "astro:content";
 import Icon from "@/components/Icon.astro";
 
 interface Props {
-  dir?: string;
-  ext?: string;
+  entry?: CollectionEntry<CollectionKey>;
 }
 
-const { dir = "content", ext = ".mdx" } = Astro.props;
+const { entry } = Astro.props;
 
-const ghPath = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
-const url = `${ghPath}${dir}${Astro.url.pathname}${ext}`;
+const ghBase = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
+const filePath = entry
+  ? `content/${entry.collection}/${entry.id}`
+  : `pages${Astro.url.pathname.replace(/\/$/, "")}.mdx`;
+const url = `${ghBase}${filePath}`;
 ---
 
 <a

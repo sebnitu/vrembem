@@ -46,6 +46,10 @@
 .content__append {
   margin-top: 2rem;
 
+  > * + * {
+    margin-top: 2rem;
+  }
+
   @include core.media-min("md") {
     margin-top: 3rem;
   }
