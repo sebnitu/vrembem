@@ -1,21 +1,18 @@
 import { Popover } from "vrembem";
 import { cssConfig, teleport } from "@vrembem/core";
 
-let popovers = null;
+/** @type {import("vrembem").Popover} */
+const popovers = new Popover({
+  plugins: [cssConfig(), teleport({ where: ".popovers" })]
+});
 
-if (typeof window !== "undefined") {
-  popovers = new Popover({
-    plugins: [cssConfig(), teleport({ where: ".popovers" })]
-  });
+// Return modal popover to prevent stacking issue
+popovers.on("teleport", ({ entry }) => {
+  if (entry.id === "popover-tooltip-modal-navi-close") {
+    entry.teleportReturn();
+  }
+});
 
-  // Return modal popover to prevent stacking issue
-  popovers.on("teleport", ({ entry }) => {
-    if (entry.id === "popover-tooltip-modal-navi-close") {
-      entry.teleportReturn();
-    }
-  });
-
-  window["popovers"] = await popovers.mount();
-}
+window["popovers"] = await popovers.mount();
 
 export { popovers };

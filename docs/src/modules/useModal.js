@@ -1,7 +1,7 @@
-import Modal from "@vrembem/modal";
+import { Modal } from "vrembem";
 import { attrConfig, cssConfig, focusTrap, teleport } from "@vrembem/core";
 
-/** @type {import("vrembem").Modal | null} */
+/** @type {import("vrembem").Modal} */
 const modals = new Modal({
   selectorInert: "main",
   plugins: [
@@ -14,6 +14,7 @@ const modals = new Modal({
     })
   ]
 });
+
 window["modals"] = await modals.mount();
 
 export { modals };
