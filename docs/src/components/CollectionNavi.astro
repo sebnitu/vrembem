@@ -2,8 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry, CollectionKey } from "astro:content";
 import ModulesMenu from "@/components/ModulesMenu.astro";
-import Icon from "@/components/Icon.astro";
-import Popover from "@/components/Popover.astro";
+import CategoryIcon from "@/components/CategoryIcon.astro";
 import { currentPage } from "@/modules/currentPage";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
@@ -43,19 +42,6 @@ const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active"
 });
-
-// TODO: Maybe move this into a category icon component?
-// Setup the category icon logic
-const categoryIcons = {
-  core: "settings",
-  modules: "layers",
-  "form-control": "check-circle",
-  component: "box"
-};
-
-function getIconName(string: string) {
-  return categoryIcons[string as keyof typeof categoryIcons] ?? string;
-}
 ---
 
 <nav>
@@ -69,15 +55,11 @@ function getIconName(string: string) {
           >
             <span class="flex-grow">{entry.data.title}</span>
             {"category" in entry.data && entry.data.category && (
-              <Popover placement="left" triggerClass="display-flex">
-                <Fragment slot="trigger">
-                  <Icon
-                    name={getIconName(entry.data.category)}
-                    classes="icon_size_sm foreground-primary"
-                  />
-                </Fragment>
-                <Fragment slot="tooltip">{entry.data.category}</Fragment>
-              </Popover>
+              <CategoryIcon
+                name={entry.data.category}
+                tooltip="left"
+                classes="icon_size_sm foreground-primary"
+              />
             )}
           </a>
           {module && moduleMeta?.parent === entry.id && (

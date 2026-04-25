@@ -73,6 +73,22 @@ if (followCursor) {
 }
 
 {
+  Astro.slots.has("static") && (
+    <span
+      id={triggerId}
+      data-popover-trigger={popoverId}
+      aria-controls={popoverId}
+      aria-describedby={tooltipId}
+      aria-label={label}
+      class={triggerClass}
+      {...rest}
+    >
+      <slot name="static" />
+    </span>
+  )
+}
+
+{
   Astro.slots.has("default") && (
     <div
       id={popoverId}
