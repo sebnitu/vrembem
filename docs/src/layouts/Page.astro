@@ -1,32 +1,38 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getPackages } from "../modules/getPackages";
-import Base from "./Base.astro";
-import Navi from "../components/CollectionNavi.astro";
-import OnThisPage from "../components/OnThisPage.astro";
-import LinkEditPage from "../components/LinkEditPage.astro";
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Intro from "@/components/Intro.astro";
+import CollectionNavi from "@/components/CollectionNavi.astro";
+import CollectionPagi from "@/components/CollectionPagi.astro";
+import OnThisPage from "@/components/OnThisPage.astro";
+import EditPageLink from "@/components/EditPageLink.astro";
 
 interface Props {
-  entry: CollectionEntry<"packages">;
-  headings?: any;
-  frontmatter?: any;
+  entry?: CollectionEntry<CollectionKey>;
+  headings?: { depth: number; slug: string; text: string }[];
+  frontmatter?: {
+    title: string;
+    description?: string;
+    collection?: CollectionKey;
+  };
 }
 
-const entries = await getPackages();
-const { headings } = Astro.props;
-const { title, collection, filename } = Astro.props.frontmatter || Astro.props;
+const { entry, headings } = Astro.props;
+const { collection } = entry || Astro.props.frontmatter || {};
+const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
+// Create our layout state object
 const layout = {
   hasSidebar: !!collection,
-  hasAside: !!headings.filter((item) => item.depth === 2).length
+  hasAside: headings?.some((item) => item.depth === 2) ?? false
 };
 ---
 
 <Base {title} {layout}>
   {
-    layout.hasSidebar && (
+    collection && (
       <Fragment slot="sidebar">
-        <Navi {entries} collection={collection} />
+        <CollectionNavi {collection} {entry} />
       </Fragment>
     )
   }
@@ -37,10 +43,12 @@ const layout = {
       </Fragment>
     )
   }
+  <Intro data={{ title, description }} />
   <slot />
-  <div slot="append">
-    <LinkEditPage dir="pages" {filename} />
-  </div>
+  <Fragment slot="append">
+    <EditPageLink {entry} />
+    {entry && <CollectionPagi {entry} />}
+  </Fragment>
 </Base>
 
 <script>

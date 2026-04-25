@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import Icon from "@/components/Icon.astro";
+
+interface Props {
+  entry?: CollectionEntry<CollectionKey>;
+}
+
+const { entry } = Astro.props;
+
+const ghBase = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
+const filePath = entry
+  ? `content/${entry.collection}/${entry.id}`
+  : `pages${Astro.url.pathname.replace(/\/$/, "")}.mdx`;
+const url = `${ghBase}${filePath}`;
+---
+
+<a
+  href={url}
+  target="_blank"
+  class="link flex flex_inline flex_gap_sm align-items-center"
+>
+  <Icon name="edit" classes="icon_size_sm" />
+  <span>Edit page</span>
+</a>

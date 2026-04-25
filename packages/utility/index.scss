@@ -12,9 +12,9 @@
 
   // Display and spacing (4)
   @include meta.load-css("./src/modules/display");
+  @include meta.load-css("./src/modules/spacing");
   @include meta.load-css("./src/modules/margin");
   @include meta.load-css("./src/modules/padding");
-  @include meta.load-css("./src/modules/spacing");
 
   // Grid and flex (6)
   @include meta.load-css("./src/modules/gap");

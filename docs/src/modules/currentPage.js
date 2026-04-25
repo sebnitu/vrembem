@@ -1,4 +1,4 @@
-function currentPage(pathname, options = {}) {
+export function currentPage(pathname, options = {}) {
   const config = {
     pathname: pathname,
     classBase: "",
@@ -38,5 +38,3 @@ function currentPage(pathname, options = {}) {
     classes
   };
 }
-
-export { currentPage };

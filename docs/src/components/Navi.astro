@@ -1,8 +1,8 @@
 ---
-import { currentPage } from "../modules/currentPage";
-import ThemeSwitcherPopover from "./ThemeSwitcherPopover.astro";
-import ThemeSwitcherMenu from "../components/ThemeSwitcherMenu.astro";
-import Icon from "./Icon.astro";
+import { currentPage } from "@/modules/currentPage";
+import ThemeSwitcherPopover from "@/components/ThemeSwitcherPopover.astro";
+import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
+import Icon from "@/components/Icon.astro";
 
 interface Props {
   classes?: string;
@@ -20,9 +20,7 @@ const cp = currentPage(Astro.url.pathname, {
 
 <ul class={`menu ${inline ? "menu_inline" : ""} ${classes}`.trim()}>
   <li class="menu__item">
-    <a class={cp.classes("/getting-started")} href="/getting-started">
-      Get Started
-    </a>
+    <a class={cp.classes("/guide")} href="/guide">Guide</a>
   </li>
   <li class="menu__item">
     <a class={cp.classes("/packages")} href="/packages">Packages</a>

@@ -1,11 +1,12 @@
 ---
-import Icon from "./Icon.astro";
-import Popover from "./Popover.astro";
+import Icon from "@/components/Icon.astro";
+import Popover from "@/components/Popover.astro";
+import type feather from "feather-icons";
 
 interface Props {
   nopre?: boolean;
   inline?: string;
-  icon?: string;
+  icon?: keyof typeof feather.icons;
 }
 
 const { inline, nopre, icon } = Astro.props;

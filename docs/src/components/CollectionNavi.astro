@@ -1,73 +1,69 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { currentPage } from "../modules/currentPage";
-import Icon from "./Icon.astro";
-import Popover from "../components/Popover.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import ModulesMenu from "@/components/ModulesMenu.astro";
+import CategoryIcon from "@/components/CategoryIcon.astro";
+import { currentPage } from "@/modules/currentPage";
+import { getModuleMeta } from "@/helpers/getModuleMeta";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
+import { filterCollection } from "@/helpers/filterCollection";
 
 interface Props {
-  entries: CollectionEntry<"packages">[];
-  collection: string;
-  modules?: CollectionEntry<"modules">[];
-  menuClass?: string;
+  collection: CollectionKey;
+  entry?: CollectionEntry<CollectionKey>;
 }
 
-const { entries, collection, modules = [], menuClass = "" } = Astro.props;
-const title = collection.charAt(0).toUpperCase() + collection.slice(1);
+const { collection, entry } = Astro.props;
+
+// Store the module if that's what entry is
+const module = entry?.collection === "modules" ? entry : undefined;
+
+// Set the base collection
+const baseCollection = module ? "packages" : collection;
+
+// Get all the collection entries of the current page
+const entries = await getCollection(baseCollection, filterCollection(entry));
+
+// Sort packages by category, otherwise sort by title/order
+if (baseCollection === "packages") {
+  entries.sort(
+    byCategory(["core", "modules", "layout", "form-control", "component"])
+  );
+} else {
+  entries.sort(byTitle).sort(byOrder);
+}
+
+// Get the module meta if a module was provided
+const moduleMeta = module ? getModuleMeta(module) : undefined;
+
+// Setup the current page instance
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
   classCurrent: "is-active"
 });
-
-const hasModules = modules.length && modules[0].data.parent;
-
-const categoryIcons = {
-  core: "settings",
-  modules: "layers",
-  "form-control": "check-circle",
-  component: "box"
-};
-
-function getIconName(string: string) {
-  return categoryIcons[string] ? categoryIcons[string] : string;
-}
 ---
 
 <nav>
-  <h2 class="sr-only">{title}</h2>
-  <ul class={`menu menu_collection ${menuClass}`.trim()}>
+  <ul class="menu menu_collection">
     {
       entries.map((entry) => (
         <li class="menu__item">
           <a
-            class={cp.classes(`/${collection}/${entry.id}`)}
-            href={`/${collection}/${entry.id}${hasModules && cp.isParent(`/${collection}/${entry.id}`) ? `#${modules[0].data.group}` : ""}`}
+            class={cp.classes(getCollectionPath(entry))}
+            href={getCollectionPath(entry, moduleMeta?.group)}
           >
             <span class="flex-grow">{entry.data.title}</span>
-            {entry.data.category && (
-              <Popover placement="left" triggerClass="display-flex">
-                <Fragment slot="trigger">
-                  <Icon
-                    name={getIconName(entry.data.category)}
-                    classes="icon_size_sm foreground-primary"
-                  />
-                </Fragment>
-                <Fragment slot="tooltip">{entry.data.category}</Fragment>
-              </Popover>
+            {"category" in entry.data && entry.data.category && (
+              <CategoryIcon
+                name={entry.data.category}
+                tooltip="left"
+                classes="icon_size_sm foreground-primary"
+              />
             )}
           </a>
-          {hasModules === entry.id && (
-            <ul class="menu menu_minimal">
-              {modules.map((item) => (
-                <li class="menu__item">
-                  <a
-                    class={cp.classes(`/${collection}/${item.id}`)}
-                    href={`/${collection}/${item.id}`}
-                  >
-                    {item.data.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {module && moduleMeta?.parent === entry.id && (
+            <ModulesMenu {module} />
           )}
         </li>
       ))
@@ -79,23 +75,22 @@ function getIconName(string: string) {
   import { drawers } from "../modules/useDrawer";
 
   document.querySelectorAll(".menu_collection .is-active").forEach((anchor) => {
+    // Handles a navi click when we're already on the current page
     anchor.addEventListener("click", (event) => {
-      // Guard if this is an active module page
-      if (anchor.getAttribute("href").includes("#")) return;
-
-      // Prevent the default behavior
       event.preventDefault();
 
       // Clear the hash if one has been set
-      const url = window.location.pathname + window.location.search;
-      history.pushState({}, "", url);
-      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      if (window.location.hash) {
+        const url = window.location.pathname + window.location.search;
+        history.pushState({}, "", url);
+        window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+      }
 
-      // Scroll to top
+      // Scroll to the top of the page
       window.scrollTo(0, 0);
 
       // Close the modal drawer if open
-      if (drawers.activeModal && drawers.activeModal.id === "layout-sidebar") {
+      if (drawers?.activeModal?.id === "layout-sidebar") {
         drawers.activeModal.close();
       }
     });

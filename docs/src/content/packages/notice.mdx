@@ -1,0 +1,199 @@
+---
+title: Notice
+description: "A component for highlighting messages to the user."
+package: "@vrembem/notice"
+category: component
+---
+
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import Icon from "@/components/Icon.astro";
+
+```sh
+npm install @vrembem/notice
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/notice";
+  ```
+</CodeExample>
+
+## Options
+
+Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+### CSS Variables
+
+Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-notice" valueLabel="Fallback" expandable={true} data={{
+  "--vb-notice-foreground": "var(--vb-foreground-strong)",
+  "--vb-notice-background": "var(--vb-background-shift)",
+  "--vb-notice-border": "none",
+  "--vb-notice-border-radius": "var(--vb-border-radius)",
+  "--vb-notice-box-shadow": "none",
+  "--vb-notice-padding": "1em 1.25em",
+  "--vb-notice-spacing": "0.5em",
+  "--vb-notice-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-notice-title-line-height": "var(--vb-font-weight-semi-bold)",
+  "--vb-notice-title-font-weight": "inherit"
+}} />
+
+## Basic usage
+
+The most basic implementation component consists of the `notice` container element wrapping text content.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="notice">
+      <p>This is an example notice.</p>
+    </div>
+  </Fragment>
+  ```html
+  <div class="notice">
+    <p>...</p>
+  </div>
+  ```
+</CodeExample>
+
+Add a title to your notice using the `notice__title` element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="notice">
+      <h2 class="notice__title">Notice title</h2>
+      <p>This is an example notice with a title. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+  </Fragment>
+  ```html
+  <div class="notice">
+    <h2 class="notice__title">...</h2>
+    <p>...</p>
+  </div>
+  ```
+</CodeExample>
+
+### Using flex layout
+
+For cases where a notice message should be displayed alongside an icon or image, try combining it with the [flex layout component](/packages/flex).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <div class="notice notice_color_important">
+      <div class="flex flex_wrap_no">
+        <div class="flex-item-none">
+          <Icon name="alert-triangle" />
+        </div>
+        <div class="flex-item-auto">
+          This is an example notice using the flex component for layout.
+        </div>
+      </div>
+    </div>
+    <div class="notice notice_color_secondary">
+      <div class="flex flex_wrap_no">
+        <div class="flex-item-auto">
+          This is an example notice using the flex component for layout.
+        </div>
+        <div class="flex-item-none">
+          <Icon name="archive" />
+        </div>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="notice">
+    <div class="flex flex_wrap_no">
+      <div class="flex-item-none">
+        ...
+      </div>
+      <div class="flex-item-auto">
+        ...
+      </div>
+    </div>
+  </div>
+  ```
+</CodeExample>
+
+### Dismissible
+
+It's a common pattern to allow users to dismiss notices. This can be accomplished using the button component along with some simple vanilla JavaScript.
+
+<CodeExample tabs resettable>
+  <Fragment slot="output">
+    <div class="notice">
+      <div class="flex justify-content-between align-items-center">
+        <p>This is an example notice with a dismiss button.</p>
+        <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
+          <Icon name="x" classes="icon_size_sm" />
+        </button>
+      </div>
+    </div>
+  </Fragment>
+  <Fragment slot="tab-html">
+    ```html
+    <div class="notice">
+      <div class="flex justify-content-between">
+        <p>...</p>
+        <button 
+          class="button button_icon button_size_sm" 
+          aria-label="Dismiss this notice" 
+          data-dismiss=".notice"
+        >
+          ...
+        </button>
+      </div>
+    </div>
+    ```
+  </Fragment>
+  <Fragment slot="tab-js">
+    ```js
+    // Get the button elements
+    const btns = document.querySelectorAll("[data-dismiss]");
+
+    // Loop through them and add click event listeners
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        // Get the value of data-dismiss and select the nearest matching element
+        const selector = btn.getAttribute("data-dismiss");
+        const result = event.target.closest(selector);
+
+        // Hide the notice if it exists
+        if (result) result.classList.add("display-none");
+      });
+    });
+    ```
+  </Fragment>
+</CodeExample>
+
+## notice_color_[key]
+
+Applies a color theme to the notice, useful for conveying different states such as success, info, or error. These modifiers are generated using the palette theme tokens.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <div class="notice notice_color_primary">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_secondary">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_neutral">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+    <div class="notice notice_color_important">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
+    </div>
+  </div>
+  ```html
+  <div class="notice notice_color_important">
+    <p>An error has occurred!</p>
+  </div>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `notice_color_primary`
+- `notice_color_secondary`
+- `notice_color_neutral`
+- `notice_color_important`

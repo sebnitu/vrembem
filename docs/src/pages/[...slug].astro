@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Page from "@/layouts/Page.astro";
+import CodeExample from "@/components/CodeExample.astro";
+import Pre from "@/components/Pre.astro";
+import Table from "@/components/Table.astro";
+
+interface Props {
+  entry: CollectionEntry<"pages">;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+export async function getStaticPaths() {
+  return (await getCollection("pages")).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+---
+
+<Page {entry} {headings}>
+  <Content components={{ CodeExample, pre: Pre, table: Table }} />
+</Page>

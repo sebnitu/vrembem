@@ -1,0 +1,92 @@
+---
+title: core/palette
+description: "Used to build and return color palette values by leveraging both the config and tokens module."
+order: 3
+---
+
+import ReferenceCard from "@/components/ReferenceCard.astro";
+import ReferenceBar from "@/components/ReferenceBar.astro";
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/core/palette";
+```
+</CodeExample>
+
+## Basic usage
+
+This module extends `core/tokens` by creating a custom properties color palette map under the `palette` namespace. It uses the core palette defined in the config `palette` map containing color names and values.
+
+The palette module sets up a watcher on the `palette` map of `core/config`. Whenever the `palette` value is updated the palette module rebuilds stored CSS variables.
+
+The default color palette defines four colors under semantic names that are used throughout the library. These are base colors:
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch border-radius background-primary"></span>
+  <span>`primary`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch border-radius background-secondary"></span>
+  <span>`secondary`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch border-radius background-neutral"></span>
+  <span>`neutral`</span>
+</div>
+
+<div class="flex flex_gap_lg align-items-center">
+  <span class="swatch border-radius background-important"></span>
+  <span>`important`</span>
+</div>
+
+### palette.get()
+
+<ReferenceBar type="function" returns="color" />
+
+Returns a color value from the palette as an oklch color, allowing overrides for lightness, chroma adjustments, and alpha channels.
+
+#### Arguments
+
+<ReferenceCard name="$name" type="string">
+  The palette color name (e.g., "primary", "neutral").
+</ReferenceCard>
+
+<ReferenceCard name="$l" type="percentage | string" defaults="null">
+  The lightness value. Pass a percentage to set lightness directly, or a string to reference a stored variant (e.g., "400").
+</ReferenceCard>
+
+<ReferenceCard name="$c" type="percentage" defaults="null">
+  The chroma value as a percentage of the seed color's chroma. E.g., 50% returns half the seed's chroma. Set to 0 to remove chroma entirely.
+</ReferenceCard>
+
+<ReferenceCard name="$a" type="percentage" defaults="null">
+  Optional alpha (opacity) value to apply to the returned color.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Return the seeded palette color
+palette.get("primary");
+// => var(--vb-primary)
+
+// Return a stored variant by name
+palette.get("primary", "400");
+// => var(--vb-primary-400)
+
+// Return a color with a specific lightness
+palette.get("primary", 80%);
+// => oklch(80% var(--vb-primary-c) var(--vb-primary-h))
+
+// Return a color with lightness and scaled chroma
+palette.get("primary", 90%, 20%);
+// => oklch(90% calc(var(--vb-primary-c) * 0.2) var(--vb-primary-h))
+
+// Return a color with alpha transparency
+palette.get("primary", $a: 50%);
+// => oklch(from var(--vb-primary) l c h/50%)
+```
+</CodeExample>

@@ -1,0 +1,133 @@
+---
+title: Core
+description: "Provides a number of Sass and JavaScript modules that make up the shared systems and configurations of the Vrembem library."
+package: "@vrembem/core"
+category: core
+---
+
+import CodeExpander from "@/components/CodeExpander.astro";
+
+```sh
+npm install @vrembem/core
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core";
+  ```
+</CodeExample>
+
+<CodeExample lang="js">
+  ```js
+  import * as core from "@vrembem/core";
+  ```
+</CodeExample>
+
+## Options
+
+Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander lang="scss">
+```scss
+@use "@vrembem/core" with (
+  $config: (
+    // A prefix to apply to block class names. Provided value is automatically 
+    // suffixed with a "-" character when applied.
+    // @type string
+    "prefix-block": "",
+
+    // A prefix to apply to element class names
+    // @type string
+    "prefix-element": "__",
+
+    // A prefix to apply to modifier class names
+    // @type string
+    "prefix-modifier": "_",
+
+    // A prefix to apply to modifier value class names
+    // @type string
+    "prefix-modifier-value": "_",
+
+    // A prefix to apply to CSS variable tokens. Map values requires a default 
+    // key and value along with any component specific prefixes as needed. 
+    // Provided value(s) are automatically suffixed with a "-" character.
+    // @type string | map
+    "prefix-tokens": "vb",
+
+    // The palette to build CSS variables from
+    // @type map
+    "palette": (
+      "primary": hsl(152deg 60% 50%),
+      "secondary": hsl(214deg 50% 50%),
+      "neutral": hsl(214deg 20% 50%),
+      "important": hsl(0deg 80% 50%)
+    ),
+
+    // A prefix to apply to theme names. Provided value is automatically suffixed
+    // with a "-" character when applied.
+    // @type string
+    "theme-prefix": "vb-theme",
+
+    // Sets the default theme option
+    // @type string
+    "theme-default": "light",
+
+    // A map of breakpoint key/value pairs
+    // @type map
+    "breakpoints": (
+      "xs": 480px,
+      "sm": 620px,
+      "md": 760px,
+      "lg": 990px,
+      "xl": 1380px
+    )
+  )
+);
+```
+</CodeExpander>
+
+## Design tokens
+
+Design tokens are the foundation of the Vrembem library and help to establish a consistent design language across components. Tokens are managed by the `@vrembem/core/tokens` module and are output as CSS variables.
+
+[Core design tokens](/packages/core/css-variables)
+
+## Sass modules
+
+Vrembem uses Sass modules to manage global configuration and design tokens throughout the library.
+
+- [`@vrembem/core/config`](/packages/core/config): Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
+- [`@vrembem/core/tokens`](/packages/core/tokens): Used to define, manage, and output global and component-level design tokens expressed as CSS variables.
+- [`@vrembem/core/palette`](/packages/core/palette): Used to build and return color palette values by leveraging both the config and tokens module.
+- [`@vrembem/core/theme`](/packages/core/theme): Used to define, manage, and output global and component-level themes powered by the tokens module.
+
+## Collections
+
+Collection and CollectionEntry are base classes designed to manage component instances—such as modals, drawers, or popovers. Each Collection acts as a controller, handling registration, events, lifecycle hooks, and plugin integration.
+
+CollectionEntry represent an individual component instance within a collection, storing its state, configuration, and DOM reference. By extending these classes, Vrembem components inherit shared systems and APIs that can also be leveraged by custom components or plugins.
+
+- [Collection Tutorial](/packages/core/collections-tutorial)
+- [Collection API](/packages/core/collection-api)
+- [CollectionEntry API](/packages/core/collection-entry-api)
+
+### Plugins
+
+Vrembem provides plugins designed to extend the features of components managed by collections, adding advanced behaviors and integrations to your JavaScript components.
+
+- [`attrConfig`](/packages/core/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
+- [`cssConfig`](/packages/core/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
+- [`focusTrap`](/packages/core/focus-trap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
+- [`mediaQuery`](/packages/core/media-query): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
+- [`propStore`](/packages/core/prop-store): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
+- [`teleport`](/packages/core/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
+
+It's also possible to write your own custom plugins. Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements.
+
+[Writing a custom plugin](/packages/core/custom)
+
+## Theme state
+
+Once themes are created, it's important to allow users to be able to select their preferred theme and have that choice persisted. Vrembem provides `themeStore`, a JavaScript utility module that manages theme state and user preference.
+
+[Getting started with themeStore](/packages/core/theme-store)

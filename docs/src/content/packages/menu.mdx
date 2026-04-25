@@ -1,0 +1,392 @@
+---
+title: Menu
+description: "Menus represent groups of links, actions or tools that a user can interact with."
+package: "@vrembem/menu"
+category: component
+---
+
+import ReferenceBar from "@/components/ReferenceBar.astro";
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import Menu from "@/demos/Menu.astro";
+
+```sh
+npm install @vrembem/menu
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/menu";
+  ```
+</CodeExample>
+
+## Options
+
+Menu is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Menu comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/menu" with (
+  $config: (
+    // Toggle for outputting menu_inline modifier breakpoint variants
+    // @type boolean
+    "menu-inline-breakpoints": true,
+
+    // Toggle for outputting menu_full modifier breakpoint variants
+    // @type boolean
+    "menu-full-breakpoints": true,
+
+    // Map for outputting menu_size_[key] modifier variants
+    // @type map
+    "menu-size": (
+      "breakpoints": true,
+      "sm": tokens.get("form-control-size-sm"),
+      "md": tokens.get("form-control-size"),
+      "lg": tokens.get("form-control-size-lg")
+    )
+  )
+);
+```
+</CodeExample>
+
+### CSS Variables
+
+Menu uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-menu" valueLabel="Fallback" expandable={true} data={{
+  // Form control fallbacks
+  "--vb-menu-accent": "var(--vb-form-control-accent)",
+  "--vb-menu-size": "var(--vb-form-control-size)",
+  "--vb-menu-line-height": "var(--vb-form-control-line-height)",
+  "--vb-menu-padding": "var(--vb-form-control-padding)",
+  "--vb-menu-border-radius": "var(--vb-form-control-border-radius)",
+  "--vb-menu-border-width": "var(--vb-form-control-border-width)",
+  "--vb-menu-transition-duration": "var(--vb-form-control-transition-duration)",
+  "--vb-menu-transition-property": "var(--vb-form-control-transition-property)",
+  "--vb-menu-transition-timing-function": "var(--vb-menu-control-transition-timing-function)",
+
+  // Menu specific
+  "--vb-menu-gap": "1px",
+  "--vb-menu-sep-background": "var(--vb-border-color)",
+  "--vb-menu-sep-size": "1px",
+  "--vb-menu-sep-gap": "0.5em",
+  "--vb-menu-action-gap": "0.5em",
+
+  // Theme styles
+  "--vb-menu-background": "transparent",
+  "--vb-menu-foreground": "var(--vb-foreground)",
+  "--vb-menu-border-color": "transparent",
+  "--vb-menu-box-shadow": "none",
+
+  // Theme state styles
+  "--vb-menu-background-hover": "var(--vb-menu-background)",
+  "--vb-menu-foreground-hover": "var(--vb-menu-foreground)",
+  "--vb-menu-border-color-hover": "var(--vb-menu-border-color)",
+  "--vb-menu-box-shadow-hover": "var(--vb-menu-box-shadow)",
+
+  "--vb-menu-background-focus": "var(--vb-menu-background-hover)",
+  "--vb-menu-foreground-focus": "var(--vb-menu-foreground-hover)",
+  "--vb-menu-border-color-focus": "var(--vb-menu-border-color-hover)",
+  "--vb-menu-box-shadow-focus": "var(--vb-menu-box-shadow-hover)",
+
+  "--vb-menu-background-focus-visible": "var(--vb-menu-background-focus)",
+  "--vb-menu-foreground-focus-visible": "var(--vb-menu-foreground-focus)",
+  "--vb-menu-border-color-focus-visible": "var(--vb-menu-border-color-focus)",
+  "--vb-menu-box-shadow-focus-visible": "var(--vb-menu-box-shadow-focus)",
+
+  "--vb-menu-background-active": "var(--vb-menu-background)",
+  "--vb-menu-foreground-active": "var(--vb-menu-foreground)",
+  "--vb-menu-border-color-active": "var(--vb-menu-border-color)",
+  "--vb-menu-box-shadow-active": "var(--vb-menu-box-shadow)",
+
+  // State styles
+  "--vb-menu-disabled-background": "none",
+  "--vb-menu-disabled-foreground": "var(--vb-foreground-lighter)",
+  "--vb-menu-active-background": "none",
+  "--vb-menu-active-foreground": "var(--vb-primary)"
+}} />
+
+## Basic usage
+
+The menu component is composed of at minimum three parts: `menu`, `menu__item` and `menu__action`. The menu and menu items should be a `<ul>` and list items `<li>` respectively while the menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__sep` element to create separators in between menu items.
+
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="edit" />
+  </Fragment>
+  ```html
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        ...
+      </button>
+    </li>
+    <li class="menu__sep"></li>
+  </ul>
+  ```
+</CodeExample>
+
+Use the `flex-grow` utility class to wrap text inside the `menu__action` element. Additional elements inside the menu action receive appropriate spacing.
+
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="edit-all" />
+  </Fragment>
+  ```html
+  <ul class="menu">
+    <li class="menu__item">
+      <button class="menu__action">
+        <span>...</span>
+        <span class="flex-grow">...</span>
+        <span>...</span>
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
+
+For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button_icon` modifier.
+
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="browser" />
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action menu__action_icon">
+        ...
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
+
+### is-active
+
+Adding the `is-active` class will provide visual indication that the action is currently in an active state.
+
+<CodeExample>
+  <Fragment slot="output">
+    <ul class="menu menu_inline">
+      <li class="menu__item">
+        <button class="menu__action is-active" disabled>One</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Two</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Three</button>
+      </li>
+    </ul>
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action is-active" disabled>
+        ...
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
+
+### disabled
+
+Adding the boolean `disabled` attribute will provide visual indication that the user should not be able to interact with the action.
+
+<CodeExample>
+  <Fragment slot="output">
+    <ul class="menu menu_inline">
+      <li class="menu__item">
+        <button class="menu__action" disabled>One</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Two</button>
+      </li>
+      <li class="menu__item">
+        <button class="menu__action">Three</button>
+      </li>
+    </ul>
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">
+    <li class="menu__item">
+      <button class="menu__action" disabled>
+        ...
+      </button>
+    </li>
+    ...
+  </ul>
+  ```
+</CodeExample>
+
+## menu_inline
+
+Used to apply horizontal menu styles. This is typically used for short menus or toolbars where vertical space can be saved.
+
+<CodeExample>
+  <Fragment slot="output">
+    <Menu name="crud" classes="menu_inline" />
+  </Fragment>
+  ```html
+  <ul class="menu menu_inline">...</ul>
+  ```
+</CodeExample>
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `menu-inline-breakpoints` config option (default: `true`).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-menu-inline-select">Variants Demo:</label>
+    <select id="demo-menu-inline-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-menu-inline">
+      <option value="xs:menu_inline">xs:menu_inline</option>
+      <option value="sm:menu_inline">sm:menu_inline</option>
+      <option value="md:menu_inline">md:menu_inline</option>
+      <option value="lg:menu_inline">lg:menu_inline</option>
+      <option value="xl:menu_inline">xl:menu_inline</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu id="demo-menu-inline" name="crud" classes="lg:menu_inline" />
+  </div>
+  ```html
+  <ul class="menu lg:menu_inline">...</ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:menu_inline`
+- `sm:menu_inline`
+- `md:menu_inline`
+- `lg:menu_inline`
+- `xl:menu_inline`
+
+## menu_full
+
+Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <Menu name="crud" classes="menu_inline menu_full" />
+  </div>
+  ```html
+  <ul class="menu menu_inline menu_full">...</ul>
+  ```
+</CodeExample>
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `menu-full-breakpoints` config option (default: `true`).
+
+<CodeExample>
+  <Fragment slot="demo">
+    <label class="text-nowrap" for="demo-menu-full-select">Variants Demo:</label>
+    <select id="demo-menu-full-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-menu-full">
+      <option value="xs:menu_full">xs:menu_full</option>
+      <option value="sm:menu_full">sm:menu_full</option>
+      <option value="md:menu_full">md:menu_full</option>
+      <option value="lg:menu_full">lg:menu_full</option>
+      <option value="xl:menu_full">xl:menu_full</option>
+    </select>
+  </Fragment>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu id="demo-menu-full" name="crud" classes="menu_inline lg:menu_full" />
+  </div>
+  ```html
+  <ul class="menu menu_inline lg:menu_full">...</ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:menu_full`
+- `sm:menu_full`
+- `md:menu_full`
+- `lg:menu_full`
+- `xl:menu_full`
+
+## menu_size_[key]
+
+Adjust the size of a menu by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `menu-size` config options map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <Menu name="crud" classes="menu_inline menu_size_sm" />
+    <Menu name="crud" classes="menu_inline menu_size_md" />
+    <Menu name="crud" classes="menu_inline menu_size_lg" />
+  </div>
+  ```html
+  <ul class="menu menu_size_sm">...</ul>
+  <ul class="menu menu_size_md">...</ul>
+  <ul class="menu menu_size_lg">...</ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `menu_size_sm`
+- `menu_size_md`
+- `menu_size_lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `menu-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <Menu name="crud" classes="menu_inline menu_size_sm lg:menu_size_md xl:menu_size_lg" />
+    <span class="badge lg:display-none">size_sm</span>
+    <span class="badge display-none lg:display-inline-block xl:display-none">size_md</span>
+    <span class="badge display-none xl:display-inline-block">size_lg</span>
+  </div>
+  ```html
+  <ul class="menu menu_inline menu_size_sm lg:menu_size_md xl:menu_size_lg">
+    ...
+  </ul>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:menu_size_[key]`
+- `sm:menu_size_[key]`
+- `md:menu_size_[key]`
+- `lg:menu_size_[key]`
+- `xl:menu_size_[key]`
+
+## Reference
+
+Below is a reference of all available menu mixins.
+
+### menu.action-base
+
+<ReferenceBar type="mixin" />
+
+Output the base styles for a menu action component element.
+- Setup of menu specific CSS variables with shared form-control fallbacks.
+- Setup of focus-ring CSS variables and initial state.
+- Flex layout styles for child elements and consistent gap spacing.
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/menu";
+
+.custom-menu-action {
+  @include menu.action-base;
+  // Your custom variant styles here...
+}
+```
+</CodeExample>

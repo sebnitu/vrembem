@@ -2,7 +2,7 @@
 import feather from "feather-icons";
 
 interface Props {
-  name?: string;
+  name: keyof typeof feather.icons;
   classes?: string;
 }
 
@@ -12,7 +12,6 @@ const svg = feather.icons[name].toSvg({
   class: `icon ${classes}`.trim(),
   role: "img"
 });
-
 ---
 
-<Fragment set:html={svg}></Fragment>
+<Fragment set:html={svg} />

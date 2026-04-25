@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { currentPage } from "@/modules/currentPage";
+import { filterCollection } from "@/helpers/filterCollection";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { byTitle, byOrder } from "@/helpers/sortCollectionBy";
+
+interface Props {
+  module: CollectionEntry<"modules">;
+}
+
+const { module } = Astro.props;
+
+const modules = await getCollection("modules", filterCollection(module));
+modules.sort(byTitle).sort(byOrder);
+
+// Setup the current page instance
+const cp = currentPage(Astro.url.pathname, {
+  classBase: "menu__action",
+  classCurrent: "is-active"
+});
+---
+
+<ul class="menu menu_minimal">
+  {
+    modules.map((item) => (
+      <li class="menu__item">
+        <a
+          class={cp.classes(getCollectionPath(item))}
+          href={getCollectionPath(item)}
+        >
+          {item.data.title}
+        </a>
+      </li>
+    ))
+  }
+</ul>

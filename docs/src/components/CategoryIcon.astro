@@ -1,0 +1,38 @@
+---
+import Icon from "@/components/Icon.astro";
+import Popover from "@/components/Popover.astro";
+
+interface Props {
+  name: string;
+  classes: string;
+  tooltip?: string;
+}
+
+const { name, classes, tooltip = "" } = Astro.props;
+
+// Category to icon mapping object
+// This is where we define the category name and which icon it maps to. Omit
+// categories that already map to an icon, e.g.: "layout"
+const categoryIconsMap = {
+  core: "settings",
+  modules: "layers",
+  "form-control": "check-circle",
+  component: "box"
+};
+
+// Function to get the mapped icon using the category name
+function getIconName(string: string) {
+  return categoryIconsMap[string as keyof typeof categoryIconsMap] ?? string;
+}
+---
+
+{
+  (tooltip && (
+    <Popover placement={tooltip} triggerClass="display-flex">
+      <Fragment slot="static">
+        <Icon name={getIconName(name)} {classes} />
+      </Fragment>
+      <Fragment slot="tooltip">{name}</Fragment>
+    </Popover>
+  )) || <Icon name={getIconName(name)} {classes} />
+}

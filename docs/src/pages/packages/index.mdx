@@ -1,31 +1,37 @@
 ---
-layout: ../../layouts/Page.astro
+layout: "@/layouts/Page.astro"
 title: Packages
 collection: packages
-filename: index
 ---
 
-import CodeExample from "../../components/CodeExample.astro";
-import Pre from "../../components/Pre.astro";
+import CodeExample from "@/components/CodeExample.astro";
+import Pre from "@/components/Pre.astro";
 
 export const components = { pre: Pre };
 
-# Packages
-
-Vrembem is a collection of packages that consist of a Sass and JavaScript modules. To install and use the entire library, use the `vrembem` package:
+<div class="margin-top-0 margin-bottom-lg">
+  Vrembem is a collection of packages built with Sass and TypeScript that compile to CSS and JavaScript. Each package can be installed individually, or the entire library can be used by installing the `vrembem` package:
+</div>
 
 ```sh
 npm install vrembem
 ```
 
-<CodeExample lang="scss">
-  ```scss
-  @use "vrembem";
-  ```
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    @use "vrembem";
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    @import "vrembem";
+    ```
+  </Fragment>
 </CodeExample>
 
 <CodeExample lang="js">
-  ```js
-  import * as vb from "vrembem";
-  ```
+```js
+import * as vb from "vrembem";
+```
 </CodeExample>

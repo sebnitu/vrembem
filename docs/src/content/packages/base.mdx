@@ -1,0 +1,620 @@
+---
+title: Base
+description: "A collection of modules that apply global styles and provide classes for styling commonly used HTML elements."
+package: "@vrembem/base"
+category: modules
+---
+
+import CodeExpander from "@/components/CodeExpander.astro";
+import ReferenceBar from "@/components/ReferenceBar.astro";
+import ReferenceCard from "@/components/ReferenceCard.astro";
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import data from "@/data/tokens-base.json";
+
+```sh
+npm install @vrembem/base
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/base";
+  ```
+</CodeExample>
+
+## Options
+
+Base is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Base comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExpander lang="scss">
+```scss
+@use "@vrembem/base" with (
+  $config: (
+    // Controls whether module styles are output. This can be overridden on a per 
+    // module basis using the `base-output-exceptions` config option.
+    // @type boolean
+    "base-output": true,
+
+    // Modules to exclude from the output rule set in `base-output`
+    // @type list
+    "base-output-exceptions": (),
+
+    // A map containing module names as keys and their preferred class selectors
+    // @type map
+    "base-classes": (
+      "separator": "sep"
+    ),
+
+    // A prefix to apply to base class selectors. Provided value is automatically 
+    // suffixed with a "-" character when applied.
+    // @type string
+    "base-prefix": "",
+
+    // Used to output the heading styles and their font-size/line-height CSS 
+    // variables. Should contain a key of the heading level to output and the 
+    // value of a font-size and optional line-height (space separated).
+    // @type map
+    "base-headings": (
+      "h1": 2.75em,
+      "h2": 2em,
+      "h3": 1.75em,
+      "h4": 1.5em,
+      "h5": 1.25em,
+      "h6": 1em
+    ),
+
+    // Map modules to their preferred type selectors
+    // @type map
+    "base-type-selectors": (
+      "h1": "> h1",
+      "h2": "> h2",
+      "h3": "> h3",
+      "h4": "> h4",
+      "h5": "> h5",
+      "h6": "> h6",
+      "link": ":not(div) > a",
+      "list": "> ul, > ol",
+      "code": ":not(pre) > code",
+      "pre": "> pre",
+      "blockquote": "> blockquote",
+      "separator": "> hr"
+    )
+  )
+);
+```
+</CodeExpander>
+
+### CSS Variables
+
+Base uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-base" data={data} expandable={true} valueLabel="Fallback" />
+
+## Output
+
+Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `base-output` and `base-output-exceptions` configuration options.
+
+<ReferenceCard ref="config" name="base-output" type="boolean" defaults="true">
+  Controls whether module styles are output. Specify exceptions using the `base-output-exceptions` config option.
+
+```scss
+@include config.set("base-output", false);
+```
+</ReferenceCard>
+
+<ReferenceCard ref="config" name="base-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `base-output`. If `base-output` is `true`, modules listed will not be output. If `base-output` is `false`, modules listed will be output.
+
+```scss
+@include config.set("base-output-exceptions", (
+  "global", "headings"
+));
+```
+</ReferenceCard>
+
+#### Example
+
+Use the `base-output` configuration to toggle output for all modules. Add exceptions to the `base-output-exceptions` list to override the output option for specific modules.
+
+<CodeExample lang="scss">
+```scss
+// Import the config module
+@use "@vrembem/core/config";
+
+// Disable the output of specific modules
+@include config.set("base-output-exceptions", (
+  "blockquote",
+  "code",
+  "list",
+  "pre"
+));
+
+// Disable the output of all modules except for "global" and "headings"
+@include config.set((
+  "base-output": false
+  "base-output-exceptions": (
+    "global",
+    "headings"
+  )
+));
+```
+</CodeExample>
+
+## Basic usage
+
+Once loaded, the base package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
+
+<CodeExample lang="html">
+```html
+<!-- Using base element modules -->
+<h1 class="h1">...</h1>
+<p>...</p>
+<ul class="list">
+  <li>...</li>
+</ul>
+
+<!-- Using base type module -->
+<div class="type">
+  <h1>...</h1>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+  </ul>
+</div>
+```
+</CodeExample>
+
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `base-classes` config option.
+
+<ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, set the following value:
+
+```scss
+@include config.set("base-classes", (
+  "type": "content"
+));
+```
+</ReferenceCard>
+
+It's also possible to provide a prefix to all base classes using the `base-prefix` config option.
+
+<ReferenceCard ref="config" name="base-prefix" type="map" defaults='""'>
+  A prefix to apply to base class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
+
+```scss
+@include config.set("base-prefix", "vb");
+// Result: .type > .vb-type
+```
+</ReferenceCard>
+
+## Modules
+
+Below is a list of each base module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
+
+### global
+
+<ReferenceBar selector="n/a" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-base"
+  }
+}} />
+
+A module to output an opinionated reset that removes user agent defaults in favor of minimalistic base styles. This creates a clean starting point for the UI and components to build from that includes:
+
+- Sets the box-sizing property to border-box for all elements.
+- Removes default margin and padding from all elements.
+- Sets the root typography styles.
+- Prevent font size inflation by setting text-size-adjust to none.
+- Applies base foreground and background CSS variables.
+
+#### Variables
+
+The following CSS variables are referenced with a fallback for more easily overriding base properties:
+
+<ReferenceCard name="--vb-base-background" type="color" fallback="var(--vb-background)">
+  Used to set the background property on the `body` element.
+</ReferenceCard>
+
+<ReferenceCard name="--vb-base-foreground" type="color" fallback="var(--vb-foreground)">
+  Used to set the color property on the `body` element.
+</ReferenceCard>
+
+### headings
+
+<ReferenceBar selector=".h1 - .h6" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-headings"
+  }
+}} />
+
+Section headings in HTML are represented by the `<h1>` through `<h6>` elements. This module helps style these elements by providing the `.h1`-`.h6` CSS classes.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <div class="spacing">
+    <h1 class="h1">Heading h1</h1>
+    <h2 class="h2">Heading h2</h2>
+    <h3 class="h3">Heading h3</h3>
+    <h4 class="h4">Heading h4</h4>
+    <h5 class="h5">Heading h5</h5>
+    <h6 class="h6">Heading h6</h6>
+  </div>
+</Fragment>
+```html
+<h1 class="h1">...</h1>
+<h2 class="h2">...</h2>
+<h3 class="h3">...</h3>
+<h4 class="h4">...</h4>
+<h5 class="h5">...</h5>
+<h6 class="h6">...</h6>
+```
+</CodeExample>
+
+Headings output and scale is controlled by the `base-headings` configuration option.
+
+<ReferenceCard ref="config" name="base-headings" type="map">
+  Used to output the heading styles and their font-size/line-height CSS variables. This map should contain a key of the heading level to output and the value of a font-size and optional line-height (space separated).
+
+```scss
+@include config.set("base-headings", (
+  "h1": 3em 1.2,
+  "h2": 2em 1.6,
+  // ...
+));
+```
+
+  <hr class="sep" />
+  <p class="font-family-mono font-size-sm">@default</p>
+
+```scss
+"base-headings": (
+  "h1": 2.75em,
+  "h2": 2em,
+  "h3": 1.75em,
+  "h4": 1.5em,
+  "h5": 1.25em,
+  "h6": 1em
+)
+```
+</ReferenceCard>
+
+### link
+
+<ReferenceBar selector=".link" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-link"
+  }
+}} />
+
+A link—usually represented by an anchor (`<a>`) HTML element with `href` attribute—creates the styles for a hyperlink to anything a URL can address. This module helps style these elements by providing the `.link` CSS class.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+<a href="#" class="link" onclick="event.preventDefault();">Link</a>
+</Fragment>
+```html
+<a href="#" class="link">Link</a>
+```
+</CodeExample>
+
+### list
+
+<ReferenceBar selector=".list" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-list"
+  }
+}} />
+
+The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) lists by providing the `.list` class.
+
+<CodeExample lang="html">
+<div slot="output" class="flex flex_items_auto">
+  <ul class="list">
+    <li>One</li>
+    <li>
+      Two
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ul>
+    </li>
+    <li>Three</li>
+  </ul>
+  <ol class="list">
+    <li>One</li>
+    <li>
+      Two
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+      </ol>
+    </li>
+    <li>Three</li>
+  </ol>
+</div>
+```html
+<ul class="list">
+  <li>One</li>
+  <li>Two
+    <ul>
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+    </ul>
+  </li>
+  <li>Three</li>
+</ul>
+
+<ol class="list">
+  ...
+</ol>
+```
+</CodeExample>
+
+### code
+
+<ReferenceBar selector=".code" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-code"
+  }
+}} />
+
+The HTML code element displays its contents styled in a fashion intended to indicate that the text is a short fragment of computer code. This module helps style these elements by providing the `.code` CSS class.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <code class="code">a = 17</code>
+</Fragment>
+```html
+<code class="code">a = 17</code>
+```
+</CodeExample>
+
+### pre
+
+<ReferenceBar selector=".pre" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-pre"
+  }
+}} />
+
+This module helps style the HTML `<pre>` element by providing the `.pre` CSS class. Whitespace inside this element is displayed as written.
+
+<CodeExample lang="html">
+```html
+<pre class="pre">
+-----------------------------
+| I'm an expert in my field |
+-----------------------------
+     \   ^__^
+      \  (oo)\_______
+         (__)\       )\/\
+             ||----w |
+             ||     ||
+</pre>
+```
+</CodeExample>
+
+### blockquote
+
+<ReferenceBar selector=".blockquote" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-blockquote"
+  }
+}} />
+
+The HTML blockquote element is used for marking up extended quotations. This module helps style these elements by providing the `.blockquote` CSS class.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <blockquote class="blockquote">
+    <p>"All that is gold does not glitter, Not all those who wander are lost; The old that is strong does not wither, Deep roots are not reached by the frost."</p>
+    <p>Appears in <cite>"The Fellowship of the Ring"</cite> by J.R.R. Tolkien</p>
+  </blockquote>
+</Fragment>
+```html
+<blockquote class="blockquote" cite="...">
+  <p>...</p>
+  <footer>
+    ...
+    <cite>...</cite>
+  </footer>
+</blockquote>
+```
+</CodeExample>
+
+### separator
+
+<ReferenceBar selector=".sep" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-sep"
+  }
+}} />
+
+This module adds the `.sep` CSS classes which visually renders a horizontal separator. This is most commonly applied to an `<hr>` HTML element but can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <hr class="sep" />
+</Fragment>
+```html
+<hr class="sep" />
+```
+</CodeExample>
+
+### type
+
+<ReferenceBar selector=".type" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-type"
+  }
+}} />
+
+The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
+
+<CodeExample lang="html">
+<div slot="output" class="type spacing">
+  <h1>Heading</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
+  <ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+  </ul>
+</div>
+```html
+<div class="type">
+  <h1>Heading</h1>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+  </ul>
+</div>
+```
+</CodeExample>
+
+The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `base-type-selectors` variable map.
+
+<ReferenceCard ref="config" name="base-type-selectors" type="map">
+  Map modules to type selectors. This configuration is used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector to be used within the `.type` context.
+
+```scss
+@include config.set("base-type-selectors", (
+  "h1": "> h1",
+  "h2": "> h2",
+  "h3": "> h3",
+  // ...
+));
+```
+
+  <hr class="sep" />
+  <p class="font-family-mono font-size-sm">@default</p>
+
+```scss
+"base-type-selectors": (
+  "h1": "> h1",
+  "h2": "> h2",
+  "h3": "> h3",
+  "h4": "> h4",
+  "h5": "> h5",
+  "h6": "> h6",
+  "link": ":not(div) > a",
+  "list": "> ul, > ol",
+  "code": ":not(pre) > code",
+  "pre": "> pre",
+  "blockquote": "> blockquote",
+  "separator": "> hr"
+)
+```
+</ReferenceCard>
+
+### arrow
+
+<ReferenceBar selector=".arrow" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-arrow"
+  }
+}} />
+
+The arrow (caret) module provides classes for directional triangles drawn with CSS. These are typically applied to `<span>` elements and used along side other components as direction indicators.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <span class="arrow"></span>
+    <span class="arrow-up"></span>
+    <span class="arrow-left"></span>
+    <span class="arrow-right"></span>
+  </div>
+  ```html
+  <span class="arrow"></span>
+  <span class="arrow-up"></span>
+  <span class="arrow-left"></span>
+  <span class="arrow-right"></span>
+  ```
+</CodeExample>
+
+Arrows are great for buttons or menu items to visually indicate when it reveals toggle-able content such as popovers or dropdowns.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+</Fragment>
+```html
+<button class="button">
+  <span>Button</span>
+  <span class="arrow"></span>
+</button>
+```
+</CodeExample>
+
+### loading-spinner
+
+<ReferenceBar selector=".loading-spinner" hash={{
+  target: "reference-table-tokens-base",
+  event: "filter",
+  detail: {
+    value: "--vb-loading"
+  }
+}} />
+
+The loading-spinner module provides the `.loading-spinner` CSS class. A loading spinner is a visual indicator for when a process or action is taking place such as a loading state.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+  <div class="flex align-items-center">
+    <span class="loading-spinner"></span>
+    <span>Loading text here...</span>
+  </div>
+</Fragment>
+```html
+<span class="loading-spinner"></span>
+```
+</CodeExample>
+
+### sr-only
+
+<ReferenceBar selector=".sr-only" />
+
+This module provides an accessibility class for rendering content meant only for screen readers. This keeps the content accessible in the DOM for screen readers while hiding it visually from all other users.
+
+<CodeExample lang="html">
+<Fragment slot="output">
+<p>The following content is for screen readers only: <span class="sr-only">Hello, screen readers!</span></p>
+</Fragment>
+```html
+<p>
+  The following content is for screen readers only:
+  <span class="sr-only">Hello, screen readers!</span>
+</p>
+```
+</CodeExample>

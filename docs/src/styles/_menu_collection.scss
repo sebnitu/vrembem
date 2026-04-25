@@ -6,7 +6,7 @@
   margin-top: 0.5rem;
 
   .menu__action.is-active,
-  .menu__action.is-parent {
+  .menu__action:has(~ .menu .is-active) {
     color: tokens.get("foreground-accent");
     background: tokens.get("background");
   }
