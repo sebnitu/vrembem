@@ -2,6 +2,8 @@ import { defineCollection } from "astro:content";
 import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
+// TODO: Test that things render correctly using a new collection
+
 const packages = defineCollection({
   loader: glob({ base: "./src/content/packages", pattern: "*.mdx" }),
   schema: z.object({

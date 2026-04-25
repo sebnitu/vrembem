@@ -8,19 +8,23 @@ import { currentPage } from "@/modules/currentPage";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
+import { filterCollection } from "@/helpers/filterCollection";
 
 interface Props {
   collection: CollectionKey;
-  module?: CollectionEntry<"modules">;
+  entry?: CollectionEntry<CollectionKey>;
 }
 
-const { collection, module } = Astro.props;
+const { collection, entry } = Astro.props;
+
+// Store the module if that's what entry is
+const module = entry?.collection === "modules" ? entry : undefined;
 
 // Set the base collection
 const baseCollection = module ? "packages" : collection;
 
 // Get all the collection entries of the current page
-const entries = await getCollection(baseCollection);
+const entries = await getCollection(baseCollection, filterCollection(entry));
 
 // Sort packages by category, otherwise sort by title/order
 if (baseCollection === "packages") {

@@ -21,12 +21,6 @@ const { entry, headings } = Astro.props;
 const { collection } = entry || Astro.props.frontmatter || {};
 const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
-// Check and store if this is a module
-const module =
-  entry?.collection === "modules"
-    ? (entry as CollectionEntry<"modules">)
-    : undefined;
-
 // Create our layout state object
 const layout = {
   hasSidebar: !!collection,
@@ -38,7 +32,7 @@ const layout = {
   {
     collection && (
       <Fragment slot="sidebar">
-        <CollectionNavi {collection} {module} />
+        <CollectionNavi {collection} {entry} />
       </Fragment>
     )
   }
