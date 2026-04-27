@@ -1,7 +1,7 @@
-import type { Popover } from "../Popover";
+import type { PopoverCollection } from "../PopoverCollection";
 
 export function getPopoverID(
-  this: Popover,
+  this: PopoverCollection,
   obj: string | HTMLElement
 ): string | null {
   // If it's a string, return the string

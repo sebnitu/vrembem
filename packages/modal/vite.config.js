@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "index.ts"),
-      name: "vrembem.Modal",
+      name: "vrembem.ModalCollection",
       fileName: "index"
     },
     emptyOutDir: false,

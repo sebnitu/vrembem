@@ -1,6 +1,6 @@
-import type { Modal } from "../Modal";
+import type { ModalCollection } from "../ModalCollection";
 
-export function updateFocusState(parent: Modal): void {
+export function updateFocusState(parent: ModalCollection): void {
   // Check if there's an active modal
   if (parent.active) {
     const el =

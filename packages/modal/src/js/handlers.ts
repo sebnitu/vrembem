@@ -1,8 +1,8 @@
-import type { Modal } from "./Modal";
+import type { ModalCollection } from "./ModalCollection";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function handleClick(
-  this: Modal,
+  this: ModalCollection,
   event: MouseEvent
 ): Promise<
   | ModalEntry
@@ -75,7 +75,7 @@ export async function handleClick(
 }
 
 export function handleKeydown(
-  this: Modal,
+  this: ModalCollection,
   event: KeyboardEvent
 ): Promise<ModalEntry | undefined> | void {
   // If escape key was pressed

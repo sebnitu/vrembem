@@ -1,5 +1,5 @@
 import { _ } from "@vrembem/core";
-import type { Popover } from "./Popover";
+import type { PopoverCollection } from "./PopoverCollection";
 import type { PopoverEntry } from "./PopoverEntry";
 
 export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
@@ -33,7 +33,9 @@ export async function close(entry: PopoverEntry): Promise<PopoverEntry> {
   return entry;
 }
 
-export async function closeAll(parent: Popover): Promise<PopoverEntry[]> {
+export async function closeAll(
+  parent: PopoverCollection
+): Promise<PopoverEntry[]> {
   const result: PopoverEntry[] = [];
   for (const entry of parent.collection) {
     if (entry.state === "opened") {

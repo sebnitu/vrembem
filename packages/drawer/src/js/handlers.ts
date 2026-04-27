@@ -1,8 +1,8 @@
-import type { Drawer } from "./Drawer";
+import type { DrawerCollection } from "./DrawerCollection";
 import type { DrawerEntry } from "./DrawerEntry";
 
 export async function handleClick(
-  this: Drawer,
+  this: DrawerCollection,
   event: MouseEvent
 ): Promise<DrawerEntry | void> {
   // Guard if event target property is null
@@ -86,7 +86,7 @@ export async function handleClick(
 }
 
 export function handleKeydown(
-  this: Drawer,
+  this: DrawerCollection,
   event: KeyboardEvent
 ): Promise<DrawerEntry> | void {
   // If escape key was pressed

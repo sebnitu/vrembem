@@ -6,7 +6,7 @@ import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 
-export class Drawer extends Collection<DrawerEntry, DrawerConfig> {
+export class DrawerCollection extends Collection<DrawerEntry, DrawerConfig> {
   readonly entryClass = DrawerEntry;
 
   constructor(options: Partial<DrawerConfig>) {

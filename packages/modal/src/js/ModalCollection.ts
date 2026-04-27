@@ -8,7 +8,7 @@ import { closeAll } from "./closeAll";
 import { replace } from "./replace";
 import { updateFocusState } from "./helpers/updateFocusState";
 
-export class Modal extends Collection<ModalEntry, ModalConfig> {
+export class ModalCollection extends Collection<ModalEntry, ModalConfig> {
   readonly entryClass = ModalEntry;
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;

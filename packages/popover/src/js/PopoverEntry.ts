@@ -5,13 +5,13 @@ import {
   registerEventListeners,
   deregisterEventListeners
 } from "./eventListeners";
-import type { Popover } from "./Popover";
+import type { PopoverCollection } from "./PopoverCollection";
 
 export class PopoverEntry extends CollectionEntry {
   state: "closed" | "opened" = "closed";
   trigger: HTMLElement | null = null;
 
-  constructor(parent: Popover, query: string | HTMLElement) {
+  constructor(parent: PopoverCollection, query: string | HTMLElement) {
     super(parent, query);
 
     // Set the initial state of private store
