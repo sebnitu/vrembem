@@ -5,6 +5,5 @@
   @include core.size(4rem);
 
   display: inline-block;
-  border: tokens.get("border");
-  border-radius: tokens.get("border-radius");
+  border-radius: tokens.get("border-radius-lg");
 }
