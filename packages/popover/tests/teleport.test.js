@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index";
+import { PopoverCollection } from "../index";
 import { teleport } from "@vrembem/core";
 
 document.body.innerHTML = `
@@ -18,7 +18,7 @@ document.body.innerHTML = `
   <div class="popovers"></div>
 `;
 
-const popover = new Popover({
+const popovers = new PopoverCollection({
   plugins: [
     teleport({
       where: ".popovers"
@@ -31,16 +31,16 @@ const div = document.querySelector(".popovers");
 describe("mount()", () => {
   it("should teleport popovers to the provided reference selector using the default method", async () => {
     expect(div.children.length).toBe(0);
-    await popover.mount();
+    await popovers.mount();
     expect(div.children.length).toBe(2);
   });
 
   it("should return teleport when a popover is deregistered", async () => {
-    let entry = popover.get("popover-1");
-    await popover.deregister(await popover.destroyEntry(entry));
+    let entry = popovers.get("popover-1");
+    await popovers.deregister(await popovers.destroyEntry(entry));
     expect(div.children.length).toBe(1);
-    entry = popover.get("popover-2");
-    await popover.deregister(await popover.destroyEntry(entry));
+    entry = popovers.get("popover-2");
+    await popovers.deregister(await popovers.destroyEntry(entry));
     expect(div.children.length).toBe(0);
   });
 });

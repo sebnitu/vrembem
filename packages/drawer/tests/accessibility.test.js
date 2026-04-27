@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Drawer from "../index";
+import { DrawerCollection } from "../index";
 
 document.body.innerHTML = `
   <div class="drawer-frame">
@@ -12,7 +12,7 @@ document.body.innerHTML = `
   </div>
 `;
 
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   selectorInert: "main",
   selectorOverflow: "body, main"
 });
@@ -33,7 +33,7 @@ test("should set accessibility attributes to modal drawer dialog", async () => {
   expect(dialog.getAttribute("aria-modal")).toBe(null);
   expect(dialog.getAttribute("tabindex")).toBe(null);
 
-  await drawer.mount();
+  await drawers.mount();
 
   expect(dialog.getAttribute("aria-modal")).toBe("true");
   expect(dialog.getAttribute("tabindex")).toBe("-1");

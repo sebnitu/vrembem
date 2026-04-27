@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index";
+import { PopoverCollection } from "../index";
 
 vi.useFakeTimers();
 
@@ -15,39 +15,39 @@ const markup = `
 describe("mount() & unmount()", () => {
   it("should mount the popover module when mount is run", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.collection.length).toBe(3);
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    expect(popovers.collection.length).toBe(3);
   });
 
   it("running mount multiple times should not create duplicates in collection", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    await popover.mount();
-    expect(popover.collection.length).toBe(3);
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    await popovers.mount();
+    expect(popovers.collection.length).toBe(3);
   });
 
   it("should be able to pass options through updateConfig method", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover({ selector: ".asdf" });
-    expect(popover.config.selector).toBe(".asdf");
-    popover.updateConfig({ selector: ".popover" });
-    await popover.mount();
-    expect(popover.config.selector).toBe(".popover");
+    const popovers = new PopoverCollection({ selector: ".asdf" });
+    expect(popovers.config.selector).toBe(".asdf");
+    popovers.updateConfig({ selector: ".popover" });
+    await popovers.mount();
+    expect(popovers.config.selector).toBe(".popover");
   });
 
   it("should remove all event listeners and clear collection", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
     const trigger = document.querySelector("button");
     const target = document.querySelector(".popover");
 
-    expect(popover.collection.length).toBe(3);
-    await popover.unmount();
-    expect(popover.collection.length).toBe(0);
+    expect(popovers.collection.length).toBe(3);
+    await popovers.unmount();
+    expect(popovers.collection.length).toBe(0);
     trigger.click();
     vi.advanceTimersByTime(500);
     expect(target).not.toHaveClass("is-active");
@@ -55,11 +55,11 @@ describe("mount() & unmount()", () => {
 
   it("should close open popovers when before being unmounted", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = await popover.get("asdf");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    const entry = await popovers.get("asdf");
     await entry.open();
-    await popover.unmount();
+    await popovers.unmount();
     const el = document.getElementById("asdf");
     expect(el).not.toHaveClass("is-active");
   });
@@ -68,72 +68,72 @@ describe("mount() & unmount()", () => {
 describe("register() & deregister()", () => {
   it("should be able to manually register a popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
+    const popovers = new PopoverCollection();
 
-    expect(popover.collection.length).toBe(0);
+    expect(popovers.collection.length).toBe(0);
 
     const el = document.querySelector(".popover");
     const trigger = document.querySelector("button");
 
-    await popover.register(await popover.createEntry(el));
-    expect(popover.collection.length).toBe(1);
-    expect(popover.collection[0].el).toBe(el);
-    expect(popover.collection[0].trigger).toBe(trigger);
+    await popovers.register(await popovers.createEntry(el));
+    expect(popovers.collection.length).toBe(1);
+    expect(popovers.collection[0].el).toBe(el);
+    expect(popovers.collection[0].trigger).toBe(trigger);
   });
 
   it("should be able to manually deregister a popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
-    expect(popover.collection.length).toBe(3);
-    await popover.deregister(popover.collection[0]);
-    expect(popover.collection.length).toBe(2);
+    expect(popovers.collection.length).toBe(3);
+    await popovers.deregister(popovers.collection[0]);
+    expect(popovers.collection.length).toBe(2);
   });
 });
 
 describe("open() & close()", () => {
   it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
     const target = document.querySelector(".popover");
 
     expect(target).not.toHaveClass("is-active");
-    await popover.open(popover.collection[0].id);
+    await popovers.open(popovers.collection[0].id);
     expect(target).toHaveClass("is-active");
   });
 
   it("should close the provided popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
     const target = document.querySelector(".popover");
 
-    await popover.open(popover.collection[0].id);
-    await popover.close(popover.collection[0].id);
+    await popovers.open(popovers.collection[0].id);
+    await popovers.close(popovers.collection[0].id);
     expect(target).not.toHaveClass("is-active");
   });
 
   it("should close all popovers", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
-    for (const item of popover.collection) {
-      await popover.open(item.id);
+    for (const item of popovers.collection) {
+      await popovers.open(item.id);
     }
 
-    for (const item of popover.collection) {
+    for (const item of popovers.collection) {
       expect(item.state).toBe("opened");
       expect(item.el).toHaveClass("is-active");
     }
 
-    await popover.close();
+    await popovers.close();
 
-    for (const item of popover.collection) {
+    for (const item of popovers.collection) {
       expect(item.state).toBe("closed");
       expect(item.el).not.toHaveClass("is-active");
     }
@@ -141,11 +141,11 @@ describe("open() & close()", () => {
 
   it("should reject promise with error when open is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
     let catchError = false;
-    await popover.open("missing").catch((error) => {
+    await popovers.open("missing").catch((error) => {
       expect(error.message).toBe(
         'Popover entry not found in collection with id of "missing"'
       );
@@ -156,11 +156,11 @@ describe("open() & close()", () => {
 
   it("should reject promise with error when close is run on popover it could not find", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
+    const popovers = new PopoverCollection();
+    await popovers.mount();
 
     let catchError = false;
-    await popover.close("missing").catch((error) => {
+    await popovers.close("missing").catch((error) => {
       expect(error.message).toBe(
         'Popover entry not found in collection with id of "missing"'
       );
@@ -171,21 +171,21 @@ describe("open() & close()", () => {
 });
 
 describe("active() & activeHover()", () => {
-  it("should return the active popover when popover.active is called", async () => {
+  it("should return the active popover when popovers.active is called", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.active).toBe(undefined);
-    await popover.get("asdf").open();
-    expect(popover.active).toBe(popover.get("asdf"));
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    expect(popovers.active).toBe(undefined);
+    await popovers.get("asdf").open();
+    expect(popovers.active).toBe(popovers.get("asdf"));
   });
 
-  it("should return the active tooltip popover when popover.activeHover is called", async () => {
+  it("should return the active tooltip popover when popovers.activeHover is called", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.activeHover).toBe(undefined);
-    await popover.get("tooltip").open();
-    expect(popover.activeHover).toBe(popover.get("tooltip"));
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    expect(popovers.activeHover).toBe(undefined);
+    await popovers.get("tooltip").open();
+    expect(popovers.activeHover).toBe(popovers.get("tooltip"));
   });
 });

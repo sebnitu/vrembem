@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Modal from "../index";
+import { ModalCollection } from "../index";
 
 const markup = `
   <main>
@@ -40,27 +40,27 @@ const markupPreOpened = `
 `;
 
 describe("mount() & unmount()", () => {
-  let modal, entry, el, btnOpen;
+  let modals, entry, el, btnOpen;
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = new Modal();
+    modals = new ModalCollection();
     el = document.querySelector("#modal-default");
     btnOpen = document.querySelector("[data-modal-open]");
   });
 
   it("should mount the modal instance", async () => {
-    modal.updateConfig({ transition: false });
-    await modal.mount();
-    entry = modal.get("modal-default");
+    modals.updateConfig({ transition: false });
+    await modals.mount();
+    entry = modals.get("modal-default");
     btnOpen.click();
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-opened");
   });
 
   it("should unmount the modal instance", async () => {
-    await modal.unmount();
-    expect(modal.collection.length).toBe(0);
+    await modals.unmount();
+    expect(modals.collection.length).toBe(0);
     expect(el).toHaveClass("is-closed");
     btnOpen.click();
     expect(el).toHaveClass("is-closed");
@@ -68,30 +68,30 @@ describe("mount() & unmount()", () => {
 });
 
 describe("register() & deregister()", () => {
-  let modal, entry;
+  let modals, entry;
 
   beforeAll(() => {
     document.body.innerHTML = markup;
-    modal = new Modal({
+    modals = new ModalCollection({
       teleport: ".modals"
     });
   });
 
   it("should register modal in the collection", async () => {
-    expect(modal.collection.length).toBe(0);
-    const result = await modal.register(
-      await modal.createEntry("modal-default")
+    expect(modals.collection.length).toBe(0);
+    const result = await modals.register(
+      await modals.createEntry("modal-default")
     );
-    expect(modal.collection.length).toBe(1);
+    expect(modals.collection.length).toBe(1);
 
-    entry = modal.get("modal-default");
+    entry = modals.get("modal-default");
     expect(result).toBe(entry);
     expect(entry.id).toBe("modal-default");
     expect(entry.state).toBe("closed");
   });
 
   it("should reject promise with error if register is called on non-existent modal", async () => {
-    const result = await modal.createEntry("asdf").catch((error) => {
+    const result = await modals.createEntry("asdf").catch((error) => {
       return error.message;
     });
     expect(result).toBe('Element not found with ID: "asdf"');
@@ -100,48 +100,48 @@ describe("register() & deregister()", () => {
   it("should open and update global state if modal already has opened class", async () => {
     document.body.innerHTML = markupPreOpened;
     const main = document.querySelector("main");
-    modal = new Modal({
+    modals = new ModalCollection({
       selectorInert: "main",
       selectorOverflow: "body, main",
       teleport: ".modals"
     });
-    await modal.mount();
+    await modals.mount();
     expect(document.body.style.overflow).toBe("hidden");
     expect(main.inert).toBe(true);
     expect(main.style.overflow).toBe("hidden");
-    expect(modal.get("modal-default").state).toBe("opened");
+    expect(modals.get("modal-default").state).toBe("opened");
   });
 
   it("re-registering a modal that is already open should retain the open state", async () => {
     document.body.innerHTML = markupPreOpened;
-    modal = new Modal({ teleport: ".modals" });
-    await modal.mount();
-    await modal.open("modal-default");
-    expect(modal.active.id).toBe("modal-default");
-    await modal.register(await modal.createEntry("modal-default"));
-    expect(modal.active.id).toBe("modal-default");
+    modals = new ModalCollection({ teleport: ".modals" });
+    await modals.mount();
+    await modals.open("modal-default");
+    expect(modals.active.id).toBe("modal-default");
+    await modals.register(await modals.createEntry("modal-default"));
+    expect(modals.active.id).toBe("modal-default");
   });
 
   it("should use the root modal element as dialog if selector returned null", async () => {
     document.body.innerHTML = markupMulti;
-    modal = new Modal();
-    const entry = await modal.register(await modal.createEntry("modal-4"));
+    modals = new ModalCollection();
+    const entry = await modals.register(await modals.createEntry("modal-4"));
     expect(entry.el).toBe(entry.dialog);
   });
 });
 
 describe("open() & close()", () => {
-  let modal, el, entry;
+  let modals, el, entry;
 
   beforeAll(async () => {
     document.body.innerHTML = markup;
     document
       .querySelector("#modal-default")
       .style.setProperty("--modal-transition-duration", "0.3s");
-    modal = new Modal();
-    await modal.mount();
+    modals = new ModalCollection();
+    await modals.mount();
     el = document.querySelector(".modal");
-    entry = modal.get("modal-default");
+    entry = modals.get("modal-default");
   });
 
   beforeEach(() => {
@@ -152,7 +152,7 @@ describe("open() & close()", () => {
     expect(el).toHaveClass("modal is-closed");
     expect(entry.state).toBe("closed");
 
-    modal.open("modal-default");
+    modals.open("modal-default");
     await vi.runAllTimers();
 
     expect(el).toHaveClass("modal is-opened");
@@ -163,7 +163,7 @@ describe("open() & close()", () => {
     expect(el).toHaveClass("modal is-opened");
     expect(entry.state).toBe("opened");
 
-    modal.open("modal-default");
+    modals.open("modal-default");
     await vi.runAllTimers();
 
     expect(el).toHaveClass("modal is-opened");
@@ -174,7 +174,7 @@ describe("open() & close()", () => {
     expect(el).toHaveClass("modal is-opened");
     expect(entry.state).toBe("opened");
 
-    modal.close();
+    modals.close();
     await vi.runAllTimers();
 
     expect(el).toHaveClass("modal is-closed");
@@ -185,7 +185,7 @@ describe("open() & close()", () => {
     expect(el).toHaveClass("modal is-closed");
     expect(entry.state).toBe("closed");
 
-    modal.close("modal-default");
+    modals.close("modal-default");
     await vi.runAllTimers();
 
     expect(el).toHaveClass("modal is-closed");
@@ -193,12 +193,12 @@ describe("open() & close()", () => {
   });
 
   it("should open and close modal with transitions option passed", async () => {
-    await modal.open("modal-default", false);
+    await modals.open("modal-default", false);
 
     expect(el).toHaveClass("modal is-opened");
     expect(entry.state).toBe("opened");
 
-    await modal.close("modal-default", false);
+    await modals.close("modal-default", false);
 
     expect(el).toHaveClass("modal is-closed");
     expect(entry.state).toBe("closed");
@@ -206,7 +206,7 @@ describe("open() & close()", () => {
 
   it("should reject promise with error if open is called on non-existent modal", async () => {
     let result;
-    await modal.open("asdf").catch((error) => {
+    await modals.open("asdf").catch((error) => {
       result = error.message;
     });
     expect(result).toBe(
@@ -216,7 +216,7 @@ describe("open() & close()", () => {
 
   it("should reject promise with error if close is called on non-existent modal", async () => {
     let result;
-    await modal.close("asdf").catch((error) => {
+    await modals.close("asdf").catch((error) => {
       result = error.message;
     });
     expect(result).toBe(
@@ -235,79 +235,79 @@ describe("replace()", () => {
   });
 
   it("should close a modal and open a new one simultaneously", async () => {
-    const modal = new Modal();
-    await modal.mount();
+    const modals = new ModalCollection();
+    await modals.mount();
 
-    let entry = modal.get("modal-1");
+    let entry = modals.get("modal-1");
 
-    modal.open("modal-1");
+    modals.open("modal-1");
     expect(entry.el).toHaveClass("is-opening");
     expect(entry.state).toBe("opening");
     await vi.runAllTimers();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
 
-    modal.replace("modal-2");
+    modals.replace("modal-2");
     await vi.runAllTimers();
 
     expect(entry.el).toHaveClass("is-closed");
     expect(entry.state).toBe("closed");
 
-    entry = modal.get("modal-2");
+    entry = modals.get("modal-2");
     await vi.runAllTimers();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
   });
 
   it("should close all open modals except for the replacement", async () => {
-    const modal = new Modal();
-    await modal.mount();
+    const modals = new ModalCollection();
+    await modals.mount();
 
-    modal.open("modal-1");
-    modal.open("modal-2");
-    modal.open("modal-3");
-    modal.open("modal-4");
+    modals.open("modal-1");
+    modals.open("modal-2");
+    modals.open("modal-3");
+    modals.open("modal-4");
 
     await Promise.all(
-      modal.collection.map(async () => {
+      modals.collection.map(async () => {
         await vi.runAllTimers();
       })
     );
 
-    expect(modal.stack.length).toBe(4);
-    expect(modal.get("modal-1").state).toBe("opened");
-    expect(modal.get("modal-2").state).toBe("opened");
-    expect(modal.get("modal-3").state).toBe("opened");
-    expect(modal.get("modal-4").state).toBe("opened");
+    expect(modals.stack.length).toBe(4);
+    expect(modals.get("modal-1").state).toBe("opened");
+    expect(modals.get("modal-2").state).toBe("opened");
+    expect(modals.get("modal-3").state).toBe("opened");
+    expect(modals.get("modal-4").state).toBe("opened");
 
-    modal.replace("modal-2");
+    modals.replace("modal-2");
 
     await Promise.all(
-      modal.collection.map(async () => {
+      modals.collection.map(async () => {
         await vi.runAllTimers();
       })
     );
 
-    expect(modal.stack.length).toBe(1);
-    expect(modal.get("modal-1").state).toBe("closed");
-    expect(modal.get("modal-2").state).toBe("opened");
-    expect(modal.get("modal-3").state).toBe("closed");
-    expect(modal.get("modal-4").state).toBe("closed");
+    expect(modals.stack.length).toBe(1);
+    expect(modals.get("modal-1").state).toBe("closed");
+    expect(modals.get("modal-2").state).toBe("opened");
+    expect(modals.get("modal-3").state).toBe("closed");
+    expect(modals.get("modal-4").state).toBe("closed");
   });
 
   it("should correctly handle focus management when focus param is passed", async () => {
-    const modal = new Modal({ transition: false });
-    await modal.mount();
-    await modal.open("modal-1");
-    expect(document.activeElement).toBe(modal.get("modal-1").dialog);
-    await modal.replace("modal-2");
-    expect(document.activeElement).toBe(modal.get("modal-2").dialog);
+    const modals = new ModalCollection({ transition: false });
+    await modals.mount();
+    await modals.open("modal-1");
+    expect(document.activeElement).toBe(modals.get("modal-1").dialog);
+    await modals.replace("modal-2");
+    expect(document.activeElement).toBe(modals.get("modal-2").dialog);
   });
 
   it("should reject promise with error if replace is called on non-existent modal", async () => {
-    const modal = new Modal();
+    const modals = new ModalCollection();
     let result;
-    await modal.replace("asdf").catch((error) => {
+    await modals.replace("asdf").catch((error) => {
       result = error.message;
     });
     expect(result).toBe(
@@ -326,79 +326,79 @@ describe("closeAll()", () => {
   });
 
   it("should close all open modals", async () => {
-    const modal = new Modal();
-    await modal.mount();
+    const modals = new ModalCollection();
+    await modals.mount();
 
-    modal.open("modal-1");
-    modal.open("modal-2");
-    modal.open("modal-3");
-    modal.open("modal-4");
+    modals.open("modal-1");
+    modals.open("modal-2");
+    modals.open("modal-3");
+    modals.open("modal-4");
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-opening");
       expect(entry.state).toBe("opening");
     });
 
     await vi.runAllTimers();
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-opened");
       expect(entry.state).toBe("opened");
     });
 
-    modal.closeAll();
+    modals.closeAll();
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-closing");
       expect(entry.state).toBe("closing");
     });
 
     await vi.runAllTimers();
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-closed");
       expect(entry.state).toBe("closed");
     });
   });
 
   it("should return focus to stored trigger when all modals are closed", async () => {
-    const modal = new Modal({ transition: false });
-    await modal.mount();
+    const modals = new ModalCollection({ transition: false });
+    await modals.mount();
 
     const btn = document.querySelector("button");
-    modal.trigger = btn;
+    modals.trigger = btn;
 
-    await modal.open("modal-1");
-    await modal.open("modal-2");
-    await modal.open("modal-3");
-    await modal.open("modal-4");
+    await modals.open("modal-1");
+    await modals.open("modal-2");
+    await modals.open("modal-3");
+    await modals.open("modal-4");
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.state).toBe("opened");
     });
 
-    await modal.closeAll();
+    await modals.closeAll();
 
     expect(document.activeElement).toBe(btn);
   });
 
   it("should not handle focus when param is set to false", async () => {
-    const modal = new Modal({ transition: false });
-    await modal.mount();
+    const modals = new ModalCollection({ transition: false });
+    await modals.mount();
 
     const btn = document.querySelector("button");
-    modal.trigger = btn;
+    modals.trigger = btn;
 
-    await modal.open("modal-1");
-    await modal.open("modal-2");
-    await modal.open("modal-3");
-    await modal.open("modal-4");
+    await modals.open("modal-1");
+    await modals.open("modal-2");
+    await modals.open("modal-3");
+    await modals.open("modal-4");
 
-    modal.collection.map(async (entry) => {
+    modals.collection.map(async (entry) => {
       expect(entry.state).toBe("opened");
     });
 
-    await modal.closeAll("", false, false);
+    await modals.closeAll("", false, false);
 
     expect(document.activeElement).toBe(document.body);
   });

@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Modal from "../index";
+import { ModalCollection } from "../index";
 
 const keyEsc = new KeyboardEvent("keydown", {
   key: "Escape"
@@ -33,13 +33,13 @@ beforeEach(() => {
 
 test("should close when root modal (screen) is clicked", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const dialog = document.querySelector(".modal__dialog");
   const btnOpen = document.querySelector("[data-modal-open]");
 
-  expect(modal.get("modal-default").isRequired).toBe(false);
+  expect(modals.get("modal-default").isRequired).toBe(false);
 
   btnOpen.click();
   await vi.runAllTimers();
@@ -58,8 +58,8 @@ test("should close when root modal (screen) is clicked", async () => {
 
 test("should close when the escape key is pressed", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -79,8 +79,8 @@ test("should close when the escape key is pressed", async () => {
 
 test("should do nothing if none escape key is pressed", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -100,8 +100,8 @@ test("should do nothing if none escape key is pressed", async () => {
 
 test("should not be able to close while modal transition is in process", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
 
@@ -118,13 +118,13 @@ test("should not be able to close while modal transition is in process", async (
 
 test("should prevent escape or screen click closing modal if required", async () => {
   document.body.innerHTML = markupReq;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
 
-  expect(modal.get("modal-default").isRequired).toBe(true);
+  expect(modals.get("modal-default").isRequired).toBe(true);
 
   btnOpen.click();
   await vi.runAllTimers();
@@ -146,8 +146,8 @@ test("should prevent escape or screen click closing modal if required", async ()
 
 test("should run the replace method when replace button is clicked", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnReplace = document.querySelector("[data-modal-replace]");
 

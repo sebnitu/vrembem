@@ -970,7 +970,7 @@ https://lerna.js.org/docs/features/version-and-publish
 ### :tada: New Feature
 * `core`, `drawer`, `modal`, `popover`
   * [#853](https://github.com/sebnitu/vrembem/pull/853) Refactor and improve the modal JS module
-    * Modal stacking: multiple modals can now be open at the same time. Use `data-modal-replace` trigger or `modal.replace()` method for support of close to open functionality between modals.
+    * Modal stacking: multiple modals can now be open at the same time. Use `data-modal-replace` trigger or `modals.replace()` method for support of close to open functionality between modals.
     * Teleport: moveModal has been removed in favor of a teleport and teleportReturn API that are now attached to each collection entries modal object.
     * Better handling of accessibility attributes for modals (`role` and `aria-modal`).
     * Better handling of modal specific configurations.

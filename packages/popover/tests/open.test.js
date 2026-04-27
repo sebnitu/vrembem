@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index";
+import { PopoverCollection } from "../index";
 
 vi.useFakeTimers();
 
@@ -16,9 +16,9 @@ const markup = `
 describe("open()", () => {
   it("should open the provided popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("asdf");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    const entry = popovers.get("asdf");
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
     expect(entry.trigger.getAttribute("aria-expanded")).toBe("false");
@@ -30,9 +30,9 @@ describe("open()", () => {
 
   it("should open the provided popover tooltip", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("fdsa");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    const entry = popovers.get("fdsa");
     expect(entry.state).toBe("closed");
     expect(entry.el).not.toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);

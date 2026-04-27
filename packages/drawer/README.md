@@ -19,7 +19,7 @@ npm install @vrembem/drawer
 ### JavaScript
 
 ```js
-import Drawer from '@vrembem/drawer';
-const drawer = new Drawer();
-await drawer.mount();
+import { DrawerCollection } from '@vrembem/drawer';
+const drawers = new DrawerCollection();
+await drawers.mount();
 ```

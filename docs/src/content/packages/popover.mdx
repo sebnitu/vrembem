@@ -25,10 +25,10 @@ npm install @vrembem/popover
 <CodeExample lang="js">
   ```js
   // Import the popover class
-  import Popover from "@vrembem/popover";
+  import { PopoverCollection } from "@vrembem/popover";
 
   // Instantiate the popover collection
-  const popovers = new Popover();
+  const popovers = new PopoverCollection();
 
   // Mount the popover collection
   await popovers.mount();
@@ -45,7 +45,7 @@ Popover comes with the following JavaScript configuration options that customize
 
 <CodeExpander lang="js">
 ```js
-const popovers = new Popover({
+const popovers = new PopoverCollection({
   // A valid CSS selector used to query the document for elements to include as
   // entries in the popover collection.
   // @type string
@@ -210,7 +210,7 @@ There are two event types that can trigger a popover: `click` (the default) and 
 
   ```js
   // Set on instantiation
-  const popovers = new Popover({
+  const popovers = new PopoverCollection({
     event: "click"
   });
 
@@ -246,11 +246,11 @@ Popover uses the [floating UI positioning engine](https://floating-ui.com/) to d
 <CodeExample lang="js">
 ```js
 // Set on instantiation
-const popover = new Popover({
+const popovers = new PopoverCollection({
   placement: "top"
 });
 
-popover.mount();
+popovers.mount();
 ```
 </CodeExample>
 
@@ -373,7 +373,7 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
 
 ### Multiple popovers
 
-There are cases where a single popover trigger requires both a tooltip and a click toggle popover. This can be achieved by using `aria-controls` and `aria-describedby` attributes with the values of their corresponding popover IDs.
+There are cases where a single popover trigger requires both a tooltip and a click toggle popovers. This can be achieved by using `aria-controls` and `aria-describedby` attributes with the values of their corresponding popover IDs.
 
 <CodeExample>
   <Fragment slot="output">
@@ -527,7 +527,7 @@ await popovers.close();
 
 <ReferenceBar type='"closed" | "opened"' />
 
-Stores the current state of the popover. Possible states include:
+Stores the current state of the popovers. Possible states include:
 
 - `opened`: The popover is currently open, and its content is visible.
 - `closed`: The popover is currently closed, and its content is hidden.

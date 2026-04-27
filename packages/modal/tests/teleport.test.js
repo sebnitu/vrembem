@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Modal from "../index";
+import { ModalCollection } from "../index";
 import { teleport } from "@vrembem/core";
 
 document.body.innerHTML = `
@@ -16,7 +16,7 @@ document.body.innerHTML = `
 
 describe("mount()", () => {
   it("should teleport modals to the provided reference selector using the default method", async () => {
-    const modal = new Modal({
+    const modals = new ModalCollection({
       plugins: [
         teleport({
           where: ".modals"
@@ -25,7 +25,7 @@ describe("mount()", () => {
     });
     const div = document.querySelector(".modals");
     expect(div.children.length).toBe(0);
-    await modal.mount();
+    await modals.mount();
     expect(div.children.length).toBe(2);
   });
 });

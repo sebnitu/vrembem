@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Drawer from "../index";
+import { DrawerCollection } from "../index";
 
 vi.useFakeTimers();
 
@@ -37,9 +37,9 @@ const btnCloseEmpty = document.querySelector(".empty");
 document.body.style.setProperty("--vb-prefix", "vb-");
 drawerEl.style.setProperty("--vb-drawer-transition-duration", "0.3s");
 
-const drawer = new Drawer();
-await drawer.mount();
-const entry = drawer.get("drawer");
+const drawers = new DrawerCollection();
+await drawers.mount();
+const entry = drawers.get("drawer");
 
 test("should open drawer when clicking data-drawer-open button", async () => {
   expect(entry.state).toBe("indeterminate");

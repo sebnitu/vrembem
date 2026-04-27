@@ -8,10 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import Popover from "./index.ts";
+    import { PopoverCollection } from "./index.ts";
     import { teleport, cssConfig, attrConfig } from "@vrembem/core";
 
-    const popovers = new Popover({
+    const popovers = new PopoverCollection({
       plugins: [
         cssConfig(),
         attrConfig(),
@@ -69,7 +69,7 @@
         class="popover popover_tooltip"
         style="--vb-popover-event: click; --vb-popover-follow-cursor: true;"
       >
-        Virtual popover...
+        Virtual popovers...
       </div>
 
       <h2 id="popover_size_value"><a href="#popover_size_value">popover_size_[value]</a></h2>
@@ -219,7 +219,7 @@
       <button class="button" aria-controls="popover-multi-1" aria-describedby="popover-multi-2">Multi Popover</button>
 
       <div id="popover-multi-1" class="popover">
-        <div class="padding">Multi popover...</div>
+        <div class="padding">Multi popovers...</div>
       </div>
 
       <div id="popover-multi-2" class="popover popover_tooltip">

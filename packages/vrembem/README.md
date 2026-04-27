@@ -56,15 +56,10 @@ Customize core variables which all components inherit from. The example below wi
 Import and mount the components you'll need:
 
 ```js
-// Import all under the vb namespace
-import * as vb from 'vrembem';
-const drawer = new vb.Drawer();
-await drawer.mount();
-
-// Or import individual components
+// Import individual components
 import { Drawer } from 'vrembem';
-const drawer = new Drawer();
-await drawer.mount();
+const drawers = new DrawerCollection();
+await drawers.mount();
 ```
 
 ## Markup
