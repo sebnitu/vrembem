@@ -8,17 +8,22 @@ export function getCollectionPath(
   // Initialize the result
   let result = "/";
 
-  // Prepend the packages path for both packages and modules
-  if (entry.collection === "packages" || entry.collection === "modules") {
-    result += "packages/";
+  // Pages are top-level and receive no prefix
+  // > "/{id}"
+  if (entry.collection === "pages") {
+    result += entry.id;
   }
 
-  // Use the meta path for modules (excludes the group directory)
-  // Otherwise, append the entry id to the result
-  if (entry.collection === "modules") {
-    result += getModuleMeta(entry).path;
-  } else {
-    result += entry.id;
+  // Modules are prefixed with the packages collection
+  // > "/packages/{parent}/{module}"
+  else if (entry.collection === "modules") {
+    result += `packages/${getModuleMeta(entry).path}`;
+  }
+  
+  // Everything else is prefixed with their own collection name
+  // > "/{collection}/{id}"
+  else {
+    result += `${entry.collection}/${entry.id}`;
   }
 
   // Add a hash anchor if it was provided

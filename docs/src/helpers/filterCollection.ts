@@ -2,7 +2,7 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
 
 export function filterCollection(
-  entry: CollectionEntry<CollectionKey> | undefined
+  entry?: CollectionEntry<CollectionKey>
 ) {
   // Unique filter logic for pages
   if (entry?.collection === "pages") {
