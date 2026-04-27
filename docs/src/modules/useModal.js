@@ -1,8 +1,13 @@
-import { Modal } from "vrembem";
-import { attrConfig, cssConfig, focusTrap, teleport } from "@vrembem/core";
+import {
+  ModalCollection,
+  attrConfig,
+  cssConfig,
+  focusTrap,
+  teleport
+} from "vrembem";
 
 /** @type {import("vrembem").Modal} */
-const modals = new Modal({
+const modals = new ModalCollection({
   selectorInert: "main",
   plugins: [
     cssConfig(),

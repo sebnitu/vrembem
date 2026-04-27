@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "index.ts"),
-      name: "vrembem.Popover",
+      name: "vrembem.PopoverCollection",
       fileName: "index"
     },
     emptyOutDir: false,

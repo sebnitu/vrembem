@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 import userEvent from "@testing-library/user-event";
-import Modal from "../index";
+import { ModalCollection } from "../index";
 
 const markup = `
   <button data-modal-open="modal-one">Modal One</button>
@@ -34,8 +34,8 @@ beforeEach(() => {
 });
 
 test("should focus modal dialog when opened and refocus trigger when closed", async () => {
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector("#modal-one");
   const dialog = el.querySelector(".modal__dialog");
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
@@ -46,8 +46,8 @@ test("should focus modal dialog when opened and refocus trigger when closed", as
 });
 
 test("should focus inner modal element and refocus trigger when closed", async () => {
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const el = document.querySelector("#modal-two");
   const btnOpen = document.querySelector('[data-modal-open="modal-two"]');
   const btnClose = el.querySelector("[data-modal-close]");
@@ -62,8 +62,8 @@ test("should focus inner modal element and refocus trigger when closed", async (
 });
 
 test("should remember initial trigger when opening modal through another modal", async () => {
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const elOne = document.querySelector("#modal-one");
   const elTwo = document.querySelector("#modal-two");
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
@@ -78,17 +78,17 @@ test("should remember initial trigger when opening modal through another modal",
   expect(elOne).toHaveClass("is-opened");
   expect(elTwo).toHaveClass("is-opened");
 
-  await modal.closeAll("", false);
+  await modals.closeAll("", false);
 
   expect(btnOpen).toHaveFocus();
 });
 
 test("should retain focus on modal if nothing inner is focusable", async () => {
-  const modal = new Modal();
-  await modal.mount();
+  const modals = new ModalCollection();
+  await modals.mount();
   const elModal = document.querySelector("#modal-empty");
   const dialog = elModal.querySelector(".modal__dialog");
-  modal.open("modal-empty");
+  modals.open("modal-empty");
   await vi.runAllTimers();
   expect(elModal).toHaveClass("is-opened");
   expect(dialog).toHaveFocus();

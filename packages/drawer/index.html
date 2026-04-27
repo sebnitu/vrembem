@@ -8,10 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import Drawer from "./index.ts";
+    import { DrawerCollection } from "./index.ts";
     import { focusTrap, mediaQuery, propStore, teleport } from "@vrembem/core";
 
-    const drawer = new Drawer({
+    const drawers = new DrawerCollection({
       plugins: [
         focusTrap(),
         mediaQuery(),
@@ -23,7 +23,7 @@
       ]
     });
 
-    window["drawer"] = await drawer.mount();
+    window["drawer"] = await drawers.mount();
   </script>
 </head>
 <body>

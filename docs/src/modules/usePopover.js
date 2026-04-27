@@ -1,8 +1,7 @@
-import { Popover } from "vrembem";
-import { cssConfig, teleport } from "@vrembem/core";
+import { PopoverCollection, cssConfig, teleport } from "vrembem";
 
 /** @type {import("vrembem").Popover} */
-const popovers = new Popover({
+const popovers = new PopoverCollection({
   plugins: [cssConfig(), teleport({ where: ".popovers" })]
 });
 

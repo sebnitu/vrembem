@@ -1,4 +1,4 @@
-import Modal from "../index";
+import { ModalCollection } from "../index";
 
 document.body.innerHTML = `
   <main>
@@ -12,7 +12,7 @@ document.body.innerHTML = `
 `;
 
 const main = document.querySelector("main");
-const modal = new Modal({
+const modals = new ModalCollection({
   selectorInert: "main"
 });
 
@@ -20,7 +20,7 @@ describe("when selectorInert is set:", () => {
   vi.useFakeTimers();
 
   beforeAll(async () => {
-    await modal.mount();
+    await modals.mount();
   });
 
   it("should properly hide content when modal is opened", async () => {

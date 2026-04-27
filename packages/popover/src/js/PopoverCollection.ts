@@ -5,7 +5,7 @@ import { handleKeydown, handleMousemove } from "./handlers";
 import { open } from "./open";
 import { close, closeAll } from "./close";
 
-export class Popover extends Collection<PopoverEntry, PopoverConfig> {
+export class PopoverCollection extends Collection<PopoverEntry, PopoverConfig> {
   readonly entryClass = PopoverEntry;
   trigger: HTMLElement | null = null;
 

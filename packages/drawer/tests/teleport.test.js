@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Drawer from "../index";
+import { DrawerCollection } from "../index";
 import { teleport } from "@vrembem/core";
 
 document.body.innerHTML = `
@@ -16,7 +16,7 @@ document.body.innerHTML = `
 
 describe("mount()", () => {
   it("should teleport drawers to the provided reference selector using the default method", async () => {
-    const drawer = new Drawer({
+    const drawers = new DrawerCollection({
       plugins: [
         teleport({
           where: ".drawers"
@@ -25,7 +25,7 @@ describe("mount()", () => {
     });
     const div = document.querySelector(".drawers");
     expect(div.children.length).toBe(0);
-    await drawer.mount();
+    await drawers.mount();
     expect(div.children.length).toBe(2);
   });
 });

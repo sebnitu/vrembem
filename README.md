@@ -43,7 +43,7 @@ If you'd like to use Vrembem for prototyping or just want to take it for a test 
 <!-- Instantiate the component rendered in the document -->
 <script>
   const modal = new vrembem.Modal();
-  modal.mount();
+  modals.mount();
 </script>
 ```
 
@@ -119,11 +119,11 @@ Some packages also have included modules for their functionality. You can includ
 
 ```js
 // Import your component
-import Modal from "@vrembem/modal";
+import { ModalCollection } from "@vrembem/modal";
 
 // Instantiate and mount
-const modal = new Modal();
-modal.mount();
+const modals = new ModalCollection();
+modals.mount();
 ```
 
 #### HTML
@@ -169,13 +169,13 @@ Via your project's JavaScript manifest file:
 ```js
 // Import all under the vb namespace
 import * as vb from "vrembem";
-const drawer = new vb.Drawer();
-await drawer.mount();
+const drawers = new vb.Drawer();
+await drawers.mount();
 
 // Or import individual components
 import { Drawer } from "vrembem";
-const drawer = new Drawer();
-await drawer.mount();
+const drawers = new DrawerCollection();
+await drawers.mount();
 ```
 
 ## Copyright and License

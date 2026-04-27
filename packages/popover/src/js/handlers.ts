@@ -1,10 +1,13 @@
 import { _ } from "@vrembem/core";
 import { getDelay, setHovered } from "./helpers";
 import { closeAll, closeCheck } from "./close";
-import type { Popover } from "./Popover";
+import type { PopoverCollection } from "./PopoverCollection";
 import type { PopoverEntry } from "./PopoverEntry";
 
-function setCursorElement(parent: Popover, { clientX, clientY }: MouseEvent) {
+function setCursorElement(
+  parent: PopoverCollection,
+  { clientX, clientY }: MouseEvent
+) {
   _(parent).cursorElement = {
     getBoundingClientRect() {
       return {
@@ -22,7 +25,7 @@ function setCursorElement(parent: Popover, { clientX, clientY }: MouseEvent) {
 }
 
 export function handleClick(
-  this: Popover,
+  this: PopoverCollection,
   popover: PopoverEntry,
   event: MouseEvent | Event
 ) {
@@ -46,12 +49,12 @@ export function handleTooltipClick(popover: PopoverEntry) {
   }
 }
 
-export function handleMousemove(this: Popover, event: MouseEvent) {
+export function handleMousemove(this: PopoverCollection, event: MouseEvent) {
   setCursorElement(this, event);
 }
 
 export function handleMouseEnter(
-  this: Popover,
+  this: PopoverCollection,
   popover: PopoverEntry,
   event: Event
 ) {
@@ -117,7 +120,7 @@ export function handleMouseLeave(popover: PopoverEntry, event: Event) {
   }, 1);
 }
 
-export function handleKeydown(this: Popover, event: KeyboardEvent) {
+export function handleKeydown(this: PopoverCollection, event: KeyboardEvent) {
   switch (event.key) {
     case "Escape":
       if (this.trigger) {
@@ -137,7 +140,10 @@ export function handleKeydown(this: Popover, event: KeyboardEvent) {
   }
 }
 
-export function handleDocumentClick(this: Popover, popover: PopoverEntry) {
+export function handleDocumentClick(
+  this: PopoverCollection,
+  popover: PopoverEntry
+) {
   document.addEventListener("click", function _f(event) {
     // Guard if event target property is null
     const target = event.target as HTMLElement | null;

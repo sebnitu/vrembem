@@ -1,9 +1,9 @@
 import { close } from "./close";
-import type { Modal } from "./Modal";
+import type { ModalCollection } from "./ModalCollection";
 import type { ModalEntry } from "./ModalEntry";
 
 export async function closeAll(
-  parent: Modal,
+  parent: ModalCollection,
   exclude: string = "",
   transition?: boolean
 ): Promise<ModalEntry[]> {

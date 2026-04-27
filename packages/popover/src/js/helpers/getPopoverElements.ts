@@ -1,8 +1,8 @@
 import { getPopoverID } from "./getPopoverID";
-import type { Popover } from "../Popover";
+import type { PopoverCollection } from "../PopoverCollection";
 
 export function getPopoverElements(
-  this: Popover,
+  this: PopoverCollection,
   query: string | HTMLElement
 ): {
   popover: HTMLElement;

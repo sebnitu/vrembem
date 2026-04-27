@@ -23,11 +23,11 @@ npm install @vrembem/modal
 
 <CodeExample lang="js">
   ```js
-  // Import the modal class
-  import Modal from "@vrembem/modal";
+  // Import the modal collection class
+  import { ModalCollection } from "@vrembem/modal";
 
   // Instantiate the modal collection
-  const modals = new Modal();
+  const modals = new ModalCollection();
 
   // Mount the modal collection
   await modals.mount();
@@ -67,7 +67,7 @@ const modals = new Modal({
   selectorDialog: ".modal__dialog",
 
   // A valid CSS selector for the element that should be treated as the modal
-  // backdrop. Clicking the backdrop closes the modal.
+  // backdrop. Clicking the backdrop closes the modals.
   // @type string
   selectorBackdrop: ".modal",
 
@@ -168,8 +168,8 @@ Modal uses CSS variables in a reference and fallback pattern. Variables are refe
 
 Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with a unique `id` and the `modal` class containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open`: Opens a modal. Takes the ID of the modal to open. Will stack modals if triggered from inside an already opened modal.
-- `data-modal-close`: Closes a modal. Takes the ID of the modal to close or closes the top active modal if left value-less. Setting value to `"*"` will close all open modals.
+- `data-modal-open`: Opens a modals. Takes the ID of the modal to open. Will stack modals if triggered from inside an already opened modals.
+- `data-modal-close`: Closes a modals. Takes the ID of the modal to close or closes the top active modal if left value-less. Setting value to `"*"` will close all open modals.
 - `data-modal-replace`: Replaces currently opened modals with the modal of the id provided.
 
 <CodeExample>
@@ -345,7 +345,7 @@ Modals on the web have an expected set of patterns that this component follows. 
 3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/plugins/focus-trap) plugin to enable this behavior.
 4. When a modal is closed, focus is returned to the initial trigger element that opened it.
 
-To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/plugins/teleport) plugin to consolidate all modals in the DOM to a single location.
+To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modals. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/plugins/teleport) plugin to consolidate all modals in the DOM to a single location.
 
 #### Example
 
@@ -353,7 +353,7 @@ Here's an example where we set the `<main>` content area to be inaccessible whil
 
 <CodeExample lang="js">
   ```js
-  import Modal from "@vrembem/modal";
+  import { ModalCollection } from "@vrembem/modal";
   import { focusTrap, teleport } from "@vrembem/core";
 
   const modals = new Modal({
@@ -638,7 +638,7 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
 
 ## Reference
 
-`Modal` and `ModalEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
+`ModalCollection` and `ModalEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
 ### trigger
 
@@ -658,7 +658,7 @@ Below is an example implementation of using stack along with the [`propStore`](/
 
 <CodeExample lang="js">
 ```js
-import Modal from "@vrembem/modal";
+import { ModalCollection } from "@vrembem/modal";
 import { propStore } from "@vrembem/core";
 
 const modals = new Modal({
@@ -835,7 +835,7 @@ await modals.closeAll("my-modal");
 
 <ReferenceBar type="string" />
 
-Stores the current state of the modal. Possible states include:
+Stores the current state of the modals. Possible states include:
 
 - `opened`: The modal is currently open, and its content is accessible.
 - `opening`: A transitional state from closed to opened.

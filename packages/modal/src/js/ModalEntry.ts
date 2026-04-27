@@ -2,13 +2,13 @@ import { CollectionEntry } from "@vrembem/core";
 import { open } from "./open";
 import { close } from "./close";
 import { replace } from "./replace";
-import type { Modal } from "./Modal";
+import type { ModalCollection } from "./ModalCollection";
 
 export class ModalEntry extends CollectionEntry {
   state: string;
   dialog: HTMLElement;
 
-  constructor(parent: Modal, query: string | HTMLElement) {
+  constructor(parent: ModalCollection, query: string | HTMLElement) {
     super(parent, query);
 
     // Set the initial state

@@ -23,7 +23,7 @@ export const config = {
   selectorDialog: ".modal__dialog",
 
   // A valid CSS selector for the element that should be treated as the modal
-  // backdrop. Clicking the backdrop closes the modal.
+  // backdrop. Clicking the backdrop closes the modals.
   // @type string
   selectorBackdrop: ".modal",
 

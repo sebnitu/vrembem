@@ -19,7 +19,7 @@ npm install @vrembem/popover
 ### JavaScript
 
 ```js
-import Popover from '@vrembem/popover';
-const popover = new Popover();
-await popover.mount();
+import { PopoverCollection } from '@vrembem/popover';
+const popovers = new PopoverCollection();
+await popovers.mount();
 ```

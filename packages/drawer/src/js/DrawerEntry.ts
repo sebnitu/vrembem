@@ -4,13 +4,13 @@ import { open } from "./open";
 import { close } from "./close";
 import { toggle } from "./toggle";
 import { validate } from "./helpers/validate";
-import type { Drawer } from "./Drawer";
+import type { DrawerCollection } from "./DrawerCollection";
 
 export class DrawerEntry extends CollectionEntry {
   dialog: HTMLElement;
   trigger: HTMLElement | null;
 
-  constructor(parent: Drawer, query: string | HTMLElement) {
+  constructor(parent: DrawerCollection, query: string | HTMLElement) {
     super(parent, query);
 
     // Set the initial state of private store

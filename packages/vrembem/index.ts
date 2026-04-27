@@ -1,6 +1,4 @@
-import * as core from "@vrembem/core";
-import Drawer from "@vrembem/drawer";
-import Modal from "@vrembem/modal";
-import Popover from "@vrembem/popover";
-
-export { core, Drawer, Modal, Popover };
+export * from "@vrembem/core";
+export { DrawerCollection } from "@vrembem/drawer";
+export { ModalCollection } from "@vrembem/modal";
+export { PopoverCollection } from "@vrembem/popover";

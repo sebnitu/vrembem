@@ -63,7 +63,7 @@
       ]
     });
 
-    const drawer = new vb.Drawer({
+    const drawers = new vb.Drawer({
       plugins: [
         vb.core.teleport({
           where: ".drawer-main",
@@ -72,8 +72,8 @@
       ]
     });
 
-    window["modal"] = await modal.mount();
-    window["drawer"] = await drawer.mount();
+    window["modal"] = await modals.mount();
+    window["drawer"] = await drawers.mount();
 
     /**
      * Setup drawer form updater

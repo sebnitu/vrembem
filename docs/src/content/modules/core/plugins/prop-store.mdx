@@ -145,10 +145,10 @@ There are two common use cases for `propStore` in Modal and Drawer components. F
 
 <CodeExample lang="js">
 ```js
-import Modal from "@vrembem/modal";
+import { ModalCollection } from "@vrembem/modal";
 import { propStore } from "@vrembem/core";
 
-const modal = new Modal({
+const modals = new ModalCollection({
   selectorInert: "main",
   plugins: [
     propStore({
@@ -171,7 +171,7 @@ const modal = new Modal({
   ]
 });
 
-await modal.mount();
+await modals.mount();
 ```
 </CodeExample>
 
@@ -179,16 +179,16 @@ For Drawers, it is common to persist the state of inline drawers. Drawers come w
 
 <CodeExample lang="js">
 ```js
-import Drawer from "@vrembem/drawer";
+import { DrawerCollection } from "@vrembem/drawer";
 import { propStore } from "@vrembem/core";
 
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     propStore()
   ]
 });
 
-await drawer.mount();
+await drawers.mount();
 ```
 </CodeExample>
 

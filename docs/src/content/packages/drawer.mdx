@@ -22,11 +22,11 @@ npm install @vrembem/drawer
 
 <CodeExample lang="js">
   ```js
-  // Import the drawer class
-  import Drawer from "@vrembem/drawer";
+  // Import the drawer collection class
+  import { DrawerCollection } from "@vrembem/drawer";
 
   // Instantiate the drawer collection
-  const drawers = new Drawer();
+  const drawers = new DrawerCollection();
 
   // Mount the drawer collection
   await drawers.mount();
@@ -43,7 +43,7 @@ Drawer comes with the following JavaScript configuration options that customize 
 
 <CodeExpander lang="js">
 ```js
-const drawers = new Drawer({
+const drawers = new DrawerCollection({
   // An object containing pre-configuration options for plugins. Object should
   // contain the name of the plugin to configure as the key and the config
   // object for that plugin as the value.
@@ -480,7 +480,7 @@ Here's an example where we set the `drawer-main` content area to be inaccessible
 
 <CodeExample lang="js">
   ```js
-  const drawers = new Drawer({
+  const drawers = new DrawerCollection({
     selectorInert: ".drawer-main",
     selectorOverflow: "body, .drawer-main"
   });
@@ -548,7 +548,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
 
 ## Reference
 
-`Drawer` and `DrawerEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only drawer-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
+`DrawerCollection` and `DrawerEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only drawer-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
 ### activeModal
 

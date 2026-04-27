@@ -19,11 +19,16 @@ const { collection, entry } = Astro.props;
 // Store the module if that's what entry is
 const module = entry?.collection === "modules" ? entry : undefined;
 
-// Set the base collection
+// Set the base entry and collection. Modules are always rendered as submenus
+// of a package, so we never want to render them as the base collection navi.
+const baseEntry = module ? undefined : entry;
 const baseCollection = module ? "packages" : collection;
 
 // Get all the collection entries of the current page
-const entries = await getCollection(baseCollection, filterCollection(entry));
+const entries = await getCollection(
+  baseCollection,
+  filterCollection(baseEntry)
+);
 
 // Sort packages by category, otherwise sort by title/order
 if (baseCollection === "packages") {

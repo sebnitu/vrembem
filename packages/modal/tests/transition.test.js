@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Modal from "../index";
+import { ModalCollection } from "../index";
 import { attrConfig } from "@vrembem/core";
 
 vi.useFakeTimers();
@@ -31,12 +31,12 @@ const markupConfig = `
 
 test("should apply state classes on `click` and `transitionend` events", async () => {
   document.body.innerHTML = markup;
-  const modal = new Modal();
+  const modals = new ModalCollection();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
 
-  await modal.mount();
+  await modals.mount();
   expect(el).toHaveClass("modal");
 
   btnOpen.click();
@@ -55,13 +55,13 @@ test("should apply state classes on `click` and `transitionend` events", async (
 
 test("should apply custom state classes", async () => {
   document.body.innerHTML = markupCustomState;
-  const modal = new Modal({
+  const modals = new ModalCollection({
     stateOpened: "on",
     stateOpening: "enable",
     stateClosing: "disable",
     stateClosed: "off"
   });
-  await modal.mount();
+  await modals.mount();
   const el = document.querySelector(".modal");
   const btnOpen = document.querySelector("[data-modal-open]");
   const btnClose = el.querySelector("[data-modal-close]");
@@ -83,25 +83,25 @@ test("should apply custom state classes", async () => {
 test("should not apply transition classes when transitions are disabled", async () => {
   document.body.innerHTML = markup;
   const el = document.querySelector(".modal");
-  const modal = new Modal({ transition: false });
-  await modal.mount();
-  await modal.open("modal-default");
+  const modals = new ModalCollection({ transition: false });
+  await modals.mount();
+  await modals.open("modal-default");
   expect(el).toHaveClass("is-opened");
   expect(el.classList.length).toBe(2);
 
-  await modal.close("modal-default");
+  await modals.close("modal-default");
   expect(el).toHaveClass("is-closed");
   expect(el.classList.length).toBe(2);
 });
 
 test("should open and close modal while using the data modal config attribute", async () => {
   document.body.innerHTML = markupConfig;
-  const modal = new Modal({
+  const modals = new ModalCollection({
     plugins: [attrConfig()]
   });
-  await modal.mount();
+  await modals.mount();
 
-  const entry = modal.get("modal-default");
+  const entry = modals.get("modal-default");
   await entry.open();
   expect(entry.el).toHaveClass("is-opened");
   expect(entry.state).toBe("opened");
@@ -113,12 +113,12 @@ test("should open and close modal while using the data modal config attribute", 
 
 test("should return modal config if set, otherwise should return global config", async () => {
   document.body.innerHTML = markupConfig;
-  const modal = new Modal({
+  const modals = new ModalCollection({
     plugins: [attrConfig()]
   });
-  await modal.mount();
+  await modals.mount();
 
-  const entry = modal.get("modal-default");
+  const entry = modals.get("modal-default");
   expect(entry.config.get("transition")).toBe(false);
-  expect(modal.config.transition).toBe(true);
+  expect(modals.config.transition).toBe(true);
 });

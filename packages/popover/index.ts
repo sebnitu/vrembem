@@ -1,3 +1,1 @@
-import { Popover } from "./src/js/Popover";
-
-export default Popover;
+export { PopoverCollection } from "./src/js/PopoverCollection";

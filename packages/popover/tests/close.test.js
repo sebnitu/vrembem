@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index";
+import { PopoverCollection } from "../index";
 import { closeAll, closeCheck } from "../src/js/close";
 
 vi.useFakeTimers();
@@ -16,9 +16,9 @@ const markup = `
 describe("close()", () => {
   it("should close the provided popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("asdf");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    const entry = popovers.get("asdf");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
     expect(entry.trigger.getAttribute("aria-expanded")).toBe("true");
@@ -30,9 +30,9 @@ describe("close()", () => {
 
   it("should close the provided popover tooltip", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    const entry = popover.get("afsd");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    const entry = popovers.get("afsd");
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-active");
     expect(entry.trigger.hasAttribute("aria-expanded")).toBe(false);
@@ -46,45 +46,45 @@ describe("close()", () => {
 describe("closeAll()", () => {
   it("should close all popovers", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.collection.length).toBe(3);
-    expect(popover.collection[0].el).toHaveClass("is-active");
-    expect(popover.collection[1].el).toHaveClass("is-active");
-    await closeAll(popover);
-    expect(popover.collection[0].el).not.toHaveClass("is-active");
-    expect(popover.collection[1].el).not.toHaveClass("is-active");
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    expect(popovers.collection.length).toBe(3);
+    expect(popovers.collection[0].el).toHaveClass("is-active");
+    expect(popovers.collection[1].el).toHaveClass("is-active");
+    await closeAll(popovers);
+    expect(popovers.collection[0].el).not.toHaveClass("is-active");
+    expect(popovers.collection[1].el).not.toHaveClass("is-active");
   });
 });
 
 describe("closeCheck()", () => {
   it("should close popover if closeCheck does not detect a hover or focus on trigger or popover elements", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    expect(popover.collection.length).toBe(3);
-    closeCheck(popover.collection[0]);
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    expect(popovers.collection.length).toBe(3);
+    closeCheck(popovers.collection[0]);
     vi.advanceTimersByTime(100);
-    expect(popover.collection[0].el).not.toHaveClass("is-active");
+    expect(popovers.collection[0].el).not.toHaveClass("is-active");
   });
 
   it("should keep popover open if closeCheck detects trigger element is focused", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    popover.collection[0].trigger.focus();
-    closeCheck(popover.collection[0]);
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    popovers.collection[0].trigger.focus();
+    closeCheck(popovers.collection[0]);
     vi.advanceTimersByTime(100);
-    expect(popover.collection[0].el).toHaveClass("is-active");
+    expect(popovers.collection[0].el).toHaveClass("is-active");
   });
 
   it("should keep popover open if closeCheck detects popover element or its children are focused", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.mount();
-    popover.collection[0].el.focus();
-    closeCheck(popover.collection[0]);
+    const popovers = new PopoverCollection();
+    await popovers.mount();
+    popovers.collection[0].el.focus();
+    closeCheck(popovers.collection[0]);
     vi.advanceTimersByTime(100);
-    expect(popover.collection[0].el).toHaveClass("is-active");
+    expect(popovers.collection[0].el).toHaveClass("is-active");
   });
 });

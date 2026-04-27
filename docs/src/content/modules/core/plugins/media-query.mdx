@@ -17,16 +17,16 @@ To implement media queries in collection entries, add the `mediaQuery` plugin to
 
 <CodeExample lang="js">
 ```js
-import Drawer from "@vrembem/Drawer";
+import { DrawerCollection } from "@vrembem/Drawer";
 import { mediaQuery } from "@vrembem/core";
 
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     mediaQuery()
   ]
 });
 
-await drawer.mount();
+await drawers.mount();
 ```
 </CodeExample>
 
@@ -44,7 +44,7 @@ To provide a custom `onChange` event for a breakpoint, you can pass in a custom 
 
 <CodeExample lang="js">
 ```js
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     mediaQuery({
       onChange(event, entry) {
@@ -78,7 +78,7 @@ Alternatively, a breakpoint key can be provided that maps to a value in a CSS cu
 
 <CodeExample lang="js">
 ```js
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     mediaQuery({
       breakpoints: {
@@ -95,7 +95,7 @@ Finally, a default breakpoint can be set using the `breakpoint` option. All entr
 
 <CodeExample lang="js">
 ```js
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     mediaQuery({
       breakpoint: "700px"
@@ -119,7 +119,7 @@ Here is an example of providing a custom media query to a specific drawer entry:
 
 <CodeExample lang="js">
 ```js
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   plugins: [
     mediaQuery({
       mediaQueries: {

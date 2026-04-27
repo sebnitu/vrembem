@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Popover from "../index";
+import { PopoverCollection } from "../index";
 
 vi.useFakeTimers();
 
@@ -28,38 +28,38 @@ beforeAll(() => {
 describe("register() & entry.deregister()", () => {
   it("should register a popover using the provided ID", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
+    const popovers = new PopoverCollection();
     const trigger = document.querySelector("#asdf-trigger");
     const target = document.querySelector("#asdf");
-    await popover.register(await popover.createEntry("asdf"));
-    expect(popover.collection.length).toBe(1);
-    expect(popover.collection[0].trigger).toBe(trigger);
-    expect(popover.collection[0].el).toBe(target);
+    await popovers.register(await popovers.createEntry("asdf"));
+    expect(popovers.collection.length).toBe(1);
+    expect(popovers.collection[0].trigger).toBe(trigger);
+    expect(popovers.collection[0].el).toBe(target);
     trigger.click();
     vi.advanceTimersByTime(500);
-    expect(popover.collection[0].el).toHaveClass("is-active");
+    expect(popovers.collection[0].el).toHaveClass("is-active");
   });
 
   it("should return an error if the provided id has no associated popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await expect(popover.createEntry("missing")).rejects.toThrow(
+    const popovers = new PopoverCollection();
+    await expect(popovers.createEntry("missing")).rejects.toThrow(
       'Element not found with ID: "missing"'
     );
   });
 
   it("should attach hover event listeners when registered", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.register(await popover.createEntry("fdsa"));
-    expect(popover.collection.length).toBe(1);
+    const popovers = new PopoverCollection();
+    await popovers.register(await popovers.createEntry("fdsa"));
+    expect(popovers.collection.length).toBe(1);
   });
 
   it("should attach open and close methods to registered popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.register(await popover.createEntry("asdf"));
-    const entry = popover.get("asdf");
+    const popovers = new PopoverCollection();
+    await popovers.register(await popovers.createEntry("asdf"));
+    const entry = popovers.get("asdf");
 
     await entry.open();
     expect(entry.state).toBe("opened");
@@ -72,9 +72,9 @@ describe("register() & entry.deregister()", () => {
 
   it("should attach deregister method to registered popover", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    await popover.register(await popover.createEntry("asdf"));
-    const entry = popover.get("asdf");
+    const popovers = new PopoverCollection();
+    await popovers.register(await popovers.createEntry("asdf"));
+    const entry = popovers.get("asdf");
     expect(entry.id).toBe("asdf");
     await entry.deregister();
   });
@@ -83,9 +83,11 @@ describe("register() & entry.deregister()", () => {
 describe("entry.isTooltip", () => {
   it("should return whether or not a popover is a tooltip", async () => {
     document.body.innerHTML = markup;
-    const popover = new Popover();
-    const entry1 = await popover.register(await popover.createEntry("asdf"));
-    const entry2 = await popover.register(await popover.createEntry("tooltip"));
+    const popovers = new PopoverCollection();
+    const entry1 = await popovers.register(await popovers.createEntry("asdf"));
+    const entry2 = await popovers.register(
+      await popovers.createEntry("tooltip")
+    );
     expect(entry1.isTooltip).toBe(false);
     expect(entry2.isTooltip).toBe(true);
   });

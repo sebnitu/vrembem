@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import Drawer from "../index";
+import { DrawerCollection } from "../index";
 import { focusTrap, mediaQuery, propStore } from "@vrembem/core";
 import { expect } from "vitest";
 
@@ -51,13 +51,13 @@ function resizeWindow(value, collection) {
   window.dispatchEvent(new Event("resize"));
 }
 
-const drawer = new Drawer({
+const drawers = new DrawerCollection({
   transition: false,
   plugins: [focusTrap(), mediaQuery(), propStore()]
 });
 
 beforeAll(async () => {
-  await drawer.mount();
+  await drawers.mount();
 });
 
 beforeEach(() => {
@@ -66,7 +66,7 @@ beforeEach(() => {
 });
 
 test("should switch drawer to modal when entry.mode property is set to modal", async () => {
-  const entry = drawer.get("drawer-1");
+  const entry = drawers.get("drawer-1");
   expect(entry.el).not.toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe(null);
 
@@ -77,7 +77,7 @@ test("should switch drawer to modal when entry.mode property is set to modal", a
 });
 
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
-  const entry = drawer.get("drawer-1");
+  const entry = drawers.get("drawer-1");
   expect(entry.el).toHaveClass("drawer_modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 
@@ -88,8 +88,8 @@ test("should switch drawer to inline when entry.mode property is set to inline",
 });
 
 test("should return local store state when switching modes", async () => {
-  const entry = await drawer.register(await drawer.createEntry("drawer-1"));
-  const plugin = drawer.plugins.get("propStore");
+  const entry = await drawers.register(await drawers.createEntry("drawer-1"));
+  const plugin = drawers.plugins.get("propStore");
   await entry.open();
 
   expect(entry.mode).toBe("inline");
@@ -121,7 +121,7 @@ test("should return local store state when switching modes", async () => {
 });
 
 test("should apply indeterminate state when going to inline mode", async () => {
-  const entry = drawer.get("drawer-1");
+  const entry = drawers.get("drawer-1");
   await entry.open();
   entry.state = "indeterminate";
   expect(entry.mode).toBe("inline");
@@ -156,14 +156,14 @@ test("should apply indeterminate state when going to inline mode", async () => {
 });
 
 test("should store inline state when switching to modal", async () => {
-  const entry = drawer.get("drawer-3");
+  const entry = drawers.get("drawer-3");
   expect(entry.mode).toBe("modal");
   expect(entry.state).toBe("closed");
-  expect(drawer.get(entry.id).inlineState).toBe("opened");
+  expect(drawers.get(entry.id).inlineState).toBe("opened");
 });
 
 test("should throw an error when setting mode to an invalid value", async () => {
-  const entry = await drawer.register(await drawer.createEntry("drawer-1"));
+  const entry = await drawers.register(await drawers.createEntry("drawer-1"));
   let result;
   try {
     entry.mode = "asdf";
@@ -174,14 +174,14 @@ test("should throw an error when setting mode to an invalid value", async () => 
 });
 
 test("should setup match media breakpoint for drawer on register", async () => {
-  const entry = drawer.get("drawer-2");
+  const entry = drawers.get("drawer-2");
   expect(entry.mql.media).toBe("(min-width: 600px)");
   expect(entry.mode).toBe("inline");
-  resizeWindow(400, drawer.collection);
+  resizeWindow(400, drawers.collection);
   expect(entry.mode).toBe("modal");
 });
 
 test("should run teardown methods of all plugins when unmounted", async () => {
-  await drawer.unmount();
-  expect(drawer.plugins.length).toBe(0);
+  await drawers.unmount();
+  expect(drawers.plugins.length).toBe(0);
 });

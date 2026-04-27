@@ -17,16 +17,16 @@ To implement a focus trap in a collection entry, add the `focusTrap` plugin to y
 
 <CodeExample lang="js">
 ```js
-import Modal from "@vrembem/modal";
+import { ModalCollection } from "@vrembem/modal";
 import { focusTrap } from "@vrembem/core";
 
-const modal = new Modal({
+const modals = new ModalCollection({
   plugins: [
     focusTrap()
   ]
 });
 
-await modal.mount();
+await modals.mount();
 ```
 </CodeExample>
 
@@ -34,7 +34,7 @@ This will create a focus trap instance for each entry and setup an enable and di
 
 <CodeExample lang="js">
 ```js
-const modal = new Modal({
+const modals = new ModalCollection({
   plugins: [
     focusTrap({
       condition: ({ entry }) => {

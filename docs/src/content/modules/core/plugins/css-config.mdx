@@ -17,16 +17,16 @@ To pass custom configuration to collection entries using CSS custom properties, 
 
 <CodeExample lang="js">
 ```js
-import Popover from "@vrembem/popover";
+import { PopoverCollection } from "@vrembem/popover";
 import { cssConfig } from "@vrembem/core";
 
-const popover = new Popover({
+const popovers = new PopoverCollection({
   plugins: [
     cssConfig()
   ]
 });
 
-await popover.mount();
+await popovers.mount();
 ```
 </CodeExample>
 
@@ -49,7 +49,7 @@ Properties are prefixed with the components name and Vrembem custom properties p
 <CodeExample lang="js">
 ```js
 // Config option:
-popover.config.shiftPadding
+popovers.config.shiftPadding
 
 // Custom property equivalent:
 // --vb-popover-shift-padding
