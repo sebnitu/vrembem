@@ -35,12 +35,25 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.41 to CHANGELOG.md
+chore(release): add v4.0.0-next.42 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.42 (2026-04-27)
+
+### :house: Refactor
+* `drawer`, `modal`, `popover`, `vrembem`
+  * [#2782](https://github.com/sebnitu/vrembem/pull/2782) Refactor the JS exports and rename collection classes
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2779](https://github.com/sebnitu/vrembem/pull/2779) Rename the css module to tokens
+
+### :books: Documentation
+* `core`, `utility`
+  * [#2781](https://github.com/sebnitu/vrembem/pull/2781) Improve the Vrembem docs Astro theme
 
 
 ## v4.0.0-next.41 (2026-04-21)
