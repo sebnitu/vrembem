@@ -1,6 +1,97 @@
 ---
-title: Getting Started
+title: Get Started
 order: 1
 ---
 
-...
+Vrembem is a framework agnostic CSS library. Getting started only requires including a single CSS file into your project. If only a few components are needed, import them directly without the extra bloat.
+
+## Using CDN
+
+{/* TODO: I like how Vue does their CDN documentation: https://vuejs.org/guide/quick-start.html#using-vue-from-cdn */}
+
+For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
+
+{/* TODO: Add a tabs component similar to: https://starlight.astro.build/components/tabs/ */}
+
+<CodeExample>
+```html
+<link rel="stylesheet" href="https://unpkg.com/vrembem@next/dist/index.css" />
+```
+</CodeExample>
+
+- `https://unpkg.com/vrembem@next/dist/index.css`
+- `https://unpkg.com/vrembem@next/dist/index.js`
+- `https://unpkg.com/vrembem@next/dist/index.umd.js`
+- `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css`
+- `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js`
+- `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.umd.js`
+
+### Starter template
+
+Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
+
+{/* TODO: See if there's a way to link to this in a playground, or even render the output in an iframe? */}
+
+<CodeExample>
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrembem - Minimal starter template</title>
+    <link rel="stylesheet" href="https://unpkg.com/vrembem@next/dist/index.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="section__container">
+        <div class="type spacing text-align-center">
+          <h1>Hello World</h1>
+          <p>A minimal starter template powered by Vrembem via CDN.</p>
+          <div class="flex justify-content-center foreground-subtle">
+            <a class="link" href="https://vrembem.com/">Docs</a>
+            <span>/</span>
+            <a class="link" href="https://github.com/sebnitu/vrembem">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+```
+</CodeExample>
+
+Three components ([drawer](/packages/drawer), [modal](/packages/modal) and [popover](/packages/popover)) also ship with JavaScript which is built to be framework agnostic and tree-shakable. These can be included as needed, but are not required if you'd prefer to ship your own JavaScript integrations.
+
+Get access to all provided JavaScript modules and plugins by importing them directly from the `vrembem` package or load them using a namespace import for quick prototyping.
+
+<CodeExample>
+```html
+<script type="module">
+  import * as vb from "https://unpkg.com/vrembem@next/dist/index.js";
+  
+  const modals = new vb.ModalCollection({
+    plugins: [vb.focusTrap()]
+  });
+
+  await modals.mount();
+</script>
+```
+</CodeExample>
+
+{/* TODO: Provide an example using importmap: https://esm.sh/#docs */}
+
+## Using NPM
+
+Built on Sass and TypeScript, Vrembem compiles to CSS and JavaScript modules. These can be imported on a per-package basis `@vrembem/<package>` or the entire library can be imported using the `vrembem` all-in-one package.
+
+But when should you use direct CSS imports, or Sass modules? That mainly depends on your use case and how deeply you'd like to integrate into the Vrembem systems. Here is a list to help you decide:
+
+{/* TODO: Add a pros list for each method using check mark icons */}
+
+- CSS entries: Best for minimal tooling.
+- Sass entries: Best for output control.
+
+### Entries
+
+Vrembem provides a variety of logic entries into the library to fit most use cases without introducing a lot of bloat.
