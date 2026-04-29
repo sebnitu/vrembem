@@ -21,32 +21,32 @@
     },
     "./styles": {
       "sass": "./styles.scss",
-      "import": "./dist/styles.css",
+      "style": "./dist/styles.css",
       "default": "./dist/styles.css"
     },
     "./layers": {
       "sass": "./layers.scss",
-      "import": "./dist/layers.css",
+      "style": "./dist/layers.css",
       "default": "./dist/layers.css"
     },
     "./tokens": {
       "sass": "./tokens.scss",
-      "import": "./dist/tokens.css",
+      "style": "./dist/tokens.css",
       "default": "./dist/tokens.css"
     },
     "./base": {
       "sass": "./base.scss",
-      "import": "./dist/base.css",
+      "style": "./dist/base.css",
       "default": "./dist/base.css"
     },
     "./components": {
       "sass": "./components.scss",
-      "import": "./dist/components.css",
+      "style": "./dist/components.css",
       "default": "./dist/components.css"
     },
     "./utilities": {
       "sass": "./utilities.scss",
-      "import": "./dist/utilities.css",
+      "style": "./dist/utilities.css",
       "default": "./dist/utilities.css"
     },
     "./sass": "./index.scss",
