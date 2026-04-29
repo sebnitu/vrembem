@@ -34,21 +34,6 @@
       "style": "./dist/tokens.css",
       "default": "./dist/tokens.css"
     },
-    "./base": {
-      "sass": "./base.scss",
-      "style": "./dist/base.css",
-      "default": "./dist/base.css"
-    },
-    "./components": {
-      "sass": "./components.scss",
-      "style": "./dist/components.css",
-      "default": "./dist/components.css"
-    },
-    "./utilities": {
-      "sass": "./utilities.scss",
-      "style": "./dist/utilities.css",
-      "default": "./dist/utilities.css"
-    },
     "./sass": "./index.scss",
     "./css": "./dist/index.css",
     "./dev/*": "./dev/*",
