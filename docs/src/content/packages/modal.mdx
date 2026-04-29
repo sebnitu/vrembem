@@ -342,10 +342,10 @@ Modals on the web have an expected set of patterns that this component follows. 
 
 1. When a modal is opened, focus is moved to the dialog or an element inside.
 2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/plugins/focus-trap) plugin to enable this behavior.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/focus-trap) plugin to enable this behavior.
 4. When a modal is closed, focus is returned to the initial trigger element that opened it.
 
-To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modals. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/plugins/teleport) plugin to consolidate all modals in the DOM to a single location.
+To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modals. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/teleport) plugin to consolidate all modals in the DOM to a single location.
 
 #### Example
 
@@ -654,7 +654,7 @@ Modals implement `StackArray` under the `stack` property to manage open modals i
 
 #### Example
 
-Below is an example implementation of using stack along with the [`propStore`](/packages/core/plugins/prop-store) plugin to persist the state of open modals across page sessions.
+Below is an example implementation of using stack along with the [`propStore`](/packages/core/prop-store) plugin to persist the state of open modals across page sessions.
 
 <CodeExample lang="js">
 ```js
