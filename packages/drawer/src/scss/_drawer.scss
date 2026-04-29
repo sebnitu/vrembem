@@ -2,6 +2,8 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
+$-transition-base: tokens.get("drawer", "transition-duration", tokens.get("transition-duration")) tokens.get("drawer", "transition-timing-function", tokens.get("transition-timing-function"));
+
 #{core.bem(config.get("drawer-classes", "frame"))} {
   position: relative;
   overflow: hidden auto;
@@ -14,6 +16,7 @@
   overflow: auto;
   flex: 1 1 auto;
   height: 100%;
+  transition: margin $-transition-base;
 }
 
 #{core.bem("drawer")} {
@@ -57,10 +60,10 @@
 
 #{core.bem("drawer")}.is-opening,
 #{core.bem("drawer")}.is-closing {
-  transition: opacity tokens.get("drawer", "transition-duration", tokens.get("transition-duration")) tokens.get("drawer", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition: opacity $-transition-base;
 
   #{core.bem("drawer", "dialog")} {
-    transition: transform tokens.get("drawer", "transition-duration", tokens.get("transition-duration")) tokens.get("drawer", "transition-timing-function", tokens.get("transition-timing-function"));
+    transition: transform $-transition-base;
   }
 }
 
