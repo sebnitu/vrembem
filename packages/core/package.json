@@ -49,7 +49,6 @@
     "index.scss",
     "layers.scss",
     "reset.scss",
-    "config.scss",
     "tokens.scss",
     "palette.scss",
     "theme.scss"

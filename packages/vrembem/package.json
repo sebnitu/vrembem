@@ -46,10 +46,7 @@
     "index.scss",
     "styles.scss",
     "layers.scss",
-    "tokens.scss",
-    "base.scss",
-    "components.scss",
-    "utilities.scss"
+    "tokens.scss"
   ],
   "scripts": {
     "serve": "vite",
