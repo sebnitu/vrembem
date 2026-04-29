@@ -50,6 +50,7 @@
       "default": "./dist/utilities.css"
     },
     "./sass": "./index.scss",
+    "./css": "./dist/index.css",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*"
   },
