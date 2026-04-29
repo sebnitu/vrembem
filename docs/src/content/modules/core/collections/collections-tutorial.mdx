@@ -4,8 +4,8 @@ description: "Collections are used to create the scaffolding and shared systems 
 order: 1
 ---
 
-import fs from 'fs/promises';
-import path from 'path';
+import fs from "node:fs";
+import path from "node:path";
 
 <CodeExample lang="js">
 ```js
@@ -581,8 +581,8 @@ The Collections API provides a powerful foundation for building interactive, sta
 The tic-tac-toe example demonstrates how to separate concerns between collections and entries, handle state transitions, and implement event-driven communication. With these patterns, you can extend and adapt collections for a wide range of component architectures and interactive behaviors.
 
 <CodeExample tabs files={[
-  { name: 'TicTacToe.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToe.js'), 'utf-8') },
-  { name: 'TicTacToeCell.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToeCell.js'), 'utf-8') }
+  { name: 'TicTacToe.js', content: fs.readFileSync(path.resolve('./src/modules/TicTacToe.js'), 'utf-8') },
+  { name: 'TicTacToeCell.js', content: fs.readFileSync(path.resolve('./src/modules/TicTacToeCell.js'), 'utf-8') }
 ]}>
 <div slot="output" id="ttt-2" class="tictactoe-wrapper">
   <table class="tictactoe">
