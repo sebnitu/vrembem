@@ -6,11 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "index.js"),
-      name: "vrembem",
-      fileName: (format) => {
-        if (format === "umd") return "index.umd.js";
-        return "index.js";
-      }
+      formats: ["es"],
+      fileName: "index"
     },
     emptyOutDir: false,
     sourcemap: true

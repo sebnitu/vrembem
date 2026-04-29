@@ -14,8 +14,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.js"
+      "import": "./dist/index.js"
     },
     "./config": "./src/scss/modules/_config.scss",
     "./tokens": "./src/scss/modules/_tokens.scss",
