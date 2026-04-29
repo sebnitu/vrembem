@@ -31,6 +31,8 @@ Use this minimal starter template to begin prototyping with Vrembem now. Just co
 
 <CodeExample iframe="/tpl/minimal-starter.html" />
 
+{/* TODO: Talk about the two JS bundles available in dist */}
+
 Three components ([drawer](/packages/drawer), [modal](/packages/modal) and [popover](/packages/popover)) also ship with JavaScript which is built to be framework agnostic and tree-shakable. These can be included as needed, but are not required if you'd prefer to ship your own JavaScript integrations.
 
 Get access to all provided JavaScript modules and plugins by importing them directly from the `vrembem` package or load them using a namespace import for quick prototyping.
@@ -59,8 +61,8 @@ But when should you use direct CSS imports, or Sass modules? That mainly depends
 
 {/* TODO: Add a pros list for each method using check mark icons */}
 
-- CSS entries: Best for minimal tooling.
-- Sass entries: Best for output control.
+- CSS entries: Best for zero dependency tooling.
+- Sass entries: Best for output control and module usage.
 
 ### Entries
 
