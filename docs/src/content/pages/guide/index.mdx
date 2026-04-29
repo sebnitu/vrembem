@@ -1,13 +1,10 @@
 ---
 title: Get Started
+description: Vrembem is a framework agnostic CSS component library. Getting started only requires including a single CSS file into your project.
 order: 1
 ---
 
-Vrembem is a framework agnostic CSS library. Getting started only requires including a single CSS file into your project. If only a few components are needed, import them directly without the extra bloat.
-
 ## Using CDN
-
-{/* TODO: I like how Vue does their CDN documentation: https://vuejs.org/guide/quick-start.html#using-vue-from-cdn */}
 
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
@@ -19,47 +16,20 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
 ```
 </CodeExample>
 
+{/*
 - `https://unpkg.com/vrembem@next/dist/index.css`
 - `https://unpkg.com/vrembem@next/dist/index.js`
 - `https://unpkg.com/vrembem@next/dist/index.umd.js`
 - `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css`
 - `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js`
 - `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.umd.js`
+*/}
 
 ### Starter template
 
 Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
 
-{/* TODO: See if there's a way to link to this in a playground, or even render the output in an iframe? */}
-
-<CodeExample>
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vrembem - Minimal starter template</title>
-    <link rel="stylesheet" href="https://unpkg.com/vrembem@next/dist/index.css" />
-  </head>
-  <body>
-    <section class="section">
-      <div class="section__container">
-        <div class="type spacing text-align-center">
-          <h1>Hello World</h1>
-          <p>A minimal starter template powered by Vrembem via CDN.</p>
-          <div class="flex justify-content-center foreground-subtle">
-            <a class="link" href="https://vrembem.com/">Docs</a>
-            <span>/</span>
-            <a class="link" href="https://github.com/sebnitu/vrembem">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
-</html>
-```
-</CodeExample>
+<CodeExample iframe="/tpl/minimal-starter.html" />
 
 Three components ([drawer](/packages/drawer), [modal](/packages/modal) and [popover](/packages/popover)) also ship with JavaScript which is built to be framework agnostic and tree-shakable. These can be included as needed, but are not required if you'd prefer to ship your own JavaScript integrations.
 
