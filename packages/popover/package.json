@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/popover",
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.",
-  "version": "4.0.0-next.42",
+  "version": "4.0.0-next.43",
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -53,7 +53,7 @@
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/popover#readme",
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
-    "@vrembem/core": "^4.0.0-next.42"
+    "@vrembem/core": "^4.0.0-next.43"
   },
   "publishConfig": {
     "access": "public"
