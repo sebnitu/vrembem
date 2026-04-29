@@ -35,12 +35,23 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.42 to CHANGELOG.md
+chore(release): add v4.0.0-next.43 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.43 (2026-04-29)
+
+### :bug: Bug Fix
+* `core`, `drawer`, `modal`, `popover`, `vrembem`
+  * [#2793](https://github.com/sebnitu/vrembem/pull/2793) Update umd ext from .cjs to .js
+
+### :house: Refactor
+* `base`, `button`, `card`, `checkbox`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2794](https://github.com/sebnitu/vrembem/pull/2794) Refactor package entries and remove UMD bundle
 
 
 ## v4.0.0-next.42 (2026-04-27)
