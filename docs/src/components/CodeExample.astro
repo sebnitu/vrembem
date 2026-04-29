@@ -1,4 +1,6 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
 
@@ -11,13 +13,15 @@ interface Props {
   label?: string;
   lang?: string;
   tabs?: boolean;
+  iframe?: string;
   files?: FileTab[];
   flush?: boolean;
   resettable?: boolean;
 }
 
-const { 
+const {
   label,
+  iframe,
   lang = "html",
   tabs = false,
   files = [],
@@ -27,9 +31,19 @@ const {
 
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
+const iframeCode = iframe
+  ? fs.readFileSync(path.join(process.cwd(), "public", iframe), "utf-8")
+  : "";
 ---
 
 <div class="code-example">
+  {
+    iframe && (
+      <div class="code-example__output">
+        <iframe src={iframe} />
+      </div>
+    )
+  }
   {
     Astro.slots.has("demo") && (
       <div class="code-example__demo">
@@ -40,7 +54,7 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     Astro.slots.has("output") && (
       <div id={`code-example-output-${uid}`} class="code-example__output">
-        <div class={`code-example__inner ${flush ? 'padding-0' : ''}`.trim()}>
+        <div class={`code-example__inner ${flush ? "padding-0" : ""}`.trim()}>
           <slot name="output" />
         </div>
       </div>
@@ -51,91 +65,94 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
     !tabs ? (
       <div class="code-example__toolbar">
         <div class="flex-grow">{label || lang?.toUpperCase()}</div>
-        {
-          resettable && (
-            <button
-              type="button"
-              class="link"
-              data-reset={`code-example-output-${uid}`}
-            >
-              Reset <span class="sr-only">example</span>
-            </button>
-          )
-        }
-      </div>
-      <div class="code-example__input">
-        <slot />
+        {resettable && (
+          <button
+            type="button"
+            class="link"
+            data-reset={`code-example-output-${uid}`}
+          >
+            Reset <span class="sr-only">example</span>
+          </button>
+        )}
       </div>
     ) : (
       <div class="code-example__toolbar">
         <div class="flex-grow" role="tablist" aria-label="Code examples">
-          {
-            Astro.slots.has("tab-html") && (
-            <button 
+          {Astro.slots.has("tab-html") && (
+            <button
               class="tab"
               id={`tab-html-${uid}`}
               role="tab"
               aria-controls={`tabpanel-html-${uid}`}
-              aria-selected="false">HTML</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-scss") && (
-            <button 
+              aria-selected="false"
+            >
+              HTML
+            </button>
+          )}
+          {Astro.slots.has("tab-scss") && (
+            <button
               class="tab"
               id={`tab-scss-${uid}`}
               role="tab"
               aria-controls={`tabpanel-scss-${uid}`}
-              aria-selected="false">SCSS</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-css") && (
-            <button 
+              aria-selected="false"
+            >
+              SCSS
+            </button>
+          )}
+          {Astro.slots.has("tab-css") && (
+            <button
               class="tab"
               id={`tab-css-${uid}`}
               role="tab"
               aria-controls={`tabpanel-css-${uid}`}
-              aria-selected="false">CSS</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-js") && (
-            <button 
+              aria-selected="false"
+            >
+              CSS
+            </button>
+          )}
+          {Astro.slots.has("tab-js") && (
+            <button
               class="tab"
               id={`tab-js-${uid}`}
               role="tab"
               aria-controls={`tabpanel-js-${uid}`}
               aria-selected="false"
-              tabindex="-1">JS</button>
-            )
-          }
-          {
-            files.map((file, i) => (
-              <button
-                class="tab"
-                id={`tab-${i}-${uid}`}
-                role="tab"
-                aria-controls={`tabpanel-${i}-${uid}`}
-                aria-selected="false"
-                tabindex="-1"
-              >
-                {file.name}
-              </button>
-            ))
-          }
-        </div>
-        {
-          resettable && (
-            <button
-              type="button"
-              class="link"
-              data-reset={`code-example-output-${uid}`}
+              tabindex="-1"
             >
-              Reset <span class="sr-only">example</span>
+              JS
             </button>
-          )
-        }
+          )}
+          {files.map((file, i) => (
+            <button
+              class="tab"
+              id={`tab-${i}-${uid}`}
+              role="tab"
+              aria-controls={`tabpanel-${i}-${uid}`}
+              aria-selected="false"
+              tabindex="-1"
+            >
+              {file.name}
+            </button>
+          ))}
+        </div>
+        {resettable && (
+          <button
+            type="button"
+            class="link"
+            data-reset={`code-example-output-${uid}`}
+          >
+            Reset <span class="sr-only">example</span>
+          </button>
+        )}
+      </div>
+    )
+  }
+
+  {
+    !tabs && Astro.slots.has("default") && (
+      <div class="code-example__input">
+        <slot />
       </div>
     )
   }
@@ -146,7 +163,8 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         class="code-example__input"
         id={`tabpanel-html-${uid}`}
         role="tabpanel"
-        aria-labelledby={`tab-html-${uid}`}>
+        aria-labelledby={`tab-html-${uid}`}
+      >
         <slot name="tab-html" />
       </div>
     )
@@ -157,7 +175,8 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         class="code-example__input"
         id={`tabpanel-scss-${uid}`}
         role="tabpanel"
-        aria-labelledby={`tab-scss-${uid}`}>
+        aria-labelledby={`tab-scss-${uid}`}
+      >
         <slot name="tab-scss" />
       </div>
     )
@@ -168,7 +187,8 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         class="code-example__input"
         id={`tabpanel-css-${uid}`}
         role="tabpanel"
-        aria-labelledby={`tab-css-${uid}`}>
+        aria-labelledby={`tab-css-${uid}`}
+      >
         <slot name="tab-css" />
       </div>
     )
@@ -179,7 +199,8 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
         class="code-example__input"
         id={`tabpanel-js-${uid}`}
         role="tabpanel"
-        aria-labelledby={`tab-js-${uid}`}>
+        aria-labelledby={`tab-js-${uid}`}
+      >
         <slot name="tab-js" />
       </div>
     )
@@ -203,7 +224,20 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
       </div>
     ))
   }
-
+  {
+    iframe && (
+      <div class="code-example__input">
+        <CodeBlock nopre>
+          <Code
+            code={iframeCode}
+            lang="html"
+            theme="css-variables"
+            class="pre"
+          />
+        </CodeBlock>
+      </div>
+    )
+  }
 </div>
 
 <script>
