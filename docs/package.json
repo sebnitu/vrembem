@@ -14,6 +14,6 @@
     "@types/feather-icons": "^4.29.4",
     "astro": "^6.1.9",
     "feather-icons": "^4.29.2",
-    "vrembem": "^4.0.0-next.42"
+    "vrembem": "^4.0.0-next.43"
   }
 }
