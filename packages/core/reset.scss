@@ -1,0 +1,5 @@
+@use "./index" as core;
+
+@layer base {
+  @include core.reset;
+}

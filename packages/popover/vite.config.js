@@ -1,26 +1,5 @@
 import { resolve } from "path";
-import { defineConfig } from "vite";
+import { createViteConfig } from "../../vite.config.shared.js";
 import data from "./package.json";
 
-const parts = data.name.replace("@", "").split("/");
-
-export default defineConfig({
-  build: {
-    lib: {
-      entry: resolve(__dirname, "index.ts"),
-      name: "vrembem.PopoverCollection",
-      fileName: (format) => {
-        if (format === "umd") return "index.umd.js";
-        return "index.js";
-      }
-    },
-    emptyOutDir: false,
-    sourcemap: true
-  },
-  define: {
-    "import.meta.env.VITE_ROOT": JSON.stringify(parts[0]),
-    "import.meta.env.VITE_PACKAGE": JSON.stringify(parts[1]),
-    "import.meta.env.VITE_NAME": JSON.stringify(data.name),
-    "import.meta.env.VITE_DESCRIPTION": JSON.stringify(data.description)
-  }
-});
+export default createViteConfig(data, resolve(import.meta.dirname, "index.ts"));

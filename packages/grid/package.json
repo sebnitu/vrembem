@@ -23,7 +23,6 @@
     "dev",
     "dist",
     "src",
-    "config.scss",
     "index.scss"
   ],
   "scripts": {

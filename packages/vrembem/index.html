@@ -24,7 +24,7 @@
     const buttons = document.querySelectorAll("[data-set-theme]");
 
     // Setup theme switching functionality
-    vb.core.themeStore({
+    vb.themeStore({
       onInit() {
         // Loop through the theme set buttons
         buttons.forEach((btn) => {
@@ -55,32 +55,32 @@
      * Instantiate and mount Vrembem components
      */
     
-    const modal = new vb.Modal({
+    const modals = new vb.ModalCollection({
       plugins: [
-        vb.core.teleport({
+        vb.teleport({
           where: ".modals"
         })
       ]
     });
 
-    const drawers = new vb.Drawer({
+    const drawers = new vb.DrawerCollection({
       plugins: [
-        vb.core.teleport({
+        vb.teleport({
           where: ".drawer-main",
           how: "before"
         })
       ]
     });
 
-    window["modal"] = await modals.mount();
-    window["drawer"] = await drawers.mount();
+    window["modals"] = await modals.mount();
+    window["drawers"] = await drawers.mount();
 
     /**
      * Setup drawer form updater
      */
 
     // Get the drawer entry and drawer from
-    const drawerEntry = drawer.get("drawer-dialog");
+    const drawerEntry = drawers.get("drawer-dialog");
     const drawerForm = document.getElementById("form-drawer-state");
 
     // Function to handle the form data of drawer state form
@@ -223,7 +223,7 @@
             </div>
           </div><!-- .modal -->
 
-          <aside id="drawer-dialog" class="drawer">
+          <aside id="drawer-dialog" class="drawer is-opened">
             <div class="drawer__dialog dialog" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
               <div class="dialog__header">
                 <h2 class="dialog__title" id="drawer-dialog-title">Drawer title</h2>

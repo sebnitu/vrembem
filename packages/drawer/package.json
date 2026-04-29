@@ -17,8 +17,7 @@
       "sass": "./index.scss",
       "style": "./dist/index.css",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.js"
+      "import": "./dist/index.js"
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
@@ -28,7 +27,6 @@
     "dev",
     "dist",
     "src",
-    "config.scss",
     "index.scss",
     "index.ts"
   ],
