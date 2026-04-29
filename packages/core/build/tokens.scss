@@ -1,0 +1,9 @@
+@use "../index" as core;
+
+@layer tokens {
+  :root {
+    @include core.tokens-output;
+  }
+
+  @include core.theme-output;
+}

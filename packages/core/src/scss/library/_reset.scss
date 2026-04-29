@@ -36,9 +36,12 @@
     height: 100%;
   }
 
-  // Allows the body to be at least the screen height but grow if needed
+  // 1) Allows the body to be at least the screen height but grow if needed
+  // 2) Apply the foreground and background tokens
   body {
-    min-height: 100vh;
+    min-height: 100vh; // 1
+    color: tokens.get("foreground"); // 2
+    background: tokens.get("background"); // 2
   }
 
   // Make media elements display block by default

@@ -10,14 +10,31 @@
     "component",
     "core"
   ],
+  "style": "./dist/index.css",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "sass": "./index.scss",
+      "style": "./dist/index.css",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./layers": {
+      "sass": "./layers.scss",
+      "style": "./dist/layers.css",
+      "default": "./layers.scss"
+    },
+    "./tokens": {
+      "sass": "./src/scss/modules/_tokens.scss",
+      "style": "./dist/tokens.css",
+      "default": "./src/scss/modules/_tokens.scss"
+    },
+    "./reset": {
+      "sass": "./reset.scss",
+      "style": "./dist/reset.css",
+      "default": "./reset.scss"
+    },
     "./config": "./src/scss/modules/_config.scss",
-    "./tokens": "./src/scss/modules/_tokens.scss",
     "./palette": "./src/scss/modules/_palette.scss",
     "./theme": "./src/scss/modules/_theme.scss",
     "./dev/*": "./dev/*",
@@ -30,6 +47,8 @@
     "src",
     "index.ts",
     "index.scss",
+    "layers.scss",
+    "reset.scss",
     "config.scss",
     "tokens.scss",
     "palette.scss",
@@ -37,13 +56,18 @@
   ],
   "scripts": {
     "serve": "vite",
-    "build": "npm-run-all clean scripts",
+    "build": "npm-run-all clean styles scripts",
     "clean": "del dev && del dist",
     "scripts": "npm-run-all scripts:dev scripts:dist scripts:types",
     "scripts:dev": "vite build --outDir dev --minify false",
     "scripts:dist": "vite build --outDir dist",
     "scripts:types": "tsc --project tsconfig.build.json",
-    "watch": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'"
+    "styles": "npm-run-all styles:dev styles:dist",
+    "styles:dev": "sass build:dev --load-path=../../node_modules",
+    "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
+    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
+    "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
     "type": "git",
