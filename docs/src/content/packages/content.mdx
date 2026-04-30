@@ -66,9 +66,9 @@ Content comes with the following Sass configuration options that can be set usin
       "h6": 1em
     ),
 
-    // Map modules to their preferred type selectors
+    // Map modules to their preferred content selectors
     // @type map
-    "content-type-selectors": (
+    "content-selectors": (
       "h1": "> h1",
       "h2": "> h2",
       "h3": "> h3",
@@ -145,7 +145,7 @@ Use the `content-output` configuration to toggle output for all modules. Add exc
 
 ## Basic usage
 
-Once loaded, the content package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
+Once loaded, the content package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `content` class to style an entire block of content.
 
 <CodeExample lang="html">
 ```html
@@ -156,7 +156,7 @@ Once loaded, the content package provides normalization and default styles for H
   <li>...</li>
 </ul>
 
-<!-- Using content type module -->
+<!-- Using content module -->
 <div class="content">
   <h1>...</h1>
   <p>...</p>
@@ -170,11 +170,11 @@ Once loaded, the content package provides normalization and default styles for H
 To customize the class selectors used by modules, map the module name to your preferred class selector in the `content-classes` config option.
 
 <ReferenceCard ref="config" name="content-classes" type="map" defaults='("separator": "sep")'>
-  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, set the following value:
+  A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.props` instead of `.content`, set the following value:
 
 ```scss
 @include config.set("content-classes", (
-  "type": "content"
+  "content": "pros"
 ));
 ```
 </ReferenceCard>
@@ -186,7 +186,7 @@ It's also possible to provide a prefix to all content classes using the `content
 
 ```scss
 @include config.set("content-prefix", "vb");
-// Result: .type > .vb-type
+// Result: .content > .vb-content
 ```
 </ReferenceCard>
 
@@ -433,20 +433,20 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
 ```
 </CodeExample>
 
-### type
+### content
 
-<ReferenceBar selector=".type" hash={{
+<ReferenceBar selector=".content" hash={{
   target: "reference-table-tokens-content",
   event: "filter",
   detail: {
-    value: "--vb-type"
+    value: "--vb-content"
   }
 }} />
 
-The type module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
+The content module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
 
 <CodeExample lang="html">
-<div slot="output" class="type spacing">
+<div slot="output" class="content spacing">
   <h1>Heading</h1>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
   <ul>
@@ -456,7 +456,7 @@ The type module provides the `.content` CSS class as a way to apply many content
   </ul>
 </div>
 ```html
-<div class="type">
+<div class="content">
   <h1>Heading</h1>
   <p>...</p>
   <ul>
@@ -468,13 +468,13 @@ The type module provides the `.content` CSS class as a way to apply many content
 ```
 </CodeExample>
 
-The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `content-type-selectors` variable map.
+The content module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a content block and avoid style conflicts. Module specific content selectors are controlled using the `content-selectors` variable map.
 
-<ReferenceCard ref="config" name="content-type-selectors" type="map">
-  Map modules to type selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.type` context.
+<ReferenceCard ref="config" name="content-selectors" type="map">
+  Map modules to content selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.content` context.
 
 ```scss
-@include config.set("content-type-selectors", (
+@include config.set("content-selectors", (
   "h1": "> h1",
   "h2": "> h2",
   "h3": "> h3",
@@ -486,7 +486,7 @@ The type module only applies styles to its direct children using the `>` child c
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
-"content-type-selectors": (
+"content-selectors": (
   "h1": "> h1",
   "h2": "> h2",
   "h3": "> h3",

@@ -47,7 +47,7 @@ if (layout.hasAside) {
     }
     <div id="main-content" class="layout__main" tabindex="-1">
       <div class="layout__container">
-        <div class="content">
+        <div class="content-container">
           {
             layout.hasAside && (
               <div class="toolbar-mini">
@@ -69,17 +69,17 @@ if (layout.hasAside) {
           }
           {
             Astro.slots.has("prepend") && (
-              <div class="content__prepend">
+              <div class="content-container__prepend">
                 <slot name="prepend" />
               </div>
             )
           }
-          <div class="type spacing">
+          <div class="content spacing">
             <slot />
           </div>
           {
             Astro.slots.has("append") && (
-              <div class="content__append">
+              <div class="content-container__append">
                 <slot name="append" />
               </div>
             )
