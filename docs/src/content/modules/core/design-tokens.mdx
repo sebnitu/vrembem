@@ -1,6 +1,6 @@
 ---
-title: CSS Variables
-description: "The core package provides a number of pre-defined CSS variables that are used throughout the Vrembem library."
+title: Design Tokens
+description: "The core package provides a number of pre-defined design token CSS variables that are used throughout the Vrembem library."
 anchor: design-tokens
 ---
 
@@ -10,7 +10,7 @@ import data from "@/data/tokens-core.json";
 
 ## Output
 
-CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `vrembem/tokens` entry at the end of your Sass manifest file.
+Design token CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `vrembem/tokens` entry at the end of your Sass manifest file.
 
 <CodeExample lang="scss">
 ```scss
@@ -42,7 +42,7 @@ Alternatively, custom properties can also be output manually using the `core/tok
 ```
 </CodeExample>
 
-It is recommended to output CSS variables at the end of your Sass manifest file. This is to ensure that all defined properties are included in the output.
+It is recommended to output design token CSS variables at the end of your Sass manifest file. This ensures that all defined properties in your Sass partials are included in the output.
 
 ## Reference
 
