@@ -1,7 +1,4 @@
 {
-  "--vb-base-background": "var(--vb-background)",
-  "--vb-base-foreground": "var(--vb-foreground)",
-
   "--vb-headings-foreground": "var(--vb-foreground-strong)",
   "--vb-headings-font-family": "inherit",
   "--vb-headings-font-weight": "var(--vb-font-weight-semi-bold)",

@@ -7,7 +7,9 @@
 @forward "./config";
 
 // Output all Vrembem styles
-@forward "vrembem/styles";
+@forward "vrembem/base";
+@forward "vrembem/components";
+@forward "vrembem/utilities";
 
 // Miscellaneous global styles
 @forward "./global";

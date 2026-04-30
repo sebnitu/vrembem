@@ -44,7 +44,7 @@ Changes to the global config should be done in a file that is loaded before othe
 @use "./config";
 
 // 2. Import components or other custom modules
-@use "@vrembem/base";
+@use "@vrembem/content";
 @use "@vrembem/modal";
 // ...
 
@@ -64,14 +64,14 @@ To set configuration options via the Sass `@use ... with` clause, define and set
     "prefix-block": "vb"
   )
 );
-@use "@vrembem/base" with (
+@use "@vrembem/content" with (
   $config: (
-    "base-output": false
+    "content-output": false
   )
 );
 
 @debug core.config-get("prefix-block"); // => "vb"
-@debug core.config-get("base-output"); // => false
+@debug core.config-get("content-output"); // => false
 ```
 </CodeExample>
 

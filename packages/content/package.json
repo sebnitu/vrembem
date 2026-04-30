@@ -1,13 +1,13 @@
 {
-  "name": "@vrembem/base",
-  "description": "A collection of modules that apply global styles and provide classes for styling commonly used HTML elements.",
+  "name": "@vrembem/content",
+  "description": "A content wrapper that provides typographic styles and base formatting for common HTML elements.",
   "version": "4.0.0-next.43",
   "license": "MIT",
   "keywords": [
     "BEM",
     "front-end",
     "component",
-    "base"
+    "content"
   ],
   "style": "./dist/index.css",
   "exports": {

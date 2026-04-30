@@ -4,7 +4,7 @@
 @use "sass:meta";
 @use "@vrembem/core/config";
 
-/// Conditional logic for when to output a base module.
+/// Conditional logic for when to output a content module.
 ///
 /// @param {string} $module
 ///   The module name to conditionally toggle output.
@@ -13,61 +13,61 @@
 ///   The resolved condition boolean.
 ///
 @function maybe-output($module) {
-  @if list.index(config.get("base-output-exceptions"), $module) {
-    @return not config.get("base-output");
+  @if list.index(config.get("content-output-exceptions"), $module) {
+    @return not config.get("content-output");
   } @else {
-    @return config.get("base-output");
+    @return config.get("content-output");
   }
 }
 
-/// Creates a type selector for a base module if configured in `$type-include`.
+/// Creates a content selector for a content module if configured in `$content-include`.
 ///
 /// @param {string} $module
-///   The base module to check if type selector should be included.
+///   The content module to check if content selector should be included.
 ///
 /// @return {selector}
 ///   A partial CSS selector starting with ", " meant to be appended to an
 ///   existing selector. Will return an empty string if not configured.
 ///
 /// @access private
-@function -get-type-selector($module) {
-  // Initialize the type selector as an empty string
-  $type-selector: "";
+@function -get-content-selector($module) {
+  // Initialize the content selector as an empty string
+  $content-selector: "";
 
-  // Check if we should include this module in type styles
-  @if map.has-key(config.get("base-type-selectors"), $module) {
-    // Initialize the type class selector
-    $type: "type";
+  // Check if we should include this module in content styles
+  @if map.has-key(config.get("content-selectors"), $module) {
+    // Initialize the content class selector
+    $content: "content";
 
-    // Check if there's a shortname for the type module
-    @if map.has-key(config.get("base-classes"), "type") {
-      $type: map.get(config.get("base-classes"), "type");
+    // Check if there's a shortname for the content module
+    @if map.has-key(config.get("content-classes"), "content") {
+      $content: map.get(config.get("content-classes"), "content");
     }
 
-    // Apply the block prefix to the root type class
-    $type: '#{config.get("prefix-block")}#{$type}';
+    // Apply the block prefix to the root content class
+    $content: '#{config.get("prefix-block")}#{$content}';
 
-    // Create the type selector using the type module selector
-    $list: string.split(map.get(config.get("base-type-selectors"), $module), ",");
+    // Create the content selector using the content module selector
+    $list: string.split(map.get(config.get("content-selectors"), $module), ",");
 
     @each $item in $list {
-      $type-selector: "#{$type-selector}, .#{$type} #{$item}";
+      $content-selector: "#{$content-selector}, .#{$content} #{$item}";
     }
   }
 
-  // Return the type selector
-  @return $type-selector;
+  // Return the content selector
+  @return $content-selector;
 }
 
-/// Generate a base module selector with a core prefix and optional modifiers.
+/// Generate a content module selector with a core prefix and optional modifiers.
 ///
 /// @param {string} $module
-///   The base module name.
+///   The content module name.
 /// @param {string} $args...
 ///   Additional strings appended as modifiers to the class selector.
 ///
 /// @return {selector}
-///   A valid base module CSS selector.
+///   A valid content module CSS selector.
 ///
 @function selector(
   $module,
@@ -99,17 +99,17 @@
     $name: $module;
 
     // Check if there's a shortname for the provided module name
-    @if map.has-key(config.get("base-classes"), $name) {
-      $name: map.get(config.get("base-classes"), $name);
+    @if map.has-key(config.get("content-classes"), $name) {
+      $name: map.get(config.get("content-classes"), $name);
     }
 
-    $prefix: config.get("base-prefix");
+    $prefix: config.get("content-prefix");
 
     @if $prefix and $prefix != "" {
       $prefix: "#{$prefix}-";
     }
 
-    // Setup the base module class name with prefix
+    // Setup the content module class name with prefix
     $class: "#{$prefix}#{$name}";
 
     // Apply all the arguments to class
@@ -124,10 +124,10 @@
       }
     }
 
-    // Get the type selector if one is required
-    $type-selector: -get-type-selector($module);
+    // Get the content selector if one is required
+    $content-selector: -get-content-selector($module);
 
     // Return the class
-    @return ".#{$class}#{$type-selector}";
+    @return ".#{$class}#{$content-selector}";
   }
 }

@@ -82,10 +82,10 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem#readme",
   "dependencies": {
-    "@vrembem/base": "^4.0.0-next.43",
     "@vrembem/button": "^4.0.0-next.43",
     "@vrembem/card": "^4.0.0-next.43",
     "@vrembem/checkbox": "^4.0.0-next.43",
+    "@vrembem/content": "^4.0.0-next.43",
     "@vrembem/core": "^4.0.0-next.43",
     "@vrembem/dialog": "^4.0.0-next.43",
     "@vrembem/drawer": "^4.0.0-next.43",

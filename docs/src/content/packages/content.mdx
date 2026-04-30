@@ -1,7 +1,7 @@
 ---
-title: Base
-description: "A collection of modules that apply global styles and provide classes for styling commonly used HTML elements."
-package: "@vrembem/base"
+title: Content
+description: "A content wrapper that provides typographic styles and base formatting for common HTML elements."
+package: "@vrembem/content"
 category: modules
 ---
 
@@ -9,55 +9,55 @@ import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import data from "@/data/tokens-base.json";
+import data from "@/data/tokens-content.json";
 
 ```sh
-npm install @vrembem/base
+npm install @vrembem/content
 ```
 
 <CodeExample lang="scss">
   ```scss
-  @use "@vrembem/base";
+  @use "@vrembem/content";
   ```
 </CodeExample>
 
 ## Options
 
-Base is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+Content is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
 
 ### Sass
 
-Base comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+Content comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
 <CodeExpander lang="scss">
 ```scss
-@use "@vrembem/base" with (
+@use "@vrembem/content" with (
   $config: (
     // Controls whether module styles are output. This can be overridden on a per 
-    // module basis using the `base-output-exceptions` config option.
+    // module basis using the `content-output-exceptions` config option.
     // @type boolean
-    "base-output": true,
+    "content-output": true,
 
-    // Modules to exclude from the output rule set in `base-output`
+    // Modules to exclude from the output rule set in `content-output`
     // @type list
-    "base-output-exceptions": (),
+    "content-output-exceptions": (),
 
     // A map containing module names as keys and their preferred class selectors
     // @type map
-    "base-classes": (
+    "content-classes": (
       "separator": "sep"
     ),
 
-    // A prefix to apply to base class selectors. Provided value is automatically 
+    // A prefix to apply to content class selectors. Provided value is automatically 
     // suffixed with a "-" character when applied.
     // @type string
-    "base-prefix": "",
+    "content-prefix": "",
 
     // Used to output the heading styles and their font-size/line-height CSS 
     // variables. Should contain a key of the heading level to output and the 
     // value of a font-size and optional line-height (space separated).
     // @type map
-    "base-headings": (
+    "content-headings": (
       "h1": 2.75em,
       "h2": 2em,
       "h3": 1.75em,
@@ -68,7 +68,7 @@ Base comes with the following Sass configuration options that can be set using e
 
     // Map modules to their preferred type selectors
     // @type map
-    "base-type-selectors": (
+    "content-type-selectors": (
       "h1": "> h1",
       "h2": "> h2",
       "h3": "> h3",
@@ -89,27 +89,27 @@ Base comes with the following Sass configuration options that can be set using e
 
 ### CSS Variables
 
-Base uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Content uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
-<ReferenceTable id="tokens-base" data={data} expandable={true} valueLabel="Fallback" />
+<ReferenceTable id="tokens-content" data={data} expandable={true} valueLabel="Fallback" />
 
 ## Output
 
-Base modules each have their own output styles. These are all output by default when the base package is loaded. There are two ways to control which modules are output using the `base-output` and `base-output-exceptions` configuration options.
+Content modules each have their own output styles. These are all output by default when the content package is loaded. There are two ways to control which modules are output using the `content-output` and `content-output-exceptions` configuration options.
 
-<ReferenceCard ref="config" name="base-output" type="boolean" defaults="true">
-  Controls whether module styles are output. Specify exceptions using the `base-output-exceptions` config option.
+<ReferenceCard ref="config" name="content-output" type="boolean" defaults="true">
+  Controls whether module styles are output. Specify exceptions using the `content-output-exceptions` config option.
 
 ```scss
-@include config.set("base-output", false);
+@include config.set("content-output", false);
 ```
 </ReferenceCard>
 
-<ReferenceCard ref="config" name="base-output-exceptions" type="list" defaults="()">
-  Modules listed in this configuration are exceptions to the value set in `base-output`. If `base-output` is `true`, modules listed will not be output. If `base-output` is `false`, modules listed will be output.
+<ReferenceCard ref="config" name="content-output-exceptions" type="list" defaults="()">
+  Modules listed in this configuration are exceptions to the value set in `content-output`. If `content-output` is `true`, modules listed will not be output. If `content-output` is `false`, modules listed will be output.
 
 ```scss
-@include config.set("base-output-exceptions", (
+@include config.set("content-output-exceptions", (
   "global", "headings"
 ));
 ```
@@ -117,7 +117,7 @@ Base modules each have their own output styles. These are all output by default 
 
 #### Example
 
-Use the `base-output` configuration to toggle output for all modules. Add exceptions to the `base-output-exceptions` list to override the output option for specific modules.
+Use the `content-output` configuration to toggle output for all modules. Add exceptions to the `content-output-exceptions` list to override the output option for specific modules.
 
 <CodeExample lang="scss">
 ```scss
@@ -125,7 +125,7 @@ Use the `base-output` configuration to toggle output for all modules. Add except
 @use "@vrembem/core/config";
 
 // Disable the output of specific modules
-@include config.set("base-output-exceptions", (
+@include config.set("content-output-exceptions", (
   "blockquote",
   "code",
   "list",
@@ -134,8 +134,8 @@ Use the `base-output` configuration to toggle output for all modules. Add except
 
 // Disable the output of all modules except for "global" and "headings"
 @include config.set((
-  "base-output": false
-  "base-output-exceptions": (
+  "content-output": false
+  "content-output-exceptions": (
     "global",
     "headings"
   )
@@ -145,19 +145,19 @@ Use the `base-output` configuration to toggle output for all modules. Add except
 
 ## Basic usage
 
-Once loaded, the base package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
+Once loaded, the content package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `type` class to style an entire block of content.
 
 <CodeExample lang="html">
 ```html
-<!-- Using base element modules -->
+<!-- Using content element modules -->
 <h1 class="h1">...</h1>
 <p>...</p>
 <ul class="list">
   <li>...</li>
 </ul>
 
-<!-- Using base type module -->
-<div class="type">
+<!-- Using content type module -->
+<div class="content">
   <h1>...</h1>
   <p>...</p>
   <ul>
@@ -167,67 +167,37 @@ Once loaded, the base package provides normalization and default styles for HTML
 ```
 </CodeExample>
 
-To customize the class selectors used by modules, map the module name to your preferred class selector in the `base-classes` config option.
+To customize the class selectors used by modules, map the module name to your preferred class selector in the `content-classes` config option.
 
-<ReferenceCard ref="config" name="base-classes" type="map" defaults='("separator": "sep")'>
+<ReferenceCard ref="config" name="content-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.content` instead of `.type`, set the following value:
 
 ```scss
-@include config.set("base-classes", (
+@include config.set("content-classes", (
   "type": "content"
 ));
 ```
 </ReferenceCard>
 
-It's also possible to provide a prefix to all base classes using the `base-prefix` config option.
+It's also possible to provide a prefix to all content classes using the `content-prefix` config option.
 
-<ReferenceCard ref="config" name="base-prefix" type="map" defaults='""'>
-  A prefix to apply to base class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
+<ReferenceCard ref="config" name="content-prefix" type="map" defaults='""'>
+  A prefix to apply to content class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
 
 ```scss
-@include config.set("base-prefix", "vb");
+@include config.set("content-prefix", "vb");
 // Result: .type > .vb-type
 ```
 </ReferenceCard>
 
 ## Modules
 
-Below is a list of each base module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
-
-### global
-
-<ReferenceBar selector="n/a" hash={{
-  target: "reference-table-tokens-base",
-  event: "filter",
-  detail: {
-    value: "--vb-base"
-  }
-}} />
-
-A module to output an opinionated reset that removes user agent defaults in favor of minimalistic base styles. This creates a clean starting point for the UI and components to build from that includes:
-
-- Sets the box-sizing property to border-box for all elements.
-- Removes default margin and padding from all elements.
-- Sets the root typography styles.
-- Prevent font size inflation by setting text-size-adjust to none.
-- Applies base foreground and background CSS variables.
-
-#### Variables
-
-The following CSS variables are referenced with a fallback for more easily overriding base properties:
-
-<ReferenceCard name="--vb-base-background" type="color" fallback="var(--vb-background)">
-  Used to set the background property on the `body` element.
-</ReferenceCard>
-
-<ReferenceCard name="--vb-base-foreground" type="color" fallback="var(--vb-foreground)">
-  Used to set the color property on the `body` element.
-</ReferenceCard>
+Below is a list of each content module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
 
 ### headings
 
 <ReferenceBar selector=".h1 - .h6" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-headings"
@@ -257,13 +227,13 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 ```
 </CodeExample>
 
-Headings output and scale is controlled by the `base-headings` configuration option.
+Headings output and scale is controlled by the `content-headings` configuration option.
 
-<ReferenceCard ref="config" name="base-headings" type="map">
+<ReferenceCard ref="config" name="content-headings" type="map">
   Used to output the heading styles and their font-size/line-height CSS variables. This map should contain a key of the heading level to output and the value of a font-size and optional line-height (space separated).
 
 ```scss
-@include config.set("base-headings", (
+@include config.set("content-headings", (
   "h1": 3em 1.2,
   "h2": 2em 1.6,
   // ...
@@ -274,7 +244,7 @@ Headings output and scale is controlled by the `base-headings` configuration opt
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
-"base-headings": (
+"content-headings": (
   "h1": 2.75em,
   "h2": 2em,
   "h3": 1.75em,
@@ -288,7 +258,7 @@ Headings output and scale is controlled by the `base-headings` configuration opt
 ### link
 
 <ReferenceBar selector=".link" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-link"
@@ -309,7 +279,7 @@ A link—usually represented by an anchor (`<a>`) HTML element with `href` attri
 ### list
 
 <ReferenceBar selector=".list" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-list"
@@ -367,7 +337,7 @@ The list module helps add styles to unordered (`<ul>`) and ordered (`<ol>`) list
 ### code
 
 <ReferenceBar selector=".code" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-code"
@@ -388,7 +358,7 @@ The HTML code element displays its contents styled in a fashion intended to indi
 ### pre
 
 <ReferenceBar selector=".pre" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-pre"
@@ -415,7 +385,7 @@ This module helps style the HTML `<pre>` element by providing the `.pre` CSS cla
 ### blockquote
 
 <ReferenceBar selector=".blockquote" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-blockquote"
@@ -445,7 +415,7 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 ### separator
 
 <ReferenceBar selector=".sep" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-sep"
@@ -466,14 +436,14 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
 ### type
 
 <ReferenceBar selector=".type" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-type"
   }
 }} />
 
-The type module provides the `.type` CSS class as a way to apply many base module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
+The type module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
 
 <CodeExample lang="html">
 <div slot="output" class="type spacing">
@@ -498,13 +468,13 @@ The type module provides the `.type` CSS class as a way to apply many base modul
 ```
 </CodeExample>
 
-The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `base-type-selectors` variable map.
+The type module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a type block and avoid style conflicts. Module specific type selectors are controlled using the `content-type-selectors` variable map.
 
-<ReferenceCard ref="config" name="base-type-selectors" type="map">
-  Map modules to type selectors. This configuration is used when a module runs the `base.selector()` function. The keys of the map should represent a base module name and it's value the selector to be used within the `.type` context.
+<ReferenceCard ref="config" name="content-type-selectors" type="map">
+  Map modules to type selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.type` context.
 
 ```scss
-@include config.set("base-type-selectors", (
+@include config.set("content-type-selectors", (
   "h1": "> h1",
   "h2": "> h2",
   "h3": "> h3",
@@ -516,7 +486,7 @@ The type module only applies styles to its direct children using the `>` child c
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
-"base-type-selectors": (
+"content-type-selectors": (
   "h1": "> h1",
   "h2": "> h2",
   "h3": "> h3",
@@ -536,7 +506,7 @@ The type module only applies styles to its direct children using the `>` child c
 ### arrow
 
 <ReferenceBar selector=".arrow" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-arrow"
@@ -580,7 +550,7 @@ Arrows are great for buttons or menu items to visually indicate when it reveals 
 ### loading-spinner
 
 <ReferenceBar selector=".loading-spinner" hash={{
-  target: "reference-table-tokens-base",
+  target: "reference-table-tokens-content",
   event: "filter",
   detail: {
     value: "--vb-loading"
