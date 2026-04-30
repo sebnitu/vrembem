@@ -194,6 +194,76 @@ It's also possible to provide a prefix to all content classes using the `content
 
 Below is a list of each content module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
 
+### content
+
+<ReferenceBar selector=".content" hash={{
+  target: "reference-table-tokens-content",
+  event: "filter",
+  detail: {
+    value: "--vb-content"
+  }
+}} />
+
+The content module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
+
+<CodeExample lang="html">
+<div slot="output" class="content spacing">
+  <h1>Heading</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
+  <ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+  </ul>
+</div>
+```html
+<div class="content">
+  <h1>Heading</h1>
+  <p>...</p>
+  <ul>
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+  </ul>
+</div>
+```
+</CodeExample>
+
+The content module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a content block and avoid style conflicts. Module specific content selectors are controlled using the `content-selectors` variable map.
+
+<ReferenceCard ref="config" name="content-selectors" type="map">
+  Map modules to content selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.content` context.
+
+```scss
+@include config.set("content-selectors", (
+  "h1": "> h1",
+  "h2": "> h2",
+  "h3": "> h3",
+  // ...
+));
+```
+
+  <hr class="sep" />
+  <p class="font-family-mono font-size-sm">@default</p>
+
+```scss
+"content-selectors": (
+  "h1": "> h1",
+  "h2": "> h2",
+  "h3": "> h3",
+  "h4": "> h4",
+  "h5": "> h5",
+  "h6": "> h6",
+  "link": ":not(div) > a",
+  "list": "> ul, > ol",
+  "code": ":not(pre) > code",
+  "pre": "> pre",
+  "blockquote": "> blockquote",
+  "separator": "> hr"
+)
+```
+</ReferenceCard>
+
 ### headings
 
 <ReferenceBar selector=".h1 - .h6" hash={{
@@ -432,76 +502,6 @@ This module adds the `.sep` CSS classes which visually renders a horizontal sepa
 <hr class="sep" />
 ```
 </CodeExample>
-
-### content
-
-<ReferenceBar selector=".content" hash={{
-  target: "reference-table-tokens-content",
-  event: "filter",
-  detail: {
-    value: "--vb-content"
-  }
-}} />
-
-The content module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
-
-<CodeExample lang="html">
-<div slot="output" class="content spacing">
-  <h1>Heading</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
-  <ul>
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-  </ul>
-</div>
-```html
-<div class="content">
-  <h1>Heading</h1>
-  <p>...</p>
-  <ul>
-    <li>...</li>
-    <li>...</li>
-    <li>...</li>
-  </ul>
-</div>
-```
-</CodeExample>
-
-The content module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a content block and avoid style conflicts. Module specific content selectors are controlled using the `content-selectors` variable map.
-
-<ReferenceCard ref="config" name="content-selectors" type="map">
-  Map modules to content selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.content` context.
-
-```scss
-@include config.set("content-selectors", (
-  "h1": "> h1",
-  "h2": "> h2",
-  "h3": "> h3",
-  // ...
-));
-```
-
-  <hr class="sep" />
-  <p class="font-family-mono font-size-sm">@default</p>
-
-```scss
-"content-selectors": (
-  "h1": "> h1",
-  "h2": "> h2",
-  "h3": "> h3",
-  "h4": "> h4",
-  "h5": "> h5",
-  "h6": "> h6",
-  "link": ":not(div) > a",
-  "list": "> ul, > ol",
-  "code": ":not(pre) > code",
-  "pre": "> pre",
-  "blockquote": "> blockquote",
-  "separator": "> hr"
-)
-```
-</ReferenceCard>
 
 ### arrow
 
