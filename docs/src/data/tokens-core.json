@@ -8,6 +8,8 @@
   "--vb-breakpoint-xl": "1380px",
   "--vb-backdrop-color": "var(--vb-neutral-950)",
   "--vb-backdrop-opacity": "80%",
+  "--vb-base-background": "var(--vb-background)",
+  "--vb-base-foreground": "var(--vb-foreground)",
   "--vb-spacing": "0.25em",
   "--vb-spacing-xs": "var(--vb-spacing)",
   "--vb-spacing-sm": "calc(var(--vb-spacing) * 2)",

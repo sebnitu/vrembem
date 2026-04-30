@@ -1,6 +1,6 @@
 @forward "@vrembem/core/layers";
-@forward "@vrembem/core" as core-*;
-@forward "@vrembem/base" as base-*;
+@forward "@vrembem/core/base";
+@forward "@vrembem/content" as content-*;
 @forward "@vrembem/flex" as flex-*;
 @forward "@vrembem/grid" as grid-*;
 @forward "@vrembem/button" as button-*;

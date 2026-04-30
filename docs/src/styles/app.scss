@@ -6,8 +6,10 @@
 // Configure Vrembem
 @forward "./config";
 
-// Output all Vrembem styles
-@forward "vrembem/styles";
+// Output base, components and utilities layers
+@forward "vrembem/base";
+@forward "vrembem/components";
+@forward "vrembem/utilities";
 
 // Miscellaneous global styles
 @forward "./global";
@@ -51,6 +53,5 @@
 }
 
 // Important!
-// Include this last to catch all defined custom properties
-// Output all CSS custom properties
+// Include this last to output all defined design token CSS variables
 @include meta.load-css("vrembem/tokens");

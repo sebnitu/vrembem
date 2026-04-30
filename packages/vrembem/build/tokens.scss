@@ -1,2 +1,2 @@
-@forward "@vrembem/input/src/config" as input-*;
+@use "@vrembem/input/src/config";
 @forward "../tokens";

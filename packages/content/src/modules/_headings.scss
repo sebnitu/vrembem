@@ -7,7 +7,7 @@
 @if fun.maybe-output("headings") {
   @include tokens.register("headings");
 
-  #{fun.selector(config.get("base-headings"))} {
+  #{fun.selector(config.get("content-headings"))} {
     font-family: tokens.get("headings", "font-family", inherit);
     font-size: tokens.get("headings", "font-size", 1em);
     font-weight: tokens.get("headings", "font-weight", tokens.get("font-weight-semi-bold"));
@@ -15,7 +15,7 @@
     color: tokens.get("headings", "foreground", tokens.get("foreground-strong"));
   }
 
-  @each $key, $value in config.get("base-headings") {
+  @each $key, $value in config.get("content-headings") {
     $font-size: $value;
     $line-height: null;
 

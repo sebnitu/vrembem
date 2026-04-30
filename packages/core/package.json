@@ -29,10 +29,10 @@
       "style": "./dist/tokens.css",
       "default": "./src/scss/modules/_tokens.scss"
     },
-    "./reset": {
-      "sass": "./reset.scss",
-      "style": "./dist/reset.css",
-      "default": "./reset.scss"
+    "./base": {
+      "sass": "./base.scss",
+      "style": "./dist/base.css",
+      "default": "./base.scss"
     },
     "./config": "./src/scss/modules/_config.scss",
     "./palette": "./src/scss/modules/_palette.scss",
@@ -48,7 +48,7 @@
     "index.ts",
     "index.scss",
     "layers.scss",
-    "reset.scss",
+    "base.scss",
     "config.scss",
     "tokens.scss",
     "palette.scss",

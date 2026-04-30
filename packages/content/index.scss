@@ -3,7 +3,7 @@
 @forward "./src/functions";
 
 @layer base {
-  @include meta.load-css("./src/modules/global");
+  @include meta.load-css("./src/modules/content");
   @include meta.load-css("./src/modules/headings");
   @include meta.load-css("./src/modules/link");
   @include meta.load-css("./src/modules/list");
@@ -14,5 +14,4 @@
   @include meta.load-css("./src/modules/arrow");
   @include meta.load-css("./src/modules/loading-spinner");
   @include meta.load-css("./src/modules/sr-only");
-  @include meta.load-css("./src/modules/type");
 }

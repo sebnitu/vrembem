@@ -5,6 +5,7 @@
 @forward "./src/scss/modules/theme" as theme-*;
 @forward "./src/scss/tokens/themes";
 @forward "./src/scss/tokens/backdrop";
+@forward "./src/scss/tokens/base";
 @forward "./src/scss/tokens/spacing";
 @forward "./src/scss/tokens/border";
 @forward "./src/scss/tokens/box-shadow";
@@ -26,6 +27,7 @@
 @forward "./src/scss/utilities/string-replace";
 @forward "./src/scss/library/arrow";
 @forward "./src/scss/library/backdrop";
+@forward "./src/scss/library/base";
 @forward "./src/scss/library/bem";
 @forward "./src/scss/library/ce";
 @forward "./src/scss/library/focus-ring";
@@ -34,7 +36,6 @@
 @forward "./src/scss/library/loading-spinner";
 @forward "./src/scss/library/media-max";
 @forward "./src/scss/library/media-min";
-@forward "./src/scss/library/reset";
 @forward "./src/scss/library/scroll-flex";
 @forward "./src/scss/library/size";
 @forward "./src/scss/library/sr-only";

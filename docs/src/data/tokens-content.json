@@ -1,6 +1,9 @@
 {
-  "--vb-base-background": "var(--vb-background)",
-  "--vb-base-foreground": "var(--vb-foreground)",
+  "--vb-content-foreground": "var(--vb-foreground)",
+  "--vb-content-font-family": "inherit",
+  "--vb-content-font-size": "inherit",
+  "--vb-content-line-height": "inherit",
+  "--vb-content-spacing": "",
 
   "--vb-headings-foreground": "var(--vb-foreground-strong)",
   "--vb-headings-font-family": "inherit",
@@ -43,12 +46,6 @@
   "--vb-separator-border-width": "var(--vb-border-width)",
   "--vb-separator-border-style": "var(--vb-border-style)",
   "--vb-separator-border-color": "var(--vb-border-color)",
-
-  "--vb-type-foreground": "var(--vb-foreground)",
-  "--vb-type-font-family": "inherit",
-  "--vb-type-font-size": "inherit",
-  "--vb-type-line-height": "inherit",
-  "--vb-type-spacing": "",
 
   "--vb-arrow-size": "6px 4px",
   "--vb-arrow-color": "currentcolor",

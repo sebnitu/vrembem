@@ -1,0 +1,9 @@
+@use "../modules/tokens";
+@include tokens.set(
+  "core",
+  "base",
+  (
+    "foreground": tokens.get("foreground"),
+    "background": tokens.get("background")
+  )
+);

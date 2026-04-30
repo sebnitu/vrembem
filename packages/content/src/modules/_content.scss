@@ -1,0 +1,18 @@
+@use "@vrembem/core/tokens";
+@use "../functions" as fun;
+
+@if fun.maybe-output("content") {
+  @include tokens.register("content");
+  @include tokens.register("heading");
+
+  #{fun.selector("content")} {
+    font-family: tokens.get("content", "font-family", inherit);
+    font-size: tokens.get("content", "font-size", inherit);
+    line-height: tokens.get("content", "line-height", inherit);
+    color: tokens.get("content", "foreground", tokens.get("foreground"));
+
+    > * + * {
+      margin-top: tokens.get("content", "spacing", null);
+    }
+  }
+}

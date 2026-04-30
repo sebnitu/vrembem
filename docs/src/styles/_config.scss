@@ -29,7 +29,7 @@
 @include tokens.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
 @include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 90%));
 @include tokens.set(
-  "type",
+  "content",
   (
     "font-size": tokens.get("font-size-lg"),
     "line-height": 1.7778

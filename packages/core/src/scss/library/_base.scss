@@ -7,7 +7,7 @@
 /// - https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/preflight.css
 /// - https://github.com/sindresorhus/modern-normalize/blob/main/modern-normalize.css
 /// - https://gist.github.com/Asjas/4b0736108d56197fce0ec9068145b421
-@mixin reset {
+@mixin base {
   // 1) Set the preferred box-sizing value
   //    - https://github.com/jensimmons/cssremedy/issues/4
   // 2) Remove default margin and padding
@@ -40,8 +40,8 @@
   // 2) Apply the foreground and background tokens
   body {
     min-height: 100vh; // 1
-    color: tokens.get("foreground"); // 2
-    background: tokens.get("background"); // 2
+    color: tokens.get("base-foreground"); // 2
+    background: tokens.get("base-background"); // 2
   }
 
   // Make media elements display block by default
