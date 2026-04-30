@@ -6,8 +6,6 @@
   overflow: hidden;
   border: tokens.get("border");
   border-radius: tokens.get("border-radius");
-  font-size: tokens.get("font-size");
-  line-height: tokens.get("line-height");
 
   * {
     scroll-margin-top: initial;
@@ -44,7 +42,7 @@
   }
 
   .code-block__copy-button {
-    top: calc(-2.5rem + 2px);
+    top: -2.5rem;
     right: 0.5rem;
     background-color: transparent;
 
@@ -98,6 +96,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 3.5rem 0.5rem 1rem;
+  font-size: tokens.get("font-size");
   color: tokens.get("foreground-subtle");
 
   [data-reset] {
