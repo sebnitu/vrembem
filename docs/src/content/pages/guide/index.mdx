@@ -23,25 +23,15 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
 - `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js`
 */}
 
-### Starter template
-
-Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
-
-<CodeExample iframe="/tpl/minimal-starter.html" />
-
-{/* TODO: Talk about the two JS bundles available in dist */}
-
-Three components ([drawer](/packages/drawer), [modal](/packages/modal) and [popover](/packages/popover)) also ship with JavaScript which is built to be framework agnostic and tree-shakable. These can be included as needed, but are not required if you'd prefer to ship your own JavaScript integrations.
-
-Get access to all provided JavaScript modules and plugins by importing them directly from the `vrembem` package or load them using a namespace import for quick prototyping.
+To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or plugins, import them directly from the `vrembem` package using the ESM bundle.
 
 <CodeExample>
 ```html
 <script type="module">
-  import * as vb from "https://unpkg.com/vrembem@next/dist/index.js";
+  import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
   
-  const modals = new vb.ModalCollection({
-    plugins: [vb.focusTrap()]
+  const modals = new ModalCollection({
+    plugins: [focusTrap()]
   });
 
   await modals.mount();
@@ -49,19 +39,95 @@ Get access to all provided JavaScript modules and plugins by importing them dire
 ```
 </CodeExample>
 
+### Starter template
+
+Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
+
+<CodeExample iframe="/tpl/minimal-starter.html" />
+
+{/* TODO: Provide a drawer and/or modal starter */}
 {/* TODO: Provide an example using importmap: https://esm.sh/#docs */}
 
 ## Using NPM
 
-Built on Sass and TypeScript, Vrembem compiles to CSS and JavaScript modules. These can be imported on a per-package basis `@vrembem/<package>` or the entire library can be imported using the `vrembem` all-in-one package.
+Vrembem is a collection of packages built with Sass and TypeScript that compile to CSS and JavaScript. Install Vrembem via NPM and integrate it into your build pipeline to leverage Sass configurations, modules, and tree-shaking.
 
-But when should you use direct CSS imports, or Sass modules? That mainly depends on your use case and how deeply you'd like to integrate into the Vrembem systems. Here is a list to help you decide:
+```sh
+npm install vrembem
+```
 
-{/* TODO: Add a pros list for each method using check mark icons */}
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    @use "vrembem";
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    @import "vrembem";
+    ```
+  </Fragment>
+</CodeExample>
 
-- CSS entries: Best for zero dependency tooling.
-- Sass entries: Best for output control and module usage.
+<CodeExample lang="js">
+```js
+// Namespace import — access everything via a single object
+import * as vb from "vrembem";
+
+// Named imports — only pull in what you need (tree-shakable)
+import { drawerCollection, propStore } from "vrembem";
+```
+</CodeExample>
 
 ### Entries
 
-Vrembem provides a variety of logic entries into the library to fit most use cases without introducing a lot of bloat.
+Vrembem provides both CSS and Sass (SCSS) entries. Which one to choose depends on project setup and how much control you need over the output.
+
+{/* TODO: Style these as side-by-side lists with checkmark bullets */}
+
+**CSS**
+
+- Minimal setup and no build tools required.
+- Customizable components using design token CSS variables.
+- Great for projects that don't use Sass or want minimal dependencies.
+
+**SCSS**
+
+- Fine-grained control over output including prefixes and BEM naming conventions.
+- Use Sass modules for managing configurations, design tokens, palettes, and theming.
+- Best for projects already using Sass that want deeper integration into Vrembem systems.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    // The entire Vrembem library
+    @use "vrembem";
+
+    // Component and utility styles
+    @use "vrembem/styles";
+
+    // CSS layer order
+    @use "vrembem/layers";
+
+    // Design token CSS variables
+    @use "vrembem/tokens";
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    /* The entire Vrembem library */
+    @import "vrembem";
+
+    /* Component and utility styles */
+    @import "vrembem/styles";
+
+    /* CSS layer order */
+    @import "vrembem/layers";
+
+    /* Design token CSS variables */
+    @import "vrembem/tokens";
+    ```
+  </Fragment>
+</CodeExample>
+
+Components can be imported on a per-package basis using the `@vrembem/<package>` format. See [packages documentation](/packages) for more information on configuration and usage.
