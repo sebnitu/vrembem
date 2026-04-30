@@ -1,6 +1,6 @@
 # Content
 
-A content wrapper that provides typographic styles and base formatting for common HTML elements.
+A content wrapper that provides typographic styles for common HTML elements.
 
 [Documentation](https://vrembem.com/packages/content)
 
