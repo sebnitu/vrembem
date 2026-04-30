@@ -3,7 +3,6 @@
 @forward "./src/functions";
 
 @layer base {
-  @include meta.load-css("./src/modules/global");
   @include meta.load-css("./src/modules/headings");
   @include meta.load-css("./src/modules/link");
   @include meta.load-css("./src/modules/list");
