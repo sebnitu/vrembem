@@ -14,33 +14,6 @@
   }
 }
 
-.compare__list {
-  ul {
-    list-style: none;
-  }
-
-  li {
-    position: relative;
-    margin: 0.5em 0;
-    padding-left: 2em;
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      display: block;
-      width: 1em;
-      height: 1em;
-      margin: 0.25em;
-      background-color: palette.get("primary");
-      mask-image: url(core.svg("check"));
-      mask-repeat: no-repeat;
-      mask-position: center;
-      mask-size: 100%;
-    }
-  }
-}
-
 .compare__vs {
   position: relative;
   display: flex;
@@ -86,4 +59,53 @@
     width: auto;
     height: 4px;
   }
+}
+
+/**
+ * Pro and con lists
+ */
+
+.list_pros,
+.list_cons {
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin: 0.5em 0;
+    padding-left: 1.75em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      display: block;
+      width: 1em;
+      height: 1em;
+      margin: 0.35em 0;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: 100%;
+    }
+  }
+
+  li.pro::before {
+    background-color: palette.get("primary");
+    mask-image: url(core.svg("check"));
+  }
+
+  li.con::before {
+    background-color: palette.get("important");
+    mask-image: url(core.svg("x"));
+  }
+}
+
+.list_pros li::before {
+  background-color: palette.get("primary");
+  mask-image: url(core.svg("check"));
+}
+
+.list_cons li::before {
+  background-color: palette.get("important");
+  mask-image: url(core.svg("x"));
 }
