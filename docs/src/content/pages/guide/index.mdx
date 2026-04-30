@@ -109,14 +109,21 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
     // The entire Vrembem library
     @use "vrembem";
 
-    // Component and utility styles
-    @use "vrembem/styles";
-
     // CSS layer order
+    // @layer tokens, base, components, utilities;
     @use "vrembem/layers";
 
     // Design token CSS variables
     @use "vrembem/tokens";
+
+    // Base styles
+    @use "vrembem/base";
+
+    // Component styles
+    @use "vrembem/components";
+
+    // Utility styles
+    @use "vrembem/utilities";
     ```
   </Fragment>
   <Fragment slot="tab-css">
@@ -124,14 +131,21 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
     /* The entire Vrembem library */
     @import "vrembem";
 
-    /* Component and utility styles */
-    @import "vrembem/styles";
-
     /* CSS layer order */
+    /* @layer tokens, base, components, utilities; */
     @import "vrembem/layers";
 
     /* Design token CSS variables */
     @import "vrembem/tokens";
+
+    /* Base styles */
+    @import "vrembem/base";
+
+    /* Component styles */
+    @import "vrembem/components";
+
+    /* Utility styles */
+    @import "vrembem/utilities";
     ```
   </Fragment>
 </CodeExample>
