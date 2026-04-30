@@ -81,21 +81,27 @@ import { drawerCollection, propStore } from "vrembem";
 
 ### Entries
 
-Vrembem provides both CSS and Sass (SCSS) entries. Which one to choose depends on project setup and how much control you need over the output.
+Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends on project setup and how much control you need over the output.
 
-{/* TODO: Style these as side-by-side lists with checkmark bullets */}
-
-**CSS**
-
-- Minimal setup and no build tools required.
-- Customizable components using design token CSS variables.
-- Great for projects that don't use Sass or want minimal dependencies.
-
-**SCSS**
-
-- Fine-grained control over output including prefixes and BEM naming conventions.
-- Use Sass modules for managing configurations, design tokens, palettes, and theming.
-- Best for projects already using Sass that want deeper integration into Vrembem systems.
+<div class="compare">
+  <div class="compare__list">
+    <h4>SCSS</h4>
+    <ul>
+      <li>Fine-grained control over output including prefixes and BEM naming conventions.</li>
+      <li>Use Sass modules for managing configurations, design tokens, palettes, and theming.</li>
+      <li>Best for projects already using Sass that want deeper integration into Vrembem systems.</li>
+    </ul>
+  </div>
+  <span class="compare__vs"></span>
+  <div class="compare__list">
+    <h4>CSS</h4>
+    <ul>
+      <li>Minimal setup and no build tools required.</li>
+      <li>Customizable components using design token CSS variables.</li>
+      <li>Great for projects that don't use Sass or want minimal dependencies.</li>
+    </ul>
+  </div>
+</div>
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
