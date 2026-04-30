@@ -19,11 +19,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles": {
-      "sass": "./styles.scss",
-      "style": "./dist/styles.css",
-      "default": "./dist/styles.css"
-    },
     "./layers": {
       "sass": "./layers.scss",
       "style": "./dist/layers.css",
@@ -33,6 +28,21 @@
       "sass": "./tokens.scss",
       "style": "./dist/tokens.css",
       "default": "./dist/tokens.css"
+    },
+    "./base": {
+      "sass": "./base.scss",
+      "style": "./dist/base.css",
+      "default": "./dist/base.css"
+    },
+    "./components": {
+      "sass": "./components.scss",
+      "style": "./dist/components.css",
+      "default": "./dist/components.css"
+    },
+    "./utilities": {
+      "sass": "./utilities.scss",
+      "style": "./dist/utilities.css",
+      "default": "./dist/utilities.css"
     },
     "./sass": "./index.scss",
     "./css": "./dist/index.css",
@@ -44,9 +54,11 @@
     "dist",
     "index.ts",
     "index.scss",
-    "styles.scss",
     "layers.scss",
-    "tokens.scss"
+    "tokens.scss",
+    "base.scss",
+    "components.scss",
+    "utilities.scss"
   ],
   "scripts": {
     "serve": "vite",
