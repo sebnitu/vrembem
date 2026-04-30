@@ -40,8 +40,8 @@
   // 2) Apply the foreground and background tokens
   body {
     min-height: 100vh; // 1
-    color: tokens.get("core", "base-foreground"); // 2
-    background: tokens.get("core", "base-background"); // 2
+    color: tokens.get("base-foreground"); // 2
+    background: tokens.get("base-background"); // 2
   }
 
   // Make media elements display block by default
