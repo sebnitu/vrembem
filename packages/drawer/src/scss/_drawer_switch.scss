@@ -19,6 +19,14 @@
   border-left: none;
 }
 
+// Apply margin transition styles if drawer is in a transitioning state
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) {
+  &.is-opening ~ #{core.bem(config.get("drawer-classes", "main"))},
+  &.is-closing ~ #{core.bem(config.get("drawer-classes", "main"))} {
+    transition: margin tokens.get("transition");
+  }
+}
+
 // IS .drawer NOT .drawer_switch OR .drawer_modal
 #{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}, #{core.bem("drawer", null, "modal")}) {
   &.is-opening ~ #{core.bem(config.get("drawer-classes", "main"))},
