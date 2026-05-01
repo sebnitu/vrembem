@@ -14,6 +14,7 @@ interface Props {
   lang?: string;
   tabs?: boolean;
   iframe?: string;
+  style?: string;
   files?: FileTab[];
   flush?: boolean;
   resettable?: boolean;
@@ -22,6 +23,7 @@ interface Props {
 const {
   label,
   iframe,
+  style,
   lang = "html",
   tabs = false,
   files = [],
@@ -36,7 +38,7 @@ const iframeCode = iframe
   : "";
 ---
 
-<div class="code-example">
+<div class="code-example" {style}>
   {
     iframe && (
       <div class="code-example__output">
