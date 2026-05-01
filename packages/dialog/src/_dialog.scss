@@ -17,7 +17,7 @@
   box-shadow: tokens.get("dialog", "box-shadow", tokens.get("box-shadow-4"));
   transition-timing-function: tokens.get("dialog", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("dialog", "transition-duration", tokens.get("transition-duration"));
-  transition-property: tokens.get("dialog", "transition-duration", (outline, border-color));
+  transition-property: tokens.get("dialog", "transition-property", (outline, border-color));
 
   &:focus-visible,
   &[role="alertdialog"] {
