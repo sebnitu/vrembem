@@ -4,60 +4,107 @@ description: Vrembem is a framework agnostic CSS component library. Getting star
 order: 1
 ---
 
+import Tabs from "@/components/Tabs.astro";
+import TabsItem from "@/components/TabsItem.astro";
+
 ## Using CDN
 
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
-{/* TODO: Add a tabs component similar to: https://starlight.astro.build/components/tabs/ */}
-
-<CodeExample>
-```html
-<link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
-```
-</CodeExample>
-
-{/*
-- `https://unpkg.com/vrembem@next/dist/index.css`
-- `https://unpkg.com/vrembem@next/dist/index.js`
-- `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css`
-- `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js`
-*/}
+<Tabs syncKey="cdn" label="Select your preferred CDN">
+  <TabsItem label="unpkg">
+    <CodeExample>
+      ```html
+      <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
+      ```
+    </CodeExample>
+  </TabsItem>
+  <TabsItem label="jsdelivr">
+    <CodeExample>
+      ```html
+      <link href="https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css" rel="stylesheet" />
+      ```
+    </CodeExample>
+  </TabsItem>
+</Tabs>
 
 To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
 
-<CodeExample>
-```html
-<script type="module">
-  import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
-  
-  const modals = new ModalCollection({
-    plugins: [focusTrap()]
-  });
+<Tabs syncKey="cdn" label="Select your preferred CDN">
+  <TabsItem label="unpkg">
+    <CodeExample>
+      ```html
+      <script type="module">
+        import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
+        
+        const modals = new ModalCollection({
+          plugins: [focusTrap()]
+        });
 
-  await modals.mount();
-</script>
-```
-</CodeExample>
+        await modals.mount();
+      </script>
+      ```
+    </CodeExample>
+  </TabsItem>
+  <TabsItem label="jsdelivr">
+    <CodeExample>
+      ```html
+      <script type="module">
+        import { ModalCollection, focusTrap } from "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js";
+        
+        const modals = new ModalCollection({
+          plugins: [focusTrap()]
+        });
+
+        await modals.mount();
+      </script>
+      ```
+    </CodeExample>
+  </TabsItem>
+</Tabs>
 
 Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
 
-<CodeExample>
-```html
-<script type="importmap">
-  {
-    "imports": {
-      "vrembem": "https://unpkg.com/vrembem@next/dist/index.js",
-      "vrembem/css": "https://unpkg.com/vrembem@next/dist/index.css"
-    }
-  }
-</script>
-<script type="module">
-  import * as vb from "vrembem";
-  import styles from "vrembem/css" with { type: "css" };
-  document.adoptedStyleSheets.push(styles);
-</script>
-```
-</CodeExample>
+<Tabs syncKey="cdn" label="Select your preferred CDN">
+  <TabsItem label="unpkg">
+    <CodeExample>
+      ```html
+      <script type="importmap">
+        {
+          "imports": {
+            "vrembem": "https://unpkg.com/vrembem@next/dist/index.js",
+            "vrembem/css": "https://unpkg.com/vrembem@next/dist/index.css"
+          }
+        }
+      </script>
+      <script type="module">
+        import * as vb from "vrembem";
+        import styles from "vrembem/css" with { type: "css" };
+        document.adoptedStyleSheets.push(styles);
+      </script>
+      ```
+    </CodeExample>
+  </TabsItem>
+  <TabsItem label="jsdelivr">
+    <CodeExample>
+      ```html
+      <script type="importmap">
+        {
+          "imports": {
+            "vrembem": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js",
+            "vrembem/css": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css"
+          }
+        }
+      </script>
+      <script type="module">
+        import * as vb from "vrembem";
+        import styles from "vrembem/css" with { type: "css" };
+        document.adoptedStyleSheets.push(styles);
+      </script>
+      ```
+    </CodeExample>
+  </TabsItem>
+</Tabs>
 
 ### Starter templates
 

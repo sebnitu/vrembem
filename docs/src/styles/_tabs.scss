@@ -1,9 +1,13 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+[role="tablist"] {
+  display: flex;
+}
+
 [role="tab"] {
   position: relative;
-  margin: -0.5rem 0;
+  margin: 0;
   padding: 0.5rem;
   color: tokens.get("foreground-subtle");
 
