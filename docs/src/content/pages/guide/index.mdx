@@ -12,7 +12,7 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
 
 <CodeExample>
 ```html
-<link rel="stylesheet" href="https://unpkg.com/vrembem@next/dist/index.css" />
+<link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
 ```
 </CodeExample>
 
@@ -39,7 +39,25 @@ To use available JavaScript modules such as [drawer](/packages/drawer), [modal](
 ```
 </CodeExample>
 
-{/* TODO: Provide an example using importmap: https://esm.sh/#docs */}
+Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
+
+<CodeExample>
+```html
+<script type="importmap">
+  {
+    "imports": {
+      "vrembem": "https://unpkg.com/vrembem@next/dist/index.js",
+      "vrembem/css": "https://unpkg.com/vrembem@next/dist/index.css"
+    }
+  }
+</script>
+<script type="module">
+  import * as vb from "vrembem";
+  import styles from "vrembem/css" with { type: "css" };
+  document.adoptedStyleSheets.push(styles);
+</script>
+```
+</CodeExample>
 
 ### Starter templates
 
