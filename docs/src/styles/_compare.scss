@@ -6,8 +6,8 @@
   position: relative;
   container-type: inline-size;
   display: flex;
-  flex-wrap: nowrap;
-  gap: 2em;
+  flex-flow: column nowrap;
+  gap: 0;
 
   > * {
     flex: 1 1 auto;
@@ -27,8 +27,9 @@
     content: "";
     position: absolute;
     z-index: 1;
-    inset: 0.5em auto 0.5em calc(50% - 2px);
-    width: 4px;
+    inset: calc(50% - 2px) 0 auto;
+    width: auto;
+    height: 4px;
     border-radius: 2px;
     background-color: palette.get("neutral", "75");
   }
@@ -48,16 +49,16 @@
   }
 }
 
-@container content (width < 600px) {
+@container content (width > 660px) {
   .compare {
-    flex-direction: column;
-    gap: 0;
+    flex-direction: row;
+    gap: 2em;
   }
 
   .compare__vs::before {
-    inset: calc(50% - 2px) 0 auto;
-    width: auto;
-    height: 4px;
+    inset: 0.5em auto 0.5em calc(50% - 2px);
+    width: 4px;
+    height: auto;
   }
 }
 

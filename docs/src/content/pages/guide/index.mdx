@@ -23,7 +23,7 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
 - `https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js`
 */}
 
-To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or plugins, import them directly from the `vrembem` package using the ESM bundle.
+To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
 
 <CodeExample>
 ```html
@@ -87,9 +87,9 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
   <div>
     <h4>SCSS</h4>
     <ul class="list list_pros">
-      <li>Fine-grained control over output including prefixes and BEM naming conventions.</li>
-      <li>Use Sass modules for managing configurations, design tokens, palettes, and theming.</li>
-      <li>Best for projects already using Sass that want deeper integration into Vrembem systems.</li>
+      <li>Control output including prefixes and BEM naming conventions.</li>
+      <li>Use Sass modules for managing config, tokens, palettes, and theming.</li>
+      <li>Best for projects already using Sass that want deeper integration.</li>
     </ul>
   </div>
   <span class="compare__vs"></span>
@@ -98,20 +98,40 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
     <ul class="list list_pros">
       <li>Minimal setup and no build tools required.</li>
       <li>Customizable components using design token CSS variables.</li>
-      <li>Great for projects that don't use Sass or want minimal dependencies.</li>
+      <li>Best for projects that don't use Sass and want minimal dependencies.</li>
     </ul>
   </div>
 </div>
+
+#### Library entry
+
+Use the entire library by importing the base `vrembem` entry.
 
 <CodeExample tabs>
   <Fragment slot="tab-scss">
     ```scss
     // The entire Vrembem library
     @use "vrembem";
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    /* The entire Vrembem library */
+    @import "vrembem";
+    ```
+  </Fragment>
+</CodeExample>
 
+#### Layer entries
+
+Or, import specific layers using layer based entries.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
     // CSS layer order
-    // @layer tokens, base, components, utilities;
     @use "vrembem/layers";
+    // Output: @layer tokens, base, components, utilities;
 
     // Design token CSS variables
     @use "vrembem/tokens";
@@ -128,12 +148,9 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
   </Fragment>
   <Fragment slot="tab-css">
     ```css
-    /* The entire Vrembem library */
-    @import "vrembem";
-
     /* CSS layer order */
-    /* @layer tokens, base, components, utilities; */
     @import "vrembem/layers";
+    /* Output: @layer tokens, base, components, utilities; */
 
     /* Design token CSS variables */
     @import "vrembem/tokens";
@@ -150,4 +167,21 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
   </Fragment>
 </CodeExample>
 
-Components can be imported on a per-package basis using the `@vrembem/<package>` format. See [packages documentation](/packages) for more information on configuration and usage.
+#### Component entries
+
+Components can be imported on a per-package basis using package imports. See [packages documentation](/packages) for more information on package specific config and usage.
+
+<CodeExample tabs>
+  <Fragment slot="tab-scss">
+    ```scss
+    // Component specific entries
+    @use "@vrembem/<package>";
+    ```
+  </Fragment>
+  <Fragment slot="tab-css">
+    ```css
+    /* Component specific entries */
+    @import "@vrembem/<package>";
+    ```
+  </Fragment>
+</CodeExample>
