@@ -25,9 +25,9 @@
   )
 );
 
-// Set CSS variables
+// Set custom tokens
 @include tokens.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
-@include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 90%));
+@include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 70%));
 @include tokens.set(
   "content",
   (
@@ -51,11 +51,12 @@
   )
 );
 
+// Set custom themes
 @include theme.set(
   "light",
   (
-    "fold-shadow-start": palette.get("neutral", "900", $a: 10%),
-    "fold-shadow-end": palette.get("neutral", "900", $a: 0%)
+    "fold-shadow-start": palette.get("neutral", $a: 8%),
+    "fold-shadow-end": palette.get("neutral", $a: 0%)
   )
 );
 
@@ -67,26 +68,31 @@
   )
 );
 
-// Set Astro design token CSS variable
-@include theme.set(
-  "light",
+// Set Astro themes
+@include tokens.set(
   "astro",
   (
     "code": (
       "background": tokens.get("background-alt"),
       "foreground": tokens.get("foreground-strong"),
       "color-text": tokens.get("foreground-strong"),
-      "token": (
-        "comment": tokens.get("foreground-subtle"),
-        "constant": #1b6bc6,
-        "string": #1b6bc6,
-        "keyword": tokens.get("foreground-strong"),
-        "parameter": #df7a32,
-        "function": #794bcf,
-        "string-expression": #309b4a,
-        "punctuation": #ce3b4a,
-        "link": #ce3b4a
-      )
+      "token-comment": tokens.get("foreground-subtle"),
+      "token-keyword": tokens.get("foreground-strong")
+    )
+  )
+);
+@include theme.set(
+  "light",
+  "astro",
+  (
+    "code-token": (
+      "constant": #1b6bc6,
+      "string": #1b6bc6,
+      "parameter": #df7a32,
+      "function": #794bcf,
+      "string-expression": #309b4a,
+      "punctuation": #ce3b4a,
+      "link": #ce3b4a
     )
   )
 );
@@ -94,21 +100,14 @@
   "dark",
   "astro",
   (
-    "code": (
-      "background": tokens.get("background-alt"),
-      "foreground": tokens.get("foreground-strong"),
-      "color-text": tokens.get("foreground-strong"),
-      "token": (
-        "comment": tokens.get("foreground-subtle"),
-        "constant": #79b8ff,
-        "string": #79b8ff,
-        "keyword": tokens.get("foreground-strong"),
-        "parameter": #ffab70,
-        "function": #b392f0,
-        "string-expression": #85e89d,
-        "punctuation": #f97583,
-        "link": #f97583
-      )
+    "code-token": (
+      "constant": #79b8ff,
+      "string": #79b8ff,
+      "parameter": #ffab70,
+      "function": #b392f0,
+      "string-expression": #85e89d,
+      "punctuation": #f97583,
+      "link": #f97583
     )
   )
 );
