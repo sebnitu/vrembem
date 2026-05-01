@@ -27,7 +27,13 @@ async function toInline(entry: DrawerEntry): Promise<DrawerEntry> {
   );
 
   // Restore the inline state
-  entry.state = entry.inlineState;
+  if (entry.inlineState === "opened") {
+    await entry.open(false, false);
+  } else if (entry.inlineState === "closed") {
+    await entry.close(false, false);
+  } else {
+    entry.state = entry.inlineState;
+  }
 
   // Emit the switchMode event
   await entry.parent.emit("switchMode", entry);
