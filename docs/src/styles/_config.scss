@@ -51,7 +51,23 @@
   )
 );
 
-// Set CSS variable themes
+@include theme.set(
+  "light",
+  (
+    "fold-shadow-start": palette.get("neutral", "900", $a: 10%),
+    "fold-shadow-end": palette.get("neutral", "900", $a: 0%)
+  )
+);
+
+@include theme.set(
+  "dark",
+  (
+    "fold-shadow-start": palette.get("neutral", "950", $a: 10%),
+    "fold-shadow-end": palette.get("neutral", "950", $a: 0%)
+  )
+);
+
+// Set Astro design token CSS variable
 @include theme.set(
   "light",
   "astro",
