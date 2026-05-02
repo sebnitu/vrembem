@@ -314,14 +314,14 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
       </div>
     </div>
   </Fragment>
-  <Fragment slot="tab-html">
+  <TabsPanel label="HTML">
     ```html
     <aside id="[unique-id]" class="drawer drawer_modal">
       ...
     </aside>
     ```
-  </Fragment>
-  <Fragment slot="tab-js">
+  </TabsPanel>
+  <TabsPanel label="JS">
     ```js
     // Set a drawer to "modal" mode
     drawers.get("drawer-id").mode = "modal";
@@ -329,7 +329,7 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
     // Set a drawer to "Inline" mode
     drawers.get("drawer-id").mode = "inline";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 In cases where you'd like a drawer to switch modes based on a specific viewport width, use the [`mediaQuery`](/packages/core/media-query) plugin. Set a `data-breakpoint` data attribute with either a width value or a breakpoint key.

@@ -129,7 +129,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       </div>
     </div>
   </Fragment>
-  <Fragment slot="tab-html">
+  <TabsPanel label="HTML">
     ```html
     <div class="notice">
       <div class="flex justify-content-between">
@@ -144,8 +144,8 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       </div>
     </div>
     ```
-  </Fragment>
-  <Fragment slot="tab-js">
+  </TabsPanel>
+  <TabsPanel label="JS">
     ```js
     // Get the button elements
     const btns = document.querySelectorAll("[data-dismiss]");
@@ -162,7 +162,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       });
     });
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 ## notice_color_[key]

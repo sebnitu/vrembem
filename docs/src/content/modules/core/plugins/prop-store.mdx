@@ -97,46 +97,46 @@ const inputs = new Collection({
 Lastly, we need some input markup with our selector to finish up the example. Each of these inputs now uses `propStore` to persist their input values across page sessions.
 
 <CodeExample tabs>
-<Fragment slot="output">
-  <div class="spacing">
-    <input id="input-1" type="text" class="input input-store" />
-    <input id="input-2" type="text" class="input input-store" />
-    <input id="input-3" type="text" class="input input-store" />
-  </div>
-</Fragment>
-<Fragment slot="tab-html">
-```html
-<input id="input-1" type="text" class="input input-store" />
-<input id="input-2" type="text" class="input input-store" />
-<input id="input-3" type="text" class="input input-store" />
-```
-</Fragment>
-<Fragment slot="tab-js">
-```js
-import { Collection, propStore } from "@vrembem/core";
+  <Fragment slot="output">
+    <div class="spacing">
+      <input id="input-1" type="text" class="input input-store" />
+      <input id="input-2" type="text" class="input input-store" />
+      <input id="input-3" type="text" class="input input-store" />
+    </div>
+  </Fragment>
+  <TabsPanel label="HTML">
+  ```html
+  <input id="input-1" type="text" class="input input-store" />
+  <input id="input-2" type="text" class="input input-store" />
+  <input id="input-3" type="text" class="input input-store" />
+  ```
+  </TabsPanel>
+  <TabsPanel label="JS">
+  ```js
+  import { Collection, propStore } from "@vrembem/core";
 
-const inputs = new Collection({
-  selector: ".input-store",
-  plugins: [
-    propStore({
-      prop: "value",
-      onChange({ entry }, newValue) {
-        entry.el.value = newValue;
-      },
-      afterMount({ parent }) {
-        parent.collection.forEach((entry) => {
-          entry.el.addEventListener("input", (event) => {
-            entry.value = event.target.value;
+  const inputs = new Collection({
+    selector: ".input-store",
+    plugins: [
+      propStore({
+        prop: "value",
+        onChange({ entry }, newValue) {
+          entry.el.value = newValue;
+        },
+        afterMount({ parent }) {
+          parent.collection.forEach((entry) => {
+            entry.el.addEventListener("input", (event) => {
+              entry.value = event.target.value;
+            });
           });
-        });
-      }
-    })
-  ]
-});
+        }
+      })
+    ]
+  });
 
-await inputs.mount();
-```
-</Fragment>
+  await inputs.mount();
+  ```
+  </TabsPanel>
 </CodeExample>
 
 ## Use cases

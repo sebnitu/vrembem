@@ -363,29 +363,29 @@ Creates a button variant using custom properties and hsl relative values.
 #### Example
 
 <CodeExample tabs>
-<Fragment slot="output">
-  <button class="button button_color_custom">Custom Button</button>
-</Fragment>
-<Fragment slot="tab-scss">
-```scss
-@use "@vrembem/button";
+  <Fragment slot="output">
+    <button class="button button_color_custom">Custom Button</button>
+  </Fragment>
+  <TabsPanel label="SCSS">
+  ```scss
+  @use "@vrembem/button";
 
-.button_color_custom {
-  @include button.variant(salmon);
-}
-```
-</Fragment>
-<Fragment slot="tab-css">
-```css
-.button_color_custom {
-  --vb-button-background: salmon;
-  --vb-button-foreground: white;
-  --vb-button-border-color: transparent;
-  --vb-button-box-shadow: none;
-  --vb-button-accent: salmon;
-  --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
-  --vb-button-background-active: hsl(from salmon h s calc(l - 10));
-}
-```
-</Fragment>
+  .button_color_custom {
+    @include button.variant(salmon);
+  }
+  ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+  ```css
+  .button_color_custom {
+    --vb-button-background: salmon;
+    --vb-button-foreground: white;
+    --vb-button-border-color: transparent;
+    --vb-button-box-shadow: none;
+    --vb-button-accent: salmon;
+    --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
+    --vb-button-background-active: hsl(from salmon h s calc(l - 10));
+  }
+  ```
+  </TabsPanel>
 </CodeExample>
