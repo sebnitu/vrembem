@@ -4,10 +4,11 @@ import path from "node:path";
 import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
 import Tabs from "@/components/Tabs.astro";
+import TabsPanel from "./TabsPanel.astro";
 
 interface FileTab {
-  name: string;
-  content: string;
+  label: string;
+  path: string;
 }
 
 interface Props {
@@ -36,12 +37,35 @@ const {
 
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
-const iframeCode = iframe
-  ? fs.readFileSync(path.join(process.cwd(), "public", iframe), "utf-8")
-  : "";
+function getFileContent(filePath: string) {
+  return fs.readFileSync(path.join(process.cwd(), filePath), "utf-8");
+}
 ---
 
 <div class="code-example" {style}>
+  {
+    Astro.slots.has("demo") && (
+      <div class="code-example__demo">
+        <slot name="demo" />
+      </div>
+    )
+  }
+  {
+    Astro.slots.has("output") && (
+      <div id={`code-example-output-${uid}`} class="code-example__output">
+        <div class={`code-example__inner ${flush ? "padding-0" : ""}`.trim()}>
+          <slot name="output" />
+        </div>
+      </div>
+    )
+  }
+  {
+    iframe && (
+      <div class="code-example__output">
+        <iframe src={iframe} />
+      </div>
+    )
+  }
   {
     !tabs && (
       <div class="code-example__toolbar">
@@ -60,13 +84,10 @@ const iframeCode = iframe
   }
   {
     iframe && (
-      <div class="code-example__output">
-        <iframe src={iframe} />
-      </div>
       <div class="code-example__input">
         <CodeBlock nopre>
           <Code
-            code={iframeCode}
+            code={getFileContent(path.join("public", iframe))}
             lang="html"
             theme="css-variables"
             class="pre"
@@ -82,22 +103,7 @@ const iframeCode = iframe
       </Tabs>
     )
   }
-  {
-    Astro.slots.has("demo") && (
-      <div class="code-example__demo">
-        <slot name="demo" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("output") && (
-      <div id={`code-example-output-${uid}`} class="code-example__output">
-        <div class={`code-example__inner ${flush ? "padding-0" : ""}`.trim()}>
-          <slot name="output" />
-        </div>
-      </div>
-    )
-  }
+
   {
     !tabs && Astro.slots.has("default") && (
       <div class="code-example__input">
@@ -106,22 +112,21 @@ const iframeCode = iframe
     )
   }
   {
-    files.map((file: FileTab, i: number) => (
-      <div
-        class="code-example__input"
-        id={`tabpanel-${i}-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${i}-${uid}`}
-      >
-        <CodeBlock nopre>
-          <Code
-            code={file.content}
-            lang="js"
-            theme="css-variables"
-            class="pre"
-          />
-        </CodeBlock>
-      </div>
-    ))
+    files.length > 0 && (
+      <Tabs {syncKey} {label}>
+        {files.map((file: FileTab) => (
+          <TabsPanel label={file.label}>
+            <CodeBlock nopre>
+              <Code
+                code={getFileContent(file.path)}
+                lang="js"
+                theme="css-variables"
+                class="pre"
+              />
+            </CodeBlock>
+          </TabsPanel>
+        ))}
+      </Tabs>
+    )
   }
 </div>

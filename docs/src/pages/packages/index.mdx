@@ -5,6 +5,7 @@ collection: packages
 ---
 
 import CodeExample from "@/components/CodeExample.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
 import Pre from "@/components/Pre.astro";
 
 export const components = { pre: Pre };
@@ -17,17 +18,17 @@ export const components = { pre: Pre };
 npm install vrembem
 ```
 
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
+<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+  <TabsPanel label="SCSS">
     ```scss
     @use "vrembem";
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     @import "vrembem";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 <CodeExample lang="js">

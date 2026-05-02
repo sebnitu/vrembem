@@ -110,6 +110,8 @@ function getTabLabel(tab) {
 }
 
 function initialTab(entry) {
-  const storedValue = entry.parent.profile.get(entry.syncKey);
+  const storedValue = entry.syncKey
+    ? entry.parent.profile.get(entry.syncKey)
+    : null;
   selectTab(storedValue ?? entry.tabs[0], entry, false);
 }
