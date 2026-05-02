@@ -7,6 +7,7 @@ category: component
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
+import ResetExampleButton from "@/components/ResetExampleButton.astro";
 
 ```sh
 npm install @vrembem/notice
@@ -118,9 +119,9 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 It's a common pattern to allow users to dismiss notices. This can be accomplished using the button component along with some simple vanilla JavaScript.
 
-<CodeExample tabs resettable>
+<CodeExample tabs>
   <Fragment slot="output">
-    <div class="notice">
+    <div class="notice margin-bottom">
       <div class="flex justify-content-between align-items-center">
         <p>This is an example notice with a dismiss button.</p>
         <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
@@ -128,6 +129,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
         </button>
       </div>
     </div>
+    <ResetExampleButton />
   </Fragment>
   <TabsPanel label="HTML">
     ```html

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
+import ResetExampleButton from "./ResetExampleButton.astro";
 import Tabs from "@/components/Tabs.astro";
 import TabsPanel from "./TabsPanel.astro";
 
@@ -14,11 +15,11 @@ interface FileTab {
 interface Props {
   label?: string;
   lang?: string;
+  iframe?: string;
   tabs?: boolean;
   syncKey?: string;
-  iframe?: string;
-  style?: string;
   files?: FileTab[];
+  style?: string;
   flush?: boolean;
   resettable?: boolean;
 }
@@ -71,13 +72,7 @@ function getFileContent(filePath: string) {
       <div class="code-example__toolbar">
         <div class="flex-grow">{label || lang?.toUpperCase()}</div>
         {resettable && (
-          <button
-            type="button"
-            class="link"
-            data-reset={`code-example-output-${uid}`}
-          >
-            Reset <span class="sr-only">example</span>
-          </button>
+          <ResetExampleButton target={`code-example-output-${uid}`} />
         )}
       </div>
     )
