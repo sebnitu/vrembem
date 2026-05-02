@@ -1,3 +1,45 @@
+// TODO: Add event listener to tabs and implement sync feature: `data-sync-key`
+
+import { Collection } from "vrembem";
+
+const defaults = {
+  selector: "vb-tabs"
+};
+
+export class TabsCollection extends Collection {
+  constructor(options) {
+    super({ ...options, ...defaults });
+  }
+
+  onRegisterEntry(entry) {
+    const syncKey = entry.el.getAttribute("data-sync-key");
+    console.log(syncKey);
+
+    // Get the tabs
+    const tabs = entry.el.querySelectorAll("[role='tab']");
+
+    // Select the active tab
+    selectTab(tabs[0], tabs);
+
+    // Setup event listeners for tabs
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        selectTab(tab, tabs);
+      });
+
+      const __handlerKeydown = handlerKeydown.bind(null, tabs);
+
+      tab.addEventListener("focus", () => {
+        document.addEventListener("keydown", __handlerKeydown);
+      });
+
+      tab.addEventListener("blur", () => {
+        document.removeEventListener("keydown", __handlerKeydown);
+      });
+    });
+  }
+}
+
 function selectTab(active, tabs) {
   tabs.forEach((tab) => {
     const tabpanel = document.querySelector(
@@ -49,38 +91,3 @@ function handlerKeydown(tabs, event) {
       return;
   }
 }
-
-const tabs = {
-  mount() {
-    // Get all the tablists
-    const tablists = document.querySelectorAll('[role="tablist"]');
-    tablists.forEach((tablist) => {
-      this.register(tablist);
-    });
-  },
-  register(tablist) {
-    const tabs = tablist.querySelectorAll('[role="tab"]');
-
-    // Select the first tab
-    selectTab(tabs[0], tabs);
-
-    // Setup event listeners for tabs
-    tabs.forEach((tab) => {
-      const __handlerKeydown = handlerKeydown.bind(null, tabs);
-
-      tab.addEventListener("click", () => {
-        selectTab(tab, tabs);
-      });
-
-      tab.addEventListener("focus", () => {
-        document.addEventListener("keydown", __handlerKeydown);
-      });
-
-      tab.addEventListener("blur", () => {
-        document.removeEventListener("keydown", __handlerKeydown);
-      });
-    });
-  }
-};
-
-export { tabs };

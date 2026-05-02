@@ -22,6 +22,14 @@ const { syncKey, label } = Astro.props;
         if (this.#initialized) return;
         this.#initialized = true;
 
+        // Add a unique ID if one doesn't exist
+        if (!this.id) {
+          this.setAttribute(
+            "id",
+            `tabs-${Math.floor(Math.random() * Date.now())}`
+          );
+        }
+
         // Build the tab menu
         const panels = this.querySelectorAll("[role='tabpanel']");
         const tablist = document.createElement("div");
@@ -57,4 +65,8 @@ const { syncKey, label } = Astro.props;
       }
     }
   );
+
+  import { TabsCollection } from "../modules/TabsCollection";
+  const tabs = new TabsCollection();
+  tabs.mount();
 </script>
