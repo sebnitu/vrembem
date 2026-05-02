@@ -1,33 +1,32 @@
-// TODO: Add event listener to tabs and implement sync feature: `data-sync-key`
-
-import { Collection } from "vrembem";
+import { Collection, localStore } from "vrembem";
 
 const defaults = {
-  selector: "vb-tabs"
+  selector: "vb-tabs",
+  storeKey: "VB:Tabs"
 };
 
 export class TabsCollection extends Collection {
   constructor(options) {
     super({ ...options, ...defaults });
+    this.profile = localStore(this.config.storeKey);
+  }
+
+  onCreateEntry(entry) {
+    entry.syncKey = entry.el.getAttribute("data-sync-key");
+    entry.tabs = entry.el.querySelectorAll("[role='tab']");
   }
 
   onRegisterEntry(entry) {
-    const syncKey = entry.el.getAttribute("data-sync-key");
-    console.log(syncKey);
-
-    // Get the tabs
-    const tabs = entry.el.querySelectorAll("[role='tab']");
-
-    // Select the active tab
-    selectTab(tabs[0], tabs);
+    // Select the initial tab
+    initialTab(entry);
 
     // Setup event listeners for tabs
-    tabs.forEach((tab) => {
+    entry.tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
-        selectTab(tab, tabs);
+        selectTab(tab, entry);
       });
 
-      const __handlerKeydown = handlerKeydown.bind(null, tabs);
+      const __handlerKeydown = handlerKeydown.bind(null, entry);
 
       tab.addEventListener("focus", () => {
         document.addEventListener("keydown", __handlerKeydown);
@@ -40,12 +39,26 @@ export class TabsCollection extends Collection {
   }
 }
 
-function selectTab(active, tabs) {
-  tabs.forEach((tab) => {
+function selectTab(active, entry, recursive = true) {
+  // Run selectTab on all synced tabs
+  if (entry.syncKey && recursive) {
+    // Store the syncKey in local storage
+    entry.parent.profile.set(entry.syncKey, getTabLabel(active));
+    // Get all the entries with the same syncKey
+    const syncedEntries = entry.parent.collection.filter(
+      (item) => item.syncKey === entry.syncKey && item.id !== entry.id
+    );
+    syncedEntries.forEach((entry) => {
+      selectTab(active, entry, false);
+    });
+  }
+
+  // Select the active tab panel
+  entry.tabs.forEach((tab) => {
     const tabpanel = document.querySelector(
       `#${tab.getAttribute("aria-controls")}`
     );
-    if (active === tab) {
+    if (getTabLabel(active) === getTabLabel(tab)) {
       tab.setAttribute("aria-selected", "true");
       tab.removeAttribute("tabindex");
       tabpanel.classList.add("is-active");
@@ -57,37 +70,46 @@ function selectTab(active, tabs) {
   });
 }
 
-function selectNextTab(tabs) {
+function selectNextTab(entry) {
   let nextTab = document.activeElement.nextElementSibling;
-  nextTab = nextTab ? nextTab : tabs[0];
-  selectTab(nextTab, tabs);
+  nextTab = nextTab ? nextTab : entry.tabs[0];
+  selectTab(nextTab, entry);
   nextTab.focus();
 }
 
-function selectPrevTab(tabs) {
+function selectPrevTab(entry) {
   let prevTab = document.activeElement.previousElementSibling;
-  prevTab = prevTab ? prevTab : tabs[tabs.length - 1];
-  selectTab(prevTab, tabs);
+  prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
+  selectTab(prevTab, entry);
   prevTab.focus();
 }
 
-function handlerKeydown(tabs, event) {
+function handlerKeydown(entry, event) {
   switch (event.key) {
     case "Down":
     case "ArrowDown":
     case "Right":
     case "ArrowRight":
       event.preventDefault();
-      selectNextTab(tabs);
+      selectNextTab(entry);
       break;
     case "Up":
     case "ArrowUp":
     case "Left":
     case "ArrowLeft":
       event.preventDefault();
-      selectPrevTab(tabs);
+      selectPrevTab(entry);
       break;
     default:
       return;
   }
+}
+
+function getTabLabel(tab) {
+  return typeof tab !== "string" ? tab.textContent?.trim() : tab;
+}
+
+function initialTab(entry) {
+  const storedValue = entry.parent.profile.get(entry.syncKey);
+  selectTab(storedValue ?? entry.tabs[0], entry, false);
 }
