@@ -1,8 +1,18 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+vb-tabs {
+  display: block;
+  min-height: 2.5em; // Line-height + top/bottom padding
+  opacity: 0;
+}
+
+vb-tabs:defined {
+  opacity: 1;
+  transition: opacity tokens.get("transition");
+}
+
 [role="tablist"] {
-  line-height: tokens.get("line-height");
   display: flex;
   gap: 0.5em;
 }

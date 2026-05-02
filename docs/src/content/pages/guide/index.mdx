@@ -11,12 +11,6 @@ import TabsPanel from "@/components/TabsPanel.astro";
 
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
-<CodeExample>
-  ```html
-  <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
-  ```
-</CodeExample>
-
 <CodeExample tabs syncKey="cdn" label="Select your preferred CDN">
   <TabsPanel label="unpkg">
     ```html
@@ -122,17 +116,17 @@ Vrembem is a collection of packages built with Sass and TypeScript that compile 
 npm install vrembem
 ```
 
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
+<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+  <TabsPanel label="SCSS">
     ```scss
     @use "vrembem";
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     @import "vrembem";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 <CodeExample lang="js">
@@ -173,27 +167,27 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
 
 Use the entire library by importing the base `vrembem` entry.
 
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
+<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+  <TabsPanel label="SCSS">
     ```scss
     // The entire Vrembem library
     @use "vrembem";
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     /* The entire Vrembem library */
     @import "vrembem";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 #### Layer entries
 
 Or, import specific layers using layer based entries.
 
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
+<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+  <TabsPanel label="SCSS">
     ```scss
     // CSS layer order
     @use "vrembem/layers";
@@ -211,8 +205,8 @@ Or, import specific layers using layer based entries.
     // Utility styles
     @use "vrembem/utilities";
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     /* CSS layer order */
     @import "vrembem/layers";
@@ -230,24 +224,24 @@ Or, import specific layers using layer based entries.
     /* Utility styles */
     @import "vrembem/utilities";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 #### Component entries
 
 Components can be imported on a per-package basis using package imports. See [packages documentation](/packages) for more information on package specific config and usage.
 
-<CodeExample tabs>
-  <Fragment slot="tab-scss">
+<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+  <TabsPanel label="SCSS">
     ```scss
     // Component specific entries
     @use "@vrembem/<package>";
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     /* Component specific entries */
     @import "@vrembem/<package>";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>

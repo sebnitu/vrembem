@@ -7,6 +7,7 @@
   overflow: hidden;
   border: tokens.get("border");
   border-radius: tokens.get("border-radius");
+  line-height: tokens.get("line-height");
 
   * {
     scroll-margin-top: initial;
@@ -40,7 +41,7 @@
     position: static;
 
     .pre {
-      max-height: 34rem;
+      max-height: 34em;
       border: none;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -48,8 +49,8 @@
   }
 
   .code-block__copy-button {
-    top: -2.5rem;
-    right: 0.5rem;
+    top: -2.5em;
+    right: 0.5em;
     background-color: transparent;
 
     &:hover {
@@ -60,11 +61,10 @@
 
 .code-example__output {
   overflow: auto;
-  font-size: tokens.get("font-size");
 
   iframe {
     width: 100%;
-    height: tokens.get("core", "iframe-height", 24rem);
+    height: tokens.get("core", "iframe-height", 24em);
     border: 0;
   }
 
@@ -84,10 +84,10 @@
 .code-example__inner {
   width: fit-content;
   min-width: 100%;
-  padding: 2rem;
+  padding: 2em;
 
   @include core.media-max("xs") {
-    padding: 1rem;
+    padding: 1em;
   }
 
   > *:not(.popover) {
@@ -98,17 +98,15 @@
 .code-example__demo {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.5em;
   align-items: center;
-  padding: 0.5rem 1rem;
-  font-size: tokens.get("font-size");
+  padding: 0.5em 1em;
 }
 
 .code-example__toolbar {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem 3.5rem 0.5rem 1rem;
-  font-size: tokens.get("font-size");
+  gap: 0.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
   color: tokens.get("foreground-subtle");
 
   [data-reset] {
