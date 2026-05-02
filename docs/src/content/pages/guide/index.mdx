@@ -5,33 +5,33 @@ order: 1
 ---
 
 import Tabs from "@/components/Tabs.astro";
-import TabsItem from "@/components/TabsItem.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
 
 ## Using CDN
 
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
 <Tabs syncKey="cdn" label="Select your preferred CDN">
-  <TabsItem label="unpkg">
+  <TabsPanel label="unpkg">
     <CodeExample>
       ```html
       <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
       ```
     </CodeExample>
-  </TabsItem>
-  <TabsItem label="jsdelivr">
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
     <CodeExample>
       ```html
       <link href="https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css" rel="stylesheet" />
       ```
     </CodeExample>
-  </TabsItem>
+  </TabsPanel>
 </Tabs>
 
 To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
 
 <Tabs syncKey="cdn" label="Select your preferred CDN">
-  <TabsItem label="unpkg">
+  <TabsPanel label="unpkg">
     <CodeExample>
       ```html
       <script type="module">
@@ -45,8 +45,8 @@ To use available JavaScript modules such as [drawer](/packages/drawer), [modal](
       </script>
       ```
     </CodeExample>
-  </TabsItem>
-  <TabsItem label="jsdelivr">
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
     <CodeExample>
       ```html
       <script type="module">
@@ -60,13 +60,13 @@ To use available JavaScript modules such as [drawer](/packages/drawer), [modal](
       </script>
       ```
     </CodeExample>
-  </TabsItem>
+  </TabsPanel>
 </Tabs>
 
 Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
 
 <Tabs syncKey="cdn" label="Select your preferred CDN">
-  <TabsItem label="unpkg">
+  <TabsPanel label="unpkg">
     <CodeExample>
       ```html
       <script type="importmap">
@@ -84,8 +84,8 @@ Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/
       </script>
       ```
     </CodeExample>
-  </TabsItem>
-  <TabsItem label="jsdelivr">
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
     <CodeExample>
       ```html
       <script type="importmap">
@@ -103,7 +103,7 @@ Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/
       </script>
       ```
     </CodeExample>
-  </TabsItem>
+  </TabsPanel>
 </Tabs>
 
 ### Starter templates
