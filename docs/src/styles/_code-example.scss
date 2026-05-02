@@ -3,6 +3,7 @@
 @use "@vrembem/core/palette";
 
 .code-example {
+  position: relative;
   overflow: hidden;
   border: tokens.get("border");
   border-radius: tokens.get("border-radius");
@@ -15,6 +16,15 @@
     border-top: tokens.get("border");
   }
 
+  [role="tablist"] {
+    padding: 0 3.5em 0 0;
+    border-bottom: tokens.get("border");
+  }
+
+  [role="tab"]::after {
+    bottom: -1px;
+  }
+
   @include core.media-max("xs") {
     margin: 2rem calc(tokens.get("layout", "padding") * -1) !important;
     border-right: none;
@@ -25,10 +35,6 @@
       margin: 0;
     }
   }
-}
-
-.code-example__input {
-  position: relative;
 
   .code-block {
     position: static;
@@ -69,6 +75,10 @@
   .drawer-frame {
     height: 100%;
   }
+}
+
+.code-example__input {
+  position: relative;
 }
 
 .code-example__inner {

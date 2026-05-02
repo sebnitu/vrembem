@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
+import Tabs from "@/components/Tabs.astro";
 
 interface FileTab {
   name: string;
@@ -13,6 +14,7 @@ interface Props {
   label?: string;
   lang?: string;
   tabs?: boolean;
+  syncKey?: string;
   iframe?: string;
   style?: string;
   files?: FileTab[];
@@ -26,6 +28,7 @@ const {
   style,
   lang = "html",
   tabs = false,
+  syncKey,
   files = [],
   flush = false,
   resettable = false
@@ -40,10 +43,43 @@ const iframeCode = iframe
 
 <div class="code-example" {style}>
   {
+    !tabs && (
+      <div class="code-example__toolbar">
+        <div class="flex-grow">{label || lang?.toUpperCase()}</div>
+        {resettable && (
+          <button
+            type="button"
+            class="link"
+            data-reset={`code-example-output-${uid}`}
+          >
+            Reset <span class="sr-only">example</span>
+          </button>
+        )}
+      </div>
+    )
+  }
+  {
     iframe && (
       <div class="code-example__output">
         <iframe src={iframe} />
       </div>
+      <div class="code-example__input">
+        <CodeBlock nopre>
+          <Code
+            code={iframeCode}
+            lang="html"
+            theme="css-variables"
+            class="pre"
+          />
+        </CodeBlock>
+      </div>
+    )
+  }
+  {
+    tabs && (
+      <Tabs {syncKey} {label}>
+        <slot />
+      </Tabs>
     )
   }
   {
@@ -62,148 +98,10 @@ const iframeCode = iframe
       </div>
     )
   }
-
-  {
-    !tabs ? (
-      <div class="code-example__toolbar">
-        <div class="flex-grow">{label || lang?.toUpperCase()}</div>
-        {resettable && (
-          <button
-            type="button"
-            class="link"
-            data-reset={`code-example-output-${uid}`}
-          >
-            Reset <span class="sr-only">example</span>
-          </button>
-        )}
-      </div>
-    ) : (
-      <div class="code-example__toolbar">
-        <div class="flex-grow" role="tablist" aria-label="Code examples">
-          {Astro.slots.has("tab-html") && (
-            <button
-              class="tab"
-              id={`tab-html-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-html-${uid}`}
-              aria-selected="false"
-            >
-              HTML
-            </button>
-          )}
-          {Astro.slots.has("tab-scss") && (
-            <button
-              class="tab"
-              id={`tab-scss-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-scss-${uid}`}
-              aria-selected="false"
-            >
-              SCSS
-            </button>
-          )}
-          {Astro.slots.has("tab-css") && (
-            <button
-              class="tab"
-              id={`tab-css-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-css-${uid}`}
-              aria-selected="false"
-            >
-              CSS
-            </button>
-          )}
-          {Astro.slots.has("tab-js") && (
-            <button
-              class="tab"
-              id={`tab-js-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-js-${uid}`}
-              aria-selected="false"
-              tabindex="-1"
-            >
-              JS
-            </button>
-          )}
-          {files.map((file, i) => (
-            <button
-              class="tab"
-              id={`tab-${i}-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-${i}-${uid}`}
-              aria-selected="false"
-              tabindex="-1"
-            >
-              {file.name}
-            </button>
-          ))}
-        </div>
-        {resettable && (
-          <button
-            type="button"
-            class="link"
-            data-reset={`code-example-output-${uid}`}
-          >
-            Reset <span class="sr-only">example</span>
-          </button>
-        )}
-      </div>
-    )
-  }
-
   {
     !tabs && Astro.slots.has("default") && (
       <div class="code-example__input">
         <slot />
-      </div>
-    )
-  }
-
-  {
-    Astro.slots.has("tab-html") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-html-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-html-${uid}`}
-      >
-        <slot name="tab-html" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("tab-scss") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-scss-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-scss-${uid}`}
-      >
-        <slot name="tab-scss" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("tab-css") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-css-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-css-${uid}`}
-      >
-        <slot name="tab-css" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("tab-js") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-js-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-js-${uid}`}
-      >
-        <slot name="tab-js" />
       </div>
     )
   }
@@ -225,19 +123,5 @@ const iframeCode = iframe
         </CodeBlock>
       </div>
     ))
-  }
-  {
-    iframe && (
-      <div class="code-example__input">
-        <CodeBlock nopre>
-          <Code
-            code={iframeCode}
-            lang="html"
-            theme="css-variables"
-            class="pre"
-          />
-        </CodeBlock>
-      </div>
-    )
   }
 </div>
