@@ -35,12 +35,26 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.43 to CHANGELOG.md
+chore(release): add v4.0.0-next.44 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.44 (2026-05-03)
+
+### :bug: Bug Fix
+* `dialog`, `drawer`
+  * [#2797](https://github.com/sebnitu/vrembem/pull/2797) Fix restore inline state when drawer switches to inline mode
+
+### :house: Refactor
+* `base`, `content`, `core`, `vrembem`
+  * [#2795](https://github.com/sebnitu/vrembem/pull/2795) Rename base package to content and create layer entries
+
+### :books: Documentation
+* [#2796](https://github.com/sebnitu/vrembem/pull/2796) Add documentation for the get started guide page
 
 
 ## v4.0.0-next.43 (2026-04-29)
