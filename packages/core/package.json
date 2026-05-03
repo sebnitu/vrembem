@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/core",
   "description": "Provides a number of Sass and JavaScript modules that make up the shared systems and configurations of the Vrembem library.",
-  "version": "4.0.0-next.43",
+  "version": "4.0.0-next.44",
   "license": "MIT",
   "type": "module",
   "keywords": [
