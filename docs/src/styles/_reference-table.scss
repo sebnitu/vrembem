@@ -72,41 +72,27 @@
     width: 100%;
     min-width: 0; // Fixes overflow issue
 
-    pre {
-      margin: 0;
-      border: 0 none;
-      background-color: transparent;
-    }
-
-    .code-block__icon {
-      padding: 0.5em;
-      background-color: transparent;
-
-      .icon {
-        @include tokens.override("icon", "size", 1em);
-      }
-    }
-
-    .code-block__copy-button {
-      right: 0;
-      opacity: 0;
-      background-color: tokens.get("background");
-
-      &:hover,
-      &:focus {
-        opacity: 1;
-      }
-    }
-
-    .code-block__copy-button.is-copied,
     &:hover .code-block__copy-button {
       opacity: 1;
     }
+  }
 
-    &.has-icon .pre {
-      margin-left: 2.5rem;
-      padding-left: 0;
+  .code-block__copy-button {
+    right: 0;
+    opacity: 0;
+    background-color: tokens.get("background");
+
+    &:hover,
+    &:focus,
+    .is-copied & {
+      opacity: 1;
     }
+  }
+
+  .pre {
+    margin: 0;
+    border: 0 none;
+    background-color: transparent;
   }
 
   .notice {

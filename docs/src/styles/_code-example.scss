@@ -12,6 +12,13 @@
   transition-duration: tokens.get("transition-duration-short");
   transition-property: border-color, box-shadow;
 
+  @include core.media-max("xs") {
+    margin: 2rem calc(tokens.get("layout", "padding") * -1) !important;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+  }
+
   * {
     scroll-margin-top: initial;
   }
@@ -29,26 +36,8 @@
     bottom: -1px;
   }
 
-  @include core.media-max("xs") {
-    margin: 2rem calc(tokens.get("layout", "padding") * -1) !important;
-    border-right: none;
-    border-left: none;
-    border-radius: 0;
-
-    .pre {
-      margin: 0;
-    }
-  }
-
   .code-block {
     position: static;
-  }
-
-  .pre {
-    max-height: 34em;
-    border: none;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
 
   .code-block__copy-button {
@@ -58,6 +47,17 @@
 
     &:hover {
       background-color: transparent;
+    }
+  }
+
+  .pre {
+    max-height: 34em;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    @include core.media-max("xs") {
+      margin: 0;
     }
   }
 }
