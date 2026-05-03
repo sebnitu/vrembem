@@ -86,26 +86,22 @@ function getFileContent(filePath: string) {
   {
     !tabs && Astro.slots.has("default") && (
       <div class="code-example__input">
-        {
-          expandable && (
-            <div class="code-example__tools">
-              <button
-                type="button"
-                class="button button_size_sm code-example__unlock-scroll background"
-              >
-                <Icon name="unlock" classes="icon_size_sm" />
-                <span>Unlock scroll</span>
-              </button>
-              <button
-                type="button"
-                class="button button_color_primary button_size_sm code-example__toggle"
-              >
-                Expand
-              </button>
-            </div>
-            <div class="code-example__screen" />
-          )
-        }
+        {expandable && (
+          <div class="code-example__actions">
+            <span class="button button_size_sm background scroll-lock-hint">
+              <Icon name="unlock" classes="icon_size_sm" />
+              <span>Unlock scroll</span>
+            </span>
+            <button
+              type="button"
+              class="button button_color_primary button_size_sm"
+              data-action="toggle-expand"
+            >
+              Expand
+            </button>
+          </div>
+          <div class="scroll-lock-screen"></div>
+        )}
         <slot />
       </div>
     )
@@ -152,7 +148,7 @@ function getFileContent(filePath: string) {
 </div>
 
 <script>
-  const btns = document.querySelectorAll(".code-example__toggle");
+  const btns = document.querySelectorAll("[data-action='toggle-expand']");
   btns.forEach((btn) => {
     // Get the elements
     const parent = btn.closest(".code-example") as HTMLElement;
@@ -169,10 +165,7 @@ function getFileContent(filePath: string) {
       // Update the state
       if (parent.classList.contains("is-expanded")) {
         btn.innerHTML = "Collapse";
-        parent.style.setProperty(
-          "--vb-code-example-max-height",
-          `${height}px`
-        );
+        parent.style.setProperty("--vb-code-example-max-height", `${height}px`);
       } else {
         btn.innerHTML = "Expand";
         parent.style.setProperty("--vb-code-example-max-height", null);
@@ -180,8 +173,7 @@ function getFileContent(filePath: string) {
     });
   });
 
-  const screens = document.querySelectorAll(".code-example");
-  screens.forEach((screen) => {
+  document.querySelectorAll(".is-scroll-locked").forEach((screen) => {
     screen.addEventListener("click", () => {
       screen.classList.remove("is-scroll-locked");
     });
