@@ -4,9 +4,6 @@ description: "Collections are used to create the scaffolding and shared systems 
 order: 1
 ---
 
-import fs from 'fs/promises';
-import path from 'path';
-
 <CodeExample lang="js">
 ```js
 import { Collection, CollectionEntry } from "@vrembem/core";
@@ -51,7 +48,7 @@ While the main focus of this example is the Collections API, it's important to s
   </table>
   <button type="button" class="tictactoe-reset link">Reset</button>
 </div>
-<Fragment slot="tab-html">
+<TabsPanel label="HTML">
 ```html
 <table class="tictactoe">
   <tr>
@@ -72,8 +69,8 @@ While the main focus of this example is the Collections API, it's important to s
 </table>
 <button type="button" class="tictactoe-reset link">Reset</button>
 ```
-</Fragment>
-<Fragment slot="tab-scss">
+</TabsPanel>
+<TabsPanel label="SCSS">
 ```scss
 @use "@vrembem/core/tokens";
 
@@ -127,7 +124,7 @@ While the main focus of this example is the Collections API, it's important to s
   }
 }
 ```
-</Fragment>
+</TabsPanel>
 </CodeExample>
 
 Each collection entry must have a unique ID to ensure it can be referenced and managed correctly within the collection. For this example, the collection will consist of the table cells that make up the tic-tac-toe board.
@@ -177,8 +174,8 @@ myEntry.config.set({
 
 Entries can have additional config sources defined using `config.set` when you pass a `sourceKey` string and config object as arguments. The most recently added source takes precedence over previously defined config sources. The order of precedence can be changed using `config.setSourceOrder` which takes an array of `sourceKey` values. Lastly, you can use plugins to expand the configurability of entries:
 
-- [`attrConfig`](/packages/core/plugins/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
-- [`cssConfig`](/packages/core/plugins/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
+- [`attrConfig`](/packages/core/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
+- [`cssConfig`](/packages/core/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
 
 ## Collection classes
 
@@ -580,9 +577,9 @@ The Collections API provides a powerful foundation for building interactive, sta
 
 The tic-tac-toe example demonstrates how to separate concerns between collections and entries, handle state transitions, and implement event-driven communication. With these patterns, you can extend and adapt collections for a wide range of component architectures and interactive behaviors.
 
-<CodeExample tabs files={[
-  { name: 'TicTacToe.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToe.js'), 'utf-8') },
-  { name: 'TicTacToeCell.js', content: await fs.readFile(path.resolve('./src/modules/TicTacToeCell.js'), 'utf-8') }
+<CodeExample tabs={[
+  { label: "TicTacToe.js", file: "./src/modules/TicTacToe.js" },
+  { label: "TicTacToeCell.js", file: "./src/modules/TicTacToeCell.js" }
 ]}>
 <div slot="output" id="ttt-2" class="tictactoe-wrapper">
   <table class="tictactoe">
@@ -604,7 +601,6 @@ The tic-tac-toe example demonstrates how to separate concerns between collection
   </table>
   <button type="button" class="tictactoe-reset link">Reset</button>
 </div>
-<Fragment slot="tab-js">
 ```js
 import { TicTacToe } from "./TicTacToe";
 
@@ -615,5 +611,4 @@ const ticTacToe = new TicTacToe({
 
 await ticTacToe.mount();
 ```
-</Fragment>
 </CodeExample>

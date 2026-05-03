@@ -1,6 +1,247 @@
 ---
-title: Getting Started
+title: Get Started
+description: Vrembem is a framework agnostic CSS component library. Getting started only requires including a single CSS file into your project.
 order: 1
 ---
 
-...
+import Tabs from "@/components/Tabs.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
+
+## Using CDN
+
+For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
+
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
+  <TabsPanel label="unpkg">
+    ```html
+    <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
+    ```
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
+    ```html
+    <link href="https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css" rel="stylesheet" />
+    ```
+  </TabsPanel>
+</CodeExample>
+
+To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
+
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
+  <TabsPanel label="unpkg">
+    ```html
+    <script type="module">
+      import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
+      
+      const modals = new ModalCollection({
+        plugins: [focusTrap()]
+      });
+
+      await modals.mount();
+    </script>
+    ```
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
+    ```html
+    <script type="module">
+      import { ModalCollection, focusTrap } from "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js";
+      
+      const modals = new ModalCollection({
+        plugins: [focusTrap()]
+      });
+
+      await modals.mount();
+    </script>
+    ```
+  </TabsPanel>
+</CodeExample>
+
+Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
+
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
+  <TabsPanel label="unpkg">
+    ```html
+    <script type="importmap">
+      {
+        "imports": {
+          "vrembem": "https://unpkg.com/vrembem@next/dist/index.js",
+          "vrembem/css": "https://unpkg.com/vrembem@next/dist/index.css"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as vb from "vrembem";
+      import styles from "vrembem/css" with { type: "css" };
+      document.adoptedStyleSheets.push(styles);
+    </script>
+    ```
+  </TabsPanel>
+  <TabsPanel label="jsdelivr">
+    ```html
+    <script type="importmap">
+      {
+        "imports": {
+          "vrembem": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js",
+          "vrembem/css": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as vb from "vrembem";
+      import styles from "vrembem/css" with { type: "css" };
+      document.adoptedStyleSheets.push(styles);
+    </script>
+    ```
+  </TabsPanel>
+</CodeExample>
+
+### Starter templates
+
+Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
+
+<CodeExample iframe="./tpl/minimal-starter.html" style="--vb-iframe-height: 18rem;" />
+
+A starter template using the modal component:
+
+<CodeExample iframe="./tpl/modal-starter.html" />
+
+A starter template using the drawer component:
+
+<CodeExample iframe="./tpl/drawer-starter.html" />
+
+## Using NPM
+
+Vrembem is a collection of packages built with Sass and TypeScript that compile to CSS and JavaScript. Install Vrembem via NPM and integrate it into your build pipeline to leverage Sass configurations, modules, and tree-shaking.
+
+```sh
+npm install vrembem
+```
+
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "vrembem";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "vrembem";
+    ```
+  </TabsPanel>
+</CodeExample>
+
+<CodeExample lang="js">
+```js
+// Namespace import — access everything via a single object
+import * as vb from "vrembem";
+
+// Named imports — only pull in what you need (tree-shakable)
+import { drawerCollection, propStore } from "vrembem";
+```
+</CodeExample>
+
+### Entries
+
+Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends on project setup and how much control you need over the output.
+
+<div class="compare">
+  <div>
+    <h4>SCSS</h4>
+    <ul class="list list_pros">
+      <li>Control output including prefixes and BEM naming conventions.</li>
+      <li>Use Sass modules for managing config, tokens, palettes, and theming.</li>
+      <li>Best for projects already using Sass that want deeper integration.</li>
+    </ul>
+  </div>
+  <span class="compare__vs"></span>
+  <div>
+    <h4>CSS</h4>
+    <ul class="list list_pros">
+      <li>Minimal setup and no build tools required.</li>
+      <li>Customizable components using design token CSS variables.</li>
+      <li>Best for projects that don't use Sass and want minimal dependencies.</li>
+    </ul>
+  </div>
+</div>
+
+#### Library entry
+
+Use the entire library by importing the base `vrembem` entry.
+
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    // The entire Vrembem library
+    @use "vrembem";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    /* The entire Vrembem library */
+    @import "vrembem";
+    ```
+  </TabsPanel>
+</CodeExample>
+
+#### Layer entries
+
+Or, import specific layers using layer based entries.
+
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    // CSS layer order
+    @use "vrembem/layers";
+    // Output: @layer tokens, base, components, utilities;
+
+    // Design token CSS variables
+    @use "vrembem/tokens";
+
+    // Base styles
+    @use "vrembem/base";
+
+    // Component styles
+    @use "vrembem/components";
+
+    // Utility styles
+    @use "vrembem/utilities";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    /* CSS layer order */
+    @import "vrembem/layers";
+    /* Output: @layer tokens, base, components, utilities; */
+
+    /* Design token CSS variables */
+    @import "vrembem/tokens";
+
+    /* Base styles */
+    @import "vrembem/base";
+
+    /* Component styles */
+    @import "vrembem/components";
+
+    /* Utility styles */
+    @import "vrembem/utilities";
+    ```
+  </TabsPanel>
+</CodeExample>
+
+#### Component entries
+
+Components can be imported on a per-package basis using package imports. See [packages documentation](/packages) for more information on package specific config and usage.
+
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    // Component specific entries
+    @use "@vrembem/<package>";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    /* Component specific entries */
+    @import "@vrembem/<package>";
+    ```
+  </TabsPanel>
+</CodeExample>

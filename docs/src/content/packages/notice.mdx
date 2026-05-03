@@ -7,6 +7,7 @@ category: component
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
+import ResetExampleButton from "@/components/ResetExampleButton.astro";
 
 ```sh
 npm install @vrembem/notice
@@ -20,11 +21,11 @@ npm install @vrembem/notice
 
 ## Options
 
-Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Notice uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
-### CSS Variables
+### Design tokens
 
-Notice uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Notice uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-notice" valueLabel="Fallback" expandable={true} data={{
   "--vb-notice-foreground": "var(--vb-foreground-strong)",
@@ -118,9 +119,9 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 It's a common pattern to allow users to dismiss notices. This can be accomplished using the button component along with some simple vanilla JavaScript.
 
-<CodeExample tabs resettable>
+<CodeExample tabs>
   <Fragment slot="output">
-    <div class="notice">
+    <div class="notice margin-bottom">
       <div class="flex justify-content-between align-items-center">
         <p>This is an example notice with a dismiss button.</p>
         <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
@@ -128,8 +129,9 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
         </button>
       </div>
     </div>
+    <ResetExampleButton />
   </Fragment>
-  <Fragment slot="tab-html">
+  <TabsPanel label="HTML">
     ```html
     <div class="notice">
       <div class="flex justify-content-between">
@@ -144,8 +146,8 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       </div>
     </div>
     ```
-  </Fragment>
-  <Fragment slot="tab-js">
+  </TabsPanel>
+  <TabsPanel label="JS">
     ```js
     // Get the button elements
     const btns = document.querySelectorAll("[data-dismiss]");
@@ -162,7 +164,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       });
     });
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 ## notice_color_[key]

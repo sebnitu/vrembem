@@ -5,7 +5,6 @@ package: "@vrembem/drawer"
 category: component
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -41,7 +40,7 @@ Drawer is built as a Sass module to handle styles and CSS output, along with a c
 
 Drawer comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the drawer collection.
 
-<CodeExpander lang="js">
+<CodeExample lang="js" expandable>
 ```js
 const drawers = new DrawerCollection({
   // An object containing pre-configuration options for plugins. Object should
@@ -123,13 +122,13 @@ const drawers = new DrawerCollection({
   transitionDuration: 300
 });
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Sass
 
 Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/drawer" with (
   $config: (
@@ -160,11 +159,11 @@ Drawer comes with the following Sass configuration options that can be set using
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Drawer uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Drawer uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-drawer" valueLabel="Fallback" filter={false} data={{
   "--vb-drawer-width": "18em",
@@ -314,14 +313,14 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
       </div>
     </div>
   </Fragment>
-  <Fragment slot="tab-html">
+  <TabsPanel label="HTML">
     ```html
     <aside id="[unique-id]" class="drawer drawer_modal">
       ...
     </aside>
     ```
-  </Fragment>
-  <Fragment slot="tab-js">
+  </TabsPanel>
+  <TabsPanel label="JS">
     ```js
     // Set a drawer to "modal" mode
     drawers.get("drawer-id").mode = "modal";
@@ -329,10 +328,10 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
     // Set a drawer to "Inline" mode
     drawers.get("drawer-id").mode = "inline";
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
-In cases where you'd like a drawer to switch modes based on a specific viewport width, use the [`mediaQuery`](/packages/core/plugins/media-query) plugin. Set a `data-breakpoint` data attribute with either a width value or a breakpoint key.
+In cases where you'd like a drawer to switch modes based on a specific viewport width, use the [`mediaQuery`](/packages/core/media-query) plugin. Set a `data-breakpoint` data attribute with either a width value or a breakpoint key.
 
 <CodeExample flush>
   <Fragment slot="output">
@@ -385,7 +384,7 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   ```
 </CodeExample>
 
-To help improve accessibility, use the [`focusTrap`](/packages/core/plugins/focus-trap) plugin when creating modal drawers. While a modal drawer is active, the content obscured by the modal is made inaccessible to all users via a focus trap. This prevents the `TAB` key and screen reader's virtual cursor (arrow keys) from leaving the drawer dialog.
+To help improve accessibility, use the [`focusTrap`](/packages/core/focus-trap) plugin when creating modal drawers. While a modal drawer is active, the content obscured by the modal is made inaccessible to all users via a focus trap. This prevents the `TAB` key and screen reader's virtual cursor (arrow keys) from leaving the drawer dialog.
 
 ### Focus management
 
@@ -461,7 +460,7 @@ Drawer state is managed using three properties on drawer entries:
 - [`entry.state`](#entrystate): Stores the current state of the drawer.
 - [`entry.inlineState`](#entryinlinestate): Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`.
 
-To persist inline drawer state across browser page reloads, use the [`propStore`](/packages/core/plugins/prop-store) plugin.
+To persist inline drawer state across browser page reloads, use the [`propStore`](/packages/core/prop-store) plugin.
 
 ### Behavior and accessibility
 
@@ -469,7 +468,7 @@ Drawers in their modal state follow a set of patterns expected from other modals
 
 1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
 2. Modal drawers provide standard methods for the user to close, such as using the `esc` key or clicking outside the dialog.
-3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/plugins/focus-trap) plugin to enable this behavior.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/focus-trap) plugin to enable this behavior.
 4. When a modal drawer is closed, focus is returned to the initial trigger element that opened it.
 
 To take full advantage of the modal drawer's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modal (most likely the `drawer-main` element). All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened.
@@ -670,7 +669,7 @@ Stores and allows changing the current mode of the drawer. There are two modes a
 - `inline`: This mode is set within the context of the page, typically rendered as an aside. Though it can still be toggled, when opened, it does not restrict access to other content.
 - `modal`: A modal drawer is initially hidden and is rendered on top of other page elements when opened.
 
-A drawer's mode can be changed at any time but is typically toggled based on a viewport breakpoint using the [`mediaQuery`](/packages/core/plugins/media-query) plugin.
+A drawer's mode can be changed at any time but is typically toggled based on a viewport breakpoint using the [`mediaQuery`](/packages/core/media-query) plugin.
 
 #### Example
 
@@ -707,7 +706,7 @@ Stores the current state of the drawer. Possible states include:
 
 <ReferenceBar type="string" />
 
-Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`. The inline drawer state can be persisted across page loads using the [`propStore`](/packages/core/plugins/prop-store) plugin. Possible states include:
+Stores the inline state of the drawer. This is used to restore the inline state when a drawer's mode is switched from `modal` to `inline`. The inline drawer state can be persisted across page loads using the [`propStore`](/packages/core/prop-store) plugin. Possible states include:
 
 - `opened`: The drawer is currently open, and its content is accessible.
 - `closed`: The drawer is currently closed, and its content is hidden.

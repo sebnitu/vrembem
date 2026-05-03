@@ -6,7 +6,6 @@ category: modules
 ---
 
 import Icon from "@/components/Icon.astro";
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -32,7 +31,7 @@ npm install @vrembem/utility
 
 Utility comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/utility" with (
   $config: (
@@ -137,7 +136,7 @@ Utility comes with the following Sass configuration options that can be set usin
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
 ## Output
 

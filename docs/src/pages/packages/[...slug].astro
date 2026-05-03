@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { getModuleMeta } from "@/helpers/getModuleMeta";
 import Page from "@/layouts/Page.astro";
 import CodeExample from "@/components/CodeExample.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
 import Pre from "@/components/Pre.astro";
 import Table from "@/components/Table.astro";
 
@@ -34,13 +35,12 @@ export async function getStaticPaths() {
 ---
 
 <Page {entry} {headings}>
-  <Content components={{ CodeExample, pre: Pre, table: Table }} />
+  <Content components={{ CodeExample, TabsPanel, pre: Pre, table: Table }} />
 </Page>
 
 <script>
   import "../../modules/currentViewport";
   import "../../modules/dismissible";
-  import "../../modules/resettable";
   import "../../modules/demo";
   import "../../modules/demos";
 </script>

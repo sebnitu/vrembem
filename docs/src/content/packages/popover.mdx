@@ -5,7 +5,6 @@ package: "@vrembem/popover"
 category: component
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -43,7 +42,7 @@ Popover is built as a Sass module to handle styles and CSS output, along with a 
 
 Popover comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the popover collection.
 
-<CodeExpander lang="js">
+<CodeExample lang="js" expandable>
 ```js
 const popovers = new PopoverCollection({
   // A valid CSS selector used to query the document for elements to include as
@@ -107,7 +106,7 @@ const popovers = new PopoverCollection({
   followCursor: false
 });
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Sass
 
@@ -129,9 +128,9 @@ Popover comes with the following Sass configuration options that can be set usin
 ```
 </CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Popover uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Popover uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-popover" valueLabel="Fallback" expandable={true} data={{
   "--vb-popover-z-index": "10",
@@ -152,7 +151,7 @@ Popover uses CSS variables in a reference and fallback pattern. Variables are re
   "--vb-popover-arrow-size": "8px"
 }} />
 
-When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the following CSS variables can be used to set JavaScript configuration options.
+When using the [`cssConfig`](/packages/core/css-config) plugin, the following CSS variables can be used to set JavaScript configuration options.
 
 <ReferenceTable id="tokens-popover-js" valueLabel="JS Equivalent" filter={false} data={{
   "--vb-popover-event": "event",
@@ -218,7 +217,7 @@ There are two event types that can trigger a popover: `click` (the default) and 
   ```
 </CodeExample>
 
-When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the event option can be provided using the `--vb-popover-event` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
+When using the [`cssConfig`](/packages/core/css-config) plugin, the event option can be provided using the `--vb-popover-event` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -263,7 +262,7 @@ type Placement = "bottom" | "top" | "right" | "left" | "bottom-start" | "bottom-
 ```
 </CodeExample>
 
-When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the placement option can be provided using the `--vb-popover-placement` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
+When using the [`cssConfig`](/packages/core/css-config) plugin, the placement option can be provided using the `--vb-popover-placement` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -403,7 +402,7 @@ There are cases where a single popover trigger requires both a tooltip and a cli
 
 ### Follow cursor
 
-Popovers can be anchored to the cursor element by setting the `followCursor` config option to `true`. When using the [`cssConfig`](/packages/core/plugins/css-config) plugin, the followCursor option can be provided using the `--vb-popover-follow-cursor` CSS variable.
+Popovers can be anchored to the cursor element by setting the `followCursor` config option to `true`. When using the [`cssConfig`](/packages/core/css-config) plugin, the followCursor option can be provided using the `--vb-popover-follow-cursor` CSS variable.
 
 <CodeExample>
   <Fragment slot="output">

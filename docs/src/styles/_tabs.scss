@@ -1,16 +1,32 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+vb-tabs {
+  display: block;
+  min-height: 2.5em; // Line-height + top/bottom padding
+  opacity: 0;
+}
+
+vb-tabs:defined {
+  opacity: 1;
+  transition: opacity tokens.get("transition");
+}
+
+[role="tablist"] {
+  display: flex;
+  gap: 0.5em;
+}
+
 [role="tab"] {
   position: relative;
-  margin: -0.5rem 0;
-  padding: 0.5rem;
+  margin: 0;
+  padding: 0.5em 1em;
   color: tokens.get("foreground-subtle");
 
   &::after {
     content: "";
     position: absolute;
-    inset: auto 0 -1px;
+    inset: auto 0 0;
     height: 3px;
     background: transparent;
   }
@@ -29,6 +45,7 @@
 }
 
 [role="tabpanel"] {
+  position: relative;
   display: none;
 
   &.is-active {

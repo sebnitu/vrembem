@@ -5,7 +5,6 @@ package: "@vrembem/content"
 category: modules
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -23,13 +22,13 @@ npm install @vrembem/content
 
 ## Options
 
-Content is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+Content is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
 
 ### Sass
 
 Content comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/content" with (
   $config: (
@@ -85,11 +84,11 @@ Content comes with the following Sass configuration options that can be set usin
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Content uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Content uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-content" data={data} expandable={true} valueLabel="Fallback" />
 
@@ -145,27 +144,46 @@ Use the `content-output` configuration to toggle output for all modules. Add exc
 
 ## Basic usage
 
-Once loaded, the content package provides normalization and default styles for HTML elements along with a number of element classes. To style HTML elements, use their corresponding classes or apply the `content` class to style an entire block of content.
+<ReferenceBar selector=".content" hash={{
+  target: "reference-table-tokens-content",
+  event: "filter",
+  detail: {
+    value: "--vb-content"
+  }
+}} />
+
+The content component provides the `.content` wrapper class for styling blocks of HTML elements. It also makes available a number of element classes that can be applied directly when those styles are needed outside the context of a content wrapper.
 
 <CodeExample lang="html">
+<div slot="output" class="content spacing">
+  <h1>Heading</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
+  <ul>
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+  </ul>
+</div>
 ```html
-<!-- Using content element modules -->
-<h1 class="h1">...</h1>
-<p>...</p>
-<ul class="list">
-  <li>...</li>
-</ul>
-
-<!-- Using content module -->
+<!-- Using the content wrapper -->
 <div class="content">
-  <h1>...</h1>
+  <h1>Heading</h1>
   <p>...</p>
   <ul>
     <li>...</li>
   </ul>
 </div>
+
+<!-- Using individual element classes -->
+<h1 class="h1">...</h1>
+<p>...</p>
+<ul class="list">
+  <li>...</li>
+</ul>
 ```
 </CodeExample>
+
+The entire output of the content component is placed in `@layer base`. This allows all components and utilities to override the styles set by content and it's member modules.
 
 To customize the class selectors used by modules, map the module name to your preferred class selector in the `content-classes` config option.
 
@@ -179,7 +197,7 @@ To customize the class selectors used by modules, map the module name to your pr
 ```
 </ReferenceCard>
 
-It's also possible to provide a prefix to all content classes using the `content-prefix` config option.
+Provide a prefix to all content classes using the `content-prefix` config option.
 
 <ReferenceCard ref="config" name="content-prefix" type="map" defaults='""'>
   A prefix to apply to content class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
@@ -189,45 +207,6 @@ It's also possible to provide a prefix to all content classes using the `content
 // Result: .content > .vb-content
 ```
 </ReferenceCard>
-
-## Modules
-
-Below is a list of each content module, their class selectors, CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
-
-### content
-
-<ReferenceBar selector=".content" hash={{
-  target: "reference-table-tokens-content",
-  event: "filter",
-  detail: {
-    value: "--vb-content"
-  }
-}} />
-
-The content module provides the `.content` CSS class as a way to apply many content module styles to HTML elements directly. This is most commonly used to style a block of HTML content like an article or blog post.
-
-<CodeExample lang="html">
-<div slot="output" class="content spacing">
-  <h1>Heading</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ipsum ex, elementum ac dignissim quis, tempus non eros. Sed risus neque, tempus eget orci vel, sagittis lobortis ipsum.</p>
-  <ul>
-    <li>One</li>
-    <li>Two</li>
-    <li>Three</li>
-  </ul>
-</div>
-```html
-<div class="content">
-  <h1>Heading</h1>
-  <p>...</p>
-  <ul>
-    <li>...</li>
-    <li>...</li>
-    <li>...</li>
-  </ul>
-</div>
-```
-</CodeExample>
 
 The content module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a content block and avoid style conflicts. Module specific content selectors are controlled using the `content-selectors` variable map.
 
@@ -263,6 +242,10 @@ The content module only applies styles to its direct children using the `>` chil
 )
 ```
 </ReferenceCard>
+
+## Modules
+
+Below is a list of each content module, their class selectors, design token CSS variables, and intended usage. Modules that reference CSS variables are provided with sensible fallbacks.
 
 ### headings
 

@@ -1,0 +1,72 @@
+---
+interface Props {
+  syncKey?: string;
+  label?: string;
+}
+
+const { syncKey, label } = Astro.props;
+---
+
+<vb-tabs data-sync-key={syncKey} data-label={label}>
+  <slot />
+</vb-tabs>
+
+<script>
+  customElements.define(
+    "vb-tabs",
+    class extends HTMLElement {
+      #initialized = false;
+
+      connectedCallback() {
+        // Only run this if it hasn't been initialized
+        if (this.#initialized) return;
+        this.#initialized = true;
+
+        // Add a unique ID if one doesn't exist
+        if (!this.id) {
+          this.setAttribute(
+            "id",
+            `tabs-${Math.floor(Math.random() * Date.now())}`
+          );
+        }
+
+        // Build the tab menu
+        const panels = this.querySelectorAll("[role='tabpanel']");
+        const tablist = document.createElement("div");
+        tablist.setAttribute("role", "tablist");
+
+        // Apply the label to the tablist if set
+        const tablistLabel = this.getAttribute("data-label");
+        if (tablistLabel) {
+          this.removeAttribute("data-label");
+          tablist.setAttribute("aria-label", tablistLabel);
+        }
+
+        // Loop through the panels
+        panels.forEach((panel) => {
+          // Generate a unique ID
+          const uid = Math.floor(Math.random() * Date.now());
+
+          // Apply the ID to the panel
+          panel.setAttribute("id", `tabpanel-${uid}`);
+          panel.setAttribute("aria-labelledby", `tab-${uid}`);
+
+          // Create the tab button
+          const tab = document.createElement("button");
+          tab.setAttribute("role", "tab");
+          tab.setAttribute("aria-controls", `tabpanel-${uid}`);
+          tab.setAttribute("id", `tab-${uid}`);
+          tab.innerText = panel.getAttribute("data-label") ?? "";
+          tablist.append(tab);
+        });
+
+        // Apply the menu
+        this.prepend(tablist);
+      }
+    }
+  );
+
+  import { TabsCollection } from "../modules/TabsCollection";
+  const tabs = new TabsCollection();
+  tabs.mount();
+</script>

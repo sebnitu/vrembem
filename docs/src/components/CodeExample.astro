@@ -1,35 +1,55 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
+import ResetExampleButton from "./ResetExampleButton.astro";
+import Tabs from "@/components/Tabs.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
+import Icon from "@/components/Icon.astro";
 
-interface FileTab {
-  name: string;
-  content: string;
+interface TabFile {
+  label: string;
+  file: string;
 }
 
 interface Props {
   label?: string;
   lang?: string;
-  tabs?: boolean;
-  files?: FileTab[];
+  style?: string;
+  iframe?: string;
+  tabs?: boolean | TabFile[];
+  tabsLabel?: string;
+  tabsSyncKey?: string;
   flush?: boolean;
   resettable?: boolean;
+  expandable?: boolean;
 }
 
-const { 
+const {
   label,
   lang = "html",
-  tabs = false,
-  files = [],
-  flush = false,
-  resettable = false
+  style,
+  iframe,
+  tabs,
+  tabsLabel,
+  tabsSyncKey,
+  flush,
+  resettable,
+  expandable
 } = Astro.props;
 
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
+const classes: string[] = [];
+if (expandable) classes.push("code-example_expandable", "is-scroll-locked");
+
+function getFileContent(filePath: string) {
+  return fs.readFileSync(path.join(process.cwd(), filePath), "utf-8");
+}
 ---
 
-<div class="code-example">
+<div class={`code-example ${classes.join(" ")}`.trim()} {style}>
   {
     Astro.slots.has("demo") && (
       <div class="code-example__demo">
@@ -40,173 +60,122 @@ const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
   {
     Astro.slots.has("output") && (
       <div id={`code-example-output-${uid}`} class="code-example__output">
-        <div class={`code-example__inner ${flush ? 'padding-0' : ''}`.trim()}>
+        <div class={`code-example__inner ${flush ? "padding-0" : ""}`.trim()}>
           <slot name="output" />
         </div>
       </div>
     )
   }
-
   {
-    !tabs ? (
+    iframe && (
+      <div class="code-example__output">
+        <iframe src={iframe} />
+      </div>
+    )
+  }
+  {
+    !tabs && (
       <div class="code-example__toolbar">
         <div class="flex-grow">{label || lang?.toUpperCase()}</div>
-        {
-          resettable && (
+        {resettable && (
+          <ResetExampleButton target={`code-example-output-${uid}`} />
+        )}
+      </div>
+    )
+  }
+  {
+    !tabs && Astro.slots.has("default") && (
+      <div class="code-example__input">
+        {expandable && (
+          <div class="code-example__actions">
+            <span class="button button_size_sm background scroll-lock-hint">
+              <Icon name="unlock" classes="icon_size_sm" />
+              <span>Unlock scroll</span>
+            </span>
             <button
               type="button"
-              class="link"
-              data-reset={`code-example-output-${uid}`}
+              class="button button_color_primary button_size_sm"
+              data-action="toggle-expand"
             >
-              Reset <span class="sr-only">example</span>
+              Expand
             </button>
-          )
-        }
-      </div>
-      <div class="code-example__input">
+          </div>
+          <div class="scroll-lock-screen"></div>
+        )}
         <slot />
       </div>
-    ) : (
-      <div class="code-example__toolbar">
-        <div class="flex-grow" role="tablist" aria-label="Code examples">
-          {
-            Astro.slots.has("tab-html") && (
-            <button 
-              class="tab"
-              id={`tab-html-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-html-${uid}`}
-              aria-selected="false">HTML</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-scss") && (
-            <button 
-              class="tab"
-              id={`tab-scss-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-scss-${uid}`}
-              aria-selected="false">SCSS</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-css") && (
-            <button 
-              class="tab"
-              id={`tab-css-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-css-${uid}`}
-              aria-selected="false">CSS</button>
-              )
-          }
-          {
-            Astro.slots.has("tab-js") && (
-            <button 
-              class="tab"
-              id={`tab-js-${uid}`}
-              role="tab"
-              aria-controls={`tabpanel-js-${uid}`}
-              aria-selected="false"
-              tabindex="-1">JS</button>
-            )
-          }
-          {
-            files.map((file, i) => (
-              <button
-                class="tab"
-                id={`tab-${i}-${uid}`}
-                role="tab"
-                aria-controls={`tabpanel-${i}-${uid}`}
-                aria-selected="false"
-                tabindex="-1"
-              >
-                {file.name}
-              </button>
-            ))
-          }
-        </div>
-        {
-          resettable && (
-            <button
-              type="button"
-              class="link"
-              data-reset={`code-example-output-${uid}`}
-            >
-              Reset <span class="sr-only">example</span>
-            </button>
-          )
-        }
-      </div>
-    )
-  }
-
-  {
-    Astro.slots.has("tab-html") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-html-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-html-${uid}`}>
-        <slot name="tab-html" />
-      </div>
     )
   }
   {
-    Astro.slots.has("tab-scss") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-scss-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-scss-${uid}`}>
-        <slot name="tab-scss" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("tab-css") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-css-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-css-${uid}`}>
-        <slot name="tab-css" />
-      </div>
-    )
-  }
-  {
-    Astro.slots.has("tab-js") && (
-      <div
-        class="code-example__input"
-        id={`tabpanel-js-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-js-${uid}`}>
-        <slot name="tab-js" />
-      </div>
-    )
-  }
-  {
-    files.map((file: FileTab, i: number) => (
-      <div
-        class="code-example__input"
-        id={`tabpanel-${i}-${uid}`}
-        role="tabpanel"
-        aria-labelledby={`tab-${i}-${uid}`}
-      >
+    iframe && (
+      <div class="code-example__input">
         <CodeBlock nopre>
           <Code
-            code={file.content}
-            lang="js"
+            code={getFileContent(path.join("public", iframe))}
+            lang="html"
             theme="css-variables"
             class="pre"
           />
         </CodeBlock>
       </div>
-    ))
+    )
   }
-
+  {
+    tabs === true && (
+      <Tabs syncKey={tabsSyncKey} label={tabsLabel}>
+        <slot />
+      </Tabs>
+    )
+  }
+  {
+    Array.isArray(tabs) && (
+      <Tabs syncKey={tabsSyncKey} label={tabsLabel}>
+        {tabs.map((tab: TabFile) => (
+          <TabsPanel label={tab.label}>
+            <CodeBlock nopre>
+              <Code
+                code={getFileContent(tab.file)}
+                lang="js"
+                theme="css-variables"
+                class="pre"
+              />
+            </CodeBlock>
+          </TabsPanel>
+        ))}
+      </Tabs>
+    )
+  }
 </div>
 
 <script>
-  import { tabs } from "../modules/tabs";
-  tabs.mount();
+  const btns = document.querySelectorAll("[data-action='toggle-expand']");
+  btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".code-example") as HTMLElement;
+    const code = parent.querySelector("code") as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = code.offsetHeight + padding;
+
+    btn.addEventListener("click", () => {
+      // Toggle the expand state
+      parent.classList.toggle("is-expanded");
+
+      // Update the state
+      if (parent.classList.contains("is-expanded")) {
+        btn.innerHTML = "Collapse";
+        parent.style.setProperty("--vb-code-example-max-height", `${height}px`);
+      } else {
+        btn.innerHTML = "Expand";
+        parent.style.setProperty("--vb-code-example-max-height", null);
+      }
+    });
+  });
+
+  document.querySelectorAll(".is-scroll-locked").forEach((screen) => {
+    screen.addEventListener("click", () => {
+      screen.classList.remove("is-scroll-locked");
+    });
+  });
 </script>

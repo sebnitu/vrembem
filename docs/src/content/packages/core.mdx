@@ -5,8 +5,6 @@ package: "@vrembem/core"
 category: core
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
-
 ```sh
 npm install @vrembem/core
 ```
@@ -27,7 +25,7 @@ npm install @vrembem/core
 
 Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/core" with (
   $config: (
@@ -84,13 +82,13 @@ Core comes with the following Sass configuration options that can be set using e
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
 ## Design tokens
 
 Design tokens are the foundation of the Vrembem library and help to establish a consistent design language across components. Tokens are managed by the `@vrembem/core/tokens` module and are output as CSS variables.
 
-[Core design tokens](/packages/core/css-variables)
+[Design token reference](/packages/core/design-tokens)
 
 ## Sass modules
 

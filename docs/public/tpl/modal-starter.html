@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrembem - Modal starter template</title>
+    <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
+    <script type="module">
+      import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
+      
+      const modals = new ModalCollection({
+        plugins: [focusTrap()]
+      });
+
+      await modals.mount();
+    </script>
+  </head>
+  <body>
+
+    <!-- Main content -->
+    <div class="section" style="min-height: 100vh;">
+      <div class="section__container content spacing text-align-center">
+        <h1>Hello World</h1>
+        <p>A modal based starter template powered by Vrembem via CDN.</p>
+        <div class="flex justify-content-center foreground-subtle margin-bottom-lg">
+          <a class="link" href="https://vrembem.com/">Docs</a>
+          <span>/</span>
+          <a class="link" href="https://github.com/sebnitu/vrembem">GitHub</a>
+        </div>
+        <button class="button" data-modal-open="modal-example" type="button">Open modal</button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-example" class="modal">
+      <div class="modal__dialog dialog" role="dialog">
+        <div class="dialog__container">
+          <div class="dialog__header">
+            <h2 class="dialog__title">Modal Title</h2>
+            <button class="link" data-modal-close type="button">Close</button>
+          </div>
+          <div class="dialog__body spacing">
+            <p>This is an example implementation of a modal component.</p>
+            <h3>Plugins</h3>
+            <ul class="list">
+              <li>focusTrap</li>
+            </ul>
+          </div>
+          <div class="dialog__footer">
+            Modal footer goes here...
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>

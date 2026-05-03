@@ -66,7 +66,7 @@ function linkifyValue(value: string) {
   }
   if (!isRoot && coreRegExp.test(result)) {
     result = result.replace(coreRegExp, (match) => {
-      return `<a href="/packages/core/css-variables#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+      return `<a href="/packages/core/design-tokens#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
   return result;
@@ -90,7 +90,7 @@ function iconMap(value: string) {
 
 <div
   id={tableId}
-  class=`reference-table${expandable ? " is-expandable" : ""}`
+  class=`reference-table${expandable ? " reference-table_expandable" : ""}`
   data-config={JSON.stringify({ filter, expandable })}
 >
   {

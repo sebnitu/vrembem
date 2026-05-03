@@ -1,0 +1,112 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "@vrembem/core/palette";
+
+.compare {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0;
+
+  > * {
+    flex: 1 1 auto;
+  }
+}
+
+.compare__vs {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  align-self: stretch;
+  justify-content: center;
+  text-align: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: calc(50% - 2px) 0 auto;
+    width: auto;
+    height: 4px;
+    border-radius: 2px;
+    background-color: palette.get("neutral", "75");
+  }
+
+  &::after {
+    content: "vs";
+    position: relative;
+    z-index: 2;
+    display: block;
+    box-sizing: content-box;
+    width: 2em;
+    height: 2em;
+    border: 8px solid tokens.get("background");
+    border-radius: tokens.get("border-radius-circle");
+    color: tokens.get("foreground-strong");
+    background-color: palette.get("neutral", "75");
+  }
+}
+
+@container content (width > 660px) {
+  .compare {
+    flex-direction: row;
+    gap: 2em;
+  }
+
+  .compare__vs::before {
+    inset: 0.5em auto 0.5em calc(50% - 2px);
+    width: 4px;
+    height: auto;
+  }
+}
+
+/**
+ * Pro and con lists
+ */
+
+.list_pros,
+.list_cons {
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin: 0.5em 0;
+    padding-left: 1.75em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      display: block;
+      width: 1em;
+      height: 1em;
+      margin: 0.35em 0;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: 100%;
+    }
+  }
+
+  li.pro::before {
+    background-color: palette.get("primary");
+    mask-image: url(core.svg("check"));
+  }
+
+  li.con::before {
+    background-color: palette.get("important");
+    mask-image: url(core.svg("x"));
+  }
+}
+
+.list_pros li::before {
+  background-color: palette.get("primary");
+  mask-image: url(core.svg("check"));
+}
+
+.list_cons li::before {
+  background-color: palette.get("important");
+  mask-image: url(core.svg("x"));
+}

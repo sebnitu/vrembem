@@ -5,7 +5,6 @@ package: "@vrembem/button"
 category: form-control
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -23,13 +22,13 @@ npm install @vrembem/button
 
 ## Options
 
-Button is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+Button is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
 
 ### Sass
 
 Button comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/button" with (
   $config: (
@@ -57,11 +56,11 @@ Button comes with the following Sass configuration options that can be set using
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Button uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Button uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-button" valueLabel="Fallback" expandable={true} data={{
   // Form control fallbacks
@@ -363,29 +362,29 @@ Creates a button variant using custom properties and hsl relative values.
 #### Example
 
 <CodeExample tabs>
-<Fragment slot="output">
-  <button class="button button_color_custom">Custom Button</button>
-</Fragment>
-<Fragment slot="tab-scss">
-```scss
-@use "@vrembem/button";
+  <Fragment slot="output">
+    <button class="button button_color_custom">Custom Button</button>
+  </Fragment>
+  <TabsPanel label="SCSS">
+  ```scss
+  @use "@vrembem/button";
 
-.button_color_custom {
-  @include button.variant(salmon);
-}
-```
-</Fragment>
-<Fragment slot="tab-css">
-```css
-.button_color_custom {
-  --vb-button-background: salmon;
-  --vb-button-foreground: white;
-  --vb-button-border-color: transparent;
-  --vb-button-box-shadow: none;
-  --vb-button-accent: salmon;
-  --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
-  --vb-button-background-active: hsl(from salmon h s calc(l - 10));
-}
-```
-</Fragment>
+  .button_color_custom {
+    @include button.variant(salmon);
+  }
+  ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+  ```css
+  .button_color_custom {
+    --vb-button-background: salmon;
+    --vb-button-foreground: white;
+    --vb-button-border-color: transparent;
+    --vb-button-box-shadow: none;
+    --vb-button-accent: salmon;
+    --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
+    --vb-button-background-active: hsl(from salmon h s calc(l - 10));
+  }
+  ```
+  </TabsPanel>
 </CodeExample>

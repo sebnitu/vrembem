@@ -19,7 +19,7 @@ npm install @vrembem/checkbox
 
 ## Options
 
-Checkbox is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+Checkbox is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
 
 ### Sass
 
@@ -43,9 +43,9 @@ Checkbox comes with the following Sass configuration options that can be set usi
 ```
 </CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Checkbox uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Checkbox uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-checkbox" valueLabel="Fallback" expandable={true} data={{
   "--vb-checkbox-color": "var(--vb-form-control-choice-color)",
@@ -100,7 +100,7 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
       </span>
     </span>
   </Fragment>
-  <Fragment slot="tab-html">
+  <TabsPanel label="HTML">
     ```html
     <span class="checkbox">
       <input class="checkbox__native" type="checkbox" />
@@ -111,8 +111,8 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
       </span>
     </span>
     ```
-  </Fragment>
-  <Fragment slot="tab-js">
+  </TabsPanel>
+  <TabsPanel label="JS">
     ```js
     // Get checkboxes with "mixed" status
     const checkboxes = document.querySelectorAll(
@@ -122,7 +122,7 @@ Checkboxes are composed using a set of `<span>` elements alongside the native `<
     // Apply the indeterminate state
     checkboxes.forEach((checkbox) => checkbox.indeterminate = true);
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 Indeterminate checkboxes need to be set in JavaScript though styling is provided by Vrembem for the indeterminate states (see example above). Review [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate) for more details.

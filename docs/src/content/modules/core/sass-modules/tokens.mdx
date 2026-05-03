@@ -36,22 +36,22 @@ Function to return a custom property reference that has been stored in the custo
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     .block {
       background: tokens.get("block", "background");
       color: tokens.get("block", "foreground-hover", "foreground");
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     .block {
       background: var(--vb-block-background);
       color: var(--vb-block-foreground-hover, var(--vb-block-foreground));
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 
@@ -110,21 +110,21 @@ Output all custom properties of a provided component. Or output all custom prope
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     :root {
       @include tokens.output("block");
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     :root {
       --vb-block-background: blue;
       --vb-block-foreground: green;
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 
@@ -151,7 +151,7 @@ Mixin to override previously defined custom properties. This is primarily used i
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     .block_modifier {
       @include tokens.override("block", (
@@ -160,15 +160,15 @@ Mixin to override previously defined custom properties. This is primarily used i
       ));
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     .block_modifier {
       --vb-block-background: darkGreen;
       --vb-block-foreground: lightPink;
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 
@@ -191,7 +191,7 @@ Register a component in the custom properties map. This is used when a component
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     // Register the component's namespace if there are no properties set.
     @include tokens.register("block");
@@ -201,14 +201,14 @@ Register a component in the custom properties map. This is used when a component
       padding: tokens.get("block", "padding", 1em);
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     .block {
       padding: var(--vb-block-padding, 1em);
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 
@@ -235,20 +235,20 @@ Mixin to define a custom property using the provided property name and value. Au
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     .block {
       @include tokens.define("block", "accent", orange);
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     .block {
       --vb-block-accent: orange;
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 
@@ -275,20 +275,20 @@ Function to create reference to a custom property using the provided component n
 #### Example
 
 <CodeExample tabs>
-  <Fragment slot="tab-scss">
+  <TabsPanel label="SCSS">
     ```scss
     .block {
       background: tokens.reference("block", "accent", orange);
     }
     ```
-  </Fragment>
-  <Fragment slot="tab-css">
+  </TabsPanel>
+  <TabsPanel label="CSS">
     ```css
     .block {
       background: var(--vb-block-accent, orange);
     }
     ```
-  </Fragment>
+  </TabsPanel>
 </CodeExample>
 
 

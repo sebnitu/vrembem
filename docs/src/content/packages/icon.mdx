@@ -5,7 +5,6 @@ package: "@vrembem/icon"
 category: component
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -23,13 +22,13 @@ npm install @vrembem/icon
 
 ## Options
 
-Icon is built as a Sass module. Sass options are used to control CSS output, while CSS variables control the styling of the component. Below are the available configuration options.
+Icon is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
 
 ### Sass
 
 Icon comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/icon" with (
   $config: (
@@ -55,11 +54,11 @@ Icon comes with the following Sass configuration options that can be set using e
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
-### CSS Variables
+### Design tokens
 
-Icon uses CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Icon uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-icon" valueLabel="Fallback" filter={false} data={{
   "--vb-icon-color": "currentcolor",
