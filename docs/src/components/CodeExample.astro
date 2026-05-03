@@ -10,7 +10,7 @@ import Icon from "@/components/Icon.astro";
 
 interface FileTab {
   label: string;
-  path: string;
+  file: string;
 }
 
 interface Props {
@@ -18,8 +18,7 @@ interface Props {
   lang?: string;
   style?: string;
   iframe?: string;
-  files?: FileTab[];
-  tabs?: boolean;
+  tabs?: boolean | FileTab[];
   syncKey?: string;
   flush?: boolean;
   resettable?: boolean;
@@ -31,7 +30,6 @@ const {
   lang = "html",
   style,
   iframe,
-  files = [],
   tabs,
   syncKey,
   flush,
@@ -84,28 +82,6 @@ function getFileContent(filePath: string) {
     )
   }
   {
-    iframe && (
-      <div class="code-example__input">
-        <CodeBlock nopre>
-          <Code
-            code={getFileContent(path.join("public", iframe))}
-            lang="html"
-            theme="css-variables"
-            class="pre"
-          />
-        </CodeBlock>
-      </div>
-    )
-  }
-  {
-    tabs && (
-      <Tabs {syncKey} {label}>
-        <slot />
-      </Tabs>
-    )
-  }
-
-  {
     !tabs && Astro.slots.has("default") && (
       <div class="code-example__input">
         {
@@ -133,13 +109,34 @@ function getFileContent(filePath: string) {
     )
   }
   {
-    files.length > 0 && (
+    iframe && (
+      <div class="code-example__input">
+        <CodeBlock nopre>
+          <Code
+            code={getFileContent(path.join("public", iframe))}
+            lang="html"
+            theme="css-variables"
+            class="pre"
+          />
+        </CodeBlock>
+      </div>
+    )
+  }
+  {
+    tabs === true && (
       <Tabs {syncKey} {label}>
-        {files.map((file: FileTab) => (
-          <TabsPanel label={file.label}>
+        <slot />
+      </Tabs>
+    )
+  }
+  {
+    Array.isArray(tabs) && (
+      <Tabs {syncKey} {label}>
+        {tabs.map((tab: FileTab) => (
+          <TabsPanel label={tab.label}>
             <CodeBlock nopre>
               <Code
-                code={getFileContent(file.path)}
+                code={getFileContent(tab.file)}
                 lang="js"
                 theme="css-variables"
                 class="pre"
