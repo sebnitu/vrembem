@@ -5,7 +5,6 @@ package: "@vrembem/flex"
 category: layout
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
 
 ```sh
@@ -26,7 +25,7 @@ Flex is built as a Sass module. Sass options are used to control CSS output, whi
 
 Flex comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/flex" with (
   $config: (
@@ -79,7 +78,7 @@ Flex comes with the following Sass configuration options that can be set using e
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Design tokens
 

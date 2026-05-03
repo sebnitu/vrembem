@@ -123,3 +123,68 @@
     box-shadow: 0 0 0 3px palette.get("primary", $a: 0%) inset;
   }
 }
+
+/**
+ * Expandable styles
+ */
+
+@include tokens.set("code-example", "max-height", 20rem);
+
+.code-example.is-expandable {
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
+  transition-property: border-color, box-shadow;
+
+  .pre {
+    max-height: tokens.get("code-example", "max-height");
+    border: none;
+    transition: max-height tokens.get("transition");
+  }
+}
+
+.code-example__tools {
+  position: absolute;
+  z-index: 2;
+  inset: auto tokens.get("spacing-md") tokens.get("spacing-md") auto;
+  display: flex;
+  gap: tokens.get("spacing-sm");
+}
+
+.code-example__unlock-scroll {
+  display: none;
+  opacity: 0;
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
+  transition-property: opacity, border-color;
+}
+
+.code-example__screen {
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  inset: 1px;
+  display: none;
+}
+
+.code-example.is-scroll-locked {
+  .code-example__unlock-scroll {
+    display: flex;
+  }
+
+  .code-example__screen {
+    display: block;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: palette.get("primary");
+    box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
+
+    .code-example__unlock-scroll {
+      display: inline-flex;
+      border-color: palette.get("primary");
+      opacity: 1;
+      box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
+    }
+  }
+}

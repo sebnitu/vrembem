@@ -5,7 +5,8 @@ import { Code } from "astro:components";
 import CodeBlock from "@/components/CodeBlock.astro";
 import ResetExampleButton from "./ResetExampleButton.astro";
 import Tabs from "@/components/Tabs.astro";
-import TabsPanel from "./TabsPanel.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
+import Icon from "@/components/Icon.astro";
 
 interface FileTab {
   label: string;
@@ -15,35 +16,40 @@ interface FileTab {
 interface Props {
   label?: string;
   lang?: string;
+  style?: string;
   iframe?: string;
+  files?: FileTab[];
   tabs?: boolean;
   syncKey?: string;
-  files?: FileTab[];
-  style?: string;
   flush?: boolean;
   resettable?: boolean;
+  expandable?: boolean;
 }
 
 const {
   label,
-  iframe,
-  style,
   lang = "html",
-  tabs = false,
-  syncKey,
+  style,
+  iframe,
   files = [],
-  flush = false,
-  resettable = false
+  tabs,
+  syncKey,
+  flush,
+  resettable,
+  expandable
 } = Astro.props;
 
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
+
+const classes: string[] = [];
+if (expandable) classes.push("is-expandable", "is-scroll-locked");
 
 function getFileContent(filePath: string) {
   return fs.readFileSync(path.join(process.cwd(), filePath), "utf-8");
 }
 ---
 
-<div class="code-example" {style}>
+<div class={`code-example ${classes.join(" ")}`.trim()} {style}>
   {
     Astro.slots.has("demo") && (
       <div class="code-example__demo">
@@ -102,6 +108,26 @@ function getFileContent(filePath: string) {
   {
     !tabs && Astro.slots.has("default") && (
       <div class="code-example__input">
+        {
+          expandable && (
+            <div class="code-example__tools">
+              <button
+                type="button"
+                class="button button_size_sm code-example__unlock-scroll background"
+              >
+                <Icon name="unlock" classes="icon_size_sm" />
+                <span>Unlock scroll</span>
+              </button>
+              <button
+                type="button"
+                class="button button_color_primary button_size_sm code-example__toggle"
+              >
+                Expand
+              </button>
+            </div>
+            <div class="code-example__screen" />
+          )
+        }
         <slot />
       </div>
     )
@@ -125,3 +151,40 @@ function getFileContent(filePath: string) {
     )
   }
 </div>
+
+<script>
+  const btns = document.querySelectorAll(".code-example__toggle");
+  btns.forEach((btn) => {
+    // Get the elements
+    const parent = btn.closest(".code-example") as HTMLElement;
+    const code = parent.querySelector("code") as HTMLElement;
+
+    // Get the height variable
+    const padding = 42; // Kind of a magic number atm
+    const height = code.offsetHeight + padding;
+
+    btn.addEventListener("click", () => {
+      // Toggle the expand state
+      parent.classList.toggle("is-expanded");
+
+      // Update the state
+      if (parent.classList.contains("is-expanded")) {
+        btn.innerHTML = "Collapse";
+        parent.style.setProperty(
+          "--vb-code-example-max-height",
+          `${height}px`
+        );
+      } else {
+        btn.innerHTML = "Expand";
+        parent.style.setProperty("--vb-code-example-max-height", null);
+      }
+    });
+  });
+
+  const screens = document.querySelectorAll(".code-example");
+  screens.forEach((screen) => {
+    screen.addEventListener("click", () => {
+      screen.classList.remove("is-scroll-locked");
+    });
+  });
+</script>

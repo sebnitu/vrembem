@@ -4,7 +4,6 @@ description: "A JavaScript utility module that manages theme state and user pref
 anchor: theme-state
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 
@@ -18,7 +17,7 @@ import ReferenceBar from "@/components/ReferenceBar.astro";
 
 When initializing a new `themeStore`, the following JavaScript configuration options are available to customize.
 
-<CodeExpander lang="js">
+<CodeExample lang="js" expandable>
 ```js
 themeStore({
   // The class prefix for theme names.
@@ -47,7 +46,7 @@ themeStore({
   onChange() {}
 });
 ```
-</CodeExpander>
+</CodeExample>
 
 ## Basic usage
 

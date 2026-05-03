@@ -5,7 +5,6 @@ package: "@vrembem/button"
 category: form-control
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -29,7 +28,7 @@ Button is built as a Sass module. Sass options are used to control CSS output, w
 
 Button comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/button" with (
   $config: (
@@ -57,7 +56,7 @@ Button comes with the following Sass configuration options that can be set using
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Design tokens
 

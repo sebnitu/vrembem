@@ -5,7 +5,6 @@ package: "@vrembem/modal"
 category: component
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -42,7 +41,7 @@ Modal is built as a Sass module to handle styles and CSS output, along with a co
 
 Modal comes with the following JavaScript configuration options that customize the behavior, accessibility, and integration of the modal collection.
 
-<CodeExpander lang="js">
+<CodeExample lang="js" expandable>
 ```js
 const modals = new Modal({
   // The data attribute to use for triggering the open method
@@ -119,7 +118,7 @@ const modals = new Modal({
   transitionDuration: 300
 });
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Sass
 

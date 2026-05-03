@@ -5,7 +5,6 @@ package: "@vrembem/content"
 category: modules
 ---
 
-import CodeExpander from "@/components/CodeExpander.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -29,7 +28,7 @@ Content is built as a Sass module. Sass options are used to control CSS output, 
 
 Content comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExpander lang="scss">
+<CodeExample lang="scss" expandable>
 ```scss
 @use "@vrembem/content" with (
   $config: (
@@ -85,7 +84,7 @@ Content comes with the following Sass configuration options that can be set usin
   )
 );
 ```
-</CodeExpander>
+</CodeExample>
 
 ### Design tokens
 
