@@ -8,7 +8,7 @@ import Tabs from "@/components/Tabs.astro";
 import TabsPanel from "@/components/TabsPanel.astro";
 import Icon from "@/components/Icon.astro";
 
-interface FileTab {
+interface TabFile {
   label: string;
   file: string;
 }
@@ -18,8 +18,9 @@ interface Props {
   lang?: string;
   style?: string;
   iframe?: string;
-  tabs?: boolean | FileTab[];
-  syncKey?: string;
+  tabs?: boolean | TabFile[];
+  tabsLabel?: string;
+  tabsSyncKey?: string;
   flush?: boolean;
   resettable?: boolean;
   expandable?: boolean;
@@ -31,7 +32,8 @@ const {
   style,
   iframe,
   tabs,
-  syncKey,
+  tabsLabel,
+  tabsSyncKey,
   flush,
   resettable,
   expandable
@@ -124,15 +126,15 @@ function getFileContent(filePath: string) {
   }
   {
     tabs === true && (
-      <Tabs {syncKey} {label}>
+      <Tabs syncKey={tabsSyncKey} label={tabsLabel}>
         <slot />
       </Tabs>
     )
   }
   {
     Array.isArray(tabs) && (
-      <Tabs {syncKey} {label}>
-        {tabs.map((tab: FileTab) => (
+      <Tabs syncKey={tabsSyncKey} label={tabsLabel}>
+        {tabs.map((tab: TabFile) => (
           <TabsPanel label={tab.label}>
             <CodeBlock nopre>
               <Code

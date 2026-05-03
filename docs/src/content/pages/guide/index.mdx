@@ -11,7 +11,7 @@ import TabsPanel from "@/components/TabsPanel.astro";
 
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
-<CodeExample tabs syncKey="cdn" label="Select your preferred CDN">
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
   <TabsPanel label="unpkg">
     ```html
     <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
@@ -26,7 +26,7 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
 
 To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
 
-<CodeExample tabs syncKey="cdn" label="Select your preferred CDN">
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
   <TabsPanel label="unpkg">
     ```html
     <script type="module">
@@ -57,7 +57,7 @@ To use available JavaScript modules such as [drawer](/packages/drawer), [modal](
 
 Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
 
-<CodeExample tabs syncKey="cdn" label="Select your preferred CDN">
+<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
   <TabsPanel label="unpkg">
     ```html
     <script type="importmap">
@@ -116,7 +116,7 @@ Vrembem is a collection of packages built with Sass and TypeScript that compile 
 npm install vrembem
 ```
 
-<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
   <TabsPanel label="SCSS">
     ```scss
     @use "vrembem";
@@ -167,7 +167,7 @@ Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends o
 
 Use the entire library by importing the base `vrembem` entry.
 
-<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
   <TabsPanel label="SCSS">
     ```scss
     // The entire Vrembem library
@@ -186,7 +186,7 @@ Use the entire library by importing the base `vrembem` entry.
 
 Or, import specific layers using layer based entries.
 
-<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
   <TabsPanel label="SCSS">
     ```scss
     // CSS layer order
@@ -231,7 +231,7 @@ Or, import specific layers using layer based entries.
 
 Components can be imported on a per-package basis using package imports. See [packages documentation](/packages) for more information on package specific config and usage.
 
-<CodeExample tabs syncKey="entry" label="Select your preferred entry">
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
   <TabsPanel label="SCSS">
     ```scss
     // Component specific entries
