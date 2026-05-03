@@ -8,6 +8,9 @@
   border: tokens.get("border");
   border-radius: tokens.get("border-radius");
   line-height: tokens.get("line-height");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
+  transition-property: border-color, box-shadow;
 
   * {
     scroll-margin-top: initial;
@@ -39,13 +42,13 @@
 
   .code-block {
     position: static;
+  }
 
-    .pre {
-      max-height: 34em;
-      border: none;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
+  .pre {
+    max-height: 34em;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .code-block__copy-button {
@@ -130,16 +133,10 @@
 
 @include tokens.set("code-example", "max-height", 20rem);
 
-.code-example.is-expandable {
-  transition-timing-function: tokens.get("transition-timing-function");
-  transition-duration: tokens.get("transition-duration-short");
-  transition-property: border-color, box-shadow;
-
-  .pre {
-    max-height: tokens.get("code-example", "max-height");
-    border: none;
-    transition: max-height tokens.get("transition");
-  }
+.code-example_expandable .pre {
+  max-height: tokens.get("code-example", "max-height");
+  border: none;
+  transition: max-height tokens.get("transition");
 }
 
 .code-example__tools {

@@ -115,11 +115,6 @@
     font-size: tokens.get("font-size");
   }
 
-  &.is-expandable {
-    overflow: hidden;
-    max-height: tokens.get("reference-table", "max-height");
-  }
-
   &.is-expanded {
     overflow: visible;
 
@@ -133,6 +128,15 @@
   }
 }
 
+.reference-table_expandable {
+  overflow: hidden;
+  max-height: tokens.get("reference-table", "max-height");
+
+  &:not(.is-expanded) .reference-table__header {
+    top: 0;
+  }
+}
+
 .reference-table__header {
   position: sticky;
   z-index: 2;
@@ -142,10 +146,6 @@
 
   @include core.media-min("sidebar") {
     top: tokens.get("layout", "navibar-height");
-  }
-
-  .is-expandable:not(.is-expanded) & {
-    top: 0;
   }
 
   .input-group {

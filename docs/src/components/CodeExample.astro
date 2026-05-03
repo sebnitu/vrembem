@@ -40,7 +40,7 @@ const {
 const uid = JSON.stringify(Math.floor(Math.random() * Date.now()));
 
 const classes: string[] = [];
-if (expandable) classes.push("is-expandable", "is-scroll-locked");
+if (expandable) classes.push("code-example_expandable", "is-scroll-locked");
 
 function getFileContent(filePath: string) {
   return fs.readFileSync(path.join(process.cwd(), filePath), "utf-8");
