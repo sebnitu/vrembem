@@ -152,8 +152,8 @@ export class ReferenceTableEntry extends CollectionEntry {
   scrollToTable() {
     const rect = this.el.getBoundingClientRect();
     const scrollTop = document.documentElement.scrollTop;
-    const navibar = document.querySelector(".navibar");
-    const offset = navibar ? navibar.offsetHeight : 0;
+    const header = document.querySelector(".header");
+    const offset = header ? header.offsetHeight : 0;
     window.scrollTo({
       top: rect.top + scrollTop - offset,
       behavior: "instant"

@@ -12,10 +12,10 @@ interface Props {
 const { classes = "" } = Astro.props;
 ---
 
-<header class={`navibar ${classes}`.trim()}>
-  <div class="navibar__container">
-    <div class="navibar__title">
-      <a class="navibar__skip button button_color_primary" href="#main-content">
+<header class={`header ${classes}`.trim()}>
+  <div class="header__container">
+    <div class="header__title">
+      <a class="header__skip button button_color_primary" href="#main-content">
         Skip to main content
       </a>
       <a href="/" class="brand">
@@ -24,7 +24,7 @@ const { classes = "" } = Astro.props;
         <span class="brand__version">v4.0.0</span>
       </a>
     </div>
-    <div class="navibar__menu">
+    <div class="header__menu">
       <Navi classes="display-none md:display-flex" inline />
       <Popover
         placement="left"

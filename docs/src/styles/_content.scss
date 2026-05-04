@@ -6,7 +6,7 @@
   container: content / inline-size;
 
   @include core.media-min("sidebar") {
-    scroll-margin-top: calc(tokens.get("layout", "navibar-height") + 2rem);
+    scroll-margin-top: calc(tokens.get("layout", "header-height") + 2rem);
   }
 
   * {

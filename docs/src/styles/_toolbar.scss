@@ -26,7 +26,7 @@
 .toolbar-mini {
   position: fixed;
   z-index: 6;
-  top: tokens.get("layout", "navibar-height");
+  top: tokens.get("layout", "header-height");
   right: tokens.get("layout", "padding");
   transform: translate(100%);
   visibility: hidden;

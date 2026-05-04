@@ -1,6 +1,6 @@
 ---
 import Root from "@/layouts/Root.astro";
-import Navibar from "@/components/Navibar.astro";
+import Header from "@/components/Header.astro";
 import Toolbar from "@/components/Toolbar.astro";
 import Footer from "@/components/Footer.astro";
 import DrawerSidebar from "@/components/DrawerSidebar.astro";
@@ -24,7 +24,7 @@ if (layout.hasAside) layoutClasses.push("has-aside");
 ---
 
 <Root {title}>
-  <Navibar />
+  <Header />
   <Toolbar {layout} />
   <div class={`layout ${layoutClasses.join(" ")}`.trim()}>
     {

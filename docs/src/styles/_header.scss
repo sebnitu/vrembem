@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-.navibar {
+.header {
   position: relative;
   z-index: 5;
   width: 100%;
@@ -19,26 +19,26 @@
   }
 }
 
-.navibar__container {
+.header__container {
   display: flex;
   width: 100%;
   max-width: tokens.get("layout", "width");
   margin: auto;
 }
 
-.navibar__title,
-.navibar__menu {
+.header__title,
+.header__menu {
   display: flex;
   align-items: center;
-  height: tokens.get("layout", "navibar-height");
+  height: tokens.get("layout", "header-height");
 }
 
-.navibar__title {
+.header__title {
   position: relative;
   width: tokens.get("layout", "sidebar-width");
 }
 
-.navibar__skip {
+.header__skip {
   position: absolute;
   z-index: 100;
   top: -100%;
@@ -50,12 +50,12 @@
   transition-property: top, opacity;
 
   &:focus {
-    top: calc(calc(tokens.get("layout", "navibar-height") - tokens.get("form-control-size-calc")) / 2);
+    top: calc(calc(tokens.get("layout", "header-height") - tokens.get("form-control-size-calc")) / 2);
     opacity: 1;
   }
 }
 
-.navibar__menu {
+.header__menu {
   flex-grow: 1;
   justify-content: flex-end;
 
@@ -71,10 +71,10 @@
   }
 }
 
-.navibar-spacer {
+.header-spacer {
   height: 0;
 
   @include core.media-min("sidebar") {
-    height: tokens.get("layout", "navibar-height");
+    height: tokens.get("layout", "header-height");
   }
 }

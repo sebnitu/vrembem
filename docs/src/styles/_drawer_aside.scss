@@ -38,7 +38,7 @@
 
     .drawer__container {
       scroll-behavior: smooth;
-      padding: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "content-padding-y")) tokens.get("layout", "padding") calc(tokens.get("layout", "footer-height") + tokens.get("layout", "content-padding-y")) tokens.get("focus-ring-width");
+      padding: calc(tokens.get("layout", "header-height") + tokens.get("layout", "content-padding-y")) tokens.get("layout", "padding") calc(tokens.get("layout", "footer-height") + tokens.get("layout", "content-padding-y")) tokens.get("focus-ring-width");
     }
   }
 }

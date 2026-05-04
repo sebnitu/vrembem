@@ -48,7 +48,7 @@
   outline: none;
 
   @include core.media-min("sidebar") {
-    padding-top: tokens.get("layout", "navibar-height");
+    padding-top: tokens.get("layout", "header-height");
 
     &::before {
       content: "";
@@ -56,7 +56,7 @@
       z-index: 4;
       top: 0;
       width: 100%;
-      height: tokens.get("layout", "navibar-height");
+      height: tokens.get("layout", "header-height");
       background-color: tokens.get("background-glass");
       backdrop-filter: blur(8px);
     }

@@ -48,17 +48,17 @@
     }
 
     .drawer__container {
-      padding: tokens.get("layout", "navibar-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
+      padding: tokens.get("layout", "header-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
     }
 
     // Scrolling mask
     .drawer__mask {
       position: sticky;
       z-index: 2;
-      inset: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) 0 auto 0;
+      inset: calc((tokens.get("layout", "header-height") + tokens.get("layout", "padding")) * -1) 0 auto 0;
       flex-shrink: 0;
-      height: calc(tokens.get("layout", "navibar-height") + tokens.get("layout", "padding"));
-      margin: calc((tokens.get("layout", "navibar-height") + tokens.get("layout", "padding")) * -1) calc(tokens.get("layout", "padding") * -1) tokens.get("layout", "padding") calc(tokens.get("layout", "padding") * -1);
+      height: calc(tokens.get("layout", "header-height") + tokens.get("layout", "padding"));
+      margin: calc((tokens.get("layout", "header-height") + tokens.get("layout", "padding")) * -1) calc(tokens.get("layout", "padding") * -1) tokens.get("layout", "padding") calc(tokens.get("layout", "padding") * -1);
       background-color: tokens.get("background-shift");
 
       &::after {
