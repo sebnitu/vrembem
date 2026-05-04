@@ -9,7 +9,7 @@ export class PopoverCollection extends Collection<PopoverEntry, PopoverConfig> {
   readonly entryClass = PopoverEntry;
   trigger: HTMLElement | null = null;
 
-  constructor(options: Partial<PopoverConfig>) {
+  constructor(options?: Partial<PopoverConfig>) {
     super({ ...config, ...options });
     this.name = "Popover";
 
