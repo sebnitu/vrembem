@@ -1,0 +1,76 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "@vrembem/core/palette";
+
+@include tokens.set(
+  "main",
+  (
+    "content-width": 40em,
+    "content-padding-x": 4em,
+    "content-padding-y": 2em,
+    "aside-width": 14em,
+    "aside-padding": 1em
+  )
+);
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - (tokens.get("layout", "header-height")));
+}
+
+.main__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  justify-items: center;
+  flex: 1 1 auto;
+}
+
+.main__footer {
+  flex: 0 0 auto;
+}
+
+.main__content {
+  grid-column: 1;
+  grid-row: 1;
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+  width: 100%;
+  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.main__aside .drawer__dialog {
+  background: white;
+
+  .drawer__container {
+    padding: tokens.get("main", "aside-padding");
+  }
+}
+
+@include core.media-min("md") {
+  .main__grid {
+    grid-template-columns: 1fr auto;
+  }
+
+  .main__aside {
+    z-index: 1;
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: tokens.get("layout", "header-height");
+    width: tokens.get("main", "aside-width");
+    max-width: unset;
+    max-height: calc(100vh - tokens.get("layout", "header-height"));
+    overflow: auto;
+
+    .drawer__dialog {
+      background-color: transparent;
+      position: static;
+      inset: unset;
+    }
+  }
+}
