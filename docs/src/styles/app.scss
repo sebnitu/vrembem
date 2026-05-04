@@ -16,11 +16,11 @@
 
 @layer components {
   // Layout
+  @include meta.load-css("./layout");
+  @include meta.load-css("./main");
   @include meta.load-css("./brand");
   @include meta.load-css("./header");
   @include meta.load-css("./toolbar");
-  @include meta.load-css("./layout");
-  @include meta.load-css("./main");
   @include meta.load-css("./drawer_sidebar");
   @include meta.load-css("./drawer_aside");
 

@@ -65,13 +65,6 @@ function onThisPage(options = {}) {
       entry.active = entry === result[0];
     });
 
-    // Make sure the active anchor is scrolled into view
-    if (result[0]) {
-      result[0].anchor.scrollIntoView({
-        block: "nearest"
-      });
-    }
-
     // Close the modal drawer if open
     if (drawers.activeModal && drawers.activeModal.id === "layout-aside") {
       drawers.activeModal.close();

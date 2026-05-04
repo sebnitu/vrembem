@@ -2,6 +2,22 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+@include tokens.set(
+  "layout",
+  (
+    "width": 84rem,
+    "padding": 1rem,
+    "sidebar-width": 16rem,
+    "aside-width": 12rem,
+    "content-width": 50rem,
+    "content-padding-x": 0,
+    "content-padding-y": 0,
+    "header-height": 5.25rem,
+    "toolbar-height": 4.75rem,
+    "footer-height": 8rem
+  )
+);
+
 .layout {
   position: relative;
   display: flex;
@@ -26,16 +42,6 @@
 
     &.has-sidebar .layout__main {
       padding-left: tokens.get("layout", "sidebar-width");
-    }
-
-    &.has-aside .layout__main {
-      padding-right: tokens.get("form-control-size-calc");
-    }
-  }
-
-  @include core.media-min("aside") {
-    &.has-aside .layout__main {
-      padding-right: tokens.get("layout", "aside-width");
     }
   }
 }
