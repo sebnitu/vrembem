@@ -34,9 +34,7 @@ const { title, bodyClass } = Astro.props;
     </script>
   </head>
   <body class={bodyClass}>
-    <main id="main" class="main" tabindex="-1">
-      <slot />
-    </main>
+    <slot />
     <div class="modals"></div>
     <div class="popovers"></div>
   </body>
