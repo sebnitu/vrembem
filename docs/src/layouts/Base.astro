@@ -34,16 +34,17 @@ if (layout.hasAside) layoutClasses.push("has-aside");
         </DrawerSidebar>
       )
     }
-    {
-      layout.hasAside && (
-        <DrawerAside classes="main__aside">
-          <slot name="aside" />
-        </DrawerAside>
-      )
-    }
-    <div id="main-content" class="layout__main" tabindex="-1">
-      <div class="layout__container">
-        <div class="content-container">
+
+    <main id="main" class="layout__main main" tabindex="-1">
+      <div class="main__grid">
+        {
+          layout.hasAside && (
+            <DrawerAside classes="main__aside">
+              <slot name="aside" />
+            </DrawerAside>
+          )
+        }
+        <div class="main__content">
           {
             layout.hasAside && (
               <div class="toolbar-mini">
@@ -65,7 +66,7 @@ if (layout.hasAside) layoutClasses.push("has-aside");
           }
           {
             Astro.slots.has("prepend") && (
-              <div class="content-container__prepend">
+              <div class="main__prepend">
                 <slot name="prepend" />
               </div>
             )
@@ -75,14 +76,14 @@ if (layout.hasAside) layoutClasses.push("has-aside");
           </div>
           {
             Astro.slots.has("append") && (
-              <div class="content-container__append">
+              <div class="main__append">
                 <slot name="append" />
               </div>
             )
           }
         </div>
-        <Footer />
       </div>
-    </div>
+      <Footer classes="main__footer" />
+    </main>
   </div>
 </Root>
