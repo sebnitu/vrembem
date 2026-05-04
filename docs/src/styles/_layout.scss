@@ -1,23 +1,21 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-
 @include tokens.set(
   "layout",
   (
     "width": 80em,
     "padding": 1em,
-    "header-height": 3.5em,
+    "header-height": 90px,
     "sidebar-width": 18em
   )
 );
 
 .layout {
+  display: flex;
   max-width: tokens.get("layout", "width");
   margin: auto;
   padding-top: tokens.get("layout", "header-height");
-  display: flex;
-  align-items: flex-start;
 }
 
 .layout__main {
@@ -28,66 +26,51 @@
 }
 
 .layout__sidebar {
-  position: fixed;
-  visibility: hidden;
-  width: tokens.get("layout", "sidebar-width");
+  background-color: tokens.get("background-shift");
 
   .drawer__dialog {
-    background-color: tokens.get("background-shift");
     outline: none;
   }
 
   .drawer__container {
-    overscroll-behavior: contain;
     padding: tokens.get("layout", "padding");
   }
 }
 
 @include core.media-min("sidebar") {
   .layout__sidebar {
-    z-index: 1;
     position: sticky;
-    inset: unset;
+    z-index: 1;
     top: tokens.get("layout", "header-height");
-    width: tokens.get("layout", "sidebar-width");
-    height: calc(100vh - tokens.get("layout", "header-height"));
     overflow: auto;
     flex: 0 0 auto;
-    visibility: visible;
+    width: tokens.get("layout", "sidebar-width");
+    height: calc(100vh - tokens.get("layout", "header-height"));
+    background-color: transparent;
 
     // Styles for infinite background
     &::before {
-      background-color: tokens.get("background-shift");
-      box-sizing: content-box;
       content: "";
-      z-index: -2;
       position: fixed;
+      z-index: -2;
       inset: 0 auto 0 0;
+      box-sizing: content-box;
       width: tokens.get("layout", "sidebar-width");
       padding-left: max(0px, calc((100% - tokens.get("layout", "width")) / 2));
+      background-color: tokens.get("background-shift");
     }
 
     // Styles for fold shadow
     &::after {
-      box-sizing: content-box;
       pointer-events: none;
       content: "";
-      z-index: -1;
       position: fixed;
+      z-index: -1;
       inset: 0 auto 0 calc(max(0px, calc((100% - tokens.get("layout", "width")) / 2)) + (tokens.get("layout", "sidebar-width") - 2rem));
+      box-sizing: content-box;
       width: 2rem;
       height: 100%;
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
-    }
-
-    .drawer__dialog {
-      inset: 0 0 0 auto;
-      width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
-      background-color: transparent;
-    }
-
-    .drawer__container {
-      padding: tokens.get("layout", "header-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
     }
   }
 }

@@ -3,44 +3,25 @@
 @use "@vrembem/core/palette";
 
 .footer {
-  display: flex;
-  color: tokens.get("foreground-subtle");
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: start center;
 }
 
-.footer__content {
-  flex-grow: 1;
+.footer__copy {
   width: 100%;
-  max-width: tokens.get("main", "content-width");
-  margin: auto;
-  padding: 3rem 0;
-  border-top: tokens.get("border");
-
-  .is-home & {
-    max-width: unset;
-  }
+  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  padding: 1em tokens.get("main", "content-padding-x");
 }
 
 .footer__logo {
-  display: flex;
-  flex-grow: 0;
-  justify-content: center;
-  padding: 3rem 0;
-  border-top: tokens.get("border");
+  width: tokens.get("main", "aside-width");
+  padding: tokens.get("main", "aside-padding");
   color: palette.get("primary");
-  text-align: center;
+}
 
-  @include core.media-min("aside") {
-    .has-aside & {
-      position: absolute;
-      z-index: 2;
-      right: 0;
-      width: calc(tokens.get("main", "aside-width") - tokens.get("focus-ring-width"));
-      background-color: tokens.get("background");
-    }
-
-    .is-home & {
-      position: relative;
-      background-color: transparent;
-    }
+@include core.media-min("md") {
+  .footer {
+    grid-template-columns: 1fr auto;
   }
 }

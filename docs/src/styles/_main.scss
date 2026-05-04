@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-
 @include tokens.set(
   "main",
   (
@@ -22,53 +21,57 @@
 .main__grid {
   display: grid;
   grid-template-columns: 1fr;
-  align-items: start;
-  justify-items: center;
   flex: 1 1 auto;
-}
+  place-items: start center;
 
-.main__footer {
-  flex: 0 0 auto;
+  @include core.media-min("aside") {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 .main__content {
+  display: flex;
   grid-column: 1;
   grid-row: 1;
-  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
-  width: 100%;
-  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
-  display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
 }
 
-.main__aside .drawer__dialog {
-  .drawer__container {
-    padding: tokens.get("main", "aside-padding");
-  }
-}
+// .main__aside {
+//   position: fixed;
+//   visibility: hidden;
+
+//   .drawer__dialog {
+//     background-color: tokens.get("background-shift");
+//     outline: none;
+//   }
+
+//   .drawer__container {
+//     overscroll-behavior: contain;
+//     padding: tokens.get("layout", "padding");
+//   }
+// }
 
 @include core.media-min("aside") {
-  .main__grid {
-    grid-template-columns: 1fr auto;
-  }
-
   .main__aside {
+    position: sticky;
     z-index: 1;
+    top: tokens.get("layout", "header-height");
+    overflow: auto;
     display: block;
     grid-column: 2;
     grid-row: 1;
-    position: sticky;
-    top: tokens.get("layout", "header-height");
     width: tokens.get("main", "aside-width");
     max-width: unset;
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    overflow: auto;
 
     .drawer__dialog {
-      background-color: transparent;
       position: static;
       inset: unset;
+      background-color: transparent;
     }
   }
 }

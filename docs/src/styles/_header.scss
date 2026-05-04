@@ -5,11 +5,8 @@
   position: relative;
   z-index: 5;
   width: 100%;
-  padding: 0 tokens.get("layout", "padding");
 
   @include core.media-min("sidebar") {
-    @include tokens.override("layout", "padding", 1.5rem);
-
     position: fixed;
   }
 
@@ -30,7 +27,11 @@
 .header__menu {
   display: flex;
   align-items: center;
-  height: tokens.get("layout", "header-height");
+  padding: 1em;
+
+  @include core.media-min("sidebar") {
+    padding: 1.5em;
+  }
 }
 
 .header__title {
