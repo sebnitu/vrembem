@@ -43,14 +43,12 @@
 }
 
 .main__aside .drawer__dialog {
-  background: white;
-
   .drawer__container {
     padding: tokens.get("main", "aside-padding");
   }
 }
 
-@include core.media-min("md") {
+@include core.media-min("aside") {
   .main__grid {
     grid-template-columns: 1fr auto;
   }

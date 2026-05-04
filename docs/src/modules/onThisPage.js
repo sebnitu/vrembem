@@ -66,7 +66,7 @@ function onThisPage(options = {}) {
     });
 
     // Close the modal drawer if open
-    if (drawers.activeModal && drawers.activeModal.id === "layout-aside") {
+    if (drawers.activeModal && drawers.activeModal.id === "main-aside") {
       drawers.activeModal.close();
     }
   }

@@ -3,8 +3,7 @@ import Root from "@/layouts/Root.astro";
 import Header from "@/components/Header.astro";
 import Toolbar from "@/components/Toolbar.astro";
 import Footer from "@/components/Footer.astro";
-import DrawerSidebar from "@/components/DrawerSidebar.astro";
-import DrawerAside from "@/components/DrawerAside.astro";
+import Drawer from "@/components/Drawer.astro";
 import Icon from "@/components/Icon.astro";
 import Popover from "@/components/Popover.astro";
 
@@ -29,9 +28,13 @@ if (layout.hasAside) layoutClasses.push("has-aside");
   <div class={`layout ${layoutClasses.join(" ")}`.trim()}>
     {
       layout.hasSidebar && (
-        <DrawerSidebar classes="layout__sidebar">
+        <Drawer
+          id="layout-sidebar"
+          breakpoint="sidebar"
+          classes="layout__sidebar"
+        >
           <slot name="sidebar" />
-        </DrawerSidebar>
+        </Drawer>
       )
     }
 
@@ -39,9 +42,13 @@ if (layout.hasAside) layoutClasses.push("has-aside");
       <div class="main__grid">
         {
           layout.hasAside && (
-            <DrawerAside classes="main__aside">
+            <Drawer
+              id="main-aside"
+              breakpoint="aside"
+              classes="drawer_switch main__aside"
+            >
               <slot name="aside" />
-            </DrawerAside>
+            </Drawer>
           )
         }
         <div class="main__content">
@@ -54,7 +61,7 @@ if (layout.hasAside) layoutClasses.push("has-aside");
                   triggerClass="button button_icon"
                   tooltipClass="text-nowrap"
                   placement="bottom-end"
-                  data-drawer-open="layout-aside"
+                  data-drawer-open="main-aside"
                 >
                   <Fragment slot="trigger">
                     <Icon name="compass" />

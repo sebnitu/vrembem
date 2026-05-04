@@ -21,7 +21,8 @@
   }
 
   tr {
-    scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
+    // TODO: Replace this
+    // scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
     position: relative;
     border-top: 1px solid tokens.get("border-color");
     border-radius: tokens.get("border-radius");
@@ -105,7 +106,8 @@
     overflow: visible;
 
     thead {
-      top: calc(tokens.get("layout", "toolbar-height") - 1px);
+      // TODO: Replace this
+      // top: calc(tokens.get("layout", "toolbar-height") - 1px);
 
       @include core.media-min("sidebar") {
         top: calc(tokens.get("layout", "header-height") - 1px);
@@ -126,7 +128,8 @@
 .reference-table__header {
   position: sticky;
   z-index: 2;
-  top: calc(tokens.get("layout", "toolbar-height") - 1px);
+  // TODO: Replace this
+  // top: calc(tokens.get("layout", "toolbar-height") - 1px);
   padding: tokens.get("spacing-md") 0;
   background: tokens.get("background");
 

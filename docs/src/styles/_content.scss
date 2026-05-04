@@ -2,11 +2,13 @@
 @use "@vrembem/core/tokens";
 
 .content-container {
-  scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 2rem);
+  // TODO: Replace this
+  // scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 2rem);
   container: content / inline-size;
 
   @include core.media-min("sidebar") {
-    scroll-margin-top: calc(tokens.get("layout", "header-height") + 2rem);
+    // TODO: Replace this
+    // scroll-margin-top: calc(tokens.get("layout", "header-height") + 2rem);
   }
 
   * {

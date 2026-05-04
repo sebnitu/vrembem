@@ -1,0 +1,17 @@
+---
+interface Props {
+  id: string;
+  breakpoint?: string;
+  classes?: string;
+}
+
+const { id, breakpoint, classes = "" } = Astro.props;
+---
+
+<aside {id} class={`drawer ${classes}`.trim()} data-breakpoint={breakpoint}>
+  <div class="drawer__dialog">
+    <div class="drawer__container">
+      <slot />
+    </div>
+  </div>
+</aside>

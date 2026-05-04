@@ -5,77 +5,89 @@
 @include tokens.set(
   "layout",
   (
-    "width": 84rem,
-    "padding": 1rem,
-    "sidebar-width": 16rem,
-    "aside-width": 12rem,
-    "content-width": 50rem,
-    "content-padding-x": 0,
-    "content-padding-y": 0,
-    "header-height": 5.25rem,
-    "toolbar-height": 4.75rem,
-    "footer-height": 8rem
+    "width": 80em,
+    "padding": 1em,
+    "header-height": 3.5em,
+    "sidebar-width": 18em
   )
 );
 
 .layout {
-  position: relative;
+  max-width: tokens.get("layout", "width");
+  margin: auto;
+  padding-top: tokens.get("layout", "header-height");
   display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 0 tokens.get("layout", "padding");
-
-  @include core.media-min("xs") {
-    @include tokens.override("layout", "content-padding-x", 1rem);
-    @include tokens.override("layout", "content-padding-y", 1rem);
-  }
-
-  @include core.media-min("sm") {
-    @include tokens.override("layout", "content-padding-x", 3rem);
-    @include tokens.override("layout", "content-padding-y", 2rem);
-  }
-
-  @include core.media-min("sidebar") {
-    @include tokens.override("layout", "content-padding-x", 4rem);
-    @include tokens.override("layout", "content-padding-y", 3rem);
-    @include tokens.override("layout", "padding", 1.5rem);
-
-    &.has-sidebar .layout__main {
-      padding-left: tokens.get("layout", "sidebar-width");
-    }
-  }
+  align-items: flex-start;
 }
 
 .layout__main {
   position: relative;
-  width: 100%;
-  max-width: tokens.get("layout", "width");
-  margin: auto;
-  outline: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(100vh - tokens.get("layout", "header-height"));
+}
 
-  @include core.media-min("sidebar") {
-    padding-top: tokens.get("layout", "header-height");
+.layout__sidebar {
+  position: fixed;
+  visibility: hidden;
+  width: tokens.get("layout", "sidebar-width");
 
-    &::before {
-      content: "";
-      position: fixed;
-      z-index: 4;
-      top: 0;
-      width: 100%;
-      height: tokens.get("layout", "header-height");
-      background-color: tokens.get("background-glass");
-      backdrop-filter: blur(8px);
-    }
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
+
+  .drawer__container {
+    overscroll-behavior: contain;
+    padding: tokens.get("layout", "padding");
   }
 }
 
-.layout__container {
-  width: 100%;
-  max-width: calc(tokens.get("layout", "content-width"));
-  margin: auto;
-  padding: tokens.get("layout", "content-padding-y") tokens.get("layout", "content-padding-x") 0;
+@include core.media-min("sidebar") {
+  .layout__sidebar {
+    z-index: 1;
+    position: sticky;
+    inset: unset;
+    top: tokens.get("layout", "header-height");
+    width: tokens.get("layout", "sidebar-width");
+    height: calc(100vh - tokens.get("layout", "header-height"));
+    overflow: auto;
+    flex: 0 0 auto;
+    visibility: visible;
 
-  > * + * {
-    margin-top: calc(tokens.get("spacing") * 12) !important;
+    // Styles for infinite background
+    &::before {
+      background-color: tokens.get("background-shift");
+      box-sizing: content-box;
+      content: "";
+      z-index: -2;
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: tokens.get("layout", "sidebar-width");
+      padding-left: max(0px, calc((100% - tokens.get("layout", "width")) / 2));
+    }
+
+    // Styles for fold shadow
+    &::after {
+      box-sizing: content-box;
+      pointer-events: none;
+      content: "";
+      z-index: -1;
+      position: fixed;
+      inset: 0 auto 0 calc(max(0px, calc((100% - tokens.get("layout", "width")) / 2)) + (tokens.get("layout", "sidebar-width") - 2rem));
+      width: 2rem;
+      height: 100%;
+      background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+    }
+
+    .drawer__dialog {
+      inset: 0 0 0 auto;
+      width: calc(tokens.get("layout", "sidebar-width") + tokens.get("layout", "padding"));
+      background-color: transparent;
+    }
+
+    .drawer__container {
+      padding: tokens.get("layout", "header-height") tokens.get("layout", "padding") tokens.get("layout", "padding");
+    }
   }
 }
