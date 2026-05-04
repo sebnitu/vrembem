@@ -29,14 +29,14 @@ if (layout.hasAside) layoutClasses.push("has-aside");
   <div class={`layout ${layoutClasses.join(" ")}`.trim()}>
     {
       layout.hasSidebar && (
-        <DrawerSidebar>
+        <DrawerSidebar classes="layout__sidebar">
           <slot name="sidebar" />
         </DrawerSidebar>
       )
     }
     {
       layout.hasAside && (
-        <DrawerAside>
+        <DrawerAside classes="main__aside">
           <slot name="aside" />
         </DrawerAside>
       )

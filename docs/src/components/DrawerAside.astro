@@ -1,6 +1,14 @@
+---
+interface Props {
+  classes?: string;
+}
+
+const { classes = "" } = Astro.props;
+---
+
 <aside
   id="layout-aside"
-  class="drawer drawer_aside drawer_switch"
+  class={`drawer drawer_aside drawer_switch ${classes}`.trim()}
   data-breakpoint="aside"
 >
   <div class="drawer__dialog">
