@@ -4,7 +4,7 @@
 @include tokens.set(
   "main",
   (
-    "content-width": 40em,
+    "content-width": 42em,
     "content-padding-x": 4em,
     "content-padding-y": 2em,
     "aside-width": 14em,
@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - (tokens.get("layout", "header-height")));
+  outline: none;
 }
 
 .main__grid {
@@ -34,26 +35,22 @@
   grid-column: 1;
   grid-row: 1;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   width: 100%;
   max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
   padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
 }
 
-// .main__aside {
-//   position: fixed;
-//   visibility: hidden;
+.main__aside {
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
 
-//   .drawer__dialog {
-//     background-color: tokens.get("background-shift");
-//     outline: none;
-//   }
-
-//   .drawer__container {
-//     overscroll-behavior: contain;
-//     padding: tokens.get("layout", "padding");
-//   }
-// }
+  .drawer__container {
+    padding: tokens.get("layout", "padding");
+  }
+}
 
 @include core.media-min("aside") {
   .main__aside {

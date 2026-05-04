@@ -26,9 +26,8 @@
 }
 
 .layout__sidebar {
-  background-color: tokens.get("background-shift");
-
   .drawer__dialog {
+    background-color: tokens.get("background-shift");
     outline: none;
   }
 
@@ -45,8 +44,11 @@
     overflow: auto;
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
-    height: calc(100vh - tokens.get("layout", "header-height"));
-    background-color: transparent;
+    max-height: calc(100vh - tokens.get("layout", "header-height"));
+
+    .drawer__dialog {
+      background-color: transparent;
+    }
 
     // Styles for infinite background
     &::before {
