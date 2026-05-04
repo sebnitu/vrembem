@@ -18,19 +18,15 @@ interface Props {
 
 const { title, layout } = Astro.props;
 
-const layoutClasses = ["layout"];
-if (layout.hasSidebar) {
-  layoutClasses.push("has-sidebar");
-}
-if (layout.hasAside) {
-  layoutClasses.push("has-aside");
-}
+const layoutClasses: string[] = [];
+if (layout.hasSidebar) layoutClasses.push("has-sidebar");
+if (layout.hasAside) layoutClasses.push("has-aside");
 ---
 
 <Root {title}>
   <Navibar />
   <Toolbar {layout} />
-  <div class={layoutClasses.join(" ")}>
+  <div class={`layout ${layoutClasses.join(" ")}`.trim()}>
     {
       layout.hasSidebar && (
         <DrawerSidebar>
