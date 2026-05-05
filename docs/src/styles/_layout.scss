@@ -15,7 +15,10 @@
   display: flex;
   max-width: tokens.get("layout", "width");
   margin: auto;
-  padding-top: tokens.get("layout", "header-height");
+
+  @include core.media-min("sidebar") {
+    padding-top: tokens.get("layout", "header-height");
+  }
 }
 
 .layout__main {
