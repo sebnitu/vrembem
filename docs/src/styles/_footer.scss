@@ -4,24 +4,23 @@
 
 .footer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr auto;
   place-items: start center;
 }
 
 .footer__copy {
   width: 100%;
   max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
-  padding: 1em tokens.get("main", "content-padding-x");
+  padding: 3em tokens.get("main", "content-padding-x");
 }
 
 .footer__logo {
-  width: tokens.get("main", "aside-width");
-  padding: tokens.get("main", "aside-padding");
+  display: flex;
+  justify-content: center;
+  padding: 3em tokens.get("main", "aside-padding");
   color: palette.get("primary");
-}
 
-@include core.media-min("md") {
-  .footer {
-    grid-template-columns: 1fr auto;
+  @include core.media-min("aside") {
+    width: tokens.get("main", "aside-width");
   }
 }

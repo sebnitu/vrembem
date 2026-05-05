@@ -36,8 +36,8 @@
   grid-row: 1;
   flex-direction: column;
   gap: 2rem;
-  min-width: 0;
   width: 100%;
+  min-width: 0;
   max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
   padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
 }
