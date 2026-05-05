@@ -5,7 +5,7 @@
 @include tokens.set("reference-table", "max-height", 28rem);
 
 .reference-table {
-  scroll-margin-top: 84px; // Magic number found using JS: `this.el.getBoundingClientRect().top;`
+  scroll-margin-top: tokens.get("layout", "header-height");
   width: 100%;
   font-size: tokens.get("font-size");
   transition: max-height tokens.get("transition-duration") tokens.get("transition-timing-function");
@@ -21,8 +21,7 @@
   }
 
   tr {
-    // TODO: Replace this
-    // scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
+    scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
     position: relative;
     border-top: 1px solid tokens.get("border-color");
     border-radius: tokens.get("border-radius");
@@ -106,8 +105,7 @@
     overflow: visible;
 
     thead {
-      // TODO: Replace this
-      // top: calc(tokens.get("layout", "toolbar-height") - 1px);
+      top: calc(tokens.get("layout", "toolbar-height") - 1px);
 
       @include core.media-min("sidebar") {
         top: calc(tokens.get("layout", "header-height") - 1px);
@@ -129,8 +127,7 @@
   position: sticky;
   z-index: 2;
 
-  // TODO: Replace this
-  // top: calc(tokens.get("layout", "toolbar-height") - 1px);
+  top: calc(tokens.get("layout", "toolbar-height") - 1px);
   padding: tokens.get("spacing-md") 0;
   background: tokens.get("background");
 

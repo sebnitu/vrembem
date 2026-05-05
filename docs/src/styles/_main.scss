@@ -3,10 +3,19 @@
 @use "@vrembem/core/palette";
 
 .main {
+  scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + calc(tokens.get("main", "content-padding-y")));
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - (tokens.get("layout", "header-height")));
   outline: none;
+
+  * {
+    scroll-margin-top: inherit;
+  }
+
+  @include core.media-min("sidebar") {
+    scroll-margin-top: calc(tokens.get("layout", "header-height") + calc(tokens.get("main", "content-padding-y")));
+  }
 }
 
 .main__grid {
@@ -25,7 +34,7 @@
   grid-column: 1;
   grid-row: 1;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2em;
   width: 100%;
   min-width: 0;
   max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
@@ -61,35 +70,16 @@
       inset: unset;
       background-color: transparent;
     }
+
+    .drawer__container {
+      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding");
+    }
   }
 }
 
-.main {
-  scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 2rem);
-
-  @include core.media-min("sidebar") {
-    scroll-margin-top: calc(tokens.get("layout", "header-height") + 2rem);
-  }
-
-  * {
-    scroll-margin-top: inherit;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    position: relative;
-    outline: none;
-  }
-
-  h3 {
-    font-weight: 500;
-  }
-
-  h4 {
-    font-size: 1.25em;
-  }
+.main__prepend,
+.main__append {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
 }

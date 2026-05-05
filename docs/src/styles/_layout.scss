@@ -2,6 +2,12 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+:root {
+  @include core.media-min("sidebar") {
+    @include tokens.override("layout", "padding", 1.5em);
+  }
+}
+
 .layout {
   display: flex;
   max-width: tokens.get("layout", "width");
@@ -67,6 +73,10 @@
 
     .drawer__dialog {
       background-color: transparent;
+    }
+
+    .drawer__container {
+      padding: 0 tokens.get("layout", "padding");
     }
   }
 }

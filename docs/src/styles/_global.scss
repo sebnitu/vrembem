@@ -19,6 +19,24 @@ html {
 
 .content-container {
   container: content / inline-size;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    outline: none;
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
 }
 
 /**

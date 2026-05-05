@@ -32,11 +32,7 @@
 .header__menu {
   display: flex;
   align-items: center;
-  padding: 1em;
-
-  @include core.media-min("sidebar") {
-    padding: 1.5em;
-  }
+  padding: tokens.get("layout", "padding");
 }
 
 .header__title {

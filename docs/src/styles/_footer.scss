@@ -30,8 +30,11 @@
 
 .footer__copy {
   width: 100%;
-  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
   padding: 3em 0 3em tokens.get("main", "content-padding-x");
+
+  @include core.media-min("aside") {
+    max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  }
 }
 
 .footer__logo {
