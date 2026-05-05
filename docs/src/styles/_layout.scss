@@ -41,7 +41,6 @@
 
 @include core.media-min("sidebar") {
   .layout__sidebar {
-    visibility: visible;
     position: sticky;
     z-index: 1;
     top: tokens.get("layout", "header-height");
@@ -49,6 +48,7 @@
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
+    visibility: visible;
 
     // Styles for infinite background
     &::before {

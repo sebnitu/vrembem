@@ -45,7 +45,6 @@
 
 @include core.media-min("aside") {
   .main__aside {
-    visibility: visible;
     position: sticky;
     z-index: 1;
     top: tokens.get("layout", "header-height");
@@ -56,6 +55,7 @@
     width: tokens.get("main", "aside-width");
     max-width: unset;
     max-height: calc(100vh - tokens.get("layout", "header-height"));
+    visibility: visible;
 
     .drawer__dialog {
       position: static;
