@@ -45,3 +45,23 @@
     padding: 3em tokens.get("main", "aside-padding");
   }
 }
+
+.is-home {
+  .footer::before {
+    content: none;
+  }
+
+  .footer__copy,
+  .footer__logo {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .footer__copy {
+    max-width: unset;
+  }
+
+  .footer__logo {
+    width: unset;
+  }
+}

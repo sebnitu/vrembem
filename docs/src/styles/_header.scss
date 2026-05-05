@@ -37,10 +37,6 @@
 .header__title {
   position: relative;
   width: tokens.get("layout", "sidebar-width");
-
-  @include core.media-min("sidebar") {
-    border-bottom: tokens.get("border");
-  }
 }
 
 .header__skip {
