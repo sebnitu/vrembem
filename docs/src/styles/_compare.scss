@@ -1,6 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
+@use "@vrembem/core/theme";
+
+// Compare theme values
+@include theme.set("light", "compare", "background", palette.get("neutral", "75"));
+@include theme.set("dark", "compare", "background", palette.get("neutral", "700"));
 
 .compare {
   position: relative;
@@ -31,7 +36,7 @@
     width: auto;
     height: 4px;
     border-radius: 2px;
-    background-color: palette.get("neutral", "75");
+    background-color: tokens.get("compare", "background");
   }
 
   &::after {
@@ -45,7 +50,7 @@
     border: 8px solid tokens.get("background");
     border-radius: tokens.get("border-radius-circle");
     color: tokens.get("foreground-strong");
-    background-color: palette.get("neutral", "75");
+    background-color: tokens.get("compare", "background");
   }
 }
 
