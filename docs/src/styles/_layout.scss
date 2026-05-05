@@ -26,6 +26,9 @@
 }
 
 .layout__sidebar {
+  // Prevents flash of unstyled content on mobile
+  visibility: hidden;
+
   .drawer__dialog {
     background-color: tokens.get("background-shift");
     outline: none;
@@ -38,6 +41,7 @@
 
 @include core.media-min("sidebar") {
   .layout__sidebar {
+    visibility: visible;
     position: sticky;
     z-index: 1;
     top: tokens.get("layout", "header-height");
