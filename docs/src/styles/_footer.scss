@@ -3,44 +3,29 @@
 @use "@vrembem/core/palette";
 
 .footer {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: tokens.get("layout", "padding");
+  place-items: start center;
   color: tokens.get("foreground-subtle");
+  text-align: center;
 }
 
-.footer__content {
-  flex-grow: 1;
+.footer__copy {
   width: 100%;
-  max-width: tokens.get("layout", "content-width");
-  margin: auto;
-  padding: 3rem 0;
-  border-top: tokens.get("border");
-
-  .is-home & {
-    max-width: unset;
-  }
 }
 
 .footer__logo {
   display: flex;
-  flex-grow: 0;
   justify-content: center;
-  padding: 3rem 0;
-  border-top: tokens.get("border");
   color: palette.get("primary");
-  text-align: center;
+}
 
-  @include core.media-min("aside") {
-    .has-aside & {
-      position: absolute;
-      z-index: 2;
-      right: 0;
-      width: calc(tokens.get("layout", "aside-width") - tokens.get("focus-ring-width"));
-      background-color: tokens.get("background");
-    }
-
-    .is-home & {
-      position: relative;
-      background-color: transparent;
-    }
+@include core.media-min("sm") {
+  .footer {
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    text-align: left;
   }
 }

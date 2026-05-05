@@ -13,7 +13,7 @@ export class ModalCollection extends Collection<ModalEntry, ModalConfig> {
   trigger: HTMLElement | null;
   stack: StackArray<ModalEntry>;
 
-  constructor(options: Partial<ModalConfig>) {
+  constructor(options?: Partial<ModalConfig>) {
     super({ ...config, ...options });
     this.name = "Modal";
     this.trigger = null;

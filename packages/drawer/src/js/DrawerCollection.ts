@@ -9,7 +9,7 @@ import { toggle } from "./toggle";
 export class DrawerCollection extends Collection<DrawerEntry, DrawerConfig> {
   readonly entryClass = DrawerEntry;
 
-  constructor(options: Partial<DrawerConfig>) {
+  constructor(options?: Partial<DrawerConfig>) {
     super({ ...config, ...options });
     this.name = "Drawer";
 

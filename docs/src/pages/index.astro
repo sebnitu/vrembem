@@ -1,17 +1,17 @@
 ---
 import Root from "@/layouts/Root.astro";
 import Footer from "@/components/Footer.astro";
-import Navibar from "@/components/Navibar.astro";
+import Header from "@/components/Header.astro";
 import CodeBlock from "@/components/CodeBlock.astro";
 import Icon from "@/components/Icon.astro";
 ---
 
 <Root bodyClass="is-home background-shift">
-  <Navibar classes="fold-shadow" />
-  <div class="navibar-spacer"></div>
-  <div
-    id="main-content"
-    class="section section_padding_xl fold-shadow-top type"
+  <Header classes="fold-shadow" />
+  <div class="header-spacer"></div>
+  <main
+    id="main"
+    class="section section_padding_xl fold-shadow-top"
     tabindex="-1"
   >
     <div class="section__container text-align-center">
@@ -34,8 +34,8 @@ import Icon from "@/components/Icon.astro";
         <CodeBlock icon="terminal" inline="npm install vrembem" />
       </div>
     </div>
-  </div>
-  <div class="section">
+  </main>
+  <div class="section section_padding_sm">
     <div class="section__container">
       <div class="grid sm:grid_cols_2 lg:grid_cols_3">
         <div class="background border-radius-lg padding-xl spacing-sm">
@@ -89,7 +89,7 @@ import Icon from "@/components/Icon.astro";
       </div>
     </div>
   </div>
-  <div class="section">
+  <div class="section section_padding_sm">
     <div class="section__container">
       <Footer />
     </div>

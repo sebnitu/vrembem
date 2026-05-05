@@ -32,7 +32,7 @@ function build(headings) {
   <h2 class="sr-only">On this page</h2>
   <ul id="on-this-page-menu" class={`menu menu_minimal ${menuClass}`.trim()}>
     <li>
-      <a href="#main-content" class="menu__action" data-scroll-to-top="">
+      <a href="#main" class="menu__action" data-scroll-to-top="">
         <strong>On this page</strong>
       </a>
     </li>
@@ -40,7 +40,7 @@ function build(headings) {
     {filteredHeadings.map((item) => <OnThisPageList {item} />)}
     <li class="menu__sep slide-up scroll-spy"></li>
     <li class="menu__item slide-up scroll-spy">
-      <a href="#main-content" class="menu__action" data-scroll-to-top="">
+      <a href="#main" class="menu__action" data-scroll-to-top="">
         Back to top
       </a>
     </li>

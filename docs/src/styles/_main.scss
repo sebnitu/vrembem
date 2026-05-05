@@ -1,0 +1,126 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "@vrembem/core/palette";
+
+:root {
+  @include core.media-min("sidebar") {
+    @include tokens.override("main", "content-padding-x", 4em);
+    @include tokens.override("main", "content-padding-y", 2em);
+  }
+}
+
+.main {
+  scroll-margin-top: calc(tokens.get("layout", "header-height") + calc(tokens.get("main", "content-padding-y")));
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - (tokens.get("layout", "header-height")));
+  outline: none;
+
+  * {
+    scroll-margin-top: inherit;
+  }
+}
+
+.main__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex: 1 1 auto;
+  place-items: start center;
+
+  @include core.media-min("aside") {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.main__aside {
+  // Prevents flash of unstyled content on mobile
+  visibility: hidden;
+
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
+
+  .drawer__container {
+    padding: tokens.get("layout", "padding");
+  }
+}
+
+@include core.media-min("aside") {
+  .main__aside {
+    position: sticky;
+    z-index: 1;
+    top: tokens.get("layout", "header-height");
+    overflow: auto;
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    width: tokens.get("main", "aside-width");
+    max-width: unset;
+    max-height: calc(100vh - tokens.get("layout", "header-height"));
+    visibility: visible;
+
+    .drawer__dialog {
+      position: static;
+      inset: unset;
+      background-color: transparent;
+    }
+
+    .drawer__container {
+      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding");
+    }
+  }
+}
+
+.main__content,
+.main__prepend,
+.main__append {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.main__content {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+}
+
+.main__footer {
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+  background: tokens.get("background-shift");
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: 2rem;
+    background: linear-gradient(178deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+  }
+
+  @include core.media-min("sidebar") {
+    background: transparent;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  @include core.media-min("aside") {
+    padding: 0;
+
+    .footer__copy {
+      max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+      padding: tokens.get("main", "content-padding-y") 0 tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+    }
+
+    .footer__logo {
+      width: tokens.get("main", "aside-width");
+      padding: tokens.get("main", "content-padding-y") tokens.get("main", "aside-padding");
+    }
+  }
+}

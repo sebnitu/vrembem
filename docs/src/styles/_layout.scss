@@ -2,74 +2,85 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+:root {
+  @include core.media-min("sidebar") {
+    @include tokens.override("layout", "padding", 1.5em);
+  }
+}
+
 .layout {
-  position: relative;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 0 tokens.get("layout", "padding");
-
-  @include core.media-min("xs") {
-    @include tokens.override("layout", "content-padding-x", 1rem);
-    @include tokens.override("layout", "content-padding-y", 1rem);
-  }
-
-  @include core.media-min("sm") {
-    @include tokens.override("layout", "content-padding-x", 3rem);
-    @include tokens.override("layout", "content-padding-y", 2rem);
-  }
+  max-width: tokens.get("layout", "width");
+  margin: auto;
 
   @include core.media-min("sidebar") {
-    @include tokens.override("layout", "content-padding-x", 4rem);
-    @include tokens.override("layout", "content-padding-y", 3rem);
-    @include tokens.override("layout", "padding", 1.5rem);
-
-    &.has-sidebar .layout__main {
-      padding-left: tokens.get("layout", "sidebar-width");
-    }
-
-    &.has-aside .layout__main {
-      padding-right: tokens.get("form-control-size-calc");
-    }
-  }
-
-  @include core.media-min("aside") {
-    &.has-aside .layout__main {
-      padding-right: tokens.get("layout", "aside-width");
-    }
+    padding-top: tokens.get("layout", "header-height");
   }
 }
 
 .layout__main {
   position: relative;
-  width: 100%;
-  max-width: tokens.get("layout", "width");
-  margin: auto;
-  outline: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: calc(100vh - tokens.get("layout", "header-height"));
+}
 
-  @include core.media-min("sidebar") {
-    padding-top: tokens.get("layout", "navibar-height");
+.layout__sidebar {
+  // Prevents flash of unstyled content on mobile
+  visibility: hidden;
 
-    &::before {
-      content: "";
-      position: fixed;
-      z-index: 4;
-      top: 0;
-      width: 100%;
-      height: tokens.get("layout", "navibar-height");
-      background-color: tokens.get("background-glass");
-      backdrop-filter: blur(8px);
-    }
+  .drawer__dialog {
+    background-color: tokens.get("background-shift");
+    outline: none;
+  }
+
+  .drawer__container {
+    padding: tokens.get("layout", "padding");
   }
 }
 
-.layout__container {
-  width: 100%;
-  max-width: calc(tokens.get("layout", "content-width"));
-  margin: auto;
-  padding: tokens.get("layout", "content-padding-y") tokens.get("layout", "content-padding-x") 0;
+@include core.media-min("sidebar") {
+  .layout__sidebar {
+    position: sticky;
+    z-index: 1;
+    top: tokens.get("layout", "header-height");
+    overflow: auto;
+    flex: 0 0 auto;
+    width: tokens.get("layout", "sidebar-width");
+    max-height: calc(100vh - tokens.get("layout", "header-height"));
+    visibility: visible;
 
-  > * + * {
-    margin-top: calc(tokens.get("spacing") * 12) !important;
+    // Styles for infinite background
+    &::before {
+      content: "";
+      position: fixed;
+      z-index: -2;
+      inset: 0 auto 0 0;
+      box-sizing: content-box;
+      width: tokens.get("layout", "sidebar-width");
+      padding-left: max(0px, calc((100% - tokens.get("layout", "width")) / 2));
+      background-color: tokens.get("background-shift");
+    }
+
+    // Styles for fold shadow
+    &::after {
+      pointer-events: none;
+      content: "";
+      position: fixed;
+      z-index: -1;
+      inset: 0 auto 0 calc(max(0px, calc((100% - tokens.get("layout", "width")) / 2)) + (tokens.get("layout", "sidebar-width") - 2rem));
+      box-sizing: content-box;
+      width: 2rem;
+      height: 100%;
+      background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+    }
+
+    .drawer__dialog {
+      background-color: transparent;
+    }
+
+    .drawer__container {
+      padding: tokens.get("focus-ring-width") tokens.get("layout", "padding") tokens.get("layout", "padding");
+    }
   }
 }

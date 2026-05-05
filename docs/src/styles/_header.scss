@@ -1,0 +1,73 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+// TODO: Would be nice to be able to set breakpoint based tokens
+:root {
+  @include core.media-min("sidebar") {
+    @include tokens.override("layout", "header-height", 90px);
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+
+  @include core.media-min("sidebar") {
+    position: fixed;
+  }
+}
+
+.header__container {
+  display: flex;
+  width: 100%;
+  max-width: tokens.get("layout", "width");
+  margin: auto;
+}
+
+.header__title,
+.header__menu {
+  display: flex;
+  align-items: center;
+  padding: tokens.get("layout", "padding");
+}
+
+.header__title {
+  position: relative;
+  width: tokens.get("layout", "sidebar-width");
+}
+
+.header__menu {
+  flex-grow: 1;
+  justify-content: flex-end;
+  background-color: tokens.get("background-glass");
+  backdrop-filter: blur(8px);
+
+  .menu__action {
+    justify-content: flex-start;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
+    &.is-active {
+      text-decoration: none;
+    }
+  }
+}
+
+.header-spacer {
+  height: tokens.get("layout", "header-height");
+}
+
+.is-home {
+  .header {
+    position: fixed;
+    background-color: tokens.get("background-glass");
+    backdrop-filter: blur(8px);
+  }
+
+  .header__menu {
+    background-color: transparent;
+    backdrop-filter: unset;
+  }
+}

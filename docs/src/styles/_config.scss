@@ -38,16 +38,20 @@
 @include tokens.set(
   "layout",
   (
-    "width": 84rem,
-    "padding": 1rem,
-    "sidebar-width": 16rem,
-    "aside-width": 12rem,
-    "content-width": 50rem,
-    "content-padding-x": 0,
-    "content-padding-y": 0,
-    "navibar-height": 5.25rem,
-    "toolbar-height": 4.75rem,
-    "footer-height": 8rem
+    "width": 80em,
+    "padding": 1em,
+    "sidebar-width": 18em,
+    "header-height": 74px
+  )
+);
+@include tokens.set(
+  "main",
+  (
+    "content-width": 42em,
+    "content-padding-x": 1.5em,
+    "content-padding-y": 1.5em,
+    "aside-width": 14em,
+    "aside-padding": 1em
   )
 );
 
