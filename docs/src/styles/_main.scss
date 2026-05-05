@@ -1,16 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-@include tokens.set(
-  "main",
-  (
-    "content-width": 42em,
-    "content-padding-x": 4em,
-    "content-padding-y": 2em,
-    "aside-width": 14em,
-    "aside-padding": 1em
-  )
-);
 
 .main {
   display: flex;
@@ -71,5 +61,35 @@
       inset: unset;
       background-color: transparent;
     }
+  }
+}
+
+.main {
+  scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 2rem);
+
+  @include core.media-min("sidebar") {
+    scroll-margin-top: calc(tokens.get("layout", "header-height") + 2rem);
+  }
+
+  * {
+    scroll-margin-top: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    outline: none;
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1.25em;
   }
 }

@@ -1,0 +1,18 @@
+@use "@vrembem/core/tokens";
+
+.skip-link {
+  position: absolute;
+  z-index: 100;
+  top: -100%;
+  width: calc(100% - 3em);
+  margin-right: 1em;
+  opacity: 0;
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration");
+  transition-property: top, opacity;
+
+  &:focus {
+    top: calc(calc(tokens.get("layout", "header-height") - tokens.get("form-control-size-calc")) / 2);
+    opacity: 1;
+  }
+}

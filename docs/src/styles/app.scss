@@ -11,15 +11,16 @@
 @forward "vrembem/components";
 @forward "vrembem/utilities";
 
-// Miscellaneous global styles
-@forward "./global";
+@layer base {
+  @include meta.load-css("./global");
+}
 
 @layer components {
   // Layout
-  @include meta.load-css("./layout");
-  @include meta.load-css("./main");
   @include meta.load-css("./header");
   @include meta.load-css("./toolbar");
+  @include meta.load-css("./layout");
+  @include meta.load-css("./main");
   @include meta.load-css("./brand");
 
   // Components
@@ -29,9 +30,7 @@
   @include meta.load-css("./code-block");
   @include meta.load-css("./code-example");
   @include meta.load-css("./compare");
-  @include meta.load-css("./content");
   @include meta.load-css("./doc-block");
-  @include meta.load-css("./floats");
   @include meta.load-css("./fold-shadow");
   @include meta.load-css("./footer");
   @include meta.load-css("./heading-anchor");
@@ -44,11 +43,16 @@
   @include meta.load-css("./popover_copy");
   @include meta.load-css("./reference-bar");
   @include meta.load-css("./reference-table");
+  @include meta.load-css("./skip-link");
   @include meta.load-css("./swatch");
   @include meta.load-css("./tabs");
   @include meta.load-css("./theme-icons");
   @include meta.load-css("./tictactoe");
   @include meta.load-css("./toggle");
+}
+
+@layer utilities {
+  @include meta.load-css("./utilities");
 }
 
 // Important!

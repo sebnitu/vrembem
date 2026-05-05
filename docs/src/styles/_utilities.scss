@@ -1,0 +1,32 @@
+@use "@vrembem/core/tokens";
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.icon_inline {
+  vertical-align: text-bottom;
+}
+
+.slide-up {
+  position: relative;
+  transform: translateY(1rem);
+  opacity: 0;
+  transition: tokens.get("transition");
+  transition-property: transform, opacity;
+
+  &.is-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

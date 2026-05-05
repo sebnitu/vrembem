@@ -35,6 +35,24 @@
     "line-height": 1.7778
   )
 );
+@include tokens.set(
+  "layout",
+  (
+    "width": 80em,
+    "padding": 1em,
+    "sidebar-width": 18em
+  )
+);
+@include tokens.set(
+  "main",
+  (
+    "content-width": 42em,
+    "content-padding-x": 4em,
+    "content-padding-y": 2em,
+    "aside-width": 14em,
+    "aside-padding": 1em
+  )
+);
 
 // Set custom themes
 @include theme.set(
