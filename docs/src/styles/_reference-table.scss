@@ -21,17 +21,13 @@
   }
 
   tr {
-    scroll-margin-top: calc(tokens.get("layout", "toolbar-height") + 81px);
+    scroll-margin-top: calc(tokens.get("layout", "header-height") + 82px);
     position: relative;
     border-top: 1px solid tokens.get("border-color");
     border-radius: tokens.get("border-radius");
     box-shadow:
       0 0 0 0 palette.get("primary"),
       0 0 0 0 palette.get("primary", $a: 20%);
-
-    @include core.media-min("sidebar") {
-      scroll-margin-top: calc(tokens.get("layout", "header-height") + 82px);
-    }
 
     &.is-active {
       z-index: 1;
@@ -105,11 +101,7 @@
     overflow: visible;
 
     thead {
-      top: calc(tokens.get("layout", "toolbar-height") - 1px);
-
-      @include core.media-min("sidebar") {
-        top: calc(tokens.get("layout", "header-height") - 1px);
-      }
+      top: calc(tokens.get("layout", "header-height") - 1px);
     }
   }
 }
@@ -126,13 +118,9 @@
 .reference-table__header {
   position: sticky;
   z-index: 2;
-  top: calc(tokens.get("layout", "toolbar-height") - 1px);
+  top: calc(tokens.get("layout", "header-height") - 1px);
   padding: tokens.get("spacing-md") 0;
   background: tokens.get("background");
-
-  @include core.media-min("sidebar") {
-    top: tokens.get("layout", "header-height");
-  }
 
   .input-group {
     position: relative;

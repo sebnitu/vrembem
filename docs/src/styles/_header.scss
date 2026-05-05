@@ -1,10 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-// Define the header height
-// TODO: Would be nice to do this in the initial tokens.set
-@include tokens.set("layout", "header-height", 74px);
-
+// TODO: Would be nice to be able to set breakpoint based tokens
 :root {
   @include core.media-min("sidebar") {
     @include tokens.override("layout", "header-height", 90px);

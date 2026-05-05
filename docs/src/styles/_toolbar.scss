@@ -1,9 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-// Define the toolbar height
-@include tokens.set("layout", "toolbar-height", 74px);
-
 .toolbar {
   position: sticky;
   z-index: 4;
