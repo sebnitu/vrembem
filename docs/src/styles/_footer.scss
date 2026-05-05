@@ -8,63 +8,16 @@
   grid-template-columns: 1fr auto;
   place-items: start center;
   color: tokens.get("foreground-subtle");
-  background: tokens.get("background-shift");
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    width: 100%;
-    height: 2rem;
-    background: linear-gradient(178deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
-  }
-
-  @include core.media-min("sidebar") {
-    background: transparent;
-
-    &::before {
-      content: none;
-    }
-  }
 }
 
 .footer__copy {
   width: 100%;
-  padding: 3em 0 3em tokens.get("main", "content-padding-x");
-
-  @include core.media-min("aside") {
-    max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
-  }
+  padding: 3em 0;
 }
 
 .footer__logo {
   display: flex;
   justify-content: center;
-  padding: 3em tokens.get("main", "content-padding-x") 3em 0;
+  padding: 3em 0;
   color: palette.get("primary");
-
-  @include core.media-min("aside") {
-    width: tokens.get("main", "aside-width");
-    padding: 3em tokens.get("main", "aside-padding");
-  }
-}
-
-.is-home {
-  .footer::before {
-    content: none;
-  }
-
-  .footer__copy,
-  .footer__logo {
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  .footer__copy {
-    max-width: unset;
-  }
-
-  .footer__logo {
-    width: unset;
-  }
 }

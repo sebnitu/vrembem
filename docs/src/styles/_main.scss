@@ -29,18 +29,6 @@
   }
 }
 
-.main__content {
-  display: flex;
-  grid-column: 1;
-  grid-row: 1;
-  flex-direction: column;
-  gap: 2em;
-  width: 100%;
-  min-width: 0;
-  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
-  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
-}
-
 .main__aside {
   // Prevents flash of unstyled content on mobile
   visibility: hidden;
@@ -81,9 +69,57 @@
   }
 }
 
+.main__content,
 .main__prepend,
 .main__append {
   display: flex;
   flex-direction: column;
   gap: 2em;
+}
+
+.main__content {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+}
+
+.main__footer {
+  background: tokens.get("background-shift");
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: 2rem;
+    background: linear-gradient(178deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+  }
+
+  @include core.media-min("sidebar") {
+    background: transparent;
+
+    &::before {
+      content: none;
+    }
+  }
+
+  .footer__copy {
+    padding: 3em 0 3em tokens.get("main", "content-padding-x");
+
+    @include core.media-min("aside") {
+      max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+    }
+  }
+
+  .footer__logo {
+    padding: 3em tokens.get("main", "content-padding-x") 3em 0;
+
+    @include core.media-min("aside") {
+      width: tokens.get("main", "aside-width");
+      padding: 3em tokens.get("main", "aside-padding");
+    }
+  }
 }
