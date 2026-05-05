@@ -5,11 +5,11 @@
 .footer {
   position: relative;
   display: grid;
-  text-align: center;
   grid-template-columns: 1fr;
   gap: tokens.get("layout", "padding");
   place-items: start center;
   color: tokens.get("foreground-subtle");
+  text-align: center;
 }
 
 .footer__copy {
@@ -24,8 +24,8 @@
 
 @include core.media-min("sm") {
   .footer {
-    text-align: left;
     grid-template-columns: 1fr auto;
     gap: 0;
+    text-align: left;
   }
 }

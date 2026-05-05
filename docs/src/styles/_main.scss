@@ -90,8 +90,8 @@
 }
 
 .main__footer {
-  background: tokens.get("background-shift");
   padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+  background: tokens.get("background-shift");
 
   &::before {
     content: "";
