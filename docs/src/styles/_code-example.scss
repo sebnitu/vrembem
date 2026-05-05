@@ -2,12 +2,6 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
-:root {
-  @include core.media-max("xs") {
-    @include tokens.set("code-example", "padding-x", tokens.get("main", "content-padding-x"));
-  }
-}
-
 .code-example {
   position: relative;
   overflow: hidden;
@@ -20,7 +14,7 @@
   transition-property: border-color, box-shadow;
 
   @include core.media-max("xs") {
-    margin: 2rem calc(tokens.get("code-example", "padding-x") * -1) !important;
+    margin: 2rem calc(tokens.get("main", "content-padding-x") * -1) !important;
     border-right: none;
     border-left: none;
     border-radius: 0;
@@ -130,7 +124,7 @@
   }
 
   @include core.media-max("xs") {
-    padding-left: tokens.get("code-example", "padding-x");
+    padding-left: tokens.get("main", "content-padding-x");
   }
 }
 
