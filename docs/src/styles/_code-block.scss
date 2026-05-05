@@ -100,13 +100,5 @@
       border: tokens.get("border");
       border-radius: tokens.get("border-radius");
     }
-
-    .code-block__icon {
-      left: 1rem;
-    }
-
-    .code-block__copy-button {
-      right: 1rem;
-    }
   }
 }
