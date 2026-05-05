@@ -18,15 +18,15 @@
 @layer components {
   // Layout
   @include meta.load-css("./header");
-  @include meta.load-css("./footer");
   @include meta.load-css("./toolbar");
+  @include meta.load-css("./footer");
   @include meta.load-css("./layout");
   @include meta.load-css("./main");
-  @include meta.load-css("./brand");
 
   // Components
   @include meta.load-css("./badge");
   @include meta.load-css("./box");
+  @include meta.load-css("./brand");
   @include meta.load-css("./card_reference");
   @include meta.load-css("./code-block");
   @include meta.load-css("./code-example");
