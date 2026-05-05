@@ -2,18 +2,25 @@
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
 
+:root {
+  @include core.media-max("xs") {
+    @include tokens.set("code-example", "padding-x", tokens.get("main", "content-padding-x"));
+  }
+}
+
 .code-example {
   position: relative;
   overflow: hidden;
   border: tokens.get("border");
   border-radius: tokens.get("border-radius");
+  font-size: tokens.get("font-size");
   line-height: tokens.get("line-height");
   transition-timing-function: tokens.get("transition-timing-function");
   transition-duration: tokens.get("transition-duration-short");
   transition-property: border-color, box-shadow;
 
   @include core.media-max("xs") {
-    margin: 2rem calc(tokens.get("layout", "padding") * -1) !important;
+    margin: 2rem calc(tokens.get("code-example", "padding-x") * -1) !important;
     border-right: none;
     border-left: none;
     border-radius: 0;
@@ -30,6 +37,10 @@
   [role="tablist"] {
     padding: 0 3.5em 0 0;
     border-bottom: tokens.get("border");
+
+    @include core.media-max("xs") {
+      padding-left: 0.5em;
+    }
   }
 
   [role="tab"]::after {
@@ -41,7 +52,9 @@
   }
 
   .code-block__copy-button {
-    top: -2.5em;
+    // A bit of a magic number currently. This places the copy button centered
+    // in the toolbar element.
+    top: -2.35em;
     right: 0.5em;
     background-color: transparent;
 
@@ -114,6 +127,10 @@
 
   [data-reset] {
     margin: -2px 0;
+  }
+
+  @include core.media-max("xs") {
+    padding-left: tokens.get("code-example", "padding-x");
   }
 }
 

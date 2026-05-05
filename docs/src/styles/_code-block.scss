@@ -20,7 +20,9 @@
 
   @include core.media-max("xs") {
     .pre {
-      margin: auto calc(tokens.get("layout", "padding") * -1);
+      margin: auto calc(tokens.get("main", "content-padding-x") * -1);
+      padding-right: calc(tokens.get("main", "content-padding-x") + 2.5em);
+      padding-left: tokens.get("main", "content-padding-x");
       border-right: none;
       border-left: none;
       border-radius: 0;
@@ -60,7 +62,7 @@
   }
 
   @include core.media-max("xs") {
-    right: 0;
+    right: -1em;
   }
 }
 
