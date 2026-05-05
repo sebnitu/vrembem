@@ -126,7 +126,6 @@
 .reference-table__header {
   position: sticky;
   z-index: 2;
-
   top: calc(tokens.get("layout", "toolbar-height") - 1px);
   padding: tokens.get("spacing-md") 0;
   background: tokens.get("background");
