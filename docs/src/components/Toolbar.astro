@@ -3,8 +3,8 @@ import Icon from "@/components/Icon.astro";
 
 interface Props {
   layout: {
-    hasSidebar: boolean;
     hasAside: boolean;
+    hasSidebar: string | undefined;
   };
 }
 
@@ -21,7 +21,7 @@ const { layout } = Astro.props;
             class="button padding-left-sm float-left"
           >
             <Icon name="package" />
-            <span>Packages</span>
+            <span class="text-capitalize">{layout.hasSidebar}</span>
           </button>
         )}
         {layout.hasAside && (
