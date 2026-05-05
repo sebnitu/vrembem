@@ -95,6 +95,7 @@
 
 .main__footer {
   background: tokens.get("background-shift");
+  padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
 
   &::before {
     content: "";
@@ -113,20 +114,17 @@
     }
   }
 
-  .footer__copy {
-    padding: 3em 0 3em tokens.get("main", "content-padding-x");
+  @include core.media-min("aside") {
+    padding: 0;
 
-    @include core.media-min("aside") {
+    .footer__copy {
       max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
+      padding: tokens.get("main", "content-padding-y") 0 tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
     }
-  }
 
-  .footer__logo {
-    padding: 3em tokens.get("main", "content-padding-x") 3em 0;
-
-    @include core.media-min("aside") {
+    .footer__logo {
       width: tokens.get("main", "aside-width");
-      padding: 3em tokens.get("main", "aside-padding");
+      padding: tokens.get("main", "content-padding-y") tokens.get("main", "aside-padding");
     }
   }
 }

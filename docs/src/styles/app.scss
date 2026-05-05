@@ -18,6 +18,7 @@
 @layer components {
   // Layout
   @include meta.load-css("./header");
+  @include meta.load-css("./footer");
   @include meta.load-css("./toolbar");
   @include meta.load-css("./layout");
   @include meta.load-css("./main");
@@ -32,7 +33,6 @@
   @include meta.load-css("./compare");
   @include meta.load-css("./doc-block");
   @include meta.load-css("./fold-shadow");
-  @include meta.load-css("./footer");
   @include meta.load-css("./heading-anchor");
   @include meta.load-css("./icon_external");
   @include meta.load-css("./layout-demo");

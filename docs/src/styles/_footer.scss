@@ -5,19 +5,27 @@
 .footer {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto;
+  text-align: center;
+  grid-template-columns: 1fr;
+  gap: tokens.get("layout", "padding");
   place-items: start center;
   color: tokens.get("foreground-subtle");
 }
 
 .footer__copy {
   width: 100%;
-  padding: 3em 0;
 }
 
 .footer__logo {
   display: flex;
   justify-content: center;
-  padding: 3em 0;
   color: palette.get("primary");
+}
+
+@include core.media-min("sm") {
+  .footer {
+    text-align: left;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+  }
 }

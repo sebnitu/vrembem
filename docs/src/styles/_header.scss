@@ -59,11 +59,7 @@
 }
 
 .header-spacer {
-  height: 0;
-
-  @include core.media-min("sidebar") {
-    height: tokens.get("layout", "header-height");
-  }
+  height: tokens.get("layout", "header-height");
 }
 
 .is-home {
