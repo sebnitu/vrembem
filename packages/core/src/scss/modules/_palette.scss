@@ -136,6 +136,7 @@
 
 /// Setup a config watcher for when the palette property changes.
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
+@include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
 // Set the initial CSS variables for the palette map
 @if config.get("palette") {
