@@ -4,5 +4,4 @@
 
 @layer tokens {
   @include tokens.output("input");
-  @include theme.output("input");
 }

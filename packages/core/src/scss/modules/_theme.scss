@@ -331,3 +331,6 @@ $-theme-keys: "light", "dark";
     }
   }
 }
+
+// Add tokens event listener that runs whenever tokens are output
+@include tokens.on("output", "output-theme", meta.get-mixin("output"));
