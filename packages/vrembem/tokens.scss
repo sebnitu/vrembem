@@ -1,9 +1,6 @@
 @use "@vrembem/core";
 
 @layer tokens {
-  :root {
-    @include core.tokens-output;
-  }
-
+  @include core.tokens-output;
   @include core.theme-output;
 }

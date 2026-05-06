@@ -32,9 +32,7 @@ Alternatively, custom properties can also be output manually using the `core/tok
 // Wrap these in the tokens layer
 @layer tokens {
   // Output all registered CSS variables
-  :root {
-    @include tokens.output;
-  }
+  @include tokens.output;
 
   // Output all registered theme CSS variables
   @include theme.output;

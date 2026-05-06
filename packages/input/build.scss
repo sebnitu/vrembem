@@ -3,9 +3,6 @@
 @use "@vrembem/core/theme";
 
 @layer tokens {
-  :root {
-    @include tokens.output("input");
-  }
-
+  @include tokens.output("input");
   @include theme.output("input");
 }

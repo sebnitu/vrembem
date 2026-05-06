@@ -479,8 +479,26 @@ $-tokens: ();
   }
 }
 
+/// Output all custom properties of a provided component.
+///
+/// @param {string} $component
+///   The component to output custom properties for.
+///
+@mixin output-component($component) {
+  @if -component-exists($component, $required: false) {
+    // Get the component's property map
+    $property-map: map.get($-tokens, $component);
+
+    // Loop through the property map
+    @each $prop, $value in $property-map {
+      @include define($component, $prop, $value);
+    }
+  }
+}
+
 /// Output all custom properties of a provided component. Or output all custom
-/// properties from all components by passing "*" as the argument.
+/// properties from all components by passing "*" as the argument. Wraps the
+/// output in the required :root selector.
 ///
 /// @param {string} $component ("*")
 ///   The component to output all custom properties from. If no component is
@@ -497,9 +515,7 @@ $-tokens: ();
 ///   );
 ///
 ///   // SCSS input
-///   :root {
-///     @include tokens.output("button");
-///   }
+///   @include tokens.output("button");
 ///
 ///   // CSS output
 ///   :root {
@@ -509,18 +525,14 @@ $-tokens: ();
 ///   }
 ///
 @mixin output($component: "*") {
-  @if $component == "*" {
-    // Call output() for every component in $-tokens
-    @each $component in map.keys($-tokens) {
-      @include output($component);
-    }
-  } @else if -component-exists($component, $required: false) {
-    // Get the component's property map
-    $property-map: map.get($-tokens, $component);
-
-    // Loop through the property map
-    @each $prop, $value in $property-map {
-      @include define($component, $prop, $value);
+  :root {
+    @if $component == "*" {
+      // Call output() for every component in $-tokens
+      @each $component in map.keys($-tokens) {
+        @include output-component($component);
+      }
+    } @else {
+      @include output-component($component);
     }
   }
 }
