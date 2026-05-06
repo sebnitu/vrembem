@@ -3,19 +3,11 @@
 @use "sass:meta";
 @use "../utilities/args-to-map" as *;
 @use "../utilities/empty-map" as *;
+@use "../utilities/li" as *;
 @use "../utilities/remove-nth" as *;
 @use "./config";
 @use "./tokens";
 @use "./palette";
-
-// Add to custom properties map for output as a config output
-@include tokens.set(
-  "core",
-  "theme-prefix",
-  (
-    "config": "theme-prefix"
-  )
-);
 
 /// Used to track theme keys that get added to the `tokens.$-css-vars` map.
 /// @type list
@@ -59,7 +51,7 @@ $-theme-keys: "light", "dark";
     @error "Theme does not exist: #{$theme}";
   }
 
-  $prefix: config.get("theme-prefix");
+  $prefix: config.get(li("theme-prefix"), "theme");
 
   @if $prefix and $prefix != "" {
     $prefix: "#{$prefix}-";
@@ -102,7 +94,7 @@ $-theme-keys: "light", "dark";
 @mixin set($theme, $component, $prop: null, $value: null) {
   // Set theme to default if the value "default" is passed
   @if $theme == "default" {
-    $theme: config.get("theme-default");
+    $theme: config.get(li("theme-default"), "light");
   }
 
   // Add the provided theme to the theme key's list
@@ -268,8 +260,8 @@ $-theme-keys: "light", "dark";
       $component-theme-map: map.get($component-map, $theme);
 
       // Merge the values of the default theme with all other themes
-      @if $theme != config.get("theme-default") {
-        $component-theme-map: map.merge(map.get($component-map, config.get("theme-default")), $component-theme-map);
+      @if $theme != config.get(li("theme-default"), "light") {
+        $component-theme-map: map.merge(map.get($component-map, config.get(li("theme-default"), "light")), $component-theme-map);
       }
 
       // Get a reference of the color scheme property
@@ -311,18 +303,21 @@ $-theme-keys: "light", "dark";
   // selector and auto theme. This should come before the theme class output.
   :root,
   #{class("auto")} {
+    // Get the default theme
+    $theme: config.get(li("theme-default"), "light");
+
     // Output the default theme
-    @include output-theme(config.get("theme-default"), $component);
+    @include output-theme($theme, $component);
 
     // If the default them is not light mode, output the prefers light media query
-    @if config.get("theme-default") != "light" {
+    @if $theme != "light" {
       @media (prefers-color-scheme: light) {
         @include output-theme("light", $component);
       }
     }
 
     // If the default them is not dark mode, output the prefers dark media query
-    @if config.get("theme-default") != "dark" {
+    @if $theme != "dark" {
       @media (prefers-color-scheme: dark) {
         @include output-theme("dark", $component);
       }

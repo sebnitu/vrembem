@@ -1,5 +1,16 @@
-@use "../modules/theme";
+@use "../modules/tokens";
 @use "../modules/palette";
+@use "../modules/theme";
+
+// This tells tokens to fetch the value from the config module when the tokens
+// are output. This allows theme-prefix to be modified before output.
+@include tokens.set(
+  "core",
+  "theme-prefix",
+  (
+    "config": "theme-prefix"
+  )
+);
 
 // Initialize the core light theme.
 // prettier-ignore
