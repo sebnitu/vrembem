@@ -2,12 +2,11 @@
 @use "../modules/palette";
 @include tokens.set(
   "core",
-  "focus-ring",
   (
-    "width": 3px,
-    "style": solid,
-    "offset": 0,
-    "color": palette.get("primary"),
-    "opacity": 40%
+    "focus-ring-width": 3px,
+    "focus-ring-style": solid,
+    "focus-ring-offset": 0,
+    "focus-ring-color": palette.get("primary"),
+    "focus-ring-opacity": 40%
   )
 );
