@@ -103,6 +103,16 @@ $-flags: ("variants");
 ///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
+  // Initialize the fallback value
+  $fallback: null;
+
+  // If $keys shape is "($list...), $fallback" extract parts before processing
+  @if list.length($keys) == 2 and meta.type-of(list.nth($keys, 1)) == "list" {
+    $fallback: list.nth($keys, 2);
+    $keys: list.nth($keys, 1);
+  }
+
+  // Check if $keys value maps to something stored in config, or if it's a flag
   @if map.has-key($-config, $keys...) or -has-flag($keys...) {
     // Get the initial result without the flag in keys
     $result: map.get($-config, -remove-flag($keys...)...);
@@ -142,7 +152,12 @@ $-flags: ("variants");
     // Return the final result
     @return $result;
   } @else {
-    @error "Config option has not been set: #{$keys}";
+    // Return the fallback if provided, otherwise throw
+    @if $fallback {
+      @return $fallback;
+    } @else {
+      @error "Config option has not been set: #{$keys}";
+    }
   }
 }
 
