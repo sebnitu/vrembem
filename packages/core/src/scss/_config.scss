@@ -42,7 +42,7 @@ $default: (
 
   // Number of decimal places to round colors converted to oklch color space.
   // @type number
-  "palette-round-decimal": 6,
+  "palette-round-decimal": 4,
 
   // The key/value pairs of palette variants to create CSS variables for where 
   // key is used in the token variant name (--vb-primary-[key]) and value is 
