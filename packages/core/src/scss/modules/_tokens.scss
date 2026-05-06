@@ -2,9 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../library/media-min" as *;
-@use "../utilities/args-to-map" as *;
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
+@use "../utilities/li" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
@@ -13,19 +13,7 @@
 /// stored under component keys with maps of their custom property.
 /// @type map
 /// @access private
-$-tokens: (
-  "core": (
-    "prefix": (
-      "config": (
-        "prefix-tokens",
-        "default"
-      )
-    ),
-    "breakpoint": (
-      "config": "breakpoints"
-    )
-  )
-);
+$-tokens: ();
 
 /// Function to check whether a component has been registered in the custom
 /// properties map. Will throw an error if the component was not found and is
@@ -72,7 +60,7 @@ $-tokens: (
 /// @access private
 ///
 @function -prefix($component) {
-  $prefix: config.get("prefix-tokens");
+  $prefix: config.get(li("prefix-tokens"), "");
 
   @if meta.type-of($prefix) == "map" {
     // Get the prefix if a custom component prefix is defined
@@ -275,7 +263,7 @@ $-tokens: (
       $value: map.get($-tokens, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, config.get("theme-default"), $prop) {
+      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, config.get(li("theme-default"), "light"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
@@ -387,11 +375,26 @@ $-tokens: (
 
   // Handle this as a normal tokens.set call
   @else {
-    // Build the component map using the prop and value arguments
+    // Initialize the component map
     $component-map: (
-      $component: args-to-map($prop, $value)
+      $component: (
+          $prop: $value
+        )
     );
-    $-tokens: map.deep-merge($-tokens, $component-map) !global;
+
+    // If the provided prop is a map, set it directly and ignore $value
+    @if meta.type-of($prop) == "map" {
+      $component-map: (
+        $component: $prop
+      );
+    }
+
+    // Merge the resulting $component-map into the tokens map
+    @if $deep != true {
+      $-tokens: map.merge($-tokens, $component-map) !global;
+    } @else {
+      $-tokens: map.deep-merge($-tokens, $component-map) !global;
+    }
   }
 }
 
@@ -438,7 +441,7 @@ $-tokens: (
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
-@mixin override($component, $prop, $value: null, $breakpoints: config.get("breakpoints")) {
+@mixin override($component, $prop, $value: null, $breakpoints: config.get(li("breakpoints"), empty-map())) {
   @if -component-exists($component) {
     @if meta.type-of($prop) == "map" {
       @each $key, $value in $prop {
