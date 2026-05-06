@@ -1,6 +1,8 @@
 @use "sass:map";
 @use "sass:meta";
 @use "sass:color";
+@use "../utilities/empty-map" as *;
+@use "../utilities/li" as *;
 @use "../utilities/round-to" as *;
 @use "./config";
 @use "./tokens";
@@ -22,17 +24,17 @@
   @include tokens.set("palette", "white", oklch(100% 0 0));
 
   // Loop through the seeds and set the variables for each item in $seeds
-  @each $name, $value in config.get("palette") {
+  @each $name, $value in config.get(li("palette"), empty-map()) {
     // Set the raw value
     @include tokens.set("palette", "#{$name}", $value);
 
     // Set the lightness, chroma and hue parts
-    @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get("palette-round-decimal")));
-    @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get("palette-round-decimal")));
-    @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get("palette-round-decimal")));
+    @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get(li("palette-round-decimal"), 4)));
+    @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get(li("palette-round-decimal"), 4)));
+    @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get(li("palette-round-decimal"), 4)));
 
     // Palette variants
-    @each $key, $args in config.get("palette-variants") {
+    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
       @include tokens.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
     }
   }
@@ -139,6 +141,6 @@
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
 
 // Set the initial CSS variables for the palette map
-@if config.get("palette") {
+@if config.get(li("palette"), "") != "" {
   @include -rebuild-palette("initial");
 }
