@@ -511,7 +511,7 @@ $-tokens: (
     @each $component in map.keys($-tokens) {
       @include output($component);
     }
-  } @else if -component-exists($component, false) {
+  } @else if -component-exists($component, $required: false) {
     // Get the component's property map
     $property-map: map.get($-tokens, $component);
 
