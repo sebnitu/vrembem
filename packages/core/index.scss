@@ -3,6 +3,8 @@
 @forward "./src/scss/modules/tokens" as tokens-*;
 @forward "./src/scss/modules/palette" as palette-*;
 @forward "./src/scss/modules/theme" as theme-*;
+@forward "./src/scss/tokens/prefix";
+@forward "./src/scss/tokens/breakpoint";
 @forward "./src/scss/tokens/themes";
 @forward "./src/scss/tokens/backdrop";
 @forward "./src/scss/tokens/base";
@@ -19,6 +21,7 @@
 @forward "./src/scss/utilities/escape-colon";
 @forward "./src/scss/utilities/filter-map";
 @forward "./src/scss/utilities/flatten-map";
+@forward "./src/scss/utilities/li";
 @forward "./src/scss/utilities/prefix-map";
 @forward "./src/scss/utilities/remove-nth";
 @forward "./src/scss/utilities/resolve-nth";
