@@ -40,6 +40,7 @@ $-flags: ("variants");
 ///   The updated configuration map.
 ///
 /// @access private
+///
 @function -maybe-set($map, $key, $value, $default) {
   @if not $default or not map.has-key($map, $key) {
     $map: map.set($map, $key, $value);
@@ -57,6 +58,7 @@ $-flags: ("variants");
 ///   The name of the action taking place, e.g.: "set", "remove", etc.
 ///
 /// @access private
+///
 @mixin -run-watchers($key, $action) {
   @if map.has-key($-watchers, $key) {
     $mixins: map.get($-watchers, $key);
@@ -75,6 +77,7 @@ $-flags: ("variants");
 /// @return {boolean}
 ///
 /// @access private
+///
 @function -has-flag($keys...) {
   @return list.index($-flags, list.nth($keys, -1)) != null;
 }
@@ -88,6 +91,7 @@ $-flags: ("variants");
 ///   The remaining keys list.
 ///
 /// @access private
+///
 @function -remove-flag($keys...) {
   // Only remove the flag if the keys don't point to a real value
   @if -has-flag($keys...) and not map.has-key($-config, $keys...) {

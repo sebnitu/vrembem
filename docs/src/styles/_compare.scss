@@ -1,11 +1,21 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 // Compare theme values
-@include theme.set("light", "compare", "background", palette.get("neutral", "75"));
-@include theme.set("dark", "compare", "background", palette.get("neutral", "700"));
+@include tokens.set(
+  "compare",
+  (
+    "light": (
+      "type": "theme",
+      "background": palette.get("neutral", "75")
+    ),
+    "dark": (
+      "type": "theme",
+      "background": palette.get("neutral", "700")
+    )
+  )
+);
 
 .compare {
   position: relative;
