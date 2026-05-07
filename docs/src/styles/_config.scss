@@ -5,7 +5,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 @use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 // Set config options
 @include config.set(
@@ -25,9 +24,27 @@
   )
 );
 
-// Set custom tokens
-@include tokens.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
-@include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 70%));
+// Set custom core tokens
+// prettier-ignore
+@include tokens.set(
+  "core", 
+  (
+    "font-family": ("Barlow", system-ui, ui-sans-serif, sans-serif),
+    "background-glass": oklch(from tokens.get("background") l c h / 70%),
+    "light": (
+      "type": "theme",
+      "fold-shadow-start": palette.get("neutral", $a: 8%),
+      "fold-shadow-end": palette.get("neutral", $a: 0%)
+    ),
+    "dark": (
+      "type": "theme",
+      "fold-shadow-start": palette.get("neutral", "950", $a: 10%),
+      "fold-shadow-end": palette.get("neutral", "950", $a: 0%)
+    )
+  )
+);
+
+// Set custom components tokens
 @include tokens.set(
   "content",
   (
@@ -70,24 +87,6 @@
     "aside-padding": 1em
   )
 );
-
-// Set custom themes
-@include theme.set(
-  "light",
-  (
-    "fold-shadow-start": palette.get("neutral", $a: 8%),
-    "fold-shadow-end": palette.get("neutral", $a: 0%)
-  )
-);
-@include theme.set(
-  "dark",
-  (
-    "fold-shadow-start": palette.get("neutral", "950", $a: 10%),
-    "fold-shadow-end": palette.get("neutral", "950", $a: 0%)
-  )
-);
-
-// Set Astro themes
 @include tokens.set(
   "astro",
   (
@@ -95,32 +94,26 @@
     "code-foreground": tokens.get("foreground-strong"),
     "code-color-text": tokens.get("foreground-strong"),
     "code-token-comment": tokens.get("foreground-subtle"),
-    "code-token-keyword": tokens.get("foreground-strong")
-  )
-);
-@include theme.set(
-  "light",
-  "astro",
-  (
-    "code-token-constant": #1b6bc6,
-    "code-token-string": #1b6bc6,
-    "code-token-parameter": #df7a32,
-    "code-token-function": #794bcf,
-    "code-token-string-expression": #309b4a,
-    "code-token-punctuation": #ce3b4a,
-    "code-token-link": #ce3b4a
-  )
-);
-@include theme.set(
-  "dark",
-  "astro",
-  (
-    "code-token-constant": #79b8ff,
-    "code-token-string": #79b8ff,
-    "code-token-parameter": #ffab70,
-    "code-token-function": #b392f0,
-    "code-token-string-expression": #85e89d,
-    "code-token-punctuation": #f97583,
-    "code-token-link": #f97583
+    "code-token-keyword": tokens.get("foreground-strong"),
+    "light": (
+      "type": "theme",
+      "code-token-constant": #1b6bc6,
+      "code-token-string": #1b6bc6,
+      "code-token-parameter": #df7a32,
+      "code-token-function": #794bcf,
+      "code-token-string-expression": #309b4a,
+      "code-token-punctuation": #ce3b4a,
+      "code-token-link": #ce3b4a
+    ),
+    "dark": (
+      "type": "theme",
+      "code-token-constant": #79b8ff,
+      "code-token-string": #79b8ff,
+      "code-token-parameter": #ffab70,
+      "code-token-function": #b392f0,
+      "code-token-string-expression": #85e89d,
+      "code-token-punctuation": #f97583,
+      "code-token-link": #f97583
+    )
   )
 );
