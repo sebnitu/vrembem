@@ -210,7 +210,7 @@ $-theme-keys: ();
 
 // Apply token hooks and event listeners
 // Add the theme type transformer
-@include tokens.add-transformer("theme", meta.get-function("-type-transform-hook"));
+@include tokens.add-hook("setter", "theme", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
 @include tokens.on("output", "output-theme-tokens", meta.get-mixin("output"));

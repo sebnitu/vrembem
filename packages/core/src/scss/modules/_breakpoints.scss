@@ -86,7 +86,7 @@
 
 // Apply token hooks and event listeners
 // Add the breakpoints type transformer
-@include tokens.add-transformer("breakpoints", meta.get-function("-type-transform-hook"));
+@include tokens.add-hook("setter", "breakpoints", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
 @include tokens.on("output", "output-breakpoint-tokens", meta.get-mixin("output"));

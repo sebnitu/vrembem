@@ -1,3 +1,5 @@
+@use "sass:list";
+@use "sass:map";
 @use "sass:meta";
 @use "sass:color";
 @use "../utilities/empty-map" as *;
@@ -92,13 +94,13 @@
 
   // Set color as the seed value if lightness or chroma are not provided
   @if not $l and not $c {
-    $color: tokens.get("palette", $name);
+    $color: tokens.reference("palette", $name);
   }
 
   // If the lightness is a string, try and return the stored token.
-  // E.g.: palette.get("primary", "400") => tokens.get("palette", "primary-400")
+  // E.g.: palette.get("primary", "400") => tokens.reference("palette", "primary-400")
   @if meta.type-of($l) == "string" {
-    $color: tokens.get("palette", "#{$name}-#{$l}");
+    $color: tokens.reference("palette", "#{$name}-#{$l}");
   }
 
   // If the color value was set, return it along with alpha channel if provided
@@ -117,21 +119,21 @@
   }
 
   @if not $l {
-    $l: tokens.get("palette", "#{$name}-l");
+    $l: tokens.reference("palette", "#{$name}-l");
   }
 
   @if not $c {
-    $c: tokens.get("palette", "#{$name}-c");
+    $c: tokens.reference("palette", "#{$name}-c");
   } @else if $c != 0 {
     // Adjust the chroma based on the seeded value
-    $c: calc(#{tokens.get("palette", "#{$name}-c")} * ($c / 100%));
+    $c: calc(#{tokens.reference("palette", "#{$name}-c")} * ($c / 100%));
   }
 
   // If an alpha channel is provided, return oklch with the alpha
   @if $a {
-    @return oklch($l $c tokens.get("palette", "#{$name}-h") / $a);
+    @return oklch($l $c tokens.reference("palette", "#{$name}-h") / $a);
   } @else {
-    @return oklch($l $c tokens.get("palette", "#{$name}-h"));
+    @return oklch($l $c tokens.reference("palette", "#{$name}-h"));
   }
 }
 
@@ -143,3 +145,6 @@
 // Add config watchers for when the palette or prefix-tokens values change
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-build-palette"));
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
+
+// Apply token hooks and event listeners
+@include tokens.add-hook("getter", "palette", meta.get-function("get"));
