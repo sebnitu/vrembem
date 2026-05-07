@@ -15,6 +15,11 @@
 /// @access private
 $-tokens: ();
 
+/// Stores map types and a transformer mixin.
+/// @type map
+/// @access private
+$-type-maps: ();
+
 /// Stores token event listeners.
 /// @type map
 /// @access private
@@ -104,6 +109,71 @@ $-events: ();
   } @else {
     @return "--#{$prefix}";
   }
+}
+
+/// Resolves a prop/value pair through registered type transformers. If the
+/// prop is a map, each entry is resolved recursively. If the value is a map
+/// containing a "type" key, the corresponding transformer function is called.
+/// Otherwise, the prop/value pair is returned as-is.
+///
+/// @param {string|map} $prop
+///   The property name or a map of property/value pairs.
+/// @param {any} $value
+///   The value associated with the property.
+///
+/// @return {map}
+///   A map of resolved prop/value pairs.
+///
+/// @access private
+///
+@function -resolve-transformer($prop, $value) {
+  // If prop is a map, run this function recursively
+  @if meta.type-of($prop) == "map" {
+    $result: empty-map();
+    @each $key, $value in $prop {
+      $result: map.deep-merge($result, -resolve-transformer($key, $value));
+    }
+    @return ($result);
+  }
+
+  // If value is a map, do our type check
+  @else if meta.type-of($value) == "map" and map.has-key($value, "type") {
+    $type: map.get($value, "type");
+    $function: map.get($-type-maps, $type);
+    @if $function {
+      @return meta.call($function, $prop, $value);
+    } @else {
+      @return ($prop: $value);
+    }
+  }
+
+  // This is just a normal prop/value pair
+  @else {
+    @return ($prop: $value);
+  }
+}
+
+/// Register a type transformer function. When a value map contains a "type"
+/// key matching the provided type, the transformer function is called to
+/// resolve the prop/value pair before storing in the tokens map.
+///
+/// @param {string} $type
+///   The type identifier to match against.
+/// @param {function} $function
+///   The transformer function reference to call. Should accept `$prop` and
+///   `$value` parameters and return a map.
+///
+@mixin add-transformer($type, $function) {
+  $-type-maps: map.set($-type-maps, $type, $function) !global;
+}
+
+/// Remove a previously registered type transformer.
+///
+/// @param {string} $type
+///   The type identifier of the transformer to remove.
+///
+@mixin remove-transformer($type) {
+  $-type-maps: map.deep-remove($-type-maps, $type) !global;
 }
 
 /// Set a listener to a specific event.
@@ -423,19 +493,10 @@ $-events: ();
 
   // Handle this as a normal tokens.set call
   @else {
-    // Initialize the component map
+    // Resolve the component map
     $component-map: (
-      $component: (
-          $prop: $value
-        )
+      $component: -resolve-transformer($prop, $value)
     );
-
-    // If the provided prop is a map, set it directly and ignore $value
-    @if meta.type-of($prop) == "map" {
-      $component-map: (
-        $component: $prop
-      );
-    }
 
     // Merge the resulting $component-map into the tokens map
     @if $deep != true {

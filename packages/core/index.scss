@@ -1,6 +1,7 @@
 @forward "./src/scss/config";
 @forward "./src/scss/modules/config" as config-*;
 @forward "./src/scss/modules/tokens" as tokens-*;
+@forward "./src/scss/modules/tokens-breakpoints" as tokens-bps-*;
 @forward "./src/scss/modules/palette" as palette-*;
 @forward "./src/scss/modules/theme" as theme-*;
 @forward "./src/scss/tokens/prefix";
