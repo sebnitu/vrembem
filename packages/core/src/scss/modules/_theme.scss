@@ -12,16 +12,32 @@
 /// Used to track theme keys that get added to the `tokens.$-css-vars` map.
 /// @type list
 /// @access private
-$-theme-keys: "light", "dark";
+$-theme-keys: ();
 
 /// Add a theme key to the `$-theme-keys` map if it doesn't already exist.
+///
 /// @param {string} $theme
 ///   The name of the key to add.
+///
+/// @return {boolean}
+///   Whether or not the theme was added (true) or if it already exists (false).
+///
 /// @access private
-@mixin -add-theme-key($theme) {
+///
+@function -add-theme-key($theme) {
   @if not list.index($-theme-keys, $theme) {
     $-theme-keys: list.append($-theme-keys, $theme) !global;
+
+    @return true;
   }
+
+  @return false;
+}
+
+/// @see {function} -add-theme-key
+/// @access private
+@mixin -add-theme-key($theme) {
+  $-void: -add-theme-key($theme);
 }
 
 /// Remove a theme key from the `$-theme-keys` map if it exists.
@@ -34,6 +50,35 @@ $-theme-keys: "light", "dark";
   @if $index {
     $-theme-keys: remove-nth($-theme-keys, $index) !global;
   }
+}
+
+/// Type transformer hook for the "theme" token type. Registered with the
+/// tokens module to intercept values with `"type": "theme"` during
+/// `tokens.set()`. Registers the theme key and restructures the value into
+/// the `"themes"` namespace.
+///
+/// @param {string} $prop
+///   The property name, used as the theme key (e.g., "dark", "forest").
+/// @param {map} $value
+///   The value map containing a "type" key and theme property/value pairs.
+///
+/// @return {map}
+///   A map structured as `("themes": ($prop: ...))` for storage in the
+///   tokens map.
+///
+/// @access private
+///
+@function -type-transform-hook($prop, $value) {
+  // Add the theme to the theme-keys list
+  $-void: -add-theme-key($prop);
+
+  // Build the themes map (excluding "type")
+  // prettier-ignore
+  $output: ("themes": (
+    $prop: map.remove($value, "type")
+  ));
+
+  @return $output;
 }
 
 /// Function for outputting a theme class. Returns the theme class with
@@ -124,22 +169,24 @@ $-theme-keys: "light", "dark";
 
   // If no property or value are provided, create a theme with an empty map
   @if not $prop and not $value {
-    $result: map.set($result, $component, $theme, empty-map());
+    $result: map.set($result, $component, "themes", $theme, empty-map());
   }
 
   // Handle this as a normal theme.set call
   @else {
-    // Build the theme map using the prop and value arguments
-    $theme-map: (
-      $theme: args-to-map($prop, $value)
-    );
+    // Resolve the theme map either from $prop or ($prop: $value)
+    // prettier-ignore
+    $theme-map: if(sass(meta.type-of($prop) == "map"): $prop; else: ($prop: $value));
 
-    // Assign the theme map to the appropriate component as a map
+    // Build the component theme map structure
+    // prettier-ignore
     $component-theme-map: (
-      $component: $theme-map
+      $component: ("themes": (
+        $theme: $theme-map
+      ))
     );
 
-    // Apply the component theme map to the result
+    // Merge the component theme map to the result
     $result: map.deep-merge($result, $component-theme-map);
   }
 
@@ -255,14 +302,9 @@ $-theme-keys: "light", "dark";
     $component-map: tokens.get($component, "*");
 
     // Check if the theme exists for the component map
-    @if map.has-key($component-map, $theme) {
+    @if map.has-key($component-map, "themes", $theme) {
       // Save a copy of the component map from variables
-      $component-theme-map: map.get($component-map, $theme);
-
-      // Merge the values of the default theme with all other themes
-      @if $theme != config.get(li("theme-default"), "light") {
-        $component-theme-map: map.merge(map.get($component-map, config.get(li("theme-default"), "light")), $component-theme-map);
-      }
+      $component-theme-map: map.get($component-map, "themes", $theme);
 
       // Get a reference of the color scheme property
       $color-scheme: map.get($component-theme-map, "color-scheme");
@@ -273,11 +315,8 @@ $-theme-keys: "light", "dark";
       }
 
       // Output custom properties
-      @each $prop, $value in $component-theme-map {
-        // Don't output the color-scheme property
-        @if $prop != "color-scheme" {
-          @include tokens.define($component, $prop, $value);
-        }
+      @each $prop, $value in map.remove($component-theme-map, "color-scheme") {
+        @include tokens.define($component, $prop, $value);
       }
     }
   }
@@ -332,5 +371,9 @@ $-theme-keys: "light", "dark";
   }
 }
 
+// Apply token hooks and event listeners
+// Add the theme type transformer
+@include tokens.add-transformer("theme", meta.get-function("-type-transform-hook"));
+
 // Add tokens event listener that runs whenever tokens are output
-@include tokens.on("output", "output-theme", meta.get-mixin("output"));
+@include tokens.on("output", "output-theme-tokens", meta.get-mixin("output"));

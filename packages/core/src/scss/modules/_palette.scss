@@ -1,4 +1,3 @@
-@use "sass:map";
 @use "sass:meta";
 @use "sass:color";
 @use "../utilities/empty-map" as *;
@@ -15,7 +14,7 @@
 ///
 /// @access private
 ///
-@mixin -rebuild-palette($action: "") {
+@mixin -build-palette($action: "") {
   // Remove the palette component before building
   @include tokens.remove("palette");
 
@@ -136,11 +135,11 @@
   }
 }
 
-/// Setup a config watcher for when the palette property changes
-@include config.watch("palette", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
-@include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-rebuild-palette"));
-
 // Set the initial CSS variables for the palette map
 @if config.get(li("palette"), "") != "" {
-  @include -rebuild-palette("initial");
+  @include -build-palette("initial");
 }
+
+// Add config watchers for when the palette or prefix-tokens values change
+@include config.watch("palette", "rebuild-palette", meta.get-mixin("-build-palette"));
+@include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
