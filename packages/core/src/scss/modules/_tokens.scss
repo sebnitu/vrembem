@@ -15,7 +15,7 @@
 /// @access private
 $-tokens: ();
 
-/// Stores map types and a transformer mixin.
+/// Stores map types and transformer mixins.
 /// @type map
 /// @access private
 $-type-maps: ();
@@ -25,12 +25,58 @@ $-type-maps: ();
 /// @access private
 $-events: ();
 
-/// Emit an event.
+/// Resolves a prop/value pair through registered type transformers. If the
+/// prop is a map, each entry is resolved recursively. If the value is a map
+/// containing a "type" key, the corresponding transformer function is called.
+/// Otherwise, the prop/value pair is returned as-is.
+///
+/// @param {string|map} $prop
+///   The property name or a map of property/value pairs.
+/// @param {any} $value
+///   The value associated with the property.
+///
+/// @return {map}
+///   A map of resolved prop/value pairs.
+///
+/// @access private
+///
+@function -resolve-transformer($prop, $value) {
+  // If prop is a map, run this function recursively
+  @if meta.type-of($prop) == "map" {
+    $result: empty-map();
+
+    @each $key, $value in $prop {
+      $result: map.deep-merge($result, -resolve-transformer($key, $value));
+    }
+
+    @return ($result);
+  }
+
+  // If value is a map, do our type check
+  @else if meta.type-of($value) == "map" and map.has-key($value, "type") {
+    $type: map.get($value, "type");
+    $function: map.get($-type-maps, $type);
+
+    @if $function {
+      @return meta.call($function, $prop, $value);
+    } @else {
+      @return ($prop: $value);
+    }
+  }
+
+  // This is just a normal prop/value pair
+  @else {
+    @return ($prop: $value);
+  }
+}
+
+/// Emit an event by name and runs all registered event listeners.
 ///
 /// @param {string} $name
 ///   The name of the event that has been run.
 ///
 /// @access private
+///
 @mixin -emit-event($name, $args...) {
   @if map.has-key($-events, $name) {
     $mixins: map.get($-events, $name);
@@ -108,51 +154,6 @@ $-events: ();
     @return "--#{$prefix}#{$component}-";
   } @else {
     @return "--#{$prefix}";
-  }
-}
-
-/// Resolves a prop/value pair through registered type transformers. If the
-/// prop is a map, each entry is resolved recursively. If the value is a map
-/// containing a "type" key, the corresponding transformer function is called.
-/// Otherwise, the prop/value pair is returned as-is.
-///
-/// @param {string|map} $prop
-///   The property name or a map of property/value pairs.
-/// @param {any} $value
-///   The value associated with the property.
-///
-/// @return {map}
-///   A map of resolved prop/value pairs.
-///
-/// @access private
-///
-@function -resolve-transformer($prop, $value) {
-  // If prop is a map, run this function recursively
-  @if meta.type-of($prop) == "map" {
-    $result: empty-map();
-
-    @each $key, $value in $prop {
-      $result: map.deep-merge($result, -resolve-transformer($key, $value));
-    }
-
-    @return ($result);
-  }
-
-  // If value is a map, do our type check
-  @else if meta.type-of($value) == "map" and map.has-key($value, "type") {
-    $type: map.get($value, "type");
-    $function: map.get($-type-maps, $type);
-
-    @if $function {
-      @return meta.call($function, $prop, $value);
-    } @else {
-      @return ($prop: $value);
-    }
-  }
-
-  // This is just a normal prop/value pair
-  @else {
-    @return ($prop: $value);
   }
 }
 

@@ -54,11 +54,9 @@
 ///   The breakpoint key to output tokens for.
 ///
 @mixin output-breakpoint($bp) {
-  $tokens: tokens.get("*");
-
-  @each $component in map.keys($tokens) {
-    @if map.has-key($tokens, $component, "breakpoints", $bp) {
-      $props: map.get($tokens, $component, "breakpoints", $bp);
+  @each $component in map.keys(tokens.get("*")) {
+    @if tokens.has($component, "breakpoints", $bp) {
+      $props: tokens.get($component, "*", "breakpoints", $bp);
 
       @each $prop, $value in $props {
         @include tokens.define($component, $prop, $value);
