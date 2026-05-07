@@ -6,7 +6,6 @@
 @use "../utilities/remove-nth" as *;
 @use "./config";
 @use "./tokens";
-@use "./palette";
 
 /// Used to track theme keys that get added to the `tokens.$-css-vars` map.
 /// @type list
