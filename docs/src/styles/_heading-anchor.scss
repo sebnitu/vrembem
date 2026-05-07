@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .heading-anchor {
   @include tokens.override("core", "form-control-border-width", 0);
@@ -17,14 +16,14 @@
   text-decoration: none !important;
   vertical-align: middle;
   opacity: 0;
-  background-color: palette.get("primary", $a: 0%);
+  background-color: tokens.get("palette", "primary", $a: 0%);
   transition-timing-function: tokens.get("transition-timing-function");
   transition-duration: tokens.get("transition-duration");
   transition-property: color, opacity;
 
   &:hover,
   &:focus {
-    background-color: palette.get("primary", $a: 20%);
+    background-color: tokens.get("palette", "primary", $a: 20%);
   }
 
   &:hover,

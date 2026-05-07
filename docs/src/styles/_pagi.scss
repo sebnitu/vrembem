@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .pagi {
   display: flex;
@@ -36,7 +35,7 @@
   transition-duration: tokens.get("transition-duration");
 
   &:hover {
-    border-color: palette.get("primary");
+    border-color: tokens.get("palette", "primary");
   }
 }
 
@@ -47,5 +46,5 @@
 
 .pagi_title {
   font-size: tokens.get("font-size-lg");
-  color: palette.get("primary");
+  color: tokens.get("palette", "primary");
 }

@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 @use "@vrembem/button";
 
 astro-island {
@@ -9,7 +8,7 @@ astro-island {
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: palette.get("primary", $a: 50%) transparent;
+  scrollbar-color: tokens.get("palette", "primary", $a: 50%) transparent;
   text-wrap: pretty;
 
   @media screen and (prefers-reduced-motion: reduce) {

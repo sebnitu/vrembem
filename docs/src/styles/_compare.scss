@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 // Compare theme values
 @include tokens.set(
@@ -8,11 +7,11 @@
   (
     "light": (
       "type": "theme",
-      "background": palette.get("neutral", "75")
+      "background": tokens.get("palette", "neutral", "75")
     ),
     "dark": (
       "type": "theme",
-      "background": palette.get("neutral", "700")
+      "background": tokens.get("palette", "neutral", "700")
     )
   )
 );
@@ -106,22 +105,22 @@
   }
 
   li.pro::before {
-    background-color: palette.get("primary");
+    background-color: tokens.get("palette", "primary");
     mask-image: url(core.svg("check"));
   }
 
   li.con::before {
-    background-color: palette.get("important");
+    background-color: tokens.get("palette", "important");
     mask-image: url(core.svg("x"));
   }
 }
 
 .list_pros li::before {
-  background-color: palette.get("primary");
+  background-color: tokens.get("palette", "primary");
   mask-image: url(core.svg("check"));
 }
 
 .list_cons li::before {
-  background-color: palette.get("important");
+  background-color: tokens.get("palette", "important");
   mask-image: url(core.svg("x"));
 }

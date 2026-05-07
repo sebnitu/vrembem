@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .doc-block {
   margin: 2rem 0 !important;
@@ -8,7 +7,7 @@
   border-radius: tokens.get("border-radius");
   font-size: tokens.get("font-size");
   line-height: tokens.get("line-height");
-  box-shadow: 0 0 0 0 palette.get("primary", 90%);
+  box-shadow: 0 0 0 0 tokens.get("palette", "primary", 90%);
   transition: tokens.get("transition");
   transition-property: border-color, box-shadow;
 
@@ -17,8 +16,8 @@
   }
 
   &.is-active {
-    border-color: palette.get("primary");
-    box-shadow: 0 0 0 0.2rem palette.get("primary", 50%, $a: 20%);
+    border-color: tokens.get("palette", "primary");
+    box-shadow: 0 0 0 0.2rem tokens.get("palette", "primary", 50%, $a: 20%);
   }
 
   @include core.media-max("xs") {

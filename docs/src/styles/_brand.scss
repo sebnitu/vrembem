@@ -1,5 +1,4 @@
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .brand {
   display: flex;
@@ -8,7 +7,7 @@
 }
 
 .brand__icon {
-  color: palette.get("primary");
+  color: tokens.get("palette", "primary");
 }
 
 .brand__name {
@@ -33,9 +32,9 @@
 // prettier-ignore
 .vrembem-logo {
   --background-size: 12; // This should be a multiplier value (5 = 500%)
-  --gradient-color-1: #{palette.get("primary")};
-  --gradient-color-2: #{palette.get("secondary")};
-  --gradient-color-3: #{palette.get("important")};
+  --gradient-color-1: #{tokens.get("palette", "primary")};
+  --gradient-color-2: #{tokens.get("palette", "secondary")};
+  --gradient-color-3: #{tokens.get("palette", "important")};
 
   display: inline-block;
   aspect-ratio: 780 / 234;

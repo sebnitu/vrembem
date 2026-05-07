@@ -1,5 +1,4 @@
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 vb-tabs {
   display: block;
@@ -36,10 +35,10 @@ vb-tabs:defined {
   }
 
   &[aria-selected="true"] {
-    color: palette.get("primary");
+    color: tokens.get("palette", "primary");
 
     &::after {
-      background: palette.get("primary");
+      background: tokens.get("palette", "primary");
     }
   }
 }

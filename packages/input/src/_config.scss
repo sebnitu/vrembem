@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 $config: () !default;
 
@@ -19,8 +18,8 @@ $default: (
   // Map for outputting input_state_[key] modifier variants
   // @type map
   "input-state": (
-    "success": palette.get("primary"),
-    "error": palette.get("important")
+    "success": tokens.get("palette", "primary"),
+    "error": tokens.get("palette", "important")
   )
 );
 

@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .footer {
   position: relative;
@@ -19,7 +18,7 @@
 .footer__logo {
   display: flex;
   justify-content: center;
-  color: palette.get("primary");
+  color: tokens.get("palette", "primary");
 }
 
 @include core.media-min("sm") {

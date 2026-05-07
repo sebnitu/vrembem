@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .code-example {
   position: relative;
@@ -130,11 +129,11 @@
 
 @keyframes updated {
   from {
-    box-shadow: 0 0 0 3px palette.get("primary", $a: 100%) inset;
+    box-shadow: 0 0 0 3px tokens.get("palette", "primary", $a: 100%) inset;
   }
 
   to {
-    box-shadow: 0 0 0 3px palette.get("primary", $a: 0%) inset;
+    box-shadow: 0 0 0 3px tokens.get("palette", "primary", $a: 0%) inset;
   }
 }
 
@@ -187,13 +186,13 @@
 
   &:hover,
   &:focus-within {
-    border-color: palette.get("primary");
-    box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
+    border-color: tokens.get("palette", "primary");
+    box-shadow: 0 0 0 tokens.get("focus-ring-width") tokens.get("palette", "primary", $a: tokens.get("focus-ring-opacity"));
 
     .scroll-lock-hint {
-      border-color: palette.get("primary");
+      border-color: tokens.get("palette", "primary");
       opacity: 1;
-      box-shadow: 0 0 0 tokens.get("focus-ring-width") palette.get("primary", $a: tokens.get("focus-ring-opacity"));
+      box-shadow: 0 0 0 tokens.get("focus-ring-width") tokens.get("palette", "primary", $a: tokens.get("focus-ring-opacity"));
     }
   }
 }

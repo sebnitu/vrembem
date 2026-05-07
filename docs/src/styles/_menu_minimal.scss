@@ -1,5 +1,4 @@
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .menu_minimal {
   @include tokens.override(
@@ -33,7 +32,7 @@
     }
 
     &.is-active::before {
-      background: palette.get("primary");
+      background: tokens.get("palette", "primary");
     }
   }
 
