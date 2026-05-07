@@ -9,26 +9,6 @@
 // TODO: Add documentation
 // TODO: Add a set mixin
 
-@mixin output-breakpoint-tokens($args...) {
-  $breakpoints: config.get(li("breakpoints"), empty-map());
-  $tokens: tokens.get("*");
-
-  @each $bp-key, $bp-value in $breakpoints {
-    @include media-min($bp-value) {
-      :root {
-        @each $component in map.keys($tokens) {
-          @if map.has-key($tokens, $component, "breakpoints", $bp-key) {
-            $props: map.get($tokens, $component, "breakpoints", $bp-key);
-            @each $prop, $value in $props {
-              @include tokens.define($component, $prop, $value);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 // prettier-ignore
 @function type-transform-breakpoints($prop, $value) {
   $result: ();
@@ -50,6 +30,26 @@
 
 // Add the breakpoints type transformer
 @include tokens.add-transformer("breakpoints", meta.get-function("type-transform-breakpoints"));
+
+@mixin output-breakpoint-tokens($args...) {
+  $breakpoints: config.get(li("breakpoints"), empty-map());
+  $tokens: tokens.get("*");
+
+  @each $bp-key, $bp-value in $breakpoints {
+    @include media-min($bp-value) {
+      :root {
+        @each $component in map.keys($tokens) {
+          @if map.has-key($tokens, $component, "breakpoints", $bp-key) {
+            $props: map.get($tokens, $component, "breakpoints", $bp-key);
+            @each $prop, $value in $props {
+              @include tokens.define($component, $prop, $value);
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 // Add tokens event listener that runs whenever a breakpoint token is defined
 @include tokens.on("output", "output-breakpoint-tokens", meta.get-mixin("output-breakpoint-tokens"));
