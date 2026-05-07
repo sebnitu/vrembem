@@ -1,13 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-
-:root {
-  @include core.media-min("sidebar") {
-    @include tokens.override("main", "content-padding-x", 4em);
-    @include tokens.override("main", "content-padding-y", 2em);
-  }
-}
 
 .main {
   scroll-margin-top: calc(tokens.get("layout", "header-height") + calc(tokens.get("main", "content-padding-y")));

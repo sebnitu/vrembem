@@ -1,12 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-
-:root {
-  @include core.media-min("sidebar") {
-    @include tokens.override("layout", "padding", 1.5em);
-  }
-}
 
 .layout {
   display: flex;

@@ -39,17 +39,33 @@
   "layout",
   (
     "width": 80em,
-    "padding": 1em,
+    "padding": (
+      "type": "breakpoints",
+      "default": 1em,
+      "sidebar": 1.5em
+    ),
     "sidebar-width": 18em,
-    "header-height": 74px
+    "header-height": (
+      "type": "breakpoints",
+      "default": 74px,
+      "sidebar": 90px
+    )
   )
 );
 @include tokens.set(
   "main",
   (
     "content-width": 42em,
-    "content-padding-x": 1.5em,
-    "content-padding-y": 1.5em,
+    "content-padding-x": (
+      "type": "breakpoints",
+      "default": 1.5em,
+      "sidebar": 4em
+    ),
+    "content-padding-y": (
+      "type": "breakpoints",
+      "default": 1.5em,
+      "sidebar": 2em
+    ),
     "aside-width": 14em,
     "aside-padding": 1em
   )
