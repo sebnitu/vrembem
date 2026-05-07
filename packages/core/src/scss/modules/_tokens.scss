@@ -381,7 +381,7 @@ $-events: ();
       $value: map.get($-tokens, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, config.get(li("theme-default"), "light"), $prop) {
+      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, "themes", config.get(li("theme-default"), "light"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
