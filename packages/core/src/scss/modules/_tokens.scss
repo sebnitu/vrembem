@@ -316,27 +316,24 @@ $-events: ();
       #{-prefix($component)}#{$prop}: #{$value};
     }
 
-    // If the value is a map
-    @if meta.type-of($value) == "map" {
-      // If this is a config reference, get the value from config directly
-      @if map.has-key($value, "config") {
-        // Store the config path and the initial config value
-        $config-path: map.get($value, "config");
-        $config-value: config.get(list.nth($config-path, 1));
+    // If the value is a map and is a config reference
+    @if meta.type-of($value) == "map" and map.has-key($value, "config") {
+      // Store the config path and the initial config value
+      $config-path: map.get($value, "config");
+      $config-value: config.get(list.nth($config-path, 1));
 
-        // If the config path is more specific and the returned config value is a map
-        @if list.length($config-path) > 1 and meta.type-of($config-value) == "map" {
-          // Return the specific value based on the provided config path
-          $config-value: config.get($config-path...);
-        }
+      // If the config path is more specific and the returned config value is a map
+      @if list.length($config-path) > 1 and meta.type-of($config-value) == "map" {
+        // Return the specific value based on the provided config path
+        $config-value: config.get($config-path...);
+      }
 
-        @if meta.type-of($config-value) == "map" {
-          @each $key, $value in $config-value {
-            @include define($component, "#{$prop}-#{$key}", $value);
-          }
-        } @else {
-          @include define($component, $prop, $config-value);
+      @if meta.type-of($config-value) == "map" {
+        @each $key, $value in $config-value {
+          @include define($component, "#{$prop}-#{$key}", $value);
         }
+      } @else {
+        @include define($component, $prop, $config-value);
       }
     }
   }
@@ -579,7 +576,7 @@ $-events: ();
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
-@mixin override($component, $prop, $value: null, $breakpoints: config.get(li("breakpoints"), empty-map())) {
+@mixin override($component, $prop, $value: null) {
   @if -component-exists($component) {
     @if meta.type-of($prop) == "map" {
       @each $key, $value in $prop {
@@ -593,7 +590,7 @@ $-events: ();
         @include define($component, $prop, $value);
       }
 
-      // Else value is a map, handle as a dynamic output
+      // Else value is a map, handle as a breakpoint output
       @else {
         // Output the initial keyed value in the map
         @if map.has-key($value, "initial") {
@@ -602,6 +599,9 @@ $-events: ();
           // Remove the initial value from the value map
           $value: map.remove($value, "initial");
         }
+
+        // Get breakpoints from config
+        $breakpoints: config.get(li("breakpoints"), empty-map());
 
         // Loop through the breakpoints
         @each $bp-key, $bp-value in $breakpoints {

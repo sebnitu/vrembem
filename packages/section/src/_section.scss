@@ -10,7 +10,7 @@
   color: tokens.get("section", "foreground", tokens.get("foreground"));
   background: tokens.get("section", "background", transparent);
 
-  @include tokens.override("section", "padding", config.get("section-padding", "default"), config.get("section-padding", "breakpoints"));
+  @include tokens.override("section", "padding", config.get("section-padding", "default"));
 }
 
 #{core.bem("section", "container")} {
