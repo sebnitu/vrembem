@@ -1,0 +1,46 @@
+---
+import type { NaviItem } from "@/navi.config";
+import { resolveNavi, type ResolvedNaviItem } from "@/modules/resolveNavi";
+
+interface Props {
+  config?: NaviItem[];
+  items?: ResolvedNaviItem[];
+}
+
+const { config, items } = Astro.props;
+
+const navi = items ?? (config ? await resolveNavi(config) : []);
+---
+
+<ul class="menu">
+  {
+    navi.map((item) =>
+      "items" in item ? (
+        <li class="menu__item">
+          <details open>
+            <summary>{item.label}</summary>
+            <Astro.self items={item.items} />
+          </details>
+        </li>
+      ) : (
+        <li class="menu__item">
+          <a class="menu__action" href={item.link}>
+            {item.label}
+          </a>
+        </li>
+      )
+    )
+  }
+</ul>
+
+<style lang="scss">
+  @use "@vrembem/core";
+  @use "@vrembem/core/tokens";
+
+  summary {
+    display: flex;
+    padding: tokens.get("form-control-padding-y") 0;
+    color: tokens.get("foreground-strong");
+    font-weight: tokens.get("font-weight-bold");
+  }
+</style>
