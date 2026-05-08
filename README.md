@@ -158,7 +158,7 @@ Override default variables using Sass' module system and the `with` keyword. Var
 
 ```scss
 @use "vrembem" with (
-  $core-prefix-block: "vb-",
+  $core-prefix-blocks: "vb-",
   $modal-background: #fff,
   $modal-background-alpha: 0.9
 );

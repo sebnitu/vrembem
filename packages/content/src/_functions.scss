@@ -45,7 +45,7 @@
     }
 
     // Apply the block prefix to the root content class
-    $content: '#{config.get("prefix-block")}#{$content}';
+    $content: '#{config.get("prefix-blocks")}#{$content}';
 
     // Create the content selector using the content module selector
     $list: string.split(map.get(config.get("content-selectors"), $module), ",");

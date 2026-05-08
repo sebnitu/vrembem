@@ -7,19 +7,19 @@ $default: (
   // A prefix to apply to block class names. Provided value is automatically 
   // suffixed with a "-" character when applied.
   // @type string
-  "prefix-block": "",
+  "prefix-blocks": "",
 
   // A prefix to apply to element class names
   // @type string
-  "prefix-element": "__",
+  "prefix-elements": "__",
 
   // A prefix to apply to modifier class names
   // @type string
-  "prefix-modifier": "_",
+  "prefix-modifiers": "_",
 
   // A prefix to apply to modifier value class names
   // @type string
-  "prefix-modifier-value": "_",
+  "prefix-modifier-values": "_",
 
   // A prefix to apply to CSS variable tokens. Map values requires a default
   // key and value along with any component specific prefixes as needed.

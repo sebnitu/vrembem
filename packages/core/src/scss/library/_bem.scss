@@ -21,7 +21,7 @@
 ///   A valid BEM CSS selector using the provided parameters.
 ///
 @function bem($b, $e: null, $m: null, $v: null, $bp: null) {
-  $prefix: config.get("prefix-block");
+  $prefix: config.get("prefix-blocks");
 
   @if $prefix and $prefix != "" {
     $prefix: "#{$prefix}-";
@@ -30,15 +30,15 @@
   $class: "#{$prefix}#{$b}";
 
   @if $e and $e != "" {
-    $class: '#{$class}#{config.get("prefix-element")}#{$e}';
+    $class: '#{$class}#{config.get("prefix-elements")}#{$e}';
   }
 
   @if $m and $m != "" {
-    $class: '#{$class}#{config.get("prefix-modifier")}#{$m}';
+    $class: '#{$class}#{config.get("prefix-modifiers")}#{$m}';
   }
 
   @if $v and $v != "" {
-    $class: '#{$class}#{config.get("prefix-modifier-value")}#{$v}';
+    $class: '#{$class}#{config.get("prefix-modifier-values")}#{$v}';
   }
 
   @if $bp and $bp != "" {
