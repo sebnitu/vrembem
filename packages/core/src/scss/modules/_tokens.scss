@@ -404,7 +404,7 @@ $-events: ();
     $getter: -resolve-getter($component, $props...);
 
     // Return the result of getter if any value was set
-    @if $getter {
+    @if $getter != false {
       @return $getter;
     }
 
