@@ -1,5 +1,4 @@
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 .badge {
   position: relative;
@@ -13,6 +12,6 @@
 }
 
 a.badge:hover {
-  color: palette.get("primary", 30%);
-  background-color: palette.get("primary", 90%);
+  color: tokens.get("palette", "primary", 30%);
+  background-color: tokens.get("palette", "primary", 90%);
 }

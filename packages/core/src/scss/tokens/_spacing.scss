@@ -2,12 +2,11 @@
 @include tokens.set("core", "spacing", 0.25em);
 @include tokens.set(
   "core",
-  "spacing",
   (
-    "xs": tokens.get("spacing"),
-    "sm": calc(tokens.get("spacing") * 2),
-    "md": calc(tokens.get("spacing") * 4),
-    "lg": calc(tokens.get("spacing") * 6),
-    "xl": calc(tokens.get("spacing") * 8)
+    "spacing-xs": tokens.get("spacing"),
+    "spacing-sm": calc(tokens.get("spacing") * 2),
+    "spacing-md": calc(tokens.get("spacing") * 4),
+    "spacing-lg": calc(tokens.get("spacing") * 6),
+    "spacing-xl": calc(tokens.get("spacing") * 8)
   )
 );

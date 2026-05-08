@@ -2,9 +2,9 @@
 @use "sass:map";
 @use "sass:meta";
 @use "../library/media-min" as *;
-@use "../utilities/args-to-map" as *;
 @use "../utilities/debug-map" as *;
 @use "../utilities/empty-map" as *;
+@use "../utilities/li" as *;
 @use "../utilities/remove-nth" as *;
 @use "../utilities/reverse" as *;
 @use "./config";
@@ -13,19 +13,103 @@
 /// stored under component keys with maps of their custom property.
 /// @type map
 /// @access private
-$-tokens: (
-  "core": (
-    "prefix": (
-      "config": (
-        "prefix-tokens",
-        "default"
-      )
-    ),
-    "breakpoint": (
-      "config": "breakpoints"
-    )
-  )
+$-tokens: ();
+
+/// Stores getter and setter hooks.
+/// @type map
+/// @access private
+$-hooks: (
+  "setter": (),
+  "getter": ()
 );
+
+/// Stores token event listeners.
+/// @type map
+/// @access private
+$-events: ();
+
+/// Resolves a setter function from the $-hooks map by evaluating the provided
+/// $prop and $value arguments. If the prop is a map, each entry is resolved
+/// recursively. If the value is a map containing a "type" key, the corresponding
+/// setter function is called. Otherwise, the prop/value pair is returned as-is.
+///
+/// @param {string|map} $prop
+///   The property name or a map of property/value pairs.
+/// @param {any} $value
+///   The value associated with the property.
+///
+/// @return {map}
+///   A map of resolved prop/value pairs.
+///
+/// @access private
+///
+@function -resolve-setter($prop, $value) {
+  // If prop is a map, run this function recursively
+  @if meta.type-of($prop) == "map" {
+    $result: empty-map();
+
+    @each $key, $value in $prop {
+      $result: map.deep-merge($result, -resolve-setter($key, $value));
+    }
+
+    @return ($result);
+  }
+
+  // If value is a map, do our type check
+  @else if meta.type-of($value) == "map" and map.has-key($value, "type") {
+    $type: map.get($value, "type");
+    $function: map.get($-hooks, "setter", $type);
+
+    @if $function {
+      @return meta.call($function, $prop, $value);
+    } @else {
+      @return ($prop: $value);
+    }
+  }
+
+  // This is just a normal prop/value pair
+  @else {
+    @return ($prop: $value);
+  }
+}
+
+/// Resolves a getter function from the $-hooks map, forwarding all provided
+/// arguments to the resolved function.
+///
+/// @param {string} $component
+///   The component name to get a value from.
+/// @param {any} $args...
+///   The rest of the provided arguments
+///
+/// @return {any}
+///   The results of the getter function or false.
+///
+/// @access private
+///
+@function -resolve-getter($component, $args...) {
+  @if map.has-key($-hooks, "getter", $component) {
+    @return meta.call(map.get($-hooks, "getter", $component), $args...);
+  }
+
+  @return false;
+}
+
+/// Emit an event by name and runs all registered event listeners.
+///
+/// @param {string} $name
+///   The name of the event that has been run.
+///
+/// @access private
+///
+@mixin -emit-event($name, $args...) {
+  @if map.has-key($-events, $name) {
+    $mixins: map.get($-events, $name);
+
+    @each $key, $mixin in $mixins {
+      @include meta.apply($mixin, $args...);
+    }
+  }
+}
 
 /// Function to check whether a component has been registered in the custom
 /// properties map. Will throw an error if the component was not found and is
@@ -72,7 +156,7 @@ $-tokens: (
 /// @access private
 ///
 @function -prefix($component) {
-  $prefix: config.get("prefix-tokens");
+  $prefix: config.get(li("prefix-tokens"), "");
 
   @if meta.type-of($prefix) == "map" {
     // Get the prefix if a custom component prefix is defined
@@ -95,6 +179,57 @@ $-tokens: (
   } @else {
     @return "--#{$prefix}";
   }
+}
+
+/// Register a tokens hook function. When a value map contains a "type" key
+/// matching the provided key, the hook function is called to resolve the
+/// prop/value pair before storing in the tokens map.
+///
+/// @param {string} $type
+///   The hook type to store the reference function.
+/// @param {string} $key
+///   The hook name.
+/// @param {function} $function
+///   The hook function reference to call. Should accept `$prop` and `$value`
+///   parameters and return a map.
+///
+@mixin add-hook($type, $key, $function) {
+  $-hooks: map.set($-hooks, $type, $key, $function) !global;
+}
+
+/// Remove a previously registered hook.
+///
+/// @param {string} $type
+///   The hook type the reference function to remove is stored under.
+/// @param {string} $key
+///   The type identifier of the transformer to remove.
+///
+@mixin remove-hook($type, $key) {
+  $-hooks: map.deep-remove($-hooks, $type, $key) !global;
+}
+
+/// Set a listener to a specific event.
+///
+/// @param {string} $event
+///   The name of the event to listen for.
+/// @param {string} $id
+///   A unique ID to store the listener under.
+/// @param {mixin} $mixin
+///   The mixin reference to run when the event is emitted.
+///
+@mixin on($event, $id, $mixin) {
+  $-events: map.set($-events, $event, $id, $mixin) !global;
+}
+
+/// Remove an listener to a specific event.
+///
+/// @param {string} $event
+///   The name of the event to stop listening.
+/// @param {string} $id
+///   The unique ID of the listener to remove.
+///
+@mixin off($event, $id) {
+  $-events: map.deep-remove($-events, $event, $id) !global;
 }
 
 /// Function to check if custom properties map has a specific component
@@ -181,7 +316,7 @@ $-tokens: (
       #{-prefix($component)}#{$prop}: #{$value};
     }
 
-    // If the map has a key of config, get the value from config directly
+    // If the value is a map and is a config reference
     @if meta.type-of($value) == "map" and map.has-key($value, "config") {
       // Store the config path and the initial config value
       $config-path: map.get($value, "config");
@@ -262,6 +397,14 @@ $-tokens: (
 
   // Check if component exists
   @if -component-exists($component) {
+    // See if there's a stored getter for this component
+    $getter: -resolve-getter($component, $props...);
+
+    // Return the result of getter if any value was set
+    @if $getter != false {
+      @return $getter;
+    }
+
     // Reverse the props list and initialize our result
     $props: reverse($props);
     $result: null;
@@ -275,7 +418,7 @@ $-tokens: (
       $value: map.get($-tokens, $component, $prop);
 
       // Check if the property exists in the component or its default theme
-      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, config.get("theme-default"), $prop) {
+      @if map.has-key($-tokens, $component, $prop) or map.has-key($-tokens, $component, "themes", config.get(li("theme-default"), "light"), $prop) {
         // store the reference in our result
         $result: reference($component, $prop, $result);
       }
@@ -313,8 +456,6 @@ $-tokens: (
 /// @param {any} $value (null)
 ///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
-/// @param {boolean} $deep (true)
-///   Whether or not to use `merge` or `deep-merge` when combining maps.
 ///
 /// @example scss
 ///   @include tokens.set("button", "background", #000);
@@ -358,11 +499,11 @@ $-tokens: (
 ///     )
 ///   );
 ///
-@mixin set($component, $prop, $value: null, $deep: true) {
+@mixin set($component, $prop, $value: null) {
   // If component is set to "*", update the entire custom properties map
   // This primarily allows other modules to more easily modify the CSS var map
   // by circumventing the limitations of what `set` allows.
-  // Example in core/theme:
+  // Example in core/themes:
   // @include tokens.set("*", $result);
   @if $component == "*" {
     $-tokens: $prop !global;
@@ -371,26 +512,23 @@ $-tokens: (
   // If prop is set to "*", merge the value map with an entire component map
   // This primarily allows other modules to more easily modifier a component's
   // CSS var map by circumventing the limitations of what `set` allows.
-  // Example in core/theme:
-  // @include tokens.set($component, "*", $result, $deep: false);
+  // Example in core/themes:
+  // @include tokens.set($component, "*", $result);
   @else if $prop == "*" {
     $component-map: (
       $component: $value
     );
-
-    @if $deep != true {
-      $-tokens: map.merge($-tokens, $component-map) !global;
-    } @else {
-      $-tokens: map.deep-merge($-tokens, $component-map) !global;
-    }
+    $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 
   // Handle this as a normal tokens.set call
   @else {
-    // Build the component map using the prop and value arguments
+    // Resolve the component map
     $component-map: (
-      $component: args-to-map($prop, $value)
+      $component: -resolve-setter($prop, $value)
     );
+
+    // Merge the resulting $component-map into the tokens map
     $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 }
@@ -438,7 +576,7 @@ $-tokens: (
 ///   --vb-button-background: #000;
 ///   --vb-button-foreground: #fff;
 ///
-@mixin override($component, $prop, $value: null, $breakpoints: config.get("breakpoints")) {
+@mixin override($component, $prop, $value: null) {
   @if -component-exists($component) {
     @if meta.type-of($prop) == "map" {
       @each $key, $value in $prop {
@@ -452,7 +590,7 @@ $-tokens: (
         @include define($component, $prop, $value);
       }
 
-      // Else value is a map, handle as a dynamic output
+      // Else value is a map, handle as a breakpoint output
       @else {
         // Output the initial keyed value in the map
         @if map.has-key($value, "initial") {
@@ -461,6 +599,9 @@ $-tokens: (
           // Remove the initial value from the value map
           $value: map.remove($value, "initial");
         }
+
+        // Get breakpoints from config
+        $breakpoints: config.get(li("breakpoints"), empty-map());
 
         // Loop through the breakpoints
         @each $bp-key, $bp-value in $breakpoints {
@@ -476,8 +617,28 @@ $-tokens: (
   }
 }
 
+/// Output all custom properties of a provided component.
+///
+/// @param {string} $component
+///   The component to output custom properties for.
+///
+/// @access private
+///
+@mixin -output-component($component) {
+  @if -component-exists($component, $required: false) {
+    // Get the component's property map
+    $property-map: map.get($-tokens, $component);
+
+    // Loop through the property map
+    @each $prop, $value in $property-map {
+      @include define($component, $prop, $value);
+    }
+  }
+}
+
 /// Output all custom properties of a provided component. Or output all custom
-/// properties from all components by passing "*" as the argument.
+/// properties from all components by passing "*" as the argument. Wraps the
+/// output in the required :root selector.
 ///
 /// @param {string} $component ("*")
 ///   The component to output all custom properties from. If no component is
@@ -494,9 +655,7 @@ $-tokens: (
 ///   );
 ///
 ///   // SCSS input
-///   :root {
-///     @include tokens.output("button");
-///   }
+///   @include tokens.output("button");
 ///
 ///   // CSS output
 ///   :root {
@@ -506,20 +665,17 @@ $-tokens: (
 ///   }
 ///
 @mixin output($component: "*") {
-  @if $component == "*" {
-    // Call output() for every component in $-tokens
-    @each $component in map.keys($-tokens) {
-      @include output($component);
-    }
-  } @else if -component-exists($component, false) {
-    // Get the component's property map
-    $property-map: map.get($-tokens, $component);
-
-    // Loop through the property map
-    @each $prop, $value in $property-map {
-      @include define($component, $prop, $value);
+  :root {
+    @if $component == "*" {
+      @each $component in map.keys($-tokens) {
+        @include -output-component($component);
+      }
+    } @else {
+      @include -output-component($component);
     }
   }
+
+  @include -emit-event("output", $component);
 }
 
 /// Log to console all custom properties, a component map or component theme.

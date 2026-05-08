@@ -24,6 +24,26 @@ $-watchers: ();
 /// @access private
 $-flags: ("variants");
 
+/// Run all property watchers of a specific property. Passes along the name of
+/// the action to the applied mixin.
+///
+/// @param {string} $key
+///   The name of the property that has been changed.
+/// @param {string} $action
+///   The name of the action taking place, e.g.: "set", "remove", etc.
+///
+/// @access private
+///
+@mixin -run-watchers($key, $action) {
+  @if map.has-key($-watchers, $key) {
+    $mixins: map.get($-watchers, $key);
+
+    @each $key, $mixin in $mixins {
+      @include meta.apply($mixin, $action);
+    }
+  }
+}
+
 /// Helper function that checks if a value should be set in the config map.
 ///
 /// @param {map} $map
@@ -40,31 +60,13 @@ $-flags: ("variants");
 ///   The updated configuration map.
 ///
 /// @access private
+///
 @function -maybe-set($map, $key, $value, $default) {
   @if not $default or not map.has-key($map, $key) {
     $map: map.set($map, $key, $value);
   }
 
   @return $map;
-}
-
-/// Run all property watchers of a specific property. Passes along the name of
-/// the action to the applied mixin.
-///
-/// @param {string} $key
-///   The name of the property that has been changed.
-/// @param {string} $action
-///   The name of the action taking place, e.g.: "set", "remove", etc.
-///
-/// @access private
-@mixin -run-watchers($key, $action) {
-  @if map.has-key($-watchers, $key) {
-    $mixins: map.get($-watchers, $key);
-
-    @each $key, $mixin in $mixins {
-      @include meta.apply($mixin, $action);
-    }
-  }
 }
 
 /// Checks whether or not a flag exists within the provided keys.
@@ -75,6 +77,7 @@ $-flags: ("variants");
 /// @return {boolean}
 ///
 /// @access private
+///
 @function -has-flag($keys...) {
   @return list.index($-flags, list.nth($keys, -1)) != null;
 }
@@ -88,6 +91,7 @@ $-flags: ("variants");
 ///   The remaining keys list.
 ///
 /// @access private
+///
 @function -remove-flag($keys...) {
   // Only remove the flag if the keys don't point to a real value
   @if -has-flag($keys...) and not map.has-key($-config, $keys...) {
@@ -97,12 +101,46 @@ $-flags: ("variants");
   @return $keys;
 }
 
+/// Set a watcher to a specific property of the configuration object.
+///
+/// @param {string} $prop
+///   The name of the property to watch for changes.
+/// @param {string} $id
+///   A unique ID to store the watcher under.
+/// @param {mixin} $mixin
+///   The mixin reference to run when the watched property has changed.
+///
+@mixin watch($prop, $id, $mixin) {
+  $-watchers: map.set($-watchers, $prop, $id, $mixin) !global;
+}
+
+/// Remove a watcher to a specific property of the configuration object.
+///
+/// @param {string} $prop
+///   The name of the property to stop watching.
+/// @param {string} $id
+///   The unique ID of the watcher to remove.
+///
+@mixin unwatch($prop, $id) {
+  $-watchers: map.deep-remove($-watchers, $prop, $id) !global;
+}
+
 /// Function to returns the value of an option in the configuration map.
 ///
 /// @param {string} $keys...
 ///   A key or list of keys to follow in the configuration map and return.
 ///
 @function get($keys...) {
+  // Initialize the fallback value
+  $fallback: null;
+
+  // If $keys shape is "($list...), $fallback" extract parts before processing
+  @if list.length($keys) == 2 and meta.type-of(list.nth($keys, 1)) == "list" {
+    $fallback: list.nth($keys, 2);
+    $keys: list.nth($keys, 1);
+  }
+
+  // Check if $keys value maps to something stored in config, or if it's a flag
   @if map.has-key($-config, $keys...) or -has-flag($keys...) {
     // Get the initial result without the flag in keys
     $result: map.get($-config, -remove-flag($keys...)...);
@@ -142,7 +180,12 @@ $-flags: ("variants");
     // Return the final result
     @return $result;
   } @else {
-    @error "Config option has not been set: #{$keys}";
+    // Return the fallback if provided, otherwise throw
+    @if $fallback {
+      @return $fallback;
+    } @else {
+      @error "Config option has not been set: #{$keys}";
+    }
   }
 }
 
@@ -159,18 +202,23 @@ $-flags: ("variants");
 ///
 @mixin set($key, $value: null, $default: false) {
   $result: $-config;
+  $keys: ();
 
   @if meta.type-of($key) == "map" {
     @each $key, $value in $key {
+      $keys: list.append($keys, $key);
       $result: -maybe-set($result, $key, $value, $default);
     }
   } @else {
+    $keys: list.append($keys, $key);
     $result: -maybe-set($result, $key, $value, $default);
   }
 
   $-config: $result !global;
 
-  @include -run-watchers($key, "set");
+  @each $key in $keys {
+    @include -run-watchers($key, "set");
+  }
 }
 
 /// An alias mixin for `config.set()` with predefined default argument to
@@ -256,30 +304,6 @@ $-flags: ("variants");
       @include set-default($key, $value);
     }
   }
-}
-
-/// Set a watcher to a specific property of the configuration object.
-///
-/// @param {string} $prop
-///   The name of the property to watch for changes.
-/// @param {string} $id
-///   A unique ID to store the watcher under.
-/// @param {mixin} $mixin
-///   The mixin reference to run when the watched property has changed.
-///
-@mixin watch($prop, $id, $mixin) {
-  $-watchers: map.set($-watchers, $prop, $id, $mixin) !global;
-}
-
-/// Remove a watcher to a specific property of the configuration object.
-///
-/// @param {string} $prop
-///   The name of the property to stop watching.
-/// @param {string} $id
-///   The unique ID of the watcher to remove.
-///
-@mixin unwatch($prop, $id) {
-  $-watchers: map.deep-remove($-watchers, $prop, $id) !global;
 }
 
 /// Log to console the entire configuration map or a specific value.

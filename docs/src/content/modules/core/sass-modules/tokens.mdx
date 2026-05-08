@@ -1,6 +1,6 @@
 ---
 title: core/tokens
-description: "Used to define, manage, and output global and component-level design tokens expressed as CSS variables."
+description: "A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables."
 order: 2
 ---
 
@@ -15,9 +15,231 @@ import ReferenceBar from "@/components/ReferenceBar.astro";
 
 ## Basic usage
 
-For most use-cases, `core/tokens` provides a straightforward API for managing custom properties. Define, reference and output custom properties both globally and on a per-component basis.
+The tokens module manages design tokens as CSS custom properties. Use `set()` to store tokens, `get()` to reference them, and `output()` to render them as CSS.
 
-### tokens.get()
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+
+    // Store tokens under a component namespace
+    @include tokens.set("button", (
+      "background": teal,
+      "foreground": salmon,
+      "padding": 1em 1.5em
+    ));
+
+    // Reference tokens in your styles
+    .button {
+      background: tokens.get("button", "background");
+      color: tokens.get("button", "foreground");
+      padding: tokens.get("button", "padding");
+    }
+
+    // Output all stored tokens as CSS custom properties
+    @include tokens.output();
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    .button {
+      background: var(--vb-button-background);
+      color: var(--vb-button-foreground);
+      padding: var(--vb-button-padding);
+    }
+
+    :root {
+      --vb-button-background: teal;
+      --vb-button-foreground: salmon;
+      --vb-button-padding: 1em 1.5em;
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+The examples in this section assume you are using the default configuration provided by Vrembem such as `prefix-tokens`, `breakpoints`, and `palette`. For more information on config options, see the [`core/config`](/packages/core/config) documentation.
+
+### Palette
+
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/palette";
+
+    // Reference palette tokens with custom lightness, chroma and alpha values
+    // Example: tokens.get("palette", "[name]", $l, $c, $a);
+    .button {
+      background: tokens.get("palette", "primary", $a: 50%);
+      color: tokens.get("palette", "primary", 18%, 60%);
+    }
+
+    // Get a specific reference from the palette variants
+    .surface {
+      background: tokens.get("palette", "primary", "700");
+    }
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    .button {
+      background: oklch(from var(--vb-primary) l c h / 50%);
+      color: oklch(18% calc(var(--vb-primary-c) * 0.6) var(--vb-primary-h));
+    }
+
+    .surface {
+      background: var(--vb-primary-700);
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+### Breakpoints
+
+When the `core/breakpoints` plugin is loaded, tokens can be made responsive by setting a value map with `"type": "breakpoints"`. The `"default"` key sets the initial value, and breakpoint keys set values at specific breakpoints.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/breakpoints";
+
+    @include tokens.set("layout", (
+      "padding": (
+        "type": "breakpoints",
+        "default": 1em,
+        "md": 1.5em,
+        "lg": 2em
+      )
+    ));
+
+    @include tokens.output();
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    :root {
+      --vb-layout-padding: 1em;
+    }
+
+    @media (min-width: 760px) {
+      :root {
+        --vb-layout-padding: 1.5em;
+      }
+    }
+
+    @media (min-width: 990px) {
+      :root {
+        --vb-layout-padding: 2em;
+      }
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+### Themes
+
+When the `core/themes` plugin is loaded, tokens can be themed by setting a value map with `"type": "theme"`. The key used for the property name becomes the theme name, and all other key/value pairs become the theme's tokens.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/themes";
+
+    @include tokens.set("core", (
+      "light": (
+        "type": "theme",
+        "color-scheme": light,
+        "background": lightblue,
+        "foreground": darkblue
+      ),
+      "dark": (
+        "type": "theme",
+        "color-scheme": dark,
+        "background": darkblue,
+        "foreground": lightblue
+      )
+    ));
+
+    @include tokens.output();
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    :root,
+    .vb-theme-auto {
+      color-scheme: light;
+      --vb-background: lightblue;
+      --vb-foreground: darkblue;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root,
+      .vb-theme-auto {
+        color-scheme: dark;
+        --vb-background: darkblue;
+        --vb-foreground: lightblue;
+      }
+    }
+
+    .vb-theme-light {
+      color-scheme: light;
+      --vb-background: lightblue;
+      --vb-foreground: darkblue;
+    }
+
+    .vb-theme-dark {
+      color-scheme: dark;
+      --vb-background: darkblue;
+      --vb-foreground: lightblue;
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+## Reference
+
+Tokens provides a straightforward API for managing design tokens. Define, reference and output custom properties both globally and on a per-component basis. The tokens module can also be extended by registering hooks and event listeners.
+
+### set
+
+<ReferenceBar type="mixin" />
+
+Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component name to store the custom property under.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map">
+  The custom property name to store. Can be a map containing property and value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any">
+  The custom property value to store.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Set a single option
+@include tokens.set("block", "accent", teal);
+
+// Set multiple options at once
+@include tokens.set("block", (
+  "background": darkGreen,
+  "foreground": lightPink
+));
+```
+</CodeExample>
+
+### get
 
 <ReferenceBar type="function" />
 
@@ -54,56 +276,15 @@ Function to return a custom property reference that has been stored in the custo
   </TabsPanel>
 </CodeExample>
 
-
-### tokens.set()
-
-<ReferenceBar type="mixin" />
-
-Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
-
-#### Arguments
-
-<ReferenceCard name="$component" type="string">
-  The component name to store the custom property under.
-</ReferenceCard>
-
-<ReferenceCard name="$prop" type="string | map">
-  The custom property name to store. Can be a map containing property and value pairs.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="any">
-  The custom property value to store.
-</ReferenceCard>
-
-<ReferenceCard name="$deep" type="boolean">
-  Whether or not to use `merge` or `deep-merge` when combining maps.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Set a single option
-@include tokens.set("block", "accent", teal);
-
-// Set multiple options at once
-@include tokens.set("block", (
-  "background": darkGreen,
-  "foreground": lightPink
-));
-```
-</CodeExample>
-
-
-### tokens.output()
+### output
 
 <ReferenceBar type="mixin" />
 
-Output all custom properties of a provided component. Or output all custom properties from all components by passing `"*"` as the argument.
+Output all custom properties of a provided component. Or output all custom properties from all components by passing `"*"` as the argument. Wraps the output in a `:root` selector and emits the `"output"` event for registered listeners.
 
 #### Arguments
 
-<ReferenceCard name="$component" type="string">
+<ReferenceCard name="$component" type="string" defaults='"*"'>
   The component to output all custom properties from.
 </ReferenceCard>
 
@@ -112,9 +293,7 @@ Output all custom properties of a provided component. Or output all custom prope
 <CodeExample tabs>
   <TabsPanel label="SCSS">
     ```scss
-    :root {
-      @include tokens.output("block");
-    }
+    @include tokens.output("block");
     ```
   </TabsPanel>
   <TabsPanel label="CSS">
@@ -127,8 +306,7 @@ Output all custom properties of a provided component. Or output all custom prope
   </TabsPanel>
 </CodeExample>
 
-
-### tokens.override()
+### override
 
 <ReferenceBar type="mixin" />
 
@@ -171,12 +349,7 @@ Mixin to override previously defined custom properties. This is primarily used i
   </TabsPanel>
 </CodeExample>
 
-
-## Advanced usage
-
-For more advanced use-cases, `core/tokens` provides a more primitive API for fine grained custom property management.
-
-### tokens.register()
+### register
 
 <ReferenceBar type="mixin" />
 
@@ -212,7 +385,7 @@ Register a component in the custom properties map. This is used when a component
 </CodeExample>
 
 
-### tokens.define()
+### define
 
 <ReferenceBar type="mixin" />
 
@@ -252,7 +425,7 @@ Mixin to define a custom property using the provided property name and value. Au
 </CodeExample>
 
 
-### tokens.reference()
+### reference
 
 <ReferenceBar type="function" />
 
@@ -292,7 +465,7 @@ Function to create reference to a custom property using the provided component n
 </CodeExample>
 
 
-### tokens.has()
+### has
 
 <ReferenceBar type="function" />
 
@@ -316,7 +489,7 @@ Function used to check if a custom property has been set.
 </CodeExample>
 
 
-### tokens.remove()
+### remove
 
 <ReferenceBar type="mixin" />
 
@@ -338,7 +511,7 @@ Mixin used to remove a previously set custom property.
 </CodeExample>
 
 
-### tokens.log()
+### log
 
 <ReferenceBar type="mixin" />
 
@@ -365,5 +538,118 @@ Log to console all custom properties, a component map or component theme. Provid
 //   "background": blue,
 //   "foreground": green,
 // )
+```
+</CodeExample>
+
+### add-hook
+
+<ReferenceBar type="mixin" />
+
+Register a hook function that intercepts token operations. Setter hooks are called during `set()` when a value map contains a `"type"` key matching the hook's key. Getter hooks are called during `get()` when the component matches the hook's key.
+
+#### Arguments
+
+<ReferenceCard name="$type" type="string">
+  The hook type to register. Either `"setter"` or `"getter"`.
+</ReferenceCard>
+
+<ReferenceCard name="$key" type="string">
+  The key to match against. For setters, this is the `"type"` value in the value map. For getters, this is the component name.
+</ReferenceCard>
+
+<ReferenceCard name="$function" type="function">
+  The function reference to call when the hook is triggered.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Register a setter hook for a custom "breakpoints" type
+@include tokens.add-hook("setter", "breakpoints", meta.get-function("my-setter"));
+
+// Register a getter hook for the "palette" component
+@include tokens.add-hook("getter", "palette", meta.get-function("my-getter"));
+```
+</CodeExample>
+
+
+### remove-hook
+
+<ReferenceBar type="mixin" />
+
+Remove a previously registered hook.
+
+#### Arguments
+
+<ReferenceCard name="$type" type="string">
+  The hook type the function is stored under. Either `"setter"` or `"getter"`.
+</ReferenceCard>
+
+<ReferenceCard name="$key" type="string">
+  The key of the hook to remove.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+@include tokens.remove-hook("setter", "breakpoints");
+@include tokens.remove-hook("getter", "palette");
+```
+</CodeExample>
+
+
+### on
+
+<ReferenceBar type="mixin" />
+
+Register a listener for a specific token event. Listeners are called whenever the event is emitted. Multiple listeners can be registered for the same event using unique IDs.
+
+#### Arguments
+
+<ReferenceCard name="$event" type="string">
+  The name of the event to listen for.
+</ReferenceCard>
+
+<ReferenceCard name="$id" type="string">
+  A unique ID to store the listener under.
+</ReferenceCard>
+
+<ReferenceCard name="$mixin" type="mixin">
+  The mixin reference to run when the event is emitted.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Listen for the "output" event emitted by tokens.output()
+@include tokens.on("output", "my-output-listener", meta.get-mixin("my-output"));
+```
+</CodeExample>
+
+
+### off
+
+<ReferenceBar type="mixin" />
+
+Remove a previously registered event listener.
+
+#### Arguments
+
+<ReferenceCard name="$event" type="string">
+  The name of the event to stop listening for.
+</ReferenceCard>
+
+<ReferenceCard name="$id" type="string">
+  The unique ID of the listener to remove.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+@include tokens.off("output", "my-output-listener");
 ```
 </CodeExample>

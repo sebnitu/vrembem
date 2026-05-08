@@ -32,39 +32,66 @@ Core comes with the following Sass configuration options that can be set using e
     // A prefix to apply to block class names. Provided value is automatically 
     // suffixed with a "-" character when applied.
     // @type string
-    "prefix-block": "",
+    "prefix-blocks": "",
 
     // A prefix to apply to element class names
     // @type string
-    "prefix-element": "__",
+    "prefix-elements": "__",
 
     // A prefix to apply to modifier class names
     // @type string
-    "prefix-modifier": "_",
+    "prefix-modifiers": "_",
 
     // A prefix to apply to modifier value class names
     // @type string
-    "prefix-modifier-value": "_",
+    "prefix-modifier-values": "_",
 
-    // A prefix to apply to CSS variable tokens. Map values requires a default 
-    // key and value along with any component specific prefixes as needed. 
+    // The prefix to apply to custom element selectors, e.g.: <vb-checkbox></vb-checkbox>
+    // @type string
+    "prefix-custom-elements": "vb",
+
+    // A prefix to apply to CSS variable tokens. Map values requires a default
+    // key and value along with any component specific prefixes as needed.
     // Provided value(s) are automatically suffixed with a "-" character.
     // @type string | map
     "prefix-tokens": "vb",
 
-    // The palette to build CSS variables from
-    // @type map
-    "palette": (
-      "primary": hsl(152deg 60% 50%),
-      "secondary": hsl(214deg 50% 50%),
-      "neutral": hsl(214deg 20% 50%),
-      "important": hsl(0deg 80% 50%)
-    ),
-
     // A prefix to apply to theme names. Provided value is automatically suffixed
     // with a "-" character when applied.
     // @type string
-    "theme-prefix": "vb-theme",
+    "prefix-themes": "vb-theme",
+
+    // The palette to build CSS variables from
+    // @type map
+    "palette": (
+      "primary": oklch(75% 40% 158deg),   // #35cc86
+      "secondary": oklch(60% 40% 256deg), // #3680dd
+      "neutral": oklch(60% 10% 256deg),   // #718298
+      "important": oklch(60% 40% 28deg),  // #ce5247
+    ),
+
+    // Number of decimal places to round colors converted to oklch color space.
+    // @type number
+    "palette-round-decimal": 4,
+
+    // The key/value pairs of palette variants to create CSS variables for where 
+    // key is used in the token variant name (--vb-primary-[key]) and value is 
+    // passed to the palette get function as lightness/chroma arguments.
+    // @type map
+    "palette-variants": (
+      "50":  (98%, 10%), // The lightest variant in the palette
+      "75":  (96%, 20%),
+      "100": (90%, 40%),
+      "200": (80%, 80%),
+      "300": 70%,
+      "400": 60%,
+      "500": 50%,
+      "600": 40%,
+      "700": 30%,
+      "800": (20%, 80%),
+      "900": (18%, 70%),
+      "950": (16%, 60%), // The darkest variant in the palette
+    ),
 
     // Sets the default theme option
     // @type string
@@ -94,10 +121,11 @@ Design tokens are the foundation of the Vrembem library and help to establish a 
 
 Vrembem uses Sass modules to manage global configuration and design tokens throughout the library.
 
-- [`@vrembem/core/config`](/packages/core/config): Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
-- [`@vrembem/core/tokens`](/packages/core/tokens): Used to define, manage, and output global and component-level design tokens expressed as CSS variables.
-- [`@vrembem/core/palette`](/packages/core/palette): Used to build and return color palette values by leveraging both the config and tokens module.
-- [`@vrembem/core/theme`](/packages/core/theme): Used to define, manage, and output global and component-level themes powered by the tokens module.
+- [`@vrembem/core/config`](/packages/core/config): A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
+- [`@vrembem/core/tokens`](/packages/core/tokens): A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables.
+  - `@vrembem/core/palette`: Adds token support for generating and accessing palette based tokens.
+  - `@vrembem/core/breakpoints`: Adds token support for responsive values that change across breakpoints.
+  - `@vrembem/core/themes`: Adds token support for themed values using light, dark, and custom themes.
 
 ## Collections
 

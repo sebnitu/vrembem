@@ -1,0 +1,11 @@
+@use "sass:list";
+
+/// Converts a single string value into a list.
+///
+/// @param {any} $item - Any single value to be converted into a list
+///
+/// @return {list} A list containing one item
+///
+@function li($item) {
+  @return list.append((), $item);
+}

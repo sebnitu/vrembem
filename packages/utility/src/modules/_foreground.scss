@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 @use "../functions" as fun;
 
 @if fun.maybe-output("foreground") {
@@ -43,7 +42,7 @@
 
   @each $name in map.keys(config.get("palette")) {
     #{fun.selector("foreground", $name)} {
-      color: fun.maybe-important(palette.get($name));
+      color: fun.maybe-important(tokens.get("palette", $name));
     }
 
     #{fun.selector("foreground", $name, "auto")} {

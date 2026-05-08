@@ -1,7 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 @include tokens.set("reference-table", "max-height", 28rem);
 
 .reference-table {
@@ -26,14 +24,14 @@
     border-top: 1px solid tokens.get("border-color");
     border-radius: tokens.get("border-radius");
     box-shadow:
-      0 0 0 0 palette.get("primary"),
-      0 0 0 0 palette.get("primary", $a: 20%);
+      0 0 0 0 tokens.get("palette", "primary"),
+      0 0 0 0 tokens.get("palette", "primary", $a: 20%);
 
     &.is-active {
       z-index: 1;
       box-shadow:
-        0 0 0 1px palette.get("primary"),
-        0 0 0 0.2rem palette.get("primary", $a: 20%);
+        0 0 0 1px tokens.get("palette", "primary"),
+        0 0 0 0.2rem tokens.get("palette", "primary", $a: 20%);
 
       .table-anchor {
         display: none;
@@ -139,7 +137,7 @@
     color: tokens.get("foreground-subtle");
 
     &:hover {
-      color: palette.get("primary");
+      color: tokens.get("palette", "primary");
     }
   }
 
@@ -163,7 +161,7 @@
     font-family: tokens.get("font-family-mono");
 
     &:focus ~ .input-icon {
-      color: palette.get("primary");
+      color: tokens.get("palette", "primary");
     }
   }
 }
@@ -187,7 +185,7 @@
   line-height: 1em;
   text-decoration: none !important;
   opacity: 0;
-  background-color: palette.get("primary", $a: 0%);
+  background-color: tokens.get("palette", "primary", $a: 0%);
   transition:
     color 0.25s,
     opacity 0.25s;
@@ -195,7 +193,7 @@
   &:focus,
   &:hover {
     opacity: 1;
-    background-color: palette.get("primary", $a: 20%);
+    background-color: tokens.get("palette", "primary", $a: 20%);
   }
 
   tr:hover & {
@@ -205,12 +203,12 @@
 
 .table-anchor-clear {
   display: none;
-  color: palette.get("important");
-  background-color: palette.get("important", $a: 0%);
+  color: tokens.get("palette", "important");
+  background-color: tokens.get("palette", "important", $a: 0%);
 
   &:focus,
   &:hover {
-    background-color: palette.get("important", $a: 10%);
+    background-color: tokens.get("palette", "important", $a: 10%);
   }
 }
 

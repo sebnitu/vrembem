@@ -1,0 +1,11 @@
+@use "../modules/tokens";
+
+// This tells tokens to fetch the value from the config module when the tokens
+// are output. This allows breakpoints to be modified before output.
+@include tokens.set(
+  "core",
+  "breakpoint",
+  (
+    "config": "breakpoints"
+  )
+);

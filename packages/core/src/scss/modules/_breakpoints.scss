@@ -1,0 +1,101 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../library/media-min" as *;
+@use "../utilities/empty-map" as *;
+@use "../utilities/li" as *;
+@use "./config";
+@use "./tokens";
+
+/// Type transformer hook for the "breakpoints" token type. Registered with the
+/// tokens module to intercept values with `"type": "breakpoints"` during
+/// `tokens.set()`. Restructures the value into the `"breakpoints"` namespace
+/// grouped by breakpoint key, and extracts the default value as a flat prop.
+///
+/// @param {string} $prop
+///   The property name (e.g., "padding", "size").
+/// @param {map} $value
+///   The value map containing a "type" key, optional "default" key, and
+///   breakpoint key/value pairs.
+///
+/// @return {map}
+///   A map structured as `("breakpoints": ($bp: ($prop: ...)), $prop: $default)`
+///   for storage in the tokens map.
+///
+/// @access private
+///
+@function -type-transform-hook($prop, $value) {
+  $result: ();
+  $default: map.get($value, "default");
+
+  // Build the breakpoints map (excluding "type" and "default")
+  @each $bp, $bp-value in map.remove($value, "type", "default") {
+    // prettier-ignore
+    $result: map.deep-merge($result, ($bp: ($prop: $bp-value)));
+  }
+
+  // Initialize the output var under the breakpoints namespace
+  $output: (
+    "breakpoints": $result
+  );
+
+  // Add the default value to the output if it exists
+  @if $default {
+    // prettier-ignore
+    $output: map.merge(($prop: $default), $output);
+  }
+
+  @return $output;
+}
+
+/// Output breakpoint tokens for a all or a specific component and breakpoint.
+///
+/// @param {string} $bp
+///   The breakpoint key to output tokens for.
+///
+/// @access private
+///
+@mixin -output-breakpoint($component, $bp) {
+  // Get either all components or a specific component
+  // prettier-ignore
+  $components: 
+    if(sass($component == "*"): tokens.get("*");
+    else: ($component: tokens.get($component, "*"))
+  );
+
+  // Loop through components and output their breakpoint tokens
+  @each $component, $map in $components {
+    @if map.has-key($map, "breakpoints", $bp) {
+      $props: map.get($map, "breakpoints", $bp);
+
+      @each $prop, $value in $props {
+        @include tokens.define($component, $prop, $value);
+      }
+    }
+  }
+}
+
+/// Output all breakpoint tokens wrapped in their respective media queries.
+/// Each breakpoint produces a single `@media` block with a `:root` selector
+/// containing all component properties for that breakpoint.
+///
+/// @param {any} $args...
+///   Accepts any arguments passed from the tokens output event (ignored).
+///
+@mixin output($component) {
+  $breakpoints: config.get(li("breakpoints"), empty-map());
+
+  @each $key, $value in $breakpoints {
+    @include media-min($value) {
+      :root {
+        @include -output-breakpoint($component, $key);
+      }
+    }
+  }
+}
+
+// Apply token hooks and event listeners
+// Add the breakpoints type transformer
+@include tokens.add-hook("setter", "breakpoints", meta.get-function("-type-transform-hook"));
+
+// Add tokens event listener that runs whenever tokens are output
+@include tokens.on("output", "output-breakpoint-tokens", meta.get-mixin("output"));

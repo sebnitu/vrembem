@@ -4,23 +4,21 @@
 /// Recursive helper for debug-map
 @function -debug-map-recursive($map, $indent: "  ", $output: "", $n: "\A") {
   @each $key, $value in $map {
-    $current-indent: $indent;
-
     @if meta.type-of($value) == "map" {
-      $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (';
-      $output: -debug-map-recursive($value, $current-indent + $indent, $output, $n);
-      $output: "#{$output}#{$n}#{$current-indent}),";
+      $output: '#{$output}#{$n}#{$indent}"#{$key}": (';
+      $output: -debug-map-recursive($value, $indent + "  ", $output, $n);
+      $output: "#{$output}#{$n}#{$indent}),";
     } @else if meta.type-of($value) == "list" {
       @if list.length($value) == 0 {
-        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (),';
+        $output: '#{$output}#{$n}#{$indent}"#{$key}": (),';
       } @else {
-        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": (#{$value}),';
+        $output: '#{$output}#{$n}#{$indent}"#{$key}": (#{$value}),';
       }
     } @else {
       @if $value {
-        $output: '#{$output}#{$n}#{$current-indent}"#{$key}": #{$value},';
+        $output: '#{$output}#{$n}#{$indent}"#{$key}": #{$value},';
       } @else {
-        $output: '#{$output}#{$n}#{$current-indent}"#{$key}",';
+        $output: '#{$output}#{$n}#{$indent}"#{$key}",';
       }
     }
   }

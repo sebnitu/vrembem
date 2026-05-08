@@ -19,17 +19,15 @@
     "font-size-sm": 0.875rem,
     "font-size-lg": 1.125rem,
     "line-height": 1.5,
-    "font-weight": (
-      "thin": 100,
-      "extra-light": 200,
-      "light": 300,
-      "regular": 400,
-      "medium": 500,
-      "semi-bold": 600,
-      "bold": 700,
-      "extra-bold": 800,
-      "black": 900
-    )
+    "font-weight-thin": 100,
+    "font-weight-extra-light": 200,
+    "font-weight-light": 300,
+    "font-weight-regular": 400,
+    "font-weight-medium": 500,
+    "font-weight-semi-bold": 600,
+    "font-weight-bold": 700,
+    "font-weight-extra-bold": 800,
+    "font-weight-black": 900
   )
 );
 @include tokens.set("core", "font-family", tokens.get("font-family-sans"));

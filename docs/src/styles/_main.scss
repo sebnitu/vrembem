@@ -1,13 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-
-:root {
-  @include core.media-min("sidebar") {
-    @include tokens.override("main", "content-padding-x", 4em);
-    @include tokens.override("main", "content-padding-y", 2em);
-  }
-}
 
 .main {
   scroll-margin-top: calc(tokens.get("layout", "header-height") + calc(tokens.get("main", "content-padding-y")));
@@ -87,6 +79,10 @@
   min-width: 0;
   max-width: calc(tokens.get("main", "content-width") + tokens.get("main", "content-padding-x"));
   padding: tokens.get("main", "content-padding-y") tokens.get("main", "content-padding-x");
+
+  @include core.media-min("md") {
+    gap: 4em;
+  }
 }
 
 .main__footer {

@@ -9,7 +9,6 @@ $default: (
   // Map for outputting section_padding_[key] modifier variants
   // @type map
   "section-padding": (
-    "breakpoints": true,
     "default": (
       "md": 2em 1.5em,
       "lg": 3em 1.5em

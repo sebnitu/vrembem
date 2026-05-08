@@ -4,8 +4,6 @@
 // Import modules to configure
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 // Set config options
 @include config.set(
@@ -25,9 +23,27 @@
   )
 );
 
-// Set custom tokens
-@include tokens.set("core", "font-family", ("Barlow", system-ui, ui-sans-serif, sans-serif));
-@include tokens.set("core", "background-glass", oklch(from tokens.get("background") l c h / 70%));
+// Set custom core tokens
+// prettier-ignore
+@include tokens.set(
+  "core", 
+  (
+    "font-family": ("Barlow", system-ui, ui-sans-serif, sans-serif),
+    "background-glass": oklch(from tokens.get("background") l c h / 70%),
+    "light": (
+      "type": "theme",
+      "fold-shadow-start": tokens.get("palette", "neutral", $a: 8%),
+      "fold-shadow-end": tokens.get("palette", "neutral", $a: 0%)
+    ),
+    "dark": (
+      "type": "theme",
+      "fold-shadow-start": tokens.get("palette", "neutral", "950", $a: 10%),
+      "fold-shadow-end": tokens.get("palette", "neutral", "950", $a: 0%)
+    )
+  )
+);
+
+// Set custom components tokens
 @include tokens.set(
   "content",
   (
@@ -39,78 +55,64 @@
   "layout",
   (
     "width": 80em,
-    "padding": 1em,
+    "padding": (
+      "type": "breakpoints",
+      "default": 1em,
+      "sidebar": 1.5em
+    ),
     "sidebar-width": 18em,
-    "header-height": 74px
+    "header-height": (
+      "type": "breakpoints",
+      "default": 74px,
+      "sidebar": 90px
+    )
   )
 );
 @include tokens.set(
   "main",
   (
     "content-width": 42em,
-    "content-padding-x": 1.5em,
-    "content-padding-y": 1.5em,
+    "content-padding-x": (
+      "type": "breakpoints",
+      "default": 1.5em,
+      "sidebar": 4em
+    ),
+    "content-padding-y": (
+      "type": "breakpoints",
+      "default": 1.5em,
+      "sidebar": 2em
+    ),
     "aside-width": 14em,
     "aside-padding": 1em
   )
 );
-
-// Set custom themes
-@include theme.set(
-  "light",
-  (
-    "fold-shadow-start": palette.get("neutral", $a: 8%),
-    "fold-shadow-end": palette.get("neutral", $a: 0%)
-  )
-);
-@include theme.set(
-  "dark",
-  (
-    "fold-shadow-start": palette.get("neutral", "950", $a: 10%),
-    "fold-shadow-end": palette.get("neutral", "950", $a: 0%)
-  )
-);
-
-// Set Astro themes
 @include tokens.set(
   "astro",
   (
-    "code": (
-      "background": tokens.get("background-alt"),
-      "foreground": tokens.get("foreground-strong"),
-      "color-text": tokens.get("foreground-strong"),
-      "token-comment": tokens.get("foreground-subtle"),
-      "token-keyword": tokens.get("foreground-strong")
-    )
-  )
-);
-@include theme.set(
-  "light",
-  "astro",
-  (
-    "code-token": (
-      "constant": #1b6bc6,
-      "string": #1b6bc6,
-      "parameter": #df7a32,
-      "function": #794bcf,
-      "string-expression": #309b4a,
-      "punctuation": #ce3b4a,
-      "link": #ce3b4a
-    )
-  )
-);
-@include theme.set(
-  "dark",
-  "astro",
-  (
-    "code-token": (
-      "constant": #79b8ff,
-      "string": #79b8ff,
-      "parameter": #ffab70,
-      "function": #b392f0,
-      "string-expression": #85e89d,
-      "punctuation": #f97583,
-      "link": #f97583
+    "code-background": tokens.get("background-alt"),
+    "code-foreground": tokens.get("foreground-strong"),
+    "code-color-text": tokens.get("foreground-strong"),
+    "code-token-comment": tokens.get("foreground-subtle"),
+    "code-token-keyword": tokens.get("foreground-strong"),
+    "light": (
+      "type": "theme",
+      "code-token-constant": #1b6bc6,
+      "code-token-string": #1b6bc6,
+      "code-token-parameter": #df7a32,
+      "code-token-function": #794bcf,
+      "code-token-string-expression": #309b4a,
+      "code-token-punctuation": #ce3b4a,
+      "code-token-link": #ce3b4a
+    ),
+    "dark": (
+      "type": "theme",
+      "code-token-constant": #79b8ff,
+      "code-token-string": #79b8ff,
+      "code-token-parameter": #ffab70,
+      "code-token-function": #b392f0,
+      "code-token-string-expression": #85e89d,
+      "code-token-punctuation": #f97583,
+      "code-token-link": #f97583
     )
   )
 );

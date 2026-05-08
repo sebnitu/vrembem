@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 #{core.bem("dialog")} {
   @include core.focus-ring-base;
@@ -27,7 +26,7 @@
   }
 
   &[role="alertdialog"] {
-    @include tokens.override("dialog", "focus-ring-color", palette.get("important"));
+    @include tokens.override("dialog", "focus-ring-color", tokens.get("palette", "important"));
   }
 }
 

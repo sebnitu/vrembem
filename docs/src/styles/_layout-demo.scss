@@ -1,19 +1,17 @@
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/theme";
-@include theme.set(
-  "light",
+@include tokens.set(
   "layout",
   (
-    "background-color": oklch(from magenta l c h / 5%),
-    "background-stripe": oklch(from magenta l c h / 10%)
-  )
-);
-@include theme.set(
-  "dark",
-  "layout",
-  (
-    "background-color": oklch(from magenta l c h / 10%),
-    "background-stripe": oklch(from magenta l c h / 20%)
+    "light": (
+      "type": "theme",
+      "background-color": oklch(from magenta l c h / 5%),
+      "background-stripe": oklch(from magenta l c h / 10%)
+    ),
+    "dark": (
+      "type": "theme",
+      "background-color": oklch(from magenta l c h / 10%),
+      "background-stripe": oklch(from magenta l c h / 20%)
+    )
   )
 );
 

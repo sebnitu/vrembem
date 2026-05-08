@@ -1,8 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
-@use "@vrembem/core/theme";
 
 $config: () !default;
 
@@ -20,23 +18,25 @@ $default: (
   // Map for outputting input_state_[key] modifier variants
   // @type map
   "input-state": (
-    "success": palette.get("primary"),
-    "error": palette.get("important")
+    "success": tokens.get("palette", "primary"),
+    "error": tokens.get("palette", "important")
   )
 );
 
 @include config.apply($config, $default);
 @include tokens.register("input");
 
-// Themes
 // prettier-ignore
-@include theme.set(
-  "light", "input", "select-icon",
-  url(core.svg("expand", ("color": black)))
-);
-
-// prettier-ignore
-@include theme.set(
-  "dark", "input", "select-icon",
-  url(core.svg("expand", ("color": white)))
+@include tokens.set(
+  "input", 
+  (
+    "light": (
+      "type": "theme",
+      "select-icon": url(core.svg("expand", ("color": black)))
+    ),
+    "dark": (
+      "type": "theme",
+      "select-icon": url(core.svg("expand", ("color": white)))
+    )
+  )
 );

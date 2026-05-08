@@ -1,7 +1,6 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/palette";
 
 @each $key, $value in config.get("input-state", "variants") {
   #{core.bem("input", null, "state", $key)} {

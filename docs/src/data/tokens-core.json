@@ -1,6 +1,6 @@
 {
   "--vb-prefix": "vb",
-  "--vb-theme-prefix": "vb-theme",
+  "--vb-prefix-themes": "vb-theme",
   "--vb-breakpoint-xs": "480px",
   "--vb-breakpoint-sm": "620px",
   "--vb-breakpoint-md": "760px",

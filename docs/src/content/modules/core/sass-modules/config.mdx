@@ -1,6 +1,6 @@
 ---
 title: core/config
-description: "Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options."
+description: "A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options."
 order: 1
 ---
 
@@ -29,10 +29,10 @@ To use the configuration module directly, import the `core/config` module. Once 
 @use "@vrembem/core/config";
 
 // 2. Set a configuration value
-@include config.set("theme-prefix", "theme");
+@include config.set("prefix-themes", "theme");
 
 // 3. Get a configuration value
-@debug config.get("theme-prefix"); // => "theme"
+@debug config.get("prefix-themes"); // => "theme"
 ```
 </CodeExample>
 
@@ -61,7 +61,7 @@ To set configuration options via the Sass `@use ... with` clause, define and set
 ```scss
 @use "@vrembem/core" with (
   $config: (
-    "prefix-block": "vb"
+    "prefix-blocks": "vb"
   )
 );
 @use "@vrembem/content" with (
@@ -70,7 +70,7 @@ To set configuration options via the Sass `@use ... with` clause, define and set
   )
 );
 
-@debug core.config-get("prefix-block"); // => "vb"
+@debug core.config-get("prefix-blocks"); // => "vb"
 @debug core.config-get("content-output"); // => false
 ```
 </CodeExample>
@@ -81,7 +81,7 @@ Changes to the global config should be done before loading other Vrembem or cust
 
 This reference details the available configuration API, their arguments, and usage examples so you can customize and control global configurations across all Vrembem components.
 
-### config.get()
+### get
 
 <ReferenceBar type="function" />
 
@@ -105,7 +105,7 @@ Function to returns the value of an option in the configuration map.
 ```
 </CodeExample>
 
-### config.set()
+### set
 
 <ReferenceBar type="mixin" />
 
@@ -140,7 +140,7 @@ Set an option in the configuration map by providing a key and value to store, or
 ```
 </CodeExample>
 
-### config.set-default()
+### set-default
 
 <ReferenceBar type="mixin" />
 
@@ -173,7 +173,7 @@ An alias mixin for `config.set()` with predefined default argument to `true`. Ru
 ```
 </CodeExample>
 
-### config.merge()
+### merge
 
 <ReferenceBar type="mixin" />
 
@@ -189,7 +189,7 @@ Merges a map value of the configuration object with a provided map value.
   The map to be merged with the existing map value.
 </ReferenceCard>
 
-### config.remove()
+### remove
 
 <ReferenceBar type="mixin" />
 
@@ -210,7 +210,7 @@ Remove an option from the configuration map.
 ```
 </CodeExample>
 
-### config.apply()
+### apply
 
 <ReferenceBar type="mixin" />
 
@@ -282,7 +282,7 @@ We can also set our configuration values before the module is loaded and include
 ```
 </CodeExample>
 
-### config.watch()
+### watch
 
 <ReferenceBar type="mixin" />
 
@@ -302,7 +302,7 @@ Set a watcher to a specific property of the configuration object.
   The mixin reference to run when the watched property has changed.
 </ReferenceCard>
 
-### config.unwatch()
+### unwatch
 
 <ReferenceBar type="mixin" />
 
@@ -318,7 +318,7 @@ Remove a watcher to a specific property of the configuration object.
   The unique ID of the watcher to remove.
 </ReferenceCard>
 
-### config.log()
+### log
 
 <ReferenceBar type="mixin" />
 
@@ -337,10 +337,10 @@ Log to console the entire or a specific value in the configuration map.
 @include config.log();
 // Debug: 
 // Config options map: (
-//   "prefix-block": ,
-//   "prefix-element": __,
-//   "prefix-modifier": _,
-//   "prefix-modifier-value": _,
+//   "prefix-blocks": ,
+//   "prefix-elements": __,
+//   "prefix-modifiers": _,
+//   "prefix-modifier-values": _,
 //   ...
 // )
 ```
