@@ -116,23 +116,13 @@ $-theme-keys: ();
 ///   The component to output. Use "*" to output a theme from all
 ///   components.
 ///
-/// @example scss
-///   // Output the custom properties for the button light theme
-///   .vb-theme-light {
-///     @include theme.output-theme("light", "button");
-///   }
+/// @access private
 ///
-/// @example scss
-///   // Output the custom properties for the light theme from all components
-///   .vb-theme-light {
-///     @include theme.output-theme("light", "*");
-///   }
-///
-@mixin output-theme($theme, $component: "*") {
+@mixin -output-theme($theme, $component: "*") {
   @if $component == "*" {
     // Call output-theme() for every component in `tokens.$-css-vars`
     @each $component in map.keys(tokens.get("*")) {
-      @include output-theme($theme, $component);
+      @include -output-theme($theme, $component);
     }
   } @else {
     // Initialize the component map
@@ -183,19 +173,19 @@ $-theme-keys: ();
     $theme: config.get(li("theme-default"), "light");
 
     // Output the default theme
-    @include output-theme($theme, $component);
+    @include -output-theme($theme, $component);
 
     // If the default them is not light mode, output the prefers light media query
     @if $theme != "light" {
       @media (prefers-color-scheme: light) {
-        @include output-theme("light", $component);
+        @include -output-theme("light", $component);
       }
     }
 
     // If the default them is not dark mode, output the prefers dark media query
     @if $theme != "dark" {
       @media (prefers-color-scheme: dark) {
-        @include output-theme("dark", $component);
+        @include -output-theme("dark", $component);
       }
     }
   }
@@ -203,7 +193,7 @@ $-theme-keys: ();
   // This outputs all custom themes using their theme class
   @each $key in $-theme-keys {
     #{class($key)} {
-      @include output-theme($key, $component);
+      @include -output-theme($key, $component);
     }
   }
 }

@@ -622,7 +622,9 @@ $-events: ();
 /// @param {string} $component
 ///   The component to output custom properties for.
 ///
-@mixin output-component($component) {
+/// @access private
+///
+@mixin -output-component($component) {
   @if -component-exists($component, $required: false) {
     // Get the component's property map
     $property-map: map.get($-tokens, $component);
@@ -665,12 +667,11 @@ $-events: ();
 @mixin output($component: "*") {
   :root {
     @if $component == "*" {
-      // Call output() for every component in $-tokens
       @each $component in map.keys($-tokens) {
-        @include output-component($component);
+        @include -output-component($component);
       }
     } @else {
-      @include output-component($component);
+      @include -output-component($component);
     }
   }
 

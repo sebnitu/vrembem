@@ -52,7 +52,9 @@
 /// @param {string} $bp
 ///   The breakpoint key to output tokens for.
 ///
-@mixin output-breakpoint($component, $bp) {
+/// @access private
+///
+@mixin -output-breakpoint($component, $bp) {
   // Get either all components or a specific component
   // prettier-ignore
   $components: 
@@ -85,7 +87,7 @@
   @each $key, $value in $breakpoints {
     @include media-min($value) {
       :root {
-        @include output-breakpoint($component, $key);
+        @include -output-breakpoint($component, $key);
       }
     }
   }
