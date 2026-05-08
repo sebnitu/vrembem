@@ -47,8 +47,7 @@
   @return $output;
 }
 
-/// Output all breakpoint tokens for a specific breakpoint key. Loops through
-/// all components and outputs any properties stored under the breakpoint.
+/// Output breakpoint tokens for a all or a specific component and breakpoint.
 ///
 /// @param {string} $bp
 ///   The breakpoint key to output tokens for.
