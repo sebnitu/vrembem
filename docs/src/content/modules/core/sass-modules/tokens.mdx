@@ -25,7 +25,7 @@ The tokens module manages design tokens as CSS custom properties. Use `set()` to
     // Store tokens under a component namespace
     @include tokens.set("button", (
       "background": teal,
-      "foreground": white,
+      "foreground": salmon,
       "padding": 1em 1.5em
     ));
 
@@ -40,7 +40,7 @@ The tokens module manages design tokens as CSS custom properties. Use `set()` to
     @include tokens.output();
     ```
   </TabsPanel>
-  <TabsPanel label="CSS">
+  <TabsPanel label="CSS Output">
     ```css
     .button {
       background: var(--vb-button-background);
@@ -50,14 +50,53 @@ The tokens module manages design tokens as CSS custom properties. Use `set()` to
 
     :root {
       --vb-button-background: teal;
-      --vb-button-foreground: white;
+      --vb-button-foreground: salmon;
       --vb-button-padding: 1em 1.5em;
     }
     ```
   </TabsPanel>
 </CodeExample>
 
-### Breakpoint tokens
+The examples in this section assume you are using the default configuration provided by Vrembem such as `prefix-tokens`, `breakpoints`, and `palette`. For more information on config options, see the [`core/config`](/packages/core/config) documentation.
+
+### Palette
+
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/palette";
+
+    // Reference palette tokens with custom lightness, chroma and alpha values
+    // Example: tokens.get("palette", "[name]", $l, $c, $a);
+    .button {
+      background: tokens.get("palette", "primary", $a: 50%);
+      color: tokens.get("palette", "primary", 18%, 60%);
+    }
+
+    // Get a specific reference from the palette variants
+    .surface {
+      background: tokens.get("palette", "primary", "700");
+    }
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    .button {
+      background: oklch(from var(--vb-primary) l c h / 50%);
+      color: oklch(18% calc(var(--vb-primary-c) * 0.6) var(--vb-primary-h));
+    }
+
+    .surface {
+      background: var(--vb-primary-700);
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+### Breakpoints
 
 When the `core/breakpoints` plugin is loaded, tokens can be made responsive by setting a value map with `"type": "breakpoints"`. The `"default"` key sets the initial value, and breakpoint keys set values at specific breakpoints.
 
@@ -79,7 +118,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
     @include tokens.output();
     ```
   </TabsPanel>
-  <TabsPanel label="CSS">
+  <TabsPanel label="CSS Output">
     ```css
     :root {
       --vb-layout-padding: 1em;
@@ -100,7 +139,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
   </TabsPanel>
 </CodeExample>
 
-### Theme tokens
+### Themes
 
 When the `core/themes` plugin is loaded, tokens can be themed by setting a value map with `"type": "theme"`. The key used for the property name becomes the theme name, and all other key/value pairs become the theme's tokens.
 
@@ -114,79 +153,91 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
       "light": (
         "type": "theme",
         "color-scheme": light,
-        "background": white,
-        "foreground": #333
+        "background": lightblue,
+        "foreground": darkblue
       ),
       "dark": (
         "type": "theme",
         "color-scheme": dark,
-        "background": #1a1a1a,
-        "foreground": #eee
+        "background": darkblue,
+        "foreground": lightblue
       )
     ));
 
     @include tokens.output();
     ```
   </TabsPanel>
-  <TabsPanel label="CSS">
+  <TabsPanel label="CSS Output">
     ```css
     :root,
-    .theme-auto {
+    .vb-theme-auto {
       color-scheme: light;
-      --vb-background: white;
-      --vb-foreground: #333;
+      --vb-background: lightblue;
+      --vb-foreground: darkblue;
+    }
 
-      @media (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme: dark) {
+      :root,
+      .vb-theme-auto {
         color-scheme: dark;
-        --vb-background: #1a1a1a;
-        --vb-foreground: #eee;
+        --vb-background: darkblue;
+        --vb-foreground: lightblue;
       }
     }
 
-    .theme-light {
+    .vb-theme-light {
       color-scheme: light;
-      --vb-background: white;
-      --vb-foreground: #333;
+      --vb-background: lightblue;
+      --vb-foreground: darkblue;
     }
 
-    .theme-dark {
+    .vb-theme-dark {
       color-scheme: dark;
-      --vb-background: #1a1a1a;
-      --vb-foreground: #eee;
+      --vb-background: darkblue;
+      --vb-foreground: lightblue;
     }
     ```
   </TabsPanel>
 </CodeExample>
 
-### Plugins
+## Reference
 
-Token plugins extend `core/tokens` by registering setter hooks, getter hooks, and event listeners. They are loaded automatically when `@vrembem/core` is imported, or can be imported individually.
+Tokens provides a straightforward API for managing design tokens. Define, reference and output custom properties both globally and on a per-component basis. The tokens module can also be extended by registering hooks and event listeners.
 
-<ReferenceCard name="palette" type="module">
-  Generates palette tokens from seed colors using the oklch color space. Registers a getter hook that enables `tokens.get("palette", ...)` to return dynamic oklch color values with lightness, chroma, and alpha overrides.
-  ```scss
-  @use "@vrembem/core/palette";
-  ```
+### set
+
+<ReferenceBar type="mixin" />
+
+Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component name to store the custom property under.
 </ReferenceCard>
 
-<ReferenceCard name="breakpoints" type="module">
-  Adds responsive token support. Registers a setter hook for `"type": "breakpoints"` that restructures values by breakpoint, and an output event listener that wraps breakpoint tokens in `@media` queries.
-  ```scss
-  @use "@vrembem/core/breakpoints";
-  ```
+<ReferenceCard name="$prop" type="string | map">
+  The custom property name to store. Can be a map containing property and value pairs.
 </ReferenceCard>
 
-<ReferenceCard name="themes" type="module">
-  Adds theme token support. Registers a setter hook for `"type": "theme"` that namespaces tokens under themes, and an output event listener that generates `:root` defaults, `prefers-color-scheme` media queries, and theme class selectors.
-  ```scss
-  @use "@vrembem/core/themes";
-  ```
+<ReferenceCard name="$value" type="any">
+  The custom property value to store.
 </ReferenceCard>
 
-## Basic API
+#### Example
 
-For most use-cases, `core/tokens` provides a straightforward API for managing design tokens. Define, reference and output custom properties both globally and on a per-component basis.
+<CodeExample lang="scss">
+```scss
+// Set a single option
+@include tokens.set("block", "accent", teal);
 
+// Set multiple options at once
+@include tokens.set("block", (
+  "background": darkGreen,
+  "foreground": lightPink
+));
+```
+</CodeExample>
 
 ### get
 
@@ -225,43 +276,6 @@ Function to return a custom property reference that has been stored in the custo
   </TabsPanel>
 </CodeExample>
 
-
-### set
-
-<ReferenceBar type="mixin" />
-
-Mixin to store custom properties for later definition and reference. Can also update the entire custom properties map or a stored component map by passing `"*"` value to `$component` or `$prop` respectively.
-
-#### Arguments
-
-<ReferenceCard name="$component" type="string">
-  The component name to store the custom property under.
-</ReferenceCard>
-
-<ReferenceCard name="$prop" type="string | map">
-  The custom property name to store. Can be a map containing property and value pairs.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="any">
-  The custom property value to store.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Set a single option
-@include tokens.set("block", "accent", teal);
-
-// Set multiple options at once
-@include tokens.set("block", (
-  "background": darkGreen,
-  "foreground": lightPink
-));
-```
-</CodeExample>
-
-
 ### output
 
 <ReferenceBar type="mixin" />
@@ -292,7 +306,6 @@ Output all custom properties of a provided component. Or output all custom prope
   </TabsPanel>
 </CodeExample>
 
-
 ### override
 
 <ReferenceBar type="mixin" />
@@ -311,10 +324,6 @@ Mixin to override previously defined custom properties. This is primarily used i
 
 <ReferenceCard name="$value" type="any">
   The property value to override with.
-</ReferenceCard>
-
-<ReferenceCard name="$breakpoints" type="map" defaults='config.get("breakpoints")'>
-  A map of breakpoint key/value pairs used when `$value` is a map. Each matching key in the value map is output inside a `min-width` media query.
 </ReferenceCard>
 
 #### Example
@@ -339,11 +348,6 @@ Mixin to override previously defined custom properties. This is primarily used i
     ```
   </TabsPanel>
 </CodeExample>
-
-
-## Primitive API
-
-For more advanced use-cases, `core/tokens` provides a more primitive API for fine grained custom property management.
 
 ### register
 
@@ -536,10 +540,6 @@ Log to console all custom properties, a component map or component theme. Provid
 // )
 ```
 </CodeExample>
-
-## Plugin API
-
-The plugin API allows token modules to extend the behavior of `core/tokens` by registering hooks and event listeners. Hooks intercept `get()` and `set()` calls, while events run listeners when specific actions occur (e.g., outputting tokens).
 
 ### add-hook
 
