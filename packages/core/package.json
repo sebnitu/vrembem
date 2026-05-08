@@ -36,6 +36,7 @@
     },
     "./config": "./src/scss/modules/_config.scss",
     "./palette": "./src/scss/modules/_palette.scss",
+    "./breakpoints": "./src/scss/modules/_breakpoints.scss",
     "./themes": "./src/scss/modules/_themes.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
@@ -52,6 +53,7 @@
     "config.scss",
     "tokens.scss",
     "palette.scss",
+    "breakpoints.scss",
     "themes.scss"
   ],
   "scripts": {
