@@ -520,7 +520,6 @@ $-events: ();
     $component-map: (
       $component: $value
     );
-
     $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 
