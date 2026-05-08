@@ -53,10 +53,18 @@
 /// @param {string} $bp
 ///   The breakpoint key to output tokens for.
 ///
-@mixin output-breakpoint($bp) {
-  @each $component in map.keys(tokens.get("*")) {
-    @if tokens.has($component, "breakpoints", $bp) {
-      $props: tokens.get($component, "*", "breakpoints", $bp);
+@mixin output-breakpoint($component, $bp) {
+  // Get either all components or a specific component
+  // prettier-ignore
+  $components: 
+    if(sass($component == "*"): tokens.get("*");
+    else: ($component: tokens.get($component, "*"))
+  );
+
+  // Loop through components and output their breakpoint tokens
+  @each $component, $map in $components {
+    @if map.has-key($map, "breakpoints", $bp) {
+      $props: map.get($map, "breakpoints", $bp);
 
       @each $prop, $value in $props {
         @include tokens.define($component, $prop, $value);
@@ -72,13 +80,13 @@
 /// @param {any} $args...
 ///   Accepts any arguments passed from the tokens output event (ignored).
 ///
-@mixin output($args...) {
+@mixin output($component) {
   $breakpoints: config.get(li("breakpoints"), empty-map());
 
-  @each $bp-key, $bp-value in $breakpoints {
-    @include media-min($bp-value) {
+  @each $key, $value in $breakpoints {
+    @include media-min($value) {
       :root {
-        @include output-breakpoint($bp-key);
+        @include output-breakpoint($component, $key);
       }
     }
   }
