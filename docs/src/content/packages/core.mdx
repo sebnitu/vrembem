@@ -121,11 +121,11 @@ Design tokens are the foundation of the Vrembem library and help to establish a 
 
 Vrembem uses Sass modules to manage global configuration and design tokens throughout the library.
 
-- [`@vrembem/core/config`](/packages/core/config): Used to setup global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
-- [`@vrembem/core/tokens`](/packages/core/tokens): Used to define, manage, and output global and component-level design tokens expressed as CSS variables.
+- [`@vrembem/core/config`](/packages/core/config): A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
+- [`@vrembem/core/tokens`](/packages/core/tokens): A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables.
   - `@vrembem/core/palette`: Adds token support for generating and accessing palette based tokens.
-  - `@vrembem/core/breakpoints`: Adds token support for breakpoints. This is done by setting `"type": "breakpoints"` in the value map.
-  - `@vrembem/core/themes`: Adds token support for themes. This is done by setting `"type": "theme"` in the value map.
+  - `@vrembem/core/breakpoints`: Adds token support for responsive values that change across breakpoints.
+  - `@vrembem/core/themes`: Adds token support for themed values using light, dark, and custom themes.
 
 ## Collections
 
