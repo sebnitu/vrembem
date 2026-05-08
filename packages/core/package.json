@@ -36,7 +36,7 @@
     },
     "./config": "./src/scss/modules/_config.scss",
     "./palette": "./src/scss/modules/_palette.scss",
-    "./theme": "./src/scss/modules/_theme.scss",
+    "./themes": "./src/scss/modules/_themes.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./*": "./src/*"
@@ -52,7 +52,7 @@
     "config.scss",
     "tokens.scss",
     "palette.scss",
-    "theme.scss"
+    "themes.scss"
   ],
   "scripts": {
     "serve": "vite",

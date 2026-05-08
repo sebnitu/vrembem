@@ -507,7 +507,7 @@ $-events: ();
   // If component is set to "*", update the entire custom properties map
   // This primarily allows other modules to more easily modify the CSS var map
   // by circumventing the limitations of what `set` allows.
-  // Example in core/theme:
+  // Example in core/themes:
   // @include tokens.set("*", $result);
   @if $component == "*" {
     $-tokens: $prop !global;
@@ -516,7 +516,7 @@ $-events: ();
   // If prop is set to "*", merge the value map with an entire component map
   // This primarily allows other modules to more easily modifier a component's
   // CSS var map by circumventing the limitations of what `set` allows.
-  // Example in core/theme:
+  // Example in core/themes:
   // @include tokens.set($component, "*", $result, $deep: false);
   @else if $prop == "*" {
     $component-map: (
