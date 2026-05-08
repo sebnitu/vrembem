@@ -458,8 +458,6 @@ $-events: ();
 /// @param {any} $value (null)
 ///   The custom property value to store. Can be a map containing property and
 ///   value pairs. Map keys are appended to provided `$prop` parameter.
-/// @param {boolean} $deep (true)
-///   Whether or not to use `merge` or `deep-merge` when combining maps.
 ///
 /// @example scss
 ///   @include tokens.set("button", "background", #000);
@@ -503,7 +501,7 @@ $-events: ();
 ///     )
 ///   );
 ///
-@mixin set($component, $prop, $value: null, $deep: true) {
+@mixin set($component, $prop, $value: null) {
   // If component is set to "*", update the entire custom properties map
   // This primarily allows other modules to more easily modify the CSS var map
   // by circumventing the limitations of what `set` allows.
@@ -517,17 +515,13 @@ $-events: ();
   // This primarily allows other modules to more easily modifier a component's
   // CSS var map by circumventing the limitations of what `set` allows.
   // Example in core/themes:
-  // @include tokens.set($component, "*", $result, $deep: false);
+  // @include tokens.set($component, "*", $result);
   @else if $prop == "*" {
     $component-map: (
       $component: $value
     );
 
-    @if $deep != true {
-      $-tokens: map.merge($-tokens, $component-map) !global;
-    } @else {
-      $-tokens: map.deep-merge($-tokens, $component-map) !global;
-    }
+    $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 
   // Handle this as a normal tokens.set call
@@ -538,11 +532,7 @@ $-events: ();
     );
 
     // Merge the resulting $component-map into the tokens map
-    @if $deep != true {
-      $-tokens: map.merge($-tokens, $component-map) !global;
-    } @else {
-      $-tokens: map.deep-merge($-tokens, $component-map) !global;
-    }
+    $-tokens: map.deep-merge($-tokens, $component-map) !global;
   }
 }
 
