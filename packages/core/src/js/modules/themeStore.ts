@@ -4,7 +4,7 @@ import { cssVar } from "../helpers";
 const defaults = {
   // The class prefix for theme names.
   // @type string
-  prefix: cssVar("theme-prefix", { fallback: "vb-theme" }),
+  prefix: cssVar("prefix-themes", { fallback: "vb-theme" }),
 
   // Local storage key for saving theme state.
   // @type string

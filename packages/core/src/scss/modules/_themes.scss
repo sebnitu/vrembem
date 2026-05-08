@@ -97,7 +97,7 @@ $-theme-keys: ();
     @error "Theme does not exist: #{$theme}";
   }
 
-  $prefix: config.get(li("theme-prefix"), "theme");
+  $prefix: config.get(li("prefix-themes"), "theme");
 
   @if $prefix and $prefix != "" {
     $prefix: "#{$prefix}-";

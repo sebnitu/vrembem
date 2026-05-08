@@ -52,6 +52,11 @@ Core comes with the following Sass configuration options that can be set using e
     // @type string | map
     "prefix-tokens": "vb",
 
+    // A prefix to apply to theme names. Provided value is automatically suffixed
+    // with a "-" character when applied.
+    // @type string
+    "prefix-themes": "vb-theme",
+
     // The prefix to apply to custom element selectors, e.g.: <vb-checkbox></vb-checkbox>
     // @type string
     "prefix-custom-elements": "vb",
@@ -87,11 +92,6 @@ Core comes with the following Sass configuration options that can be set using e
       "900": (18%, 70%),
       "950": (16%, 60%), // The darkest variant in the palette
     ),
-
-    // A prefix to apply to theme names. Provided value is automatically suffixed
-    // with a "-" character when applied.
-    // @type string
-    "theme-prefix": "vb-theme",
 
     // Sets the default theme option
     // @type string
