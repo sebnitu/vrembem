@@ -22,16 +22,15 @@ Alternatively, custom properties can also be output manually using the `core/tok
 
 <CodeExample lang="scss">
 ```scss
-// Import core to bootstrap all modules
+// Import core to bootstrap
 @use "@vrembem/core";
 
-// Import core modules for use
+// Import tokens module
 @use "@vrembem/core/tokens";
-@use "@vrembem/core/themes";
 
-// Wrap these in the tokens layer
+// Wrap the output in the tokens layer
 @layer tokens {
-  // Output all registered CSS variables
+  // Output all registered tokens as CSS variables
   @include tokens.output;
 }
 ```
