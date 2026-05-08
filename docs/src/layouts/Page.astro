@@ -46,7 +46,9 @@ const layout = {
   <Intro data={{ title, description }} />
   <slot />
   <Fragment slot="append">
-    <EditPageLink {entry} />
+    <div>
+      <EditPageLink {entry} />
+    </div>
     {entry && <CollectionPagi {entry} />}
   </Fragment>
 </Base>
