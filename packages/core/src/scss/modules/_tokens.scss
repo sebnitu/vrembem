@@ -400,9 +400,10 @@ $-events: ();
 
   // Check if component exists
   @if -component-exists($component) {
-    // See if there's a resolved getter and return the result
+    // See if there's a stored getter for this component
     $getter: -resolve-getter($component, $props...);
 
+    // Return the result of getter if any value was set
     @if $getter {
       @return $getter;
     }
