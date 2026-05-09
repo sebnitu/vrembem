@@ -7,6 +7,9 @@ export type NaviConfig =
   | { label: string; link: string }
   | { label: string; items: NaviConfigItem[] };
 
+// TODO: Move types somewhere else
+// TODO: Find a way to render modules. Maybe move them back to packages?
+
 const sidebar: NaviConfig[] = [
   {
     label: "Guide",

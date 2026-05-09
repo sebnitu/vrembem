@@ -10,6 +10,9 @@ interface Props {
 const { config } = Astro.props;
 
 const items = await resolveNavi(config, Astro.url.pathname);
+
+// TODO: Add persistent state for which details are toggled
+// TODO: Add persistent state for scroll position
 ---
 
 <SidebarNaviMenu {items} />
