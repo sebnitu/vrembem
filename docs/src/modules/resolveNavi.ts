@@ -28,9 +28,16 @@ export async function resolveNavi(
       // Collection reference — fetch entries and build links
       const collection = item.items.collection as CollectionKey;
       const entries = await getCollection(collection);
+      const filtered = item.items.filter
+        ? entries.filter(
+            (entry) =>
+              entry.id.startsWith(item.items.filter + "/") ||
+              entry.id === item.items.filter
+          )
+        : entries;
       resolved.push({
         label: item.label,
-        items: entries.map((entry) => ({
+        items: filtered.map((entry) => ({
           label: entry.data.title,
           link: getCollectionPath(entry)
         }))
