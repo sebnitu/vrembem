@@ -2,6 +2,7 @@ import type { NaviItem } from "@/navi.config";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
 export interface ResolvedNaviLink {
   label: string;
@@ -28,6 +29,8 @@ export async function resolveNavi(
       // Collection reference — fetch entries and build links
       const collection = item.items.collection as CollectionKey;
       const entries = await getCollection(collection);
+
+      // Filter the entries if a filter prop was provided
       const filtered = item.items.filter
         ? entries.filter(
             (entry) =>
@@ -35,6 +38,16 @@ export async function resolveNavi(
               entry.id === item.items.filter
           )
         : entries;
+
+      // Sort the collections
+      if (collection === "packages") {
+        entries.sort(
+          byCategory(["core", "modules", "layout", "form-control", "component"])
+        );
+      } else {
+        entries.sort(byTitle).sort(byOrder);
+      }
+
       resolved.push({
         label: item.label,
         items: filtered.map((entry) => ({
