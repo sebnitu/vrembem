@@ -1,6 +1,7 @@
 ---
 import { buildNaviTree, type NaviConfig } from "@/modules/buildNaviTree";
 import SidebarNaviMenu from "@/components/SidebarNaviMenu.astro";
+import SidebarState from "@/components/SidebarState.astro";
 
 interface Props {
   config: NaviConfig[];
@@ -9,9 +10,8 @@ interface Props {
 const { config } = Astro.props;
 
 const navi = await buildNaviTree(config, Astro.url.pathname);
-
-// TODO: Add persistent state for which details are toggled
-// TODO: Add persistent state for scroll position
 ---
 
-<SidebarNaviMenu tree={navi} />
+<SidebarState>
+  <SidebarNaviMenu tree={navi} />
+</SidebarState>

@@ -1,0 +1,38 @@
+---
+// TODO: Add persistent state for scroll position
+---
+
+<vb-sidebar-state>
+  <script is:inline>
+    (() => {
+      const state = JSON.parse(localStorage.getItem("vb-sidebar-state"));
+      if (!state?.open) return;
+      let index = 0;
+      customElements.define(
+        "vb-sidebar-group",
+        class extends HTMLElement {
+          connectedCallback() {
+            const details = this.closest("details");
+            if (details) {
+              details.open = state.open[index];
+            }
+            index++;
+          }
+        }
+      );
+    })();
+  </script>
+  <slot />
+</vb-sidebar-state>
+
+<script>
+  import { localStore } from "vrembem";
+  const store = localStore("vb-sidebar-state");
+  const details = document.querySelectorAll("vb-sidebar-state details");
+  details.forEach((entry) => {
+    entry.addEventListener("toggle", () => {
+      const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
+      store.set("open", stateArray);
+    });
+  });
+</script>
