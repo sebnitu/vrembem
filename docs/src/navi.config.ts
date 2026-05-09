@@ -1,21 +1,11 @@
-export type NaviItem = {
-  label: string;
-  link: string;
-};
-
-export type NaviItems = {
-  label: string;
-  items: ResolvedNaviItem[];
-};
-
 export type ResolvedNaviItem =
   | { label: string; link: string; isCurrent: boolean; isParent: boolean }
   | { label: string; items: ResolvedNaviItem[]; isParent: boolean };
 
 export type NaviConfig =
-  | NaviItem
+  | { label: string; link: string }
   | { label: string; items: { collection: string; filter?: string } }
-  | { label: string; items: NaviItem[] };
+  | { label: string; items: { label: string; link: string }[] };
 
 const sidebar: NaviConfig[] = [
   {
