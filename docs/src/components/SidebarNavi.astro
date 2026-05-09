@@ -13,10 +13,12 @@ const { config, items, nested } = Astro.props;
 
 const navi = items ?? (config ? await resolveNavi(config) : []);
 
-// TODO: Add active state
+const cp = currentPage(Astro.url.pathname, {
+  classBase: "menu__action"
+});
 ---
 
-<ul class={`menu ${nested ? "is-nested" : "is-root"}`.trim()}>
+<ul class={`menu menu_collection ${nested ? "is-nested" : "is-root"}`.trim()}>
   {
     navi.map((item) =>
       "items" in item ? (
@@ -32,7 +34,7 @@ const navi = items ?? (config ? await resolveNavi(config) : []);
         </li>
       ) : (
         <li class="menu__item">
-          <a class="menu__action" href={item.link}>
+          <a class={cp.classes(item.link)} href={item.link}>
             {item.label}
           </a>
         </li>

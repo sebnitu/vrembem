@@ -2,7 +2,7 @@ export function currentPage(pathname, options = {}) {
   const config = {
     pathname: pathname,
     classBase: "",
-    classCurrent: "is-current",
+    classActive: "is-active",
     classParent: "is-parent",
     ...options
   };
@@ -23,7 +23,7 @@ export function currentPage(pathname, options = {}) {
     }
 
     if (isCurrent(path)) {
-      classes.push(config.classCurrent);
+      classes.push(config.classActive);
     } else if (isParent(path)) {
       classes.push(config.classParent);
     }
