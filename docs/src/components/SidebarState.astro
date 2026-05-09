@@ -1,11 +1,16 @@
----
-// TODO: Add persistent state for scroll position
----
-
 <vb-sidebar-state>
   <script is:inline>
     (() => {
+      // Don't run this if this is a modal breakpoint
+      const sidebar = document.getElementById("layout-sidebar");
+      const bp = sidebar.getAttribute("data-breakpoint");
+      const styles = getComputedStyle(document.documentElement);
+      const value = styles.getPropertyValue(`--vb-breakpoint-${bp}`);
+      if (!matchMedia(`(min-width: ${value})`).matches) return;
+      // Get the sidebar state from local storage
       const state = JSON.parse(localStorage.getItem("vb-sidebar-state"));
+      // Conditional state restoring
+      window._vbSidebarScrollPosition = state?.scroll || 0;
       if (!state?.open) return;
       let index = 0;
       customElements.define(
@@ -23,6 +28,15 @@
     })();
   </script>
   <slot />
+  <script is:inline>
+    (() => {
+      const sidebar = document.getElementById("layout-sidebar");
+      const container = sidebar?.querySelector(".drawer__container");
+      if (!window._vbSidebarScrollPosition || !container) return;
+      container.scrollTop = window._vbSidebarScrollPosition;
+      delete window._vbSidebarScrollPosition;
+    })();
+  </script>
 </vb-sidebar-state>
 
 <script>
@@ -33,6 +47,14 @@
     entry.addEventListener("toggle", () => {
       const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
       store.set("open", stateArray);
+    });
+  });
+  const sidebar = document.querySelector("vb-sidebar-state");
+  const container = sidebar?.closest(".drawer__container");
+  const links = sidebar?.querySelectorAll("a");
+  links?.forEach((link) => {
+    link.addEventListener("click", () => {
+      store.set("scroll", container?.scrollTop);
     });
   });
 </script>
