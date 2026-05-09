@@ -8,7 +8,9 @@ export type NaviItems = {
   items: ResolvedNaviItem[];
 };
 
-export type ResolvedNaviItem = NaviItem | NaviItems;
+export type ResolvedNaviItem =
+  | { label: string; link: string; isCurrent: boolean; isParent: boolean }
+  | { label: string; items: ResolvedNaviItem[]; isParent: boolean };
 
 export type NaviConfig =
   | NaviItem

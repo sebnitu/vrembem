@@ -25,7 +25,13 @@ const { items, nested } = Astro.props;
         </li>
       ) : (
         <li class="menu__item">
-          <a class="menu__action" href={item.link}>
+          <a
+            class:list={[
+              "menu__action",
+              { "is-active": item.isCurrent, "is-parent": item.isParent }
+            ]}
+            href={item.link}
+          >
             {item.label}
           </a>
         </li>

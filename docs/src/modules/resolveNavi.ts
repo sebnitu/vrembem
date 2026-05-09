@@ -5,14 +5,20 @@ import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
 export async function resolveNavi(
-  config: NaviConfig[]
+  config: NaviConfig[],
+  pathname: string
 ): Promise<ResolvedNaviItem[]> {
   const resolved: ResolvedNaviItem[] = [];
 
   for (const item of config) {
     if ("link" in item) {
       // Static link: push to the resolved array
-      resolved.push({ label: item.label, link: item.link });
+      resolved.push({
+        label: item.label,
+        link: item.link,
+        isCurrent: pathname === item.link,
+        isParent: pathname.startsWith(item.link) && pathname !== item.link
+      });
     } else if ("items" in item && "collection" in item.items) {
       // Collection reference: fetch entries and build links
       const collection = item.items.collection as CollectionKey;
@@ -36,18 +42,32 @@ export async function resolveNavi(
         filtered.sort(byTitle).sort(byOrder);
       }
 
+      const children = filtered.map((entry) => {
+        const link = getCollectionPath(entry);
+        return {
+          label: entry.data.title,
+          link,
+          isCurrent: pathname === link,
+          isParent: pathname.startsWith(link) && pathname !== link
+        };
+      });
+
       resolved.push({
         label: item.label,
-        items: filtered.map((entry) => ({
-          label: entry.data.title,
-          link: getCollectionPath(entry)
-        }))
+        items: children,
+        isParent: children.some((child) => child.isCurrent || child.isParent)
       });
     } else if ("items" in item && Array.isArray(item.items)) {
       // Nested group: push to resolved recursively
+      const children = await resolveNavi(item.items, pathname);
       resolved.push({
         label: item.label,
-        items: await resolveNavi(item.items)
+        items: children,
+        isParent: children.some((child) =>
+          "isCurrent" in child
+            ? child.isCurrent || child.isParent
+            : child.isParent
+        )
       });
     }
   }

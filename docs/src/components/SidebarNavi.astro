@@ -9,7 +9,7 @@ interface Props {
 
 const { config } = Astro.props;
 
-const items = await resolveNavi(config);
+const items = await resolveNavi(config, Astro.url.pathname);
 ---
 
 <SidebarNaviMenu {items} />
