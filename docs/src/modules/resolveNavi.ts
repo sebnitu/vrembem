@@ -1,35 +1,47 @@
-import type { NaviConfig, ResolvedNaviItem } from "@/navi.config";
+import type {
+  NaviConfig,
+  NaviConfigItem,
+  ResolvedNaviItem
+} from "@/navi.config";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
-export async function resolveNavi(
-  config: NaviConfig[],
+function resolveLink(
+  label: string,
+  link: string,
+  pathname: string
+): ResolvedNaviItem {
+  return {
+    label,
+    link,
+    isCurrent: pathname === link,
+    isParent: pathname.startsWith(link) && pathname !== link
+  };
+}
+
+async function resolveItems(
+  items: NaviConfigItem[],
   pathname: string
 ): Promise<ResolvedNaviItem[]> {
   const resolved: ResolvedNaviItem[] = [];
 
-  for (const item of config) {
-    if ("link" in item) {
-      // Static link: push to the resolved array
-      resolved.push({
-        label: item.label,
-        link: item.link,
-        isCurrent: pathname === item.link,
-        isParent: pathname.startsWith(item.link) && pathname !== item.link
-      });
-    } else if ("items" in item && "collection" in item.items) {
+  for (const child of items) {
+    if ("link" in child) {
+      // Static link
+      resolved.push(resolveLink(child.label, child.link, pathname));
+    } else if ("collection" in child) {
       // Collection reference: fetch entries and build links
-      const collection = item.items.collection as CollectionKey;
+      const collection = child.collection as CollectionKey;
       const entries = await getCollection(collection);
 
-      // Filter the entries if a filter prop was provided
-      const filtered = item.items.filter
+      // Filter the entries if a filter was provided
+      const filtered = child.filter
         ? entries.filter(
             (entry) =>
-              entry.id.startsWith(item.items.filter + "/") ||
-              entry.id === item.items.filter
+              entry.id.startsWith(child.filter + "/") ||
+              entry.id === child.filter
           )
         : entries;
 
@@ -42,24 +54,30 @@ export async function resolveNavi(
         filtered.sort(byTitle).sort(byOrder);
       }
 
-      const children = filtered.map((entry) => {
+      // Spread collection entries into the list
+      for (const entry of filtered) {
         const link = getCollectionPath(entry);
-        return {
-          label: entry.data.title,
-          link,
-          isCurrent: pathname === link,
-          isParent: pathname.startsWith(link) && pathname !== link
-        };
-      });
+        resolved.push(resolveLink(entry.data.title, link, pathname));
+      }
+    }
+  }
 
-      resolved.push({
-        label: item.label,
-        items: children,
-        isParent: children.some((child) => child.isCurrent || child.isParent)
-      });
-    } else if ("items" in item && Array.isArray(item.items)) {
-      // Nested group: push to resolved recursively
-      const children = await resolveNavi(item.items, pathname);
+  return resolved;
+}
+
+export async function resolveNavi(
+  config: NaviConfig[],
+  pathname: string
+): Promise<ResolvedNaviItem[]> {
+  const resolved: ResolvedNaviItem[] = [];
+
+  for (const item of config) {
+    if ("link" in item) {
+      // Top-level static link
+      resolved.push(resolveLink(item.label, item.link, pathname));
+    } else if ("items" in item) {
+      // Group with mixed items
+      const children = await resolveItems(item.items, pathname);
       resolved.push({
         label: item.label,
         items: children,
