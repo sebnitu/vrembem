@@ -23,10 +23,10 @@ export async function resolveNavi(
 
   for (const item of items) {
     if ("link" in item) {
-      // Static link — pass through as-is
+      // Static link: push to the resolved array
       resolved.push({ label: item.label, link: item.link });
     } else if ("items" in item && "collection" in item.items) {
-      // Collection reference — fetch entries and build links
+      // Collection reference: fetch entries and build links
       const collection = item.items.collection as CollectionKey;
       const entries = await getCollection(collection);
 
@@ -39,13 +39,13 @@ export async function resolveNavi(
           )
         : entries;
 
-      // Sort the collections
+      // Sort the entries
       if (collection === "packages") {
-        entries.sort(
+        filtered.sort(
           byCategory(["core", "modules", "layout", "form-control", "component"])
         );
       } else {
-        entries.sort(byTitle).sort(byOrder);
+        filtered.sort(byTitle).sort(byOrder);
       }
 
       resolved.push({
@@ -56,7 +56,7 @@ export async function resolveNavi(
         }))
       });
     } else if ("items" in item && Array.isArray(item.items)) {
-      // Nested group — resolve recursively
+      // Nested group: push to resolved recursively
       resolved.push({
         label: item.label,
         items: await resolveNavi(item.items)
