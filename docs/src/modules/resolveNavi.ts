@@ -1,12 +1,12 @@
-import type {
-  NaviConfig,
-  NaviConfigItem,
-  ResolvedNaviItem
-} from "@/navi.config";
+import type { NaviConfig, NaviConfigItem } from "@/navi.config";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
+
+export type ResolvedNaviItem =
+  | { label: string; link: string; isCurrent: boolean; isParent: boolean }
+  | { label: string; items: ResolvedNaviItem[]; isParent: boolean };
 
 function resolveLink(
   label: string,
@@ -21,7 +21,7 @@ function resolveLink(
   };
 }
 
-async function resolveItems(
+async function resolveGroup(
   items: NaviConfigItem[],
   pathname: string
 ): Promise<ResolvedNaviItem[]> {
@@ -31,6 +31,16 @@ async function resolveItems(
     if ("link" in child) {
       // Static link
       resolved.push(resolveLink(child.label, child.link, pathname));
+    } else if ("items" in child) {
+      // Nested group: resolve recursively
+      const children = await resolveGroup(child.items, pathname);
+      resolved.push({
+        label: child.label,
+        items: children,
+        isParent: children.some((c) =>
+          "isCurrent" in c ? c.isCurrent || c.isParent : c.isParent
+        )
+      });
     } else if ("collection" in child) {
       // Collection reference: fetch entries and build links
       const collection = child.collection as CollectionKey;
@@ -77,7 +87,7 @@ export async function resolveNavi(
       resolved.push(resolveLink(item.label, item.link, pathname));
     } else if ("items" in item) {
       // Group with mixed items
-      const children = await resolveItems(item.items, pathname);
+      const children = await resolveGroup(item.items, pathname);
       resolved.push({
         label: item.label,
         items: children,
