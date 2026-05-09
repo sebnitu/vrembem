@@ -1,18 +1,33 @@
-import type { NaviConfig, NaviConfigItem } from "@/navi.config";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
-export type ResolvedNaviItem =
-  | { label: string; link: string; isCurrent: boolean; isParent: boolean }
-  | { label: string; items: ResolvedNaviItem[]; isParent: boolean };
+export type NaviConfigItem =
+  | { label: string; link: string }
+  | { collection: string; filter?: string }
+  | { label: string; group: NaviConfigItem[] };
 
-function resolveLink(
-  label: string,
-  link: string,
-  pathname: string
-): ResolvedNaviItem {
+export type NaviConfig =
+  | { label: string; link: string }
+  | { label: string; group: NaviConfigItem[] };
+
+export type NaviLink = {
+  label: string;
+  link: string;
+  isCurrent: boolean;
+  isParent: boolean;
+};
+
+export type NaviGroup = {
+  label: string;
+  group: NaviItem[];
+  isParent: boolean;
+};
+
+export type NaviItem = NaviLink | NaviGroup;
+
+function resolveLink(label: string, link: string, pathname: string): NaviItem {
   return {
     label,
     link,
@@ -22,21 +37,21 @@ function resolveLink(
 }
 
 async function resolveGroup(
-  items: NaviConfigItem[],
+  group: NaviConfigItem[],
   pathname: string
-): Promise<ResolvedNaviItem[]> {
-  const resolved: ResolvedNaviItem[] = [];
+): Promise<NaviItem[]> {
+  const resolved: NaviItem[] = [];
 
-  for (const child of items) {
+  for (const child of group) {
     if ("link" in child) {
       // Static link
       resolved.push(resolveLink(child.label, child.link, pathname));
-    } else if ("items" in child) {
+    } else if ("group" in child) {
       // Nested group: resolve recursively
-      const children = await resolveGroup(child.items, pathname);
+      const children = await resolveGroup(child.group, pathname);
       resolved.push({
         label: child.label,
-        items: children,
+        group: children,
         isParent: children.some((c) =>
           "isCurrent" in c ? c.isCurrent || c.isParent : c.isParent
         )
@@ -75,22 +90,20 @@ async function resolveGroup(
   return resolved;
 }
 
-export async function resolveNavi(
+export async function buildNaviTree(
   config: NaviConfig[],
   pathname: string
-): Promise<ResolvedNaviItem[]> {
-  const resolved: ResolvedNaviItem[] = [];
+): Promise<NaviItem[]> {
+  const resolved: NaviItem[] = [];
 
   for (const item of config) {
     if ("link" in item) {
-      // Top-level static link
       resolved.push(resolveLink(item.label, item.link, pathname));
-    } else if ("items" in item) {
-      // Group with mixed items
-      const children = await resolveGroup(item.items, pathname);
+    } else if ("group" in item) {
+      const children = await resolveGroup(item.group, pathname);
       resolved.push({
         label: item.label,
-        items: children,
+        group: children,
         isParent: children.some((child) =>
           "isCurrent" in child
             ? child.isCurrent || child.isParent

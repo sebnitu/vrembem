@@ -1,39 +1,37 @@
 ---
-import type { ResolvedNaviItem } from "@/modules/resolveNavi";
+import type { NaviItem, NaviLink } from "@/modules/buildNaviTree";
 
 interface Props {
-  items: ResolvedNaviItem[];
+  tree: NaviItem[];
   nested?: boolean;
 }
 
-const { items, nested } = Astro.props;
+const { tree, nested } = Astro.props;
+
+function classes(entry: NaviLink) {
+  return { "is-active": entry.isCurrent, "is-parent": entry.isParent };
+}
 ---
 
 <ul class={`menu ${nested ? "menu_collection" : ""}`.trim()}>
   {
-    items.map((item) =>
-      "items" in item ? (
+    tree.map((entry) =>
+      "link" in entry ? (
         <li class="menu__item">
-          <details open>
-            <summary>
-              <span>{item.label}</span>
-              <span class="spacer" />
-              <span class="caret" />
-            </summary>
-            <Astro.self items={item.items} nested />
-          </details>
+          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
+            {entry.label}
+          </a>
         </li>
       ) : (
         <li class="menu__item">
-          <a
-            class:list={[
-              "menu__action",
-              { "is-active": item.isCurrent, "is-parent": item.isParent }
-            ]}
-            href={item.link}
-          >
-            {item.label}
-          </a>
+          <details open>
+            <summary>
+              <span>{entry.label}</span>
+              <span class="spacer" />
+              <span class="caret" />
+            </summary>
+            <Astro.self tree={entry.group} nested />
+          </details>
         </li>
       )
     )
