@@ -1,4 +1,5 @@
 interface CollectionType {
+  id: string;
   data: {
     title: string;
     order?: number;
@@ -6,10 +7,17 @@ interface CollectionType {
   };
 }
 
+export function byId(a: CollectionType, b: CollectionType) {
+  const aPath = a.id.substring(0, a.id.lastIndexOf("/"));
+  const bPath = b.id.substring(0, b.id.lastIndexOf("/"));
+  if (aPath !== bPath) return aPath < bPath ? -1 : 1;
+  return byOrder(a, b);
+}
+
 export function byTitle(a: CollectionType, b: CollectionType) {
   if (a.data.title < b.data.title) return -1;
   if (a.data.title > b.data.title) return 1;
-  return 0;
+  return byOrder(a, b);
 }
 
 export function byOrder(a: CollectionType, b: CollectionType) {
