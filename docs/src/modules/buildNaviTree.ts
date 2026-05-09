@@ -1,7 +1,7 @@
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
-import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
+import { byCategory, byTitle, byId } from "@/helpers/sortCollectionBy";
 
 export type NaviConfigItem =
   | { label: string; link: string }
@@ -26,6 +26,12 @@ export type NaviGroup = {
 };
 
 export type NaviItem = NaviLink | NaviGroup;
+
+function isParent(children: NaviItem[]) {
+  return children.some((child) =>
+    "isCurrent" in child ? child.isCurrent || child.isParent : child.isParent
+  );
+}
 
 function resolveLink(label: string, link: string, pathname: string): NaviItem {
   return {
@@ -52,9 +58,7 @@ async function resolveGroup(
       resolved.push({
         label: child.label,
         group: children,
-        isParent: children.some((c) =>
-          "isCurrent" in c ? c.isCurrent || c.isParent : c.isParent
-        )
+        isParent: isParent(children)
       });
     } else if ("collection" in child) {
       // Collection reference: fetch entries and build links
@@ -70,19 +74,42 @@ async function resolveGroup(
           )
         : entries;
 
+      let modules;
+
       // Sort the entries
       if (collection === "packages") {
         filtered.sort(
           byCategory(["core", "modules", "layout", "form-control", "component"])
         );
+        modules = await getCollection("modules");
+        modules.sort(byId);
       } else {
-        filtered.sort(byTitle).sort(byOrder);
+        filtered.sort(byTitle);
       }
 
-      // Spread collection entries into the list
+      // Resolve collection links and groups
       for (const entry of filtered) {
         const link = getCollectionPath(entry);
-        resolved.push(resolveLink(entry.data.title, link, pathname));
+        const children =
+          modules
+            ?.filter((item) => {
+              return item.id.includes(entry.id);
+            })
+            .map((child) => {
+              const childLink = getCollectionPath(child);
+              return resolveLink(child.data.title, childLink, pathname);
+            }) || [];
+        if (children.length) {
+          const entryLink = resolveLink("Overview", link, pathname);
+          const group = [entryLink, ...children];
+          resolved.push({
+            label: entry.data.title,
+            group,
+            isParent: isParent(children)
+          });
+        } else {
+          resolved.push(resolveLink(entry.data.title, link, pathname));
+        }
       }
     }
   }
@@ -104,11 +131,7 @@ export async function buildNaviTree(
       resolved.push({
         label: item.label,
         group: children,
-        isParent: children.some((child) =>
-          "isCurrent" in child
-            ? child.isCurrent || child.isParent
-            : child.isParent
-        )
+        isParent: isParent(children)
       });
     }
   }

@@ -1,7 +1,5 @@
 import type { NaviConfig } from "@/modules/buildNaviTree";
 
-// TODO: Find a way to render modules. Maybe move them back to packages?
-
 const sidebar: NaviConfig[] = [
   {
     label: "Guide",
