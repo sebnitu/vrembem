@@ -1,27 +1,15 @@
-import type { NaviItem } from "@/navi.config";
+import type { NaviConfig, ResolvedNaviItem } from "@/navi.config";
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { byCategory, byOrder, byTitle } from "@/helpers/sortCollectionBy";
 
-export interface ResolvedNaviLink {
-  label: string;
-  link: string;
-}
-
-export interface ResolvedNaviGroup {
-  label: string;
-  items: ResolvedNaviItem[];
-}
-
-export type ResolvedNaviItem = ResolvedNaviLink | ResolvedNaviGroup;
-
 export async function resolveNavi(
-  items: NaviItem[]
+  config: NaviConfig[]
 ): Promise<ResolvedNaviItem[]> {
   const resolved: ResolvedNaviItem[] = [];
 
-  for (const item of items) {
+  for (const item of config) {
     if ("link" in item) {
       // Static link: push to the resolved array
       resolved.push({ label: item.label, link: item.link });

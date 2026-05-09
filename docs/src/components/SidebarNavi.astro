@@ -1,9 +1,10 @@
 ---
-import type { NaviItem } from "@/navi.config";
-import { resolveNavi, type ResolvedNaviItem } from "@/modules/resolveNavi";
+import type { NaviConfig, ResolvedNaviItem } from "@/navi.config";
+import { resolveNavi } from "@/modules/resolveNavi";
+import { currentPage } from "@/modules/currentPage";
 
 interface Props {
-  config?: NaviItem[];
+  config?: NaviConfig[];
   items?: ResolvedNaviItem[];
   nested?: boolean;
 }
@@ -11,6 +12,8 @@ interface Props {
 const { config, items, nested } = Astro.props;
 
 const navi = items ?? (config ? await resolveNavi(config) : []);
+
+// TODO: Add active state
 ---
 
 <ul class={`menu ${nested ? "is-nested" : "is-root"}`.trim()}>
