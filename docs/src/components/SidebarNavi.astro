@@ -5,21 +5,26 @@ import { resolveNavi, type ResolvedNaviItem } from "@/modules/resolveNavi";
 interface Props {
   config?: NaviItem[];
   items?: ResolvedNaviItem[];
+  nested?: boolean;
 }
 
-const { config, items } = Astro.props;
+const { config, items, nested } = Astro.props;
 
 const navi = items ?? (config ? await resolveNavi(config) : []);
 ---
 
-<ul class="menu">
+<ul class={`menu ${nested ? "is-nested" : "is-root"}`.trim()}>
   {
     navi.map((item) =>
       "items" in item ? (
         <li class="menu__item">
           <details open>
-            <summary>{item.label}</summary>
-            <Astro.self items={item.items} />
+            <summary>
+              <span>{item.label}</span>
+              <span class="spacer" />
+              <span class="caret" />
+            </summary>
+            <Astro.self items={item.items} nested />
           </details>
         </li>
       ) : (
@@ -38,9 +43,33 @@ const navi = items ?? (config ? await resolveNavi(config) : []);
   @use "@vrembem/core/tokens";
 
   summary {
+    cursor: pointer;
     display: flex;
+    align-items: center;
+    gap: 0.75em;
     padding: tokens.get("form-control-padding-y") 0;
     color: tokens.get("foreground-strong");
     font-weight: tokens.get("font-weight-bold");
+
+    .spacer {
+      height: 1px;
+      flex-grow: 1;
+      background-color: tokens.get("border-color");
+    }
+
+    .caret {
+      @include core.size(0.8em);
+      position: relative;
+      inset: 0;
+      display: block;
+      background-color: currentcolor;
+      mask: url(core.svg("chevron")) center / 100% no-repeat;
+      transition: transform tokens.get("transition-short");
+      transform: rotate(-90deg);
+
+      details[open] & {
+        transform: rotate(0);
+      }
+    }
   }
 </style>
