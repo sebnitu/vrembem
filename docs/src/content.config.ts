@@ -3,22 +3,13 @@ import { z } from "astro/zod";
 import { glob } from "astro/loaders";
 
 const packages = defineCollection({
-  loader: glob({ base: "./src/content/packages", pattern: "*.mdx" }),
+  loader: glob({ base: "./src/content/packages", pattern: "**/*.mdx" }),
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    package: z.string(),
-    category: z.string().optional()
-  })
-});
-
-const modules = defineCollection({
-  loader: glob({ base: "./src/content/modules", pattern: "**/*.mdx" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    order: z.number().optional(),
-    anchor: z.string().optional()
+    package: z.string().optional(),
+    category: z.string().optional(),
+    order: z.number().optional()
   })
 });
 
@@ -31,4 +22,4 @@ const pages = defineCollection({
   })
 });
 
-export const collections = { packages, modules, pages };
+export const collections = { packages, pages };

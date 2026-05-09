@@ -3,7 +3,7 @@ import type { NaviConfig } from "@/modules/buildNaviTree";
 const sidebar: NaviConfig[] = [
   {
     label: "Guide",
-    group: [{ collection: "pages", filter: "guide" }]
+    group: [{ collection: "pages" }]
   },
   {
     label: "Packages",

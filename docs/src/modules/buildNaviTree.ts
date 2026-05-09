@@ -1,7 +1,7 @@
 import type { CollectionKey } from "astro:content";
 import { getCollection } from "astro:content";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
-import { byCategory, byTitle, byId } from "@/helpers/sortCollectionBy";
+import { byCategory, byTitle } from "@/helpers/sortCollectionBy";
 
 export type NaviConfigItem =
   | { label: string; link: string }
@@ -65,51 +65,19 @@ async function resolveGroup(
       const collection = child.collection as CollectionKey;
       const entries = await getCollection(collection);
 
-      // Filter the entries if a filter was provided
-      const filtered = child.filter
-        ? entries.filter(
-            (entry) =>
-              entry.id.startsWith(child.filter + "/") ||
-              entry.id === child.filter
-          )
-        : entries;
-
-      let modules;
-
       // Sort the entries
       if (collection === "packages") {
-        filtered.sort(
+        entries.sort(
           byCategory(["core", "modules", "layout", "form-control", "component"])
         );
-        modules = await getCollection("modules");
-        modules.sort(byId);
       } else {
-        filtered.sort(byTitle);
+        entries.sort(byTitle);
       }
 
       // Resolve collection links and groups
-      for (const entry of filtered) {
+      for (const entry of entries) {
         const link = getCollectionPath(entry);
-        const children =
-          modules
-            ?.filter((item) => {
-              return item.id.includes(entry.id);
-            })
-            .map((child) => {
-              const childLink = getCollectionPath(child);
-              return resolveLink(child.data.title, childLink, pathname);
-            }) || [];
-        if (children.length) {
-          const entryLink = resolveLink("Overview", link, pathname);
-          const group = [entryLink, ...children];
-          resolved.push({
-            label: entry.data.title,
-            group,
-            isParent: isParent(children)
-          });
-        } else {
-          resolved.push(resolveLink(entry.data.title, link, pathname));
-        }
+        resolved.push(resolveLink(entry.data.title, link, pathname));
       }
     }
   }

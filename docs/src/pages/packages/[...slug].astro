@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { getModuleMeta } from "@/helpers/getModuleMeta";
 import Page from "@/layouts/Page.astro";
 import CodeExample from "@/components/CodeExample.astro";
 import TabsPanel from "@/components/TabsPanel.astro";
@@ -9,28 +8,17 @@ import Pre from "@/components/Pre.astro";
 import Table from "@/components/Table.astro";
 
 interface Props {
-  entry: CollectionEntry<"packages"> | CollectionEntry<"modules">;
+  entry: CollectionEntry<"packages">;
 }
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 export async function getStaticPaths() {
-  const packages = await getCollection("packages");
-  const modules = await getCollection("modules");
-
-  return [
-    ...packages.map((entry) => ({
-      params: { slug: entry.id },
-      props: { entry }
-    })),
-    ...modules.map((entry) => {
-      return {
-        params: { slug: getModuleMeta(entry).path },
-        props: { entry }
-      };
-    })
-  ];
+  return (await getCollection("packages")).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
 }
 ---
 
