@@ -1,7 +1,15 @@
+import { getCollection } from "astro:content";
+import type { CollectionKey, CollectionEntry } from "astro:content";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
+
 export type NaviConfig =
   | { label: string; link: string }
   | { label: string; group: NaviConfig[] }
-  | { collection: string };
+  | {
+      collection: CollectionKey;
+      dir?: string;
+      filter?: (entry: CollectionEntry<CollectionKey>) => boolean;
+    };
 
 export type NaviLink = {
   label: string;
@@ -24,6 +32,47 @@ function isParent(group: NaviItem[]) {
   );
 }
 
+function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
+  const tree: Record<string, any> = {};
+  const depth = dir ? dir.split("/").length : 0;
+  collection
+    // Filter by directory path if provided
+    .filter(
+      (entry) => !dir || entry.id.startsWith(dir + "/") || entry.id === dir
+    )
+    // Sort by depth to build the tree depth first
+    .sort((a, b) => b.id.split("/").length - a.id.split("/").length)
+    // Build the tree
+    .forEach((entry) => {
+      // Split the path parts
+      const parts = entry.id.split("/").slice(depth);
+
+      // Reset current node to the root object
+      let branch = tree;
+
+      // Loop through the paths e.g.: core/plugins/custom
+      parts.forEach((part: string, index: number) => {
+        const isLeaf = index === parts.length - 1;
+
+        // Handle directory index pages by renaming them to index
+        if (isLeaf && Object.hasOwn(branch, part)) {
+          branch = branch[part];
+          part = "index";
+        }
+
+        // Recurse down the tree if this isn’t the last node
+        if (!isLeaf) {
+          branch[part] ||= {};
+          branch = branch[part];
+        } else {
+          branch[part] = entry;
+        }
+      });
+    });
+
+  return tree;
+}
+
 export async function buildNaviTree(
   config: NaviConfig[],
   pathname: string
@@ -40,12 +89,19 @@ export async function buildNaviTree(
       });
     }
     if ("group" in item) {
-      const children = await buildNaviTree(item.group, pathname);
+      const group = await buildNaviTree(item.group, pathname);
       resolved.push({
         label: item.label,
-        group: children,
-        isParent: isParent(children)
+        group: group,
+        isParent: isParent(group)
       });
+    }
+    if ("collection" in item) {
+      const collection = await getCollection(item.collection, item.filter);
+      const tree = treeify(collection, item.dir);
+      // TODO: Build the treeToNavi logic
+      // const items = treeToNavi(tree, pathname);
+      // resolved.push(...items);
     }
   }
 

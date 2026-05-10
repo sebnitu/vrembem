@@ -1,15 +1,18 @@
-import type { NaviConfig } from "@/modules/buildNaviTree";
+import type { NaviConfig } from "@/helpers/buildNaviTree";
 
 const sidebar: NaviConfig[] = [
   {
     label: "Guide",
-    group: [{ collection: "pages" }]
+    group: [{ collection: "pages", dir: "guide" }]
   },
   {
     label: "Packages",
     group: [
-      { label: "Overview", link: "/packages" },
-      { collection: "packages" }
+      {
+        collection: "packages",
+        filter: (entry) =>
+          "category" in entry.data && entry.data.category === "component"
+      }
     ]
   }
 ];
