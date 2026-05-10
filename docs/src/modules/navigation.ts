@@ -1,5 +1,6 @@
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
+import { collections } from "@/content.config";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 
 export type NaviConfig =
@@ -16,6 +17,7 @@ export type NaviLink = {
   link: string;
   isActive: boolean;
   isParent: boolean;
+  data: Record<string, any>;
 };
 
 export type NaviGroup = {
@@ -30,6 +32,13 @@ function isParent(group: NaviItem[]) {
   return group.some((entry) =>
     "isActive" in entry ? entry.isActive || entry.isParent : entry.isParent
   );
+}
+
+function inferCollection(path: string): CollectionKey {
+  const key = Object.keys(collections).find((key) =>
+    path.startsWith(`/${key}`)
+  );
+  return (key as CollectionKey) || "pages";
 }
 
 // TODO: Differentiate between index files and named index, e.g.:
@@ -92,7 +101,8 @@ function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
       label: tree.index.data.title,
       link,
       isActive: pathname === link,
-      isParent: false
+      isParent: false,
+      data: tree.index.data
     });
   }
 
@@ -107,7 +117,8 @@ function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
         label: value.data.title,
         link,
         isActive: pathname === link,
-        isParent: pathname.startsWith(link) && pathname !== link
+        isParent: pathname.startsWith(link) && pathname !== link,
+        data: value.data
       });
     } else {
       const group = treeToNavi(value, pathname);
@@ -119,9 +130,13 @@ function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
     }
   }
 
+  console.log(items);
+
   return items;
 }
 
+// TODO: Create a function for creating the NaviLink object
+// TODO: Create a function for creating the NaviGroup object
 export async function buildNaviFromConfig(
   config: NaviConfig[],
   pathname: string
@@ -130,11 +145,14 @@ export async function buildNaviFromConfig(
 
   for (const item of config) {
     if ("link" in item) {
+      const collection = inferCollection(item.link);
+      const entry = await getEntry(collection, item.link);
       resolved.push({
         label: item.label,
         link: item.link,
         isActive: pathname === item.link,
-        isParent: pathname.startsWith(item.link) && pathname !== item.link
+        isParent: pathname.startsWith(item.link) && pathname !== item.link,
+        data: entry?.data || {}
       });
     }
     if ("group" in item) {
