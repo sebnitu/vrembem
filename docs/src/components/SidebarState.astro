@@ -1,3 +1,7 @@
+---
+// TODO: Use sessionStorage instead of localStore to prevent stale state
+---
+
 <vb-sidebar-state>
   <script is:inline>
     (() => {
@@ -19,7 +23,8 @@
           connectedCallback() {
             const details = this.closest("details");
             if (details) {
-              details.open = state.open[index];
+              details.open =
+                details.hasAttribute("data-active") || state.open[index];
             }
             index++;
           }
