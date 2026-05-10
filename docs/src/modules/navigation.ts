@@ -73,7 +73,12 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   return tree;
 }
 
-export async function buildNaviTree(
+function treeToNavi(tree: Record<string, any>, pathname: string) {
+  const result: NaviItem[] = [];
+  return result;
+}
+
+export async function buildNaviFromConfig(
   config: NaviConfig[],
   pathname: string
 ): Promise<NaviItem[]> {
@@ -89,7 +94,7 @@ export async function buildNaviTree(
       });
     }
     if ("group" in item) {
-      const group = await buildNaviTree(item.group, pathname);
+      const group = await buildNaviFromConfig(item.group, pathname);
       resolved.push({
         label: item.label,
         group: group,
@@ -99,9 +104,8 @@ export async function buildNaviTree(
     if ("collection" in item) {
       const collection = await getCollection(item.collection, item.filter);
       const tree = treeify(collection, item.dir);
-      // TODO: Build the treeToNavi logic
-      // const items = treeToNavi(tree, pathname);
-      // resolved.push(...items);
+      const items = treeToNavi(tree, pathname);
+      resolved.push(...items);
     }
   }
 

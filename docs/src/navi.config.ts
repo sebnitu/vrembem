@@ -1,4 +1,4 @@
-import type { NaviConfig } from "@/helpers/buildNaviTree";
+import type { NaviConfig } from "@/modules/navigation";
 
 const sidebar: NaviConfig[] = [
   {

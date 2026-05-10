@@ -1,5 +1,5 @@
 ---
-import { buildNaviTree, type NaviConfig } from "@/helpers/buildNaviTree";
+import { buildNaviFromConfig, type NaviConfig } from "@/modules/navigation";
 import SidebarNaviMenu from "@/components/SidebarNaviMenu.astro";
 import SidebarState from "@/components/SidebarState.astro";
 
@@ -9,7 +9,7 @@ interface Props {
 
 const { config } = Astro.props;
 
-const navi = await buildNaviTree(config, Astro.url.pathname);
+const navi = await buildNaviFromConfig(config, Astro.url.pathname);
 ---
 
 <SidebarState>
