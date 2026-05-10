@@ -9,7 +9,7 @@ interface Props {
 const { tree, nested } = Astro.props;
 
 function classes(entry: NaviLink) {
-  return { "is-active": entry.isCurrent, "is-parent": entry.isParent };
+  return { "is-active": entry.isActive, "is-parent": entry.isParent };
 }
 ---
 

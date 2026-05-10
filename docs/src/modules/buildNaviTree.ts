@@ -1,21 +1,12 @@
-import type { CollectionKey } from "astro:content";
-import { getCollection } from "astro:content";
-import { getCollectionPath } from "@/helpers/getCollectionPath";
-import { byCategory, byTitle } from "@/helpers/sortCollectionBy";
-
-export type NaviConfigItem =
-  | { label: string; link: string }
-  | { collection: string; filter?: string }
-  | { label: string; group: NaviConfigItem[] };
-
 export type NaviConfig =
   | { label: string; link: string }
-  | { label: string; group: NaviConfigItem[] };
+  | { collection: string; dir?: string }
+  | { label: string; group: NaviConfig[] };
 
 export type NaviLink = {
   label: string;
   link: string;
-  isCurrent: boolean;
+  isActive: boolean;
   isParent: boolean;
 };
 
@@ -27,62 +18,10 @@ export type NaviGroup = {
 
 export type NaviItem = NaviLink | NaviGroup;
 
-function isParent(children: NaviItem[]) {
-  return children.some((child) =>
-    "isCurrent" in child ? child.isCurrent || child.isParent : child.isParent
+function isParent(group: NaviItem[]) {
+  return group.some((entry) =>
+    "isActive" in entry ? entry.isActive || entry.isParent : entry.isParent
   );
-}
-
-function resolveLink(label: string, link: string, pathname: string): NaviItem {
-  return {
-    label,
-    link,
-    isCurrent: pathname === link,
-    isParent: pathname.startsWith(link) && pathname !== link
-  };
-}
-
-async function resolveGroup(
-  group: NaviConfigItem[],
-  pathname: string
-): Promise<NaviItem[]> {
-  const resolved: NaviItem[] = [];
-
-  for (const child of group) {
-    if ("link" in child) {
-      // Static link
-      resolved.push(resolveLink(child.label, child.link, pathname));
-    } else if ("group" in child) {
-      // Nested group: resolve recursively
-      const children = await resolveGroup(child.group, pathname);
-      resolved.push({
-        label: child.label,
-        group: children,
-        isParent: isParent(children)
-      });
-    } else if ("collection" in child) {
-      // Collection reference: fetch entries and build links
-      const collection = child.collection as CollectionKey;
-      const entries = await getCollection(collection);
-
-      // Sort the entries
-      if (collection === "packages") {
-        entries.sort(
-          byCategory(["core", "modules", "layout", "form-control", "component"])
-        );
-      } else {
-        entries.sort(byTitle);
-      }
-
-      // Resolve collection links and groups
-      for (const entry of entries) {
-        const link = getCollectionPath(entry);
-        resolved.push(resolveLink(entry.data.title, link, pathname));
-      }
-    }
-  }
-
-  return resolved;
 }
 
 export async function buildNaviTree(
@@ -93,9 +32,15 @@ export async function buildNaviTree(
 
   for (const item of config) {
     if ("link" in item) {
-      resolved.push(resolveLink(item.label, item.link, pathname));
-    } else if ("group" in item) {
-      const children = await resolveGroup(item.group, pathname);
+      resolved.push({
+        label: item.label,
+        link: item.link,
+        isActive: pathname === item.link,
+        isParent: pathname.startsWith(item.link) && pathname !== item.link
+      });
+    }
+    if ("group" in item) {
+      const children = await buildNaviTree(item.group, pathname);
       resolved.push({
         label: item.label,
         group: children,
