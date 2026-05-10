@@ -1,7 +1,3 @@
----
-// TODO: Use sessionStorage instead of localStore to prevent stale state
----
-
 <vb-sidebar-state>
   <script is:inline>
     (() => {
@@ -11,8 +7,8 @@
       const styles = getComputedStyle(document.documentElement);
       const value = styles.getPropertyValue(`--vb-breakpoint-${bp}`);
       if (!matchMedia(`(min-width: ${value})`).matches) return;
-      // Get the sidebar state from local storage
-      const state = JSON.parse(localStorage.getItem("vb-sidebar-state"));
+      // Get the sidebar state from session storage
+      const state = JSON.parse(sessionStorage.getItem("vb-sidebar-state"));
       // Conditional state restoring
       window._vbSidebarScrollPosition = state?.scroll || 0;
       if (!state?.open) return;
@@ -45,13 +41,19 @@
 </vb-sidebar-state>
 
 <script>
-  import { localStore } from "vrembem";
-  const store = localStore("vb-sidebar-state");
+  const storeKey = "vb-sidebar-state";
+
+  function updateStore(key: string, value: unknown) {
+    const state = JSON.parse(sessionStorage.getItem(storeKey) || "{}");
+    state[key] = value;
+    sessionStorage.setItem(storeKey, JSON.stringify(state));
+  }
+
   const details = document.querySelectorAll("vb-sidebar-state details");
   details.forEach((entry) => {
     entry.addEventListener("toggle", () => {
       const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
-      store.set("open", stateArray);
+      updateStore("open", stateArray);
     });
   });
   const sidebar = document.querySelector("vb-sidebar-state");
@@ -59,7 +61,7 @@
   const links = sidebar?.querySelectorAll("a");
   links?.forEach((link) => {
     link.addEventListener("click", () => {
-      store.set("scroll", container?.scrollTop);
+      updateStore("scroll", container?.scrollTop);
     });
   });
 </script>
