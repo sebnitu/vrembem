@@ -110,12 +110,13 @@ function treeToNavi(
   pathname: string,
   comparator: Comparator
 ): NaviItem[] {
+  const index: NaviItem[] = [];
   const items: NaviItem[] = [];
 
   // Process index entry first if it exists
   if (tree.index && "id" in tree.index) {
     const link = getCollectionPath(tree.index);
-    items.push({
+    index.push({
       label: tree.index.data.title,
       link,
       isActive: pathname === link,
@@ -148,13 +149,12 @@ function treeToNavi(
     }
   }
 
-  // TODO: Ensure that index of group is always first
   // TODO: Improve sorting of nested groups
   // Apply sorting
   // Since this is run recursively, it's applied on every level
   items.sort(comparator);
 
-  return items;
+  return [...index, ...items];
 }
 
 // TODO: Create a function for creating the NaviLink object
