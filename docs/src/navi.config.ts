@@ -8,13 +8,10 @@ const sidebar: NaviConfig[] = [
   {
     label: "Packages",
     group: [
+      { label: "Overview", link: "/packages" },
       {
-        collection: "packages"
-        // filter: (entry) => {
-        //   return (
-        //     "category" in entry.data && entry.data.category === "component"
-        //   );
-        // }
+        collection: "packages",
+        filter: (entry) => "package" in entry.data
       }
     ]
   }

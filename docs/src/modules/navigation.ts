@@ -32,6 +32,9 @@ function isParent(group: NaviItem[]) {
   );
 }
 
+// TODO: Differentiate between index files and named index, e.g.:
+// - core.mdx        path: "core"  group: index [group]
+// - core/index.mdx  path: "core"  group: [index group]
 function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   const tree: Record<string, any> = {};
   const depth = dir ? dir.split("/").length : 0;
