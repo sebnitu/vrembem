@@ -1,4 +1,5 @@
 import type { NaviConfig } from "@/modules/navigation";
+import { byCategory } from "@/helpers/sortBy";
 
 const sidebar: NaviConfig[] = [
   {
@@ -11,7 +12,14 @@ const sidebar: NaviConfig[] = [
       { label: "Overview", link: "/packages" },
       {
         collection: "packages",
-        filter: (entry) => "package" in entry.data
+        filter: (entry) => "package" in entry.data,
+        sort: byCategory([
+          "core",
+          "modules",
+          "layout",
+          "form-control",
+          "component"
+        ])
       }
     ]
   }

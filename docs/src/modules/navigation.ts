@@ -2,6 +2,7 @@ import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
 import { collections } from "@/content.config";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
+import { sortBy, byTitle, byOrder, type Comparator } from "@/helpers/sortBy";
 
 export type NaviConfig =
   | { label: string; link: string }
@@ -10,6 +11,7 @@ export type NaviConfig =
       collection: CollectionKey;
       dir?: string;
       filter?: (entry: CollectionEntry<CollectionKey>) => boolean;
+      sort?: Comparator | Comparator[];
     };
 
 export type NaviLink = {
@@ -39,6 +41,15 @@ function inferCollection(path: string): CollectionKey {
     path.startsWith(`/${key}`)
   );
   return (key as CollectionKey) || "pages";
+}
+
+function getComparator(sort: Comparator | Comparator[] | undefined) {
+  // If sort is an array, return as a spread on its own
+  if (Array.isArray(sort)) return sortBy(...sort);
+  // If sort is a single comparator, add it along with the defaults
+  if (sort) return sortBy(sort, byOrder, byTitle);
+  // If no sort is provided, just pass the defaults
+  return sortBy(byOrder, byTitle);
 }
 
 // TODO: Differentiate between index files and named index, e.g.:
@@ -91,7 +102,14 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   return tree;
 }
 
-function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
+// TODO: Convert directory name to a better label
+// - Give the text title case (or just capitalize the first word)
+// - replace dashes ("-") with spaces (" ")
+function treeToNavi(
+  tree: Record<string, any>,
+  pathname: string,
+  comparator: Comparator
+): NaviItem[] {
   const items: NaviItem[] = [];
 
   // Process index entry first if it exists
@@ -121,7 +139,7 @@ function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
         data: value.data
       });
     } else {
-      const group = treeToNavi(value, pathname);
+      const group = treeToNavi(value, pathname, comparator);
       items.push({
         label: key,
         group,
@@ -130,7 +148,11 @@ function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
     }
   }
 
-  console.log(items);
+  // TODO: Ensure that index of group is always first
+  // TODO: Improve sorting of nested groups
+  // Apply sorting
+  // Since this is run recursively, it's applied on every level
+  items.sort(comparator);
 
   return items;
 }
@@ -166,7 +188,7 @@ export async function buildNaviFromConfig(
     if ("collection" in item) {
       const collection = await getCollection(item.collection, item.filter);
       const tree = treeify(collection, item.dir);
-      const items = treeToNavi(tree, pathname);
+      const items = treeToNavi(tree, pathname, getComparator(item.sort));
       resolved.push(...items);
     }
   }
