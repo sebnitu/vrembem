@@ -37,9 +37,9 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   const depth = dir ? dir.split("/").length : 0;
   collection
     // Filter by directory path if provided
-    .filter(
-      (entry) => !dir || entry.id.startsWith(dir + "/") || entry.id === dir
-    )
+    .filter((entry) => {
+      return !dir || entry.id.startsWith(dir + "/") || entry.id === dir;
+    })
     // Sort by depth to build the tree depth first
     .sort((a, b) => b.id.split("/").length - a.id.split("/").length)
     // Build the tree
@@ -49,6 +49,12 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
 
       // Reset current node to the root object
       let branch = tree;
+
+      // Handle root index (empty parts after slicing dir prefix)
+      if (parts.length === 0) {
+        branch["index"] = entry;
+        return;
+      }
 
       // Loop through the paths e.g.: core/plugins/custom
       parts.forEach((part: string, index: number) => {
@@ -73,9 +79,44 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   return tree;
 }
 
-function treeToNavi(tree: Record<string, any>, pathname: string) {
-  const result: NaviItem[] = [];
-  return result;
+function treeToNavi(tree: Record<string, any>, pathname: string): NaviItem[] {
+  const items: NaviItem[] = [];
+
+  // Process index entry first if it exists
+  if (tree.index && "id" in tree.index) {
+    const link = getCollectionPath(tree.index);
+    items.push({
+      label: tree.index.data.title,
+      link,
+      isActive: pathname === link,
+      isParent: false
+    });
+  }
+
+  // Process the rest
+  for (const key of Object.keys(tree)) {
+    if (key === "index") continue;
+    const value = tree[key];
+
+    if ("id" in value && "data" in value) {
+      const link = getCollectionPath(value);
+      items.push({
+        label: value.data.title,
+        link,
+        isActive: pathname === link,
+        isParent: pathname.startsWith(link) && pathname !== link
+      });
+    } else {
+      const group = treeToNavi(value, pathname);
+      items.push({
+        label: key,
+        group,
+        isParent: isParent(group)
+      });
+    }
+  }
+
+  return items;
 }
 
 export async function buildNaviFromConfig(
