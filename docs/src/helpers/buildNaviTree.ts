@@ -1,7 +1,7 @@
 export type NaviConfig =
   | { label: string; link: string }
-  | { collection: string; dir?: string }
-  | { label: string; group: NaviConfig[] };
+  | { label: string; group: NaviConfig[] }
+  | { collection: string };
 
 export type NaviLink = {
   label: string;
