@@ -13,7 +13,7 @@ function classes(entry: NaviLink) {
 }
 ---
 
-<ul class={`menu ${nested ? "menu_collection" : ""}`.trim()}>
+<ul class={`menu menu_collection ${nested ? "is-nested" : ""}`.trim()}>
   {
     tree.map((entry) =>
       "link" in entry ? (
@@ -38,39 +38,3 @@ function classes(entry: NaviLink) {
     )
   }
 </ul>
-
-<style lang="scss">
-  @use "@vrembem/core";
-  @use "@vrembem/core/tokens";
-
-  summary {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.75em;
-    padding: tokens.get("form-control-padding-y") 0;
-    color: tokens.get("foreground-strong");
-    font-weight: tokens.get("font-weight-bold");
-
-    .spacer {
-      height: 1px;
-      flex-grow: 1;
-      background-color: tokens.get("border-color");
-    }
-
-    .caret {
-      @include core.size(0.8em);
-      position: relative;
-      inset: 0;
-      display: block;
-      background-color: currentcolor;
-      mask: url(core.svg("chevron")) center / 100% no-repeat;
-      transition: transform tokens.get("transition-short");
-      transform: rotate(-90deg);
-
-      details[open] & {
-        transform: rotate(0);
-      }
-    }
-  }
-</style>
