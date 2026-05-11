@@ -44,9 +44,10 @@ function getComparator(sort: Comparator | Comparator[] | undefined) {
   return sortBy(byOrder, byTitle);
 }
 
-// TODO: Differentiate between index files and named index, e.g.:
-// - core.mdx        path: "core"  group: index [group]
-// - core/index.mdx  path: "core"  group: [index group]
+function dirToLabel(dir: string) {
+  return dir.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   const tree: Record<string, any> = {};
   const depth = dir ? dir.split("/").length : 0;
@@ -94,9 +95,6 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   return tree;
 }
 
-// TODO: Convert directory name to a better label
-// - Give the text title case (or just capitalize the first word)
-// - replace dashes ("-") with spaces (" ")
 function treeToNavi(
   tree: Record<string, any>,
   pathname: string,
@@ -134,14 +132,13 @@ function treeToNavi(
     } else {
       const group = treeToNavi(value, pathname, comparator);
       items.push({
-        label: key,
+        label: dirToLabel(key),
         group,
         isParent: isParent(group)
       });
     }
   }
 
-  // TODO: Improve sorting of nested groups
   // Apply sorting
   // Since this is run recursively, it's applied on every level
   items.sort(comparator);
