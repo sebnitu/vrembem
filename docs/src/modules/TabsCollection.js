@@ -1,4 +1,4 @@
-import { Collection, localStore } from "vrembem";
+import { Collection, storage } from "vrembem";
 
 const defaults = {
   selector: "vb-tabs",
@@ -8,7 +8,7 @@ const defaults = {
 export class TabsCollection extends Collection {
   constructor(options) {
     super({ ...options, ...defaults });
-    this.profile = localStore(this.config.storeKey);
+    this.profile = storage(this.config.storeKey, "session");
   }
 
   onCreateEntry(entry) {

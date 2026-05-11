@@ -1,7 +1,9 @@
-export function localStore<
+export function storage<
   ValueMap extends Record<string, any> = Record<string, any>
->(key: string, enable: boolean = true) {
-  const local = localStorage.getItem(key);
+>(key: string, type: "local" | "session" = "local") {
+  const browserStorage =
+    type === "local" ? window.localStorage : window.sessionStorage;
+  const local = browserStorage.getItem(key);
   const store: ValueMap = local ? JSON.parse(local) : {};
 
   return {
@@ -21,7 +23,7 @@ export function localStore<
       } else {
         delete store[prop];
       }
-      if (enable) localStorage.setItem(key, JSON.stringify(store));
+      browserStorage.setItem(key, JSON.stringify(store));
       return store;
     }
   };
