@@ -8,7 +8,7 @@ const defaults = {
 export class TabsCollection extends Collection {
   constructor(options) {
     super({ ...options, ...defaults });
-    this.profile = storage(this.config.storeKey, "session");
+    this.profile = storage(this.config.storeKey);
   }
 
   onCreateEntry(entry) {
