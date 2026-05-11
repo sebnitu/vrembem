@@ -1,6 +1,5 @@
 import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
-import { collections } from "@/content.config";
 import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { sortBy, byTitle, byOrder, type Comparator } from "@/helpers/sortBy";
 
@@ -34,13 +33,6 @@ function isParent(group: NaviItem[]) {
   return group.some((entry) =>
     "isActive" in entry ? entry.isActive || entry.isParent : entry.isParent
   );
-}
-
-function inferCollection(path: string): CollectionKey {
-  const key = Object.keys(collections).find((key) =>
-    path.startsWith(`/${key}`)
-  );
-  return (key as CollectionKey) || "pages";
 }
 
 function getComparator(sort: Comparator | Comparator[] | undefined) {
@@ -167,8 +159,7 @@ export async function buildNaviFromConfig(
 
   for (const item of config) {
     if ("link" in item) {
-      const collection = inferCollection(item.link);
-      const entry = await getEntry(collection, item.link);
+      const entry = await getEntry("pages", item.link.replace(/^\//, ""));
       resolved.push({
         label: item.label,
         link: item.link,
