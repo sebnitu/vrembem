@@ -25,4 +25,4 @@ const sidebar: NaviConfig[] = [
   }
 ];
 
-export const navi = { sidebar };
+export const config = { sidebar };

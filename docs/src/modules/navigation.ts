@@ -48,6 +48,30 @@ function dirToLabel(dir: string) {
   return dir.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+function collectLinks(items: NaviItem[]): NaviLink[] {
+  const links: NaviLink[] = [];
+  for (const item of items) {
+    if ("link" in item) {
+      links.push(item);
+    } else if ("group" in item) {
+      links.push(...collectLinks(item.group));
+    }
+  }
+  return links;
+}
+
+function getPrevNavi(tree: NaviItem[], pathname: string): NaviLink | null {
+  const links = collectLinks(tree);
+  const index = links.findIndex((link) => link.link === pathname);
+  return index > 0 ? links[index - 1] : null;
+}
+
+function getNextNavi(tree: NaviItem[], pathname: string): NaviLink | null {
+  const links = collectLinks(tree);
+  const index = links.findIndex((link) => link.link === pathname);
+  return index >= 0 && index < links.length - 1 ? links[index + 1] : null;
+}
+
 function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   const tree: Record<string, any> = {};
   const depth = dir ? dir.split("/").length : 0;
@@ -148,16 +172,13 @@ function treeToNavi(
 
 // TODO: Create a function for creating the NaviLink object
 // TODO: Create a function for creating the NaviGroup object
-export async function buildNaviFromConfig(
-  config: NaviConfig[],
-  pathname: string
-): Promise<NaviItem[]> {
-  const resolved: NaviItem[] = [];
+async function configToNavi(config: NaviConfig[], pathname: string) {
+  const navi: NaviItem[] = [];
 
   for (const item of config) {
     if ("link" in item) {
       const entry = await getEntry("pages", item.link.replace(/^\//, ""));
-      resolved.push({
+      navi.push({
         label: item.label,
         link: item.link,
         isActive: pathname === item.link,
@@ -166,8 +187,8 @@ export async function buildNaviFromConfig(
       });
     }
     if ("group" in item) {
-      const group = await buildNaviFromConfig(item.group, pathname);
-      resolved.push({
+      const group = await configToNavi(item.group, pathname);
+      navi.push({
         label: item.label,
         group: group,
         isParent: isParent(group)
@@ -177,9 +198,22 @@ export async function buildNaviFromConfig(
       const collection = await getCollection(item.collection, item.filter);
       const tree = treeify(collection, item.dir);
       const items = treeToNavi(tree, pathname, getComparator(item.sort));
-      resolved.push(...items);
+      navi.push(...items);
     }
   }
 
-  return resolved;
+  return navi;
+}
+
+export async function buildNaviFromConfig(
+  config: NaviConfig[],
+  pathname: string
+) {
+  const navi = await configToNavi(config, pathname);
+
+  return {
+    navi,
+    prev: getPrevNavi(navi, pathname),
+    next: getNextNavi(navi, pathname)
+  };
 }

@@ -1,15 +1,10 @@
 ---
-import { buildNaviFromConfig, type NaviConfig } from "@/modules/navigation";
+import { config } from "@/navi.config";
+import { buildNaviFromConfig } from "@/modules/navigation";
 import SidebarNaviMenu from "@/components/SidebarNaviMenu.astro";
 import SidebarState from "@/components/SidebarState.astro";
 
-interface Props {
-  config: NaviConfig[];
-}
-
-const { config } = Astro.props;
-
-const navi = await buildNaviFromConfig(config, Astro.url.pathname);
+const { navi } = await buildNaviFromConfig(config.sidebar, Astro.url.pathname);
 ---
 
 <SidebarState>

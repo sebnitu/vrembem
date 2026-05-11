@@ -1,10 +1,9 @@
 ---
 import type { CollectionEntry, CollectionKey } from "astro:content";
-import { navi } from "@/navi.config";
 import Base from "@/layouts/Base.astro";
 import Intro from "@/components/Intro.astro";
 import SidebarNavi from "@/components/SidebarNavi.astro";
-import CollectionPagi from "@/components/CollectionPagi.astro";
+import PageNavi from "@/components/PageNavi.astro";
 import OnThisPage from "@/components/OnThisPage.astro";
 import EditPageLink from "@/components/EditPageLink.astro";
 
@@ -33,7 +32,7 @@ const layout = {
   {
     collection && (
       <Fragment slot="sidebar">
-        <SidebarNavi config={navi.sidebar} />
+        <SidebarNavi />
       </Fragment>
     )
   }
@@ -50,7 +49,7 @@ const layout = {
     <div>
       <EditPageLink {entry} />
     </div>
-    {entry && <CollectionPagi {entry} />}
+    <PageNavi />
   </Fragment>
 </Base>
 
