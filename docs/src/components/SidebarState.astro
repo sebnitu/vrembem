@@ -1,8 +1,3 @@
----
-// TODO: Clicking on other navigation items (header) should clear stored scroll
-// position, or some logic could be added for scroll-into-view of active.
----
-
 <vb-sidebar-state>
   <script is:inline>
     (() => {
@@ -63,10 +58,10 @@
   });
   const sidebar = document.querySelector("vb-sidebar-state");
   const container = sidebar?.closest(".drawer__container");
-  const links = sidebar?.querySelectorAll("a");
-  links?.forEach((link) => {
-    link.addEventListener("click", () => {
-      updateStore("scroll", container?.scrollTop);
-    });
+  document.addEventListener("click", (event) => {
+    const link = (event.target as HTMLElement).closest("a");
+    if (!link) return;
+    const storeScroll = link.closest("vb-sidebar-state");
+    updateStore("scroll", storeScroll ? container?.scrollTop : 0);
   });
 </script>
