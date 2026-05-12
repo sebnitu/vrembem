@@ -35,6 +35,10 @@ function isParent(group: NaviItem[]) {
   );
 }
 
+function dirToLabel(dir: string) {
+  return dir.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 function getComparator(sort: Comparator | Comparator[] | undefined) {
   // If sort is an array, return as a spread on its own
   if (Array.isArray(sort)) return sortBy(...sort);
@@ -44,32 +48,25 @@ function getComparator(sort: Comparator | Comparator[] | undefined) {
   return sortBy(byOrder, byTitle);
 }
 
-function dirToLabel(dir: string) {
-  return dir.replace("-", " ").replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
-function collectLinks(items: NaviItem[]): NaviLink[] {
+function flattenNavi(items: NaviItem[]): NaviLink[] {
   const links: NaviLink[] = [];
   for (const item of items) {
     if ("link" in item) {
       links.push(item);
     } else if ("group" in item) {
-      links.push(...collectLinks(item.group));
+      links.push(...flattenNavi(item.group));
     }
   }
   return links;
 }
 
-function getPrevNavi(tree: NaviItem[], pathname: string): NaviLink | null {
-  const links = collectLinks(tree);
+function getPageNavi(tree: NaviItem[], pathname: string) {
+  const links = flattenNavi(tree);
   const index = links.findIndex((link) => link.link === pathname);
-  return index > 0 ? links[index - 1] : null;
-}
-
-function getNextNavi(tree: NaviItem[], pathname: string): NaviLink | null {
-  const links = collectLinks(tree);
-  const index = links.findIndex((link) => link.link === pathname);
-  return index >= 0 && index < links.length - 1 ? links[index + 1] : null;
+  return {
+    prev: index > 0 ? links[index - 1] : null,
+    next: index >= 0 && index < links.length - 1 ? links[index + 1] : null
+  };
 }
 
 function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
@@ -119,6 +116,29 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
   return tree;
 }
 
+function buildNaviLink(
+  label: string,
+  link: string,
+  pathname: string,
+  data: Record<string, any> = {}
+): NaviLink {
+  return {
+    label,
+    link,
+    isActive: pathname === link,
+    isParent: pathname.startsWith(link) && pathname !== link,
+    data: data
+  };
+}
+
+function buildNaviGroup(label: string, group: NaviItem[]): NaviGroup {
+  return {
+    label: label,
+    group: group,
+    isParent: isParent(group)
+  };
+}
+
 function treeToNavi(
   tree: Record<string, any>,
   pathname: string,
@@ -130,13 +150,8 @@ function treeToNavi(
   // Process index entry first if it exists
   if (tree.index && "id" in tree.index) {
     const link = getCollectionPath(tree.index);
-    index.push({
-      label: tree.index.data.title,
-      link,
-      isActive: pathname === link,
-      isParent: false,
-      data: tree.index.data
-    });
+    const data = tree.index.data;
+    index.push(buildNaviLink(data.title, link, pathname, data));
   }
 
   // Process the rest
@@ -146,20 +161,10 @@ function treeToNavi(
 
     if ("id" in value && "data" in value) {
       const link = getCollectionPath(value);
-      items.push({
-        label: value.data.title,
-        link,
-        isActive: pathname === link,
-        isParent: pathname.startsWith(link) && pathname !== link,
-        data: value.data
-      });
+      items.push(buildNaviLink(value.data.title, link, pathname, value.data));
     } else {
       const group = treeToNavi(value, pathname, comparator);
-      items.push({
-        label: dirToLabel(key),
-        group,
-        isParent: isParent(group)
-      });
+      items.push(buildNaviGroup(dirToLabel(key), group));
     }
   }
 
@@ -170,29 +175,17 @@ function treeToNavi(
   return [...index, ...items];
 }
 
-// TODO: Create a function for creating the NaviLink object
-// TODO: Create a function for creating the NaviGroup object
 async function configToNavi(config: NaviConfig[], pathname: string) {
   const navi: NaviItem[] = [];
 
   for (const item of config) {
     if ("link" in item) {
       const entry = await getEntry("pages", item.link.replace(/^\//, ""));
-      navi.push({
-        label: item.label,
-        link: item.link,
-        isActive: pathname === item.link,
-        isParent: pathname.startsWith(item.link) && pathname !== item.link,
-        data: entry?.data || {}
-      });
+      navi.push(buildNaviLink(item.label, item.link, pathname, entry?.data));
     }
     if ("group" in item) {
       const group = await configToNavi(item.group, pathname);
-      navi.push({
-        label: item.label,
-        group: group,
-        isParent: isParent(group)
-      });
+      navi.push(buildNaviGroup(item.label, group));
     }
     if ("collection" in item) {
       const collection = await getCollection(item.collection, item.filter);
@@ -213,7 +206,6 @@ export async function buildNaviFromConfig(
 
   return {
     navi,
-    prev: getPrevNavi(navi, pathname),
-    next: getNextNavi(navi, pathname)
+    ...getPageNavi(navi, pathname)
   };
 }
