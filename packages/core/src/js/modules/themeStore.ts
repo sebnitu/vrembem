@@ -1,4 +1,4 @@
-import { localStore } from "./localStore";
+import { storage } from "./storage";
 import { cssVar } from "../helpers";
 
 const defaults = {
@@ -33,7 +33,7 @@ export function themeStore(options: Partial<typeof defaults> = {}) {
   const config = { ...defaults, ...options };
 
   // Get the local storage profile
-  const profile = localStore(config.storeKey);
+  const profile = storage(config.storeKey);
 
   // Setup the API object
   const api = {

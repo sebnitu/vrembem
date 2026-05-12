@@ -1,0 +1,32 @@
+---
+import { config } from "@/navi.config";
+import { buildNaviFromConfig } from "@/modules/navigation";
+
+const { prev, next } = await buildNaviFromConfig(
+  config.sidebar,
+  Astro.url.pathname
+);
+---
+
+{
+  (prev || next) && (
+    <div class="pagi">
+      <div class="pagi_prev">
+        {prev && (
+          <a class="pagi_link" href={prev.link}>
+            <div class="pagi_label">Previous</div>
+            <div class="pagi_title">{prev.label}</div>
+          </a>
+        )}
+      </div>
+      <div class="pagi_next">
+        {next && (
+          <a class="pagi_link" href={next.link}>
+            <div class="pagi_label">Next</div>
+            <div class="pagi_title">{next.label}</div>
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}

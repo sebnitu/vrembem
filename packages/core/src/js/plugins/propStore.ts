@@ -1,10 +1,10 @@
 import { getValue } from "../utilities";
-import { localStore } from "../modules";
+import { storage } from "../modules";
 import type { Plugin } from "../modules/PluginArray";
 import type { CollectionEntry } from "../CollectionEntry";
 
 export interface PropStorePlugin extends Plugin<PropStoreEntry> {
-  store: ReturnType<typeof localStore> | null;
+  store: ReturnType<typeof storage> | null;
   ready: string[];
 }
 
@@ -70,7 +70,7 @@ export function propStore(
 
   const hooks: Partial<PropStorePlugin> = {
     setup(parent) {
-      this.store = localStore(getKey(this, parent.name));
+      this.store = storage(getKey(this, parent.name));
     },
 
     async onCreateEntry({ entry }) {

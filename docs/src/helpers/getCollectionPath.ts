@@ -1,4 +1,3 @@
-import { getModuleMeta } from "@/helpers/getModuleMeta";
 import type { CollectionEntry, CollectionKey } from "astro:content";
 
 export function getCollectionPath(
@@ -14,12 +13,6 @@ export function getCollectionPath(
     result += entry.id;
   }
 
-  // Modules are prefixed with the packages collection
-  // > "/packages/{parent}/{module}"
-  else if (entry.collection === "modules") {
-    result += `packages/${getModuleMeta(entry).path}`;
-  }
-  
   // Everything else is prefixed with their own collection name
   // > "/{collection}/{id}"
   else {

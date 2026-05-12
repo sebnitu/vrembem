@@ -1,0 +1,61 @@
+<vb-sidebar-state>
+  <script is:inline>
+    (() => {
+      // Don't run this if this is a modal breakpoint
+      const sidebar = document.getElementById("layout-sidebar");
+      const bp = sidebar.getAttribute("data-breakpoint");
+      const styles = getComputedStyle(document.documentElement);
+      const value = styles.getPropertyValue(`--vb-breakpoint-${bp}`);
+      if (!matchMedia(`(min-width: ${value})`).matches) return;
+      // Get the sidebar state from session storage
+      const state = JSON.parse(sessionStorage.getItem("vb-sidebar-state"));
+      // Conditional state restoring
+      window._vbSidebarScrollPosition = state?.scroll || 0;
+      if (!state?.open) return;
+      let index = 0;
+      customElements.define(
+        "vb-sidebar-group",
+        class extends HTMLElement {
+          connectedCallback() {
+            const details = this.closest("details");
+            if (details) {
+              details.open =
+                details.hasAttribute("data-active") || state.open[index];
+            }
+            index++;
+          }
+        }
+      );
+    })();
+  </script>
+  <slot />
+  <script is:inline>
+    (() => {
+      const sidebar = document.getElementById("layout-sidebar");
+      const container = sidebar?.querySelector(".drawer__container");
+      if (!window._vbSidebarScrollPosition || !container) return;
+      container.scrollTop = window._vbSidebarScrollPosition;
+      delete window._vbSidebarScrollPosition;
+    })();
+  </script>
+</vb-sidebar-state>
+
+<script>
+  import { storage } from "vrembem";
+  const store = storage("vb-sidebar-state", "session");
+  const details = document.querySelectorAll("vb-sidebar-state details");
+  details.forEach((entry) => {
+    entry.addEventListener("toggle", () => {
+      const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
+      store.set("open", stateArray);
+    });
+  });
+  const sidebar = document.querySelector("vb-sidebar-state");
+  const container = sidebar?.closest(".drawer__container");
+  document.addEventListener("click", (event) => {
+    const link = (event.target as HTMLElement).closest("a");
+    if (!link) return;
+    const storeScroll = link.closest("vb-sidebar-state");
+    store.set("scroll", storeScroll ? container?.scrollTop : 0);
+  });
+</script>

@@ -1,5 +1,5 @@
 ---
-import { currentPage } from "@/modules/currentPage";
+import { currentPage } from "@/helpers/currentPage";
 import ThemeSwitcherPopover from "@/components/ThemeSwitcherPopover.astro";
 import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
 import Icon from "@/components/Icon.astro";
@@ -13,7 +13,6 @@ const { classes = "", inline = false } = Astro.props;
 
 const cp = currentPage(Astro.url.pathname, {
   classBase: "menu__action",
-  classCurrent: "is-active",
   classParent: "is-active"
 });
 ---

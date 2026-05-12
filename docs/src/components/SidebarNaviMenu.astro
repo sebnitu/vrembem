@@ -1,0 +1,40 @@
+---
+import type { NaviItem, NaviLink } from "@/modules/navigation";
+
+interface Props {
+  tree: NaviItem[];
+  nested?: boolean;
+}
+
+const { tree, nested } = Astro.props;
+
+function classes(entry: NaviLink) {
+  return { "is-active": entry.isActive, "is-parent": entry.isParent };
+}
+---
+
+<ul class={`menu menu_collection ${nested ? "is-nested" : ""}`.trim()}>
+  {
+    tree.map((entry) =>
+      "link" in entry ? (
+        <li class="menu__item">
+          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
+            {entry.label}
+          </a>
+        </li>
+      ) : (
+        <li class="menu__item">
+          <details open data-active={entry.isParent || undefined}>
+            <summary>
+              <span>{entry.label}</span>
+              <span class="spacer" />
+              <span class="caret" />
+            </summary>
+            <vb-sidebar-group />
+            <Astro.self tree={entry.group} nested />
+          </details>
+        </li>
+      )
+    )
+  }
+</ul>
