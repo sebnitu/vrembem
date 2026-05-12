@@ -9,11 +9,11 @@ const sidebar: NaviConfig[] = [
   {
     label: "Packages",
     group: [
-      { label: "Overview", link: "/packages" },
       {
         collection: "packages",
         filter: (entry) => "package" in entry.data,
         sort: byCategory([
+          "all",
           "core",
           "modules",
           "layout",
