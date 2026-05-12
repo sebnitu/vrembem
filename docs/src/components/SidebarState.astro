@@ -41,19 +41,13 @@
 </vb-sidebar-state>
 
 <script>
-  const storeKey = "vb-sidebar-state";
-
-  function updateStore(key: string, value: unknown) {
-    const state = JSON.parse(sessionStorage.getItem(storeKey) || "{}");
-    state[key] = value;
-    sessionStorage.setItem(storeKey, JSON.stringify(state));
-  }
-
+  import { storage } from "vrembem";
+  const store = storage("vb-sidebar-state", "session");
   const details = document.querySelectorAll("vb-sidebar-state details");
   details.forEach((entry) => {
     entry.addEventListener("toggle", () => {
       const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
-      updateStore("open", stateArray);
+      store.set("open", stateArray);
     });
   });
   const sidebar = document.querySelector("vb-sidebar-state");
@@ -62,6 +56,6 @@
     const link = (event.target as HTMLElement).closest("a");
     if (!link) return;
     const storeScroll = link.closest("vb-sidebar-state");
-    updateStore("scroll", storeScroll ? container?.scrollTop : 0);
+    store.set("scroll", storeScroll ? container?.scrollTop : 0);
   });
 </script>
