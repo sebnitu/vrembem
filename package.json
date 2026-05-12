@@ -39,7 +39,7 @@
     "eslint-plugin-jest": "^29.15.2",
     "globals": "^17.6.0",
     "jest": "^30.3.0",
-    "jest-environment-jsdom": "^30.3.0",
+    "jest-environment-jsdom": "^30.4.1",
     "lerna": "^9.0.7",
     "lerna-changelog": "^2.2.0",
     "microbundle": "^0.15.1",
