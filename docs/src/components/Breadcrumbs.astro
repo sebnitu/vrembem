@@ -23,10 +23,20 @@ const segments = Astro.url.pathname
 // e.g., "drawer/setup" → ["drawer", "drawer/setup"]
 const paths = segments.map((_, i) => segments.slice(0, i + 1).join("/"));
 
+function getEntryPath(path: string) {
+  const entry = entries.find((entry) => entry.id === path);
+  if (entry) return entry.id;
+  // "core/plugins" → "core#plugins"
+  const lastSlash = path.lastIndexOf("/");
+  return lastSlash !== -1
+    ? `${path.slice(0, lastSlash)}#${path.slice(lastSlash + 1)}`
+    : path;
+}
+
 paths.forEach((path) => {
   const last = path.split("/").at(-1);
   breadcrumbs.push({
-    link: `/${collection}/${path}`,
+    link: `/${collection}/${getEntryPath(path)}`,
     label: last
   });
 });
