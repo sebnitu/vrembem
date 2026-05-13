@@ -10,7 +10,8 @@ const sidebar: NaviConfig[] = [
     label: "Packages",
     group: [
       {
-        collection: "packages",
+        collection: "pages",
+        dir: "packages",
         filter: (entry) => "package" in entry.data,
         sort: byCategory([
           "all",
@@ -22,6 +23,10 @@ const sidebar: NaviConfig[] = [
         ])
       }
     ]
+  },
+  {
+    label: "Reference",
+    group: [{ collection: "pages", dir: "reference" }]
   }
 ];
 

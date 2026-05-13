@@ -3,7 +3,6 @@ import type { CollectionEntry, CollectionKey } from "astro:content";
 import Base from "@/layouts/Base.astro";
 import Intro from "@/components/Intro.astro";
 import SidebarNavi from "@/components/SidebarNavi.astro";
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import PageNavi from "@/components/PageNavi.astro";
 import OnThisPage from "@/components/OnThisPage.astro";
 import EditPageLink from "@/components/EditPageLink.astro";
@@ -43,8 +42,6 @@ const layout = {
       </Fragment>
     )
   }
-  {collection === "packages" && <Breadcrumbs {collection} />}
-
   <Intro data={{ title, description }} />
   <slot />
   <Fragment slot="append">

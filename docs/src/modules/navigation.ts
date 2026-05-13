@@ -1,6 +1,5 @@
 import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
-import { getCollectionPath } from "@/helpers/getCollectionPath";
 import { sortBy, byTitle, byOrder, type Comparator } from "@/helpers/sortBy";
 
 export type NaviConfig =
@@ -122,6 +121,7 @@ function buildNaviLink(
   pathname: string,
   data: Record<string, any> = {}
 ): NaviLink {
+  link = `/${link}`;
   return {
     label,
     link,
@@ -149,21 +149,20 @@ function treeToNavi(
 
   // Process index entry first if it exists
   if (tree.index && "id" in tree.index) {
-    const link = getCollectionPath(tree.index);
-    const data = tree.index.data;
-    index.push(buildNaviLink(data.title, link, pathname, data));
+    const { id, data } = tree.index.id;
+    index.push(buildNaviLink(data.title, id, pathname, data));
   }
 
   // Process the rest
   for (const key of Object.keys(tree)) {
     if (key === "index") continue;
-    const value = tree[key];
+    const entry = tree[key];
 
-    if ("id" in value && "data" in value) {
-      const link = getCollectionPath(value);
-      items.push(buildNaviLink(value.data.title, link, pathname, value.data));
+    if ("id" in entry && "data" in entry) {
+      const { id, data } = entry;
+      items.push(buildNaviLink(data.title, id, pathname, data));
     } else {
-      const group = treeToNavi(value, pathname, comparator);
+      const group = treeToNavi(entry, pathname, comparator);
       items.push(buildNaviGroup(dirToLabel(key), group));
     }
   }
