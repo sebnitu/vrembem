@@ -49,7 +49,7 @@ Radio uses design token CSS variables in a reference and fallback pattern. Varia
 
 <ReferenceTable id="tokens-radio" valueLabel="Fallback" expandable={true} data={{
   "--vb-radio-color": "var(--vb-form-control-choice-color)",
-  "--vb-radio-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-radio-accent": "var(--vb-form-control-choice-color-checked)",
   "--vb-radio-fill": "var(--vb-form-control-choice-fill)",
   "--vb-radio-size": "var(--vb-form-control-size)",
 
@@ -70,36 +70,16 @@ Radio uses design token CSS variables in a reference and fallback pattern. Varia
 
 ## Basic usage
 
+{/* TODO: This needs to be re-written */}
 Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
 
 <CodeExample>
-  <Fragment slot="output">
-    <span class="radio">
-      <input class="radio__native" type="radio"  name="example-1" value="1" checked />
-      <span class="radio__background">
-        <span class="radio__circle">
-          <span class="radio__dot"></span>
-        </span>
-      </span>
-    </span>
-    <span class="radio">
-      <input class="radio__native" type="radio"  name="example-1" value="2" />
-      <span class="radio__background">
-        <span class="radio__circle">
-          <span class="radio__dot"></span>
-        </span>
-      </span>
-    </span>
-  </Fragment>
+  <div slot="output" class="flex">
+    <input class="radio" type="radio"  name="example-1" value="1" checked />
+    <input class="radio" type="radio"  name="example-1" value="1" />
+  </div>
   ```html
-  <span class="radio">
-    <input class="radio__native" type="radio" >
-    <span class="radio__background">
-      <span class="radio__circle">
-        <span class="radio__dot"></span>
-      </span>
-    </span>
-  </span>
+  <input class="radio" type="radio" />
   ```
 </CodeExample>
 
@@ -110,46 +90,23 @@ For radio buttons with labels, just wrap the radio component along with label te
 <CodeExample>
   <Fragment slot="output">
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio">
-        <input class="radio__native" type="radio"  name="example-2" value="1" checked />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio" type="radio" name="example-2" value="1" checked />
       <span>Radio with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio">
-        <input class="radio__native" type="radio"  name="example-2" value="2" />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio" type="radio" name="example-2" value="1" />
       <span>Radio with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio">
-        <input class="radio__native" type="radio"  name="example-2" value="3" />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio" type="radio" name="example-2" value="1" />
       <span>Radio with a label</span>
     </label>
   </Fragment>
   ```html
   <label>
-    <span class="radio">
-      ...
-    </span>
+    <input class="radio" type="radio" />
     <span>Radio with a label</span>
   </label>
   ```
@@ -161,56 +118,23 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 
 <CodeExample>
   <Fragment slot="output">
-    <span class="radio">
-      <input class="radio__native" type="radio"  name="example-3a" value="1" disabled checked />
-      <span class="radio__background">
-        <span class="radio__circle">
-          <span class="radio__dot"></span>
-        </span>
-      </span>
-    </span>
-    <span class="radio">
-      <input class="radio__native" type="radio"  name="example-3a" value="2" disabled />
-      <span class="radio__background">
-        <span class="radio__circle">
-          <span class="radio__dot"></span>
-        </span>
-      </span>
-    </span>
+    <div class="flex">
+      <input class="radio" type="radio" name="example-3a" value="1" disabled checked />
+      <input class="radio" type="radio" name="example-3a" value="1" disabled checked />
+    </div>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio">
-        <input class="radio__native" type="radio"  name="example-3b" value="3" disabled checked />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio" type="radio" name="example-3b" value="1" disabled checked />
       <span>Radio with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio">
-        <input class="radio__native" type="radio"  name="example-3b" value="4" disabled />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio" type="radio" name="example-3b" value="1" disabled checked />
       <span>Radio with a label</span>
     </label>
   </Fragment>
   ```html
-  <span class="radio">
-    <input class="radio__native" type="radio"  disabled />
-    <span class="radio__background">
-      <span class="radio__circle">
-        <span class="radio__dot"></span>
-      </span>
-    </span>
-  </span>
+  <input class="radio" type="radio" disabled checked />
   ```
 </CodeExample>
 
@@ -221,70 +145,23 @@ Adjust the size of a radio by increasing or decreasing its font-size. These modi
 <CodeExample>
   <Fragment slot="output">
     <div class="flex flex_gap_xl">
-      <div>
-        <span class="radio radio_size_sm">
-          <input class="radio__native" type="radio"  name="example-4" checked />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
-        <span class="radio radio_size_sm">
-          <input class="radio__native" type="radio"  name="example-4" />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
+      <div class="flex flex_gap_sm">
+        <input class="radio radio_size_sm" type="radio" name="example-4" value="1" checked />
+        <input class="radio radio_size_sm" type="radio" name="example-4" value="1" />
       </div>
-      <div>
-        <span class="radio">
-          <input class="radio__native" type="radio"  name="example-5" checked />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
-        <span class="radio">
-          <input class="radio__native" type="radio"  name="example-5" />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
+      <div class="flex flex_gap_sm">
+        <input class="radio" type="radio" name="example-5" value="1" checked />
+        <input class="radio" type="radio" name="example-5" value="1" />
       </div>
-      <div>
-        <span class="radio radio_size_lg">
-          <input class="radio__native" type="radio"  name="example-6" checked />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
-        <span class="radio radio_size_lg">
-          <input class="radio__native" type="radio"  name="example-6" />
-          <span class="radio__background">
-            <span class="radio__circle">
-              <span class="radio__dot"></span>
-            </span>
-          </span>
-        </span>
+      <div class="flex flex_gap_sm">
+        <input class="radio radio_size_lg" type="radio" name="example-6" value="1" checked />
+        <input class="radio radio_size_lg" type="radio" name="example-6" value="1" />
       </div>
     </div>
   </Fragment>
   ```html
-  <span class="radio radio_size_sm">
-    ...
-  </span>
-
-  <span class="radio radio_size_lg">
-    ...
-  </span>
+  <input class="radio radio_size_sm" type="radio" />
+  <input class="radio radio_size_lg" type="radio" />
   ```
 </CodeExample>
 
@@ -301,14 +178,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
-        <input class="radio__native" type="radio"  name="example-5" />
-        <span class="radio__background">
-          <span class="radio__circle">
-            <span class="radio__dot"></span>
-          </span>
-        </span>
-      </span>
+      <input class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg" type="radio" name="example-7" />
       <span>Radio</span>
       <span class="badge lg:display-none">size_sm</span>
       <span class="badge display-none lg:display-block xl:display-none">size_md</span>
