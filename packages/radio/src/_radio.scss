@@ -7,6 +7,8 @@ $-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-color-ch
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
+  @include core.size(tokens.get("radio", "circle-size", 1.25em));
+
   cursor: pointer;
   position: relative;
   display: inline-block;
@@ -34,8 +36,6 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     border-color: $-accent;
     background-color: $-fill;
   }
-
-  @include core.size(tokens.get("radio", "circle-size", 1.25em));
 }
 
 #{core.bem("radio")}:checked {
@@ -51,4 +51,9 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     transition-duration: tokens.get("radio", "transition-duration", tokens.get("form-control-transition-duration"));
     transition-property: opacity, width, height;
   }
+}
+
+#{core.bem("radio")}:disabled {
+  pointer-events: none;
+  opacity: tokens.get("checkbox", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
 }
