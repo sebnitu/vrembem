@@ -1,0 +1,50 @@
+---
+import { getCollection, type CollectionKey } from "astro:content";
+import { getCollectionPath } from "@/helpers/getCollectionPath";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  collection?: CollectionKey;
+}
+
+const { collection } = Astro.props;
+
+const breadcrumbs: any[] = [];
+const entries: CollectionEntry<CollectionKey>[] = collection
+  ? await getCollection(collection)
+  : [];
+
+// Get the segment parts without the collection prefix
+const segments = Astro.url.pathname
+  .replace(new RegExp(`^/${collection}/`), "")
+  .split("/");
+
+// Build cumulative ancestor paths from segments
+// e.g., "drawer/setup" → ["drawer", "drawer/setup"]
+const paths = segments.map((_, i) => segments.slice(0, i + 1).join("/"));
+
+paths.forEach((path) => {
+  const last = path.split("/").at(-1);
+  breadcrumbs.push({
+    link: `/${collection}/${path}`,
+    label: last
+  });
+});
+---
+
+{
+  breadcrumbs.length > 1 && (
+    <div class="foreground-subtle">
+      <ol class="flex flex_gap_sm list-style-none">
+        {breadcrumbs.map((item) => (
+          <li class="">
+            <a class="link" href={item.link}>
+              {item.label}
+            </a>
+          </li>
+          <li>/</li>
+        ))}
+      </ol>
+    </div>
+  )
+}
