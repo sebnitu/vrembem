@@ -31,8 +31,8 @@ export function byOrder(a: NaviItem, b: NaviItem) {
   const aOrder = typeof getData(a).order === "number" ? getData(a).order : null;
   const bOrder = typeof getData(b).order === "number" ? getData(b).order : null;
   if (aOrder === null && bOrder === null) return 0;
-  if (aOrder === null) return -1;
-  if (bOrder === null) return 1;
+  if (aOrder === null) return bOrder! >= 0 ? 1 : -1;
+  if (bOrder === null) return aOrder >= 0 ? -1 : 1;
   return aOrder - bOrder;
 }
 
