@@ -186,36 +186,36 @@
     "dark": "var(--vb-secondary-200)"
   },
   "--vb-primary-background": {
-    "light": "var(--vb-primary-100)",
+    "light": "var(--vb-primary-75)",
     "dark": "var(--vb-primary-600)"
   },
   "--vb-primary-foreground": {
     "light": "var(--vb-primary-600)",
-    "dark": "var(--vb-primary-100)"
+    "dark": "var(--vb-primary-75)"
   },
   "--vb-secondary-background": {
-    "light": "var(--vb-secondary-100)",
+    "light": "var(--vb-secondary-75)",
     "dark": "var(--vb-secondary-600)"
   },
   "--vb-secondary-foreground": {
     "light": "var(--vb-secondary-600)",
-    "dark": "var(--vb-secondary-100)"
+    "dark": "var(--vb-secondary-75)"
   },
   "--vb-neutral-background": {
-    "light": "var(--vb-neutral-100)",
+    "light": "var(--vb-neutral-75)",
     "dark": "var(--vb-neutral-600)"
   },
   "--vb-neutral-foreground": {
     "light": "var(--vb-neutral-600)",
-    "dark": "var(--vb-neutral-100)"
+    "dark": "var(--vb-neutral-75)"
   },
   "--vb-important-background": {
-    "light": "var(--vb-important-100)",
+    "light": "var(--vb-important-75)",
     "dark": "var(--vb-important-600)"
   },
   "--vb-important-foreground": {
     "light": "var(--vb-important-600)",
-    "dark": "var(--vb-important-100)"
+    "dark": "var(--vb-important-75)"
   },
   "--vb-border-color": {
     "light": "oklch(0% 0 0deg / 0.1)",
