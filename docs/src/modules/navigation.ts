@@ -169,7 +169,12 @@ function treeToNavi(
 
   // Apply sorting
   // Since this is run recursively, it's applied on every level
-  items.sort(comparator);
+  items.sort((a, b) => {
+    const aIsGroup = "group" in a ? 1 : 0;
+    const bIsGroup = "group" in b ? 1 : 0;
+    if (aIsGroup !== bIsGroup) return aIsGroup - bIsGroup;
+    return comparator(a, b);
+  });
 
   return [...index, ...items];
 }
