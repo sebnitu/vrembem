@@ -110,7 +110,7 @@ const popovers = new PopoverCollection({
 
 ### Sass
 
-Popover comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+Popover comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
 
 <CodeExample lang="scss">
 ```scss
@@ -151,7 +151,7 @@ Popover uses design token CSS variables in a reference and fallback pattern. Var
   "--vb-popover-arrow-size": "8px"
 }} />
 
-When using the [`cssConfig`](/packages/core/css-config) plugin, the following CSS variables can be used to set JavaScript configuration options.
+When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, the following CSS variables can be used to set JavaScript configuration options.
 
 <ReferenceTable id="tokens-popover-js" valueLabel="JS Equivalent" filter={false} data={{
   "--vb-popover-event": "event",
@@ -217,7 +217,7 @@ There are two event types that can trigger a popover: `click` (the default) and 
   ```
 </CodeExample>
 
-When using the [`cssConfig`](/packages/core/css-config) plugin, the event option can be provided using the `--vb-popover-event` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
+When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, the event option can be provided using the `--vb-popover-event` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -262,7 +262,7 @@ type Placement = "bottom" | "top" | "right" | "left" | "bottom-start" | "bottom-
 ```
 </CodeExample>
 
-When using the [`cssConfig`](/packages/core/css-config) plugin, the placement option can be provided using the `--vb-popover-placement` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
+When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, the placement option can be provided using the `--vb-popover-placement` CSS variable. This can be done either through your own custom CSS or using the `style` attribute.
 
 <CodeExample>
   <Fragment slot="output">
@@ -402,7 +402,7 @@ There are cases where a single popover trigger requires both a tooltip and a cli
 
 ### Follow cursor
 
-Popovers can be anchored to the cursor element by setting the `followCursor` config option to `true`. When using the [`cssConfig`](/packages/core/css-config) plugin, the followCursor option can be provided using the `--vb-popover-follow-cursor` CSS variable.
+Popovers can be anchored to the cursor element by setting the `followCursor` config option to `true`. When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, the followCursor option can be provided using the `--vb-popover-follow-cursor` CSS variable.
 
 <CodeExample>
   <Fragment slot="output">
@@ -434,7 +434,7 @@ Popovers can be anchored to the cursor element by setting the `followCursor` con
 
 ## Reference
 
-`PopoverCollection` and `PopoverEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only popover-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
+`PopoverCollection` and `PopoverEntry` extend the [`Collection`](/reference/collections/collection-api) and [`CollectionEntry`](/reference/collections/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only popover-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
 ### trigger
 

@@ -92,7 +92,7 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
         return;
       }
 
-      // Loop through the paths e.g.: core/plugins/custom
+      // Loop through the paths e.g.: reference/collections/plugins/custom
       parts.forEach((part: string, index: number) => {
         const isLeaf = index === parts.length - 1;
 

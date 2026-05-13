@@ -23,7 +23,7 @@ npm install @vrembem/core
 
 ## Options
 
-Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+Core comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
 
 <CodeExample lang="scss" expandable>
 ```scss
@@ -115,14 +115,14 @@ Core comes with the following Sass configuration options that can be set using e
 
 Design tokens are the foundation of the Vrembem library and help to establish a consistent design language across components. Tokens are managed by the `@vrembem/core/tokens` module and are output as CSS variables.
 
-[Design token reference](/packages/core/design-tokens)
+[Design token reference](/reference/design-tokens)
 
 ## Sass modules
 
 Vrembem uses Sass modules to manage global configuration and design tokens throughout the library.
 
-- [`@vrembem/core/config`](/packages/core/config): A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
-- [`@vrembem/core/tokens`](/packages/core/tokens): A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables.
+- [`@vrembem/core/config`](/reference/sass-modules/config): A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
+- [`@vrembem/core/tokens`](/reference/sass-modules/tokens): A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables.
   - `@vrembem/core/palette`: Adds token support for generating and accessing palette based tokens.
   - `@vrembem/core/breakpoints`: Adds token support for responsive values that change across breakpoints.
   - `@vrembem/core/themes`: Adds token support for themed values using light, dark, and custom themes.
@@ -133,27 +133,27 @@ Collection and CollectionEntry are base classes designed to manage component ins
 
 CollectionEntry represent an individual component instance within a collection, storing its state, configuration, and DOM reference. By extending these classes, Vrembem components inherit shared systems and APIs that can also be leveraged by custom components or plugins.
 
-- [Collection Tutorial](/packages/core/collections/tutorial)
-- [Collection API](/packages/core/collections/collection-api)
-- [CollectionEntry API](/packages/core/collections/collection-entry-api)
+- [Collection Tutorial](/reference/collections/)
+- [Collection API](/reference/collections/collection-api)
+- [CollectionEntry API](/reference/collections/collection-entry-api)
 
 ### Plugins
 
 Vrembem provides plugins designed to extend the features of components managed by collections, adding advanced behaviors and integrations to your JavaScript components.
 
-- [`attrConfig`](/packages/core/plugins/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
-- [`cssConfig`](/packages/core/plugins/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
-- [`focusTrap`](/packages/core/plugins/focus-trap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
-- [`mediaQuery`](/packages/core/plugins/media-query): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
-- [`propStore`](/packages/core/plugins/prop-store): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
-- [`teleport`](/packages/core/plugins/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
+- [`attrConfig`](/reference/collections/plugins/attr-config): Adds the ability to set a configuration source using the value of a data attribute.
+- [`cssConfig`](/reference/collections/plugins/css-config): Adds the ability to set a configuration source using the values of CSS custom properties.
+- [`focusTrap`](/reference/collections/plugins/focus-trap): Ensures keyboard focus remains within a specified element, such as a modal or dialog, while it is open. This improves accessibility by preventing users from tabbing outside interactive overlays.
+- [`mediaQuery`](/reference/collections/plugins/media-query): Provides a flexible API for managing responsive behaviors and breakpoints using custom data attributes and media queries. It enables components to react to viewport changes and device characteristics.
+- [`propStore`](/reference/collections/plugins/prop-store): Synchronizes component state with local storage, allowing values to persist across page reloads and sessions. It supports conditional storage and change callbacks for advanced state management.
+- [`teleport`](/reference/collections/plugins/teleport): Moves DOM elements to different locations in the document, such as rendering modals or tooltips outside their parent containers. This helps manage stacking contexts and ensures overlays display correctly.
 
 It's also possible to write your own custom plugins. Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements.
 
-[Writing a custom plugin](/packages/core/plugins/custom)
+[Writing a custom plugin](/reference/collections/plugins/custom)
 
 ## Theme state
 
 Once themes are created, it's important to allow users to be able to select their preferred theme and have that choice persisted. Vrembem provides `themeStore`, a JavaScript utility module that manages theme state and user preference.
 
-[Getting started with themeStore](/packages/core/theme-store)
+[Getting started with themeStore](/reference/theme-store)

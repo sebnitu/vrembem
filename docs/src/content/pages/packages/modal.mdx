@@ -122,7 +122,7 @@ const modals = new Modal({
 
 ### Sass
 
-Modal comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+Modal comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
 
 <CodeExample lang="scss">
 ```scss
@@ -240,7 +240,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   ```
 </CodeExample>
 
-The [dialog component](/package/dialog) is a great fit for composing a modal's dialog. This can be applied directly on the `modal__dialog` element and expanded as needed.
+The [dialog component](/packages/dialog) is a great fit for composing a modal's dialog. This can be applied directly on the `modal__dialog` element and expanded as needed.
 
 Also available is the `modal__container` element which provides a scrollable container that separates content scrolling from the dialog's background and border styles, preventing overscroll visual issues.
 
@@ -341,10 +341,10 @@ Modals on the web have an expected set of patterns that this component follows. 
 
 1. When a modal is opened, focus is moved to the dialog or an element inside.
 2. Modals provide standard methods for the user to close such as using the `esc` key or clicking outside the dialog.
-3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/packages/core/focus-trap) plugin to enable this behavior.
+3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/reference/collections/plugins/focus-trap) plugin to enable this behavior.
 4. When a modal is closed, focus is returned to the initial trigger element that opened it.
 
-To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modals. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/packages/core/teleport) plugin to consolidate all modals in the DOM to a single location.
+To take full advantage of modal's accessibility features, it's recommended to set the `selectorInert` option to all elements that are outside the modals. All elements that match the `selectorInert` selector will be given the `inert` attribute, as well as `aria-hidden="true"` when a modal is opened. If modal markup are rendered throughout your document, use the [`teleport`](/reference/collections/plugins/teleport) plugin to consolidate all modals in the DOM to a single location.
 
 #### Example
 
@@ -637,7 +637,7 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
 
 ## Reference
 
-`ModalCollection` and `ModalEntry` extend the [`Collection`](/packages/core/collection-api) and [`CollectionEntry`](/packages/core/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
+`ModalCollection` and `ModalEntry` extend the [`Collection`](/reference/collections/collection-api) and [`CollectionEntry`](/reference/collections/collection-entry-api) classes, respectively, and inherit their APIs. This reference contains only modal-specific API properties and methods. Check out the [collections documentation](/packages/core#collections) for more information on inherited APIs.
 
 ### trigger
 
@@ -653,7 +653,7 @@ Modals implement `StackArray` under the `stack` property to manage open modals i
 
 #### Example
 
-Below is an example implementation of using stack along with the [`propStore`](/packages/core/prop-store) plugin to persist the state of open modals across page sessions.
+Below is an example implementation of using stack along with the [`propStore`](/reference/collections/plugins/prop-store) plugin to persist the state of open modals across page sessions.
 
 <CodeExample lang="js">
 ```js
