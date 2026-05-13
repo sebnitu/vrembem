@@ -1,5 +1,5 @@
 import type { NaviConfig } from "@/modules/navigation";
-import { byCategory } from "@/helpers/sortBy";
+import { byCategory } from "@/modules/sortBy";
 
 const sidebar: NaviConfig[] = [
   {

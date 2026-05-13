@@ -1,5 +1,4 @@
 ---
-import { currentPage } from "@/helpers/currentPage";
 import ThemeSwitcherPopover from "@/components/ThemeSwitcherPopover.astro";
 import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
 import Icon from "@/components/Icon.astro";
@@ -11,18 +10,20 @@ interface Props {
 
 const { classes = "", inline = false } = Astro.props;
 
-const cp = currentPage(Astro.url.pathname, {
-  classBase: "menu__action",
-  classParent: "is-active"
-});
+function actionClasses(path: string) {
+  const classes = ["menu__action"];
+  const pathname = Astro.url.pathname;
+  if (pathname === path || pathname.startsWith(path)) classes.push("is-active");
+  return classes.join(" ");
+}
 ---
 
 <ul class={`menu ${inline ? "menu_inline" : ""} ${classes}`.trim()}>
   <li class="menu__item">
-    <a class={cp.classes("/guide")} href="/guide">Guide</a>
+    <a class={actionClasses("/guide")} href="/guide">Guide</a>
   </li>
   <li class="menu__item">
-    <a class={cp.classes("/packages")} href="/packages/vrembem">Packages</a>
+    <a class={actionClasses("/packages")} href="/packages/vrembem">Packages</a>
   </li>
   <li class="menu__item">
     <a

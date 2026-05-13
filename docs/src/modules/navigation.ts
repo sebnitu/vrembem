@@ -1,6 +1,6 @@
 import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
-import { sortBy, byTitle, byOrder, type Comparator } from "@/helpers/sortBy";
+import { sortBy, byTitle, byOrder, type Comparator } from "@/modules/sortBy";
 
 export type NaviConfig =
   | { label: string; link: string }
