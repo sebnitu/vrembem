@@ -13,17 +13,16 @@ interface Props {
   frontmatter?: {
     title: string;
     description?: string;
-    collection?: CollectionKey;
   };
 }
 
 const { entry, headings } = Astro.props;
-const { collection } = entry || Astro.props.frontmatter || {};
+const { collection } = entry || {};
 const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
 // Create our layout state object
 const layout = {
-  hasSidebar: collection,
+  hasSidebar: !!collection,
   hasAside: headings?.some((item) => item.depth === 2) ?? false
 };
 ---

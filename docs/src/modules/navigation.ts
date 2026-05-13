@@ -1,7 +1,6 @@
 import { getCollection, getEntry } from "astro:content";
 import type { CollectionKey, CollectionEntry } from "astro:content";
-import { getCollectionPath } from "@/helpers/getCollectionPath";
-import { sortBy, byTitle, byOrder, type Comparator } from "@/helpers/sortBy";
+import { sortBy, byTitle, byOrder, type Comparator } from "@/modules/sortBy";
 
 export type NaviConfig =
   | { label: string; link: string }
@@ -93,7 +92,7 @@ function treeify(collection: CollectionEntry<CollectionKey>[], dir?: string) {
         return;
       }
 
-      // Loop through the paths e.g.: core/plugins/custom
+      // Loop through the paths e.g.: reference/collections/plugins/custom
       parts.forEach((part: string, index: number) => {
         const isLeaf = index === parts.length - 1;
 
@@ -122,6 +121,7 @@ function buildNaviLink(
   pathname: string,
   data: Record<string, any> = {}
 ): NaviLink {
+  link = `/${link}`;
   return {
     label,
     link,
@@ -149,28 +149,32 @@ function treeToNavi(
 
   // Process index entry first if it exists
   if (tree.index && "id" in tree.index) {
-    const link = getCollectionPath(tree.index);
-    const data = tree.index.data;
-    index.push(buildNaviLink(data.title, link, pathname, data));
+    const { id, data } = tree.index;
+    index.push(buildNaviLink(data.title, id, pathname, data));
   }
 
   // Process the rest
   for (const key of Object.keys(tree)) {
     if (key === "index") continue;
-    const value = tree[key];
+    const entry = tree[key];
 
-    if ("id" in value && "data" in value) {
-      const link = getCollectionPath(value);
-      items.push(buildNaviLink(value.data.title, link, pathname, value.data));
+    if ("id" in entry && "data" in entry) {
+      const { id, data } = entry;
+      items.push(buildNaviLink(data.title, id, pathname, data));
     } else {
-      const group = treeToNavi(value, pathname, comparator);
+      const group = treeToNavi(entry, pathname, comparator);
       items.push(buildNaviGroup(dirToLabel(key), group));
     }
   }
 
   // Apply sorting
   // Since this is run recursively, it's applied on every level
-  items.sort(comparator);
+  items.sort((a, b) => {
+    const aIsGroup = "group" in a ? 1 : 0;
+    const bIsGroup = "group" in b ? 1 : 0;
+    if (aIsGroup !== bIsGroup) return aIsGroup - bIsGroup;
+    return comparator(a, b);
+  });
 
   return [...index, ...items];
 }

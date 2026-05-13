@@ -1,5 +1,5 @@
 import type { NaviConfig } from "@/modules/navigation";
-import { byCategory } from "@/helpers/sortBy";
+import { byCategory } from "@/modules/sortBy";
 
 const sidebar: NaviConfig[] = [
   {
@@ -9,11 +9,12 @@ const sidebar: NaviConfig[] = [
   {
     label: "Packages",
     group: [
-      { label: "Overview", link: "/packages" },
       {
-        collection: "packages",
+        collection: "pages",
+        dir: "packages",
         filter: (entry) => "package" in entry.data,
         sort: byCategory([
+          "all",
           "core",
           "modules",
           "layout",
@@ -22,6 +23,10 @@ const sidebar: NaviConfig[] = [
         ])
       }
     ]
+  },
+  {
+    label: "Reference",
+    group: [{ collection: "pages", dir: "reference" }]
   }
 ];
 
