@@ -22,7 +22,7 @@ const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
 // Create our layout state object
 const layout = {
-  hasSidebar: collection,
+  hasSidebar: !!collection,
   hasAside: headings?.some((item) => item.depth === 2) ?? false
 };
 ---
