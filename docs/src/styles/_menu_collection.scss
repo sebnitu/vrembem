@@ -4,6 +4,10 @@
 .menu_collection {
   @include tokens.override("menu", "gap", 0);
 
+  .menu {
+    margin: tokens.get("focus-ring-width") 0;
+  }
+
   .menu__action.is-active {
     color: tokens.get("foreground-accent");
     background: tokens.get("background");
@@ -15,12 +19,16 @@
 
   summary {
     cursor: pointer;
+    position: sticky;
+    z-index: 1;
+    top: 0;
     display: flex;
     gap: 0.75em;
     align-items: center;
     padding: tokens.get("form-control-padding-y") 0;
     font-weight: tokens.get("font-weight-bold");
     color: tokens.get("foreground-strong");
+    background-color: tokens.get("background-shift");
   }
 
   .spacer {
