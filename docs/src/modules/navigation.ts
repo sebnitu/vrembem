@@ -149,7 +149,7 @@ function treeToNavi(
 
   // Process index entry first if it exists
   if (tree.index && "id" in tree.index) {
-    const { id, data } = tree.index.id;
+    const { id, data } = tree.index;
     index.push(buildNaviLink(data.title, id, pathname, data));
   }
 
