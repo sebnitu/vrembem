@@ -24,7 +24,10 @@ function classes(entry: NaviLink) {
         </li>
       ) : (
         <li class="menu__item">
-          <details open data-active={entry.isParent || undefined}>
+          <details
+            open={!entry.collapsed}
+            data-active={entry.isParent || undefined}
+          >
             <summary>
               <span>{entry.label}</span>
               <span class="spacer" />

@@ -26,7 +26,8 @@ const sidebar: NaviConfig[] = [
   },
   {
     label: "Reference",
-    group: [{ collection: "pages", dir: "reference" }]
+    group: [{ collection: "pages", dir: "reference", collapsed: true }],
+    collapsed: true
   }
 ];
 
