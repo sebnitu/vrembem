@@ -25,18 +25,3 @@ $default: (
 
 @include config.apply($config, $default);
 @include tokens.register("input");
-
-// prettier-ignore
-@include tokens.set(
-  "input", 
-  (
-    "light": (
-      "type": "theme",
-      "select-icon": url(core.svg("expand", ("color": black)))
-    ),
-    "dark": (
-      "type": "theme",
-      "select-icon": url(core.svg("expand", ("color": white)))
-    )
-  )
-);
