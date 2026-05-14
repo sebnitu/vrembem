@@ -11,7 +11,7 @@
     import { ModalCollection } from "./index.ts";
     import { focusTrap, propStore, teleport } from "@vrembem/core";
 
-    const modals = new Modal({
+    const modals = new ModalCollection({
       selectorInert: "main",
       plugins: [
         focusTrap(),
