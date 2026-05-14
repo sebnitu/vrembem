@@ -1,6 +1,5 @@
 @use "../modules/tokens";
 @use "../modules/palette";
-@use "../modules/themes";
 
 // Base form-control variables shared by all controls
 @include tokens.set(
