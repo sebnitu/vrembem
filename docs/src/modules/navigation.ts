@@ -4,12 +4,13 @@ import { sortBy, byTitle, byOrder, type Comparator } from "@/modules/sortBy";
 
 export type NaviConfig =
   | { label: string; link: string }
-  | { label: string; group: NaviConfig[] }
+  | { label: string; group: NaviConfig[]; collapsed?: boolean }
   | {
       collection: CollectionKey;
       dir?: string;
       filter?: (entry: CollectionEntry<CollectionKey>) => boolean;
       sort?: Comparator | Comparator[];
+      collapsed?: boolean;
     };
 
 export type NaviLink = {
@@ -24,6 +25,7 @@ export type NaviGroup = {
   label: string;
   group: NaviItem[];
   isParent: boolean;
+  collapsed?: boolean;
 };
 
 export type NaviItem = NaviLink | NaviGroup;
@@ -131,18 +133,24 @@ function buildNaviLink(
   };
 }
 
-function buildNaviGroup(label: string, group: NaviItem[]): NaviGroup {
+function buildNaviGroup(
+  label: string,
+  group: NaviItem[],
+  collapsed?: boolean
+): NaviGroup {
   return {
-    label: label,
-    group: group,
-    isParent: isParent(group)
+    label,
+    group,
+    isParent: isParent(group),
+    collapsed
   };
 }
 
 function treeToNavi(
   tree: Record<string, any>,
   pathname: string,
-  comparator: Comparator
+  comparator: Comparator,
+  collapsed?: boolean
 ): NaviItem[] {
   const index: NaviItem[] = [];
   const items: NaviItem[] = [];
@@ -162,8 +170,8 @@ function treeToNavi(
       const { id, data } = entry;
       items.push(buildNaviLink(data.title, id, pathname, data));
     } else {
-      const group = treeToNavi(entry, pathname, comparator);
-      items.push(buildNaviGroup(dirToLabel(key), group));
+      const group = treeToNavi(entry, pathname, comparator, collapsed);
+      items.push(buildNaviGroup(dirToLabel(key), group, collapsed));
     }
   }
 
@@ -189,12 +197,17 @@ async function configToNavi(config: NaviConfig[], pathname: string) {
     }
     if ("group" in item) {
       const group = await configToNavi(item.group, pathname);
-      navi.push(buildNaviGroup(item.label, group));
+      navi.push(buildNaviGroup(item.label, group, item.collapsed));
     }
     if ("collection" in item) {
       const collection = await getCollection(item.collection, item.filter);
       const tree = treeify(collection, item.dir);
-      const items = treeToNavi(tree, pathname, getComparator(item.sort));
+      const items = treeToNavi(
+        tree,
+        pathname,
+        getComparator(item.sort),
+        item.collapsed
+      );
       navi.push(...items);
     }
   }
