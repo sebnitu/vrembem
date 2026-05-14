@@ -3,117 +3,62 @@
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("checkbox", "color", tokens.get("form-control-choice-color"));
-$-color-checked: tokens.get("checkbox", "color-checked", tokens.get("form-control-choice-color-checked"));
+$-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-color-checked"));
 $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
-#{core.ce("checkbox")},
 #{core.bem("checkbox")} {
-  @include core.form-control-size;
-
-  position: relative;
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  font-size: tokens.get("checkbox", "size", config.get("checkbox-size", "default"));
-  vertical-align: middle;
-
-  &:has(:disabled) {
-    pointer-events: none;
-    opacity: tokens.get("checkbox", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
-  }
-}
-
-#{core.bem("checkbox", "background")} {
-  @include core.size(100%);
-
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: tokens.get("checkbox", "background-border-radius", tokens.get("form-control-choice-background-border-radius"));
-  background-color: oklch(from $-color-checked l c h / tokens.get("checkbox", "background-opacity", tokens.get("form-control-choice-background-opacity")));
-}
-
-#{core.bem("checkbox", "box")} {
   @include core.size(tokens.get("checkbox", "box-size", 1.2em));
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
   border: tokens.get("checkbox", "border-width", 2px) solid $-color;
   border-radius: tokens.get("checkbox", "border-radius", tokens.get("border-radius"));
-  color: transparent;
+  font-size: tokens.get("checkbox", "size", config.get("checkbox-size", "default"));
+  vertical-align: middle;
+  appearance: none;
   background-color: $-fill;
+
+  &::after {
+    @include core.size(tokens.get("checkbox", "icon-size", 0.8em));
+
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    background-color: $-fill;
+    mask: url(core.svg("check")) center calc(tokens.get("checkbox", "icon-size", 0.8em) * -1) / 100% no-repeat;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $-accent;
+    background-color: $-fill;
+  }
 }
 
-#{core.bem("checkbox", "icon")} {
-  @include core.size(tokens.get("checkbox", "icon-size", 0.8em));
+#{core.bem("checkbox")}:checked,
+#{core.bem("checkbox")}:indeterminate {
+  border-color: $-accent;
+  background-color: $-accent;
 
-  opacity: 0;
-  background-color: $-fill;
-  mask-image: url(core.svg("check"));
-  mask-repeat: no-repeat;
-  mask-position: center calc(tokens.get("checkbox", "icon-size", 0.8em) * -1);
-  mask-size: 100%;
+  &::after {
+    opacity: 1;
+    mask-position: center center;
+    transition-timing-function: tokens.get("checkbox", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+    transition-duration: tokens.get("checkbox", "transition-duration", tokens.get("form-control-transition-duration"));
+    transition-property: opacity, mask-position;
+  }
 }
 
-#{core.bem("checkbox", "native")} {
-  @include core.size(100%);
-
-  cursor: pointer;
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  opacity: 0;
-
-  &:hover + #{core.bem("checkbox", "background")} {
-    background-color: oklch(from $-color-checked l c h / tokens.get("checkbox", "background-opacity-hover", tokens.get("form-control-choice-background-opacity-hover")));
-
-    #{core.bem("checkbox", "box")} {
-      border-color: $-color-checked;
-      background-color: $-fill;
-    }
-  }
-
-  &:focus + #{core.bem("checkbox", "background")} {
-    background-color: oklch(from $-color-checked l c h / tokens.get("checkbox", "background-opacity-focus", tokens.get("form-control-choice-background-opacity-focus")));
-
-    #{core.bem("checkbox", "box")} {
-      border-color: $-color-checked;
-      background-color: $-fill;
-    }
-  }
-
-  &:focus-visible + #{core.bem("checkbox", "background")},
-  &:active + #{core.bem("checkbox", "background")} {
-    background-color: oklch(from $-color-checked l c h / tokens.get("checkbox", "background-opacity-active", tokens.get("form-control-choice-background-opacity-active")));
-
-    #{core.bem("checkbox", "box")} {
-      border-color: $-color-checked;
-      background-color: $-fill;
-    }
-  }
-
-  &:checked + #{core.bem("checkbox", "background")},
-  &:indeterminate + #{core.bem("checkbox", "background")} {
-    #{core.bem("checkbox", "box")} {
-      border-color: $-color-checked;
-      background-color: $-color-checked;
-    }
-
-    #{core.bem("checkbox", "icon")} {
-      opacity: 1;
-      mask-position: center center;
-      transition-timing-function: tokens.get("checkbox", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-      transition-duration: tokens.get("checkbox", "transition-duration", tokens.get("form-control-transition-duration"));
-      transition-property: opacity, mask-position;
-    }
-  }
-
-  &:indeterminate + #{core.bem("checkbox", "background")} #{core.bem("checkbox", "icon")} {
+#{core.bem("checkbox")}:indeterminate {
+  &::after {
     mask-image: url(core.svg("-"));
   }
+}
+
+#{core.bem("checkbox")}:disabled {
+  pointer-events: none;
+  opacity: tokens.get("checkbox", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
 }
