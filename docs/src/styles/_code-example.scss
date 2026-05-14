@@ -98,10 +98,6 @@
   @include core.media-max("xs") {
     padding: 1em;
   }
-
-  > *:not(.popover) {
-    transition: all tokens.get("transition-duration") tokens.get("transition-timing-function");
-  }
 }
 
 .code-example__demo {

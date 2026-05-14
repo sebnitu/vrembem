@@ -19,7 +19,7 @@
     <div class="section__container max-width-xs spacing-sm">
       <h1 class="font-size-lg">%VITE_NAME%</h1>
       <p>%VITE_DESCRIPTION%</p>
-      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top list-style-none">
         <li class="flex flex_gap_sm align-items-center">
           <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
@@ -38,99 +38,36 @@
 
       <h2 id="checkbox"><a href="#checkbox">checkbox</a></h2>
 
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
-
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
-
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <div class="flex flex_inline flex_gap_sm align-items-center">
+        <input class="checkbox" type="checkbox" checked />
+        <input class="checkbox" type="checkbox" aria-checked="mixed" />
+        <input class="checkbox" type="checkbox" />
+      </div>
 
       <h2 id="checkbox-with-labels"><a href="#checkbox-with-labels">checkbox with labels</a></h2>
 
       <label class="flex flex_inline flex_gap_sm align-items-center">
-        <span class="checkbox">
-          <input class="checkbox__native" type="checkbox" checked />
-          <span class="checkbox__background">
-            <span class="checkbox__box">
-              <span class="checkbox__icon"></span>
-            </span>
-          </span>
-        </span>
+        <input class="checkbox" type="checkbox" checked />
         <span>Checkbox with a label</span>
       </label>
       <br />
       <label class="flex flex_inline flex_gap_sm align-items-center">
-        <span class="checkbox">
-          <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
-          <span class="checkbox__background">
-            <span class="checkbox__box">
-              <span class="checkbox__icon"></span>
-            </span>
-          </span>
-        </span>
+        <input class="checkbox" type="checkbox" aria-checked="mixed" />
         <span>Checkbox with a label</span>
       </label>
       <br />
       <label class="flex flex_inline flex_gap_sm align-items-center">
-        <span class="checkbox">
-          <input class="checkbox__native" type="checkbox" />
-          <span class="checkbox__background">
-            <span class="checkbox__box">
-              <span class="checkbox__icon"></span>
-            </span>
-          </span>
-        </span>
+        <input class="checkbox" type="checkbox" />
         <span>Checkbox with a label</span>
       </label>
 
       <h2 id="checkbox_size_value"><a href="#checkbox_size_value">checkbox_size_[value]</a></h2>
 
-      <span class="checkbox checkbox_size_sm">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
-      
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
-
-      <span class="checkbox checkbox_size_lg">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <div class="flex flex_inline flex_gap_sm align-items-center">
+        <input class="checkbox checkbox_size_sm" type="checkbox" checked />
+        <input class="checkbox" type="checkbox" checked />
+        <input class="checkbox checkbox_size_lg" type="checkbox" checked />
+      </div>
 
     </div>
   </section>

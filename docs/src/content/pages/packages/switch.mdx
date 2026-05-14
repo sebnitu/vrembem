@@ -47,109 +47,48 @@ Switch comes with the following Sass configuration options that can be set using
 
 Switch uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
-<ReferenceTable id="tokens-switch" valueLabel="Fallback" expandable={true} data={{
+<ReferenceTable id="tokens-switch" valueLabel="Fallback" data={{
   "--vb-switch-color": "var(--vb-form-control-choice-color)",
-  "--vb-switch-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-switch-accent": "var(--vb-form-control-choice-accent)",
   "--vb-switch-fill": "var(--vb-form-control-choice-fill)",
   "--vb-switch-size": "var(--vb-form-control-size)",
-
-  "--vb-switch-background-opacity": "var(--vb-form-control-choice-background-opacity)",
-  "--vb-switch-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
-  "--vb-switch-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
-  "--vb-switch-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
-  "--vb-switch-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
-  "--vb-switch-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
-
-  "--vb-switch-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-switch-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
-
-  "--vb-switch-track-size": "1.25em",
   "--vb-switch-border-width": "2px",
   "--vb-switch-border-radius": "var(--vb-border-radius-circle)",
 }} />
 
 ## Basic usage
 
-Switch form controls are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `switch__native` class and come before the remaining presentational `<span>` elements.
+Switch form controls are composed using the `<input type="checkbox">` element along with the `.switch` class.
 
 <CodeExample>
-  <Fragment slot="output">
-    <span class="switch">
-      <input class="switch__native" type="checkbox"  checked />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-    <span class="switch">
-      <input class="switch__native" type="checkbox"  />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-  </Fragment>
+  <div slot="output" class="flex">
+    <input class="switch" type="checkbox" checked />
+    <input class="switch" type="checkbox" />
+  </div>
   ```html
-  <span class="switch">
-    <input class="switch__native" type="checkbox">
-    <span class="switch__background">
-      <span class="switch__track">
-        <span class="switch__thumb"></span>
-      </span>
-    </span>
-  </span>
+  <input class="switch" type="checkbox" />
   ```
 </CodeExample>
 
 ### Labels
 
-For switch with labels, just wrap the switch component along with label text using the `<label>` element.
+For switch with labels, just wrap the switch element along with label text using the `<label>` element.
 
 <CodeExample>
   <Fragment slot="output">
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch">
-        <input class="switch__native" type="checkbox"  checked />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
+      <input class="switch" type="checkbox" checked />
       <span>Switch with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch">
-        <input class="switch__native" type="checkbox"  />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
-      <span>Switch with a label</span>
-    </label>
-    <br />
-    <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch">
-        <input class="switch__native" type="checkbox"  />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
+      <input class="switch" type="checkbox" />
       <span>Switch with a label</span>
     </label>
   </Fragment>
   ```html
   <label>
-    <span class="switch">
-      ...
-    </span>
+    <input class="switch" type="checkbox" />
     <span>Switch with a label</span>
   </label>
   ```
@@ -161,56 +100,23 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 
 <CodeExample>
   <Fragment slot="output">
-    <span class="switch">
-      <input class="switch__native" type="checkbox"  checked disabled />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-    <span class="switch">
-      <input class="switch__native" type="checkbox"  disabled />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
+    <div class="flex">
+      <input class="switch" type="checkbox" checked disabled />
+      <input class="switch" type="checkbox" disabled />
+    </div>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch">
-        <input class="switch__native" type="checkbox"  disabled checked />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
+      <input class="switch" type="checkbox" checked disabled />
       <span>Switch with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch">
-        <input class="switch__native" type="checkbox"  disabled />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
+      <input class="switch" type="checkbox" disabled />
       <span>Switch with a label</span>
     </label>
   </Fragment>
   ```html
-  <span class="switch">
-    <input class="switch__native" type="checkbox"  disabled />
-    <span class="switch__background">
-      <span class="switch__track">
-        <span class="switch__thumb"></span>
-      </span>
-    </span>
-  </span>
+  <input class="switch" type="checkbox" disabled />
   ```
 </CodeExample>
 
@@ -219,40 +125,14 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 Adjust the size of a switch by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `switch-size` config options map.
 
 <CodeExample>
-  <Fragment slot="output">
-    <span class="switch switch_size_sm">
-      <input class="switch__native" type="checkbox"  />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-    <span class="switch">
-      <input class="switch__native" type="checkbox"  />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-    <span class="switch switch_size_lg">
-      <input class="switch__native" type="checkbox"  />
-      <span class="switch__background">
-        <span class="switch__track">
-          <span class="switch__thumb"></span>
-        </span>
-      </span>
-    </span>
-  </Fragment>
+  <div slot="output" class="flex align-items-center">
+    <input class="switch switch_size_sm" type="checkbox" />
+    <input class="switch" type="checkbox" />
+    <input class="switch switch_size_lg" type="checkbox" />
+  </div>
   ```html
-  <span class="switch switch_size_sm">
-    ...
-  </span>
-
-  <span class="switch switch_size_lg">
-    ...
-  </span>
+  <input class="switch switch_size_sm" type="checkbox" />
+  <input class="switch switch_size_lg" type="checkbox" />
   ```
 </CodeExample>
 
@@ -269,14 +149,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg">
-        <input class="switch__native" type="checkbox"  />
-        <span class="switch__background">
-          <span class="switch__track">
-            <span class="switch__thumb"></span>
-          </span>
-        </span>
-      </span>
+      <input class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg" type="checkbox" />
       <span>Switch</span>
       <span class="badge lg:display-none">size_sm</span>
       <span class="badge display-none lg:display-block xl:display-none">size_md</span>
@@ -284,9 +157,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
     </label>
   </div>
   ```html
-  <span class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg">
-    ...
-  </span>
+  <input class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg" type="checkbox" />
   ```
 </CodeExample>
 

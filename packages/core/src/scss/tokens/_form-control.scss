@@ -1,6 +1,5 @@
 @use "../modules/tokens";
 @use "../modules/palette";
-@use "../modules/themes";
 
 // Base form-control variables shared by all controls
 @include tokens.set(
@@ -34,13 +33,8 @@
   "core",
   (
     "form-control-choice-color": tokens.get("foreground-subtle"),
-    "form-control-choice-color-checked": tokens.get("form-control-accent"),
-    "form-control-choice-fill": tokens.get("form-control-background"),
-    "form-control-choice-background-border-radius": tokens.get("border-radius-circle"),
-    "form-control-choice-background-opacity": 0%,
-    "form-control-choice-background-opacity-hover": 20%,
-    "form-control-choice-background-opacity-focus": 20%,
-    "form-control-choice-background-opacity-active": 30%
+    "form-control-choice-accent": tokens.get("form-control-accent"),
+    "form-control-choice-fill": tokens.get("form-control-background")
   )
 );
 

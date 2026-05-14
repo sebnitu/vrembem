@@ -65,6 +65,7 @@
 
     const drawers = new vb.DrawerCollection({
       plugins: [
+        vb.propStore(),
         vb.teleport({
           where: ".drawer-main",
           how: "before"
@@ -110,7 +111,7 @@
         <div class="section__container max-width-xs spacing-sm">
           <h1 class="font-size-lg">%VITE_NAME%</h1>
           <p>%VITE_DESCRIPTION%</p>
-          <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top-lg list-style-none">
+          <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top list-style-none">
             <li class="flex flex_gap_sm align-items-center">
               <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
@@ -179,26 +180,12 @@
               <div class="flex align-items-center">
                 <button class="link" data-drawer-toggle="drawer-dialog">Drawer dialog</button>
                 <form id="form-drawer-state" class="flex align-items-center">
-                  <label class="flex flex_gap_xs align-items-center">
-                    <span class="checkbox">
-                      <input name="toggle-drawer-modal" class="checkbox__native" type="checkbox" />
-                      <span class="checkbox__background">
-                        <span class="checkbox__box">
-                          <span class="checkbox__icon"></span>
-                        </span>
-                      </span>
-                    </span>
+                  <label class="flex flex_gap_sm align-items-center">
+                    <input name="toggle-drawer-modal" class="checkbox" type="checkbox" />
                     <span>Modal</span>
                   </label>
-                  <label class="flex flex_gap_xs align-items-center">
-                    <span class="checkbox">
-                      <input name="toggle-drawer-switch" class="checkbox__native" type="checkbox" />
-                      <span class="checkbox__background">
-                        <span class="checkbox__box">
-                          <span class="checkbox__icon"></span>
-                        </span>
-                      </span>
-                    </span>
+                  <label class="flex flex_gap_sm align-items-center">
+                    <input name="toggle-drawer-switch" class="checkbox" type="checkbox" />
                     <span>Switch</span>
                   </label>
                 </form>
@@ -256,38 +243,10 @@
                 <a class="menu__action" href="#">Menu Item</a>
               </li>
             </ul>
-            <span class="checkbox checkbox_size_sm">
-              <input class="checkbox__native" type="checkbox" checked />
-              <span class="checkbox__background">
-                <span class="checkbox__box">
-                  <span class="checkbox__icon"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio radio_size_sm">
-              <input class="radio__native" type="radio"  name="example-3" checked />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio radio_size_sm">
-              <input class="radio__native" type="radio"  name="example-3" />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="switch switch_size_sm">
-              <input class="switch__native" type="checkbox"  />
-              <span class="switch__background">
-                <span class="switch__track">
-                  <span class="switch__thumb"></span>
-                </span>
-              </span>
-            </span>
+            <input class="checkbox checkbox_size_sm" type="checkbox" checked />
+            <input class="radio radio_size_sm" type="radio" name="example-3" value="1" checked />
+            <input class="radio radio_size_sm" type="radio" name="example-3" value="1" />
+            <input class="switch switch_size_sm" type="checkbox" />
             <textarea class="input input_type_textarea input_size_sm"></textarea>
           </div>
 
@@ -307,38 +266,10 @@
                 <a class="menu__action" href="#">Menu Item</a>
               </li>
             </ul>
-            <span class="checkbox">
-              <input class="checkbox__native" type="checkbox" checked />
-              <span class="checkbox__background">
-                <span class="checkbox__box">
-                  <span class="checkbox__icon"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio">
-              <input class="radio__native" type="radio"  name="example-4" checked />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio">
-              <input class="radio__native" type="radio"  name="example-4" />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="switch">
-              <input class="switch__native" type="checkbox"  />
-              <span class="switch__background">
-                <span class="switch__track">
-                  <span class="switch__thumb"></span>
-                </span>
-              </span>
-            </span>
+            <input class="checkbox" type="checkbox" checked />
+            <input class="radio" type="radio" name="example-4" value="1" checked />
+            <input class="radio" type="radio" name="example-4" value="1" />
+            <input class="switch" type="checkbox" />
             <textarea class="input input_type_textarea"></textarea>
           </div>
 
@@ -358,38 +289,10 @@
                 <a class="menu__action" href="#">Menu Item</a>
               </li>
             </ul>
-            <span class="checkbox checkbox_size_lg">
-              <input class="checkbox__native" type="checkbox" checked />
-              <span class="checkbox__background">
-                <span class="checkbox__box">
-                  <span class="checkbox__icon"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio radio_size_lg">
-              <input class="radio__native" type="radio"  name="example-5" checked />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="radio radio_size_lg">
-              <input class="radio__native" type="radio"  name="example-5" />
-              <span class="radio__background">
-                <span class="radio__circle">
-                  <span class="radio__dot"></span>
-                </span>
-              </span>
-            </span>
-            <span class="switch switch_size_lg">
-              <input class="switch__native" type="checkbox"  />
-              <span class="switch__background">
-                <span class="switch__track">
-                  <span class="switch__thumb"></span>
-                </span>
-              </span>
-            </span>
+            <input class="checkbox checkbox_size_lg" type="checkbox" checked />
+            <input class="radio radio_size_lg" type="radio" name="example-5" value="1" checked />
+            <input class="radio radio_size_lg" type="radio" name="example-5" value="1" />
+            <input class="switch switch_size_lg" type="checkbox"  />
             <textarea class="input input_type_textarea input_size_lg"></textarea>
           </div>
 
