@@ -7,7 +7,7 @@ $-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-color-ch
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
-  @include core.size(tokens.get("radio", "circle-size", 1.25em));
+  @include core.size(1.25em);
 
   cursor: pointer;
   position: relative;

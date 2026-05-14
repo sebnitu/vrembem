@@ -7,7 +7,7 @@ $-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-color
 $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
-  @include core.size(tokens.get("checkbox", "box-size", 1.2em));
+  @include core.size(1.25em);
 
   cursor: pointer;
   position: relative;
