@@ -47,23 +47,11 @@ Radio comes with the following Sass configuration options that can be set using 
 
 Radio uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
-<ReferenceTable id="tokens-radio" valueLabel="Fallback" expandable={true} data={{
+<ReferenceTable id="tokens-radio" valueLabel="Fallback" data={{
   "--vb-radio-color": "var(--vb-form-control-choice-color)",
-  "--vb-radio-accent": "var(--vb-form-control-choice-color-checked)",
+  "--vb-radio-accent": "var(--vb-form-control-choice-accent)",
   "--vb-radio-fill": "var(--vb-form-control-choice-fill)",
   "--vb-radio-size": "var(--vb-form-control-size)",
-
-  "--vb-radio-background-opacity": "var(--vb-form-control-choice-background-opacity)",
-  "--vb-radio-background-opacity-hover": "var(--vb-form-control-choice-background-opacity-hover)",
-  "--vb-radio-background-opacity-focus": "var(--vb-form-control-choice-background-opacity-focus)",
-  "--vb-radio-background-opacity-active": "var(--vb-form-control-choice-background-opacity-active)",
-  "--vb-radio-background-border-radius": "var(--vb-form-control-choice-background-border-radius)",
-  "--vb-radio-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
-
-  "--vb-radio-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-radio-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
-
-  "--vb-radio-circle-size": "1.25em",
   "--vb-radio-border-width": "2px",
   "--vb-radio-dot-size": "0.5em",
 }} />
@@ -90,11 +78,6 @@ For radio buttons with labels, just wrap the radio element along with label text
   <Fragment slot="output">
     <label class="flex flex_inline flex_gap_sm align-items-center">
       <input class="radio" type="radio" name="example-2" value="1" checked />
-      <span>Radio with a label</span>
-    </label>
-    <br />
-    <label class="flex flex_inline flex_gap_sm align-items-center">
-      <input class="radio" type="radio" name="example-2" value="1" />
       <span>Radio with a label</span>
     </label>
     <br />

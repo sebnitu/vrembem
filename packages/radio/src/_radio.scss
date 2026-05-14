@@ -3,7 +3,7 @@
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("radio", "color", tokens.get("form-control-choice-color")) !default;
-$-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-color-checked"));
+$-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
@@ -13,7 +13,7 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
   position: relative;
   display: inline-block;
   border: tokens.get("radio", "border-width", 2px) solid $-color;
-  border-radius: tokens.get("radio", "circle-size", 1.25em);
+  border-radius: 50%;
   font-size: tokens.get("radio", "size", config.get("radio-size", "default"));
   vertical-align: middle;
   appearance: none;
@@ -26,7 +26,7 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     position: absolute;
     inset: 50% auto auto 50%;
     transform: translate(-50%, -50%);
-    border-radius: tokens.get("radio", "dot-size", 0.5em);
+    border-radius: 50%;
     opacity: 0;
     background-color: $-fill;
   }
@@ -47,13 +47,13 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
 
     opacity: 1;
     background-position: center center;
-    transition-timing-function: tokens.get("radio", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-    transition-duration: tokens.get("radio", "transition-duration", tokens.get("form-control-transition-duration"));
+    transition-timing-function: tokens.get("form-control-transition-timing-function");
+    transition-duration: tokens.get("form-control-transition-duration");
     transition-property: opacity, width, height;
   }
 }
 
 #{core.bem("radio")}:disabled {
   pointer-events: none;
-  opacity: tokens.get("checkbox", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
+  opacity: tokens.get("form-control-opacity-disabled");
 }

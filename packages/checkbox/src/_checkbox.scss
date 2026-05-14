@@ -3,7 +3,7 @@
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("checkbox", "color", tokens.get("form-control-choice-color"));
-$-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-color-checked"));
+$-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
@@ -46,8 +46,8 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
   &::after {
     opacity: 1;
     mask-position: center center;
-    transition-timing-function: tokens.get("checkbox", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-    transition-duration: tokens.get("checkbox", "transition-duration", tokens.get("form-control-transition-duration"));
+    transition-timing-function: tokens.get("form-control-transition-timing-function");
+    transition-duration: tokens.get("form-control-transition-duration");
     transition-property: opacity, mask-position;
   }
 }
@@ -60,5 +60,5 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")}:disabled {
   pointer-events: none;
-  opacity: tokens.get("checkbox", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
+  opacity: tokens.get("form-control-opacity-disabled");
 }

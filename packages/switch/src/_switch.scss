@@ -3,7 +3,7 @@
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("switch", "color", tokens.get("form-control-choice-color"));
-$-accent: tokens.get("switch", "accent", tokens.get("form-control-choice-color-checked"));
+$-accent: tokens.get("switch", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("switch")} {
@@ -28,7 +28,7 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
     border: tokens.get("switch", "border-width", 2px) solid $-color;
     border-radius: tokens.get("switch", "border-radius", tokens.get("border-radius-circle"));
     background-color: $-fill;
-    transition: left tokens.get("switch", "transition-duration", tokens.get("form-control-transition-duration")) tokens.get("switch", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+    transition: left tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
   }
 
   &:hover,
@@ -51,5 +51,5 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("switch")}:disabled {
   pointer-events: none;
-  opacity: tokens.get("switch", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
+  opacity: tokens.get("form-control-opacity-disabled");
 }
