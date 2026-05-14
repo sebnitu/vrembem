@@ -1,6 +1,0 @@
-@use "./index";
-@use "@vrembem/core/tokens";
-
-@layer tokens {
-  @include tokens.output("input");
-}
