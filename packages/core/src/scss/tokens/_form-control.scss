@@ -16,8 +16,8 @@
     "form-control-accent": palette.get("primary"),
     "form-control-foreground": tokens.get("foreground-strong"),
     "form-control-background": tokens.get("background"),
-    "form-control-background-disabled": tokens.get("background-shift"),
-    "form-control-background-readonly": tokens.get("background-shift"),
+    "form-control-background-disabled": tokens.get("background-alt"),
+    "form-control-background-readonly": tokens.get("background-alt"),
     "form-control-opacity-disabled": 0.6,
     "form-control-transition-property": (
       box-shadow,
