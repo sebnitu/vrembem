@@ -70,8 +70,7 @@ Radio uses design token CSS variables in a reference and fallback pattern. Varia
 
 ## Basic usage
 
-{/* TODO: This needs to be re-written */}
-Radio buttons are composed using a set of `<span>` elements alongside the native `<input type="radio">` element which should be given the `radio__native` class and come before the remaining presentational `<span>` elements.
+Radio form controls are composed using the `<input type="radio">` element along with the `.radio` class.
 
 <CodeExample>
   <div slot="output" class="flex">
@@ -85,7 +84,7 @@ Radio buttons are composed using a set of `<span>` elements alongside the native
 
 ### Labels
 
-For radio buttons with labels, just wrap the radio component along with label text using the `<label>` element.
+For radio buttons with labels, just wrap the radio element along with label text using the `<label>` element.
 
 <CodeExample>
   <Fragment slot="output">
@@ -143,22 +142,20 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 Adjust the size of a radio by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `radio-size` config options map.
 
 <CodeExample>
-  <Fragment slot="output">
-    <div class="flex flex_gap_xl">
-      <div class="flex flex_gap_sm">
-        <input class="radio radio_size_sm" type="radio" name="example-4" value="1" checked />
-        <input class="radio radio_size_sm" type="radio" name="example-4" value="1" />
-      </div>
-      <div class="flex flex_gap_sm">
-        <input class="radio" type="radio" name="example-5" value="1" checked />
-        <input class="radio" type="radio" name="example-5" value="1" />
-      </div>
-      <div class="flex flex_gap_sm">
-        <input class="radio radio_size_lg" type="radio" name="example-6" value="1" checked />
-        <input class="radio radio_size_lg" type="radio" name="example-6" value="1" />
-      </div>
+  <div slot="output" class="flex flex_gap_xl align-items-center">
+    <div class="flex flex_gap_sm">
+      <input class="radio radio_size_sm" type="radio" name="example-4" value="1" checked />
+      <input class="radio radio_size_sm" type="radio" name="example-4" value="1" />
     </div>
-  </Fragment>
+    <div class="flex flex_gap_sm">
+      <input class="radio" type="radio" name="example-5" value="1" checked />
+      <input class="radio" type="radio" name="example-5" value="1" />
+    </div>
+    <div class="flex flex_gap_sm">
+      <input class="radio radio_size_lg" type="radio" name="example-6" value="1" checked />
+      <input class="radio radio_size_lg" type="radio" name="example-6" value="1" />
+    </div>
+  </div>
   ```html
   <input class="radio radio_size_sm" type="radio" />
   <input class="radio radio_size_lg" type="radio" />
@@ -186,9 +183,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
     </label>
   </div>
   ```html
-  <span class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg">
-    ...
-  </span>
+  <input class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg" type="radio" />
   ```
 </CodeExample>
 

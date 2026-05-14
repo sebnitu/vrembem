@@ -49,7 +49,7 @@ Checkbox uses design token CSS variables in a reference and fallback pattern. Va
 
 <ReferenceTable id="tokens-checkbox" valueLabel="Fallback" expandable={true} data={{
   "--vb-checkbox-color": "var(--vb-form-control-choice-color)",
-  "--vb-checkbox-color-checked": "var(--vb-form-control-choice-color-checked)",
+  "--vb-checkbox-accent": "var(--vb-form-control-choice-color-checked)",
   "--vb-checkbox-fill": "var(--vb-form-control-choice-fill)",
   "--vb-checkbox-size": "var(--vb-form-control-size)",
 
@@ -71,45 +71,17 @@ Checkbox uses design token CSS variables in a reference and fallback pattern. Va
 
 ## Basic usage
 
-Checkboxes are composed using a set of `<span>` elements alongside the native `<input type="checkbox">` element which should be given the `checkbox__native` class and come before the remaining presentational `<span>` elements.
+Checkbox form controls are composed using the `<input type="checkbox">` element along with the `.checkbox` class.
 
 <CodeExample tabs>
-  <Fragment slot="output">
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" checked />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-  </Fragment>
+  <div slot="output" class="flex">
+    <input class="checkbox" type="checkbox" checked />
+    <input class="checkbox" type="checkbox" aria-checked="mixed" />
+    <input class="checkbox" type="checkbox" />
+  </div>
   <TabsPanel label="HTML">
     ```html
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
+    <input class="checkbox" type="checkbox" />
     ```
   </TabsPanel>
   <TabsPanel label="JS">
@@ -129,51 +101,28 @@ Indeterminate checkboxes need to be set in JavaScript though styling is provided
 
 ### Labels
 
-For checkboxes with labels, wrap the checkbox component along with the text label using the `<label>` element.
+For checkboxes with labels, wrap the checkbox element along with the text label using the `<label>` element.
 
 <CodeExample>
   <Fragment slot="output">
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox" type="checkbox" checked />
       <span>Checkbox with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" aria-checked="mixed" />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox" type="checkbox" aria-checked="mixed" />
       <span>Checkbox with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox" type="checkbox" />
       <span>Checkbox with a label</span>
     </label>
   </Fragment>
   ```html
   <label>
-    <span class="checkbox">
-      ...
-    </span>
+    <input class="checkbox" type="checkbox" />
     <span>Checkbox with a label</span>
   </label>
   ```
@@ -185,56 +134,23 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 
 <CodeExample>
   <Fragment slot="output">
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" checked disabled />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" disabled />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
+    <div class="flex">
+      <input class="checkbox" type="checkbox" checked disabled />
+      <input class="checkbox" type="checkbox" disabled />
+    </div>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" checked disabled />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox" type="checkbox" checked disabled />
       <span>Checkbox with a label</span>
     </label>
     <br />
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox">
-        <input class="checkbox__native" type="checkbox" disabled />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox" type="checkbox" disabled />
       <span>Checkbox with a label</span>
     </label>
   </Fragment>
   ```html
-  <span class="checkbox">
-    <input class="checkbox__native" type="checkbox" disabled />
-    <span class="checkbox__background">
-      <span class="checkbox__box">
-        <span class="checkbox__icon"></span>
-      </span>
-    </span>
-  </span>
+  <input class="checkbox" type="checkbox" disabled />
   ```
 </CodeExample>
 
@@ -243,40 +159,14 @@ Adding the boolean `disabled` attribute to the input element will provide visual
 Adjust the size of a checkbox by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `checkbox-size` config options map.
 
 <CodeExample>
-  <Fragment slot="output">
-    <span class="checkbox checkbox_size_sm">
-      <input class="checkbox__native" type="checkbox" checked />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-    <span class="checkbox">
-      <input class="checkbox__native" type="checkbox" checked />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-    <span class="checkbox checkbox_size_lg">
-      <input class="checkbox__native" type="checkbox" checked />
-      <span class="checkbox__background">
-        <span class="checkbox__box">
-          <span class="checkbox__icon"></span>
-        </span>
-      </span>
-    </span>
-  </Fragment>
+  <div slot="output" class="flex align-items-center">
+    <input class="checkbox checkbox_size_sm" type="checkbox" />
+    <input class="checkbox" type="checkbox" />
+    <input class="checkbox checkbox_size_lg" type="checkbox" />
+  </div>
   ```html
-  <span class="checkbox checkbox_size_sm">
-    ...
-  </span>
-
-  <span class="checkbox checkbox_size_lg">
-    ...
-  </span>
+  <input class="checkbox checkbox_size_sm" type="checkbox" />
+  <input class="checkbox checkbox_size_lg" type="checkbox" />
   ```
 </CodeExample>
 
@@ -293,14 +183,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
     <label class="flex flex_inline flex_gap_sm align-items-center">
-      <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
-        <input class="checkbox__native" type="checkbox" checked />
-        <span class="checkbox__background">
-          <span class="checkbox__box">
-            <span class="checkbox__icon"></span>
-          </span>
-        </span>
-      </span>
+      <input class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg" type="checkbox" checked />
       <span>Checkbox</span>
       <span class="badge lg:display-none">size_sm</span>
       <span class="badge display-none lg:display-block xl:display-none">size_md</span>
@@ -308,9 +191,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
     </label>
   </div>
   ```html
-  <span class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg">
-    ...
-  </span>
+  <input class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg" type="checkbox" />
   ```
 </CodeExample>
 
