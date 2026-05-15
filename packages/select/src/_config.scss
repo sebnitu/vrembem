@@ -6,6 +6,10 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
+  // Whether or not to enable custom select picker styles
+  // @type boolean
+  "select-picker": true,
+
   // Map for outputting select_size_[key] modifier variants
   // @type map
   "select-size": (

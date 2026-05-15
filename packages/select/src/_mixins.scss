@@ -9,6 +9,7 @@
   @include core.form-control-properties("select");
   @include core.focus-ring-base;
 
+  cursor: pointer;
   position: relative;
   display: flex;
   gap: calc(tokens.get("form-control-padding-y") * 2);

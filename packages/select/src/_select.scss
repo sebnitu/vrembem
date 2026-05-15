@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 @use "./mixins" as mix;
 
@@ -8,14 +9,70 @@
   border-color: tokens.get("select", "border-color", tokens.get("border-color-strong"));
   color: tokens.get("select", "foreground", tokens.get("form-control-foreground"));
   background-color: tokens.get("select", "background", tokens.get("form-control-background"));
-  box-shadow: tokens.get("select", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
+  box-shadow: tokens.get("select", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%)); // TODO: this should be a token
 
   &::picker-icon {
-    @include core.size(tokens.get("select", "select-icon-size", 0.8em));
+    @include core.size(tokens.get("select", "picker-icon-size", 0.8em));
 
     content: "";
-    background-color: tokens.get("select", "select-icon-color", currentcolor);
+    background-color: tokens.get("select", "picker-icon-color", currentcolor);
     mask: url(core.svg("expand")) center center / 100% no-repeat;
+  }
+
+  &::picker(select) {
+    @if config.get("select-picker") {
+      appearance: base-select;
+    }
+
+    cursor: default;
+    transform: translateY(0);
+    margin-block: tokens.get("select", "picker-offset", 0.5em);
+    padding: tokens.get("select", "picker-padding", 0.5em);
+    border: tokens.get("select", "picker-border", none);
+    border-radius: tokens.get("select", "picker-border-radius", tokens.get("border-radius-lg"));
+    color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
+    opacity: 1;
+    background-color: tokens.get("select", "picker-background", tokens.get("form-control-background"));
+    background-clip: padding-box;
+    box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-2"));
+    transition-timing-function: tokens.get("select", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+    transition-duration: tokens.get("select", "transition-duration", tokens.get("form-control-transition-duration"));
+    transition-property: tokens.get("select", "picker-transition-property", (opacity, transform));
+
+    @starting-style {
+      transform: translateY(-0.5em);
+      opacity: 0;
+    }
+  }
+
+  option {
+    cursor: pointer;
+    padding: tokens.get("select", "option-padding", (0.5em 1em 0.5em 0.5em));
+    border-radius: tokens.get("select", "option-border-radius", tokens.get("border-radius-lg"));
+
+    &::checkmark {
+      @include core.size(tokens.get("select", "checkmark-icon-size", 1em));
+
+      content: "";
+      background-color: tokens.get("select", "checkmark-icon-color", tokens.get("select", "accent", tokens.get("form-control-accent")));
+      mask: url(core.svg("check")) center center / 100% no-repeat;
+    }
+
+    & + option {
+      margin-top: tokens.get("select", "option-gap", 1px);
+    }
+
+    &:checked {
+      background-color: tokens.get("select", "option-background-checked", color-mix(in oklch, currentcolor 4%, transparent));
+    }
+
+    &:hover {
+      background-color: tokens.get("select", "option-background-hover", color-mix(in oklch, currentcolor 4%, transparent));
+    }
+
+    &:active {
+      background-color: tokens.get("select", "option-background-active", color-mix(in oklch, currentcolor 8%, transparent));
+    }
   }
 
   &:hover {
@@ -25,6 +82,7 @@
     box-shadow: tokens.get("select", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
   }
 
+  &:open,
   &:focus {
     @include core.focus-ring-color(tokens.get("select", "accent", tokens.get("form-control-accent")));
 
