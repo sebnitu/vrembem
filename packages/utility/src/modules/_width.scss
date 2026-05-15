@@ -1,0 +1,11 @@
+@use "../functions" as fun;
+
+@if fun.maybe-output("width") {
+  #{fun.selector("width", "auto")} {
+    width: fun.maybe-important(auto);
+  }
+
+  #{fun.selector("width", "100")} {
+    width: fun.maybe-important(100%);
+  }
+}
