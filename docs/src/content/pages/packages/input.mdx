@@ -131,19 +131,6 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
   ```
 </CodeExample>
 
-## input_auto
-
-Sets the width of an input to `auto` instead of the base component width of `100%`.
-
-<CodeExample>
-  <Fragment slot="output">
-    <input class="input input_auto" type="text" />
-  </Fragment>
-  ```html
-  <input class="input input_auto" type="text" />
-  ```
-</CodeExample>
-
 ## input_size_[key]
 
 Adjust the size of an input by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `input-size` config options map.
@@ -212,37 +199,6 @@ Apply styles for changing the look and feel of an input to better reflect the cu
 
 - `input_state_success`
 - `input_state_error`
-
-## input_type_[key]
-
-Apply unique styles for various input types. These form controls share base styles with the basic input, including the [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) and [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) elements.
-
-<CodeExample resettable>
-  <div slot="output" class="spacing">
-    <select class="input input_type_select" name="">
-      <option value="">Select one</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <textarea class="input input_type_textarea" rows="3"></textarea>
-  </div>
-  ```html
-  <select class="input input_type_select" name="">
-    <option value="">Select one</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-
-  <textarea class="input input_type_textarea" rows="3"></textarea>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `input_type_select`
-- `input_type_textarea`
 
 ## Reference
 

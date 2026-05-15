@@ -40,3 +40,9 @@
     background-color: tokens.get("input", "background-disabled", tokens.get("form-control-background-disabled"));
   }
 }
+
+textarea#{core.bem("input")} {
+  resize: vertical;
+  min-width: 100%;
+  min-height: tokens.get("form-control-size-calc");
+}

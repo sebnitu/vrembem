@@ -82,11 +82,6 @@
     background: none;
   }
 
-  // Prevent resizing textarea horizontally by default
-  textarea {
-    resize: vertical;
-  }
-
   // Remove pointer events from labels when they're wrapping a disabled input
   label:has(:disabled) {
     pointer-events: none;
