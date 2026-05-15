@@ -1,0 +1,42 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "./mixins" as mix;
+
+#{core.bem("select")} {
+  @include mix.base;
+
+  border-color: tokens.get("select", "border-color", tokens.get("border-color-strong"));
+  color: tokens.get("select", "foreground", tokens.get("form-control-foreground"));
+  background-color: tokens.get("select", "background", tokens.get("form-control-background"));
+  box-shadow: tokens.get("select", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
+
+  &::picker-icon {
+    @include core.size(tokens.get("select", "select-icon-size", 0.8em));
+
+    content: "";
+    background-color: tokens.get("select", "select-icon-color", currentcolor);
+    mask: url(core.svg("expand")) center center / 100% no-repeat;
+  }
+
+  &:hover {
+    border-color: tokens.get("select", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
+    color: tokens.get("select", "foreground-hover", "foreground", tokens.get("form-control-foreground"));
+    background-color: tokens.get("select", "background-hover", "background", tokens.get("form-control-background"));
+    box-shadow: tokens.get("select", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
+  }
+
+  &:focus {
+    @include core.focus-ring-color(tokens.get("select", "accent", tokens.get("form-control-accent")));
+
+    border-color: tokens.get("select", "border-color-focus", "border-color", tokens.get("select", "accent", tokens.get("form-control-accent")));
+    color: tokens.get("select", "foreground-focus", "foreground", tokens.get("form-control-foreground"));
+    background-color: tokens.get("select", "background-focus", "background", tokens.get("form-control-background"));
+    box-shadow: tokens.get("select", "box-shadow-focus", none);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: tokens.get("select", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
+    background-color: tokens.get("select", "background-disabled", tokens.get("form-control-background-disabled"));
+  }
+}

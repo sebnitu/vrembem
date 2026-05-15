@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/tokens";
+
+$-select-size: config.get("select-size", "variants");
+
+@each $key, $value in $-select-size {
+  #{core.bem("select", null, "size", $key)} {
+    @include tokens.override("select", "size", $value);
+  }
+}
+
+@each $bp, $value in config.get("select-size", "breakpoints") {
+  @include core.media-min($value) {
+    @each $key, $value in $-select-size {
+      #{core.bem("select", null, "size", $key, $bp)} {
+        @include tokens.override("select", "size", $value);
+      }
+    }
+  }
+}

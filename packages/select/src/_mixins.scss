@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+/// Output the base styles for a select element. This includes:
+/// - Setup of select specific CSS variables with shared form-control fallbacks.
+/// - Setup of focus-ring CSS variables and initial state.
+/// - Apply base styles and resets so browsers render select consistently.
+@mixin base {
+  @include core.form-control-properties("select");
+  @include core.focus-ring-base;
+
+  position: relative;
+  display: flex;
+  gap: calc(tokens.get("form-control-padding-y") * 2);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  border-style: solid;
+  font-family: inherit;
+  appearance: base-select;
+}

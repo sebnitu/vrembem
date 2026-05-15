@@ -1,0 +1,51 @@
+{
+  "name": "@vrembem/select",
+  "description": "The form-control component that provides a menu of options.",
+  "version": "4.0.0-next.44",
+  "license": "MIT",
+  "keywords": [
+    "BEM",
+    "front-end",
+    "component",
+    "select"
+  ],
+  "style": "./dist/index.css",
+  "exports": {
+    ".": {
+      "sass": "./index.scss",
+      "style": "./dist/index.css"
+    },
+    "./dev/*": "./dev/*",
+    "./dist/*": "./dist/*",
+    "./*": "./src/*"
+  },
+  "files": [
+    "dev",
+    "dist",
+    "src",
+    "index.scss"
+  ],
+  "scripts": {
+    "serve": "vite",
+    "build": "npm-run-all clean styles",
+    "clean": "del dev && del dist",
+    "styles": "npm-run-all styles:dev styles:dist",
+    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
+    "watch": "npm run watch:styles",
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebnitu/vrembem.git",
+    "directory": "packages/input"
+  },
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/input#readme",
+  "dependencies": {
+    "@vrembem/core": "^4.0.0-next.44"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d966f513f86f66dddf93ed60ddefe51124562dc0"
+}
