@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 @use "./mixins" as mix;
 
@@ -20,10 +19,6 @@
   }
 
   &::picker(select) {
-    @if config.get("select-picker") {
-      appearance: base-select;
-    }
-
     cursor: default;
     transform: translateY(0);
     margin-block: tokens.get("select", "picker-offset", 0.5em);
@@ -31,6 +26,7 @@
     border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
     border-radius: tokens.get("select", "picker-border-radius", tokens.get("border-radius-lg"));
     color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
+    appearance: tokens.get("select", "picker-appearance", base-select);
     opacity: 1;
     background-color: tokens.get("select", "picker-background", tokens.get("form-control-background"));
     background-clip: padding-box;

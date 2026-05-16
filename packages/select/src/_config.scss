@@ -1,22 +1,3 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-
-$config: () !default;
-
-// prettier-ignore
-$default: (
-  // Whether or not to enable custom select picker styles
-  // @type boolean
-  "select-picker": true,
-
-  // Map for outputting select_state_[key] modifier variants
-  // @type map
-  "select-state": (
-    "success": tokens.get("palette", "primary"),
-    "error": tokens.get("palette", "important")
-  )
-);
-
-@include config.apply($config, $default);
 @include tokens.register("select");
