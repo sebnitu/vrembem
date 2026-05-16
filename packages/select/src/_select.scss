@@ -21,10 +21,10 @@
   &::picker(select) {
     cursor: default;
     transform: translateY(0);
-    margin-block: tokens.get("select", "picker-offset", 0.5em);
+    margin-block: tokens.get("select", "picker-offset", 0.25em);
     padding: tokens.get("select", "picker-padding", 0.5em 0);
     border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
-    border-radius: tokens.get("select", "picker-border-radius", tokens.get("border-radius-lg"));
+    border-radius: tokens.get("select", "border-radius", tokens.get("form-control-border-radius"));
     color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
     appearance: tokens.get("select", "picker-appearance", base-select);
     opacity: 1;
@@ -89,5 +89,12 @@
     pointer-events: none;
     opacity: tokens.get("select", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
     background-color: tokens.get("select", "background-disabled", tokens.get("form-control-background-disabled"));
+  }
+
+  &:user-invalid,
+  &[aria-invalid="true"],
+  &.is-invalid {
+    @include tokens.override("select", "accent", tokens.get("palette", "important"));
+    border-color: tokens.get("select", "accent", tokens.get("form-control-accent"));
   }
 }
