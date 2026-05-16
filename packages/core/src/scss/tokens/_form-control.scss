@@ -18,6 +18,7 @@
     "form-control-background": tokens.get("background"),
     "form-control-background-disabled": tokens.get("background-alt"),
     "form-control-background-readonly": tokens.get("background-alt"),
+    "form-control-box-shadow": none,
     "form-control-opacity-disabled": 0.6,
     "form-control-transition-property": (
       box-shadow,

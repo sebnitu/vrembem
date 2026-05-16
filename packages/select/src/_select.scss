@@ -9,7 +9,7 @@
   border-color: tokens.get("select", "border-color", tokens.get("border-color-strong"));
   color: tokens.get("select", "foreground", tokens.get("form-control-foreground"));
   background-color: tokens.get("select", "background", tokens.get("form-control-background"));
-  box-shadow: tokens.get("select", "box-shadow", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%)); // TODO: this should be a token
+  box-shadow: tokens.get("select", "box-shadow", tokens.get("form-control-box-shadow"));
 
   &::picker-icon {
     @include core.size(tokens.get("select", "picker-icon-size", 0.8em));
@@ -76,7 +76,7 @@
     border-color: tokens.get("select", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
     color: tokens.get("select", "foreground-hover", "foreground", tokens.get("form-control-foreground"));
     background-color: tokens.get("select", "background-hover", "background", tokens.get("form-control-background"));
-    box-shadow: tokens.get("select", "box-shadow-hover", inset 0 0.1rem 0.2rem rgb(0 0 0 / 10%));
+    box-shadow: tokens.get("select", "box-shadow-hover", tokens.get("form-control-box-shadow"));
   }
 
   &:open,
