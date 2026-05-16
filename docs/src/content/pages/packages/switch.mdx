@@ -17,32 +17,6 @@ npm install @vrembem/switch
   ```
 </CodeExample>
 
-## Options
-
-Switch is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
-
-### Sass
-
-Switch comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/switch" with (
-  $config: (
-    // Map for outputting switch_size_[key] modifier variants
-    // @type map
-    "switch-size": (
-      "breakpoints": true,
-      "default": tokens.get("form-control-size"),
-      "sm": tokens.get("form-control-size-sm"),
-      "md": tokens.get("form-control-size"),
-      "lg": tokens.get("form-control-size-lg")
-    )
-  )
-);
-```
-</CodeExample>
-
 ### Design tokens
 
 Switch uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
@@ -119,52 +93,3 @@ Adding the boolean `disabled` attribute to the input element will provide visual
   <input class="switch" type="checkbox" disabled />
   ```
 </CodeExample>
-
-## switch_size_[value]
-
-Adjust the size of a switch by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `switch-size` config options map.
-
-<CodeExample>
-  <div slot="output" class="flex align-items-center">
-    <input class="switch switch_size_sm" type="checkbox" />
-    <input class="switch" type="checkbox" />
-    <input class="switch switch_size_lg" type="checkbox" />
-  </div>
-  ```html
-  <input class="switch switch_size_sm" type="checkbox" />
-  <input class="switch switch_size_lg" type="checkbox" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `switch_size_sm`
-- `switch_size_lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `switch-size` config options map (default: `true`).
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <label class="flex flex_inline flex_gap_sm align-items-center">
-      <input class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg" type="checkbox" />
-      <span>Switch</span>
-      <span class="badge lg:display-none">size_sm</span>
-      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
-      <span class="badge display-none xl:display-block">size_lg</span>
-    </label>
-  </div>
-  ```html
-  <input class="switch switch_size_sm lg:switch_size_md xl:switch_size_lg" type="checkbox" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:switch_size_[key]`
-- `sm:switch_size_[key]`
-- `md:switch_size_[key]`
-- `lg:switch_size_[key]`
-- `xl:switch_size_[key]`

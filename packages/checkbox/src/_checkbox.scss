@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("checkbox", "color", tokens.get("form-control-choice-color"));
@@ -14,7 +13,7 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
   display: inline-block;
   border: tokens.get("checkbox", "border-width", 2px) solid $-color;
   border-radius: tokens.get("checkbox", "border-radius", tokens.get("border-radius"));
-  font-size: tokens.get("checkbox", "size", config.get("checkbox-size", "default"));
+  font-size: tokens.get("checkbox", "size", tokens.get("form-control-size"));
   vertical-align: middle;
   appearance: none;
   background-color: $-fill;

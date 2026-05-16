@@ -10,15 +10,6 @@ $default: (
   // @type boolean
   "select-picker": true,
 
-  // Map for outputting select_size_[key] modifier variants
-  // @type map
-  "select-size": (
-    "breakpoints": true,
-    "sm": tokens.get("form-control-size-sm"),
-    "md": tokens.get("form-control-size"),
-    "lg": tokens.get("form-control-size-lg")
-  ),
-
   // Map for outputting select_state_[key] modifier variants
   // @type map
   "select-state": (

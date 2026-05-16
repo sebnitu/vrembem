@@ -3,6 +3,5 @@
 
 @layer components {
   @include meta.load-css("./src/select");
-  @include meta.load-css("./src/select_size");
   @include meta.load-css("./src/select_state");
 }

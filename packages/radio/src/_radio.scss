@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("radio", "color", tokens.get("form-control-choice-color")) !default;
@@ -14,7 +13,7 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
   display: inline-block;
   border: tokens.get("radio", "border-width", 2px) solid $-color;
   border-radius: 50%;
-  font-size: tokens.get("radio", "size", config.get("radio-size", "default"));
+  font-size: tokens.get("radio", "size", tokens.get("form-control-size"));
   vertical-align: middle;
   appearance: none;
   background-color: $-fill;

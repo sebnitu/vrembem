@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("switch", "color", tokens.get("form-control-choice-color"));
@@ -14,7 +13,7 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
   display: inline-block;
   border: tokens.get("switch", "border-width", 2px) solid $-color;
   border-radius: tokens.get("switch", "border-radius", tokens.get("border-radius-circle"));
-  font-size: tokens.get("switch", "size", config.get("switch-size", "default"));
+  font-size: tokens.get("switch", "size", tokens.get("form-control-size"));
   vertical-align: middle;
   appearance: none;
   background-color: oklch(from $-color l c h / 10%);

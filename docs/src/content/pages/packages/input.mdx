@@ -31,15 +31,6 @@ Input comes with the following Sass configuration options that can be set using 
 ```scss
 @use "@vrembem/input" with (
   $config: (
-    // Map for outputting input_size_[key] modifier variants
-    // @type map
-    "input-size": (
-      "breakpoints": true,
-      "sm": tokens.get("form-control-size-sm"),
-      "md": tokens.get("form-control-size"),
-      "lg": tokens.get("form-control-size-lg"),
-    ),
-
     // Map for outputting input_state_[key] modifier variants
     // @type map
     "input-state": (
@@ -130,55 +121,6 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
   <input class="input" type="text" readonly />
   ```
 </CodeExample>
-
-## input_size_[key]
-
-Adjust the size of an input by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `input-size` config options map.
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <input class="input input_size_sm" type="text" />
-    <input class="input" type="text" />
-    <input class="input input_size_lg" type="text" />
-  </div>
-  ```html
-  <input class="input input_size_sm" type="text" />
-  <input class="input input_size_lg" type="text" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `input_size_sm`
-- `input_size_lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `input-size` config options map (default: `true`).
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
-    <div class="flex flex_inline flex_gap_sm align-items-center">
-      <span>Current active size modifier:</span>
-      <span class="badge lg:display-none">input_size_sm</span>
-      <span class="badge display-none lg:display-block xl:display-none">lg:input_size_md</span>
-      <span class="badge display-none xl:display-block">xl:input_size_lg</span>
-    </div>
-  </div>
-  ```html
-  <input class="input input_size_sm lg:input_size_md xl:input_size_lg" type="text" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:input_size_[key]`
-- `sm:input_size_[key]`
-- `md:input_size_[key]`
-- `lg:input_size_[key]`
-- `xl:input_size_[key]`
 
 ## input_state_[key]
 

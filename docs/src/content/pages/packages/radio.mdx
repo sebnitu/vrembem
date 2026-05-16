@@ -17,32 +17,6 @@ npm install @vrembem/radio
   ```
 </CodeExample>
 
-## Options
-
-Radio is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
-
-### Sass
-
-Radio comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/radio" with (
-  $config: (
-    // Map for outputting radio_size_[key] modifier variants
-    // @type map
-    "radio-size": (
-      "breakpoints": true,
-      "default": tokens.get("form-control-size"),
-      "sm": tokens.get("form-control-size-sm"),
-      "md": tokens.get("form-control-size"),
-      "lg": tokens.get("form-control-size-lg")
-    )
-  )
-);
-```
-</CodeExample>
-
 ### Design tokens
 
 Radio uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
@@ -119,61 +93,3 @@ Adding the boolean `disabled` attribute to the input element will provide visual
   <input class="radio" type="radio" disabled checked />
   ```
 </CodeExample>
-
-## radio_size_[key]
-
-Adjust the size of a radio by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `radio-size` config options map.
-
-<CodeExample>
-  <div slot="output" class="flex flex_gap_xl align-items-center">
-    <div class="flex flex_gap_sm">
-      <input class="radio radio_size_sm" type="radio" name="example-4" value="1" checked />
-      <input class="radio radio_size_sm" type="radio" name="example-4" value="1" />
-    </div>
-    <div class="flex flex_gap_sm">
-      <input class="radio" type="radio" name="example-5" value="1" checked />
-      <input class="radio" type="radio" name="example-5" value="1" />
-    </div>
-    <div class="flex flex_gap_sm">
-      <input class="radio radio_size_lg" type="radio" name="example-6" value="1" checked />
-      <input class="radio radio_size_lg" type="radio" name="example-6" value="1" />
-    </div>
-  </div>
-  ```html
-  <input class="radio radio_size_sm" type="radio" />
-  <input class="radio radio_size_lg" type="radio" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `radio_size_sm`
-- `radio_size_lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `radio-size` config options map (default: `true`).
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <label class="flex flex_inline flex_gap_sm align-items-center">
-      <input class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg" type="radio" name="example-7" />
-      <span>Radio</span>
-      <span class="badge lg:display-none">size_sm</span>
-      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
-      <span class="badge display-none xl:display-block">size_lg</span>
-    </label>
-  </div>
-  ```html
-  <input class="radio radio_size_sm lg:radio_size_md xl:radio_size_lg" type="radio" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:radio_size_[key]`
-- `sm:radio_size_[key]`
-- `md:radio_size_[key]`
-- `lg:radio_size_[key]`
-- `xl:radio_size_[key]`
