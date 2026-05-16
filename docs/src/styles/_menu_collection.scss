@@ -29,6 +29,13 @@
     font-weight: tokens.get("font-weight-bold");
     color: tokens.get("foreground-strong");
     background-color: tokens.get("background-shift");
+
+    &:hover,
+    &:focus {
+      .spacer {
+        background-color: tokens.get("border-color-stronger");
+      }
+    }
   }
 
   .spacer {
