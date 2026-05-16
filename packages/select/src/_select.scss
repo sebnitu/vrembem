@@ -27,8 +27,8 @@
     cursor: default;
     transform: translateY(0);
     margin-block: tokens.get("select", "picker-offset", 0.5em);
-    padding: tokens.get("select", "picker-padding", 0.5em);
-    border: tokens.get("select", "picker-border", none);
+    padding: tokens.get("select", "picker-padding", 0.5em 0);
+    border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
     border-radius: tokens.get("select", "picker-border-radius", tokens.get("border-radius-lg"));
     color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
     opacity: 1;
@@ -47,23 +47,20 @@
 
   option {
     cursor: pointer;
-    padding: tokens.get("select", "option-padding", (0.5em 1em 0.5em 0.5em));
-    border-radius: tokens.get("select", "option-border-radius", tokens.get("border-radius-lg"));
+    padding: tokens.get("select", "option-padding", (0.25em 1em 0.25em 0.5em));
+    border-radius: tokens.get("select", "option-border-radius", 0);
 
     &::checkmark {
       @include core.size(tokens.get("select", "checkmark-icon-size", 1em));
 
       content: "";
+      margin: 0 0.25em;
       background-color: tokens.get("select", "checkmark-icon-color", tokens.get("select", "accent", tokens.get("form-control-accent")));
       mask: url(core.svg("check")) center center / 100% no-repeat;
     }
 
     & + option {
       margin-top: tokens.get("select", "option-gap", 1px);
-    }
-
-    &:checked {
-      background-color: tokens.get("select", "option-background-checked", color-mix(in oklch, currentcolor 4%, transparent));
     }
 
     &:hover {
