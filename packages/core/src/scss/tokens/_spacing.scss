@@ -1,5 +1,5 @@
 @use "../modules/tokens";
-@include tokens.set("core", "spacing", 0.25em);
+@include tokens.set("core", "spacing", 0.25rem);
 @include tokens.set(
   "core",
   (
