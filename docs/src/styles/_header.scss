@@ -35,17 +35,6 @@
   justify-content: flex-end;
   background-color: tokens.get("background-glass");
   backdrop-filter: blur(8px);
-
-  .menu__action {
-    justify-content: flex-start;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-
-    &.is-active {
-      text-decoration: none;
-    }
-  }
 }
 
 .header-spacer {

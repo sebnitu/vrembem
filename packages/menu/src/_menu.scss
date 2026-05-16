@@ -42,40 +42,33 @@
   &:hover {
     border-color: tokens.get("menu", "border-color-hover", "border-color", transparent);
     color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-hover", "background", oklch(from currentcolor l c h / 5%));
+    background-color: tokens.get("menu", "background-hover", "background", color-mix(currentcolor 4%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus {
     border-color: tokens.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
     color: tokens.get("menu", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
+    background-color: tokens.get("menu", "background-focus", "background-hover", "background", color-mix(currentcolor 4%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
-  }
-
-  &:focus-visible {
-    border-color: tokens.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", tokens.get("menu", "accent", tokens.get("form-control-accent")));
-    color: tokens.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
-    box-shadow: tokens.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
   }
 
   &:active {
     border-color: tokens.get("menu", "border-color-active", "border-color", transparent);
     color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-active", "background", oklch(from currentcolor l c h / 10%));
+    background-color: tokens.get("menu", "background-active", "background", color-mix(currentcolor 8%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-active", "box-shadow", none);
   }
 
   &:disabled:not(.is-active) {
     pointer-events: none;
     color: tokens.get("menu", "disabled-foreground", tokens.get("foreground-subtle"));
-    background-color: tokens.get("menu", "disabled-background", none);
+    background-color: tokens.get("menu", "disabled-background", transparent);
   }
 
   &.is-active {
     color: tokens.get("menu", "active-foreground", tokens.get("foreground-accent"));
-    background-color: tokens.get("menu", "active-background", none);
+    background-color: tokens.get("menu", "active-background", transparent);
   }
 }
 
