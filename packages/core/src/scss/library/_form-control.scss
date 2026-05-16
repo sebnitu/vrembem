@@ -8,24 +8,19 @@
 ///   The component value to prefix CSS variable references.
 ///
 @mixin form-control-properties($component) {
-  // These styles are not needed by menu actions (button) elements because
-  // they're set on the root menu component directly and are inherited.
-  @if $component != "menu" {
-    font-size: tokens.get($component, "size", tokens.get("form-control-size"));
-    line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
-  }
+  border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
+  border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
+  font-size: tokens.get($component, "size", tokens.get("form-control-size"));
+  line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
+  transition-timing-function: tokens.get($component, "transition-timing-function", tokens.get("form-control-transition-timing-function"));
+  transition-duration: tokens.get($component, "transition-duration", tokens.get("form-control-transition-duration"));
+  transition-property: tokens.get($component, "transition-property", tokens.get("form-control-transition-property"));
 
   @if $component == "input" {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
   } @else {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding"));
   }
-
-  border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
-  border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
-  transition-timing-function: tokens.get($component, "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-  transition-duration: tokens.get($component, "transition-duration", tokens.get("form-control-transition-duration"));
-  transition-property: tokens.get($component, "transition-property", tokens.get("form-control-transition-property"));
 }
 
 /// Output the width and height with the form-control-size CSS variable value.

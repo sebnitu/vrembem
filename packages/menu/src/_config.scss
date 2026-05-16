@@ -12,16 +12,7 @@ $default: (
 
   // Toggle for outputting menu_full modifier breakpoint variants
   // @type boolean
-  "menu-full-breakpoints": true,
-
-  // Map for outputting menu_size_[key] modifier variants
-  // @type map
-  "menu-size": (
-    "breakpoints": true,
-    "sm": tokens.get("form-control-size-sm"),
-    "md": tokens.get("form-control-size"),
-    "lg": tokens.get("form-control-size-lg")
-  )
+  "menu-full-breakpoints": true
 );
 
 @include config.apply($config, $default);

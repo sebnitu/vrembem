@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "./mixins" as mix;
 
 #{core.bem("menu")} {
   display: flex;
@@ -22,11 +21,22 @@
 }
 
 #{core.bem("menu", "action")} {
-  @include mix.action-base;
-
-  border-color: tokens.get("menu", "border-color", transparent);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  gap: tokens.get("menu", "action-gap", 0.5em);
+  padding: tokens.get("menu", "padding", 0.5em 1em);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  border: none;
+  border-radius: tokens.get("menu", "border-radius", tokens.get("border-radius"));
   color: tokens.get("menu", "foreground", tokens.get("foreground-strong"));
+  text-align: inherit;
+  text-decoration: none;
+  white-space: normal;
   background-color: tokens.get("menu", "background", transparent);
+  background-clip: border-box;
   box-shadow: tokens.get("menu", "box-shadow", none);
 
   &:hover {
@@ -44,8 +54,6 @@
   }
 
   &:focus-visible {
-    @include core.focus-ring-color(tokens.get("menu", "accent", tokens.get("form-control-accent")));
-
     border-color: tokens.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", tokens.get("menu", "accent", tokens.get("form-control-accent")));
     color: tokens.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
     background-color: tokens.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
