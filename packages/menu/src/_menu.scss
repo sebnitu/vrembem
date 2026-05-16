@@ -25,10 +25,10 @@
   position: relative;
   display: flex;
   gap: tokens.get("menu", "action-gap", 0.5em);
-  padding: tokens.get("menu", "padding", 0.5em 1em);
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding: tokens.get("menu", "padding", 0.5em 1em);
   border: none;
   border-radius: tokens.get("menu", "border-radius", tokens.get("border-radius"));
   color: tokens.get("menu", "foreground", tokens.get("foreground-strong"));
