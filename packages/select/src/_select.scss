@@ -31,9 +31,9 @@
     background-color: tokens.get("select", "picker-background", tokens.get("form-control-background"));
     background-clip: padding-box;
     box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-2"));
-    transition-timing-function: tokens.get("select", "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-    transition-duration: tokens.get("select", "transition-duration", tokens.get("form-control-transition-duration"));
-    transition-property: tokens.get("select", "picker-transition-property", (opacity, transform));
+    transition-timing-function: tokens.get("form-control-transition-timing-function");
+    transition-duration: tokens.get("form-control-transition-duration");
+    transition-property: opacity, transform;
 
     @starting-style {
       transform: translateY(-0.5em);
