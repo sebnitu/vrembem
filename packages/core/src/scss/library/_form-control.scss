@@ -33,9 +33,11 @@
   &[aria-invalid="true"],
   &.is-invalid {
     @include tokens.override($component, "accent", tokens.get("palette", "important"));
+
     @if $component == "input" or $component == "select" {
       @include tokens.override($component, "border-color", tokens.get("palette", "important"));
     }
+
     @if $component == "checkbox" or $component == "radio" or $component == "switch" {
       @include tokens.override($component, "color", tokens.get("palette", "important"));
     }
