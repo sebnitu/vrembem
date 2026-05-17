@@ -35,6 +35,8 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
     border-color: $-accent;
     background-color: $-fill;
   }
+
+  @include core.form-control-invalid("checkbox");
 }
 
 #{core.bem("checkbox")}:checked,

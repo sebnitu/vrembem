@@ -36,6 +36,8 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
       border-color: $-accent;
     }
   }
+
+  @include core.form-control-invalid("switch");
 }
 
 #{core.bem("switch")}:checked {

@@ -23,6 +23,25 @@
   }
 }
 
+/// Applies token overrides for the invalid state of form-control components.
+///
+/// @param {string} $component
+///   The component value to add invalid styles for.
+///
+@mixin form-control-invalid($component) {
+  &:user-invalid,
+  &[aria-invalid="true"],
+  &.is-invalid {
+    @include tokens.override($component, "accent", tokens.get("palette", "important"));
+    @if $component == "input" or $component == "select" {
+      @include tokens.override($component, "border-color", tokens.get("palette", "important"));
+    }
+    @if $component == "checkbox" or $component == "radio" or $component == "switch" {
+      @include tokens.override($component, "color", tokens.get("palette", "important"));
+    }
+  }
+}
+
 /// Output the width and height with the form-control-size CSS variable value.
 ///
 /// @param {string} $prefix (null)

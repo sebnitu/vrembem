@@ -35,6 +35,8 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     border-color: $-accent;
     background-color: $-fill;
   }
+
+  @include core.form-control-invalid("radio");
 }
 
 #{core.bem("radio")}:checked {

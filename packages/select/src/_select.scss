@@ -91,15 +91,5 @@
     background-color: tokens.get("select", "background-disabled", tokens.get("form-control-background-disabled"));
   }
 
-  &:user-invalid,
-  &[aria-invalid="true"],
-  &.is-invalid {
-    @include tokens.override(
-      "select",
-      (
-        "accent": tokens.get("palette", "important"),
-        "border-color": tokens.get("palette", "important")
-      )
-    );
-  }
+  @include core.form-control-invalid("select");
 }

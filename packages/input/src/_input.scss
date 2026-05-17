@@ -40,17 +40,7 @@
     background-color: tokens.get("input", "background-disabled", tokens.get("form-control-background-disabled"));
   }
 
-  &:user-invalid,
-  &[aria-invalid="true"],
-  &.is-invalid {
-    @include tokens.override(
-      "input",
-      (
-        "accent": tokens.get("palette", "important"),
-        "border-color": tokens.get("palette", "important")
-      )
-    );
-  }
+  @include core.form-control-invalid("input");
 }
 
 textarea#{core.bem("input")} {
