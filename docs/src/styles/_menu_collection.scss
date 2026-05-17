@@ -1,6 +1,28 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
+// TODO: Maybe re-write this into a different format, for example:
+//   "property": (
+//     "type": "theme",
+//     "light": "light-value",
+//     "dark": "dark-value",
+//   )
+@include tokens.set(
+  "menu",
+  (
+    "light": (
+      "type": "theme",
+      "collection-active-foreground": tokens.get("palette", "primary"),
+      "collection-active-background": tokens.get("background")
+    ),
+    "dark": (
+      "type": "theme",
+      "collection-active-foreground": tokens.get("background"),
+      "collection-active-background": tokens.get("palette", "primary")
+    )
+  )
+);
+
 .menu_collection {
   @include tokens.override("menu", "gap", 0);
 
@@ -9,8 +31,8 @@
   }
 
   .menu__action.is-active {
-    color: tokens.get("foreground-accent");
-    background: tokens.get("background");
+    color: tokens.get("menu", "collection-active-foreground");
+    background: tokens.get("menu", "collection-active-background");
   }
 
   details details {
