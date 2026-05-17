@@ -24,7 +24,7 @@
   &:focus {
     @include core.focus-ring-color(tokens.get("input", "accent", tokens.get("form-control-accent")));
 
-    border-color: tokens.get("input", "border-color-focus", "border-color", tokens.get("input", "accent", tokens.get("form-control-accent")));
+    border-color: tokens.get("input", "accent", tokens.get("form-control-accent"));
     color: tokens.get("input", "foreground-focus", "foreground", tokens.get("form-control-foreground"));
     background-color: tokens.get("input", "background-focus", "background", tokens.get("form-control-background"));
     box-shadow: tokens.get("input", "box-shadow-focus", none);

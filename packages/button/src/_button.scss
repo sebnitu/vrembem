@@ -17,20 +17,13 @@
     box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", tokens.get("box-shadow-1"));
   }
 
-  &:focus {
-    border-color: tokens.get("button", "border-color-focus", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
-    color: tokens.get("button", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-focus", "background-hover", "background", tokens.get("background"));
-    box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow-hover", "box-shadow", tokens.get("box-shadow-1"));
-  }
-
   &:focus-visible {
     @include core.focus-ring-color(tokens.get("button", "accent", tokens.get("form-control-accent")));
 
-    border-color: tokens.get("button", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", tokens.get("button", "accent", tokens.get("form-control-accent")));
-    color: tokens.get("button", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-focus-visible", "background-focus", "background-hover", "background", tokens.get("background"));
-    box-shadow: tokens.get("button", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+    border-color: tokens.get("button", "accent", tokens.get("form-control-accent"));
+    color: tokens.get("button", "foreground-focus", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("button", "background-focus", "background", tokens.get("background"));
+    box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow", tokens.get("box-shadow-1"));
   }
 
   &:active {
