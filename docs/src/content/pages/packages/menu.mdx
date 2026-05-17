@@ -49,26 +49,21 @@ Menu uses design token CSS variables in a reference and fallback pattern. Variab
 
 <ReferenceTable id="tokens-menu" valueLabel="Fallback" expandable={true} data={{
   // Form control fallbacks
-  "--vb-menu-accent": "var(--vb-form-control-accent)",
-  "--vb-menu-size": "var(--vb-form-control-size)",
-  "--vb-menu-line-height": "var(--vb-form-control-line-height)",
-  "--vb-menu-padding": "var(--vb-form-control-padding)",
-  "--vb-menu-border-radius": "var(--vb-form-control-border-radius)",
-  "--vb-menu-border-width": "var(--vb-form-control-border-width)",
-  "--vb-menu-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-menu-transition-property": "var(--vb-form-control-transition-property)",
-  "--vb-menu-transition-timing-function": "var(--vb-menu-control-transition-timing-function)",
+  "--vb-menu-size": "var(--vb-font-size)",
+  "--vb-menu-line-height": "var(--vb-line-height)",
+  "--vb-menu-padding": "0.5em 1em",
+  "--vb-menu-border-radius": "var(--vb-border-radius)",
 
   // Menu specific
   "--vb-menu-gap": "1px",
   "--vb-menu-sep-background": "var(--vb-border-color)",
   "--vb-menu-sep-size": "1px",
   "--vb-menu-sep-gap": "0.5em",
-  "--vb-menu-action-gap": "0.5em",
+  "--vb-menu-action-gap": "1em",
 
   // Theme styles
   "--vb-menu-background": "transparent",
-  "--vb-menu-foreground": "var(--vb-foreground)",
+  "--vb-menu-foreground": "var(--vb-foreground-strong)",
   "--vb-menu-border-color": "transparent",
   "--vb-menu-box-shadow": "none",
 
@@ -78,15 +73,10 @@ Menu uses design token CSS variables in a reference and fallback pattern. Variab
   "--vb-menu-border-color-hover": "var(--vb-menu-border-color)",
   "--vb-menu-box-shadow-hover": "var(--vb-menu-box-shadow)",
 
-  "--vb-menu-background-focus": "var(--vb-menu-background-hover)",
-  "--vb-menu-foreground-focus": "var(--vb-menu-foreground-hover)",
-  "--vb-menu-border-color-focus": "var(--vb-menu-border-color-hover)",
-  "--vb-menu-box-shadow-focus": "var(--vb-menu-box-shadow-hover)",
-
-  "--vb-menu-background-focus-visible": "var(--vb-menu-background-focus)",
-  "--vb-menu-foreground-focus-visible": "var(--vb-menu-foreground-focus)",
-  "--vb-menu-border-color-focus-visible": "var(--vb-menu-border-color-focus)",
-  "--vb-menu-box-shadow-focus-visible": "var(--vb-menu-box-shadow-focus)",
+  "--vb-menu-background-focus": "var(--vb-menu-background)",
+  "--vb-menu-foreground-focus": "var(--vb-menu-foreground)",
+  "--vb-menu-border-color-focus": "var(--vb-menu-border-color)",
+  "--vb-menu-box-shadow-focus": "var(--vb-menu-box-shadow)",
 
   "--vb-menu-background-active": "var(--vb-menu-background)",
   "--vb-menu-foreground-active": "var(--vb-menu-foreground)",
@@ -94,10 +84,10 @@ Menu uses design token CSS variables in a reference and fallback pattern. Variab
   "--vb-menu-box-shadow-active": "var(--vb-menu-box-shadow)",
 
   // State styles
-  "--vb-menu-disabled-background": "none",
-  "--vb-menu-disabled-foreground": "var(--vb-foreground-lighter)",
-  "--vb-menu-active-background": "none",
-  "--vb-menu-active-foreground": "var(--vb-primary)"
+  "--vb-menu-disabled-background": "transparent",
+  "--vb-menu-disabled-foreground": "var(--vb-foreground-subtle)",
+  "--vb-menu-active-background": "transparent",
+  "--vb-menu-active-foreground": "var(--vb-foreground-accent)"
 }} />
 
 ## Basic usage

@@ -6,8 +6,8 @@
   flex-direction: column;
   gap: tokens.get("menu", "gap", 1px);
   align-items: stretch;
-  font-size: tokens.get("menu", "size", tokens.get("form-control-size"));
-  line-height: tokens.get("menu", "line-height", tokens.get("form-control-line-height"));
+  font-size: tokens.get("menu", "size", tokens.get("font-size"));
+  line-height: tokens.get("menu", "line-height", tokens.get("line-height"));
   list-style: none;
 }
 
@@ -24,7 +24,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: tokens.get("menu", "action-gap", tokens.get("spacing-md"));
+  gap: tokens.get("menu", "action-gap", 1em);
   align-items: center;
   justify-content: flex-start;
   width: 100%;
@@ -73,5 +73,5 @@
 }
 
 #{core.bem("menu", "action", "icon")} {
-  @include tokens.override("menu", "padding", tokens.get("form-control-padding-y"));
+  @include tokens.override("menu", "padding", 0.5em);
 }

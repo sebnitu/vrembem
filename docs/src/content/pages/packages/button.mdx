@@ -70,34 +70,25 @@ Button uses design token CSS variables in a reference and fallback pattern. Vari
   "--vb-button-padding": "var(--vb-form-control-padding)",
   "--vb-button-border-radius": "var(--vb-form-control-border-radius)",
   "--vb-button-border-width": "var(--vb-form-control-border-width)",
-  "--vb-button-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-button-transition-property": "var(--vb-form-control-transition-property)",
-  "--vb-button-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
   // Button specific
   "--vb-button-gap": "var(--vb-spacing-sm)",
 
   // Theme styles
-  "--vb-button-background": "var(--vb-background)",
-  "--vb-button-foreground": "var(--vb-foreground)",
-  "--vb-button-border-color": "var(--vb-border-color-dark)",
+  "--vb-button-background": "transparent",
+  "--vb-button-foreground": "var(--vb-foreground-strong)",
+  "--vb-button-border-color": "transparent",
   "--vb-button-box-shadow": "none",
 
   // Theme state styles
   "--vb-button-background-hover": "var(--vb-button-background)",
   "--vb-button-foreground-hover": "var(--vb-button-foreground)",
   "--vb-button-border-color-hover": "var(--vb-button-border-color)",
-  "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow, var(--vb-box-shadow-1))",
+  "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow)",
 
-  "--vb-button-background-focus": "var(--vb-button-background-hover)",
-  "--vb-button-foreground-focus": "var(--vb-button-foreground-hover)",
-  "--vb-button-border-color-focus": "var(--vb-button-border-color-hover)",
-  "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow-hover)",
-
-  "--vb-button-background-focus-visible": "var(--vb-button-background-focus)",
-  "--vb-button-foreground-focus-visible": "var(--vb-button-foreground-focus)",
-  "--vb-button-border-color-focus-visible": "var(--vb-button-border-color-focus)",
-  "--vb-button-box-shadow-focus-visible": "var(--vb-button-box-shadow-focus)",
+  "--vb-button-background-focus": "var(--vb-button-background)",
+  "--vb-button-foreground-focus": "var(--vb-button-foreground)",
+  "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow)",
 
   "--vb-button-background-active": "var(--vb-button-background)",
   "--vb-button-foreground-active": "var(--vb-button-foreground)",
