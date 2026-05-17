@@ -7,7 +7,7 @@
   align-items: center;
   padding: 0.5rem;
 
-  @include core.media-min("md") {
+  @include core.media-min("sidebar") {
     padding: 0;
   }
 }
