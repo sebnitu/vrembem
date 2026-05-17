@@ -40,7 +40,8 @@ import Icon from "@/components/Icon.astro";
   import { themeStore } from "@vrembem/core";
   import { popovers } from "../modules/usePopover";
 
-  const btns = document.querySelectorAll("[data-set-theme]");
+  const btns: NodeListOf<HTMLButtonElement> =
+    document.querySelectorAll("[data-set-theme]");
 
   themeStore({
     onInit() {
@@ -59,7 +60,7 @@ import Icon from "@/components/Icon.astro";
     }
   });
 
-  function toggleState(btn) {
+  function toggleState(btn: HTMLButtonElement) {
     btn.getAttribute("data-set-theme") === this.theme
       ? btn.classList.add("is-active")
       : btn.classList.remove("is-active");

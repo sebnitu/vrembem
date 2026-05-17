@@ -4,10 +4,6 @@
   @include tokens.override("menu", "action-gap", 1rem);
 
   .popover & {
-    font-size: 0.875rem;
-
-    .icon:first-child {
-      margin-left: -0.25rem;
-    }
+    font-size: tokens.get("font-size-sm");
   }
 }

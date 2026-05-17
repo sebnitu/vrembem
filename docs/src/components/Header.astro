@@ -43,17 +43,13 @@ const { classes = "" } = Astro.props;
 <Modal id="modal-navi" classes="modal_pos_top">
   <div class="dialog__header">
     <h2 class="dialog__title">Menu</h2>
-    <Popover
-      id="modal-navi-close"
-      placement="left"
-      triggerClass="button button_icon dialog__close"
+    <button
+      class="button button_icon button_size_sm"
       data-modal-close=""
+      type="button"
     >
-      <Fragment slot="trigger">
-        <Icon name="x" />
-      </Fragment>
-      <Fragment slot="tooltip">Close</Fragment>
-    </Popover>
+      <Icon name="x" />
+    </button>
   </div>
   <div class="dialog__body">
     <Navi />
