@@ -9,4 +9,12 @@
       }
     }
   }
+
+  @each $key, $value in config.get("utility-em-spacing") {
+    #{fun.selector("em-spacing", $key)} {
+      > * + * {
+        margin-top: fun.maybe-important($value);
+      }
+    }
+  }
 }
