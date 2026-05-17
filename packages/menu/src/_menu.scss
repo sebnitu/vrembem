@@ -46,11 +46,11 @@
     box-shadow: tokens.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
-  &:focus {
-    border-color: tokens.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
-    color: tokens.get("menu", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-focus", "background-hover", "background", color-mix(currentcolor 4%, transparent));
-    box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+  &:focus-visible {
+    border-color: tokens.get("menu", "border-color-focus", "border-color", transparent);
+    color: tokens.get("menu", "foreground-focus", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("menu", "background-focus", "background", transparent);
+    box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {

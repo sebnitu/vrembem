@@ -12,14 +12,15 @@
   border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
   font-size: tokens.get($component, "size", tokens.get("form-control-size"));
   line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
-  transition-timing-function: tokens.get($component, "transition-timing-function", tokens.get("form-control-transition-timing-function"));
-  transition-duration: tokens.get($component, "transition-duration", tokens.get("form-control-transition-duration"));
-  transition-property: tokens.get($component, "transition-property", tokens.get("form-control-transition-property"));
+  transition-timing-function: tokens.get("form-control-transition-timing-function");
+  transition-duration: tokens.get("form-control-transition-duration");
 
   @if $component == "input" {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
+    transition-property: outline, border;
   } @else {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding"));
+    transition-property: none;
   }
 }
 

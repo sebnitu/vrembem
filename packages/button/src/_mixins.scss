@@ -9,7 +9,6 @@
 /// - Flex layout styles for child elements and consistent gap spacing.
 @mixin base {
   @include core.form-control-properties("button");
-  @include core.focus-ring-base;
 
   cursor: pointer;
   position: relative;
