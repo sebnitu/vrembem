@@ -90,26 +90,15 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
   ```
 </CodeExample>
 
-## Reference
+### Invalid
 
-Below is a reference of all available input mixins.
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the input will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
 
-### input.base
-
-<ReferenceBar type="mixin" />
-
-Output the base styles for an input component. This includes:
-- Setup of input specific CSS variables with shared form-control fallbacks.
-- Setup of focus-ring CSS variables and initial state.
-- Apply base styles and resets so browsers render inputs consistently.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/input";
-
-.custom-input {
-  @include input.base;
-  // Your custom variant styles here...
-}
-```
+<CodeExample>
+  <Fragment slot="output">
+    <input class="input is-invalid" type="text" value="Invalid input..." />
+  </Fragment>
+  ```html
+  <input class="input is-invalid" type="text" value="Invalid input..." />
+  ```
 </CodeExample>
