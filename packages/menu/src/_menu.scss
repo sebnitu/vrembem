@@ -24,7 +24,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: tokens.get("menu", "action-gap", 0.5em);
+  gap: tokens.get("menu", "action-gap", tokens.get("spacing-md"));
   align-items: center;
   justify-content: flex-start;
   width: 100%;
