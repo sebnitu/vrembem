@@ -39,10 +39,10 @@ Button comes with the following Sass configuration options that can be set using
     // Map for outputting button_color_[key] modifier variants
     // @type map
     "button-color": (
-      "primary": palette.get("primary"),
-      "secondary": palette.get("secondary"),
-      "neutral": palette.get("neutral"),
-      "important": palette.get("important")
+      "primary": tokens.get("palette", "primary"),
+      "secondary": tokens.get("palette", "secondary"),
+      "neutral": tokens.get("palette", "neutral"),
+      "important": tokens.get("palette", "important")
     ),
 
     // Map for outputting button_size_[key] modifier variants

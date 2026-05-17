@@ -42,7 +42,7 @@
   &:hover {
     border-color: tokens.get("menu", "border-color-hover", "border-color", transparent);
     color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-hover", "background", color-mix(currentcolor 4%, transparent));
+    background-color: tokens.get("menu", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
@@ -56,7 +56,7 @@
   &:active {
     border-color: tokens.get("menu", "border-color-active", "border-color", transparent);
     color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-active", "background", color-mix(currentcolor 8%, transparent));
+    background-color: tokens.get("menu", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-active", "box-shadow", none);
   }
 

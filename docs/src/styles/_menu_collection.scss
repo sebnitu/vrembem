@@ -1,12 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-
-// TODO: Maybe re-write this into a different format, for example:
-//   "property": (
-//     "type": "theme",
-//     "light": "light-value",
-//     "dark": "dark-value",
-//   )
 @include tokens.set(
   "menu",
   (

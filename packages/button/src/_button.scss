@@ -13,7 +13,7 @@
   &:hover {
     border-color: tokens.get("button", "border-color-hover", "border-color", transparent);
     color: tokens.get("button", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-hover", "background", color-mix(currentcolor 4%, tokens.get("background")));
+    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, currentcolor 4%, tokens.get("background")));
     box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", none);
   }
 
@@ -29,7 +29,7 @@
   &:active {
     border-color: tokens.get("button", "border-color-active", "border-color", transparent);
     color: tokens.get("button", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-active", "background", color-mix(currentcolor 8%, tokens.get("background")));
+    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, currentcolor 8%, tokens.get("background")));
     box-shadow: tokens.get("button", "box-shadow-active", "box-shadow", none);
   }
 
