@@ -12,7 +12,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: calc(tokens.get("form-control-padding-y") * 2);
+  gap: tokens.get("form-control-padding-x");
   align-items: center;
   width: 100%;
   max-width: 100%;
