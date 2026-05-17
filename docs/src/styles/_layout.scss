@@ -82,7 +82,7 @@
     }
 
     .drawer__container {
-      padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
+      padding: tokens.get("focus-ring-width") tokens.get("layout", "padding") tokens.get("layout", "padding");
 
       &::before {
         content: none;

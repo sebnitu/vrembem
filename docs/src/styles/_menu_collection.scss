@@ -31,6 +31,7 @@
   }
 
   .menu__action.is-active {
+    z-index: -1;
     color: tokens.get("menu", "collection-active-foreground");
     background: tokens.get("menu", "collection-active-background");
   }
