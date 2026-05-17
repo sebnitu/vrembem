@@ -57,14 +57,14 @@
     "width": 80em,
     "padding": (
       "type": "breakpoints",
-      "default": 0.5rem,
+      "initial": 0.5rem,
       "sm": 1rem,
       "sidebar": 1.5rem
     ),
     "sidebar-width": 18em,
     "header-height": (
       "type": "breakpoints",
-      "default": 58px,
+      "initial": 58px,
       "sm": 74px,
       "sidebar": 90px
     )
@@ -76,12 +76,12 @@
     "content-width": 42em,
     "content-padding-x": (
       "type": "breakpoints",
-      "default": 1.5em,
+      "initial": 1.5em,
       "sidebar": 4em
     ),
     "content-padding-y": (
       "type": "breakpoints",
-      "default": 1.5em,
+      "initial": 1.5em,
       "sidebar": 2em
     ),
     "aside-width": 14em,
