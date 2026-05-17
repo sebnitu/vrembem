@@ -5,7 +5,7 @@
     "focus-ring-width": 3px,
     "focus-ring-style": solid,
     "focus-ring-offset": 0,
-    "focus-ring-color": oklch(from tokens.get("palette", "primary") l c calc(h + 180)),
+    "focus-ring-color": tokens.get("palette", "primary"),
     "focus-ring-opacity": 32%
   )
 );
