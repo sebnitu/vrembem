@@ -12,7 +12,7 @@
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: tokens.get("select", "gap", tokens.get("spacing-md"));
+  gap: tokens.get("select", "gap", 1em);
   align-items: center;
   width: 100%;
   max-width: 100%;
