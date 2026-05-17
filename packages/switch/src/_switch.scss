@@ -25,7 +25,7 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
 
     content: "";
     position: absolute;
-    inset: -2px auto auto -2px;
+    inset: calc(tokens.get("switch", "border-width", 2px) * -1) auto auto calc(tokens.get("switch", "border-width", 2px) * -1);
     border: tokens.get("switch", "border-width", 2px) solid $-color;
     border-radius: tokens.get("switch", "border-radius", tokens.get("border-radius-circle"));
     background-color: $-fill;
@@ -53,7 +53,7 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
   background-color: $-accent;
 
   &::after {
-    left: calc(100% - (1.25em - 2px));
+    left: calc(100% - (1.25em - tokens.get("switch", "border-width", 2px)));
     border-color: $-accent;
   }
 }
