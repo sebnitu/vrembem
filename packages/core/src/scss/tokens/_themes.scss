@@ -27,7 +27,7 @@
       "foreground": palette.get("neutral", "500"),
       "foreground-strong": palette.get("neutral", "950"),
       "foreground-subtle": palette.get("neutral", "300"),
-      "foreground-accent": palette.get("primary"),
+      "foreground-accent": palette.get("primary", "300"),
       "foreground-accent-alt": palette.get("secondary"),
 
       "primary-background": palette.get("primary", "75"),

@@ -12,13 +12,13 @@
   (
     "light": (
       "type": "theme",
-      "collection-active-foreground": tokens.get("palette", "primary"),
+      "collection-active-foreground": tokens.get("foreground-accent"),
       "collection-active-background": tokens.get("background")
     ),
     "dark": (
       "type": "theme",
       "collection-active-foreground": tokens.get("background"),
-      "collection-active-background": tokens.get("palette", "primary")
+      "collection-active-background": tokens.get("foreground-accent")
     )
   )
 );
