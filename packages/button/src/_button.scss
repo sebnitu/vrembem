@@ -7,13 +7,13 @@
 
   border-color: tokens.get("button", "border-color", transparent);
   color: tokens.get("button", "foreground", tokens.get("foreground-strong"));
-  background-color: tokens.get("button", "background", tokens.get("background"));
+  background-color: tokens.get("button", "background", transparent);
   box-shadow: tokens.get("button", "box-shadow", none);
 
   &:hover {
     border-color: tokens.get("button", "border-color-hover", "border-color", transparent);
     color: tokens.get("button", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, currentcolor 4%, tokens.get("background")));
+    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
     box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", none);
   }
 
@@ -22,14 +22,14 @@
 
     border-color: tokens.get("button", "accent", tokens.get("form-control-accent"));
     color: tokens.get("button", "foreground-focus", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-focus", "background", tokens.get("background"));
+    background-color: tokens.get("button", "background-focus", "background", transparent);
     box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {
     border-color: tokens.get("button", "border-color-active", "border-color", transparent);
     color: tokens.get("button", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, currentcolor 8%, tokens.get("background")));
+    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
     box-shadow: tokens.get("button", "box-shadow-active", "box-shadow", none);
   }
 
