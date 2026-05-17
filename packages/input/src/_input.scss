@@ -39,6 +39,18 @@
     opacity: tokens.get("input", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
     background-color: tokens.get("input", "background-disabled", tokens.get("form-control-background-disabled"));
   }
+
+  &:user-invalid,
+  &[aria-invalid="true"],
+  &.is-invalid {
+    @include tokens.override(
+      "input",
+      (
+        "accent": tokens.get("palette", "important"),
+        "border-color": tokens.get("palette", "important")
+      )
+    );
+  }
 }
 
 textarea#{core.bem("input")} {

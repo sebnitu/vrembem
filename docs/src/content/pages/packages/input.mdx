@@ -21,29 +21,6 @@ npm install @vrembem/input
 
 ## Options
 
-Input is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
-
-### Sass
-
-Input comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/input" with (
-  $config: (
-    // Map for outputting input_state_[key] modifier variants
-    // @type map
-    "input-state": (
-      "success": palette.get("primary"),
-      "error": palette.get("important")
-    )
-  )
-);
-```
-</CodeExample>
-
-### Design tokens
-
 Input uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-input" valueLabel="Fallback" expandable={true} data={{
@@ -119,26 +96,6 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
   <input class="input" type="text" readonly />
   ```
 </CodeExample>
-
-## input_state_[key]
-
-Apply styles for changing the look and feel of an input to better reflect the current state. These modifiers are generated using key/value pairs of the `input-state` config options map.
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <input class="input input_state_success" type="text" />
-    <input class="input input_state_error" type="text" />
-  </div>
-  ```html
-  <input class="input input_state_success" type="text" />
-  <input class="input input_state_error" type="text" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `input_state_success`
-- `input_state_error`
 
 ## Reference
 

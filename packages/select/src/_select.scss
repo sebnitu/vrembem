@@ -94,7 +94,12 @@
   &:user-invalid,
   &[aria-invalid="true"],
   &.is-invalid {
-    @include tokens.override("select", "accent", tokens.get("palette", "important"));
-    border-color: tokens.get("select", "accent", tokens.get("form-control-accent"));
+    @include tokens.override(
+      "select",
+      (
+        "accent": tokens.get("palette", "important"),
+        "border-color": tokens.get("palette", "important")
+      )
+    );
   }
 }

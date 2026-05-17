@@ -3,5 +3,4 @@
 
 @layer components {
   @include meta.load-css("./src/input");
-  @include meta.load-css("./src/input_state");
 }
