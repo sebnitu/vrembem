@@ -57,13 +57,15 @@
     "width": 80em,
     "padding": (
       "type": "breakpoints",
-      "default": 1em,
-      "sidebar": 1.5em
+      "default": 0.5rem,
+      "sm": 1rem,
+      "sidebar": 1.5rem
     ),
     "sidebar-width": 18em,
     "header-height": (
       "type": "breakpoints",
-      "default": 74px,
+      "default": 58px,
+      "sm": 74px,
       "sidebar": 90px
     )
   )
