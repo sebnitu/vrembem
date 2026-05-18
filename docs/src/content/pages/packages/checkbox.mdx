@@ -115,3 +115,18 @@ Adding the boolean `disabled` attribute to the input element will provide visual
   <input class="checkbox" type="checkbox" disabled />
   ```
 </CodeExample>
+
+### Invalid
+
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the checkbox component will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <input class="checkbox is-invalid" type="checkbox" checked />
+    <input class="checkbox is-invalid" type="checkbox" aria-checked="mixed" />
+    <input class="checkbox is-invalid" type="checkbox" />
+  </div>
+  ```html
+  <input class="checkbox is-invalid" type="checkbox" />
+  ```
+</CodeExample>

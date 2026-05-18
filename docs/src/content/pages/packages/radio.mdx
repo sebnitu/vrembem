@@ -93,3 +93,17 @@ Adding the boolean `disabled` attribute to the input element will provide visual
   <input class="radio" type="radio" disabled checked />
   ```
 </CodeExample>
+
+### Invalid
+
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the radio component will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <input class="radio is-invalid" type="radio" name="example-4" value="1" checked />
+    <input class="radio is-invalid" type="radio" name="example-4" value="2" />
+  </div>
+  ```html
+  <input class="radio is-invalid" type="radio" />
+  ```
+</CodeExample>
