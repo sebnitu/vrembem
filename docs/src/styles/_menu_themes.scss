@@ -1,9 +1,0 @@
-@use "@vrembem/core/tokens";
-
-.menu_themes {
-  @include tokens.override("menu", "action-gap", 1rem);
-
-  .popover & {
-    font-size: tokens.get("font-size-sm");
-  }
-}
