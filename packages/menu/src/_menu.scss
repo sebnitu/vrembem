@@ -1,14 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "./mixins" as mix;
 
 #{core.bem("menu")} {
   display: flex;
   flex-direction: column;
   gap: tokens.get("menu", "gap", 1px);
   align-items: stretch;
-  font-size: tokens.get("menu", "size", tokens.get("form-control-size"));
-  line-height: tokens.get("menu", "line-height", tokens.get("form-control-line-height"));
+  font-size: tokens.get("menu", "size", tokens.get("font-size"));
+  line-height: tokens.get("menu", "line-height", tokens.get("line-height"));
   list-style: none;
 }
 
@@ -22,55 +21,57 @@
 }
 
 #{core.bem("menu", "action")} {
-  @include mix.action-base;
-
-  border-color: tokens.get("menu", "border-color", transparent);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  gap: tokens.get("menu", "action-gap", 1em);
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: tokens.get("menu", "padding", 0.5em 1em);
+  border: none;
+  border-radius: tokens.get("menu", "border-radius", tokens.get("border-radius"));
   color: tokens.get("menu", "foreground", tokens.get("foreground-strong"));
+  text-align: inherit;
+  text-decoration: none;
+  white-space: normal;
   background-color: tokens.get("menu", "background", transparent);
+  background-clip: border-box;
   box-shadow: tokens.get("menu", "box-shadow", none);
 
   &:hover {
     border-color: tokens.get("menu", "border-color-hover", "border-color", transparent);
     color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-hover", "background", oklch(from currentcolor l c h / 5%));
+    background-color: tokens.get("menu", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
-  &:focus {
-    border-color: tokens.get("menu", "border-color-focus", "border-color-hover", "border-color", transparent);
-    color: tokens.get("menu", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
-    box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
-  }
-
   &:focus-visible {
-    @include core.focus-ring-color(tokens.get("menu", "accent", tokens.get("form-control-accent")));
-
-    border-color: tokens.get("menu", "border-color-focus-visible", "border-color-focus", "border-color-hover", "border-color", tokens.get("menu", "accent", tokens.get("form-control-accent")));
-    color: tokens.get("menu", "foreground-focus-visible", "foreground-focus", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-focus-visible", "background-focus", "background-hover", "background", oklch(from currentcolor l c h / 5%));
-    box-shadow: tokens.get("menu", "box-shadow-focus-visible", "box-shadow-focus", "box-shadow-hover", "box-shadow", none);
+    border-color: tokens.get("menu", "border-color-focus", "border-color", transparent);
+    color: tokens.get("menu", "foreground-focus", "foreground", tokens.get("foreground-strong"));
+    background-color: tokens.get("menu", "background-focus", "background", transparent);
+    box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {
     border-color: tokens.get("menu", "border-color-active", "border-color", transparent);
     color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("menu", "background-active", "background", oklch(from currentcolor l c h / 10%));
+    background-color: tokens.get("menu", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
     box-shadow: tokens.get("menu", "box-shadow-active", "box-shadow", none);
   }
 
   &:disabled:not(.is-active) {
     pointer-events: none;
     color: tokens.get("menu", "disabled-foreground", tokens.get("foreground-subtle"));
-    background-color: tokens.get("menu", "disabled-background", none);
+    background-color: tokens.get("menu", "disabled-background", transparent);
   }
 
   &.is-active {
     color: tokens.get("menu", "active-foreground", tokens.get("foreground-accent"));
-    background-color: tokens.get("menu", "active-background", none);
+    background-color: tokens.get("menu", "active-background", transparent);
   }
 }
 
 #{core.bem("menu", "action", "icon")} {
-  @include tokens.override("menu", "padding", tokens.get("form-control-padding-y"));
+  @include tokens.override("menu", "padding", 0.5em);
 }

@@ -9,26 +9,26 @@
 /// Type transformer hook for the "breakpoints" token type. Registered with the
 /// tokens module to intercept values with `"type": "breakpoints"` during
 /// `tokens.set()`. Restructures the value into the `"breakpoints"` namespace
-/// grouped by breakpoint key, and extracts the default value as a flat prop.
+/// grouped by breakpoint key, and extracts the initial value as a flat prop.
 ///
 /// @param {string} $prop
 ///   The property name (e.g., "padding", "size").
 /// @param {map} $value
-///   The value map containing a "type" key, optional "default" key, and
+///   The value map containing a "type" key, optional "initial" key, and
 ///   breakpoint key/value pairs.
 ///
 /// @return {map}
-///   A map structured as `("breakpoints": ($bp: ($prop: ...)), $prop: $default)`
+///   A map structured as `("breakpoints": ($bp: ($prop: ...)), $prop: $initial)`
 ///   for storage in the tokens map.
 ///
 /// @access private
 ///
 @function -type-transform-hook($prop, $value) {
   $result: ();
-  $default: map.get($value, "default");
+  $initial: map.get($value, "initial");
 
-  // Build the breakpoints map (excluding "type" and "default")
-  @each $bp, $bp-value in map.remove($value, "type", "default") {
+  // Build the breakpoints map (excluding "type" and "initial")
+  @each $bp, $bp-value in map.remove($value, "type", "initial") {
     // prettier-ignore
     $result: map.deep-merge($result, ($bp: ($prop: $bp-value)));
   }
@@ -38,10 +38,10 @@
     "breakpoints": $result
   );
 
-  // Add the default value to the output if it exists
-  @if $default {
+  // Add the initial value to the output if it exists
+  @if $initial {
     // prettier-ignore
-    $output: map.merge(($prop: $default), $output);
+    $output: map.merge(($prop: $initial), $output);
   }
 
   @return $output;

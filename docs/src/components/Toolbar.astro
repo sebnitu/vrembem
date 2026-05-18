@@ -14,26 +14,18 @@ const { layout } = Astro.props;
 {
   (layout.hasSidebar || layout.hasAside) && (
     <div class="toolbar">
-      <div class="clearfix">
-        {layout.hasSidebar && (
-          <button
-            data-drawer-open="layout-sidebar"
-            class="button padding-left-sm float-left"
-          >
-            <Icon name="sidebar" />
-            <span class="text-capitalize">Sidebar</span>
-          </button>
-        )}
-        {layout.hasAside && (
-          <button
-            data-drawer-open="main-aside"
-            class="button padding-right-sm float-right"
-          >
-            <span>On this page</span>
-            <Icon name="compass" />
-          </button>
-        )}
-      </div>
+      {layout.hasSidebar && (
+        <button data-drawer-open="layout-sidebar" class="button">
+          <Icon name="sidebar" classes="icon_size_sm" />
+          <span class="text-capitalize">Sidebar</span>
+        </button>
+      )}
+      {layout.hasAside && (
+        <button data-drawer-open="main-aside" class="button margin-left-auto">
+          <span>On this page</span>
+          <Icon name="map-pin" classes="icon_size_sm" />
+        </button>
+      )}
     </div>
   )
 }

@@ -17,7 +17,7 @@
 
     // prettier-ignore
     &:hover,
-    &:focus {
+    &:focus-visible {
       color: tokens.get("link", "foreground-hover", light-dark(
         oklch(from tokens.get("foreground-accent") calc(l - 0.1) c h),
         oklch(from tokens.get("foreground-accent") calc(l + 0.1) c h),
@@ -32,7 +32,7 @@
       }
     }
 
-    &:focus {
+    &:focus-visible {
       outline: tokens.get("link", "focus-ring", currentcolor dotted 1px);
       outline-offset: tokens.get("link", "focus-ring-offset", 0.125rem);
     }

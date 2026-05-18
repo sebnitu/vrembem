@@ -10,12 +10,18 @@
   "--vb-backdrop-opacity": "80%",
   "--vb-base-background": "var(--vb-background)",
   "--vb-base-foreground": "var(--vb-foreground)",
-  "--vb-spacing": "0.25em",
+  "--vb-spacing": "0.25rem",
   "--vb-spacing-xs": "var(--vb-spacing)",
   "--vb-spacing-sm": "calc(var(--vb-spacing) * 2)",
   "--vb-spacing-md": "calc(var(--vb-spacing) * 4)",
   "--vb-spacing-lg": "calc(var(--vb-spacing) * 6)",
   "--vb-spacing-xl": "calc(var(--vb-spacing) * 8)",
+  "--vb-em-spacing": "0.25em",
+  "--vb-em-spacing-xs": "var(--vb-em-spacing)",
+  "--vb-em-spacing-sm": "calc(var(--vb-em-spacing) * 2)",
+  "--vb-em-spacing-md": "calc(var(--vb-em-spacing) * 4)",
+  "--vb-em-spacing-lg": "calc(var(--vb-em-spacing) * 6)",
+  "--vb-em-spacing-xl": "calc(var(--vb-em-spacing) * 8)",
   "--vb-border-width": "1px",
   "--vb-border-style": "solid",
   "--vb-border": "var(--vb-border-width) var(--vb-border-style) var(--vb-border-color)",
@@ -59,7 +65,7 @@
   "--vb-focus-ring-style": "solid",
   "--vb-focus-ring-offset": "0",
   "--vb-focus-ring-color": "var(--vb-primary)",
-  "--vb-focus-ring-opacity": "40%",
+  "--vb-focus-ring-opacity": "32%",
   "--vb-form-control-size": "var(--vb-font-size)",
   "--vb-form-control-size-sm": "var(--vb-font-size-sm)",
   "--vb-form-control-size-lg": "var(--vb-font-size-lg)",
@@ -73,10 +79,11 @@
   "--vb-form-control-accent": "var(--vb-primary)",
   "--vb-form-control-foreground": "var(--vb-foreground-strong)",
   "--vb-form-control-background": "var(--vb-background)",
-  "--vb-form-control-background-disabled": "var(--vb-background-shift)",
-  "--vb-form-control-background-readonly": "var(--vb-background-shift)",
+  "--vb-form-control-background-disabled": "var(--vb-background-alt)",
+  "--vb-form-control-background-readonly": "var(--vb-background-alt)",
+  "--vb-form-control-box-shadow": "none",
   "--vb-form-control-opacity-disabled": "0.6",
-  "--vb-form-control-transition-property": "box-shadow, outline",
+  "--vb-form-control-transition-property": "outline",
   "--vb-form-control-transition-duration": "var(--vb-transition-duration-short)",
   "--vb-form-control-transition-timing-function": "var(--vb-transition-timing-function)",
   "--vb-form-control-choice-color": "var(--vb-foreground-subtle)",
@@ -150,7 +157,7 @@
   "--vb-important-950": "oklch(16% calc(var(--vb-important-c) * 0.6) var(--vb-important-h))",
   "--vb-background": {
     "light": "var(--vb-white)",
-    "dark": "var(--vb-neutral-950)"
+    "dark": "var(--vb-neutral-800)"
   },
   "--vb-background-alt": {
     "light": "var(--vb-neutral-50)",
@@ -158,7 +165,7 @@
   },
   "--vb-background-shift": {
     "light": "var(--vb-neutral-75)",
-    "dark": "var(--vb-neutral-800)"
+    "dark": "var(--vb-neutral-950)"
   },
   "--vb-foreground-strong": {
     "light": "var(--vb-neutral-950)",
@@ -173,7 +180,7 @@
     "dark": "var(--vb-neutral-400)"
   },
   "--vb-foreground-accent": {
-    "light": "var(--vb-primary)",
+    "light": "var(--vb-primary-300)",
     "dark": "var(--vb-primary-200)"
   },
   "--vb-foreground-accent-alt": {

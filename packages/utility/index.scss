@@ -24,9 +24,10 @@
   @include meta.load-css("./src/modules/order");
   @include meta.load-css("./src/modules/flex");
 
-  // Miscellaneous (6)
+  // Miscellaneous (7)
   @include meta.load-css("./src/modules/position");
   @include meta.load-css("./src/modules/overflow");
+  @include meta.load-css("./src/modules/width");
   @include meta.load-css("./src/modules/max-width");
   @include meta.load-css("./src/modules/font");
   @include meta.load-css("./src/modules/text");

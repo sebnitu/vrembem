@@ -41,24 +41,17 @@ function actionClasses(path: string) {
       <Icon name="arrow-up-right" classes="icon_external" />
     </a>
   </li>
+  <li class="menu__sep"></li>
   {
-    inline && (
-      <li class={"menu__item margin-left"}>
+    inline ? (
+      <li class="menu__item">
         <ThemeSwitcherPopover />
       </li>
-    )
-  }
-  {
-    !inline && (
-      <>
-        <li class="menu__sep" />
-        <li class="menu__item padding-x padding-y-sm font-weight-semi-bold">
-          Switch Theme
-        </li>
-        <li class="menu__item">
-          <ThemeSwitcherMenu />
-        </li>
-      </>
+    ) : (
+      <li class="menu__item">
+        <h3 class="menu__label padding-y-sm">Switch Theme</h3>
+        <ThemeSwitcherMenu />
+      </li>
     )
   }
 </ul>

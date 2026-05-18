@@ -3,5 +3,4 @@
 
 @layer components {
   @include meta.load-css("./src/checkbox");
-  @include meta.load-css("./src/checkbox_size");
 }

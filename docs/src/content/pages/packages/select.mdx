@@ -1,0 +1,140 @@
+---
+title: Select
+description: "The form-control component that provides a menu of options."
+package: "@vrembem/select"
+category: form-control
+order: 3
+---
+
+import ReferenceBar from "@/components/ReferenceBar.astro";
+import ReferenceCard from "@/components/ReferenceCard.astro";
+import ReferenceTable from "@/components/ReferenceTable.astro";
+
+```sh
+npm install @vrembem/select
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/select";
+  ```
+</CodeExample>
+
+## Options
+
+Select uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-select" valueLabel="Fallback" expandable={true} data={{
+  // Select base
+  "--vb-select-accent": "var(--vb-form-control-accent)",
+  "--vb-select-size": "var(--vb-form-control-size)",
+  "--vb-select-line-height": "var(--vb-form-control-line-height)",
+  "--vb-select-padding": "var(--vb-form-control-padding)",
+  "--vb-select-gap": "1em",
+  "--vb-select-border-radius": "var(--vb-form-control-border-radius)",
+  "--vb-select-border-width": "var(--vb-form-control-border-width)",
+
+  "--vb-select-background": "var(--vb-form-control-background)",
+  "--vb-select-foreground": "var(--vb-form-control-foreground)",
+  "--vb-select-border-color": "var(--vb-border-color-strong)",
+  "--vb-select-box-shadow": "var(--vb-form-control-box-shadow)",
+
+  "--vb-select-background-hover": "var(--vb-select-background)",
+  "--vb-select-foreground-hover": "var(--vb-select-foreground)",
+  "--vb-select-border-color-hover": "var(--vb-select-border-color)",
+  "--vb-select-box-shadow-hover": "var(--vb-form-control-box-shadow)",
+
+  "--vb-select-background-focus": "var(--vb-select-background)",
+  "--vb-select-foreground-focus": "var(--vb-select-foreground)",
+  "--vb-select-box-shadow-focus": "none",
+
+  "--vb-select-background-disabled": "var(--vb-form-control-background-disabled)",
+  "--vb-select-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
+
+  // Picker icon
+  "--vb-select-picker-icon-size": "0.8em",
+  "--vb-select-picker-icon-color": "currentcolor",
+
+  // Picker (dropdown)
+  "--vb-select-picker-appearance": "base-select",
+  "--vb-select-picker-offset": "0.25em",
+  "--vb-select-picker-padding": "0.5em 0",
+  "--vb-select-picker-border": "1px solid var(--vb-border-color-strong)",
+  "--vb-select-picker-foreground": "var(--vb-form-control-foreground)",
+  "--vb-select-picker-background": "var(--vb-form-control-background)",
+  "--vb-select-picker-box-shadow": "var(--vb-box-shadow-2)",
+
+  // Options
+  "--vb-select-option-padding": "0.25em 1em 0.25em 0.5em",
+  "--vb-select-option-border-radius": "0",
+  "--vb-select-option-gap": "1px",
+  "--vb-select-option-background-hover": "color-mix(in oklch, currentcolor 4%, transparent)",
+  "--vb-select-option-background-active": "color-mix(in oklch, currentcolor 8%, transparent)",
+
+  // Checkmark icon
+  "--vb-select-checkmark-icon-size": "1em",
+  "--vb-select-checkmark-icon-color": "var(--vb-select-accent)"
+}} />
+
+## Basic usage
+
+The most basic implementation of the select component consists of the `.select` class applied to a `<select>` form-control element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <select class="select" name="example-1">
+      <option value="">Select one</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+  </Fragment>
+  ```html
+  <select class="select">
+    <option value="">Select one</option>
+    ...
+  </select>
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the select will provide visual indication that the form-control is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <select class="select" name="example-2">
+      <option value="">Select one</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+  </Fragment>
+  ```html
+  <select class="select" disabled>
+    <option value="">Select one</option>
+    ...
+  </select>
+  ```
+</CodeExample>
+
+### Invalid
+
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the select will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
+
+<CodeExample>
+  <Fragment slot="output">
+    <select class="select is-invalid" name="example-2">
+      <option value="">Select one</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+  </Fragment>
+  ```html
+  <select class="select is-invalid">
+    <option value="">Select one</option>
+    ...
+  </select>
+  ```
+</CodeExample>

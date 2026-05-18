@@ -3,5 +3,4 @@
 
 @layer components {
   @include meta.load-css("./src/radio");
-  @include meta.load-css("./src/radio_size");
 }

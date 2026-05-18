@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 $-color: tokens.get("checkbox", "color", tokens.get("form-control-choice-color"));
@@ -8,16 +7,18 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
   @include core.size(1.25em);
+  @include core.focus-ring-base;
 
   cursor: pointer;
   position: relative;
   display: inline-block;
   border: tokens.get("checkbox", "border-width", 2px) solid $-color;
-  border-radius: tokens.get("checkbox", "border-radius", tokens.get("border-radius"));
-  font-size: tokens.get("checkbox", "size", config.get("checkbox-size", "default"));
+  border-radius: tokens.get("checkbox", "border-radius", 0.25em);
+  font-size: tokens.get("checkbox", "size", tokens.get("form-control-size"));
   vertical-align: middle;
   appearance: none;
   background-color: $-fill;
+  transition: tokens.get("form-control-transition-property") tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
 
   &::after {
     @include core.size(tokens.get("checkbox", "icon-size", 0.8em));
@@ -32,10 +33,16 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     border-color: $-accent;
     background-color: $-fill;
   }
+
+  &:focus-visible {
+    @include core.focus-ring-color($-accent);
+  }
+
+  @include core.form-control-invalid("checkbox");
 }
 
 #{core.bem("checkbox")}:checked,

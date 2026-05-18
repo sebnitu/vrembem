@@ -35,7 +35,7 @@
   transition-duration: tokens.get("transition-duration");
 
   &:hover {
-    border-color: tokens.get("palette", "primary");
+    border-color: tokens.get("foreground-accent");
   }
 }
 
@@ -46,5 +46,5 @@
 
 .pagi_title {
   font-size: tokens.get("font-size-lg");
-  color: tokens.get("palette", "primary");
+  color: tokens.get("foreground-accent");
 }

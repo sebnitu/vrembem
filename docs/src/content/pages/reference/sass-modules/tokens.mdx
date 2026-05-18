@@ -97,7 +97,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
 
 ### Breakpoints
 
-When the `core/breakpoints` plugin is loaded, tokens can be made responsive by setting a value map with `"type": "breakpoints"`. The `"default"` key sets the initial value, and breakpoint keys set values at specific breakpoints.
+When the `core/breakpoints` plugin is loaded, tokens can be made responsive by setting a value map with `"type": "breakpoints"`. The `"initial"` key sets the initial value, and breakpoint keys set values at specific breakpoints.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -108,7 +108,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
     @include tokens.set("layout", (
       "padding": (
         "type": "breakpoints",
-        "default": 1em,
+        "initial": 1em,
         "md": 1.5em,
         "lg": 2em
       )
