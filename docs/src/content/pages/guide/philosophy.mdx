@@ -3,4 +3,35 @@ title: Philosophy
 order: 2
 ---
 
-...
+Vrembem is a framework-agnostic CSS component library built for people who love writing CSS and the BEM methodology. It merges battle-tested CSS authoring conventions with modern CSS features.
+
+The main goal of Vrembem is to provide front-end systems that every project needs and allow them to be easily customized and expanded. This allows authors to focus on the aspects of a project that are unique to them.
+
+## Utility-first BEM
+
+It's a misconception that you should never break out of the BEM naming convention. Vrembem takes a utility-first approach to writing CSS. This is the approach Vrembem recommends when authoring a UI:
+
+- Add utilities first. These are typically one-off single property classes. Vrembem uses verbose utility names for this reason.
+- If an element is starting to contain too many utilities, that's a sign that a block class is needed.
+- Add utilities to a block when slight adjustments are needed.
+- If a block starts to accumulate too many utilities, that's a sign it's time to write a modifier.
+
+The benefits to this approach are that it reduces bloat that can exist from early abstractions. Since blocks and modifiers are only created once the need arises, they become less rigid and more open to composition-based front-ends.
+
+## Composability
+
+The catalog of available components Vrembem provides is intentionally focused. Instead of having a component for every scenario, primitives are provided for very purposeful roles such as layout, containers, or actions. These can then be combined to create context-specific blocks and views.
+
+This approach allows components to be highly composable with each other, built with the idea that they will be mixed, nested together, and expanded. Only the most common interface patterns are added to keep Vrembem lean and intuitive.
+
+## Modern CSS
+
+Vrembem uses modern CSS features and native browser APIs to build fast and responsive components for all devices. Purely optional JavaScript modules are available to enhance your projects, or bring-your-own JavaScript. Vrembem implements the following features:
+
+- Design tokens powered by CSS custom properties (variables).
+- Custom palette tokens using the `oklch` color space.
+- Layout components that leverage Flex and Grid.
+- Cascade layers using the `@layer` CSS at-rule for tokens, base, components, and utilities.
+- Native browser APIs are used for things like the dialog element, modals, and popovers.
+
+Vrembem is in active development and will continue to receive the benefits of modern CSS and native APIs as they become available and more widely adopted.
