@@ -18,13 +18,11 @@
     "form-control-background": tokens.get("background"),
     "form-control-background-disabled": tokens.get("background-alt"),
     "form-control-background-readonly": tokens.get("background-alt"),
+    "form-control-box-shadow": none,
     "form-control-opacity-disabled": 0.6,
-    "form-control-transition-property": (
-      box-shadow,
-      outline
-    ),
     "form-control-transition-duration": tokens.get("transition-duration-short"),
-    "form-control-transition-timing-function": tokens.get("transition-timing-function")
+    "form-control-transition-timing-function": tokens.get("transition-timing-function"),
+    "form-control-transition-property": outline
   )
 );
 
@@ -42,7 +40,7 @@
 @include tokens.set(
   "core",
   (
-    "form-control-padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x"),
-    "form-control-size-calc": calc(calc(1em * tokens.get("form-control-line-height")) + calc(calc(tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2))
+    "form-control-size-calc": calc(calc(1em * tokens.get("form-control-line-height")) + calc(calc(tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
+    "form-control-padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x")
   )
 );

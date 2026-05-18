@@ -9,7 +9,7 @@
   #{core.bem("menu", "sep")} {
     width: tokens.get("menu", "sep-size", 1px);
     height: auto;
-    margin: 0 tokens.get("menu", "sep-gap", 0.5em);
+    margin: tokens.get("menu", "sep-gap", 0.5em);
   }
 
   #{core.bem("menu", "action")} {

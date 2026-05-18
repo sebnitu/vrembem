@@ -19,32 +19,6 @@ npm install @vrembem/checkbox
 
 ## Options
 
-Checkbox is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
-
-### Sass
-
-Checkbox comes with the following Sass configuration options that can be set using either the [config module](/reference/sass-modules/config#using-config-module) or [Sass `with` clause](/reference/sass-modules/config#using-with-clause) methods.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/checkbox" with (
-  $config: (
-    // Map for outputting checkbox_size_[key] modifier variants
-    // @type map
-    "checkbox-size": (
-      "breakpoints": true,
-      "default": tokens.get("form-control-size"),
-      "sm": tokens.get("form-control-size-sm"),
-      "md": tokens.get("form-control-size"),
-      "lg": tokens.get("form-control-size-lg")
-    )
-  )
-);
-```
-</CodeExample>
-
-### Design tokens
-
 Checkbox uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-checkbox" valueLabel="Fallback" data={{
@@ -53,7 +27,7 @@ Checkbox uses design token CSS variables in a reference and fallback pattern. Va
   "--vb-checkbox-fill": "var(--vb-form-control-choice-fill)",
   "--vb-checkbox-size": "var(--vb-form-control-size)",
   "--vb-checkbox-border-width": "2px",
-  "--vb-checkbox-border-radius": "var(--vb-border-radius)",
+  "--vb-checkbox-border-radius": "0.25em",
   "--vb-checkbox-icon-size": "0.8em",
 }} />
 
@@ -142,51 +116,17 @@ Adding the boolean `disabled` attribute to the input element will provide visual
   ```
 </CodeExample>
 
-## checkbox_size_[key]
+### Invalid
 
-Adjust the size of a checkbox by increasing or decreasing its font-size. These modifiers are generated using key/value pairs of the `checkbox-size` config options map.
-
-<CodeExample>
-  <div slot="output" class="flex align-items-center">
-    <input class="checkbox checkbox_size_sm" type="checkbox" />
-    <input class="checkbox" type="checkbox" />
-    <input class="checkbox checkbox_size_lg" type="checkbox" />
-  </div>
-  ```html
-  <input class="checkbox checkbox_size_sm" type="checkbox" />
-  <input class="checkbox checkbox_size_lg" type="checkbox" />
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `checkbox_size_sm`
-- `checkbox_size_lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#config-options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `checkbox-size` config options map (default: `true`).
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the checkbox component will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
 
 <CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <label class="flex flex_inline flex_gap_sm align-items-center">
-      <input class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg" type="checkbox" checked />
-      <span>Checkbox</span>
-      <span class="badge lg:display-none">size_sm</span>
-      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
-      <span class="badge display-none xl:display-block">size_lg</span>
-    </label>
+  <div slot="output" class="flex">
+    <input class="checkbox is-invalid" type="checkbox" checked />
+    <input class="checkbox is-invalid" type="checkbox" aria-checked="mixed" />
+    <input class="checkbox is-invalid" type="checkbox" />
   </div>
   ```html
-  <input class="checkbox checkbox_size_sm lg:checkbox_size_md xl:checkbox_size_lg" type="checkbox" />
+  <input class="checkbox is-invalid" type="checkbox" />
   ```
 </CodeExample>
-
-**Available variants**
-
-- `xs:checkbox_size_[key]`
-- `sm:checkbox_size_[key]`
-- `md:checkbox_size_[key]`
-- `lg:checkbox_size_[key]`
-- `xl:checkbox_size_[key]`

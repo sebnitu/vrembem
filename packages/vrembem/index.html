@@ -227,74 +227,32 @@
             </div>
           </aside><!-- .drawer -->
 
-          <!-- Form Controls (SM) -->
-
-          <div class="flex align-items-center">
-            <label class="font-size-sm flex-item-full">Form control label</label>
-            <input class="input input_auto input_size_sm" type="text" value="35" />
-            <select class="input input_auto input_type_select input_size_sm">
-              <option>1. One</option>
-              <option>2. Two</option>
-              <option>3. Three</option>
-            </select>
-            <button class="button button_size_sm">Button</button>
-            <ul class="menu menu_inline menu_size_sm">
-              <li class="menu__item">
-                <a class="menu__action" href="#">Menu Item</a>
-              </li>
-            </ul>
-            <input class="checkbox checkbox_size_sm" type="checkbox" checked />
-            <input class="radio radio_size_sm" type="radio" name="example-3" value="1" checked />
-            <input class="radio radio_size_sm" type="radio" name="example-3" value="1" />
-            <input class="switch switch_size_sm" type="checkbox" />
-            <textarea class="input input_type_textarea input_size_sm"></textarea>
-          </div>
-
           <!-- Form Controls -->
 
-          <div class="flex align-items-center">
+          <form class="flex align-items-center">
             <label class="flex-item-full">Form control label</label>
-            <input class="input input_auto" type="text" value="40" />
-            <select class="input input_auto input_type_select">
-              <option>1. One</option>
-              <option>2. Two</option>
-              <option>3. Three</option>
+            <input class="input width-auto" type="text" value="40" required />
+            <select class="select width-auto" required>
+              <option value="">Select one</option>
+              <option value="1">1. One</option>
+              <option value="2">2. Two</option>
+              <option value="3">3. Three</option>
             </select>
-            <button class="button">Button</button>
+            <button class="button" type="button">Button</button>
             <ul class="menu menu_inline">
               <li class="menu__item">
-                <a class="menu__action" href="#">Menu Item</a>
+                <button class="menu__action" type="button">Menu Item</button>
               </li>
             </ul>
-            <input class="checkbox" type="checkbox" checked />
+            <input class="checkbox" type="checkbox" checked required />
+            <input class="checkbox" type="checkbox" />
             <input class="radio" type="radio" name="example-4" value="1" checked />
             <input class="radio" type="radio" name="example-4" value="1" />
+            <input class="switch" type="checkbox" checked />
             <input class="switch" type="checkbox" />
-            <textarea class="input input_type_textarea"></textarea>
-          </div>
-
-          <!-- Form Controls (LG) -->
-
-          <div class="flex align-items-center">
-            <label class="font-size-lg flex-item-full">Form control label</label>
-            <input class="input input_auto input_size_lg" type="text" value="45" />
-            <select class="input input_auto input_type_select input_size_lg">
-              <option>1. One</option>
-              <option>2. Two</option>
-              <option>3. Three</option>
-            </select>
-            <button class="button button_size_lg">Button</button>
-            <ul class="menu menu_inline menu_size_lg">
-              <li class="menu__item">
-                <a class="menu__action" href="#">Menu Item</a>
-              </li>
-            </ul>
-            <input class="checkbox checkbox_size_lg" type="checkbox" checked />
-            <input class="radio radio_size_lg" type="radio" name="example-5" value="1" checked />
-            <input class="radio radio_size_lg" type="radio" name="example-5" value="1" />
-            <input class="switch switch_size_lg" type="checkbox"  />
-            <textarea class="input input_type_textarea input_size_lg"></textarea>
-          </div>
+            <textarea class="input" required></textarea>
+            <button class="button button_color_primary" type="submit">Submit form</button>
+          </form>
 
           <!-- Typography -->
 

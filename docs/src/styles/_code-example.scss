@@ -28,7 +28,7 @@
   }
 
   [role="tablist"] {
-    padding: 0 3.5em 0 0;
+    padding: 0 3.5em 0 0.5em;
     border-bottom: tokens.get("border");
 
     @include core.media-max("xs") {
@@ -36,8 +36,12 @@
     }
   }
 
-  [role="tab"]::after {
-    bottom: -1px;
+  [role="tab"] {
+    padding: 0.5em;
+
+    &::after {
+      bottom: -1px;
+    }
   }
 
   .code-block {

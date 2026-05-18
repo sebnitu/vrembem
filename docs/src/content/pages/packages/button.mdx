@@ -3,6 +3,7 @@ title: Button
 description: "Buttons are a simple component that allow users to take actions."
 package: "@vrembem/button"
 category: form-control
+order: 1
 ---
 
 import ReferenceBar from "@/components/ReferenceBar.astro";
@@ -39,10 +40,10 @@ Button comes with the following Sass configuration options that can be set using
     // Map for outputting button_color_[key] modifier variants
     // @type map
     "button-color": (
-      "primary": palette.get("primary"),
-      "secondary": palette.get("secondary"),
-      "neutral": palette.get("neutral"),
-      "important": palette.get("important")
+      "primary": tokens.get("palette", "primary"),
+      "secondary": tokens.get("palette", "secondary"),
+      "neutral": tokens.get("palette", "neutral"),
+      "important": tokens.get("palette", "important")
     ),
 
     // Map for outputting button_size_[key] modifier variants
@@ -70,34 +71,25 @@ Button uses design token CSS variables in a reference and fallback pattern. Vari
   "--vb-button-padding": "var(--vb-form-control-padding)",
   "--vb-button-border-radius": "var(--vb-form-control-border-radius)",
   "--vb-button-border-width": "var(--vb-form-control-border-width)",
-  "--vb-button-transition-duration": "var(--vb-form-control-transition-duration)",
-  "--vb-button-transition-property": "var(--vb-form-control-transition-property)",
-  "--vb-button-transition-timing-function": "var(--vb-form-control-transition-timing-function)",
 
   // Button specific
   "--vb-button-gap": "var(--vb-spacing-sm)",
 
   // Theme styles
-  "--vb-button-background": "var(--vb-background)",
-  "--vb-button-foreground": "var(--vb-foreground)",
-  "--vb-button-border-color": "var(--vb-border-color-dark)",
+  "--vb-button-background": "transparent",
+  "--vb-button-foreground": "var(--vb-foreground-strong)",
+  "--vb-button-border-color": "transparent",
   "--vb-button-box-shadow": "none",
 
   // Theme state styles
   "--vb-button-background-hover": "var(--vb-button-background)",
   "--vb-button-foreground-hover": "var(--vb-button-foreground)",
   "--vb-button-border-color-hover": "var(--vb-button-border-color)",
-  "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow, var(--vb-box-shadow-1))",
+  "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow)",
 
-  "--vb-button-background-focus": "var(--vb-button-background-hover)",
-  "--vb-button-foreground-focus": "var(--vb-button-foreground-hover)",
-  "--vb-button-border-color-focus": "var(--vb-button-border-color-hover)",
-  "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow-hover)",
-
-  "--vb-button-background-focus-visible": "var(--vb-button-background-focus)",
-  "--vb-button-foreground-focus-visible": "var(--vb-button-foreground-focus)",
-  "--vb-button-border-color-focus-visible": "var(--vb-button-border-color-focus)",
-  "--vb-button-box-shadow-focus-visible": "var(--vb-button-box-shadow-focus)",
+  "--vb-button-background-focus": "var(--vb-button-background)",
+  "--vb-button-foreground-focus": "var(--vb-button-foreground)",
+  "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow)",
 
   "--vb-button-background-active": "var(--vb-button-background)",
   "--vb-button-foreground-active": "var(--vb-button-foreground)",
@@ -195,7 +187,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 <CodeExample>
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-button-block-select">Variants Demo:</label>
-    <select id="demo-button-block-select" class="input input_type_select input_size_sm input_auto" data-demo-target="demo-button-block">
+    <select id="demo-button-block-select" class="select font-size-sm width-auto" data-demo-target="demo-button-block">
       <option value="xs:button_block">xs:button_block</option>
       <option value="sm:button_block">sm:button_block</option>
       <option value="md:button_block">md:button_block</option>
@@ -314,77 +306,3 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:button_size_[key]`
 - `lg:button_size_[key]`
 - `xl:button_size_[key]`
-
-## Reference
-
-Below is a reference of all available button mixins.
-
-### button.base
-
-<ReferenceBar type="mixin" />
-
-Output the base styles for a button component. This includes:
-- Setup of button specific CSS variables with shared form-control fallbacks.
-- Setup of focus-ring CSS variables and initial state.
-- Flex layout styles for child elements and consistent gap spacing.
-
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/button";
-
-.custom-button {
-  @include button.base;
-  // Your custom variant styles here...
-}
-```
-</CodeExample>
-
-### button.variant
-
-<ReferenceBar type="mixin" />
-
-Creates a button variant using custom properties and hsl relative values.
-
-#### Arguments
-
-<ReferenceCard name="$background" type="color | map">
-  The color to use as the button background. Also accepts a map that defines multiple override properties.
-</ReferenceCard>
-
-<ReferenceCard name="$foreground" type="color" defaults="white">
-  The color to use as the foreground override.
-</ReferenceCard>
-
-<ReferenceCard name="$operator" type="string" defaults='"-"'>
-  The operator to use on the lightness value. Can either be `"-"` to darken or `"+"` to lighten the base lightness value.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample tabs>
-  <Fragment slot="output">
-    <button class="button button_color_custom">Custom Button</button>
-  </Fragment>
-  <TabsPanel label="SCSS">
-  ```scss
-  @use "@vrembem/button";
-
-  .button_color_custom {
-    @include button.variant(salmon);
-  }
-  ```
-  </TabsPanel>
-  <TabsPanel label="CSS">
-  ```css
-  .button_color_custom {
-    --vb-button-background: salmon;
-    --vb-button-foreground: white;
-    --vb-button-border-color: transparent;
-    --vb-button-box-shadow: none;
-    --vb-button-accent: salmon;
-    --vb-button-background-hover: hsl(from salmon h s calc(l - 5));
-    --vb-button-background-active: hsl(from salmon h s calc(l - 10));
-  }
-  ```
-  </TabsPanel>
-</CodeExample>

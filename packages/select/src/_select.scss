@@ -1,0 +1,95 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "./mixins" as mix;
+
+#{core.bem("select")} {
+  @include mix.base;
+
+  border-color: tokens.get("select", "border-color", tokens.get("border-color-strong"));
+  color: tokens.get("select", "foreground", tokens.get("form-control-foreground"));
+  background-color: tokens.get("select", "background", tokens.get("form-control-background"));
+  box-shadow: tokens.get("select", "box-shadow", tokens.get("form-control-box-shadow"));
+
+  &::picker-icon {
+    @include core.size(tokens.get("select", "picker-icon-size", 0.8em));
+
+    content: "";
+    background-color: tokens.get("select", "picker-icon-color", currentcolor);
+    mask: url(core.svg("expand")) center center / 100% no-repeat;
+  }
+
+  &::picker(select) {
+    cursor: default;
+    transform: translateY(0);
+    margin-block: tokens.get("select", "picker-offset", 0.25em);
+    padding: tokens.get("select", "picker-padding", 0.5em 0);
+    border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
+    border-radius: tokens.get("select", "border-radius", tokens.get("form-control-border-radius"));
+    color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
+    appearance: tokens.get("select", "picker-appearance", base-select);
+    opacity: 1;
+    background-color: tokens.get("select", "picker-background", tokens.get("form-control-background"));
+    background-clip: padding-box;
+    box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-2"));
+    transition-timing-function: tokens.get("form-control-transition-timing-function");
+    transition-duration: tokens.get("form-control-transition-duration");
+    transition-property: opacity, transform;
+
+    @starting-style {
+      transform: translateY(-0.5em);
+      opacity: 0;
+    }
+  }
+
+  option {
+    cursor: pointer;
+    padding: tokens.get("select", "option-padding", (0.25em 1em 0.25em 0.5em));
+    border-radius: tokens.get("select", "option-border-radius", 0);
+
+    &::checkmark {
+      @include core.size(tokens.get("select", "checkmark-icon-size", 1em));
+
+      content: "";
+      margin: 0 0.25em;
+      background-color: tokens.get("select", "checkmark-icon-color", tokens.get("select", "accent", tokens.get("form-control-accent")));
+      mask: url(core.svg("check")) center center / 100% no-repeat;
+    }
+
+    & + option {
+      margin-top: tokens.get("select", "option-gap", 1px);
+    }
+
+    &:hover {
+      background-color: tokens.get("select", "option-background-hover", color-mix(in oklch, currentcolor 4%, transparent));
+    }
+
+    &:active {
+      background-color: tokens.get("select", "option-background-active", color-mix(in oklch, currentcolor 8%, transparent));
+    }
+  }
+
+  &:hover {
+    border-color: tokens.get("select", "border-color-hover", "border-color", tokens.get("border-color-stronger"));
+    color: tokens.get("select", "foreground-hover", "foreground", tokens.get("form-control-foreground"));
+    background-color: tokens.get("select", "background-hover", "background", tokens.get("form-control-background"));
+    box-shadow: tokens.get("select", "box-shadow-hover", tokens.get("form-control-box-shadow"));
+  }
+
+  &:open,
+  &:focus {
+    @include core.focus-ring-color(tokens.get("select", "accent", tokens.get("form-control-accent")));
+
+    border-color: tokens.get("select", "accent", tokens.get("form-control-accent"));
+    color: tokens.get("select", "foreground-focus", "foreground", tokens.get("form-control-foreground"));
+    background-color: tokens.get("select", "background-focus", "background", tokens.get("form-control-background"));
+    box-shadow: tokens.get("select", "box-shadow-focus", none);
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: tokens.get("select", "opacity-disabled", tokens.get("form-control-opacity-disabled"));
+    background-color: tokens.get("select", "background-disabled", tokens.get("form-control-background-disabled"));
+  }
+
+  @include core.form-control-invalid("select");
+}

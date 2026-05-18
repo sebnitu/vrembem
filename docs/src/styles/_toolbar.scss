@@ -5,7 +5,8 @@
   position: sticky;
   z-index: 4;
   top: -1px;
-  display: block;
+  display: flex;
+  align-items: center;
   padding: tokens.get("layout", "padding");
   border-top: 1px solid tokens.get("border-color");
   border-bottom: 1px solid tokens.get("border-color");
