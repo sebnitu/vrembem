@@ -1,13 +1,11 @@
 @use "@vrembem/core/tokens";
 
 .menu_minimal {
-  @include tokens.override(
-    "menu",
-    (
-      "gap": 0,
-      "size": tokens.get("font-size-sm")
-    )
-  );
+  @include tokens.override("menu", "size", tokens.get("font-size-sm"));
+
+  .menu {
+    @include tokens.override("menu", "size", 1em);
+  }
 
   .menu__action {
     &::before {
