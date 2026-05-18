@@ -3,6 +3,7 @@ title: Input
 description: "A component for displaying form input elements."
 package: "@vrembem/input"
 category: form-control
+order: 2
 ---
 
 import ReferenceBar from "@/components/ReferenceBar.astro";
@@ -90,15 +91,30 @@ Adding the boolean `readonly` attribute to the input will provide visual indicat
   ```
 </CodeExample>
 
+### Textarea
+
+Apply the `input` class to a `<textarea>` element to apply styles with textarea specific properties. use the `rows` attribute to adjust the initial height.
+
+<CodeExample>
+  <Fragment slot="output">
+    <textarea class="input" rows="3">Leave a comment...</textarea>
+  </Fragment>
+  ```html
+  <textarea class="input" rows="3">...</textarea>
+  ```
+</CodeExample>
+
 ### Invalid
 
 Adding the `is-invalid` class or `aria-invalid="true"` attribute to the input will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
 
 <CodeExample>
-  <Fragment slot="output">
+  <div slot="output" class="spacing">
     <input class="input is-invalid" type="text" value="Invalid input..." />
-  </Fragment>
+    <textarea class="input is-invalid" rows="3">Invalid textarea...</textarea>
+  </div>
   ```html
   <input class="input is-invalid" type="text" value="Invalid input..." />
+  <textarea class="input is-invalid" rows="3">...</textarea>
   ```
 </CodeExample>
