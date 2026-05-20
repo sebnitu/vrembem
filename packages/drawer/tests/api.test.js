@@ -27,7 +27,7 @@ const markupInitState = `
   <div id="drawer-2" class="drawer is-opened">
     <div class="drawer__dialog">...</div>
   </div>
-  <div id="drawer-3" class="drawer drawer_modal is-opened">
+  <div id="drawer-3" class="drawer drawer--modal is-opened">
     <div class="drawer__dialog">...</div>
   </div>
   <div id="drawer-4" class="drawer">

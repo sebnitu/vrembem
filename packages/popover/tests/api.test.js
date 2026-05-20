@@ -9,7 +9,7 @@ const markup = `
   <button aria-controls="fdsa">...</button>
   <div id="fdsa" class="popover">...</div>
   <button aria-describedby="tooltip">...</button>
-  <div id="tooltip" class="popover popover_tooltip">...</div>
+  <div id="tooltip" class="popover popover--tooltip">...</div>
 `;
 
 describe("mount() & unmount()", () => {

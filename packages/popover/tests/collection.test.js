@@ -10,7 +10,7 @@ const markup = `
       ...
     </div>
     <button id="tooltip-trigger" aria-describedby="tooltip">...</button>
-    <div id="tooltip" class="popover popover_tooltip">
+    <div id="tooltip" class="popover popover--tooltip">
       ...
     </div>
     <button id="fdsa-trigger" aria-controls="fdsa">...</button>

@@ -27,7 +27,7 @@
   @include meta.load-css("./badge");
   @include meta.load-css("./box");
   @include meta.load-css("./brand");
-  @include meta.load-css("./card_reference");
+  @include meta.load-css("./card--reference");
   @include meta.load-css("./code-block");
   @include meta.load-css("./code-example");
   @include meta.load-css("./compare");
@@ -35,13 +35,13 @@
   @include meta.load-css("./fold-shadow");
   @include meta.load-css("./footnotes");
   @include meta.load-css("./heading-anchor");
-  @include meta.load-css("./icon_external");
+  @include meta.load-css("./icon--external");
   @include meta.load-css("./layout-demo");
-  @include meta.load-css("./list_prog");
-  @include meta.load-css("./menu_collection");
-  @include meta.load-css("./menu_minimal");
+  @include meta.load-css("./list--prog");
+  @include meta.load-css("./menu--collection");
+  @include meta.load-css("./menu--minimal");
   @include meta.load-css("./pagi");
-  @include meta.load-css("./popover_copy");
+  @include meta.load-css("./popover--copy");
   @include meta.load-css("./reference-bar");
   @include meta.load-css("./reference-table");
   @include meta.load-css("./skip-link");

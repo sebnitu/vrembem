@@ -13,7 +13,7 @@ function classes(entry: NaviLink) {
 }
 ---
 
-<ul class={`menu menu_collection ${nested ? "is-nested" : ""}`.trim()}>
+<ul class={`menu menu--collection ${nested ? "is-nested" : ""}`.trim()}>
   {
     tree.map((entry) =>
       "link" in entry ? (

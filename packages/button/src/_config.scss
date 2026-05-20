@@ -6,11 +6,11 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Toggle for outputting button_block modifier breakpoint variants
+  // Toggle for outputting button--block modifier breakpoint variants
   // @type boolean
   "button-block-breakpoints": true,
 
-  // Map for outputting button_color_[key] modifier variants
+  // Map for outputting button--color-[key] modifier variants
   // @type map
   "button-color": (
     "primary": tokens.get("palette", "primary"),
@@ -19,7 +19,7 @@ $default: (
     "important": tokens.get("palette", "important")
   ),
 
-  // Map for outputting button_size_[key] modifier variants
+  // Map for outputting button--size-[key] modifier variants
   // @type map
   "button-size": (
     "breakpoints": true,

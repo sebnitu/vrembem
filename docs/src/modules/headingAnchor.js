@@ -6,7 +6,7 @@ const config = {
 };
 
 const svg = feather.icons.hash.toSvg({
-  class: "icon icon_size_sm",
+  class: "icon icon--size-sm",
   role: "img"
 });
 

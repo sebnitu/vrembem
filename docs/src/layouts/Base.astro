@@ -45,7 +45,7 @@ if (layout.hasAside) layoutClasses.push("has-aside");
             <Drawer
               id="main-aside"
               breakpoint="aside"
-              classes="drawer_switch main__aside"
+              classes="drawer--switch main__aside"
             >
               <slot name="aside" />
             </Drawer>
@@ -58,7 +58,7 @@ if (layout.hasAside) layoutClasses.push("has-aside");
                 <Popover
                   id="on-this-page-menu"
                   aria-label="Open on this page menu"
-                  triggerClass="button button_icon"
+                  triggerClass="button button--icon"
                   tooltipClass="text-nowrap"
                   placement="bottom-end"
                   data-drawer-open="main-aside"

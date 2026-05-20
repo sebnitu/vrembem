@@ -52,65 +52,8 @@ html {
  * These are styles used specifically in code example blocks
  */
 
-// Source: sass-utilities.mdx ## focus-ring-color
-
-@include tokens.register("focus-ring-example");
-
-.focus-ring-example {
-  @include core.focus-ring-base;
-  @include core.focus-ring-color(pink);
-
-  &:hover {
-    @include core.focus-ring-color(green, 80%);
-  }
-}
-
-// Source: sass-utilities.mdx ## svg
-
-.svg-icon {
-  @include core.size(1rem);
-
-  display: inline-block;
-  background-color: salmon;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: 100%;
-
-  &.svg-check {
-    mask-image: url(core.svg("check"));
-  }
-
-  &.svg-chevron {
-    mask-image: url(core.svg("chevron"));
-  }
-
-  &.svg-expand {
-    mask-image: url(core.svg("expand"));
-  }
-
-  &.svg-plus {
-    mask-image: url(core.svg("+"));
-  }
-
-  &.svg-minus {
-    mask-image: url(core.svg("-"));
-  }
-
-  &.svg-alert {
-    mask-image: url(core.svg("!"));
-  }
-
-  &.svg-help {
-    mask-image: url(core.svg("?"));
-  }
-
-  &.svg-x {
-    mask-image: url(core.svg("x"));
-  }
-}
-
 // Source: button.mdx
 
-.button_color_custom {
+.button--color-custom {
   @include button.variant(salmon);
 }

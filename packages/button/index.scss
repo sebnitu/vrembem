@@ -4,8 +4,8 @@
 
 @layer components {
   @include meta.load-css("./src/button");
-  @include meta.load-css("./src/button_block");
-  @include meta.load-css("./src/button_color");
-  @include meta.load-css("./src/button_icon");
-  @include meta.load-css("./src/button_size");
+  @include meta.load-css("./src/button--block");
+  @include meta.load-css("./src/button--color");
+  @include meta.load-css("./src/button--icon");
+  @include meta.load-css("./src/button--size");
 }

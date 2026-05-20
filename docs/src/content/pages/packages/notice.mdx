@@ -80,8 +80,8 @@ For cases where a notice message should be displayed alongside an icon or image,
 
 <CodeExample>
   <div slot="output" class="spacing">
-    <div class="notice notice_color_important">
-      <div class="flex flex_wrap_no">
+    <div class="notice notice--color-important">
+      <div class="flex flex--wrap-no">
         <div class="flex-item-none">
           <Icon name="alert-triangle" />
         </div>
@@ -90,8 +90,8 @@ For cases where a notice message should be displayed alongside an icon or image,
         </div>
       </div>
     </div>
-    <div class="notice notice_color_secondary">
-      <div class="flex flex_wrap_no">
+    <div class="notice notice--color-secondary">
+      <div class="flex flex--wrap-no">
         <div class="flex-item-auto">
           This is an example notice using the flex component for layout.
         </div>
@@ -103,7 +103,7 @@ For cases where a notice message should be displayed alongside an icon or image,
   </div>
   ```html
   <div class="notice">
-    <div class="flex flex_wrap_no">
+    <div class="flex flex--wrap-no">
       <div class="flex-item-none">
         ...
       </div>
@@ -124,8 +124,8 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
     <div class="notice margin-bottom">
       <div class="flex justify-content-between align-items-center">
         <p>This is an example notice with a dismiss button.</p>
-        <button class="button button_icon button_size_sm" aria-label="Dismiss this notice" data-dismiss=".notice">
-          <Icon name="x" classes="icon_size_sm" />
+        <button class="button button--icon button--size-sm" aria-label="Dismiss this notice" data-dismiss=".notice">
+          <Icon name="x" classes="icon--size-sm" />
         </button>
       </div>
     </div>
@@ -137,7 +137,7 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
       <div class="flex justify-content-between">
         <p>...</p>
         <button 
-          class="button button_icon button_size_sm" 
+          class="button button--icon button--size-sm" 
           aria-label="Dismiss this notice" 
           data-dismiss=".notice"
         >
@@ -167,27 +167,27 @@ It's a common pattern to allow users to dismiss notices. This can be accomplishe
   </TabsPanel>
 </CodeExample>
 
-## notice_color_[key]
+## notice--color-[key]
 
 Applies a color theme to the notice, useful for conveying different states such as success, info, or error. These modifiers are generated using the palette theme tokens.
 
 <CodeExample>
   <div slot="output" class="spacing">
-    <div class="notice notice_color_primary">
+    <div class="notice notice--color-primary">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
-    <div class="notice notice_color_secondary">
+    <div class="notice notice--color-secondary">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
-    <div class="notice notice_color_neutral">
+    <div class="notice notice--color-neutral">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
-    <div class="notice notice_color_important">
+    <div class="notice notice--color-important">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero est, fermentum ac risus et.</p>
     </div>
   </div>
   ```html
-  <div class="notice notice_color_important">
+  <div class="notice notice--color-important">
     <p>An error has occurred!</p>
   </div>
   ```
@@ -195,7 +195,7 @@ Applies a color theme to the notice, useful for conveying different states such 
 
 **Available variants**
 
-- `notice_color_primary`
-- `notice_color_secondary`
-- `notice_color_neutral`
-- `notice_color_important`
+- `notice--color-primary`
+- `notice--color-secondary`
+- `notice--color-neutral`
+- `notice--color-important`

@@ -3,10 +3,10 @@
 
 @layer components {
   @include meta.load-css("./src/grid");
-  @include meta.load-css("./src/grid_cols");
-  @include meta.load-css("./src/grid_rows");
-  @include meta.load-css("./src/grid_gap");
-  @include meta.load-css("./src/grid_flow");
+  @include meta.load-css("./src/grid--cols");
+  @include meta.load-css("./src/grid--rows");
+  @include meta.load-css("./src/grid--gap");
+  @include meta.load-css("./src/grid--flow");
   @include meta.load-css("./src/grid-col");
   @include meta.load-css("./src/grid-row");
 }

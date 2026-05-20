@@ -8,7 +8,7 @@
   justify-content: space-between;
   color: tokens.get("foreground-strong");
 
-  .link_hash {
+  .link--hash {
     display: flex;
     gap: tokens.get("spacing-sm");
     align-items: center;

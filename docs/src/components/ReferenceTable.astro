@@ -90,7 +90,7 @@ function iconMap(value: string) {
 
 <div
   id={tableId}
-  class=`reference-table${expandable ? " reference-table_expandable" : ""}`
+  class=`reference-table${expandable ? " reference-table--expandable" : ""}`
   data-config={JSON.stringify({ filter, expandable })}
 >
   {
@@ -105,22 +105,22 @@ function iconMap(value: string) {
             placeholder="Filter..."
           />
           <label class="input-icon" for={`${tableId}-filter`}>
-            <Icon name="eye" classes="icon_size_sm" />
+            <Icon name="eye" classes="icon--size-sm" />
             <span class="sr-only">Type to filter the reference table.</span>
           </label>
           <button
-            class="button button_icon input-clear display-none"
+            class="button button--icon input-clear display-none"
             type="button"
             data-clear={`${tableId}-filter`}
           >
-            <Icon name="x" classes="icon_size_sm" />
+            <Icon name="x" classes="icon--size-sm" />
           </button>
         </div>
       </div>
     )
   }
   <table
-    class="table sm:table_mobile"
+    class="table sm:table--mobile"
     style={`--vb-table-mobile-label-width: ${labelWidth}`}
   >
     <colgroup>
@@ -143,14 +143,14 @@ function iconMap(value: string) {
                 href={`#${cleanAppend(key)}`}
                 aria-label={`Permalink to '${key}'`}
               >
-                <Icon name="hash" classes="icon_size_sm" />
+                <Icon name="hash" classes="icon--size-sm" />
               </a>
               <button
                 class="table-anchor-clear"
                 type="button"
                 aria-label="Clear current hash anchor"
               >
-                <Icon name="x" classes="icon_size_sm" />
+                <Icon name="x" classes="icon--size-sm" />
               </button>
               <CodeBlock inline={key} />
             </td>
@@ -158,12 +158,12 @@ function iconMap(value: string) {
               {typeof value === "string"
                 ? value && <CodeBlock inline={linkifyValue(value)} />
                 : Object.entries(value).map(([themeKey, themeValue]) => (
-                    <div class="flex flex_wrap_no gap-0 align-items-center">
+                    <div class="flex flex--wrap-no gap-0 align-items-center">
                       <Popover triggerClass="foreground-subtle flex padding-y-sm margin-left-sm">
                         <Fragment slot="trigger">
                           <Icon
                             name={iconMap(themeKey)}
-                            classes="icon_size_sm"
+                            classes="icon--size-sm"
                           />
                         </Fragment>
                         <Fragment slot="tooltip">
@@ -179,9 +179,9 @@ function iconMap(value: string) {
       }
     </tbody>
   </table>
-  <div class="notice notice_color_important display-none">
+  <div class="notice notice--color-important display-none">
     <div class="flex align-items-center">
-      <Icon name="alert-triangle" classes="icon_size_sm" />
+      <Icon name="alert-triangle" classes="icon--size-sm" />
       <p>There are no variables that match your search.</p>
     </div>
   </div>
@@ -189,7 +189,7 @@ function iconMap(value: string) {
     expandable && (
       <div class="reference-table__footer">
         <button
-          class="button button_color_primary button_size_sm reference-table__toggle"
+          class="button button--color-primary button--size-sm reference-table__toggle"
           type="button"
         >
           Expand

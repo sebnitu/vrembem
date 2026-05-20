@@ -67,23 +67,23 @@ beforeEach(() => {
 
 test("should switch drawer to modal when entry.mode property is set to modal", async () => {
   const entry = drawers.get("drawer-1");
-  expect(entry.el).not.toHaveClass("drawer_modal");
+  expect(entry.el).not.toHaveClass("drawer--modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe(null);
 
   entry.mode = "modal";
 
-  expect(entry.el).toHaveClass("drawer_modal");
+  expect(entry.el).toHaveClass("drawer--modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 });
 
 test("should switch drawer to inline when entry.mode property is set to inline", async () => {
   const entry = drawers.get("drawer-1");
-  expect(entry.el).toHaveClass("drawer_modal");
+  expect(entry.el).toHaveClass("drawer--modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 
   entry.mode = "inline";
 
-  expect(entry.el).not.toHaveClass("drawer_modal");
+  expect(entry.el).not.toHaveClass("drawer--modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe(null);
 });
 

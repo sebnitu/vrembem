@@ -4,6 +4,6 @@
 
 @layer components {
   @include meta.load-css("./src/icon");
-  @include meta.load-css("./src/icon_size");
-  @include meta.load-css("./src/icon_style");
+  @include meta.load-css("./src/icon--size");
+  @include meta.load-css("./src/icon--style");
 }

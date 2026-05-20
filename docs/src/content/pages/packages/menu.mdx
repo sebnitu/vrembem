@@ -31,11 +31,11 @@ Menu comes with the following Sass configuration options that can be set using e
 ```scss
 @use "@vrembem/menu" with (
   $config: (
-    // Toggle for outputting menu_inline modifier breakpoint variants
+    // Toggle for outputting menu--inline modifier breakpoint variants
     // @type boolean
     "menu-inline-breakpoints": true,
 
-    // Toggle for outputting menu_full modifier breakpoint variants
+    // Toggle for outputting menu--full modifier breakpoint variants
     // @type boolean
     "menu-full-breakpoints": true
   )
@@ -130,14 +130,14 @@ Use the `flex-grow` utility class to wrap text inside the `menu__action` element
   ```
 </CodeExample>
 
-For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button_icon` modifier.
+For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button--icon` modifier.
 
 <CodeExample>
   <Fragment slot="output">
     <Menu name="browser" />
   </Fragment>
   ```html
-  <ul class="menu menu_inline">
+  <ul class="menu menu--inline">
     <li class="menu__item">
       <button class="menu__action menu__action_icon">
         ...
@@ -154,7 +154,7 @@ Adding the `is-active` class will provide visual indication that the action is c
 
 <CodeExample>
   <Fragment slot="output">
-    <ul class="menu menu_inline">
+    <ul class="menu menu--inline">
       <li class="menu__item">
         <button class="menu__action is-active" disabled>One</button>
       </li>
@@ -167,7 +167,7 @@ Adding the `is-active` class will provide visual indication that the action is c
     </ul>
   </Fragment>
   ```html
-  <ul class="menu menu_inline">
+  <ul class="menu menu--inline">
     <li class="menu__item">
       <button class="menu__action is-active" disabled>
         ...
@@ -184,7 +184,7 @@ Adding the boolean `disabled` attribute will provide visual indication that the 
 
 <CodeExample>
   <Fragment slot="output">
-    <ul class="menu menu_inline">
+    <ul class="menu menu--inline">
       <li class="menu__item">
         <button class="menu__action" disabled>One</button>
       </li>
@@ -197,7 +197,7 @@ Adding the boolean `disabled` attribute will provide visual indication that the 
     </ul>
   </Fragment>
   ```html
-  <ul class="menu menu_inline">
+  <ul class="menu menu--inline">
     <li class="menu__item">
       <button class="menu__action" disabled>
         ...
@@ -208,16 +208,16 @@ Adding the boolean `disabled` attribute will provide visual indication that the 
   ```
 </CodeExample>
 
-## menu_inline
+## menu--inline
 
 Used to apply horizontal menu styles. This is typically used for short menus or toolbars where vertical space can be saved.
 
 <CodeExample>
   <Fragment slot="output">
-    <Menu name="crud" classes="menu_inline" />
+    <Menu name="crud" classes="menu--inline" />
   </Fragment>
   ```html
-  <ul class="menu menu_inline">...</ul>
+  <ul class="menu menu--inline">...</ul>
   ```
 </CodeExample>
 
@@ -229,40 +229,40 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-menu-inline-select">Variants Demo:</label>
     <select id="demo-menu-inline-select" class="select font-size-sm width-auto" data-demo-target="demo-menu-inline">
-      <option value="xs:menu_inline">xs:menu_inline</option>
-      <option value="sm:menu_inline">sm:menu_inline</option>
-      <option value="md:menu_inline">md:menu_inline</option>
-      <option value="lg:menu_inline">lg:menu_inline</option>
-      <option value="xl:menu_inline">xl:menu_inline</option>
+      <option value="xs:menu--inline">xs:menu--inline</option>
+      <option value="sm:menu--inline">sm:menu--inline</option>
+      <option value="md:menu--inline">md:menu--inline</option>
+      <option value="lg:menu--inline">lg:menu--inline</option>
+      <option value="xl:menu--inline">xl:menu--inline</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <Menu id="demo-menu-inline" name="crud" classes="lg:menu_inline" />
+    <Menu id="demo-menu-inline" name="crud" classes="lg:menu--inline" />
   </div>
   ```html
-  <ul class="menu lg:menu_inline">...</ul>
+  <ul class="menu lg:menu--inline">...</ul>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `xs:menu_inline`
-- `sm:menu_inline`
-- `md:menu_inline`
-- `lg:menu_inline`
-- `xl:menu_inline`
+- `xs:menu--inline`
+- `sm:menu--inline`
+- `md:menu--inline`
+- `lg:menu--inline`
+- `xl:menu--inline`
 
-## menu_full
+## menu--full
 
-Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu_inline` modifier as the default styles of a vertical menu already fill the full width of their container.
+Used to span a horizontal menu to fill the full width of its container. This modifier is meant to be paired with the `menu--inline` modifier as the default styles of a vertical menu already fill the full width of their container.
 
 <CodeExample>
   <div slot="output" class="spacing">
-    <Menu name="crud" classes="menu_inline menu_full" />
+    <Menu name="crud" classes="menu--inline menu--full" />
   </div>
   ```html
-  <ul class="menu menu_inline menu_full">...</ul>
+  <ul class="menu menu--inline menu--full">...</ul>
   ```
 </CodeExample>
 
@@ -274,26 +274,26 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-menu-full-select">Variants Demo:</label>
     <select id="demo-menu-full-select" class="select font-size-sm width-auto" data-demo-target="demo-menu-full">
-      <option value="xs:menu_full">xs:menu_full</option>
-      <option value="sm:menu_full">sm:menu_full</option>
-      <option value="md:menu_full">md:menu_full</option>
-      <option value="lg:menu_full">lg:menu_full</option>
-      <option value="xl:menu_full">xl:menu_full</option>
+      <option value="xs:menu--full">xs:menu--full</option>
+      <option value="sm:menu--full">sm:menu--full</option>
+      <option value="md:menu--full">md:menu--full</option>
+      <option value="lg:menu--full">lg:menu--full</option>
+      <option value="xl:menu--full">xl:menu--full</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <Menu id="demo-menu-full" name="crud" classes="menu_inline lg:menu_full" />
+    <Menu id="demo-menu-full" name="crud" classes="menu--inline lg:menu--full" />
   </div>
   ```html
-  <ul class="menu menu_inline lg:menu_full">...</ul>
+  <ul class="menu menu--inline lg:menu--full">...</ul>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `xs:menu_full`
-- `sm:menu_full`
-- `md:menu_full`
-- `lg:menu_full`
-- `xl:menu_full`
+- `xs:menu--full`
+- `sm:menu--full`
+- `md:menu--full`
+- `lg:menu--full`
+- `xl:menu--full`

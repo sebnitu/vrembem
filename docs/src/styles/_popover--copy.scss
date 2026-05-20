@@ -1,6 +1,6 @@
 @use "@vrembem/core/tokens";
 
-.popover_copy {
+.popover--copy {
   @include tokens.override(
     "popover",
     (

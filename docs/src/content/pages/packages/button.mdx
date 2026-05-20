@@ -33,11 +33,11 @@ Button comes with the following Sass configuration options that can be set using
 ```scss
 @use "@vrembem/button" with (
   $config: (
-    // Toggle for outputting button_block modifier breakpoint variants
+    // Toggle for outputting button--block modifier breakpoint variants
     // @type boolean
     "button-block-breakpoints": true,
 
-    // Map for outputting button_color_[key] modifier variants
+    // Map for outputting button--color-[key] modifier variants
     // @type map
     "button-color": (
       "primary": tokens.get("palette", "primary"),
@@ -46,7 +46,7 @@ Button comes with the following Sass configuration options that can be set using
       "important": tokens.get("palette", "important")
     ),
 
-    // Map for outputting button_size_[key] modifier variants
+    // Map for outputting button--size-[key] modifier variants
     // @type map
     "button-size": (
       "breakpoints": true,
@@ -125,14 +125,14 @@ Elements within a button are centered vertically and spaced accordingly using th
 <CodeExample>
   <Fragment slot="output">
     <button class="button">
-      <Icon name="anchor" classes="icon_size_sm" />
+      <Icon name="anchor" classes="icon--size-sm" />
       <span>Button</span>
       <span class="arrow"></span>
     </button>
   </Fragment>
   ```html
   <button class="button">
-    <svg class="icon icon_size_sm">...</svg>
+    <svg class="icon icon--size-sm">...</svg>
     <span>Button</span>
     <span class="arrow"></span>
   </button>
@@ -167,16 +167,16 @@ Buttons can also be given a loading state by adding the `is-loading` state class
 
 Keep in mind that the `is-loading` state class will not work on `<input type="button">` since it uses the `::after` pseudo-element to display the loading spinner.
 
-## button_block
+## button--block
 
 Modifier that gives buttons a "block" appearance so that it spans the full width of its container.
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_block">Button</button>
+    <button class="button button--block">Button</button>
   </Fragment>
   ```html
-  <button class="button button_block">Button</button>
+  <button class="button button--block">Button</button>
   ```
 </CodeExample>
 
@@ -188,95 +188,95 @@ These modifiers come with media breakpoint variants. This allows changing styles
   <Fragment slot="demo">
     <label class="text-nowrap" for="demo-button-block-select">Variants Demo:</label>
     <select id="demo-button-block-select" class="select font-size-sm width-auto" data-demo-target="demo-button-block">
-      <option value="xs:button_block">xs:button_block</option>
-      <option value="sm:button_block">sm:button_block</option>
-      <option value="md:button_block">md:button_block</option>
-      <option value="lg:button_block">lg:button_block</option>
-      <option value="xl:button_block">xl:button_block</option>
+      <option value="xs:button--block">xs:button--block</option>
+      <option value="sm:button--block">sm:button--block</option>
+      <option value="md:button--block">md:button--block</option>
+      <option value="lg:button--block">lg:button--block</option>
+      <option value="xl:button--block">xl:button--block</option>
     </select>
   </Fragment>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <button id="demo-button-block" class="button lg:button_block">Button</button>
+    <button id="demo-button-block" class="button lg:button--block">Button</button>
   </div>
   ```html
-  <button class="button lg:button_block">Button</button>
+  <button class="button lg:button--block">Button</button>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `xs:button_block`
-- `sm:button_block`
-- `md:button_block`
-- `lg:button_block`
-- `xl:button_block`
+- `xs:button--block`
+- `sm:button--block`
+- `md:button--block`
+- `lg:button--block`
+- `xl:button--block`
 
-## button_color_[key]
+## button--color-[key]
 
 Modifiers for changing the look and feel of a button. These are usually done with different background and text colors. These modifiers are generated using key/value pairs of the `button-color` config options map. The values set in `button-color` are passed directly to the [`button-variant`](#button-variant) mixin.
 
 <CodeExample>
   <div slot="output" class="flex">
-    <button class="button button_color_primary">Button</button>
-    <button class="button button_color_secondary">Button</button>
-    <button class="button button_color_neutral">Button</button>
-    <button class="button button_color_important">Button</button>
+    <button class="button button--color-primary">Button</button>
+    <button class="button button--color-secondary">Button</button>
+    <button class="button button--color-neutral">Button</button>
+    <button class="button button--color-important">Button</button>
   </div>
   ```html
-  <button class="button button_color_primary">Button</button>
-  <button class="button button_color_secondary">Button</button>
-  <button class="button button_color_neutral">Button</button>
-  <button class="button button_color_important">Button</button>
+  <button class="button button--color-primary">Button</button>
+  <button class="button button--color-secondary">Button</button>
+  <button class="button button--color-neutral">Button</button>
+  <button class="button button--color-important">Button</button>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `button_color_primary`
-- `button_color_secondary`
-- `button_color_neutral`
-- `button_color_important`
+- `button--color-primary`
+- `button--color-secondary`
+- `button--color-neutral`
+- `button--color-important`
 
-## button_icon
+## button--icon
 
 Adds styles that make icon-only buttons have equal padding. This will result in a square button if the icon used also has an equal width and height.
 
 <CodeExample>
   <div slot="output">
-    <button class="button button_icon">
+    <button class="button button--icon">
       <Icon name="anchor" />
     </button>
   </div>
   ```html
-  <button class="button button_icon">
+  <button class="button button--icon">
     <svg class="icon">...</svg>
   </button>
   ```
 </CodeExample>
 
-## button_size_[key]
+## button--size-[key]
 
 Adjust the size of a button by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `button-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex align-items-center">
-    <button class="button button_size_sm">Button</button>
-    <button class="button button_size_md">Button</button>
-    <button class="button button_size_lg">Button</button>
+    <button class="button button--size-sm">Button</button>
+    <button class="button button--size-md">Button</button>
+    <button class="button button--size-lg">Button</button>
   </div>
   ```html
-  <button class="button button_size_sm">Button</button>
-  <button class="button button_size_md">Button</button>
-  <button class="button button_size_lg">Button</button>
+  <button class="button button--size-sm">Button</button>
+  <button class="button button--size-md">Button</button>
+  <button class="button button--size-lg">Button</button>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `button_size_sm`
-- `button_size_md`
-- `button_size_lg`
+- `button--size-sm`
+- `button--size-md`
+- `button--size-lg`
 
 ### Breakpoint variants
 
@@ -285,7 +285,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <button class="button button_size_sm lg:button_size_md xl:button_size_lg">
+    <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
       <span>Button</span>
       <span class="badge lg:display-none">size_sm</span>
       <span class="badge display-none lg:display-block xl:display-none">size_md</span>
@@ -293,7 +293,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
     </button>
   </div>
   ```html
-  <button class="button button_size_sm lg:button_size_md xl:button_size_lg">
+  <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
     Button
   </button>
   ```
@@ -301,8 +301,8 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 **Available variants**
 
-- `xs:button_size_[key]`
-- `sm:button_size_[key]`
-- `md:button_size_[key]`
-- `lg:button_size_[key]`
-- `xl:button_size_[key]`
+- `xs:button--size-[key]`
+- `sm:button--size-[key]`
+- `md:button--size-[key]`
+- `lg:button--size-[key]`
+- `xl:button--size-[key]`

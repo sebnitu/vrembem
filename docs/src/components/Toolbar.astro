@@ -16,14 +16,14 @@ const { layout } = Astro.props;
     <div class="toolbar">
       {layout.hasSidebar && (
         <button data-drawer-open="layout-sidebar" class="button">
-          <Icon name="sidebar" classes="icon_size_sm" />
+          <Icon name="sidebar" classes="icon--size-sm" />
           <span class="text-capitalize">Sidebar</span>
         </button>
       )}
       {layout.hasAside && (
         <button data-drawer-open="main-aside" class="button margin-left-auto">
           <span>On this page</span>
-          <Icon name="map-pin" classes="icon_size_sm" />
+          <Icon name="map-pin" classes="icon--size-sm" />
         </button>
       )}
     </div>

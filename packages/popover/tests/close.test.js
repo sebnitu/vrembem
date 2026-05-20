@@ -10,7 +10,7 @@ const markup = `
   <button aria-controls="fdsa">...</button>
   <div id="fdsa" class="popover is-active">...</div>
   <span aria-describedby="afsd">...</span>
-  <div id="afsd" class="popover popover_tooltip is-active" role="tooltip">...</div>
+  <div id="afsd" class="popover popover--tooltip is-active" role="tooltip">...</div>
 `;
 
 describe("close()", () => {

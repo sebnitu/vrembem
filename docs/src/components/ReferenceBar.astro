@@ -61,7 +61,7 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
   {
     hash && (
       <a
-        class="link link_hash"
+        class="link link--hash"
         href={`#${hash.target}`}
         data-target={hash.target}
         data-event={hash.event}
@@ -74,7 +74,7 @@ const { type, defaults, returns, selector, hash, readonly } = Astro.props;
 </div>
 
 <script>
-  const links = document.querySelectorAll(".link_hash");
+  const links = document.querySelectorAll(".link--hash");
   links.forEach((link: HTMLAnchorElement) => {
     link.addEventListener("click", () => {
       // Guard if a target was not provided

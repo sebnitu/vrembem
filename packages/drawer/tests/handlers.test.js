@@ -117,7 +117,7 @@ test("should close modal drawer when pressing the escape key", async () => {
   await vi.runAllTimers();
 
   expect(entry.mode).toBe("modal");
-  expect(entry.el).toHaveClass("drawer_modal");
+  expect(entry.el).toHaveClass("drawer--modal");
   expect(entry.dialog.getAttribute("aria-modal")).toBe("true");
 
   expect(entry.state).toBe("closed");

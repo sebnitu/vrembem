@@ -132,7 +132,7 @@ Modal comes with the following Sass configuration options that can be set using 
     // @type map
     "modal-dialog-override": (),
 
-    // Map for outputting modal_size_[key] modifier variants
+    // Map for outputting modal--size-[key] modifier variants
     // @type map
     "modal-size": (
       "default": 36em,
@@ -210,7 +210,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
           <p id="modal-2-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
         </div>
         <div class="dialog__footer">
-          <button class="button button_color_primary" data-modal-close="">Confirm</button>
+          <button class="button button--color-primary" data-modal-close="">Confirm</button>
           <button class="button" data-modal-close="">Cancel</button>
         </div>
       </div>
@@ -316,7 +316,7 @@ Required modals are modals that need an explicit action to be closed. That means
           <h2 class="dialog__title" id="modal-5-title">Required modal</h2>
           <p id="modal-5-description">Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
           <div class="flex flex-gap-x justify-content-end margin-top-lg">
-            <button class="button button_color_primary" data-modal-close="">I understand</button>
+            <button class="button button--color-primary" data-modal-close="">I understand</button>
             <button class="button" data-modal-close="">Cancel</button>
           </div>
         </div>
@@ -370,14 +370,14 @@ Here's an example where we set the `<main>` content area to be inaccessible whil
   ```
 </CodeExample>
 
-## modal_full
+## modal--full
 
 Modifier that adds styles to a modal to make it fill the entire viewport when opened.
 
 <CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-6">Open</button>
-    <div id="modal-6" class="modal modal_full">
+    <div id="modal-6" class="modal modal--full">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-6-title">
         <div class="dialog__header">
           <h2 class="dialog__title" id="modal-6-title">Full modal</h2>
@@ -387,18 +387,18 @@ Modifier that adds styles to a modal to make it fill the entire viewport when op
           <p>This modal should fill the entire viewport when opened.</p>
         </div>
         <div class="dialog__footer">
-          <button class="button button_color_primary" data-modal-close="">Accept</button>
+          <button class="button button--color-primary" data-modal-close="">Accept</button>
           <button class="button" data-modal-close="">Cancel</button>
         </div>
       </div>
     </div>
   </Fragment>
   ```html
-  <div id="[unique-id]" class="modal modal_full">...</div>
+  <div id="[unique-id]" class="modal modal--full">...</div>
   ```
 </CodeExample>
 
-## modal_pos_[key]
+## modal--pos-[key]
 
 The default modal position is centered in the viewport. The position modifier allows positioning a modal to the top, bottom, left or right side of the document viewport instead.
 
@@ -407,134 +407,134 @@ The default modal position is centered in the viewport. The position modifier al
     <ul class="list">
       <li>
         <button class="link" data-modal-open="modal-pos-top">
-          modal_pos_top
+          modal--pos-top
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-pos-right">
-          modal_pos_right
+          modal--pos-right
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-pos-bottom">
-          modal_pos_bottom
+          modal--pos-bottom
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-pos-left">
-          modal_pos_left
+          modal--pos-left
         </button>
       </li>
     </ul>
-    <div id="modal-pos-top" class="modal modal_pos_top">
+    <div id="modal-pos-top" class="modal modal--pos-top">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>modal_pos_top</p>
+             <p>modal--pos-top</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
-            modal_pos_left
+            modal--pos-left
           </button>
           <button class="link" data-modal-open="modal-pos-bottom">
-            modal_pos_bottom
+            modal--pos-bottom
           </button>
           <button class="link" data-modal-open="modal-pos-right">
-            modal_pos_right
+            modal--pos-right
           </button>
         </div>
       </div>
     </div>
-    <div id="modal-pos-left" class="modal modal_pos_left">
+    <div id="modal-pos-left" class="modal modal--pos-left">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>modal_pos_left</p>
+             <p>modal--pos-left</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-top">
-            modal_pos_top
+            modal--pos-top
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-right">
-            modal_pos_right
+            modal--pos-right
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
-            modal_pos_bottom
+            modal--pos-bottom
           </button>
         </div>
       </div>
     </div>
-    <div id="modal-pos-right" class="modal modal_pos_right">
+    <div id="modal-pos-right" class="modal modal--pos-right">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>modal_pos_right</p>
+             <p>modal--pos-right</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-top">
-            modal_pos_top
+            modal--pos-top
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-left">
-            modal_pos_left
+            modal--pos-left
           </button>
         </div>
         <div class="dialog__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
-            modal_pos_bottom
+            modal--pos-bottom
           </button>
         </div>
       </div>
     </div>
-    <div id="modal-pos-bottom" class="modal modal_pos_bottom">
+    <div id="modal-pos-bottom" class="modal modal--pos-bottom">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-             <p>modal_pos_bottom</p>
+             <p>modal--pos-bottom</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
         <div class="dialog__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
-            modal_pos_left
+            modal--pos-left
           </button>
           <button class="link" data-modal-open="modal-pos-top">
-            modal_pos_top
+            modal--pos-top
           </button>
           <button class="link" data-modal-open="modal-pos-right">
-            modal_pos_right
+            modal--pos-right
           </button>
         </div>
       </div>
     </div>
   </Fragment>
    ```html
-   <div id="[unique-id]" class="modal modal_pos_top">...</div>
-   <div id="[unique-id]" class="modal modal_pos_left">...</div>
-   <div id="[unique-id]" class="modal modal_pos_right">...</div>
-   <div id="[unique-id]" class="modal modal_pos_bottom">...</div>
+   <div id="[unique-id]" class="modal modal--pos-top">...</div>
+   <div id="[unique-id]" class="modal modal--pos-left">...</div>
+   <div id="[unique-id]" class="modal modal--pos-right">...</div>
+   <div id="[unique-id]" class="modal modal--pos-bottom">...</div>
    ```
 </CodeExample>
 
 **Available variants**
 
-- `modal_pos_top`
-- `modal_pos_left`
-- `modal_pos_right`
-- `modal_pos_bottom`
+- `modal--pos-top`
+- `modal--pos-left`
+- `modal--pos-right`
+- `modal--pos-bottom`
 
-## modal_size_[key]
+## modal--size-[key]
 
 Adjust the size of a modal by increasing or decreasing its width. These modifiers are generated using key/value pairs of the `modal-size` config options map.
 
@@ -543,75 +543,75 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
     <ul class="list">
       <li>
         <button class="link" data-modal-open="modal-size-xs">
-          Open modal_size_xs
+          Open modal--size-xs
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-size-sm">
-          Open modal_size_sm
+          Open modal--size-sm
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-size-md">
-          Open modal_size_md
+          Open modal--size-md
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-size-lg">
-          Open modal_size_lg
+          Open modal--size-lg
         </button>
       </li>
       <li>
         <button class="link" data-modal-open="modal-size-xl">
-          Open modal_size_xl
+          Open modal--size-xl
         </button>
       </li>
     </ul>
-    <div id="modal-size-xs" class="modal modal_size_xs">
+    <div id="modal-size-xs" class="modal modal--size-xs">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-            <p>modal_size_xs</p>
+            <p>modal--size-xs</p>
             <button class="link" data-modal-close="">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <div id="modal-size-sm" class="modal modal_size_sm">
+    <div id="modal-size-sm" class="modal modal--size-sm">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-            <p>modal_size_sm</p>
+            <p>modal--size-sm</p>
             <button class="link" data-modal-close="">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <div id="modal-size-md" class="modal modal_size_md">
+    <div id="modal-size-md" class="modal modal--size-md">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-            <p>modal_size_md</p>
+            <p>modal--size-md</p>
             <button class="link" data-modal-close="">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <div id="modal-size-lg" class="modal modal_size_lg">
+    <div id="modal-size-lg" class="modal modal--size-lg">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-            <p>modal_size_lg</p>
+            <p>modal--size-lg</p>
             <button class="link" data-modal-close="">Close</button>
           </div>
         </div>
       </div>
     </div>
-    <div id="modal-size-xl" class="modal modal_size_xl">
+    <div id="modal-size-xl" class="modal modal--size-xl">
       <div class="modal__dialog dialog" role="dialog" aria-modal="true">
         <div class="dialog__body">
           <div class="flex justify-content-between">
-            <p>modal_size_xl</p>
+            <p>modal--size-xl</p>
             <button class="link" data-modal-close="">Close</button>
           </div>
         </div>
@@ -619,21 +619,21 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
     </div>
   </Fragment>
   ```html
-  <div id="[unique-id]" class="modal modal_size_xs">...</div>
-  <div id="[unique-id]" class="modal modal_size_sm">...</div>
-  <div id="[unique-id]" class="modal modal_size_md">...</div>
-  <div id="[unique-id]" class="modal modal_size_lg">...</div>
-  <div id="[unique-id]" class="modal modal_size_xl">...</div>
+  <div id="[unique-id]" class="modal modal--size-xs">...</div>
+  <div id="[unique-id]" class="modal modal--size-sm">...</div>
+  <div id="[unique-id]" class="modal modal--size-md">...</div>
+  <div id="[unique-id]" class="modal modal--size-lg">...</div>
+  <div id="[unique-id]" class="modal modal--size-xl">...</div>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `modal_size_xs`
-- `modal_size_sm`
-- `modal_size_md`
-- `modal_size_lg`
-- `modal_size_xl`
+- `modal--size-xs`
+- `modal--size-sm`
+- `modal--size-md`
+- `modal--size-lg`
+- `modal--size-xl`
 
 ## Reference
 

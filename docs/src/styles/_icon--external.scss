@@ -1,6 +1,6 @@
 @use "@vrembem/core/tokens";
 
-.icon_external {
+.icon--external {
   position: relative;
   right: -0.25em;
   font-size: 0.75em;
@@ -9,6 +9,6 @@
   transition: transform tokens.get("transition-duration-short") tokens.get("transition-timing-function");
 }
 
-a:hover > .icon_external {
+a:hover > .icon--external {
   transform: translate(2px, -2px);
 }

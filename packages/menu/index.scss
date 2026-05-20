@@ -3,6 +3,6 @@
 
 @layer components {
   @include meta.load-css("./src/menu");
-  @include meta.load-css("./src/menu_full");
-  @include meta.load-css("./src/menu_inline");
+  @include meta.load-css("./src/menu--full");
+  @include meta.load-css("./src/menu--inline");
 }

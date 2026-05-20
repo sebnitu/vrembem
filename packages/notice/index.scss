@@ -3,5 +3,5 @@
 
 @layer components {
   @include meta.load-css("./src/notice");
-  @include meta.load-css("./src/notice_color");
+  @include meta.load-css("./src/notice--color");
 }

@@ -48,14 +48,14 @@
       <div class="section__container max-width-xs spacing-sm">
         <h1 class="font-size-lg">%VITE_NAME%</h1>
         <p>%VITE_DESCRIPTION%</p>
-        <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top list-style-none">
-          <li class="flex flex_gap_sm align-items-center">
-            <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        <ol class="foreground-subtle flex flex--gap-y-sm margin-top list-style-none">
+          <li class="flex flex--gap-sm align-items-center">
+            <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
           </li>
           <li class="foreground-subtle">/</li>
-          <li class="flex flex_gap_sm align-items-center">
-            <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <li class="flex flex--gap-sm align-items-center">
+            <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
             <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
           </li>
         </ol>
@@ -104,7 +104,7 @@
             </div>
             <div class="dialog__footer justify-content-end">
               <div class="button-group">
-                <button data-modal-close class="button button_color_primary">
+                <button data-modal-close class="button button--color-primary">
                   Some action
                 </button>
                 <button data-modal-close class="button">
@@ -143,89 +143,89 @@
               <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
               <div class="flex justify-content-end">
                 <div class="button-group">
-                  <button data-modal-close class="button button_color_primary">I understand</button>
-                  <button data-modal-close class="button button_color_secondary">Cancel</button>
+                  <button data-modal-close class="button button--color-primary">I understand</button>
+                  <button data-modal-close class="button button--color-secondary">Cancel</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <h2 id="modal_full"><a href="#modal_full">modal_full</a></h2>
+        <h2 id="modal--full"><a href="#modal--full">modal--full</a></h2>
         
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-full">modal_full</button></li>
+          <li><button class="link" data-modal-open="modal-full">modal--full</button></li>
         </ul>
         
-        <div id="modal-full" class="modal modal_full">
+        <div id="modal-full" class="modal modal--full">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body">
               <div class="flex justify-content-between">
-                <p>modal_full</p>
+                <p>modal--full</p>
                 <button data-modal-close data-modal-focus class="link">Close</button>
               </div>
             </div>
           </div>
         </div>
 
-        <h2 id="modal_pos_value"><a href="#modal_pos_value">modal_pos_[value]</a></h2>
+        <h2 id="modal--pos-value"><a href="#modal--pos-value">modal--pos-[value]</a></h2>
 
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-pos-top">modal_pos_top</button></li>
-          <li><button class="link" data-modal-open="modal-pos-bottom">modal_pos_bottom</button></li>
-          <li><button class="link" data-modal-open="modal-pos-left">modal_pos_left</button></li>
-          <li><button class="link" data-modal-open="modal-pos-right">modal_pos_right</button></li>
+          <li><button class="link" data-modal-open="modal-pos-top">modal--pos-top</button></li>
+          <li><button class="link" data-modal-open="modal-pos-bottom">modal--pos-bottom</button></li>
+          <li><button class="link" data-modal-open="modal-pos-left">modal--pos-left</button></li>
+          <li><button class="link" data-modal-open="modal-pos-right">modal--pos-right</button></li>
         </ul>
         
-        <div id="modal-pos-top" class="modal modal_pos_top">
+        <div id="modal-pos-top" class="modal modal--pos-top">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body">
               <div class="flex justify-content-between">
-                <p>modal_pos_top</p>
+                <p>modal--pos-top</p>
                 <button data-modal-close class="link">Close</button>
               </div>
             </div>
             <div class="dialog__footer justify-content-between">
               <button class="link" data-modal-open="modal-pos-left">
-                modal_pos_left
+                modal--pos-left
               </button>
               <button class="link" data-modal-open="modal-pos-bottom">
-                modal_pos_bottom
+                modal--pos-bottom
               </button>
               <button class="link" data-modal-open="modal-pos-right">
-                modal_pos_right
+                modal--pos-right
               </button>
             </div>
           </div>
         </div>
         
-        <div id="modal-pos-bottom" class="modal modal_pos_bottom">
+        <div id="modal-pos-bottom" class="modal modal--pos-bottom">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body">
               <div class="flex justify-content-between">
-                <p>modal_pos_bottom</p>
+                <p>modal--pos-bottom</p>
                 <button data-modal-close class="link">Close</button>
               </div>
             </div>
             <div class="dialog__footer justify-content-between">
               <button class="link" data-modal-open="modal-pos-left">
-                modal_pos_left
+                modal--pos-left
               </button>
               <button class="link" data-modal-open="modal-pos-top">
-                modal_pos_top
+                modal--pos-top
               </button>
               <button class="link" data-modal-open="modal-pos-right">
-                modal_pos_right
+                modal--pos-right
               </button>
             </div>
           </div>
         </div>
         
-        <div id="modal-pos-left" class="modal modal_pos_left">
+        <div id="modal-pos-left" class="modal modal--pos-left">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__container">
               <div class="dialog__header">
-                <p class="flex-grow">modal_pos_left</p>
+                <p class="flex-grow">modal--pos-left</p>
                 <button data-modal-close class="link">Close</button>
               </div>
               <div class="dialog__body">
@@ -239,28 +239,28 @@
               </div>
               <div class="dialog__footer">
                 <button class="link" data-modal-open="modal-pos-top">
-                  modal_pos_top
+                  modal--pos-top
                 </button>
               </div>
               <div class="dialog__footer">
                 <button class="link" data-modal-open="modal-pos-right">
-                  modal_pos_right
+                  modal--pos-right
                 </button>
               </div>
               <div class="dialog__footer">
                 <button class="link" data-modal-open="modal-pos-bottom">
-                  modal_pos_bottom
+                  modal--pos-bottom
                 </button>
               </div>
             </div>
           </div>
         </div>
         
-        <div id="modal-pos-right" class="modal modal_pos_right">
+        <div id="modal-pos-right" class="modal modal--pos-right">
           <div class="modal__dialog background-white border-radius" role="dialog" aria-modal="true">
             <div class="modal__container padding spacing">
               <div class="flex justify-content-between">
-                <p class="flex-grow">modal_pos_right</p>
+                <p class="flex-grow">modal--pos-right</p>
                 <button data-modal-close class="link">Close</button>
               </div>
               <ul class="list">
@@ -271,68 +271,68 @@
                 <li>Last</li>
               </ul>
               <button class="link" data-modal-open="modal-pos-top">
-                modal_pos_top
+                modal--pos-top
               </button>
               <button class="link" data-modal-open="modal-pos-left">
-                modal_pos_left
+                modal--pos-left
               </button>
               <button class="link" data-modal-open="modal-pos-bottom">
-                modal_pos_bottom
+                modal--pos-bottom
               </button>
             </div>
           </div>
         </div>
 
-        <h2 id="mod_size_value"><a href="#mod_size_value">mod_size_[value]</a></h2>
+        <h2 id="modal--size-value"><a href="#modal--size-value">modal--size-[value]</a></h2>
 
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-size-xs">mod_size_xs</button></li>
-          <li><button class="link" data-modal-open="modal-size-sm">mod_size_sm</button></li>
-          <li><button class="link" data-modal-open="modal-size-md">mod_size_md</button></li>
-          <li><button class="link" data-modal-open="modal-size-lg">mod_size_lg</button></li>
-          <li><button class="link" data-modal-open="modal-size-xl">mod_size_xl</button></li>
+          <li><button class="link" data-modal-open="modal-size-xs">modal--size-xs</button></li>
+          <li><button class="link" data-modal-open="modal-size-sm">modal--size-sm</button></li>
+          <li><button class="link" data-modal-open="modal-size-md">modal--size-md</button></li>
+          <li><button class="link" data-modal-open="modal-size-lg">modal--size-lg</button></li>
+          <li><button class="link" data-modal-open="modal-size-xl">modal--size-xl</button></li>
         </ul>
         
-        <div id="modal-size-xs" class="modal modal_size_xs">
+        <div id="modal-size-xs" class="modal modal--size-xs">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body flex justify-content-between">
-              <p>mod_size_xs</p>
+              <p>modal--size-xs</p>
               <button data-modal-close class="link">Close</button>
             </div>
           </div>
         </div>
         
-        <div id="modal-size-sm" class="modal modal_size_sm">
+        <div id="modal-size-sm" class="modal modal--size-sm">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body flex justify-content-between">
-              <p>mod_size_sm</p>
+              <p>modal--size-sm</p>
               <button data-modal-close class="link">Close</button>
             </div>
           </div>
         </div>
         
-        <div id="modal-size-md" class="modal modal_size_md">
+        <div id="modal-size-md" class="modal modal--size-md">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body flex justify-content-between">
-              <p>modal_size_md</p>
+              <p>modal--size-md</p>
               <button data-modal-close class="link">Close</button>
             </div>
           </div>
         </div>
         
-        <div id="modal-size-lg" class="modal modal_size_lg">
+        <div id="modal-size-lg" class="modal modal--size-lg">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body flex justify-content-between">
-              <p>modal_size_lg</p>
+              <p>modal--size-lg</p>
               <button data-modal-close class="link">Close</button>
             </div>
           </div>
         </div>
         
-        <div id="modal-size-xl" class="modal modal_size_xl">
+        <div id="modal-size-xl" class="modal modal--size-xl">
           <div class="modal__dialog dialog" role="dialog" aria-modal="true">
             <div class="dialog__body flex justify-content-between">
-              <p>modal_size_xl</p>
+              <p>modal--size-xl</p>
               <button data-modal-close class="link">Close</button>
             </div>
           </div>

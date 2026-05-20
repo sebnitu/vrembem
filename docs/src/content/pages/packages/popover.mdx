@@ -52,7 +52,7 @@ const popovers = new PopoverCollection({
 
   // A valid CSS selector that should match a popover as a tooltip type
   // @type string
-  selectorTooltip: ".popover_tooltip",
+  selectorTooltip: ".popover--tooltip",
 
   // A valid CSS selector for the arrow or carrot element of a popover
   // @type string
@@ -116,7 +116,7 @@ Popover comes with the following Sass configuration options that can be set usin
 ```scss
 @use "@vrembem/popover" with (
   $config: (
-    // Map for outputting popover_size_[key] modifier variants
+    // Map for outputting popover--size-[key] modifier variants
     // @type map
     "popover-size": (
       "auto": "auto",
@@ -169,7 +169,7 @@ The popover is a simple container component consisting of the `popover` class an
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-controls="popover-1">Popover</button>
+    <button class="button button--color-primary" aria-controls="popover-1">Popover</button>
     <div class="popover" id="popover-1">
       <Menu name="format-text" />
     </div>
@@ -186,7 +186,7 @@ Add an arrow to a popover using an empty `<div>` or `<span>` with the `popover__
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-controls="popover-2">Popover</button>
+    <button class="button button--color-primary" aria-controls="popover-2">Popover</button>
     <div class="popover" id="popover-2">
       <Menu name="edit-shortcuts" />
       <span class="popover__arrow"></span>
@@ -221,7 +221,7 @@ When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, 
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-describedby="popover-3">Popover</button>
+    <button class="button button--color-primary" aria-describedby="popover-3">Popover</button>
     <div id="popover-3" class="popover" style="--vb-popover-event: hover;">
       <Menu name="edit-shortcuts" />
     </div>
@@ -266,7 +266,7 @@ When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, 
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-describedby="popover-4">Popover</button>
+    <button class="button button--color-primary" aria-describedby="popover-4">Popover</button>
     <div id="popover-4" class="popover" style="--vb-popover-placement: right;">
       <Menu name="format-text" />
       <span class="popover__arrow"></span>
@@ -294,18 +294,18 @@ When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, 
 - `left-start`
 - `left-end`
 
-## popover_size_[key]
+## popover--size-[key]
 
 Adjust the size of a popover by increasing or decreasing its width. These modifiers are generated using key/value pairs of the `popover-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex">
     <button class="button" aria-describedby="popover-7">Auto</button>
-    <div id="popover-7" class="popover popover_size_auto">
+    <div id="popover-7" class="popover popover--size-auto">
       <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-8">Small</button>
-    <div id="popover-8" class="popover popover_size_sm">
+    <div id="popover-8" class="popover popover--size-sm">
       <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-9">Default</button>
@@ -313,12 +313,12 @@ Adjust the size of a popover by increasing or decreasing its width. These modifi
       <Menu name="edit-shortcuts" />
     </div>
     <button class="button" aria-describedby="popover-10">Large</button>
-    <div id="popover-10" class="popover popover_size_lg">
+    <div id="popover-10" class="popover popover--size-lg">
       <Menu name="edit-shortcuts" />
     </div>
   </div>
   ```html
-  <div id="unique-id" class="popover popover_size_sm">
+  <div id="unique-id" class="popover popover--size-sm">
     ...
   </div>
   ```
@@ -326,11 +326,11 @@ Adjust the size of a popover by increasing or decreasing its width. These modifi
 
 **Available variants**
 
-- `popover_size_auto`
-- `popover_size_sm`
-- `popover_size_lg`
+- `popover--size-auto`
+- `popover--size-sm`
+- `popover--size-lg`
 
-## popover_tooltip
+## popover--tooltip
 
 Applies styles to create a popover tooltip. The default placement of a tooltip is `top` and are triggered by the `hover` and `focus` events. Tooltips also require a different set of attributes for accessibility:
 
@@ -344,22 +344,22 @@ Applies styles to create a popover tooltip. The default placement of a tooltip i
       <button type="button" class="link" aria-describedby="popover-tooltip-2">CSS</button>
       <button type="button" class="link" aria-describedby="popover-tooltip-3">JS</button>
     </div>
-    <div id="popover-tooltip-1" class="popover popover_tooltip">
+    <div id="popover-tooltip-1" class="popover popover--tooltip">
       Hypertext Markup Language
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-tooltip-2" class="popover popover_tooltip">
+    <div id="popover-tooltip-2" class="popover popover--tooltip">
       Cascading Style Sheets
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-tooltip-3" class="popover popover_tooltip">
+    <div id="popover-tooltip-3" class="popover popover--tooltip">
       JavaScript
       <span class="popover__arrow"></span>
     </div>
   </Fragment>
   ```html
   <span aria-describedby="unique-id">HTML</span>
-  <div id="unique-id" class="popover popover_tooltip" role="tooltip">
+  <div id="unique-id" class="popover popover--tooltip" role="tooltip">
     Hypertext Markup Language
     <span class="popover__arrow"></span>
   </div>
@@ -376,14 +376,14 @@ There are cases where a single popover trigger requires both a tooltip and a cli
 
 <CodeExample>
   <Fragment slot="output">
-    <button type="button" class="button button_icon" aria-controls="popover-multi-2" aria-describedby="popover-multi-1">
+    <button type="button" class="button button--icon" aria-controls="popover-multi-2" aria-describedby="popover-multi-1">
       <Icon name="menu" />
     </button>
-    <div id="popover-multi-1" class="popover popover_tooltip">
+    <div id="popover-multi-1" class="popover popover--tooltip">
       Menu
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-multi-2" class="popover popover_size_sm">
+    <div id="popover-multi-2" class="popover popover--size-sm">
       <Menu name="edit-shortcuts" />
     </div>
   </Fragment>
@@ -394,7 +394,7 @@ There are cases where a single popover trigger requires both a tooltip and a cli
   <div id="unique-id-1" class="popover">
     ...
   </div>
-  <div id="unique-id-2" class="popover popover_tooltip">
+  <div id="unique-id-2" class="popover popover--tooltip">
     ...
   </div>
   ```
@@ -406,12 +406,12 @@ Popovers can be anchored to the cursor element by setting the `followCursor` con
 
 <CodeExample>
   <Fragment slot="output">
-    <button type="button" class="button button_icon" aria-controls="popover-virtual">
+    <button type="button" class="button button--icon" aria-controls="popover-virtual">
       <Icon name="coffee" />
     </button>
     <div 
       id="popover-virtual" 
-      class="popover popover_tooltip" 
+      class="popover popover--tooltip" 
       style="
         --vb-popover-event: click;
         --vb-popover-follow-cursor: true;
@@ -423,7 +423,7 @@ Popovers can be anchored to the cursor element by setting the `followCursor` con
   ```html
   <div 
     id="unique-id" 
-    class="popover popover_tooltip" 
+    class="popover popover--tooltip" 
     style="
       --vb-popover-event: click;
       --vb-popover-follow-cursor: true;

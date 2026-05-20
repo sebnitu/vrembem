@@ -15,11 +15,11 @@ $default: (
 
   // A prefix to apply to modifier class names
   // @type string
-  "prefix-modifiers": "_",
+  "prefix-modifiers": "--",
 
   // A prefix to apply to modifier value class names
   // @type string
-  "prefix-modifier-values": "_",
+  "prefix-modifier-values": "-",
 
   // A prefix to apply to CSS variable tokens. Map values requires a default
   // key and value along with any component specific prefixes as needed.

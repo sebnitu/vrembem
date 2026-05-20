@@ -6,11 +6,11 @@ document.body.innerHTML = `
   <main>
     <button class="button" aria-describedby="popover-1">Left</button>
     <button class="button" aria-describedby="popover-2">Top</button>
-    <div id="popover-1" class="popover popover_tooltip">
+    <div id="popover-1" class="popover popover--tooltip">
       Popover
       <span class="popover__arrow"></span>
     </div>
-    <div id="popover-2" class="popover popover_tooltip">
+    <div id="popover-2" class="popover popover--tooltip">
       Popover
       <span class="popover__arrow"></span>
     </div>

@@ -102,14 +102,14 @@
     <div class="section__container max-width-xs spacing-sm">
       <h1 class="font-size-lg">%VITE_NAME%</h1>
       <p>%VITE_DESCRIPTION%</p>
-      <ol class="foreground-subtle flex flex_gap flex_gap-y_sm margin-top list-style-none">
-        <li class="flex flex_gap_sm align-items-center">
-          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      <ol class="foreground-subtle flex margin-top list-style-none">
+        <li class="flex flex--gap-sm align-items-center">
+          <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
         </li>
         <li class="foreground-subtle">/</li>
-        <li class="flex flex_gap_sm align-items-center">
-          <svg class="icon icon_size_sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <li class="flex flex--gap-sm align-items-center">
+          <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
         </li>
       </ol>
@@ -132,7 +132,7 @@
 
       <h3 class="font-weight-regular">background-clip</h3>
 
-      <div class="grid grid_cols_1 sm:grid_cols_2 grid_gap_xs">
+      <div class="grid grid--cols-1 sm:grid--cols-2 grid--gap-xs">
         <div class="swatch-clip background-clip-border">background-clip-border</div>
         <div class="swatch-clip background-clip-padding">background-clip-padding</div>
         <div class="swatch-clip background-clip-content">background-clip-content</div>
@@ -365,7 +365,7 @@
 
       <h2 id="spacing"><a href="#spacing">spacing</a></h2>
 
-      <div class="grid grid_cols_3 grid_gap_sm">
+      <div class="grid grid--cols-3 grid--gap-sm">
         <div class="items spacing">
           <div class="row">spacing</div>
           <div class="row">...</div>
@@ -408,147 +408,147 @@
       <!-- Breakpoint modifiers (xs:, sm:, md:, lg:, xl:) -->
 
       <div class="flex">
-        <div class="grid grid_cols_2 grid_gap_none gap">
+        <div class="grid grid--cols-2 grid--gap-none gap">
           <div class="row">gap</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x">
+        <div class="grid grid--cols-2 grid--gap-none gap-x">
           <div class="row">gap-x</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y">
+        <div class="grid grid--cols-2 grid--gap-none gap-y">
           <div class="row">gap-y</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 gap-0">
+        <div class="grid grid--cols-2 gap-0">
           <div class="row">gap-0</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-xs">
+        <div class="grid grid--cols-2 grid--gap-none gap-xs">
           <div class="row">gap-xs</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-sm">
+        <div class="grid grid--cols-2 grid--gap-none gap-sm">
           <div class="row">gap-sm</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap">
+        <div class="grid grid--cols-2 grid--gap-none gap">
           <div class="row">gap</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-lg">
+        <div class="grid grid--cols-2 grid--gap-none gap-lg">
           <div class="row">gap-lg</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-xl">
+        <div class="grid grid--cols-2 grid--gap-none gap-xl">
           <div class="row">gap-xl</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 gap-x-none">
+        <div class="grid grid--cols-2 gap-x-none">
           <div class="row">gap-x-none</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 gap-y-none">
+        <div class="grid grid--cols-2 gap-y-none">
           <div class="row">gap-y-none</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x-xs">
+        <div class="grid grid--cols-2 grid--gap-none gap-x-xs">
           <div class="row">gap-x-xs</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y-xs">
+        <div class="grid grid--cols-2 grid--gap-none gap-y-xs">
           <div class="row">gap-y-xs</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x-sm">
+        <div class="grid grid--cols-2 grid--gap-none gap-x-sm">
           <div class="row">gap-x-sm</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y-sm">
+        <div class="grid grid--cols-2 grid--gap-none gap-y-sm">
           <div class="row">gap-y-sm</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x">
+        <div class="grid grid--cols-2 grid--gap-none gap-x">
           <div class="row">gap-x</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y">
+        <div class="grid grid--cols-2 grid--gap-none gap-y">
           <div class="row">gap-y</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x-lg">
+        <div class="grid grid--cols-2 grid--gap-none gap-x-lg">
           <div class="row">gap-x-lg</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y-lg">
+        <div class="grid grid--cols-2 grid--gap-none gap-y-lg">
           <div class="row">gap-y-lg</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-x-xl">
+        <div class="grid grid--cols-2 grid--gap-none gap-x-xl">
           <div class="row">gap-x-xl</div>
           <div class="row">...</div>
           <div class="row">...</div>
           <div class="row">...</div>
         </div>
 
-        <div class="grid grid_cols_2 grid_gap_none gap-y-xl">
+        <div class="grid grid--cols-2 grid--gap-none gap-y-xl">
           <div class="row">gap-y-xl</div>
           <div class="row">...</div>
           <div class="row">...</div>
@@ -558,7 +558,7 @@
 
       <h2 id="justify"><a href="#justify">justify</a></h2>
 
-      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+      <div class="code-demo grid grid--cols-3 grid--gap-xs">
         <code class="code">justify-content-start</code>
         <code class="code">justify-content-center</code>
         <code class="code">justify-content-end</code>
@@ -580,7 +580,7 @@
 
       <h2 id="align"><a href="#align">align</a></h2>
 
-      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+      <div class="code-demo grid grid--cols-3 grid--gap-xs">
         <code class="code">align-content-start</code>
         <code class="code">align-content-center</code>
         <code class="code">align-content-end</code>
@@ -602,7 +602,7 @@
 
       <h2 id="place"><a href="#place">place</a></h2>
 
-      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+      <div class="code-demo grid grid--cols-3 grid--gap-xs">
         <code class="code">place-content-start</code>
         <code class="code">place-content-center</code>
         <code class="code">place-content-end</code>
@@ -624,7 +624,7 @@
 
       <h2 id="order"><a href="#order">order</a></h2>
 
-      <div class="code-demo grid grid_cols_4 grid_gap_xs">
+      <div class="code-demo grid grid--cols-4 grid--gap-xs">
         <code class="code">order-last</code>
         <code class="code">order-6</code>
         <code class="code">order-5</code>
@@ -706,7 +706,7 @@
 
       <h2 id="text"><a href="#text">text</a></h2>
 
-      <div class="code-demo grid grid_cols_3 grid_gap_xs">
+      <div class="code-demo grid grid--cols-3 grid--gap-xs">
         <code class="code">text-capitalize</code>
         <code class="code">text-lowercase</code>
         <code class="code">text-uppercase</code>
@@ -715,14 +715,14 @@
         <code class="code">text-align-right</code>
       </div>
 
-      <div class="code-demo grid grid_cols_2 grid_gap_xs">
+      <div class="code-demo grid grid--cols-2 grid--gap-xs">
         <code class="code">text-strike</code>
         <code class="code">text-underline</code>
         <code class="code">text-underline-dotted</code>
         <code class="code">text-underline-dashed</code>
       </div>
 
-      <div class="grid grid_cols_3 grid_gap_xs overflow-auto">
+      <div class="grid grid--cols-3 grid--gap-xs overflow-auto">
         <code class="code text-overflow-ellipsis">text-overflow-ellipsis: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
         <code class="code text-wrap">text-wrap: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
         <code class="code text-nowrap">text-nowrap: lorem ipsum dolor sit amet consectetur adipisicing elit</code>
@@ -733,7 +733,7 @@
 
       <h2 id="transition"><a href="#transition">transition</a></h2>
 
-      <div class="grid grid_cols_2 grid_gap_xs">
+      <div class="grid grid--cols-2 grid--gap-xs">
         <div class="transition-demo transition"><code>transition</code></div>
         <div class="transition-demo transition-none"><code>transition-none</code></div>
         <div class="transition-demo transition transition-duration-short"><code>transition-duration-short</code></div>

@@ -66,7 +66,7 @@ export const config = {
 
   // A CSS class used to toggle the modal styles of a drawer
   // @type string
-  classModal: "drawer_modal",
+  classModal: "drawer--modal",
 
   // Whether or not to set the tabindex attribute of the drawer dialog
   // @type boolean

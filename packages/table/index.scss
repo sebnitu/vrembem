@@ -4,10 +4,10 @@
 
 @layer components {
   @include meta.load-css("./src/table");
-  @include meta.load-css("./src/table_ellipsis");
-  @include meta.load-css("./src/table_hover");
-  @include meta.load-css("./src/table_mobile");
-  @include meta.load-css("./src/table_padding");
-  @include meta.load-css("./src/table_striped");
-  @include meta.load-css("./src/table_style");
+  @include meta.load-css("./src/table--ellipsis");
+  @include meta.load-css("./src/table--hover");
+  @include meta.load-css("./src/table--mobile");
+  @include meta.load-css("./src/table--padding");
+  @include meta.load-css("./src/table--striped");
+  @include meta.load-css("./src/table--style");
 }

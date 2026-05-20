@@ -15,13 +15,13 @@ const { name, type, returns, defaults, fallback, ref } = Astro.props;
 
 ---
 
-<div class="card card_reference">
+<div class="card card--reference">
   <div class="card__header">
     {
       ref && (
         <Popover 
           href={`/packages/core/${ref}`} 
-          triggerClass="button button_icon"
+          triggerClass="button button--icon"
           placement="right"
         >
           <Fragment slot="trigger">

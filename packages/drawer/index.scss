@@ -3,6 +3,6 @@
 
 @layer components {
   @include meta.load-css("./src/scss/drawer");
-  @include meta.load-css("./src/scss/drawer_switch");
-  @include meta.load-css("./src/scss/drawer_modal");
+  @include meta.load-css("./src/scss/drawer--switch");
+  @include meta.load-css("./src/scss/drawer--modal");
 }
