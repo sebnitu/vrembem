@@ -33,9 +33,11 @@
   @include meta.load-css("./compare");
   @include meta.load-css("./doc-block");
   @include meta.load-css("./fold-shadow");
+  @include meta.load-css("./footnotes");
   @include meta.load-css("./heading-anchor");
   @include meta.load-css("./icon_external");
   @include meta.load-css("./layout-demo");
+  @include meta.load-css("./list_prog");
   @include meta.load-css("./menu_collection");
   @include meta.load-css("./menu_minimal");
   @include meta.load-css("./pagi");

@@ -1,0 +1,33 @@
+@use "@vrembem/core/tokens";
+
+.footnotes {
+  font-size: tokens.get("font-size-sm");
+  line-height: tokens.get("line-height");
+  padding-top: 2em;
+  margin-top: 2em !important;
+  border-top: tokens.get("border");
+
+  ol {
+    margin-left: tokens.get("list", "indent", tokens.get("spacing-lg"));
+  }
+
+  li li,
+  li + li {
+    margin-top: tokens.get("list", "spacing", tokens.get("spacing-sm"));
+  }
+}
+
+[data-footnote-ref] {
+  background-color: tokens.get("palette", "primary", $a: 10%);
+  padding: 0.25em 0.5em;
+  border-radius: tokens.get("border-radius-circle");
+  text-decoration: none;
+  min-width: fit-content;
+  aspect-ratio: 1;
+  font-size: tokens.get("font-size-sm");
+  line-height: tokens.get("line-height");
+
+  &:hover {
+    background-color: tokens.get("palette", "primary", $a: 20%);
+  }
+}
