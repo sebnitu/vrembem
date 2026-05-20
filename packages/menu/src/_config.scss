@@ -6,11 +6,11 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Toggle for outputting menu_inline modifier breakpoint variants
+  // Toggle for outputting menu--inline modifier breakpoint variants
   // @type boolean
   "menu-inline-breakpoints": true,
 
-  // Toggle for outputting menu_full modifier breakpoint variants
+  // Toggle for outputting menu--full modifier breakpoint variants
   // @type boolean
   "menu-full-breakpoints": true
 );

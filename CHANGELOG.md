@@ -1253,7 +1253,7 @@ https://lerna.js.org/docs/features/version-and-publish
 * `menu`
   * [#607](https://github.com/sebnitu/vrembem/pull/607) Audit and refactor menu component
     * Menu now stacks as the default styles and removes the `menu_stack_[value]` modifier
-    * Adds the new `menu_inline_[value]` modifier for making a menu inline (horizontal styles)
+    * Adds the new `menu--inline_[value]` modifier for making a menu inline (horizontal styles)
     * Adds new `menu_size_[value]` modifier and matches sizing scale to other form-control components
     * Refactors, renames and deprecates a number of menu variables
 
