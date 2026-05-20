@@ -111,6 +111,6 @@ html {
 
 // Source: button.mdx
 
-.button_color_custom {
+.button--color-custom {
   @include button.variant(salmon);
 }

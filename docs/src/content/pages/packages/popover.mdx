@@ -169,7 +169,7 @@ The popover is a simple container component consisting of the `popover` class an
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-controls="popover-1">Popover</button>
+    <button class="button button--color-primary" aria-controls="popover-1">Popover</button>
     <div class="popover" id="popover-1">
       <Menu name="format-text" />
     </div>
@@ -186,7 +186,7 @@ Add an arrow to a popover using an empty `<div>` or `<span>` with the `popover__
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-controls="popover-2">Popover</button>
+    <button class="button button--color-primary" aria-controls="popover-2">Popover</button>
     <div class="popover" id="popover-2">
       <Menu name="edit-shortcuts" />
       <span class="popover__arrow"></span>
@@ -221,7 +221,7 @@ When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, 
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-describedby="popover-3">Popover</button>
+    <button class="button button--color-primary" aria-describedby="popover-3">Popover</button>
     <div id="popover-3" class="popover" style="--vb-popover-event: hover;">
       <Menu name="edit-shortcuts" />
     </div>
@@ -266,7 +266,7 @@ When using the [`cssConfig`](/reference/collections/plugins/css-config) plugin, 
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button button_color_primary" aria-describedby="popover-4">Popover</button>
+    <button class="button button--color-primary" aria-describedby="popover-4">Popover</button>
     <div id="popover-4" class="popover" style="--vb-popover-placement: right;">
       <Menu name="format-text" />
       <span class="popover__arrow"></span>
@@ -376,7 +376,7 @@ There are cases where a single popover trigger requires both a tooltip and a cli
 
 <CodeExample>
   <Fragment slot="output">
-    <button type="button" class="button button_icon" aria-controls="popover-multi-2" aria-describedby="popover-multi-1">
+    <button type="button" class="button button--icon" aria-controls="popover-multi-2" aria-describedby="popover-multi-1">
       <Icon name="menu" />
     </button>
     <div id="popover-multi-1" class="popover popover_tooltip">
@@ -406,7 +406,7 @@ Popovers can be anchored to the cursor element by setting the `followCursor` con
 
 <CodeExample>
   <Fragment slot="output">
-    <button type="button" class="button button_icon" aria-controls="popover-virtual">
+    <button type="button" class="button button--icon" aria-controls="popover-virtual">
       <Icon name="coffee" />
     </button>
     <div 
