@@ -11,7 +11,7 @@ The main goal of Vrembem is to provide front-end systems that every project need
 
 It's a common misconception that using BEM means you can never deviate from it. Vrembem takes a practical utility-first approach to authoring BEM components. This is the methodology in practice:
 
-<ol class="list list_prog">
+<ol class="list list--prog">
   <li>Add utilities first. These are typically one-off single property classes. Vrembem uses a verbose utility naming convention to reduce over-reliance on CSS abstractions.[^1]</li>
   <li>If an element is starting to contain too many utilities, that's a sign that a block class is needed.</li>
   <li>Add utilities to a block when adjustments are needed.</li>
@@ -30,7 +30,7 @@ This approach allows components to be highly composable with each other, built w
 
 Vrembem uses modern CSS features and native browser APIs to build fast and responsive components for all devices. Purely optional JavaScript modules are available to enhance your projects, or bring-your-own JavaScript. Vrembem implements the following features:
 
-<ul class="list list_pros">
+<ul class="list list--pros">
   <li>Design tokens powered by CSS custom properties (variables).</li>
   <li>Custom palette tokens using the `oklch` color space.</li>
   <li>Layout components that leverage Flex and Grid.</li>

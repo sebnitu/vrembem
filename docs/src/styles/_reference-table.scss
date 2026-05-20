@@ -104,7 +104,7 @@
   }
 }
 
-.reference-table_expandable {
+.reference-table--expandable {
   overflow: hidden;
   max-height: tokens.get("reference-table", "max-height");
 

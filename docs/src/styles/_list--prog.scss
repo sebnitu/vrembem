@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-.list_prog {
+.list--prog {
   counter-reset: item;
   display: block;
   margin-left: 0;

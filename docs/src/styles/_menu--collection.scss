@@ -16,7 +16,7 @@
   )
 );
 
-.menu_collection {
+.menu--collection {
   @include tokens.override("menu", "gap", 0);
 
   .menu {

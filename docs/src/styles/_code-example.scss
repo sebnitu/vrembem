@@ -143,7 +143,7 @@
 
 @include tokens.set("code-example", "max-height", 20rem);
 
-.code-example_expandable .pre {
+.code-example--expandable .pre {
   max-height: tokens.get("code-example", "max-height");
   border: none;
   transition: max-height tokens.get("transition");

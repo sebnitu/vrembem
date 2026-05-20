@@ -11,21 +11,21 @@
   }
 }
 
-.pagi_prev,
-.pagi_next {
+.pagi__prev,
+.pagi__next {
   flex-basis: calc(50% - (1rem / 2));
   align-content: stretch;
 }
 
-.pagi_prev {
+.pagi__prev {
   text-align: left;
 }
 
-.pagi_next {
+.pagi__next {
   text-align: right;
 }
 
-.pagi_link {
+.pagi__link {
   display: block;
   padding: 1rem;
   border: 1px solid tokens.get("border-color");
@@ -39,12 +39,12 @@
   }
 }
 
-.pagi_label {
+.pagi__label {
   font-size: tokens.get("font-size-sm");
   color: tokens.get("foreground-subtle");
 }
 
-.pagi_title {
+.pagi__title {
   font-size: tokens.get("font-size-lg");
   color: tokens.get("foreground-accent");
 }

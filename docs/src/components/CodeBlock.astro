@@ -12,7 +12,7 @@ interface Props {
 const { inline, nopre, icon } = Astro.props;
 
 const classes = ["code-block"];
-if (inline) classes.push("code-block_inline");
+if (inline) classes.push("code-block--inline");
 if (icon) classes.push("has-icon");
 ---
 
@@ -38,7 +38,7 @@ if (icon) classes.push("has-icon");
   <Popover
     followCursor={true}
     triggerClass="code-block__copy-button"
-    popoverClass="popover_copy"
+    popoverClass="popover--copy"
     aria-label="Copy code example to clipboard"
   >
     <Fragment slot="trigger">

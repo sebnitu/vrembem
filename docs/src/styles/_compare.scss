@@ -80,8 +80,8 @@
  * Pro and con lists
  */
 
-.list_pros,
-.list_cons {
+.list--pros,
+.list--cons {
   margin-left: 0;
   list-style: none;
 
@@ -115,12 +115,12 @@
   }
 }
 
-.list_pros li::before {
+.list--pros li::before {
   background-color: tokens.get("palette", "primary");
   mask-image: url(core.svg("check"));
 }
 
-.list_cons li::before {
+.list--cons li::before {
   background-color: tokens.get("palette", "important");
   mask-image: url(core.svg("x"));
 }

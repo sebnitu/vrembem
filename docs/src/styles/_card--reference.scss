@@ -1,6 +1,6 @@
 @use "@vrembem/core/tokens";
 
-.card_reference {
+.card--reference {
   .card__header {
     @include tokens.override("card", "padding", 0.75em 1em);
 

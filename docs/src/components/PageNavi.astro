@@ -11,19 +11,19 @@ const { prev, next } = await buildNaviFromConfig(
 {
   (prev || next) && (
     <div class="pagi">
-      <div class="pagi_prev">
+      <div class="pagi__prev">
         {prev && (
-          <a class="pagi_link" href={prev.link}>
-            <div class="pagi_label">Previous</div>
-            <div class="pagi_title">{prev.label}</div>
+          <a class="pagi__link" href={prev.link}>
+            <div class="pagi__label">Previous</div>
+            <div class="pagi__title">{prev.label}</div>
           </a>
         )}
       </div>
-      <div class="pagi_next">
+      <div class="pagi__next">
         {next && (
-          <a class="pagi_link" href={next.link}>
-            <div class="pagi_label">Next</div>
-            <div class="pagi_title">{next.label}</div>
+          <a class="pagi__link" href={next.link}>
+            <div class="pagi__label">Next</div>
+            <div class="pagi__title">{next.label}</div>
           </a>
         )}
       </div>

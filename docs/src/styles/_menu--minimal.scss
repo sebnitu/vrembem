@@ -1,7 +1,7 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-.menu_minimal {
+.menu--minimal {
   @include core.media-min("aside") {
     @include tokens.override("menu", "size", tokens.get("font-size-sm"));
   }
