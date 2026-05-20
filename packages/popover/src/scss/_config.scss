@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting popover_size_[key] modifier variants
+  // Map for outputting popover--size-[key] modifier variants
   // @type map
   "popover-size": (
     "auto": "auto",

@@ -7,7 +7,7 @@ const markup = `
   <button aria-controls="asdf">...</button>
   <div id="asdf" class="popover">...</div>
   <span aria-describedby="fdsa">...</span>
-  <div id="fdsa" class="popover popover_tooltip" role="tooltip">
+  <div id="fdsa" class="popover popover--tooltip" role="tooltip">
     ...
     <span class="popover__arrow"></span>
   </div>

@@ -20,7 +20,7 @@ const markup = `
   <div id="pop-2" class="popover">...</div>
 
   <span aria-describedby="pop-3">...</span>
-  <div id="pop-3" class="popover popover_tooltip" role="tooltip">...</div>
+  <div id="pop-3" class="popover popover--tooltip" role="tooltip">...</div>
 
   <button aria-controls="asdf">...</button>
   <div id="fdsa" class="popover">...</div>

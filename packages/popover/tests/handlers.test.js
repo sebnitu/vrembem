@@ -36,11 +36,11 @@ const markup = `
 const hoverMarkup = `
   <div id="app">
     <button aria-describedby="tooltip-1">...</button>
-    <div id="tooltip-1" class="popover popover_tooltip">
+    <div id="tooltip-1" class="popover popover--tooltip">
       <button class="focus-test">...</button>
     </div>
     <button aria-describedby="tooltip-2">...</button>
-    <div id="tooltip-2" class="popover popover_tooltip">
+    <div id="tooltip-2" class="popover popover--tooltip">
       ...
     </div>
     <button aria-controls="popover">...</button>
@@ -58,7 +58,7 @@ const multiplePopover = `
     <div id="popover" class="popover">
       ...
     </div>
-    <div id="tooltip" class="popover popover_tooltip">
+    <div id="tooltip" class="popover popover--tooltip">
       ...
     </div>
   </div>

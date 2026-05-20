@@ -9,7 +9,7 @@ export const config = {
 
   // A valid CSS selector that should match a popover as a tooltip type
   // @type string
-  selectorTooltip: ".popover_tooltip",
+  selectorTooltip: ".popover--tooltip",
 
   // A valid CSS selector for the arrow or carrot element of a popover
   // @type string
