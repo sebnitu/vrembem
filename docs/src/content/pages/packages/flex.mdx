@@ -185,7 +185,7 @@ Modifiers used to set the `gap` property of a flex component. These modifiers ar
 - `flex--gap-lg`
 - `flex--gap-xl`
 
-### flex_gap-x_[key]
+### flex--gap-x-[key]
 
 Modifiers to set the `column-gap` value on a flex component. These modifiers are generated using key/value pairs of the `flex-gap` config options map.
 
@@ -194,16 +194,16 @@ Modifiers to set the `column-gap` value on a flex component. These modifiers are
     <label class="text-nowrap" for="demo-flex-gap-x-select">Variants Demo:</label>
     <select id="demo-flex-gap-x-select" class="select font-size-sm width-auto" data-demo-target="demo-flex-gap-x">
       <option value="flex">None</option>
-      <option value="flex flex_gap-x_0">flex_gap-x_0</option>
-      <option value="flex flex_gap-x_xs">flex_gap-x_xs</option>
-      <option value="flex flex_gap-x_sm">flex_gap-x_sm</option>
-      <option value="flex flex_gap-x_md">flex_gap-x_md</option>
-      <option value="flex flex_gap-x_lg">flex_gap-x_lg</option>
-      <option value="flex flex_gap-x_xl">flex_gap-x_xl</option>
+      <option value="flex flex--gap-x-0">flex--gap-x-0</option>
+      <option value="flex flex--gap-x-xs">flex--gap-x-xs</option>
+      <option value="flex flex--gap-x-sm">flex--gap-x-sm</option>
+      <option value="flex flex--gap-x-md">flex--gap-x-md</option>
+      <option value="flex flex--gap-x-lg">flex--gap-x-lg</option>
+      <option value="flex flex--gap-x-xl">flex--gap-x-xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-x" class="layout-demo flex flex_gap-x_sm">
+    <div id="demo-flex-gap-x" class="layout-demo flex flex--gap-x-sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -217,7 +217,7 @@ Modifiers to set the `column-gap` value on a flex component. These modifiers are
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_gap-x_sm">
+  <div class="flex flex--gap-x-sm">
     ...
   </div>
   ```
@@ -225,14 +225,14 @@ Modifiers to set the `column-gap` value on a flex component. These modifiers are
 
 **Available variants**
 
-- `flex_gap-x_0`
-- `flex_gap-x_xs`
-- `flex_gap-x_sm`
-- `flex_gap-x_md`
-- `flex_gap-x_lg`
-- `flex_gap-x_xl`
+- `flex--gap-x-0`
+- `flex--gap-x-xs`
+- `flex--gap-x-sm`
+- `flex--gap-x-md`
+- `flex--gap-x-lg`
+- `flex--gap-x-xl`
 
-### flex_gap-y_[key]
+### flex--gap-y-[key]
 
 Modifiers to set the `row-gap` value on a flex component. These modifiers are generated using key/value pairs of the `flex-gap` config options map.
 
@@ -241,16 +241,16 @@ Modifiers to set the `row-gap` value on a flex component. These modifiers are ge
     <label class="text-nowrap" for="demo-flex-gap-y-select">Variants Demo:</label>
     <select id="demo-flex-gap-y-select" class="select font-size-sm width-auto" data-demo-target="demo-flex-gap-y">
       <option value="flex">None</option>
-      <option value="flex flex_gap-y_0">flex_gap-y_0</option>
-      <option value="flex flex_gap-y_xs">flex_gap-y_xs</option>
-      <option value="flex flex_gap-y_sm">flex_gap-y_sm</option>
-      <option value="flex flex_gap-y_md">flex_gap-y_md</option>
-      <option value="flex flex_gap-y_lg">flex_gap-y_lg</option>
-      <option value="flex flex_gap-y_xl">flex_gap-y_xl</option>
+      <option value="flex flex--gap-y-0">flex--gap-y-0</option>
+      <option value="flex flex--gap-y-xs">flex--gap-y-xs</option>
+      <option value="flex flex--gap-y-sm">flex--gap-y-sm</option>
+      <option value="flex flex--gap-y-md">flex--gap-y-md</option>
+      <option value="flex flex--gap-y-lg">flex--gap-y-lg</option>
+      <option value="flex flex--gap-y-xl">flex--gap-y-xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap-y" class="layout-demo flex flex_gap-y_xl">
+    <div id="demo-flex-gap-y" class="layout-demo flex flex--gap-y-xl">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -264,7 +264,7 @@ Modifiers to set the `row-gap` value on a flex component. These modifiers are ge
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_gap-y_xl">
+  <div class="flex flex--gap-y-xl">
     ...
   </div>
   ```
@@ -272,12 +272,12 @@ Modifiers to set the `row-gap` value on a flex component. These modifiers are ge
 
 **Available variants**
 
-- `flex_gap-y_0`
-- `flex_gap-y_xs`
-- `flex_gap-y_sm`
-- `flex_gap-y_md`
-- `flex_gap-y_lg`
-- `flex_gap-y_xl`
+- `flex--gap-y-0`
+- `flex--gap-y-xs`
+- `flex--gap-y-sm`
+- `flex--gap-y-md`
+- `flex--gap-y-lg`
+- `flex--gap-y-xl`
 
 ### Breakpoint variants
 
@@ -294,18 +294,18 @@ These modifiers come with media breakpoint variants. This allows changing styles
     - `xl:flex--gap-[key]`
   </div>
   <div class="content">
-    - `xs:flex_gap-x_[key]`
-    - `sm:flex_gap-x_[key]`
-    - `md:flex_gap-x_[key]`
-    - `lg:flex_gap-x_[key]`
-    - `xl:flex_gap-x_[key]`
+    - `xs:flex--gap-x-[key]`
+    - `sm:flex--gap-x-[key]`
+    - `md:flex--gap-x-[key]`
+    - `lg:flex--gap-x-[key]`
+    - `xl:flex--gap-x-[key]`
   </div>
   <div class="content">
-    - `xs:flex_gap-y_[key]`
-    - `sm:flex_gap-y_[key]`
-    - `md:flex_gap-y_[key]`
-    - `lg:flex_gap-y_[key]`
-    - `xl:flex_gap-y_[key]`
+    - `xs:flex--gap-y-[key]`
+    - `sm:flex--gap-y-[key]`
+    - `md:flex--gap-y-[key]`
+    - `lg:flex--gap-y-[key]`
+    - `xl:flex--gap-y-[key]`
   </div>
 </div>
 
