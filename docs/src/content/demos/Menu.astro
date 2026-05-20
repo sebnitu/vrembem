@@ -36,7 +36,7 @@ const { name, id = "", classes = "" } = Astro.props;
       <li class="menu__sep" />
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="settings" classes="icon_size_sm foreground-primary" />
+          <Icon name="settings" classes="icon--size-sm foreground-primary" />
           <span>Settings</span>
         </button>
       </li>
@@ -49,22 +49,22 @@ const { name, id = "", classes = "" } = Astro.props;
     <ul class={`menu ${classes ? classes : "menu_inline"}`.trim()}>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action_icon">
-          <Icon name="arrow-left" classes="icon_size_sm" />
+          <Icon name="arrow-left" classes="icon--size-sm" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action_icon" disabled>
-          <Icon name="arrow-right" classes="icon_size_sm" />
+          <Icon name="arrow-right" classes="icon--size-sm" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action_icon">
-          <Icon name="rotate-cw" classes="icon_size_sm" />
+          <Icon name="rotate-cw" classes="icon--size-sm" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action_icon">
-          <Icon name="home" classes="icon_size_sm" />
+          <Icon name="home" classes="icon--size-sm" />
         </button>
       </li>
       <li class="menu__sep" />
@@ -78,7 +78,7 @@ const { name, id = "", classes = "" } = Astro.props;
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action_icon">
-          <Icon name="more-vertical" classes="icon_size_sm" />
+          <Icon name="more-vertical" classes="icon--size-sm" />
         </button>
       </li>
     </ul>
@@ -125,7 +125,7 @@ const { name, id = "", classes = "" } = Astro.props;
         <button type="button" class="menu__action">
           <Icon
             name="corner-down-left"
-            classes="icon_size_sm foreground-primary"
+            classes="icon--size-sm foreground-primary"
           />
           <span class="flex-grow">Undo</span>
         </button>
@@ -134,7 +134,7 @@ const { name, id = "", classes = "" } = Astro.props;
         <button type="button" class="menu__action">
           <Icon
             name="corner-down-right"
-            classes="icon_size_sm foreground-primary"
+            classes="icon--size-sm foreground-primary"
           />
           <span class="flex-grow">Redo</span>
         </button>
@@ -142,19 +142,19 @@ const { name, id = "", classes = "" } = Astro.props;
       <li class="menu__sep" />
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+          <Icon name="scissors" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Cut</span>
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="copy" classes="icon_size_sm foreground-primary" />
+          <Icon name="copy" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Copy</span>
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+          <Icon name="clipboard" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Paste</span>
         </button>
       </li>
@@ -207,7 +207,7 @@ const { name, id = "", classes = "" } = Astro.props;
         <button type="button" class="menu__action">
           <Icon
             name="corner-down-left"
-            classes="icon_size_sm foreground-primary"
+            classes="icon--size-sm foreground-primary"
           />
           <span class="flex-grow">Undo</span>
           <span class="foreground-subtle">⌘Z</span>
@@ -217,7 +217,7 @@ const { name, id = "", classes = "" } = Astro.props;
         <button type="button" class="menu__action">
           <Icon
             name="corner-down-right"
-            classes="icon_size_sm foreground-primary"
+            classes="icon--size-sm foreground-primary"
           />
           <span class="flex-grow">Redo</span>
           <span class="foreground-subtle">&uarr;⌘Z</span>
@@ -226,21 +226,21 @@ const { name, id = "", classes = "" } = Astro.props;
       <li class="menu__sep" />
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="scissors" classes="icon_size_sm foreground-primary" />
+          <Icon name="scissors" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Cut</span>
           <span class="foreground-subtle">⌘X</span>
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="copy" classes="icon_size_sm foreground-primary" />
+          <Icon name="copy" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Copy</span>
           <span class="foreground-subtle">⌘C</span>
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action">
-          <Icon name="clipboard" classes="icon_size_sm foreground-primary" />
+          <Icon name="clipboard" classes="icon--size-sm foreground-primary" />
           <span class="flex-grow">Paste</span>
           <span class="foreground-subtle">⌘V</span>
         </button>

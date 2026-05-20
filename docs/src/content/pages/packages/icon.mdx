@@ -32,7 +32,7 @@ Icon comes with the following Sass configuration options that can be set using e
 ```scss
 @use "@vrembem/icon" with (
   $config: (
-    // Map for outputting the icon_style_[key] modifier variants
+    // Map for outputting the icon--style-[key] modifier variants
     // @type map
     "icon-style": (
       "default": "stroke",
@@ -41,7 +41,7 @@ Icon comes with the following Sass configuration options that can be set using e
       "both": "both"
     ),
 
-    // Map for outputting the icon_size_[key] modifier variants. Values should 
+    // Map for outputting the icon--size-[key] modifier variants. Values should 
     // contain a list of font-size and stroke-width pairs.
     // @type map
     "icon-size": (
@@ -86,52 +86,52 @@ The most basic implementation of the icon component consists of the `icon` class
   ```
 </CodeExample>
 
-## icon_size_[key]
+## icon--size-[key]
 
 Add a size modifier to adjust the size of your icons. These modifiers are generated using key/value pairs of the `icon-size` config options map.
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="anchor" classes="icon_size_xs" />
-    <Icon name="anchor" classes="icon_size_sm" />
+    <Icon name="anchor" classes="icon--size-xs" />
+    <Icon name="anchor" classes="icon--size-sm" />
     <Icon name="anchor" />
-    <Icon name="anchor" classes="icon_size_lg" />
-    <Icon name="anchor" classes="icon_size_xl" />
+    <Icon name="anchor" classes="icon--size-lg" />
+    <Icon name="anchor" classes="icon--size-xl" />
   </div>
   ```html
-  <svg class="icon icon_size_sm" role="img">...</svg>
+  <svg class="icon icon--size-sm" role="img">...</svg>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `icon_size_xs`
-- `icon_size_sm`
-- `icon_size_lg`
-- `icon_size_xl`
+- `icon--size-xs`
+- `icon--size-sm`
+- `icon--size-lg`
+- `icon--size-xl`
 
-## icon_style_[key]
+## icon--style-[key]
 
 Adjust the icon style to accommodate stroke, filled or stroke and filled style icons. These modifiers are generated using key/value pairs of the `icon-style` config options map.
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="heart" classes="icon_style_stroke" />
-    <Icon name="heart" classes="icon_style_fill" />
-    <Icon name="heart" classes="icon_style_both" />
-    <Icon name="sun" classes="icon_style_stroke" />
-    <Icon name="sun" classes="icon_style_fill" />
-    <Icon name="sun" classes="icon_style_both" />
+    <Icon name="heart" classes="icon--style-stroke" />
+    <Icon name="heart" classes="icon--style-fill" />
+    <Icon name="heart" classes="icon--style-both" />
+    <Icon name="sun" classes="icon--style-stroke" />
+    <Icon name="sun" classes="icon--style-fill" />
+    <Icon name="sun" classes="icon--style-both" />
   </div>
   ```html
-  <svg class="icon icon_style_stroke" role="img">...</svg>
-  <svg class="icon icon_style_fill" role="img">...</svg>
-  <svg class="icon icon_style_both" role="img">...</svg>
+  <svg class="icon icon--style-stroke" role="img">...</svg>
+  <svg class="icon icon--style-fill" role="img">...</svg>
+  <svg class="icon icon--style-both" role="img">...</svg>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `icon_style_stroke`
-- `icon_style_fill`
-- `icon_style_both`
+- `icon--style-stroke`
+- `icon--style-fill`
+- `icon--style-both`

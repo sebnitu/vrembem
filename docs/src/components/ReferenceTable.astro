@@ -105,7 +105,7 @@ function iconMap(value: string) {
             placeholder="Filter..."
           />
           <label class="input-icon" for={`${tableId}-filter`}>
-            <Icon name="eye" classes="icon_size_sm" />
+            <Icon name="eye" classes="icon--size-sm" />
             <span class="sr-only">Type to filter the reference table.</span>
           </label>
           <button
@@ -113,7 +113,7 @@ function iconMap(value: string) {
             type="button"
             data-clear={`${tableId}-filter`}
           >
-            <Icon name="x" classes="icon_size_sm" />
+            <Icon name="x" classes="icon--size-sm" />
           </button>
         </div>
       </div>
@@ -143,14 +143,14 @@ function iconMap(value: string) {
                 href={`#${cleanAppend(key)}`}
                 aria-label={`Permalink to '${key}'`}
               >
-                <Icon name="hash" classes="icon_size_sm" />
+                <Icon name="hash" classes="icon--size-sm" />
               </a>
               <button
                 class="table-anchor-clear"
                 type="button"
                 aria-label="Clear current hash anchor"
               >
-                <Icon name="x" classes="icon_size_sm" />
+                <Icon name="x" classes="icon--size-sm" />
               </button>
               <CodeBlock inline={key} />
             </td>
@@ -163,7 +163,7 @@ function iconMap(value: string) {
                         <Fragment slot="trigger">
                           <Icon
                             name={iconMap(themeKey)}
-                            classes="icon_size_sm"
+                            classes="icon--size-sm"
                           />
                         </Fragment>
                         <Fragment slot="tooltip">
@@ -181,7 +181,7 @@ function iconMap(value: string) {
   </table>
   <div class="notice notice_color_important display-none">
     <div class="flex align-items-center">
-      <Icon name="alert-triangle" classes="icon_size_sm" />
+      <Icon name="alert-triangle" classes="icon--size-sm" />
       <p>There are no variables that match your search.</p>
     </div>
   </div>

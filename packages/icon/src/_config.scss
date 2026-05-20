@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting the icon_style_[key] modifier variants
+  // Map for outputting the icon--style-[key] modifier variants
   // @type map
   "icon-style": (
     "default": "stroke",
@@ -15,7 +15,7 @@ $default: (
     "both": "both"
   ),
 
-  // Map for outputting the icon_size_[key] modifier variants. Values should 
+  // Map for outputting the icon--size-[key] modifier variants. Values should 
   // contain a list of font-size and stroke-width pairs.
   // @type map
   "icon-size": (

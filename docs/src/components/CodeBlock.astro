@@ -20,7 +20,7 @@ if (icon) classes.push("has-icon");
   {
     icon && (
       <span class="code-block__icon">
-        <Icon name={icon} classes="icon_size_sm" />
+        <Icon name={icon} classes="icon--size-sm" />
       </span>
     )
   }
@@ -42,10 +42,10 @@ if (icon) classes.push("has-icon");
     aria-label="Copy code example to clipboard"
   >
     <Fragment slot="trigger">
-      <Icon name="copy" classes="icon_size_sm" />
+      <Icon name="copy" classes="icon--size-sm" />
       <Icon
         name="check"
-        classes="icon_size_sm foreground-primary display-none"
+        classes="icon--size-sm foreground-primary display-none"
       />
     </Fragment>
     Copied!
