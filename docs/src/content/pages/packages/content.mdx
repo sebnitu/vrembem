@@ -108,7 +108,7 @@ Content modules each have their own output styles. These are all output by defau
 
 ```scss
 @include config.set("content-output-exceptions", (
-  "global", "headings"
+  "content", "headings"
 ));
 ```
 </ReferenceCard>
@@ -130,11 +130,11 @@ Use the `content-output` configuration to toggle output for all modules. Add exc
   "pre"
 ));
 
-// Disable the output of all modules except for "global" and "headings"
+// Disable the output of all modules except for "content" and "headings"
 @include config.set((
   "content-output": false
   "content-output-exceptions": (
-    "global",
+    "content",
     "headings"
   )
 ));
