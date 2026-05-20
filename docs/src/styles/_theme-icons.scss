@@ -17,21 +17,21 @@
 }
 
 #{themes.class("auto")} {
-  .theme-icon_auto {
+  .theme-icon--auto {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 #{themes.class("light")} {
-  .theme-icon_light {
+  .theme-icon--light {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 #{themes.class("dark")} {
-  .theme-icon_dark {
+  .theme-icon--dark {
     transform: translateY(0);
     opacity: 1;
   }

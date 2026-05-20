@@ -13,7 +13,7 @@ import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
 >
   <Fragment slot="trigger">
     <svg
-      class="icon theme-icon theme-icon_auto"
+      class="icon theme-icon theme-icon--auto"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -26,8 +26,8 @@ import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
         d="M3 12C3 16.9706 7.02944 21 12 21V3C7.02944 3 3 7.02944 3 12Z"
         fill="currentcolor"></path>
     </svg>
-    <Icon name="sun" classes="theme-icon theme-icon_light" />
-    <Icon name="moon" classes="theme-icon theme-icon_dark" />
+    <Icon name="sun" classes="theme-icon theme-icon--light" />
+    <Icon name="moon" classes="theme-icon theme-icon--dark" />
   </Fragment>
   <Fragment slot="tooltip">Switch theme</Fragment>
   <ThemeSwitcherMenu />
