@@ -16,7 +16,11 @@ const headingAnchor = {
       const els = document.querySelectorAll(`${config.prefix} ${heading}`);
       els.forEach((el) => {
         // Return if heading has the `no-anchor` class
-        if (el.classList.contains("no-anchor")) return;
+        if (
+          el.classList.contains("no-anchor") ||
+          el.classList.contains("sr-only")
+        )
+          return;
 
         // Return if heading is in a code example
         if (el.closest(".code-example")) return;

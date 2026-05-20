@@ -6,7 +6,9 @@ const { headings, menuClass = "" } = Astro.props;
 // Filter the headings to only display the ones we want
 const filteredHeadings = build(
   headings.filter((item) => {
-    return item.depth === 2 || item.depth === 3;
+    return (
+      item.slug !== "footnote-label" && (item.depth === 2 || item.depth === 3)
+    );
   })
 );
 
