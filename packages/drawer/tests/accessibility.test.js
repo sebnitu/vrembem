@@ -3,7 +3,7 @@ import { DrawerCollection } from "../index";
 
 document.body.innerHTML = `
   <div class="drawer-frame">
-    <div id="drawer-default" class="drawer drawer_modal">
+    <div id="drawer-default" class="drawer drawer--modal">
       <div class="drawer__dialog">...</div>
     </div>
     <main class="drawer-main">

@@ -92,8 +92,8 @@
       drawerEntry.mode = (formData.get("toggle-drawer-modal")) ? "modal" : "inline";
       // Update the drawer switch state
       (formData.get("toggle-drawer-switch")) ?
-        drawerEntry.el.classList.add("drawer_switch"):
-        drawerEntry.el.classList.remove("drawer_switch");
+        drawerEntry.el.classList.add("drawer--switch"):
+        drawerEntry.el.classList.remove("drawer--switch");
     }
 
     // Run update drawer state and also run it any time the form changes

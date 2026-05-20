@@ -107,7 +107,7 @@ const drawers = new DrawerCollection({
 
   // A CSS class used to toggle the modal styles of a drawer
   // @type string
-  classModal: "drawer_modal",
+  classModal: "drawer--modal",
 
   // Whether or not to set the tabindex attribute of the drawer dialog
   // @type boolean
@@ -292,12 +292,12 @@ The [dialog component](/packages/dialog) is a great fit for composing a drawer's
 
 ### Modal drawers
 
-There are multiple ways a modal drawer can be created. The simplest is by applying the [`drawer_modal`](#drawer_modal) modifier class to the `drawer` element before it has been registered. To change a drawer's mode after it has been registered, change the `mode` property of the drawer entry from `"inline"` to `"modal"` (or vice versa) in JavaScript.
+There are multiple ways a modal drawer can be created. The simplest is by applying the [`drawer--modal`](#drawer--modal) modifier class to the `drawer` element before it has been registered. To change a drawer's mode after it has been registered, change the `mode` property of the drawer entry from `"inline"` to `"modal"` (or vice versa) in JavaScript.
 
 <CodeExample tabs flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
-      <aside id="drawer-3" class="drawer drawer_modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-3" class="drawer drawer--modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__body">
             <div class="flex">
@@ -314,7 +314,7 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
   </Fragment>
   <TabsPanel label="HTML">
     ```html
-    <aside id="[unique-id]" class="drawer drawer_modal">
+    <aside id="[unique-id]" class="drawer drawer--modal">
       ...
     </aside>
     ```
@@ -487,21 +487,21 @@ Here's an example where we set the `drawer-main` content area to be inaccessible
   ```
 </CodeExample>
 
-## drawer_modal
+## drawer--modal
 
 Applies modal drawer styles to a drawer. This modifier should be applied before the drawer has been registered to properly set up the modal drawer. For more details on modal drawers and how to create them dynamically, please see the [modal drawer](#modal-drawers) documentation.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 12rem;">
-      <aside id="drawer-8" class="drawer drawer_modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
+      <aside id="drawer-8" class="drawer drawer--modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <h2 class="dialog__title">Modal drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
           <div class="dialog__body">
-            <p>Set a drawer to modal mode by applying the <code>drawer_modal</code> modifier class.</p>
+            <p>Set a drawer to modal mode by applying the <code>drawer--modal</code> modifier class.</p>
           </div>
         </div>
       </aside>
@@ -511,20 +511,20 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
      </div>
   </Fragment>
   ```html
-  <aside id="[unique-id]" class="drawer drawer_modal">
+  <aside id="[unique-id]" class="drawer drawer--modal">
     ...
   </aside>
   ```
 </CodeExample>
 
-## drawer_switch
+## drawer--switch
 
-Drawers slide in from the left by default. To create a right side drawer, use the `drawer_switch` modifier.
+Drawers slide in from the left by default. To create a right side drawer, use the `drawer--switch` modifier.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
-      <aside id="drawer-9" class="drawer drawer_switch is-closed">
+      <aside id="drawer-9" class="drawer drawer--switch is-closed">
         <div class="drawer__dialog dialog">
           <div class="dialog__header">
             <p class="flex-grow">Drawer example</p>
@@ -538,7 +538,7 @@ Drawers slide in from the left by default. To create a right side drawer, use th
     </div>
   </Fragment>
   ```html
-  <aside id="drawer-right" class="drawer drawer_switch">
+  <aside id="drawer-right" class="drawer drawer--switch">
     ...
   </aside>
   ```

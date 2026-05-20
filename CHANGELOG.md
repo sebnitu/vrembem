@@ -967,7 +967,7 @@ https://lerna.js.org/docs/features/version-and-publish
     * You can now pass custom configurations to a specific drawer using the `data-drawer-config` data attribute. Takes a JSON object as its value.
     * Drawer local storage feature has been refactored and now uses the new `localStore` module which handles creating and updating a `localStorage` object using a proxy that is tracked as a global drawer property.
     * Refactored and now shared `updateGlobalState` module that handles setting overflow and inert states.
-    * Styles for drawers have been updated to now slide in from the left by default. To switch positioning to the right of the viewport, apply the `drawer_switch` modifier. This replaced the use of `drawer_pos_[key]` modifiers. Non-positioned drawers are no longer supported.
+    * Styles for drawers have been updated to now slide in from the left by default. To switch positioning to the right of the viewport, apply the `drawer--switch` modifier. This replaced the use of `drawer_pos_[key]` modifiers. Non-positioned drawers are no longer supported.
     * Added support for multi-attribute triggers with space separated ID lists as the value. This allows for better management of multi-drawer apps/websites that open from the same side.
     * Better handling of initial state of drawers.
     * Better handling of focus management. Each drawer trigger is now tracked on a per-drawer basis.
@@ -980,7 +980,7 @@ https://lerna.js.org/docs/features/version-and-publish
       * `drawer__wrapper` => `drawer-frame`
       * `drawer__main` => `drawer-main`
       * `drawer_pos_left` => deprecated: Drawers are now positioned left by default.
-      * `drawer_pos_right` => `drawer_switch`
+      * `drawer_pos_right` => `drawer--switch`
     * **CSS variable changes**
       * `$wrapper-height: 100%;` => `$frame-height: 100vh;`
     * **Option changes**
@@ -997,7 +997,7 @@ https://lerna.js.org/docs/features/version-and-publish
       * `switchToDefault()` => deprecated
       * `switchToModal()` => deprecated
     * **Events**
-      * `drawer:toDefault` and `drawer:toModal` events have been deprecated in favor of `drawer:switchMode` which is emitted whenever a drawer's mode changes. To check the mode state, use `event.target` and check for the `drawer_modal` class, or get the collection entry and check `entry.mode` property for current state.
+      * `drawer:toDefault` and `drawer:toModal` events have been deprecated in favor of `drawer:switchMode` which is emitted whenever a drawer's mode changes. To check the mode state, use `event.target` and check for the `drawer--modal` class, or get the collection entry and check `entry.mode` property for current state.
 
 
 <!-- v2 -->
