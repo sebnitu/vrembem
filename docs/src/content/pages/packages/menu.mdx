@@ -48,7 +48,9 @@ Menu comes with the following Sass configuration options that can be set using e
 Menu uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-menu" valueLabel="Fallback" expandable={true} data={{
-  // Base styles
+  // Menu base
+  "--vb-menu-size": "var(--vb-font-size)",
+  "--vb-menu-line-height": "var(--vb-line-height)",
   "--vb-menu-padding": "0.5em 1em",
   "--vb-menu-border-radius": "var(--vb-border-radius)",
 

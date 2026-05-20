@@ -3,7 +3,7 @@
 
 .menu_minimal {
   @include core.media-min("aside") {
-    font-size: tokens.get("font-size-sm");
+    @include tokens.override("menu", "size", tokens.get("font-size-sm"));
   }
 
   .menu__action {

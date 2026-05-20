@@ -6,6 +6,8 @@
   flex-direction: column;
   gap: tokens.get("menu", "gap", 1px);
   align-items: stretch;
+  font-size: tokens.get("menu", "size", tokens.get("font-size"));
+  line-height: tokens.get("menu", "line-height", tokens.get("line-height"));
   list-style: none;
 }
 
