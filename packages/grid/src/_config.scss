@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting grid_cols_[num] modifier and col-[num] utility variants
+  // Map for outputting grid--cols-[num] modifier and col-[num] utility variants
   // @type map
   "grid-cols": (
     "breakpoints": true,
