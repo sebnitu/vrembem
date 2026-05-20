@@ -1,5 +1,5 @@
 {
-  "--vb-prefix": "vb",
+  "--vb-prefix-tokens": "vb",
   "--vb-prefix-themes": "vb-theme",
   "--vb-breakpoint-xs": "480px",
   "--vb-breakpoint-sm": "620px",

@@ -5,11 +5,11 @@ test("should return an empty string if no prefix is found", () => {
 });
 
 test("should return the vrembem prefix value", () => {
-  document.body.style.setProperty("--vb-prefix", "vb");
+  document.body.style.setProperty("--vb-prefix-tokens", "vb");
   expect(getPrefix()).toBe("vb");
 });
 
 test("should return the vrembem prefix value with an affixed delimiter", () => {
-  document.body.style.setProperty("--vb-prefix", "vb");
+  document.body.style.setProperty("--vb-prefix-tokens", "vb");
   expect(getPrefix("-")).toBe("vb-");
 });
