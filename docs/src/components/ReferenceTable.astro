@@ -158,7 +158,7 @@ function iconMap(value: string) {
               {typeof value === "string"
                 ? value && <CodeBlock inline={linkifyValue(value)} />
                 : Object.entries(value).map(([themeKey, themeValue]) => (
-                    <div class="flex flex_wrap_no gap-0 align-items-center">
+                    <div class="flex flex--wrap-no gap-0 align-items-center">
                       <Popover triggerClass="foreground-subtle flex padding-y-sm margin-left-sm">
                         <Fragment slot="trigger">
                           <Icon

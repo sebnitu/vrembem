@@ -14,7 +14,7 @@ $default: (
     "total": 6
   ),
 
-  // Map for outputting grid_rows_[num] modifier and row-[num] utility variants
+  // Map for outputting grid--rows-[num] modifier and row-[num] utility variants
   // @type map
   "grid-rows": (
     "breakpoints": true,
@@ -22,7 +22,7 @@ $default: (
     "total": 6
   ),
 
-  // Map for outputting the grid_gap_[key] modifier variants
+  // Map for outputting the grid--gap-[key] modifier variants
   // @type map
   "grid-gap": (
     "breakpoints": true,
@@ -35,7 +35,7 @@ $default: (
     "xl": calc(tokens.get("spacing") * 16)
   ),
 
-  // Map for outputting the grid_flow_[key] modifier variants
+  // Map for outputting the grid--flow-[key] modifier variants
   // @type map
   "grid-flow": (
     "default": dense,

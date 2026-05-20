@@ -19,7 +19,7 @@ $default: (
     "xl": tokens.get("spacing-xl")
   ),
 
-  // Map for outputting flex_wrap_[key] modifier variants
+  // Map for outputting flex--wrap-[key] modifier variants
   // @type map
   "flex-wrap": (
     "breakpoints": true,
@@ -29,7 +29,7 @@ $default: (
     "reverse": wrap-reverse
   ),
 
-  // Map for outputting flex_direction_[key] modifier variants
+  // Map for outputting flex--direction-[key] modifier variants
   // @type map
   "flex-direction": (
     "breakpoints": true,
@@ -40,7 +40,7 @@ $default: (
     "col-reverse": column-reverse
   ),
 
-  // Map for outputting flex_items_[key] modifier and flex-item-[key] utility 
+  // Map for outputting flex--items-[key] modifier and flex-item-[key] utility 
   // variants.
   // @type map
   "flex-items": (
