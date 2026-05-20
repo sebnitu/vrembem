@@ -3,5 +3,5 @@
 
 @layer components {
   @include meta.load-css("./src/section");
-  @include meta.load-css("./src/section_padding");
+  @include meta.load-css("./src/section--padding");
 }

@@ -29,7 +29,7 @@ Section comes with the following Sass configuration options that can be set usin
 ```scss
 @use "@vrembem/section" with (
   $config: (
-    // Map for outputting section_padding_[key] modifier variants
+    // Map for outputting section--padding-[key] modifier variants
     // @type map
     "section-padding": (
       "default": (
@@ -153,7 +153,7 @@ Section screens and backgrounds are displayed behind the section container. Thes
   ```
 </CodeExample>
 
-## section_padding_[key]
+## section--padding-[key]
 
 A modifier that adjusts the dynamic padding of a section. These modifiers are generated using key/value pairs of the `section-padding` config options map.
 
@@ -162,13 +162,13 @@ A modifier that adjusts the dynamic padding of a section. These modifiers are ge
     <label class="text-nowrap" for="demo-section-padding-select">Variants Demo:</label>
     <select id="demo-section-padding-select" class="select font-size-sm width-auto" data-demo-target="demo-section-padding">
       <option value="section">None</option>
-      <option value="section section_padding_sm">section_padding_sm</option>
-      <option value="section section_padding_lg">section_padding_lg</option>
-      <option value="section section_padding_xl">section_padding_xl</option>
+      <option value="section section--padding-sm">section--padding-sm</option>
+      <option value="section section--padding-lg">section--padding-lg</option>
+      <option value="section section--padding-xl">section--padding-xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-section-padding" class="section section_padding_lg">
+    <div id="demo-section-padding" class="section section--padding-lg">
       <div class="section__container spacing text-align-center">
         <h1 class="h1">Section example</h1>
         <p>This is a demonstration of the section component using a screen and background image. The screen, background and foreground colors can be adjusted using CSS variables.</p>
@@ -183,7 +183,7 @@ A modifier that adjusts the dynamic padding of a section. These modifiers are ge
     </div>
   </Fragment>
   ```html
-  <div class="section section_padding_lg">
+  <div class="section section--padding-lg">
     ...
   </div>
   ```
@@ -191,6 +191,6 @@ A modifier that adjusts the dynamic padding of a section. These modifiers are ge
 
 **Available variants**
 
-* `section_padding_sm`
-* `section_padding_lg`
-* `section_padding_xl`
+* `section--padding-sm`
+* `section--padding-lg`
+* `section--padding-xl`
