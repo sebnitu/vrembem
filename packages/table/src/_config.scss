@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Toggle for outputting table_mobile modifier breakpoint variants and setting
+  // Toggle for outputting table--mobile modifier breakpoint variants and setting
   // data attribute for mobile labels.
   // @type map
   "table-mobile": (
@@ -14,7 +14,7 @@ $default: (
     "attr": "data-mobile-label"
   ),
 
-  // Map for outputting table_padding_[key] modifier variants
+  // Map for outputting table--padding-[key] modifier variants
   // @type map
   "table-padding": (
     "breakpoints": true,

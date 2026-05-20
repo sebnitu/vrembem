@@ -29,7 +29,7 @@ Table comes with the following Sass configuration options that can be set using 
 ```scss
 @use "@vrembem/table" with (
   $config: (
-    // Toggle for outputting table_mobile modifier breakpoint variants
+    // Toggle for outputting table--mobile modifier breakpoint variants
     // @type boolean
     "table-mobile": (
       "breakpoints": true,
@@ -262,13 +262,13 @@ Use the `hug-content` table utility when a table cell should fit the size of its
   ```
 </CodeExample>
 
-## table_ellipsis
+## table--ellipsis
 
 Switches a table layout to `fixed` and adds ellipsis overflow styles to table cells and headers.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_ellipsis">
+    <table class="table table--ellipsis">
       <thead>
         <tr>
           <th>Book</th>
@@ -301,17 +301,17 @@ Switches a table layout to `fixed` and adds ellipsis overflow styles to table ce
     </table>
   </Fragment>
   ```html
-  <table class="table table_ellipsis">
+  <table class="table table--ellipsis">
     ...
   </table>
   ```
 </CodeExample>
 
-Space will be split equally between columns when `table_ellipsis` is applied. For more control over specific column widths, use the `<colgroup>` and `<col>` elements and set their desired widths as needed.
+Space will be split equally between columns when `table--ellipsis` is applied. For more control over specific column widths, use the `<colgroup>` and `<col>` elements and set their desired widths as needed.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_ellipsis">
+    <table class="table table--ellipsis">
       <colgroup>
         <col />
         <col style="width: 5em;" />
@@ -349,7 +349,7 @@ Space will be split equally between columns when `table_ellipsis` is applied. Fo
     </table>
   </Fragment>
   ```html
-  <table class="table table_ellipsis">
+  <table class="table table--ellipsis">
     <colgroup>
       <col />
       <col style="width: 5em;" />
@@ -360,13 +360,13 @@ Space will be split equally between columns when `table_ellipsis` is applied. Fo
   ```
 </CodeExample>
 
-## table_hover
+## table--hover
 
 Adds hover, focus and focus-within state styles for table row (`<tr>`) elements.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_hover">
+    <table class="table table--hover">
       <thead>
         <tr>
           <th class="hug-content"></th>
@@ -417,19 +417,19 @@ Adds hover, focus and focus-within state styles for table row (`<tr>`) elements.
     </table>
   </Fragment>
   ```html
-  <table class="table table_hover">
+  <table class="table table--hover">
     ...
   </table>
   ```
 </CodeExample>
 
-## table_mobile
+## table--mobile
 
 A modifier that adds mobile styles to a table so that it's easier to read on mobile devices. This is done by using the `data-mobile-label` attribute on table cells that should correspond to the table column header for that specific cell.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_mobile table_style_bordered">
+    <table class="table table--mobile table--style-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -455,7 +455,7 @@ A modifier that adds mobile styles to a table so that it's easier to read on mob
     </table>
   </Fragment>
   ```html
-  <table class="table table_mobile">
+  <table class="table table--mobile">
     <thead>
       <tr>
         <th>key</th>
@@ -480,19 +480,19 @@ This modifier come with media breakpoint variants. This allows changing styles b
 
 **Available variants**
 
-- `xs:table_mobile`
-- `sm:table_mobile`
-- `md:table_mobile`
-- `lg:table_mobile`
-- `xl:table_mobile`
+- `xs:table--mobile`
+- `sm:table--mobile`
+- `md:table--mobile`
+- `lg:table--mobile`
+- `xl:table--mobile`
 
-## table_padding_[key]
+## table--padding-[key]
 
 Adjust the padding of a table's `<th>`, `<td>`, and `<caption>` elements. These modifiers are generated using key/value pairs of the `table-padding` config options map.
 
 <CodeExample>
   <div slot="output" class="spacing">
-    <table class="table table_padding_sm table_style_bordered">
+    <table class="table table--padding-sm table--style-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -517,7 +517,7 @@ Adjust the padding of a table's `<th>`, `<td>`, and `<caption>` elements. These 
       </tbody>
     </table>
 
-    <table class="table table_padding_lg table_style_bordered">
+    <table class="table table--padding-lg table--style-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -543,16 +543,16 @@ Adjust the padding of a table's `<th>`, `<td>`, and `<caption>` elements. These 
     </table>
   </div>
   ```html
-  <table class="table table_padding_sm">...</table>
-  <table class="table table_padding_lg">...</table>
+  <table class="table table--padding-sm">...</table>
+  <table class="table table--padding-lg">...</table>
   ```
 </CodeExample>
 
 **Available variants**
 
-- `table_padding_sm`
-- `table_padding_md`
-- `table_padding_lg`
+- `table--padding-sm`
+- `table--padding-md`
+- `table--padding-lg`
 
 ### Breakpoint variants
 
@@ -561,7 +561,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
 <CodeExample>
   <div slot="output" class="spacing">
     <p>Current view-port width: <code data-vp-width>...</code></p>
-    <table class="table table_padding_sm lg:table_padding_md xl:table_padding_lg table_style_bordered">
+    <table class="table table--padding-sm lg:table--padding-md xl:table--padding-lg table--style-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -587,7 +587,7 @@ These modifiers come with media breakpoint variants. This allows changing styles
     </table>
   </div>
   ```html
-  <table class="table table_padding_sm lg:table_padding_md xl:table_padding_lg">
+  <table class="table table--padding-sm lg:table--padding-md xl:table--padding-lg">
     ...
   </table>
   ```
@@ -595,17 +595,17 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 **Available variants**
 
-- `sm:table_padding_[key]`
-- `md:table_padding_[key]`
-- `lg:table_padding_[key]`
+- `sm:table--padding-[key]`
+- `md:table--padding-[key]`
+- `lg:table--padding-[key]`
 
-## table_striped
+## table--striped
 
 Adds zebra styled rows to a table to help increase its readability. This is done by alternating the background color of rows to help guide the reader's eye.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_striped">
+    <table class="table table--striped">
       <thead>
         <tr>
           <th>Name</th>
@@ -643,19 +643,19 @@ Adds zebra styled rows to a table to help increase its readability. This is done
     </table>
   </Fragment>
   ```html
-  <table class="table table_striped">
+  <table class="table table--striped">
     ...
   </table>
   ```
 </CodeExample>
 
-## table_style_[key]
+## table--style-[key]
 
 Adds table styles based on the provided value.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_style_rowed">
+    <table class="table table--style-rowed">
       <thead>
         <tr>
           <th>Name</th>
@@ -681,7 +681,7 @@ Adds table styles based on the provided value.
     </table>
   </Fragment>
   ```html
-  <table class="table table_style_rowed">
+  <table class="table table--style-rowed">
     ...
   </table>
   ```
@@ -689,7 +689,7 @@ Adds table styles based on the provided value.
 
 <CodeExample>
   <Fragment slot="output">
-    <table class="table table_style_bordered">
+    <table class="table table--style-bordered">
       <thead>
         <tr>
           <th>Name</th>
@@ -715,7 +715,7 @@ Adds table styles based on the provided value.
     </table>
   </Fragment>
   ```html
-  <table class="table table_style_bordered">
+  <table class="table table--style-bordered">
     ...
   </table>
   ```
@@ -723,5 +723,5 @@ Adds table styles based on the provided value.
 
 **Available variants**
 
-- `table_style_rowed`
-- `table_style_bordered`
+- `table--style-rowed`
+- `table--style-bordered`
