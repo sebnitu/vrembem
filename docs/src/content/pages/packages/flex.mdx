@@ -29,7 +29,7 @@ Flex comes with the following Sass configuration options that can be set using e
 ```scss
 @use "@vrembem/flex" with (
   $config: (
-    // Map for outputting flex_gap_[key] modifier variants
+    // Map for outputting flex--gap-[key] modifier variants
     // @type map
     "flex-gap": (
       "breakpoints": true,
@@ -117,13 +117,13 @@ The most basic implementation of the flex component consists of a container elem
   ```
 </CodeExample>
 
-### flex_inline
+### flex--inline
 
-Also available is the `flex_inline` modifier. This sets the `display` property to `inline-flex` instead of `flex`.
+Also available is the `flex--inline` modifier. This sets the `display` property to `inline-flex` instead of `flex`.
 
 <CodeExample>
   <Fragment slot="output">
-    <div class="layout-demo flex flex_inline">
+    <div class="layout-demo flex flex--inline">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -132,13 +132,13 @@ Also available is the `flex_inline` modifier. This sets the `display` property t
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_inline">
+  <div class="flex flex--inline">
     ...
   </div>
   ```
 </CodeExample>
 
-## flex_gap_[key]
+## flex--gap-[key]
 
 Modifiers used to set the `gap` property of a flex component. These modifiers are generated using key/value pairs of the `flex-gap` config options map. The `default` key sets the provided value on the flex component itself and is not output as a modifier.
 
@@ -147,16 +147,16 @@ Modifiers used to set the `gap` property of a flex component. These modifiers ar
     <label class="text-nowrap" for="demo-flex-gap-select">Variants Demo:</label>
     <select id="demo-flex-gap-select" class="select font-size-sm width-auto" data-demo-target="demo-flex-gap">
       <option value="flex">None</option>
-      <option value="flex flex_gap_0">flex_gap_0</option>
-      <option value="flex flex_gap_xs">flex_gap_xs</option>
-      <option value="flex flex_gap_sm">flex_gap_sm</option>
-      <option value="flex flex_gap_md">flex_gap_md</option>
-      <option value="flex flex_gap_lg">flex_gap_lg</option>
-      <option value="flex flex_gap_xl">flex_gap_xl</option>
+      <option value="flex flex--gap-0">flex--gap-0</option>
+      <option value="flex flex--gap-xs">flex--gap-xs</option>
+      <option value="flex flex--gap-sm">flex--gap-sm</option>
+      <option value="flex flex--gap-md">flex--gap-md</option>
+      <option value="flex flex--gap-lg">flex--gap-lg</option>
+      <option value="flex flex--gap-xl">flex--gap-xl</option>
     </select>
   </Fragment>
   <Fragment slot="output">
-    <div id="demo-flex-gap" class="layout-demo flex flex_gap_sm">
+    <div id="demo-flex-gap" class="layout-demo flex flex--gap-sm">
       <div class="box">One</div>
       <div class="box">Two</div>
       <div class="box">Three</div>
@@ -170,7 +170,7 @@ Modifiers used to set the `gap` property of a flex component. These modifiers ar
     </div>
   </Fragment>
   ```html
-  <div class="flex flex_gap_sm">
+  <div class="flex flex--gap-sm">
     ...
   </div>
   ```
@@ -178,12 +178,12 @@ Modifiers used to set the `gap` property of a flex component. These modifiers ar
 
 **Available variants**
 
-- `flex_gap_0`
-- `flex_gap_xs`
-- `flex_gap_sm`
-- `flex_gap_md`
-- `flex_gap_lg`
-- `flex_gap_xl`
+- `flex--gap-0`
+- `flex--gap-xs`
+- `flex--gap-sm`
+- `flex--gap-md`
+- `flex--gap-lg`
+- `flex--gap-xl`
 
 ### flex_gap-x_[key]
 
@@ -287,11 +287,11 @@ These modifiers come with media breakpoint variants. This allows changing styles
 
 <div class="flex flex_items_auto">
   <div class="content">
-    - `xs:flex_gap_[key]`
-    - `sm:flex_gap_[key]`
-    - `md:flex_gap_[key]`
-    - `lg:flex_gap_[key]`
-    - `xl:flex_gap_[key]`
+    - `xs:flex--gap-[key]`
+    - `sm:flex--gap-[key]`
+    - `md:flex--gap-[key]`
+    - `lg:flex--gap-[key]`
+    - `xl:flex--gap-[key]`
   </div>
   <div class="content">
     - `xs:flex_gap-x_[key]`

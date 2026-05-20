@@ -71,7 +71,7 @@ Icon uses design token CSS variables in a reference and fallback pattern. Variab
 The most basic implementation of the icon component consists of the `icon` class applied to an svg element.
 
 <CodeExample>
-  <div slot="output" class="flex flex_gap_xl">
+  <div slot="output" class="flex flex--gap-xl">
     <Icon name="anchor" />
     <Icon name="arrow-left" />
     <Icon name="arrow-right" />
@@ -91,7 +91,7 @@ The most basic implementation of the icon component consists of the `icon` class
 Add a size modifier to adjust the size of your icons. These modifiers are generated using key/value pairs of the `icon-size` config options map.
 
 <CodeExample>
-  <div slot="output" class="flex flex_gap_xl">
+  <div slot="output" class="flex flex--gap-xl">
     <Icon name="anchor" classes="icon_size_xs" />
     <Icon name="anchor" classes="icon_size_sm" />
     <Icon name="anchor" />
@@ -115,7 +115,7 @@ Add a size modifier to adjust the size of your icons. These modifiers are genera
 Adjust the icon style to accommodate stroke, filled or stroke and filled style icons. These modifiers are generated using key/value pairs of the `icon-style` config options map.
 
 <CodeExample>
-  <div slot="output" class="flex flex_gap_xl">
+  <div slot="output" class="flex flex--gap-xl">
     <Icon name="heart" classes="icon_style_stroke" />
     <Icon name="heart" classes="icon_style_fill" />
     <Icon name="heart" classes="icon_style_both" />

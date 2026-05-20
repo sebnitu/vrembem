@@ -6,7 +6,7 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting flex_gap_[key] modifier variants
+  // Map for outputting flex--gap-[key] modifier variants
   // @type map
   "flex-gap": (
     "breakpoints": true,
