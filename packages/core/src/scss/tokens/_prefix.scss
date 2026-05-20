@@ -4,7 +4,7 @@
 // are output. This allows prefix to be modified before output.
 @include tokens.set(
   "core",
-  "prefix",
+  "prefix-tokens",
   (
     "config": (
       "prefix-tokens",

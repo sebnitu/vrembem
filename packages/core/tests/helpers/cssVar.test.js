@@ -4,7 +4,7 @@ document.body.style.setProperty("--background-color", "pink");
 document.body.style.setProperty("--vb-background-color", "green");
 
 beforeEach(() => {
-  document.body.style.removeProperty("--vb-prefix");
+  document.body.style.removeProperty("--vb-prefix-tokens");
 });
 
 test("should return a CSS custom property", () => {
@@ -18,7 +18,7 @@ test("should return a CSS custom property with no prefix defined", () => {
 });
 
 test("should return a CSS custom property with vrembem prefix", () => {
-  document.body.style.setProperty("--vb-prefix", "vb");
+  document.body.style.setProperty("--vb-prefix-tokens", "vb");
   const data = cssVar("background-color");
   expect(data).toBe("green");
 });

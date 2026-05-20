@@ -21,7 +21,7 @@
   &::picker(select) {
     cursor: default;
     transform: translateY(0);
-    margin-block: tokens.get("select", "picker-offset", 0.25em);
+    margin-block: tokens.get("select", "picker-offset", tokens.get("focus-ring-width"));
     padding: tokens.get("select", "picker-padding", 0.5em 0);
     border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
     border-radius: tokens.get("select", "border-radius", tokens.get("form-control-border-radius"));

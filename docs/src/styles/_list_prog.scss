@@ -1,0 +1,46 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.list_prog {
+  counter-reset: item;
+  display: block;
+  margin-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin: 0;
+    padding-bottom: 1em;
+    padding-left: 3em;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  li::before {
+    @include core.size(2em);
+
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    z-index: 2;
+    inset: 0 auto auto 0;
+    display: block;
+    flex-shrink: 0;
+    border: tokens.get("border");
+    border-radius: tokens.get("border-radius-circle");
+    text-align: center;
+    background-color: tokens.get("background");
+  }
+
+  li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 0 auto 0 1em;
+    width: 1px;
+    height: 100%;
+    background-color: tokens.get("border-color");
+  }
+}

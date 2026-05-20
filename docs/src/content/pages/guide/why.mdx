@@ -3,4 +3,32 @@ title: Why Vrembem
 order: 3
 ---
 
-...
+Vrembem was created to be a foundational starting point for design-system-based user interfaces. It provides the patterns and building blocks for creating rich and focused applications using sensible defaults. These systems include:
+
+<ul class="list list_pros">
+  <li>Utility-first BEM methodology</li>
+  <li>Design tokens via CSS variables</li>
+  <li>Sass config and token modules</li>
+  <li>Collections API for JavaScript components</li>
+</ul>
+
+## Why BEM
+
+The BEM naming convention remains a powerful methodology for creating style-encapsulated components. Though the problems BEM originally solved are typically handled by modern front-end frameworks, BEM is a solution that works everywhere. When used alongside front-end frameworks, BEM still provides human-readable context for components and how they relate to one another.
+
+Taking a utility-first approach with BEM also resolves issues such as bloat from early abstractions, having to come up with class names for small tweaks, and making every child of a block its element. Along with native CSS cascade layers, Vrembem provides the methodology for a robust and predictable style system.
+
+## Framework-agnostic
+
+Vrembem works everywhere. At its core, it's just a collection of CSS classes and some opt-in JavaScript behavior powered by native browser APIs. This CSS-first approach makes Vrembem framework-agnostic and even vanilla HTML friendly.
+
+Vrembem avoids vendor lock-in because it's a modular library built on open methodologies. If your project already uses BEM, you have the option of using `@vrembem/menu` or writing your own menu component. The classes or HTML wouldn't need to change at all.
+
+## Embrace CSS
+
+Vrembem embraces CSS rather than abstracting it away. Instead of hiding styles behind proprietary APIs or shorthand conventions, Vrembem provides systems that work with CSS, letting authors take full advantage of its features directly.
+
+<ul class="list list_pros">
+  <li>Components are styled with CSS custom properties, making them easy to customize or extend without overriding specificity. Write CSS the way you normally would.</li>
+  <li>Utility class names map directly to their CSS property and value (e.g., `margin-bottom-lg` instead of `mb-8`), keeping the abstraction layer thin and readable.</li>
+</ul>

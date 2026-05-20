@@ -59,7 +59,7 @@
     }
 
     .drawer__container {
-      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding");
+      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
     }
   }
 }
