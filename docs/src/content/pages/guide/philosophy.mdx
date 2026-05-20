@@ -11,10 +11,10 @@ The main goal of Vrembem is to provide front-end systems that every project need
 
 It's a common misconception that using BEM means you can never deviate from it. Vrembem takes a practical utility-first approach to authoring BEM components. This is the methodology in practice:
 
-- Add utilities first. These are typically one-off single property classes. Vrembem uses a verbose utility naming convention to reduce over-reliance on CSS abstractions[^1].
-- If an element is starting to contain too many utilities, that's a sign that a block class is needed.
-- Add utilities to a block when adjustments are needed.
-- If a block starts to accumulate too many utilities, that's a sign that a modifier class is needed.
+1. Add utilities first. These are typically one-off single property classes. Vrembem uses a verbose utility naming convention to reduce over-reliance on CSS abstractions[^1].
+2. If an element is starting to contain too many utilities, that's a sign that a block class is needed.
+3. Add utilities to a block when adjustments are needed.
+4. If a block starts to accumulate too many utilities, that's a sign that a modifier class is needed.
 
 The benefits to this approach are that it reduces bloat that can exist from early abstractions. Since blocks and modifiers are only created organically once patterns emerge, they become less rigid and more open to composition-based architecture.
 
@@ -28,11 +28,13 @@ This approach allows components to be highly composable with each other, built w
 
 Vrembem uses modern CSS features and native browser APIs to build fast and responsive components for all devices. Purely optional JavaScript modules are available to enhance your projects, or bring-your-own JavaScript. Vrembem implements the following features:
 
-- Design tokens powered by CSS custom properties (variables).
-- Custom palette tokens using the `oklch` color space.
-- Layout components that leverage Flex and Grid.
-- Cascade layers using the `@layer` CSS at-rule for tokens, base, components, and utilities.
-- Native browser APIs are used for things like the dialog element, modals, and popovers.
+<ul class="list list_pros">
+  <li>Design tokens powered by CSS custom properties (variables).</li>
+  <li>Custom palette tokens using the `oklch` color space.</li>
+  <li>Layout components that leverage Flex and Grid.</li>
+  <li>Cascade layers using the `@layer` CSS at-rule for tokens, base, components, and utilities.</li>
+  <li>Native browser APIs are used for things like the dialog element, modals, and popovers.</li>
+</ul>
 
 Vrembem is in active development and will continue to receive the benefits of modern CSS and native APIs as they become available and more widely adopted.
 
