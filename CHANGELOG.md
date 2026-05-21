@@ -35,12 +35,40 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.44 to CHANGELOG.md
+chore(release): add v4.0.0-next.45 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.45 (2026-05-20)
+
+### :tada: New Feature
+* `button`, `checkbox`, `content`, `core`, `icon`, `input`, `menu`, `radio`, `select`, `switch`, `utility`, `vrembem`
+  * [#2829](https://github.com/sebnitu/vrembem/pull/2829) Add new select component with custom dropdown picker styles
+* `button`, `content`, `core`, `dialog`, `input`, `section`, `table`, `utility`, `vrembem`
+  * [#2807](https://github.com/sebnitu/vrembem/pull/2807) Refactor Sass modules and improve tokens API
+
+### :house: Refactor
+* `button`, `card`, `checkbox`, `content`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`, `vrembem`
+  * [#2838](https://github.com/sebnitu/vrembem/pull/2838) Refactor BEM modifier naming convention to use double dash by default
+* `input`, `vrembem`
+  * [#2827](https://github.com/sebnitu/vrembem/pull/2827) Use appearance base-select to style the select input element
+* `button`, `card`, `checkbox`, `content`, `core`, `dialog`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `popover`, `radio`, `section`, `switch`, `table`, `utility`, `vrembem`
+  * [#2825](https://github.com/sebnitu/vrembem/pull/2825) Refactor how form-controls are styled using appearance none
+
+### :books: Documentation
+* `content`, `core`, `drawer`, `popover`, `select`
+  * [#2837](https://github.com/sebnitu/vrembem/pull/2837) Add content for philosophy and why pages
+* Other
+  * [#2826](https://github.com/sebnitu/vrembem/pull/2826) Add the option to set navi groups to collapsed
+* `core`
+  * [#2821](https://github.com/sebnitu/vrembem/pull/2821) Remove the packages collection in favor of a universal pages
+  * [#2809](https://github.com/sebnitu/vrembem/pull/2809) Build new navigation module for rendering drawer sidebar navigation 
+* `drawer`, `modal`, `popover`
+  * [#2805](https://github.com/sebnitu/vrembem/pull/2805) Refactor documentation layout components
 
 
 ## v4.0.0-next.44 (2026-05-03)
