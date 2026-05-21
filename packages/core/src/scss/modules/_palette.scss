@@ -24,8 +24,13 @@
   @include tokens.set("palette", "black", oklch(0% 0 0));
   @include tokens.set("palette", "white", oklch(100% 0 0));
 
-  // Loop through the seeds and set the variables for each item in $seeds
+  // Loop through the palette
   @each $name, $value in config.get(li("palette"), empty-map()) {
+    // Get the value from config if it's an alias
+    @if meta.type-of($value) == "string" {
+      $value: config.get("palette", $value);
+    }
+
     // Set the raw value
     @include tokens.set("palette", "#{$name}", $value);
 
@@ -39,6 +44,35 @@
       @include tokens.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
     }
   }
+}
+
+/// Generates a theme-compatible map that remaps a palette alias to a different
+/// base color. The returned map includes the `"type": "theme"` key and all
+/// necessary token overrides (seed, lightness, chroma, hue, and variants) for
+/// the alias to reference the provided base color.
+///
+/// @param {string} $alias
+///   The palette alias name to remap (e.g., "primary", "secondary").
+/// @param {string} $base
+///   The base palette color name to map the alias to (e.g., "blue", "green").
+///
+/// @return {map}
+///   A theme map containing all token overrides for the remapped alias.
+///
+@function remap($alias, $base) {
+  $map: (
+    "type": "theme"
+  );
+  $map: map.set($map, "#{$alias}", tokens.get("palette", $base));
+  $map: map.set($map, "#{$alias}-l", tokens.get("palette", "#{$base}-l"));
+  $map: map.set($map, "#{$alias}-c", tokens.get("palette", "#{$base}-c"));
+  $map: map.set($map, "#{$alias}-h", tokens.get("palette", "#{$base}-h"));
+
+  @each $key, $args in config.get(li("palette-variants"), empty-map()) {
+    $map: map.set($map, "#{$alias}-#{$key}", #{get($alias, $args...)});
+  }
+
+  @return $map;
 }
 
 /// Returns a color value from the palette as an oklch color, allowing overrides
@@ -146,5 +180,5 @@
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-build-palette"));
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
 
-// Apply token hooks and event listeners
+// Apply token hook for palette getter
 @include tokens.add-hook("getter", "palette", meta.get-function("get"));
