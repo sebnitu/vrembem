@@ -4,8 +4,10 @@
 @use "@vrembem/core/tokens";
 
 @each $key in map.keys(config.get("palette")) {
-  #{core.bem("notice", null, "color", $key)} {
-    @include tokens.override("notice", "foreground", tokens.get("#{$key}-foreground"));
-    @include tokens.override("notice", "background", tokens.get("#{$key}-background"));
+  @if tokens.has("#{$key}-foreground") and tokens.has("#{$key}-background") {
+    #{core.bem("notice", null, "color", $key)} {
+      @include tokens.override("notice", "foreground", tokens.get("#{$key}-foreground"));
+      @include tokens.override("notice", "background", tokens.get("#{$key}-background"));
+    }
   }
 }

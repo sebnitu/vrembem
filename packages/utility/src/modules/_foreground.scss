@@ -45,8 +45,10 @@
       color: fun.maybe-important(tokens.get("palette", $name));
     }
 
-    #{fun.selector("foreground", $name, "auto")} {
-      color: fun.maybe-important(tokens.get("#{$name}-foreground"));
+    @if tokens.has("#{$name}-foreground") {
+      #{fun.selector("foreground", $name, "auto")} {
+        color: fun.maybe-important(tokens.get("#{$name}-foreground"));
+      }
     }
 
     @each $key in map.keys(config.get("palette-variants")) {
