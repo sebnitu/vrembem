@@ -47,9 +47,9 @@ import Icon from "@/components/Icon.astro";
     modes: ["auto", "light", "dark"],
     onInit(store) {
       btns.forEach((btn) => {
-        toggleState(store, btn);
+        const mode = btn.getAttribute("data-set-mode")!;
+        btn.classList.toggle("is-active", isActive(mode, store.mode));
         btn.addEventListener("click", () => {
-          const mode = btn.getAttribute("data-set-mode");
           if (mode) store.mode = mode;
           popovers.close("popover-theme-switcher");
         });
@@ -57,14 +57,13 @@ import Icon from "@/components/Icon.astro";
     },
     onChange(store) {
       btns.forEach((btn) => {
-        toggleState(store, btn);
+        const mode = btn.getAttribute("data-set-mode")!;
+        btn.classList.toggle("is-active", isActive(mode, store.mode));
       });
     }
   });
 
-  function toggleState(store: ThemeStoreAPI, btn: HTMLButtonElement) {
-    const mode = btn.getAttribute("data-set-mode");
-    const isActive = mode === store.mode || (mode === "auto" && !store.mode);
-    btn.classList.toggle("is-active", isActive);
+  function isActive(value: string, current: string | undefined) {
+    return value === current || (value === "auto" && !current);
   }
 </script>
