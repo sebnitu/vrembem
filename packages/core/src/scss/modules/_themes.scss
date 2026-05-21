@@ -7,7 +7,12 @@
 @use "./config";
 @use "./tokens";
 
-/// Used to track theme keys that get added to the `tokens.$-css-vars` map.
+/// Used to track mode keys that get added to the tokens map.
+/// @type list
+/// @access private
+$-mode-keys: ();
+
+/// Used to track theme keys that get added to the tokens map.
 /// @type list
 /// @access private
 $-theme-keys: ();
@@ -22,9 +27,15 @@ $-theme-keys: ();
 ///
 /// @access private
 ///
-@function -add-theme-key($theme) {
-  @if not list.index($-theme-keys, $theme) {
-    $-theme-keys: list.append($-theme-keys, $theme) !global;
+@function -add-key($value, $type: "theme") {
+  @if $type == "theme" and not list.index($-theme-keys, $value) {
+    $-theme-keys: list.append($-theme-keys, $value) !global;
+
+    @return true;
+  }
+
+  @if $type == "mode" and not list.index($-mode-keys, $value) {
+    $-mode-keys: list.append($-mode-keys, $value) !global;
 
     @return true;
   }
@@ -32,10 +43,10 @@ $-theme-keys: ();
   @return false;
 }
 
-/// @see {function} -add-theme-key
+/// @see {function} -add-key
 /// @access private
-@mixin -add-theme-key($theme) {
-  $-void: -add-theme-key($theme);
+@mixin -add-key($value, $type: "theme") {
+  $-void: -add-key($value, $type);
 }
 
 /// Remove a theme key from the `$-theme-keys` map if it exists.
@@ -45,11 +56,21 @@ $-theme-keys: ();
 ///
 /// @access private
 ///
-@mixin -remove-theme-key($theme) {
-  $index: list.index($-theme-keys, $theme);
+@mixin -remove-key($value, $type: "theme") {
+  @if $type == "theme" {
+    $index: list.index($-theme-keys, $value);
 
-  @if $index {
-    $-theme-keys: remove-nth($-theme-keys, $index) !global;
+    @if $index {
+      $-theme-keys: remove-nth($-theme-keys, $index) !global;
+    }
+  }
+
+  @if $type == "mode" {
+    $index: list.index($-mode-keys, $value);
+
+    @if $index {
+      $-mode-keys: remove-nth($-mode-keys, $index) !global;
+    }
   }
 }
 
@@ -70,8 +91,10 @@ $-theme-keys: ();
 /// @access private
 ///
 @function -type-transform-hook($prop, $value) {
-  // Add the theme to the theme-keys list
-  $-void: -add-theme-key($prop);
+  $type: map.get($value, "type");
+
+  // Add the mode/theme to the keys list
+  $-void: -add-key($prop, $type);
 
   // Build the themes map (excluding "type")
   // prettier-ignore
@@ -91,19 +114,23 @@ $-theme-keys: ();
 /// @return {string}
 ///   The theme class with appropriate prefix.
 ///
-@function class($theme) {
+@function selector($value) {
+  // Check if this is a theme or mode key
+  $type: if(sass(list.index($-theme-keys, $value)): "theme" ; else: null);
+  $type: if(sass(list.index($-mode-keys, $value)): "mode" ; else: $type);
+
   // Check that the theme exists
-  @if $theme != "auto" and not list.index($-theme-keys, $theme) {
-    @error "Theme does not exist: #{$theme}";
+  @if $value != "auto" and not $type {
+    @error "Theme or mode does not exist: #{$theme}";
   }
 
-  $prefix: config.get(li("prefix-themes"), "theme");
+  $attr: "data-theme";
 
-  @if $prefix and $prefix != "" {
-    $prefix: "#{$prefix}-";
+  @if $type == "mode" or ($value == "auto" and list.length($-mode-keys) != 0) {
+    $attr: "data-mode";
   }
 
-  @return ".#{$prefix}#{$theme}";
+  @return '[#{$attr}="#{$value}"]';
 }
 
 /// Output all the custom properties and values of a component theme or output a
@@ -168,7 +195,7 @@ $-theme-keys: ();
   // Output the default theme and system preference media query under the root
   // selector and auto theme. This should come before the theme class output.
   :root,
-  #{class("auto")} {
+  #{selector("auto")} {
     // Get the default theme
     $theme: config.get(li("theme-default"), "light");
 
@@ -190,9 +217,16 @@ $-theme-keys: ();
     }
   }
 
-  // This outputs all custom themes using their theme class
+  // This outputs all custom modes using their selector
+  @each $key in $-mode-keys {
+    #{selector($key)} {
+      @include -output-theme($key, $component);
+    }
+  }
+
+  // This outputs all custom themes using their selector
   @each $key in $-theme-keys {
-    #{class($key)} {
+    #{selector($key)} {
       @include -output-theme($key, $component);
     }
   }
@@ -201,6 +235,7 @@ $-theme-keys: ();
 // Apply token hooks and event listeners
 // Add the theme type transformer
 @include tokens.add-hook("setter", "theme", meta.get-function("-type-transform-hook"));
+@include tokens.add-hook("setter", "mode", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
 @include tokens.on("output", "output-theme-tokens", meta.get-mixin("output"));

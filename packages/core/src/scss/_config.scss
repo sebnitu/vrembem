@@ -27,11 +27,6 @@ $default: (
   // @type string | map
   "prefix-tokens": "vb",
 
-  // A prefix to apply to theme names. Provided value is automatically suffixed
-  // with a "-" character when applied.
-  // @type string
-  "prefix-themes": "vb-theme",
-
   // The palette to build CSS variables from
   // @type map
   "palette": (

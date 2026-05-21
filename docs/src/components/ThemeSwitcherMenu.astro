@@ -4,7 +4,7 @@ import Icon from "@/components/Icon.astro";
 
 <ul class="menu">
   <li class="menu__item">
-    <button type="button" data-set-theme="auto" class="menu__action">
+    <button type="button" data-set-mode="auto" class="menu__action">
       <svg
         class="icon"
         width="24"
@@ -23,13 +23,13 @@ import Icon from "@/components/Icon.astro";
     </button>
   </li>
   <li class="menu__item">
-    <button type="button" data-set-theme="light" class="menu__action">
+    <button type="button" data-set-mode="light" class="menu__action">
       <Icon name="sun" />
       <span>Light</span>
     </button>
   </li>
   <li class="menu__item">
-    <button type="button" data-set-theme="dark" class="menu__action">
+    <button type="button" data-set-mode="dark" class="menu__action">
       <Icon name="moon" />
       <span>Dark</span>
     </button>
@@ -37,32 +37,34 @@ import Icon from "@/components/Icon.astro";
 </ul>
 
 <script>
-  import { themeStore } from "@vrembem/core";
+  import { themeStore, type ThemeStoreAPI } from "@vrembem/core";
   import { popovers } from "../modules/usePopover";
 
   const btns: NodeListOf<HTMLButtonElement> =
-    document.querySelectorAll("[data-set-theme]");
+    document.querySelectorAll("[data-set-mode]");
 
   themeStore({
-    onInit() {
+    modes: ["auto", "light", "dark"],
+    onInit(store) {
       btns.forEach((btn) => {
-        toggleState.call(this, btn);
+        toggleState(store, btn);
         btn.addEventListener("click", () => {
-          this.theme = btn.getAttribute("data-set-theme");
+          const mode = btn.getAttribute("data-set-mode");
+          if (mode) store.mode = mode;
           popovers.close("popover-theme-switcher");
         });
       });
     },
-    onChange() {
+    onChange(store) {
       btns.forEach((btn) => {
-        toggleState.call(this, btn);
+        toggleState(store, btn);
       });
     }
   });
 
-  function toggleState(btn: HTMLButtonElement) {
-    btn.getAttribute("data-set-theme") === this.theme
-      ? btn.classList.add("is-active")
-      : btn.classList.remove("is-active");
+  function toggleState(store: ThemeStoreAPI, btn: HTMLButtonElement) {
+    const mode = btn.getAttribute("data-set-mode");
+    const isActive = mode === store.mode || (mode === "auto" && !store.mode);
+    btn.classList.toggle("is-active", isActive);
   }
 </script>

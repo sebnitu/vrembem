@@ -1,23 +1,13 @@
 @use "../modules/tokens";
 @use "../modules/palette";
 
-// This tells tokens to fetch the value from the config module when the tokens
-// are output. This allows prefix-themes to be modified before output.
-@include tokens.set(
-  "core",
-  "prefix-themes",
-  (
-    "config": "prefix-themes"
-  )
-);
-
-// Initialize core light/dark theme.
+// Initialize core light/dark modes.
 // prettier-ignore
 @include tokens.set(
   "core",
   (
     "light": (
-      "type": "theme",
+      "type": "mode",
       "color-scheme": light,
 
       "background": palette.get("white"),
@@ -47,7 +37,7 @@
       "border-color-stronger": oklch(0 0 0 / 30%),
     ),
     "dark": (
-      "type": "theme",
+      "type": "mode",
       "color-scheme": dark,
 
       "background": palette.get("neutral", "800"),

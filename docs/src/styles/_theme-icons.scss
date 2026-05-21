@@ -16,21 +16,21 @@
   transition-property: transform, opacity;
 }
 
-#{themes.class("auto")} {
+#{themes.selector("auto")} {
   .theme-icon--auto {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-#{themes.class("light")} {
+#{themes.selector("light")} {
   .theme-icon--light {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-#{themes.class("dark")} {
+#{themes.selector("dark")} {
   .theme-icon--dark {
     transform: translateY(0);
     opacity: 1;
