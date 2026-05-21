@@ -46,30 +46,63 @@
   }
 }
 
-/// Generates a theme-compatible map that remaps a palette alias to a different
-/// base color. The returned map includes the `"type": "theme"` key and all
-/// necessary token overrides (seed, lightness, chroma, hue, and variants) for
-/// the alias to reference the provided base color.
+/// Generates a theme-compatible map that remaps one or more palette aliases to
+/// different base colors. The returned map includes the `"type": "theme"` key
+/// and all necessary token overrides (seed, lightness, chroma, hue, and
+/// variants) for each alias to reference its provided base color. Accepts
+/// either a single alias/base pair or a map of alias/base pairs.
 ///
-/// @param {string} $alias
-///   The palette alias name to remap (e.g., "primary", "secondary").
-/// @param {string} $base
-///   The base palette color name to map the alias to (e.g., "blue", "green").
+/// @param {string | map} $alias
+///   The palette alias name to remap (e.g., "primary", "secondary"), or a map
+///   of alias/base pairs (e.g., ("primary": "green", "secondary": "pink")).
+/// @param {string | map} $base (null)
+///   When `$alias` is a string, the base palette color name to map the alias
+///   to (e.g., "blue", "green"). When `$alias` is a map, serves as an
+///   existing theme map to merge results into.
+/// @param {map} $map (())
+///   An existing theme map to merge results into. The `"type": "theme"` key is
+///   always ensured in the returned map regardless of what is passed in.
 ///
 /// @return {map}
-///   A theme map containing all token overrides for the remapped alias.
+///   A theme map containing all token overrides for the remapped alias(es).
 ///
-@function remap($alias, $base) {
-  $map: (
-    "type": "theme"
-  );
-  $map: map.set($map, "#{$alias}", tokens.get("palette", $base));
-  $map: map.set($map, "#{$alias}-l", tokens.get("palette", "#{$base}-l"));
-  $map: map.set($map, "#{$alias}-c", tokens.get("palette", "#{$base}-c"));
-  $map: map.set($map, "#{$alias}-h", tokens.get("palette", "#{$base}-h"));
+/// @example scss
+///   // Single alias remap
+///   palette.remap("secondary", "green");
+///
+/// @example scss
+///   // Multiple alias remaps using a map
+///   palette.remap(("primary": "green", "secondary": "pink"));
+///
+/// @example scss
+///   // Merge into an existing theme map (string form)
+///   palette.remap("secondary", "green", $existing-theme-map);
+///
+/// @example scss
+///   // Merge into an existing theme map (map form)
+///   palette.remap(("primary": "green", "secondary": "pink"), $existing-theme-map);
+///
+@function remap($alias, $base: null, $map: ()) {
+  // prettier-ignore
+  $map: map.merge(("type": "theme"), $map);
 
-  @each $key, $args in config.get(li("palette-variants"), empty-map()) {
-    $map: map.set($map, "#{$alias}-#{$key}", #{get($alias, $args...)});
+  @if meta.type-of($alias) == "map" {
+    @if $base {
+      $map: $base;
+    }
+
+    @each $a, $b in $alias {
+      $map: remap($a, $b, $map);
+    }
+  } @else {
+    $map: map.set($map, "#{$alias}", tokens.get("palette", $base));
+    $map: map.set($map, "#{$alias}-l", tokens.get("palette", "#{$base}-l"));
+    $map: map.set($map, "#{$alias}-c", tokens.get("palette", "#{$base}-c"));
+    $map: map.set($map, "#{$alias}-h", tokens.get("palette", "#{$base}-h"));
+
+    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
+      $map: map.set($map, "#{$alias}-#{$key}", #{get($alias, $args...)});
+    }
   }
 
   @return $map;
