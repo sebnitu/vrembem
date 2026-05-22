@@ -10,7 +10,7 @@ const { title, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-mode="auto">
+<html lang="en" data-mode="auto" data-theme="default">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -28,6 +28,7 @@ const { title, bodyClass } = Astro.props;
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
         document.documentElement.dataset.mode = store.mode || "auto";
+        document.documentElement.dataset.theme = store.theme || "default";
       })();
     </script>
   </head>
