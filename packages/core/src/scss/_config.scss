@@ -40,9 +40,11 @@ $default: (
   // @type number
   "palette-round-decimal": 4,
 
-  // The key/value pairs of palette variants to create CSS variables for where 
-  // key is used in the token variant name (--vb-primary-[key]) and value is 
-  // passed to the palette get function as lightness/chroma arguments.
+  // A map of key/value pairs for preset lightness and chroma variants. These
+  // are used as a lookup map whenever the key is used in a palette get call.
+  // Example:
+  // - tokens.get("palette", "primary", "500") => oklch(50% var(--vb-primary-c) var(--vb-primary-h))
+  // - tokens.get("palette", "primary", "800") => oklch(20% calc(var(--vb-primary-c) * 0.8) var(--vb-primary-h))
   // @type map
   "palette-variants": (
     "50":  (98%, 10%), // The lightest variant in the palette

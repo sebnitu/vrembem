@@ -38,11 +38,6 @@
     @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get(li("palette-round-decimal"), 4)));
     @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get(li("palette-round-decimal"), 4)));
     @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get(li("palette-round-decimal"), 4)));
-
-    // Palette variants
-    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
-      @include tokens.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
-    }
   }
 }
 
@@ -99,10 +94,6 @@
     $map: map.set($map, "#{$alias}-l", tokens.get("palette", "#{$base}-l"));
     $map: map.set($map, "#{$alias}-c", tokens.get("palette", "#{$base}-c"));
     $map: map.set($map, "#{$alias}-h", tokens.get("palette", "#{$base}-h"));
-
-    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
-      $map: map.set($map, "#{$alias}-#{$key}", #{get($alias, $args...)});
-    }
   }
 
   @return $map;
@@ -164,10 +155,16 @@
     $color: tokens.reference("palette", $name);
   }
 
-  // If the lightness is a string, try and return the stored token.
-  // E.g.: palette.get("primary", "400") => tokens.reference("palette", "primary-400")
+  // If $l is a string use palette variants to get their preset $l and $c
   @if meta.type-of($l) == "string" {
-    $color: tokens.reference("palette", "#{$name}-#{$l}");
+    $variant: config.get("palette-variants", $l);
+
+    @if meta.type-of($variant) == "list" {
+      $l: list.nth($variant, 1);
+      $c: list.nth($variant, 2);
+    } @else {
+      $l: $variant;
+    }
   }
 
   // If the color value was set, return it along with alpha channel if provided

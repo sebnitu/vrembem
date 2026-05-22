@@ -53,7 +53,7 @@
 
     @each $key in map.keys(config.get("palette-variants")) {
       #{fun.selector("foreground", $name, $key)} {
-        color: fun.maybe-important(tokens.get("palette", "#{$name}-#{$key}"));
+        color: fun.maybe-important(tokens.get("palette", $name, $key));
       }
     }
   }
