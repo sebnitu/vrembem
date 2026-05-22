@@ -14,9 +14,9 @@ $default: (
   // @type map
   "button-color": (
     "primary": tokens.get("palette", "primary", "300"),
-    "secondary": tokens.get("palette", "secondary", "400"),
+    "secondary": tokens.get("palette", "secondary", "300"),
     "neutral": tokens.get("palette", "neutral", "300"),
-    "important": tokens.get("palette", "important")
+    "important": tokens.get("palette", "important", "300")
   ),
 
   // Map for outputting button--size-[key] modifier variants
