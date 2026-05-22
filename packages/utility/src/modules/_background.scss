@@ -28,7 +28,7 @@
     background-color: fun.maybe-important(transparent);
   }
 
-  // Theme CSS Variable output
+  // Theme CSS variable output
 
   #{fun.selector("background")} {
     background-color: fun.maybe-important(tokens.get("background"));
@@ -42,15 +42,17 @@
     background-color: fun.maybe-important(tokens.get("background-shift"));
   }
 
-  // Palette CSS Variable output
+  // Palette CSS variable output
 
   @each $name in map.keys(config.get("palette")) {
     #{fun.selector("background", $name)} {
       background-color: fun.maybe-important(tokens.get("palette", $name));
     }
 
-    #{fun.selector("background", $name, "auto")} {
-      background-color: fun.maybe-important(tokens.get("#{$name}-background"));
+    @if tokens.has("core", "themes", "light", "#{$name}-background") {
+      #{fun.selector("background", $name, "auto")} {
+        background-color: fun.maybe-important(tokens.get("#{$name}-background"));
+      }
     }
 
     @each $key in map.keys(config.get("palette-variants")) {

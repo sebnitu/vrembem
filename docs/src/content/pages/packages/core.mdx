@@ -52,11 +52,6 @@ Core comes with the following Sass configuration options that can be set using e
     // @type string | map
     "prefix-tokens": "vb",
 
-    // A prefix to apply to theme names. Provided value is automatically suffixed
-    // with a "-" character when applied.
-    // @type string
-    "prefix-themes": "vb-theme",
-
     // The palette to build CSS variables from
     // @type map
     "palette": (
@@ -147,9 +142,3 @@ Vrembem provides plugins designed to extend the features of components managed b
 It's also possible to write your own custom plugins. Custom plugins allow you to extend collections with specialized logic, event handling, or integrations tailored to your specific requirements.
 
 [Writing a custom plugin](/reference/collections/plugins/custom)
-
-## Theme state
-
-Once themes are created, it's important to allow users to be able to select their preferred theme and have that choice persisted. Vrembem provides `themeStore`, a JavaScript utility module that manages theme state and user preference.
-
-[Getting started with themeStore](/reference/theme-store)

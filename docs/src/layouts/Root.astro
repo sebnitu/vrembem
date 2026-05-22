@@ -10,7 +10,7 @@ const { title, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="auto">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -25,11 +25,9 @@ const { title, bodyClass } = Astro.props;
     />
     <script is:inline>
       (function () {
-        // Make this script blocking to prevent flash of pre-themed content
         const local = localStorage.getItem("VB:Profile");
         const store = local ? JSON.parse(local) : {};
-        const theme = `vb-theme-${store.theme || "auto"}`;
-        document.documentElement.classList.add(theme);
+        document.documentElement.dataset.mode = store.mode || "auto";
       })();
     </script>
   </head>

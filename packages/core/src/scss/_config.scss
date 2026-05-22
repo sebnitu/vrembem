@@ -27,11 +27,6 @@ $default: (
   // @type string | map
   "prefix-tokens": "vb",
 
-  // A prefix to apply to theme names. Provided value is automatically suffixed
-  // with a "-" character when applied.
-  // @type string
-  "prefix-themes": "vb-theme",
-
   // The palette to build CSS variables from
   // @type map
   "palette": (
@@ -41,7 +36,7 @@ $default: (
     "important": oklch(60% 40% 28deg),  // #ce5247
   ),
 
-  // Number of decimal places to round colors converted to oklch color space.
+  // Number of decimal places to round colors converted to oklch color space
   // @type number
   "palette-round-decimal": 4,
 

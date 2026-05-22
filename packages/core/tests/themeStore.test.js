@@ -1,84 +1,148 @@
 import { themeStore } from "../index";
 
-let result;
 let store;
 
-test("should setup a theme store", () => {
+beforeEach(() => {
+  localStorage.clear();
+  delete document.documentElement.dataset.theme;
+  delete document.documentElement.dataset.mode;
+});
+
+test("should setup a theme store with no stored values", () => {
   store = themeStore();
-  expect(store.theme).toBe("auto");
-  expect(store.class).toBe("vb-theme-auto");
-  expect(store.themes).toStrictEqual(["auto", "light", "dark"]);
-  expect(store.classes).toStrictEqual([
-    "vb-theme-auto",
-    "vb-theme-light",
-    "vb-theme-dark"
-  ]);
+  expect(store.theme).toBeUndefined();
+  expect(store.mode).toBeUndefined();
   expect(localStorage.getItem("VB:Profile")).toBe(null);
 });
 
-test("should update html element class when theme is changed", () => {
-  result = document.documentElement.classList.contains("vb-theme-light");
-  expect(result).toBe(false);
+test("should set the data-theme attribute when theme is changed", () => {
+  store = themeStore({ themes: ["light", "dark"] });
+
+  expect(document.documentElement.dataset.theme).toBeUndefined();
 
   store.theme = "light";
 
-  result = document.documentElement.classList.contains("vb-theme-light");
-  expect(result).toBe(true);
+  expect(document.documentElement.dataset.theme).toBe("light");
 });
 
-test("should have set the theme in local storage", () => {
-  result = JSON.parse(localStorage.getItem("VB:Profile"));
+test("should set the data-mode attribute when mode is changed", () => {
+  store = themeStore({ modes: ["auto", "light", "dark"] });
+
+  expect(document.documentElement.dataset.mode).toBeUndefined();
+
+  store.mode = "dark";
+
+  expect(document.documentElement.dataset.mode).toBe("dark");
+});
+
+test("should persist theme in local storage", () => {
+  store = themeStore({ themes: ["light", "dark"] });
+  store.theme = "light";
+  const result = JSON.parse(localStorage.getItem("VB:Profile"));
   expect(result).toStrictEqual({ theme: "light" });
 });
 
-test("should be able to add and remove themes from the store", () => {
-  expect(store.themes).not.toContain("matrix");
-  expect(store.classes).not.toContain("vb-theme-matrix");
-  store.add("matrix");
-  expect(store.themes).toContain("matrix");
-  expect(store.classes).toContain("vb-theme-matrix");
-  store.remove("matrix");
-  expect(store.themes).not.toContain("matrix");
-  expect(store.classes).not.toContain("vb-theme-matrix");
+test("should persist mode in local storage", () => {
+  store = themeStore({ modes: ["auto", "light", "dark"] });
+  store.mode = "dark";
+  const result = JSON.parse(localStorage.getItem("VB:Profile"));
+  expect(result).toStrictEqual({ mode: "dark" });
 });
 
-test("should be able to set callbacks that get run on init and change", () => {
+test("should read stored theme on initialization", () => {
+  localStorage.setItem("VB:Profile", JSON.stringify({ theme: "dark" }));
+  store = themeStore({ themes: ["light", "dark"] });
+  expect(store.theme).toBe("dark");
+});
+
+test("should read stored mode on initialization", () => {
+  localStorage.setItem("VB:Profile", JSON.stringify({ mode: "light" }));
+  store = themeStore({ modes: ["auto", "light", "dark"] });
+  expect(store.mode).toBe("light");
+});
+
+test("should run onInit callback on initialization", () => {
   const onInitFunc = vi.fn();
+  store = themeStore({ onInit: onInitFunc });
+  expect(onInitFunc).toHaveBeenCalledOnce();
+  expect(onInitFunc).toHaveBeenCalledWith(store);
+});
+
+test("should run onChange callback when theme changes", () => {
   const onChangeFunc = vi.fn();
-  expect(onInitFunc).not.toHaveBeenCalledOnce();
   store = themeStore({
-    onInit: onInitFunc,
+    themes: ["light", "dark"],
     onChange: onChangeFunc
   });
-  expect(onInitFunc).toHaveBeenCalledOnce();
   expect(onChangeFunc).not.toHaveBeenCalled();
   store.theme = "dark";
-  result = document.documentElement.classList.contains("vb-theme-dark");
-  expect(result).toBe(true);
-  expect(onChangeFunc).toHaveBeenCalled();
+  expect(onChangeFunc).toHaveBeenCalledOnce();
+});
+
+test("should run onChange callback when mode changes", () => {
+  const onChangeFunc = vi.fn();
+  store = themeStore({
+    modes: ["auto", "light", "dark"],
+    onChange: onChangeFunc
+  });
+  expect(onChangeFunc).not.toHaveBeenCalled();
+  store.mode = "dark";
+  expect(onChangeFunc).toHaveBeenCalledOnce();
+});
+
+test("should not run onChange when setting the same value", () => {
+  const onChangeFunc = vi.fn();
+  store = themeStore({
+    themes: ["light", "dark"],
+    onChange: onChangeFunc
+  });
+  store.theme = "dark";
+  store.theme = "dark";
+  expect(onChangeFunc).toHaveBeenCalledTimes(1);
 });
 
 test("should update the config object when options are passed", () => {
   store = themeStore({
-    prefix: "sn-theme",
-    storeKey: "SN:Key"
+    storeKey: "SN:Key",
+    themes: ["light", "dark"]
   });
-  expect(store.config.prefix).toBe("sn-theme");
-  expect(store.class).toBe("sn-theme-auto");
+  expect(store.config.storeKey).toBe("SN:Key");
   store.theme = "light";
-  expect(store.class).toBe("sn-theme-light");
-  result = JSON.parse(localStorage.getItem("SN:Key"));
+  const result = JSON.parse(localStorage.getItem("SN:Key"));
   expect(result).toStrictEqual({ theme: "light" });
 });
 
-test("should log a console error when trying to change to a theme that doesn't exist", () => {
+test("should log a console error for an invalid theme value", () => {
   const consoleErrorSpy = vi
     .spyOn(console, "error")
     .mockImplementation(() => {});
-  store = themeStore();
+  store = themeStore({ themes: ["light", "dark"] });
   store.theme = "asdf";
   expect(consoleErrorSpy).toHaveBeenCalledWith(
     'Not a valid theme value: "asdf"'
   );
   consoleErrorSpy.mockRestore();
+});
+
+test("should log a console error for an invalid mode value", () => {
+  const consoleErrorSpy = vi
+    .spyOn(console, "error")
+    .mockImplementation(() => {});
+  store = themeStore({ modes: ["auto", "light", "dark"] });
+  store.mode = "asdf";
+  expect(consoleErrorSpy).toHaveBeenCalledWith(
+    'Not a valid mode value: "asdf"'
+  );
+  consoleErrorSpy.mockRestore();
+});
+
+test("should support both theme and mode simultaneously", () => {
+  store = themeStore({
+    modes: ["auto", "light", "dark"],
+    themes: ["default", "forest", "ocean"]
+  });
+  store.mode = "dark";
+  store.theme = "forest";
+  expect(document.documentElement.dataset.mode).toBe("dark");
+  expect(document.documentElement.dataset.theme).toBe("forest");
 });
