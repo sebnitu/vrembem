@@ -1,5 +1,4 @@
 @use "@vrembem/core";
-@use "@vrembem/core/themes";
 
 .form-control-size {
   @include core.form-control-size("min");
@@ -16,21 +15,21 @@
   transition-property: transform, opacity;
 }
 
-#{themes.selector("auto")} {
+[data-mode="auto"] {
   .theme-icon--auto {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-#{themes.selector("light")} {
+[data-mode="light"] {
   .theme-icon--light {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-#{themes.selector("dark")} {
+[data-mode="dark"] {
   .theme-icon--dark {
     transform: translateY(0);
     opacity: 1;

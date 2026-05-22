@@ -114,7 +114,7 @@ $-theme-keys: ();
 /// @return {string}
 ///   The theme class with appropriate prefix.
 ///
-@function selector($value) {
+@function -selector($value) {
   // Check if this is a theme or mode key
   $type: if(sass(list.index($-theme-keys, $value)): "theme" ; else: null);
   $type: if(sass(list.index($-mode-keys, $value)): "mode" ; else: $type);
@@ -195,7 +195,7 @@ $-theme-keys: ();
   // Output the default theme and system preference media query under the root
   // selector and auto theme. This should come before the theme class output.
   :root,
-  #{selector("auto")} {
+  #{-selector("auto")} {
     // Get the default theme
     $theme: config.get(li("theme-default"), "light");
 
@@ -219,14 +219,14 @@ $-theme-keys: ();
 
   // This outputs all custom modes using their selector
   @each $key in $-mode-keys {
-    #{selector($key)} {
+    #{-selector($key)} {
       @include -output-theme($key, $component);
     }
   }
 
   // This outputs all custom themes using their selector
   @each $key in $-theme-keys {
-    #{selector($key)} {
+    #{-selector($key)} {
       @include -output-theme($key, $component);
     }
   }
