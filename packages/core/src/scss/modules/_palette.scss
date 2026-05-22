@@ -141,7 +141,7 @@
 ///   palette.get("primary", $a: 50%);
 ///   // => oklch(from var(--vb-primary) l c h/50%)
 ///
-@function get($name, $l: null, $c: null, $a: null) {
+@function -get($name, $l: null, $c: null, $a: null) {
   // Check if the color name exists in the palette map
   @if not tokens.has("palette", $name) {
     @error 'Palette value could not be found: "#{$name}"';
@@ -211,4 +211,4 @@
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
 
 // Apply token hook for palette getter
-@include tokens.add-hook("getter", "palette", meta.get-function("get"));
+@include tokens.add-hook("getter", "palette", meta.get-function("-get"));
