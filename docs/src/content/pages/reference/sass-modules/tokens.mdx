@@ -103,7 +103,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
 
 ### Palette
 
-When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `tokens.get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in the `palette` config option. The palette plugin also extends the `tokens.get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -118,7 +118,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
       color: tokens.get("palette", "primary", 18%, 60%);
     }
 
-    // Get a specific reference from the palette variants
+    // Use a variant key to reference a predefined palette-variant
     .surface {
       background: tokens.get("palette", "primary", "700");
     }
@@ -132,7 +132,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
     }
 
     .surface {
-      background: var(--vb-primary-700);
+      background: oklch(30% var(--vb-primary-c) var(--vb-primary-h));
     }
     ```
   </TabsPanel>
