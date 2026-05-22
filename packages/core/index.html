@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="auto">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,11 @@
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script>
-    // Make this script blocking to prevent flash of pre-themed content
-    const local = localStorage.getItem("VB:Profile");
-    const store = local ? JSON.parse(local) : {};
-    document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
+    (function () {
+      const local = localStorage.getItem("VB:Profile");
+      const store = local ? JSON.parse(local) : {};
+      document.documentElement.dataset.mode = store.mode || "auto";
+    })();
   </script>
   <script type="module">
     import "vrembem/sass";
@@ -25,28 +26,29 @@
 
     // Setup theme switching functionality
     core.themeStore({
-      onInit() {
+      modes: ["auto", "light", "dark"],
+      onInit(store) {
         // Loop through the theme set buttons
         buttons.forEach((btn) => {
           // Toggle the state of our button set
-          toggleState.call(this, btn);
+          toggleState(store, btn);
           // Add click event listener for changing the current theme
           btn.addEventListener(("click"), () => {
-            this.theme = btn.getAttribute("data-set-theme");
+            store.mode = btn.getAttribute("data-set-theme");
           });
         });
       },
-      onChange() {
+      onChange(store) {
         buttons.forEach((btn) => {
           // Toggle the state of our button set
-          toggleState.call(this, btn);
+          toggleState(store, btn);
         });
       }
     });
 
     // Function to toggle the state class for a theme set button
-    function toggleState(btn) {
-      btn.getAttribute("data-set-theme") === this.theme 
+    function toggleState(store, btn) {
+      btn.getAttribute("data-set-theme") === store.theme 
         ? btn.classList.add("is-active")
         : btn.classList.remove("is-active");
     }
@@ -127,11 +129,11 @@
         // Build the theme markup
         this.innerHTML = `
           <div class="grid grid--cols-2 grid--gap-0">
-            <div class="vb-theme-light padding-lg background-${color}-auto foreground-${color}-auto">
+            <div data-mode="light" class="padding-lg background-${color}-auto foreground-${color}-auto">
               <p>--vb-${color}-background</p>
               <p>--vb-${color}-foreground</p>
             </div>
-            <div class="vb-theme-dark padding-lg background-${color}-auto foreground-${color}-auto">
+            <div data-mode="dark" class="padding-lg background-${color}-auto foreground-${color}-auto">
               <p>--vb-${color}-background</p>
               <p>--vb-${color}-foreground</p>
             </div>
@@ -196,7 +198,7 @@
       <vb-palette-variants color="important"></vb-palette-variants>
 
       <div class="grid grid--cols-2 grid--gap-0">
-        <div class="vb-theme-light">
+        <div data-mode="light">
           <div class="padding-lg background">
             <h2>vb-theme-light</h2>
             <hr class="sep margin-y" />
@@ -209,7 +211,7 @@
             <vb-swatch-content></vb-swatch-content>
           </div>
         </div>
-        <div class="vb-theme-dark">
+        <div data-mode="dark">
           <div class="padding-lg background">
             <h2>vb-theme-dark</h2>
             <hr class="sep margin-y" />

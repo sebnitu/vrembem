@@ -121,7 +121,7 @@ $-theme-keys: ();
 
   // Check that the theme exists
   @if $value != "auto" and not $type {
-    @error "Theme or mode does not exist: #{$theme}";
+    @error "Theme or mode does not exist: #{$value}";
   }
 
   $attr: "data-theme";
