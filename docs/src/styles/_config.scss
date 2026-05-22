@@ -5,6 +5,9 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
+// TODO: Maybe move palette.remap into a get hook?
+@use "@vrembem/core/palette";
+
 // Set config options
 @include config.set(
   "prefix-tokens",
@@ -14,17 +17,35 @@
   )
 );
 
-// Set custom palette
+// Add custom palette values
 // prettier-ignore
-@include config.set("palette", (
-  "mint-green": oklch(74% 40% 158deg), // #30c883
-  "steel-blue": oklch(56% 16% 220deg), // #467d8f
-  "ash-gray": oklch(74% 4% 160deg),    // #a3aea7
-  "clay-red": oklch(60% 40% 28deg),    // #ce5247
-  "primary": "mint-green",
-  "secondary": "steel-blue",
-  "neutral": "ash-gray",
-  "important": "clay-red",
+@include config.merge("palette", (
+  "green": oklch(74% 40% 158deg),
+  "blue": oklch(62% 40% 244deg),
+  "gray": oklch(74% 4% 236deg),
+  "red": oklch(60% 40% 28deg),
+  "dark-green": oklch(40% 20% 156deg),
+  "pale-green": oklch(74% 8% 156deg),
+  "orange": oklch(75.018% 38% 65deg),
+  "lavender": oklch(68% 42% 275deg),
+  "pale-blue": oklch(62% 12% 244deg),
+  "pomegranate": oklch(60% 52% 26deg),
+));
+
+// Site themes
+// prettier-ignore
+@include tokens.set("core", (
+  "forest": palette.remap((
+    "secondary": "dark-green",
+    "neutral": "pale-green",
+    "important": "orange"
+  )),
+  "ocean": palette.remap((
+    "primary": "blue",
+    "secondary": "lavender",
+    "neutral": "pale-blue",
+    "important": "pomegranate"
+  )),
 ));
 
 // Set custom breakpoints
