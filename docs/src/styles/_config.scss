@@ -29,7 +29,7 @@
   "pomegranate": oklch(60% 52% 26deg),
 ));
 
-// Site themes
+// Add custom site themes
 // prettier-ignore
 @include tokens.set("core", (
   "forest": tokens.get("palette-remap", (
