@@ -14,6 +14,19 @@
   )
 );
 
+// Set custom palette
+// prettier-ignore
+@include config.set("palette", (
+  "mint-green": oklch(74% 40% 158deg), // #30c883
+  "steel-blue": oklch(56% 16% 220deg), // #467d8f
+  "ash-gray": oklch(74% 4% 160deg),    // #a3aea7
+  "clay-red": oklch(60% 40% 28deg),    // #ce5247
+  "primary": "mint-green",
+  "secondary": "steel-blue",
+  "neutral": "ash-gray",
+  "important": "clay-red",
+));
+
 // Set custom breakpoints
 @include config.merge(
   "breakpoints",
