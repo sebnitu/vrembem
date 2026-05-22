@@ -58,43 +58,6 @@ The tokens module manages design tokens as CSS custom properties. Use `set()` to
 
 The examples in this section assume you are using the default configuration provided by Vrembem such as `prefix-tokens`, `breakpoints`, and `palette`. For more information on config options, see the [`core/config`](/reference/sass-modules/config) documentation.
 
-### Palette
-
-When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
-
-<CodeExample tabs>
-  <TabsPanel label="SCSS">
-    ```scss
-    @use "@vrembem/core/tokens";
-    @use "@vrembem/core/palette";
-
-    // Reference palette tokens with custom lightness, chroma and alpha values
-    // Example: tokens.get("palette", "[name]", $l, $c, $a);
-    .button {
-      background: tokens.get("palette", "primary", $a: 50%);
-      color: tokens.get("palette", "primary", 18%, 60%);
-    }
-
-    // Get a specific reference from the palette variants
-    .surface {
-      background: tokens.get("palette", "primary", "700");
-    }
-    ```
-  </TabsPanel>
-  <TabsPanel label="CSS Output">
-    ```css
-    .button {
-      background: oklch(from var(--vb-primary) l c h / 50%);
-      color: oklch(18% calc(var(--vb-primary-c) * 0.6) var(--vb-primary-h));
-    }
-
-    .surface {
-      background: var(--vb-primary-700);
-    }
-    ```
-  </TabsPanel>
-</CodeExample>
-
 ### Breakpoints
 
 When the `core/breakpoints` plugin is loaded, tokens can be made responsive by setting a value map with `"type": "breakpoints"`. The `"initial"` key sets the initial value, and breakpoint keys set values at specific breakpoints.
@@ -138,9 +101,69 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
   </TabsPanel>
 </CodeExample>
 
+### Palette
+
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/palette";
+
+    // Reference palette tokens with custom lightness, chroma and alpha values
+    // Example: tokens.get("palette", "[name]", $l, $c, $a);
+    .button {
+      background: tokens.get("palette", "primary", $a: 50%);
+      color: tokens.get("palette", "primary", 18%, 60%);
+    }
+
+    // Get a specific reference from the palette variants
+    .surface {
+      background: tokens.get("palette", "primary", "700");
+    }
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    .button {
+      background: oklch(from var(--vb-primary) l c h / 50%);
+      color: oklch(18% calc(var(--vb-primary-c) * 0.6) var(--vb-primary-h));
+    }
+
+    .surface {
+      background: var(--vb-primary-700);
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+You can also define primitive palette colors that can be aliased using semantic tokens. This can be used to create themes by changing the semantic color mapping for a specific theme.
+
+<CodeExample>
+```scss
+@use "@vrembem/core/config";
+
+// Tip: use `config.merge` if you'd like to keep existing configurations of a map
+@include config.set("palette", (
+  // Define primitive palette colors
+  "green": #35cc86,
+  "blue": #3680dd,
+  "gray": #718298,
+  "red": #ce5247,
+
+  // Define aliases to existing palette colors
+  "primary": "green",
+  "secondary": "blue",
+  "neutral": "gray",
+  "important": "red",
+));
+```
+</CodeExample>
+
 ### Themes
 
-When the `core/themes` plugin is loaded, tokens can be themed by setting a value map with `"type": "theme"`. The key used for the property name becomes the theme name, and all other key/value pairs become the theme's tokens.
+When the `core/themes` plugin is loaded, tokens can be themed by setting a value map with `"type": "mode"` or `"type": "theme"`. The map key is used as the mode or theme name. All other key/value pairs in the provided map are used as their tokens.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -150,16 +173,21 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
 
     @include tokens.set("core", (
       "light": (
-        "type": "theme",
+        "type": "mode",
         "color-scheme": light,
         "background": lightblue,
         "foreground": darkblue
       ),
       "dark": (
-        "type": "theme",
+        "type": "mode",
         "color-scheme": dark,
         "background": darkblue,
         "foreground": lightblue
+      ),
+      "forest": (
+        "type": "theme",
+        "background": lightGreen,
+        "foreground": darkGreen
       )
     ));
 
@@ -169,34 +197,92 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
   <TabsPanel label="CSS Output">
     ```css
     :root,
-    .vb-theme-auto {
+    [data-mode=auto] {
       color-scheme: light;
       --vb-background: lightblue;
       --vb-foreground: darkblue;
     }
-
     @media (prefers-color-scheme: dark) {
       :root,
-      .vb-theme-auto {
-        color-scheme: dark;
+      [data-mode=auto] {
+        color-scheme: light;
         --vb-background: darkblue;
         --vb-foreground: lightblue;
       }
     }
 
-    .vb-theme-light {
+    [data-mode=light] {
       color-scheme: light;
       --vb-background: lightblue;
       --vb-foreground: darkblue;
     }
 
-    .vb-theme-dark {
+    [data-mode=dark] {
       color-scheme: dark;
       --vb-background: darkblue;
       --vb-foreground: lightblue;
     }
+
+    [data-theme=forest] {
+      --vb-background: lightGreen;
+      --vb-foreground: darkGreen;
+    }
     ```
   </TabsPanel>
+</CodeExample>
+
+To create a theme using palette aliasing, import the palette module and remap aliases in the desired theme namespace. The `palette.remap` function will automatically set `"type": "theme"` on the returned palette map.
+
+<CodeExample tabs>
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/core/config";
+    @use "@vrembem/core/tokens";
+    @use "@vrembem/core/themes";
+    @use "@vrembem/core/palette";
+
+    // Configure your palette colors and semantic aliases
+    @include config.set("palette", (
+      "green": #35cc86,
+      "blue": #3680dd,
+      "primary": "green"
+    ));
+
+    // Define your palette themes by remapping the alias
+    @include tokens.set("core", (
+      "forest": palette.remap(("primary": "green")),
+      "ocean": palette.remap(("primary": "blue"))
+    ));
+
+    // Output all tokens
+    @include tokens.output();
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS Output">
+    ```css
+    [data-theme=forest] {
+      --vb-primary: var(--vb-green);
+      --vb-primary-l: var(--vb-green-l);
+      --vb-primary-c: var(--vb-green-c);
+      --vb-primary-h: var(--vb-green-h);
+    }
+
+    [data-theme=ocean] {
+      --vb-primary: var(--vb-blue);
+      --vb-primary-l: var(--vb-blue-l);
+      --vb-primary-c: var(--vb-blue-c);
+      --vb-primary-h: var(--vb-blue-h);
+    }
+    ```
+  </TabsPanel>
+</CodeExample>
+
+Themes and modes can be used together to create light and dark modes for any theme. This reduces the necessary token definitions needed since the semantic tokens set in modes can be reused across all themes.
+
+<CodeExample>
+  ```html
+  <html data-mode="light" data-theme="forest">
+  ```
 </CodeExample>
 
 ## Reference
