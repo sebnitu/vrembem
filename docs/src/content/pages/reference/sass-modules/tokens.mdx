@@ -103,7 +103,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
 
 ### Palette
 
-When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `tokens.get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -138,7 +138,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
   </TabsPanel>
 </CodeExample>
 
-You can also define primitive palette colors that can be aliased using semantic tokens. This can be used to create themes by changing the semantic color mapping for a specific theme.
+You can also define primitive palette colors (such as "green", "blue", etc) that can be aliased using semantic tokens (such as "primary", "secondary", etc). This can be used to create themes by changing the semantic color mapping for a specific theme.
 
 <CodeExample>
 ```scss
@@ -231,7 +231,7 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
   </TabsPanel>
 </CodeExample>
 
-To create a theme using palette aliasing, import the palette module and remap aliases in the desired theme namespace. The `palette.remap` function will automatically set `"type": "theme"` on the returned palette map.
+To create a theme using palette aliasing, import the palette plugin module and remap aliases in the desired theme namespace. The `palette.remap` function will automatically set `"type": "theme"` on the returned palette map.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -384,6 +384,7 @@ Output all custom properties of a provided component. Or output all custom prope
   <TabsPanel label="CSS">
     ```css
     :root {
+      --vb-block-accent: teal;
       --vb-block-background: blue;
       --vb-block-foreground: green;
     }
@@ -416,7 +417,7 @@ Mixin to override previously defined custom properties. This is primarily used i
 <CodeExample tabs>
   <TabsPanel label="SCSS">
     ```scss
-    .block_modifier {
+    .block--modifier {
       @include tokens.override("block", (
         "background": darkGreen,
         "foreground": lightPink
@@ -426,7 +427,7 @@ Mixin to override previously defined custom properties. This is primarily used i
   </TabsPanel>
   <TabsPanel label="CSS">
     ```css
-    .block_modifier {
+    .block--modifier {
       --vb-block-background: darkGreen;
       --vb-block-foreground: lightPink;
     }
