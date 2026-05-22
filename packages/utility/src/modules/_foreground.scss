@@ -45,7 +45,7 @@
       color: fun.maybe-important(tokens.get("palette", $name));
     }
 
-    @if tokens.has("#{$name}-foreground") {
+    @if tokens.has("core", "themes", "light", "#{$name}-foreground") {
       #{fun.selector("foreground", $name, "auto")} {
         color: fun.maybe-important(tokens.get("#{$name}-foreground"));
       }
