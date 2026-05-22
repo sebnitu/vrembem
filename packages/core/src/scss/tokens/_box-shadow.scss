@@ -1,6 +1,5 @@
 @use "../modules/tokens";
-@use "../modules/palette";
-@include tokens.set("core", "box-shadow-color", palette.get("neutral", 20%, $a: 20%));
+@include tokens.set("core", "box-shadow-color", tokens.get("palette", "neutral", 20%, $a: 20%));
 @include tokens.set(
   "core",
   (

@@ -1,9 +1,8 @@
 @use "../modules/tokens";
-@use "../modules/palette";
 @include tokens.set(
   "core",
   (
-    "backdrop-color": palette.get("neutral", "950"),
+    "backdrop-color": tokens.get("palette", "neutral", "950"),
     "backdrop-opacity": 80%
   )
 );

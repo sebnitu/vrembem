@@ -34,36 +34,67 @@ import Icon from "@/components/Icon.astro";
       <span>Dark</span>
     </button>
   </li>
+  <li class="menu__sep"></li>
+  <li class="menu__item">
+    <button type="button" data-set-theme="default" class="menu__action">
+      <Icon name="coffee" />
+      <span>Fresh</span>
+    </button>
+  </li>
+  <li class="menu__item">
+    <button type="button" data-set-theme="forest" class="menu__action">
+      <Icon name="feather" />
+      <span>Forest</span>
+    </button>
+  </li>
+  <li class="menu__item">
+    <button type="button" data-set-theme="ocean" class="menu__action">
+      <Icon name="droplet" />
+      <span>Ocean</span>
+    </button>
+  </li>
 </ul>
 
 <script>
   import { themeStore, type ThemeStoreAPI } from "@vrembem/core";
   import { popovers } from "../modules/usePopover";
 
-  const btns: NodeListOf<HTMLButtonElement> =
-    document.querySelectorAll("[data-set-mode]");
+  const btns: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+    "[data-set-mode], [data-set-theme]"
+  );
 
   themeStore({
     modes: ["auto", "light", "dark"],
+    themes: ["default", "forest", "ocean"],
     onInit(store) {
       btns.forEach((btn) => {
-        const mode = btn.getAttribute("data-set-mode")!;
-        btn.classList.toggle("is-active", isActive(mode, store.mode));
+        const mode = btn.getAttribute("data-set-mode");
+        const theme = btn.getAttribute("data-set-theme");
+        btn.classList.toggle("is-active", isActive(mode, theme, store));
         btn.addEventListener("click", () => {
           if (mode) store.mode = mode;
+          if (theme) store.theme = theme;
           popovers.close("popover-theme-switcher");
         });
       });
     },
     onChange(store) {
       btns.forEach((btn) => {
-        const mode = btn.getAttribute("data-set-mode")!;
-        btn.classList.toggle("is-active", isActive(mode, store.mode));
+        const mode = btn.getAttribute("data-set-mode");
+        const theme = btn.getAttribute("data-set-theme");
+        btn.classList.toggle("is-active", isActive(mode, theme, store));
       });
     }
   });
 
-  function isActive(value: string, current: string | undefined) {
-    return value === current || (value === "auto" && !current);
+  function isActive(
+    mode: string | null,
+    theme: string | null,
+    store: ThemeStoreAPI
+  ) {
+    const value = mode || theme;
+    const base = mode ? "auto" : "default";
+    const current = mode ? store.mode : store.theme;
+    return !!(value && (value === current || (value === base && !current)));
   }
 </script>

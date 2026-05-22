@@ -103,7 +103,7 @@ When the `core/breakpoints` plugin is loaded, tokens can be made responsive by s
 
 ### Palette
 
-When the `core/palette` plugin is loaded, color tokens are generated using the  values set in `palette` and `palette-variants` config options. The palette plugin also extends the `tokens.get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
+When the `core/palette` plugin is loaded, color tokens are generated using the  values set in the `palette` config option. The palette plugin also extends the `tokens.get()` function when returning a palette token by allowing more precise control over lightness, chroma and alpha channels.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -118,7 +118,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
       color: tokens.get("palette", "primary", 18%, 60%);
     }
 
-    // Get a specific reference from the palette variants
+    // Use a variant key to reference a predefined palette-variant
     .surface {
       background: tokens.get("palette", "primary", "700");
     }
@@ -132,7 +132,7 @@ When the `core/palette` plugin is loaded, color tokens are generated using the  
     }
 
     .surface {
-      background: var(--vb-primary-700);
+      background: oklch(30% var(--vb-primary-c) var(--vb-primary-h));
     }
     ```
   </TabsPanel>
@@ -231,7 +231,7 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
   </TabsPanel>
 </CodeExample>
 
-To create a theme using palette aliasing, import the palette plugin module and remap aliases in the desired theme namespace. The `palette.remap` function will automatically set `"type": "theme"` on the returned palette map.
+To create a theme using palette aliasing, import the palette plugin module and remap aliases in the desired theme namespace. The `tokens.get("palette-remap", ())` getter will automatically inject `"type": "theme"` on the returned palette map.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -250,8 +250,8 @@ To create a theme using palette aliasing, import the palette plugin module and r
 
     // Define your palette themes by remapping the alias
     @include tokens.set("core", (
-      "forest": palette.remap(("primary": "green")),
-      "ocean": palette.remap(("primary": "blue"))
+      "forest": tokens.get("palette-remap", ("primary": "green")),
+      "ocean": tokens.get("palette-remap", ("primary": "blue"))
     ));
 
     // Output all tokens

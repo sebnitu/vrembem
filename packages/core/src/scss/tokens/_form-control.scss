@@ -1,5 +1,4 @@
 @use "../modules/tokens";
-@use "../modules/palette";
 
 // Base form-control variables shared by all controls
 @include tokens.set(
@@ -13,7 +12,7 @@
     "form-control-border-radius": tokens.get("border-radius"),
     "form-control-padding-x": 1em,
     "form-control-padding-y": 0.5em,
-    "form-control-accent": palette.get("primary"),
+    "form-control-accent": tokens.get("palette", "primary"),
     "form-control-foreground": tokens.get("foreground-strong"),
     "form-control-background": tokens.get("background"),
     "form-control-background-disabled": tokens.get("background-alt"),

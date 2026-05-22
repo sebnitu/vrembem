@@ -14,6 +14,37 @@
   )
 );
 
+// Add custom palette values
+// prettier-ignore
+@include config.merge("palette", (
+  "green": oklch(74% 40% 158deg),
+  "blue": oklch(62% 40% 244deg),
+  "gray": oklch(74% 4% 236deg),
+  "red": oklch(60% 40% 28deg),
+  "dark-green": oklch(40% 20% 156deg),
+  "pale-green": oklch(74% 8% 156deg),
+  "orange": oklch(75.018% 38% 65deg),
+  "lavender": oklch(68% 42% 275deg),
+  "pale-blue": oklch(62% 12% 244deg),
+  "pomegranate": oklch(60% 52% 26deg),
+));
+
+// Add custom site themes
+// prettier-ignore
+@include tokens.set("core", (
+  "forest": tokens.get("palette-remap", (
+    "secondary": "dark-green",
+    "neutral": "pale-green",
+    "important": "orange"
+  )),
+  "ocean": tokens.get("palette-remap", (
+    "primary": "blue",
+    "secondary": "lavender",
+    "neutral": "pale-blue",
+    "important": "pomegranate"
+  )),
+));
+
 // Set custom breakpoints
 @include config.merge(
   "breakpoints",

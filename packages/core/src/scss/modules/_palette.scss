@@ -38,11 +38,6 @@
     @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get(li("palette-round-decimal"), 4)));
     @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get(li("palette-round-decimal"), 4)));
     @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get(li("palette-round-decimal"), 4)));
-
-    // Palette variants
-    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
-      @include tokens.set("palette", "#{$name}-#{$key}", #{get($name, $args...)});
-    }
   }
 }
 
@@ -68,21 +63,21 @@
 ///
 /// @example scss
 ///   // Single alias remap
-///   palette.remap("secondary", "green");
+///   tokens.get("palette-remap", "secondary", "green");
 ///
 /// @example scss
 ///   // Multiple alias remaps using a map
-///   palette.remap(("primary": "green", "secondary": "pink"));
+///   tokens.get("palette-remap", ("primary": "green", "secondary": "pink"));
 ///
 /// @example scss
 ///   // Merge into an existing theme map (string form)
-///   palette.remap("secondary", "green", $existing-theme-map);
+///   tokens.get("palette-remap", "secondary", "green", $existing-theme-map);
 ///
 /// @example scss
 ///   // Merge into an existing theme map (map form)
-///   palette.remap(("primary": "green", "secondary": "pink"), $existing-theme-map);
+///   tokens.get("palette-remap", ("primary": "green", "secondary": "pink"), $existing-theme-map);
 ///
-@function remap($alias, $base: null, $map: ()) {
+@function -remap($alias, $base: null, $map: ()) {
   // prettier-ignore
   $map: map.merge(("type": "theme"), $map);
 
@@ -92,17 +87,13 @@
     }
 
     @each $a, $b in $alias {
-      $map: remap($a, $b, $map);
+      $map: -remap($a, $b, $map);
     }
   } @else {
     $map: map.set($map, "#{$alias}", tokens.get("palette", $base));
     $map: map.set($map, "#{$alias}-l", tokens.get("palette", "#{$base}-l"));
     $map: map.set($map, "#{$alias}-c", tokens.get("palette", "#{$base}-c"));
     $map: map.set($map, "#{$alias}-h", tokens.get("palette", "#{$base}-h"));
-
-    @each $key, $args in config.get(li("palette-variants"), empty-map()) {
-      $map: map.set($map, "#{$alias}-#{$key}", #{get($alias, $args...)});
-    }
   }
 
   @return $map;
@@ -150,7 +141,7 @@
 ///   palette.get("primary", $a: 50%);
 ///   // => oklch(from var(--vb-primary) l c h/50%)
 ///
-@function get($name, $l: null, $c: null, $a: null) {
+@function -get($name, $l: null, $c: null, $a: null) {
   // Check if the color name exists in the palette map
   @if not tokens.has("palette", $name) {
     @error 'Palette value could not be found: "#{$name}"';
@@ -164,10 +155,16 @@
     $color: tokens.reference("palette", $name);
   }
 
-  // If the lightness is a string, try and return the stored token.
-  // E.g.: palette.get("primary", "400") => tokens.reference("palette", "primary-400")
+  // If $l is a string use palette variants to get their preset $l and $c
   @if meta.type-of($l) == "string" {
-    $color: tokens.reference("palette", "#{$name}-#{$l}");
+    $variant: config.get("palette-variants", $l);
+
+    @if meta.type-of($variant) == "list" {
+      $l: list.nth($variant, 1);
+      $c: list.nth($variant, 2);
+    } @else {
+      $l: $variant;
+    }
   }
 
   // If the color value was set, return it along with alpha channel if provided
@@ -214,4 +211,5 @@
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
 
 // Apply token hook for palette getter
-@include tokens.add-hook("getter", "palette", meta.get-function("get"));
+@include tokens.add-hook("getter", "palette", meta.get-function("-get"));
+@include tokens.add-hook("getter", "palette-remap", meta.get-function("-remap"));
