@@ -191,7 +191,7 @@ $-theme-keys: ();
 ///   // Output all themes of the notice component
 ///   @include theme.output("notice");
 ///
-@mixin output($component: "*") {
+@mixin -output($component: "*") {
   // Output the default theme and system preference media query under the root
   // selector and auto theme. This should come before the theme class output.
   :root,
@@ -238,4 +238,4 @@ $-theme-keys: ();
 @include tokens.add-hook("setter", "mode", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
-@include tokens.on("output", "output-theme-tokens", meta.get-mixin("output"));
+@include tokens.on("output", "output-theme-tokens", meta.get-mixin("-output"));

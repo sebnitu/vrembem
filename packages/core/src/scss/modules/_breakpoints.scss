@@ -81,7 +81,7 @@
 /// @param {any} $args...
 ///   Accepts any arguments passed from the tokens output event (ignored).
 ///
-@mixin output($component) {
+@mixin -output($component) {
   $breakpoints: config.get(li("breakpoints"), empty-map());
 
   @each $key, $value in $breakpoints {
@@ -98,4 +98,4 @@
 @include tokens.add-hook("setter", "breakpoints", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
-@include tokens.on("output", "output-breakpoint-tokens", meta.get-mixin("output"));
+@include tokens.on("output", "output-breakpoint-tokens", meta.get-mixin("-output"));
