@@ -5,9 +5,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
-// TODO: Maybe move palette.remap into a get hook?
-@use "@vrembem/core/palette";
-
 // Set config options
 @include config.set(
   "prefix-tokens",
@@ -35,12 +32,12 @@
 // Site themes
 // prettier-ignore
 @include tokens.set("core", (
-  "forest": palette.remap((
+  "forest": tokens.get("palette-remap", (
     "secondary": "dark-green",
     "neutral": "pale-green",
     "important": "orange"
   )),
-  "ocean": palette.remap((
+  "ocean": tokens.get("palette-remap", (
     "primary": "blue",
     "secondary": "lavender",
     "neutral": "pale-blue",

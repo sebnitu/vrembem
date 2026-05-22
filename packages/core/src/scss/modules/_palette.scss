@@ -63,21 +63,21 @@
 ///
 /// @example scss
 ///   // Single alias remap
-///   palette.remap("secondary", "green");
+///   tokens.get("palette-remap", "secondary", "green");
 ///
 /// @example scss
 ///   // Multiple alias remaps using a map
-///   palette.remap(("primary": "green", "secondary": "pink"));
+///   tokens.get("palette-remap", ("primary": "green", "secondary": "pink"));
 ///
 /// @example scss
 ///   // Merge into an existing theme map (string form)
-///   palette.remap("secondary", "green", $existing-theme-map);
+///   tokens.get("palette-remap", "secondary", "green", $existing-theme-map);
 ///
 /// @example scss
 ///   // Merge into an existing theme map (map form)
-///   palette.remap(("primary": "green", "secondary": "pink"), $existing-theme-map);
+///   tokens.get("palette-remap", ("primary": "green", "secondary": "pink"), $existing-theme-map);
 ///
-@function remap($alias, $base: null, $map: ()) {
+@function -remap($alias, $base: null, $map: ()) {
   // prettier-ignore
   $map: map.merge(("type": "theme"), $map);
 
@@ -87,7 +87,7 @@
     }
 
     @each $a, $b in $alias {
-      $map: remap($a, $b, $map);
+      $map: -remap($a, $b, $map);
     }
   } @else {
     $map: map.set($map, "#{$alias}", tokens.get("palette", $base));
@@ -212,3 +212,4 @@
 
 // Apply token hook for palette getter
 @include tokens.add-hook("getter", "palette", meta.get-function("-get"));
+@include tokens.add-hook("getter", "palette-remap", meta.get-function("-remap"));

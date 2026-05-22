@@ -395,16 +395,16 @@ $-events: ();
     $component: "core";
   }
 
+  // See if there's a stored getter
+  $getter: -resolve-getter($component, $props...);
+
+  // Return the result of getter if any value was set
+  @if $getter != false {
+    @return $getter;
+  }
+
   // Check if component exists
   @if -component-exists($component) {
-    // See if there's a stored getter for this component
-    $getter: -resolve-getter($component, $props...);
-
-    // Return the result of getter if any value was set
-    @if $getter != false {
-      @return $getter;
-    }
-
     // Reverse the props list and initialize our result
     $props: reverse($props);
     $result: null;

@@ -231,7 +231,7 @@ When the `core/themes` plugin is loaded, tokens can be themed by setting a value
   </TabsPanel>
 </CodeExample>
 
-To create a theme using palette aliasing, import the palette plugin module and remap aliases in the desired theme namespace. The `palette.remap` function will automatically set `"type": "theme"` on the returned palette map.
+To create a theme using palette aliasing, import the palette plugin module and remap aliases in the desired theme namespace. The `tokens.get("palette-remap", ())` getter will automatically inject `"type": "theme"` on the returned palette map.
 
 <CodeExample tabs>
   <TabsPanel label="SCSS">
@@ -250,8 +250,8 @@ To create a theme using palette aliasing, import the palette plugin module and r
 
     // Define your palette themes by remapping the alias
     @include tokens.set("core", (
-      "forest": palette.remap(("primary": "green")),
-      "ocean": palette.remap(("primary": "blue"))
+      "forest": tokens.get("palette-remap", ("primary": "green")),
+      "ocean": tokens.get("palette-remap", ("primary": "blue"))
     ));
 
     // Output all tokens
