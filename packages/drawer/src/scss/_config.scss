@@ -22,14 +22,12 @@ $default: (
   // A map of CSS variable overrides to pass to the drawer inline dialog element
   // @type map
   "drawer-inline-dialog-override": (
-    "box-shadow": none
+    "box-shadow": 0 0 0 1px tokens.get("border-color")
   ),
 
   // A map of CSS variable overrides to pass to the drawer modal dialog element
   // @type map
-  "drawer-modal-dialog-override": (
-    "border": none
-  )
+  "drawer-modal-dialog-override": ()
 );
 
 @include config.apply($config, $default);

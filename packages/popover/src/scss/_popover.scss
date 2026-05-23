@@ -22,7 +22,7 @@ $-offset: calc((tokens.get("popover", "offset", 8) + 1) * 1px);
   opacity: 0;
   background: tokens.get("popover", "background", tokens.get("background"));
   background-clip: padding-box;
-  box-shadow: tokens.get("popover", "box-shadow", tokens.get("box-shadow-2"));
+  box-shadow: tokens.get("popover", "box-shadow", tokens.get("box-shadow-md"));
   transition-timing-function: tokens.get("popover", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("popover", "transition-duration", tokens.get("transition-duration-short"));
   transition-property: tokens.get("popover", "transition-property", opacity);

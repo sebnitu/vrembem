@@ -21,16 +21,16 @@
   &::picker(select) {
     cursor: default;
     transform: translateY(0);
-    margin-block: tokens.get("select", "picker-offset", tokens.get("focus-ring-width"));
+    margin-block: tokens.get("select", "picker-offset", 0.5em);
     padding: tokens.get("select", "picker-padding", 0.5em 0);
-    border: tokens.get("select", "picker-border", 1px solid tokens.get("border-color-strong"));
+    border: tokens.get("select", "picker-border", none);
     border-radius: tokens.get("select", "border-radius", tokens.get("form-control-border-radius"));
     color: tokens.get("select", "picker-foreground", tokens.get("form-control-foreground"));
     appearance: tokens.get("select", "picker-appearance", base-select);
     opacity: 1;
     background-color: tokens.get("select", "picker-background", tokens.get("form-control-background"));
     background-clip: padding-box;
-    box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-2"));
+    box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-md"));
     transition-timing-function: tokens.get("form-control-transition-timing-function");
     transition-duration: tokens.get("form-control-transition-duration");
     transition-property: opacity, transform;

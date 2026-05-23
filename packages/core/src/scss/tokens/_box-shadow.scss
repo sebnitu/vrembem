@@ -1,13 +1,65 @@
 @use "../modules/tokens";
-@include tokens.set("core", "box-shadow-color", tokens.get("palette", "neutral", 20%, $a: 20%));
 @include tokens.set(
   "core",
   (
-    "box-shadow": 0 2px 6px tokens.get("box-shadow-color"),
-    "box-shadow-1": 0 1px 3px tokens.get("box-shadow-color"),
-    "box-shadow-2": 0 2px 6px tokens.get("box-shadow-color"),
-    "box-shadow-3": 0 4px 12px tokens.get("box-shadow-color"),
-    "box-shadow-4": 0 8px 18px tokens.get("box-shadow-color"),
-    "box-shadow-5": 0 12px 24px tokens.get("box-shadow-color")
+    "light": (
+      "type": "mode",
+      "box-shadow-color": tokens.get("palette", "neutral", "600", $a: 8%),
+      "box-shadow-outline-color": tokens.get("palette", "neutral", "600", $a: 8%)
+    ),
+    "dark": (
+      "type": "mode",
+      "box-shadow-color": tokens.get("palette", "neutral", "950", $a: 80%),
+      "box-shadow-outline-color": tokens.get("palette", "neutral", "50", $a: 8%)
+    )
+  )
+);
+@include tokens.set(
+  "core",
+  (
+    "box-shadow-0": 0 0 0 1px tokens.get("box-shadow-outline-color"),
+    "box-shadow-1": 0 2px 2px 0 tokens.get("box-shadow-color"),
+    "box-shadow-2": 0 4px 4px -1px tokens.get("box-shadow-color"),
+    "box-shadow-3": 0 6px 6px -2px tokens.get("box-shadow-color"),
+    "box-shadow-4": 0 12px 12px -3px tokens.get("box-shadow-color"),
+    "box-shadow-5": 0 24px 24px -4px tokens.get("box-shadow-color")
+  )
+);
+@include tokens.set(
+  "core",
+  (
+    "box-shadow-outline": (
+      tokens.get("box-shadow-0")
+    ),
+    "box-shadow-xs": (
+      tokens.get("box-shadow-0"),
+      tokens.get("box-shadow-1")
+    ),
+    "box-shadow-sm": (
+      tokens.get("box-shadow-0"),
+      tokens.get("box-shadow-1"),
+      tokens.get("box-shadow-2")
+    ),
+    "box-shadow-md": (
+      tokens.get("box-shadow-0"),
+      tokens.get("box-shadow-1"),
+      tokens.get("box-shadow-2"),
+      tokens.get("box-shadow-3")
+    ),
+    "box-shadow-lg": (
+      tokens.get("box-shadow-0"),
+      tokens.get("box-shadow-1"),
+      tokens.get("box-shadow-2"),
+      tokens.get("box-shadow-3"),
+      tokens.get("box-shadow-4")
+    ),
+    "box-shadow-xl": (
+      tokens.get("box-shadow-0"),
+      tokens.get("box-shadow-1"),
+      tokens.get("box-shadow-2"),
+      tokens.get("box-shadow-3"),
+      tokens.get("box-shadow-4"),
+      tokens.get("box-shadow-5")
+    )
   )
 );
