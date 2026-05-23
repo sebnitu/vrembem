@@ -63,12 +63,12 @@
     "background-glass": oklch(from tokens.get("background") l c h / 70%),
     "light": (
       "type": "theme",
-      "fold-shadow-start": tokens.get("palette", "neutral", $a: 8%),
+      "fold-shadow-start": tokens.get("palette", "neutral", $a: 12%),
       "fold-shadow-end": tokens.get("palette", "neutral", $a: 0%)
     ),
     "dark": (
       "type": "theme",
-      "fold-shadow-start": tokens.get("palette", "neutral", "950", $a: 10%),
+      "fold-shadow-start": tokens.get("palette", "neutral", "950", $a: 12%),
       "fold-shadow-end": tokens.get("palette", "neutral", "950", $a: 0%)
     )
   )

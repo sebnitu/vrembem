@@ -419,18 +419,37 @@ Utilities for setting the border-radius property of an element with optional cor
 
 Utilities for setting the box-shadow property of an element with optional depth variants.
 
+<CodeExample flush>
+  <div slot="output" class="grid grid--cols-6 padding-lg background-alt">
+    <div class="padding-lg background border-radius box-shadow-outline"></div>
+    <div class="padding-lg background border-radius box-shadow-xs"></div>
+    <div class="padding-lg background border-radius box-shadow-sm"></div>
+    <div class="padding-lg background border-radius box-shadow-md"></div>
+    <div class="padding-lg background border-radius box-shadow-lg"></div>
+    <div class="padding-lg background border-radius box-shadow-xl"></div>
+  </div>
+  ```html
+  <div class="box-shadow-outline"></div>
+  <div class="box-shadow-xs"></div>
+  <div class="box-shadow-sm"></div>
+  <div class="box-shadow-md"></div>
+  <div class="box-shadow-lg"></div>
+  <div class="box-shadow-xl"></div>
+  ```
+</CodeExample>
+
 <ReferenceTable 
   id="box-shadow"
   {...UtilityProps}
   expandable={false} 
   data={{
-  "box-shadow": "box-shadow: var(--vb-box-shadow);",
-  "box-shadow-flat": "box-shadow: 0 0 0 0 transparent;",
-  "box-shadow-1": "box-shadow: var(--vb-box-shadow-1);",
-  "box-shadow-2": "box-shadow: var(--vb-box-shadow-2);",
-  "box-shadow-3": "box-shadow: var(--vb-box-shadow-3);",
-  "box-shadow-4": "box-shadow: var(--vb-box-shadow-4);",
-  "box-shadow-5": "box-shadow: var(--vb-box-shadow-5);",
+  "box-shadow-none": "box-shadow: 0 0 0 0 transparent;",
+  "box-shadow-outline": "box-shadow: var(--vb-box-shadow-0);",
+  "box-shadow-xs": "box-shadow: var(--vb-box-shadow-xs);",
+  "box-shadow-sm": "box-shadow: var(--vb-box-shadow-sm);",
+  "box-shadow-md": "box-shadow: var(--vb-box-shadow-md);",
+  "box-shadow-lg": "box-shadow: var(--vb-box-shadow-lg);",
+  "box-shadow-xl": "box-shadow: var(--vb-box-shadow-xl);",
 }} />
 
 ### display

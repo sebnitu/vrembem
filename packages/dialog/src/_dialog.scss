@@ -8,12 +8,12 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  border: tokens.get("dialog", "border", tokens.get("border"));
+  border: tokens.get("dialog", "border", none);
   border-radius: tokens.get("dialog", "border-radius", tokens.get("border-radius"));
   color: tokens.get("dialog", "foreground", tokens.get("foreground"));
   background: tokens.get("dialog", "background", tokens.get("background"));
   background-clip: padding-box;
-  box-shadow: tokens.get("dialog", "box-shadow", tokens.get("box-shadow-4"));
+  box-shadow: tokens.get("dialog", "box-shadow", tokens.get("box-shadow-xl"));
   transition-timing-function: tokens.get("dialog", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("dialog", "transition-duration", tokens.get("transition-duration"));
   transition-property: tokens.get("dialog", "transition-property", (outline, border-color));

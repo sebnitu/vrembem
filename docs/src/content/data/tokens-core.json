@@ -29,13 +29,18 @@
   "--vb-border-radius": "0.25rem",
   "--vb-border-radius-lg": "0.5rem",
   "--vb-border-radius-circle": "9999px",
-  "--vb-box-shadow-color": "oklch(20% var(--vb-neutral-c) var(--vb-neutral-h) / 20%)",
-  "--vb-box-shadow": "0 2px 6px var(--vb-box-shadow-color)",
-  "--vb-box-shadow-1": "0 1px 3px var(--vb-box-shadow-color)",
-  "--vb-box-shadow-2": "0 2px 6px var(--vb-box-shadow-color)",
-  "--vb-box-shadow-3": "0 4px 12px var(--vb-box-shadow-color)",
-  "--vb-box-shadow-4": "0 8px 18px var(--vb-box-shadow-color)",
-  "--vb-box-shadow-5": "0 12px 24px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-0": "0 0 0 1px var(--vb-box-shadow-outline-color)",
+  "--vb-box-shadow-1": "0 2px 2px 0 var(--vb-box-shadow-color)",
+  "--vb-box-shadow-2": "0 4px 4px -1px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-3": "0 6px 6px -2px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-4": "0 12px 12px -3px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-5": "0 24px 24px -4px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-outline": "var(--vb-box-shadow-0)",
+  "--vb-box-shadow-xs": "var(--vb-box-shadow-0), var(--vb-box-shadow-1)",
+  "--vb-box-shadow-sm": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2)",
+  "--vb-box-shadow-md": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2), var(--vb-box-shadow-3)",
+  "--vb-box-shadow-lg": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2), var(--vb-box-shadow-3), var(--vb-box-shadow-4)",
+  "--vb-box-shadow-xl": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2), var(--vb-box-shadow-3), var(--vb-box-shadow-4), var(--vb-box-shadow-5)",
   "--vb-font-family": "var(--vb-font-family-sans)",
   "--vb-font-family-sans": "system-ui, ui-sans-serif, sans-serif",
   "--vb-font-family-serif": "ui-serif, serif",
@@ -229,5 +234,13 @@
   "--vb-border-color-stronger": {
     "light": "oklch(0% 0 0deg / 0.3)",
     "dark": "oklch(100% 0 0deg / 0.3)"
+  },
+  "--vb-box-shadow-color": {
+    "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
+    "dark": "oklch(16% calc(var(--vb-neutral-c) * 0.6) var(--vb-neutral-h) / 80%)"
+  },
+  "--vb-box-shadow-outline-color": {
+    "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
+    "dark": "oklch(98% calc(var(--vb-neutral-c) * 0.1) var(--vb-neutral-h) / 8%)"
   }
 }

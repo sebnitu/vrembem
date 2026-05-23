@@ -25,10 +25,10 @@ Dialog uses design token CSS variables in a reference and fallback pattern. Vari
 <ReferenceTable id="tokens-dialog" valueLabel="Fallback" expandable={true} data={{
   "--vb-dialog-background": "var(--vb-background)",
   "--vb-dialog-foreground": "var(--vb-foreground)",
-  "--vb-dialog-border": "var(--vb-border)",
+  "--vb-dialog-border": "none",
   "--vb-dialog-sep-border": "var(--vb-border)",
   "--vb-dialog-border-radius": "var(--vb-border-radius)",
-  "--vb-dialog-box-shadow": "var(--vb-box-shadow-4)",
+  "--vb-dialog-box-shadow": "var(--vb-box-shadow-xl)",
   "--vb-dialog-padding": "1em",
   "--vb-dialog-gap": "0.5em",
 
@@ -48,14 +48,14 @@ Dialog uses design token CSS variables in a reference and fallback pattern. Vari
 
 Dialog is a highly composable container component that comes with a variety of elements. The most basic implementation being `dialog` and a `dialog__body` element:
 
-<CodeExample>
-  <Fragment slot="output">
+<CodeExample flush>
+  <div slot="output" class="padding-lg background-alt">
     <div class="dialog">
       <div class="dialog__body">
         <p>Basic dialog example.</p>
       </div>
     </div>
-  </Fragment>
+  </div>
   ```html
   <div class="dialog">
     <div class="dialog__body">
@@ -69,8 +69,8 @@ Dialog is a highly composable container component that comes with a variety of e
 
 The dialog component comes with a variety of elements to help fit a wide range of use cases and applications. You can mix and match these elements within the dialog component as needed.
 
-<CodeExample>
-  <Fragment slot="output">
+<CodeExample flush>
+  <div slot="output" class="padding-lg background-alt">
     <div class="dialog">
       <div class="dialog__header">
         <h2 class="dialog__title">Dialog example</h2>
@@ -86,7 +86,7 @@ The dialog component comes with a variety of elements to help fit a wide range o
         <button class="button">Cancel</button>
       </div>
     </div>
-  </Fragment>
+  </div>
   ```html
   <div class="dialog">
     <div class="dialog__header">
@@ -117,8 +117,8 @@ The `dialog__container` element is an optional scrollable container that separat
 
 There are cases where a dialog needs to be focusable. For these instances, apply `tabindex="0"` to the dialog element itself. Focus ring styles are applied to dialogs for the `:focus-visible` state.
 
-<CodeExample>
-  <Fragment slot="output">
+<CodeExample flush>
+  <div slot="output" class="padding-lg background-alt">
     <div id="dialog-focus" class="dialog" tabindex="0">
       <div class="dialog__header">
         <h2 class="dialog__title">Focusable dialog</h2>
@@ -134,7 +134,7 @@ There are cases where a dialog needs to be focusable. For these instances, apply
         <button class="button">Cancel</button>
       </div>
     </div>
-  </Fragment>
+  </div>
   ```html
   <div class="dialog" tabindex="0">
     ...
@@ -144,8 +144,8 @@ There are cases where a dialog needs to be focusable. For these instances, apply
 
 Apply `role="alertdialog"` to dialogs that interrupt a user's workflow to communicate an important message and require a response. Dialogs with the `alertdialog` role receive unique styles for emphasis. 
 
-<CodeExample>
-  <Fragment slot="output">
+<CodeExample flush>
+  <div slot="output" class="padding-lg background-alt">
     <div class="dialog" tabindex="0" role="alertdialog">
       <div class="dialog__body padding-lg spacing text-align-center">
         <h2 class="dialog__title">Alert dialog!</h2>
@@ -156,7 +156,7 @@ Apply `role="alertdialog"` to dialogs that interrupt a user's workflow to commun
         </div>
       </div>
     </div>
-  </Fragment>
+  </div>
   ```html
   <div class="dialog" tabindex="0" role="alertdialog">
     ...
