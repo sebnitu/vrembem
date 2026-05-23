@@ -35,6 +35,7 @@
   "--vb-box-shadow-3": "0 6px 6px -2px var(--vb-box-shadow-color)",
   "--vb-box-shadow-4": "0 12px 12px -3px var(--vb-box-shadow-color)",
   "--vb-box-shadow-5": "0 24px 24px -4px var(--vb-box-shadow-color)",
+  "--vb-box-shadow-outline": "var(--vb-box-shadow-0)",
   "--vb-box-shadow-xs": "var(--vb-box-shadow-0), var(--vb-box-shadow-1)",
   "--vb-box-shadow-sm": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2)",
   "--vb-box-shadow-md": "var(--vb-box-shadow-0), var(--vb-box-shadow-1), var(--vb-box-shadow-2), var(--vb-box-shadow-3)",
