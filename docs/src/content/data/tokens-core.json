@@ -236,7 +236,7 @@
   },
   "--vb-box-shadow-color": {
     "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
-    "dark": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)"
+    "dark": "oklch(16% calc(var(--vb-neutral-c) * 0.6) var(--vb-neutral-h) / 80%)"
   },
   "--vb-box-shadow-outline-color": {
     "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
