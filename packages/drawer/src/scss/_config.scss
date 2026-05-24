@@ -15,21 +15,23 @@ $default: (
     "main": "drawer-main"
   ),
 
-  // A map of CSS variable overrides to pass to the drawer dialog element
+  // A map of CSS variable overrides to pass to the drawer panel element
   // @type map
-  "drawer-dialog-override": (),
+  "drawer-panel-override": (),
 
-  // A map of CSS variable overrides to pass to the drawer inline dialog element
+  // A map of CSS variable overrides to pass to the drawer inline panel element
   // @type map
-  "drawer-inline-dialog-override": (
+  "drawer-inline-panel-override": (
     "box-shadow": 0 0 0 1px tokens.get("border-color")
   ),
 
-  // A map of CSS variable overrides to pass to the drawer modal dialog element
+  // A map of CSS variable overrides to pass to the drawer modal panel element
   // @type map
-  "drawer-modal-dialog-override": ()
+  "drawer-modal-panel-override": (
+    "box-shadow": tokens.get("box-shadow-xl")
+  )
 );
 
 @include config.apply($config, $default);
 @include tokens.register("drawer");
-@include tokens.register("dialog");
+@include tokens.register("panel");

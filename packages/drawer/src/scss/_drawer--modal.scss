@@ -13,15 +13,15 @@
     @include core.backdrop("drawer");
   }
 
-  #{core.bem("drawer", "dialog")} {
-    @include tokens.override("dialog", config.get("drawer-modal-dialog-override"));
+  #{core.bem("drawer", "panel")} {
+    @include tokens.override("panel", config.get("drawer-modal-panel-override"));
 
     inset: 0 auto 0 0;
     width: tokens.get("drawer", "width", 18em);
     max-width: tokens.get("drawer", "max-width", 80%);
   }
 
-  &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "dialog")} {
+  &#{core.bem("drawer", null, "switch")} #{core.bem("drawer", "panel")} {
     inset: 0 0 0 auto;
   }
 

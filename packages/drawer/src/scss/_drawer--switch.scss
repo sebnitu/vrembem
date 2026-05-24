@@ -5,17 +5,17 @@
 #{core.bem("drawer", null, "switch")} {
   inset: 0 0 0 auto;
 
-  &.is-closing #{core.bem("drawer", "dialog")},
-  &.is-closed #{core.bem("drawer", "dialog")} {
+  &.is-closing #{core.bem("drawer", "panel")},
+  &.is-closed #{core.bem("drawer", "panel")} {
     transform: translateX(100%);
   }
 
-  #{core.bem("drawer", "dialog")} {
+  #{core.bem("drawer", "panel")} {
     border-right: none;
   }
 }
 
-#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "dialog")} {
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "panel")} {
   border-left: none;
 }
 

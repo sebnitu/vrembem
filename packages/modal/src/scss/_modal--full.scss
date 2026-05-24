@@ -2,15 +2,15 @@
 @use "@vrembem/core/tokens";
 
 #{core.bem("modal", null, "full")} {
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     transform: scale(tokens.get("modal", "full-scale", 0.75));
     width: 100%;
     max-width: none;
     height: 100%;
   }
 
-  &.is-opening #{core.bem("modal", "dialog")},
-  &.is-opened #{core.bem("modal", "dialog")} {
+  &.is-opening #{core.bem("modal", "panel")},
+  &.is-opened #{core.bem("modal", "panel")} {
     transform: scale(1);
   }
 }

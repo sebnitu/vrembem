@@ -19,8 +19,8 @@
   }
 }
 
-#{core.bem("modal", "dialog")} {
-  @include tokens.override("dialog", config.get("modal-dialog-override"));
+#{core.bem("modal", "panel")} {
+  @include tokens.override("panel", config.get("modal-panel-override"));
 
   position: relative;
   transform: translateY(calc(tokens.get("modal", "travel", 5em) * -1));
@@ -51,7 +51,7 @@
     transition: opacity tokens.get("modal", "transition-duration", tokens.get("transition-duration")) tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
   }
 
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
     transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
     transition-property: opacity, transform;
@@ -64,7 +64,7 @@
     opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
   }
 
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     transform: translateY(0);
     opacity: 1;
   }

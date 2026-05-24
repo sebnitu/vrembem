@@ -6,9 +6,11 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // A map of CSS variable overrides to pass to the modal dialog element
+  // A map of CSS variable overrides to pass to the modal panel element
   // @type map
-  "modal-dialog-override": (),
+  "modal-panel-override": (
+    "box-shadow": tokens.get("box-shadow-xl")
+  ),
 
   // Map for outputting modal--size-[key] modifier variants
   // @type map
@@ -23,4 +25,4 @@ $default: (
 
 @include config.apply($config, $default);
 @include tokens.register("modal");
-@include tokens.register("dialog");
+@include tokens.register("panel");

@@ -3,7 +3,7 @@
 @use "@vrembem/core/tokens";
 
 @each $key, $value in config.get("modal-size", "variants") {
-  #{core.bem("modal", null, "size", $key)} #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", null, "size", $key)} #{core.bem("modal", "panel")} {
     @include tokens.override("modal", "width", $value);
   }
 }

@@ -8,14 +8,14 @@
 #{core.bem("modal", null, "pos", "bottom")} {
   justify-content: flex-end;
 
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     transform: translateY(tokens.get("modal", "travel", 5em));
   }
 }
 
 #{core.bem("modal", null, "pos", "left")},
 #{core.bem("modal", null, "pos", "right")} {
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     @include tokens.override("modal", "width", 16em);
     @include tokens.override("modal", "max-width", 90%);
 
@@ -26,7 +26,7 @@
 #{core.bem("modal", null, "pos", "left")} {
   align-items: flex-start;
 
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     left: 0;
     transform: translateX(-100%);
   }
@@ -35,7 +35,7 @@
 #{core.bem("modal", null, "pos", "right")} {
   align-items: flex-end;
 
-  #{core.bem("modal", "dialog")} {
+  #{core.bem("modal", "panel")} {
     right: 0;
     transform: translateX(100%);
   }
