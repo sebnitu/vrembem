@@ -4,7 +4,7 @@ import { DrawerCollection } from "../index";
 document.body.innerHTML = `
   <div class="drawer-frame">
     <div id="drawer-default" class="drawer drawer--modal">
-      <div class="drawer__dialog">...</div>
+      <div class="drawer__panel">...</div>
     </div>
     <main class="drawer-main">
       <button data-drawer-toggle="drawer-default">...</button>
@@ -18,7 +18,7 @@ const drawers = new DrawerCollection({
 });
 
 const el = document.querySelector(".drawer");
-const dialog = document.querySelector(".drawer__dialog");
+const dialog = document.querySelector(".drawer__panel");
 const main = document.querySelector(".drawer-main");
 const btn = document.querySelector("[data-drawer-toggle]");
 

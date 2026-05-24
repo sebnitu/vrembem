@@ -6,20 +6,20 @@ const markup = `
   <button data-modal-open="modal-one">Modal One</button>
   <button data-modal-open="modal-two">Modal Two</button>
   <div id="modal-one" class="modal">
-    <div class="modal__dialog">
+    <div class="modal__panel">
       <button data-modal-close class="first">Close</button>
       <button>...</button>
       <button data-modal-open="modal-two" class="last">Modal Two</button>
     </div>
   </div>
   <div id="modal-two" class="modal">
-    <div data-modal-dialog class="modal__dialog">
+    <div data-modal-dialog class="modal__panel">
       <button data-modal-close data-focus>Close</button>
       <button data-modal-open="modal-one">Modal One</button>
     </div>
   </div>
   <div id="modal-empty" class="modal">
-    <div class="modal__dialog">
+    <div class="modal__panel">
       <p>This modal has nothing to focus...</p>
     </div>
   </div>
@@ -37,7 +37,7 @@ test("should focus modal dialog when opened and refocus trigger when closed", as
   const modals = new ModalCollection();
   await modals.mount();
   const el = document.querySelector("#modal-one");
-  const dialog = el.querySelector(".modal__dialog");
+  const dialog = el.querySelector(".modal__panel");
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
 
   btnOpen.click();
@@ -87,7 +87,7 @@ test("should retain focus on modal if nothing inner is focusable", async () => {
   const modals = new ModalCollection();
   await modals.mount();
   const elModal = document.querySelector("#modal-empty");
-  const dialog = elModal.querySelector(".modal__dialog");
+  const dialog = elModal.querySelector(".modal__panel");
   modals.open("modal-empty");
   await vi.runAllTimers();
   expect(elModal).toHaveClass("is-opened");
