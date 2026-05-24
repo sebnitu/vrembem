@@ -1,0 +1,74 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+#{core.bem("panel")} {
+  @include core.focus-ring-base;
+
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  border: tokens.get("panel", "border", none);
+  border-radius: tokens.get("panel", "border-radius", tokens.get("border-radius"));
+  color: tokens.get("panel", "foreground", tokens.get("foreground"));
+  background: tokens.get("panel", "background", tokens.get("background"));
+  background-clip: padding-box;
+  box-shadow: tokens.get("panel", "box-shadow", tokens.get("box-shadow-xl"));
+  transition-timing-function: tokens.get("panel", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("panel", "transition-property", (outline, border-color));
+
+  &:focus-visible {
+    @include core.focus-ring-color(tokens.get("panel", "focus-ring-color", tokens.get("focus-ring-color")), tokens.get("panel", "focus-ring-opacity", 80%));
+
+    border-color: tokens.get("panel", "focus-ring-color", tokens.get("focus-ring-color"));
+  }
+}
+
+#{core.bem("panel", "container")} {
+  @include core.scroll-flex;
+}
+
+#{core.bem("panel", "header")},
+#{core.bem("panel", "body")},
+#{core.bem("panel", "footer")} {
+  flex: 0 0 auto;
+  padding: tokens.get("panel", "padding", 1em);
+}
+
+#{core.bem("panel", "header")},
+#{core.bem("panel", "footer")} {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  gap: tokens.get("panel", "gap", 0.5em);
+  align-items: center;
+  vertical-align: middle;
+  background: tokens.get("panel", "background", tokens.get("background"));
+}
+
+#{core.bem("panel", "header")} {
+  top: 0;
+  border-bottom: tokens.get("panel", "sep-border", tokens.get("border"));
+}
+
+#{core.bem("panel", "body")} {
+  flex-grow: 1;
+
+  & + & {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
+}
+
+#{core.bem("panel", "footer")} {
+  bottom: 0;
+  border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+}
+
+#{core.bem("panel", "title")} {
+  flex-grow: 1;
+  font-size: tokens.get("panel", "title-font-size", tokens.get("font-size-lg"));
+  font-weight: tokens.get("panel", "title-font-weight", tokens.get("font-weight-semi-bold"));
+  line-height: tokens.get("panel", "title-line-height", inherit);
+  color: tokens.get("panel", "title-color", tokens.get("foreground-strong"));
+}
