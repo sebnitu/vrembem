@@ -673,6 +673,8 @@ $-events: ();
     } @else {
       @include -output-component($component);
     }
+
+    @include -emit-event("root-output", $component);
   }
 
   @include -emit-event("output", $component);
