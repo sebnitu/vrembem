@@ -16,19 +16,6 @@ html {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    @include core.tokens-override(
-      "core",
-      (
-        "transition-duration": 0s,
-        "transition-duration-short": 0s,
-        "transition-duration-long": 0s
-      )
-    );
-  }
-}
-
 #main {
   outline: none;
 }
