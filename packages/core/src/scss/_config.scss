@@ -61,6 +61,11 @@ $default: (
     "950": (16%, 60%), // The darkest variant in the palette
   ),
 
+  // Whether or not to output theme tokens. If disabled, the default theme is 
+  // output as normal base tokens in the :root selector.
+  // @type boolean
+  "theme-output": true,
+
   // Sets the default theme option
   // @type string
   "theme-default": "light",

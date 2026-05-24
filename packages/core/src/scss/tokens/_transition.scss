@@ -1,3 +1,4 @@
+@use "sass:meta";
 @use "../modules/tokens";
 @include tokens.set(
   "core",
@@ -16,3 +17,13 @@
     "transition-long": tokens.get("transition-duration-long") tokens.get("transition-timing-function")
   )
 );
+
+@mixin -prefers-reduced-motion($args...) {
+  @media (prefers-reduced-motion: reduce) {
+    @include tokens.define("core", "transition-duration", 0s);
+    @include tokens.define("core", "transition-duration-short", 0s);
+    @include tokens.define("core", "transition-duration-long", 0s);
+  }
+}
+
+@include tokens.on("root-output", "prefers-reduced-motion", meta.get-mixin("-prefers-reduced-motion"));

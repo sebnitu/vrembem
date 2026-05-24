@@ -134,8 +134,7 @@ $-theme-keys: ();
 }
 
 /// Output all the custom properties and values of a component theme or output a
-/// specific theme from all components. The root selector or theme class is not
-/// included in the output.
+/// specific theme from all components. The output is not wrapped in a selector.
 ///
 /// @param {string} $theme
 ///   The theme to output.
@@ -160,12 +159,15 @@ $-theme-keys: ();
       // Save a copy of the component map from variables
       $component-theme-map: map.get($component-map, "themes", $theme);
 
-      // Get a reference of the color scheme property
-      $color-scheme: map.get($component-theme-map, "color-scheme");
+      // Don't output color-scheme if theme-output is disabled
+      @if config.get(li("theme-output"), true) {
+        // Get a reference of the color scheme property
+        $color-scheme: map.get($component-theme-map, "color-scheme");
 
-      // If a color scheme was stored, output it above everything else
-      @if $color-scheme {
-        color-scheme: #{$color-scheme};
+        // If a color scheme was stored, output it above everything else
+        @if $color-scheme {
+          color-scheme: #{$color-scheme};
+        }
       }
 
       // Output custom properties
@@ -173,6 +175,26 @@ $-theme-keys: ();
         @include tokens.define($component, $prop, $value);
       }
     }
+  }
+}
+
+/// Output all the custom properties and values of the default theme. The output
+/// is not wrapped in a selector.
+///
+/// @param {string} $component ("*")
+///   The component to output. Use "*" to output a theme from all
+///   components.
+///
+/// @access private
+///
+@mixin -output-default($component) {
+  // Only output default theme if theme-output is set to false
+  @if not config.get(li("theme-output"), true) {
+    // Get the default theme
+    $theme: config.get(li("theme-default"), "light");
+
+    // Output the default theme
+    @include -output-theme($theme, $component);
   }
 }
 
@@ -192,42 +214,45 @@ $-theme-keys: ();
 ///   @include theme.output("notice");
 ///
 @mixin -output($component: "*") {
-  // Output the default theme and system preference media query under the root
-  // selector and auto theme. This should come before the theme class output.
-  :root,
-  #{-selector("auto")} {
-    // Get the default theme
-    $theme: config.get(li("theme-default"), "light");
+  // Only output themes if theme-output is enabled (defaults to true)
+  @if config.get(li("theme-output"), true) {
+    // Output the default theme and system preference media query under the root
+    // selector and auto theme. This should come before the theme class output.
+    :root,
+    #{-selector("auto")} {
+      // Get the default theme
+      $theme: config.get(li("theme-default"), "light");
 
-    // Output the default theme
-    @include -output-theme($theme, $component);
+      // Output the default theme
+      @include -output-theme($theme, $component);
 
-    // If the default them is not light mode, output the prefers light media query
-    @if $theme != "light" {
-      @media (prefers-color-scheme: light) {
-        @include -output-theme("light", $component);
+      // If the default them is not light mode, output the prefers light media query
+      @if $theme != "light" {
+        @media (prefers-color-scheme: light) {
+          @include -output-theme("light", $component);
+        }
+      }
+
+      // If the default them is not dark mode, output the prefers dark media query
+      @if $theme != "dark" {
+        @media (prefers-color-scheme: dark) {
+          @include -output-theme("dark", $component);
+        }
       }
     }
 
-    // If the default them is not dark mode, output the prefers dark media query
-    @if $theme != "dark" {
-      @media (prefers-color-scheme: dark) {
-        @include -output-theme("dark", $component);
+    // This outputs all custom modes using their selector
+    @each $key in $-mode-keys {
+      #{-selector($key)} {
+        @include -output-theme($key, $component);
       }
     }
-  }
 
-  // This outputs all custom modes using their selector
-  @each $key in $-mode-keys {
-    #{-selector($key)} {
-      @include -output-theme($key, $component);
-    }
-  }
-
-  // This outputs all custom themes using their selector
-  @each $key in $-theme-keys {
-    #{-selector($key)} {
-      @include -output-theme($key, $component);
+    // This outputs all custom themes using their selector
+    @each $key in $-theme-keys {
+      #{-selector($key)} {
+        @include -output-theme($key, $component);
+      }
     }
   }
 }
@@ -238,4 +263,5 @@ $-theme-keys: ();
 @include tokens.add-hook("setter", "mode", meta.get-function("-type-transform-hook"));
 
 // Add tokens event listener that runs whenever tokens are output
-@include tokens.on("output", "output-theme-tokens", meta.get-mixin("-output"));
+@include tokens.on("root-output", "output-default-theme", meta.get-mixin("-output-default"));
+@include tokens.on("output", "output-theme", meta.get-mixin("-output"));
