@@ -9,14 +9,6 @@
   &.is-closed #{core.bem("drawer", "panel")} {
     transform: translateX(100%);
   }
-
-  #{core.bem("drawer", "panel")} {
-    border-right: none;
-  }
-}
-
-#{core.bem("drawer")}:not(#{core.bem("drawer", null, "switch")}) #{core.bem("drawer", "panel")} {
-  border-left: none;
 }
 
 // Apply margin transition styles if drawer is in a transitioning state

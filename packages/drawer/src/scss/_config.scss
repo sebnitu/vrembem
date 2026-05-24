@@ -21,9 +21,7 @@ $default: (
 
   // A map of CSS variable overrides to pass to the drawer inline panel element
   // @type map
-  "drawer-inline-panel-override": (
-    "box-shadow": 0 0 0 1px tokens.get("border-color")
-  ),
+  "drawer-inline-panel-override": (),
 
   // A map of CSS variable overrides to pass to the drawer modal panel element
   // @type map

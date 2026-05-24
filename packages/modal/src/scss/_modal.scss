@@ -19,7 +19,8 @@
   }
 }
 
-#{core.bem("modal", "panel")} {
+#{core.bem("modal", "panel")},
+#{core.bem("modal")} > #{core.bem("panel")} {
   @include tokens.override("panel", config.get("modal-panel-override"));
 
   position: relative;

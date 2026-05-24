@@ -23,7 +23,8 @@
   width: tokens.get("drawer", "width", 18em);
 }
 
-#{core.bem("drawer", "panel")} {
+#{core.bem("drawer", "panel")},
+#{core.bem("drawer")} > #{core.bem("panel")} {
   @include tokens.override("panel", config.get("drawer-panel-override"));
 
   position: absolute;
@@ -31,8 +32,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  border-top: none;
-  border-bottom: none;
+  border: none;
   border-radius: 0;
 }
 
