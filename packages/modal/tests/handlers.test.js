@@ -12,7 +12,7 @@ const markup = `
   <button data-modal-open="modal-default">...</button>
   <button data-modal-replace="modal-default">...</button>
   <div id="modal-default" class="modal" style="--modal-transition-duration: 300ms">
-    <div class="modal__panel">
+    <div class="modal__dialog">
       <button data-modal-close>...</button>
     </div>
   </div>
@@ -21,7 +21,7 @@ const markup = `
 const markupReq = `
   <button data-modal-open="modal-default">...</button>
   <div id="modal-default" class="modal" style="--modal-transition-duration: 300ms">
-    <div class="modal__panel" role="alertdialog">
+    <div class="modal__dialog" role="alertdialog">
       <button data-modal-close data-focus>...</button>
     </div>
   </div>
@@ -36,7 +36,7 @@ test("should close when root modal (screen) is clicked", async () => {
   const modals = new ModalCollection();
   await modals.mount();
   const el = document.querySelector(".modal");
-  const dialog = document.querySelector(".modal__panel");
+  const dialog = document.querySelector(".modal__dialog");
   const btnOpen = document.querySelector("[data-modal-open]");
 
   expect(modals.get("modal-default").isRequired).toBe(false);

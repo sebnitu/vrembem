@@ -1,6 +1,6 @@
 ---
 title: Modal
-description: "A component for changing the mode of a page to complete a critical task. This is usually used alongside the dialog component to create modal dialogs."
+description: "A component for rendering modal dialog boxes. Modal dialog boxes block interaction with other UI elements, making the rest of the page inert."
 package: "@vrembem/modal"
 category: component
 ---
@@ -8,7 +8,6 @@ category: component
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import Icon from "@/components/Icon.astro";
 
 ```sh
 npm install @vrembem/modal
@@ -43,7 +42,7 @@ Modal comes with the following JavaScript configuration options that customize t
 
 <CodeExample lang="js" expandable>
 ```js
-const modals = new Modal({
+const modals = new ModalCollection({
   // The data attribute to use for triggering the open method
   // @type string
   attrOpen: "modal-open",
@@ -128,9 +127,11 @@ Modal comes with the following Sass configuration options that can be set using 
 ```scss
 @use "@vrembem/modal" with (
   $config: (
-    // A map of CSS variable overrides to pass to the modal dialog element
+    // A map of CSS variable overrides to pass to the panel component if used
     // @type map
-    "modal-dialog-override": (),
+    "modal-panel-override": (
+      "box-shadow": tokens.get("box-shadow-xl")
+    ),
 
     // Map for outputting modal--size-[key] modifier variants
     // @type map
@@ -167,8 +168,8 @@ Modal uses design token CSS variables in a reference and fallback pattern. Varia
 
 Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with a unique `id` and the `modal` class containing a child element with the `modal__dialog` class. There are three types of modal triggers, each defined by a data attribute:
 
-- `data-modal-open`: Opens a modals. Takes the ID of the modal to open. Will stack modals if triggered from inside an already opened modals.
-- `data-modal-close`: Closes a modals. Takes the ID of the modal to close or closes the top active modal if left value-less. Setting value to `"*"` will close all open modals.
+- `data-modal-open`: Opens a modals. Takes the ID of the modal to open. Will stack modals if triggered from inside already opened modals.
+- `data-modal-close`: Closes a modal. Takes the ID of the modal to close or closes the top active modal if left value-less. Setting value to `"*"` will close all open modals.
 - `data-modal-replace`: Replaces currently opened modals with the modal of the id provided.
 
 <CodeExample>
@@ -195,21 +196,21 @@ Modals are composed using classes and data attributes for their triggers. The ba
 ```
 </CodeExample>
 
-The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs are given the `role` attribute with a value of either [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
+The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs are given the `role` attribute with a value of [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
 <CodeExample>
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-2">Open</button>
     <div id="modal-2" class="modal">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-2-title" aria-describedby="modal-2-description">
-        <div class="dialog__header">
-          <h2 class="dialog__title" id="modal-2-title">Modal dialog</h2>
+      <div class="modal__dialog panel" role="dialog" aria-modal="true" aria-labelledby="modal-2-title" aria-describedby="modal-2-description">
+        <div class="panel__header">
+          <h2 class="panel__title" id="modal-2-title">Modal panel</h2>
           <button class="link" data-modal-close="">Close</button>
         </div>
-        <div class="dialog__body">
+        <div class="panel__body">
           <p id="modal-2-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="button button--color-primary" data-modal-close="">Confirm</button>
           <button class="button" data-modal-close="">Cancel</button>
         </div>
@@ -219,20 +220,20 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   ```html
   <div id="[unique-id]" class="modal">
     <div
-      class="modal__dialog dialog"
+      class="modal__dialog panel"
       role="dialog"
       aria-modal="true"
       aria-labelledby="dialog-title"
       aria-describedby="dialog-description"
     >
-      <div class="dialog__header">
-        <h2 class="dialog__title" id="dialog-title">...</h2>
+      <div class="panel__header">
+        <h2 class="panel__title" id="dialog-title">...</h2>
         <button class="link" data-modal-close="">Close</button>
       </div>
-      <div class="dialog__body">
+      <div class="panel__body">
         <p id="dialog-description">...</p>
       </div>
-      <div class="dialog__footer">
+      <div class="panel__footer">
         ...
       </div>
     </div>
@@ -240,7 +241,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   ```
 </CodeExample>
 
-The [dialog component](/packages/dialog) is a great fit for composing a modal's dialog. This can be applied directly on the `modal__dialog` element and expanded as needed.
+The [panel component](/packages/panel) is a great fit for styling a modal's dialog. This can be applied directly on the `modal__dialog` element and expanded as needed.
 
 Also available is the `modal__container` element which provides a scrollable container that separates content scrolling from the dialog's background and border styles, preventing overscroll visual issues.
 
@@ -259,16 +260,16 @@ Modal dialogs are given focus when opened as long as the `setTabindex` option is
       </li>
     </ul>
     <div id="modal-3" class="modal">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="dialog__body flex justify-content-between">
-          <span>Focus modal dialog when opened</span>
+      <div class="modal__dialog panel" role="dialog" aria-modal="true" tabindex="-1">
+        <div class="panel__body flex justify-content-between">
+          <span>Focus modal panel when opened</span>
           <button class="link" data-modal-close="">Close</button>
         </div>
       </div>
     </div>
     <div id="modal-4" class="modal">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between margin-bottom">
             <span>Focus input element when opened</span>
             <button class="link" data-modal-close="">Close</button>
@@ -299,7 +300,7 @@ Modal dialogs are given focus when opened as long as the `setTabindex` option is
   ```
 </CodeExample>
 
-While a modal is active, the contents obscured by the modal are made inaccessible to all users via a focus trap. This means that the `TAB` key, and a screen reader's virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
+While a modal is active, the contents obscured by the modal are made inaccessible to all users via a focus trap when the [`focusTrap`](/reference/collections/plugins/focus-trap) plugin is enabled. This means that the `TAB` key, and a screen reader's virtual cursor (arrow keys) should not be allowed to leave the modal dialog and traverse the content outside of the dialog.
 
 To change the selector used in finding the preferred focus element, pass your own selector via the `selectorFocus` config option (defaults to `'[data-focus]'`).
 
@@ -311,9 +312,9 @@ Required modals are modals that need an explicit action to be closed. That means
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-5">Open</button>
     <div id="modal-5" class="modal">
-      <div class="modal__dialog dialog" role="alertdialog" aria-modal="true" aria-labelledby="modal-5-title" aria-describedby="modal-5-description">
-        <div class="dialog__body spacing">
-          <h2 class="dialog__title" id="modal-5-title">Required modal</h2>
+      <div class="modal__dialog panel" role="alertdialog" aria-modal="true" aria-labelledby="modal-5-title" aria-describedby="modal-5-description">
+        <div class="panel__body spacing">
+          <h2 class="panel__title" id="modal-5-title">Required modal</h2>
           <p id="modal-5-description">Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
           <div class="flex flex-gap-x justify-content-end margin-top-lg">
             <button class="button button--color-primary" data-modal-close="">I understand</button>
@@ -355,7 +356,7 @@ Here's an example where we set the `<main>` content area to be inaccessible whil
   import { ModalCollection } from "@vrembem/modal";
   import { focusTrap, teleport } from "@vrembem/core";
 
-  const modals = new Modal({
+  const modals = new ModalCollection({
     selectorInert: "main",
     plugins: [
       focusTrap(),
@@ -378,15 +379,15 @@ Modifier that adds styles to a modal to make it fill the entire viewport when op
   <Fragment slot="output">
     <button class="link" data-modal-open="modal-6">Open</button>
     <div id="modal-6" class="modal modal--full">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-6-title">
-        <div class="dialog__header">
-          <h2 class="dialog__title" id="modal-6-title">Full modal</h2>
+      <div class="modal__dialog panel" role="dialog" aria-modal="true" aria-labelledby="modal-6-title">
+        <div class="panel__header">
+          <h2 class="panel__title" id="modal-6-title">Full modal</h2>
           <button class="link" data-modal-close="">Close</button>
         </div>
-        <div class="dialog__body">
+        <div class="panel__body">
           <p>This modal should fill the entire viewport when opened.</p>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="button button--color-primary" data-modal-close="">Accept</button>
           <button class="button" data-modal-close="">Cancel</button>
         </div>
@@ -427,14 +428,14 @@ The default modal position is centered in the viewport. The position modifier al
       </li>
     </ul>
     <div id="modal-pos-top" class="modal modal--pos-top">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
              <p>modal--pos-top</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
-        <div class="dialog__footer justify-content-between">
+        <div class="panel__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
             modal--pos-left
           </button>
@@ -448,24 +449,24 @@ The default modal position is centered in the viewport. The position modifier al
       </div>
     </div>
     <div id="modal-pos-left" class="modal modal--pos-left">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
              <p>modal--pos-left</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-top">
             modal--pos-top
           </button>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-right">
             modal--pos-right
           </button>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
             modal--pos-bottom
           </button>
@@ -473,24 +474,24 @@ The default modal position is centered in the viewport. The position modifier al
       </div>
     </div>
     <div id="modal-pos-right" class="modal modal--pos-right">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
              <p>modal--pos-right</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-top">
             modal--pos-top
           </button>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-left">
             modal--pos-left
           </button>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="link" data-modal-open="modal-pos-bottom">
             modal--pos-bottom
           </button>
@@ -498,14 +499,14 @@ The default modal position is centered in the viewport. The position modifier al
       </div>
     </div>
     <div id="modal-pos-bottom" class="modal modal--pos-bottom">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
              <p>modal--pos-bottom</p>
              <button class="link" data-modal-close="">Close</button>
            </div>
         </div>
-        <div class="dialog__footer justify-content-between">
+        <div class="panel__footer justify-content-between">
           <button class="link" data-modal-open="modal-pos-left">
             modal--pos-left
           </button>
@@ -568,8 +569,8 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
       </li>
     </ul>
     <div id="modal-size-xs" class="modal modal--size-xs">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
             <p>modal--size-xs</p>
             <button class="link" data-modal-close="">Close</button>
@@ -578,8 +579,8 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
       </div>
     </div>
     <div id="modal-size-sm" class="modal modal--size-sm">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
             <p>modal--size-sm</p>
             <button class="link" data-modal-close="">Close</button>
@@ -588,8 +589,8 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
       </div>
     </div>
     <div id="modal-size-md" class="modal modal--size-md">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
             <p>modal--size-md</p>
             <button class="link" data-modal-close="">Close</button>
@@ -598,8 +599,8 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
       </div>
     </div>
     <div id="modal-size-lg" class="modal modal--size-lg">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
             <p>modal--size-lg</p>
             <button class="link" data-modal-close="">Close</button>
@@ -608,8 +609,8 @@ Adjust the size of a modal by increasing or decreasing its width. These modifier
       </div>
     </div>
     <div id="modal-size-xl" class="modal modal--size-xl">
-      <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-        <div class="dialog__body">
+      <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="panel__body">
           <div class="flex justify-content-between">
             <p>modal--size-xl</p>
             <button class="link" data-modal-close="">Close</button>
@@ -660,7 +661,7 @@ Below is an example implementation of using stack along with the [`propStore`](/
 import { ModalCollection } from "@vrembem/modal";
 import { propStore } from "@vrembem/core";
 
-const modals = new Modal({
+const modals = new ModalCollection({
   plugins: [
     propStore({
       // Disable automatic prop watch and local storage
@@ -845,7 +846,7 @@ Stores the current state of the modals. Possible states include:
 
 <ReferenceBar type="HTMLElement" />
 
-Stores a reference to the dialog element (`.modal__dialog`) of the modal entry. If a dialog element isn't found, this property points to the modal element (`.modal`) itself.
+Stores a reference to the dialog element (`.modal__dialog` by default) of the modal entry. If a dialog element isn't found, this property points to the modal element (`.modal`) itself.
 
 ### entry.isRequired
 

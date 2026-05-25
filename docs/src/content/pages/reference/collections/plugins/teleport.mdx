@@ -22,7 +22,7 @@ To teleport collection entry elements to a specific location in the document, ad
 import { ModalCollection } from "@vrembem/modal";
 import { teleport } from "@vrembem/core";
 
-const modals = new Modal({
+const modals = new ModalCollection({
   plugins: [
     teleport({
       where: ".modals"

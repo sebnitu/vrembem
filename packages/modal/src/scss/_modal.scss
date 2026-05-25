@@ -19,7 +19,7 @@
   }
 }
 
-#{core.bem("modal", "panel")},
+#{core.bem("modal", "dialog")},
 #{core.bem("modal")} > #{core.bem("panel")} {
   @include core.focus-ring-base;
   @include tokens.override("panel", config.get("modal-panel-override"));
@@ -61,7 +61,7 @@
     transition: opacity tokens.get("modal", "transition-duration", tokens.get("transition-duration")) tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
   }
 
-  #{core.bem("modal", "panel")} {
+  #{core.bem("modal", "dialog")} {
     transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
     transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
     transition-property: opacity, transform;
@@ -74,7 +74,7 @@
     opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
   }
 
-  #{core.bem("modal", "panel")} {
+  #{core.bem("modal", "dialog")} {
     transform: translateY(0);
     opacity: 1;
   }
