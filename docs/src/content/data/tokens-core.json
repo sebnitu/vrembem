@@ -29,6 +29,7 @@
   "--vb-border-radius": "0.25rem",
   "--vb-border-radius-lg": "0.5rem",
   "--vb-border-radius-circle": "9999px",
+  "--vb-box-shadow-border": "0 0 0 1px var(--vb-border-color)",
   "--vb-box-shadow-0": "0 0 0 1px var(--vb-box-shadow-outline-color)",
   "--vb-box-shadow-1": "0 2px 2px 0 var(--vb-box-shadow-color)",
   "--vb-box-shadow-2": "0 4px 4px -1px var(--vb-box-shadow-color)",

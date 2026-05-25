@@ -17,6 +17,7 @@
 @include tokens.set(
   "core",
   (
+    "box-shadow-border": 0 0 0 1px tokens.get("border-color"),
     "box-shadow-0": 0 0 0 1px tokens.get("box-shadow-outline-color"),
     "box-shadow-1": 0 2px 2px 0 tokens.get("box-shadow-color"),
     "box-shadow-2": 0 4px 4px -1px tokens.get("box-shadow-color"),
