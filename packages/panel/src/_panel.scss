@@ -2,8 +2,6 @@
 @use "@vrembem/core/tokens";
 
 #{core.bem("panel")} {
-  @include core.focus-ring-base;
-
   position: relative;
   overflow: auto;
   display: flex;
@@ -14,15 +12,6 @@
   background: tokens.get("panel", "background", tokens.get("background"));
   background-clip: padding-box;
   box-shadow: tokens.get("panel", "box-shadow", 0 0 0 1px tokens.get("border-color"));
-  transition-timing-function: tokens.get("panel", "transition-timing-function", tokens.get("transition-timing-function"));
-  transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
-  transition-property: tokens.get("panel", "transition-property", (outline, border-color));
-
-  &:focus-visible {
-    @include core.focus-ring-color(tokens.get("panel", "focus-ring-color", tokens.get("focus-ring-color")), tokens.get("panel", "focus-ring-opacity", 80%));
-
-    border-color: tokens.get("panel", "focus-ring-color", tokens.get("focus-ring-color"));
-  }
 }
 
 #{core.bem("panel", "container")} {

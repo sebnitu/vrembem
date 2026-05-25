@@ -25,6 +25,7 @@
 
 #{core.bem("drawer", "panel")},
 #{core.bem("drawer")} > #{core.bem("panel")} {
+  @include core.focus-ring-base;
   @include tokens.override("panel", config.get("drawer-panel-override"));
 
   position: absolute;
@@ -34,6 +35,10 @@
   flex-direction: column;
   border: none;
   border-radius: 0;
+
+  &:focus-visible {
+    @include core.focus-ring-color(tokens.get("focus-ring-color"), 100%);
+  }
 }
 
 #{core.bem("drawer", "container")} {

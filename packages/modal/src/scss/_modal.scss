@@ -21,6 +21,7 @@
 
 #{core.bem("modal", "panel")},
 #{core.bem("modal")} > #{core.bem("panel")} {
+  @include core.focus-ring-base;
   @include tokens.override("panel", config.get("modal-panel-override"));
 
   position: relative;
@@ -31,6 +32,14 @@
   width: tokens.get("modal", "width", config.get("modal-size", "default"));
   max-width: tokens.get("modal", "max-width", 100%);
   opacity: 0;
+
+  &:focus-visible {
+    @include core.focus-ring-color(tokens.get("focus-ring-color"), 100%);
+  }
+
+  &[role="alertdialog"] {
+    @include core.focus-ring-color(tokens.get("palette", "important"), 100%);
+  }
 }
 
 #{core.bem("modal", "container")} {
