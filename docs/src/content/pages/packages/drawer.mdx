@@ -68,7 +68,7 @@ const drawers = new DrawerCollection({
 
   // A valid CSS selector for the drawer dialog element
   // @type string
-  selectorDialog: ".drawer__dialog",
+  selectorDialog: ".drawer__panel",
 
   // A valid CSS selector for the element that should be treated as the modal
   // backdrop. Clicking the backdrop closes the modal drawer.
@@ -109,7 +109,7 @@ const drawers = new DrawerCollection({
   // @type string
   classModal: "drawer--modal",
 
-  // Whether or not to set the tabindex attribute of the drawer dialog
+  // Whether or not to set the tabindex attribute of the drawer panel
   // @type boolean
   setTabindex: true,
 
@@ -141,19 +141,19 @@ Drawer comes with the following Sass configuration options that can be set using
       "main": "drawer-main"
     ),
 
-    // A map of CSS variable overrides to pass to the drawer dialog element
+    // A map of CSS variable overrides to pass to the drawer panel element
     // @type map
-    "drawer-dialog-override": (),
+    "drawer-panel-override": (),
 
-    // A map of CSS variable overrides to pass to the drawer inline dialog element
+    // A map of CSS variable overrides to pass to the drawer inline panel element
     // @type map
-    "drawer-inline-dialog-override": (
-      "box-shadow": 0 0 0 1px tokens.get("border-color")
-    ),
+    "drawer-inline-panel-override": (),
 
-    // A map of CSS variable overrides to pass to the drawer modal dialog element
+    // A map of CSS variable overrides to pass to the drawer modal panel element
     // @type map
-    "drawer-modal-dialog-override": ()
+    "drawer-modal-panel-override": (
+      "box-shadow": tokens.get("box-shadow-xl")
+    )
   )
 );
 ```
@@ -175,19 +175,19 @@ Drawer uses design token CSS variables in a reference and fallback pattern. Vari
 
 ## Basic usage
 
-Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with an `id` and `drawer` class, containing a child element with the `drawer__dialog` class. Two structural elements are required for drawers to work correctly:
+Drawers are composed using classes and data attributes for their triggers. The basic structure of a drawer is an element with an `id` and `drawer` class, containing a child element with the `drawer__panel` class. Two structural elements are required for drawers to work correctly:
 
 - `drawer-frame`: Applied to the parent element wrapping all drawers and the main content.
 - `drawer-main`: Applied to the element containing the main content. This should be the last child of the `drawer-frame` element.
 - `drawer`: The base drawer element representing an individual drawer. In it's modal state this element acts as the drawer's backdrop.
-- `drawer__dialog`: The content container of a drawer. Can be paired with the [dialog component](/packages/dialog) for structured layouts with headers, bodies, and footers.
-- `drawer__container`: Provides a scrollable container that separates content scrolling from the dialog's background and border styles, preventing overscroll visual issues.
+- `drawer__panel`: The content container of a drawer. Can be paired with the [panel component](/packages/panel) for structured layouts with headers, bodies, and footers.
+- `drawer__container`: Provides a scrollable container that separates content scrolling from the panel's background and border styles, preventing overscroll visual issues.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-1" class="drawer is-closed">
-        <div class="drawer__dialog">
+        <div class="drawer__panel">
           <div class="drawer__container padding">
             <div class="flex justify-content-between">
               <span>Drawer example</span>
@@ -211,7 +211,7 @@ Drawers are composed using classes and data attributes for their triggers. The b
 
     <!-- The drawer element -->
     <aside id="[unique-id]" class="drawer">
-      <div class="drawer__dialog">
+      <div class="drawer__panel">
         <!-- Optional container element for separating scrolling content -->
         <div class="drawer__container">
           ...
@@ -241,21 +241,21 @@ Drawer triggers are defined using three data attributes:
   ```
 </CodeExample>
 
-The dialog element of a drawer is defined using the `drawer__dialog` class. Along with a `role` attribute (e.g., `role="dialog"`), authors should provide drawer dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes, if applicable, to further improve accessibility. The `aria-modal` attribute is applied automatically based on whether the drawer is currently in modal mode.
+The panel element of a drawer is defined using the `drawer__panel` class. Along with a `role` attribute (e.g., `role="dialog"`), authors should provide drawer panels with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes, if applicable, to further improve accessibility. The `aria-modal` attribute is applied automatically based on whether the drawer is currently in modal mode.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 16rem;">
       <aside id="drawer-2" class="drawer is-closed">
-        <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
-          <div class="dialog__header justify-content-between">
-            <h2 id="dialog-title" class="dialog__title">Drawer title</h2>
+        <div class="drawer__panel panel" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+          <div class="panel__header justify-content-between">
+            <h2 id="dialog-title" class="panel__title">Drawer title</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
-            <p id="dialog-description">This is a drawer example using the dialog component.</p>
+          <div class="panel__body">
+            <p id="dialog-description">This is a drawer example using the panel component.</p>
           </div>
-          <div class="dialog__footer">
+          <div class="panel__footer">
             Drawer footer.
           </div>
         </div>
@@ -271,14 +271,14 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
   </Fragment>
   ```html
   <aside id="[unique-id]" class="drawer">
-    <div class="drawer__dialog dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
-      <div class="dialog__header">
+    <div class="drawer__panel panel" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+      <div class="panel__header">
         <h2 id="dialog-title">...</h2>
       </div>
-      <div class="dialog__body">
+      <div class="panel__body">
         <p id="dialog-description">...</p>
       </div>
-      <div class="dialog__footer">
+      <div class="panel__footer">
         ...
       </div>
     </div>
@@ -286,7 +286,7 @@ The dialog element of a drawer is defined using the `drawer__dialog` class. Alon
   ```
 </CodeExample>
 
-The [dialog component](/packages/dialog) is a great fit for composing a drawer's dialog. This can be applied directly on the `drawer__dialog` element and expanded as needed.
+The [panel component](/packages/panel) is a great fit for composing a drawer's panel. This can be applied directly on the `drawer__panel` element and expanded as needed.
 
 ### Modal drawers
 
@@ -296,8 +296,8 @@ There are multiple ways a modal drawer can be created. The simplest is by applyi
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-3" class="drawer drawer--modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__body">
+        <div class="drawer__panel panel">
+          <div class="panel__body">
             <div class="flex">
               <h2 class="flex-grow">Modal drawer</h2>
               <button class="link" data-drawer-close="">Close</button>
@@ -334,23 +334,23 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   <Fragment slot="output">
     <div class="drawer-frame">
       <aside id="drawer-4" class="drawer is-closed" data-breakpoint="1200px" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
-            <h2 class="dialog__title">Drawer example</h2>
+        <div class="drawer__panel panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
+          <div class="panel__body">
             <code>data-breakpoint="1200px"</code>
           </div>
         </div>
       </aside>
       <aside id="drawer-5" class="drawer is-opened" data-breakpoint="md" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
-            <h2 class="dialog__title">Drawer example</h2>
+        <div class="drawer__panel panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
+          <div class="panel__body">
             <code>data-breakpoint="md"</code>
           </div>
         </div>
@@ -381,33 +381,33 @@ In cases where you'd like a drawer to switch modes based on a specific viewport 
   ```
 </CodeExample>
 
-To help improve accessibility, use the [`focusTrap`](/reference/collections/plugins/focus-trap) plugin when creating modal drawers. While a modal drawer is active, the content obscured by the modal is made inaccessible to all users via a focus trap. This prevents the `TAB` key and screen reader's virtual cursor (arrow keys) from leaving the drawer dialog.
+To help improve accessibility, use the [`focusTrap`](/reference/collections/plugins/focus-trap) plugin when creating modal drawers. While a modal drawer is active, the content obscured by the modal is made inaccessible to all users via a focus trap. This prevents the `TAB` key and screen reader's virtual cursor (arrow keys) from leaving the drawer panel.
 
 ### Focus management
 
-Drawer dialogs are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer dialog has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once it is closed.
+Drawer panels are given focus when opened as long as the `setTabindex` option is set to `true` or if the drawer panel has `tabindex="-1"` set manually. If focus on a specific element inside a drawer is preferred, give that element the `data-focus` attribute. Focus is returned to the element that initially triggered the drawer once it is closed.
 
 <CodeExample flush>
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-6" class="drawer is-closed">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
-            <h2 class="dialog__title">Drawer example</h2>
+        <div class="drawer__panel panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
-            <p>Focus should be initially set on the dialog element.</p>
+          <div class="panel__body">
+            <p>Focus should be initially set on the panel element.</p>
           </div>
         </div>
       </aside>
       <aside id="drawer-7" class="drawer is-closed">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
-            <h2 class="dialog__title">Drawer example</h2>
+        <div class="drawer__panel panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
+          <div class="panel__body">
             <input class="input" data-focus type="text" />
           </div>
         </div>
@@ -415,7 +415,7 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
       <div class="drawer-main padding">
         <ul class="list">
           <li>
-            <button class="link" data-drawer-toggle="drawer-6">Toggle</button> - Sets focus to the drawer dialog when opened.
+            <button class="link" data-drawer-toggle="drawer-6">Toggle</button> - Sets focus to the drawer panel when opened.
           </li>
           <li>
             <button class="link" data-drawer-toggle="drawer-7">Toggle</button> - Sets focus to the `data-focus` element when opened.
@@ -426,15 +426,15 @@ Drawer dialogs are given focus when opened as long as the `setTabindex` option i
   </Fragment>
   ```html
   <div class="drawer-frame">
-    <!-- Focuses the drawer dialog on open -->
+    <!-- Focuses the drawer panel on open -->
     <aside id="[unique-id]" class="drawer">
-      <div class="drawer__dialog" tabindex="-1">
+      <div class="drawer__panel" tabindex="-1">
         ...
       </div>
     </aside>
     <!-- Focuses an inner element on open -->
     <aside id="[unique-id]" class="drawer">
-      <div class="drawer__dialog">
+      <div class="drawer__panel">
         <input data-focus type="text" />
       </div>
     </aside>
@@ -463,8 +463,8 @@ To persist inline drawer state across browser page reloads, use the [`propStore`
 
 Drawers in their modal state follow a set of patterns expected from other modals on the web. Here's what to expect:
 
-1. When a modal drawer is opened, focus is moved to the dialog or an element inside.
-2. Modal drawers provide standard methods for the user to close, such as using the `esc` key or clicking outside the dialog.
+1. When a modal drawer is opened, focus is moved to the panel or an element inside.
+2. Modal drawers provide standard methods for the user to close, such as using the `esc` key or clicking outside the panel.
 3. While the modal is active, contents obscured by the modal are inaccessible to all users. Apply the [`focusTrap`](/reference/collections/plugins/focus-trap) plugin to enable this behavior.
 4. When a modal drawer is closed, focus is returned to the initial trigger element that opened it.
 
@@ -493,12 +493,12 @@ Applies modal drawer styles to a drawer. This modifier should be applied before 
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 12rem;">
       <aside id="drawer-8" class="drawer drawer--modal" data-config="{ 'selectorInert': null, 'selectorOverflow': null }">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
-            <h2 class="dialog__title">Modal drawer example</h2>
+        <div class="drawer__panel panel">
+          <div class="panel__header">
+            <h2 class="panel__title">Modal drawer example</h2>
             <button class="link" data-drawer-close="">Close</button>
           </div>
-          <div class="dialog__body">
+          <div class="panel__body">
             <p>Set a drawer to modal mode by applying the <code>drawer--modal</code> modifier class.</p>
           </div>
         </div>
@@ -523,8 +523,8 @@ Drawers slide in from the left by default. To create a right side drawer, use th
   <Fragment slot="output">
     <div class="drawer-frame" style="min-height: 8rem;">
       <aside id="drawer-9" class="drawer drawer--switch is-closed">
-        <div class="drawer__dialog dialog">
-          <div class="dialog__header">
+        <div class="drawer__panel panel">
+          <div class="panel__header">
             <p class="flex-grow">Drawer example</p>
             <button class="link" data-drawer-close="">Close</button>
           </div>
@@ -579,7 +579,7 @@ Opens a drawer using the provided drawer ID. It will throw an error if the provi
 </ReferenceCard>
 
 <ReferenceCard name="focus" type="boolean" defaults="true">
-  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer dialog element.
+  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer panel element.
 </ReferenceCard>
 
 #### Example
@@ -713,7 +713,7 @@ Stores the inline state of the drawer. This is used to restore the inline state 
 
 <ReferenceBar type="HTMLEntry" />
 
-Stores a reference to the dialog element (`.drawer__dialog`) of the drawer entry. If a dialog element isn't found, this property points to the drawer element (`.drawer`) itself.
+Stores a reference to the dialog element (`.drawer__panel` by default) of the drawer entry. If a dialog element isn't found, this property points to the drawer element (`.drawer`) itself.
 
 ### entry.trigger
 
@@ -734,7 +734,7 @@ Opens the drawer if it is currently closed or indeterminate.
 </ReferenceCard>
 
 <ReferenceCard name="focus" type="boolean" defaults="true">
-  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer dialog element.
+  Whether or not to update the focus state after the drawer is opened. When true, focus is set to any element inside the drawer with the `data-focus` attribute else the drawer panel element.
 </ReferenceCard>
 
 #### Example
