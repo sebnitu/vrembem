@@ -18,6 +18,10 @@
   transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
   transition-property: tokens.get("panel", "transition-property", (outline, box-shadow, border-color));
 
+  > * + * {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
+
   &:focus-visible {
     @include core.focus-ring-color(tokens.get("focus-ring-color"));
     @include tokens.override("core", "box-shadow-border", 0 0 0 1px tokens.get("focus-ring-color"));
@@ -26,6 +30,10 @@
 
 #{core.bem("panel", "container")} {
   @include core.scroll-flex;
+
+  > * + * {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
 }
 
 #{core.bem("panel", "header")},
@@ -48,20 +56,14 @@
 
 #{core.bem("panel", "header")} {
   top: 0;
-  border-bottom: tokens.get("panel", "sep-border", tokens.get("border"));
 }
 
 #{core.bem("panel", "body")} {
   flex-grow: 1;
-
-  & + & {
-    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
-  }
 }
 
 #{core.bem("panel", "footer")} {
   bottom: 0;
-  border-top: tokens.get("panel", "sep-border", tokens.get("border"));
 }
 
 #{core.bem("panel", "title")} {
