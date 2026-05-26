@@ -22,7 +22,7 @@
   "--vb-list-indent": "var(--vb-spacing-lg)",
   "--vb-list-spacing": "var(--vb-spacing-sm)",
 
-  "--vb-code-background": "var(--vb-background-alt)",
+  "--vb-code-background": "color-mix(in oklch, currentcolor 10%, transparent)",
   "--vb-code-foreground": "var(--vb-foreground-accent-alt)",
   "--vb-code-border": "var(--vb-border)",
   "--vb-code-border-radius": "var(--vb-border-radius)",

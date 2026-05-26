@@ -21,13 +21,13 @@ $-transition-property: background-color, border-color, box-shadow, transform;
 
 a#{core.bem("card")} {
   transform: translate(0, 0);
-  box-shadow: tokens.get("card", "link-box-shadow", tokens.get("box-shadow-2"));
+  box-shadow: tokens.get("card", "link-box-shadow", tokens.get("box-shadow-sm"));
 
   &:hover,
   &:focus,
   &:focus-within {
     transform: translate(0, tokens.get("card", "link-offset", -0.25em));
-    box-shadow: tokens.get("card", "link-box-shadow-hover", tokens.get("box-shadow-3"));
+    box-shadow: tokens.get("card", "link-box-shadow-hover", tokens.get("box-shadow-lg"));
   }
 }
 

@@ -1,13 +1,13 @@
 {
-  "name": "@vrembem/dialog",
-  "description": "A component that facilitates a conversation between the system and the user. They often request information or an action from the user.",
+  "name": "@vrembem/panel",
+  "description": "A styled container component for structured content with optional header, body, and footer sections.",
   "version": "4.0.0-next.45",
   "license": "MIT",
   "keywords": [
     "BEM",
     "front-end",
     "component",
-    "dialog"
+    "panel"
   ],
   "style": "./dist/index.css",
   "exports": {
@@ -38,9 +38,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/dialog"
+    "directory": "packages/panel"
   },
-  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/dialog#readme",
+  "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/panel#readme",
   "dependencies": {
     "@vrembem/core": "^4.0.0-next.45"
   },

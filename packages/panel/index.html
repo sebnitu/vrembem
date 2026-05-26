@@ -33,41 +33,60 @@
   <section class="section">
     <div class="section__container max-width-xs spacing">
 
-      <h2 id="dialog"><a href="#dialog">dialog</a></h2>
+      <h2 id="panel"><a href="#panel">Panel</a></h2>
 
-      <div class="dialog">
-        <div class="dialog__body">
-          <p>Basic dialog example.</p>
+      <div class="panel">
+        <div class="panel__body">
+          <p>Basic panel example.</p>
         </div>
       </div>
 
-      <h2 id="dialog-elements"><a href="#dialog-elements">dialog elements</a></h2>
-      
-      <ul class="list">
-        <li><code class="code">dialog__header</code>
-          <ul>
-            <li><code class="code">dialog__title</code></li>
-          </ul>
-        </li>
-        <li><code class="code">dialog__body</code></li>
-        <li><code class="code">dialog__footer</code></li>
-      </ul>
-
-      <div class="dialog">
-        <div class="dialog__header">
-          <h2 class="dialog__title">Dialog example</h2>
-          <button class="button button--icon button--size-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--size-sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      <div class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title">Panel example</h2>
+          <button class="button button--size-sm padding-xs">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
-        <div class="dialog__body">
+        <div class="panel__body">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
         </div>
-        <div class="dialog__footer">
+        <div class="panel__footer">
           <button class="button button--color-primary">Submit</button>
           <button class="button">Cancel</button>
         </div>
       </div>
+
+      <div class="panel">
+        <div class="panel__container">
+          <div class="panel__header">
+            <h2 class="panel__title">Panel with container example</h2>
+            <button class="button button--size-sm padding-xs">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <div class="panel__body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+          </div>
+          <div class="panel__footer">
+            <button class="button button--color-primary">Submit</button>
+            <button class="button">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="panel">
+        <summary class="panel__header">
+          <h2 class="panel__title">Collapsable panel example</h2>
+        </summary>
+        <div class="panel__body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+        </div>
+        <div class="panel__footer">
+          <button class="button button--color-primary">Submit</button>
+          <button class="button">Cancel</button>
+        </div>
+      </details>
 
     </div>
   </section>

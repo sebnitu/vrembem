@@ -12,6 +12,6 @@
     font-size: tokens.get("code", "font-size", tokens.get("font-size-sm"));
     color: tokens.get("code", "foreground", tokens.get("foreground-accent-alt"));
     overflow-wrap: break-word;
-    background: tokens.get("code", "background", tokens.get("background-alt"));
+    background: tokens.get("code", "background", color-mix(in oklch, currentcolor 10%, transparent));
   }
 }

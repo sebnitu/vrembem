@@ -1,6 +1,6 @@
 # Modal
 
-A component for changing the mode of a page to complete a critical task. This is usually used alongside the dialog component to create modal dialogs.
+A component for rendering modal dialog boxes. Modal dialog boxes block interaction with other UI elements, making the rest of the page inert.
 
 [Documentation](https://vrembem.com/packages/modal)
 

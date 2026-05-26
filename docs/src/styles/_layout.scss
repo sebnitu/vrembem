@@ -22,7 +22,7 @@
   // Prevents flash of unstyled content on mobile
   visibility: hidden;
 
-  .drawer__dialog {
+  .drawer__panel {
     background-color: tokens.get("background-shift");
     outline: none;
   }
@@ -77,7 +77,7 @@
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
     }
 
-    .drawer__dialog {
+    .drawer__panel {
       background-color: transparent;
     }
 

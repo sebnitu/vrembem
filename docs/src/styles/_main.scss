@@ -28,7 +28,7 @@
   // Prevents flash of unstyled content on mobile
   visibility: hidden;
 
-  .drawer__dialog {
+  .drawer__panel {
     background-color: tokens.get("background-shift");
     outline: none;
   }
@@ -52,7 +52,7 @@
     max-height: calc(100vh - tokens.get("layout", "header-height"));
     visibility: visible;
 
-    .drawer__dialog {
+    .drawer__panel {
       position: static;
       inset: unset;
       background-color: transparent;

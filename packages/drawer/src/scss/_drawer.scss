@@ -23,25 +23,30 @@
   width: tokens.get("drawer", "width", 18em);
 }
 
-#{core.bem("drawer", "dialog")} {
-  @include tokens.override("dialog", config.get("drawer-dialog-override"));
+#{core.bem("drawer", "panel")},
+#{core.bem("drawer")} > #{core.bem("panel")} {
+  @include core.focus-ring-base;
+  @include tokens.override("panel", config.get("drawer-panel-override"));
 
   position: absolute;
   inset: 0;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  border-top: none;
-  border-bottom: none;
+  border: none;
   border-radius: 0;
+
+  &:focus-visible {
+    @include core.focus-ring-color(tokens.get("focus-ring-color"), 100%);
+  }
 }
 
 #{core.bem("drawer", "container")} {
   @include core.scroll-flex;
 }
 
-#{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) #{core.bem("drawer", "dialog")} {
-  @include tokens.override("dialog", config.get("drawer-inline-dialog-override"));
+#{core.bem("drawer")}:not(#{core.bem("drawer", null, "modal")}) #{core.bem("drawer", "panel")} {
+  @include tokens.override("panel", config.get("drawer-inline-panel-override"));
 }
 
 #{core.bem("drawer")}.is-closed {
@@ -58,7 +63,7 @@
 #{core.bem("drawer")}.is-closing {
   transition: opacity tokens.get("transition");
 
-  #{core.bem("drawer", "dialog")} {
+  #{core.bem("drawer", "panel")} {
     transition: transform tokens.get("transition");
   }
 }
@@ -67,7 +72,7 @@
 #{core.bem("drawer")}.is-opened {
   opacity: 1;
 
-  #{core.bem("drawer", "dialog")} {
+  #{core.bem("drawer", "panel")} {
     transform: translateX(0);
   }
 }
@@ -76,7 +81,7 @@
 #{core.bem("drawer")}.is-closed {
   opacity: 0;
 
-  #{core.bem("drawer", "dialog")} {
+  #{core.bem("drawer", "panel")} {
     transform: translateX(-100%);
   }
 }

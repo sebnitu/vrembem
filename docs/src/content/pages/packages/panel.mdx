@@ -1,0 +1,175 @@
+---
+title: Panel
+description: "A styled container component for structured content with optional header, body, and footer sections."
+package: "@vrembem/panel"
+category: component
+---
+
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import Icon from "@/components/Icon.astro";
+
+```sh
+npm install @vrembem/panel
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/panel";
+  ```
+</CodeExample>
+
+## Options
+
+Panel uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-panel" valueLabel="Fallback" expandable={true} data={{
+  "--vb-panel-background": "var(--vb-background)",
+  "--vb-panel-foreground": "var(--vb-foreground)",
+  "--vb-panel-border": "none",
+  "--vb-panel-sep-border": "var(--vb-border)",
+  "--vb-panel-border-radius": "var(--vb-border-radius)",
+  "--vb-panel-box-shadow": "var(--vb-box-shadow-border)",
+  "--vb-panel-padding": "1em",
+  "--vb-panel-gap": "0.5em",
+  
+  // Transition tokens
+  "--vb-panel-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-panel-transition-duration": "var(--vb-transition-duration)",
+  "--vb-panel-transition-property": "outline, box-shadow, border-color",
+
+  // Title element tokens
+  "--vb-panel-title-color": "var(--vb-foreground-strong)",
+  "--vb-panel-title-font-size": "var(--vb-font-size-lg)",
+  "--vb-panel-title-font-weight": "var(--vb-font-weight-semi-bold)",
+  "--vb-panel-title-line-height": "inherit",
+  "--vb-panel-caret-color": "currentcolor",
+}} />
+
+## Basic usage
+
+Panel is a highly composable container component that comes with a variety of elements. The most basic implementation being `panel` and a `panel__body` element:
+
+<CodeExample flush>
+  <div slot="output" class="padding-xl background-alt">
+    <div class="panel">
+      <div class="panel__body">
+        <p>Basic panel example.</p>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="panel">
+    <div class="panel__body">
+      ...
+    </div>
+  </div>
+  ```
+</CodeExample>
+
+### Elements
+
+The panel component comes with a variety of elements to help fit a wide range of use cases and applications. You can mix and match these elements within the panel component as needed.
+
+<CodeExample flush>
+  <div slot="output" class="padding-xl background-alt">
+    <div class="panel box-shadow-xl">
+      <div class="panel__header">
+        <h2 class="panel__title">Panel example</h2>
+        <button class="button button--size-sm padding-xs">
+          <Icon name="x" />
+        </button>
+      </div>
+      <div class="panel__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+      </div>
+      <div class="panel__footer">
+        <button class="button button--color-primary">Submit</button>
+        <button class="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="panel box-shadow-xl">
+    <div class="panel__header">
+      <h2 class="panel__title">...</h2>
+      <button class="button">...</button>
+    </div>
+    <div class="panel__body">
+      ...
+    </div>
+    <div class="panel__footer">
+      ...
+    </div>
+  </div>
+  ```
+</CodeExample>
+
+Use `box-shadow-[key]` utilities to increase the elevation of a panel. This can be useful for modal dialogs or popovers.
+
+**Available Elements**
+
+- `panel__container`
+  - `panel__header`
+    - `panel__title`
+  - `panel__body`
+  - `panel__footer`
+
+The `panel__container` element is an optional scrollable container that separates content scrolling from the panel's background and border styles, preventing overscroll visual issues.
+
+### Collapsable
+
+It's also possible to create collapsable panels by using the `<details>` for the root `.panel` and `<summary>` for the `panel__header` element.
+
+<CodeExample flush>
+  <div slot="output" class="padding-xl background-alt spacing">
+    <details class="panel" open>
+      <summary class="panel__header">
+        <h2 class="panel__title">Collapsable panel</h2>
+      </summary>
+      <div class="panel__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary class="panel__header">
+        <h2 class="panel__title">Collapsable panel</h2>
+      </summary>
+      <div class="panel__body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero nulla, suscipit consectetur lectus eu, rhoncus eleifend erat. Suspendisse neque dui, ornare non molestie in, rhoncus id lectus.</p>
+      </div>
+    </details>
+  </div>
+  ```html
+  <details class="panel">
+    <summary class="panel__header">
+      <h2 class="panel__title">...</h2>
+    </summary>
+    <div class="panel__body">
+      ...
+    </div>
+  </details>
+  ```
+</CodeExample>
+
+### Focusable
+
+There are cases where a panel needs to be focusable. For these instances, apply `tabindex="0"` to the panel element itself. Focus ring styles are applied to panels for the `:focus-visible` state.
+
+<CodeExample flush>
+  <div slot="output" class="padding-xl background-alt spacing">
+    <div id="panel-focus" class="panel" tabindex="0">
+      <div class="panel__header">
+        <h2 class="panel__title">Focusable panel</h2>
+      </div>
+      <div class="panel__body">
+        <p>This panel can be focused by clicking or using keyboard navigation. To see `:focus-visible` styles, click on this panel and press the `shift` key.</p>
+      </div>
+    </div>
+  </div>
+  ```html
+  <div class="panel" tabindex="0">
+    ...
+  </div>
+  ```
+</CodeExample>

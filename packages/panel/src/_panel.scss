@@ -1,0 +1,106 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+#{core.bem("panel")} {
+  @include core.focus-ring-base;
+
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  border: tokens.get("panel", "border", none);
+  border-radius: tokens.get("panel", "border-radius", tokens.get("border-radius"));
+  color: tokens.get("panel", "foreground", tokens.get("foreground"));
+  background: tokens.get("panel", "background", tokens.get("background"));
+  background-clip: padding-box;
+  box-shadow: tokens.get("panel", "box-shadow", 0 0 0 1px tokens.get("border-color"));
+  transition-timing-function: tokens.get("panel", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("panel", "transition-property", (outline, box-shadow, border-color));
+
+  > * + * {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
+
+  &:where(details):has(> summary:hover) {
+    @include tokens.override("panel", "box-shadow", 0 0 0 1px tokens.get("border-color-stronger"));
+  }
+
+  &:focus-visible,
+  &:where(details):has(> summary:focus-visible) {
+    @include core.focus-ring-color(tokens.get("focus-ring-color"));
+    @include tokens.override("panel", "box-shadow", 0 0 0 1px tokens.get("focus-ring-color"));
+  }
+}
+
+#{core.bem("panel", "container")} {
+  @include core.scroll-flex;
+
+  > * + * {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
+}
+
+#{core.bem("panel", "header")},
+#{core.bem("panel", "body")},
+#{core.bem("panel", "footer")} {
+  flex: 0 0 auto;
+  padding: tokens.get("panel", "padding", 1em);
+}
+
+#{core.bem("panel", "header")},
+#{core.bem("panel", "footer")} {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  gap: tokens.get("panel", "gap", 0.5em);
+  align-items: center;
+  vertical-align: middle;
+  background: tokens.get("panel", "background", tokens.get("background"));
+}
+
+#{core.bem("panel", "header")} {
+  top: 0;
+
+  :where(details) & {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+#{core.bem("panel", "body")} {
+  flex-grow: 1;
+}
+
+#{core.bem("panel", "footer")} {
+  bottom: 0;
+}
+
+#{core.bem("panel", "title")} {
+  display: flex;
+  flex-grow: 1;
+  gap: tokens.get("panel", "gap", 0.5em);
+  font-size: tokens.get("panel", "title-font-size", tokens.get("font-size-lg"));
+  font-weight: tokens.get("panel", "title-font-weight", tokens.get("font-weight-semi-bold"));
+  line-height: tokens.get("panel", "title-line-height", inherit);
+  color: tokens.get("panel", "title-color", tokens.get("foreground-strong"));
+
+  :where(summary) > &::after {
+    @include core.size(0.8em);
+
+    content: "";
+    transform: rotate(-90deg);
+    flex-shrink: 0;
+    margin: auto 0 auto auto;
+    background-color: tokens.get("panel", "caret-color", currentcolor);
+    mask: url(core.svg("chevron")) center / 100% no-repeat;
+    transition: transform tokens.get("transition-short");
+  }
+
+  :where(details[open] > summary) > &::after {
+    transform: rotate(0deg);
+  }
+}
