@@ -28,19 +28,36 @@ Publish flow for `next` branch
 - Maybe update github auth token `GITHUB_AUTH`
   - https://github.com/settings/tokens
 - Copy/paste output from changelog into this file
-- Fix heading levels `###` > `###`
+- Fix heading levels `####` > `###`
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Login to NPM `npm login`
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.45 to CHANGELOG.md
+chore(release): add v4.0.0-next.46 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.46 (2026-05-26)
+
+### :tada: New Feature
+* `core`
+  * [#2843](https://github.com/sebnitu/vrembem/pull/2843) Add theme output toggle and prefers-reduced-motion support
+* `core`, `dialog`, `drawer`, `popover`, `select`, `utility`
+  * [#2841](https://github.com/sebnitu/vrembem/pull/2841) Add new layered box-shadow tokens
+* `core`, `notice`, `utility`
+  * [#2839](https://github.com/sebnitu/vrembem/pull/2839) Add a new API for creating palettes, aliasing, modes, and themes
+
+### :house: Refactor
+* `card`, `content`, `dialog`, `drawer`, `modal`, `panel`, `vrembem`
+  * [#2844](https://github.com/sebnitu/vrembem/pull/2844) Rename dialog to panel and update related components and docs
+* `core`, `utility`
+  * [#2840](https://github.com/sebnitu/vrembem/pull/2840) Refactor new palette API to use token hooks
 
 
 ## v4.0.0-next.45 (2026-05-20)
