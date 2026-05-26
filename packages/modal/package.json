@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/modal",
   "description": "A component for rendering modal dialog boxes. Modal dialog boxes block interaction with other UI elements, making the rest of the page inert.",
-  "version": "4.0.0-next.45",
+  "version": "4.0.0-next.46",
   "license": "MIT",
   "type": "module",
   "keywords": [
@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/modal#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.45"
+    "@vrembem/core": "^4.0.0-next.46"
   },
   "publishConfig": {
     "access": "public"

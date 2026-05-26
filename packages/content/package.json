@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/content",
   "description": "A content wrapper that provides typographic styles for common HTML elements.",
-  "version": "4.0.0-next.45",
+  "version": "4.0.0-next.46",
   "license": "MIT",
   "keywords": [
     "BEM",
@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/base#readme",
   "dependencies": {
-    "@vrembem/core": "^4.0.0-next.45"
+    "@vrembem/core": "^4.0.0-next.46"
   },
   "publishConfig": {
     "access": "public"
