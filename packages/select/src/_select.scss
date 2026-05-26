@@ -20,7 +20,6 @@
 
   &::picker(select) {
     cursor: default;
-    transform: translateY(0);
     margin-block: tokens.get("select", "picker-offset", 0.5em);
     padding: tokens.get("select", "picker-padding", 0.5em 0);
     border: tokens.get("select", "picker-border", none);
@@ -33,12 +32,16 @@
     box-shadow: tokens.get("select", "picker-box-shadow", tokens.get("box-shadow-md"));
     transition-timing-function: tokens.get("form-control-transition-timing-function");
     transition-duration: tokens.get("form-control-transition-duration");
-    transition-property: opacity, transform;
+    transition-property: opacity, display, overlay;
+    transition-behavior: allow-discrete;
 
     @starting-style {
-      transform: translateY(-0.5em);
       opacity: 0;
     }
+  }
+
+  &:not(:open)::picker(select) {
+    opacity: 0;
   }
 
   option {
