@@ -329,7 +329,7 @@ https://lerna.js.org/docs/features/version-and-publish
   * [#2365](https://github.com/sebnitu/vrembem/pull/2365) Fully convert the core package to TypeScript
 
 ### :hammer: Chore
-* [#2376](https://github.com/sebnitu/vrembem/pull/2376) Remove learna-changelog as a package dependency
+* [#2376](https://github.com/sebnitu/vrembem/pull/2376) Remove lerna-changelog as a package dependency
 
 
 ## v4.0.0-next.31 (2025-05-14)
@@ -1235,7 +1235,7 @@ https://lerna.js.org/docs/features/version-and-publish
 
 ### :bug: Bug Fix
 * `dialog`, `drawer`, `modal`
-  * [#640](https://github.com/sebnitu/vrembem/pull/640) Change zindex variable names to z-index
+  * [#640](https://github.com/sebnitu/vrembem/pull/640) Change z-index variable names to z-index
 
 ### :books: Documentation
 * `drawer`, `modal`
