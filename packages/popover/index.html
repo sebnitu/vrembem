@@ -8,20 +8,6 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import { PopoverCollection } from "./index.ts";
-    import { teleport, cssConfig, attrConfig } from "@vrembem/core";
-
-    const popovers = new PopoverCollection({
-      plugins: [
-        cssConfig(),
-        attrConfig(),
-        teleport({
-          where: ".popovers"
-        })
-      ]
-    });
-
-    window["popovers"] = await popovers.mount();
   </script>
 </head>
 <body>
@@ -50,142 +36,159 @@
       <h2 id="popover"><a href="#popover">popover</a></h2>
 
       <div class="flex">
-        <button class="button" aria-describedby="popover-top">Top</button>
-        <button class="button" aria-describedby="popover-bottom">Bottom</button>
-        <button class="button" aria-describedby="popover-left">Left</button>
-        <button class="button" aria-describedby="popover-right">Right</button>
+        <button class="button" popovertarget="popover-bottom">Bottom</button>
+        <div id="popover-bottom" class="popover" popover>
+          <ul class="menu">
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Undo</span>
+                <span class="foreground-subtle">⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Redo</span>
+                <span class="foreground-subtle">&uarr;⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__sep"></li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Cut</span>
+                <span class="foreground-subtle">⌘X</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Copy</span>
+                <span class="foreground-subtle">⌘C</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Paste</span>
+                <span class="foreground-subtle">⌘V</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div id="popover-left" class="popover" style="--vb-popover-placement: left;">Popover</div>
-      <div id="popover-top" class="popover" style="--vb-popover-placement: top;">Popover</div>
-      <div id="popover-bottom" class="popover">Popover</div>
-      <div id="popover-right" class="popover" style="--vb-popover-placement: right;">Popover</div>
-
-      <h2 id="popover-virtual"><a href="#popover-virtual">virtual popover</a></h2>
-
-      <button class="button" aria-describedby="popover-virtual">Follow cursor</button>
-      <div 
-        id="popover-virtual" 
-        class="popover popover--tooltip"
-        style="--vb-popover-event: click; --vb-popover-follow-cursor: true;"
-      >
-        Virtual popovers...
-      </div>
-
+      <!-- 
       <h2 id="popover--size-value"><a href="#popover--size-value">popover--size-[value]</a></h2>
 
       <div class="flex">
         <button class="button" aria-describedby="popover--size-auto">Auto</button>
         <button class="button" aria-describedby="popover--size-sm">Small</button>
         <button class="button" aria-describedby="popover--size-lg">Large</button>
-      </div>
+      
+        <div id="popover--size-auto" class="popover popover--size-auto">
+          <ul class="menu">
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Undo</span>
+                <span class="foreground-subtle">⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Redo</span>
+                <span class="foreground-subtle">&uarr;⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__sep"></li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Cut</span>
+                <span class="foreground-subtle">⌘X</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Copy</span>
+                <span class="foreground-subtle">⌘C</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Paste</span>
+                <span class="foreground-subtle">⌘V</span>
+              </button>
+            </li>
+          </ul>
+        </div>
 
-      <div id="popover--size-auto" class="popover popover--size-auto">
-        <ul class="menu">
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Undo</span>
-              <span class="foreground-subtle">⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Redo</span>
-              <span class="foreground-subtle">&uarr;⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Cut</span>
-              <span class="foreground-subtle">⌘X</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Copy</span>
-              <span class="foreground-subtle">⌘C</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Paste</span>
-              <span class="foreground-subtle">⌘V</span>
-            </button>
-          </li>
-        </ul>
-      </div>
+        <div id="popover--size-sm" class="popover popover--size-sm">
+          <ul class="menu">
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Undo</span>
+                <span class="foreground-subtle">⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Redo</span>
+                <span class="foreground-subtle">&uarr;⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__sep"></li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Cut</span>
+                <span class="foreground-subtle">⌘X</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Copy</span>
+                <span class="foreground-subtle">⌘C</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Paste</span>
+                <span class="foreground-subtle">⌘V</span>
+              </button>
+            </li>
+          </ul>
+        </div>
 
-      <div id="popover--size-sm" class="popover popover--size-sm">
-        <ul class="menu">
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Undo</span>
-              <span class="foreground-subtle">⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Redo</span>
-              <span class="foreground-subtle">&uarr;⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Cut</span>
-              <span class="foreground-subtle">⌘X</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Copy</span>
-              <span class="foreground-subtle">⌘C</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Paste</span>
-              <span class="foreground-subtle">⌘V</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      <div id="popover--size-lg" class="popover popover--size-lg">
-        <ul class="menu">
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Undo</span>
-              <span class="foreground-subtle">⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Redo</span>
-              <span class="foreground-subtle">&uarr;⌘Z</span>
-            </button>
-          </li>
-          <li class="menu__sep"></li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Cut</span>
-              <span class="foreground-subtle">⌘X</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Copy</span>
-              <span class="foreground-subtle">⌘C</span>
-            </button>
-          </li>
-          <li class="menu__item">
-            <button type="button" class="menu__action">
-              <span class="flex-grow">Paste</span>
-              <span class="foreground-subtle">⌘V</span>
-            </button>
-          </li>
-        </ul>
+        <div id="popover--size-lg" class="popover popover--size-lg">
+          <ul class="menu">
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Undo</span>
+                <span class="foreground-subtle">⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Redo</span>
+                <span class="foreground-subtle">&uarr;⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__sep"></li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Cut</span>
+                <span class="foreground-subtle">⌘X</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Copy</span>
+                <span class="foreground-subtle">⌘C</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Paste</span>
+                <span class="foreground-subtle">⌘V</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <h2 id="popover--tooltip"><a href="#popover--tooltip">popover--tooltip</a></h2>
@@ -243,11 +246,10 @@
         <div class="padding">This popover has the event type set to "hover" and toggleDelay to [300, 600] using the data config attribute.</div>
         <span class="popover__arrow"></span>
       </div>
+      -->
 
     </div>
   </section>
-
-  <div class="popovers"></div>
 
 </body>
 </html>

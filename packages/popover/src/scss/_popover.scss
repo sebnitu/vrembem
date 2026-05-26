@@ -1,77 +1,69 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-$-offset: calc((tokens.get("popover", "offset", 8) + 1) * 1px);
+$-offset: tokens.get("popover", "offset", 0.5rem);
+$-margin: tokens.get("popover", "margin", 1.5rem);
 
 #{core.bem("popover")} {
-  pointer-events: none;
-  position: absolute;
-  z-index: tokens.get("popover", "z-index", 10);
-  top: 0;
-  left: 0;
-  display: block;
-  width: tokens.get("popover", "width", 16em);
+  position: fixed;
+  top: anchor(bottom);
+  left: calc(anchor(left) - $-margin);
+  transform: translateY(0);
+  position-anchor: auto;
+  // position-area: bottom center; // Use this to center popover from target
+  position-try-fallbacks: --bottom-left, --bottom-right, --top-left, --top-right;
+  width: tokens.get("popover", "width", 16rem);
   max-width: tokens.get("popover", "max-width", calc(100vw - 2rem));
-  margin: 0;
+  margin: $-offset $-margin $-margin $-margin;
   padding: tokens.get("popover", "padding", 0.5em);
   border: tokens.get("popover", "border", none);
   border-radius: tokens.get("popover", "border-radius", tokens.get("border-radius"));
   font-size: tokens.get("popover", "font-size", tokens.get("font-size-sm"));
   line-height: tokens.get("popover", "line-height", inherit);
   color: tokens.get("popover", "foreground", tokens.get("foreground"));
-  opacity: 0;
   background: tokens.get("popover", "background", tokens.get("background"));
   background-clip: padding-box;
   box-shadow: tokens.get("popover", "box-shadow", tokens.get("box-shadow-md"));
   transition-timing-function: tokens.get("popover", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("popover", "transition-duration", tokens.get("transition-duration-short"));
-  transition-property: tokens.get("popover", "transition-property", opacity);
+  transition-property: tokens.get("popover", "transition-property", (opacity, display, transform, overlay));
+  transition-behavior: allow-discrete;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: auto 0 100%;
-    width: 100%;
-    height: $-offset;
+  @starting-style {
+    transform: translateY(calc($-offset * -1));
+    opacity: 0;
   }
 
-  &.is-virtual::before {
-    content: none;
-  }
-
-  &.is-active {
-    pointer-events: auto;
-    z-index: calc(tokens.get("popover", "z-index", 10) + 1);
-    opacity: 1;
-  }
-
-  &:hover,
-  &:focus,
-  &:focus-within {
-    z-index: calc(tokens.get("popover", "z-index", 10) + 2);
+  &:not(:popover-open) {
+    transform: translateY(calc($-offset * -1));
+    opacity: 0;
   }
 }
 
-#{core.bem("popover")}[data-floating-placement^="top"]::before {
-  inset: 100% 0 auto;
-  width: 100%;
-  height: $-offset;
+@position-try --bottom-left {
+  inset: unset;
+  top: anchor(bottom);
+  left: calc(anchor(left) - $-margin);
+  margin: $-offset $-margin $-margin $-margin;
 }
 
-#{core.bem("popover")}[data-floating-placement^="bottom"]::before {
-  inset: auto 0 100%;
-  width: 100%;
-  height: $-offset;
+@position-try --bottom-right {
+  inset: unset;
+  top: anchor(bottom);
+  right: calc(anchor(right) - $-margin);
+  margin: $-offset $-margin $-margin $-margin;
 }
 
-#{core.bem("popover")}[data-floating-placement^="left"]::before {
-  inset: 0 auto 0 100%;
-  width: $-offset;
-  height: 100%;
+@position-try --top-left {
+  inset: unset;
+  bottom: anchor(top);
+  left: calc(anchor(left) - $-margin);
+  margin: $-margin $-margin $-offset $-margin;
 }
 
-#{core.bem("popover")}[data-floating-placement^="right"]::before {
-  inset: 0 100% 0 auto;
-  width: $-offset;
-  height: 100%;
+@position-try --top-right {
+  inset: unset;
+  right: calc(anchor(right) - $-margin);
+  bottom: anchor(top);
+  margin: $-margin $-margin $-offset $-margin;
 }
