@@ -103,8 +103,8 @@ Adding the boolean `disabled` attribute to the select will provide visual indica
 
 <CodeExample>
   <Fragment slot="output">
-    <select class="select" name="example-2">
-      <option value="">Select one</option>
+    <select class="select" name="example-2" disabled>
+      <option value="">Disabled select</option>
       <option value="1">Option 1</option>
       <option value="2">Option 2</option>
       <option value="3">Option 3</option>
@@ -112,7 +112,6 @@ Adding the boolean `disabled` attribute to the select will provide visual indica
   </Fragment>
   ```html
   <select class="select" disabled>
-    <option value="">Select one</option>
     ...
   </select>
   ```
