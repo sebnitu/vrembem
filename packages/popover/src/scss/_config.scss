@@ -9,9 +9,9 @@ $default: (
   // Map for outputting popover--size-[key] modifier variants
   // @type map
   "popover-size": (
-    "auto": "auto",
-    "sm": 12em,
-    "lg": 20em
+    "auto": "fit-content",
+    "sm": 12rem,
+    "lg": 20rem
   )
 );
 

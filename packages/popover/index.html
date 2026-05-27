@@ -35,43 +35,51 @@
 
       <h2 id="popover"><a href="#popover">popover</a></h2>
 
-      <div class="flex">
+      <div class="grid grid--cols-5 grid--rows-5">
+        <span></span>
+        <button class="button" popovertarget="popover-bottom-start">Bottom Start</button>
         <button class="button" popovertarget="popover-bottom">Bottom</button>
-        <div id="popover-bottom" class="popover" popover>
-          <ul class="menu">
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Undo</span>
-                <span class="foreground-subtle">⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Redo</span>
-                <span class="foreground-subtle">&uarr;⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__sep"></li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Cut</span>
-                <span class="foreground-subtle">⌘X</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Copy</span>
-                <span class="foreground-subtle">⌘C</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Paste</span>
-                <span class="foreground-subtle">⌘V</span>
-              </button>
-            </li>
-          </ul>
-        </div>
+        <button class="button" popovertarget="popover-bottom-end">Bottom End</button>
+        <span></span>
+        
+        <button class="button" popovertarget="popover-right-start">Right Start</button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button class="button" popovertarget="popover-left-start">Left Start</button>
+
+        <button class="button" popovertarget="popover-right">Right</button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button class="button" popovertarget="popover-left">Left</button>
+
+        <button class="button" popovertarget="popover-right-end">Right End</button>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button class="button" popovertarget="popover-left-end">Left End</button>
+
+        <span></span>
+        <button class="button" popovertarget="popover-top-start">Top Start</button>
+        <button class="button" popovertarget="popover-top">Top</button>
+        <button class="button" popovertarget="popover-top-end">Top End</button>
+        <span></span>
+      </div>
+
+      <div class="popovers">
+        <div id="popover-top" class="popover popover--pos-top popover--size-auto" popover>Top popover</div>
+        <div id="popover-top-start" class="popover popover--pos-top-start popover--size-auto" popover>Top Start popover</div>
+        <div id="popover-top-end" class="popover popover--pos-top-end popover--size-auto" popover>Top End popover</div>
+        <div id="popover-right" class="popover popover--pos-right popover--size-auto" popover>Right popover</div>
+        <div id="popover-right-start" class="popover popover--pos-right-start popover--size-auto" popover>Right Start popover</div>
+        <div id="popover-right-end" class="popover popover--pos-right-end popover--size-auto" popover>Right End popover</div>
+        <div id="popover-bottom" class="popover popover--pos-bottom popover--size-auto" popover>Bottom popover</div>
+        <div id="popover-bottom-start" class="popover popover--pos-bottom-start popover--size-auto" popover>Bottom Start popover</div>
+        <div id="popover-bottom-end" class="popover popover--pos-bottom-end popover--size-auto" popover>Bottom End popover</div>
+        <div id="popover-left" class="popover popover--pos-left popover--size-auto" popover>Left popover</div>
+        <div id="popover-left-start" class="popover popover--pos-left-start popover--size-auto" popover>Left Start popover</div>
+        <div id="popover-left-end" class="popover popover--pos-left-end popover--size-auto" popover>Left End popover</div>
       </div>
 
       <!-- 
