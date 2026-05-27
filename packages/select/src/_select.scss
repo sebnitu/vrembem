@@ -66,6 +66,11 @@
       background-color: tokens.get("select", "option-background-hover", color-mix(in oklch, currentcolor 4%, transparent));
     }
 
+    &:focus-visible {
+      outline: none;
+      background-color: tokens.get("select", "option-background-hover", color-mix(in oklch, tokens.get("select", "accent", tokens.get("form-control-accent")) 8%, transparent));
+    }
+
     &:active {
       background-color: tokens.get("select", "option-background-active", color-mix(in oklch, currentcolor 8%, transparent));
     }
