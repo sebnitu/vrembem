@@ -4,6 +4,6 @@
 @layer components {
   @include meta.load-css("./src/scss/popover");
   @include meta.load-css("./src/scss/popover__arrow");
-  @include meta.load-css("./src/scss/popover--size");
   @include meta.load-css("./src/scss/popover--tooltip");
+  @include meta.load-css("./src/scss/popover--width");
 }

@@ -1,4 +1,5 @@
 @use "@vrembem/core";
+@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 $-offset: tokens.get("popover", "offset", 0.5rem);
@@ -11,7 +12,7 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   position-anchor: auto;
   position-try-fallbacks: flip-block;
   justify-self: anchor-center;
-  width: tokens.get("popover", "width", 16rem);
+  width: tokens.get("popover", "width", config.get("popover-width", "default"));
   max-width: tokens.get("popover", "max-width", calc(100vw - 2rem));
   margin: $-offset $-margin $-margin $-margin;
   padding: tokens.get("popover", "padding", 0.5rem);

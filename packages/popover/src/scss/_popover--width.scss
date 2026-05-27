@@ -2,8 +2,8 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
-@each $key, $value in config.get("popover-size", "variants") {
-  #{core.bem("popover", null, "size", $key)} {
+@each $key, $value in config.get("popover-width", "variants") {
+  #{core.bem("popover", null, "width", $key)} {
     @include tokens.override("popover", "width", $value);
   }
 }
