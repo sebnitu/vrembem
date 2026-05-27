@@ -8,6 +8,46 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
+
+    customElements.define("vb-menu", class extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <ul class="menu">
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Undo</span>
+                <span class="foreground-subtle">⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Redo</span>
+                <span class="foreground-subtle">&uarr;⌘Z</span>
+              </button>
+            </li>
+            <li class="menu__sep"></li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Cut</span>
+                <span class="foreground-subtle">⌘X</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Copy</span>
+                <span class="foreground-subtle">⌘C</span>
+              </button>
+            </li>
+            <li class="menu__item">
+              <button type="button" class="menu__action">
+                <span class="flex-grow">Paste</span>
+                <span class="foreground-subtle">⌘V</span>
+              </button>
+            </li>
+          </ul>
+        `;
+      }
+    });
   </script>
 </head>
 <body>
@@ -84,42 +124,22 @@
 
       <div style="height: 100vh; margin: 30rem 0;">
         <div class="text-align-center">
-          <button style="margin: auto;" class="button" popovertarget="popover-test">Bottom</button>
+          <button style="margin: auto;" class="button" popovertarget="popover-top-1">Top</button>
+          <button style="margin: auto;" class="button" popovertarget="popover-bottom-1">Bottom</button>
+          <button style="margin: auto;" class="button" popovertarget="popover-left-1">Left</button>
+          <button style="margin: auto;" class="button" popovertarget="popover-right-1">Right</button>
         </div>
-        <div id="popover-test" class="popover popover--pos-bottom" popover>
-          <ul class="menu">
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Undo</span>
-                <span class="foreground-subtle">⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Redo</span>
-                <span class="foreground-subtle">&uarr;⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__sep"></li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Cut</span>
-                <span class="foreground-subtle">⌘X</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Copy</span>
-                <span class="foreground-subtle">⌘C</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Paste</span>
-                <span class="foreground-subtle">⌘V</span>
-              </button>
-            </li>
-          </ul>
+        <div id="popover-top-1" class="popover popover--pos-top" popover>
+          <vb-menu></vb-menu>
+        </div>
+        <div id="popover-bottom-1" class="popover popover--pos-bottom" popover>
+          <vb-menu></vb-menu>
+        </div>
+        <div id="popover-left-1" class="popover popover--pos-left" popover>
+          <vb-menu></vb-menu>
+        </div>
+        <div id="popover-right-1" class="popover popover--pos-right" popover>
+          <vb-menu></vb-menu>
         </div>
       </div>
 
