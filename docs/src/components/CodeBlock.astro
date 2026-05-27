@@ -53,7 +53,7 @@ if (icon) classes.push("has-icon");
 </div>
 
 <script>
-  import { popovers } from "../modules/usePopover";
+  // import { popovers } from "../modules/usePopover";
 
   const btns = document.querySelectorAll(".code-block__copy-button");
   btns.forEach((btn: HTMLButtonElement) => {
@@ -73,7 +73,7 @@ if (icon) classes.push("has-icon");
             btn.disabled = false;
             btn.classList.remove("is-copied");
             icons.forEach((icon) => icon.classList.toggle("display-none"));
-            popovers.close(btn.getAttribute("data-popover-trigger"));
+            // popovers.close(btn.getAttribute("data-popover-trigger"));
           }, 2000);
         })
         .catch((error) => {
