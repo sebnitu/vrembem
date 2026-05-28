@@ -67,8 +67,8 @@
     }
 
     &:focus-visible {
-      outline: none;
       background-color: tokens.get("select", "option-background-hover", color-mix(in oklch, tokens.get("select", "accent", tokens.get("form-control-accent")) 8%, transparent));
+      outline: none;
     }
 
     &:active {
