@@ -10,11 +10,8 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
 
-  inset: unset;
-  top: anchor(bottom);
+  position-area: bottom;
   position-try-fallbacks: flip-block;
-  align-self: unset;
-  justify-self: anchor-center;
   margin: $-offset $-margin $-margin $-margin;
 }
 
@@ -22,15 +19,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
 
-  inset: unset;
   top: anchor(bottom);
   left: calc(anchor(left) - $-margin);
+  position-area: unset;
   position-try-fallbacks:
     flip-block,
     flip-inline,
     flip-block flip-inline;
-  align-self: unset;
-  justify-self: unset;
   margin: $-offset $-margin $-margin $-margin;
 }
 
@@ -38,15 +33,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
 
-  inset: unset;
   top: anchor(bottom);
   right: calc(anchor(right) - $-margin);
+  position-area: unset;
   position-try-fallbacks:
     flip-block,
     flip-inline,
     flip-block flip-inline;
-  align-self: unset;
-  justify-self: unset;
   margin: $-offset $-margin $-margin $-margin;
 }
 
@@ -56,11 +49,8 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", $-offset);
 
-  inset: unset;
-  bottom: anchor(top);
+  position-area: top;
   position-try-fallbacks: flip-block;
-  align-self: unset;
-  justify-self: anchor-center;
   margin: $-margin $-margin $-offset $-margin;
 }
 
@@ -68,15 +58,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", $-offset);
 
-  inset: unset;
   bottom: anchor(top);
   left: calc(anchor(left) - $-margin);
+  position-area: unset;
   position-try-fallbacks:
     flip-block,
     flip-inline,
     flip-block flip-inline;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-margin $-offset $-margin;
 }
 
@@ -84,15 +72,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", 0);
   @include tokens.override("popover", "transform-y", $-offset);
 
-  inset: unset;
   right: calc(anchor(right) - $-margin);
   bottom: anchor(top);
+  position-area: unset;
   position-try-fallbacks:
     flip-block,
     flip-inline,
     flip-block flip-inline;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-margin $-offset $-margin;
 }
 
@@ -102,11 +88,8 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
-  left: anchor(right);
+  position-area: right;
   position-try-fallbacks: flip-inline;
-  align-self: anchor-center;
-  justify-self: unset;
   margin: $-margin $-margin $-margin $-offset;
 }
 
@@ -114,15 +97,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
   top: calc(anchor(top) - $-margin);
   left: anchor(right);
+  position-area: unset;
   position-try-fallbacks:
     flip-inline,
     flip-block,
     flip-inline flip-block;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-margin $-margin $-offset;
 }
 
@@ -130,15 +111,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
   bottom: calc(anchor(bottom) - $-margin);
   left: anchor(right);
+  position-area: unset;
   position-try-fallbacks:
     flip-inline,
     flip-block,
     flip-inline flip-block;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-margin $-margin $-offset;
 }
 
@@ -148,11 +127,8 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", $-offset);
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
-  right: anchor(left);
+  position-area: left;
   position-try-fallbacks: flip-inline;
-  align-self: anchor-center;
-  justify-self: unset;
   margin: $-margin $-offset $-margin $-margin;
 }
 
@@ -160,15 +136,13 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", $-offset);
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
   top: calc(anchor(top) - $-margin);
   right: anchor(left);
+  position-area: unset;
   position-try-fallbacks:
     flip-inline,
     flip-block,
     flip-inline flip-block;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-offset $-margin $-margin;
 }
 
@@ -176,14 +150,12 @@ $-margin: tokens.get("popover", "margin", 1.5rem);
   @include tokens.override("popover", "transform-x", $-offset);
   @include tokens.override("popover", "transform-y", 0);
 
-  inset: unset;
   right: anchor(left);
   bottom: calc(anchor(bottom) - $-margin);
+  position-area: unset;
   position-try-fallbacks:
     flip-inline,
     flip-block,
     flip-inline flip-block;
-  align-self: unset;
-  justify-self: unset;
   margin: $-margin $-offset $-margin $-margin;
 }

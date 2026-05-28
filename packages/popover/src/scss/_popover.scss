@@ -4,11 +4,11 @@
 
 #{core.bem("popover")} {
   position: fixed;
-  top: anchor(bottom);
+  inset: unset;
   transform: translate(0, 0);
   position-anchor: auto;
+  position-area: bottom;
   position-try-fallbacks: flip-block;
-  justify-self: anchor-center;
   width: tokens.get("popover", "width", config.get("popover-width", "default"));
   max-width: tokens.get("popover", "max-width", calc(100vw - 2rem));
   margin: tokens.get("popover", "offset", 0.5rem) tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "margin", 1.5rem);
