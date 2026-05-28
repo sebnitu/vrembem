@@ -5,51 +5,23 @@
 // - https://developer.chrome.com/blog/anchored-container-queries
 // - https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning/Anchored_container_queries
 
-#{core.bem("popover", "arrow")},
-#{core.bem("popover", "arrow")}::after {
-  @include core.size(tokens.get("popover", "arrow-size", 8px));
+#{core.bem("popover", null, "arrow")} {
+  container-type: anchored;
+  overflow: visible;
 
-  position: absolute;
-  z-index: -1;
-  visibility: hidden;
-  background-color: inherit;
-}
-
-#{core.bem("popover", "arrow")}::after {
-  content: "";
-  transform: rotate(45deg);
-  visibility: visible;
-  background-clip: padding-box;
-}
-
-[data-floating-placement^="top"] > #{core.bem("popover", "arrow")} {
-  bottom: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
-
-  &::after {
-    transform: rotate(-135deg);
+  &::before {
+    @include core.arrow("up", 0.6rem 0.5rem);
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: calc(50% - 0.5rem);
   }
-}
 
-[data-floating-placement^="bottom"] > #{core.bem("popover", "arrow")} {
-  top: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
-
-  &::after {
-    transform: rotate(45deg);
-  }
-}
-
-[data-floating-placement^="left"] > #{core.bem("popover", "arrow")} {
-  right: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
-
-  &::after {
-    transform: rotate(135deg);
-  }
-}
-
-[data-floating-placement^="right"] > #{core.bem("popover", "arrow")} {
-  left: calc(tokens.get("popover", "arrow-size", 8px) * -0.5);
-
-  &::after {
-    transform: rotate(-45deg);
+  @container anchored(fallback: flip-block) {
+    &::before {
+      rotate: 180deg;
+      bottom: auto;
+      top: 100%;
+    }
   }
 }
