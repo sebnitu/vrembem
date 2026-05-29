@@ -1,0 +1,91 @@
+@use "../modules/tokens";
+@include tokens.set(
+  "core",
+  (
+    "light": (
+      "type": "mode",
+      "shadow-color": tokens.get("palette", "neutral", "600", $a: 8%),
+      "box-shadow-outline-color": tokens.get("palette", "neutral", "600", $a: 8%),
+      "drop-shadow-outline-color": tokens.get("palette", "neutral", "600", $a: 32%)
+    ),
+    "dark": (
+      "type": "mode",
+      "shadow-color": tokens.get("palette", "neutral", "950", $a: 80%),
+      "box-shadow-outline-color": tokens.get("palette", "neutral", "50", $a: 8%),
+      "drop-shadow-outline-color": tokens.get("palette", "neutral", "50", $a: 32%)
+    )
+  )
+);
+@include tokens.set(
+  "core",
+  (
+    "box-shadow-0": 0 0 0 1px tokens.get("box-shadow-outline-color"),
+    "drop-shadow-0": 0 0 1px tokens.get("drop-shadow-outline-color"),
+    "shadow-1": 0 2px 2px tokens.get("shadow-color"),
+    "shadow-2": 0 4px 4px tokens.get("shadow-color"),
+    "shadow-3": 0 6px 6px tokens.get("shadow-color"),
+    "shadow-4": 0 12px 12px tokens.get("shadow-color"),
+    "shadow-5": 0 24px 24px tokens.get("shadow-color")
+  )
+);
+@include tokens.set(
+  "core",
+  (
+    "box-shadow-outline": (
+      tokens.get("box-shadow-0")
+    ),
+    "box-shadow-xs": (
+      tokens.get("box-shadow-0"),
+      tokens.get("shadow-1")
+    ),
+    "box-shadow-sm": (
+      tokens.get("box-shadow-0"),
+      tokens.get("shadow-1"),
+      tokens.get("shadow-2")
+    ),
+    "box-shadow-md": (
+      tokens.get("box-shadow-0"),
+      tokens.get("shadow-1"),
+      tokens.get("shadow-2"),
+      tokens.get("shadow-3")
+    ),
+    "box-shadow-lg": (
+      tokens.get("box-shadow-0"),
+      tokens.get("shadow-1"),
+      tokens.get("shadow-2"),
+      tokens.get("shadow-3"),
+      tokens.get("shadow-4")
+    ),
+    "box-shadow-xl": (
+      tokens.get("box-shadow-0"),
+      tokens.get("shadow-1"),
+      tokens.get("shadow-2"),
+      tokens.get("shadow-3"),
+      tokens.get("shadow-4"),
+      tokens.get("shadow-5")
+    )
+  )
+);
+@include tokens.set(
+  "core",
+  (
+    "drop-shadow-outline": (
+      drop-shadow(tokens.get("drop-shadow-0"))
+    ),
+    "drop-shadow-xs": (
+      drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1"))
+    ),
+    "drop-shadow-sm": (
+      drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1")) drop-shadow(tokens.get("shadow-2"))
+    ),
+    "drop-shadow-md": (
+      drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1")) drop-shadow(tokens.get("shadow-2")) drop-shadow(tokens.get("shadow-3"))
+    ),
+    "drop-shadow-lg": (
+      drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1")) drop-shadow(tokens.get("shadow-2")) drop-shadow(tokens.get("shadow-3")) drop-shadow(tokens.get("shadow-4"))
+    ),
+    "drop-shadow-xl": (
+      drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1")) drop-shadow(tokens.get("shadow-2")) drop-shadow(tokens.get("shadow-3")) drop-shadow(tokens.get("shadow-4")) drop-shadow(tokens.get("shadow-5"))
+    )
+  )
+);
