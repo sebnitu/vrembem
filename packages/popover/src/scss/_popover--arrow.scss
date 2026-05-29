@@ -1,11 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-// TODO: Use filter: drop-shadow() instead of box-shadow when arrows are enabled
-
 #{core.bem("popover", null, "arrow")} {
   container-type: anchored;
   overflow: visible;
+
+  // Remove box-shadow and use drop-shadow instead
+  box-shadow: none;
+  filter: tokens.get("popover", "drop-shadow", tokens.get("drop-shadow-md"));
 
   &::before {
     @include core.arrow("up", 0.4rem 0.4rem, 0);
