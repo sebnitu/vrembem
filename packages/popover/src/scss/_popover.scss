@@ -15,6 +15,8 @@
   padding: tokens.get("popover", "padding", 0.5rem);
   border: tokens.get("popover", "border", none);
   border-radius: tokens.get("popover", "border-radius", tokens.get("border-radius"));
+  font-size: tokens.get("popover", "font-size", inherit);
+  line-height: tokens.get("popover", "line-height", inherit);
   color: tokens.get("popover", "foreground", tokens.get("foreground"));
   background: tokens.get("popover", "background", tokens.get("background"));
   background-clip: padding-box;

@@ -8,7 +8,7 @@
   overflow: visible;
 
   &::before {
-    @include core.arrow("up", 0.5rem 0.4rem, 0);
+    @include core.arrow("up", 0.4rem 0.4rem, 0);
 
     content: "";
     position: absolute;
@@ -18,7 +18,7 @@
   &#{core.bem("popover", null, "pos", "bottom")} {
     &::before {
       bottom: 100%;
-      left: calc(50% - 0.5rem);
+      left: calc(50% - 0.4rem);
     }
 
     @container anchored(fallback: flip-block) {
@@ -33,7 +33,7 @@
   &#{core.bem("popover", null, "pos", "top")} {
     &::before {
       top: 100%;
-      left: calc(50% - 0.5rem);
+      left: calc(50% - 0.4rem);
       rotate: 180deg;
     }
 
@@ -48,14 +48,14 @@
 
   &#{core.bem("popover", null, "pos", "left")} {
     &::before {
-      top: calc(50% - 0.25rem);
-      left: calc(100% - 2px);
+      top: calc(50% - 0.2rem);
+      left: calc(100% - 0.2rem);
       rotate: 90deg;
     }
 
     @container anchored(fallback: flip-inline) {
       &::before {
-        right: calc(100% - 2px);
+        right: calc(100% - 0.2rem);
         left: auto;
         rotate: 270deg;
       }
@@ -64,15 +64,15 @@
 
   &#{core.bem("popover", null, "pos", "right")} {
     &::before {
-      top: calc(50% - 0.25rem);
-      right: calc(100% - 2px);
+      top: calc(50% - 0.2rem);
+      right: calc(100% - 0.2rem);
       rotate: 270deg;
     }
 
     @container anchored(fallback: flip-inline) {
       &::before {
         right: auto;
-        left: calc(100% - 2px);
+        left: calc(100% - 0.2rem);
         rotate: 90deg;
       }
     }

@@ -5,18 +5,12 @@
   @include tokens.override(
     "popover",
     (
-      "event": "hover",
-      "placement": "top",
-      "toggle-delay": 300,
-      "width": auto,
+      "width": fit-content,
       "max-width": 16rem,
       "padding": 0.5rem 0.75rem,
+      "font-size": tokens.get("font-size-sm"),
       "background": tokens.get("foreground-strong"),
       "foreground": tokens.get("background")
     )
   );
-
-  &.is-active {
-    pointer-events: none;
-  }
 }
