@@ -2,8 +2,6 @@
 @use "@vrembem/core/tokens";
 @use "./mixins" as mix;
 
-// TODO: Maybe should prevent scrolling when select dropdown is open
-
 #{core.bem("select")} {
   @include mix.base;
 
