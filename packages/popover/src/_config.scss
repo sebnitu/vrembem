@@ -2,8 +2,6 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
-// TODO: Refactor this package to no longer need JS
-
 $config: () !default;
 
 // prettier-ignore
