@@ -9,8 +9,6 @@
   <script type="module">
     import "vrembem/sass";
 
-    // TODO: Improve the examples and ensure we're displaying all use-cases
-
     customElements.define("vb-menu", class extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `
@@ -72,358 +70,126 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="section section--padding-xl">
+    <div class="section__container spacing">
+      <h2 id="popover" class="text-align-center"><a href="#popover">popover</a></h2>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-example">Default</button>
+        <div id="popover-example" class="popover" popover>
+          <vb-menu></vb-menu>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--padding-xl border-top">
+    <div class="section__container spacing">
+      <h2 id="popover--arrow" class="text-align-center"><a href="#popover--arrow">popover--arrow</a></h2>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-arrow-1a" interestfor="popover-arrow-1b">Arrow 1</button>
+        <div id="popover-arrow-1a" class="popover popover--arrow popover--pos-bottom" popover><vb-menu></vb-menu></div>
+        <div id="popover-arrow-1b" class="popover popover--arrow popover--pos-top popover--tooltip" popover="hint">Tooltip</div>
+
+        <button class="button" popovertarget="popover-arrow-2a" interestfor="popover-arrow-2b">Arrow 2</button>
+        <div id="popover-arrow-2a" class="popover popover--arrow popover--pos-top" popover><vb-menu></vb-menu></div>
+        <div id="popover-arrow-2b" class="popover popover--arrow popover--pos-bottom popover--tooltip" popover="hint">Tooltip</div>
+
+        <button class="button" popovertarget="popover-arrow-3a" interestfor="popover-arrow-3b">Arrow 3</button>
+        <div id="popover-arrow-3a" class="popover popover--arrow popover--pos-left" popover><vb-menu></vb-menu></div>
+        <div id="popover-arrow-3b" class="popover popover--arrow popover--pos-right popover--tooltip" popover="hint">Tooltip</div>
+
+        <button class="button" popovertarget="popover-arrow-4a" interestfor="popover-arrow-4b">Arrow 4</button>
+        <div id="popover-arrow-4a" class="popover popover--arrow popover--pos-right" popover><vb-menu></vb-menu></div>
+        <div id="popover-arrow-4b" class="popover popover--arrow popover--pos-left popover--tooltip" popover="hint">Tooltip</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--padding-xl border-top">
     <div class="section__container max-width-xs spacing">
-
-      <h2 id="popover" class="text-align-center"><a href="#popover">popover positions</a></h2>
-
-      <div class="grid grid--cols-5 grid--rows-5">
-        <span></span>
-        <button class="button" popovertarget="popover-bottom-start">Bottom Start</button>
-        <button class="button" popovertarget="popover-bottom">Bottom</button>
-        <button class="button" popovertarget="popover-bottom-end">Bottom End</button>
-        <span></span>
-        
-        <button class="button" popovertarget="popover-right-start">Right Start</button>
-        <span></span>
-        <span></span>
-        <span></span>
-        <button class="button" popovertarget="popover-left-start">Left Start</button>
-
-        <button class="button" popovertarget="popover-right">Right</button>
-        <span></span>
-        <span></span>
-        <span></span>
-        <button class="button" popovertarget="popover-left">Left</button>
-
-        <button class="button" popovertarget="popover-right-end">Right End</button>
-        <span></span>
-        <span></span>
-        <span></span>
-        <button class="button" popovertarget="popover-left-end">Left End</button>
-
-        <span></span>
-        <button class="button" popovertarget="popover-top-start">Top Start</button>
-        <button class="button" popovertarget="popover-top">Top</button>
-        <button class="button" popovertarget="popover-top-end">Top End</button>
-        <span></span>
+      <h2 id="popover--pos" class="text-align-center"><a href="#popover--pos">popover--pos-[key]</a></h2>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-top-1">Top</button>
+        <button class="button" popovertarget="popover-bottom-1">Bottom</button>
+        <button class="button" popovertarget="popover-left-1">Left</button>
+        <button class="button" popovertarget="popover-right-1">Right</button>
+        <div id="popover-top-1" class="popover popover--pos-top" popover><vb-menu></vb-menu></div>
+        <div id="popover-bottom-1" class="popover popover--pos-bottom" popover><vb-menu></vb-menu></div>
+        <div id="popover-left-1" class="popover popover--pos-left" popover><vb-menu></vb-menu></div>
+        <div id="popover-right-1" class="popover popover--pos-right" popover><vb-menu></vb-menu></div>
       </div>
-
-      <div class="popovers">
-        <div id="popover-top" class="popover popover--pos-top popover--width-auto" popover>Top popover</div>
-        <div id="popover-top-start" class="popover popover--pos-top-start popover--width-auto" popover>Top Start popover</div>
-        <div id="popover-top-end" class="popover popover--pos-top-end popover--width-auto" popover>Top End popover</div>
-        <div id="popover-right" class="popover popover--pos-right popover--width-auto" popover>Right <br>popover</div>
-        <div id="popover-right-start" class="popover popover--pos-right-start popover--width-auto" popover>Right Start <br>popover</div>
-        <div id="popover-right-end" class="popover popover--pos-right-end popover--width-auto" popover>Right End <br>popover</div>
-        <div id="popover-bottom" class="popover popover--pos-bottom popover--width-auto" popover>Bottom popover</div>
-        <div id="popover-bottom-start" class="popover popover--pos-bottom-start popover--width-auto" popover>Bottom Start popover</div>
-        <div id="popover-bottom-end" class="popover popover--pos-bottom-end popover--width-auto" popover>Bottom End popover</div>
-        <div id="popover-left" class="popover popover--pos-left popover--width-auto" popover>Left <br>popover</div>
-        <div id="popover-left-start" class="popover popover--pos-left-start popover--width-auto" popover>Left Start <br>popover</div>
-        <div id="popover-left-end" class="popover popover--pos-left-end popover--width-auto" popover>Left End <br>popover</div>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-top-start-1">Top Start</button>
+        <button class="button" popovertarget="popover-bottom-start-1">Bottom Start</button>
+        <button class="button" popovertarget="popover-left-start-1">Left Start</button>
+        <button class="button" popovertarget="popover-right-start-1">Right Start</button>
+        <div id="popover-top-start-1" class="popover popover--pos-top-start" popover><vb-menu></vb-menu></div>
+        <div id="popover-bottom-start-1" class="popover popover--pos-bottom-start" popover><vb-menu></vb-menu></div>
+        <div id="popover-left-start-1" class="popover popover--pos-left-start" popover><vb-menu></vb-menu></div>
+        <div id="popover-right-start-1" class="popover popover--pos-right-start" popover><vb-menu></vb-menu></div>
       </div>
-
-      <div style="height: 100vh; margin: 30rem 0;">
-        <div class="spacing">
-          <h2 id="popover" class="text-align-center"><a href="#popover">popover try fallbacks</a></h2>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" popovertarget="popover-top-1">Top</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-bottom-1">Bottom</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-left-1">Left</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-right-1">Right</button>
-          </div>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" popovertarget="popover-top-start-1">Top Start</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-bottom-start-1">Bottom Start</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-left-start-1">Left Start</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-right-start-1">Right Start</button>
-          </div>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" popovertarget="popover-top-end-1">Top End</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-bottom-end-1">Bottom End</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-left-end-1">Left End</button>
-            <button style="margin: auto;" class="button" popovertarget="popover-right-end-1">Right End</button>
-          </div>
-        </div>
-
-        <div id="popover-top-1" class="popover popover--pos-top popover--arrow" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-bottom-1" class="popover popover--pos-bottom popover--arrow" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-left-1" class="popover popover--pos-left popover--arrow" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-right-1" class="popover popover--pos-right popover--arrow" popover>
-          <vb-menu></vb-menu>
-        </div>
-
-        <div id="popover-top-start-1" class="popover popover--pos-top-start" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-bottom-start-1" class="popover popover--pos-bottom-start" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-left-start-1" class="popover popover--pos-left-start" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-right-start-1" class="popover popover--pos-right-start" popover>
-          <vb-menu></vb-menu>
-        </div>
-
-        <div id="popover-top-end-1" class="popover popover--pos-top-end" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-bottom-end-1" class="popover popover--pos-bottom-end" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-left-end-1" class="popover popover--pos-left-end" popover>
-          <vb-menu></vb-menu>
-        </div>
-        <div id="popover-right-end-1" class="popover popover--pos-right-end" popover>
-          <vb-menu></vb-menu>
-        </div>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-top-end-1">Top End</button>
+        <button class="button" popovertarget="popover-bottom-end-1">Bottom End</button>
+        <button class="button" popovertarget="popover-left-end-1">Left End</button>
+        <button class="button" popovertarget="popover-right-end-1">Right End</button>
+        <div id="popover-top-end-1" class="popover popover--pos-top-end" popover><vb-menu></vb-menu></div>
+        <div id="popover-bottom-end-1" class="popover popover--pos-bottom-end" popover><vb-menu></vb-menu></div>
+        <div id="popover-left-end-1" class="popover popover--pos-left-end" popover><vb-menu></vb-menu></div>
+        <div id="popover-right-end-1" class="popover popover--pos-right-end" popover><vb-menu></vb-menu></div>
       </div>
+    </div>
+  </section>
 
-      <div style="height: 100vh; margin: 30rem 0;">
-        <div class="spacing">
-          <h2 id="popover" class="text-align-center"><a href="#popover">popover tooltips</a></h2>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" interestfor="popover-top-2">Top</button>
-            <button style="margin: auto;" class="button" interestfor="popover-bottom-2">Bottom</button>
-            <button style="margin: auto;" class="button" interestfor="popover-left-2">Left</button>
-            <button style="margin: auto;" class="button" interestfor="popover-right-2">Right</button>
-          </div>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" interestfor="popover-top-start-2">Top Start</button>
-            <button style="margin: auto;" class="button" interestfor="popover-bottom-start-2">Bottom Start</button>
-            <button style="margin: auto;" class="button" interestfor="popover-left-start-2">Left Start</button>
-            <button style="margin: auto;" class="button" interestfor="popover-right-start-2">Right Start</button>
-          </div>
-          <div class="text-align-center">
-            <button style="margin: auto;" class="button" interestfor="popover-top-end-2">Top End</button>
-            <button style="margin: auto;" class="button" interestfor="popover-bottom-end-2">Bottom End</button>
-            <button style="margin: auto;" class="button" interestfor="popover-left-end-2">Left End</button>
-            <button style="margin: auto;" class="button" interestfor="popover-right-end-2">Right End</button>
-          </div>
-        </div>
-
-        <div id="popover-top-2" class="popover popover--pos-top popover--arrow popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-bottom-2" class="popover popover--pos-bottom popover--arrow popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-left-2" class="popover popover--pos-left popover--arrow popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-right-2" class="popover popover--pos-right popover--arrow popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-
-        <div id="popover-top-start-2" class="popover popover--pos-top-start popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-bottom-start-2" class="popover popover--pos-bottom-start popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-left-start-2" class="popover popover--pos-left-start popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-right-start-2" class="popover popover--pos-right-start popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-
-        <div id="popover-top-end-2" class="popover popover--pos-top-end popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-bottom-end-2" class="popover popover--pos-bottom-end popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-left-end-2" class="popover popover--pos-left-end popover--tooltip" popover="hint">
-          Tooltip
-        </div>
-        <div id="popover-right-end-2" class="popover popover--pos-right-end popover--tooltip" popover="hint">
-          Tooltip
-        </div>
+  <section class="section section--padding-xl border-top">
+    <div class="section__container max-width-xs spacing">
+      <h2 id="popover-pos" class="text-align-center"><a href="#popover">popover--tooltip</a></h2>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" interestfor="popover-top-2">Top</button>
+        <button class="button" interestfor="popover-bottom-2">Bottom</button>
+        <button class="button" interestfor="popover-left-2">Left</button>
+        <button class="button" interestfor="popover-right-2">Right</button>
+        <div id="popover-top-2" class="popover popover--pos-top popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-bottom-2" class="popover popover--pos-bottom popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-left-2" class="popover popover--pos-left popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-right-2" class="popover popover--pos-right popover--tooltip" popover="hint">Tooltip</div>
       </div>
-
-      <!-- 
-      <h2 id="popover--width-value"><a href="#popover--width-value">popover--width-[value]</a></h2>
-
-      <div class="flex">
-        <button class="button" aria-describedby="popover--width-auto">Auto</button>
-        <button class="button" aria-describedby="popover--width-sm">Small</button>
-        <button class="button" aria-describedby="popover--width-lg">Large</button>
-      
-        <div id="popover--width-auto" class="popover popover--width-auto">
-          <ul class="menu">
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Undo</span>
-                <span class="foreground-subtle">⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Redo</span>
-                <span class="foreground-subtle">&uarr;⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__sep"></li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Cut</span>
-                <span class="foreground-subtle">⌘X</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Copy</span>
-                <span class="foreground-subtle">⌘C</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Paste</span>
-                <span class="foreground-subtle">⌘V</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        <div id="popover--width-sm" class="popover popover--width-sm">
-          <ul class="menu">
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Undo</span>
-                <span class="foreground-subtle">⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Redo</span>
-                <span class="foreground-subtle">&uarr;⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__sep"></li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Cut</span>
-                <span class="foreground-subtle">⌘X</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Copy</span>
-                <span class="foreground-subtle">⌘C</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Paste</span>
-                <span class="foreground-subtle">⌘V</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-
-        <div id="popover--width-lg" class="popover popover--width-lg">
-          <ul class="menu">
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Undo</span>
-                <span class="foreground-subtle">⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Redo</span>
-                <span class="foreground-subtle">&uarr;⌘Z</span>
-              </button>
-            </li>
-            <li class="menu__sep"></li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Cut</span>
-                <span class="foreground-subtle">⌘X</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Copy</span>
-                <span class="foreground-subtle">⌘C</span>
-              </button>
-            </li>
-            <li class="menu__item">
-              <button type="button" class="menu__action">
-                <span class="flex-grow">Paste</span>
-                <span class="foreground-subtle">⌘V</span>
-              </button>
-            </li>
-          </ul>
-        </div>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" interestfor="popover-top-start-2">Top Start</button>
+        <button class="button" interestfor="popover-bottom-start-2">Bottom Start</button>
+        <button class="button" interestfor="popover-left-start-2">Left Start</button>
+        <button class="button" interestfor="popover-right-start-2">Right Start</button>
+        <div id="popover-top-start-2" class="popover popover--pos-top-start popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-bottom-start-2" class="popover popover--pos-bottom-start popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-left-start-2" class="popover popover--pos-left-start popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-right-start-2" class="popover popover--pos-right-start popover--tooltip" popover="hint">Tooltip</div>
       </div>
-
-      <h2 id="popover--tooltip"><a href="#popover--tooltip">popover--tooltip</a></h2>
-
-      <div class="flex">
-        <button class="button" aria-describedby="popover-tooltip-top">Top</button>
-        <button class="button" aria-describedby="popover-tooltip-bottom">Bottom</button>
-        <button class="button" aria-describedby="popover-tooltip-left">Left</button>
-        <button class="button" aria-describedby="popover-tooltip-right">Right</button>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" interestfor="popover-top-end-2">Top End</button>
+        <button class="button" interestfor="popover-bottom-end-2">Bottom End</button>
+        <button class="button" interestfor="popover-left-end-2">Left End</button>
+        <button class="button" interestfor="popover-right-end-2">Right End</button>
+        <div id="popover-top-end-2" class="popover popover--pos-top-end popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-bottom-end-2" class="popover popover--pos-bottom-end popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-left-end-2" class="popover popover--pos-left-end popover--tooltip" popover="hint">Tooltip</div>
+        <div id="popover-right-end-2" class="popover popover--pos-right-end popover--tooltip" popover="hint">Tooltip</div>
       </div>
+    </div>
+  </section>
 
-      <div id="popover-tooltip-left" class="popover popover--tooltip" style="--vb-popover-placement: left;">
-        Tooltip
-        <span class="popover__arrow"></span>
+  <section class="section section--padding-xl border-top">
+    <div class="section__container max-width-xs spacing">
+      <h2 id="popover" class="text-align-center"><a href="#popover">popover--width-[key]</a></h2>
+      <div class="width-fit-content margin-x-auto">
+        <button class="button" popovertarget="popover-width-auto">Width auto</button>
+        <button class="button" popovertarget="popover-width-sm">Width small</button>
+        <button class="button" popovertarget="popover-width-md">Width default</button>
+        <button class="button" popovertarget="popover-width-lg">Width large</button>
+        <div id="popover-width-auto" class="popover popover--width-auto" popover><vb-menu></vb-menu></div>
+        <div id="popover-width-sm" class="popover popover--width-sm" popover><vb-menu></vb-menu></div>
+        <div id="popover-width-md" class="popover" popover><vb-menu></vb-menu></div>
+        <div id="popover-width-lg" class="popover popover--width-lg" popover><vb-menu></vb-menu></div>
       </div>
-      <div id="popover-tooltip-top" class="popover popover--tooltip">
-        Tooltip
-        <span class="popover__arrow"></span>
-      </div>
-      <div id="popover-tooltip-bottom" class="popover popover--tooltip" style="--vb-popover-placement: bottom;">
-        Tooltip
-        <span class="popover__arrow"></span>
-      </div>
-      <div id="popover-tooltip-right" class="popover popover--tooltip" style="--vb-popover-placement: right;">
-        Tooltip
-        <span class="popover__arrow"></span>
-      </div>
-
-      <h2 id="multi-popover"><a href="#multi-popover">Multi popover</a></h2>
-
-      <button class="button" aria-controls="popover-multi-1" aria-describedby="popover-multi-2">Multi Popover</button>
-
-      <div id="popover-multi-1" class="popover">
-        <div class="padding">Multi popovers...</div>
-      </div>
-
-      <div id="popover-multi-2" class="popover popover--tooltip">
-        Multi popover tooltip...
-        <span class="popover__arrow"></span>
-      </div>
-
-      <h2 id="popover-config"><a href="#popover-config">Popover configuration</a></h2>
-
-      <div class="flex">
-        <button class="button" aria-controls="popover-hover-1">Popover custom properties</button>
-        <button class="button" aria-controls="popover-hover-2">Popover data config</button>
-      </div>
-
-      <div id="popover-hover-1" class="popover vb-theme-dark" style="--vb-popover-event: hover">
-        <div class="padding">This popover has the event type set to "hover" using custom properties.</div>
-        <span class="popover__arrow"></span>
-      </div>
-
-      <div id="popover-hover-2" class="popover vb-theme-dark" data-config="{'event': 'hover', 'toggleDelay': [300, 600]}">
-        <div class="padding">This popover has the event type set to "hover" and toggleDelay to [300, 600] using the data config attribute.</div>
-        <span class="popover__arrow"></span>
-      </div>
-      -->
-
     </div>
   </section>
 
