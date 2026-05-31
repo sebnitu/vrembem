@@ -4,10 +4,8 @@
 #{core.bem("popover", null, "arrow")} {
   container-type: anchored;
   overflow: visible;
-
-  // Remove box-shadow and use drop-shadow instead
-  box-shadow: none;
   filter: tokens.get("popover", "drop-shadow", tokens.get("drop-shadow-md"));
+  box-shadow: none;
 
   &::before {
     @include core.arrow("up", 0.4rem 0.4rem, 0);
