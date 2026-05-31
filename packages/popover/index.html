@@ -49,12 +49,17 @@
       }
     });
   </script>
+  <style>
+    :target {
+      background-color: var(--vb-background-alt);
+    }
+  </style>
 </head>
 <body>
 
   <header class="section background-shift">
     <div class="section__container max-width-xs spacing-sm">
-      <h1 class="font-size-lg">%VITE_NAME%</h1>
+      <h1 class="font-size-lg"><a href="#">%VITE_NAME%</a></h1>
       <p>%VITE_DESCRIPTION%</p>
       <ol class="foreground-subtle flex margin-top list-style-none">
         <li class="flex flex--gap-sm align-items-center">
@@ -70,9 +75,9 @@
     </div>
   </header>
 
-  <section class="section section--padding-xl">
+  <section id="popover" class="section section--padding-xl">
     <div class="section__container spacing">
-      <h2 id="popover" class="text-align-center"><a href="#popover">popover</a></h2>
+      <h2 class="text-align-center"><a href="#popover">popover</a></h2>
       <div class="width-fit-content margin-x-auto">
         <button class="button" popovertarget="popover-example">Default</button>
         <div id="popover-example" class="popover" popover>
@@ -82,9 +87,9 @@
     </div>
   </section>
 
-  <section class="section section--padding-xl border-top">
+  <section id="popover--arrow" class="section section--padding-xl border-top">
     <div class="section__container spacing">
-      <h2 id="popover--arrow" class="text-align-center"><a href="#popover--arrow">popover--arrow</a></h2>
+      <h2 class="text-align-center"><a href="#popover--arrow">popover--arrow</a></h2>
       <div class="width-fit-content margin-x-auto">
         <button class="button" popovertarget="popover-arrow-1a" interestfor="popover-arrow-1b">Arrow 1</button>
         <div id="popover-arrow-1a" class="popover popover--arrow popover--pos-bottom" popover><vb-menu></vb-menu></div>
@@ -105,9 +110,9 @@
     </div>
   </section>
 
-  <section class="section section--padding-xl border-top">
+  <section id="popover--pos" class="section section--padding-xl border-top">
     <div class="section__container max-width-xs spacing">
-      <h2 id="popover--pos" class="text-align-center"><a href="#popover--pos">popover--pos-[key]</a></h2>
+      <h2 class="text-align-center"><a href="#popover--pos">popover--pos-[key]</a></h2>
       <div class="width-fit-content margin-x-auto">
         <button class="button" popovertarget="popover-top-1">Top</button>
         <button class="button" popovertarget="popover-bottom-1">Bottom</button>
@@ -141,9 +146,9 @@
     </div>
   </section>
 
-  <section class="section section--padding-xl border-top">
+  <section id="popover--tooltip" class="section section--padding-xl border-top">
     <div class="section__container max-width-xs spacing">
-      <h2 id="popover-pos" class="text-align-center"><a href="#popover">popover--tooltip</a></h2>
+      <h2 class="text-align-center"><a href="#popover--tooltip">popover--tooltip</a></h2>
       <div class="width-fit-content margin-x-auto">
         <button class="button" interestfor="popover-top-2">Top</button>
         <button class="button" interestfor="popover-bottom-2">Bottom</button>
@@ -177,9 +182,9 @@
     </div>
   </section>
 
-  <section class="section section--padding-xl border-top">
+  <section id="popover--width" class="section section--padding-xl border-top">
     <div class="section__container max-width-xs spacing">
-      <h2 id="popover" class="text-align-center"><a href="#popover">popover--width-[key]</a></h2>
+      <h2 class="text-align-center"><a href="#popover--width">popover--width-[key]</a></h2>
       <div class="width-fit-content margin-x-auto">
         <button class="button" popovertarget="popover-width-auto">Width auto</button>
         <button class="button" popovertarget="popover-width-sm">Width small</button>
