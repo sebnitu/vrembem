@@ -5,8 +5,6 @@ package: "@vrembem/popover"
 category: component
 ---
 
-{/* TODO: Update documentation for new popovers */}
-
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Menu from "@/content/demos/Menu.astro";
 import Icon from "@/components/Icon.astro";
@@ -50,22 +48,24 @@ Popover comes with the following Sass configuration options that can be set usin
 Popover uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-popover" valueLabel="Fallback" expandable={true} data={{
-  "--vb-popover-z-index": "10",
-  "--vb-popover-width": "16em",
+  "--vb-popover-width": "14rem",
   "--vb-popover-max-width": "calc(100vw - 2rem)",
-  "--vb-popover-padding": "0.5em",
+  "--vb-popover-padding": "0.5rem",
   "--vb-popover-border": "none",
   "--vb-popover-border-radius": "var(--vb-border-radius)",
-  "--vb-popover-font-size": "var(--vb-font-size-sm)",
+  "--vb-popover-font-size": "inherit",
   "--vb-popover-line-height": "inherit",
   "--vb-popover-foreground": "var(--vb-foreground)",
   "--vb-popover-background": "var(--vb-background)",
   "--vb-popover-box-shadow": "var(--vb-box-shadow-md)",
-  "--vb-popover-transition-property": "opacity",
+  "--vb-popover-drop-shadow": "var(--vb-drop-shadow-md)",
+  "--vb-popover-transition-property": "opacity, display, transform, overlay",
   "--vb-popover-transition-timing-function": "var(--vb-transition-timing-function)",
   "--vb-popover-transition-duration": "var(--vb-transition-duration-short)",
-  "--vb-popover-offset": "8",
-  "--vb-popover-arrow-size": "8px"
+  "--vb-popover-offset": "0.5rem",
+  "--vb-popover-margin": "1.5rem",
+  "--vb-popover-transform-x": "0",
+  "--vb-popover-transform-y": "calc(var(--vb-popover-offset, 0.5rem) * -1)"
 }} />
 
 ## Basic usage
