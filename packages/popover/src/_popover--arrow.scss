@@ -1,7 +1,11 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-#{core.bem("popover", null, "arrow")} {
+#{core.bem("popover", null, "arrow")},
+#{core.bem("popover", null, "arrow", "top")},
+#{core.bem("popover", null, "arrow", "bottom")},
+#{core.bem("popover", null, "arrow", "left")},
+#{core.bem("popover", null, "arrow", "right")} {
   container-type: anchored;
   overflow: visible;
   filter: tokens.get("popover", "drop-shadow", tokens.get("drop-shadow-md"));
@@ -14,67 +18,71 @@
     position: absolute;
     color: tokens.get("popover", "background", tokens.get("background"));
   }
+}
 
-  &#{core.bem("popover", null, "pos", "bottom")} {
-    &::before {
-      bottom: 100%;
-      left: calc(50% - 0.4rem);
-    }
-
-    @container anchored(fallback: flip-block) {
-      &::before {
-        top: 100%;
-        bottom: auto;
-        rotate: 180deg;
-      }
-    }
+#{core.bem("popover", null, "arrow", "top")},
+#{core.bem("popover", null, "arrow")}#{core.bem("popover", null, "pos", "bottom")} {
+  &::before {
+    bottom: 100%;
+    left: calc(50% - 0.4rem);
   }
 
-  &#{core.bem("popover", null, "pos", "top")} {
+  @container anchored(fallback: flip-block) {
     &::before {
       top: 100%;
-      left: calc(50% - 0.4rem);
+      bottom: auto;
       rotate: 180deg;
     }
+  }
+}
 
-    @container anchored(fallback: flip-block) {
-      &::before {
-        top: auto;
-        bottom: 100%;
-        rotate: 0deg;
-      }
-    }
+#{core.bem("popover", null, "arrow", "bottom")},
+#{core.bem("popover", null, "arrow")}#{core.bem("popover", null, "pos", "top")} {
+  &::before {
+    top: 100%;
+    left: calc(50% - 0.4rem);
+    rotate: 180deg;
   }
 
-  &#{core.bem("popover", null, "pos", "left")} {
+  @container anchored(fallback: flip-block) {
     &::before {
-      top: calc(50% - 0.2rem);
-      left: calc(100% - 0.2rem);
-      rotate: 90deg;
-    }
-
-    @container anchored(fallback: flip-inline) {
-      &::before {
-        right: calc(100% - 0.2rem);
-        left: auto;
-        rotate: 270deg;
-      }
+      top: auto;
+      bottom: 100%;
+      rotate: 0deg;
     }
   }
+}
 
-  &#{core.bem("popover", null, "pos", "right")} {
+#{core.bem("popover", null, "arrow", "right")},
+#{core.bem("popover", null, "arrow")}#{core.bem("popover", null, "pos", "left")} {
+  &::before {
+    top: calc(50% - 0.2rem);
+    left: calc(100% - 0.2rem);
+    rotate: 90deg;
+  }
+
+  @container anchored(fallback: flip-inline) {
     &::before {
-      top: calc(50% - 0.2rem);
       right: calc(100% - 0.2rem);
+      left: auto;
       rotate: 270deg;
     }
+  }
+}
 
-    @container anchored(fallback: flip-inline) {
-      &::before {
-        right: auto;
-        left: calc(100% - 0.2rem);
-        rotate: 90deg;
-      }
+#{core.bem("popover", null, "arrow", "left")},
+#{core.bem("popover", null, "arrow")}#{core.bem("popover", null, "pos", "right")} {
+  &::before {
+    top: calc(50% - 0.2rem);
+    right: calc(100% - 0.2rem);
+    rotate: 270deg;
+  }
+
+  @container anchored(fallback: flip-inline) {
+    &::before {
+      right: auto;
+      left: calc(100% - 0.2rem);
+      rotate: 90deg;
     }
   }
 }
