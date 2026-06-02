@@ -8,7 +8,7 @@
   box-shadow: none;
 
   &::before {
-    @include core.arrow("up", 0.4rem 0.4rem, 0);
+    @include core.arrow("up", 0.4rem, 0);
 
     content: "";
     position: absolute;
