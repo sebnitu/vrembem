@@ -10,9 +10,14 @@
       "padding": 0.5rem 0.75rem,
       "font-size": tokens.get("font-size-sm"),
       "background": tokens.get("foreground-strong"),
-      "foreground": tokens.get("background")
+      "foreground": tokens.get("background"),
+      "transform-x": 0,
+      "transform-y": tokens.get("popover", "offset", 0.5rem)
     )
   );
 
   pointer-events: none;
+  position-area: top;
+  position-try-fallbacks: flip-block;
+  margin: tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "offset", 0.5rem) tokens.get("popover", "margin", 1.5rem);
 }
