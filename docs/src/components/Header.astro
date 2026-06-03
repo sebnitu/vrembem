@@ -2,7 +2,6 @@
 import Navi from "@/components/Navi.astro";
 import LogoIcon from "@/components/LogoIcon.astro";
 import Modal from "@/components/Modal.astro";
-import Popover from "@/components/Popover.astro";
 import Icon from "@/components/Icon.astro";
 
 interface Props {
@@ -26,16 +25,22 @@ const { classes = "" } = Astro.props;
     </div>
     <div class="header__menu">
       <Navi classes="display-none md:display-flex" inline />
-      <Popover
-        placement="left"
-        triggerClass="button button--icon display-block md:display-none"
+      <button
+        type="button"
+        interestfor="popover-menu-label"
         data-modal-open="modal-navi"
+        class="button button--icon display-block md:display-none"
       >
-        <Fragment slot="trigger">
-          <Icon name="menu" />
-        </Fragment>
-        <Fragment slot="tooltip">Menu</Fragment>
-      </Popover>
+        <Icon name="menu" />
+      </button>
+      <div
+        id="popover-menu-label"
+        popover="hint"
+        class="popover popover--tooltip popover--arrow popover--pos-left"
+        style="--vb-popover-margin: 1rem"
+      >
+        Menu
+      </div>
     </div>
   </div>
 </header>
@@ -45,12 +50,21 @@ const { classes = "" } = Astro.props;
     <h2 class="panel__title">Menu</h2>
     <button
       class="button button--size-sm padding-xs"
+      interestfor="popover-close-modal"
       data-modal-close=""
       type="button"
       aria-label="Close menu"
     >
       <Icon name="x" />
     </button>
+    <div
+      id="popover-close-modal"
+      popover="hint"
+      class="popover popover--tooltip popover--arrow popover--pos-left"
+      style="--vb-popover-margin: 1rem"
+    >
+      Close
+    </div>
   </div>
   <div class="panel__body">
     <Navi />
