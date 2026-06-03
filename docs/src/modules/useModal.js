@@ -20,6 +20,15 @@ const modals = new ModalCollection({
   ]
 });
 
+modals.on("opening", async (entry) => {
+  const tooltipID = entry.parent.trigger.getAttribute("interestfor");
+  if (tooltipID) {
+    const tooltip = document.getElementById(tooltipID);
+    tooltip?.hidePopover();
+  }
+  return Promise.resolve();
+});
+
 window["modals"] = await modals.mount();
 
 export { modals };
