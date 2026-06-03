@@ -49,11 +49,16 @@ describe("mount() & unmount()", () => {
     btnOpen = document.querySelector("[data-modal-open]");
   });
 
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   it("should mount the modal instance", async () => {
     modals.updateConfig({ transition: false });
     await modals.mount();
     entry = modals.get("modal-default");
     btnOpen.click();
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.state).toBe("opened");
     expect(entry.el).toHaveClass("is-opened");
   });
@@ -153,7 +158,7 @@ describe("open() & close()", () => {
     expect(entry.state).toBe("closed");
 
     modals.open("modal-default");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(el).toHaveClass("modal is-opened");
     expect(entry.state).toBe("opened");
@@ -164,7 +169,7 @@ describe("open() & close()", () => {
     expect(entry.state).toBe("opened");
 
     modals.open("modal-default");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(el).toHaveClass("modal is-opened");
     expect(entry.state).toBe("opened");
@@ -175,7 +180,7 @@ describe("open() & close()", () => {
     expect(entry.state).toBe("opened");
 
     modals.close();
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(el).toHaveClass("modal is-closed");
     expect(entry.state).toBe("closed");
@@ -186,7 +191,7 @@ describe("open() & close()", () => {
     expect(entry.state).toBe("closed");
 
     modals.close("modal-default");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(el).toHaveClass("modal is-closed");
     expect(entry.state).toBe("closed");
@@ -241,20 +246,21 @@ describe("replace()", () => {
     let entry = modals.get("modal-1");
 
     modals.open("modal-1");
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.el).toHaveClass("is-opening");
     expect(entry.state).toBe("opening");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
 
     modals.replace("modal-2");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(entry.el).toHaveClass("is-closed");
     expect(entry.state).toBe("closed");
 
     entry = modals.get("modal-2");
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
   });
@@ -270,7 +276,7 @@ describe("replace()", () => {
 
     await Promise.all(
       modals.collection.map(async () => {
-        await vi.runAllTimers();
+        await vi.runAllTimersAsync();
       })
     );
 
@@ -284,7 +290,7 @@ describe("replace()", () => {
 
     await Promise.all(
       modals.collection.map(async () => {
-        await vi.runAllTimers();
+        await vi.runAllTimersAsync();
       })
     );
 
@@ -334,12 +340,14 @@ describe("closeAll()", () => {
     modals.open("modal-3");
     modals.open("modal-4");
 
+    await vi.advanceTimersByTimeAsync(0);
+
     modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-opening");
       expect(entry.state).toBe("opening");
     });
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-opened");
@@ -348,12 +356,14 @@ describe("closeAll()", () => {
 
     modals.closeAll();
 
+    await vi.advanceTimersByTimeAsync(0);
+
     modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-closing");
       expect(entry.state).toBe("closing");
     });
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     modals.collection.map(async (entry) => {
       expect(entry.el).toHaveClass("is-closed");

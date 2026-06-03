@@ -40,15 +40,17 @@ test("should apply state classes on `click` and `transitionend` events", async (
   expect(el).toHaveClass("modal");
 
   btnOpen.click();
+  await vi.advanceTimersByTimeAsync(0);
   expect(el).toHaveClass("is-opening");
 
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(el).toHaveClass("is-opened");
 
   btnClose.click();
+  await vi.advanceTimersByTimeAsync(0);
   expect(el).toHaveClass("is-closing");
 
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(el).toHaveClass("modal is-closed");
   expect(el).not.toHaveClass("is-opening is-opened is-closing");
 });
@@ -67,15 +69,17 @@ test("should apply custom state classes", async () => {
   const btnClose = el.querySelector("[data-modal-close]");
 
   btnOpen.click();
+  await vi.advanceTimersByTimeAsync(0);
   expect(el).toHaveClass("enable");
 
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(el).toHaveClass("on");
 
   btnClose.click();
+  await vi.advanceTimersByTimeAsync(0);
   expect(el).toHaveClass("disable");
 
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(el).toHaveClass("modal off");
   expect(el).not.toHaveClass("enable on disable");
 });

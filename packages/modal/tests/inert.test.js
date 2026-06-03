@@ -26,14 +26,14 @@ describe("when selectorInert is set:", () => {
   it("should properly hide content when modal is opened", async () => {
     const btnOpen = document.querySelector("[data-modal-open]");
     btnOpen.click();
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(main.inert).toBe(true);
   });
 
   it("should properly show content when modal is closed", async () => {
     const btnClose = document.querySelector("[data-modal-close]");
     btnClose.click();
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(main.inert).toBe(false);
   });
 });
