@@ -12,6 +12,9 @@ export async function open(
     // Update drawer state
     entry.state = "opening";
 
+    // Emit the opening event
+    await entry.parent.emit("opening", entry);
+
     // Run the open transition
     if (
       transitionOverride !== undefined

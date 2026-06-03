@@ -12,6 +12,9 @@ export async function close(
     // Update modal state
     entry.state = "closing";
 
+    // Emit the closing event
+    await entry.parent.emit("closing", entry);
+
     // Remove focus from active element
     if (
       document.activeElement &&
