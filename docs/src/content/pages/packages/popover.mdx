@@ -31,12 +31,13 @@ Popover comes with the following Sass configuration options that can be set usin
 ```scss
 @use "@vrembem/popover" with (
   $config: (
-    // Map for outputting popover--size-[key] modifier variants
+    // Map for outputting popover--width-[key] modifier variants
     // @type map
-    "popover-size": (
-      "auto": "auto",
-      "sm": 12em,
-      "lg": 20em
+    "popover-width": (
+      "default": 14rem,
+      "auto": "fit-content",
+      "sm": 10rem,
+      "lg": 18rem
     )
   )
 );
@@ -70,7 +71,7 @@ Popover uses design token CSS variables in a reference and fallback pattern. Var
 
 ## Basic usage
 
-Vrembem popovers are powered by the native browser popover API and anchor positions. This allows popovers to function without any need for additional JavaScript. For a basic popover, just apply the following attributes along with the `.popover` class for styling.
+Vrembem popovers are powered by the native browser popover API and CSS anchor positions. This allows popovers to function without any need for additional JavaScript. For a basic popover, just apply the following attributes along with the `.popover` class for styling.
 
 <CodeExample>
   <Fragment slot="output">
@@ -89,7 +90,7 @@ Vrembem popovers are powered by the native browser popover API and anchor positi
 
 ## popover--pos-[key]
 
-Modifier to set the preferred position of a popover. If there's not enough space in the preferred position, the popover is flipped automatically.
+A modifier to set the preferred position of a popover relative to its anchor. If not enough space is available in the preferred position, the popover is flipped automatically.
 
 <CodeExample>
   <Fragment slot="output">
@@ -125,7 +126,7 @@ Modifier to set the preferred position of a popover. If there's not enough space
     </div>
   </Fragment>
   ```html
-  <div id="united-id" class="popover popover--pos-[key]" popover>
+  <div id="unique-id" class="popover popover--pos-[key]" popover>
     ...
   </div>
   ```
@@ -148,14 +149,14 @@ Modifier to set the preferred position of a popover. If there's not enough space
 
 ## popover--arrow
 
-Modifier to add an arrow to the popover element. When added to a position modifier using `.popover--arrow` will infer the arrow direction. To set a specific arrow direction, provide a modifier value `.popover--arrow-[key]`.
+Modifier that adds an arrow to the popover element. When added along with a position modifier, using `.popover--arrow` will infer the arrow direction. To set an explicit arrow direction, provide a modifier value `.popover--arrow-[key]`.
 
 <CodeExample>
   <Fragment slot="output">
     <div class="width-fit-content margin-x-auto">
       <button class="button" popovertarget="popover-arrow-1a" interestfor="popover-arrow-1b">Arrow 1</button>
-      <div id="popover-arrow-1a" class="popover popover--arrow popover--pos-bottom" popover><Menu name="edit-shortcuts" /></div>
-      <div id="popover-arrow-1b" class="popover popover--arrow popover--pos-top popover--tooltip" popover="hint">Tooltip</div>
+      <div id="popover-arrow-1a" class="popover popover--arrow-top" popover><Menu name="edit-shortcuts" /></div>
+      <div id="popover-arrow-1b" class="popover popover--arrow-bottom popover--tooltip" popover="hint">Tooltip</div>
 
       <button class="button" popovertarget="popover-arrow-2a" interestfor="popover-arrow-2b">Arrow 2</button>
       <div id="popover-arrow-2a" class="popover popover--arrow popover--pos-top" popover><Menu name="edit-shortcuts" /></div>
@@ -171,12 +172,12 @@ Modifier to add an arrow to the popover element. When added to a position modifi
     </div>
   </Fragment>
   ```html
-  <!-- Base arrow modifier if position modifier is set -->
+  <!-- Apply the arrow modifier with a position modifier -->
   <div id="unique-id" class="popover popover--arrow popover--pos-top" popover="hint">
     ...
   </div>
 
-  <!-- Set the arrow position if no position modifier is set -->
+  <!-- Set the arrow direction if no position modifier is set -->
   <div id="unique-id" class="popover popover--arrow-bottom" popover="hint">
     ...
   </div>
@@ -220,9 +221,7 @@ To create a tooltip popover, use the interest invoker API along with the `.popov
   ```
 </CodeExample>
 
-### Multiple popovers
-
-There are cases where a single popover trigger requires both a tooltip and a click toggle popovers. This can be achieved by using `popovertarget` and `interestfor` attributes with the values of their corresponding popover IDs.
+Popover and interest invoker APIs can be applied to the same anchor. Use the `popovertarget` and `interestfor` attributes with the values of their corresponding popover IDs.
 
 <CodeExample>
   <Fragment slot="output">
@@ -247,7 +246,7 @@ There are cases where a single popover trigger requires both a tooltip and a cli
 
 ## popover--width-[key]
 
-Adjust the width of a popover. These modifiers are generated using key/value pairs of the `popover-width` config options map.
+A modifier for adjusting the width of a popover. These modifiers are generated using key/value pairs of the `popover-width` config options map.
 
 <CodeExample>
   <div slot="output" class="flex">
@@ -269,7 +268,7 @@ Adjust the width of a popover. These modifiers are generated using key/value pai
     </div>
   </div>
   ```html
-  <div id="unique-id" popover class="popover popover--size-sm">
+  <div id="unique-id" popover class="popover popover--width-sm">
     ...
   </div>
   ```
@@ -277,6 +276,6 @@ Adjust the width of a popover. These modifiers are generated using key/value pai
 
 **Available variants**
 
-- `popover--size-auto`
-- `popover--size-sm`
-- `popover--size-lg`
+- `popover--width-auto`
+- `popover--width-sm`
+- `popover--width-lg`
