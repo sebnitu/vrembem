@@ -15,6 +15,9 @@ export async function open(
     // Update modal state
     entry.state = "opening";
 
+    // Emit the opening event
+    await entry.parent.emit("opening", entry);
+
     // Add modal to stack
     entry.parent.stack.add(entry);
 

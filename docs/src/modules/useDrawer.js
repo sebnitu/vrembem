@@ -13,6 +13,14 @@ const drawers = new DrawerCollection({
   plugins: [cssConfig(), attrConfig(), focusTrap(), mediaQuery(), propStore()]
 });
 
+drawers.on("opening", (entry) => {
+  const tooltipID = entry.trigger.getAttribute("interestfor");
+  if (tooltipID) {
+    const tooltip = document.getElementById(tooltipID);
+    tooltip?.hidePopover();
+  }
+});
+
 window["drawers"] = await drawers.mount();
 
 export { drawers };

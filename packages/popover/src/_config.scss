@@ -6,12 +6,13 @@ $config: () !default;
 
 // prettier-ignore
 $default: (
-  // Map for outputting popover--size-[key] modifier variants
+  // Map for outputting popover--width-[key] modifier variants
   // @type map
-  "popover-size": (
-    "auto": "auto",
-    "sm": 12em,
-    "lg": 20em
+  "popover-width": (
+    "default": 14rem,
+    "auto": "fit-content",
+    "sm": 10rem,
+    "lg": 18rem
   )
 );
 

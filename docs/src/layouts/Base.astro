@@ -5,7 +5,6 @@ import Toolbar from "@/components/Toolbar.astro";
 import Footer from "@/components/Footer.astro";
 import Drawer from "@/components/Drawer.astro";
 import Icon from "@/components/Icon.astro";
-import Popover from "@/components/Popover.astro";
 
 interface Props {
   title?: string;
@@ -55,19 +54,22 @@ if (layout.hasAside) layoutClasses.push("has-aside");
           {
             layout.hasAside && (
               <div class="toolbar-mini">
-                <Popover
-                  id="on-this-page-menu"
-                  aria-label="Open on this page menu"
-                  triggerClass="button button--icon"
-                  tooltipClass="text-nowrap"
-                  placement="bottom-end"
+                <button
+                  type="button"
+                  interestfor="popover-otp-menu"
                   data-drawer-open="main-aside"
+                  aria-label="Open on this page menu"
+                  class="button button--icon"
                 >
-                  <Fragment slot="trigger">
-                    <Icon name="map-pin" />
-                  </Fragment>
-                  <Fragment slot="tooltip">On this page</Fragment>
-                </Popover>
+                  <Icon name="map-pin" />
+                </button>
+                <div
+                  id="popover-otp-menu"
+                  popover="hint"
+                  class="popover popover--tooltip popover--pos-bottom-end"
+                >
+                  On this page
+                </div>
               </div>
             )
           }

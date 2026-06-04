@@ -45,7 +45,7 @@ test("should open drawer when clicking data-drawer-open button", async () => {
   expect(entry.state).toBe("indeterminate");
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 });
@@ -54,7 +54,7 @@ test("should close drawer when clicking data-drawer-close button", async () => {
   expect(entry.state).toBe("opened");
 
   btnClose.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("closed");
 });
@@ -63,12 +63,12 @@ test("should open and close drawer when clicking data-drawer-toggle button", asy
   expect(entry.state).toBe("closed");
 
   btnToggle.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 
   btnToggle.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("closed");
 });
@@ -77,12 +77,12 @@ test("should close drawer when clicking inner data-drawer-close button", async (
   expect(entry.state).toBe("closed");
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 
   btnCloseInner.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("closed");
 });
@@ -91,12 +91,12 @@ test("should do nothing if valuless data-drawer-close button is not in a drawer"
   expect(entry.state).toBe("closed");
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 
   btnCloseEmpty.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 });
@@ -105,7 +105,7 @@ test("should do nothing on inline drawer when pressing the escape key", async ()
   expect(entry.state).toBe("opened");
 
   document.dispatchEvent(keyEsc);
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 });
@@ -114,7 +114,7 @@ test("should close modal drawer when pressing the escape key", async () => {
   expect(entry.state).toBe("opened");
 
   entry.mode = "modal";
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.mode).toBe("modal");
   expect(entry.el).toHaveClass("drawer--modal");
@@ -123,17 +123,17 @@ test("should close modal drawer when pressing the escape key", async () => {
   expect(entry.state).toBe("closed");
 
   entry.open();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 
   document.dispatchEvent(keySpace);
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("opened");
 
   document.dispatchEvent(keyEsc);
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(entry.state).toBe("closed");
 });

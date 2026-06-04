@@ -1,6 +1,5 @@
 ---
 import Icon from "@/components/Icon.astro";
-import Popover from "@/components/Popover.astro";
 import CodeBlock from "@/components/CodeBlock.astro";
 import coreData from "@/content/data/tokens-core.json";
 
@@ -159,17 +158,23 @@ function iconMap(value: string) {
                 ? value && <CodeBlock inline={linkifyValue(value)} />
                 : Object.entries(value).map(([themeKey, themeValue]) => (
                     <div class="flex flex--wrap-no gap-0 align-items-center">
-                      <Popover triggerClass="foreground-subtle flex padding-y-sm margin-left-sm">
-                        <Fragment slot="trigger">
-                          <Icon
-                            name={iconMap(themeKey)}
-                            classes="icon--size-sm"
-                          />
-                        </Fragment>
-                        <Fragment slot="tooltip">
-                          {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
-                        </Fragment>
-                      </Popover>
+                      <button
+                        type="button"
+                        interestfor={`popover-${cleanAppend(key)}-${themeKey}`}
+                        class="foreground-subtle flex padding-y-sm margin-left-sm"
+                      >
+                        <Icon
+                          name={iconMap(themeKey)}
+                          classes="icon--size-sm"
+                        />
+                      </button>
+                      <div
+                        id={`popover-${cleanAppend(key)}-${themeKey}`}
+                        popover="hint"
+                        class="popover popover--tooltip popover--arrow-bottom"
+                      >
+                        {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
+                      </div>
                       <CodeBlock inline={linkifyValue(themeValue)} />
                     </div>
                   ))}

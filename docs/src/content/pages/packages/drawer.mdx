@@ -809,11 +809,27 @@ await entry.toggle();
 
 In addition to the inherited [lifecycle hooks](./reference/collections#lifecycle-hooks), Drawer provides three of its own events to hook into its lifecycle:
 
+<ReferenceCard name="opening" type="event">
+  Emitted when a drawer is starting it's opening transition.
+
+  ```js
+  drawers.on("opening", callback(entry));
+  ```
+</ReferenceCard>
+
 <ReferenceCard name="opened" type="event">
   Emitted when a drawer is opened.
 
   ```js
-  drawers.on("opened", callback({ parent, entry }));
+  drawers.on("opened", callback(entry));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="closing" type="event">
+  Emitted when a drawer is starting it's closing transition.
+
+  ```js
+  drawers.on("closing", callback(entry));
   ```
 </ReferenceCard>
 
@@ -821,7 +837,7 @@ In addition to the inherited [lifecycle hooks](./reference/collections#lifecycle
   Emitted when a drawer is closed.
 
   ```js
-  drawers.on("closed", callback({ parent, entry }));
+  drawers.on("closed", callback(entry));
   ```
 </ReferenceCard>
 
@@ -829,6 +845,6 @@ In addition to the inherited [lifecycle hooks](./reference/collections#lifecycle
   Emitted when a drawer switches modes.
 
   ```js
-  drawers.on("switchMode", callback({ parent, entry }));
+  drawers.on("switchMode", callback(entry));
   ```
 </ReferenceCard>

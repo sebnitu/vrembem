@@ -1,0 +1,38 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/tokens";
+
+#{core.bem("popover")} {
+  position: fixed;
+  inset: unset;
+  transform: translate(0, 0);
+  position-anchor: auto;
+  position-area: bottom;
+  position-try-fallbacks: flip-block;
+  width: tokens.get("popover", "width", config.get("popover-width", "default"));
+  max-width: tokens.get("popover", "max-width", calc(100vw - 2rem));
+  margin: tokens.get("popover", "offset", 0.5rem) tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "margin", 1.5rem) tokens.get("popover", "margin", 1.5rem);
+  padding: tokens.get("popover", "padding", 0.5rem);
+  border: tokens.get("popover", "border", none);
+  border-radius: tokens.get("popover", "border-radius", tokens.get("border-radius"));
+  font-size: tokens.get("popover", "font-size", inherit);
+  line-height: tokens.get("popover", "line-height", inherit);
+  color: tokens.get("popover", "foreground", tokens.get("foreground"));
+  background: tokens.get("popover", "background", tokens.get("background"));
+  background-clip: padding-box;
+  box-shadow: tokens.get("popover", "box-shadow", tokens.get("box-shadow-md"));
+  transition-timing-function: tokens.get("popover", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("popover", "transition-duration", tokens.get("transition-duration-short"));
+  transition-property: tokens.get("popover", "transition-property", (opacity, display, transform, overlay));
+  transition-behavior: allow-discrete;
+
+  @starting-style {
+    transform: translate(tokens.get("popover", "transform-x", 0), tokens.get("popover", "transform-y", calc(#{tokens.get("popover", "offset", 0.5rem)} * -1)));
+    opacity: 0;
+  }
+
+  &:not(:popover-open) {
+    transform: translate(tokens.get("popover", "transform-x", 0), tokens.get("popover", "transform-y", calc(#{tokens.get("popover", "offset", 0.5rem)} * -1)));
+    opacity: 0;
+  }
+}

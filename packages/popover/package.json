@@ -3,7 +3,6 @@
   "description": "A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.",
   "version": "4.0.0-next.46",
   "license": "MIT",
-  "type": "module",
   "keywords": [
     "BEM",
     "front-end",
@@ -11,13 +10,10 @@
     "popover"
   ],
   "style": "./dist/index.css",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "sass": "./index.scss",
-      "style": "./dist/index.css",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "style": "./dist/index.css"
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
@@ -27,22 +23,16 @@
     "dev",
     "dist",
     "src",
-    "index.scss",
-    "index.ts"
+    "index.scss"
   ],
   "scripts": {
     "serve": "vite",
-    "build": "npm-run-all clean styles scripts",
+    "build": "npm-run-all clean styles",
     "clean": "del dev && del dist",
-    "scripts": "npm-run-all scripts:dev scripts:dist scripts:types",
-    "scripts:dev": "vite build --outDir dev --minify false",
-    "scripts:dist": "vite build --outDir dist",
-    "scripts:types": "tsc --project tsconfig.build.json",
     "styles": "npm-run-all styles:dev styles:dist",
     "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
     "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
-    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
-    "watch:scripts": "concurrently 'npm run scripts:dev -- --watch' 'npm run scripts:dist -- --watch'",
+    "watch": "npm run watch:styles",
     "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
@@ -52,7 +42,6 @@
   },
   "homepage": "https://github.com/sebnitu/vrembem/tree/main/packages/popover#readme",
   "dependencies": {
-    "@floating-ui/dom": "^1.7.6",
     "@vrembem/core": "^4.0.0-next.46"
   },
   "publishConfig": {

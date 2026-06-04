@@ -7,7 +7,13 @@
 ///   The direction the arrow should point.
 ///   Valid options: "up", "down", "left", "right".
 ///
-@mixin arrow($direction: "down") {
+/// @param {list} $size (6px 4px)
+///   The size of the arrow as a two-value list (width height).
+///
+/// @param {number} $radius (2px)
+///   The border-radius applied to the arrow tip.
+///
+@mixin arrow($direction: "down", $size: 6px 4px, $radius: 2px) {
   pointer-events: none;
   transform-origin: center;
   display: inline-block;
@@ -17,9 +23,9 @@
   height: 0;
   border-color: tokens.get("arrow", "color", currentcolor) transparent transparent;
   border-style: solid;
-  border-width: tokens.get("arrow", "size", 6px 4px);
+  border-width: tokens.get("arrow", "size", $size);
   border-bottom-width: 0;
-  border-radius: tokens.get("arrow", "radius", 2px);
+  border-radius: tokens.get("arrow", "radius", $radius);
 
   @if $direction == "up" {
     transform: rotate(180deg);

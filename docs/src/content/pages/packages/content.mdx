@@ -95,7 +95,7 @@ Content uses design token CSS variables in a reference and fallback pattern. Var
 
 Content modules each have their own output styles. These are all output by default when the content package is loaded. There are two ways to control which modules are output using the `content-output` and `content-output-exceptions` configuration options.
 
-<ReferenceCard ref="config" name="content-output" type="boolean" defaults="true">
+<ReferenceCard name="content-output" type="boolean" defaults="true">
   Controls whether module styles are output. Specify exceptions using the `content-output-exceptions` config option.
 
 ```scss
@@ -103,7 +103,7 @@ Content modules each have their own output styles. These are all output by defau
 ```
 </ReferenceCard>
 
-<ReferenceCard ref="config" name="content-output-exceptions" type="list" defaults="()">
+<ReferenceCard name="content-output-exceptions" type="list" defaults="()">
   Modules listed in this configuration are exceptions to the value set in `content-output`. If `content-output` is `true`, modules listed will not be output. If `content-output` is `false`, modules listed will be output.
 
 ```scss
@@ -186,7 +186,7 @@ The entire output of the content component is placed in `@layer base`. This allo
 
 To customize the class selectors used by modules, map the module name to your preferred class selector in the `content-classes` config option.
 
-<ReferenceCard ref="config" name="content-classes" type="map" defaults='("separator": "sep")'>
+<ReferenceCard name="content-classes" type="map" defaults='("separator": "sep")'>
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.props` instead of `.content`, set the following value:
 
 ```scss
@@ -198,7 +198,7 @@ To customize the class selectors used by modules, map the module name to your pr
 
 Provide a prefix to all content classes using the `content-prefix` config option.
 
-<ReferenceCard ref="config" name="content-prefix" type="map" defaults='""'>
+<ReferenceCard name="content-prefix" type="map" defaults='""'>
   A prefix to apply to content class selectors. Provided value is automatically suffixed with a `"-"` character when applied.
 
 ```scss
@@ -209,7 +209,7 @@ Provide a prefix to all content classes using the `content-prefix` config option
 
 The content module only applies styles to its direct children using the `>` child combinator. This is to allow nesting of other components within a content block and avoid style conflicts. Module specific content selectors are controlled using the `content-selectors` variable map.
 
-<ReferenceCard ref="config" name="content-selectors" type="map">
+<ReferenceCard name="content-selectors" type="map">
   Map modules to content selectors. This configuration is used when a module runs the `content.selector()` function. The keys of the map should represent a content module name and it's value the selector to be used within the `.content` context.
 
 ```scss
@@ -281,7 +281,7 @@ Section headings in HTML are represented by the `<h1>` through `<h6>` elements. 
 
 Headings output and scale is controlled by the `content-headings` configuration option.
 
-<ReferenceCard ref="config" name="content-headings" type="map">
+<ReferenceCard name="content-headings" type="map">
   Used to output the heading styles and their font-size/line-height CSS variables. This map should contain a key of the heading level to output and the value of a font-size and optional line-height (space separated).
 
 ```scss

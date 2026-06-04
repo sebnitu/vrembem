@@ -6,13 +6,13 @@
   flex-direction: row;
   align-items: center;
 
-  #{core.bem("menu", "sep")} {
+  > #{core.bem("menu", "sep")} {
     width: tokens.get("menu", "sep-size", 1px);
     height: auto;
     margin: tokens.get("menu", "sep-gap", 0.5em);
   }
 
-  #{core.bem("menu", "action")} {
+  > #{core.bem("menu", "item")} > #{core.bem("menu", "action")} {
     justify-content: center;
     white-space: nowrap;
   }
@@ -24,13 +24,13 @@
       flex-direction: row;
       align-items: center;
 
-      #{core.bem("menu", "sep")} {
+      > #{core.bem("menu", "sep")} {
         width: tokens.get("menu", "sep-size", 1px);
         height: auto;
         margin: 0 tokens.get("menu", "sep-gap", 0.5em);
       }
 
-      #{core.bem("menu", "action")} {
+      > #{core.bem("menu", "item")} > #{core.bem("menu", "action")} {
         justify-content: center;
         white-space: nowrap;
       }

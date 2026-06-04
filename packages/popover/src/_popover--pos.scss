@@ -1,0 +1,161 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+$-offset: tokens.get("popover", "offset", 0.5rem);
+$-margin: tokens.get("popover", "margin", 1.5rem);
+
+// popover--pos-bottom
+
+#{core.bem("popover", null, "pos", "bottom")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
+
+  position-area: bottom;
+  position-try-fallbacks: flip-block;
+  margin: $-offset $-margin $-margin $-margin;
+}
+
+#{core.bem("popover", null, "pos", "bottom-start")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
+
+  top: anchor(bottom);
+  left: calc(anchor(left) - $-margin);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  margin: $-offset $-margin $-margin $-margin;
+}
+
+#{core.bem("popover", null, "pos", "bottom-end")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", calc(#{$-offset} * -1));
+
+  top: anchor(bottom);
+  right: calc(anchor(right) - $-margin);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  margin: $-offset $-margin $-margin $-margin;
+}
+
+// popover--pos-top
+
+#{core.bem("popover", null, "pos", "top")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", $-offset);
+
+  position-area: top;
+  position-try-fallbacks: flip-block;
+  margin: $-margin $-margin $-offset $-margin;
+}
+
+#{core.bem("popover", null, "pos", "top-start")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", $-offset);
+
+  bottom: anchor(top);
+  left: calc(anchor(left) - $-margin);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  margin: $-margin $-margin $-offset $-margin;
+}
+
+#{core.bem("popover", null, "pos", "top-end")} {
+  @include tokens.override("popover", "transform-x", 0);
+  @include tokens.override("popover", "transform-y", $-offset);
+
+  right: calc(anchor(right) - $-margin);
+  bottom: anchor(top);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  margin: $-margin $-margin $-offset $-margin;
+}
+
+// popover--pos-right
+
+#{core.bem("popover", null, "pos", "right")} {
+  @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
+  @include tokens.override("popover", "transform-y", 0);
+
+  position-area: right;
+  position-try-fallbacks: flip-inline;
+  margin: $-margin $-margin $-margin $-offset;
+}
+
+#{core.bem("popover", null, "pos", "right-start")} {
+  @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
+  @include tokens.override("popover", "transform-y", 0);
+
+  top: calc(anchor(top) - $-margin);
+  left: anchor(right);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-inline,
+    flip-block,
+    flip-inline flip-block;
+  margin: $-margin $-margin $-margin $-offset;
+}
+
+#{core.bem("popover", null, "pos", "right-end")} {
+  @include tokens.override("popover", "transform-x", calc(#{$-offset} * -1));
+  @include tokens.override("popover", "transform-y", 0);
+
+  bottom: calc(anchor(bottom) - $-margin);
+  left: anchor(right);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-inline,
+    flip-block,
+    flip-inline flip-block;
+  margin: $-margin $-margin $-margin $-offset;
+}
+
+// popover--pos-left
+
+#{core.bem("popover", null, "pos", "left")} {
+  @include tokens.override("popover", "transform-x", $-offset);
+  @include tokens.override("popover", "transform-y", 0);
+
+  position-area: left;
+  position-try-fallbacks: flip-inline;
+  margin: $-margin $-offset $-margin $-margin;
+}
+
+#{core.bem("popover", null, "pos", "left-start")} {
+  @include tokens.override("popover", "transform-x", $-offset);
+  @include tokens.override("popover", "transform-y", 0);
+
+  top: calc(anchor(top) - $-margin);
+  right: anchor(left);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-inline,
+    flip-block,
+    flip-inline flip-block;
+  margin: $-margin $-offset $-margin $-margin;
+}
+
+#{core.bem("popover", null, "pos", "left-end")} {
+  @include tokens.override("popover", "transform-x", $-offset);
+  @include tokens.override("popover", "transform-y", 0);
+
+  right: anchor(left);
+  bottom: calc(anchor(bottom) - $-margin);
+  position-area: unset;
+  position-try-fallbacks:
+    flip-inline,
+    flip-block,
+    flip-inline flip-block;
+  margin: $-margin $-offset $-margin $-margin;
+}

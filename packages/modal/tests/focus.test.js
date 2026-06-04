@@ -41,7 +41,7 @@ test("should focus modal dialog when opened and refocus trigger when closed", as
   const btnOpen = document.querySelector('[data-modal-open="modal-one"]');
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(dialog).toHaveFocus();
 });
 
@@ -53,11 +53,11 @@ test("should focus inner modal element and refocus trigger when closed", async (
   const btnClose = el.querySelector("[data-modal-close]");
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(btnClose).toHaveFocus();
 
   btnClose.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(btnOpen).toHaveFocus();
 });
 
@@ -70,10 +70,10 @@ test("should remember initial trigger when opening modal through another modal",
   const btnTwo = elOne.querySelector('[data-modal-open="modal-two"]');
 
   btnOpen.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   btnTwo.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(elOne).toHaveClass("is-opened");
   expect(elTwo).toHaveClass("is-opened");
@@ -89,7 +89,7 @@ test("should retain focus on modal if nothing inner is focusable", async () => {
   const elModal = document.querySelector("#modal-empty");
   const dialog = elModal.querySelector(".modal__dialog");
   modals.open("modal-empty");
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
   expect(elModal).toHaveClass("is-opened");
   expect(dialog).toHaveFocus();
   userEvent.tab();

@@ -942,11 +942,27 @@ await entry.replace();
 
 In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hooks), Modal provides three of its own events to hook into its lifecycle:
 
+<ReferenceCard name="opening" type="event">
+  Emitted when a modal is starting it's opening transition.
+
+  ```js
+  modals.on("opening", callback(entry));
+  ```
+</ReferenceCard>
+
 <ReferenceCard name="opened" type="event">
   Emitted when a modal is opened.
 
   ```js
-  modals.on("opened", callback({ parent, entry }));
+  modals.on("opened", callback(entry));
+  ```
+</ReferenceCard>
+
+<ReferenceCard name="closing" type="event">
+  Emitted when a modal is starting it's closing transition.
+
+  ```js
+  modals.on("closing", callback(entry));
   ```
 </ReferenceCard>
 
@@ -954,7 +970,7 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
   Emitted when a modal is closed.
 
   ```js
-  modals.on("closed", callback({ parent, entry }));
+  modals.on("closed", callback(entry));
   ```
 </ReferenceCard>
 
@@ -962,6 +978,6 @@ In addition to the inherited [lifecycle hooks](./core/collections#lifecycle-hook
   Emitted when the modals stack order changes. This happens when a modal is opened, closed or moved to the top of the stack array.
 
   ```js
-  modals.on("stackChange", callback({ parent }));
+  modals.on("stackChange", callback());
   ```
 </ReferenceCard>

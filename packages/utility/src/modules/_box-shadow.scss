@@ -7,7 +7,7 @@
   }
 
   #{fun.selector("box-shadow", "outline")} {
-    box-shadow: fun.maybe-important(tokens.get("box-shadow-0"));
+    box-shadow: fun.maybe-important(tokens.get("box-shadow-outline"));
   }
 
   #{fun.selector("box-shadow", "xs")} {
@@ -28,5 +28,31 @@
 
   #{fun.selector("box-shadow", "xl")} {
     box-shadow: fun.maybe-important(tokens.get("box-shadow-xl"));
+  }
+}
+
+@if fun.maybe-output("drop-shadow") {
+  #{fun.selector("drop-shadow", "outline")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-outline"));
+  }
+
+  #{fun.selector("drop-shadow", "xs")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-xs"));
+  }
+
+  #{fun.selector("drop-shadow", "sm")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-sm"));
+  }
+
+  #{fun.selector("drop-shadow", "md")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-md"));
+  }
+
+  #{fun.selector("drop-shadow", "lg")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-lg"));
+  }
+
+  #{fun.selector("drop-shadow", "xl")} {
+    filter: fun.maybe-important(tokens.get("drop-shadow-xl"));
   }
 }

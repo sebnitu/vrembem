@@ -1,38 +1,18 @@
 ---
-import Popover from '@/components/Popover.astro';
-import Icon from '@/components/Icon.astro';
-
 interface Props {
   name: string;
   type: string;
   returns?: string;
   defaults?: string;
   fallback?: string;
-  ref?: string;
 }
 
-const { name, type, returns, defaults, fallback, ref } = Astro.props;
+const { name, type, returns, defaults, fallback } = Astro.props;
 
 ---
 
 <div class="card card--reference">
   <div class="card__header">
-    {
-      ref && (
-        <Popover 
-          href={`/packages/core/${ref}`} 
-          triggerClass="button button--icon"
-          placement="right"
-        >
-          <Fragment slot="trigger">
-            <Icon name="box" />
-          </Fragment>
-          <Fragment slot="tooltip">
-            Stored in core/{ref} module
-          </Fragment>
-        </Popover>
-      )
-    }
     <code class="card__title">{name}</code>
     <span class="card__type"><code>{type}</code></span>
   </div>

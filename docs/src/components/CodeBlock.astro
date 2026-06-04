@@ -1,6 +1,5 @@
 ---
 import Icon from "@/components/Icon.astro";
-import Popover from "@/components/Popover.astro";
 import type feather from "feather-icons";
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const { inline, nopre, icon } = Astro.props;
-
+const uid = `${Math.floor(Math.random() * Date.now())}`;
 const classes = ["code-block"];
 if (inline) classes.push("code-block--inline");
 if (icon) classes.push("has-icon");
@@ -35,26 +34,28 @@ if (icon) classes.push("has-icon");
       <pre tabindex="0" class="pre"><slot /></pre>
     )
   }
-  <Popover
-    followCursor={true}
-    triggerClass="code-block__copy-button"
-    popoverClass="popover--copy"
+  <button
+    type="button"
+    popovertarget={`popover-${uid}`}
+    class="code-block__copy-button"
     aria-label="Copy code example to clipboard"
   >
-    <Fragment slot="trigger">
-      <Icon name="copy" classes="icon--size-sm" />
-      <Icon
-        name="check"
-        classes="icon--size-sm foreground-primary display-none"
-      />
-    </Fragment>
+    <Icon name="copy" classes="icon--size-sm" />
+    <Icon
+      name="check"
+      classes="icon--size-sm foreground-primary display-none"
+    />
+  </button>
+  <div
+    id={`popover-${uid}`}
+    class="popover popover--tooltip popover--arrow-bottom"
+    popover="hint"
+  >
     Copied!
-  </Popover>
+  </div>
 </div>
 
 <script>
-  import { popovers } from "../modules/usePopover";
-
   const btns = document.querySelectorAll(".code-block__copy-button");
   btns.forEach((btn: HTMLButtonElement) => {
     btn.addEventListener("click", () => {
@@ -63,6 +64,9 @@ if (icon) classes.push("has-icon");
         .querySelector("pre code") as HTMLElement;
       const text = code.innerText;
       const icons = btn.querySelectorAll(".icon");
+      const popover = document.getElementById(
+        btn.getAttribute("popovertarget")
+      );
       navigator.clipboard
         .writeText(text)
         .then(() => {
@@ -73,7 +77,7 @@ if (icon) classes.push("has-icon");
             btn.disabled = false;
             btn.classList.remove("is-copied");
             icons.forEach((icon) => icon.classList.toggle("display-none"));
-            popovers.close(btn.getAttribute("data-popover-trigger"));
+            popover?.hidePopover();
           }, 2000);
         })
         .catch((error) => {

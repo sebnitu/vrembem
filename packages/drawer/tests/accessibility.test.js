@@ -41,7 +41,7 @@ test("should set accessibility attributes to modal drawer dialog", async () => {
 
 test("should properly hide content when modal drawer is opened", async () => {
   btn.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(main.inert).toBe(true);
   expect(main).toHaveStyle({ overflow: "hidden" });
@@ -49,7 +49,7 @@ test("should properly hide content when modal drawer is opened", async () => {
 
 test("should properly show content when modal drawer is closed", async () => {
   btn.click();
-  await vi.runAllTimers();
+  await vi.runAllTimersAsync();
 
   expect(main.inert).toBe(false);
   expect(main).not.toHaveStyle({ overflow: "hidden" });

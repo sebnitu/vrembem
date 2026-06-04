@@ -5,6 +5,10 @@
     width: fun.maybe-important(auto);
   }
 
+  #{fun.selector("width", "fit-content")} {
+    width: fun.maybe-important(fit-content);
+  }
+
   #{fun.selector("width", "100")} {
     width: fun.maybe-important(100%);
   }

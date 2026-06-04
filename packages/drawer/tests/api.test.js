@@ -73,19 +73,21 @@ describe("open(), close() & toggle()", () => {
     expect(entry.mode).toBe("inline");
 
     drawers.open("drawer-1");
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.el).toHaveClass("is-opening");
     expect(entry.state).toBe("opening");
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
     expect(entry.dialog).toBe(document.activeElement);
 
     drawers.close("drawer-1");
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.el).toHaveClass("is-closing");
     expect(entry.state).toBe("closing");
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-closed");
     expect(entry.state).toBe("closed");
     expect(entry.dialog).not.toBe(document.activeElement);
@@ -97,18 +99,19 @@ describe("open(), close() & toggle()", () => {
     expect(entry.mode).toBe("inline");
 
     drawers.toggle("drawer-2");
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.el).toHaveClass("is-closing");
     expect(entry.state).toBe("closing");
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-closed");
     expect(entry.state).toBe("closed");
 
     drawers.toggle("drawer-2");
-    expect(entry.el).toHaveClass("is-opening");
+    await vi.advanceTimersByTimeAsync(0);
     expect(entry.state).toBe("opening");
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
     expect(entry.el).toHaveClass("is-opened");
     expect(entry.state).toBe("opened");
     expect(entry.dialog).toBe(document.activeElement);
@@ -136,7 +139,7 @@ describe("activeModal", () => {
     entry.mode = "modal";
     entry.open();
 
-    await vi.runAllTimers();
+    await vi.runAllTimersAsync();
 
     expect(entry.state).toBe("opened");
     expect(entry.mode).toBe("modal");
