@@ -8,37 +8,37 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import { ModalCollection } from "./index.ts";
-    import { focusTrap, propStore, teleport } from "@vrembem/core";
+    // import { ModalCollection } from "./index.ts";
+    // import { focusTrap, propStore, teleport } from "@vrembem/core";
 
-    const modals = new ModalCollection({
-      selectorInert: "main",
-      plugins: [
-        focusTrap(),
-        propStore({
-          // Disable automatic prop watch and local storage
-          prop: false,
-          // Use plugin.store to manually prop watch and local storage
-          async afterMount({ plugin, parent }) {
-            // Open all the modals stored in stackOrder
-            for (const entry of plugin.store.get("stackOrder", [])) {
-              await parent.open(entry, false);
-            }
-            // Add listener for when the stack changes
-            parent.on("stackChange", () => {
-              // Store the current stack value in stackOrder
-              const stackOrder = parent.stack.get("*").map((item) => item.id);
-              plugin.store.set("stackOrder", stackOrder);
-            });
-          }
-        }),
-        teleport({
-          where: ".modals"
-        })
-      ]
-    });
+    // const modals = new ModalCollection({
+    //   selectorInert: "main",
+    //   plugins: [
+    //     focusTrap(),
+    //     propStore({
+    //       // Disable automatic prop watch and local storage
+    //       prop: false,
+    //       // Use plugin.store to manually prop watch and local storage
+    //       async afterMount({ plugin, parent }) {
+    //         // Open all the modals stored in stackOrder
+    //         for (const entry of plugin.store.get("stackOrder", [])) {
+    //           await parent.open(entry, false);
+    //         }
+    //         // Add listener for when the stack changes
+    //         parent.on("stackChange", () => {
+    //           // Store the current stack value in stackOrder
+    //           const stackOrder = parent.stack.get("*").map((item) => item.id);
+    //           plugin.store.set("stackOrder", stackOrder);
+    //         });
+    //       }
+    //     }),
+    //     teleport({
+    //       where: ".modals"
+    //     })
+    //   ]
+    // });
 
-    window["modals"] = await modals.mount();
+    // window["modals"] = await modals.mount();
   </script>
 </head>
 <body>
@@ -68,6 +68,7 @@
         <h2 id="modal"><a href="#modal">modal</a></h2>
 
         <ul class="list">
+          <li><button class="link" command="show-modal" commandfor="native-dialog">native dialog</button></li>
           <li><button class="link" data-modal-open="modal-default">default</button></li>
           <li><button class="link" data-modal-open="modal-focus-lock">focus lock</button></li>
           <li><button class="link" data-modal-open="modal-dialog">dialog</button></li>
@@ -76,9 +77,21 @@
           <li><button class="link" data-modal-open="modal-required">required</button></li>
         </ul>
 
+        <div>
+          <dialog id="native-dialog" class="modal panel" closedby="any">
+            <header class="panel__header">
+              <h1 class="flex-grow">Native Dialog</h1>
+              <button class="link" commandfor="native-dialog" command="close">Close</button>
+            </header>
+            <div class="panel__body">
+              <p>This is the body of a native modal dialog. It's using the modal class along with panel component for styling.</p>
+            </div>
+          </dialog>
+        </div>
+
         <div id="modal-default" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
+          <div class="modal__dialog panel" role="dialog" aria-modal="true">
+            <div class="panel__body flex justify-content-between">
               <p>This is a basic modal</p>
               <button data-modal-close class="link">Close</button>
             </div>

@@ -2,80 +2,54 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
-#{core.bem("modal")} {
-  position: fixed;
-  z-index: tokens.get("modal", "z-index", 1000);
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 0;
-  height: 0;
-  visibility: hidden;
-
-  &::before {
-    @include core.backdrop("modal");
-  }
+// This blocks scrolling on the body element while a modal dialog is open
+body:has(dialog#{core.bem("modal")}:modal) {
+  overflow: hidden;
 }
 
-#{core.bem("modal", "dialog")},
-#{core.bem("modal")} > #{core.bem("panel")} {
-  @include core.focus-ring-base;
+// This component requires the native <dialog> element
+dialog#{core.bem("modal")} {
   @include tokens.override("panel", config.get("modal-panel-override"));
 
-  position: relative;
-  transform: translateY(calc(tokens.get("modal", "travel", 5em) * -1));
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
+  position: fixed;
+  inset: 0;
   width: tokens.get("modal", "width", config.get("modal-size", "default"));
-  max-width: tokens.get("modal", "max-width", 100%);
-  opacity: 0;
+  max-width: tokens.get("modal", "max-width", calc(100% - 2rem));
+  margin: auto;
+  transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("modal", "transition-property", (opacity, display, transform, overlay));
+  transition-behavior: allow-discrete;
 
-  &:focus-visible {
-    @include core.focus-ring-color(tokens.get("focus-ring-color"), 100%);
-  }
-
-  &[role="alertdialog"] {
-    @include core.focus-ring-color(tokens.get("palette", "important"), 100%);
-  }
-}
-
-#{core.bem("modal", "container")} {
-  @include core.scroll-flex;
-}
-
-#{core.bem("modal")}.is-opening,
-#{core.bem("modal")}.is-opened,
-#{core.bem("modal")}.is-closing {
-  width: 100%;
-  height: 100%;
-  padding: tokens.get("modal", "margin", 1em);
-  visibility: visible;
-}
-
-#{core.bem("modal")}.is-opening,
-#{core.bem("modal")}.is-closing {
-  &::before {
-    transition: opacity tokens.get("modal", "transition-duration", tokens.get("transition-duration")) tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
-  }
-
-  #{core.bem("modal", "dialog")} {
+  &::backdrop {
+    opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
+    background-color: tokens.get("modal", "backdrop-color", tokens.get("backdrop-color"));
     transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
     transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
-    transition-property: opacity, transform;
-  }
-}
-
-#{core.bem("modal")}.is-opening,
-#{core.bem("modal")}.is-opened {
-  &::before {
-    opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
+    transition-property: tokens.get("modal", "transition-property", (opacity, display, overlay));
+    transition-behavior: allow-discrete;
   }
 
-  #{core.bem("modal", "dialog")} {
-    transform: translateY(0);
-    opacity: 1;
+  &:open {
+    display: flex;
+  }
+
+  &:not(:open) {
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5em) * -1)));
+    display: none;
+    opacity: 0;
+
+    &::backdrop {
+      opacity: 0;
+    }
+  }
+
+  @starting-style {
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5em) * -1)));
+    opacity: 0;
+
+    &::backdrop {
+      opacity: 0;
+    }
   }
 }
