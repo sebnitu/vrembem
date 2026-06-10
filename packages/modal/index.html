@@ -8,37 +8,6 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    // import { ModalCollection } from "./index.ts";
-    // import { focusTrap, propStore, teleport } from "@vrembem/core";
-
-    // const modals = new ModalCollection({
-    //   selectorInert: "main",
-    //   plugins: [
-    //     focusTrap(),
-    //     propStore({
-    //       // Disable automatic prop watch and local storage
-    //       prop: false,
-    //       // Use plugin.store to manually prop watch and local storage
-    //       async afterMount({ plugin, parent }) {
-    //         // Open all the modals stored in stackOrder
-    //         for (const entry of plugin.store.get("stackOrder", [])) {
-    //           await parent.open(entry, false);
-    //         }
-    //         // Add listener for when the stack changes
-    //         parent.on("stackChange", () => {
-    //           // Store the current stack value in stackOrder
-    //           const stackOrder = parent.stack.get("*").map((item) => item.id);
-    //           plugin.store.set("stackOrder", stackOrder);
-    //         });
-    //       }
-    //     }),
-    //     teleport({
-    //       where: ".modals"
-    //     })
-    //   ]
-    // });
-
-    // window["modals"] = await modals.mount();
   </script>
 </head>
 <body>
@@ -68,117 +37,77 @@
         <h2 id="modal"><a href="#modal">modal</a></h2>
 
         <ul class="list">
-          <li><button class="link" command="show-modal" commandfor="native-dialog">native dialog</button></li>
-          <li><button class="link" data-modal-open="modal-default">default</button></li>
-          <li><button class="link" data-modal-open="modal-focus-lock">focus lock</button></li>
-          <li><button class="link" data-modal-open="modal-dialog">dialog</button></li>
-          <li><button class="link" data-modal-open="modal-focus-dialog">focus dialog</button></li>
-          <li><button class="link" data-modal-open="modal-focus-inner">focus element</button></li>
-          <li><button class="link" data-modal-open="modal-required">required</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-default">default</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-panel">panel</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-focus">focus</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-required">required</button></li>
         </ul>
 
-        <div>
-          <dialog id="native-dialog" class="modal panel" closedby="any">
-            <header class="panel__header">
-              <h1 class="flex-grow">Native Dialog</h1>
-              <button class="link" commandfor="native-dialog" command="close">Close</button>
-            </header>
-            <div class="panel__body">
-              <p>This is the body of a native modal dialog. It's using the modal class along with panel component for styling.</p>
-            </div>
-          </dialog>
-        </div>
-
-        <div id="modal-default" class="modal">
-          <div class="modal__dialog panel" role="dialog" aria-modal="true">
+        <div class="modals">
+          <dialog id="modal-default" class="modal panel" closedby="any">
             <div class="panel__body flex justify-content-between">
               <p>This is a basic modal</p>
-              <button data-modal-close class="link">Close</button>
+              <button class="link" commandfor="modal-default" command="close">Close</button>
             </div>
-          </div>
-        </div>
+          </dialog>
 
-        <div id="modal-focus-lock" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
-              <p>This is a basic modal with nothing focusable inside.</p>
+          <dialog id="modal-panel" class="modal panel" closedby="any">
+            <header class="panel__header">
+              <h1 class="panel__title">Modal Dialog</h1>
+              <button class="link" commandfor="modal-panel" command="close">Close</button>
+            </header>
+            <div class="panel__body">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
             </div>
-          </div>
-        </div>
-
-        <div id="modal-dialog" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
-            <div class="dialog__header">
-              <h2 id="modal-dialog-title" class="dialog__title">Modal Dialog</h2>
-              <button class="link" data-modal-close>Close</button>
-            </div>
-            <div class="dialog__body">
-              <p id="modal-dialog-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta diam eget lectus interdum, eu aliquet augue rutrum. Morbi faucibus mauris lectus, in imperdiet augue cursus vel.</p>
-            </div>
-            <div class="dialog__footer justify-content-end">
+            <footer class="panel__footer">
               <div class="button-group">
-                <button data-modal-close class="button button--color-primary">
+                <button commandfor="modal-panel" command="close" class="button button--color-primary">
                   Some action
                 </button>
-                <button data-modal-close class="button">
+                <button commandfor="modal-panel" command="close" class="button">
                   Close
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
+            </footer>
+          </dialog>
 
-        <div id="modal-focus-dialog" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
-              <p>Focus modal dialog on open</p>
-              <button data-modal-close class="link">Close</button>
-            </div>
-          </div>
-        </div>
-        
-        <div id="modal-focus-inner" class="modal">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
+          <dialog id="modal-focus" class="modal panel" closedby="any">
+            <div class="panel__body">
               <div class="flex justify-content-between margin-bottom">
                 <p>Focus input element on open</p>
-                <button data-modal-close class="link">Close</button>
+                <button commandfor="modal-focus" command="close" class="link">Close</button>
               </div>
-              <input data-focus type="text" class="input" placeholder="Text input...">
+              <input autofocus type="text" class="input" placeholder="Text input...">
             </div>
-          </div>
-        </div>
+          </dialog>
 
-        <div id="modal-required" class="modal">
-          <div class="modal__dialog dialog" role="alertdialog" aria-modal="true">
-            <div class="dialog__body spacing">
-              <h2 class="dialog__title">Required modal</h2>
-              <p>Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
-              <div class="flex justify-content-end">
-                <div class="button-group">
-                  <button data-modal-close class="button button--color-primary">I understand</button>
-                  <button data-modal-close class="button button--color-secondary">Cancel</button>
-                </div>
+          <dialog id="modal-required" class="modal panel" role="alertdialog" closedby="none" aria-labelledby="modal-required-title" aria-describedby="modal-required-desc">
+            <div class="panel__body spacing">
+              <h2 id="modal-required-title" class="panel__title">Required modal</h2>
+              <p id="modal-required-desc">Required modals can not be closed without an explicit action. That means clicking on the background or pressing the escape key to close is disabled.</p>
+              <div class="flex">
+                <button commandfor="modal-required" command="close" class="button button--color-primary">Accept</button>
+                <button commandfor="modal-required" command="close" class="button button--color-secondary">Decline</button>
               </div>
             </div>
-          </div>
+          </dialog>
         </div>
 
         <h2 id="modal--full"><a href="#modal--full">modal--full</a></h2>
         
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-full">modal--full</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-full">modal--full</button></li>
         </ul>
         
-        <div id="modal-full" class="modal modal--full">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
+        <div class="modals">
+          <dialog id="modal-full" class="modal modal--full panel" closedby="any">
+            <div class="panel__body">
               <div class="flex justify-content-between">
                 <p>modal--full</p>
-                <button data-modal-close data-modal-focus class="link">Close</button>
+                <button commandfor="modal-full" command="close" class="link">Close</button>
               </div>
             </div>
-          </div>
+          </dialog>
         </div>
 
         <h2 id="modal--pos-value"><a href="#modal--pos-value">modal--pos-[value]</a></h2>
