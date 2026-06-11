@@ -113,64 +113,60 @@
         <h2 id="modal--pos-value"><a href="#modal--pos-value">modal--pos-[value]</a></h2>
 
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-pos-top">modal--pos-top</button></li>
-          <li><button class="link" data-modal-open="modal-pos-bottom">modal--pos-bottom</button></li>
-          <li><button class="link" data-modal-open="modal-pos-left">modal--pos-left</button></li>
-          <li><button class="link" data-modal-open="modal-pos-right">modal--pos-right</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-pos-top">modal--pos-top</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-pos-bottom">modal--pos-bottom</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-pos-left">modal--pos-left</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-pos-right">modal--pos-right</button></li>
         </ul>
         
-        <div id="modal-pos-top" class="modal modal--pos-top">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
+        <div class="modals">
+          <dialog id="modal-pos-top" class="modal modal--pos-top panel" closedby="any">
+            <div class="panel__body">
               <div class="flex justify-content-between">
                 <p>modal--pos-top</p>
-                <button data-modal-close class="link">Close</button>
+                <button command="close" commandfor="modal-pos-top" class="link">Close</button>
               </div>
             </div>
-            <div class="dialog__footer justify-content-between">
-              <button class="link" data-modal-open="modal-pos-left">
+            <div class="panel__footer justify-content-between">
+              <button class="link" command="show-modal" commandfor="modal-pos-left">
                 modal--pos-left
               </button>
-              <button class="link" data-modal-open="modal-pos-bottom">
+              <button class="link" command="show-modal" commandfor="modal-pos-bottom">
                 modal--pos-bottom
               </button>
-              <button class="link" data-modal-open="modal-pos-right">
+              <button class="link" command="show-modal" commandfor="modal-pos-right">
                 modal--pos-right
               </button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-pos-bottom" class="modal modal--pos-bottom">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body">
+          </dialog>
+          
+          <dialog id="modal-pos-bottom" class="modal modal--pos-bottom panel" closedby="any">
+            <div class="panel__body">
               <div class="flex justify-content-between">
                 <p>modal--pos-bottom</p>
-                <button data-modal-close class="link">Close</button>
+                <button command="close" commandfor="modal-pos-bottom" class="link">Close</button>
               </div>
             </div>
-            <div class="dialog__footer justify-content-between">
-              <button class="link" data-modal-open="modal-pos-left">
+            <div class="panel__footer justify-content-between">
+              <button class="link" command="show-modal" commandfor="modal-pos-left">
                 modal--pos-left
               </button>
-              <button class="link" data-modal-open="modal-pos-top">
+              <button class="link" command="show-modal" commandfor="modal-pos-top">
                 modal--pos-top
               </button>
-              <button class="link" data-modal-open="modal-pos-right">
+              <button class="link" command="show-modal" commandfor="modal-pos-right">
                 modal--pos-right
               </button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-pos-left" class="modal modal--pos-left">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__container">
-              <div class="dialog__header">
+          </dialog>
+          
+          <dialog id="modal-pos-left" class="modal modal--pos-left panel" closedby="any">
+            <div class="panel__container">
+              <div class="panel__header">
                 <p class="flex-grow">modal--pos-left</p>
-                <button data-modal-close class="link">Close</button>
+                <button command="close" commandfor="modal-pos-left" class="link">Close</button>
               </div>
-              <div class="dialog__body">
+              <div class="panel__body">
                 <ul class="list">
                   <li>First</li>
                   <li>...</li>
@@ -179,50 +175,56 @@
                   <li>Last</li>
                 </ul>
               </div>
-              <div class="dialog__footer">
-                <button class="link" data-modal-open="modal-pos-top">
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-top">
                   modal--pos-top
                 </button>
               </div>
-              <div class="dialog__footer">
-                <button class="link" data-modal-open="modal-pos-right">
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-right">
                   modal--pos-right
                 </button>
               </div>
-              <div class="dialog__footer">
-                <button class="link" data-modal-open="modal-pos-bottom">
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-bottom">
                   modal--pos-bottom
                 </button>
               </div>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-pos-right" class="modal modal--pos-right">
-          <div class="modal__dialog background-white border-radius" role="dialog" aria-modal="true">
-            <div class="modal__container padding spacing">
-              <div class="flex justify-content-between">
+          </dialog>
+          
+          <dialog id="modal-pos-right" class="modal modal--pos-right panel" closedby="any">
+            <div class="panel__container">
+              <div class="panel__header">
                 <p class="flex-grow">modal--pos-right</p>
-                <button data-modal-close class="link">Close</button>
+                <button command="close" commandfor="modal-pos-right" class="link">Close</button>
               </div>
-              <ul class="list">
-                <li>First</li>
-                <li>...</li>
-                <li>...</li>
-                <li>...</li>
-                <li>Last</li>
-              </ul>
-              <button class="link" data-modal-open="modal-pos-top">
-                modal--pos-top
-              </button>
-              <button class="link" data-modal-open="modal-pos-left">
-                modal--pos-left
-              </button>
-              <button class="link" data-modal-open="modal-pos-bottom">
-                modal--pos-bottom
-              </button>
+              <div class="panel__body">
+                <ul class="list">
+                  <li>First</li>
+                  <li>...</li>
+                  <li>...</li>
+                  <li>...</li>
+                  <li>Last</li>
+                </ul>
+              </div>
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-top">
+                  modal--pos-top
+                </button>
+              </div>
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-left">
+                  modal--pos-left
+                </button>
+              </div>
+              <div class="panel__footer">
+                <button class="link" command="show-modal" commandfor="modal-pos-bottom">
+                  modal--pos-bottom
+                </button>
+              </div>
             </div>
-          </div>
+          </dialog>
         </div>
 
         <h2 id="modal--size-value"><a href="#modal--size-value">modal--size-[value]</a></h2>

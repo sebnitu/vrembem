@@ -1,42 +1,35 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-#{core.bem("modal", null, "pos", "top")} {
-  justify-content: flex-start;
+dialog#{core.bem("modal", null, "pos", "top")} {
+  margin-top: tokens.get("modal", "offset", 1rem);
 }
 
-#{core.bem("modal", null, "pos", "bottom")} {
-  justify-content: flex-end;
+dialog#{core.bem("modal", null, "pos", "bottom")} {
+  @include tokens.override("modal", "transform-y", tokens.get("modal", "travel", 5em));
 
-  #{core.bem("modal", "dialog")} {
-    transform: translateY(tokens.get("modal", "travel", 5em));
-  }
+  margin-bottom: tokens.get("modal", "offset", 1rem);
 }
 
-#{core.bem("modal", null, "pos", "left")},
-#{core.bem("modal", null, "pos", "right")} {
-  #{core.bem("modal", "dialog")} {
-    @include tokens.override("modal", "width", 16em);
-    @include tokens.override("modal", "max-width", 90%);
+dialog#{core.bem("modal", null, "pos", "left")},
+dialog#{core.bem("modal", null, "pos", "right")} {
+  @include tokens.override("modal", "width", 16em);
+  @include tokens.override("modal", "max-width", 90%);
 
-    height: 100%;
-  }
+  height: 100%;
+  max-height: calc(100% - (tokens.get("modal", "offset", 1rem) * 2));
 }
 
-#{core.bem("modal", null, "pos", "left")} {
-  align-items: flex-start;
+dialog#{core.bem("modal", null, "pos", "left")} {
+  @include tokens.override("modal", "transform-y", 0);
+  @include tokens.override("modal", "transform-x", -100%);
 
-  #{core.bem("modal", "dialog")} {
-    left: 0;
-    transform: translateX(-100%);
-  }
+  margin-left: tokens.get("modal", "offset", 1rem);
 }
 
-#{core.bem("modal", null, "pos", "right")} {
-  align-items: flex-end;
+dialog#{core.bem("modal", null, "pos", "right")} {
+  @include tokens.override("modal", "transform-y", 0);
+  @include tokens.override("modal", "transform-x", 100%);
 
-  #{core.bem("modal", "dialog")} {
-    right: 0;
-    transform: translateX(100%);
-  }
+  margin-right: tokens.get("modal", "offset", 1rem);
 }

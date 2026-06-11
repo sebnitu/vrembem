@@ -14,7 +14,7 @@ dialog#{core.bem("modal")} {
   position: fixed;
   inset: 0;
   width: tokens.get("modal", "width", config.get("modal-size", "default"));
-  max-width: tokens.get("modal", "max-width", calc(100% - 2rem));
+  max-width: tokens.get("modal", "max-width", calc(100% - (tokens.get("modal", "offset", 1rem) * 2)));
   margin: auto;
   transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
