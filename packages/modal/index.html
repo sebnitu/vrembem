@@ -230,63 +230,53 @@
         <h2 id="modal--size-value"><a href="#modal--size-value">modal--size-[value]</a></h2>
 
         <ul class="list">
-          <li><button class="link" data-modal-open="modal-size-xs">modal--size-xs</button></li>
-          <li><button class="link" data-modal-open="modal-size-sm">modal--size-sm</button></li>
-          <li><button class="link" data-modal-open="modal-size-md">modal--size-md</button></li>
-          <li><button class="link" data-modal-open="modal-size-lg">modal--size-lg</button></li>
-          <li><button class="link" data-modal-open="modal-size-xl">modal--size-xl</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-size-xs">modal--size-xs</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-size-sm">modal--size-sm</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-size-md">default</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-size-lg">modal--size-lg</button></li>
+          <li><button class="link" command="show-modal" commandfor="modal-size-xl">modal--size-xl</button></li>
         </ul>
         
-        <div id="modal-size-xs" class="modal modal--size-xs">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
+        <div class="modals">
+          <dialog id="modal-size-xs" class="modal modal--size-xs panel" closedby="any">
+            <div class="panel__body flex justify-content-between">
               <p>modal--size-xs</p>
-              <button data-modal-close class="link">Close</button>
+              <button command="close" commandfor="modal-size-xs" class="link">Close</button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-size-sm" class="modal modal--size-sm">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
+          </dialog>
+          
+          <dialog id="modal-size-sm" class="modal modal--size-sm panel" closedby="any">
+            <div class="panel__body flex justify-content-between">
               <p>modal--size-sm</p>
-              <button data-modal-close class="link">Close</button>
+              <button command="close" commandfor="modal-size-sm" class="link">Close</button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-size-md" class="modal modal--size-md">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
-              <p>modal--size-md</p>
-              <button data-modal-close class="link">Close</button>
+          </dialog>
+          
+          <dialog id="modal-size-md" class="modal panel" closedby="any">
+            <div class="panel__body flex justify-content-between">
+              <p>Default size</p>
+              <button command="close" commandfor="modal-size-md" class="link">Close</button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-size-lg" class="modal modal--size-lg">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
+          </dialog>
+          
+          <dialog id="modal-size-lg" class="modal modal--size-lg panel" closedby="any">
+            <div class="panel__body flex justify-content-between">
               <p>modal--size-lg</p>
-              <button data-modal-close class="link">Close</button>
+              <button command="close" commandfor="modal-size-lg" class="link">Close</button>
             </div>
-          </div>
-        </div>
-        
-        <div id="modal-size-xl" class="modal modal--size-xl">
-          <div class="modal__dialog dialog" role="dialog" aria-modal="true">
-            <div class="dialog__body flex justify-content-between">
+          </dialog>
+          
+          <dialog id="modal-size-xl" class="modal modal--size-xl panel" closedby="any">
+            <div class="panel__body flex justify-content-between">
               <p>modal--size-xl</p>
-              <button data-modal-close class="link">Close</button>
+              <button command="close" commandfor="modal-size-xl" class="link">Close</button>
             </div>
-          </div>
+          </dialog>
         </div>
 
       </div>
     </section>
   </main>
-
-  <div class="modals"></div>
 
 </body>
 </html>
