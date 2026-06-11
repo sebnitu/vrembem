@@ -141,40 +141,6 @@ Lastly, we need some input markup with our selector to finish up the example. Ea
 
 ## Use cases
 
-There are two common use cases for `propStore` in Modal and Drawer components. For Modals, sometimes we may want to persist modal state. Here is an example to accomplish this while also maintaining stacking modal support:
-
-<CodeExample lang="js">
-```js
-import { ModalCollection } from "@vrembem/modal";
-import { propStore } from "@vrembem/core";
-
-const modals = new ModalCollection({
-  selectorInert: "main",
-  plugins: [
-    propStore({
-      // Disable automatic prop watch and local storage
-      prop: false,
-      // Use plugin.store to manually prop watch and local storage
-      async afterMount({ plugin, parent, entry }) {
-        // Open all the modals stored in stackOrder
-        for (const entry of plugin.store.get("stackOrder", [])) {
-          await parent.open(entry, false);
-        }
-        // Add listener for when the stack changes
-        parent.on("stackChange", () => {
-          // Store the current stack value in stackOrder
-          const stackOrder = parent.stack.get("*").map((item) => item.id);
-          plugin.store.set("stackOrder", stackOrder);
-        });
-      }
-    })
-  ]
-});
-
-await modals.mount();
-```
-</CodeExample>
-
 For Drawers, it is common to persist the state of inline drawers. Drawers come with a preset for this feature so all that's needed is to include the `propStore` plugin.
 
 <CodeExample lang="js">

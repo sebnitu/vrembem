@@ -5,19 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vrembem - Modal starter template</title>
     <link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
-    <script type="module">
-      import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
-      
-      const modals = new ModalCollection({
-        plugins: [focusTrap()]
-      });
-
-      await modals.mount();
-    </script>
   </head>
   <body>
 
-    <!-- Main content -->
     <main class="section" style="min-height: 100vh;">
       <div class="section__container content spacing text-align-center">
         <h1>Hello World</h1>
@@ -27,31 +17,28 @@
           <span>/</span>
           <a class="link" href="https://github.com/sebnitu/vrembem">GitHub</a>
         </div>
-        <button class="button margin-top-lg" data-modal-open="modal-example" type="button">Open modal</button>
+        <button class="button margin-top-lg" command="show-modal" commandfor="modal-example" type="button">Open modal</button>
       </div>
     </main>
 
-    <!-- Modal -->
-    <div id="modal-example" class="modal">
-      <div class="modal__dialog panel" role="dialog">
-        <div class="panel__container">
-          <div class="panel__header">
-            <h2 class="panel__title">Modal Title</h2>
-            <button class="link" data-modal-close type="button">Close</button>
-          </div>
-          <div class="panel__body spacing">
-            <p>This is an example implementation of a modal component.</p>
-            <h3>Plugins</h3>
-            <ul class="list">
-              <li>focusTrap</li>
-            </ul>
-          </div>
-          <div class="panel__footer">
-            Modal footer goes here...
-          </div>
+    <dialog id="modal-example" class="modal" closedby="any">
+      <div class="panel__container">
+        <div class="panel__header">
+          <h2 class="panel__title">Modal Title</h2>
+          <button class="link" command="close" commandfor="modal-example" type="button">Close</button>
+        </div>
+        <div class="panel__body spacing">
+          <p>This is an example implementation of a modal component.</p>
+          <h3>Plugins</h3>
+          <ul class="list">
+            <li>focusTrap</li>
+          </ul>
+        </div>
+        <div class="panel__footer">
+          Modal footer goes here...
         </div>
       </div>
-    </div>
+    </dialog>
   
   </body>
 </html>

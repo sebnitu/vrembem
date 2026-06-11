@@ -19,18 +19,18 @@ To teleport collection entry elements to a specific location in the document, ad
 
 <CodeExample lang="js">
 ```js
-import { ModalCollection } from "@vrembem/modal";
+import { DrawerCollection } from "@vrembem/drawer";
 import { teleport } from "@vrembem/core";
 
-const modals = new ModalCollection({
+const drawers = new DrawerCollection({
   plugins: [
     teleport({
-      where: ".modals"
+      where: ".drawers"
     })
   ]
 });
 
-await modals.mount();
+await drawers.mount();
 ```
 </CodeExample>
 
@@ -44,7 +44,7 @@ You can also define how elements are teleported relative to the teleport target 
 <CodeExample lang="html">
 ```html
 <!-- "before" -->
-<div class="modals">
+<div class="drawers">
   <!-- "prepend" -->
   <div>...</div>
   <!-- "append" -->

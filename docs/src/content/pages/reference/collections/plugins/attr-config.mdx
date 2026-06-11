@@ -17,16 +17,16 @@ To pass custom configurations to specific collection entries using a data attrib
 
 <CodeExample lang="js">
 ```js
-import { ModalCollection } from "@vrembem/modal";
+import { DrawerCollection } from "@vrembem/drawer";
 import { attrConfig } from "@vrembem/core";
 
-const modals = new ModalCollection({
+const drawers = new DrawerCollection({
   plugins: [
     attrConfig()
   ]
 });
 
-await modals.mount();
+await drawers.mount();
 ```
 </CodeExample>
 

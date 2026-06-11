@@ -17,16 +17,16 @@ To implement a focus trap in a collection entry, add the `focusTrap` plugin to y
 
 <CodeExample lang="js">
 ```js
-import { ModalCollection } from "@vrembem/modal";
+import { DrawerCollection } from "@vrembem/drawer";
 import { focusTrap } from "@vrembem/core";
 
-const modals = new ModalCollection({
+const drawers = new DrawerCollection({
   plugins: [
     focusTrap()
   ]
 });
 
-await modals.mount();
+await drawers.mount();
 ```
 </CodeExample>
 
@@ -34,11 +34,11 @@ This will create a focus trap instance for each entry and setup an enable and di
 
 <CodeExample lang="js">
 ```js
-const modals = new ModalCollection({
+const drawers = new DrawerCollection({
   plugins: [
     focusTrap({
       condition: ({ entry }) => {
-        if (entry.mode === "modal") {
+        if (entry.state === "inline") {
           return true;
         } else {
           return false;
