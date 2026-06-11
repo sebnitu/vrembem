@@ -15,11 +15,3 @@ npm install @vrembem/modal
 ```scss
 @use "@vrembem/modal";
 ```
-
-### JavaScript
-
-```js
-import { ModalCollection } from '@vrembem/modal';
-const modals = new ModalCollection();
-await modals.mount();
-```
