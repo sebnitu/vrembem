@@ -13,6 +13,7 @@ dialog#{core.bem("modal")} {
 
   position: fixed;
   inset: 0;
+  flex-direction: column;
   width: tokens.get("modal", "width", config.get("modal-size", "default"));
   max-width: tokens.get("modal", "max-width", calc(100% - (tokens.get("modal", "offset", 1rem) * 2)));
   margin: auto;
