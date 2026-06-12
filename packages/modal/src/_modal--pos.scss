@@ -6,7 +6,7 @@ dialog#{core.bem("modal", null, "pos", "top")} {
 }
 
 dialog#{core.bem("modal", null, "pos", "bottom")} {
-  @include tokens.override("modal", "transform-y", tokens.get("modal", "travel", 5em));
+  @include tokens.override("modal", "transform-y", tokens.get("modal", "travel", 5rem));
 
   margin-bottom: tokens.get("modal", "offset", 1rem);
 }

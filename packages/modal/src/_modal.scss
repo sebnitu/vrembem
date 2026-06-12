@@ -27,7 +27,7 @@ dialog#{core.bem("modal")} {
     background-color: tokens.get("modal", "backdrop-color", tokens.get("backdrop-color"));
     transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
     transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
-    transition-property: tokens.get("modal", "transition-property", (opacity, display, overlay));
+    transition-property: tokens.get("modal", "transition-property", (opacity, display, transform, overlay));
     transition-behavior: allow-discrete;
   }
 
@@ -36,7 +36,7 @@ dialog#{core.bem("modal")} {
   }
 
   &:not(:open) {
-    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5em) * -1)));
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5rem) * -1)));
     display: none;
     opacity: 0;
 
@@ -46,7 +46,7 @@ dialog#{core.bem("modal")} {
   }
 
   @starting-style {
-    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5em) * -1)));
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5rem) * -1)));
     opacity: 0;
 
     &::backdrop {

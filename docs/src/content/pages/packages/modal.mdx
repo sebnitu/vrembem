@@ -40,11 +40,11 @@ Modal comes with the following Sass configuration options that can be set using 
     // Map for outputting modal--size-[key] modifier variants
     // @type map
     "modal-size": (
-      "default": 36em,
-      "xs": 20em,
-      "sm": 24em,
-      "lg": 48em,
-      "xl": 60em
+      "default": 32rem,
+      "xs": 16rem,
+      "sm": 24rem,
+      "lg": 40rem,
+      "xl": 48rem
     )
   )
 );
@@ -56,23 +56,21 @@ Modal comes with the following Sass configuration options that can be set using 
 Modal uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-modal" valueLabel="Fallback" filter={false} data={{
-  "--vb-modal-width": "36em",
-  "--vb-modal-max-width": "100%",
-  "--vb-modal-margin": "1em",
-  "--vb-modal-z-index": "1000",
-  "--vb-modal-travel": "5em",
+  "--vb-modal-width": "32rem",
+  "--vb-modal-max-width": "calc(100% - var(--vb-modal-offset, 1rem) * 2)",
+  "--vb-modal-offset": "1rem",
+  "--vb-modal-travel": "5rem",
   "--vb-modal-full-scale": "0.75",
   "--vb-modal-transition-duration": "var(--vb-transition-duration)",
   "--vb-modal-transition-timing-function": "var(--vb-transition-timing-function)",
+  "--vb-modal-transition-property": "opacity, display, transform, overlay",
   "--vb-modal-backdrop-color": "var(--vb-backdrop-color)",
   "--vb-modal-backdrop-opacity": "var(--vb-backdrop-opacity)",
 }} />
 
 ## Basic usage
 
-{/* TODO: This needs to be re-written */}
-
-Modals are composed using classes and data attributes for their triggers. The basic structure of a modal is an element with a unique `id` and the `modal` class containing a child element with the `modal__dialog` class.
+Modals are built on the native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. The basic structure of a modal is a `<dialog>` element with a unique `id`, the `modal` class, and the `closedby="any"` attribute. Triggers use the `command` and `commandfor` attributes to open and close modals.
 
 <CodeExample>
   <Fragment slot="output">
@@ -94,7 +92,7 @@ Modals are composed using classes and data attributes for their triggers. The ba
 ```
 </CodeExample>
 
-The dialog element of a modal is defined using the `modal__dialog` class. Modal dialogs are given the `role` attribute with a value of [`dialog`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role) and the `aria-modal` attribute with a value of `true`. Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
+Authors should provide modal dialogs with [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby) and [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) attributes if applicable to further improve accessibility.
 
 <CodeExample>
   <Fragment slot="output">
@@ -129,7 +127,7 @@ The dialog element of a modal is defined using the `modal__dialog` class. Modal 
   ```
 </CodeExample>
 
-The [panel component](/packages/panel) is a great fit for styling a modal's dialog. This can be applied directly on the `modal` element and expanded as needed.
+The [panel component](/packages/panel) is a great fit for styling a modal. This can be applied directly on the `modal` component and expanded as needed, e.g.: `class="modal panel"`.
 
 ## modal--full
 
@@ -287,7 +285,7 @@ The default modal position is centered in the viewport. The position modifier al
 
 ## modal--size-[key]
 
-Adjust the size of a modal by increasing or decreasing its width. These modifiers are generated using key/value pairs of the `modal-size` config options map.
+Adjust the size of a modal by increasing or decreasing its width. The modal's max-width property prevents the modal from overflowing the viewport. These modifiers are generated using key/value pairs of the `modal-size` config options map.
 
 <CodeExample>
   <Fragment slot="output">
