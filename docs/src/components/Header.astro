@@ -28,7 +28,8 @@ const { classes = "" } = Astro.props;
       <button
         type="button"
         interestfor="popover-menu-label"
-        data-modal-open="modal-navi"
+        command="show-modal"
+        commandfor="modal-navi"
         class="button button--icon display-block md:display-none"
       >
         <Icon name="menu" />
@@ -45,13 +46,14 @@ const { classes = "" } = Astro.props;
   </div>
 </header>
 
-<Modal id="modal-navi" classes="modal--pos-top modal--size-sm">
+<Modal id="modal-navi" classes="modal--pos-top modal--size-sm panel">
   <div class="panel__header">
     <h2 class="panel__title">Menu</h2>
     <button
       class="button button--size-sm padding-xs"
       interestfor="popover-close-modal"
-      data-modal-close=""
+      command="close"
+      commandfor="modal-navi"
       type="button"
       aria-label="Close menu"
     >

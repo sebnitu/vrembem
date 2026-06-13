@@ -1,0 +1,35 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+dialog#{core.bem("modal", null, "pos", "top")} {
+  margin-top: tokens.get("modal", "offset", 1rem);
+}
+
+dialog#{core.bem("modal", null, "pos", "bottom")} {
+  @include tokens.override("modal", "transform-y", tokens.get("modal", "travel", 5rem));
+
+  margin-bottom: tokens.get("modal", "offset", 1rem);
+}
+
+dialog#{core.bem("modal", null, "pos", "left")},
+dialog#{core.bem("modal", null, "pos", "right")} {
+  @include tokens.override("modal", "width", 16em);
+  @include tokens.override("modal", "max-width", 90%);
+
+  height: 100%;
+  max-height: calc(100% - (tokens.get("modal", "offset", 1rem) * 2));
+}
+
+dialog#{core.bem("modal", null, "pos", "left")} {
+  @include tokens.override("modal", "transform-y", 0);
+  @include tokens.override("modal", "transform-x", -100%);
+
+  margin-left: tokens.get("modal", "offset", 1rem);
+}
+
+dialog#{core.bem("modal", null, "pos", "right")} {
+  @include tokens.override("modal", "transform-y", 0);
+  @include tokens.override("modal", "transform-x", 100%);
+
+  margin-right: tokens.get("modal", "offset", 1rem);
+}

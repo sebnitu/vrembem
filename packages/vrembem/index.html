@@ -174,7 +174,7 @@
 
           <ul class="list">
             <li>
-              <button class="link" data-modal-open="modal-dialog">Modal dialog</button>
+              <button class="link" command="show-modal" commandfor="modal-dialog">Modal dialog</button>
             </li>
             <li>
               <div class="flex align-items-center">
@@ -193,22 +193,20 @@
             </li>
           </ul>
 
-          <div id="modal-dialog" class="modal">
-            <div class="modal__dialog panel" role="dialog" aria-modal="true" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
-              <div class="panel__header">
-                <h2 class="panel__title" id="modal-dialog-title">Modal title</h2>
-                <button data-modal-close class="button button--icon button--size-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--size-sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-              </div>
-              <div class="panel__body">
-                <p id="modal-dialog-description">...</p>
-              </div>
-              <div class="panel__footer">
-                ...
-              </div>
+          <dialog id="modal-dialog" class="modal panel" closedby="any" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
+            <div class="panel__header">
+              <h2 class="panel__title" id="modal-dialog-title">Modal title</h2>
+              <button command="close" commandfor="modal-dialog" class="button button--icon button--size-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--size-sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
             </div>
-          </div><!-- .modal -->
+            <div class="panel__body">
+              <p id="modal-dialog-description">...</p>
+            </div>
+            <div class="panel__footer">
+              ...
+            </div>
+          </dialog><!-- .modal -->
 
           <aside id="drawer-dialog" class="drawer is-opened">
             <div class="drawer__panel panel" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">

@@ -1,9 +1,9 @@
 @use "sass:meta";
-@forward "./src/scss/config";
+@forward "./src/config";
 
 @layer components {
-  @include meta.load-css("./src/scss/modal");
-  @include meta.load-css("./src/scss/modal--full");
-  @include meta.load-css("./src/scss/modal--pos");
-  @include meta.load-css("./src/scss/modal--size");
+  @include meta.load-css("./src/modal");
+  @include meta.load-css("./src/modal--full");
+  @include meta.load-css("./src/modal--pos");
+  @include meta.load-css("./src/modal--size");
 }

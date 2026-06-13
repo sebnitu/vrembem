@@ -1,0 +1,16 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+dialog#{core.bem("modal", null, "full")} {
+  transform: scale(1);
+  width: 100%;
+  height: 100%;
+
+  &:not(:open) {
+    transform: scale(tokens.get("modal", "full-scale", 0.75));
+  }
+
+  @starting-style {
+    transform: scale(tokens.get("modal", "full-scale", 0.75));
+  }
+}

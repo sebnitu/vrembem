@@ -1,0 +1,56 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/tokens";
+
+// This blocks scrolling on the body element while a modal dialog is open
+body:has(dialog#{core.bem("modal")}:modal) {
+  overflow: hidden;
+}
+
+// This component requires the native <dialog> element
+dialog#{core.bem("modal")} {
+  @include tokens.override("panel", config.get("modal-panel-override"));
+
+  position: fixed;
+  inset: 0;
+  flex-direction: column;
+  width: tokens.get("modal", "width", config.get("modal-size", "default"));
+  max-width: tokens.get("modal", "max-width", calc(100% - (tokens.get("modal", "offset", 1rem) * 2)));
+  margin: auto;
+  transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
+  transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
+  transition-property: tokens.get("modal", "transition-property", (opacity, display, transform, overlay));
+  transition-behavior: allow-discrete;
+
+  &::backdrop {
+    opacity: tokens.get("modal", "backdrop-opacity", tokens.get("backdrop-opacity"));
+    background-color: tokens.get("modal", "backdrop-color", tokens.get("backdrop-color"));
+    transition-timing-function: tokens.get("modal", "transition-timing-function", tokens.get("transition-timing-function"));
+    transition-duration: tokens.get("modal", "transition-duration", tokens.get("transition-duration"));
+    transition-property: tokens.get("modal", "transition-property", (opacity, display, transform, overlay));
+    transition-behavior: allow-discrete;
+  }
+
+  &:open {
+    display: flex;
+  }
+
+  &:not(:open) {
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5rem) * -1)));
+    display: none;
+    opacity: 0;
+
+    &::backdrop {
+      opacity: 0;
+    }
+  }
+
+  @starting-style {
+    transform: translate(tokens.get("modal", "transform-x", 0), tokens.get("modal", "transform-y", calc(tokens.get("modal", "travel", 5rem) * -1)));
+    opacity: 0;
+
+    &::backdrop {
+      opacity: 0;
+    }
+  }
+}

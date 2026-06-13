@@ -30,26 +30,26 @@ To use available JavaScript modules such as [drawer](/packages/drawer), [modal](
   <TabsPanel label="unpkg">
     ```html
     <script type="module">
-      import { ModalCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
+      import { DrawerCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
       
-      const modals = new ModalCollection({
+      const drawers = new DrawerCollection({
         plugins: [focusTrap()]
       });
 
-      await modals.mount();
+      await drawers.mount();
     </script>
     ```
   </TabsPanel>
   <TabsPanel label="jsdelivr">
     ```html
     <script type="module">
-      import { ModalCollection, focusTrap } from "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js";
+      import { DrawerCollection, focusTrap } from "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js";
       
-      const modals = new ModalCollection({
+      const drawers = new DrawerCollection({
         plugins: [focusTrap()]
       });
 
-      await modals.mount();
+      await drawers.mount();
     </script>
     ```
   </TabsPanel>
