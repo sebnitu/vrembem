@@ -8,126 +8,87 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import { DrawerCollection } from "./index.ts";
-    import { focusTrap, mediaQuery, propStore, teleport } from "@vrembem/core";
 
-    const drawers = new DrawerCollection({
-      plugins: [
-        focusTrap(),
-        mediaQuery(),
-        propStore(),
-        teleport({
-          where: ".drawer-main",
-          how: "before"
-        })
-      ]
-    });
+    class Drawer extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.innerHTML = `
+          <div id="drawer-inline">
+            <slot id="drawer-slot"></slot>
+          </div>
+          <dialog id="drawer-modal"></dialog>
+        `;
+        console.log("Drawer > constructor()");
+      }
 
-    window["drawer"] = await drawers.mount();
+      connectedCallback() {
+        console.log("Drawer > connectedCallback()");
+
+        this.addEventListener("command", (event) => {
+          if (event.command === "--toggle-drawer") {
+            this.toggle();
+          }
+        });
+      }
+
+      disconnectedCallback() {
+        console.log("Drawer > disconnectedCallback()");
+      }
+
+      toggle() {
+        console.log("Drawer > toggle()");
+      }
+    }
+
+    customElements.define("vb-drawer", Drawer);
   </script>
+  <style>
+    vb-drawer {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-  <main class="drawer-frame">
-    <div class="drawer-main">
-
-      <header class="section background-shift">
-        <div class="section__container max-width-xs spacing-sm">
-          <h1 class="font-size-lg">%VITE_NAME%</h1>
-          <p>%VITE_DESCRIPTION%</p>
-          <ol class="foreground-subtle flex flex--gap-y-sm margin-top list-style-none">
-            <li class="flex flex--gap-sm align-items-center">
-              <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
-            </li>
-            <li class="foreground-subtle">/</li>
-            <li class="flex flex--gap-sm align-items-center">
-              <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-              <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
-            </li>
-          </ol>
-        </div>
-      </header>
-
-      <section class="section">
-        <div class="section__container max-width-xs spacing">
-          
-          <h2 id="drawer"><a href="#drawer">drawer</a></h2>
-
-          <ul class="list">
-            <li><button class="link" data-drawer-toggle="drawer-default">default</button></li>
-            <li><button class="link" data-drawer-toggle="drawer-modal">modal</button></li>
-            <li><button class="link" data-drawer-toggle="drawer-modal-switch">modal switch</button></li>
-            <li><button class="link" data-drawer-toggle="drawer-breakpoint">breakpoint</button></li>
-          </ul>
-
-          <div id="drawer-default" class="drawer is-closed">
-            <div class="drawer__dialog dialog">
-              <div class="dialog__body">
-                drawer-default
-              </div>
-            </div>
-          </div>
-          
-          <div id="drawer-modal" class="drawer drawer--modal is-closed">
-            <div class="drawer__dialog dialog">
-              <div class="dialog__container">
-                <div class="dialog__header flex justify-content-between">
-                  <p>drawer-modal</p>
-                  <button data-drawer-close class="link">Close</button>
-                </div>
-                <div class="dialog__body">
-                  <ul class="list">
-                    <li>First</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>Last</li>
-                  </ul>
-                </div>
-                <div class="dialog__footer">
-                  Footer...
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="drawer-modal-switch" class="drawer drawer--modal drawer--switch is-closed">
-            <div class="drawer__dialog background-white">
-              <div class="drawer__container padding spacing">
-                <div class="flex justify-content-between">
-                  <p>drawer-modal</p>
-                  <button data-drawer-close class="link">Close</button>
-                </div>
-                <div>
-                  <ul class="list">
-                    <li>First</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>...</li>
-                    <li>Last</li>
-                  </ul>
-                </div>
-                <div>
-                  Footer...
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="drawer-breakpoint" class="drawer is-closed" data-breakpoint="lg">
-            <div class="drawer__dialog dialog">
-              <div class="dialog__body">
-                drawer-breakpoint
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-      
+  <header class="section background-shift">
+    <div class="section__container max-width-xs spacing-sm">
+      <h1 class="font-size-lg">%VITE_NAME%</h1>
+      <p>%VITE_DESCRIPTION%</p>
+      <ol class="foreground-subtle flex flex--gap-y-sm margin-top list-style-none">
+        <li class="flex flex--gap-sm align-items-center">
+          <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%">%VITE_ROOT%</a>
+        </li>
+        <li class="foreground-subtle">/</li>
+        <li class="flex flex--gap-sm align-items-center">
+          <svg class="icon icon--size-sm" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+      </ol>
     </div>
-  </main>
+  </header>
+
+  <section class="section">
+    <div class="section__container max-width-xs spacing">
+      
+      <h2 id="drawer"><a href="#drawer">drawer</a></h2>
+
+      <button 
+        class="link" 
+        type="button" 
+        command="--toggle-drawer" 
+        commandfor="custom-drawer"
+      >
+        Toggle
+      </button>
+
+      <vb-drawer id="custom-drawer">
+        <p>This is the contents of a drawer...</p>
+      </vb-drawer>
+
+    </div>
+  </section>
 
 </body>
 </html>
