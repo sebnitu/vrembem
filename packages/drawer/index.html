@@ -17,27 +17,109 @@
           <div id="drawer-inline">
             <slot id="drawer-slot"></slot>
           </div>
-          <dialog id="drawer-modal"></dialog>
+          <dialog id="drawer-modal" closedby="any" class="modal"></dialog>
         `;
+
+        // Store reference containers
+        this.drawerInline = this.shadowRoot.getElementById("drawer-inline");
+        this.drawerModal = this.shadowRoot.getElementById("drawer-modal");
+        this.drawerSlot = this.shadowRoot.getElementById("drawer-slot");
+
+        // Store mediaquery stuff
+        this.mqHandler = (event) => this.evaluateLayout(event.matches);
+        this.mqList = null;
+        
+        this.commandHandlers = (event) => this.evaluateCommandEvent(event.command);
         console.log("Drawer > constructor()");
       }
 
       connectedCallback() {
-        console.log("Drawer > connectedCallback()");
-
-        this.addEventListener("command", (event) => {
-          if (event.command === "--toggle-drawer") {
-            this.toggle();
-          }
-        });
+        const bp = this.getAttribute("breakpoint") || "600px";
+        this.setupMediaQuery(bp);
+        this.addEventListener("command", this.commandHandlers);
       }
 
       disconnectedCallback() {
-        console.log("Drawer > disconnectedCallback()");
+        this.teardownMediaQuery();
+        this.removeEventListener("command", this.commandHandlers);
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "breakpoint" && oldValue !== newValue && this.isConnected) {
+          this.setupMediaQuery(newValue);
+        }
+      }
+
+      setupMediaQuery(bp) {
+        this.teardownMediaQuery();
+
+        // Process the bp value to always make it a px value
+        const bpFormatted = /^\d+$/.test(bp) ? `${bp}px` : bp;
+
+        // Setup and initial run of mediaquery list
+        this.mqList = window.matchMedia(`(min-width: ${bpFormatted})`);
+        this.mqList.addEventListener("change", this.mqHandler);
+        this.evaluateLayout(this.mqList.matches);
+      }
+
+      teardownMediaQuery() {
+        if (this.mqList) {
+          this.mqList.removeEventListener("change", this.mqHandler);
+          this.mqList = null;
+        }
+      }
+
+      evaluateLayout(matches) {
+        if(matches) {
+          // Close the modal if it's open first
+          if (this.drawerModal.hasAttribute("open")) {
+            this.drawerModal.close();
+          }
+
+          // Move content to the inline drawer
+          this.drawerInline.appendChild(this.drawerSlot);
+        } else {
+          // Move content to the modal drawer
+          this.drawerModal.appendChild(this.drawerSlot);
+        }
+      }
+
+      evaluateCommandEvent(command) {
+        if (command === "--toggle-drawer") {
+          this.toggle();
+        }
+
+        if (command === "--open-drawer") {
+          this.open();
+        }
+
+        if (command === "--close-drawer") {
+          this.close();
+        }
+      }
+
+      get isModal() {
+        return this.drawerModal.contains(this.drawerSlot);
       }
 
       toggle() {
         console.log("Drawer > toggle()");
+      }
+
+      open() {
+        console.log("Drawer > open()");
+        if (this.isModal) {
+          this.drawerModal.showModal();
+        } else {
+          console.log("Open inline...");
+        }
+      }
+
+      close() {
+        console.log("Drawer > close()");
+        if (this.drawerModal.hasAttribute("open")) {
+          this.drawerModal.close();
+        }
       }
     }
 
@@ -74,17 +156,46 @@
       
       <h2 id="drawer"><a href="#drawer">drawer</a></h2>
 
-      <button 
-        class="link" 
-        type="button" 
-        command="--toggle-drawer" 
-        commandfor="custom-drawer"
-      >
-        Toggle
-      </button>
+      <ul class="list">
+        <li>
+          <button 
+            class="link" 
+            type="button" 
+            command="--toggle-drawer" 
+            commandfor="custom-drawer"
+          >
+            Toggle
+          </button>
+        </li>
+        <li>
+          <button 
+            class="link" 
+            type="button" 
+            command="--open-drawer" 
+            commandfor="custom-drawer"
+          >
+            Open
+          </button>
+        </li>
+        <li>
+          <button 
+            class="link" 
+            type="button" 
+            command="--close-drawer" 
+            commandfor="custom-drawer"
+          >
+            Close
+          </button>
+        </li>
+      </ul>
+      
 
-      <vb-drawer id="custom-drawer">
-        <p>This is the contents of a drawer...</p>
+      <vb-drawer id="custom-drawer" breakpoint="900">
+        <div class="panel">
+          <div class="panel__body">
+            <p>This is the contents of a drawer...</p>
+          </div>
+        </div>
       </vb-drawer>
 
     </div>
