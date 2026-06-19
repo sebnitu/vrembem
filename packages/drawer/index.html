@@ -12,36 +12,34 @@
     class Drawer extends HTMLElement {
       constructor() {
         super();
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.innerHTML = `
-          <div id="drawer-inline">
-            <slot id="drawer-slot"></slot>
-          </div>
-          <dialog id="drawer-modal" closedby="any" class="modal"></dialog>
-        `;
-
-        // Store reference containers
-        this.drawerInline = this.shadowRoot.getElementById("drawer-inline");
-        this.drawerModal = this.shadowRoot.getElementById("drawer-modal");
-        this.drawerSlot = this.shadowRoot.getElementById("drawer-slot");
-
-        // Store mediaquery stuff
-        this.mqHandler = (event) => this.evaluateLayout(event.matches);
         this.mqList = null;
-        
-        this.commandHandlers = (event) => this.evaluateCommandEvent(event.command);
-        console.log("Drawer > constructor()");
+        this.mqHandler = (event) => this.evaluateLayout(event.matches);
+        this.commandHandler = (event) => this.evaluateCommandEvent(event.command);
       }
 
       connectedCallback() {
+        // Create internal structure
+        this.drawerInline = document.createElement("div");
+        this.drawerModal = document.createElement("dialog");
+        this.drawerModal.setAttribute("closedby", "any");
+        this.drawerModal.classList.add("modal", "panel");
+
+        // Move existing children into the inline container
+        while (this.firstChild) {
+          this.drawerInline.appendChild(this.firstChild);
+        }
+
+        this.appendChild(this.drawerInline);
+        this.appendChild(this.drawerModal);
+
         const bp = this.getAttribute("breakpoint") || "600px";
         this.setupMediaQuery(bp);
-        this.addEventListener("command", this.commandHandlers);
+        this.addEventListener("command", this.commandHandler);
       }
 
       disconnectedCallback() {
         this.teardownMediaQuery();
-        this.removeEventListener("command", this.commandHandlers);
+        this.removeEventListener("command", this.commandHandler);
       }
 
       attributeChangedCallback(name, oldValue, newValue) {
@@ -70,17 +68,21 @@
       }
 
       evaluateLayout(matches) {
-        if(matches) {
+        if (matches) {
           // Close the modal if it's open first
           if (this.drawerModal.hasAttribute("open")) {
             this.drawerModal.close();
           }
 
-          // Move content to the inline drawer
-          this.drawerInline.appendChild(this.drawerSlot);
+          // Move children back to inline
+          while (this.drawerModal.firstChild) {
+            this.drawerInline.appendChild(this.drawerModal.firstChild);
+          }
         } else {
-          // Move content to the modal drawer
-          this.drawerModal.appendChild(this.drawerSlot);
+          // Move children to modal
+          while (this.drawerInline.firstChild) {
+            this.drawerModal.appendChild(this.drawerInline.firstChild);
+          }
         }
       }
 
@@ -99,11 +101,18 @@
       }
 
       get isModal() {
-        return this.drawerModal.contains(this.drawerSlot);
+        return this.drawerModal.childNodes.length > 0;
       }
 
       toggle() {
         console.log("Drawer > toggle()");
+        if (this.isModal) {
+          if (this.drawerModal.hasAttribute("open")) {
+            this.close();
+          } else {
+            this.open();
+          }
+        }
       }
 
       open() {
@@ -191,10 +200,8 @@
       
 
       <vb-drawer id="custom-drawer" breakpoint="900">
-        <div class="panel">
-          <div class="panel__body">
-            <p>This is the contents of a drawer...</p>
-          </div>
+        <div class="panel__body">
+          <p>This is the contents of a drawer...</p>
         </div>
       </vb-drawer>
 
