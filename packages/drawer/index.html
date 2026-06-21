@@ -67,6 +67,10 @@
 
       evaluateLayout(matches) {
         if (matches) {
+          // Toggle state classes
+          this.classList.add("is-inline");
+          this.classList.remove("is-modal");
+
           // Close the modal if it's open first
           if (this.drawerModal.hasAttribute("open")) {
             this.drawerModal.close();
@@ -77,6 +81,10 @@
             this.drawerInline.appendChild(this.drawerModal.firstChild);
           }
         } else {
+          // Toggle state classes
+          this.classList.add("is-modal");
+          this.classList.remove("is-inline");
+
           // Move children to modal
           while (this.drawerInline.firstChild) {
             this.drawerModal.appendChild(this.drawerInline.firstChild);
@@ -118,29 +126,27 @@
       
       <h2 id="drawer"><a href="#drawer">drawer</a></h2>
 
-      <ul class="list">
-        <li>
+      <button 
+        class="link" 
+        type="button" 
+        command="show-modal" 
+        commandfor="custom-drawer-modal"
+      >
+        Open
+      </button>
+
+      <vb-drawer id="custom-drawer" breakpoint="900">
+        <div class="panel__body">
           <button 
             class="link" 
             type="button" 
-            command="show-modal" 
+            command="close" 
             commandfor="custom-drawer-modal"
           >
-            Open
+            Close
           </button>
-        </li>
-      </ul>
-
-      <vb-drawer id="custom-drawer" breakpoint="900">
-        <button 
-          class="link" 
-          type="button" 
-          command="close" 
-          commandfor="custom-drawer-modal"
-        >
-          Close
-        </button>
-        <p>This is the contents of a drawer...</p>
+          <p>This is the contents of a drawer...</p>
+        </div>
       </vb-drawer>
 
     </div>
