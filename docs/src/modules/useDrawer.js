@@ -14,7 +14,7 @@ const drawers = new DrawerCollection({
 });
 
 drawers.on("opening", (entry) => {
-  const tooltipID = entry.trigger.getAttribute("interestfor");
+  const tooltipID = entry.trigger?.getAttribute("interestfor");
   if (tooltipID) {
     const tooltip = document.getElementById(tooltipID);
     tooltip?.hidePopover();
