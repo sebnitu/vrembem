@@ -14,7 +14,6 @@
         super();
         this.mqList = null;
         this.mqHandler = (event) => this.evaluateLayout(event.matches);
-        this.commandHandler = (event) => this.evaluateCommandEvent(event.command);
       }
 
       connectedCallback() {
@@ -22,6 +21,7 @@
         this.drawerInline = document.createElement("div");
         this.drawerModal = document.createElement("dialog");
         this.drawerModal.setAttribute("closedby", "any");
+        this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
         this.drawerModal.classList.add("modal", "panel");
 
         // Move existing children into the inline container
@@ -34,12 +34,10 @@
 
         const bp = this.getAttribute("breakpoint") || "600px";
         this.setupMediaQuery(bp);
-        this.addEventListener("command", this.commandHandler);
       }
 
       disconnectedCallback() {
         this.teardownMediaQuery();
-        this.removeEventListener("command", this.commandHandler);
       }
 
       attributeChangedCallback(name, oldValue, newValue) {
@@ -85,51 +83,6 @@
           }
         }
       }
-
-      evaluateCommandEvent(command) {
-        if (command === "--toggle-drawer") {
-          this.toggle();
-        }
-
-        if (command === "--open-drawer") {
-          this.open();
-        }
-
-        if (command === "--close-drawer") {
-          this.close();
-        }
-      }
-
-      get isModal() {
-        return this.drawerModal.childNodes.length > 0;
-      }
-
-      toggle() {
-        console.log("Drawer > toggle()");
-        if (this.isModal) {
-          if (this.drawerModal.hasAttribute("open")) {
-            this.close();
-          } else {
-            this.open();
-          }
-        }
-      }
-
-      open() {
-        console.log("Drawer > open()");
-        if (this.isModal) {
-          this.drawerModal.showModal();
-        } else {
-          console.log("Open inline...");
-        }
-      }
-
-      close() {
-        console.log("Drawer > close()");
-        if (this.drawerModal.hasAttribute("open")) {
-          this.drawerModal.close();
-        }
-      }
     }
 
     customElements.define("vb-drawer", Drawer);
@@ -170,39 +123,24 @@
           <button 
             class="link" 
             type="button" 
-            command="--toggle-drawer" 
-            commandfor="custom-drawer"
-          >
-            Toggle
-          </button>
-        </li>
-        <li>
-          <button 
-            class="link" 
-            type="button" 
-            command="--open-drawer" 
-            commandfor="custom-drawer"
+            command="show-modal" 
+            commandfor="custom-drawer-modal"
           >
             Open
           </button>
         </li>
-        <li>
-          <button 
-            class="link" 
-            type="button" 
-            command="--close-drawer" 
-            commandfor="custom-drawer"
-          >
-            Close
-          </button>
-        </li>
       </ul>
-      
 
       <vb-drawer id="custom-drawer" breakpoint="900">
-        <div class="panel__body">
-          <p>This is the contents of a drawer...</p>
-        </div>
+        <button 
+          class="link" 
+          type="button" 
+          command="close" 
+          commandfor="custom-drawer-modal"
+        >
+          Close
+        </button>
+        <p>This is the contents of a drawer...</p>
       </vb-drawer>
 
     </div>
