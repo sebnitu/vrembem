@@ -18,18 +18,18 @@
 
       connectedCallback() {
         // Create internal structure
-        this.drawerInline = document.createElement("div");
+        this.drawerStatic = document.createElement("div");
         this.drawerModal = document.createElement("dialog");
         this.drawerModal.setAttribute("closedby", "any");
         this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
         this.drawerModal.classList.add("modal", "panel");
 
-        // Move existing children into the inline container
+        // Move existing children into the static container
         while (this.firstChild) {
-          this.drawerInline.appendChild(this.firstChild);
+          this.drawerStatic.appendChild(this.firstChild);
         }
 
-        this.appendChild(this.drawerInline);
+        this.appendChild(this.drawerStatic);
         this.appendChild(this.drawerModal);
 
         const bp = this.getAttribute("breakpoint") || "600px";
@@ -68,7 +68,7 @@
       evaluateLayout(matches) {
         if (matches) {
           // Toggle state classes
-          this.classList.add("is-inline");
+          this.classList.add("is-static");
           this.classList.remove("is-modal");
 
           // Close the modal if it's open first
@@ -76,18 +76,18 @@
             this.drawerModal.close();
           }
 
-          // Move children back to inline
+          // Move children back to static
           while (this.drawerModal.firstChild) {
-            this.drawerInline.appendChild(this.drawerModal.firstChild);
+            this.drawerStatic.appendChild(this.drawerModal.firstChild);
           }
         } else {
           // Toggle state classes
           this.classList.add("is-modal");
-          this.classList.remove("is-inline");
+          this.classList.remove("is-static");
 
           // Move children to modal
-          while (this.drawerInline.firstChild) {
-            this.drawerModal.appendChild(this.drawerInline.firstChild);
+          while (this.drawerStatic.firstChild) {
+            this.drawerModal.appendChild(this.drawerStatic.firstChild);
           }
         }
       }
@@ -135,7 +135,7 @@
         Open
       </button>
 
-      <vb-drawer id="custom-drawer" breakpoint="900">
+      <vb-drawer id="custom-drawer" breakpoint="1160">
         <div class="panel__body">
           <button 
             class="link" 
