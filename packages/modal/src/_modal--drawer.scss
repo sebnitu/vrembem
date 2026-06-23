@@ -1,0 +1,18 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+dialog#{core.bem("modal", null, "drawer")} {
+  @include tokens.override(
+    "modal",
+    (
+      "width": 100%,
+      "offset": 0
+    )
+  );
+  @include tokens.override(
+    "panel",
+    (
+      "border-radius": 0
+    )
+  );
+}

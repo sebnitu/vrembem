@@ -3,6 +3,7 @@
 
 @layer components {
   @include meta.load-css("./src/modal");
+  @include meta.load-css("./src/modal--drawer");
   @include meta.load-css("./src/modal--full");
   @include meta.load-css("./src/modal--pos");
   @include meta.load-css("./src/modal--size");
