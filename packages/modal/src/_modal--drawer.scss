@@ -15,4 +15,9 @@ dialog#{core.bem("modal", null, "drawer")} {
       "border-radius": 0
     )
   );
+
+  &#{core.bem("modal", null, "pos", "left")},
+  &#{core.bem("modal", null, "pos", "right")} {
+    @include tokens.override("modal", "width", 18em);
+  }
 }
