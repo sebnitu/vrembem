@@ -20,9 +20,21 @@
         // Create internal structure
         this.drawerStatic = document.createElement("div");
         this.drawerModal = document.createElement("dialog");
-        this.drawerModal.setAttribute("closedby", "any");
+
+        // Setup the modal attributes
         this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
-        this.drawerModal.classList.add("modal", "panel");
+        this.drawerModal.setAttribute("closedby", "any");
+
+        // Apply modal component and drawer modifier
+        this.drawerModal.classList.add("modal", "modal--drawer");
+
+        // Apply the position modifier
+        // TODO: This should be provided via attr/prop with bottom as default
+        this.drawerModal.classList.add("modal--pos-bottom");
+
+        // Apply panel component to modal
+        // TODO: Maybe this should be optional or toggled?
+        this.drawerModal.classList.add("panel");
 
         // Move existing children into the static container
         while (this.firstChild) {
