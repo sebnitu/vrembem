@@ -16,6 +16,20 @@
         this.mqHandler = (event) => this.evaluateLayout(event.matches);
       }
 
+      static get observedAttributes() {
+        return ["breakpoint", "position"];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if ((oldValue === newValue) || !this.isConnected) return
+        if (name === "breakpoint") {
+          this.setupMediaQuery(newValue);
+        }
+        if (name === "position") {
+          console.log("Update position modifier...");
+        }
+      }
+
       connectedCallback() {
         // Create internal structure
         this.drawerStatic = document.createElement("div");
@@ -50,12 +64,6 @@
 
       disconnectedCallback() {
         this.teardownMediaQuery();
-      }
-
-      attributeChangedCallback(name, oldValue, newValue) {
-        if (name === "breakpoint" && oldValue !== newValue && this.isConnected) {
-          this.setupMediaQuery(newValue);
-        }
       }
 
       setupMediaQuery(bp) {
