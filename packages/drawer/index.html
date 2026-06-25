@@ -48,8 +48,7 @@
         const pos = this.getAttribute("position") || "bottom";
         this.applyPosition(null, pos);
 
-        // Apply panel component to modal
-        // TODO: Maybe this should be optional or toggled?
+        // Apply panel component to dialog modal
         this.drawerModal.classList.add("panel");
 
         // Move existing children into the static container
