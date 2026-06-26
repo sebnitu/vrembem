@@ -8,6 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
+    import * as core from "vrembem";
 
     class Drawer extends HTMLElement {
       #initialized = false;
@@ -16,6 +17,16 @@
         super();
         this.mqList = null;
         this.mqHandler = (event) => this.evaluateLayout(event.matches);
+      }
+
+      static {
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(`
+          vb-drawer { display: block; }
+          vb-drawer.is-modal { display: contents; }
+          vb-drawer.is-modal > :not(dialog) { display: none; }
+        `);
+        document.adoptedStyleSheets.push(sheet);
       }
 
       static get observedAttributes() {
@@ -34,7 +45,6 @@
 
       connectedCallback() {
         // Create internal structure
-        this.drawerStatic = document.createElement("div");
         this.drawerModal = document.createElement("dialog");
 
         // Setup the modal attributes
@@ -51,13 +61,7 @@
         // Apply panel component to dialog modal
         this.drawerModal.classList.add("panel");
 
-        // Move existing children into the static container
-        while (this.firstChild) {
-          this.drawerStatic.appendChild(this.firstChild);
-        }
-
         // Append the containers inside the custom element
-        this.appendChild(this.drawerStatic);
         this.appendChild(this.drawerModal);
 
         const bp = this.getAttribute("breakpoint") || "600px";
@@ -73,6 +77,12 @@
 
       setupMediaQuery(bp) {
         this.teardownMediaQuery();
+
+        // Check if the breakpoint is the key of a custom property
+        const customProp = getComputedStyle(document.body)
+          .getPropertyValue(`--${core.getPrefix("-")}breakpoint-${bp}`)
+          .trim();
+        bp = customProp || bp;
 
         // Process the bp value to always make it a px value
         const bpFormatted = /^\d+$/.test(bp) ? `${bp}px` : bp;
@@ -93,26 +103,24 @@
       evaluateLayout(matches) {
         if (matches) {
           // Toggle state classes
-          this.classList.add("is-static");
           this.classList.remove("is-modal");
 
-          // Close the modal if it's open first
+          // Close the modal if it's open
           if (this.drawerModal.hasAttribute("open")) {
             this.drawerModal.close();
           }
 
-          // Move children back to static
+          // Move children outside of the drawer modal
           while (this.drawerModal.firstChild) {
-            this.drawerStatic.appendChild(this.drawerModal.firstChild);
+            this.drawerModal.before(this.drawerModal.firstChild);
           }
         } else {
           // Toggle state classes
           this.classList.add("is-modal");
-          this.classList.remove("is-static");
 
           // Move children to modal
-          while (this.drawerStatic.firstChild) {
-            this.drawerModal.appendChild(this.drawerStatic.firstChild);
+          while (this.firstChild && this.firstChild !== this.drawerModal) {
+            this.drawerModal.appendChild(this.firstChild);
           }
         }
       }
@@ -125,11 +133,6 @@
 
     customElements.define("vb-drawer", Drawer);
   </script>
-  <style>
-    vb-drawer {
-      display: block;
-    }
-  </style>
 </head>
 <body>
 
@@ -156,26 +159,34 @@
       
       <h2 id="drawer"><a href="#drawer">drawer</a></h2>
 
-      <button 
-        class="link" 
-        type="button" 
-        command="show-modal" 
-        commandfor="custom-drawer-modal"
-      >
-        Open
-      </button>
-
-      <vb-drawer id="custom-drawer" breakpoint="1160" position="left">
-        <div class="panel__body">
+      <ul class="list">
+        <li>
           <button 
             class="link" 
             type="button" 
-            command="close" 
+            command="show-modal" 
             commandfor="custom-drawer-modal"
           >
-            Close
+            Show modal
           </button>
+        </li>
+      </ul>
+
+      <vb-drawer id="custom-drawer" class="panel" breakpoint="lg" position="left">
+        <div class="panel__body">
           <p>This is the contents of a drawer...</p>
+          <ul class="list">
+            <li>
+              <button 
+                class="link" 
+                type="button" 
+                command="close" 
+                commandfor="custom-drawer-modal"
+              >
+                Close modal
+              </button>
+            </li>
+          </ul>
         </div>
       </vb-drawer>
 
