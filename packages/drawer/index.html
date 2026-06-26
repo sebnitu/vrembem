@@ -8,7 +8,6 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
-    import * as core from "vrembem";
 
     class Drawer extends HTMLElement {
       #initialized = false;
@@ -82,10 +81,11 @@
         // Check custom properties for non-numeric, unitless values
         // Example: "lg", "md", etc...
         if (!/^\d/.test(bp)) {
-          const prop = getComputedStyle(document.body)
-            .getPropertyValue(`--${core.getPrefix("-")}breakpoint-${bp}`)
-            .trim();
-          bp = prop || bp;
+          const styles = getComputedStyle(document.body);
+          const prefix = styles.getPropertyValue("--vb-prefix-tokens").trim();
+          const prop = [prefix, "breakpoint", bp].filter(Boolean).join("-");
+          const value = styles.getPropertyValue(`--${prop}`).trim();
+          bp = value || bp;
         }
 
         // Make unitless values default to pixels
