@@ -76,19 +76,23 @@
       }
 
       setupMediaQuery(bp) {
+        // Remove any existing media query setup
         this.teardownMediaQuery();
 
-        // Check if the breakpoint is the key of a custom property
-        const customProp = getComputedStyle(document.body)
-          .getPropertyValue(`--${core.getPrefix("-")}breakpoint-${bp}`)
-          .trim();
-        bp = customProp || bp;
+        // Check custom properties for non-numeric, unitless values
+        // Example: "lg", "md", etc...
+        if (!/^\d/.test(bp)) {
+          const prop = getComputedStyle(document.body)
+            .getPropertyValue(`--${core.getPrefix("-")}breakpoint-${bp}`)
+            .trim();
+          bp = prop || bp;
+        }
 
-        // Process the bp value to always make it a px value
-        const bpFormatted = /^\d+$/.test(bp) ? `${bp}px` : bp;
+        // Make unitless values default to pixels
+        bp = /^\d+$/.test(bp) ? `${bp}px` : bp;
 
-        // Setup and initial run of mediaquery list
-        this.mqList = window.matchMedia(`(min-width: ${bpFormatted})`);
+        // Setup the media query list and initial run of evaluateLayout
+        this.mqList = window.matchMedia(`(min-width: ${bp})`);
         this.mqList.addEventListener("change", this.mqHandler);
         this.evaluateLayout(this.mqList.matches);
       }
@@ -102,7 +106,6 @@
 
       evaluateLayout(matches) {
         if (matches) {
-          // Toggle state classes
           this.classList.remove("is-modal");
 
           // Close the modal if it's open
@@ -115,10 +118,9 @@
             this.drawerModal.before(this.drawerModal.firstChild);
           }
         } else {
-          // Toggle state classes
           this.classList.add("is-modal");
 
-          // Move children to modal
+          // Move children to the drawer modal
           while (this.firstChild && this.firstChild !== this.drawerModal) {
             this.drawerModal.appendChild(this.firstChild);
           }
