@@ -8,10 +8,14 @@ interface Props {
 const { id, breakpoint, classes = "" } = Astro.props;
 ---
 
-<aside {id} class={`drawer ${classes}`.trim()} data-breakpoint={breakpoint}>
+<vb-drawer {id} class={`drawer ${classes}`.trim()} breakpoint={breakpoint}>
   <div class="drawer__panel">
     <div class="drawer__container">
       <slot />
     </div>
   </div>
-</aside>
+</vb-drawer>
+
+<script>
+  import "@vrembem/drawer";
+</script>
