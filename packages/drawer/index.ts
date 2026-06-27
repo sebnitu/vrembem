@@ -1,4 +1,4 @@
-class Drawer extends HTMLElement {
+export class Drawer extends HTMLElement {
   #initialized = false;
   drawerModal!: HTMLDialogElement;
   mqList: MediaQueryList | null = null;
@@ -131,4 +131,6 @@ class Drawer extends HTMLElement {
   }
 }
 
-customElements.define("vb-drawer", Drawer);
+if (!customElements.get("vb-drawer")) {
+  customElements.define("vb-drawer", Drawer);
+}
