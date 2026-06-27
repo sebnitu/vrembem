@@ -9,18 +9,6 @@ export class Drawer extends HTMLElement {
     this.mqHandler = (event) => this.evaluateLayout(event.matches);
   }
 
-  static {
-    const sheet = new CSSStyleSheet();
-    sheet.replaceSync(`
-      @layer components {
-        vb-drawer { display: block; }
-        vb-drawer.is-modal { display: contents; }
-        vb-drawer.is-modal > :not(dialog) { display: none; }
-      }
-    `);
-    document.adoptedStyleSheets.push(sheet);
-  }
-
   static get observedAttributes() {
     return ["breakpoint", "position"];
   }
