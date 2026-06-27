@@ -19,8 +19,7 @@
 }
 
 .layout__sidebar {
-  // Prevents flash of unstyled content on mobile
-  visibility: hidden;
+  display: none;
 
   .drawer__panel {
     background-color: tokens.get("background-shift");
@@ -47,10 +46,10 @@
     z-index: 1;
     top: tokens.get("layout", "header-height");
     overflow: auto;
+    display: block;
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    visibility: visible;
 
     // Styles for infinite background
     &::before {
