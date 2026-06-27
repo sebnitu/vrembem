@@ -50,20 +50,22 @@
       </ul>
 
       <vb-drawer id="custom-drawer" class="panel" breakpoint="lg" position="left">
+        <div class="panel__header">
+          <h1 class="panel__title">Drawer</h1>
+          <button 
+            class="link" 
+            type="button" 
+            command="close" 
+            commandfor="custom-drawer-modal"
+          >
+            Close
+          </button>
+        </div>
         <div class="panel__body">
           <p>This is the contents of a drawer...</p>
-          <ul class="list">
-            <li>
-              <button 
-                class="link" 
-                type="button" 
-                command="close" 
-                commandfor="custom-drawer-modal"
-              >
-                Close modal
-              </button>
-            </li>
-          </ul>
+        </div>
+        <div class="panel__footer">
+          <p>Drawer footer</p>
         </div>
       </vb-drawer>
 
