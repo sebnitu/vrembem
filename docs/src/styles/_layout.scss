@@ -21,22 +21,9 @@
 .layout__sidebar {
   display: none;
 
-  .drawer__panel {
+  .panel {
+    padding: 1rem;
     background-color: tokens.get("background-shift");
-    outline: none;
-  }
-
-  .drawer__container {
-    padding: tokens.get("layout", "padding");
-
-    &::before {
-      content: "";
-      position: fixed;
-      z-index: 1;
-      inset: 0 0 auto;
-      height: tokens.get("layout", "padding");
-      background-color: tokens.get("background-shift");
-    }
   }
 }
 
@@ -50,6 +37,7 @@
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
+    padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
 
     // Styles for infinite background
     &::before {
@@ -74,18 +62,6 @@
       width: 2rem;
       height: 100%;
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
-    }
-
-    .drawer__panel {
-      background-color: transparent;
-    }
-
-    .drawer__container {
-      padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
-
-      &::before {
-        content: none;
-      }
     }
   }
 }
