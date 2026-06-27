@@ -12,9 +12,11 @@ export class Drawer extends HTMLElement {
   static {
     const sheet = new CSSStyleSheet();
     sheet.replaceSync(`
-      vb-drawer { display: block; }
-      vb-drawer.is-modal { display: contents; }
-      vb-drawer.is-modal > :not(dialog) { display: none; }
+      @layer components {
+        vb-drawer { display: block; }
+        vb-drawer.is-modal { display: contents; }
+        vb-drawer.is-modal > :not(dialog) { display: none; }
+      }
     `);
     document.adoptedStyleSheets.push(sheet);
   }
