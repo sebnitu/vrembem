@@ -1,5 +1,6 @@
 export class Drawer extends HTMLElement {
   #initialized = false;
+  defaults: Record<string, string> = {};
   drawerModal!: HTMLDialogElement;
   mqList: MediaQueryList | null = null;
   mqHandler: (event: MediaQueryListEvent) => void;
@@ -11,6 +12,13 @@ export class Drawer extends HTMLElement {
 
   static get observedAttributes() {
     return ["breakpoint", "position"];
+  }
+
+  getToken(el: Element, ...keys: string[]): string {
+    const styles = getComputedStyle(el);
+    const prefix = styles.getPropertyValue("--vb-prefix-tokens").trim();
+    const prop = `--${[prefix, ...keys].filter(Boolean).join("-")}`;
+    return styles.getPropertyValue(prop).trim();
   }
 
   attributeChangedCallback(
@@ -28,6 +36,10 @@ export class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
+    // Get the default breakpoint and position from CSS custom properties
+    this.defaults.breakpoint = this.getToken(this, "drawer", "breakpoint");
+    this.defaults.position = this.getToken(this, "drawer", "position");
+
     // Create internal structure
     this.drawerModal = document.createElement("dialog");
 
@@ -39,8 +51,9 @@ export class Drawer extends HTMLElement {
     this.drawerModal.classList.add("modal", "modal--drawer");
 
     // Apply the initial position modifier
-    const pos = this.getAttribute("position") || "bottom";
-    this.applyPosition(null, pos);
+    const position =
+      this.getAttribute("position") || this.defaults.position || "bottom";
+    this.applyPosition(null, position);
 
     // Apply panel component to dialog modal
     this.drawerModal.classList.add("panel");
@@ -48,8 +61,9 @@ export class Drawer extends HTMLElement {
     // Append the containers inside the custom element
     this.appendChild(this.drawerModal);
 
-    const bp = this.getAttribute("breakpoint") || "600px";
-    this.setupMediaQuery(bp);
+    const breakpoint =
+      this.getAttribute("breakpoint") || this.defaults.breakpoint || "760px";
+    this.setupMediaQuery(breakpoint);
 
     // Set the initialized flag
     this.#initialized = true;
@@ -66,13 +80,9 @@ export class Drawer extends HTMLElement {
     // Remove any existing media query setup
     this.teardownMediaQuery();
 
-    // Check custom properties for non-numeric, unitless values
-    // Example: "lg", "md", etc...
+    // Resolve named breakpoint tokens (e.g., "lg", "md")
     if (!/^\d/.test(bp)) {
-      const styles = getComputedStyle(document.body);
-      const prefix = styles.getPropertyValue("--vb-prefix-tokens").trim();
-      const prop = [prefix, "breakpoint", bp].filter(Boolean).join("-");
-      const value = styles.getPropertyValue(`--${prop}`).trim();
+      const value = this.getToken(document.body, "breakpoint", bp);
       bp = value || bp;
     }
 
