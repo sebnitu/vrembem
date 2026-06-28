@@ -22,8 +22,11 @@
   display: none;
 
   .panel {
-    padding: 1rem;
     background-color: tokens.get("background-shift");
+  }
+
+  .panel__container {
+    padding: 1rem;
   }
 }
 
@@ -37,7 +40,11 @@
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
+    box-shadow: none;
+
+    .panel__container {
+      padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
+    }
 
     // Styles for infinite background
     &::before {

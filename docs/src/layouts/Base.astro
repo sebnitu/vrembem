@@ -30,9 +30,11 @@ if (layout.hasAside) layoutClasses.push("has-aside");
           id="layout-sidebar"
           breakpoint="sidebar"
           position="left"
-          class="layout__sidebar"
+          class="layout__sidebar panel"
         >
-          <slot name="sidebar" />
+          <div class="panel__container">
+            <slot name="sidebar" />
+          </div>
         </vb-drawer>
       )
     }
