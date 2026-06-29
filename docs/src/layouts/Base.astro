@@ -47,9 +47,11 @@ if (layout.hasAside) layoutClasses.push("has-aside");
               id="main-aside"
               breakpoint="aside"
               position="right"
-              class="main__aside"
+              class="main__aside panel"
             >
-              <slot name="aside" />
+              <div class="panel__container">
+                <slot name="aside" />
+              </div>
             </vb-drawer>
           )
         }
