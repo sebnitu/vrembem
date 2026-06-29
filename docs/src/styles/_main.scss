@@ -49,10 +49,7 @@
     max-width: unset;
     max-height: calc(100vh - tokens.get("layout", "header-height"));
     box-shadow: none;
-
-    .panel__container {
-      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
-    }
+    padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
   }
 }
 

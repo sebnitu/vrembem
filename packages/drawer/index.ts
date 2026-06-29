@@ -2,6 +2,7 @@ export class Drawer extends HTMLElement {
   #initialized = false;
   defaults: Record<string, string> = {};
   drawerModal!: HTMLDialogElement;
+  drawerContainer!: HTMLDivElement;
   mqList: MediaQueryList | null = null;
   mqHandler: (event: MediaQueryListEvent) => void;
 
@@ -58,6 +59,11 @@ export class Drawer extends HTMLElement {
     // Apply panel component to dialog modal
     this.drawerModal.classList.add("panel");
 
+    // Add the panel container element
+    this.drawerContainer = document.createElement("div");
+    this.drawerContainer.classList.add("panel__container");
+    this.drawerModal.appendChild(this.drawerContainer);
+
     // Append the containers inside the custom element
     this.appendChild(this.drawerModal);
 
@@ -112,15 +118,15 @@ export class Drawer extends HTMLElement {
       }
 
       // Move children outside of the drawer modal
-      while (this.drawerModal.firstChild) {
-        this.drawerModal.before(this.drawerModal.firstChild);
+      while (this.drawerContainer.firstChild) {
+        this.drawerModal.before(this.drawerContainer.firstChild);
       }
     } else {
       this.classList.add("is-modal");
 
       // Move children to the drawer modal
       while (this.firstChild && this.firstChild !== this.drawerModal) {
-        this.drawerModal.appendChild(this.firstChild);
+        this.drawerContainer.appendChild(this.firstChild);
       }
     }
   }
