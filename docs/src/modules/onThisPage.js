@@ -7,6 +7,7 @@ function onThisPage(options = {}) {
   };
 
   const collection = [];
+  const drawer = document.getElementById("main-aside-modal");
 
   function mount() {
     const els = document.querySelectorAll(config.selectorAnchors);
@@ -62,6 +63,11 @@ function onThisPage(options = {}) {
     collection.forEach((entry) => {
       entry.active = entry === result[0];
     });
+
+    // Close the modal drawer if open
+    if (drawer.hasAttribute("open")) {
+      drawer.close();
+    }
   }
 
   return {
