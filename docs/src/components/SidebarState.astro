@@ -13,7 +13,10 @@
       customElements.define(
         "vb-sidebar-group",
         class extends HTMLElement {
+          #initialized = false;
           connectedCallback() {
+            if (this.#initialized) return;
+            this.#initialized = true;
             const details = this.closest("details");
             if (details) {
               details.open =
@@ -48,6 +51,7 @@
     entry.addEventListener("toggle", () => {
       const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
       store.set("open", stateArray);
+      console.log("Test", stateArray);
     });
   });
 
