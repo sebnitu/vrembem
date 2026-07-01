@@ -5,6 +5,7 @@ export class Drawer extends HTMLElement {
   drawerContainer!: HTMLDivElement;
   mqList: MediaQueryList | null = null;
   mqHandler: (event: MediaQueryListEvent) => void;
+  breakpoint: string | null = null;
 
   constructor() {
     super();
@@ -13,6 +14,10 @@ export class Drawer extends HTMLElement {
 
   static get observedAttributes() {
     return ["breakpoint", "position"];
+  }
+
+  get isModal(): boolean {
+    return this.mqList ? !this.mqList.matches : false;
   }
 
   getToken(el: Element, ...keys: string[]): string {
@@ -99,6 +104,9 @@ export class Drawer extends HTMLElement {
     this.mqList = window.matchMedia(`(min-width: ${bp})`);
     this.mqList.addEventListener("change", this.mqHandler);
     this.evaluateLayout(this.mqList.matches);
+
+    // Update the breakpoint property
+    this.breakpoint = bp;
   }
 
   teardownMediaQuery() {
