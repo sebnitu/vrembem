@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/drawer",
-  "description": "A container component that slides in from the left or right, typically containing menus, search bars, or other content.",
+  "description": "A responsive container component that switches between a static and a modal dialog based on a provided breakpoint.",
   "version": "4.0.0-next.46",
   "license": "MIT",
   "type": "module",
