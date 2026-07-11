@@ -34,10 +34,10 @@
       content: "";
       position: fixed;
       z-index: 1;
-      inset: 0 0 auto 0;
+      inset: 0 0 auto;
       box-sizing: content-box;
-      height: 1rem;
       width: tokens.get("layout", "sidebar-width");
+      height: 1rem;
       background-color: tokens.get("background-shift");
     }
   }
@@ -53,8 +53,8 @@
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    box-shadow: none;
     padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
+    box-shadow: none;
 
     // Styles for infinite background
     &::before {
