@@ -1,6 +1,6 @@
 ---
 title: Drawer
-description: "A responsive container component that switches between a static and a modal dialog based on a provided breakpoint."
+description: "A responsive container custom element that switches between a static layout and a modal dialog based on a provided breakpoint."
 package: "@vrembem/drawer"
 category: component
 ---
@@ -19,32 +19,27 @@ npm install @vrembem/drawer
 
 <CodeExample lang="js">
   ```js
-  // Import the drawer collection class
-  import { DrawerCollection } from "@vrembem/drawer";
-
-  // Instantiate the drawer collection
-  const drawers = new DrawerCollection();
-
-  // Mount the drawer collection
-  await drawers.mount();
+  // Registers the <vb-drawer> custom element
+  import "@vrembem/drawer";
   ```
 </CodeExample>
 
 ## Options
 
-Drawer is built as a Sass module to handle styles and CSS output, along with a corresponding JavaScript class for managing behavior and plugin integration. Below are the available configuration options.
+Drawer is a custom element (`<vb-drawer>`) with a small Sass module for styles. Behavior is controlled through element attributes, while output and default values are controlled through Sass config and design token CSS variables.
 
-### JavaScript
+### Attributes
 
-TBD...
+The custom element observes the following attributes. Changes made after the element is connected are applied automatically.
 
-<CodeExample lang="js">
-```js
-static get observedAttributes() {
-  return ["breakpoint", "position"];
-}
-```
-</CodeExample>
+<dl>
+  <dt>`id` (required)</dt>
+  <dd>Used to identify the drawer. The internal `<dialog>` element is given an id of `[id]-modal`, which is the value that triggers should target with `commandfor`.</dd>
+  <dt>`breakpoint`</dt>
+  <dd>The viewport width at which the drawer switches between static and modal layouts. Accepts a named breakpoint token (e.g. `md`), a unitless number (treated as pixels), or any valid CSS length. Falls back to the `drawer-breakpoint` config value.</dd>
+  <dt>`position`</dt>
+  <dd>The edge the modal dialog anchors to when below the breakpoint. Accepts `top`, `right`, `bottom`, or `left`. Falls back to the `drawer-position` config value.</dd>
+</dl>
 
 ### Sass
 
@@ -68,7 +63,7 @@ Drawer comes with the following Sass configuration options that can be set using
 
 ### Design tokens
 
-Drawer uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+Drawer uses design token CSS variables to provide default values for custom element options.
 
 <ReferenceTable id="tokens-drawer" filter={false} data={{
   "--vb-drawer-breakpoint": "md",
@@ -77,4 +72,72 @@ Drawer uses design token CSS variables in a reference and fallback pattern. Vari
 
 ## Basic usage
 
-TBD...
+The `<vb-drawer>` custom element wraps any content that should render inline when the viewport is at or above the `breakpoint` and inside a modal dialog when it's below. Once registered, the element manages the internal `<dialog>` structure for you — authors only need to provide the children.
+
+Every drawer requires a unique `id`. Triggers open and close the modal state using the native [`command` and `commandfor` attributes](/packages/modal#basic-usage), targeting `[id]-modal` — the id of the dialog the drawer creates internally.
+
+<CodeExample lang="html">
+```html
+<button command="show-modal" commandfor="[unique-id]-modal">...</button>
+
+<vb-drawer id="[unique-id]" breakpoint="md" position="left">
+  ...
+</vb-drawer>
+```
+</CodeExample>
+
+The [panel component](/packages/panel) is a great fit for structuring drawer content and works in both the static and modal layouts. Apply the `panel` class to the `<vb-drawer>` element and compose its elements inside.
+
+<CodeExample lang="html">
+```html
+<button command="show-modal" commandfor="custom-drawer-modal">
+  Show modal
+</button>
+
+<vb-drawer id="custom-drawer" class="panel">
+  <div class="panel__header">
+    <h2 class="panel__title">Drawer</h2>
+    <button class="link" command="close" commandfor="custom-drawer-modal">
+      Close
+    </button>
+  </div>
+  <div class="panel__body">
+    <p>This is the contents of a drawer...</p>
+  </div>
+  <div class="panel__footer">
+    <p>Drawer footer</p>
+  </div>
+</vb-drawer>
+```
+</CodeExample>
+
+### How it works
+
+When the viewport is at or above the `breakpoint`, the drawer's children render inline as normal document flow. When the viewport drops below the `breakpoint`, the element:
+
+- Adds the `is-modal` class to the host element and collapses its layout box so it no longer affects surrounding flow.
+- Moves its children into an internal `<dialog>` element with the `modal modal--drawer modal--pos-[position] panel` classes and a `closedby="any"` attribute.
+- Exposes the dialog as `[id]-modal`, so triggers can open and close it with the native `command`/`commandfor` attributes.
+
+Switching back above the breakpoint reverses the process — children are moved back inline and the dialog is closed if it was open.
+
+### Breakpoint
+
+The `breakpoint` attribute accepts three forms:
+
+- **Named breakpoint tokens** — resolved from `--vb-breakpoint-[key]` design tokens (e.g. `md`, `lg`, or any custom key you've defined).
+- **Unitless numbers** — treated as pixel values (e.g. `760` becomes `760px`).
+- **CSS length values** — passed through as-is (e.g. `48rem`, `800px`).
+
+If the attribute is omitted, the value from the `drawer-breakpoint` Sass config is used.
+
+### Position
+
+The `position` attribute controls which viewport edge the modal dialog anchors to when open. This maps directly to the [`modal--pos-[key]`](/packages/modal#modal--pos-key) modifier applied to the internal dialog.
+
+**Available values**
+
+- `top`
+- `right`
+- `bottom`
+- `left`
