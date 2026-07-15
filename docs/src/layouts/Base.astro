@@ -3,7 +3,6 @@ import Root from "@/layouts/Root.astro";
 import Header from "@/components/Header.astro";
 import Toolbar from "@/components/Toolbar.astro";
 import Footer from "@/components/Footer.astro";
-import Drawer from "@/components/Drawer.astro";
 import Icon from "@/components/Icon.astro";
 
 interface Props {
@@ -27,13 +26,14 @@ if (layout.hasAside) layoutClasses.push("has-aside");
   <div class={`layout ${layoutClasses.join(" ")}`.trim()}>
     {
       layout.hasSidebar && (
-        <Drawer
+        <vb-drawer
           id="layout-sidebar"
           breakpoint="sidebar"
-          classes="layout__sidebar"
+          position="left"
+          class="layout__sidebar"
         >
           <slot name="sidebar" />
-        </Drawer>
+        </vb-drawer>
       )
     }
 
@@ -41,13 +41,14 @@ if (layout.hasAside) layoutClasses.push("has-aside");
       <div class="main__grid">
         {
           layout.hasAside && (
-            <Drawer
+            <vb-drawer
               id="main-aside"
               breakpoint="aside"
-              classes="drawer--switch main__aside"
+              position="right"
+              class="main__aside"
             >
               <slot name="aside" />
-            </Drawer>
+            </vb-drawer>
           )
         }
         <div class="main__content">
@@ -57,7 +58,8 @@ if (layout.hasAside) layoutClasses.push("has-aside");
                 <button
                   type="button"
                   interestfor="popover-otp-menu"
-                  data-drawer-open="main-aside"
+                  commandfor="main-aside-modal"
+                  command="show-modal"
                   aria-label="Open on this page menu"
                   class="button button--icon"
                 >

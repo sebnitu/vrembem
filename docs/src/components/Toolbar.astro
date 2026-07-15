@@ -15,13 +15,21 @@ const { layout } = Astro.props;
   (layout.hasSidebar || layout.hasAside) && (
     <div class="toolbar">
       {layout.hasSidebar && (
-        <button data-drawer-open="layout-sidebar" class="button">
+        <button
+          commandfor="layout-sidebar-modal"
+          command="show-modal"
+          class="button"
+        >
           <Icon name="sidebar" classes="icon--size-sm" />
           <span class="text-capitalize">Sidebar</span>
         </button>
       )}
       {layout.hasAside && (
-        <button data-drawer-open="main-aside" class="button margin-left-auto">
+        <button
+          commandfor="main-aside-modal"
+          command="show-modal"
+          class="button margin-left-auto"
+        >
           <span>On this page</span>
           <Icon name="map-pin" classes="icon--size-sm" />
         </button>

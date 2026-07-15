@@ -1,6 +1,6 @@
 # Drawer
 
-A container component that slides in from the left or right. Typically containing menus, search or other content.
+A responsive container custom element that switches between a static layout and a modal dialog based on a provided breakpoint.
 
 [Documentation](https://vrembem.com/packages/drawer)
 
@@ -19,7 +19,5 @@ npm install @vrembem/drawer
 ### JavaScript
 
 ```js
-import { DrawerCollection } from '@vrembem/drawer';
-const drawers = new DrawerCollection();
-await drawers.mount();
+import "@vrembem/drawer";
 ```

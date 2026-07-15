@@ -1,0 +1,27 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/tokens";
+
+vb-drawer {
+  @include tokens.override(
+    "drawer",
+    (
+      "breakpoint": config.get("drawer-breakpoint"),
+      "position": config.get("drawer-position")
+    )
+  );
+
+  display: block;
+
+  // Collapse the drawer's layout box in modal state so it doesn't affect the
+  // surrounding document flow or grid/flex layout.
+  &.is-modal {
+    display: contents;
+  }
+
+  // Hide all direct children except the dialog element, which is rendered in
+  // the top layer and manages its own visibility.
+  &.is-modal > :not(dialog) {
+    display: none;
+  }
+}

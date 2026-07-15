@@ -1,8 +1,6 @@
 @use "sass:meta";
-@forward "./src/scss/config";
+@forward "./src/config";
 
 @layer components {
-  @include meta.load-css("./src/scss/drawer");
-  @include meta.load-css("./src/scss/drawer--switch");
-  @include meta.load-css("./src/scss/drawer--modal");
+  @include meta.load-css("./src/drawer");
 }

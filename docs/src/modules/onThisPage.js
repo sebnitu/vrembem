@@ -1,5 +1,3 @@
-import { drawers } from "./useDrawer.js";
-
 function onThisPage(options = {}) {
   const config = {
     selectorAnchors: "",
@@ -9,6 +7,7 @@ function onThisPage(options = {}) {
   };
 
   const collection = [];
+  const drawer = document.getElementById("main-aside-modal");
 
   function mount() {
     const els = document.querySelectorAll(config.selectorAnchors);
@@ -66,8 +65,8 @@ function onThisPage(options = {}) {
     });
 
     // Close the modal drawer if open
-    if (drawers.activeModal && drawers.activeModal.id === "main-aside") {
-      drawers.activeModal.close();
+    if (drawer.hasAttribute("open")) {
+      drawer.close();
     }
   }
 

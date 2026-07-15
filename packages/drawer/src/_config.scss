@@ -1,0 +1,19 @@
+@use "@vrembem/core";
+@use "@vrembem/core/config";
+@use "@vrembem/core/tokens";
+
+$config: () !default;
+
+// prettier-ignore
+$default: (
+  // Sets the default breakpoint for drawers
+  // @type string | number
+  "drawer-breakpoint": "md",
+
+  // Set the default position of modal drawers
+  // @type string
+  "drawer-position": "left"
+);
+
+@include config.apply($config, $default);
+@include tokens.register("drawer");

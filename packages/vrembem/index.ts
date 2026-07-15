@@ -1,2 +1,2 @@
 export * from "@vrembem/core";
-export { DrawerCollection } from "@vrembem/drawer";
+export { Drawer } from "@vrembem/drawer";

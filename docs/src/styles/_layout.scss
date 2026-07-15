@@ -19,23 +19,25 @@
 }
 
 .layout__sidebar {
-  // Prevents flash of unstyled content on mobile
-  visibility: hidden;
+  display: none;
 
-  .drawer__panel {
+  .panel {
     background-color: tokens.get("background-shift");
-    outline: none;
   }
 
-  .drawer__container {
-    padding: tokens.get("layout", "padding");
+  .panel__container {
+    position: relative;
+    padding: 1rem;
 
+    // Adds a mask for scrolled content that passes sticky summary controls
     &::before {
       content: "";
       position: fixed;
       z-index: 1;
       inset: 0 0 auto;
-      height: tokens.get("layout", "padding");
+      box-sizing: content-box;
+      width: tokens.get("layout", "sidebar-width");
+      height: 1rem;
       background-color: tokens.get("background-shift");
     }
   }
@@ -47,10 +49,12 @@
     z-index: 1;
     top: tokens.get("layout", "header-height");
     overflow: auto;
+    display: block;
     flex: 0 0 auto;
     width: tokens.get("layout", "sidebar-width");
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    visibility: visible;
+    padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
+    box-shadow: none;
 
     // Styles for infinite background
     &::before {
@@ -75,18 +79,6 @@
       width: 2rem;
       height: 100%;
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
-    }
-
-    .drawer__panel {
-      background-color: transparent;
-    }
-
-    .drawer__container {
-      padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
-
-      &::before {
-        content: none;
-      }
     }
   }
 }

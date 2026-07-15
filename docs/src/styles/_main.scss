@@ -25,16 +25,14 @@
 }
 
 .main__aside {
-  // Prevents flash of unstyled content on mobile
-  visibility: hidden;
+  display: none;
 
-  .drawer__panel {
+  .panel {
     background-color: tokens.get("background-shift");
-    outline: none;
   }
 
-  .drawer__container {
-    padding: tokens.get("layout", "padding");
+  .panel__container {
+    padding: 1rem;
   }
 }
 
@@ -50,17 +48,8 @@
     width: tokens.get("main", "aside-width");
     max-width: unset;
     max-height: calc(100vh - tokens.get("layout", "header-height"));
-    visibility: visible;
-
-    .drawer__panel {
-      position: static;
-      inset: unset;
-      background-color: transparent;
-    }
-
-    .drawer__container {
-      padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
-    }
+    padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
+    box-shadow: none;
   }
 }
 

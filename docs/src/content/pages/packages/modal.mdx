@@ -5,8 +5,6 @@ package: "@vrembem/modal"
 category: component
 ---
 
-import ReferenceBar from "@/components/ReferenceBar.astro";
-import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
 
 ```sh
@@ -282,6 +280,127 @@ The default modal position is centered in the viewport. The position modifier al
 - `modal--pos-left`
 - `modal--pos-right`
 - `modal--pos-bottom`
+
+## modal--drawer
+
+Converts a modal into a drawer-style overlay that anchors to a viewport edge. Use with `modal--pos-[key]` to control which edge the drawer slides in from.
+
+<CodeExample>
+  <Fragment slot="output">
+    <ul class="list">
+      <li>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-top">
+          modal--drawer modal--pos-top
+        </button>
+      </li>
+      <li>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-right">
+          modal--drawer modal--pos-right
+        </button>
+      </li>
+      <li>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-bottom">
+          modal--drawer modal--pos-bottom
+        </button>
+      </li>
+      <li>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-left">
+          modal--drawer modal--pos-left
+        </button>
+      </li>
+    </ul>
+    <dialog id="modal-drawer-pos-top" class="modal modal--drawer modal--pos-top panel" closedby="any">
+      <div class="panel__body">
+        <div class="flex justify-content-between">
+           <p>modal--pos-top</p>
+           <button class="link" command="close" commandfor="modal-drawer-pos-top">Close</button>
+         </div>
+      </div>
+      <div class="panel__footer justify-content-between">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-left">
+          modal--pos-left
+        </button>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-bottom">
+          modal--pos-bottom
+        </button>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-right">
+          modal--pos-right
+        </button>
+      </div>
+    </dialog>
+    <dialog id="modal-drawer-pos-left" class="modal modal--drawer modal--pos-left panel" closedby="any">
+      <div class="panel__body">
+        <div class="flex justify-content-between">
+           <p>modal--pos-left</p>
+           <button class="link" command="close" commandfor="modal-drawer-pos-left">Close</button>
+         </div>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-top">
+          modal--pos-top
+        </button>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-right">
+          modal--pos-right
+        </button>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-bottom">
+          modal--pos-bottom
+        </button>
+      </div>
+    </dialog>
+    <dialog id="modal-drawer-pos-right" class="modal modal--drawer modal--pos-right panel" closedby="any">
+      <div class="panel__body">
+        <div class="flex justify-content-between">
+           <p>modal--pos-right</p>
+           <button class="link" command="close" commandfor="modal-drawer-pos-right">Close</button>
+         </div>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-top">
+          modal--pos-top
+        </button>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-left">
+          modal--pos-left
+        </button>
+      </div>
+      <div class="panel__footer">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-bottom">
+          modal--pos-bottom
+        </button>
+      </div>
+    </dialog>
+    <dialog id="modal-drawer-pos-bottom" class="modal modal--drawer modal--pos-bottom panel" closedby="any">
+      <div class="panel__body">
+        <div class="flex justify-content-between">
+           <p>modal--pos-bottom</p>
+           <button class="link" command="close" commandfor="modal-drawer-pos-bottom">Close</button>
+         </div>
+      </div>
+      <div class="panel__footer justify-content-between">
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-left">
+          modal--pos-left
+        </button>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-top">
+          modal--pos-top
+        </button>
+        <button class="link" command="show-modal" commandfor="modal-drawer-pos-right">
+          modal--pos-right
+        </button>
+      </div>
+    </dialog>
+  </Fragment>
+   ```html
+   <dialog id="[unique-id]" class="modal modal--drawer modal--pos-top" closedby="any">...</dialog>
+   <dialog id="[unique-id]" class="modal modal--drawer modal--pos-left" closedby="any">...</dialog>
+   <dialog id="[unique-id]" class="modal modal--drawer modal--pos-right" closedby="any">...</dialog>
+   <dialog id="[unique-id]" class="modal modal--drawer modal--pos-bottom" closedby="any">...</dialog>
+   ```
+</CodeExample>
 
 ## modal--size-[key]
 
