@@ -42,41 +42,32 @@ export class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
-    // Get the default breakpoint and position from CSS custom properties
+    // 1. Get the default breakpoint and position tokens
     this.defaults.breakpoint = this.getToken(this, "drawer", "breakpoint");
     this.defaults.position = this.getToken(this, "drawer", "position");
 
-    // Create internal structure
+    // 2. Build the internal structure
     this.drawerModal = document.createElement("dialog");
-
-    // Setup the modal attributes
     this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
     this.drawerModal.setAttribute("closedby", "any");
+    this.drawerModal.classList.add("modal", "modal--drawer", "panel");
 
-    // Apply modal component and drawer modifier
-    this.drawerModal.classList.add("modal", "modal--drawer");
-
-    // Apply the initial position modifier
-    const position =
-      this.getAttribute("position") || this.defaults.position || "left";
-    this.applyPosition(null, position);
-
-    // Apply panel component to dialog modal
-    this.drawerModal.classList.add("panel");
-
-    // Add the panel container element
     this.drawerContainer = document.createElement("div");
     this.drawerContainer.classList.add("panel__container");
-    this.drawerModal.appendChild(this.drawerContainer);
 
-    // Append the containers inside the custom element
+    // 3. Append the containers inside the custom element
+    this.drawerModal.appendChild(this.drawerContainer);
     this.appendChild(this.drawerModal);
 
+    // 4. Apply the initial position modifier
+    this.applyPosition(null, this.getAttribute("position"));
+
+    // 5. Setup and initial match of media query
     const breakpoint =
       this.getAttribute("breakpoint") || this.defaults.breakpoint || "760px";
     this.setupMediaQuery(breakpoint);
 
-    // Set the initialized flag
+    // 6. Set the initialized flag
     this.#initialized = true;
   }
 
@@ -140,8 +131,16 @@ export class Drawer extends HTMLElement {
   }
 
   applyPosition(oldPos: string | null, newPos: string | null) {
+    // Remove the old position
     if (oldPos) this.drawerModal.classList.remove(`modal--pos-${oldPos}`);
-    this.drawerModal.classList.add(`modal--pos-${newPos}`);
+
+    // Remove the default position
+    const defaultPos = this.defaults.position || "left";
+    this.drawerModal.classList.remove(`modal--pos-${defaultPos}`);
+
+    // Apply the new position with the default as fallback
+    const pos = newPos || defaultPos;
+    this.drawerModal.classList.add(`modal--pos-${pos}`);
   }
 }
 
