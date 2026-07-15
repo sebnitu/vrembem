@@ -51,7 +51,6 @@
     entry.addEventListener("toggle", () => {
       const stateArray = Array.from(details, (el) => el.hasAttribute("open"));
       store.set("open", stateArray);
-      console.log("Test", stateArray);
     });
   });
 
