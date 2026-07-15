@@ -46,18 +46,20 @@ export class Drawer extends HTMLElement {
     this.defaults.breakpoint = this.getToken(this, "drawer", "breakpoint");
     this.defaults.position = this.getToken(this, "drawer", "position");
 
-    // 2. Build the internal structure
-    this.drawerModal = document.createElement("dialog");
-    this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
-    this.drawerModal.setAttribute("closedby", "any");
-    this.drawerModal.classList.add("modal", "modal--drawer", "panel");
+    if (!this.drawerModal) {
+      // 2. Build the internal structure
+      this.drawerModal = document.createElement("dialog");
+      this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
+      this.drawerModal.setAttribute("closedby", "any");
+      this.drawerModal.classList.add("modal", "modal--drawer", "panel");
 
-    this.drawerContainer = document.createElement("div");
-    this.drawerContainer.classList.add("panel__container");
+      this.drawerContainer = document.createElement("div");
+      this.drawerContainer.classList.add("panel__container");
 
-    // 3. Append the containers inside the custom element
-    this.drawerModal.appendChild(this.drawerContainer);
-    this.appendChild(this.drawerModal);
+      // 3. Append the containers inside the custom element
+      this.drawerModal.appendChild(this.drawerContainer);
+      this.appendChild(this.drawerModal);
+    }
 
     // 4. Apply the initial position modifier
     this.applyPosition(null, this.getAttribute("position"));
