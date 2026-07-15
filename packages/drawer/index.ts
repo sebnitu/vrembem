@@ -42,34 +42,42 @@ export class Drawer extends HTMLElement {
   }
 
   connectedCallback() {
-    // 1. Get the default breakpoint and position tokens
+    // 1. Ensure that an ID exists on the custom element
+    const id = this.getAttribute("id");
+    if (!id) {
+      throw new Error(
+        `<vb-drawer> failed to initialize: "id" attribute is required.`
+      );
+    }
+
+    // 2. Get the default breakpoint and position tokens
     this.defaults.breakpoint = this.getToken(this, "drawer", "breakpoint");
     this.defaults.position = this.getToken(this, "drawer", "position");
 
     if (!this.drawerModal) {
-      // 2. Build the internal structure
+      // 3. Build the internal structure
       this.drawerModal = document.createElement("dialog");
-      this.drawerModal.setAttribute("id", `${this.getAttribute("id")}-modal`);
+      this.drawerModal.setAttribute("id", `${id}-modal`);
       this.drawerModal.setAttribute("closedby", "any");
       this.drawerModal.classList.add("modal", "modal--drawer", "panel");
 
       this.drawerContainer = document.createElement("div");
       this.drawerContainer.classList.add("panel__container");
 
-      // 3. Append the containers inside the custom element
+      // 4. Append the containers inside the custom element
       this.drawerModal.appendChild(this.drawerContainer);
       this.appendChild(this.drawerModal);
     }
 
-    // 4. Apply the initial position modifier
+    // 5. Apply the initial position modifier
     this.applyPosition(null, this.getAttribute("position"));
 
-    // 5. Setup and initial match of media query
+    // 6. Setup and initial match of media query
     const breakpoint =
       this.getAttribute("breakpoint") || this.defaults.breakpoint || "760px";
     this.setupMediaQuery(breakpoint);
 
-    // 6. Set the initialized flag
+    // 7. Set the initialized flag
     this.#initialized = true;
   }
 
