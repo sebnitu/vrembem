@@ -34,9 +34,9 @@ The custom element observes the following attributes. Changes made after the ele
 <dl>
   <dt>`id` <span class="foreground-subtle font-weight-regular">(required)</span></dt>
   <dd>Used to identify the drawer. The internal `<dialog>` element is given an id of `[id]-modal`, which is the value that triggers should target with the `commandfor` invoker API.</dd>
-  <dt>`breakpoint`</dt>
-  <dd>The viewport width that switches the drawer between static and modal states. Accepts a named breakpoint token key (e.g. `md`, `lg`, etc), or any valid CSS length. Defaults to the `drawer-breakpoint` config value.</dd>
-  <dt>`position`</dt>
+  <dt>[`breakpoint`](#breakpoint)</dt>
+  <dd>The viewport width that switches the drawer between static and modal states. Accepts a breakpoint key (e.g. `md`, `lg`, etc), or any valid CSS length. Defaults to the `drawer-breakpoint` config value.</dd>
+  <dt>[`position`](#position)</dt>
   <dd>The modal dialog position. Accepts `top`, `right`, `bottom`, or `left`. Defaults to the `drawer-position` config value.</dd>
 </dl>
 
@@ -115,24 +115,30 @@ The [panel component](/packages/panel) is a great fit for structuring drawer con
 When the viewport is at or above the `breakpoint`, the drawer's children render inline as normal document flow. When the viewport drops below the `breakpoint`, the element:
 
 - Adds the `is-modal` class to the host element and collapses its layout box so it no longer affects surrounding flow.
-- Moves its children into an internal `<dialog>` element with the `modal modal--drawer modal--pos-[position] panel` classes and a `closedby="any"` attribute.
+- Moves its children into an internal `<dialog>` element with the `closedby="any"` attribute and the following classes:
+  - [`modal`](/packages/modal#basic-usage)
+  - [`modal--drawer`](/packages/modal#modal--drawer)
+  - [`modal--pos-[key]`](/packages/modal#modal--pos-key)
+  - [`panel`](/packages/panel#basic-usage)
 - Exposes the dialog as `[id]-modal`, so triggers can open and close it with the native `command`/`commandfor` attributes.
 
-Switching back above the breakpoint reverses the process — children are moved back inline and the dialog is closed if it was open.
+Switching back above the breakpoint reverses the process. Children are moved back inline and the dialog is closed if it was open.
 
 ### Breakpoint
 
-The `breakpoint` attribute accepts three forms:
+The `breakpoint` attribute defines when the drawer switches between the static and modal states of the drawer. This accepts a value in three forms:
 
-- **Named breakpoint tokens** — resolved from `--vb-breakpoint-[key]` design tokens (e.g. `md`, `lg`, or any custom key you've defined).
+- **Breakpoint key** — resolved from `--vb-breakpoint-[key]` design tokens (e.g. `md`, `lg`, or any custom key defined).
 - **Unitless numbers** — treated as pixel values (e.g. `760` becomes `760px`).
 - **CSS length values** — passed through as-is (e.g. `48rem`, `800px`).
 
-If the attribute is omitted, the value from the `drawer-breakpoint` Sass config is used.
+If omitted, defaults to the value of [`--vb-drawer-breakpoint`](#reference-table-tokens-drawer--vb-drawer-breakpoint).
 
 ### Position
 
 The `position` attribute controls which viewport edge the modal dialog anchors to when open. This maps directly to the [`modal--pos-[key]`](/packages/modal#modal--pos-key) modifier applied to the internal dialog.
+
+If omitted, defaults to the value of [`--vb-drawer-position`](#reference-table-tokens-drawer--vb-drawer-position).
 
 **Available values**
 
@@ -150,8 +156,6 @@ The `Drawer` class is also exposed as a named export for authors who want to sub
 import { Drawer } from "@vrembem/drawer";
 ```
 </CodeExample>
-
-### Extending the Drawer class
 
 Because a custom element tag can only be registered once, the built-in `<vb-drawer>` element is locked to the packaged `Drawer` class as soon as the module is imported. To customize behavior, subclass `Drawer` and register the subclass under a **new tag name**.
 
