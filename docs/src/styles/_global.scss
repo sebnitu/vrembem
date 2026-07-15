@@ -34,6 +34,34 @@ html {
   }
 }
 
+dl > * + * {
+  margin-top: tokens.get("spacing-sm");
+}
+
+dt {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap: tokens.get("spacing-md");
+
+  &::after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    flex-grow: 1;
+    background-color: tokens.get("border-color");
+  }
+}
+
+dd {
+  margin-left: tokens.get("spacing-lg");
+}
+
+dd + dt {
+  padding-top: tokens.get("spacing-md");
+  margin-top: tokens.get("spacing-md");
+}
+
 /**
  * CodeExample
  * These are styles used specifically in code example blocks
