@@ -19,26 +19,25 @@ npm install @vrembem/drawer
 
 <CodeExample lang="js">
   ```js
-  // Registers the <vb-drawer> custom element
   import "@vrembem/drawer";
   ```
 </CodeExample>
 
 ## Options
 
-Drawer is a custom element (`<vb-drawer>`) with a small Sass module for styles. Behavior is controlled through element attributes, while output and default values are controlled through Sass config and design token CSS variables.
+Drawer is defined as a `<vb-drawer>` custom element with a small Sass module for styles. Behavior is controlled through element attributes, while output and default values are controlled through Sass config and design token CSS variables.
 
 ### Attributes
 
 The custom element observes the following attributes. Changes made after the element is connected are applied automatically.
 
 <dl>
-  <dt>`id` (required)</dt>
-  <dd>Used to identify the drawer. The internal `<dialog>` element is given an id of `[id]-modal`, which is the value that triggers should target with `commandfor`.</dd>
+  <dt>`id` <span class="foreground-subtle font-weight-regular">(required)</span></dt>
+  <dd>Used to identify the drawer. The internal `<dialog>` element is given an id of `[id]-modal`, which is the value that triggers should target with the `commandfor` invoker API.</dd>
   <dt>`breakpoint`</dt>
-  <dd>The viewport width at which the drawer switches between static and modal layouts. Accepts a named breakpoint token (e.g. `md`), a unitless number (treated as pixels), or any valid CSS length. Falls back to the `drawer-breakpoint` config value.</dd>
+  <dd>The viewport width that switches the drawer between static and modal states. Accepts a named breakpoint token key (e.g. `md`, `lg`, etc), or any valid CSS length. Defaults to the `drawer-breakpoint` config value.</dd>
   <dt>`position`</dt>
-  <dd>The edge the modal dialog anchors to when below the breakpoint. Accepts `top`, `right`, `bottom`, or `left`. Falls back to the `drawer-position` config value.</dd>
+  <dd>The modal dialog position. Accepts `top`, `right`, `bottom`, or `left`. Defaults to the `drawer-position` config value.</dd>
 </dl>
 
 ### Sass
@@ -141,3 +140,46 @@ The `position` attribute controls which viewport edge the modal dialog anchors t
 - `right`
 - `bottom`
 - `left`
+
+## Advanced
+
+The `Drawer` class is also exposed as a named export for authors who want to subclass it. Importing the named export still triggers the module's side effect, so `<vb-drawer>` is registered as soon as the package is imported.
+
+<CodeExample lang="js">
+```js
+import { Drawer } from "@vrembem/drawer";
+```
+</CodeExample>
+
+### Extending the Drawer class
+
+Because a custom element tag can only be registered once, the built-in `<vb-drawer>` element is locked to the packaged `Drawer` class as soon as the module is imported. To customize behavior, subclass `Drawer` and register the subclass under a **new tag name**.
+
+<CodeExample lang="js">
+```js
+import { Drawer } from "@vrembem/drawer";
+
+class AppDrawer extends Drawer {
+  connectedCallback() {
+    super.connectedCallback();
+    // Add custom behavior on top of the base drawer setup
+  }
+}
+
+customElements.define("app-drawer", AppDrawer);
+```
+</CodeExample>
+
+Use `<app-drawer>` in your markup exactly as you would `<vb-drawer>` — the same attributes, styles, and trigger pattern apply.
+
+<CodeExample lang="html">
+```html
+<button command="show-modal" commandfor="my-drawer-modal">Open</button>
+
+<app-drawer id="my-drawer" breakpoint="md" position="left" class="panel">
+  ...
+</app-drawer>
+```
+</CodeExample>
+
+When overriding lifecycle callbacks like `connectedCallback`, be sure to call `super.connectedCallback()` — the base class builds the internal `<dialog>` structure and sets up the media query listener there. Skipping the super call will leave the drawer in a broken state.
