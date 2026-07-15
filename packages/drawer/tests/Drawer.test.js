@@ -71,9 +71,9 @@ describe("connectedCallback()", () => {
     expect(el.drawerModal).toHaveClass("modal--pos-right");
   });
 
-  it("should fall back to 'bottom' when no position attribute or default is set", () => {
+  it("should fall back to 'left' when no position attribute or default is set", () => {
     const el = mount(`<vb-drawer id="d1"></vb-drawer>`);
-    expect(el.drawerModal).toHaveClass("modal--pos-bottom");
+    expect(el.drawerModal).toHaveClass("modal--pos-left");
   });
 });
 

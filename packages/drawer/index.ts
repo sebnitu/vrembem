@@ -58,7 +58,7 @@ export class Drawer extends HTMLElement {
 
     // Apply the initial position modifier
     const position =
-      this.getAttribute("position") || this.defaults.position || "bottom";
+      this.getAttribute("position") || this.defaults.position || "left";
     this.applyPosition(null, position);
 
     // Apply panel component to dialog modal
