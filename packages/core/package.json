@@ -21,19 +21,19 @@
       "default": "./layers.scss"
     },
     "./tokens": {
-      "sass": "./src/scss/modules/_tokens.scss",
+      "sass": "./src/modules/_tokens.scss",
       "style": "./dist/tokens.css",
-      "default": "./src/scss/modules/_tokens.scss"
+      "default": "./src/modules/_tokens.scss"
     },
     "./base": {
       "sass": "./base.scss",
       "style": "./dist/base.css",
       "default": "./base.scss"
     },
-    "./config": "./src/scss/modules/_config.scss",
-    "./palette": "./src/scss/modules/_palette.scss",
-    "./breakpoints": "./src/scss/modules/_breakpoints.scss",
-    "./themes": "./src/scss/modules/_themes.scss",
+    "./config": "./src/modules/_config.scss",
+    "./palette": "./src/modules/_palette.scss",
+    "./breakpoints": "./src/modules/_breakpoints.scss",
+    "./themes": "./src/modules/_themes.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./*": "./src/*"
