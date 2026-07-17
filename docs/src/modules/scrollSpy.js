@@ -1,4 +1,4 @@
-import { getAttrData } from "@vrembem/core";
+import { getAttrData } from "@/modules/getAttrData";
 
 export function scrollSpy(options = {}) {
   const config = {
