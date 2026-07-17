@@ -12,6 +12,13 @@ const { syncKey, label } = Astro.props;
 </vb-tabs>
 
 <script>
+  import { storage } from "@/modules/storage";
+
+  const defaults = {
+    selector: "vb-tabs",
+    storeKey: "VB:Tabs"
+  };
+
   customElements.define(
     "vb-tabs",
     class extends HTMLElement {
@@ -19,8 +26,8 @@ const { syncKey, label } = Astro.props;
 
       connectedCallback() {
         // Only run this if it hasn't been initialized
-        if (this.#initialized) return;
-        this.#initialized = true;
+        // if (this.#initialized) return;
+        // this.#initialized = true;
 
         // Add a unique ID if one doesn't exist
         if (!this.id) {
@@ -29,6 +36,10 @@ const { syncKey, label } = Astro.props;
             `tabs-${Math.floor(Math.random() * Date.now())}`
           );
         }
+
+        this.profile = storage(this.config.storeKey);
+        this.syncKey = this.el.getAttribute("data-sync-key");
+        this.tabs = this.el.querySelectorAll("[role='tab']");
 
         // Build the tab menu
         const panels = this.querySelectorAll("[role='tabpanel']");
@@ -62,11 +73,108 @@ const { syncKey, label } = Astro.props;
 
         // Apply the menu
         this.prepend(tablist);
+
+        // Select the initial tab
+        initialTab(this);
+
+        // Setup event listeners for tabs
+        this.tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            selectTab(tab, this);
+          });
+
+          const __handlerKeydown = handlerKeydown.bind(null, this);
+
+          tab.addEventListener("focus", () => {
+            document.addEventListener("keydown", __handlerKeydown);
+          });
+
+          tab.addEventListener("blur", () => {
+            document.removeEventListener("keydown", __handlerKeydown);
+          });
+        });
       }
     }
   );
 
-  import { TabsCollection } from "../modules/TabsCollection";
-  const tabs = new TabsCollection();
-  tabs.mount();
+  function selectTab(active, entry, recursive = true) {
+    // Run selectTab on all synced tabs
+    if (entry.syncKey && recursive) {
+      // Store the syncKey in local storage
+      entry.parent.profile.set(entry.syncKey, getTabLabel(active));
+      // Get all the entries with the same syncKey
+      const syncedEntries = entry.parent.collection.filter(
+        (item) => item.syncKey === entry.syncKey && item.id !== entry.id
+      );
+      syncedEntries.forEach((entry) => {
+        selectTab(active, entry, false);
+      });
+    }
+
+    // Select the active tab panel
+    entry.tabs.forEach((tab) => {
+      const tabpanel = document.querySelector(
+        `#${tab.getAttribute("aria-controls")}`
+      );
+      if (getTabLabel(active) === getTabLabel(tab)) {
+        tab.setAttribute("aria-selected", "true");
+        tab.removeAttribute("tabindex");
+        tabpanel.classList.add("is-active");
+      } else {
+        tab.setAttribute("aria-selected", "false");
+        tab.setAttribute("tabindex", "-1");
+        tabpanel.classList.remove("is-active");
+      }
+    });
+  }
+
+  function selectNextTab(entry) {
+    let nextTab = document.activeElement.nextElementSibling;
+    nextTab = nextTab ? nextTab : entry.tabs[0];
+    selectTab(nextTab, entry);
+    nextTab.focus();
+  }
+
+  function selectPrevTab(entry) {
+    let prevTab = document.activeElement.previousElementSibling;
+    prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
+    selectTab(prevTab, entry);
+    prevTab.focus();
+  }
+
+  function handlerKeydown(entry, event) {
+    switch (event.key) {
+      case "Down":
+      case "ArrowDown":
+      case "Right":
+      case "ArrowRight":
+        event.preventDefault();
+        selectNextTab(entry);
+        break;
+      case "Up":
+      case "ArrowUp":
+      case "Left":
+      case "ArrowLeft":
+        event.preventDefault();
+        selectPrevTab(entry);
+        break;
+      default:
+        return;
+    }
+  }
+
+  function getTabLabel(tab) {
+    return typeof tab !== "string" ? tab.textContent?.trim() : tab;
+  }
+
+  function initialTab(entry) {
+    const storedValue = entry.syncKey
+      ? entry.parent.profile.get(entry.syncKey)
+      : null;
+    selectTab(storedValue ?? entry.tabs[0], entry, false);
+  }
+
+  // import { TabsCollection } from "../modules/TabsCollection";
+  // const tabs = new TabsCollection();
+  // tabs.mount();
 </script>
