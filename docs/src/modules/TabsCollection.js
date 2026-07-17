@@ -1,4 +1,5 @@
-import { Collection, storage } from "vrembem";
+import { Collection } from "vrembem";
+import { storage } from "@/modules/storage";
 
 const defaults = {
   selector: "vb-tabs",
