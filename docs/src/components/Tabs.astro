@@ -21,8 +21,45 @@ const { syncKey, label } = Astro.props;
     syncKey: string | null = null;
     tabs: HTMLButtonElement[] = [];
 
+    #handleSyncChange = (event: Event) => {
+      const customEvent = event as CustomEvent<{ key: string; label: string }>;
+
+      if (this.syncKey === customEvent.detail.key && event.target !== this) {
+        selectTab(customEvent.detail.label, this, false);
+      }
+    }
+
+    #handleTabKeydown = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "Down":
+        case "ArrowDown":
+        case "Right":
+        case "ArrowRight":
+          event.preventDefault();
+          selectNextTab(this);
+          break;
+        case "Up":
+        case "ArrowUp":
+        case "Left":
+        case "ArrowLeft":
+          event.preventDefault();
+          selectPrevTab(this);
+          break;
+        default:
+          return;
+      }
+    }
+
+    #handleTabClick = (event: MouseEvent) => {
+      const tab = event.currentTarget as HTMLButtonElement;
+      selectTab(tab, this);
+    }
+
     connectedCallback() {
-      // Only run this if it hasn't been initialized
+      // Add event listener for when a synced key changed
+      document.addEventListener("tabs-sync-change", this.#handleSyncChange);
+
+      // Only run the setup if the element hasn't been initialized
       if (this.#initialized) return;
       this.#initialized = true;
 
@@ -49,19 +86,20 @@ const { syncKey, label } = Astro.props;
       }
 
       // Loop through the panels
-      panels.forEach((panel) => {
-        // Generate a unique ID
-        const uid = Math.floor(Math.random() * Date.now());
+      panels.forEach((panel, index) => {
+        // Create unique IDs for the panel and tab
+        const panelId = `${this.id}-panel-${index + 1}`;
+        const tabId =  `${this.id}-tab-${index + 1}`;
 
         // Apply the ID to the panel
-        panel.setAttribute("id", `tabpanel-${uid}`);
-        panel.setAttribute("aria-labelledby", `tab-${uid}`);
+        panel.setAttribute("id", panelId);
+        panel.setAttribute("aria-labelledby", tabId);
 
         // Create the tab button
         const tab = document.createElement("button");
         tab.setAttribute("role", "tab");
-        tab.setAttribute("aria-controls", `tabpanel-${uid}`);
-        tab.setAttribute("id", `tab-${uid}`);
+        tab.setAttribute("aria-controls", panelId);
+        tab.setAttribute("id", tabId);
         tab.innerText = panel.getAttribute("data-label") ?? "";
         tablist.append(tab);
       });
@@ -70,36 +108,20 @@ const { syncKey, label } = Astro.props;
       this.prepend(tablist);
 
       // Store the tab buttons
-      this.tabs = Array.from(this.querySelectorAll("[role='tab']")) as HTMLButtonElement[];
+      this.tabs = Array.from(tablist.querySelectorAll("[role='tab']")) as HTMLButtonElement[];
 
       // Select the initial tab
       initialTab(this);
 
       // Setup event listeners for tabs
       this.tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          selectTab(tab, this);
-        });
-
-        const __handlerKeydown = handlerKeydown.bind(null, this);
-
-        tab.addEventListener("focus", () => {
-          document.addEventListener("keydown", __handlerKeydown);
-        });
-
-        tab.addEventListener("blur", () => {
-          document.removeEventListener("keydown", __handlerKeydown);
-        });
+        tab.addEventListener("click", this.#handleTabClick);
+        tab.addEventListener("keydown", this.#handleTabKeydown);
       });
+    }
 
-      // Add event listener for when a synced key changed
-      document.addEventListener("tabs-sync-change", (event) => {
-        const customEvent = event as CustomEvent<{ key: string; label: string }>;
-
-        if (this.syncKey === customEvent.detail.key && event.target !== this) {
-          selectTab(customEvent.detail.label, this, false);
-        }
-      });
+    disconnectedCallback() {
+      document.removeEventListener("tabs-sync-change", this.#handleSyncChange);
     }
   }
 
@@ -120,7 +142,7 @@ const { syncKey, label } = Astro.props;
     
     // Select the active tab panel
     entry.tabs.forEach((tab) => {
-      const tabpanel = document.querySelector(
+      const tabpanel = entry.querySelector(
         `#${tab.getAttribute("aria-controls")}`
       );
       if (!tabpanel) return;
@@ -148,27 +170,6 @@ const { syncKey, label } = Astro.props;
     prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
     selectTab(prevTab, entry);
     prevTab.focus();
-  }
-
-  function handlerKeydown(entry: Tabs, event: KeyboardEvent) {
-    switch (event.key) {
-      case "Down":
-      case "ArrowDown":
-      case "Right":
-      case "ArrowRight":
-        event.preventDefault();
-        selectNextTab(entry);
-        break;
-      case "Up":
-      case "ArrowUp":
-      case "Left":
-      case "ArrowLeft":
-        event.preventDefault();
-        selectPrevTab(entry);
-        break;
-      default:
-        return;
-    }
   }
 
   function getTabLabel(tab: HTMLButtonElement | string) {
