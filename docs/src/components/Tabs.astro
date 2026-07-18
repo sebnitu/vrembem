@@ -27,7 +27,7 @@ const { syncKey, label } = Astro.props;
       if (this.syncKey === customEvent.detail.key && event.target !== this) {
         selectTab(customEvent.detail.label, this, false);
       }
-    }
+    };
 
     #handleTabKeydown = (event: KeyboardEvent) => {
       switch (event.key) {
@@ -48,12 +48,12 @@ const { syncKey, label } = Astro.props;
         default:
           return;
       }
-    }
+    };
 
     #handleTabClick = (event: MouseEvent) => {
       const tab = event.currentTarget as HTMLButtonElement;
       selectTab(tab, this);
-    }
+    };
 
     connectedCallback() {
       // Add event listener for when a synced key changed
@@ -89,7 +89,7 @@ const { syncKey, label } = Astro.props;
       panels.forEach((panel, index) => {
         // Create unique IDs for the panel and tab
         const panelId = `${this.id}-panel-${index + 1}`;
-        const tabId =  `${this.id}-tab-${index + 1}`;
+        const tabId = `${this.id}-tab-${index + 1}`;
 
         // Apply the ID to the panel
         panel.setAttribute("id", panelId);
@@ -108,7 +108,9 @@ const { syncKey, label } = Astro.props;
       this.prepend(tablist);
 
       // Store the tab buttons
-      this.tabs = Array.from(tablist.querySelectorAll("[role='tab']")) as HTMLButtonElement[];
+      this.tabs = Array.from(
+        tablist.querySelectorAll("[role='tab']")
+      ) as HTMLButtonElement[];
 
       // Select the initial tab
       initialTab(this);
@@ -125,21 +127,27 @@ const { syncKey, label } = Astro.props;
     }
   }
 
-  function selectTab(active: HTMLButtonElement | string, entry: Tabs, recursive = true) {
+  function selectTab(
+    active: HTMLButtonElement | string,
+    entry: Tabs,
+    recursive = true
+  ) {
     // Run selectTab on all synced tabs
     if (entry.syncKey && recursive) {
       // Store the syncKey in local storage
       profile.set(entry.syncKey, getTabLabel(active));
       // Dispatch the tabs sync change event
-      entry.dispatchEvent(new CustomEvent("tabs-sync-change", {
-        bubbles: true,
-        detail: {
-          key: entry.syncKey,
-          label: getTabLabel(active)
-        }
-      }));
+      entry.dispatchEvent(
+        new CustomEvent("tabs-sync-change", {
+          bubbles: true,
+          detail: {
+            key: entry.syncKey,
+            label: getTabLabel(active)
+          }
+        })
+      );
     }
-    
+
     // Select the active tab panel
     entry.tabs.forEach((tab) => {
       const tabpanel = entry.querySelector(
@@ -159,14 +167,16 @@ const { syncKey, label } = Astro.props;
   }
 
   function selectNextTab(entry: Tabs) {
-    let nextTab = document.activeElement?.nextElementSibling as HTMLButtonElement;
+    let nextTab = document.activeElement
+      ?.nextElementSibling as HTMLButtonElement;
     nextTab = nextTab ? nextTab : entry.tabs[0];
     selectTab(nextTab, entry);
     nextTab.focus();
   }
 
   function selectPrevTab(entry: Tabs) {
-    let prevTab = document.activeElement?.previousElementSibling as HTMLButtonElement;
+    let prevTab = document.activeElement
+      ?.previousElementSibling as HTMLButtonElement;
     prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
     selectTab(prevTab, entry);
     prevTab.focus();
@@ -177,9 +187,7 @@ const { syncKey, label } = Astro.props;
   }
 
   function initialTab(entry: Tabs) {
-    const storedValue = entry.syncKey
-      ? profile.get(entry.syncKey)
-      : null;
+    const storedValue = entry.syncKey ? profile.get(entry.syncKey) : null;
     selectTab(storedValue ?? entry.tabs[0], entry, false);
   }
 
