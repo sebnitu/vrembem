@@ -91,22 +91,31 @@ const { syncKey, label } = Astro.props;
           document.removeEventListener("keydown", __handlerKeydown);
         });
       });
+
+      // Add event listener for when a synced key changed
+      document.addEventListener("tabs-sync-change", (event) => {
+        const customEvent = event as CustomEvent<{ key: string; label: string }>;
+
+        if (this.syncKey === customEvent.detail.key && event.target !== this) {
+          selectTab(customEvent.detail.label, this, false);
+        }
+      });
     }
   }
 
-  function selectTab(active: string, entry: Tabs, recursive = true) {
+  function selectTab(active: HTMLButtonElement | string, entry: Tabs, recursive = true) {
     // Run selectTab on all synced tabs
     if (entry.syncKey && recursive) {
       // Store the syncKey in local storage
       profile.set(entry.syncKey, getTabLabel(active));
-      // Get all the entries with the same syncKey
-      // TODO: This needs to be done differently. Maybe with events?
-      // const syncedEntries = entry.parent.collection.filter(
-      //   (item) => item.syncKey === entry.syncKey && item.id !== entry.id
-      // );
-      // syncedEntries.forEach((entry) => {
-      //   selectTab(active, entry, false);
-      // });
+      // Dispatch the tabs sync change event
+      entry.dispatchEvent(new CustomEvent("tabs-sync-change", {
+        bubbles: true,
+        detail: {
+          key: entry.syncKey,
+          label: getTabLabel(active)
+        }
+      }));
     }
     
     // Select the active tab panel
@@ -128,20 +137,20 @@ const { syncKey, label } = Astro.props;
   }
 
   function selectNextTab(entry: Tabs) {
-    let nextTab = document.activeElement?.nextElementSibling;
+    let nextTab = document.activeElement?.nextElementSibling as HTMLButtonElement;
     nextTab = nextTab ? nextTab : entry.tabs[0];
     selectTab(nextTab, entry);
     nextTab.focus();
   }
 
   function selectPrevTab(entry: Tabs) {
-    let prevTab = document.activeElement?.previousElementSibling;
+    let prevTab = document.activeElement?.previousElementSibling as HTMLButtonElement;
     prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
     selectTab(prevTab, entry);
     prevTab.focus();
   }
 
-  function handlerKeydown(entry: Tabs, event) {
+  function handlerKeydown(entry: Tabs, event: KeyboardEvent) {
     switch (event.key) {
       case "Down":
       case "ArrowDown":
@@ -162,7 +171,7 @@ const { syncKey, label } = Astro.props;
     }
   }
 
-  function getTabLabel(tab) {
+  function getTabLabel(tab: HTMLButtonElement | string) {
     return typeof tab !== "string" ? tab.textContent?.trim() : tab;
   }
 
