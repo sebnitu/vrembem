@@ -7,115 +7,114 @@ interface Props {
 const { syncKey, label } = Astro.props;
 ---
 
-<vb-tabs data-sync-key={syncKey} data-label={label}>
+<vb-tabs sync-key={syncKey} label={label}>
   <slot />
 </vb-tabs>
 
 <script>
   import { storage } from "@/modules/storage";
 
-  const defaults = {
-    selector: "vb-tabs",
-    storeKey: "VB:Tabs"
-  };
+  const profile = storage("VB:Tabs");
 
-  customElements.define(
-    "vb-tabs",
-    class extends HTMLElement {
-      #initialized = false;
+  class Tabs extends HTMLElement {
+    #initialized = false;
+    syncKey: string | null = null;
+    tabs: HTMLButtonElement[] = [];
 
-      connectedCallback() {
-        // Only run this if it hasn't been initialized
-        // if (this.#initialized) return;
-        // this.#initialized = true;
+    connectedCallback() {
+      // Only run this if it hasn't been initialized
+      if (this.#initialized) return;
+      this.#initialized = true;
 
-        // Add a unique ID if one doesn't exist
-        if (!this.id) {
-          this.setAttribute(
-            "id",
-            `tabs-${Math.floor(Math.random() * Date.now())}`
-          );
-        }
-
-        this.profile = storage(this.config.storeKey);
-        this.syncKey = this.el.getAttribute("data-sync-key");
-        this.tabs = this.el.querySelectorAll("[role='tab']");
-
-        // Build the tab menu
-        const panels = this.querySelectorAll("[role='tabpanel']");
-        const tablist = document.createElement("div");
-        tablist.setAttribute("role", "tablist");
-
-        // Apply the label to the tablist if set
-        const tablistLabel = this.getAttribute("data-label");
-        if (tablistLabel) {
-          this.removeAttribute("data-label");
-          tablist.setAttribute("aria-label", tablistLabel);
-        }
-
-        // Loop through the panels
-        panels.forEach((panel) => {
-          // Generate a unique ID
-          const uid = Math.floor(Math.random() * Date.now());
-
-          // Apply the ID to the panel
-          panel.setAttribute("id", `tabpanel-${uid}`);
-          panel.setAttribute("aria-labelledby", `tab-${uid}`);
-
-          // Create the tab button
-          const tab = document.createElement("button");
-          tab.setAttribute("role", "tab");
-          tab.setAttribute("aria-controls", `tabpanel-${uid}`);
-          tab.setAttribute("id", `tab-${uid}`);
-          tab.innerText = panel.getAttribute("data-label") ?? "";
-          tablist.append(tab);
-        });
-
-        // Apply the menu
-        this.prepend(tablist);
-
-        // Select the initial tab
-        initialTab(this);
-
-        // Setup event listeners for tabs
-        this.tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            selectTab(tab, this);
-          });
-
-          const __handlerKeydown = handlerKeydown.bind(null, this);
-
-          tab.addEventListener("focus", () => {
-            document.addEventListener("keydown", __handlerKeydown);
-          });
-
-          tab.addEventListener("blur", () => {
-            document.removeEventListener("keydown", __handlerKeydown);
-          });
-        });
+      // Add a unique ID if one doesn't exist
+      if (!this.id) {
+        this.setAttribute(
+          "id",
+          `tabs-${Math.floor(Math.random() * Date.now())}`
+        );
       }
-    }
-  );
 
-  function selectTab(active, entry, recursive = true) {
+      // Store the sync key
+      this.syncKey = this.getAttribute("sync-key");
+
+      // Build the tab menu
+      const panels = this.querySelectorAll("[role='tabpanel']");
+      const tablist = document.createElement("div");
+      tablist.setAttribute("role", "tablist");
+
+      // Apply the label to the tablist if set
+      const tablistLabel = this.getAttribute("label");
+      if (tablistLabel) {
+        tablist.setAttribute("aria-label", tablistLabel);
+      }
+
+      // Loop through the panels
+      panels.forEach((panel) => {
+        // Generate a unique ID
+        const uid = Math.floor(Math.random() * Date.now());
+
+        // Apply the ID to the panel
+        panel.setAttribute("id", `tabpanel-${uid}`);
+        panel.setAttribute("aria-labelledby", `tab-${uid}`);
+
+        // Create the tab button
+        const tab = document.createElement("button");
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", `tabpanel-${uid}`);
+        tab.setAttribute("id", `tab-${uid}`);
+        tab.innerText = panel.getAttribute("data-label") ?? "";
+        tablist.append(tab);
+      });
+
+      // Apply the menu
+      this.prepend(tablist);
+
+      // Store the tab buttons
+      this.tabs = Array.from(this.querySelectorAll("[role='tab']")) as HTMLButtonElement[];
+
+      // Select the initial tab
+      initialTab(this);
+
+      // Setup event listeners for tabs
+      this.tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          selectTab(tab, this);
+        });
+
+        const __handlerKeydown = handlerKeydown.bind(null, this);
+
+        tab.addEventListener("focus", () => {
+          document.addEventListener("keydown", __handlerKeydown);
+        });
+
+        tab.addEventListener("blur", () => {
+          document.removeEventListener("keydown", __handlerKeydown);
+        });
+      });
+    }
+  }
+
+  function selectTab(active: string, entry: Tabs, recursive = true) {
     // Run selectTab on all synced tabs
     if (entry.syncKey && recursive) {
       // Store the syncKey in local storage
-      entry.parent.profile.set(entry.syncKey, getTabLabel(active));
+      profile.set(entry.syncKey, getTabLabel(active));
       // Get all the entries with the same syncKey
-      const syncedEntries = entry.parent.collection.filter(
-        (item) => item.syncKey === entry.syncKey && item.id !== entry.id
-      );
-      syncedEntries.forEach((entry) => {
-        selectTab(active, entry, false);
-      });
+      // TODO: This needs to be done differently. Maybe with events?
+      // const syncedEntries = entry.parent.collection.filter(
+      //   (item) => item.syncKey === entry.syncKey && item.id !== entry.id
+      // );
+      // syncedEntries.forEach((entry) => {
+      //   selectTab(active, entry, false);
+      // });
     }
-
+    
     // Select the active tab panel
     entry.tabs.forEach((tab) => {
       const tabpanel = document.querySelector(
         `#${tab.getAttribute("aria-controls")}`
       );
+      if (!tabpanel) return;
       if (getTabLabel(active) === getTabLabel(tab)) {
         tab.setAttribute("aria-selected", "true");
         tab.removeAttribute("tabindex");
@@ -128,21 +127,21 @@ const { syncKey, label } = Astro.props;
     });
   }
 
-  function selectNextTab(entry) {
-    let nextTab = document.activeElement.nextElementSibling;
+  function selectNextTab(entry: Tabs) {
+    let nextTab = document.activeElement?.nextElementSibling;
     nextTab = nextTab ? nextTab : entry.tabs[0];
     selectTab(nextTab, entry);
     nextTab.focus();
   }
 
-  function selectPrevTab(entry) {
-    let prevTab = document.activeElement.previousElementSibling;
+  function selectPrevTab(entry: Tabs) {
+    let prevTab = document.activeElement?.previousElementSibling;
     prevTab = prevTab ? prevTab : entry.tabs[entry.tabs.length - 1];
     selectTab(prevTab, entry);
     prevTab.focus();
   }
 
-  function handlerKeydown(entry, event) {
+  function handlerKeydown(entry: Tabs, event) {
     switch (event.key) {
       case "Down":
       case "ArrowDown":
@@ -167,14 +166,15 @@ const { syncKey, label } = Astro.props;
     return typeof tab !== "string" ? tab.textContent?.trim() : tab;
   }
 
-  function initialTab(entry) {
+  function initialTab(entry: Tabs) {
     const storedValue = entry.syncKey
-      ? entry.parent.profile.get(entry.syncKey)
+      ? profile.get(entry.syncKey)
       : null;
     selectTab(storedValue ?? entry.tabs[0], entry, false);
   }
 
-  // import { TabsCollection } from "../modules/TabsCollection";
-  // const tabs = new TabsCollection();
-  // tabs.mount();
+  // Define the tabs custom element if it doesn't exist
+  if (!customElements.get("vb-tabs")) {
+    customElements.define("vb-tabs", Tabs);
+  }
 </script>
