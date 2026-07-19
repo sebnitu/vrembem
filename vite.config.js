@@ -6,8 +6,8 @@ export default defineConfig({
     globals: true,
     coverage: {
       reporter: ["text", "html", "json", "lcov"],
-      include: ["**/packages/**/src/**/*.{js,jsx,ts,tsx}"],
-      exclude: ["**/packages/**/src/**/*.d.ts"]
+      include: ["**/packages/**/*.{js,jsx,ts,tsx}"],
+      exclude: ["**/packages/**/*.d.ts", "**/packages/**/tests/**"]
     }
   }
 });

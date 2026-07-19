@@ -75,6 +75,13 @@ describe("connectedCallback()", () => {
     const el = mount(`<vb-drawer id="d1"></vb-drawer>`);
     expect(el.drawerModal).toHaveClass("modal--pos-left");
   });
+
+  it("should throw when no id attribute is provided", () => {
+    const el = new Drawer();
+    expect(() => {
+      el.connectedCallback();
+    }).toThrow('<vb-drawer> failed to initialize: "id" attribute is required.');
+  });
 });
 
 describe("breakpoint parsing", () => {
