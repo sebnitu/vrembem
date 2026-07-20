@@ -65,7 +65,7 @@ function linkifyValue(value: string) {
   }
   if (!isRoot && coreRegExp.test(result)) {
     result = result.replace(coreRegExp, (match) => {
-      return `<a href="/reference/design-tokens#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+      return `<a href="/packages/core#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
     });
   }
   return result;
