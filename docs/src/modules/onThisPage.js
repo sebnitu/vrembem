@@ -65,7 +65,7 @@ function onThisPage(options = {}) {
     });
 
     // Close the modal drawer if open
-    if (drawer.hasAttribute("open")) {
+    if (drawer && drawer.hasAttribute("open")) {
       drawer.close();
     }
   }

@@ -56,7 +56,7 @@ import Icon from "@/components/Icon.astro";
 </ul>
 
 <script>
-  import { themeStore, type ThemeStoreAPI } from "@vrembem/core";
+  import { themeStore, type ThemeStoreAPI } from "@/modules/themeStore";
   const btns: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
     "[data-set-mode], [data-set-theme]"
   );

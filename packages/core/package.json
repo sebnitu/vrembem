@@ -1,9 +1,8 @@
 {
   "name": "@vrembem/core",
-  "description": "Provides a number of Sass and JavaScript modules that make up the shared systems and configurations of the Vrembem library.",
+  "description": "Provides Sass modules and shared design tokens that make up the systems and configurations of the Vrembem library.",
   "version": "4.0.0-next.46",
   "license": "MIT",
-  "type": "module",
   "keywords": [
     "BEM",
     "front-end",
@@ -11,13 +10,10 @@
     "core"
   ],
   "style": "./dist/index.css",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "sass": "./index.scss",
-      "style": "./dist/index.css",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "style": "./dist/index.css"
     },
     "./layers": {
       "sass": "./layers.scss",
@@ -25,19 +21,19 @@
       "default": "./layers.scss"
     },
     "./tokens": {
-      "sass": "./src/scss/modules/_tokens.scss",
+      "sass": "./src/modules/_tokens.scss",
       "style": "./dist/tokens.css",
-      "default": "./src/scss/modules/_tokens.scss"
+      "default": "./src/modules/_tokens.scss"
     },
     "./base": {
       "sass": "./base.scss",
       "style": "./dist/base.css",
       "default": "./base.scss"
     },
-    "./config": "./src/scss/modules/_config.scss",
-    "./palette": "./src/scss/modules/_palette.scss",
-    "./breakpoints": "./src/scss/modules/_breakpoints.scss",
-    "./themes": "./src/scss/modules/_themes.scss",
+    "./config": "./src/modules/_config.scss",
+    "./palette": "./src/modules/_palette.scss",
+    "./breakpoints": "./src/modules/_breakpoints.scss",
+    "./themes": "./src/modules/_themes.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./*": "./src/*"
@@ -46,7 +42,6 @@
     "dev",
     "dist",
     "src",
-    "index.ts",
     "index.scss",
     "layers.scss",
     "base.scss",
@@ -58,18 +53,13 @@
   ],
   "scripts": {
     "serve": "vite",
-    "build": "npm-run-all clean styles scripts",
+    "build": "npm-run-all clean styles",
     "clean": "del dev && del dist",
-    "scripts": "npm-run-all scripts:dev scripts:dist scripts:types",
-    "scripts:dev": "vite build --outDir dev --minify false",
-    "scripts:dist": "vite build --outDir dist",
-    "scripts:types": "tsc --project tsconfig.build.json",
     "styles": "npm-run-all styles:dev styles:dist",
-    "styles:dev": "sass build:dev --load-path=../../node_modules",
-    "styles:dist": "sass build:dist --load-path=../../node_modules --style=compressed",
-    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
-    "watch:scripts": "npm run scripts:dev -- --watch",
-    "watch:styles": "npm run styles:dev -- --watch"
+    "styles:dev": "sass index.scss dev/index.css --load-path=../../node_modules",
+    "styles:dist": "sass index.scss dist/index.css --load-path=../../node_modules --style=compressed",
+    "watch": "npm run watch:styles",
+    "watch:styles": "concurrently 'npm run styles:dev -- --watch' 'npm run styles:dist -- --watch'"
   },
   "repository": {
     "type": "git",
