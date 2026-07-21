@@ -35,12 +35,27 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.46 to CHANGELOG.md
+chore(release): add v4.0.0-next.47 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.47 (2026-07-21)
+
+### :tada: New Feature
+* `drawer`, `modal`, `vrembem`
+  * [#2904](https://github.com/sebnitu/vrembem/pull/2904) Rewrite drawer as a custom element
+* `modal`, `popover`, `vrembem`
+  * [#2864](https://github.com/sebnitu/vrembem/pull/2864) Replace modal implementation with HTML's Dialog element and native API
+* `core`, `drawer`, `menu`, `modal`, `popover`, `select`, `utility`, `vrembem`
+  * [#2850](https://github.com/sebnitu/vrembem/pull/2850) Remove popover JS in favor of popover API and anchor position
+
+### :house: Refactor
+* `core`, `drawer`, `vrembem`
+  * [#2905](https://github.com/sebnitu/vrembem/pull/2905) Remove unused JS from core package
 
 
 ## v4.0.0-next.46 (2026-05-26)
