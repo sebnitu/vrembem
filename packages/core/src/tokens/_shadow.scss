@@ -31,9 +31,7 @@
 @include tokens.set(
   "core",
   (
-    "box-shadow-outline": (
-      tokens.get("box-shadow-0")
-    ),
+    "box-shadow-outline": (tokens.get("box-shadow-0")),
     "box-shadow-xs": (
       tokens.get("box-shadow-0"),
       tokens.get("shadow-1")
@@ -69,9 +67,7 @@
 @include tokens.set(
   "core",
   (
-    "drop-shadow-outline": (
-      drop-shadow(tokens.get("drop-shadow-0"))
-    ),
+    "drop-shadow-outline": (drop-shadow(tokens.get("drop-shadow-0"))),
     "drop-shadow-xs": (
       drop-shadow(tokens.get("drop-shadow-0")) drop-shadow(tokens.get("shadow-1"))
     ),

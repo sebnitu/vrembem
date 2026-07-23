@@ -116,8 +116,8 @@ $-theme-keys: ();
 ///
 @function -selector($value) {
   // Check if this is a theme or mode key
-  $type: if(sass(list.index($-theme-keys, $value)): "theme" ; else: null);
-  $type: if(sass(list.index($-mode-keys, $value)): "mode" ; else: $type);
+  $type: if(sass(list.index($-theme-keys, $value)): "theme"; else: null);
+  $type: if(sass(list.index($-mode-keys, $value)): "mode"; else: $type);
 
   // Check that the theme exists
   @if $value != "auto" and not $type {
