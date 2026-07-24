@@ -4,6 +4,8 @@
 
 .reference-table {
   scroll-margin-top: tokens.get("layout", "header-height");
+  position: relative;
+  display: block;
   width: 100%;
   font-size: tokens.get("font-size");
   transition: max-height tokens.get("transition-duration") tokens.get("transition-timing-function");
