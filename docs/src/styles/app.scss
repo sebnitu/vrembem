@@ -22,6 +22,7 @@
   @include meta.load-css("./footer");
   @include meta.load-css("./layout");
   @include meta.load-css("./main");
+  @include meta.load-css("./hero");
 
   // Components
   @include meta.load-css("./badge");
