@@ -691,16 +691,16 @@ input::-moz-placeholder {
 }
 .button_color_primary:hover {
   border-color: transparent;
-  background-color: rgb(0, 169.2, 190.8);
+  background-color: rgb(0%, 66.3529411765%, 74.8235294118%);
 }
 .button_color_primary:focus {
   border-color: transparent;
-  background-color: rgb(0, 169.2, 190.8);
+  background-color: rgb(0%, 66.3529411765%, 74.8235294118%);
   box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.5);
 }
 .button_color_primary:active {
   border-color: transparent;
-  background-color: rgb(0, 150.4, 169.6);
+  background-color: rgb(0%, 58.9803921569%, 66.5098039216%);
 }
 .button_color_primary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -714,16 +714,16 @@ input::-moz-placeholder {
 }
 .button_color_secondary:hover {
   border-color: transparent;
-  background-color: rgb(86.4, 112.5, 125.1);
+  background-color: rgb(33.8823529412%, 44.1176470588%, 49.0588235294%);
 }
 .button_color_secondary:focus {
   border-color: transparent;
-  background-color: rgb(86.4, 112.5, 125.1);
+  background-color: rgb(33.8823529412%, 44.1176470588%, 49.0588235294%);
   box-shadow: 0 0 0 0.2rem rgba(96, 125, 139, 0.5);
 }
 .button_color_secondary:active {
   border-color: transparent;
-  background-color: rgb(76.8, 100, 111.2);
+  background-color: rgb(30.1176470588%, 39.2156862745%, 43.6078431373%);
 }
 .button_color_secondary.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -786,16 +786,16 @@ input::-moz-placeholder {
 }
 .button_state_info:hover {
   border-color: transparent;
-  background-color: rgb(2.7, 152.1, 219.6);
+  background-color: rgb(1.0588235294%, 59.6470588235%, 86.1176470588%);
 }
 .button_state_info:focus {
   border-color: transparent;
-  background-color: rgb(2.7, 152.1, 219.6);
+  background-color: rgb(1.0588235294%, 59.6470588235%, 86.1176470588%);
   box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.5);
 }
 .button_state_info:active {
   border-color: transparent;
-  background-color: rgb(2.4, 135.2, 195.2);
+  background-color: rgb(0.9411764706%, 53.0196078431%, 76.5490196078%);
 }
 .button_state_info.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -809,16 +809,16 @@ input::-moz-placeholder {
 }
 .button_state_success:hover {
   border-color: transparent;
-  background-color: rgb(68.4, 157.5, 72);
+  background-color: rgb(26.8235294118%, 61.7647058824%, 28.2352941176%);
 }
 .button_state_success:focus {
   border-color: transparent;
-  background-color: rgb(68.4, 157.5, 72);
+  background-color: rgb(26.8235294118%, 61.7647058824%, 28.2352941176%);
   box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5);
 }
 .button_state_success:active {
   border-color: transparent;
-  background-color: rgb(60.8, 140, 64);
+  background-color: rgb(23.8431372549%, 54.9019607843%, 25.0980392157%);
 }
 .button_state_success.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -832,16 +832,16 @@ input::-moz-placeholder {
 }
 .button_state_caution:hover {
   border-color: transparent;
-  background-color: rgb(229.5, 136.8, 0);
+  background-color: rgb(90%, 53.6470588235%, 0%);
 }
 .button_state_caution:focus {
   border-color: transparent;
-  background-color: rgb(229.5, 136.8, 0);
+  background-color: rgb(90%, 53.6470588235%, 0%);
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.5);
 }
 .button_state_caution:active {
   border-color: transparent;
-  background-color: rgb(204, 121.6, 0);
+  background-color: rgb(80%, 47.6862745098%, 0%);
 }
 .button_state_caution.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -855,16 +855,16 @@ input::-moz-placeholder {
 }
 .button_state_danger:hover {
   border-color: transparent;
-  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
+  background-color: rgb(95.0799112098%, 15.9112097669%, 10.0965593785%);
 }
 .button_state_danger:focus {
   border-color: transparent;
-  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
+  background-color: rgb(95.0799112098%, 15.9112097669%, 10.0965593785%);
   box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.5);
 }
 .button_state_danger:active {
   border-color: transparent;
-  background-color: rgb(226.0301886792, 26.9886792453, 12.3698113208);
+  background-color: rgb(88.6392896781%, 10.5837957825%, 4.8509064003%);
 }
 .button_state_danger.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2470,16 +2470,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_info:hover {
   border-color: transparent;
-  background-color: rgb(2.7, 152.1, 219.6);
+  background-color: rgb(1.0588235294%, 59.6470588235%, 86.1176470588%);
 }
 .icon-action_state_info:focus {
   border-color: transparent;
-  background-color: rgb(2.7, 152.1, 219.6);
+  background-color: rgb(1.0588235294%, 59.6470588235%, 86.1176470588%);
   box-shadow: 0 0 0 0.2rem rgba(3, 169, 244, 0.5);
 }
 .icon-action_state_info:active {
   border-color: transparent;
-  background-color: rgb(2.4, 135.2, 195.2);
+  background-color: rgb(0.9411764706%, 53.0196078431%, 76.5490196078%);
 }
 .icon-action_state_info.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2493,16 +2493,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_success:hover {
   border-color: transparent;
-  background-color: rgb(68.4, 157.5, 72);
+  background-color: rgb(26.8235294118%, 61.7647058824%, 28.2352941176%);
 }
 .icon-action_state_success:focus {
   border-color: transparent;
-  background-color: rgb(68.4, 157.5, 72);
+  background-color: rgb(26.8235294118%, 61.7647058824%, 28.2352941176%);
   box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5);
 }
 .icon-action_state_success:active {
   border-color: transparent;
-  background-color: rgb(60.8, 140, 64);
+  background-color: rgb(23.8431372549%, 54.9019607843%, 25.0980392157%);
 }
 .icon-action_state_success.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2516,16 +2516,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_caution:hover {
   border-color: transparent;
-  background-color: rgb(229.5, 136.8, 0);
+  background-color: rgb(90%, 53.6470588235%, 0%);
 }
 .icon-action_state_caution:focus {
   border-color: transparent;
-  background-color: rgb(229.5, 136.8, 0);
+  background-color: rgb(90%, 53.6470588235%, 0%);
   box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.5);
 }
 .icon-action_state_caution:active {
   border-color: transparent;
-  background-color: rgb(204, 121.6, 0);
+  background-color: rgb(80%, 47.6862745098%, 0%);
 }
 .icon-action_state_caution.is-loading::after {
   border-color: #fff #fff transparent transparent;
@@ -2539,16 +2539,16 @@ input::-moz-placeholder {
 }
 .icon-action_state_danger:hover {
   border-color: transparent;
-  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
+  background-color: rgb(95.0799112098%, 15.9112097669%, 10.0965593785%);
 }
 .icon-action_state_danger:focus {
   border-color: transparent;
-  background-color: rgb(242.4537735849, 40.5735849057, 25.7462264151);
+  background-color: rgb(95.0799112098%, 15.9112097669%, 10.0965593785%);
   box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.5);
 }
 .icon-action_state_danger:active {
   border-color: transparent;
-  background-color: rgb(226.0301886792, 26.9886792453, 12.3698113208);
+  background-color: rgb(88.6392896781%, 10.5837957825%, 4.8509064003%);
 }
 .icon-action_state_danger.is-loading::after {
   border-color: #fff #fff transparent transparent;
