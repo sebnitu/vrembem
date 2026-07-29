@@ -28,6 +28,7 @@
   @include meta.load-css("./badge");
   @include meta.load-css("./box");
   @include meta.load-css("./brand");
+  @include meta.load-css("./card--feature");
   @include meta.load-css("./card--reference");
   @include meta.load-css("./code-block");
   @include meta.load-css("./code-example");

@@ -1,0 +1,8 @@
+@use "@vrembem/core/tokens";
+
+.card--feature {
+  @include tokens.override("card", "padding", clamp(1.25rem, 3vw + 0.5rem, 3rem));
+
+  border: none;
+  border-radius: tokens.get("border-radius-lg");
+}
