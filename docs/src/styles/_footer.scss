@@ -9,6 +9,10 @@
   place-items: start center;
   color: tokens.get("foreground-subtle");
   text-align: center;
+
+  .is-home & {
+    padding: clamp(1.25rem, 3vw + 0.5rem, 3rem);
+  }
 }
 
 .footer__copy {
