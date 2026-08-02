@@ -9,89 +9,86 @@ import Icon from "@/components/Icon.astro";
 <Root bodyClass="is-home background-shift">
   <Header classes="fold-shadow" />
   <div class="header-spacer"></div>
-  <main
-    id="main"
-    class="section section--padding-xl fold-shadow-top"
-    tabindex="-1"
-  >
-    <div class="section__container text-align-center">
-      <h1 class="vrembem-logo">
-        <span class="sr-only">Vrembem</span>
-      </h1>
-      <p class="font-size-lg margin-bottom-xl">
-        A component library based on the BEM methodology.
-      </p>
-      <div class="flex justify-content-center">
-        <a href="/guide" class="button button--size-lg button--color-primary">
-          Get Started
-        </a>
-        <a
-          href="/packages"
-          class="button button--size-lg button--color-secondary"
-        >
-          Documentation
-        </a>
-        <CodeBlock icon="terminal" inline="npm install vrembem" />
+  <main id="main" tabindex="-1">
+    <div class="section section--padding-xl">
+      <div class="section__container text-align-center">
+        <h1 class="vrembem-logo">
+          <span class="sr-only">Vrembem</span>
+        </h1>
+        <p class="font-size-lg margin-bottom-xl">
+          A component library based on the BEM methodology.
+        </p>
+        <div class="hero-actions">
+          <a href="/guide" class="button button--color-primary">
+            Get Started
+          </a>
+          <a href="/packages/vrembem" class="button button--color-secondary">
+            Documentation
+          </a>
+          <CodeBlock icon="terminal" inline="npm install vrembem" />
+        </div>
+      </div>
+    </div>
+
+    <div class="section padding-y-0">
+      <div class="section__container">
+        <div class="grid sm:grid--cols-2 lg:grid--cols-3">
+          <div class="card card--feature gap-sm">
+            <Icon name="database" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">BEM Methodoloy</h2>
+            <p class="text-wrap-pretty">
+              Built on the BEM naming convention to improve clarity, prevent
+              style conflicts, and keep components clean and maintainable.
+            </p>
+          </div>
+          <div class="card card--feature gap-sm">
+            <Icon name="box" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">CSS Variables</h2>
+            <p class="text-wrap-pretty">
+              Powered by CSS variables to give better design control and
+              consistency across multiple components.
+            </p>
+          </div>
+          <div class="card card--feature gap-sm">
+            <Icon name="zap" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">Theming System</h2>
+            <p class="text-wrap-pretty">
+              Quickly build custom themes with Vrembem's core theming system,
+              including seamless light and dark mode support.
+            </p>
+          </div>
+          <div class="card card--feature gap-sm">
+            <Icon name="award" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">Accessible</h2>
+            <p class="text-wrap-pretty">
+              Designed for accessibility, ensuring components are
+              keyboard-friendly, screen-reader ready, and usable by everyone.
+            </p>
+          </div>
+          <div class="card card--feature gap-sm">
+            <Icon name="command" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">Modular</h2>
+            <p class="text-wrap-pretty">
+              Built with modularity in mind so you can include only what's
+              necessary and keep your project lean.
+            </p>
+          </div>
+          <div class="card card--feature gap-sm">
+            <Icon name="search" classes="icon--size-lg foreground-primary" />
+            <h2 class="font-size-lg">Customizable</h2>
+            <p class="text-wrap-pretty">
+              Highly customizable using CSS and Sass variables, giving you full
+              control over colors, spacing, and component styling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section__container">
+        <Footer />
       </div>
     </div>
   </main>
-  <div class="section section--padding-sm">
-    <div class="section__container">
-      <div class="grid sm:grid--cols-2 lg:grid--cols-3">
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="database" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">BEM Methodoloy</h2>
-          <p class="text-wrap-pretty">
-            Built on the BEM naming convention to improve clarity, prevent style
-            conflicts, and keep components clean and maintainable.
-          </p>
-        </div>
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="box" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">CSS Variables</h2>
-          <p class="text-wrap-pretty">
-            Powered by CSS variables to give better design control and
-            consistency across multiple components.
-          </p>
-        </div>
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="zap" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">Theming System</h2>
-          <p class="text-wrap-pretty">
-            Quickly build custom themes with Vrembem's core theming system,
-            including seamless light and dark mode support.
-          </p>
-        </div>
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="award" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">Accessible</h2>
-          <p class="text-wrap-pretty">
-            Designed for accessibility, ensuring components are
-            keyboard-friendly, screen-reader ready, and usable by everyone.
-          </p>
-        </div>
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="command" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">Modular</h2>
-          <p class="text-wrap-pretty">
-            Built with modularity in mind so you can include only what's
-            necessary and keep your project lean.
-          </p>
-        </div>
-        <div class="background border-radius-lg padding-xl spacing-sm">
-          <Icon name="search" classes="icon--size-lg foreground-primary" />
-          <h2 class="font-size-lg">Customizable</h2>
-          <p class="text-wrap-pretty">
-            Highly customizable using CSS and Sass variables, giving you full
-            control over colors, spacing, and component styling.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="section section--padding-sm">
-    <div class="section__container">
-      <Footer />
-    </div>
-  </div>
 </Root>
