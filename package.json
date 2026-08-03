@@ -40,7 +40,7 @@
     "globals": "^17.8.0",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
-    "lerna": "^9.0.7",
+    "lerna": "^10.0.0",
     "lerna-changelog": "^2.2.0",
     "microbundle": "^0.15.1",
     "nodemon": "^3.1.14",
