@@ -114,8 +114,7 @@
       "sidebar": 2em
     ),
     "aside-width": 14em,
-    "aside-padding": 1em,
-    "card-padding": clamp(1.25rem, 3vw + 0.5rem, 3rem)
+    "aside-padding": 1em
   )
 );
 @include tokens.set(
