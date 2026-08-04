@@ -24,76 +24,6 @@ For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vr
   </TabsPanel>
 </CodeExample>
 
-To use available JavaScript modules such as [drawer](/packages/drawer), [modal](/packages/modal), [popover](/packages/popover), or [plugins](/packages/core#plugins), import them directly from the `vrembem` package using the ESM bundle.
-
-<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
-  <TabsPanel label="unpkg">
-    ```html
-    <script type="module">
-      import { DrawerCollection, focusTrap } from "https://unpkg.com/vrembem@next/dist/index.js";
-      
-      const drawers = new DrawerCollection({
-        plugins: [focusTrap()]
-      });
-
-      await drawers.mount();
-    </script>
-    ```
-  </TabsPanel>
-  <TabsPanel label="jsdelivr">
-    ```html
-    <script type="module">
-      import { DrawerCollection, focusTrap } from "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js";
-      
-      const drawers = new DrawerCollection({
-        plugins: [focusTrap()]
-      });
-
-      await drawers.mount();
-    </script>
-    ```
-  </TabsPanel>
-</CodeExample>
-
-Alternatively, use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to define bare import specifiers. This lets you use short package-style names in your `import` statements instead of full URLs, and pin versions in a single place.
-
-<CodeExample tabs tabsSyncKey="cdn" tabsLabel="Select your preferred CDN">
-  <TabsPanel label="unpkg">
-    ```html
-    <script type="importmap">
-      {
-        "imports": {
-          "vrembem": "https://unpkg.com/vrembem@next/dist/index.js",
-          "vrembem/css": "https://unpkg.com/vrembem@next/dist/index.css"
-        }
-      }
-    </script>
-    <script type="module">
-      import * as vb from "vrembem";
-      import styles from "vrembem/css" with { type: "css" };
-      document.adoptedStyleSheets.push(styles);
-    </script>
-    ```
-  </TabsPanel>
-  <TabsPanel label="jsdelivr">
-    ```html
-    <script type="importmap">
-      {
-        "imports": {
-          "vrembem": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.js",
-          "vrembem/css": "https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css"
-        }
-      }
-    </script>
-    <script type="module">
-      import * as vb from "vrembem";
-      import styles from "vrembem/css" with { type: "css" };
-      document.adoptedStyleSheets.push(styles);
-    </script>
-    ```
-  </TabsPanel>
-</CodeExample>
-
 ### Starter templates
 
 Use this minimal starter template to begin prototyping with Vrembem now. Just copy/paste the contents into an HTML file locally and open it with your browser.
@@ -114,7 +44,7 @@ A starter template using the drawer component:
 
 ## Using NPM
 
-Vrembem is a collection of packages built with Sass and TypeScript that compile to CSS and JavaScript. Install Vrembem via NPM and integrate it into your build pipeline to leverage Sass configurations, modules, and tree-shaking.
+Vrembem is a collection of packages built with Sass that compiles to CSS. Install Vrembem via NPM and integrate it into your build pipeline to leverage Sass configurations and modules.
 
 ```sh
 npm install vrembem
@@ -131,16 +61,6 @@ npm install vrembem
     @import "vrembem";
     ```
   </TabsPanel>
-</CodeExample>
-
-<CodeExample lang="js">
-```js
-// Namespace import — access everything via a single object
-import * as vb from "vrembem";
-
-// Named imports — only pull in what you need (tree-shakable)
-import { DrawerCollection, propStore } from "vrembem";
-```
 </CodeExample>
 
 ### Entries
