@@ -14,6 +14,13 @@ interface Props {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
+// Get the parent page is one is provided in frontmatter
+const pages = await getCollection("pages");
+const parentKey = entry.data.parent;
+const parent = parentKey
+  ? pages.find((page) => page.id === `packages/${parentKey}`)
+  : undefined;
+
 export async function getStaticPaths() {
   return (await getCollection("pages")).map((entry) => ({
     params: { slug: entry.id },
@@ -22,7 +29,7 @@ export async function getStaticPaths() {
 }
 ---
 
-<Page {entry} {headings}>
+<Page {entry} {parent} {headings}>
   <Content components={{ CodeExample, TabsPanel, pre: Pre, table: Table }} />
 </Page>
 

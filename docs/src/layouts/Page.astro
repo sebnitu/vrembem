@@ -9,6 +9,7 @@ import EditPageLink from "@/components/EditPageLink.astro";
 
 interface Props {
   entry?: CollectionEntry<CollectionKey>;
+  parent?: CollectionEntry<CollectionKey>;
   headings?: { depth: number; slug: string; text: string }[];
   frontmatter?: {
     title: string;
@@ -16,7 +17,7 @@ interface Props {
   };
 }
 
-const { entry, headings } = Astro.props;
+const { entry, parent, headings } = Astro.props;
 const { collection } = entry || {};
 const { title, description } = entry?.data || Astro.props.frontmatter || {};
 
@@ -42,7 +43,7 @@ const layout = {
       </Fragment>
     )
   }
-  <Intro data={{ title, description }} />
+  <Intro {title} {description} {parent} />
   <slot />
   <Fragment slot="append">
     <div>
