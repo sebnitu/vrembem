@@ -3,7 +3,7 @@ import Root from "@/layouts/Root.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import CodeBlock from "@/components/CodeBlock.astro";
-import Svg from "@/components/Svg.astro";
+import Icon from "@/components/Icon.astro";
 ---
 
 <Root bodyClass="is-home background-shift">
@@ -34,10 +34,7 @@ import Svg from "@/components/Svg.astro";
       <div class="section__container">
         <div class="grid sm:grid--cols-2 lg:grid--cols-3">
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/toolbox"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="toolbox" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">BEM Methodology</h2>
             <p class="text-wrap-pretty">
               Built on the BEM naming convention to improve clarity, prevent
@@ -45,10 +42,7 @@ import Svg from "@/components/Svg.astro";
             </p>
           </div>
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/code-block"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="code-block" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">CSS Variables</h2>
             <p class="text-wrap-pretty">
               Powered by CSS variables to give better design control and
@@ -56,10 +50,7 @@ import Svg from "@/components/Svg.astro";
             </p>
           </div>
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/palette"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="palette" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">Theming System</h2>
             <p class="text-wrap-pretty">
               Quickly build custom themes with Vrembem's core theming system,
@@ -67,10 +58,7 @@ import Svg from "@/components/Svg.astro";
             </p>
           </div>
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/accessible"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="accessible" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">Accessible</h2>
             <p class="text-wrap-pretty">
               Designed for accessibility, ensuring components are
@@ -78,10 +66,7 @@ import Svg from "@/components/Svg.astro";
             </p>
           </div>
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/puzzle-piece"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="puzzle-piece" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">Modular</h2>
             <p class="text-wrap-pretty">
               Built with modularity in mind so you can include only what's
@@ -89,10 +74,7 @@ import Svg from "@/components/Svg.astro";
             </p>
           </div>
           <div class="card card--feature gap-sm">
-            <Svg
-              name="icons/faders"
-              class="icon icon--style-fill icon--size-lg foreground-primary"
-            />
+            <Icon name="faders" size="lg" class="foreground-primary" />
             <h2 class="font-size-lg">Customizable</h2>
             <p class="text-wrap-pretty">
               Highly customizable using CSS and Sass variables, giving you full

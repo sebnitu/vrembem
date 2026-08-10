@@ -1,17 +1,24 @@
 ---
-import feather from "feather-icons";
+import Svg from "@/components/Svg.astro";
 
 interface Props {
-  name: keyof typeof feather.icons;
-  classes?: string;
+  name: string;
+  class?: string;
+  size?: "xs" | "sm" | "lg" | "xl";
+  style?: "stroke" | "fill" | "both";
 }
 
-const { name, classes = "" } = Astro.props;
+const { name, class: classString, size, style, ...attrs } = Astro.props;
 
-const svg = feather.icons[name].toSvg({
-  class: `icon ${classes}`.trim(),
-  role: "img"
-});
+const iconName = `icons/${name}`;
+const iconClasses = [
+  "icon",
+  size && `icon--size-${size}`,
+  style && `icon--style-${style}`,
+  classString
+]
+  .filter(Boolean)
+  .join(" ");
 ---
 
-<Fragment set:html={svg} />
+<Svg name={iconName} class={iconClasses} {...attrs} />
