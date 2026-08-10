@@ -52,17 +52,22 @@ if (icon) classes.push("has-icon");
 </div>
 
 <script>
-  const btns = document.querySelectorAll(".code-block__copy-button");
-  btns.forEach((btn: HTMLButtonElement) => {
+  const btns = document.querySelectorAll<HTMLButtonElement>(
+    ".code-block__copy-button"
+  );
+  btns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const code = btn
-        .closest(".code-block")
-        .querySelector("pre code") as HTMLElement;
+      const block = btn.closest(".code-block");
+      const targetId = btn.getAttribute("popovertarget");
+      if (!block || !targetId) return;
+
+      const code = block.querySelector("pre code");
+      if (!(code instanceof HTMLElement)) return;
+
       const text = code.innerText;
       const icons = btn.querySelectorAll(".icon");
-      const popover = document.getElementById(
-        btn.getAttribute("popovertarget")
-      );
+      const popover = document.getElementById(targetId);
+
       navigator.clipboard
         .writeText(text)
         .then(() => {
