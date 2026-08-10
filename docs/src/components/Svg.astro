@@ -1,0 +1,21 @@
+---
+import type { SvgComponent } from "astro/types";
+
+interface Props {
+  name: string;
+  classes?: string;
+}
+
+const { name, classes = "" } = Astro.props;
+
+const icons = import.meta.glob<{ default: SvgComponent }>(
+  "/src/assets/**/*.svg",
+  {
+    eager: true
+  }
+);
+
+const icon = icons[`/src/assets/${name}.svg`];
+---
+
+{icon ? <icon.default class={`icon ${classes}`.trim()} /> : name}
