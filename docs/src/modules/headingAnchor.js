@@ -1,14 +1,24 @@
-import feather from "feather-icons";
+import hashIcon from "@/assets/icons/hash-bold.svg?raw";
 
 const config = {
   prefix: "#main",
   headings: ["h1", "h2", "h3"]
 };
 
-const svg = feather.icons.hash.toSvg({
-  class: "icon icon--size-sm",
-  role: "img"
-});
+function createAnchorIcon() {
+  const template = document.createElement("template");
+  template.innerHTML = hashIcon.trim();
+  const svg = template.content.firstElementChild;
+
+  if (!(svg instanceof SVGElement)) {
+    throw new Error("Hash icon did not render as an SVG element.");
+  }
+
+  svg.setAttribute("class", "icon icon--size-sm");
+  svg.setAttribute("aria-hidden", "true");
+
+  return svg;
+}
 
 const headingAnchor = {
   mount() {
@@ -33,7 +43,7 @@ const headingAnchor = {
         anchor.setAttribute("class", "heading-anchor");
         anchor.setAttribute("href", "#" + elId);
         anchor.setAttribute("aria-label", `Permalink to '${elText}'`);
-        anchor.innerHTML = svg;
+        anchor.append(createAnchorIcon());
         el.append(anchor);
       });
     });

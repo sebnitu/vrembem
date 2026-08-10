@@ -101,7 +101,7 @@ function iconMap(value: string) {
             placeholder="Filter..."
           />
           <label class="input-icon" for={`${tableId}-filter`}>
-            <Icon name="eye" classes="icon--size-sm" />
+            <Icon name="eye-bold" size="sm" />
             <span class="sr-only">Type to filter the reference table.</span>
           </label>
           <button
@@ -109,7 +109,7 @@ function iconMap(value: string) {
             type="button"
             data-clear={`${tableId}-filter`}
           >
-            <Icon name="x" classes="icon--size-sm" />
+            <Icon name="x" size="sm" />
           </button>
         </div>
       </div>
@@ -139,14 +139,14 @@ function iconMap(value: string) {
                 href={`#${cleanAppend(key)}`}
                 aria-label={`Permalink to '${key}'`}
               >
-                <Icon name="hash" classes="icon--size-sm" />
+                <Icon name="hash-bold" size="sm" />
               </a>
               <button
                 class="table-anchor-clear"
                 type="button"
                 aria-label="Clear current hash anchor"
               >
-                <Icon name="x" classes="icon--size-sm" />
+                <Icon name="x" size="sm" />
               </button>
               <CodeBlock inline={key} />
             </td>
@@ -160,10 +160,7 @@ function iconMap(value: string) {
                         interestfor={`popover-${cleanAppend(key)}-${themeKey}`}
                         class="foreground-subtle flex padding-y-sm margin-left-sm"
                       >
-                        <Icon
-                          name={iconMap(themeKey)}
-                          classes="icon--size-sm"
-                        />
+                        <Icon name={iconMap(themeKey)} size="sm" />
                       </button>
                       <div
                         id={`popover-${cleanAppend(key)}-${themeKey}`}
@@ -183,7 +180,7 @@ function iconMap(value: string) {
   </table>
   <div class="notice notice--color-important display-none">
     <div class="flex align-items-center">
-      <Icon name="alert-triangle" classes="icon--size-sm" />
+      <Icon name="alert-triangle" size="sm" />
       <p>There are no variables that match your search.</p>
     </div>
   </div>

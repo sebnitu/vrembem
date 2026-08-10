@@ -35,7 +35,7 @@ Icon comes with the following Sass configuration options that can be set using e
     // Map for outputting the icon--style-[key] modifier variants
     // @type map
     "icon-style": (
-      "default": "stroke",
+      "default": "fill",
       "stroke": "stroke",
       "fill": "fill",
       "both": "both"
@@ -72,14 +72,15 @@ The most basic implementation of the icon component consists of the `icon` class
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="anchor" />
-    <Icon name="arrow-left" />
-    <Icon name="arrow-right" />
-    <Icon name="arrow-up" />
-    <Icon name="arrow-down" />
-    <Icon name="clipboard" />
-    <Icon name="clock" />
-    <Icon name="download-cloud" />
+    <Icon name="toolbox" />
+    <Icon name="code-block" />
+    <Icon name="palette" />
+    <Icon name="accessible" />
+    <Icon name="puzzle-piece" />
+    <Icon name="faders" />
+    <Icon name="coffee" />
+    <Icon name="leaf" />
+    <Icon name="drop" />
   </div>
   ```html
   <svg class="icon" role="img">...</svg>
@@ -92,11 +93,11 @@ Add a size modifier to adjust the size of your icons. These modifiers are genera
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="anchor" classes="icon--size-xs" />
-    <Icon name="anchor" classes="icon--size-sm" />
+    <Icon name="anchor" size="xs" />
+    <Icon name="anchor" size="sm" />
     <Icon name="anchor" />
-    <Icon name="anchor" classes="icon--size-lg" />
-    <Icon name="anchor" classes="icon--size-xl" />
+    <Icon name="anchor" size="lg" />
+    <Icon name="anchor" size="xl" />
   </div>
   ```html
   <svg class="icon icon--size-sm" role="img">...</svg>
@@ -114,14 +115,16 @@ Add a size modifier to adjust the size of your icons. These modifiers are genera
 
 Adjust the icon style to accommodate stroke, filled or stroke and filled style icons. These modifiers are generated using key/value pairs of the `icon-style` config options map.
 
+{/* TODO: Fix style examples */}
+
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="heart" classes="icon--style-stroke" />
-    <Icon name="heart" classes="icon--style-fill" />
-    <Icon name="heart" classes="icon--style-both" />
-    <Icon name="sun" classes="icon--style-stroke" />
-    <Icon name="sun" classes="icon--style-fill" />
-    <Icon name="sun" classes="icon--style-both" />
+    <Icon name="heart" style="stroke" />
+    <Icon name="heart" style="fill" />
+    <Icon name="heart" style="both" />
+    <Icon name="sun" style="stroke" />
+    <Icon name="sun" style="fill" />
+    <Icon name="sun" style="both" />
   </div>
   ```html
   <svg class="icon icon--style-stroke" role="img">...</svg>

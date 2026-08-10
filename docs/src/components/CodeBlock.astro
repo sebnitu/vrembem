@@ -1,11 +1,10 @@
 ---
 import Icon from "@/components/Icon.astro";
-import type feather from "feather-icons";
 
 interface Props {
   nopre?: boolean;
   inline?: string;
-  icon?: keyof typeof feather.icons;
+  icon?: string;
 }
 
 const { inline, nopre, icon } = Astro.props;
@@ -19,7 +18,7 @@ if (icon) classes.push("has-icon");
   {
     icon && (
       <span class="code-block__icon">
-        <Icon name={icon} classes="icon--size-sm" />
+        <Icon name={icon} size="sm" />
       </span>
     )
   }
@@ -40,11 +39,8 @@ if (icon) classes.push("has-icon");
     class="code-block__copy-button"
     aria-label="Copy code example to clipboard"
   >
-    <Icon name="copy" classes="icon--size-sm" />
-    <Icon
-      name="check"
-      classes="icon--size-sm foreground-primary display-none"
-    />
+    <Icon name="copy-bold" size="sm" />
+    <Icon name="check-bold" size="sm" class="foreground-primary display-none" />
   </button>
   <div
     id={`popover-${uid}`}
