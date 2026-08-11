@@ -46,15 +46,14 @@ function actionClasses(path: string) {
       <Icon name="arrow-up-right-bold" class="icon--external" />
     </a>
   </li>
-  <li class="menu__divider"></li>
   {
     inline ? (
+      <li class="menu__divider"></li>
       <li class="menu__item">
         <ThemeSwitcherPopover />
       </li>
     ) : (
       <li class="menu__item">
-        <h3 class="menu__label padding-y-sm">Switch Theme</h3>
         <ThemeSwitcherMenu />
       </li>
     )
