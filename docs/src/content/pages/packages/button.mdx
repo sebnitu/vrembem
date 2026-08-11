@@ -125,7 +125,7 @@ Elements within a button are centered vertically and spaced accordingly using th
 <CodeExample>
   <Fragment slot="output">
     <button class="button">
-      <Icon name="anchor-bold" size="sm" />
+      <Icon name="heart-bold" size="sm" />
       <span>Button</span>
       <span class="arrow"></span>
     </button>
@@ -243,9 +243,18 @@ Modifiers for changing the look and feel of a button. These are usually done wit
 Adds styles that make icon-only buttons have equal padding. This will result in a square button if the icon used also has an equal width and height.
 
 <CodeExample>
-  <div slot="output">
+  <div slot="output" class="flex">
     <button class="button button--icon">
-      <Icon name="anchor" />
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-primary button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-secondary button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-neutral button--icon">
+      <Icon name="heart" />
     </button>
   </div>
   ```html
