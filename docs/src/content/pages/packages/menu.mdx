@@ -51,37 +51,30 @@ Menu uses design token CSS variables in a reference and fallback pattern. Variab
   // Menu base
   "--vb-menu-size": "var(--vb-font-size)",
   "--vb-menu-line-height": "var(--vb-line-height)",
-  "--vb-menu-padding": "0.5em 1em",
+  "--vb-menu-padding-y": "0.5rem",
+  "--vb-menu-padding-x": "0.75rem",
   "--vb-menu-border-radius": "var(--vb-border-radius)",
 
   // Menu specific
   "--vb-menu-gap": "1px",
-  "--vb-menu-sep-background": "var(--vb-border-color)",
-  "--vb-menu-sep-size": "1px",
-  "--vb-menu-sep-gap": "0.5em",
-  "--vb-menu-action-gap": "1em",
-
-  // Theme styles
-  "--vb-menu-background": "transparent",
-  "--vb-menu-foreground": "var(--vb-foreground-strong)",
-  "--vb-menu-border-color": "transparent",
-  "--vb-menu-box-shadow": "none",
+  "--vb-menu-divider-color": "var(--vb-border-color)",
+  "--vb-menu-divider-size": "1px",
+  "--vb-menu-divider-spacing": "0.5rem 0.75rem",
+  "--vb-menu-label-size": "var(--vb-font-size-sm)",
+  "--vb-menu-label-gap": "0.5rem",
+  "--vb-menu-label-foreground": "var(--vb-foreground-subtle)",
+  "--vb-menu-action-gap": "0.5rem",
 
   // Theme state styles
-  "--vb-menu-background-hover": "var(--vb-menu-background)",
-  "--vb-menu-foreground-hover": "var(--vb-menu-foreground)",
-  "--vb-menu-border-color-hover": "var(--vb-menu-border-color)",
-  "--vb-menu-box-shadow-hover": "var(--vb-menu-box-shadow)",
+  "--vb-menu-background": "transparent",
+  "--vb-menu-background-hover": "var(--vb-menu-background, color-mix(in oklch, currentcolor 4%, transparent))",
+  "--vb-menu-background-focus": "var(--vb-menu-background, transparent)",
+  "--vb-menu-background-active": "var(--vb-menu-background, color-mix(in oklch, currentcolor 8%, transparent))",
 
-  "--vb-menu-background-focus": "var(--vb-menu-background)",
-  "--vb-menu-foreground-focus": "var(--vb-menu-foreground)",
-  "--vb-menu-border-color-focus": "var(--vb-menu-border-color)",
-  "--vb-menu-box-shadow-focus": "var(--vb-menu-box-shadow)",
-
-  "--vb-menu-background-active": "var(--vb-menu-background)",
-  "--vb-menu-foreground-active": "var(--vb-menu-foreground)",
-  "--vb-menu-border-color-active": "var(--vb-menu-border-color)",
-  "--vb-menu-box-shadow-active": "var(--vb-menu-box-shadow)",
+  "--vb-menu-foreground": "var(--vb-foreground-strong)",
+  "--vb-menu-foreground-hover": "var(--vb-menu-foreground, var(--vb-foreground-strong))",
+  "--vb-menu-foreground-focus": "var(--vb-menu-foreground, var(--vb-foreground-strong))",
+  "--vb-menu-foreground-active": "var(--vb-menu-foreground, var(--vb-foreground-strong))",
 
   // State styles
   "--vb-menu-disabled-background": "transparent",
@@ -92,7 +85,7 @@ Menu uses design token CSS variables in a reference and fallback pattern. Variab
 
 ## Basic usage
 
-The menu component is composed of at minimum three parts: `menu`, `menu__item` and `menu__action`. The menu and menu items should be a `<ul>` and list items `<li>` respectively while the menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__sep` element to create separators in between menu items.
+The menu component is composed of at minimum three parts: `menu`, `menu__item` and `menu__action`. The menu and menu items should be a `<ul>` and list items `<li>` respectively while the menu action can be either an `<a>` or `<button>` element. Also available is the optional `menu__label` and `menu__divider` elements to help visually group menu items.
 
 <CodeExample>
   <Fragment slot="output">
@@ -100,12 +93,13 @@ The menu component is composed of at minimum three parts: `menu`, `menu__item` a
   </Fragment>
   ```html
   <ul class="menu">
+    <li class="menu__label">...</li>
     <li class="menu__item">
       <button class="menu__action">
         ...
       </button>
     </li>
-    <li class="menu__sep"></li>
+    <li class="menu__divider"></li>
   </ul>
   ```
 </CodeExample>
