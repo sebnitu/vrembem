@@ -11,24 +11,39 @@
   list-style: none;
 }
 
-#{core.bem("menu", "sep")} {
+#{core.bem("menu", "divider")} {
   flex: 0 0 auto;
   align-self: stretch;
   width: auto;
-  height: tokens.get("menu", "sep-size", 1px);
-  margin: tokens.get("menu", "sep-gap", 0.5em) 0;
-  background: tokens.get("menu", "sep-background", tokens.get("border-color"));
+  height: tokens.get("menu", "divider-size", 1px);
+  margin: tokens.get("menu", "divider-spacing", 0.5rem 0.75rem);
+  background: tokens.get("menu", "divider-color", tokens.get("border-color"));
+}
+
+#{core.bem("menu", "label")} {
+  display: flex;
+  gap: tokens.get("menu", "label-gap", 0.5rem);
+  align-items: center;
+  padding: tokens.get("menu", "padding-y", 0.5rem) tokens.get("menu", "padding-x", 0.75rem);
+  color: tokens.get("menu", "label-foreground", tokens.get("foreground-subtle"));
+
+  &::after {
+    content: "";
+    flex: 1 0 auto;
+    height: tokens.get("menu", "divider-size", 1px);
+    background: tokens.get("menu", "divider-color", tokens.get("border-color"));
+  }
 }
 
 #{core.bem("menu", "action")} {
   cursor: pointer;
   position: relative;
   display: flex;
-  gap: tokens.get("menu", "action-gap", 1em);
+  gap: tokens.get("menu", "action-gap", 0.5rem);
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding: tokens.get("menu", "padding", 0.5em 1em);
+  padding: tokens.get("menu", "padding-y", 0.5rem) tokens.get("menu", "padding-x", 0.75rem);
   border: none;
   border-radius: tokens.get("menu", "border-radius", tokens.get("border-radius"));
   color: tokens.get("menu", "foreground", tokens.get("foreground-strong"));
@@ -37,27 +52,20 @@
   white-space: normal;
   background-color: tokens.get("menu", "background", transparent);
   background-clip: border-box;
-  box-shadow: tokens.get("menu", "box-shadow", none);
 
   &:hover {
-    border-color: tokens.get("menu", "border-color-hover", "border-color", transparent);
     color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground-strong"));
     background-color: tokens.get("menu", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
-    box-shadow: tokens.get("menu", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus-visible {
-    border-color: tokens.get("menu", "border-color-focus", "border-color", transparent);
     color: tokens.get("menu", "foreground-focus", "foreground", tokens.get("foreground-strong"));
     background-color: tokens.get("menu", "background-focus", "background", transparent);
-    box-shadow: tokens.get("menu", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {
-    border-color: tokens.get("menu", "border-color-active", "border-color", transparent);
     color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground-strong"));
     background-color: tokens.get("menu", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
-    box-shadow: tokens.get("menu", "box-shadow-active", "box-shadow", none);
   }
 
   &:disabled:not(.is-active) {
@@ -73,5 +81,5 @@
 }
 
 #{core.bem("menu", "action", "icon")} {
-  @include tokens.override("menu", "padding", 0.5em);
+  @include tokens.override("menu", "padding-x", tokens.get("menu", "padding-y", 0.5rem));
 }

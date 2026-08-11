@@ -33,7 +33,7 @@ const { name, id = "", classes = "" } = Astro.props;
           Delete
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <Icon name="gear-bold" size="sm" class="foreground-primary" />
@@ -49,25 +49,25 @@ const { name, id = "", classes = "" } = Astro.props;
     <ul class={`menu ${classes ? classes : "menu--inline"}`.trim()}>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action--icon">
-          <Icon name="arrow-left-bold" size="sm" />
+          <Icon name="arrow-left" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action--icon" disabled>
-          <Icon name="arrow-right-bold" size="sm" />
+          <Icon name="arrow-right" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action--icon">
-          <Icon name="arrow-clockwise-bold" size="sm" />
+          <Icon name="arrow-clockwise" />
         </button>
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action--icon">
-          <Icon name="house-bold" size="sm" />
+          <Icon name="house" />
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item flex-grow margin-x">
         <input
           class="input border-radius-circle padding-x"
@@ -78,7 +78,7 @@ const { name, id = "", classes = "" } = Astro.props;
       </li>
       <li class="menu__item">
         <button type="button" class="menu__action menu__action--icon">
-          <Icon name="dots-three-outline-vertical-fill" size="sm" />
+          <Icon name="dots-three-vertical-bold" />
         </button>
       </li>
     </ul>
@@ -88,6 +88,7 @@ const { name, id = "", classes = "" } = Astro.props;
 {
   name == "edit" && (
     <ul class={`menu ${classes}`.trim()}>
+      <li class="menu__label">Actions</li>
       <li class="menu__item">
         <button type="button" class="menu__action">
           Undo
@@ -98,7 +99,7 @@ const { name, id = "", classes = "" } = Astro.props;
           Redo
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           Cut
@@ -141,7 +142,7 @@ const { name, id = "", classes = "" } = Astro.props;
           <span class="flex-grow">Redo</span>
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <Icon name="scissors-bold" size="sm" class="foreground-primary" />
@@ -179,7 +180,7 @@ const { name, id = "", classes = "" } = Astro.props;
           <span class="foreground-subtle">&uarr;⌘Z</span>
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <span class="flex-grow">Cut</span>
@@ -227,7 +228,7 @@ const { name, id = "", classes = "" } = Astro.props;
           <span class="foreground-subtle">&uarr;⌘Z</span>
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <Icon name="scissors-bold" size="sm" class="foreground-primary" />
@@ -274,7 +275,7 @@ const { name, id = "", classes = "" } = Astro.props;
           <span class="foreground-subtle">⌘U</span>
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <span class="flex-grow">Paragraph Styles</span>
@@ -305,7 +306,7 @@ const { name, id = "", classes = "" } = Astro.props;
           <span class="foreground-subtle arrow-right" />
         </button>
       </li>
-      <li class="menu__sep" />
+      <li class="menu__divider" />
       <li class="menu__item">
         <button type="button" class="menu__action">
           <span class="flex-grow">Clear formatting</span>

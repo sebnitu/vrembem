@@ -3,13 +3,14 @@
 @use "@vrembem/core/tokens";
 
 #{core.bem("menu", null, "inline")} {
+  @include tokens.override("menu", "divider-spacing", 0.5rem);
+
   flex-direction: row;
   align-items: center;
 
-  > #{core.bem("menu", "sep")} {
-    width: tokens.get("menu", "sep-size", 1px);
+  > #{core.bem("menu", "divider")} {
+    width: tokens.get("menu", "divider-size", 1px);
     height: auto;
-    margin: tokens.get("menu", "sep-gap", 0.5em);
   }
 
   > #{core.bem("menu", "item")} > #{core.bem("menu", "action")} {
@@ -21,13 +22,14 @@
 @each $bp, $value in config.get("menu-inline-breakpoints") {
   @include core.media-min($value) {
     #{core.bem("menu", null, "inline", $bp: $bp)} {
+      @include tokens.override("menu", "divider-spacing", 0.5rem);
+
       flex-direction: row;
       align-items: center;
 
-      > #{core.bem("menu", "sep")} {
-        width: tokens.get("menu", "sep-size", 1px);
+      > #{core.bem("menu", "divider")} {
+        width: tokens.get("menu", "divider-size", 1px);
         height: auto;
-        margin: 0 tokens.get("menu", "sep-gap", 0.5em);
       }
 
       > #{core.bem("menu", "item")} > #{core.bem("menu", "action")} {
