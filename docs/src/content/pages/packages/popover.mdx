@@ -25,7 +25,7 @@ Popover is built as a Sass module. Sass options are used to control CSS output, 
 
 ### Sass
 
-Popover comes with the following Sass configuration options that can be set using either the [config module](/modules/config#using-config-module) or [Sass `with` clause](/modules/config#using-with-clause) methods.
+Popover comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
 <CodeExample lang="scss">
 ```scss
@@ -226,7 +226,7 @@ Popover and interest invoker APIs can be applied to the same anchor. Use the `po
 <CodeExample>
   <Fragment slot="output">
     <button type="button" class="button button--icon" popovertarget="popover-multi-1" interestfor="popover-multi-2">
-      <Icon name="menu" />
+      <Icon name="list" />
     </button>
     <div id="popover-multi-1" class="popover popover--arrow-top" popover><Menu name="edit-shortcuts" /></div>
     <div id="popover-multi-2" class="popover popover--tooltip popover--arrow-bottom" popover="hint">Menu</div>

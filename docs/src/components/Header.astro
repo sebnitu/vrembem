@@ -1,7 +1,7 @@
 ---
 import Navi from "@/components/Navi.astro";
-import LogoIcon from "@/components/LogoIcon.astro";
 import Modal from "@/components/Modal.astro";
+import Svg from "@/components/Svg.astro";
 import Icon from "@/components/Icon.astro";
 
 interface Props {
@@ -18,7 +18,7 @@ const { classes = "" } = Astro.props;
         Skip to content
       </a>
       <a href="/" class="brand">
-        <LogoIcon width={24} height={24} classes="brand__icon" />
+        <Svg name="vrembem-icon" width={24} height={24} class="brand__icon" />
         <strong class="brand__name">Vrembem</strong>
         <span class="brand__version">v4.0.0</span>
       </a>
@@ -32,7 +32,7 @@ const { classes = "" } = Astro.props;
         commandfor="modal-navi"
         class="button button--icon display-block md:display-none"
       >
-        <Icon name="menu" />
+        <Icon name="list" />
       </button>
       <div
         id="popover-menu-label"

@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes, SvgComponent } from "astro/types";
+
+interface Props extends HTMLAttributes<"svg"> {
+  name: string;
+}
+
+const { name, ...attrs } = Astro.props;
+
+const icons = import.meta.glob<{ default: SvgComponent }>(
+  "/src/assets/**/*.svg",
+  {
+    eager: true
+  }
+);
+
+const icon = icons[`/src/assets/${name}.svg`];
+---
+
+{icon ? <icon.default {...attrs} /> : name}

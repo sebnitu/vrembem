@@ -1,5 +1,5 @@
 ---
-import LogoIcon from "@/components/LogoIcon.astro";
+import Svg from "@/components/Svg.astro";
 
 interface Props {
   classes?: string;
@@ -17,7 +17,7 @@ const { classes = "" } = Astro.props;
   </div>
   <div class="footer__logo">
     <a href="/">
-      <LogoIcon />
+      <Svg name="vrembem-icon" />
     </a>
   </div>
 </footer>

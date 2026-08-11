@@ -23,11 +23,6 @@ const sidebar: NaviConfig[] = [
         ])
       }
     ]
-  },
-  {
-    label: "Modules",
-    group: [{ collection: "pages", dir: "modules", collapsed: true }],
-    collapsed: true
   }
 ];
 

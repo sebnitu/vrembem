@@ -31,6 +31,9 @@ const { title, bodyClass } = Astro.props;
         document.documentElement.dataset.theme = store.theme || "default";
       })();
     </script>
+    <script>
+      import "@vrembem/drawer";
+    </script>
   </head>
   <body class={bodyClass}>
     <slot />

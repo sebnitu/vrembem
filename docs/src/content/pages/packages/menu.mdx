@@ -25,7 +25,7 @@ Menu is built as a Sass module. Sass options are used to control CSS output, whi
 
 ### Sass
 
-Menu comes with the following Sass configuration options that can be set using either the [config module](/modules/config#using-config-module) or [Sass `with` clause](/modules/config#using-with-clause) methods.
+Menu comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
 <CodeExample lang="scss">
 ```scss
@@ -130,7 +130,7 @@ Use the `flex-grow` utility class to wrap text inside the `menu__action` element
   ```
 </CodeExample>
 
-For links that only contain an icon, you can use the `menu__action_icon` element modifier to create a square link similar to the `button--icon` modifier.
+For links that only contain an icon, you can use the `menu__action--icon` element modifier to create a square link similar to the `button--icon` modifier.
 
 <CodeExample>
   <Fragment slot="output">
@@ -139,7 +139,7 @@ For links that only contain an icon, you can use the `menu__action_icon` element
   ```html
   <ul class="menu menu--inline">
     <li class="menu__item">
-      <button class="menu__action menu__action_icon">
+      <button class="menu__action menu__action--icon">
         ...
       </button>
     </li>

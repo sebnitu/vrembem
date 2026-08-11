@@ -20,10 +20,10 @@ function actionClasses(path: string) {
 
 <ul class={`menu ${inline ? "menu--inline" : ""} ${classes}`.trim()}>
   <li class="menu__item">
-    <a class={actionClasses("/guide")} href="/guide">Guide</a>
+    <a class={actionClasses("/guide")} href="/guide/get-started">Guide</a>
   </li>
   <li class="menu__item">
-    <a class={actionClasses("/packages")} href="/packages/vrembem">Packages</a>
+    <a class={actionClasses("/packages")} href="/packages/core">Packages</a>
   </li>
   <li class="menu__item">
     <a
@@ -31,14 +31,19 @@ function actionClasses(path: string) {
       href="https://github.com/sebnitu/vrembem"
       target="_blank"
     >
-      GitHub
-      <Icon name="arrow-up-right" classes="icon--external" />
+      <span>GitHub</span>
+      <Icon name="arrow-up-right-bold" class="icon--external" />
     </a>
   </li>
   <li class="menu__item">
-    <a class="menu__action gap-x-xs" href="#" target="_blank">
-      Sponsor
-      <Icon name="arrow-up-right" classes="icon--external" />
+    <a
+      class="menu__action gap-x-xs"
+      href="https://github.com/sponsors/sebnitu"
+      target="_blank"
+    >
+      <Icon name="heart-bold" size="sm" class="foreground-red" />
+      <span class="margin-left-xs">Sponsor</span>
+      <Icon name="arrow-up-right-bold" class="icon--external" />
     </a>
   </li>
   <li class="menu__sep"></li>

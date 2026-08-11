@@ -1,9 +1,13 @@
 ---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+
 interface Props {
-  data: any;
+  title?: string;
+  description?: string;
+  parent?: CollectionEntry<CollectionKey>;
 }
 
-const { data } = Astro.props;
+const { title, description, parent } = Astro.props;
 
 function slugify(value: string) {
   return value
@@ -14,5 +18,14 @@ function slugify(value: string) {
 }
 ---
 
-<h1 id={slugify(data.title)}>{data.title}</h1>
-{data.description && <p>{data.description}</p>}
+<div class="content">
+  {
+    parent && (
+      <a href={`/${parent.id}/`} class="link">
+        <span>&larr; Back to {parent.data.title}</span>
+      </a>
+    )
+  }
+  {title && <h1 id={slugify(title)}>{title}</h1>}
+  {description && <p class="margin-top">{description}</p>}
+</div>

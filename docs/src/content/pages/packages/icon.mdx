@@ -26,7 +26,7 @@ Icon is built as a Sass module. Sass options are used to control CSS output, whi
 
 ### Sass
 
-Icon comes with the following Sass configuration options that can be set using either the [config module](/modules/config#using-config-module) or [Sass `with` clause](/modules/config#using-with-clause) methods.
+Icon comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
 <CodeExample lang="scss" expandable>
 ```scss
@@ -35,7 +35,7 @@ Icon comes with the following Sass configuration options that can be set using e
     // Map for outputting the icon--style-[key] modifier variants
     // @type map
     "icon-style": (
-      "default": "stroke",
+      "default": "fill",
       "stroke": "stroke",
       "fill": "fill",
       "both": "both"
@@ -72,14 +72,15 @@ The most basic implementation of the icon component consists of the `icon` class
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="anchor" />
-    <Icon name="arrow-left" />
-    <Icon name="arrow-right" />
-    <Icon name="arrow-up" />
-    <Icon name="arrow-down" />
-    <Icon name="clipboard" />
-    <Icon name="clock" />
-    <Icon name="download-cloud" />
+    <Icon name="toolbox" />
+    <Icon name="code-block" />
+    <Icon name="palette" />
+    <Icon name="accessible" />
+    <Icon name="puzzle-piece" />
+    <Icon name="faders" />
+    <Icon name="coffee" />
+    <Icon name="leaf" />
+    <Icon name="drop" />
   </div>
   ```html
   <svg class="icon" role="img">...</svg>
@@ -92,11 +93,11 @@ Add a size modifier to adjust the size of your icons. These modifiers are genera
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="anchor" classes="icon--size-xs" />
-    <Icon name="anchor" classes="icon--size-sm" />
-    <Icon name="anchor" />
-    <Icon name="anchor" classes="icon--size-lg" />
-    <Icon name="anchor" classes="icon--size-xl" />
+    <Icon name="feather-heart" size="xs" />
+    <Icon name="feather-heart" size="sm" />
+    <Icon name="feather-heart" />
+    <Icon name="feather-heart" size="lg" />
+    <Icon name="feather-heart" size="xl" />
   </div>
   ```html
   <svg class="icon icon--size-sm" role="img">...</svg>
@@ -116,12 +117,9 @@ Adjust the icon style to accommodate stroke, filled or stroke and filled style i
 
 <CodeExample>
   <div slot="output" class="flex flex--gap-xl">
-    <Icon name="heart" classes="icon--style-stroke" />
-    <Icon name="heart" classes="icon--style-fill" />
-    <Icon name="heart" classes="icon--style-both" />
-    <Icon name="sun" classes="icon--style-stroke" />
-    <Icon name="sun" classes="icon--style-fill" />
-    <Icon name="sun" classes="icon--style-both" />
+    <Icon name="feather-heart" style="stroke" />
+    <Icon name="feather-heart" style="fill" />
+    <Icon name="feather-heart" style="both" />
   </div>
   ```html
   <svg class="icon icon--style-stroke" role="img">...</svg>
