@@ -25,6 +25,7 @@
   gap: tokens.get("menu", "label-gap", 0.5rem);
   align-items: center;
   padding: tokens.get("menu", "padding-y", 0.5rem) tokens.get("menu", "padding-x", 0.75rem);
+  font-size: tokens.get("menu", "label-size", tokens.get("font-size-sm"));
   color: tokens.get("menu", "label-foreground", tokens.get("foreground-subtle"));
 
   &::after {
