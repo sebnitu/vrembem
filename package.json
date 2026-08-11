@@ -12,7 +12,7 @@
     "dev": "vite",
     "build": "lerna run build --stream",
     "clean": "lerna run clean --stream",
-    "docs": "npm run dev --prefix docs",
+    "docs": "npm run dev -w docs",
     "fix": "npm-run-all fix:styles fix:scripts",
     "fix:scripts": "eslint --fix",
     "fix:styles": "stylelint --fix '**/*.scss'",

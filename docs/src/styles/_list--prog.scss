@@ -19,7 +19,7 @@
   }
 
   li::before {
-    @include core.size(2em);
+    @include core.size(2rem);
 
     content: counter(item);
     counter-increment: item;
@@ -30,6 +30,8 @@
     flex-shrink: 0;
     border: tokens.get("border");
     border-radius: tokens.get("border-radius-circle");
+    font-size: tokens.get("font-size");
+    line-height: 1.8;
     text-align: center;
     background-color: tokens.get("background");
   }
@@ -38,7 +40,7 @@
     content: "";
     position: absolute;
     z-index: 1;
-    inset: 0 auto 0 1em;
+    inset: 0 auto 0 1rem;
     width: 1px;
     height: 100%;
     background-color: tokens.get("border-color");
