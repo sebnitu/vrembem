@@ -1,19 +1,5 @@
 @use "@vrembem/core/tokens";
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: block;
-}
-
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
 .slide-up {
   position: relative;
   transform: translateY(1rem);
