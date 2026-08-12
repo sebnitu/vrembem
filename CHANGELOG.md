@@ -35,12 +35,29 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.47 to CHANGELOG.md
+chore(release): add v4.0.0-next.48 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+## v4.0.0-next.48 (2026-08-12)
+
+### :tada: New Feature
+* `utility`
+  * [#2943](https://github.com/sebnitu/vrembem/pull/2943) Add border style utilities
+* `core`, `menu`, `popover`, `vrembem`
+  * [#2941](https://github.com/sebnitu/vrembem/pull/2941) Refactor and improve menu component
+
+### :books: Documentation
+* `icon`, `vrembem`
+  * [#2933](https://github.com/sebnitu/vrembem/pull/2933) Update the contents of docs to better reflect JavaScript changes
+* Other
+  * [#2926](https://github.com/sebnitu/vrembem/pull/2926) Various improvements to documentation UI
+
+### :hammer: Chore
+* [#2942](https://github.com/sebnitu/vrembem/pull/2942) Bump nodejs version and package lock rebuild
 
 
 ## v4.0.0-next.47 (2026-07-21)
