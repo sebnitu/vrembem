@@ -57,4 +57,24 @@
   #{fun.selector("border", "color-current")} {
     border-color: fun.maybe-important(currentcolor);
   }
+
+  #{fun.selector("border", "style", "solid")} {
+    border-style: fun.maybe-important(solid);
+  }
+
+  #{fun.selector("border", "style", "dotted")} {
+    border-style: fun.maybe-important(dotted);
+  }
+
+  #{fun.selector("border", "style", "dashed")} {
+    border-style: fun.maybe-important(dashed);
+  }
+
+  #{fun.selector("border", "style", "double")} {
+    border-style: fun.maybe-important(double);
+  }
+
+  #{fun.selector("border", "style", "none")} {
+    border-style: fun.maybe-important(none);
+  }
 }
