@@ -17,7 +17,7 @@ import ReferenceBar from "@/components/ReferenceBar.astro";
 
 The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs.
 
-There are two primary methods to configure options in the config module. The first is import and use the module API directly and the second is the Sass `@use ... with` clause.
+There are two primary methods to configure options in the config module. The first is to import the module API directly and the second is using the Sass `@use ... with` clause.
 
 ### Using config module
 
@@ -36,7 +36,7 @@ To use the configuration module directly, import the `core/config` module. Once 
 ```
 </CodeExample>
 
-Changes to the global config should be done in a file that is loaded before other Vrembem or custom components. This ensures that components use the correct configuration values.
+Changes to the global config should be done in a file that is loaded before other Vrembem or custom components that use them. This ensures components use the correct configuration values when their modules are loaded.
 
 <CodeExample label="style.scss">
 ```scss
@@ -55,7 +55,7 @@ Changes to the global config should be done in a file that is loaded before othe
 
 ### Using with clause
 
-To set configuration options via the Sass `@use ... with` clause, define and set options in the `$config` map. Options set in the `$config` map are stored in the config module.
+To set configuration options via the Sass `@use ... with` clause, define and set options in a `$config` options map. Options set in the `$config` map are stored in the config module and backfilled with the modules defaults.
 
 <CodeExample label="app.scss">
 ```scss
@@ -75,11 +75,11 @@ To set configuration options via the Sass `@use ... with` clause, define and set
 ```
 </CodeExample>
 
-Changes to the global config should be done before loading other Vrembem or custom components. This ensures that components use the correct configuration values.
+Changes to the global config should be done before loading other Vrembem or custom components. This ensures components use the correct configuration values when their modules are loaded.
 
 ## Reference
 
-This reference details the available configuration API, their arguments, and usage examples so you can customize and control global configurations across all Vrembem components.
+This reference details the available configuration API, their arguments, and usage examples so you can customize and control global configurations across Vrembem and custom modules.
 
 ### get
 
