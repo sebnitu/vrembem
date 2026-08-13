@@ -234,10 +234,10 @@ $-flags: ("variants");
 ///
 @mixin merge-with-default($config, $default) {
   @each $key, $default-value in $default {
-    // Initialize the result with the default value
+    // Initialize the result with the provided default value
     $result: $default-value;
 
-    // If key has already been set, either merge or replace
+    // If key has already been set, either replace or merge with default
     @if map.has-key($-config, $key) {
       @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
         $result: map.deep-merge($result, map.get($-config, $key));
@@ -246,7 +246,7 @@ $-flags: ("variants");
       }
     }
 
-    // If provided config contains key, merge with the default
+    // If provided config contains key, merge with the current result
     @if map.has-key($config, $key) {
       @if meta.type-of($result) == "map" {
         $result: map.deep-merge($result, map.get($config, $key));
