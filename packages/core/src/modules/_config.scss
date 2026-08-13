@@ -12,6 +12,11 @@
 /// @access private
 $-config: ();
 
+/// Stores the pre-load configuration strategy.
+/// @type map
+/// @access private
+$-config-strategy: ();
+
 /// Stores config property watchers.
 /// @type map
 /// @access private
@@ -216,6 +221,13 @@ $-flags: ("variants");
 
   $-config: $result !global;
 
+  // Store the set strategy if this isn't a default value
+  @if not $default {
+    @each $key in $keys {
+      $-config-strategy: map.set($-config-strategy, $key, "set") !global;
+    }
+  }
+
   @each $key in $keys {
     @include -run-watchers($key, "set");
   }
@@ -242,9 +254,15 @@ $-flags: ("variants");
 ///   The map to be merged with the existing map value.
 ///
 @mixin merge($key, $map) {
-  $map: map.merge(map.get($-config, $key), $map);
+  // Ensure that the key exists before trying to merge
+  @if map.has-key($-config, $key) {
+    $map: map.merge(map.get($-config, $key), $map);
+  }
+
+  // Add the map to the config key
   $-config: map.set($-config, $key, $map) !global;
 
+  // Run the merge watchers
   @include -run-watchers($key, "merge");
 }
 
@@ -275,9 +293,9 @@ $-flags: ("variants");
   @each $key, $value in $config {
     @if map.has-key($default, $key) {
       // If the value is a map, merge it with the default value
-      @if meta.type-of($value) == "map" {
-        $value: map.deep-merge(map.get($default, $key), $value);
-      }
+      // @if meta.type-of($value) == "map" {
+      //   $value: map.deep-merge(map.get($default, $key), $value);
+      // }
 
       @include set($key, $value);
     } @else {
@@ -296,10 +314,10 @@ $-flags: ("variants");
         @error "Breakpoint variants are not supported in #{$key}";
       }
 
-      // Merge the default value with the current value
-      $merged-values: map.deep-merge($value, $current);
-
-      @include set($key, $merged-values);
+      // Merge with defaults if the set strategy was not used
+      @if map.get($-config-strategy, $key) != "set" {
+        @include set($key, map.deep-merge($value, $current));
+      }
     } @else {
       @include set-default($key, $value);
     }
