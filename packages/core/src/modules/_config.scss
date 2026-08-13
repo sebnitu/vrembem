@@ -15,7 +15,7 @@ $-config: ();
 /// Stores the pre-load configuration strategy.
 /// @type map
 /// @access private
-$-config-strategy: ();
+$-config-replace: ();
 
 /// Stores config property watchers.
 /// @type map
@@ -224,7 +224,7 @@ $-flags: ("variants");
   // Store the set strategy if this isn't a default value
   @if not $default {
     @each $key in $keys {
-      $-config-strategy: map.set($-config-strategy, $key, "set") !global;
+      $-config-replace: map.set($-config-replace, $key, true) !global;
     }
   }
 
@@ -280,7 +280,6 @@ $-flags: ("variants");
 }
 
 /// Apply a configuration map to the config module based on the values in a
-/// default map. The provided configuration map must match the signature of the
 /// default map. This mixin is used to allow setting values in the config module
 /// using the Sass `with` clause.
 ///
@@ -289,38 +288,34 @@ $-flags: ("variants");
 /// @param {map} $default
 ///   The default map that is also used as a map signature for `$config`.
 ///
+/// TODO: Maybe rename this to apply-with-clause or apply-with-default
 @mixin apply($config, $default) {
-  @each $key, $value in $config {
-    @if map.has-key($default, $key) {
-      // If the value is a map, merge it with the default value
-      // @if meta.type-of($value) == "map" {
-      //   $value: map.deep-merge(map.get($default, $key), $value);
-      // }
+  @each $key, $default-value in $default {
+    // Initialize the result with the default value
+    $result: $default-value;
 
-      @include set($key, $value);
-    } @else {
-      @error '"#{$key}" is not a valid configuration option';
-    }
-  }
-
-  @each $key, $value in $default {
-    // If the value is a map and has already been set
-    @if meta.type-of($value) == "map" and map.has-key($-config, $key) {
-      // Get the current value from config
-      $current: map.get($-config, $key);
-
-      // Throw an error if breakpoints was set but are not supported
-      @if map.has-key($current, "breakpoints") and not map.has-key($value, "breakpoints") {
-        @error "Breakpoint variants are not supported in #{$key}";
+    // If key has already been set, either merge or replace
+    @if (map.has-key($-config, $key)) {
+      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
+        $result: map.deep-merge($result, map.get($-config, $key));
+      } @else {
+        $result: map.get($-config, $key);
       }
-
-      // Merge with defaults if the set strategy was not used
-      @if map.get($-config-strategy, $key) != "set" {
-        @include set($key, map.deep-merge($value, $current));
-      }
-    } @else {
-      @include set-default($key, $value);
     }
+
+    // If provided config contains key, merge with the default
+    @if (map.has-key($config, $key)) {
+      @if meta.type-of($result) == "map" {
+        $result: map.deep-merge($result, map.get($config, $key));
+      } @else {
+        $result: map.get($config, $key);
+      }
+    }
+
+    // Apply the configuration option
+    $-config: map.set($-config, $key, $result) !global;
+    $-config-replace: map.remove($-config-replace, $key) !global;
+    @include -run-watchers($key, "set");
   }
 }
 
