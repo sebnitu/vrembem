@@ -17,7 +17,7 @@ import ReferenceBar from "@/components/ReferenceBar.astro";
 
 The purpose of `core/config` is to provide an API for managing library-wide configuration options. Configuration options are stored in a private map of key/value pairs.
 
-There are two primary methods to configure options in the config module. The first is import and use the module API directly and the second is the Sass `@use ... with` clause.
+There are two primary methods to configure options in the config module. The first is to import the module API directly and the second is using the Sass `@use ... with` clause.
 
 ### Using config module
 
@@ -36,7 +36,7 @@ To use the configuration module directly, import the `core/config` module. Once 
 ```
 </CodeExample>
 
-Changes to the global config should be done in a file that is loaded before other Vrembem or custom components. This ensures that components use the correct configuration values.
+Changes to the global config should be done in a file that is loaded before other Vrembem or custom components that use them. This ensures components use the correct configuration values when their modules are loaded.
 
 <CodeExample label="style.scss">
 ```scss
@@ -55,7 +55,7 @@ Changes to the global config should be done in a file that is loaded before othe
 
 ### Using with clause
 
-To set configuration options via the Sass `@use ... with` clause, define and set options in the `$config` map. Options set in the `$config` map are stored in the config module.
+To set configuration options via the Sass `@use ... with` clause, define and set options in a `$config` options map. Options set in the `$config` map are stored in the config module and backfilled with the modules defaults.
 
 <CodeExample label="app.scss">
 ```scss
@@ -75,11 +75,11 @@ To set configuration options via the Sass `@use ... with` clause, define and set
 ```
 </CodeExample>
 
-Changes to the global config should be done before loading other Vrembem or custom components. This ensures that components use the correct configuration values.
+Changes to the global config should be done before loading other Vrembem or custom components. This ensures components use the correct configuration values when their modules are loaded.
 
 ## Reference
 
-This reference details the available configuration API, their arguments, and usage examples so you can customize and control global configurations across all Vrembem components.
+This reference details the available configuration API, their arguments, and usage examples so you can customize and control global configurations across Vrembem and custom modules.
 
 ### get
 
@@ -121,10 +121,6 @@ Set an option in the configuration map by providing a key and value to store, or
   The value to be stored.
 </ReferenceCard>
 
-<ReferenceCard name="$default" type="boolean" defaults="false">
-  Whether or not the value being set is a default value. Default values are only set if the value has not already been set.
-</ReferenceCard>
-
 #### Example
 
 <CodeExample lang="scss">
@@ -137,39 +133,6 @@ Set an option in the configuration map by providing a key and value to store, or
   "prefix-tokens": "custom",
   "theme-default": "light"
 ));
-```
-</CodeExample>
-
-### set-default
-
-<ReferenceBar type="mixin" />
-
-An alias mixin for `config.set()` with predefined default argument to `true`. Running this will not override a previously set value.
-
-#### Arguments
-
-<ReferenceCard name="$key" type="string | map">
-  The key in the map to set. Can be passed a map of key/value pairs.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="any" defaults="null">
-  The value to be stored.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Set the default value of the provided key
-@include config.set-default("theme-default", "light");
-
-// This set call will override the default value of "light"
-@include config.set("theme-default", "dark");
-
-// This will have no effect since "theme-default" has already been set
-@include config.set-default("theme-default", "high-contrast");
-
-@debug config.get("theme-default"); // Debug: dark
 ```
 </CodeExample>
 
@@ -189,32 +152,11 @@ Merges a map value of the configuration object with a provided map value.
   The map to be merged with the existing map value.
 </ReferenceCard>
 
-### remove
+### merge-with-default
 
 <ReferenceBar type="mixin" />
 
-Remove an option from the configuration map.
-
-#### Arguments
-
-<ReferenceCard name="$keys..." type="string">
-  The list of keys to follow and remove from the configuration map.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Remove the theme default option
-@include config.remove("theme-default");
-```
-</CodeExample>
-
-### apply
-
-<ReferenceBar type="mixin" />
-
-Apply a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
+Merges a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
 
 #### Arguments
 
@@ -240,7 +182,7 @@ $default: (
   "config-2": "asdf",
 );
 
-@include config.apply($config, $default);
+@include config.merge-with-default($config, $default);
 ```
 </CodeExample>
 
@@ -279,6 +221,27 @@ We can also set our configuration values before the module is loaded and include
 @use "example";
 
 // More imports here...
+```
+</CodeExample>
+
+### remove
+
+<ReferenceBar type="mixin" />
+
+Remove an option from the configuration map.
+
+#### Arguments
+
+<ReferenceCard name="$keys..." type="string">
+  The list of keys to follow and remove from the configuration map.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Remove the theme default option
+@include config.remove("theme-default");
 ```
 </CodeExample>
 

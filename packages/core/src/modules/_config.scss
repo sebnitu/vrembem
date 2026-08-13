@@ -12,6 +12,11 @@
 /// @access private
 $-config: ();
 
+/// Stores the pre-load configuration strategy.
+/// @type map
+/// @access private
+$-config-replace: ();
+
 /// Stores config property watchers.
 /// @type map
 /// @access private
@@ -42,31 +47,6 @@ $-flags: ("variants");
       @include meta.apply($mixin, $action);
     }
   }
-}
-
-/// Helper function that checks if a value should be set in the config map.
-///
-/// @param {map} $map
-///   The configuration map to update.
-/// @param {string} $key
-///   The key to set in the map.
-/// @param {any} $value
-///   The value to set for the key.
-/// @param {boolean} $default
-///   If true, only set the value if the key does not already exist in the map.
-///   If false, always set the value.
-///
-/// @return {map}
-///   The updated configuration map.
-///
-/// @access private
-///
-@function -maybe-set($map, $key, $value, $default) {
-  @if not $default or not map.has-key($map, $key) {
-    $map: map.set($map, $key, $value);
-  }
-
-  @return $map;
 }
 
 /// Checks whether or not a flag exists within the provided keys.
@@ -197,41 +177,30 @@ $-flags: ("variants");
 ///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
-/// @param {boolean} $default (false)
-///   Whether or not the value being set is a default value.
 ///
-@mixin set($key, $value: null, $default: false) {
+@mixin set($key, $value: null) {
   $result: $-config;
   $keys: ();
 
   @if meta.type-of($key) == "map" {
     @each $key, $value in $key {
       $keys: list.append($keys, $key);
-      $result: -maybe-set($result, $key, $value, $default);
+      $result: map.set($result, $key, $value);
     }
   } @else {
     $keys: list.append($keys, $key);
-    $result: -maybe-set($result, $key, $value, $default);
+    $result: map.set($result, $key, $value);
   }
 
   $-config: $result !global;
 
   @each $key in $keys {
+    $-config-replace: map.set($-config-replace, $key, true) !global;
+  }
+
+  @each $key in $keys {
     @include -run-watchers($key, "set");
   }
-}
-
-/// An alias mixin for `config.set()` with predefined default argument to
-/// `true`. Running this will not override a previously set value.
-///
-/// @param {string} $key
-///   The key in the map to set. Can be passed a map of key/value pairs.
-///   - ("key": "value")
-/// @param {any} $value (null)
-///   The value to be stored.
-///
-@mixin set-default($key, $value: null) {
-  @include set($key, $value, $default: true);
 }
 
 /// Merges a map value of the configuration object with a provided map value.
@@ -242,10 +211,56 @@ $-flags: ("variants");
 ///   The map to be merged with the existing map value.
 ///
 @mixin merge($key, $map) {
-  $map: map.merge(map.get($-config, $key), $map);
+  // Ensure that the key exists before trying to merge
+  @if map.has-key($-config, $key) {
+    $map: map.merge(map.get($-config, $key), $map);
+  }
+
+  // Add the map to the config key
   $-config: map.set($-config, $key, $map) !global;
 
+  // Run the merge watchers
   @include -run-watchers($key, "merge");
+}
+
+/// Merges a configuration map to the config module based on the values in a
+/// default map. This mixin is used to allow setting values in the config module
+/// using the Sass `with` clause.
+///
+/// @param {map} $config
+///   The config map to set in the global config object.
+/// @param {map} $default
+///   The default map that is also used as a map signature for `$config`.
+///
+@mixin merge-with-default($config, $default) {
+  @each $key, $default-value in $default {
+    // Initialize the result with the provided default value
+    $result: $default-value;
+
+    // If key has already been set, either replace or merge with default
+    @if map.has-key($-config, $key) {
+      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
+        $result: map.deep-merge($result, map.get($-config, $key));
+      } @else {
+        $result: map.get($-config, $key);
+      }
+    }
+
+    // If provided config contains key, merge with the current result
+    @if map.has-key($config, $key) {
+      @if meta.type-of($result) == "map" {
+        $result: map.deep-merge($result, map.get($config, $key));
+      } @else {
+        $result: map.get($config, $key);
+      }
+    }
+
+    // Apply the configuration option
+    $-config: map.set($-config, $key, $result) !global;
+    $-config-replace: map.remove($-config-replace, $key) !global;
+
+    @include -run-watchers($key, "set");
+  }
 }
 
 /// Remove an option from the configuration map.
@@ -259,51 +274,6 @@ $-flags: ("variants");
   $-config: map.deep-remove($-config, $key, $keys...) !global;
 
   @include -run-watchers($key, "remove");
-}
-
-/// Apply a configuration map to the config module based on the values in a
-/// default map. The provided configuration map must match the signature of the
-/// default map. This mixin is used to allow setting values in the config module
-/// using the Sass `with` clause.
-///
-/// @param {map} $config
-///   The config map to set in the global config object.
-/// @param {map} $default
-///   The default map that is also used as a map signature for `$config`.
-///
-@mixin apply($config, $default) {
-  @each $key, $value in $config {
-    @if map.has-key($default, $key) {
-      // If the value is a map, merge it with the default value
-      @if meta.type-of($value) == "map" {
-        $value: map.deep-merge(map.get($default, $key), $value);
-      }
-
-      @include set($key, $value);
-    } @else {
-      @error '"#{$key}" is not a valid configuration option';
-    }
-  }
-
-  @each $key, $value in $default {
-    // If the value is a map and has already been set
-    @if meta.type-of($value) == "map" and map.has-key($-config, $key) {
-      // Get the current value from config
-      $current: map.get($-config, $key);
-
-      // Throw an error if breakpoints was set but are not supported
-      @if map.has-key($current, "breakpoints") and not map.has-key($value, "breakpoints") {
-        @error "Breakpoint variants are not supported in #{$key}";
-      }
-
-      // Merge the default value with the current value
-      $merged-values: map.deep-merge($value, $current);
-
-      @include set($key, $merged-values);
-    } @else {
-      @include set-default($key, $value);
-    }
-  }
 }
 
 /// Log to console the entire configuration map or a specific value.
