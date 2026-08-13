@@ -140,39 +140,6 @@ Set an option in the configuration map by providing a key and value to store, or
 ```
 </CodeExample>
 
-### set-default
-
-<ReferenceBar type="mixin" />
-
-An alias mixin for `config.set()` with predefined default argument to `true`. Running this will not override a previously set value.
-
-#### Arguments
-
-<ReferenceCard name="$key" type="string | map">
-  The key in the map to set. Can be passed a map of key/value pairs.
-</ReferenceCard>
-
-<ReferenceCard name="$value" type="any" defaults="null">
-  The value to be stored.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Set the default value of the provided key
-@include config.set-default("theme-default", "light");
-
-// This set call will override the default value of "light"
-@include config.set("theme-default", "dark");
-
-// This will have no effect since "theme-default" has already been set
-@include config.set-default("theme-default", "high-contrast");
-
-@debug config.get("theme-default"); // Debug: dark
-```
-</CodeExample>
-
 ### merge
 
 <ReferenceBar type="mixin" />
