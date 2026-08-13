@@ -49,31 +49,6 @@ $-flags: ("variants");
   }
 }
 
-/// Helper function that checks if a value should be set in the config map.
-///
-/// @param {map} $map
-///   The configuration map to update.
-/// @param {string} $key
-///   The key to set in the map.
-/// @param {any} $value
-///   The value to set for the key.
-/// @param {boolean} $default
-///   If true, only set the value if the key does not already exist in the map.
-///   If false, always set the value.
-///
-/// @return {map}
-///   The updated configuration map.
-///
-/// @access private
-///
-@function -maybe-set($map, $key, $value, $default) {
-  @if not $default or not map.has-key($map, $key) {
-    $map: map.set($map, $key, $value);
-  }
-
-  @return $map;
-}
-
 /// Checks whether or not a flag exists within the provided keys.
 ///
 /// @param {list} $keys...
@@ -202,30 +177,25 @@ $-flags: ("variants");
 ///   - ("key": "value")
 /// @param {any} $value (null)
 ///   The value to be stored.
-/// @param {boolean} $default (false)
-///   Whether or not the value being set is a default value.
 ///
-@mixin set($key, $value: null, $default: false) {
+@mixin set($key, $value: null) {
   $result: $-config;
   $keys: ();
 
   @if meta.type-of($key) == "map" {
     @each $key, $value in $key {
       $keys: list.append($keys, $key);
-      $result: -maybe-set($result, $key, $value, $default);
+      $result: map.set($result, $key, $value);
     }
   } @else {
     $keys: list.append($keys, $key);
-    $result: -maybe-set($result, $key, $value, $default);
+    $result: map.set($result, $key, $value);
   }
 
   $-config: $result !global;
 
-  // Store the set strategy if this isn't a default value
-  @if not $default {
-    @each $key in $keys {
-      $-config-replace: map.set($-config-replace, $key, true) !global;
-    }
+  @each $key in $keys {
+    $-config-replace: map.set($-config-replace, $key, true) !global;
   }
 
   @each $key in $keys {
