@@ -81,4 +81,4 @@ $default: (
   )
 );
 
-@include config.apply($config, $default);
+@include config.merge-with-default($config, $default);

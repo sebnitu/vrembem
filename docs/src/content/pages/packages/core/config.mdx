@@ -156,32 +156,11 @@ Merges a map value of the configuration object with a provided map value.
   The map to be merged with the existing map value.
 </ReferenceCard>
 
-### remove
+### merge-with-default
 
 <ReferenceBar type="mixin" />
 
-Remove an option from the configuration map.
-
-#### Arguments
-
-<ReferenceCard name="$keys..." type="string">
-  The list of keys to follow and remove from the configuration map.
-</ReferenceCard>
-
-#### Example
-
-<CodeExample lang="scss">
-```scss
-// Remove the theme default option
-@include config.remove("theme-default");
-```
-</CodeExample>
-
-### apply
-
-<ReferenceBar type="mixin" />
-
-Apply a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
+Merges a configuration map to the config module based on the values in a default map. The provided configuration map must match the signature of the default map. This mixin is used to allow setting values in the config module using the Sass `with` clause.
 
 #### Arguments
 
@@ -207,7 +186,7 @@ $default: (
   "config-2": "asdf",
 );
 
-@include config.apply($config, $default);
+@include config.merge-with-default($config, $default);
 ```
 </CodeExample>
 
@@ -246,6 +225,27 @@ We can also set our configuration values before the module is loaded and include
 @use "example";
 
 // More imports here...
+```
+</CodeExample>
+
+### remove
+
+<ReferenceBar type="mixin" />
+
+Remove an option from the configuration map.
+
+#### Arguments
+
+<ReferenceCard name="$keys..." type="string">
+  The list of keys to follow and remove from the configuration map.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Remove the theme default option
+@include config.remove("theme-default");
 ```
 </CodeExample>
 

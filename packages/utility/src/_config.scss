@@ -116,4 +116,4 @@ $default: (
   "utility-flex-range": 6
 );
 
-@include config.apply($config, $default);
+@include config.merge-with-default($config, $default);

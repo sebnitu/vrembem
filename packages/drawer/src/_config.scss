@@ -15,5 +15,5 @@ $default: (
   "drawer-position": "left"
 );
 
-@include config.apply($config, $default);
+@include config.merge-with-default($config, $default);
 @include tokens.register("drawer");

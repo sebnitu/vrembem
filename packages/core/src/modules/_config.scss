@@ -253,6 +253,46 @@ $-flags: ("variants");
   @include -run-watchers($key, "merge");
 }
 
+/// Merges a configuration map to the config module based on the values in a
+/// default map. This mixin is used to allow setting values in the config module
+/// using the Sass `with` clause.
+///
+/// @param {map} $config
+///   The config map to set in the global config object.
+/// @param {map} $default
+///   The default map that is also used as a map signature for `$config`.
+///
+@mixin merge-with-default($config, $default) {
+  @each $key, $default-value in $default {
+    // Initialize the result with the default value
+    $result: $default-value;
+
+    // If key has already been set, either merge or replace
+    @if map.has-key($-config, $key) {
+      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
+        $result: map.deep-merge($result, map.get($-config, $key));
+      } @else {
+        $result: map.get($-config, $key);
+      }
+    }
+
+    // If provided config contains key, merge with the default
+    @if map.has-key($config, $key) {
+      @if meta.type-of($result) == "map" {
+        $result: map.deep-merge($result, map.get($config, $key));
+      } @else {
+        $result: map.get($config, $key);
+      }
+    }
+
+    // Apply the configuration option
+    $-config: map.set($-config, $key, $result) !global;
+    $-config-replace: map.remove($-config-replace, $key) !global;
+
+    @include -run-watchers($key, "set");
+  }
+}
+
 /// Remove an option from the configuration map.
 ///
 /// @param {string} $key
@@ -264,46 +304,6 @@ $-flags: ("variants");
   $-config: map.deep-remove($-config, $key, $keys...) !global;
 
   @include -run-watchers($key, "remove");
-}
-
-/// Apply a configuration map to the config module based on the values in a
-/// default map. This mixin is used to allow setting values in the config module
-/// using the Sass `with` clause.
-///
-/// @param {map} $config
-///   The config map to set in the global config object.
-/// @param {map} $default
-///   The default map that is also used as a map signature for `$config`.
-///
-/// TODO: Maybe rename this to apply-with-clause or apply-with-default
-@mixin apply($config, $default) {
-  @each $key, $default-value in $default {
-    // Initialize the result with the default value
-    $result: $default-value;
-
-    // If key has already been set, either merge or replace
-    @if (map.has-key($-config, $key)) {
-      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
-        $result: map.deep-merge($result, map.get($-config, $key));
-      } @else {
-        $result: map.get($-config, $key);
-      }
-    }
-
-    // If provided config contains key, merge with the default
-    @if (map.has-key($config, $key)) {
-      @if meta.type-of($result) == "map" {
-        $result: map.deep-merge($result, map.get($config, $key));
-      } @else {
-        $result: map.get($config, $key);
-      }
-    }
-
-    // Apply the configuration option
-    $-config: map.set($-config, $key, $result) !global;
-    $-config-replace: map.remove($-config-replace, $key) !global;
-    @include -run-watchers($key, "set");
-  }
 }
 
 /// Log to console the entire configuration map or a specific value.
