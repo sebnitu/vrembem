@@ -88,22 +88,22 @@ describe("breakpoint parsing", () => {
   it("should resolve named breakpoint tokens from CSS custom properties", () => {
     setBreakpointVars();
     const el = mount(`<vb-drawer id="d1" breakpoint="md"></vb-drawer>`);
-    expect(el.breakpoint).toBe("760px");
+    expect(el.mqList.media).toBe("(min-width: 760px)");
   });
 
   it("should treat unitless numbers as pixel values", () => {
     const el = mount(`<vb-drawer id="d1" breakpoint="600"></vb-drawer>`);
-    expect(el.breakpoint).toBe("600px");
+    expect(el.mqList.media).toBe("(min-width: 600px)");
   });
 
   it("should pass CSS length values through unchanged", () => {
     const el = mount(`<vb-drawer id="d1" breakpoint="48rem"></vb-drawer>`);
-    expect(el.breakpoint).toBe("48rem");
+    expect(el.mqList.media).toBe("(min-width: 48rem)");
   });
 
   it("should fall back to 760px when no attribute or default is provided", () => {
     const el = mount(`<vb-drawer id="d1"></vb-drawer>`);
-    expect(el.breakpoint).toBe("760px");
+    expect(el.mqList.media).toBe("(min-width: 760px)");
   });
 });
 
@@ -199,7 +199,7 @@ describe("attributeChangedCallback()", () => {
 
     el.setAttribute("breakpoint", "400");
 
-    expect(el.breakpoint).toBe("400px");
+    expect(el.mqList.media).toBe("(min-width: 400px)");
     expect(el).not.toHaveClass("is-modal");
     expect(document.getElementById("child").parentElement).toBe(el);
   });
