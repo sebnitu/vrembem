@@ -3,28 +3,29 @@ import Icon from "@/components/Icon.astro";
 import ThemeSwitcherMenu from "@/components/ThemeSwitcherMenu.astro";
 ---
 
-<button
-  class="button button--icon form-control-size overflow-hidden"
-  popovertarget="theme-switcher-menu"
-  interestfor="theme-switcher-tooltip"
-  aria-label="Switch selected theme"
-  type="button"
->
-  <Icon name="circle-half" class="theme-icon theme-icon--auto" />
-  <Icon name="sun" class="theme-icon theme-icon--light" />
-  <Icon name="moon" class="theme-icon theme-icon--dark" />
-</button>
-<div
-  id="theme-switcher-tooltip"
-  popover="hint"
-  class="popover popover--tooltip popover--pos-bottom-end"
->
-  Switch theme
-</div>
-<div
-  id="theme-switcher-menu"
-  popover
-  class="popover popover--width-sm popover--pos-bottom-end"
->
-  <ThemeSwitcherMenu />
-</div>
+<vb-popover>
+  <button
+    type="button"
+    class="button button--icon form-control-size overflow-hidden"
+    interestfor="theme-switcher-tooltip"
+    popovertarget="theme-switcher-menu"
+  >
+    <Icon name="circle-half" class="theme-icon theme-icon--auto" />
+    <Icon name="sun" class="theme-icon theme-icon--light" />
+    <Icon name="moon" class="theme-icon theme-icon--dark" />
+  </button>
+  <div
+    id="theme-switcher-tooltip"
+    class="popover popover--tooltip popover--pos-bottom-end"
+    popover="hint"
+  >
+    Switch theme
+  </div>
+  <div
+    id="theme-switcher-menu"
+    class="popover popover--width-sm popover--pos-bottom-end"
+    popover
+  >
+    <ThemeSwitcherMenu />
+  </div>
+</vb-popover>
