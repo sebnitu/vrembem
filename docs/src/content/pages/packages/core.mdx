@@ -44,11 +44,11 @@ Core comes with the following Sass configuration options that can be set using e
 
     // A prefix to apply to modifier class names
     // @type string
-    "prefix-modifiers": "_",
+    "prefix-modifiers": "--",
 
     // A prefix to apply to modifier value class names
     // @type string
-    "prefix-modifier-values": "_",
+    "prefix-modifier-values": "-",
 
     // A prefix to apply to CSS variable tokens. Map values requires a default
     // key and value along with any component specific prefixes as needed.
@@ -65,7 +65,7 @@ Core comes with the following Sass configuration options that can be set using e
       "important": oklch(60% 40% 28deg),  // #ce5247
     ),
 
-    // Number of decimal places to round colors converted to oklch color space.
+    // Number of decimal places to round colors converted to oklch color space
     // @type number
     "palette-round-decimal": 4,
 
@@ -89,6 +89,11 @@ Core comes with the following Sass configuration options that can be set using e
       "900": (18%, 70%),
       "950": (16%, 60%), // The darkest variant in the palette
     ),
+
+    // Whether or not to output theme tokens. If disabled, the default theme is 
+    // output as normal base tokens in the :root selector.
+    // @type boolean
+    "theme-output": true,
 
     // Sets the default theme option
     // @type string
