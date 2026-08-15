@@ -9,6 +9,49 @@
   <script type="module">
     import "vrembem/sass";
 
+    customElements.define("vb-popover", class extends HTMLElement {
+      constructor() {
+        super();
+        // Bind this context to onToggle method
+        this.onToggle = this.onToggle.bind(this);
+      }
+
+      connectedCallback() {
+        // Get the trigger element if it has a popover and tooltip
+        this.triggerEl = this.querySelector('[popovertarget][interestfor]');
+
+        // Guard if no element was returned
+        if (!this.triggerEl) return;
+
+        // Get the popover and tooltip
+        this.popoverEl = document.getElementById(this.triggerEl.getAttribute("popovertarget"));
+        this.tooltipEl = document.getElementById(this.triggerEl.getAttribute("interestfor"));
+
+        // Guard if popover and tooltips were not returned
+        if (!this.tooltipEl || !this.popoverEl) return;
+
+        // Store the tooltip ID
+        this.tooltipId = this.tooltipEl.id;
+
+        // Add a toggle event listener on the popover element
+        this.popoverEl.addEventListener("toggle", this.onToggle);
+      }
+
+      disconnectedCallback() {
+        // Remove the toggle event listener from the popover element
+        this.popoverEl?.removeEventListener("toggle", this.onToggle);
+      }
+
+      onToggle(event) {
+        if (event.newState === "open") {
+          this.triggerEl.removeAttribute("interestfor");
+          this.tooltipEl.hidePopover?.();
+        } else {
+          this.triggerEl.setAttribute("interestfor", this.tooltipId);
+        }
+      }
+    });
+
     customElements.define("vb-menu", class extends HTMLElement {
       connectedCallback() {
         this.innerHTML = `
@@ -79,10 +122,23 @@
     <div class="section__container spacing">
       <h2 class="text-align-center"><a href="#popover">popover</a></h2>
       <div class="width-fit-content margin-x-auto">
-        <button class="button" popovertarget="popover-example">Default</button>
-        <div id="popover-example" class="popover" popover>
-          <vb-menu></vb-menu>
-        </div>
+        <vb-popover>
+          <button
+            class="button"
+            popovertarget="popover-example"
+            interestfor="popover-example-tooltip"
+          >Default</button>
+          <div
+            id="popover-example"
+            class="popover"
+            popover
+          ><vb-menu></vb-menu></div>
+          <div
+            id="popover-example-tooltip"
+            class="popover popover--tooltip"
+            popover="hint"
+          >Tooltip</div>
+        </vb-popover>
       </div>
     </div>
   </section>
