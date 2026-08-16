@@ -35,12 +35,34 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.48 to CHANGELOG.md
+chore(release): add v4.0.0-next.49 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.49 (2026-08-16)
+
+### :tada: New Feature
+* `button`, `card`, `checkbox`, `content`, `core`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `panel`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`, `vrembem`
+  * [#2949](https://github.com/sebnitu/vrembem/pull/2949) Add <vb-popover> custom element
+
+### :bug: Bug Fix
+* `drawer`
+  * [#2947](https://github.com/sebnitu/vrembem/pull/2947) Remove setting breakpoint property from custom element
+* `notice`
+  * [#2946](https://github.com/sebnitu/vrembem/pull/2946) Fix notice color modifier output
+
+### :house: Refactor
+* `button`, `content`, `core`, `drawer`, `flex`, `grid`, `icon`, `menu`, `modal`, `popover`, `section`, `table`, `utility`
+  * [#2945](https://github.com/sebnitu/vrembem/pull/2945) Refactor and simplify the core config module
+
+### :hammer: Chore
+* `button`, `card`, `checkbox`, `content`, `core`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `panel`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`, `vrembem`
+  * [#2948](https://github.com/sebnitu/vrembem/pull/2948) Add with type for json imports and use mjs ext for vite configs
+
 
 ## v4.0.0-next.48 (2026-08-12)
 
