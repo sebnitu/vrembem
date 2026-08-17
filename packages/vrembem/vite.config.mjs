@@ -4,5 +4,5 @@ import data from "./package.json" with { type: "json" };
 
 export default createViteConfig(data, {
   index: resolve(import.meta.dirname, "./index.ts"),
-  register: resolve(import.meta.dirname, "./register.ts")
+  define: resolve(import.meta.dirname, "./define.ts")
 });

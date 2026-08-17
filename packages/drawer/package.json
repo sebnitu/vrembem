@@ -21,9 +21,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./register": {
-      "types": "./dist/register.d.ts",
-      "import": "./dist/register.js"
+    "./define": {
+      "types": "./dist/define.d.ts",
+      "import": "./dist/define.js"
     },
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
@@ -36,7 +36,7 @@
     "index.scss"
   ],
   "sideEffects": [
-    "./dist/register.js"
+    "./dist/define.js"
   ],
   "scripts": {
     "serve": "vite",

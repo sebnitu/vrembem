@@ -12,6 +12,6 @@
   },
   "include": [
     "index.ts",
-    "register.ts"
+    "define.ts"
   ]
 }

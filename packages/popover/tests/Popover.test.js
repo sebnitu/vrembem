@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/vitest";
 
-import { Popover } from "../src/register";
+import { Popover } from "../src/define";
 
 function mount(html) {
   document.body.innerHTML = html;
