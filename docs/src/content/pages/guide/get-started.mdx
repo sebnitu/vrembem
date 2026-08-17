@@ -57,7 +57,7 @@ npm install vrembem
   </TabsPanel>
 </CodeExample>
 
-### Entries
+### Style entries
 
 Vrembem provides both Sass (SCSS) and CSS entries. Which one to choose depends on project setup and how much control you need over the output.
 
@@ -160,6 +160,47 @@ Components can be imported on a per-package basis using package imports. View sp
     ```css
     /* Component specific entries */
     @import "@vrembem/<package>";
+    ```
+  </TabsPanel>
+</CodeExample>
+
+### JavaScript entries
+
+Vrembem provides JavaScript entries for packages that expose custom elements. Use the root `vrembem` entry when you want to import the exported classes and define custom elements yourself.
+
+<CodeExample lang="js">
+  ```js
+  import { Drawer, Popover } from "vrembem";
+
+  customElements.define("app-drawer", Drawer);
+  customElements.define("app-popover", Popover);
+  ```
+</CodeExample>
+
+Use the `vrembem/define` entry when you want to register all packaged custom elements automatically.
+
+<CodeExample lang="js">
+  ```js
+  import "vrembem/define";
+  ```
+</CodeExample>
+
+For individual packages, the same pattern applies.
+
+<CodeExample tabs tabsLabel="Select your preferred JavaScript entry">
+<TabsPanel label="Auto">
+    ```js
+    import "@vrembem/drawer/define";
+    import "@vrembem/popover/define";
+    ```
+  </TabsPanel>
+  <TabsPanel label="Manual">
+    ```js
+    import { Drawer } from "@vrembem/drawer";
+    import { Popover } from "@vrembem/popover";
+
+    customElements.define("app-drawer", Drawer);
+    customElements.define("app-popover", Popover);
     ```
   </TabsPanel>
 </CodeExample>

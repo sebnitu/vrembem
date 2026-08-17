@@ -17,15 +17,29 @@ npm install @vrembem/drawer
   ```
 </CodeExample>
 
-<CodeExample lang="js">
-  ```js
-  import "@vrembem/drawer";
-  ```
+Drawer provides two JavaScript entries depending on how you want to register the custom element.
+
+<CodeExample tabs tabsLabel="Select your preferred import strategy">
+  <TabsPanel label="Auto">
+    ```js
+    // Register the <vb-drawer> tag as a side-effect 
+    import "@vrembem/drawer/define";
+    ```
+  </TabsPanel>
+  <TabsPanel label="Manual">
+    ```js
+    // Import the element class directly
+    import { Drawer } from "@vrembem/drawer";
+
+    // Define the element yourself under a custom namespace
+    customElements.define("app-drawer", Drawer);
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
 
-Drawer is defined as a `<vb-drawer>` custom element with a small Sass module for styles. Behavior is controlled through element attributes, while output and default values are controlled through Sass config and design token CSS variables.
+Once registered, Drawer is available as a `<vb-drawer>` custom element with a small Sass module for styles. Behavior is controlled through element attributes, while output and default values are controlled through Sass config and design token CSS variables.
 
 ### Attributes
 
@@ -148,44 +162,3 @@ If omitted, defaults to the value of [`--vb-drawer-position`](#reference-table-t
 - `right`
 - `bottom`
 - `left`
-
-## Advanced
-
-The `Drawer` class is also exposed as a named export for authors who want to subclass it. Importing the named export still triggers the module's side effect, so `<vb-drawer>` is registered as soon as the package is imported.
-
-<CodeExample lang="js">
-```js
-import { Drawer } from "@vrembem/drawer";
-```
-</CodeExample>
-
-Because a custom element tag can only be registered once, the built-in `<vb-drawer>` element is locked to the packaged `Drawer` class as soon as the module is imported. To customize behavior, subclass `Drawer` and register the subclass under a **new tag name**.
-
-<CodeExample lang="js">
-```js
-import { Drawer } from "@vrembem/drawer";
-
-class AppDrawer extends Drawer {
-  connectedCallback() {
-    super.connectedCallback();
-    // Add custom behavior on top of the base drawer setup
-  }
-}
-
-customElements.define("app-drawer", AppDrawer);
-```
-</CodeExample>
-
-Use `<app-drawer>` in your markup exactly as you would `<vb-drawer>` — the same attributes, styles, and trigger pattern apply.
-
-<CodeExample lang="html">
-```html
-<button command="show-modal" commandfor="my-drawer-modal">Open</button>
-
-<app-drawer id="my-drawer" breakpoint="lg" position="right" class="panel">
-  ...
-</app-drawer>
-```
-</CodeExample>
-
-When overriding lifecycle callbacks like `connectedCallback`, be sure to call `super.connectedCallback()` — the base class builds the internal `<dialog>` structure and sets up the media query listener there. Skipping the super call will leave the drawer in a broken state.

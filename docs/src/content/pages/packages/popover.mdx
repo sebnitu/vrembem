@@ -19,10 +19,24 @@ npm install @vrembem/popover
   ```
 </CodeExample>
 
-<CodeExample lang="js">
-  ```js
-  import "@vrembem/popover";
-  ```
+Popover provides two JavaScript entries depending on how you want to register the custom element.
+
+<CodeExample tabs tabsLabel="Select your preferred import strategy">
+  <TabsPanel label="Auto">
+    ```js
+    // Register the <vb-popover> tag as a side-effect
+    import "@vrembem/popover/define";
+    ```
+  </TabsPanel>
+  <TabsPanel label="Manual">
+    ```js
+    // Import the element class directly
+    import { Popover } from "@vrembem/popover";
+
+    // Define the element yourself under a custom namespace
+    customElements.define("app-popover", Popover);
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -111,7 +125,7 @@ For tooltips, use the native browser interest invokers API by applying the `inte
   ```
 </CodeExample>
 
-For cases where a trigger uses both a popover and tooltip, you have the `<vb-popover>` custom element available to help manage this use-case. This custom element prevents the tooltip from being displayed while the popover is active.
+For cases where a trigger uses both a popover and tooltip, you have the `<vb-popover>` custom element available to help manage this use-case. Import `@vrembem/popover/define` to register the packaged element, or define your own tag using the exported `Popover` class. This custom element prevents the tooltip from being displayed while the popover is active.
 
 <CodeExample>
   <Fragment slot="output">
