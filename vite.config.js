@@ -7,7 +7,12 @@ export default defineConfig({
     coverage: {
       reporter: ["text", "html", "json", "lcov"],
       include: ["**/packages/**/*.{js,jsx,ts,tsx}"],
-      exclude: ["**/packages/**/*.d.ts", "**/packages/**/tests/**"]
+      exclude: [
+        "**/packages/**/*.d.ts",
+        "**/packages/**/tests/**",
+        "**/packages/**/dev/**/*",
+        "**/packages/**/dist/**/*"
+      ]
     }
   }
 });

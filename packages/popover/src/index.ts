@@ -44,7 +44,3 @@ export class Popover extends HTMLElement {
     }
   }
 }
-
-if (!customElements.get("vb-popover")) {
-  customElements.define("vb-popover", Popover);
-}
