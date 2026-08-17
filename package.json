@@ -31,7 +31,7 @@
     "@babel/preset-env": "^7.29.7",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.1",
-    "@testing-library/user-event": "^14.6.3",
+    "@testing-library/user-event": "^14.6.4",
     "babel-jest": "^30.4.1",
     "concurrently": "^10.0.4",
     "del-cli": "^7.0.0",
