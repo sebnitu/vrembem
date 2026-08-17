@@ -8,7 +8,7 @@ import { setBreakpointVars } from "./helpers/setBreakpointVars";
 
 installMatchMedia();
 
-import { Drawer } from "../index";
+import { Drawer } from "../src/register";
 
 function mount(html, width = 1024) {
   window.innerWidth = width;
