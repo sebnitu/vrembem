@@ -4,14 +4,11 @@
     "declarationDir": "./dist",
     "emitDeclarationOnly": true,
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "module": "ESNext",
     "target": "ESNext",
     "allowJs": true,
     "skipLibCheck": true
   },
-  "include": [
-    "index.ts",
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
