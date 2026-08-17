@@ -149,7 +149,3 @@ export class Drawer extends HTMLElement {
     this.drawerModal.classList.add(`modal--pos-${pos}`);
   }
 }
-
-if (!customElements.get("vb-drawer")) {
-  customElements.define("vb-drawer", Drawer);
-}
