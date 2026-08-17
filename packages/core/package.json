@@ -13,27 +13,28 @@
   "exports": {
     ".": {
       "sass": "./index.scss",
-      "style": "./dist/index.css"
+      "style": "./dist/index.css",
+      "default": "./dist/index.css"
     },
     "./layers": {
       "sass": "./layers.scss",
       "style": "./dist/layers.css",
-      "default": "./layers.scss"
+      "default": "./dist/layers.css"
     },
     "./tokens": {
-      "sass": "./src/modules/_tokens.scss",
+      "sass": "./tokens.scss",
       "style": "./dist/tokens.css",
-      "default": "./src/modules/_tokens.scss"
+      "default": "./dist/tokens.css"
     },
     "./base": {
       "sass": "./base.scss",
       "style": "./dist/base.css",
-      "default": "./base.scss"
+      "default": "./dist/base.css"
     },
-    "./config": "./src/modules/_config.scss",
-    "./palette": "./src/modules/_palette.scss",
-    "./breakpoints": "./src/modules/_breakpoints.scss",
-    "./themes": "./src/modules/_themes.scss",
+    "./config": "./config.scss",
+    "./palette": "./palette.scss",
+    "./breakpoints": "./breakpoints.scss",
+    "./themes": "./themes.scss",
     "./dev/*": "./dev/*",
     "./dist/*": "./dist/*",
     "./*": "./src/*"
