@@ -35,12 +35,18 @@ Publish flow for `next` branch
 - Run `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.50 to CHANGELOG.md
+chore(release): add v4.0.0-next.51 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v4.0.0-next -->
+
+
+## v4.0.0-next.51 (2026-08-17)
+
+### :bug: Bug Fix
+* [#2958](https://github.com/sebnitu/vrembem/pull/2958) Add externals to vrembem barrel package
 
 
 ## v4.0.0-next.50 (2026-08-17)
