@@ -12,8 +12,7 @@ export function createViteConfig(data, entry) {
       build: {
         lib: {
           entry,
-          formats: ["es"],
-          fileName: "index"
+          formats: ["es"]
         },
         emptyOutDir: false,
         sourcemap: true
