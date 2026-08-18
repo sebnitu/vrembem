@@ -5,7 +5,7 @@
   <br />
   A component library based on the BEM methodology.
   <br />
-  <a href="https://vrembem.com">Documentations &rarr;</a>
+  <a href="https://vrembem.com">Documentation &rarr;</a>
 </p>
 
 ## Quick Links
