@@ -19,7 +19,11 @@ npm install @vrembem/popover
 ### JavaScript
 
 ```js
-import { PopoverCollection } from '@vrembem/popover';
-const popovers = new PopoverCollection();
-await popovers.mount();
+// Register the <vb-popover> tag as a side-effect
+import "@vrembem/popover/define";
+
+// Import and define the element class directly
+import { Popover } from "@vrembem/popover";
+
+customElements.define("vb-popover", Popover);
 ```
