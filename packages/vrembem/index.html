@@ -6,100 +6,9 @@
   <title>%VITE_NAME%</title>
   <link rel="icon" type="image/png" href="https://sebnitu.com/icons/vb-favicon.png">
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
-  <script>
-    // Make this script blocking to prevent flash of pre-themed content
-    const local = localStorage.getItem("VB:Profile");
-    const store = local ? JSON.parse(local) : {};
-    document.documentElement.classList.add(`vb-theme-${store.theme || "auto"}`);
-  </script>
   <script type="module">
     import "vrembem/sass";
-    window["vb"] = await import("./index.ts");
-
-    /**
-     * Setup themeStore functionality
-     */
-
-    // Get all the theme set button elements
-    const buttons = document.querySelectorAll("[data-set-theme]");
-
-    // Setup theme switching functionality
-    vb.themeStore({
-      onInit() {
-        // Loop through the theme set buttons
-        buttons.forEach((btn) => {
-          // Toggle the state of our button set
-          toggleState.call(this, btn);
-          // Add click event listener for changing the current theme
-          btn.addEventListener(("click"), () => {
-            this.theme = btn.getAttribute("data-set-theme");
-          });
-        });
-      },
-      onChange() {
-        buttons.forEach((btn) => {
-          // Toggle the state of our button set
-          toggleState.call(this, btn);
-        });
-      }
-    });
-
-    // Function to toggle the state class for a theme set button
-    function toggleState(btn) {
-      btn.getAttribute("data-set-theme") === this.theme 
-        ? btn.classList.add("is-active")
-        : btn.classList.remove("is-active");
-    }
-
-    /**
-     * Instantiate and mount Vrembem components
-     */
-    
-    const modals = new vb.ModalCollection({
-      plugins: [
-        vb.teleport({
-          where: ".modals"
-        })
-      ]
-    });
-
-    const drawers = new vb.DrawerCollection({
-      plugins: [
-        vb.propStore(),
-        vb.teleport({
-          where: ".drawer-main",
-          how: "before"
-        })
-      ]
-    });
-
-    window["modals"] = await modals.mount();
-    window["drawers"] = await drawers.mount();
-
-    /**
-     * Setup drawer form updater
-     */
-
-    // Get the drawer entry and drawer from
-    const drawerEntry = drawers.get("drawer-dialog");
-    const drawerForm = document.getElementById("form-drawer-state");
-
-    // Function to handle the form data of drawer state form
-    function updateDrawerState() {
-      // Get the form data
-      const formData = new FormData(drawerForm);
-      // Update the drawer mode state
-      drawerEntry.mode = (formData.get("toggle-drawer-modal")) ? "modal" : "inline";
-      // Update the drawer switch state
-      (formData.get("toggle-drawer-switch")) ?
-        drawerEntry.el.classList.add("drawer--switch"):
-        drawerEntry.el.classList.remove("drawer--switch");
-    }
-
-    // Run update drawer state and also run it any time the form changes
-    updateDrawerState();
-    drawerForm.addEventListener("change", updateDrawerState);
-
+    import "./dev/define";
   </script>
 </head>
 <body>
@@ -124,32 +33,6 @@
           </ol>
         </div>
       </header>
-
-      <aside class="section section--padding-sm background-alt">
-        <div class="section__container max-width-xs">
-          <ul class="menu menu--inline">
-            <li class="menu__item">
-              <span class="padding-right foreground-strong font-weight-bold">Themes</span>
-            </li>
-            <li class="menu__divider"></li>
-            <li class="menu__item">
-              <button class="menu__action" type="button" data-set-theme="auto">
-                Auto
-              </button>
-            </li>
-            <li class="menu__item">
-              <button class="menu__action" type="button" data-set-theme="light">
-                Light
-              </button>
-            </li>
-            <li class="menu__item">
-              <button class="menu__action" type="button" data-set-theme="dark">
-                Dark
-              </button>
-            </li>
-          </ul>
-        </div>
-      </aside>
 
       <section class="section">
         <div class="section__container max-width-xs spacing-xl">
@@ -177,53 +60,36 @@
               <button class="link" command="show-modal" commandfor="modal-dialog">Modal dialog</button>
             </li>
             <li>
-              <div class="flex align-items-center">
-                <button class="link" data-drawer-toggle="drawer-dialog">Drawer dialog</button>
-                <form id="form-drawer-state" class="flex align-items-center">
-                  <label class="flex flex--gap-sm align-items-center">
-                    <input name="toggle-drawer-modal" class="checkbox" type="checkbox" />
-                    <span>Modal</span>
-                  </label>
-                  <label class="flex flex--gap-sm align-items-center">
-                    <input name="toggle-drawer-switch" class="checkbox" type="checkbox" />
-                    <span>Switch</span>
-                  </label>
-                </form>
-              </div>
+              <button class="link" command="show-modal" commandfor="drawer-dialog-modal">Drawer dialog</button>
             </li>
           </ul>
 
-          <dialog id="modal-dialog" class="modal panel" closedby="any" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
-            <div class="panel__header">
-              <h2 class="panel__title" id="modal-dialog-title">Modal title</h2>
-              <button command="close" commandfor="modal-dialog" class="button button--icon button--size-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--size-sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
-            </div>
-            <div class="panel__body">
-              <p id="modal-dialog-description">...</p>
-            </div>
-            <div class="panel__footer">
-              ...
-            </div>
-          </dialog><!-- .modal -->
-
-          <aside id="drawer-dialog" class="drawer is-opened">
-            <div class="drawer__panel panel" role="dialog" aria-labelledby="drawer-dialog-title" aria-describedby="drawer-dialog-description">
+          <div>
+            <dialog id="modal-dialog" class="modal panel" closedby="any" aria-labelledby="modal-dialog-title" aria-describedby="modal-dialog-description">
               <div class="panel__header">
-                <h2 class="panel__title" id="drawer-dialog-title">Drawer title</h2>
-                <button data-drawer-close class="button button--icon button--size-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--size-sm" role="img"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
+                <h2 class="panel__title" id="modal-dialog-title">Modal title</h2>
+                <button command="close" commandfor="modal-dialog" class="link">Close</button>
               </div>
               <div class="panel__body">
-                <p id="drawer-dialog-description">...</p>
+                <p id="modal-dialog-description">...</p>
               </div>
               <div class="panel__footer">
                 ...
               </div>
-            </div>
-          </aside><!-- .drawer -->
+            </dialog><!-- .modal -->
+            <vb-drawer id="drawer-dialog" class="panel">
+              <div class="panel__header">
+                <h2 class="panel__title">Drawer title</h2>
+                <button command="close" commandfor="drawer-dialog-modal" class="link">Close</button>
+              </div>
+              <div class="panel__body">
+                <p>...</p>
+              </div>
+              <div class="panel__footer">
+                ...
+              </div>
+            </vb-drawer><!-- .drawer -->
+          </div>
 
           <!-- Form Controls -->
 
@@ -277,8 +143,5 @@
 
     </div>
   </main>
-
-  <div class="modals"></div>
-
 </body>
 </html>
