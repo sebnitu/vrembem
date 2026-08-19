@@ -59,7 +59,7 @@
             <li>
               <button class="link" command="show-modal" commandfor="modal-dialog">Modal dialog</button>
             </li>
-            <li>
+            <li class="md:display-none">
               <button class="link" command="show-modal" commandfor="drawer-dialog-modal">Drawer dialog</button>
             </li>
           </ul>
@@ -80,10 +80,11 @@
             <vb-drawer id="drawer-dialog" class="panel">
               <div class="panel__header">
                 <h2 class="panel__title">Drawer title</h2>
-                <button command="close" commandfor="drawer-dialog-modal" class="link">Close</button>
+                <button command="close" commandfor="drawer-dialog-modal" class="link md:display-none">Close</button>
               </div>
               <div class="panel__body">
-                <p>...</p>
+                <p class="display-none md:display-block">This is static drawer content...</p>
+                <p class="md:display-none">This is modal drawer content...</p>
               </div>
               <div class="panel__footer">
                 ...
