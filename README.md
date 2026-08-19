@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://vrembem.com">
-    <img src="./docs/src/assets/vrembem-logo-color.svg" alt="Vrembem" width="500" style="padding-top: 16px" />
+    <img src="./docs/src/assets/vrembem-logo-color.svg" alt="Vrembem" width="500" />
   </a>
   <br />
   A component library based on the BEM methodology.
