@@ -1,4 +1,4 @@
-import { createViteConfig } from "../../vite.config.shared.js";
+import { createViteConfig } from "../../vite.config.shared.mjs";
 import data from "./package.json" with { type: "json" };
 
 export default createViteConfig(data);
