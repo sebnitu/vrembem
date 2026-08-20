@@ -1,0 +1,39 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.menu--minimal {
+  @include core.media-min("aside") {
+    @include tokens.override("menu", "size", tokens.get("font-size-sm"));
+  }
+
+  .menu__action {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 8px auto 8px 0;
+      width: 2px;
+      border-radius: 2px;
+      background: transparent;
+    }
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus-visible,
+    &.is-active {
+      background-color: transparent;
+    }
+
+    &:hover::before {
+      background: tokens.get("foreground-strong");
+    }
+
+    &.is-active::before {
+      background: tokens.get("palette", "primary");
+    }
+  }
+
+  .menu {
+    margin-left: 1rem;
+  }
+}

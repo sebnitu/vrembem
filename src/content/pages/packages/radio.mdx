@@ -1,0 +1,109 @@
+---
+title: Radio
+description: "Radios allow the user to select a single option from a set."
+package: "@vrembem/radio"
+category: form-control
+---
+
+import ReferenceTable from "@/components/ReferenceTable.astro";
+
+```sh
+npm install @vrembem/radio
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/radio";
+  ```
+</CodeExample>
+
+## Options
+
+Radio uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-radio" valueLabel="Fallback" data={{
+  "--vb-radio-color": "var(--vb-form-control-choice-color)",
+  "--vb-radio-accent": "var(--vb-form-control-choice-accent)",
+  "--vb-radio-fill": "var(--vb-form-control-choice-fill)",
+  "--vb-radio-size": "var(--vb-form-control-size)",
+  "--vb-radio-border-width": "2px",
+  "--vb-radio-dot-size": "0.5em",
+}} />
+
+## Basic usage
+
+Radio form controls are composed using the `<input type="radio">` element along with the `.radio` class.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <input class="radio" type="radio"  name="example-1" value="1" checked />
+    <input class="radio" type="radio"  name="example-1" value="1" />
+  </div>
+  ```html
+  <input class="radio" type="radio" />
+  ```
+</CodeExample>
+
+### Labels
+
+For radio buttons with labels, just wrap the radio element along with label text using the `<label>` element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="radio" type="radio" name="example-2" value="1" checked />
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="radio" type="radio" name="example-2" value="1" />
+      <span>Radio with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <label>
+    <input class="radio" type="radio" />
+    <span>Radio with a label</span>
+  </label>
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the input element will provide visual indication that the radio is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex">
+      <input class="radio" type="radio" name="example-3a" value="1" disabled checked />
+      <input class="radio" type="radio" name="example-3a" value="1" disabled checked />
+    </div>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="radio" type="radio" name="example-3b" value="1" disabled checked />
+      <span>Radio with a label</span>
+    </label>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="radio" type="radio" name="example-3b" value="1" disabled checked />
+      <span>Radio with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <input class="radio" type="radio" disabled checked />
+  ```
+</CodeExample>
+
+### Invalid
+
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the radio component will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <input class="radio is-invalid" type="radio" name="example-4" value="1" checked />
+    <input class="radio is-invalid" type="radio" name="example-4" value="2" />
+  </div>
+  ```html
+  <input class="radio is-invalid" type="radio" />
+  ```
+</CodeExample>

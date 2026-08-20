@@ -1,0 +1,21 @@
+@use "@vrembem/core/tokens";
+
+.card--reference {
+  .card__header {
+    @include tokens.override("card", "padding", 0.75em 1em);
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: tokens.get("spacing-md");
+    align-items: center;
+  }
+
+  .card__title {
+    @include tokens.override("link", "decoration-thickness", 1.5px);
+
+    padding: 0;
+    font-size: 1rem;
+    color: tokens.get("foreground-strong");
+    background: transparent;
+  }
+}

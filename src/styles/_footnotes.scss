@@ -1,0 +1,34 @@
+@use "@vrembem/core/tokens";
+
+.footnotes {
+  margin-top: 2em !important;
+  padding-top: 2em;
+  border-top: tokens.get("border");
+  font-size: tokens.get("font-size");
+  line-height: tokens.get("line-height");
+
+  ol {
+    margin-left: tokens.get("list", "indent", tokens.get("spacing-lg"));
+  }
+
+  li li,
+  li + li {
+    margin-top: tokens.get("list", "spacing", tokens.get("spacing-sm"));
+  }
+}
+
+[data-footnote-ref] {
+  aspect-ratio: 1;
+  min-width: fit-content;
+  padding: 0.125em 0.5em;
+  border-radius: tokens.get("border-radius-circle");
+  font-family: tokens.get("font-family-mono");
+  font-size: tokens.get("font-size-sm");
+  line-height: tokens.get("line-height");
+  text-decoration: none;
+  background-color: tokens.get("palette", "primary", $a: 10%);
+
+  &:hover {
+    background-color: tokens.get("palette", "primary", $a: 20%);
+  }
+}

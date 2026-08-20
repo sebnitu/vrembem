@@ -1,0 +1,50 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.toolbar {
+  position: sticky;
+  z-index: 4;
+  top: -1px;
+  display: flex;
+  align-items: center;
+  padding: tokens.get("layout", "padding");
+  border-top: 1px solid tokens.get("border-color");
+  border-bottom: 1px solid tokens.get("border-color");
+  background-color: tokens.get("background-glass");
+  background-clip: padding-box;
+  backdrop-filter: blur(8px);
+
+  @include core.media-min("sidebar") {
+    display: none;
+  }
+}
+
+/**
+ * Mini toolbar
+ * This component is displayed between the drawer and aside breakpoints.
+ */
+
+.toolbar-mini {
+  position: fixed;
+  z-index: 6;
+  top: tokens.get("layout", "header-height");
+  right: tokens.get("layout", "padding");
+  transform: translate(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.5s,
+    transform 0.25s ease;
+
+  @include core.media-min("sidebar") {
+    transform: translate(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @include core.media-min("aside") {
+    transform: translate(100%);
+    visibility: hidden;
+    opacity: 0;
+  }
+}

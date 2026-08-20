@@ -1,0 +1,74 @@
+---
+import Navi from "@/components/Navi.astro";
+import Modal from "@/components/Modal.astro";
+import Svg from "@/components/Svg.astro";
+import Icon from "@/components/Icon.astro";
+
+interface Props {
+  classes?: string;
+}
+
+const { classes = "" } = Astro.props;
+---
+
+<header class={`header ${classes}`.trim()}>
+  <div class="header__container">
+    <div class="header__title">
+      <a class="skip-link button button--color-primary" href="#main">
+        Skip to content
+      </a>
+      <a href="/" class="brand">
+        <Svg name="vrembem-icon" width={24} height={24} class="brand__icon" />
+        <strong class="brand__name">Vrembem</strong>
+        <span class="brand__version">v4.0.0</span>
+      </a>
+    </div>
+    <div class="header__menu">
+      <Navi classes="display-none md:display-flex" inline />
+      <button
+        type="button"
+        interestfor="popover-menu-label"
+        command="show-modal"
+        commandfor="modal-navi"
+        class="button button--icon display-block md:display-none"
+      >
+        <Icon name="list" />
+      </button>
+      <div
+        id="popover-menu-label"
+        popover="hint"
+        class="popover popover--tooltip popover--arrow popover--pos-left"
+        style="--vb-popover-margin: 0"
+      >
+        Menu
+      </div>
+    </div>
+  </div>
+</header>
+
+<Modal id="modal-navi" classes="modal--pos-top modal--size-sm panel">
+  <div class="panel__header">
+    <h2 class="panel__title">Menu</h2>
+    <button
+      class="button button--size-sm padding-xs"
+      interestfor="popover-close-modal"
+      command="close"
+      commandfor="modal-navi"
+      type="button"
+      aria-label="Close menu"
+    >
+      <Icon name="x" />
+    </button>
+    <div
+      id="popover-close-modal"
+      popover="hint"
+      class="popover popover--tooltip popover--arrow popover--pos-left"
+      style="--vb-popover-margin: 1rem"
+    >
+      Close
+    </div>
+  </div>
+  <div class="panel__body">
+    <Navi />
+  </div>
+</Modal>

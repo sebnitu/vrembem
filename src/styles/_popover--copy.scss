@@ -1,0 +1,14 @@
+@use "@vrembem/core/tokens";
+
+.popover--copy {
+  @include tokens.override(
+    "popover",
+    (
+      "placement": top,
+      "width": auto,
+      "padding": 0.5rem 0.75rem,
+      "background": tokens.get("palette", "primary"),
+      "foreground": white
+    )
+  );
+}

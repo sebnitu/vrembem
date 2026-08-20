@@ -1,0 +1,21 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.toggle-trigger {
+  .icon {
+    transform: rotate(0);
+    transition: transform tokens.get("transition");
+  }
+
+  &[aria-expanded="true"] .icon {
+    transform: rotate(90deg);
+  }
+}
+
+.toggle-content {
+  display: none;
+
+  &[aria-hidden="false"] {
+    display: block;
+  }
+}

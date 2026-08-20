@@ -1,0 +1,74 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+@use "@vrembem/button";
+
+astro-island {
+  display: block !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: tokens.get("palette", "primary", $a: 50%) transparent;
+  text-wrap: pretty;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+#main {
+  outline: none;
+}
+
+.content-container {
+  container: content / inline-size;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+    outline: none;
+  }
+}
+
+dl > * + * {
+  margin-top: tokens.get("spacing-sm");
+}
+
+dt {
+  display: flex;
+  gap: tokens.get("spacing-md");
+  align-items: center;
+  font-weight: bold;
+
+  &::after {
+    content: "";
+    flex-grow: 1;
+    width: 100%;
+    height: 1px;
+    background-color: tokens.get("border-color");
+  }
+}
+
+dd {
+  margin-left: tokens.get("spacing-lg");
+}
+
+dd + dt {
+  margin-top: tokens.get("spacing-md");
+  padding-top: tokens.get("spacing-md");
+}
+
+/**
+ * CodeExample
+ * These are styles used specifically in code example blocks
+ */
+
+// Source: button.mdx
+
+.button--color-custom {
+  @include button.variant(salmon);
+}

@@ -1,0 +1,17 @@
+@use "@vrembem/core/tokens";
+
+.badge {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 0 0.75em;
+  border-radius: tokens.get("border-radius-circle");
+  font-size: tokens.get("font-size-sm");
+  color: tokens.get("foreground-subtle");
+  background-color: tokens.get("background-shift");
+}
+
+a.badge:hover {
+  color: tokens.get("palette", "primary", 30%);
+  background-color: tokens.get("palette", "primary", 90%);
+}

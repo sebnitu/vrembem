@@ -1,0 +1,1 @@
+function e(e,t=`local`){let n=t===`local`?window.localStorage:window.sessionStorage,r=n.getItem(e),i=r?JSON.parse(r):{};return{get(e,t){return e?e in i?i[e]:t:i},set(t,r){return r?i[t]=r:delete i[t],n.setItem(e,JSON.stringify(i)),i}}}export{e as t};

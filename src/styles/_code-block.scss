@@ -1,0 +1,103 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.code-block {
+  position: relative;
+  font-size: tokens.get("font-size");
+  line-height: tokens.get("line-height");
+  text-align: left;
+
+  .pre {
+    padding-right: 4em;
+    border: tokens.get("border");
+    background-color: tokens.get("background-alt");
+  }
+
+  &.has-icon .pre {
+    padding-left: 4em;
+  }
+
+  @include core.media-max("xs") {
+    .pre {
+      margin: auto calc(tokens.get("main", "content-padding-x") * -1);
+      padding-right: calc(tokens.get("main", "content-padding-x") + 2.5em);
+      padding-left: tokens.get("main", "content-padding-x");
+      border-right: none;
+      border-left: none;
+      border-radius: 0;
+    }
+  }
+}
+
+// Icons and copy button
+
+.code-block__icon,
+.code-block__copy-button {
+  position: absolute;
+  inset: 0.8rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: tokens.get("border-radius");
+  color: tokens.get("foreground-subtle");
+  background-color: tokens.get("background-alt");
+}
+
+.code-block__icon {
+  right: auto;
+  bottom: auto;
+
+  @include core.media-max("xs") {
+    left: 0;
+  }
+}
+
+.code-block__copy-button {
+  bottom: auto;
+  left: auto;
+
+  &:hover {
+    color: tokens.get("foreground-strong");
+  }
+
+  @include core.media-max("xs") {
+    right: -1em;
+  }
+}
+
+/**
+ * Modifier: inline
+ */
+
+.code-block--inline {
+  .pre {
+    padding: 0.75em 3.5em 0.75em 1em;
+  }
+
+  &.has-icon .pre {
+    padding-left: 3.5em;
+  }
+
+  .code-block__icon,
+  .code-block__copy-button {
+    inset: 1px;
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+
+  .code-block__icon {
+    right: auto;
+  }
+
+  .code-block__copy-button {
+    left: auto;
+  }
+
+  @include core.media-max("xs") {
+    .pre {
+      margin: 0;
+      border: tokens.get("border");
+      border-radius: tokens.get("border-radius");
+    }
+  }
+}

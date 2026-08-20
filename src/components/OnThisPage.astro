@@ -1,0 +1,78 @@
+---
+import OnThisPageList from "@/components/OnThisPageList.astro";
+
+const { headings, menuClass = "" } = Astro.props;
+
+// Filter the headings to only display the ones we want
+const filteredHeadings = build(
+  headings.filter((item) => {
+    return (
+      item.slug !== "footnote-label" && (item.depth === 2 || item.depth === 3)
+    );
+  })
+);
+
+function build(headings) {
+  const otp = [];
+  const parentHeadings = new Map();
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+    // Change depth to 1 if your markdown includes your <h1>, else set to 2
+    const depth = 2;
+    if (heading.depth === depth) {
+      otp.push(heading);
+    } else {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+    }
+  });
+  return otp;
+}
+---
+
+<nav>
+  <h2 class="sr-only">On this page</h2>
+  <ul id="on-this-page-menu" class={`menu menu--minimal ${menuClass}`.trim()}>
+    <li>
+      <a href="#main" class="menu__action" data-scroll-to-top="">
+        <strong>On this page</strong>
+      </a>
+    </li>
+    <li class="menu__divider"></li>
+    {filteredHeadings.map((item) => <OnThisPageList {item} />)}
+    <li class="menu__divider slide-up scroll-spy"></li>
+    <li class="menu__item slide-up scroll-spy">
+      <a href="#main" class="menu__action" data-scroll-to-top="">
+        Back to top
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  import { scrollSpy } from "../modules/scrollSpy";
+  import { onThisPage } from "../modules/onThisPage";
+
+  scrollSpy({
+    value: 200
+  }).mount();
+
+  onThisPage({
+    selectorAnchors: "#on-this-page-menu a"
+  }).mount();
+
+  document.querySelectorAll("[data-scroll-to-top]").forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      // Prevent the default behavior
+      event.preventDefault();
+
+      // Clear the hash if one has been set
+      const url = window.location.pathname + window.location.search;
+      history.pushState({}, "", url);
+      window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    });
+  });
+</script>

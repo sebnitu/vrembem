@@ -1,0 +1,58 @@
+---
+interface Props {
+  target: string;
+}
+
+const { target = "" } = Astro.props;
+---
+
+<button type="button" class="link" data-reset-example={target}>
+  Reset <span class="sr-only">example</span>
+</button>
+
+<script>
+  // Initialize the saves array to store ID and HTML content of examples
+  const saves: { id: string; html: string }[] = [];
+
+  // Loop through the buttons and populate the saves array
+  const btns = document.querySelectorAll("[data-reset-example]");
+  btns.forEach((btn) => {
+    if (!(btn instanceof HTMLButtonElement)) return;
+    const example = getExampleOutput(btn);
+    if (example) saves.push({ id: example?.id, html: example?.innerHTML });
+  });
+
+  // Add a globalized event listener for [data-reset-example] buttons
+  document.addEventListener("click", (event) => {
+    const btn =
+      event.target instanceof HTMLElement
+        ? event.target.closest("[data-reset-example]")
+        : null;
+    if (btn instanceof HTMLButtonElement) {
+      const example = getExampleOutput(btn);
+
+      // Prevent the reset button from being spammed
+      if (example && example.classList.contains("updated")) return;
+
+      // Get the stored save object
+      const save = saves.find((item) => item.id === example?.id);
+      if (!save || !example) return;
+
+      // Update the HTML
+      example.innerHTML = save.html;
+      example.classList.add("updated");
+      setTimeout(() => {
+        example.classList.remove("updated");
+      }, 600);
+    }
+  });
+
+  function getExampleOutput(btn: HTMLButtonElement): HTMLElement | null {
+    const id = btn.getAttribute("data-reset-example");
+    if (id) {
+      return document.getElementById(id);
+    } else {
+      return btn.closest(".code-example__output");
+    }
+  }
+</script>

@@ -1,0 +1,155 @@
+---
+title: Core
+description: "Provides Sass modules and shared design tokens that make up the systems and configurations of the Vrembem library."
+package: "@vrembem/core"
+category: core
+---
+
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import data from "@/content/data/tokens-core.json";
+
+```sh
+npm install @vrembem/core
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/core";
+  ```
+</CodeExample>
+
+## Modules
+
+Vrembem uses Sass modules to manage global configuration and design tokens throughout the library.
+
+- [`@vrembem/core/config`](/packages/core/config): A Sass module for managing global configuration options. This is available across all components to set things like BEM naming syntax, prefixes, and output options.
+- [`@vrembem/core/tokens`](/packages/core/tokens): A Sass module to define, manage, and output global and component-level design tokens expressed as CSS variables.
+
+## Options
+
+Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss" expandable>
+```scss
+@use "@vrembem/core" with (
+  $config: (
+    // A prefix to apply to block class names. Provided value is automatically 
+    // suffixed with a "-" character when applied.
+    // @type string
+    "prefix-blocks": "",
+
+    // A prefix to apply to element class names
+    // @type string
+    "prefix-elements": "__",
+
+    // A prefix to apply to modifier class names
+    // @type string
+    "prefix-modifiers": "--",
+
+    // A prefix to apply to modifier value class names
+    // @type string
+    "prefix-modifier-values": "-",
+
+    // A prefix to apply to CSS variable tokens. Map values requires a default
+    // key and value along with any component specific prefixes as needed.
+    // Provided value(s) are automatically suffixed with a "-" character.
+    // @type string | map
+    "prefix-tokens": "vb",
+
+    // The palette to build CSS variables from
+    // @type map
+    "palette": (
+      "primary": oklch(74% 40% 158deg),   // #30c883
+      "secondary": oklch(62% 40% 244deg), // #008dde
+      "neutral": oklch(74% 4% 236deg),    // #a2adb4
+      "important": oklch(60% 40% 28deg),  // #ce5247
+    ),
+
+    // Number of decimal places to round colors converted to oklch color space
+    // @type number
+    "palette-round-decimal": 4,
+
+    // A map of key/value pairs for preset lightness and chroma variants. These
+    // are used as a lookup map whenever the key is used in a palette get call.
+    // Example:
+    // - tokens.get("palette", "primary", "500") => oklch(50% var(--vb-primary-c) var(--vb-primary-h))
+    // - tokens.get("palette", "primary", "800") => oklch(20% calc(var(--vb-primary-c) * 0.8) var(--vb-primary-h))
+    // @type map
+    "palette-variants": (
+      "50":  (98%, 10%), // The lightest variant in the palette
+      "75":  (96%, 20%),
+      "100": (90%, 40%),
+      "200": (80%, 80%),
+      "300": 70%,
+      "400": 60%,
+      "500": 50%,
+      "600": 40%,
+      "700": 30%,
+      "800": (20%, 80%),
+      "900": (18%, 70%),
+      "950": (16%, 60%), // The darkest variant in the palette
+    ),
+
+    // Whether or not to output theme tokens. If disabled, the default theme is 
+    // output as normal base tokens in the :root selector.
+    // @type boolean
+    "theme-output": true,
+
+    // Sets the default theme option
+    // @type string
+    "theme-default": "light",
+
+    // A map of breakpoint key/value pairs
+    // @type map
+    "breakpoints": (
+      "xs": 480px,
+      "sm": 620px,
+      "md": 760px,
+      "lg": 990px,
+      "xl": 1380px
+    )
+  )
+);
+```
+</CodeExample>
+
+## Design tokens
+
+Design tokens are the foundation of the Vrembem library and help to establish a consistent design language across components. Tokens are managed by the `@vrembem/core/tokens` module and are output as CSS variables.
+
+### Output
+
+Design token CSS variables are not automatically output when `@vrembem/core` is imported or used. To output core CSS variables, use the `vrembem/tokens` entry at the end of your Sass manifest file.
+
+<CodeExample lang="scss">
+```scss
+@forward "vrembem/tokens";
+```
+</CodeExample>
+
+Alternatively, custom properties can also be output manually using the `core/tokens` and `core/themes` modules:
+
+<CodeExample lang="scss">
+```scss
+// Import core to bootstrap
+@use "@vrembem/core";
+
+// Import tokens module
+@use "@vrembem/core/tokens";
+
+// Wrap the output in the tokens layer
+@layer tokens {
+  // Output all registered tokens as CSS variables
+  @include tokens.output;
+}
+```
+</CodeExample>
+
+It is recommended to output design token CSS variables at the end of your Sass manifest file. This ensures that all defined properties in your Sass partials are included in the output.
+
+
+### Reference
+
+Below is a reference to all CSS variables and their values. Theme variables use the value based on the current theme.
+
+<ReferenceTable id="tokens-core" data={data} keyWidth="45%" />

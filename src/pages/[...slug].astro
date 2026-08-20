@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Page from "@/layouts/Page.astro";
+import CodeExample from "@/components/CodeExample.astro";
+import TabsPanel from "@/components/TabsPanel.astro";
+import Pre from "@/components/Pre.astro";
+import Table from "@/components/Table.astro";
+
+interface Props {
+  entry: CollectionEntry<"pages">;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+
+// Get the parent page is one is provided in frontmatter
+const pages = await getCollection("pages");
+const parentKey = entry.data.parent;
+const parent = parentKey
+  ? pages.find((page) => page.id === `packages/${parentKey}`)
+  : undefined;
+
+export async function getStaticPaths() {
+  return (await getCollection("pages")).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+---
+
+<Page {entry} {parent} {headings}>
+  <Content components={{ CodeExample, TabsPanel, pre: Pre, table: Table }} />
+</Page>
+
+<script>
+  import "../modules/currentViewport";
+  import "../modules/dismissible";
+  import "../modules/demo";
+  import "../modules/demos";
+</script>

@@ -1,32 +1,19 @@
 {
   "name": "docs",
-  "description": "A container component that slides in from the left or right. It typically contains menus, search or other content for your app.",
-  "version": "3.0.22",
+  "type": "module",
   "private": true,
-  "source": "src/js/app.js",
-  "browser": "dist/bundle.js",
   "scripts": {
-    "build": "npm-run-all clean scripts styles",
-    "clean": "del dist",
-    "scripts": "microbundle --external=none --output=dist/bundle.js --format=iife",
-    "styles": "npm-run-all styles:compile styles:min",
-    "styles:compile": "sass src/scss/app.scss dist/styles.css --load-path=../node_modules",
-    "styles:min": "sass dist/styles.css dist/styles.min.css --style compressed",
-    "watch": "concurrently --kill-others 'npm run watch:scripts' 'npm run watch:styles'",
-    "watch:scripts": "nodemon -e js -x 'npm run scripts'",
-    "watch:styles": "nodemon -e scss -x 'npm run styles'",
-    "server": "bundle exec jekyll serve --livereload"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sebnitu/vrembem.git",
-    "directory": "packages/docs"
-  },
-  "dependencies": {
-    "feather-icons": "^4.29.2",
-    "list.js": "^2.3.1",
-    "scroll-stash": "^1.1.2",
-    "svgxuse": "^1.2.6",
-    "vrembem": "^3.0.22"
+  "devDependencies": {
+    "@astrojs/mdx": "^7.0.5",
+    "@types/node": "^26.2.0",
+    "astro": "^7.2.2",
+    "esbuild": "^0.28.1",
+    "vrembem": "^4.0.0-next.52"
   }
 }

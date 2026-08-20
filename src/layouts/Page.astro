@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Intro from "@/components/Intro.astro";
+import SidebarNavi from "@/components/SidebarNavi.astro";
+import PageNavi from "@/components/PageNavi.astro";
+import OnThisPage from "@/components/OnThisPage.astro";
+import EditPageLink from "@/components/EditPageLink.astro";
+
+interface Props {
+  entry?: CollectionEntry<CollectionKey>;
+  parent?: CollectionEntry<CollectionKey>;
+  headings?: { depth: number; slug: string; text: string }[];
+  frontmatter?: {
+    title: string;
+    description?: string;
+  };
+}
+
+const { entry, parent, headings } = Astro.props;
+const { collection } = entry || {};
+const { title, description } = entry?.data || Astro.props.frontmatter || {};
+
+// Create our layout state object
+const layout = {
+  hasSidebar: !!collection,
+  hasAside: headings?.some((item) => item.depth === 2) ?? false
+};
+---
+
+<Base {title} {layout}>
+  {
+    collection && (
+      <Fragment slot="sidebar">
+        <SidebarNavi />
+      </Fragment>
+    )
+  }
+  {
+    layout.hasAside && (
+      <Fragment slot="aside">
+        <OnThisPage {headings} />
+      </Fragment>
+    )
+  }
+  <Intro {title} {description} {parent} />
+  <slot />
+  <Fragment slot="append">
+    <div>
+      <EditPageLink {entry} />
+    </div>
+    <PageNavi />
+  </Fragment>
+</Base>
+
+<script>
+  import { headingAnchor } from "../modules/headingAnchor";
+  headingAnchor.mount();
+</script>

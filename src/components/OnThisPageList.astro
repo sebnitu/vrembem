@@ -1,0 +1,18 @@
+---
+const { item } = Astro.props;
+---
+
+<li class="menu__item">
+  <a class="menu__action" href={"#" + item.slug}>
+    {item.text}
+  </a>
+  {
+    item.subheadings.length > 0 && (
+      <ul class="menu">
+        {item.subheadings.map((subheading) => (
+          <Astro.self item={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>

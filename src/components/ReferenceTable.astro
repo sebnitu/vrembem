@@ -1,0 +1,444 @@
+---
+import Icon from "@/components/Icon.astro";
+import CodeBlock from "@/components/CodeBlock.astro";
+import coreData from "@/content/data/tokens-core.json";
+
+interface Props {
+  data: Record<string, string | Record<string, string>>;
+  id?: string;
+  filter?: boolean;
+  expandable?: boolean;
+  keyLabel?: string;
+  valueLabel?: string;
+  keyWidth?: string;
+  valueWidth?: string;
+  labelWidth?: string;
+}
+
+const {
+  data,
+  id,
+  filter = true,
+  expandable = false,
+  keyLabel = "Variable",
+  valueLabel = "Value",
+  keyWidth,
+  valueWidth,
+  labelWidth = "5em"
+} = Astro.props;
+
+// Create a table ID if one is not provided
+const tableId = `reference-table-${id}`;
+
+// Create an array of the provided data object
+const props = Object.entries(data);
+
+// Is the provided data the core data?
+const isRoot = data === coreData;
+
+// Escape the special characters of a string so that it can be used in RegExp
+function escapeSpecialChars(value: string) {
+  return value.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
+}
+
+function buildRegExp(data: Props["data"]) {
+  return new RegExp(
+    Object.keys(data)
+      .sort((a, b) => b.length - a.length)
+      .map((key) => `(?<=var\\()${escapeSpecialChars(key)}(?=[,)]|\\s*[,)])`)
+      .join("|"),
+    "g"
+  );
+}
+
+// Create regular expression objects using provided json objects
+const dataRegExp = buildRegExp(data);
+const coreRegExp = buildRegExp(coreData);
+
+// Wrap the matching string value with an anchor element and href hash value
+function linkifyValue(value: string) {
+  let result = value;
+  if (isRoot || dataRegExp.test(result)) {
+    result = result.replace(dataRegExp, (match) => {
+      return `<a href="#${cleanAppend(match)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  }
+  if (!isRoot && coreRegExp.test(result)) {
+    result = result.replace(coreRegExp, (match) => {
+      return `<a href="/packages/core#${cleanAppend(match, true)}" aria-label="Permalink to '${match}' CSS custom property">${match}</a>`;
+    });
+  }
+  return result;
+}
+
+// Append the key to the table id. Removes extra `--` when more than 2.
+function cleanAppend(key: string, root: boolean = false) {
+  const prefix = root ? `reference-table-tokens-core` : tableId;
+  return `${prefix}-${key}`.replace(/-{3}/g, "--");
+}
+
+// Map theme names to the icons that represent them
+function iconMap(value: string) {
+  return value === "light" ? "sun" : value === "dark" ? "moon" : value;
+}
+---
+
+<vb-reference-table
+  id={tableId}
+  class=`reference-table${expandable ? " reference-table--expandable" : ""}`
+  {filter}
+  {expandable}
+>
+  {
+    filter && (
+      <div class="reference-table__header">
+        <div class="input-group">
+          <input
+            id={`${tableId}-filter`}
+            name={`${tableId}-filter}`}
+            class="input reference-table__filter"
+            type="text"
+            placeholder="Filter..."
+          />
+          <label class="input-icon" for={`${tableId}-filter`}>
+            <Icon name="eye-bold" size="sm" />
+            <span class="sr-only">Type to filter the reference table.</span>
+          </label>
+          <button
+            class="button button--icon input-clear display-none"
+            type="button"
+            data-clear={`${tableId}-filter`}
+          >
+            <Icon name="x" size="sm" />
+          </button>
+        </div>
+      </div>
+    )
+  }
+  <table
+    class="table sm:table--mobile"
+    style={`--vb-table-mobile-label-width: ${labelWidth}`}
+  >
+    <colgroup>
+      <col width={keyWidth} />
+      <col width={valueWidth} />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>{keyLabel}</th>
+        <th>{valueLabel}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        props.map(([key, value]) => (
+          <tr id={`${cleanAppend(key)}`}>
+            <td data-mobile-label="Var">
+              <a
+                class="table-anchor"
+                href={`#${cleanAppend(key)}`}
+                aria-label={`Permalink to '${key}'`}
+              >
+                <Icon name="hash-bold" size="sm" />
+              </a>
+              <button
+                class="table-anchor-clear"
+                type="button"
+                aria-label="Clear current hash anchor"
+              >
+                <Icon name="x-bold" size="sm" />
+              </button>
+              <CodeBlock inline={key} />
+            </td>
+            <td data-mobile-label={valueLabel}>
+              {typeof value === "string"
+                ? value && <CodeBlock inline={linkifyValue(value)} />
+                : Object.entries(value).map(([themeKey, themeValue]) => (
+                    <div class="flex flex--wrap-no gap-0 align-items-center">
+                      <button
+                        type="button"
+                        interestfor={`popover-${cleanAppend(key)}-${themeKey}`}
+                        class="foreground-subtle flex padding-y-sm margin-left-sm"
+                      >
+                        <Icon name={iconMap(themeKey)} size="sm" />
+                      </button>
+                      <div
+                        id={`popover-${cleanAppend(key)}-${themeKey}`}
+                        popover="hint"
+                        class="popover popover--tooltip popover--arrow-bottom"
+                      >
+                        {`${themeKey.charAt(0).toUpperCase() + themeKey.slice(1)} theme value`}
+                      </div>
+                      <CodeBlock inline={linkifyValue(themeValue)} />
+                    </div>
+                  ))}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <div class="notice notice--color-important display-none">
+    <div class="flex align-items-center">
+      <Icon name="warning" />
+      <p>There are no variables that match your search.</p>
+    </div>
+  </div>
+  {
+    expandable && (
+      <div class="reference-table__footer">
+        <button
+          class="button button--color-primary button--size-sm reference-table__toggle"
+          type="button"
+        >
+          Expand
+        </button>
+      </div>
+    )
+  }
+</vb-reference-table>
+
+<script>
+  class ReferenceTable extends HTMLElement {
+    #initialized = false;
+    table: HTMLTableElement | null = null;
+    keys: { id: string; el: HTMLTableRowElement }[] = [];
+    rows: HTMLTableRowElement[] = [];
+    filterInput: HTMLInputElement | null = null;
+    filterClearBtn: HTMLButtonElement | null = null;
+    filterNotice: HTMLElement | null = null;
+    header: HTMLElement | null = null;
+    footer: HTMLElement | null = null;
+    expandBtn: HTMLButtonElement | null = null;
+    expandHeight: number = 0;
+
+    #handleHashChange = () => {
+      this.checkActiveHash();
+    };
+
+    #handleFilterEvent = (event: Event) => {
+      const customEvent = event as CustomEvent<{ value: string }>;
+      if (!this.filterInput) return;
+      this.filterInput.focus();
+      this.filterInput.value = customEvent.detail.value;
+      this.filterInput.dispatchEvent(new Event("input"));
+    };
+
+    connectedCallback() {
+      // Add event listener for when the hash changes
+      window.addEventListener("hashchange", this.#handleHashChange);
+
+      // Create references to the table parts
+      this.table = this.querySelector("table")!; // We add `!` because we know table will exist
+      this.filterInput = this.querySelector(".reference-table__filter");
+      this.filterClearBtn = this.querySelector(".input-clear");
+      this.filterNotice = this.querySelector(".notice");
+      this.header = this.querySelector(".reference-table__header");
+      this.footer = this.querySelector(".reference-table__footer");
+      this.expandBtn = this.querySelector(".reference-table__toggle");
+
+      // Create references to the table keys and rows
+      this.keys = [];
+      this.rows = Array.from(this.table.querySelectorAll("tr"));
+      this.rows.forEach((el) => {
+        this.keys.push({
+          id: el.id,
+          el: el
+        });
+      });
+
+      // Check and apply any active hash values
+      this.checkActiveHash();
+
+      // Everything below this point should only be run once
+      if (this.#initialized) return;
+      this.#initialized = true;
+
+      // Add click event to clear anchor buttons
+      this.querySelectorAll(".table-anchor-clear").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          clearHash();
+        });
+      });
+
+      // Logic if the filter option is enabled
+      if (this.getAttribute("filter") && this.filterInput) {
+        // Add event listener for when the hash is cleared
+        this.addEventListener("hashclear", this.filterTable);
+
+        // Add the filter event listener
+        this.addEventListener("filter", this.#handleFilterEvent);
+
+        // Add input and clear event handlers
+        this.filterInput?.addEventListener("input", () => this.filterTable());
+        this.filterClearBtn?.addEventListener("click", () =>
+          this.clearFilter()
+        );
+      }
+
+      if (this.getAttribute("expandable")) {
+        // Set the height variable
+        const padding = 42; // Kind of a magic number atm
+
+        this.expandHeight = this.table.offsetHeight + padding;
+
+        // If a footer exists, add it to the expanded height
+        if (this.footer) {
+          this.expandHeight = this.expandHeight + this.footer.offsetHeight;
+        }
+
+        // If a header exists, add it to the expanded height
+        if (this.header) {
+          this.expandHeight = this.expandHeight + this.header.offsetHeight;
+        }
+
+        // Add toggle button event listener
+        this.expandBtn?.addEventListener("click", () => {
+          this.expandToggle();
+        });
+      }
+
+      if (this.getAttribute("filter") && this.getAttribute("expandable")) {
+        this.filterInput?.addEventListener("focus", () => {
+          this.expandToggle(true);
+        });
+      }
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener("hashchange", this.#handleHashChange);
+    }
+
+    get expanded() {
+      return (
+        this.getAttribute("expandable") &&
+        this.classList.contains("is-expanded")
+      );
+    }
+
+    get filterValue() {
+      return (this.filterInput?.value || "").toUpperCase().trim();
+    }
+
+    expandToggle(state = !this.expanded) {
+      if (this.getAttribute("expandable") && this.expandBtn) {
+        this.classList.toggle("is-expanded", state);
+        if (state) {
+          this.expandBtn.innerHTML = "Collapse";
+          this.style.setProperty(
+            "--vb-reference-table-max-height",
+            `${this.expandHeight}px`
+          );
+        } else {
+          this.clearFilter(false);
+          clearHash();
+          this.expandBtn.innerHTML = "Expand";
+          this.style.setProperty("--vb-reference-table-max-height", null);
+          this.scrollIntoView({ behavior: "instant" });
+        }
+      }
+    }
+
+    filterTable() {
+      // Setup the variables
+      let visible = 0;
+
+      // Loop through table rows and hide those that don't match the search query
+      for (let i = 0; i < this.rows.length; i++) {
+        let td = this.rows[i].querySelector("td code") as HTMLElement;
+        if (td) {
+          let txtValue = td.innerText;
+          if (txtValue.toUpperCase().trim().indexOf(this.filterValue) > -1) {
+            this.rows[i].classList.remove("display-none");
+            visible++;
+          } else {
+            if (!this.rows[i].classList.contains("is-active")) {
+              this.rows[i].classList.add("display-none");
+            } else {
+              visible++;
+            }
+          }
+        }
+      }
+
+      // Toggle the clear input button
+      if (this.filterClearBtn) {
+        if (this.filterValue) {
+          // Scroll to the top of the reference table
+          this.scrollToTable();
+          this.filterClearBtn.classList.remove("display-none");
+        } else {
+          this.filterClearBtn.classList.add("display-none");
+        }
+      }
+
+      // Toggle the notice if no items are displayed
+      if (this.filterNotice) {
+        if (visible) {
+          this.filterNotice.classList.add("display-none");
+        } else {
+          this.filterNotice.classList.remove("display-none");
+        }
+      }
+    }
+
+    clearFilter(setFocus = true) {
+      if (this.getAttribute("filter") && this.filterClearBtn) {
+        const id = this.filterClearBtn.dataset.clear;
+        if (id) {
+          const input = document.getElementById(id) as HTMLInputElement;
+          if (input) {
+            input.value = "";
+            input.dispatchEvent(new Event("input"));
+            if (setFocus) {
+              input.focus();
+            }
+          }
+        }
+      }
+    }
+
+    scrollToTable() {
+      const rect = this.getBoundingClientRect();
+      const scrollTop = document.documentElement.scrollTop;
+      const header = document.querySelector(".header") as HTMLElement;
+      const offset = header ? header.offsetHeight : 0;
+      window.scrollTo({
+        top: rect.top + scrollTop - offset,
+        behavior: "instant"
+      });
+    }
+
+    checkActiveHash() {
+      const result = this.keys.find((el) => {
+        return `#${el.id}` === window.location.hash;
+      });
+
+      this.keys.forEach((item) => {
+        item.el.classList.remove("is-active");
+      });
+
+      if (result) {
+        if (!this.expanded) {
+          this.expandToggle(true);
+        }
+        result.el.classList.add("is-active");
+        result.el.classList.remove("display-none");
+      }
+    }
+  }
+
+  function clearHash() {
+    // Build URL without the hash
+    const url = window.location.pathname + window.location.search;
+    history.pushState({}, "", url);
+    // Manually fire hashchange event since `history.pushState` doesn't
+    window.dispatchEvent(new Event("hashchange", { bubbles: true }));
+    // Fire the hashclear event
+    window.dispatchEvent(new CustomEvent("hashclear", { bubbles: true }));
+  }
+
+  if (!customElements.get("vb-reference-table")) {
+    customElements.define("vb-reference-table", ReferenceTable);
+  }
+</script>

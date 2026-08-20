@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry, CollectionKey } from "astro:content";
+
+interface Props {
+  title?: string;
+  description?: string;
+  parent?: CollectionEntry<CollectionKey>;
+}
+
+const { title, description, parent } = Astro.props;
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[\s/]+/g, "-") // Replace spaces and slashes with dash
+    .replace(/[^\w-]+/g, "") // Remove all non-word chars
+    .trim();
+}
+---
+
+<div class="content">
+  {
+    parent && (
+      <a href={`/${parent.id}/`} class="link font-size-base">
+        &larr; Back to {parent.data.title}
+      </a>
+    )
+  }
+  {title && <h1 id={slugify(title)}>{title}</h1>}
+  {description && <p class="margin-top">{description}</p>}
+</div>

@@ -1,0 +1,198 @@
+@use "@vrembem/core";
+@use "@vrembem/core/tokens";
+
+.code-example {
+  position: relative;
+  overflow: hidden;
+  border: tokens.get("border");
+  border-radius: tokens.get("border-radius");
+  font-size: tokens.get("font-size");
+  line-height: tokens.get("line-height");
+  transition-timing-function: tokens.get("transition-timing-function");
+  transition-duration: tokens.get("transition-duration-short");
+  transition-property: border-color, box-shadow;
+
+  @include core.media-max("xs") {
+    margin: 2rem calc(tokens.get("main", "content-padding-x") * -1) !important;
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+  }
+
+  * {
+    scroll-margin-top: initial;
+  }
+
+  > * + * {
+    border-top: tokens.get("border");
+  }
+
+  [role="tablist"] {
+    padding: 0 3.5em 0 0.5em;
+    border-bottom: tokens.get("border");
+
+    @include core.media-max("xs") {
+      padding-left: 0.5em;
+    }
+  }
+
+  [role="tab"] {
+    padding: 0.5em;
+
+    &::after {
+      bottom: -1px;
+    }
+  }
+
+  .code-block {
+    position: static;
+  }
+
+  .code-block__copy-button {
+    // A bit of a magic number currently. This places the copy button centered
+    // in the toolbar element.
+    top: -2.35em;
+    right: 0.5em;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .pre {
+    max-height: 34em;
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    @include core.media-max("xs") {
+      margin: 0;
+    }
+  }
+}
+
+.code-example__output {
+  overflow: auto;
+
+  iframe {
+    width: 100%;
+    height: tokens.get("core", "iframe-height", 20em);
+    border: 0;
+  }
+
+  &.updated {
+    animation: 0.6s linear updated;
+  }
+
+  .drawer-frame {
+    height: 100%;
+  }
+}
+
+.code-example__input {
+  position: relative;
+}
+
+.code-example__inner {
+  width: fit-content;
+  min-width: 100%;
+  padding: 2em;
+
+  @include core.media-max("xs") {
+    padding: 1em;
+  }
+}
+
+.code-example__demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.code-example__toolbar {
+  display: flex;
+  gap: 0.5em;
+  padding: 0.5em 3.5em 0.5em 1em;
+  color: tokens.get("foreground-subtle");
+
+  [data-reset] {
+    margin: -2px 0;
+  }
+
+  @include core.media-max("xs") {
+    padding-left: tokens.get("main", "content-padding-x");
+  }
+}
+
+@keyframes updated {
+  from {
+    box-shadow: 0 0 0 3px tokens.get("palette", "primary", $a: 100%) inset;
+  }
+
+  to {
+    box-shadow: 0 0 0 3px tokens.get("palette", "primary", $a: 0%) inset;
+  }
+}
+
+/**
+ * Expandable styles
+ */
+
+@include tokens.set("code-example", "max-height", 20rem);
+
+.code-example--expandable .pre {
+  max-height: tokens.get("code-example", "max-height");
+  border: none;
+  transition: max-height tokens.get("transition");
+}
+
+.code-example__actions {
+  position: absolute;
+  z-index: 2;
+  inset: auto tokens.get("spacing-md") tokens.get("spacing-md") auto;
+  display: flex;
+  gap: tokens.get("spacing-sm");
+}
+
+/**
+ * Scroll lock styles
+ */
+
+.scroll-lock-hint,
+.scroll-lock-screen {
+  display: none;
+}
+
+.is-scroll-locked {
+  cursor: pointer;
+
+  .scroll-lock-hint {
+    display: flex;
+    opacity: 0;
+    transition-timing-function: tokens.get("transition-timing-function");
+    transition-duration: tokens.get("transition-duration-short");
+    transition-property: opacity, border-color;
+  }
+
+  .scroll-lock-screen {
+    position: absolute;
+    z-index: 1;
+    inset: 1px;
+    display: block;
+  }
+
+  &:hover,
+  &:focus-within {
+    border-color: tokens.get("palette", "primary");
+    box-shadow: 0 0 0 tokens.get("focus-ring-width") tokens.get("palette", "primary", $a: tokens.get("focus-ring-opacity"));
+
+    .scroll-lock-hint {
+      border-color: tokens.get("palette", "primary");
+      opacity: 1;
+      box-shadow: 0 0 0 tokens.get("focus-ring-width") tokens.get("palette", "primary", $a: tokens.get("focus-ring-opacity"));
+    }
+  }
+}

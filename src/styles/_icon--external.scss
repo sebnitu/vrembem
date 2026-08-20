@@ -1,0 +1,14 @@
+@use "@vrembem/core/tokens";
+
+.icon--external {
+  position: relative;
+  top: -0.25em;
+  font-size: 0.75em;
+  color: tokens.get("foreground-subtle");
+  stroke-width: 2.5;
+  transition: transform tokens.get("transition-duration-short") tokens.get("transition-timing-function");
+}
+
+a:hover > .icon--external {
+  transform: translate(2px, -2px);
+}

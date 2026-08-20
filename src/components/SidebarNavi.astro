@@ -1,0 +1,12 @@
+---
+import { config } from "@/navi.config";
+import { buildNaviFromConfig } from "@/modules/navigation";
+import SidebarNaviMenu from "@/components/SidebarNaviMenu.astro";
+import SidebarState from "@/components/SidebarState.astro";
+
+const { navi } = await buildNaviFromConfig(config.sidebar, Astro.url.pathname);
+---
+
+<SidebarState>
+  <SidebarNaviMenu tree={navi} />
+</SidebarState>

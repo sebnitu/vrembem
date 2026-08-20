@@ -1,0 +1,132 @@
+---
+title: Checkbox
+description: "Checkboxes allow the user to select multiple options from a set."
+package: "@vrembem/checkbox"
+category: form-control
+---
+
+import ReferenceTable from "@/components/ReferenceTable.astro";
+
+```sh
+npm install @vrembem/checkbox
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/checkbox";
+  ```
+</CodeExample>
+
+## Options
+
+Checkbox uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-checkbox" valueLabel="Fallback" data={{
+  "--vb-checkbox-color": "var(--vb-form-control-choice-color)",
+  "--vb-checkbox-accent": "var(--vb-form-control-choice-accent)",
+  "--vb-checkbox-fill": "var(--vb-form-control-choice-fill)",
+  "--vb-checkbox-size": "var(--vb-form-control-size)",
+  "--vb-checkbox-border-width": "2px",
+  "--vb-checkbox-border-radius": "0.25em",
+  "--vb-checkbox-icon-size": "0.8em",
+}} />
+
+## Basic usage
+
+Checkbox form controls are composed using the `<input type="checkbox">` element along with the `.checkbox` class.
+
+<CodeExample tabs>
+  <div slot="output" class="flex">
+    <input class="checkbox" type="checkbox" checked />
+    <input class="checkbox" type="checkbox" aria-checked="mixed" />
+    <input class="checkbox" type="checkbox" />
+  </div>
+  <TabsPanel label="HTML">
+    ```html
+    <input class="checkbox" type="checkbox" />
+    ```
+  </TabsPanel>
+  <TabsPanel label="JS">
+    ```js
+    // Get checkboxes with "mixed" status
+    const checkboxes = document.querySelectorAll(
+      "input[type='checkbox'][aria-checked='mixed']"
+    );
+
+    // Apply the indeterminate state
+    checkboxes.forEach((checkbox) => checkbox.indeterminate = true);
+    ```
+  </TabsPanel>
+</CodeExample>
+
+Indeterminate checkboxes need to be set in JavaScript though styling is provided by Vrembem for the indeterminate states (see example above). Review [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate) for more details.
+
+### Labels
+
+For checkboxes with labels, wrap the checkbox element along with the text label using the `<label>` element.
+
+<CodeExample>
+  <Fragment slot="output">
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="checkbox" type="checkbox" checked />
+      <span>Checkbox with a label</span>
+    </label>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="checkbox" type="checkbox" aria-checked="mixed" />
+      <span>Checkbox with a label</span>
+    </label>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="checkbox" type="checkbox" />
+      <span>Checkbox with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <label>
+    <input class="checkbox" type="checkbox" />
+    <span>Checkbox with a label</span>
+  </label>
+  ```
+</CodeExample>
+
+### Disabled
+
+Adding the boolean `disabled` attribute to the input element will provide visual indication that the checkbox is not available for use.
+
+<CodeExample>
+  <Fragment slot="output">
+    <div class="flex">
+      <input class="checkbox" type="checkbox" checked disabled />
+      <input class="checkbox" type="checkbox" disabled />
+    </div>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="checkbox" type="checkbox" checked disabled />
+      <span>Checkbox with a label</span>
+    </label>
+    <br />
+    <label class="flex flex--inline flex--gap-sm align-items-center">
+      <input class="checkbox" type="checkbox" disabled />
+      <span>Checkbox with a label</span>
+    </label>
+  </Fragment>
+  ```html
+  <input class="checkbox" type="checkbox" disabled />
+  ```
+</CodeExample>
+
+### Invalid
+
+Adding the `is-invalid` class or `aria-invalid="true"` attribute to the checkbox component will provide visual indication that the form-control value is invalid. Invalid state is also triggered by the native `:user-invalid` state.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <input class="checkbox is-invalid" type="checkbox" checked />
+    <input class="checkbox is-invalid" type="checkbox" aria-checked="mixed" />
+    <input class="checkbox is-invalid" type="checkbox" />
+  </div>
+  ```html
+  <input class="checkbox is-invalid" type="checkbox" />
+  ```
+</CodeExample>

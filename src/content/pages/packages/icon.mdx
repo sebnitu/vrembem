@@ -1,0 +1,135 @@
+---
+title: Icon
+description: "The icon component provides a consistent way to style icons."
+package: "@vrembem/icon"
+category: component
+---
+
+import ReferenceBar from "@/components/ReferenceBar.astro";
+import ReferenceCard from "@/components/ReferenceCard.astro";
+import ReferenceTable from "@/components/ReferenceTable.astro";
+import Icon from "@/components/Icon.astro";
+
+```sh
+npm install @vrembem/icon
+```
+
+<CodeExample lang="scss">
+  ```scss
+  @use "@vrembem/icon";
+  ```
+</CodeExample>
+
+## Options
+
+Icon is built as a Sass module. Sass options are used to control CSS output, while design token CSS variables control the styling of the component. Below are the available configuration options.
+
+### Sass
+
+Icon comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+<CodeExample lang="scss" expandable>
+```scss
+@use "@vrembem/icon" with (
+  $config: (
+    // Map for outputting the icon--style-[key] modifier variants
+    // @type map
+    "icon-style": (
+      "default": "fill",
+      "stroke": "stroke",
+      "fill": "fill",
+      "both": "both"
+    ),
+
+    // Map for outputting the icon--size-[key] modifier variants. Values should 
+    // contain a list of font-size and stroke-width pairs.
+    // @type map
+    "icon-size": (
+      "default": 1.5em 1.75,
+      "xs": 0.75em 2.25,
+      "sm": 1.125em 2,
+      "lg": 2em 1.5,
+      "xl": 3em 1.25
+    )
+  )
+);
+```
+</CodeExample>
+
+### Design tokens
+
+Icon uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
+
+<ReferenceTable id="tokens-icon" valueLabel="Fallback" filter={false} data={{
+  "--vb-icon-color": "currentcolor",
+  "--vb-icon-size": "1.5em",
+  "--vb-icon-stroke-width": "1.75",
+}} />
+
+## Basic usage
+
+The most basic implementation of the icon component consists of the `icon` class applied to an svg element.
+
+<CodeExample>
+  <div slot="output" class="flex flex--gap-xl">
+    <Icon name="toolbox" />
+    <Icon name="code-block" />
+    <Icon name="palette" />
+    <Icon name="accessible" />
+    <Icon name="puzzle-piece" />
+    <Icon name="faders" />
+    <Icon name="coffee" />
+    <Icon name="leaf" />
+    <Icon name="drop" />
+  </div>
+  ```html
+  <svg class="icon" role="img">...</svg>
+  ```
+</CodeExample>
+
+## icon--size-[key]
+
+Add a size modifier to adjust the size of your icons. These modifiers are generated using key/value pairs of the `icon-size` config options map.
+
+<CodeExample>
+  <div slot="output" class="flex flex--gap-xl">
+    <Icon name="feather-heart" size="xs" />
+    <Icon name="feather-heart" size="sm" />
+    <Icon name="feather-heart" />
+    <Icon name="feather-heart" size="lg" />
+    <Icon name="feather-heart" size="xl" />
+  </div>
+  ```html
+  <svg class="icon icon--size-sm" role="img">...</svg>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `icon--size-xs`
+- `icon--size-sm`
+- `icon--size-lg`
+- `icon--size-xl`
+
+## icon--style-[key]
+
+Adjust the icon style to accommodate stroke, filled or stroke and filled style icons. These modifiers are generated using key/value pairs of the `icon-style` config options map.
+
+<CodeExample>
+  <div slot="output" class="flex flex--gap-xl">
+    <Icon name="feather-heart" style="stroke" />
+    <Icon name="feather-heart" style="fill" />
+    <Icon name="feather-heart" style="both" />
+  </div>
+  ```html
+  <svg class="icon icon--style-stroke" role="img">...</svg>
+  <svg class="icon icon--style-fill" role="img">...</svg>
+  <svg class="icon icon--style-both" role="img">...</svg>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `icon--style-stroke`
+- `icon--style-fill`
+- `icon--style-both`
