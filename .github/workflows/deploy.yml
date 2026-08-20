@@ -25,13 +25,13 @@ jobs:
       - name: Test
         run: npm run test:coverage
 
-      - name: Disable Jekyll
-        run: touch docs/dist/.nojekyll
-
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Disable Jekyll
+        run: touch docs/dist/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
