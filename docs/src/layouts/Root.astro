@@ -14,7 +14,10 @@ const { title, bodyClass } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#F3F2F1" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.json" />
     <meta name="generator" content={Astro.generator} />
     <title>Vrembem{title ? " | " + title : ""}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

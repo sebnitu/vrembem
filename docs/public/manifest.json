@@ -1,0 +1,21 @@
+{
+  "name": "vuetodo",
+  "short_name": "vuetodo",
+  "start_url": "/",
+  "theme_color": "#202020",
+  "background_color": "#202020",
+  "display": "standalone",
+  "icons": [
+    { "src": "icons/apple-touch-icon-57.png", "sizes": "57x57" },
+    { "src": "icons/apple-touch-icon-60.png", "sizes": "60x60" },
+    { "src": "icons/apple-touch-icon-72.png", "sizes": "72x72" },
+    { "src": "icons/apple-touch-icon-76.png", "sizes": "76x76" },
+    { "src": "icons/apple-touch-icon-114.png", "sizes": "114x114" },
+    { "src": "icons/apple-touch-icon-120.png", "sizes": "120x120" },
+    { "src": "icons/apple-touch-icon-144.png", "sizes": "144x144" },
+    { "src": "icons/apple-touch-icon-152.png", "sizes": "152x152" },
+    { "src": "icons/apple-touch-icon-180.png", "sizes": "180x180" },
+    { "src": "icons/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
