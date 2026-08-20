@@ -4,26 +4,19 @@
 
 .hero-actions {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   gap: 1rem;
   justify-content: center;
+  max-width: 24rem;
+  margin-inline: auto;
 
-  .code-block {
-    text-align: center;
+  .button {
+    flex-grow: 1;
   }
 
-  @include core.media-min("xs") {
-    flex-direction: row;
-    max-width: 24rem;
-    margin-inline: auto;
-
-    .button {
-      flex-grow: 1;
-    }
-
-    .code-block {
-      flex-basis: 100%;
-    }
+  .code-block {
+    flex-basis: 100%;
+    text-align: center;
   }
 
   @include core.media-min("md") {

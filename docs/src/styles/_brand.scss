@@ -44,9 +44,9 @@
 
   display: inline-block;
   aspect-ratio: 780 / 234;
-  width: calc(100% - 2em);
+  width: calc(100% - 4rem);
   max-width: 780px;
-  margin: 1em;
+  margin: 2rem 2rem 1rem;
   background: linear-gradient(
     90deg, 
     var(--gradient-color-1),
