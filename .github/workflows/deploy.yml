@@ -30,9 +30,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Disable Jekyll
-        run: touch docs/dist/.nojekyll
-
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:

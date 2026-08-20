@@ -30,6 +30,23 @@ export type NaviGroup = {
 
 export type NaviItem = NaviLink | NaviGroup;
 
+function normalizePathname(pathname: string) {
+  // Normalize path comparisons across dev/prod (base path + trailing slash).
+  let normalized = pathname.replace(/\?.*$/, "").replace(/#.*$/, "");
+
+  if (!normalized.startsWith("/")) normalized = `/${normalized}`;
+  normalized = normalized.replace(/\/+/g, "/");
+
+  const base = import.meta.env.BASE_URL.replace(/\/+$/, "") || "/";
+  if (base !== "/" && normalized.startsWith(base)) {
+    normalized = normalized.slice(base.length) || "/";
+    if (!normalized.startsWith("/")) normalized = `/${normalized}`;
+  }
+
+  normalized = normalized.replace(/\/+$/, "");
+  return normalized || "/";
+}
+
 function isParent(group: NaviItem[]) {
   return group.some((entry) =>
     "isActive" in entry ? entry.isActive || entry.isParent : entry.isParent
@@ -63,7 +80,10 @@ function flattenNavi(items: NaviItem[]): NaviLink[] {
 
 function getPageNavi(tree: NaviItem[], pathname: string) {
   const links = flattenNavi(tree);
-  const index = links.findIndex((link) => link.link === pathname);
+  const currentPath = normalizePathname(pathname);
+  const index = links.findIndex(
+    (link) => normalizePathname(link.link) === currentPath
+  );
   return {
     prev: index > 0 ? links[index - 1] : null,
     next: index >= 0 && index < links.length - 1 ? links[index + 1] : null
@@ -123,12 +143,14 @@ function buildNaviLink(
   pathname: string,
   data: Record<string, any> = {}
 ): NaviLink {
-  link = `/${link}`;
+  link = `/${link}`.replace(/\/+/g, "/");
+  const currentPath = normalizePathname(pathname);
+  const linkPath = normalizePathname(link);
   return {
     label,
     link,
-    isActive: pathname === link,
-    isParent: pathname.startsWith(link) && pathname !== link,
+    isActive: currentPath === linkPath,
+    isParent: linkPath !== "/" && currentPath.startsWith(`${linkPath}/`),
     data: data
   };
 }
