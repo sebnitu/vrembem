@@ -25,6 +25,9 @@ jobs:
       - name: Test
         run: npm run test:coverage
 
+      - name: Disable Jekyll
+        run: touch docs/dist/.nojekyll
+
       - name: Coveralls
         uses: coverallsapp/github-action@v2
         with:
@@ -34,4 +37,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: docs
-          folder: docs
+          folder: docs/dist
