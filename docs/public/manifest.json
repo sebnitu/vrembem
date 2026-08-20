@@ -1,9 +1,9 @@
 {
-  "name": "vuetodo",
-  "short_name": "vuetodo",
+  "name": "vrembem",
+  "short_name": "vrembem",
   "start_url": "/",
-  "theme_color": "#202020",
-  "background_color": "#202020",
+  "theme_color": "#F3F2F1",
+  "background_color": "#F3F2F1",
   "display": "standalone",
   "icons": [
     { "src": "icons/apple-touch-icon-57.png", "sizes": "57x57" },
@@ -15,7 +15,17 @@
     { "src": "icons/apple-touch-icon-144.png", "sizes": "144x144" },
     { "src": "icons/apple-touch-icon-152.png", "sizes": "152x152" },
     { "src": "icons/apple-touch-icon-180.png", "sizes": "180x180" },
-    { "src": "icons/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icons/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
