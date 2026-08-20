@@ -3,12 +3,15 @@ import Navi from "@/components/Navi.astro";
 import Modal from "@/components/Modal.astro";
 import Svg from "@/components/Svg.astro";
 import Icon from "@/components/Icon.astro";
+import pkg from "../../../packages/vrembem/package.json";
 
 interface Props {
   classes?: string;
 }
 
 const { classes = "" } = Astro.props;
+
+const version = pkg.version;
 ---
 
 <header class={`header ${classes}`.trim()}>
@@ -20,7 +23,7 @@ const { classes = "" } = Astro.props;
       <a href="/" class="brand">
         <Svg name="vrembem-icon" width={24} height={24} class="brand__icon" />
         <strong class="brand__name">Vrembem</strong>
-        <span class="brand__version">v4.0.0</span>
+        <span class="brand__version">v{version}</span>
       </a>
     </div>
     <div class="header__menu">
