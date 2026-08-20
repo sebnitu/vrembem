@@ -32,14 +32,24 @@ Publish flow for `next` branch
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Login to NPM `npm login`
-- Run `npx lerna publish from-package --dist-tag next`
+- Run 
+  - On main: `npx lerna publish from-package`
+  - On next: `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0-next.52 to CHANGELOG.md
+chore(release): add v4.0.0 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
+<!-- v4.0.0 -->
+
+
+## v4.0.0 (2026-08-20)
+
+This release promotes the v4 prerelease cycle into a production-ready major version. This includes major updates and changes to architecture, component APIs, Sass modules, package exports, and a new docs site.
+
+
 <!-- v4.0.0-next -->
 
 
