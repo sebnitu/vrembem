@@ -8,7 +8,7 @@ interface Props {
 
 const { entry } = Astro.props;
 
-const ghBase = "https://github.com/sebnitu/vrembem/blob/next/docs/src/";
+const ghBase = "https://github.com/sebnitu/vrembem/blob/main/docs/src/";
 const filePath = entry
   ? `content/${entry.collection}/${entry.id}`
   : `pages${Astro.url.pathname.replace(/\/$/, "")}.mdx`;
