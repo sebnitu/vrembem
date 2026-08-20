@@ -27,21 +27,13 @@ const { classes = "" } = Astro.props;
       <Navi classes="display-none md:display-flex" inline />
       <button
         type="button"
-        interestfor="popover-menu-label"
         command="show-modal"
         commandfor="modal-navi"
         class="button button--icon display-block md:display-none"
+        aria-label="Open navigation menu"
       >
         <Icon name="list" />
       </button>
-      <div
-        id="popover-menu-label"
-        popover="hint"
-        class="popover popover--tooltip popover--arrow popover--pos-left"
-        style="--vb-popover-margin: 0"
-      >
-        Menu
-      </div>
     </div>
   </div>
 </header>
@@ -50,23 +42,14 @@ const { classes = "" } = Astro.props;
   <div class="panel__header">
     <h2 class="panel__title">Menu</h2>
     <button
-      class="button button--size-sm padding-xs"
-      interestfor="popover-close-modal"
+      type="button"
       command="close"
       commandfor="modal-navi"
-      type="button"
-      aria-label="Close menu"
+      class="button button--icon button--size-sm"
+      aria-label="Close navigation menu"
     >
       <Icon name="x" />
     </button>
-    <div
-      id="popover-close-modal"
-      popover="hint"
-      class="popover popover--tooltip popover--arrow popover--pos-left"
-      style="--vb-popover-margin: 1rem"
-    >
-      Close
-    </div>
   </div>
   <div class="panel__body">
     <Navi />
