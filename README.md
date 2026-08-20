@@ -20,11 +20,11 @@
 For fast prototyping, use your favorite CDN (Content Delivery Network) to get Vrembem into your project without needing to install and build from NPM.
 
 ```html
-<link href="https://unpkg.com/vrembem@next/dist/index.css" rel="stylesheet" />
+<link href="https://unpkg.com/vrembem/dist/index.css" rel="stylesheet" />
 ```
 
 ```html
-<link href="https://cdn.jsdelivr.net/npm/vrembem@next/dist/index.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/vrembem/dist/index.css" rel="stylesheet" />
 ```
 
 ## Using NPM
