@@ -9,10 +9,9 @@ interface Props {
   class?: string;
 }
 
-const { class: classString = "" } = Astro.props;
+const { class: classString } = Astro.props;
 
 const classes = ["header", classString].filter(Boolean).join(" ");
-const version = pkg.version;
 ---
 
 <header class={classes}>
@@ -24,7 +23,7 @@ const version = pkg.version;
       <a href="/" class="brand">
         <Svg name="vrembem-icon" width={24} height={24} class="brand__icon" />
         <strong class="brand__name">Vrembem</strong>
-        <span class="brand__version">v{version}</span>
+        <span class="brand__version">v{pkg.version}</span>
       </a>
     </div>
     <div class="header__menu">

@@ -11,7 +11,7 @@ interface Props {
 const { name, class: classString, size, style, ...attrs } = Astro.props;
 
 const iconName = `icons/${name}`;
-const iconClasses = [
+const classes = [
   "icon",
   size && `icon--size-${size}`,
   style && `icon--style-${style}`,
@@ -21,4 +21,4 @@ const iconClasses = [
   .join(" ");
 ---
 
-<Svg name={iconName} class={iconClasses} {...attrs} />
+<Svg name={iconName} class={classes} {...attrs} />

@@ -2,13 +2,15 @@
 import Svg from "@/components/Svg.astro";
 
 interface Props {
-  classes?: string;
+  class?: string;
 }
 
-const { classes = "" } = Astro.props;
+const { class: classString } = Astro.props;
+
+const classes = ["footer", classString].filter(Boolean).join(" ");
 ---
 
-<footer class={`footer ${classes}`.trim()}>
+<footer class={classes}>
   <div class="footer__copy">
     <p>
       Vrembem is released under the MIT License.<br />
