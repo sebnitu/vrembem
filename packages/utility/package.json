@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/utility",
-  "description": "The utility package provides atomic classes that specialize in single functions.",
+  "description": "Atomic classes that specialize in setting single style properties.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

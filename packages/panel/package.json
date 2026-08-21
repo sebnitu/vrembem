@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/panel",
-  "description": "A styled container component for structured content with optional header, body, and footer sections.",
+  "description": "A structured content container with optional header, and footer sections.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

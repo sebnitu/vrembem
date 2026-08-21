@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/section",
-  "description": "A container component for wrapping distinct sections of a page.",
+  "description": "A content container for grouping distinct sections of a page.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

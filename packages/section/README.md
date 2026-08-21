@@ -1,6 +1,6 @@
 # Section
 
-A container component for wrapping distinct sections of a page.
+A content container for grouping distinct sections of a page.
 
 [Documentation](https://vrembem.com/packages/section)
 

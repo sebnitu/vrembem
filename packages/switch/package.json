@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/switch",
-  "description": "Switches are a binary form element used to toggle between two options.",
+  "description": "Allow users to toggle between a binary option.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

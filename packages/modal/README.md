@@ -1,6 +1,6 @@
 # Modal
 
-A component for rendering modal dialog boxes. Modal dialog boxes block interaction with other UI elements, making the rest of the page inert.
+Dialogs that block interaction with other elements on the page.
 
 [Documentation](https://vrembem.com/packages/modal)
 

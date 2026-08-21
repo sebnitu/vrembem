@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/modal",
-  "description": "A component for rendering modal dialog boxes. Modal dialog boxes block interaction with other UI elements, making the rest of the page inert.",
+  "description": "Dialogs that block interaction with other elements on the page.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

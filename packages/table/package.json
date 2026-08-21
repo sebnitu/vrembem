@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/table",
-  "description": "A table component for displaying HTML tables.",
+  "description": "Provides style variants for displaying tabular data.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

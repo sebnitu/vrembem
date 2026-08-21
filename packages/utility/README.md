@@ -1,6 +1,6 @@
 # Utility
 
-The utility package provides atomic classes that specialize in single functions.
+Atomic classes that specialize in setting single style properties.
 
 [Documentation](https://vrembem.com/packages/utility)
 

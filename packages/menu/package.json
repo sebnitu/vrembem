@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/menu",
-  "description": "Menus represent groups of links, actions or tools that a user can interact with.",
+  "description": "Groups of links, actions or tools that a user can interact with.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

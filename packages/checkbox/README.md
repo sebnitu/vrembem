@@ -1,6 +1,6 @@
 # Checkbox
 
-Checkboxes allow the user to select multiple options from a set.
+Allow users to select multiple options from a set.
 
 [Documentation](https://vrembem.com/packages/checkbox)
 

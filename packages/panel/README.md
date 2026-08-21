@@ -1,6 +1,6 @@
 # Panel
 
-A styled container component for structured content with optional header, body, and footer sections.
+A structured content container with optional header, and footer sections.
 
 [Documentation](https://vrembem.com/packages/panel)
 

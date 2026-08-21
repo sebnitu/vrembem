@@ -1,6 +1,6 @@
 # Table
 
-A table component for displaying HTML tables.
+Provides style variants for displaying tabular data.
 
 [Documentation](https://vrembem.com/packages/table)
 

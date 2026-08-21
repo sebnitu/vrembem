@@ -1,6 +1,6 @@
 # Select
 
-The form-control component that provides a menu of options.
+Allow users to select an option from a dropdown menu.
 
 [Documentation](https://vrembem.com/packages/select)
 
