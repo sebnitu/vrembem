@@ -17,8 +17,8 @@ const sidebar: NaviConfig[] = [
           byCategory([
             "Core",
             "Layout",
-            "Component",
-            "Form Control",
+            "Components",
+            "Form Controls",
             "Modules"
           ]),
           byOrder
