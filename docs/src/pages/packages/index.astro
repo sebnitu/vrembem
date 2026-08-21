@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Root from "@/layouts/Root.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import Icon from "@/components/Icon.astro";
 
 const entries = (await getCollection("pages")).filter(
   (entry) => entry.id.startsWith("packages/") && entry.data.package
@@ -27,6 +28,13 @@ const entries = (await getCollection("pages")).filter(
           {
             entries.map((entry) => (
               <a href={`/${entry.id}`} class="card card--feature gap-sm">
+                {entry.data.icon && (
+                  <Icon
+                    name={entry.data.icon}
+                    size="lg"
+                    class="foreground-primary"
+                  />
+                )}
                 <h2 class="card__title">{entry.data.title}</h2>
                 <p>{entry.data.description}</p>
               </a>
