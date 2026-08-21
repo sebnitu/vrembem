@@ -41,7 +41,7 @@
   height: tokens.get("layout", "header-height");
 }
 
-.is-home {
+.is-index {
   .header {
     position: fixed;
     background-color: tokens.get("background-glass");

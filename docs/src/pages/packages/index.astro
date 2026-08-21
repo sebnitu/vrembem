@@ -9,7 +9,7 @@ const entries = (await getCollection("pages"))
   .sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
 ---
 
-<Root bodyClass="is-home background-shift">
+<Root bodyClass="is-index">
   <Header classes="fold-shadow" />
   <div class="header-spacer"></div>
   <main id="main" tabindex="-1">

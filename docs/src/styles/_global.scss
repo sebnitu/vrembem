@@ -16,6 +16,10 @@ html {
   }
 }
 
+.is-index {
+  background-color: tokens.get("background-shift");
+}
+
 #main {
   outline: none;
 }

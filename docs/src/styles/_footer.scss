@@ -10,7 +10,7 @@
   color: tokens.get("foreground-subtle");
   text-align: center;
 
-  .is-home & {
+  .is-index & {
     padding: tokens.get("home", "card-padding");
   }
 }
