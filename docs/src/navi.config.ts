@@ -1,5 +1,5 @@
 import type { NaviConfig } from "@/modules/navigation";
-import { byCategory } from "@/modules/sortBy";
+import { byCategory, forceLast } from "@/modules/sortBy";
 
 const sidebar: NaviConfig[] = [
   {
@@ -13,14 +13,10 @@ const sidebar: NaviConfig[] = [
         collection: "pages",
         dir: "packages",
         filter: (entry) => "package" in entry.data,
-        sort: byCategory([
-          "all",
-          "core",
-          "modules",
-          "layout",
-          "form-control",
-          "component"
-        ])
+        sort: [
+          forceLast("package", "@vrembem/utility"),
+          byCategory(["core", "modules", "layout", "form-control", "component"])
+        ]
       }
     ]
   }
