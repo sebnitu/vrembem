@@ -62,6 +62,10 @@ dd + dt {
   padding-top: tokens.get("spacing-md");
 }
 
+.dynamic-padding {
+  padding: tokens.get("home", "card-padding");
+}
+
 /**
  * CodeExample
  * These are styles used specifically in code example blocks
