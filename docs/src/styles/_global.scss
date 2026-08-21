@@ -67,7 +67,7 @@ dd + dt {
 }
 
 .dynamic-padding {
-  padding: tokens.get("home", "card-padding");
+  padding: tokens.get("dynamic-padding");
 }
 
 /**
