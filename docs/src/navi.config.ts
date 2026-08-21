@@ -15,11 +15,11 @@ const sidebar: NaviConfig[] = [
         filter: (entry) => "package" in entry.data,
         sort: [
           byCategory([
-            "core",
-            "layout",
-            "component",
-            "form-control",
-            "modules"
+            "Core",
+            "Layout",
+            "Component",
+            "Form Control",
+            "Modules"
           ]),
           byOrder
         ]

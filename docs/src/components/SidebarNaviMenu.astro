@@ -11,6 +11,17 @@ const { tree, nested } = Astro.props;
 function classes(entry: NaviLink) {
   return { "is-active": entry.isActive, "is-parent": entry.isParent };
 }
+
+let category = "";
+
+function maybeOutputLabel(entry: NaviLink) {
+  if (entry.data.category && category !== entry.data.category) {
+    category = entry.data.category;
+    return category !== "Core";
+  } else {
+    return false;
+  }
+}
 ---
 
 <ul class={`menu menu--collection ${nested ? "is-nested" : ""}`.trim()}>
@@ -32,11 +43,16 @@ function classes(entry: NaviLink) {
           </details>
         </li>
       ) : (
-        <li class="menu__item">
-          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
-            {entry.label}
-          </a>
-        </li>
+        <>
+          {maybeOutputLabel(entry) && (
+            <li class="menu__label">{entry.data.category}</li>
+          )}
+          <li class="menu__item">
+            <a class:list={["menu__action", classes(entry)]} href={entry.link}>
+              {entry.label}
+            </a>
+          </li>
+        </>
       )
     )
   }
