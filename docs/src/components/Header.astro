@@ -6,15 +6,16 @@ import Icon from "@/components/Icon.astro";
 import pkg from "../../../packages/vrembem/package.json";
 
 interface Props {
-  classes?: string;
+  class?: string;
 }
 
-const { classes = "" } = Astro.props;
+const { class: classString = "" } = Astro.props;
 
+const classes = ["header", classString].filter(Boolean).join(" ");
 const version = pkg.version;
 ---
 
-<header class={`header ${classes}`.trim()}>
+<header class={classes}>
   <div class="header__container">
     <div class="header__title">
       <a class="skip-link button button--color-primary" href="#main">
