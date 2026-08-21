@@ -3,10 +3,10 @@ import "@/styles/app.scss";
 
 interface Props {
   title?: string;
-  bodyClass?: string;
+  class?: string;
 }
 
-const { title, bodyClass } = Astro.props;
+const { title, class: classString } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +38,7 @@ const { title, bodyClass } = Astro.props;
       import "vrembem/define";
     </script>
   </head>
-  <body class={bodyClass}>
+  <body class={classString}>
     <slot />
   </body>
 </html>
