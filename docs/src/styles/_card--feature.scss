@@ -1,7 +1,7 @@
 @use "@vrembem/core/tokens";
 
 .card--feature {
-  padding: tokens.get("dynamic-padding");
+  padding: tokens.get("padding-dynamic");
   border: none;
   border-radius: tokens.get("border-radius-lg");
 }

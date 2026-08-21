@@ -61,7 +61,7 @@
   (
     "font-family": ("Barlow", system-ui, ui-sans-serif, sans-serif),
     "background-glass": oklch(from tokens.get("background") l c h / 70%),
-    "dynamic-padding": clamp(1.25rem, 3vw + 0.5rem, 3rem),
+    "padding-dynamic": clamp(1.25rem, 3vw + 0.5rem, 3rem),
     "light": (
       "type": "theme",
       "fold-shadow-start": tokens.get("palette", "neutral", $a: 12%),

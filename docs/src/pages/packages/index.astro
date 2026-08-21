@@ -7,6 +7,8 @@ import Header from "@/components/Header.astro";
 const entries = (await getCollection("pages")).filter(
   (entry) => entry.id.startsWith("packages/") && entry.data.package
 );
+
+const categories = ["core", "layout", "component", "form-control", "modules"];
 ---
 
 <Root class="is-index" title="Package Catalog">
@@ -15,8 +17,26 @@ const entries = (await getCollection("pages")).filter(
   <main id="main" tabindex="-1">
     <div class="section">
       <div class="section__container">
-        <div class="dynamic-padding">
-          <h1 class="h1">Packages</h1>
+        <div class="content spacing padding-dynamic">
+          <h1>Packages</h1>
+          <p>
+            Vrembem is organized as a collection of packages. These can be
+            included a la carte or using the all inclusively <code>vrembem</code
+            > barrel package.
+          </p>
+          <div class="flex align-items-center">
+            <strong class="foreground-strong">Filter by:</strong>
+            {
+              categories.map((category) => (
+                <button
+                  type="button"
+                  class="button border-radius-circle text-capitalize"
+                >
+                  {category}
+                </button>
+              ))
+            }
+          </div>
         </div>
         <div class="grid sm:grid--cols-2 lg:grid--cols-3">
           {
@@ -28,11 +48,7 @@ const entries = (await getCollection("pages")).filter(
             ))
           }
         </div>
-      </div>
-    </div>
-    <div class="section">
-      <div class="section__container">
-        <Footer class="dynamic-padding" />
+        <Footer class="padding-dynamic" />
       </div>
     </div>
   </main>

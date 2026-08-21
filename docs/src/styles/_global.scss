@@ -66,8 +66,8 @@ dd + dt {
   padding-top: tokens.get("spacing-md");
 }
 
-.dynamic-padding {
-  padding: tokens.get("dynamic-padding");
+.padding-dynamic {
+  padding: tokens.get("padding-dynamic");
 }
 
 /**
