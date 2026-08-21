@@ -1,6 +1,7 @@
 @use "@vrembem/core/tokens";
 
 .card--feature {
+  gap: tokens.get("spacing-sm");
   padding: tokens.get("padding-dynamic");
   border: none;
   border-radius: tokens.get("border-radius-lg");

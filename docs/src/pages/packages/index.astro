@@ -27,7 +27,7 @@ const entries = (await getCollection("pages")).filter(
         <div class="grid sm:grid--cols-2 lg:grid--cols-3">
           {
             entries.map((entry) => (
-              <a href={`/${entry.id}`} class="card card--feature gap-sm">
+              <a href={`/${entry.id}`} class="card card--feature">
                 {entry.data.icon && (
                   <Icon
                     name={entry.data.icon}
