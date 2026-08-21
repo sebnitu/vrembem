@@ -46,20 +46,3 @@ export function byCategory(order: string[]) {
     return aci - bci;
   };
 }
-
-export function forceLast(key: string, value: string) {
-  return (a: NaviItem, b: NaviItem) => {
-    const aValue = getData(a)[key];
-    const bValue = getData(b)[key];
-
-    const aMatch =
-      typeof aValue === "string" &&
-      aValue.localeCompare(value, undefined, { sensitivity: "base" }) === 0;
-    const bMatch =
-      typeof bValue === "string" &&
-      bValue.localeCompare(value, undefined, { sensitivity: "base" }) === 0;
-
-    if (aMatch === bMatch) return 0;
-    return aMatch ? 1 : -1;
-  };
-}

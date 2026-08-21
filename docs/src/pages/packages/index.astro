@@ -5,9 +5,18 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Icon from "@/components/Icon.astro";
 
-const entries = (await getCollection("pages")).filter(
-  (entry) => entry.id.startsWith("packages/") && entry.data.package
-);
+const entries = (await getCollection("pages"))
+  .filter((entry) => entry.id.startsWith("packages/") && entry.data.package)
+  .sort((a, b) => {
+    const aIsCore = a.data.category === "core";
+    const bIsCore = b.data.category === "core";
+
+    if (aIsCore !== bIsCore) return aIsCore ? -1 : 1;
+
+    return (a.data.title ?? "").localeCompare(b.data.title ?? "", undefined, {
+      sensitivity: "base"
+    });
+  });
 ---
 
 <Root class="is-index" title="Package Catalog">
