@@ -16,13 +16,7 @@ function classes(entry: NaviLink) {
 <ul class={`menu menu--collection ${nested ? "is-nested" : ""}`.trim()}>
   {
     tree.map((entry) =>
-      "link" in entry ? (
-        <li class="menu__item">
-          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
-            {entry.label}
-          </a>
-        </li>
-      ) : (
+      "group" in entry ? (
         <li class="menu__item">
           <details
             open={!entry.collapsed}
@@ -36,6 +30,12 @@ function classes(entry: NaviLink) {
             <vb-sidebar-group />
             <Astro.self tree={entry.group} nested />
           </details>
+        </li>
+      ) : (
+        <li class="menu__item">
+          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
+            {entry.label}
+          </a>
         </li>
       )
     )
