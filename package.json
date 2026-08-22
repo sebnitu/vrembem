@@ -29,7 +29,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^7.0.0",
-    "@testing-library/user-event": "^14.6.4",
+    "@testing-library/user-event": "^14.6.5",
     "@vitest/coverage-v8": "^4.1.9",
     "concurrently": "^10.0.4",
     "del-cli": "^7.0.0",
