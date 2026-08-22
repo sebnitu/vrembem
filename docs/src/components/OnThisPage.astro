@@ -1,5 +1,6 @@
 ---
 import OnThisPageList from "@/components/OnThisPageList.astro";
+import Icon from "@/components/Icon.astro";
 
 const { headings, menuClass = "" } = Astro.props;
 
@@ -30,24 +31,39 @@ function build(headings) {
 }
 ---
 
-<nav>
-  <h2 class="sr-only">On this page</h2>
+<div class="panel__header aside:display-none">
+  <h2 class="panel__title">On this page</h2>
+  <button
+    class="button button--icon"
+    command="close"
+    commandfor="main-aside-modal"
+  >
+    <Icon name="x" />
+  </button>
+</div>
+<nav class="panel__body">
   <ul id="on-this-page-menu" class={`menu menu--minimal ${menuClass}`.trim()}>
-    <li>
+    <li class="display-none aside:display-block">
       <a href="#main" class="menu__action" data-scroll-to-top="">
         <strong>On this page</strong>
       </a>
     </li>
-    <li class="menu__divider"></li>
+    <li class="menu__divider display-none aside:display-block"></li>
     {filteredHeadings.map((item) => <OnThisPageList {item} />)}
-    <li class="menu__divider slide-up scroll-spy"></li>
-    <li class="menu__item slide-up scroll-spy">
+    <li
+      class="menu__divider slide-up scroll-spy display-none aside:display-block"
+    >
+    </li>
+    <li class="menu__item slide-up scroll-spy display-none aside:display-block">
       <a href="#main" class="menu__action" data-scroll-to-top="">
         Back to top
       </a>
     </li>
   </ul>
 </nav>
+<div class="panel__footer aside:display-none">
+  <a href="#main" class="button" data-scroll-to-top="">Back to top</a>
+</div>
 
 <script>
   import { scrollSpy } from "../modules/scrollSpy";

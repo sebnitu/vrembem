@@ -19,15 +19,11 @@
 }
 
 .layout__sidebar {
+  @include tokens.override("panel", "background", tokens.get("background-shift"));
   display: none;
-
-  .panel {
-    background-color: tokens.get("background-shift");
-  }
 
   .panel__container {
     position: relative;
-    padding: 1rem;
 
     // Adds a mask for scrolled content that passes sticky summary controls
     &::before {
@@ -55,6 +51,10 @@
     max-height: calc(100vh - tokens.get("layout", "header-height"));
     padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
     box-shadow: none;
+
+    .panel__body {
+      padding: 0;
+    }
 
     // Styles for infinite background
     &::before {

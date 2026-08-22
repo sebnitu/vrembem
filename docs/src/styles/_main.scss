@@ -25,15 +25,8 @@
 }
 
 .main__aside {
+  @include tokens.override("panel", "background", tokens.get("background-shift"));
   display: none;
-
-  .panel {
-    background-color: tokens.get("background-shift");
-  }
-
-  .panel__container {
-    padding: 1rem;
-  }
 }
 
 @include core.media-min("aside") {
@@ -50,6 +43,10 @@
     max-height: calc(100vh - tokens.get("layout", "header-height"));
     padding: tokens.get("main", "content-padding-y") tokens.get("layout", "padding") tokens.get("main", "content-padding-y") 0;
     box-shadow: none;
+
+    .panel__body {
+      padding: 0;
+    }
   }
 }
 
