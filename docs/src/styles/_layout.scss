@@ -19,15 +19,12 @@
 }
 
 .layout__sidebar {
-  display: none;
+  @include tokens.override("panel", "background", tokens.get("background-shift"));
 
-  .panel {
-    background-color: tokens.get("background-shift");
-  }
+  display: none;
 
   .panel__container {
     position: relative;
-    padding: 1rem;
 
     // Adds a mask for scrolled content that passes sticky summary controls
     &::before {
@@ -79,6 +76,10 @@
       width: 2rem;
       height: 100%;
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+    }
+
+    .panel__body {
+      padding: 0;
     }
   }
 }

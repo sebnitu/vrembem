@@ -7,12 +7,16 @@
   top: -1px;
   display: flex;
   align-items: center;
-  padding: tokens.get("layout", "padding");
+  padding: 0.5rem;
   border-top: 1px solid tokens.get("border-color");
   border-bottom: 1px solid tokens.get("border-color");
   background-color: tokens.get("background-glass");
   background-clip: padding-box;
   backdrop-filter: blur(8px);
+
+  @include core.media-min("xs") {
+    padding: tokens.get("layout", "padding");
+  }
 
   @include core.media-min("sidebar") {
     display: none;

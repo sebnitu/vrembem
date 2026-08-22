@@ -3,10 +3,23 @@ import { config } from "@/navi.config";
 import { buildNaviFromConfig } from "@/modules/navigation";
 import SidebarNaviMenu from "@/components/SidebarNaviMenu.astro";
 import SidebarState from "@/components/SidebarState.astro";
+import Icon from "@/components/Icon.astro";
 
 const { navi } = await buildNaviFromConfig(config.sidebar, Astro.url.pathname);
 ---
 
-<SidebarState>
-  <SidebarNaviMenu tree={navi} />
-</SidebarState>
+<div class="panel__header sidebar:display-none">
+  <h2 class="panel__title">Menu</h2>
+  <button
+    class="button button--icon button--size-sm"
+    command="close"
+    commandfor="layout-sidebar-modal"
+  >
+    <Icon name="x" />
+  </button>
+</div>
+<div class="panel__body">
+  <SidebarState>
+    <SidebarNaviMenu tree={navi} />
+  </SidebarState>
+</div>

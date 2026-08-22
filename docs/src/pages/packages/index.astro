@@ -8,8 +8,8 @@ import Icon from "@/components/Icon.astro";
 const entries = (await getCollection("pages"))
   .filter((entry) => entry.id.startsWith("packages/") && entry.data.package)
   .sort((a, b) => {
-    const aIsCore = a.data.category === "core";
-    const bIsCore = b.data.category === "core";
+    const aIsCore = a.data.category === "Core";
+    const bIsCore = b.data.category === "Core";
 
     if (aIsCore !== bIsCore) return aIsCore ? -1 : 1;
 
