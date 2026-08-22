@@ -10,6 +10,7 @@ const pages = defineCollection({
     order: z.number().optional(),
     package: z.string().optional(),
     category: z.string().optional(),
+    icon: z.string().optional(),
     parent: z.string().optional()
   })
 });

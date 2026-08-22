@@ -1,6 +1,6 @@
 # Switch
 
-Switches are a binary form element used to toggle between two options.
+Allow users to toggle between a binary option.
 
 [Documentation](https://vrembem.com/packages/switch)
 

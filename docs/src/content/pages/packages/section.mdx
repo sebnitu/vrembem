@@ -1,8 +1,9 @@
 ---
 title: Section
-description: "A container component for wrapping distinct sections of a page."
+description: "A content container for grouping distinct sections of a page."
 package: "@vrembem/section"
-category: component
+category: Components
+icon: square-split-vertical
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -46,7 +47,7 @@ Section comes with the following Sass configuration options that can be set usin
       "xl": (
         "sm": 3em 1.5em,
         "md": 8em 2em,
-        "lg": 12em 4em
+        "lg": 10em 4em
       )
     )
   )
@@ -103,11 +104,11 @@ Sections are composed using the base wrapper (`section`) along with three option
   ```
 </CodeExample>
 
-Section screens and backgrounds are displayed behind the section container. These can be paired with the `vb-theme-light` or `vb-theme-dark` theme classes to create a light or dark section theme.
+Section screens and backgrounds are displayed behind the section container. These can be paired with the `data-mode="light"` or `data-mode="dark"` data attributes to create a light or dark section theme.
 
 <CodeExample flush>
   <Fragment slot="output">
-    <section class="section vb-theme-light">
+    <section class="section" data-mode="light">
       <div class="section__container spacing text-align-center">
         <p>Light theme section.</p>
         <hr class="sep margin-y-xl" />
@@ -119,7 +120,7 @@ Section screens and backgrounds are displayed behind the section container. Thes
       <img class="section__background" src="https://picsum.photos/id/335/600/300" />
       <div class="section__screen"></div>
     </section>
-    <section class="section vb-theme-dark">
+    <section class="section" data-mode="dark">
       <div class="section__container spacing text-align-center">
         <p>Dark theme section.</p>
         <hr class="sep margin-y-xl" />
@@ -133,8 +134,8 @@ Section screens and backgrounds are displayed behind the section container. Thes
     </section>
   </Fragment>
   ```html
-  <!-- Using the light theme class -->
-  <section class="section vb-theme-light">
+  <!-- Using the light mode data attribute -->
+  <section class="section" data-mode="light">
     <div class="section__container">
       ...
     </div>
@@ -142,8 +143,8 @@ Section screens and backgrounds are displayed behind the section container. Thes
     <div class="section__screen"></div>
   </section>
 
-  <!-- Using the dark theme class -->
-  <section class="section vb-theme-dark">
+  <!-- Using the dark mode data attribute -->
+  <section class="section" data-mode="dark">
     <div class="section__container">
       ...
     </div>

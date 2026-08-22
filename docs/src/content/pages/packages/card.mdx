@@ -1,8 +1,9 @@
 ---
 title: Card
-description: "The card component provides a flexible and highly composable content container."
+description: "A flexible and highly composable content container."
 package: "@vrembem/card"
-category: component
+category: Components
+icon: cards
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
@@ -124,14 +125,14 @@ For creating more distinct sections in a card, header and footer elements can be
 
 ### Backgrounds
 
-Card background and screen elements are displayed behind other card elements. These can be paired with the `vb-theme-light` or `vb-theme-dark` theme classes to create a light or dark card theme.
+Card background and screen elements are displayed behind other card elements. These can be paired with the `data-mode="light"` or `data-mode="dark"` data attributes to create a light or dark card theme.
 
 - `card__background`
 - `card__screen`
 
 <CodeExample>
   <div slot="output" class="spacing">
-    <div class="card vb-theme-light">
+    <div class="card" data-mode="light">
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
       </div>
@@ -141,7 +142,7 @@ Card background and screen elements are displayed behind other card elements. Th
       <img src="https://picsum.photos/id/976/600/300" class="card__background" />
       <div class="card__screen"></div>
     </div>
-    <div class="card vb-theme-dark">
+    <div class="card" data-mode="dark">
       <div class="card__header">
         <h2 class="card__title">Card Title</h2>
       </div>

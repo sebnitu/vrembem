@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/icon",
-  "description": "The icon component provides a consistent way to style icons.",
+  "description": "Provides consistent rendering of icon elements.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

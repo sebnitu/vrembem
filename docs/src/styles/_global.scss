@@ -16,6 +16,10 @@ html {
   }
 }
 
+.is-index {
+  background-color: tokens.get("background-shift");
+}
+
 #main {
   outline: none;
 }
@@ -60,6 +64,10 @@ dd {
 dd + dt {
   margin-top: tokens.get("spacing-md");
   padding-top: tokens.get("spacing-md");
+}
+
+.padding-dynamic {
+  padding: tokens.get("padding-dynamic");
 }
 
 /**

@@ -1,6 +1,6 @@
 # Grid
 
-A flexbox based grid system component.
+A simple grid based layout component.
 
 [Documentation](https://vrembem.com/packages/grid)
 

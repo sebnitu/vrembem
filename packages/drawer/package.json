@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/drawer",
-  "description": "A responsive container custom element that switches between a static layout and a modal dialog based on a provided breakpoint.",
+  "description": "A content container that switches contexts based on a provided breakpoint.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

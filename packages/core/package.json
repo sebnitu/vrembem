@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/core",
-  "description": "Provides Sass modules and shared design tokens that make up the systems and configurations of the Vrembem library.",
+  "description": "Manage library wide config, tokens, and base styles.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

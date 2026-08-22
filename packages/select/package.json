@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/select",
-  "description": "The form-control component that provides a menu of options.",
+  "description": "Allow users to select an option from a dropdown menu.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

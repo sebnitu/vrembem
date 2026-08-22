@@ -11,18 +11,23 @@ const { tree, nested } = Astro.props;
 function classes(entry: NaviLink) {
   return { "is-active": entry.isActive, "is-parent": entry.isParent };
 }
+
+let category = "";
+
+function maybeOutputLabel(entry: NaviLink) {
+  if (entry.data.category && category !== entry.data.category) {
+    category = entry.data.category;
+    return category !== "Core";
+  } else {
+    return false;
+  }
+}
 ---
 
 <ul class={`menu menu--collection ${nested ? "is-nested" : ""}`.trim()}>
   {
     tree.map((entry) =>
-      "link" in entry ? (
-        <li class="menu__item">
-          <a class:list={["menu__action", classes(entry)]} href={entry.link}>
-            {entry.label}
-          </a>
-        </li>
-      ) : (
+      "group" in entry ? (
         <li class="menu__item">
           <details
             open={!entry.collapsed}
@@ -37,6 +42,17 @@ function classes(entry: NaviLink) {
             <Astro.self tree={entry.group} nested />
           </details>
         </li>
+      ) : (
+        <>
+          {maybeOutputLabel(entry) && (
+            <li class="menu__label">{entry.data.category}</li>
+          )}
+          <li class="menu__item">
+            <a class:list={["menu__action", classes(entry)]} href={entry.link}>
+              {entry.label}
+            </a>
+          </li>
+        </>
       )
     )
   }

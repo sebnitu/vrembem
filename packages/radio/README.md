@@ -1,6 +1,6 @@
 # Radio
 
-Radios allow the user to select a single option from a set.
+Allow users to select a single option from a set.
 
 [Documentation](https://vrembem.com/packages/radio)
 

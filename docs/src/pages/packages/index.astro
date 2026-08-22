@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import Root from "@/layouts/Root.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Icon from "@/components/Icon.astro";
+
+const entries = (await getCollection("pages"))
+  .filter((entry) => entry.id.startsWith("packages/") && entry.data.package)
+  .sort((a, b) => {
+    const aIsCore = a.data.category === "core";
+    const bIsCore = b.data.category === "core";
+
+    if (aIsCore !== bIsCore) return aIsCore ? -1 : 1;
+
+    return (a.data.title ?? "").localeCompare(b.data.title ?? "", undefined, {
+      sensitivity: "base"
+    });
+  });
+---
+
+<Root class="is-index" title="Package Catalog">
+  <Header class="fold-shadow" />
+  <div class="header-spacer"></div>
+  <main id="main" tabindex="-1">
+    <div class="section">
+      <div class="section__container">
+        <div class="content spacing padding-dynamic">
+          <h1>Packages</h1>
+          <p class="max-width-xs">
+            Vrembem is organized as a collection of packages. These can be
+            included a la carte or using the all inclusively <code>vrembem</code
+            > barrel package.
+          </p>
+        </div>
+        <div class="grid sm:grid--cols-2 lg:grid--cols-3">
+          {
+            entries.map((entry) => (
+              <a href={`/${entry.id}`} class="card card--feature">
+                {entry.data.icon && (
+                  <Icon
+                    name={entry.data.icon}
+                    size="lg"
+                    class="foreground-primary"
+                  />
+                )}
+                <h2 class="card__title">{entry.data.title}</h2>
+                <p>{entry.data.description}</p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__container">
+        <Footer class="padding-dynamic" />
+      </div>
+    </div>
+  </main>
+</Root>

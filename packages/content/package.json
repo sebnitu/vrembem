@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/content",
-  "description": "A content wrapper that provides typographic styles for common HTML elements.",
+  "description": "Provides typographic styles for commonly used HTML elements.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

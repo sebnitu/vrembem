@@ -1,6 +1,6 @@
 # Button
 
-Buttons are a simple component that allow users to take actions.
+A simple component that allow users to trigger an action.
 
 [Documentation](https://vrembem.com/packages/button)
 

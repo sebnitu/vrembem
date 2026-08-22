@@ -1,6 +1,6 @@
 # Icon
 
-The icon component provides a consistent way to style icons.
+Provides consistent rendering of icon elements.
 
 [Documentation](https://vrembem.com/packages/icon)
 

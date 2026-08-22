@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/card",
-  "description": "The card component provides a flexible and highly composable content container.",
+  "description": "A flexible and highly composable content container.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

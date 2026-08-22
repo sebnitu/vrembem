@@ -78,7 +78,6 @@ a#{core.bem("card")} {
 }
 
 #{core.bem("card", "title")} {
-  flex-grow: 1;
   font-size: tokens.get("card", "title-font-size", tokens.get("font-size-lg"));
   font-weight: tokens.get("card", "title-font-weight", tokens.get("font-weight-semi-bold"));
   line-height: tokens.get("card", "title-line-height", inherit);

@@ -1,6 +1,6 @@
 # Card
 
-The card component provides a flexible and highly composable content container.
+A flexible and highly composable content container.
 
 [Documentation](https://vrembem.com/packages/card)
 

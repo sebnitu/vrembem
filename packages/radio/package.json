@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/radio",
-  "description": "Radios allow the user to select a single option from a set.",
+  "description": "Allow users to select a single option from a set.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

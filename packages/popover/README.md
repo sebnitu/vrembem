@@ -1,6 +1,6 @@
 # Popover
 
-A component that is initially hidden and revealed upon user interaction either through a click or hover event. Popover can contain lists of actions, links, or additional supplementary content.
+An initially hidden component that is revealed upon user interaction.
 
 [Documentation](https://vrembem.com/packages/popover)
 

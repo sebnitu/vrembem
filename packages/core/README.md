@@ -1,6 +1,6 @@
 # Core
 
-Shared variables, functions and mixins for Vrembem components.
+Manage library wide config, tokens, and base styles.
 
 [Documentation](https://vrembem.com/packages/core)
 

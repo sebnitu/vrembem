@@ -6,15 +6,15 @@ import Icon from "@/components/Icon.astro";
 import pkg from "../../../packages/vrembem/package.json";
 
 interface Props {
-  classes?: string;
+  class?: string;
 }
 
-const { classes = "" } = Astro.props;
+const { class: classString } = Astro.props;
 
-const version = pkg.version;
+const classes = ["header", classString].filter(Boolean).join(" ");
 ---
 
-<header class={`header ${classes}`.trim()}>
+<header class={classes}>
   <div class="header__container">
     <div class="header__title">
       <a class="skip-link button button--color-primary" href="#main">
@@ -23,7 +23,7 @@ const version = pkg.version;
       <a href="/" class="brand">
         <Svg name="vrembem-icon" width={24} height={24} class="brand__icon" />
         <strong class="brand__name">Vrembem</strong>
-        <span class="brand__version">v{version}</span>
+        <span class="brand__version">v{pkg.version}</span>
       </a>
     </div>
     <div class="header__menu">
