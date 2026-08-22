@@ -44,9 +44,7 @@ Content comes with the following Sass configuration options that can be set usin
 
     // A map containing module names as keys and their preferred class selectors
     // @type map
-    "content-classes": (
-      "separator": "sep"
-    ),
+    "content-classes": (),
 
     // A prefix to apply to content class selectors. Provided value is automatically 
     // suffixed with a "-" character when applied.
@@ -79,7 +77,7 @@ Content comes with the following Sass configuration options that can be set usin
       "code": ":not(pre) > code",
       "pre": "> pre",
       "blockquote": "> blockquote",
-      "separator": "> hr"
+      "divider": "> hr"
     )
   )
 );
@@ -187,7 +185,7 @@ The entire output of the content component is placed in `@layer base`. This allo
 
 To customize the class selectors used by modules, map the module name to your preferred class selector in the `content-classes` config option.
 
-<ReferenceCard name="content-classes" type="map" defaults='("separator": "sep")'>
+<ReferenceCard name="content-classes" type="map" defaults="()">
   A map containing module names as keys and their preferred class selectors as values. For example, to use the class `.props` instead of `.content`, set the following value:
 
 ```scss
@@ -222,7 +220,7 @@ The content module only applies styles to its direct children using the `>` chil
 ));
 ```
 
-  <hr class="sep" />
+  <hr class="divider" />
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
@@ -238,7 +236,7 @@ The content module only applies styles to its direct children using the `>` chil
   "code": ":not(pre) > code",
   "pre": "> pre",
   "blockquote": "> blockquote",
-  "separator": "> hr"
+  "divider": "> hr"
 )
 ```
 </ReferenceCard>
@@ -293,7 +291,7 @@ Headings output and scale is controlled by the `content-headings` configuration 
 ));
 ```
 
-  <hr class="sep" />
+  <hr class="divider" />
   <p class="font-family-mono font-size-sm">@default</p>
 
 ```scss
@@ -465,24 +463,24 @@ The HTML blockquote element is used for marking up extended quotations. This mod
 ```
 </CodeExample>
 
-### separator
+### divider
 
-<ReferenceBar selector=".sep" hash={{
+<ReferenceBar selector=".divider" hash={{
   target: "reference-table-tokens-content",
   event: "filter",
   detail: {
-    value: "--vb-sep"
+    value: "--vb-divider"
   }
 }} />
 
-This module adds the `.sep` CSS classes which visually renders a horizontal separator. This is most commonly applied to an `<hr>` HTML element but can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
+This module adds the `.divider` CSS class which visually renders a horizontal divider. This is most commonly applied to an `<hr>` HTML element but can also be applied to a more generic `<span>` or `<div>` depending on the semantic context.
 
 <CodeExample lang="html">
 <Fragment slot="output">
-  <hr class="sep" />
+  <hr class="divider" />
 </Fragment>
 ```html
-<hr class="sep" />
+<hr class="divider" />
 ```
 </CodeExample>
 

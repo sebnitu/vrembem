@@ -16,9 +16,7 @@ $default: (
 
   // A map containing module names as keys and their preferred class selectors
   // @type map
-  "content-classes": (
-    "separator": "sep"
-  ),
+  "content-classes": (),
 
   // A prefix to apply to content class selectors. Provided value is automatically 
   // suffixed with a "-" character when applied.
@@ -51,7 +49,7 @@ $default: (
     "code": ":not(pre) > code",
     "pre": "> pre",
     "blockquote": "> blockquote",
-    "separator": "> hr"
+    "divider": "> hr"
   )
 );
 

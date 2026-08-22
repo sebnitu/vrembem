@@ -20,21 +20,21 @@ const { name, type, returns, defaults, fallback } = Astro.props;
     <div class="card__body type spacing">
       <slot />
       { returns && (
-        <hr class="sep" />
+        <hr class="divider" />
         <p>
           <span class="font-family-mono font-size-sm">@returns</span> 
           <code class="margin-left-sm">{returns}</code>
         </p>
       )}
       { defaults && (
-        <hr class="sep" />
+        <hr class="divider" />
         <p>
           <span class="font-family-mono font-size-sm">@default</span> 
           <code class="margin-left-sm">{defaults}</code>
         </p>
       )}
       { fallback && (
-        <hr class="sep" />
+        <hr class="divider" />
         <p>
           <span class="font-family-mono font-size-sm">@fallback</span> 
           <code class="margin-left-sm">{fallback}</code>
