@@ -35,10 +35,6 @@
 
 #{core.bem("panel", "container")} {
   @include core.scroll-flex;
-
-  > * + * {
-    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
-  }
 }
 
 #{core.bem("panel", "header")},
@@ -61,6 +57,7 @@
 
 #{core.bem("panel", "header")} {
   top: 0;
+  border-bottom: tokens.get("panel", "sep-border", tokens.get("border"));
 
   :where(details) & {
     cursor: pointer;
@@ -77,6 +74,7 @@
 
 #{core.bem("panel", "footer")} {
   bottom: 0;
+  border-top: tokens.get("panel", "sep-border", tokens.get("border"));
 }
 
 #{core.bem("panel", "title")} {
