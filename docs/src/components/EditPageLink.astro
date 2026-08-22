@@ -10,7 +10,7 @@ const { entry } = Astro.props;
 
 const ghBase = "https://github.com/sebnitu/vrembem/blob/main/docs/src/";
 const filePath = entry
-  ? `content/${entry.collection}/${entry.id}`
+  ? `content/${entry.collection}/${entry.id}.mdx`
   : `pages${Astro.url.pathname.replace(/\/$/, "")}.mdx`;
 const url = `${ghBase}${filePath}`;
 ---
