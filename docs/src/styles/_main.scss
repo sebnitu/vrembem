@@ -26,6 +26,7 @@
 
 .main__aside {
   @include tokens.override("panel", "background", tokens.get("background-shift"));
+
   display: none;
 }
 

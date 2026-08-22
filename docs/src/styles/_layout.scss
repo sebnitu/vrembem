@@ -20,6 +20,7 @@
 
 .layout__sidebar {
   @include tokens.override("panel", "background", tokens.get("background-shift"));
+
   display: none;
 
   .panel__container {
@@ -52,10 +53,6 @@
     padding: 0 tokens.get("layout", "padding") tokens.get("layout", "padding");
     box-shadow: none;
 
-    .panel__body {
-      padding: 0;
-    }
-
     // Styles for infinite background
     &::before {
       content: "";
@@ -79,6 +76,10 @@
       width: 2rem;
       height: 100%;
       background: linear-gradient(268deg, tokens.get("fold-shadow-start") 0, tokens.get("fold-shadow-end") 2rem);
+    }
+
+    .panel__body {
+      padding: 0;
     }
   }
 }
