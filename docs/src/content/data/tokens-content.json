@@ -43,9 +43,9 @@
   "--vb-blockquote-padding": "var(--vb-spacing-md)",
   "--vb-blockquote-spacing": "var(--vb-spacing-md)",
 
-  "--vb-separator-border-width": "var(--vb-border-width)",
-  "--vb-separator-border-style": "var(--vb-border-style)",
-  "--vb-separator-border-color": "var(--vb-border-color)",
+  "--vb-divider-width": "var(--vb-border-width)",
+  "--vb-divider-style": "var(--vb-border-style)",
+  "--vb-divider-color": "var(--vb-border-color)",
 
   "--vb-arrow-size": "6px 4px",
   "--vb-arrow-color": "currentcolor",
