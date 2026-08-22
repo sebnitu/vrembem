@@ -1,9 +1,9 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import Svg from "@/components/Svg.astro";
 
-interface Props {
+interface Props extends HTMLAttributes<"svg"> {
   name: string;
-  class?: string;
   size?: "xs" | "sm" | "lg" | "xl";
   style?: "stroke" | "fill" | "both";
 }
