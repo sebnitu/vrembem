@@ -65,7 +65,7 @@ if (icon) classes.push("has-icon");
       if (!(code instanceof HTMLElement)) return;
 
       const text = code.innerText;
-      const icons = btn.querySelectorAll(".icon");
+      const icons = btn.querySelectorAll("svg");
       const popover = document.getElementById(targetId);
 
       navigator.clipboard

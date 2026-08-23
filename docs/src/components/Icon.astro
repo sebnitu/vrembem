@@ -1,24 +1,23 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import Svg from "@/components/Svg.astro";
 
-interface Props {
+interface Props extends HTMLAttributes<"svg"> {
   name: string;
-  class?: string;
-  size?: "xs" | "sm" | "lg" | "xl";
-  style?: "stroke" | "fill" | "both";
+  size?: string;
 }
 
-const { name, class: classString, size, style, ...attrs } = Astro.props;
+const { name, size, ...attrs } = Astro.props;
 
 const iconName = `icons/${name}`;
-const classes = [
-  "icon",
-  size && `icon--size-${size}`,
-  style && `icon--style-${style}`,
-  classString
-]
-  .filter(Boolean)
-  .join(" ");
+const sizeMap: Record<string, string> = {
+  xs: "12",
+  sm: "18",
+  lg: "32",
+  xl: "48"
+};
+const sizeValue = typeof size === "string" ? sizeMap[size] : size;
+const sizeAttr = sizeValue ? { width: sizeValue, height: sizeValue } : {};
 ---
 
-<Svg name={iconName} class={classes} {...attrs} />
+<Svg name={iconName} {...sizeAttr} {...attrs} />

@@ -2,12 +2,12 @@
 @use "@vrembem/core/tokens";
 
 .toggle-trigger {
-  .icon {
+  svg {
     transform: rotate(0);
     transition: transform tokens.get("transition");
   }
 
-  &[aria-expanded="true"] .icon {
+  &[aria-expanded="true"] svg {
     transform: rotate(90deg);
   }
 }

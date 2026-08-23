@@ -10,11 +10,8 @@ function createAnchorIcon() {
   template.innerHTML = hashIcon.trim();
   const svg = template.content.firstElementChild;
 
-  if (!(svg instanceof SVGElement)) {
-    throw new Error("Hash icon did not render as an SVG element.");
-  }
-
-  svg.setAttribute("class", "icon icon--size-sm");
+  svg.setAttribute("width", "18");
+  svg.setAttribute("height", "18");
   svg.setAttribute("aria-hidden", "true");
 
   return svg;
