@@ -2,6 +2,6 @@
 
 .section {
   max-width: tokens.get("layout", "width");
-  padding: tokens.get("layout", "padding");
   margin: auto;
+  padding: tokens.get("layout", "padding");
 }

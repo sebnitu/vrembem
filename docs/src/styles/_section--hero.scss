@@ -1,17 +1,21 @@
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
-
-@include tokens.set("hero", "padding", (
-  "type": "breakpoints",
-  "initial": 1rem,
-  "xs": 3rem 1.5rem,
-  "sidebar": 6rem 1.5rem,
-  "aside": 9rem 1.5rem
-));
+@include tokens.set(
+  "hero",
+  "padding",
+  (
+    "type": "breakpoints",
+    "initial": 1rem,
+    "xs": 3rem 1.5rem,
+    "sidebar": 6rem 1.5rem,
+    "aside": 9rem 1.5rem
+  )
+);
 
 .section--hero {
   @include tokens.override("layout", "padding", tokens.get("hero", "padding"));
+
   text-align: center;
 }
 
