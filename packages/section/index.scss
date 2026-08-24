@@ -1,7 +1,0 @@
-@use "sass:meta";
-@forward "./src/config";
-
-@layer components {
-  @include meta.load-css("./src/section");
-  @include meta.load-css("./src/section--padding");
-}

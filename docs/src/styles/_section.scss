@@ -1,0 +1,7 @@
+@use "@vrembem/core/tokens";
+
+.section {
+  max-width: tokens.get("layout", "width");
+  margin: auto;
+  padding: tokens.get("layout", "padding");
+}
