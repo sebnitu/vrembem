@@ -35,6 +35,7 @@ a#{core.bem("card")} {
 #{core.bem("card", "body")},
 #{core.bem("card", "footer")},
 #{core.bem("card", "image")} {
+  flex: 0 0 auto;
   position: relative;
   z-index: 3;
 
@@ -55,16 +56,16 @@ a#{core.bem("card")} {
   padding: tokens.get("card", "padding", 1.25em);
 }
 
+#{core.bem("card", "header")} {
+  border-bottom: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
+}
+
 #{core.bem("card", "body")} {
-  flex: 1 1 auto;
+  flex-grow: 1;
 
   & + & {
     border-top: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
   }
-}
-
-#{core.bem("card", "header")} {
-  border-bottom: tokens.get("card", "sep-border", 1px solid tokens.get("border-color"));
 }
 
 #{core.bem("card", "footer")} {
@@ -72,7 +73,6 @@ a#{core.bem("card")} {
 }
 
 #{core.bem("card", "image")} {
-  flex: 0 1 auto;
   width: 100%;
   height: auto;
 }
