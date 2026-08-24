@@ -22,7 +22,6 @@
   @include meta.load-css("./footer");
   @include meta.load-css("./layout");
   @include meta.load-css("./main");
-  @include meta.load-css("./hero");
 
   // Components
   @include meta.load-css("./badge");
@@ -47,6 +46,8 @@
   @include meta.load-css("./popover--copy");
   @include meta.load-css("./reference-bar");
   @include meta.load-css("./reference-table");
+  @include meta.load-css("./section");
+  @include meta.load-css("./section--hero");
   @include meta.load-css("./skip-link");
   @include meta.load-css("./swatch");
   @include meta.load-css("./tabs");

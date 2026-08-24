@@ -10,85 +10,80 @@ import Icon from "@/components/Icon.astro";
   <Header class="fold-shadow" />
   <div class="header-spacer"></div>
   <main id="main" tabindex="-1">
-    <div class="section section--padding-xl">
-      <div class="section__container text-align-center">
-        <h1 class="vrembem-logo">
-          <span class="sr-only">Vrembem</span>
-        </h1>
-        <p class="font-size-lg margin-bottom-xl">
-          A component library based on the BEM methodology.
-        </p>
-        <div class="hero-actions">
-          <a href="/guide/get-started" class="button button--color-primary">
-            Get Started
-          </a>
-          <a href="/packages/" class="button button--color-secondary">
-            Documentation
-          </a>
-          <CodeBlock icon="terminal-bold" inline="npm install vrembem" />
-        </div>
-      </div>
-    </div>
-
-    <div class="section padding-y-0">
-      <div class="section__container">
-        <div class="grid sm:grid--cols-2 lg:grid--cols-3">
-          <div class="card card--feature">
-            <Icon name="toolbox" size="lg" class="foreground-primary" />
-            <h2 class="card__title">BEM Methodology</h2>
-            <p>
-              Built on the BEM naming convention to improve clarity, prevent
-              style conflicts, and keep components clean and maintainable.
-            </p>
-          </div>
-          <div class="card card--feature">
-            <Icon name="code-block" size="lg" class="foreground-primary" />
-            <h2 class="card__title">Design Tokens</h2>
-            <p>
-              Powered by CSS variables to provide design control and consistency
-              across library components.
-            </p>
-          </div>
-          <div class="card card--feature">
-            <Icon name="palette" size="lg" class="foreground-primary" />
-            <h2 class="card__title">Theming System</h2>
-            <p>
-              Quickly build custom themes with Vrembem's core theming system,
-              including seamless light and dark mode support.
-            </p>
-          </div>
-          <div class="card card--feature">
-            <Icon name="accessible" size="lg" class="foreground-primary" />
-            <h2 class="card__title">Accessible</h2>
-            <p>
-              Designed for accessibility, ensuring components are
-              keyboard-friendly, screen-reader ready, and usable by everyone.
-            </p>
-          </div>
-          <div class="card card--feature">
-            <Icon name="puzzle-piece" size="lg" class="foreground-primary" />
-            <h2 class="card__title">Modular</h2>
-            <p>
-              Built with modularity in mind so you can include only what's
-              necessary and keep your project lean.
-            </p>
-          </div>
-          <div class="card card--feature">
-            <Icon name="sliders" size="lg" class="foreground-primary" />
-            <h2 class="card__title">Customizable</h2>
-            <p>
-              Highly customizable using CSS and Sass variables, giving you full
-              control over colors, spacing, and component styling.
-            </p>
-          </div>
-        </div>
+    <div class="section section--hero">
+      <h1 class="vrembem-logo">
+        <span class="sr-only">Vrembem</span>
+      </h1>
+      <p class="font-size-lg margin-bottom-xl">
+        A component library based on the BEM methodology.
+      </p>
+      <div class="hero-actions">
+        <a href="/guide/get-started" class="button button--color-primary">
+          Get Started
+        </a>
+        <a href="/packages/" class="button button--color-secondary">
+          Documentation
+        </a>
+        <CodeBlock icon="terminal-bold" inline="npm install vrembem" />
       </div>
     </div>
 
     <div class="section">
-      <div class="section__container">
-        <Footer class="padding-dynamic" />
+      <div
+        class="grid grid--gap-sm sm:grid--gap-md sm:grid--cols-2 lg:grid--cols-3"
+      >
+        <div class="card card--feature">
+          <Icon name="toolbox" size="lg" class="foreground-primary" />
+          <h2 class="card__title">BEM Methodology</h2>
+          <p>
+            Built on the BEM naming convention to improve clarity, prevent style
+            conflicts, and keep components clean and maintainable.
+          </p>
+        </div>
+        <div class="card card--feature">
+          <Icon name="code-block" size="lg" class="foreground-primary" />
+          <h2 class="card__title">Design Tokens</h2>
+          <p>
+            Powered by CSS variables to provide design control and consistency
+            across library components.
+          </p>
+        </div>
+        <div class="card card--feature">
+          <Icon name="palette" size="lg" class="foreground-primary" />
+          <h2 class="card__title">Theming System</h2>
+          <p>
+            Quickly build custom themes with Vrembem's core theming system,
+            including seamless light and dark mode support.
+          </p>
+        </div>
+        <div class="card card--feature">
+          <Icon name="accessible" size="lg" class="foreground-primary" />
+          <h2 class="card__title">Accessible</h2>
+          <p>
+            Designed for accessibility, ensuring components are
+            keyboard-friendly, screen-reader ready, and usable by everyone.
+          </p>
+        </div>
+        <div class="card card--feature">
+          <Icon name="puzzle-piece" size="lg" class="foreground-primary" />
+          <h2 class="card__title">Modular</h2>
+          <p>
+            Built with modularity in mind so you can include only what's
+            necessary and keep your project lean.
+          </p>
+        </div>
+        <div class="card card--feature">
+          <Icon name="sliders" size="lg" class="foreground-primary" />
+          <h2 class="card__title">Customizable</h2>
+          <p>
+            Highly customizable using CSS and Sass variables, giving you full
+            control over colors, spacing, and component styling.
+          </p>
+        </div>
       </div>
+    </div>
+    <div class="section">
+      <Footer class="padding-dynamic" />
     </div>
   </main>
 </Root>
