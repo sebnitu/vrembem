@@ -18,10 +18,6 @@
   transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
   transition-property: tokens.get("panel", "transition-property", (outline, box-shadow, border-color));
 
-  > * + * {
-    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
-  }
-
   &:where(details):has(> summary:hover) {
     @include tokens.override("panel", "box-shadow", 0 0 0 1px tokens.get("border-color-stronger"));
   }
@@ -70,6 +66,10 @@
 
 #{core.bem("panel", "body")} {
   flex-grow: 1;
+
+  & + & {
+    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  }
 }
 
 #{core.bem("panel", "footer")} {
