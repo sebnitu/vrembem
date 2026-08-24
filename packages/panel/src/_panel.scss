@@ -1,6 +1,8 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
+$-transition-property: outline, box-shadow, border-color;
+
 #{core.bem("panel")} {
   @include core.focus-ring-base;
 
@@ -16,7 +18,7 @@
   box-shadow: tokens.get("panel", "box-shadow", 0 0 0 1px tokens.get("border-color"));
   transition-timing-function: tokens.get("panel", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("panel", "transition-duration", tokens.get("transition-duration"));
-  transition-property: tokens.get("panel", "transition-property", (outline, box-shadow, border-color));
+  transition-property: tokens.get("panel", "transition-property", $-transition-property);
 
   &:where(details):has(> summary:hover) {
     @include tokens.override("panel", "box-shadow", 0 0 0 1px tokens.get("border-color-stronger"));
