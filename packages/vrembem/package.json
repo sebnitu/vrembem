@@ -107,7 +107,6 @@
     "@vrembem/panel": "^4.0.0",
     "@vrembem/popover": "^4.0.0",
     "@vrembem/radio": "^4.0.0",
-    "@vrembem/section": "^4.0.0",
     "@vrembem/select": "^4.0.0",
     "@vrembem/switch": "^4.0.0",
     "@vrembem/table": "^4.0.0",
