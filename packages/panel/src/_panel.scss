@@ -57,7 +57,11 @@ $-transition-property: outline, box-shadow, border-color;
   top: 0;
   border-bottom: tokens.get("panel", "divider", tokens.get("border"));
 
-  :where(details) & {
+  :where(details:not([open])) > & {
+    border-bottom: none;
+  }
+
+  :where(details) > & {
     cursor: pointer;
   }
 
