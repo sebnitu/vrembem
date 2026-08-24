@@ -53,7 +53,7 @@
 
 #{core.bem("panel", "header")} {
   top: 0;
-  border-bottom: tokens.get("panel", "sep-border", tokens.get("border"));
+  border-bottom: tokens.get("panel", "divider", tokens.get("border"));
 
   :where(details) & {
     cursor: pointer;
@@ -68,13 +68,13 @@
   flex-grow: 1;
 
   & + & {
-    border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+    border-top: tokens.get("panel", "divider", tokens.get("border"));
   }
 }
 
 #{core.bem("panel", "footer")} {
   bottom: 0;
-  border-top: tokens.get("panel", "sep-border", tokens.get("border"));
+  border-top: tokens.get("panel", "divider", tokens.get("border"));
 }
 
 #{core.bem("panel", "title")} {
