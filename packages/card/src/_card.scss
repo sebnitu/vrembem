@@ -28,6 +28,7 @@ $-transition-property: background-color, border-color, box-shadow, transform;
 
 a#{core.bem("card")} {
   @include tokens.override("card", "box-shadow", tokens.get("box-shadow-sm"));
+
   transform: translate(0, 0);
 
   &:hover,
@@ -49,9 +50,9 @@ a#{core.bem("card")} {
 #{core.bem("card", "body")},
 #{core.bem("card", "footer")},
 #{core.bem("card", "image")} {
-  flex: 0 0 auto;
   position: relative;
   z-index: 3;
+  flex: 0 0 auto;
 
   &:first-child {
     border-top-left-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
