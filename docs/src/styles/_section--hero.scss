@@ -37,8 +37,6 @@
   }
 
   @include core.media-min("md") {
-    @include tokens.override("button", "size", config.get("button-size", "lg"));
-
     max-width: none;
 
     .button {
