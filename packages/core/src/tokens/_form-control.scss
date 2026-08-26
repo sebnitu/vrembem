@@ -7,11 +7,11 @@
     "form-control-size": tokens.get("font-size"),
     "form-control-size-sm": tokens.get("font-size-sm"),
     "form-control-size-lg": tokens.get("font-size-lg"),
-    "form-control-line-height": tokens.get("line-height"),
+    "form-control-line-height": 1.5rem, // tokens.get("line-height")
     "form-control-border-width": tokens.get("border-width"),
     "form-control-border-radius": tokens.get("border-radius"),
-    "form-control-padding-x": 1em,
-    "form-control-padding-y": 0.5em,
+    "form-control-padding-x": 1rem,
+    "form-control-padding-y": 0.5rem,
     "form-control-accent": tokens.get("palette", "primary"),
     "form-control-foreground": tokens.get("foreground-strong"),
     "form-control-background": tokens.get("background"),
@@ -24,6 +24,12 @@
     "form-control-transition-property": outline
   )
 );
+
+// Form-control padding
+@include tokens.set("core", (
+  "form-control-padding-x": calc(1rem - tokens.get("form-control-border-width")),
+  "form-control-padding-y": calc(0.5rem - tokens.get("form-control-border-width")),
+));
 
 // Form-control choice (checkbox, radio and switch) variables
 @include tokens.set(
@@ -39,7 +45,7 @@
 @include tokens.set(
   "core",
   (
-    "form-control-size-calc": calc(calc(1em * tokens.get("form-control-line-height")) + calc(calc(tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
+    "form-control-size-calc": calc(tokens.get("form-control-line-height") + ((tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
     "form-control-padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x")
   )
 );
