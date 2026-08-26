@@ -13,6 +13,10 @@ $default: (
   // Map for outputting button--color-[key] modifier variants
   // @type map
   "button-color": (
+    "default": (
+      "color-contrast": white,
+      "color-mix": black
+    ),
     "primary": tokens.get("palette", "primary"),
     "secondary": tokens.get("palette", "secondary"),
     "neutral": tokens.get("palette", "neutral"),

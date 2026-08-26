@@ -6,7 +6,7 @@
   @include tokens.set-scoped("button", (
     "color": tokens.get("foreground-strong"),
     "color-contrast": tokens.get("background"),
-    "color-mix": transparent
+    "color-mix": transparent,
   ));
   @include mix.base;
 
