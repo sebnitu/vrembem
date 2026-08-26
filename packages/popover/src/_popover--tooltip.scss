@@ -9,7 +9,7 @@
       "max-width": 16rem,
       "padding": 0.25rem 0.5rem,
       "font-size": tokens.get("font-size-sm"),
-      "background": tokens.get("foreground-strong"),
+      "background": tokens.get("foreground"),
       "foreground": tokens.get("background"),
       "transform-x": 0,
       "transform-y": tokens.get("popover", "offset", 0.5rem)
