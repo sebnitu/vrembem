@@ -10,11 +10,9 @@
       "background-active": tokens.get("button", "color"),
       "foreground": tokens.get("button", "color"),
       "foreground-hover": tokens.get("button", "color"),
-      "foreground-active": tokens.get("button", "contrast-color"),
+      "foreground-active": tokens.get("button", "color-contrast"),
       "border-color": color-mix(in oklch, tokens.get("button", "color") 32%, transparent),
-      "border-color-hover": tokens.get("button", "color"),
-      "border-color-focus": tokens.get("button", "color"),
-      "border-color-active": tokens.get("button", "color")
+      "border-color-hover": tokens.get("button", "color")
     )
   );
 }

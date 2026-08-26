@@ -9,7 +9,8 @@
   #{core.bem("button", null, "color", $key)} {
     @include tokens.override("button", (
       "color": $value,
-      "contrast-color": white
+      "color-contrast": white,
+      "color-mix": black
     ));
   }
 }
