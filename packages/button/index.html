@@ -8,6 +8,11 @@
   <link rel="icon" type="image/svg+xml" href="https://sebnitu.com/icons/vb-favicon.svg">
   <script type="module">
     import "vrembem/sass";
+
+    const root = document.documentElement;
+    document.querySelector("[data-toggle-mode]").addEventListener("click", () => {
+      root.dataset.mode = root.dataset.mode === "dark" ? "light" : "dark";
+    });
   </script>
 </head>
 <body>
@@ -25,6 +30,11 @@
         <li class="flex flex--gap-sm align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M225.6,62.64l-88-48.17a19.91,19.91,0,0,0-19.2,0l-88,48.17A20,20,0,0,0,20,80.19v95.62a20,20,0,0,0,10.4,17.55l88,48.17a19.89,19.89,0,0,0,19.2,0l88-48.17A20,20,0,0,0,236,175.81V80.19A20,20,0,0,0,225.6,62.64ZM128,36.57,200,76,178.57,87.73l-72-39.42Zm0,78.83L56,76,81.56,62l72,39.41ZM44,96.79l72,39.4v76.67L44,173.44Zm96,116.07V136.19l24-13.13V152a12,12,0,0,0,24,0V109.92l24-13.13v76.65Z"></path></svg>
           <a class="link" target="_blank" href="https://github.com/sebnitu/%VITE_ROOT%/tree/main/packages/%VITE_PACKAGE%#readme">%VITE_PACKAGE%</a>
+        </li>
+        <li class="foreground-subtle">/</li>
+        <li class="flex flex--gap-sm align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm12,24.87a83.53,83.53,0,0,1,24,7.25V203.88a83.53,83.53,0,0,1-24,7.25ZM44,128a84.12,84.12,0,0,1,72-83.13V211.13A84.12,84.12,0,0,1,44,128Zm144,58.71V69.29a83.81,83.81,0,0,1,0,117.42Z"></path></svg>
+          <button type="button" class="link" data-toggle-mode>Mode</button>
         </li>
       </ol>
     </div>
@@ -49,14 +59,48 @@
         <button class="button button--color-important">Important</button>
       </div>
 
-      <h2 id="is-loading"><a href="#is-loading">is-loading</a></h2>
-
       <div class="flex">
         <button class="button is-loading" disabled>Button</button>
         <button class="button button--color-primary is-loading" disabled>Primary</button>
         <button class="button button--color-secondary is-loading" disabled>Secondary</button>
         <button class="button button--color-neutral is-loading" disabled>Neutral</button>
         <button class="button button--color-important is-loading" disabled>Important</button>
+      </div>
+
+      <h2 id="button--color-value"><a href="#button--variant-outline">button--variant-outline</a></h2>
+
+      <div class="flex">
+        <button class="button button--variant-outline">Button</button>
+        <button class="button button--variant-outline button--color-primary">Primary</button>
+        <button class="button button--variant-outline button--color-secondary">Secondary</button>
+        <button class="button button--variant-outline button--color-neutral">Neutral</button>
+        <button class="button button--variant-outline button--color-important">Important</button>
+      </div>
+
+      <div class="flex">
+        <button class="button button--variant-outline is-loading" disabled>Button</button>
+        <button class="button button--variant-outline button--color-primary is-loading" disabled>Primary</button>
+        <button class="button button--variant-outline button--color-secondary is-loading" disabled>Secondary</button>
+        <button class="button button--variant-outline button--color-neutral is-loading" disabled>Neutral</button>
+        <button class="button button--variant-outline button--color-important is-loading" disabled>Important</button>
+      </div>
+
+      <h2 id="button--color-value"><a href="#button--variant-subtle">button--variant-subtle</a></h2>
+
+      <div class="flex">
+        <button class="button button--variant-subtle">Button</button>
+        <button class="button button--variant-subtle button--color-primary">Primary</button>
+        <button class="button button--variant-subtle button--color-secondary">Secondary</button>
+        <button class="button button--variant-subtle button--color-neutral">Neutral</button>
+        <button class="button button--variant-subtle button--color-important">Important</button>
+      </div>
+
+      <div class="flex">
+        <button class="button button--variant-subtle is-loading" disabled>Button</button>
+        <button class="button button--variant-subtle button--color-primary is-loading" disabled>Primary</button>
+        <button class="button button--variant-subtle button--color-secondary is-loading" disabled>Secondary</button>
+        <button class="button button--variant-subtle button--color-neutral is-loading" disabled>Neutral</button>
+        <button class="button button--variant-subtle button--color-important is-loading" disabled>Important</button>
       </div>
 
       <h2 id="disabled"><a href="#disabled">disabled</a></h2>
@@ -81,7 +125,7 @@
 
       <div class="flex align-items-center">
         <button class="button button--icon button--size-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
         </button>
@@ -91,7 +135,7 @@
           </svg>
         </button>
         <button class="button button--icon button--size-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
         </button>
