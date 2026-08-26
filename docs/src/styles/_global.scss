@@ -1,6 +1,5 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
-@use "@vrembem/button";
 
 astro-island {
   display: block !important;
@@ -68,15 +67,4 @@ dd + dt {
 
 .padding-dynamic {
   padding: tokens.get("padding-dynamic");
-}
-
-/**
- * CodeExample
- * These are styles used specifically in code example blocks
- */
-
-// Source: button.mdx
-
-.button--color-custom {
-  @include button.variant(salmon);
 }
