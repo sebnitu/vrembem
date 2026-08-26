@@ -8,19 +8,19 @@
   text-align: left;
 
   .pre {
-    padding-right: 4em;
+    padding-right: 4rem;
     border: tokens.get("border");
     background-color: tokens.get("background-alt");
   }
 
   &.has-icon .pre {
-    padding-left: 4em;
+    padding-left: 4rem;
   }
 
   @include core.media-max("xs") {
     .pre {
       margin: auto calc(tokens.get("main", "content-padding-x") * -1);
-      padding-right: calc(tokens.get("main", "content-padding-x") + 2.5em);
+      padding-right: calc(tokens.get("main", "content-padding-x") + 2.5rem);
       padding-left: tokens.get("main", "content-padding-x");
       border-right: none;
       border-left: none;
@@ -71,18 +71,18 @@
 
 .code-block--inline {
   .pre {
-    padding: 0.75em 3.5em 0.75em 1em;
+    padding: tokens.get("form-control-padding-y") 3.5rem tokens.get("form-control-padding-y") 1rem;
   }
 
   &.has-icon .pre {
-    padding-left: 3.5em;
+    padding-left: 3.5rem;
   }
 
   .code-block__icon,
   .code-block__copy-button {
     inset: 1px;
-    padding-right: 1em;
-    padding-left: 1em;
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 
   .code-block__icon {
