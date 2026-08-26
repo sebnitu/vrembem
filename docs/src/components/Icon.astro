@@ -4,7 +4,7 @@ import Svg from "@/components/Svg.astro";
 
 interface Props extends HTMLAttributes<"svg"> {
   name: string;
-  size?: string;
+  size?: string | number;
 }
 
 const { name, size, ...attrs } = Astro.props;
