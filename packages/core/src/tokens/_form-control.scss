@@ -7,7 +7,7 @@
     "form-control-size": tokens.get("font-size"),
     "form-control-size-sm": tokens.get("font-size-sm"),
     "form-control-size-lg": tokens.get("font-size-lg"),
-    "form-control-line-height": 1.5rem,
+    "form-control-line-height": tokens.get("line-height"),
     "form-control-border-width": tokens.get("border-width"),
     "form-control-border-radius": tokens.get("border-radius"),
     "form-control-accent": tokens.get("palette", "primary"),
@@ -23,19 +23,6 @@
   )
 );
 
-// Form-control padding
-@include tokens.set(
-  "core",
-  (
-    "form-control-padding-x": 1rem,
-    "form-control-padding-x-sm": 0.5rem,
-    "form-control-padding-x-lg": 1.5rem,
-    "form-control-padding-y": calc(0.5rem - tokens.get("form-control-border-width")),
-    "form-control-padding-y-sm": calc(0.25rem - tokens.get("form-control-border-width")),
-    "form-control-padding-y-lg": calc(0.75rem - tokens.get("form-control-border-width"))
-  )
-);
-
 // Form-control choice (checkbox, radio and switch) variables
 @include tokens.set(
   "core",
@@ -46,15 +33,28 @@
   )
 );
 
+// Form-control padding
+@include tokens.set(
+  "core",
+  (
+    "form-control-padding-y": calc((2.5rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-y-sm": calc((2rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-y-lg": calc((3rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-x": 1rem,
+    "form-control-padding-x-sm": 0.5rem,
+    "form-control-padding-x-lg": 1.5rem
+  )
+);
+
 // Form-control composition variables
 @include tokens.set(
   "core",
   (
-    "form-control-size-calc": calc(tokens.get("form-control-line-height") + ((tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
-    "form-control-size-calc-sm": calc(tokens.get("form-control-line-height") + ((tokens.get("form-control-padding-y-sm") + tokens.get("form-control-border-width")) * 2)),
-    "form-control-size-calc-lg": calc(tokens.get("form-control-line-height") + ((tokens.get("form-control-padding-y-lg") + tokens.get("form-control-border-width")) * 2)),
     "form-control-padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x"),
     "form-control-padding-sm": tokens.get("form-control-padding-y-sm") tokens.get("form-control-padding-x-sm"),
-    "form-control-padding-lg": tokens.get("form-control-padding-y-lg") tokens.get("form-control-padding-x-lg")
+    "form-control-padding-lg": tokens.get("form-control-padding-y-lg") tokens.get("form-control-padding-x-lg"),
+    "form-control-size-calc": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
+    "form-control-size-calc-sm": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y-sm") + tokens.get("form-control-border-width")) * 2)),
+    "form-control-size-calc-lg": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y-lg") + tokens.get("form-control-border-width")) * 2))
   )
 );
