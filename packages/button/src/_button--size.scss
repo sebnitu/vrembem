@@ -1,6 +1,4 @@
-@use "sass:meta";
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
 #{core.bem("button", null, "size", "sm")} {
