@@ -37,6 +37,8 @@
   }
 
   @include core.media-min("sm") {
+    @include core.form-control-size("button", "lg");
+
     gap: 1rem;
   }
 

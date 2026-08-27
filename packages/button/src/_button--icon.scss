@@ -3,12 +3,4 @@
 
 #{core.bem("button", null, "icon")} {
   padding: 0;
-
-  &:where(#{core.bem("button", null, "size", "sm")}) {
-    @include tokens.override("button", "size", tokens.get("form-control-size-sm"));
-  }
-
-  &:where(#{core.bem("button", null, "size", "lg")}) {
-    @include tokens.override("button", "size", tokens.get("form-control-size-lg"));
-  }
 }

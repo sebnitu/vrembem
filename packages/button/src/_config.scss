@@ -21,30 +21,6 @@ $default: (
     "secondary": tokens.get("palette", "secondary"),
     "neutral": tokens.get("palette", "neutral"),
     "important": tokens.get("palette", "important")
-  ),
-
-  // Map for outputting button--size-[key] modifier variants
-  // @type map
-  "button-size": (
-    "breakpoints": true,
-    "sm": (
-      "size": tokens.get("form-control-size-sm"),
-      "font-size": tokens.get("form-control-font-size-sm"),
-      "padding-y": tokens.get("form-control-padding-y-sm"),
-      "padding-x": tokens.get("form-control-padding-x-sm")
-    ),
-    "md": (
-      "size": tokens.get("form-control-size"),
-      "font-size": tokens.get("form-control-font-size"),
-      "padding-y": tokens.get("form-control-padding-y"),
-      "padding-x": tokens.get("form-control-padding-x")
-    ),
-    "lg": (
-      "size": tokens.get("form-control-size-lg"),
-      "font-size": tokens.get("form-control-font-size-lg"),
-      "padding-y": tokens.get("form-control-padding-y-lg"),
-      "padding-x": tokens.get("form-control-padding-x-lg")
-    )
   )
 );
 
