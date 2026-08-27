@@ -71,7 +71,12 @@
 
 .code-block--inline {
   .pre {
-    padding: tokens.get("form-control-padding-y") 3.5rem tokens.get("form-control-padding-y") 1rem;
+    padding-inline: 1rem 3.5rem;
+    padding-block: tokens.get("form-control-padding-y");
+
+    @include core.media-min("sm") {
+      padding-block: tokens.get("form-control-padding-y-lg");
+    }
   }
 
   &.has-icon .pre {
