@@ -9,7 +9,7 @@ $-button-size: config.get("button-size", "variants");
   #{core.bem("button", null, "size", $key)} {
     @if meta.type-of($value) != "map" {
       $value: (
-        "size": $value
+        "font-size": $value
       );
     }
 
@@ -23,7 +23,7 @@ $-button-size: config.get("button-size", "variants");
       #{core.bem("button", null, "size", $key, $bp)} {
         @if meta.type-of($value) != "map" {
           $value: (
-            "size": $value
+            "font-size": $value
           );
         }
 

@@ -10,7 +10,7 @@
 @mixin form-control-properties($component) {
   border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
   border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
-  font-size: tokens.get($component, "size", tokens.get("form-control-size"));
+  font-size: tokens.get($component, "font-size", tokens.get("form-control-font-size"));
   line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
   transition: tokens.get("form-control-transition-property") tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
 
@@ -40,16 +40,4 @@
       @include tokens.override($component, "color", tokens.get("palette", "important"));
     }
   }
-}
-
-/// Output the width and height with the form-control-size CSS variable value.
-///
-/// @param {string} $prefix (null)
-///   The prefix to apply to the width and height CSS property. Size prefixes
-///   include `"min"` and `"max"`.
-///
-@mixin form-control-size($prefix: null, $variant: null) {
-  $token: if(sass($variant): "form-control-size-calc-#{$variant}"; else: "form-control-size-calc");
-
-  @include mix.size(tokens.get($token), tokens.get($token), $prefix);
 }

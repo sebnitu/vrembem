@@ -39,7 +39,7 @@
 
   @include core.media-min("sm") {
     position: absolute;
-    top: calc(60% - calc(tokens.get("form-control-size-calc") / 2));
+    top: calc(60% - calc(tokens.get("form-control-size") / 2));
     right: calc(100% + 0.5rem);
     margin-left: 0;
   }

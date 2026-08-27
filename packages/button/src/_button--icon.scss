@@ -2,15 +2,13 @@
 @use "@vrembem/core/tokens";
 
 #{core.bem("button", null, "icon")} {
-  @include core.form-control-size("min");
-
   padding: 0;
 
   &:where(#{core.bem("button", null, "size", "sm")}) {
-    @include core.form-control-size("min", "sm");
+    @include tokens.override("button", "size", tokens.get("form-control-size-sm"));
   }
 
   &:where(#{core.bem("button", null, "size", "lg")}) {
-    @include core.form-control-size("min", "lg");
+    @include tokens.override("button", "size", tokens.get("form-control-size-lg"));
   }
 }

@@ -4,9 +4,12 @@
 @include tokens.set(
   "core",
   (
-    "form-control-size": tokens.get("font-size"),
-    "form-control-size-sm": tokens.get("font-size-sm"),
-    "form-control-size-lg": tokens.get("font-size-lg"),
+    "form-control-size": 2.5rem,
+    "form-control-size-sm": 2rem,
+    "form-control-size-lg": 3rem,
+    "form-control-font-size": tokens.get("font-size"),
+    "form-control-font-size-sm": tokens.get("font-size-sm"),
+    "form-control-font-size-lg": tokens.get("font-size-lg"),
     "form-control-line-height": tokens.get("line-height"),
     "form-control-border-width": tokens.get("border-width"),
     "form-control-border-radius": tokens.get("border-radius"),
@@ -45,16 +48,11 @@
     "form-control-padding-x-lg": 1.5rem
   )
 );
-
-// Form-control composition variables
 @include tokens.set(
   "core",
   (
     "form-control-padding": tokens.get("form-control-padding-y") tokens.get("form-control-padding-x"),
     "form-control-padding-sm": tokens.get("form-control-padding-y-sm") tokens.get("form-control-padding-x-sm"),
-    "form-control-padding-lg": tokens.get("form-control-padding-y-lg") tokens.get("form-control-padding-x-lg"),
-    "form-control-size-calc": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y") + tokens.get("form-control-border-width")) * 2)),
-    "form-control-size-calc-sm": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y-sm") + tokens.get("form-control-border-width")) * 2)),
-    "form-control-size-calc-lg": calc((tokens.get("form-control-line-height") * 1rem) + ((tokens.get("form-control-padding-y-lg") + tokens.get("form-control-border-width")) * 2))
+    "form-control-padding-lg": tokens.get("form-control-padding-y-lg") tokens.get("form-control-padding-x-lg")
   )
 );

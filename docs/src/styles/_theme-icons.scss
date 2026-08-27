@@ -1,7 +1,8 @@
-@use "@vrembem/core";
+@use "@vrembem/core/tokens";
 
 .form-control-size {
-  @include core.form-control-size("min");
+  min-width: tokens.get("form-control-size");
+  min-height: tokens.get("form-control-size");
 }
 
 .theme-icon {
