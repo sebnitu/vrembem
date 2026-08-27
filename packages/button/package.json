@@ -1,6 +1,6 @@
 {
   "name": "@vrembem/button",
-  "description": "A simple component that allow users to trigger an action.",
+  "description": "A simple component that allows users to trigger an action.",
   "version": "4.0.0",
   "license": "MIT",
   "keywords": [

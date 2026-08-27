@@ -1,13 +1,11 @@
 ---
 title: Button
-description: "A simple component that allow users to trigger an action."
+description: "A simple component that allows users to trigger an action."
 package: "@vrembem/button"
 category: Components
 icon: plus-square
 ---
 
-import ReferenceBar from "@/components/ReferenceBar.astro";
-import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
 
@@ -40,6 +38,10 @@ Button comes with the following Sass configuration options that can be set using
     // Map for outputting button--color-[key] modifier variants
     // @type map
     "button-color": (
+      "default": (
+        "color-contrast": white,
+        "color-mix": black
+      ),
       "primary": tokens.get("palette", "primary"),
       "secondary": tokens.get("palette", "secondary"),
       "neutral": tokens.get("palette", "neutral"),
@@ -50,9 +52,21 @@ Button comes with the following Sass configuration options that can be set using
     // @type map
     "button-size": (
       "breakpoints": true,
-      "sm": tokens.get("form-control-size-sm"),
-      "md": tokens.get("form-control-size"),
-      "lg": tokens.get("form-control-size-lg")
+      "sm": (
+        "size": tokens.get("form-control-size-sm"),
+        "padding-y": tokens.get("form-control-padding-y-sm"),
+        "padding-x": tokens.get("form-control-padding-x-sm")
+      ),
+      "md": (
+        "size": tokens.get("form-control-size"),
+        "padding-y": tokens.get("form-control-padding-y"),
+        "padding-x": tokens.get("form-control-padding-x")
+      ),
+      "lg": (
+        "size": tokens.get("form-control-size-lg"),
+        "padding-y": tokens.get("form-control-padding-y-lg"),
+        "padding-x": tokens.get("form-control-padding-x-lg")
+      )
     )
   )
 );
@@ -64,38 +78,47 @@ Button comes with the following Sass configuration options that can be set using
 Button uses design token CSS variables in a reference and fallback pattern. Variables are referenced in the component's styles but are not directly defined; instead, they are provided with sensible fallbacks.
 
 <ReferenceTable id="tokens-button" valueLabel="Fallback" expandable={true} data={{
+  // Scoped color tokens
+  "--vb-button-color": "var(--vb-foreground-strong)",
+  "--vb-button-color-contrast": "var(--vb-background)",
+  "--vb-button-color-mix": "transparent",
+
   // Form control fallbacks
-  "--vb-button-accent": "var(--vb-form-control-accent)",
+  "--vb-button-border-width": "var(--vb-form-control-border-width)",
+  "--vb-button-border-radius": "var(--vb-form-control-border-radius)",
   "--vb-button-size": "var(--vb-form-control-size)",
   "--vb-button-line-height": "var(--vb-form-control-line-height)",
-  "--vb-button-padding": "var(--vb-form-control-padding)",
-  "--vb-button-border-radius": "var(--vb-form-control-border-radius)",
-  "--vb-button-border-width": "var(--vb-form-control-border-width)",
+  "--vb-button-padding-y": "var(--vb-form-control-padding-y)",
+  "--vb-button-padding-x": "var(--vb-form-control-padding-x)",
 
   // Button specific
   "--vb-button-gap": "var(--vb-spacing-sm)",
 
-  // Theme styles
-  "--vb-button-background": "transparent",
-  "--vb-button-foreground": "var(--vb-foreground-strong)",
+  // Base styles
+  "--vb-button-background": "var(--vb-button-color)",
+  "--vb-button-foreground": "var(--vb-button-color-contrast)",
   "--vb-button-border-color": "transparent",
   "--vb-button-box-shadow": "none",
 
-  // Theme state styles
-  "--vb-button-background-hover": "var(--vb-button-background)",
+  // Hover state
+  "--vb-button-background-hover": "color-mix(in oklch, var(--vb-button-color), var(--vb-button-color-mix) 8%)",
   "--vb-button-foreground-hover": "var(--vb-button-foreground)",
   "--vb-button-border-color-hover": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow)",
 
+  // Focus state
   "--vb-button-background-focus": "var(--vb-button-background)",
   "--vb-button-foreground-focus": "var(--vb-button-foreground)",
+  "--vb-button-border-color-focus": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow)",
 
-  "--vb-button-background-active": "var(--vb-button-background)",
+  // Active state
+  "--vb-button-background-active": "color-mix(in oklch, var(--vb-button-color), var(--vb-button-color-mix) 16%)",
   "--vb-button-foreground-active": "var(--vb-button-foreground)",
   "--vb-button-border-color-active": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-active": "var(--vb-button-box-shadow)",
 
+  // Disabled state
   "--vb-button-opacity-disabled": "var(--vb-form-control-opacity-disabled)",
 }} />
 
@@ -145,7 +168,13 @@ When disabled using the `disabled` attribute, a button will inherit styles to vi
 
 <CodeExample>
   <Fragment slot="output">
-    <button class="button" disabled>Button</button>
+    <div class="flex">
+      <button class="button" disabled>Button</button>
+      <button class="button button--color-primary" disabled>Button</button>
+      <button class="button button--color-secondary" disabled>Button</button>
+      <button class="button button--color-neutral" disabled>Button</button>
+      <button class="button button--color-important" disabled>Button</button>
+    </div>
   </Fragment>
   ```html
   <button class="button" disabled>Button</button>
@@ -166,6 +195,174 @@ Buttons can also be given a loading state by adding the `is-loading` state class
 </CodeExample>
 
 Keep in mind that the `is-loading` state class will not work on `<input type="button">` since it uses the `::after` pseudo-element to display the loading spinner.
+
+## button--color-[key]
+
+Modifiers for changing the look and feel of a button. These are usually done with different background and text colors. These modifiers are generated using key/value pairs of the `button-color` config options map.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <div class="flex">
+      <button class="button button--color-primary">Button</button>
+      <button class="button button--color-secondary">Button</button>
+      <button class="button button--color-neutral">Button</button>
+      <button class="button button--color-important">Button</button>
+    </div>
+    <div class="flex">
+      <button class="button button--color-primary is-loading">Button</button>
+      <button class="button button--color-secondary is-loading">Button</button>
+      <button class="button button--color-neutral is-loading">Button</button>
+      <button class="button button--color-important is-loading">Button</button>
+    </div>
+  </div>
+  ```html
+  <button class="button button--color-primary">Button</button>
+  <button class="button button--color-secondary">Button</button>
+  <button class="button button--color-neutral">Button</button>
+  <button class="button button--color-important">Button</button>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `button--color-primary`
+- `button--color-secondary`
+- `button--color-neutral`
+- `button--color-important`
+
+## button--variant-[key]
+
+Variant modifiers change the visual style of a button without affecting its color. They can be composed with color modifiers.
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <div class="flex">
+      <button class="button button--variant-outline">Button</button>
+      <button class="button button--variant-outline button--color-primary">Primary</button>
+      <button class="button button--variant-outline button--color-secondary">Secondary</button>
+      <button class="button button--variant-outline button--color-neutral">Neutral</button>
+      <button class="button button--variant-outline button--color-important">Important</button>
+    </div>
+    <div class="flex">
+      <button class="button button--variant-subtle">Button</button>
+      <button class="button button--variant-subtle button--color-primary">Primary</button>
+      <button class="button button--variant-subtle button--color-secondary">Secondary</button>
+      <button class="button button--variant-subtle button--color-neutral">Neutral</button>
+      <button class="button button--variant-subtle button--color-important">Important</button>
+    </div>
+  </div>
+  ```html
+  <button class="button button--variant-outline">Button</button>
+  <button class="button button--variant-subtle">Button</button>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `button--variant-outline`
+- `button--variant-subtle`
+
+## button--icon
+
+Adds styles that make icon-only buttons have equal padding. This will result in a square button if the icon used also has an equal width and height.
+
+<CodeExample>
+  <div slot="output" class="flex">
+    <button class="button button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-primary button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-secondary button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-neutral button--icon">
+      <Icon name="heart" />
+    </button>
+    <button class="button button--color-important button--icon">
+      <Icon name="heart" />
+    </button>
+  </div>
+  ```html
+  <button class="button button--icon">
+    <svg>...</svg>
+  </button>
+  ```
+</CodeExample>
+
+Icon modifiers can also be combined with size modifiers for further composability.
+
+<CodeExample>
+  <div slot="output" class="flex align-items-center">
+    <button class="button button--icon button--size-sm">
+      <Icon name="coffee" size="sm" />
+    </button>
+    <button class="button button--icon button--size-md">
+      <Icon name="coffee" />
+    </button>
+    <button class="button button--icon button--size-lg">
+      <Icon name="coffee" size="lg" />
+    </button>
+  </div>
+  ```html
+  <button class="button button--icon button--size-sm">...</button>
+  <button class="button button--icon button--size-md">...</button>
+  <button class="button button--icon button--size-lg">...</button>
+  ```
+</CodeExample>
+
+## button--size-[key]
+
+Adjust the size of a button by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `button-size` config options map.
+
+<CodeExample>
+  <div slot="output" class="flex align-items-center">
+    <button class="button button--size-sm">Button</button>
+    <button class="button button--size-md">Button</button>
+    <button class="button button--size-lg">Button</button>
+  </div>
+  ```html
+  <button class="button button--size-sm">Button</button>
+  <button class="button button--size-md">Button</button>
+  <button class="button button--size-lg">Button</button>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `button--size-sm`
+- `button--size-md`
+- `button--size-lg`
+
+### Breakpoint variants
+
+These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `button-size` config options map (default: `true`).
+
+<CodeExample>
+  <div slot="output" class="spacing">
+    <p>Current view-port width: <code data-vp-width>...</code></p>
+    <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
+      <span>Button</span>
+      <span class="lg:display-none">sm</span>
+      <span class="display-none lg:display-block xl:display-none">md</span>
+      <span class="display-none xl:display-block">lg</span>
+    </button>
+  </div>
+  ```html
+  <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
+    Button
+  </button>
+  ```
+</CodeExample>
+
+**Available variants**
+
+- `xs:button--size-[key]`
+- `sm:button--size-[key]`
+- `md:button--size-[key]`
+- `lg:button--size-[key]`
+- `xl:button--size-[key]`
 
 ## button--block
 
@@ -211,107 +408,3 @@ These modifiers come with media breakpoint variants. This allows changing styles
 - `md:button--block`
 - `lg:button--block`
 - `xl:button--block`
-
-## button--color-[key]
-
-Modifiers for changing the look and feel of a button. These are usually done with different background and text colors. These modifiers are generated using key/value pairs of the `button-color` config options map. The values set in `button-color` are passed directly to the [`button-variant`](#button-variant) mixin.
-
-<CodeExample>
-  <div slot="output" class="flex">
-    <button class="button button--color-primary">Button</button>
-    <button class="button button--color-secondary">Button</button>
-    <button class="button button--color-neutral">Button</button>
-    <button class="button button--color-important">Button</button>
-  </div>
-  ```html
-  <button class="button button--color-primary">Button</button>
-  <button class="button button--color-secondary">Button</button>
-  <button class="button button--color-neutral">Button</button>
-  <button class="button button--color-important">Button</button>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `button--color-primary`
-- `button--color-secondary`
-- `button--color-neutral`
-- `button--color-important`
-
-## button--icon
-
-Adds styles that make icon-only buttons have equal padding. This will result in a square button if the icon used also has an equal width and height.
-
-<CodeExample>
-  <div slot="output" class="flex">
-    <button class="button button--icon">
-      <Icon name="heart" />
-    </button>
-    <button class="button button--color-primary button--icon">
-      <Icon name="heart" />
-    </button>
-    <button class="button button--color-secondary button--icon">
-      <Icon name="heart" />
-    </button>
-    <button class="button button--color-neutral button--icon">
-      <Icon name="heart" />
-    </button>
-  </div>
-  ```html
-  <button class="button button--icon">
-    <svg>...</svg>
-  </button>
-  ```
-</CodeExample>
-
-## button--size-[key]
-
-Adjust the size of a button by increasing or decreasing its padding and font-size. These modifiers are generated using key/value pairs of the `button-size` config options map.
-
-<CodeExample>
-  <div slot="output" class="flex align-items-center">
-    <button class="button button--size-sm">Button</button>
-    <button class="button button--size-md">Button</button>
-    <button class="button button--size-lg">Button</button>
-  </div>
-  ```html
-  <button class="button button--size-sm">Button</button>
-  <button class="button button--size-md">Button</button>
-  <button class="button button--size-lg">Button</button>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `button--size-sm`
-- `button--size-md`
-- `button--size-lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `button-size` config options map (default: `true`).
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
-      <span>Button</span>
-      <span class="badge lg:display-none">size_sm</span>
-      <span class="badge display-none lg:display-block xl:display-none">size_md</span>
-      <span class="badge display-none xl:display-block">size_lg</span>
-    </button>
-  </div>
-  ```html
-  <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
-    Button
-  </button>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:button--size-[key]`
-- `sm:button--size-[key]`
-- `md:button--size-[key]`
-- `lg:button--size-[key]`
-- `xl:button--size-[key]`
