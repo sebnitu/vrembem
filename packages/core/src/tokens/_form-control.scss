@@ -40,9 +40,9 @@
 @include tokens.set(
   "core",
   (
-    "form-control-padding-y": calc((2.5rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
-    "form-control-padding-y-sm": calc((2rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
-    "form-control-padding-y-lg": calc((3rem - 1em * 1.5 - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-y": calc((tokens.get("form-control-size") - 1em * tokens.get("form-control-line-height") - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-y-sm": calc((tokens.get("form-control-size-sm") - 1em * tokens.get("form-control-line-height") - tokens.get("form-control-border-width") * 2) / 2),
+    "form-control-padding-y-lg": calc((tokens.get("form-control-size-lg") - 1em * tokens.get("form-control-line-height") - tokens.get("form-control-border-width") * 2) / 2),
     "form-control-padding-x": 1rem,
     "form-control-padding-x-sm": 0.5rem,
     "form-control-padding-x-lg": 1.5rem
