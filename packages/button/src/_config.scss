@@ -27,9 +27,21 @@ $default: (
   // @type map
   "button-size": (
     "breakpoints": true,
-    "sm": tokens.get("form-control-size-sm"),
-    "md": tokens.get("form-control-size"),
-    "lg": tokens.get("form-control-size-lg")
+    "sm": (
+      "size": tokens.get("form-control-size-sm"),
+      "padding-y": tokens.get("form-control-padding-y-sm"),
+      "padding-x": tokens.get("form-control-padding-x-sm")
+    ),
+    "md": (
+      "size": tokens.get("form-control-size"),
+      "padding-y": tokens.get("form-control-padding-y"),
+      "padding-x": tokens.get("form-control-padding-x")
+    ),
+    "lg": (
+      "size": tokens.get("form-control-size-lg"),
+      "padding-y": tokens.get("form-control-padding-y-lg"),
+      "padding-x": tokens.get("form-control-padding-x-lg")
+    )
   )
 );
 

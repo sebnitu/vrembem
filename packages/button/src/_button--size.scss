@@ -1,3 +1,4 @@
+@use "sass:meta";
 @use "@vrembem/core";
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
@@ -6,7 +7,8 @@ $-button-size: config.get("button-size", "variants");
 
 @each $key, $value in $-button-size {
   #{core.bem("button", null, "size", $key)} {
-    @include tokens.override("button", "size", $value);
+    @if (meta.type-of($value) != "map") { $value: ("size": $value); }
+    @include tokens.override("button", $value);
   }
 }
 
@@ -14,7 +16,8 @@ $-button-size: config.get("button-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-button-size {
       #{core.bem("button", null, "size", $key, $bp)} {
-        @include tokens.override("button", "size", $value);
+        @if (meta.type-of($value) != "map") { $value: ("size": $value); }
+        @include tokens.override("button", $value);
       }
     }
   }
