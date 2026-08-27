@@ -7,7 +7,12 @@ $-button-size: config.get("button-size", "variants");
 
 @each $key, $value in $-button-size {
   #{core.bem("button", null, "size", $key)} {
-    @if (meta.type-of($value) != "map") { $value: ("size": $value); }
+    @if meta.type-of($value) != "map" {
+      $value: (
+        "size": $value
+      );
+    }
+
     @include tokens.override("button", $value);
   }
 }
@@ -16,7 +21,12 @@ $-button-size: config.get("button-size", "variants");
   @include core.media-min($value) {
     @each $key, $value in $-button-size {
       #{core.bem("button", null, "size", $key, $bp)} {
-        @if (meta.type-of($value) != "map") { $value: ("size": $value); }
+        @if meta.type-of($value) != "map" {
+          $value: (
+            "size": $value
+          );
+        }
+
         @include tokens.override("button", $value);
       }
     }

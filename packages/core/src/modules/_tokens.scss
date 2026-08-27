@@ -539,7 +539,7 @@ $-events: ();
 }
 
 /// Mixin to store and output custom properties scoped to the current selector.
-/// Properties set using this mixin are excluded from the global `output()` 
+/// Properties set using this mixin are excluded from the global `output()`
 /// mixin, making them component-scoped rather than output in `:root`.
 ///
 /// @param {string} $component

@@ -50,5 +50,6 @@
 ///
 @mixin form-control-size($prefix: null, $variant: null) {
   $token: if(sass($variant): "form-control-size-calc-#{$variant}"; else: "form-control-size-calc");
+
   @include mix.size(tokens.get($token), tokens.get($token), $prefix);
 }

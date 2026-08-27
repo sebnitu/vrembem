@@ -3,11 +3,14 @@
 @use "./mixins" as mix;
 
 #{core.bem("button")} {
-  @include tokens.set-scoped("button", (
-    "color": tokens.get("foreground-strong"),
-    "color-contrast": tokens.get("background"),
-    "color-mix": transparent,
-  ));
+  @include tokens.set-scoped(
+    "button",
+    (
+      "color": tokens.get("foreground-strong"),
+      "color-contrast": tokens.get("background"),
+      "color-mix": transparent
+    )
+  );
   @include mix.base;
 
   border-color: tokens.get("button", "border-color", transparent);

@@ -26,8 +26,9 @@ a#{core.bem("card")} {
 
   &:hover,
   &:focus-within {
-    transform: translate(0, tokens.get("card", "link-offset", -0.25em));
     @include tokens.override("card", "box-shadow", tokens.get("box-shadow-lg"));
+    
+    transform: translate(0, tokens.get("card", "link-offset", -0.25em));
   }
 }
 
