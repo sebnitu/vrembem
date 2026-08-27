@@ -26,7 +26,7 @@
 // Form-control padding
 @include tokens.set("core", (
   "form-control-padding-x": 1rem,
-  "form-control-padding-x-sm": 0.75rem,
+  "form-control-padding-x-sm": 0.5rem,
   "form-control-padding-x-lg": 1.5rem,
   "form-control-padding-y": calc(0.5rem - tokens.get("form-control-border-width")),
   "form-control-padding-y-sm": calc(0.25rem - tokens.get("form-control-border-width")),
