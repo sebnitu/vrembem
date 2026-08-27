@@ -46,27 +46,6 @@ Button comes with the following Sass configuration options that can be set using
       "secondary": tokens.get("palette", "secondary"),
       "neutral": tokens.get("palette", "neutral"),
       "important": tokens.get("palette", "important")
-    ),
-
-    // Map for outputting button--size-[key] modifier variants
-    // @type map
-    "button-size": (
-      "breakpoints": true,
-      "sm": (
-        "size": tokens.get("form-control-size-sm"),
-        "padding-y": tokens.get("form-control-padding-y-sm"),
-        "padding-x": tokens.get("form-control-padding-x-sm")
-      ),
-      "md": (
-        "size": tokens.get("form-control-size"),
-        "padding-y": tokens.get("form-control-padding-y"),
-        "padding-x": tokens.get("form-control-padding-x")
-      ),
-      "lg": (
-        "size": tokens.get("form-control-size-lg"),
-        "padding-y": tokens.get("form-control-padding-y-lg"),
-        "padding-x": tokens.get("form-control-padding-x-lg")
-      )
     )
   )
 );
@@ -298,7 +277,7 @@ Icon modifiers can also be combined with size modifiers for further composabilit
     <button class="button button--icon button--size-sm">
       <Icon name="coffee" size="sm" />
     </button>
-    <button class="button button--icon button--size-md">
+    <button class="button button--icon">
       <Icon name="coffee" />
     </button>
     <button class="button button--icon button--size-lg">
@@ -307,7 +286,7 @@ Icon modifiers can also be combined with size modifiers for further composabilit
   </div>
   ```html
   <button class="button button--icon button--size-sm">...</button>
-  <button class="button button--icon button--size-md">...</button>
+  <button class="button button--icon">...</button>
   <button class="button button--icon button--size-lg">...</button>
   ```
 </CodeExample>
@@ -319,12 +298,12 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 <CodeExample>
   <div slot="output" class="flex align-items-center">
     <button class="button button--size-sm">Button</button>
-    <button class="button button--size-md">Button</button>
+    <button class="button">Button</button>
     <button class="button button--size-lg">Button</button>
   </div>
   ```html
   <button class="button button--size-sm">Button</button>
-  <button class="button button--size-md">Button</button>
+  <button class="button">Button</button>
   <button class="button button--size-lg">Button</button>
   ```
 </CodeExample>
@@ -332,37 +311,7 @@ Adjust the size of a button by increasing or decreasing its padding and font-siz
 **Available variants**
 
 - `button--size-sm`
-- `button--size-md`
 - `button--size-lg`
-
-### Breakpoint variants
-
-These modifiers come with media breakpoint variants. This allows changing styles based on a specific breakpoint key in the [`breakpoints`](/packages/core#options) config options map. Breakpoint variants output can be toggled using the `breakpoints` key in the `button-size` config options map (default: `true`).
-
-<CodeExample>
-  <div slot="output" class="spacing">
-    <p>Current view-port width: <code data-vp-width>...</code></p>
-    <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
-      <span>Button</span>
-      <span class="lg:display-none">sm</span>
-      <span class="display-none lg:display-block xl:display-none">md</span>
-      <span class="display-none xl:display-block">lg</span>
-    </button>
-  </div>
-  ```html
-  <button class="button button--size-sm lg:button--size-md xl:button--size-lg">
-    Button
-  </button>
-  ```
-</CodeExample>
-
-**Available variants**
-
-- `xs:button--size-[key]`
-- `sm:button--size-[key]`
-- `md:button--size-[key]`
-- `lg:button--size-[key]`
-- `xl:button--size-[key]`
 
 ## button--block
 

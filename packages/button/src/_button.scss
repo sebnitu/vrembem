@@ -12,7 +12,6 @@
     )
   );
   @include mix.base;
-  @include core.size(tokens.get("button", "size", tokens.get("form-control-size")), $prefix: "min");
 
   border-color: tokens.get("button", "border-color", transparent);
   color: tokens.get("button", "foreground", tokens.get("button", "color-contrast"));

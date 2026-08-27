@@ -1,10 +1,5 @@
 @use "@vrembem/core/tokens";
 
-.form-control-size {
-  min-width: tokens.get("form-control-size");
-  min-height: tokens.get("form-control-size");
-}
-
 .theme-icon {
   position: absolute;
   transform: translateY(calc(100% + 0.5rem));
