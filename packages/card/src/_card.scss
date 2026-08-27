@@ -4,8 +4,6 @@
 $-transition-property: background-color, border-color, box-shadow, transform;
 
 #{core.bem("card")} {
-  @include core.focus-ring-base;
-
   position: relative;
   overflow: hidden;
   display: flex;
@@ -19,11 +17,6 @@ $-transition-property: background-color, border-color, box-shadow, transform;
   transition-timing-function: tokens.get("card", "transition-timing-function", tokens.get("transition-timing-function"));
   transition-duration: tokens.get("card", "transition-duration", tokens.get("transition-duration"));
   transition-property: tokens.get("card", "transition-property", $-transition-property);
-
-  &:focus-visible {
-    @include core.focus-ring-color(tokens.get("focus-ring-color"));
-    @include tokens.override("card", "box-shadow", 0 0 0 1px tokens.get("focus-ring-color"));
-  }
 }
 
 a#{core.bem("card")} {
@@ -33,16 +26,9 @@ a#{core.bem("card")} {
 
   &:hover,
   &:focus-within {
-    transform: translate(0, tokens.get("card", "link-offset", -0.25em));
-  }
-
-  &:hover {
     @include tokens.override("card", "box-shadow", tokens.get("box-shadow-lg"));
-  }
 
-  &:focus-within {
-    @include core.focus-ring-color(tokens.get("focus-ring-color"));
-    @include tokens.override("card", "box-shadow", 0 0 0 1px tokens.get("focus-ring-color"));
+    transform: translate(0, tokens.get("card", "link-offset", -0.25em));
   }
 }
 

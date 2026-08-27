@@ -3,33 +3,41 @@
 @use "./mixins" as mix;
 
 #{core.bem("button")} {
+  @include tokens.set-scoped(
+    "button",
+    (
+      "color": tokens.get("foreground-strong"),
+      "color-contrast": tokens.get("background"),
+      "color-mix": transparent
+    )
+  );
   @include mix.base;
 
   border-color: tokens.get("button", "border-color", transparent);
-  color: tokens.get("button", "foreground", tokens.get("foreground-strong"));
-  background-color: tokens.get("button", "background", transparent);
+  color: tokens.get("button", "foreground", tokens.get("button", "color-contrast"));
+  background-color: tokens.get("button", "background", tokens.get("button", "color"));
   box-shadow: tokens.get("button", "box-shadow", none);
 
   &:hover {
     border-color: tokens.get("button", "border-color-hover", "border-color", transparent);
-    color: tokens.get("button", "foreground-hover", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
+    color: tokens.get("button", "foreground-hover", "foreground", tokens.get("button", "color-contrast"));
+    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, tokens.get("button", "color"), tokens.get("button", "color-mix") 8%));
     box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", none);
   }
 
   &:focus-visible {
-    @include core.focus-ring-color(tokens.get("button", "accent", tokens.get("form-control-accent")));
+    @include core.focus-ring-color(tokens.get("button", "color"));
 
-    border-color: tokens.get("button", "accent", tokens.get("form-control-accent"));
-    color: tokens.get("button", "foreground-focus", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-focus", "background", transparent);
+    border-color: tokens.get("button", "border-color-focus", "border-color", tokens.get("button", "color"));
+    color: tokens.get("button", "foreground-focus", "foreground", tokens.get("button", "color-contrast"));
+    background-color: tokens.get("button", "background-focus", "background", tokens.get("button", "color"));
     box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {
     border-color: tokens.get("button", "border-color-active", "border-color", transparent);
-    color: tokens.get("button", "foreground-active", "foreground", tokens.get("foreground-strong"));
-    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
+    color: tokens.get("button", "foreground-active", "foreground", tokens.get("button", "color-contrast"));
+    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, tokens.get("button", "color"), tokens.get("button", "color-mix") 16%));
     box-shadow: tokens.get("button", "box-shadow-active", "box-shadow", none);
   }
 
@@ -45,7 +53,7 @@
     &::after {
       content: "";
 
-      @include tokens.override("loading", "color", tokens.get("button", "foreground", tokens.get("foreground-strong")));
+      @include tokens.override("loading", "color", tokens.get("button", "foreground", tokens.get("button", "color-contrast", tokens.get("foreground-strong"))));
       @include core.loading-spinner;
     }
   }

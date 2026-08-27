@@ -5,26 +5,26 @@
 /// variable and the form-control CSS variable as the fallback.
 ///
 /// @param {string} $component
-///   The component value to prefix CSS variable references.
+///   The component value to prefix CSS variable references
 ///
 @mixin form-control-properties($component) {
   border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
   border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
-  font-size: tokens.get($component, "size", tokens.get("form-control-size"));
+  font-size: tokens.get($component, "font-size", tokens.get("form-control-font-size"));
   line-height: tokens.get($component, "line-height", tokens.get("form-control-line-height"));
   transition: tokens.get("form-control-transition-property") tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
 
   @if $component == "input" {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
   } @else {
-    padding: tokens.get($component, "padding", tokens.get("form-control-padding"));
+    padding: tokens.get($component, "padding-y", tokens.get("form-control-padding-y")) tokens.get($component, "padding-x", tokens.get("form-control-padding-x"));
   }
 }
 
 /// Applies token overrides for the invalid state of form-control components.
 ///
 /// @param {string} $component
-///   The component value to add invalid styles for.
+///   The component value to add invalid styles for
 ///
 @mixin form-control-invalid($component) {
   &:user-invalid,
@@ -42,12 +42,23 @@
   }
 }
 
-/// Output the width and height with the form-control-size CSS variable value.
+/// Applies token overrides for form-control size token variants
 ///
-/// @param {string} $prefix (null)
-///   The prefix to apply to the width and height CSS property. Size prefixes
-///   include `"min"` and `"max"`.
+/// @param {string} $component
+///   The component value to scope tokens overrides for
+/// @param {string} $variant
+///   The variant of size tokens to apply (e.g: "sm", "lg")
 ///
-@mixin form-control-size($prefix: null) {
-  @include mix.size(tokens.get("form-control-size-calc"), tokens.get("form-control-size-calc"), $prefix);
+@mixin form-control-size($component, $variant: null) {
+  $suffix: if(sass($variant): "-#{$variant}"; else: "");
+
+  @include tokens.override(
+    $component,
+    (
+      "size": tokens.get("form-control-size#{$suffix}"),
+      "font-size": tokens.get("form-control-font-size#{$suffix}"),
+      "padding-y": tokens.get("form-control-padding-y#{$suffix}"),
+      "padding-x": tokens.get("form-control-padding-x#{$suffix}")
+    )
+  );
 }

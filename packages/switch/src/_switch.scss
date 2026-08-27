@@ -14,7 +14,7 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
   display: inline-block;
   border: tokens.get("switch", "border-width", 2px) solid $-color;
   border-radius: tokens.get("switch", "border-radius", tokens.get("border-radius-circle"));
-  font-size: tokens.get("switch", "size", tokens.get("form-control-size"));
+  font-size: tokens.get("switch", "font-size", tokens.get("form-control-font-size"));
   vertical-align: middle;
   appearance: none;
   background-color: oklch(from $-color l c h / 10%);

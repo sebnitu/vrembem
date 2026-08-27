@@ -15,6 +15,11 @@
 /// @access private
 $-tokens: ();
 
+/// Tracks properties that are component scoped and should not be output in :root
+/// @type map
+/// @access private
+$-scoped: ();
+
 /// Stores getter and setter hooks.
 /// @type map
 /// @access private
@@ -533,6 +538,32 @@ $-events: ();
   }
 }
 
+/// Mixin to store and output custom properties scoped to the current selector.
+/// Properties set using this mixin are excluded from the global `output()`
+/// mixin, making them component-scoped rather than output in `:root`.
+///
+/// @param {string} $component
+///   The component name to store the custom property under.
+/// @param {string|map} $prop
+///   The custom property name to store. Can be a map containing property and
+///   value pairs.
+/// @param {any} $value (null)
+///   The custom property value to store.
+///
+@mixin set-scoped($component, $prop, $value: null) {
+  @include set($component, $prop, $value);
+  @include override($component, $prop, $value);
+
+  // Mark these properties as local-only
+  @if meta.type-of($prop) == "map" {
+    @each $key, $val in $prop {
+      $-scoped: map.set($-scoped, $component, $key, true) !global;
+    }
+  } @else {
+    $-scoped: map.set($-scoped, $component, $prop, true) !global;
+  }
+}
+
 /// Mixin to remove items from the custom properties map.
 ///
 /// @param {string} $keys...
@@ -631,7 +662,9 @@ $-events: ();
 
     // Loop through the property map
     @each $prop, $value in $property-map {
-      @include define($component, $prop, $value);
+      @if not map.has-key($-scoped, $component, $prop) {
+        @include define($component, $prop, $value);
+      }
     }
   }
 }

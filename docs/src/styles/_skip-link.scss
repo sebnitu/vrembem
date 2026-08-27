@@ -12,7 +12,7 @@
   transition-property: top, opacity;
 
   &:focus {
-    top: calc(calc(tokens.get("layout", "header-height") - tokens.get("form-control-size-calc")) / 2);
+    top: calc(calc(tokens.get("layout", "header-height") - tokens.get("form-control-size")) / 2);
     opacity: 1;
   }
 }

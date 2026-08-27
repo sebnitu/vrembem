@@ -1,13 +1,7 @@
-@use "@vrembem/core";
-
-.form-control-size {
-  @include core.form-control-size("min");
-}
+@use "@vrembem/core/tokens";
 
 .theme-icon {
   position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
   transform: translateY(calc(100% + 0.5rem));
   opacity: 0;
   transition-timing-function: ease;

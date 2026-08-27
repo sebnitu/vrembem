@@ -14,7 +14,7 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
   display: inline-block;
   border: tokens.get("radio", "border-width", 2px) solid $-color;
   border-radius: 50%;
-  font-size: tokens.get("radio", "size", tokens.get("form-control-size"));
+  font-size: tokens.get("radio", "font-size", tokens.get("form-control-font-size"));
   vertical-align: middle;
   appearance: none;
   background-color: $-fill;

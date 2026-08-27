@@ -1,21 +1,10 @@
 @use "@vrembem/core";
-@use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
-$-button-size: config.get("button-size", "variants");
-
-@each $key, $value in $-button-size {
-  #{core.bem("button", null, "size", $key)} {
-    @include tokens.override("button", "size", $value);
-  }
+#{core.bem("button", null, "size", "sm")} {
+  @include core.form-control-size("button", "sm");
 }
 
-@each $bp, $value in config.get("button-size", "breakpoints") {
-  @include core.media-min($value) {
-    @each $key, $value in $-button-size {
-      #{core.bem("button", null, "size", $key, $bp)} {
-        @include tokens.override("button", "size", $value);
-      }
-    }
-  }
+#{core.bem("button", null, "size", "lg")} {
+  @include core.form-control-size("button", "lg");
 }

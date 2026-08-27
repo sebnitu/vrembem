@@ -333,6 +333,46 @@ Mixin to store custom properties for later definition and reference. Can also up
 ```
 </CodeExample>
 
+### set-scoped
+
+<ReferenceBar type="mixin" />
+
+Mixin to store and output custom properties scoped to the current selector. Properties set using this mixin are excluded from the global `output()` mixin, making them component-scoped rather than output in `:root`.
+
+#### Arguments
+
+<ReferenceCard name="$component" type="string">
+  The component name to store the custom property under.
+</ReferenceCard>
+
+<ReferenceCard name="$prop" type="string | map">
+  The custom property name to store. Can be a map containing property and value pairs.
+</ReferenceCard>
+
+<ReferenceCard name="$value" type="any">
+  The custom property value to store.
+</ReferenceCard>
+
+#### Example
+
+<CodeExample lang="scss">
+```scss
+// Set component scoped token
+.button {
+  @include tokens.set-scoped("button", (
+    "color": #000,
+    "contrast-color": #fff,
+  ));
+}
+
+// CSS Output
+.button {
+  --vb-button-color: #000;
+  --vb-button-contrast-color: #fff;
+}
+```
+</CodeExample>
+
 ### get
 
 <ReferenceBar type="function" />

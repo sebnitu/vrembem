@@ -13,19 +13,14 @@ $default: (
   // Map for outputting button--color-[key] modifier variants
   // @type map
   "button-color": (
+    "default": (
+      "color-contrast": white,
+      "color-mix": black
+    ),
     "primary": tokens.get("palette", "primary"),
     "secondary": tokens.get("palette", "secondary"),
     "neutral": tokens.get("palette", "neutral"),
     "important": tokens.get("palette", "important")
-  ),
-
-  // Map for outputting button--size-[key] modifier variants
-  // @type map
-  "button-size": (
-    "breakpoints": true,
-    "sm": tokens.get("form-control-size-sm"),
-    "md": tokens.get("form-control-size"),
-    "lg": tokens.get("form-control-size-lg")
   )
 );
 

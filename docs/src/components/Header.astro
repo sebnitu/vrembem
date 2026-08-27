@@ -32,7 +32,7 @@ const classes = ["header", classString].filter(Boolean).join(" ");
         type="button"
         command="show-modal"
         commandfor="modal-navi"
-        class="button button--icon display-block md:display-none"
+        class="button button--icon button--variant-subtle display-flex md:display-none"
         aria-label="Open navigation menu"
       >
         <Icon name="list" />
@@ -48,10 +48,10 @@ const classes = ["header", classString].filter(Boolean).join(" ");
       type="button"
       command="close"
       commandfor="modal-navi"
-      class="button button--icon button--size-sm"
+      class="button button--variant-subtle button--icon button--size-sm"
       aria-label="Close navigation menu"
     >
-      <Icon name="x" />
+      <Icon name="x-bold" size="sm" />
     </button>
   </div>
   <div class="panel__body">

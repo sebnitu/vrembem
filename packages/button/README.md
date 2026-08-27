@@ -1,6 +1,6 @@
 # Button
 
-A simple component that allow users to trigger an action.
+A simple component that allows users to trigger an action.
 
 [Documentation](https://vrembem.com/packages/button)
 
