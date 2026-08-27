@@ -17,7 +17,7 @@
   @if $component == "input" {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
   } @else {
-    padding: tokens.get($component, "padding", tokens.get("form-control-padding"));
+    padding: tokens.get($component, "padding-y", tokens.get("form-control-padding-y")) tokens.get($component, "padding-x", tokens.get("form-control-padding-x"));
   }
 }
 
@@ -48,6 +48,7 @@
 ///   The prefix to apply to the width and height CSS property. Size prefixes
 ///   include `"min"` and `"max"`.
 ///
-@mixin form-control-size($prefix: null) {
-  @include mix.size(tokens.get("form-control-size-calc"), tokens.get("form-control-size-calc"), $prefix);
+@mixin form-control-size($prefix: null, $variant: null) {
+  $token: if(sass($variant): "form-control-size-calc-#{$variant}"; else: "form-control-size-calc");
+  @include mix.size(tokens.get($token), tokens.get($token), $prefix);
 }
