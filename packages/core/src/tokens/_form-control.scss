@@ -33,6 +33,7 @@
 @include tokens.set(
   "core",
   (
+    "form-control-choice-size": 1.25em,
     "form-control-choice-color": tokens.get("foreground-subtle"),
     "form-control-choice-accent": tokens.get("form-control-accent"),
     "form-control-choice-fill": tokens.get("form-control-background")

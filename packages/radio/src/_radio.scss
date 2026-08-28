@@ -1,12 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
+$-size: tokens.get("radio", "size", tokens.get("form-control-choice-size"));
 $-color: tokens.get("radio", "color", tokens.get("form-control-choice-color")) !default;
 $-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
-  @include core.size(1.25em);
+  @include core.size($-size);
   @include core.focus-ring-base;
 
   cursor: pointer;

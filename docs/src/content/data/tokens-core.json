@@ -105,6 +105,7 @@
   "--vb-form-control-transition-timing-function": "var(--vb-transition-timing-function)",
   "--vb-form-control-transition-duration": "var(--vb-transition-duration-short)",
   "--vb-form-control-transition-property": "(background-color, outline)",
+  "--vb-form-control-choice-size": "1.25em",
   "--vb-form-control-choice-color": "var(--vb-foreground-subtle)",
   "--vb-form-control-choice-accent": "var(--vb-form-control-accent)",
   "--vb-form-control-choice-fill": "var(--vb-form-control-background)",
