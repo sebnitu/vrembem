@@ -1,12 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
+$-size: tokens.get("switch", "size", tokens.get("form-control-choice-size"));
 $-color: tokens.get("switch", "color", tokens.get("form-control-choice-color"));
 $-accent: tokens.get("switch", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("switch")} {
-  @include core.size(2.5em, 1.25em);
+  @include core.size(calc($-size * 2), $-size);
   @include core.focus-ring-base;
 
   cursor: pointer;

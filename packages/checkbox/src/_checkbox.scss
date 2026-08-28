@@ -1,12 +1,13 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
+$-size: tokens.get("checkbox", "size", tokens.get("form-control-choice-size"));
 $-color: tokens.get("checkbox", "color", tokens.get("form-control-choice-color"));
 $-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
-  @include core.size(1.25em);
+  @include core.size($-size);
   @include core.focus-ring-base;
 
   cursor: pointer;
