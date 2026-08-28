@@ -18,7 +18,9 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
   vertical-align: middle;
   appearance: none;
   background-color: $-fill;
-  transition: tokens.get("form-control-transition-property") tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
+  transition-timing-function: tokens.get("form-control-transition-timing-function");
+  transition-duration: tokens.get("form-control-transition-duration");
+  transition-property: tokens.get("form-control-transition-property");
 
   &::after {
     @include core.size(0);

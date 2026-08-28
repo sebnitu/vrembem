@@ -20,9 +20,12 @@
     "form-control-background-readonly": tokens.get("background-alt"),
     "form-control-box-shadow": none,
     "form-control-opacity-disabled": 0.6,
-    "form-control-transition-duration": tokens.get("transition-duration-short"),
     "form-control-transition-timing-function": tokens.get("transition-timing-function"),
-    "form-control-transition-property": outline
+    "form-control-transition-duration": tokens.get("transition-duration-short"),
+    "form-control-transition-property": (
+      background-color,
+      outline
+    )
   )
 );
 

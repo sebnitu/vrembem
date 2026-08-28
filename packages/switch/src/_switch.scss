@@ -18,7 +18,9 @@ $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
   vertical-align: middle;
   appearance: none;
   background-color: oklch(from $-color l c h / 10%);
-  transition: tokens.get("form-control-transition-property") tokens.get("form-control-transition-duration") tokens.get("form-control-transition-timing-function");
+  transition-timing-function: tokens.get("form-control-transition-timing-function");
+  transition-duration: tokens.get("form-control-transition-duration");
+  transition-property: tokens.get("form-control-transition-property");
 
   &::after {
     @include core.size(1.25em);
