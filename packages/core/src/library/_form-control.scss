@@ -9,6 +9,9 @@
 ///   The component value to prefix CSS variable references
 ///
 @mixin form-control-properties($component) {
+  min-width: tokens.get($component, "size", tokens.get("form-control-size"));
+  max-width: 100%;
+  min-height: tokens.get($component, "size", tokens.get("form-control-size"));
   border-width: tokens.get($component, "border-width", tokens.get("form-control-border-width"));
   border-radius: tokens.get($component, "border-radius", tokens.get("form-control-border-radius"));
   font-size: tokens.get($component, "font-size", tokens.get("form-control-font-size"));
