@@ -1,8 +1,9 @@
 @use "../modules/tokens";
-@use "./size" as mix;
+@use "./size" as *;
+@use "./focus-ring" as *;
 
-/// Output the shared form-control properties with the component specific CSS
-/// variable and the form-control CSS variable as the fallback.
+/// Output the shared form-control properties with component specific CSS
+/// variables and the form-control CSS variables as fallbacks.
 ///
 /// @param {string} $component
 ///   The component value to prefix CSS variable references
@@ -21,6 +22,43 @@
   } @else {
     padding: tokens.get($component, "padding-y", tokens.get("form-control-padding-y")) tokens.get($component, "padding-x", tokens.get("form-control-padding-x"));
   }
+}
+
+/// Output the shared form-control properties of choice components (checkbox,
+/// radio and switch) with component specific CSS variable and the form-control
+/// CSS variables as fallbacks.
+///
+/// @param {string} $component
+///   The component value to prefix CSS variable references
+///
+@mixin form-control-choice-properties($component) {
+  $-size: tokens.get($component, "size", tokens.get("form-control-choice-size"));
+
+  @if $component == "switch" {
+    @include size(calc($-size * 2), $-size);
+  } @else {
+    @include size($-size);
+  }
+
+  @include focus-ring-base;
+
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: tokens.get($component, "font-size", tokens.get("form-control-font-size"));
+  vertical-align: middle;
+  appearance: none;
+  transition-timing-function: tokens.get("form-control-transition-timing-function");
+  transition-duration: tokens.get("form-control-transition-duration");
+  transition-property: tokens.get("form-control-choice-transition-property");
+
+  @content;
+
+  &:focus-visible {
+    @include focus-ring-color(tokens.get($component, "accent", tokens.get("form-control-choice-accent")));
+  }
+
+  @include form-control-invalid($component);
 }
 
 /// Applies token overrides for the invalid state of form-control components.
