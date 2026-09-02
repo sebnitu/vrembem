@@ -6,7 +6,7 @@ $-accent: tokens.get("checkbox", "accent", tokens.get("form-control-choice-accen
 $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("checkbox")} {
-  @include core.form-control-choice-properties("checkbox") {
+  @include core.form-control-choice-base("checkbox") {
     border: tokens.get("checkbox", "border-width", 2px) solid $-color;
     border-radius: tokens.get("checkbox", "border-radius", 0.25em);
     background-color: $-fill;

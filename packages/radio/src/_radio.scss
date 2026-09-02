@@ -6,7 +6,7 @@ $-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-accent")
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
-  @include core.form-control-choice-properties("radio") {
+  @include core.form-control-choice-base("radio") {
     border: tokens.get("radio", "border-width", 2px) solid $-color;
     border-radius: 50%;
     background-color: $-fill;

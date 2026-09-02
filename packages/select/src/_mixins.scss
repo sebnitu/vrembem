@@ -6,7 +6,7 @@
 /// - Setup of focus-ring CSS variables and initial state.
 /// - Apply base styles and resets so browsers render select consistently.
 @mixin base {
-  @include core.form-control-properties("select");
+  @include core.form-control-base("select");
   @include core.focus-ring-base;
 
   cursor: pointer;

@@ -2,13 +2,13 @@
 @use "./size" as *;
 @use "./focus-ring" as *;
 
-/// Output the shared form-control properties with component specific CSS
+/// Output the shared form-control base styles with component specific CSS
 /// variables and the form-control CSS variables as fallbacks.
 ///
 /// @param {string} $component
 ///   The component value to prefix CSS variable references
 ///
-@mixin form-control-properties($component) {
+@mixin form-control-base($component) {
   min-width: tokens.get($component, "size", tokens.get("form-control-size"));
   max-width: 100%;
   min-height: tokens.get($component, "size", tokens.get("form-control-size"));
@@ -27,14 +27,14 @@
   }
 }
 
-/// Output the shared form-control properties of choice components (checkbox,
+/// Output the shared form-control base styles of choice components (checkbox,
 /// radio and switch) with component specific CSS variable and the form-control
 /// CSS variables as fallbacks.
 ///
 /// @param {string} $component
 ///   The component value to prefix CSS variable references
 ///
-@mixin form-control-choice-properties($component) {
+@mixin form-control-choice-base($component) {
   $-size: tokens.get($component, "size", tokens.get("form-control-choice-size"));
 
   @if $component == "switch" {

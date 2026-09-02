@@ -6,7 +6,7 @@ $-accent: tokens.get("switch", "accent", tokens.get("form-control-choice-accent"
 $-fill: tokens.get("switch", "fill", tokens.get("form-control-choice-fill"));
 
 #{core.bem("switch")} {
-  @include core.form-control-choice-properties("switch") {
+  @include core.form-control-choice-base("switch") {
     border: tokens.get("switch", "border-width", 2px) solid $-color;
     border-radius: tokens.get("switch", "border-radius", tokens.get("border-radius-circle"));
     background-color: oklch(from $-color l c h / 10%);
