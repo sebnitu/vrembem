@@ -2,7 +2,5 @@
 @use "@vrembem/core/tokens";
 
 #{core.bem("button", null, "icon")} {
-  @include core.size(tokens.get("button", "size", tokens.get("form-control-size")), $prefix: "min");
-
   padding: 0;
 }

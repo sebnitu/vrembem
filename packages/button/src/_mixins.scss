@@ -8,12 +8,13 @@
 /// - Setup of focus-ring CSS variables and initial state.
 /// - Flex layout styles for child elements and consistent gap spacing.
 @mixin base {
-  @include core.form-control-properties("button");
+  @include core.form-control-base("button");
   @include core.focus-ring-base;
 
   cursor: pointer;
   position: relative;
   display: inline-flex;
+  flex-shrink: 0;
   gap: tokens.get("button", "gap", tokens.get("spacing-sm"));
   align-items: center;
   justify-content: center;

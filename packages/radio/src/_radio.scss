@@ -1,27 +1,16 @@
 @use "@vrembem/core";
 @use "@vrembem/core/tokens";
 
-$-size: tokens.get("radio", "size", tokens.get("form-control-choice-size"));
 $-color: tokens.get("radio", "color", tokens.get("form-control-choice-color")) !default;
 $-accent: tokens.get("radio", "accent", tokens.get("form-control-choice-accent"));
 $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !default;
 
 #{core.bem("radio")} {
-  @include core.size($-size);
-  @include core.focus-ring-base;
-
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  border: tokens.get("radio", "border-width", 2px) solid $-color;
-  border-radius: 50%;
-  font-size: tokens.get("radio", "font-size", tokens.get("form-control-font-size"));
-  vertical-align: middle;
-  appearance: none;
-  background-color: $-fill;
-  transition-timing-function: tokens.get("form-control-transition-timing-function");
-  transition-duration: tokens.get("form-control-transition-duration");
-  transition-property: tokens.get("form-control-transition-property");
+  @include core.form-control-choice-base("radio") {
+    border: tokens.get("radio", "border-width", 2px) solid $-color;
+    border-radius: 50%;
+    background-color: $-fill;
+  }
 
   &::after {
     @include core.size(0);
@@ -40,12 +29,6 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     border-color: $-accent;
     background-color: $-fill;
   }
-
-  &:focus-visible {
-    @include core.focus-ring-color($-accent);
-  }
-
-  @include core.form-control-invalid("radio");
 }
 
 #{core.bem("radio")}:checked {
