@@ -231,35 +231,44 @@ $-flags: ("variants");
 ///   The config map to set in the global config object.
 /// @param {map} $default
 ///   The default map that is also used as a map signature for `$config`.
-///
-@mixin merge-with-default($config, $default) {
-  @each $key, $default-value in $default {
+/// @param {string} $namespace (null)
+///   A package namespace to prefix all provided config and default keys. This 
+///   allows omitting the package name from config options in package imports.
+/// 
+@mixin merge-with-default($config, $default, $namespace: null) {
+  @each $short-key, $default-value in $default {
+    // Create and build the $full-key if a $namespace is provided
+    $full-key: $short-key;
+    @if $namespace {
+      $full-key: "#{$namespace}-#{$short-key}";
+    }
+
     // Initialize the result with the provided default value
     $result: $default-value;
 
     // If key has already been set, either replace or merge with default
-    @if map.has-key($-config, $key) {
-      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $key) {
-        $result: map.deep-merge($result, map.get($-config, $key));
+    @if map.has-key($-config, $full-key) {
+      @if meta.type-of($result) == "map" and not map.has-key($-config-replace, $full-key) {
+        $result: map.deep-merge($result, map.get($-config, $full-key));
       } @else {
-        $result: map.get($-config, $key);
+        $result: map.get($-config, $full-key);
       }
     }
 
     // If provided config contains key, merge with the current result
-    @if map.has-key($config, $key) {
+    @if map.has-key($config, $short-key) {
       @if meta.type-of($result) == "map" {
-        $result: map.deep-merge($result, map.get($config, $key));
+        $result: map.deep-merge($result, map.get($config, $short-key));
       } @else {
-        $result: map.get($config, $key);
+        $result: map.get($config, $short-key);
       }
     }
 
     // Apply the configuration option
-    $-config: map.set($-config, $key, $result) !global;
-    $-config-replace: map.remove($-config-replace, $key) !global;
+    $-config: map.set($-config, $full-key, $result) !global;
+    $-config-replace: map.remove($-config-replace, $full-key) !global;
 
-    @include -run-watchers($key, "set");
+    @include -run-watchers($full-key, "set");
   }
 }
 
