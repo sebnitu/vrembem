@@ -9,14 +9,14 @@ $default: (
   // Toggle for outputting table--mobile modifier breakpoint variants and setting
   // data attribute for mobile labels.
   // @type map
-  "table-mobile": (
+  "mobile": (
     "breakpoints": true,
     "attr": "data-mobile-label"
   ),
 
   // Map for outputting table--padding-[key] modifier variants
   // @type map
-  "table-padding": (
+  "padding": (
     "breakpoints": true,
     "default": 0.5em 0.75em,
     "sm": 0.25em 0.5em,
@@ -25,5 +25,5 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "table");
 @include tokens.register("table");

@@ -8,12 +8,12 @@ $config: () !default;
 $default: (
   // Toggle for outputting menu--inline modifier breakpoint variants
   // @type boolean
-  "menu-inline-breakpoints": true,
+  "inline-breakpoints": true,
 
   // Toggle for outputting menu--full modifier breakpoint variants
   // @type boolean
-  "menu-full-breakpoints": true
+  "full-breakpoints": true
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "menu");
 @include tokens.register("menu");

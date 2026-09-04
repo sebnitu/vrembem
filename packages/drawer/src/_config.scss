@@ -8,12 +8,12 @@ $config: () !default;
 $default: (
   // Sets the default breakpoint for drawers
   // @type string | number
-  "drawer-breakpoint": "md",
+  "breakpoint": "md",
 
   // Set the default position of modal drawers
   // @type string
-  "drawer-position": "left"
+  "position": "left"
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "drawer");
 @include tokens.register("drawer");
