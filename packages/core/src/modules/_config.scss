@@ -232,13 +232,14 @@ $-flags: ("variants");
 /// @param {map} $default
 ///   The default map that is also used as a map signature for `$config`.
 /// @param {string} $namespace (null)
-///   A package namespace to prefix all provided config and default keys. This 
+///   A package namespace to prefix all provided config and default keys. This
 ///   allows omitting the package name from config options in package imports.
-/// 
+///
 @mixin merge-with-default($config, $default, $namespace: null) {
   @each $short-key, $default-value in $default {
     // Create and build the $full-key if a $namespace is provided
     $full-key: $short-key;
+
     @if $namespace {
       $full-key: "#{$namespace}-#{$short-key}";
     }
