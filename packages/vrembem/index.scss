@@ -1,3 +1,4 @@
+@forward "./src/config";
 @forward "@vrembem/core/layers";
 @forward "@vrembem/core/base";
 @forward "@vrembem/content" as content-*;
