@@ -32,7 +32,7 @@ Grid comes with the following Sass configuration options that can be set using e
   $config: (
     // Map for outputting grid--cols-[num] modifier and col-[num] utility variants
     // @type map
-    "grid-cols": (
+    "cols": (
       "breakpoints": true,
       "default": 1,
       "total": 6
@@ -40,7 +40,7 @@ Grid comes with the following Sass configuration options that can be set using e
 
     // Map for outputting grid--rows-[num] modifier and row-[num] utility variants
     // @type map
-    "grid-rows": (
+    "rows": (
       "breakpoints": true,
       "default": 1,
       "total": 6
@@ -48,7 +48,7 @@ Grid comes with the following Sass configuration options that can be set using e
 
     // Map for outputting the grid--gap-[key] modifier variants
     // @type map
-    "grid-gap": (
+    "gap": (
       "breakpoints": true,
       "default": calc(tokens.get("spacing") * 8),
       "0": 0,
@@ -61,7 +61,7 @@ Grid comes with the following Sass configuration options that can be set using e
 
     // Map for outputting the grid--flow-[key] modifier variants
     // @type map
-    "grid-flow": (
+    "flow": (
       "default": dense,
       "row": row,
       "col": column,
