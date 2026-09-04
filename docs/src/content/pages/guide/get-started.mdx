@@ -221,14 +221,14 @@ When configuring an individual package directly, option keys should not be prefi
 ```
 </CodeExample>
 
-When configuring packages through the `vrembem` library entry, package specific configuratuons should be prefixed with their name. Global core configurations are not prefixed.
+When configuring packages through the `vrembem` library entry, package specific configurations should be prefixed with their name. Core configurations are not prefixed.
 
 <CodeExample lang="scss">
 ```scss
 @use "vrembem" with (
   $config: (
     // Core options are not prefixed
-    "prefix-blocks": "vb",
+    "theme-output": false,
 
     // Package specific option should be prefixed with the package name
     "button-block-breakpoints": false
