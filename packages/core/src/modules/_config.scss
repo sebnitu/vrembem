@@ -240,7 +240,7 @@ $-flags: ("variants");
     // Create and build the $full-key if a $namespace is provided
     $full-key: $short-key;
 
-    @if $namespace {
+    @if $namespace and string.index($short-key, "#{$namespace}-") != 1 {
       $full-key: "#{$namespace}-#{$short-key}";
     }
 
@@ -256,7 +256,16 @@ $-flags: ("variants");
       }
     }
 
-    // If provided config contains key, merge with the current result
+    // If provided config contains the full key, merge with the current result
+    @if map.has-key($config, $full-key) {
+      @if meta.type-of($result) == "map" {
+        $result: map.deep-merge($result, map.get($config, $full-key));
+      } @else {
+        $result: map.get($config, $full-key);
+      }
+    }
+
+    // If provided config contains the short key, merge with the current result
     @if map.has-key($config, $short-key) {
       @if meta.type-of($result) == "map" {
         $result: map.deep-merge($result, map.get($config, $short-key));
