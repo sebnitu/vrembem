@@ -1,0 +1,7 @@
+@use "@vrembem/core/config";
+
+$config: () !default;
+
+@each $key, $value in $config {
+  @include config.set($key, $value);
+}

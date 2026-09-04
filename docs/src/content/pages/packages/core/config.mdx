@@ -168,6 +168,10 @@ Merges a configuration map to the config module based on the values in a default
   The default map that is also used as a map signature for `$config`.
 </ReferenceCard>
 
+<ReferenceCard name="$namespace" type="string" defaults="null">
+  A package namespace to prefix all provided config and default keys. This allows omitting the package name from config options in package imports.
+</ReferenceCard>
+
 #### Example
 
 We define an empty `$config` map with the `!default` flag and a `$default` map containing the configurations we want to expose and their default values.
@@ -178,49 +182,30 @@ We define an empty `$config` map with the `!default` flag and a `$default` map c
 
 $config: () !default;
 $default: (
-  "config-1": true,
-  "config-2": "asdf",
+  "config-one": true,
+  "config-two": "asdf",
 );
 
 @include config.merge-with-default($config, $default);
 ```
 </CodeExample>
 
-When we use this module, we can define the configuration using the Sass `with` clause:
+Use the namespace argument to prefix all options with a package namespace (typically the package name).
 
-<CodeExample label="app.scss">
+<CodeExample label="_example.scss">
 ```scss
-@use "example" with (
-  $config: (
-    "config-1": false
-  )
-);
-
-// More imports here...
-```
-</CodeExample>
-
-We can also set our configuration values before the module is loaded and include our config at the top of our manifest file:
-
-<CodeExample label="_config.scss">
-```scss
-// Import the config module
 @use "@vrembem/core/config";
 
-// These values will be used once the module is loaded
-@include config.set((
-  "config-1": false,
-  "config-2": "fdsa"
-));
-```
-</CodeExample>
+$config: () !default;
+$default: (
+  "one": true,
+  "two": "asdf",
+);
 
-<CodeExample label="app.scss">
-```scss
-@use "config";
-@use "example";
+@include config.merge-with-default($config, $default, "config");
 
-// More imports here...
+// Options are stored with the package namespace prefixed
+// config.get("config-one") => true
 ```
 </CodeExample>
 

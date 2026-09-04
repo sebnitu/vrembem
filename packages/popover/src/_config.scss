@@ -8,7 +8,7 @@ $config: () !default;
 $default: (
   // Map for outputting popover--width-[key] modifier variants
   // @type map
-  "popover-width": (
+  "width": (
     "default": 14rem,
     "auto": "fit-content",
     "sm": 10rem,
@@ -16,5 +16,5 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "popover");
 @include tokens.register("popover");

@@ -9,28 +9,28 @@ $default: (
   // Controls whether module styles are output. This can be overridden on a per 
   // module basis using the `utility-output-exceptions` config option.
   // @type boolean
-  "utility-output": true,
+  "output": true,
 
   // Modules to exclude from the output rule set in `utility-output`
   // @type list
-  "utility-output-exceptions": (),
+  "output-exceptions": (),
 
   // A map containing module names as keys and their preferred class selectors
   // @type map
-  "utility-classes": (),
+  "classes": (),
 
   // A prefix to apply to utility class selectors. Provided value is 
   // automatically suffixed with a "-" character when applied.
   // @type string
-  "utility-prefix": "",
+  "prefix": "",
 
   // Whether or not utility styles should be output with the !important flag
   // @type boolean
-  "utility-important": false,
+  "important": false,
 
   // A map of border-radius utilities to output
   // @type map
-  "utility-border-radius": (
+  "border-radius": (
     "": tokens.get("border-radius"),
     "lg": tokens.get("border-radius-lg"),
     "circle": tokens.get("border-radius-circle"),
@@ -39,7 +39,7 @@ $default: (
 
   // A list of display value properties to output
   // @type list
-  "utility-display": (
+  "display": (
     "breakpoints": true,
     "inline": inline,
     "flex": flex,
@@ -53,7 +53,7 @@ $default: (
 
   // A spacing scale used to output margin, padding, and spacing utilities
   // @type map
-  "utility-spacing": (
+  "spacing": (
     "0": 0,
     "xs": tokens.get("spacing"),
     "sm": calc(tokens.get("spacing") * 2),
@@ -64,7 +64,7 @@ $default: (
 
   // A spacing scale used to output em based spacing utilities
   // @type map
-  "utility-em-spacing": (
+  "em-spacing": (
     "xs": tokens.get("em-spacing-xs"),
     "sm": tokens.get("em-spacing-sm"),
     "": tokens.get("em-spacing-md"),
@@ -74,7 +74,7 @@ $default: (
 
   // A map of gap utilities to output
   // @type map
-  "utility-gap": (
+  "gap": (
     "0": 0,
     "xs": tokens.get("spacing-xs"),
     "sm": tokens.get("spacing-sm"),
@@ -85,7 +85,7 @@ $default: (
 
   // A map of max-width utilities to output
   // @type map
-  "utility-max-width": (
+  "max-width": (
     "none": none,
     "xs": 45rem,
     "sm": 60rem,
@@ -97,7 +97,7 @@ $default: (
 
   // A map of font-weight keys and values to output
   // @type map
-  "utility-font-weight": (
+  "font-weight": (
     "thin": 100,
     "extra-light": 200,
     "light": 300,
@@ -113,7 +113,7 @@ $default: (
 
   // The range of flex-grow and flex-shrink utilities to output
   // @type number
-  "utility-flex-range": 6
+  "flex-range": 6
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "utility");

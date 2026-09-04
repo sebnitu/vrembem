@@ -8,26 +8,26 @@ $default: (
   // Controls whether module styles are output. This can be overridden on a per 
   // module basis using the `content-output-exceptions` config option.
   // @type boolean
-  "content-output": true,
+  "output": true,
 
   // Modules to exclude from the output rule set in `content-output`
   // @type list
-  "content-output-exceptions": (),
+  "output-exceptions": (),
 
   // A map containing module names as keys and their preferred class selectors
   // @type map
-  "content-classes": (),
+  "classes": (),
 
   // A prefix to apply to content class selectors. Provided value is automatically 
   // suffixed with a "-" character when applied.
   // @type string
-  "content-prefix": "",
+  "prefix": "",
 
   // Used to output the heading styles and their font-size/line-height CSS 
   // variables. Should contain a key of the heading level to output and the 
   // value of a font-size and optional line-height (space separated).
   // @type map
-  "content-headings": (
+  "headings": (
     "h1": 2.75rem 1.25,
     "h2": 2rem 1.25,
     "h3": 1.75rem 1.25,
@@ -37,7 +37,7 @@ $default: (
 
   // Map modules to their preferred content selectors
   // @type map
-  "content-selectors": (
+  "selectors": (
     "h1": "> h1",
     "h2": "> h2",
     "h3": "> h3",
@@ -53,4 +53,4 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "content");

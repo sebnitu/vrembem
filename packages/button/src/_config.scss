@@ -8,11 +8,11 @@ $config: () !default;
 $default: (
   // Toggle for outputting button--block modifier breakpoint variants
   // @type boolean
-  "button-block-breakpoints": true,
+  "block-breakpoints": true,
 
   // Map for outputting button--color-[key] modifier variants
   // @type map
-  "button-color": (
+  "color": (
     "default": (
       "color-contrast": white,
       "color-mix": black
@@ -24,5 +24,5 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "button");
 @include tokens.register("button");

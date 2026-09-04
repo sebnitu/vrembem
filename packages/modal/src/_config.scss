@@ -8,13 +8,13 @@ $config: () !default;
 $default: (
   // A map of CSS variable overrides to pass to the panel component if used
   // @type map
-  "modal-panel-override": (
+  "panel-override": (
     "box-shadow": tokens.get("box-shadow-xl")
   ),
 
   // Map for outputting modal--size-[key] modifier variants
   // @type map
-  "modal-size": (
+  "size": (
     "default": 32rem,
     "xs": 16rem,
     "sm": 24rem,
@@ -23,6 +23,6 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "modal");
 @include tokens.register("modal");
 @include tokens.register("panel");

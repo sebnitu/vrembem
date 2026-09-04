@@ -8,7 +8,7 @@ $config: () !default;
 $default: (
   // Map for outputting flex--gap-[key] modifier variants
   // @type map
-  "flex-gap": (
+  "gap": (
     "breakpoints": true,
     "default": tokens.get("spacing-md"),
     "0": 0,
@@ -21,7 +21,7 @@ $default: (
 
   // Map for outputting flex--wrap-[key] modifier variants
   // @type map
-  "flex-wrap": (
+  "wrap": (
     "breakpoints": true,
     "default": wrap,
     "": wrap,
@@ -31,7 +31,7 @@ $default: (
 
   // Map for outputting flex--direction-[key] modifier variants
   // @type map
-  "flex-direction": (
+  "direction": (
     "breakpoints": true,
     "default": row,
     "row": row,
@@ -43,7 +43,7 @@ $default: (
   // Map for outputting flex--items-[key] modifier and flex-item-[key] utility 
   // variants.
   // @type map
-  "flex-items": (
+  "items": (
     "breakpoints": true,
     "initial": initial, // Equivalent: 0 1 auto
     "auto": auto, // Equivalent: 1 1 auto
@@ -54,5 +54,5 @@ $default: (
   )
 );
 
-@include config.merge-with-default($config, $default);
+@include config.merge-with-default($config, $default, "flex");
 @include tokens.register("flex");
