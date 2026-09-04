@@ -204,3 +204,37 @@ For individual packages, the same pattern applies.
     ```
   </TabsPanel>
 </CodeExample>
+
+### Configuration
+
+Vrembem packages expose a `$config` Sass map that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
+
+When configuring an individual package directly, option keys should not be prefixed with the package name:
+
+<CodeExample lang="scss">
+```scss
+@use "@vrembem/button" with (
+  $config: (
+    "block-breakpoints": false
+  )
+);
+```
+</CodeExample>
+
+When configuring packages through the `vrembem` library entry, package specific configuratuons should be prefixed with their name. Global core configurations are not prefixed.
+
+<CodeExample lang="scss">
+```scss
+@use "vrembem" with (
+  $config: (
+    // Core options are not prefixed
+    "prefix-blocks": "vb",
+
+    // Package specific option should be prefixed with the package name
+    "button-block-breakpoints": false
+  )
+);
+```
+</CodeExample>
+
+Check each package's own documentation page for the specific options it supports. For more on how the configuration system works under the hood, see the [`core/config`](/packages/core/config) module documentation.
