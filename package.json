@@ -30,7 +30,7 @@
     "@eslint/js": "^10.0.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/user-event": "^14.6.7",
-    "@vitest/coverage-v8": "^4.1.9",
+    "@vitest/coverage-v8": "^5.0.0",
     "concurrently": "^10.0.5",
     "del-cli": "^7.0.0",
     "eslint": "^10.10.0",
