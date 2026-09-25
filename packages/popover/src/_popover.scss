@@ -2,6 +2,10 @@
 @use "@vrembem/core/config";
 @use "@vrembem/core/tokens";
 
+vb-popover {
+  display: contents;
+}
+
 #{core.bem("popover")} {
   position: fixed;
   inset: unset;
