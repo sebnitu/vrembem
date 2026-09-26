@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^8.0.2",
-    "@types/node": "^26.6.0",
+    "@types/node": "^26.6.2",
     "astro": "^7.3.2",
     "esbuild": "^0.28.1",
     "vrembem": "^4.0.0"
