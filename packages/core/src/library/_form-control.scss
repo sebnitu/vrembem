@@ -47,7 +47,9 @@
 
   cursor: pointer;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: tokens.get($component, "font-size", tokens.get("form-control-font-size"));
   vertical-align: middle;
   appearance: none;

@@ -16,9 +16,6 @@ $-fill: tokens.get("radio", "fill", tokens.get("form-control-choice-fill")) !def
     @include core.size(0);
 
     content: "";
-    position: absolute;
-    inset: 50% auto auto 50%;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     opacity: 0;
     background-color: $-fill;

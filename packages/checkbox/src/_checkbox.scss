@@ -16,9 +16,6 @@ $-fill: tokens.get("checkbox", "fill", tokens.get("form-control-choice-fill"));
     @include core.size(tokens.get("checkbox", "icon-size", 0.8em));
 
     content: "";
-    position: absolute;
-    inset: 50% auto auto 50%;
-    transform: translate(-50%, -50%);
     opacity: 0;
     background-color: $-fill;
     mask: url(core.svg("check")) center calc(tokens.get("checkbox", "icon-size", 0.8em) * -1) / 100% no-repeat;
