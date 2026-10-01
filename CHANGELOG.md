@@ -37,12 +37,19 @@ Publish flow
   - On next: `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v5.0.0 to CHANGELOG.md
+chore(release): add v5.0.1 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
 <!-- v5.0.0 -->
+
+
+## v5.0.1 (2026-10-01)
+
+### :bug: Bug Fix
+* `vrembem`
+  * [#3019](https://github.com/sebnitu/vrembem/pull/3019) fix: add missing src dir in pkg files
 
 
 ## v5.0.0 (2026-10-01)
