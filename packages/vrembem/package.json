@@ -58,6 +58,7 @@
   "files": [
     "dev",
     "dist",
+    "src",
     "index.ts",
     "define.ts",
     "index.scss",
