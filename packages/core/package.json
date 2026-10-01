@@ -1,7 +1,7 @@
 {
   "name": "@vrembem/core",
   "description": "Manage library wide config, tokens, and base styles.",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "license": "MIT",
   "keywords": [
     "BEM",
