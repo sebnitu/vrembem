@@ -21,14 +21,14 @@ Fixing issues with Lerna
 - Delete `node_modules` and `package-lock.json`
 - Run `npm install`
 
-Publish flow for `next` branch
+Publish flow
 - Merge branch that contains appropriate PR label
 - Run `npm run sink`
 - Run `npx lerna-changelog`
 - Maybe update github auth token `GITHUB_AUTH`
   - https://github.com/settings/tokens
 - Copy/paste output from changelog into this file
-- Fix heading levels `####` > `###`
+- Fix heading levels `####` > `###` (add end space to not change this comment)
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
 - Login to NPM `npm login`
@@ -37,11 +37,51 @@ Publish flow for `next` branch
   - On next: `npx lerna publish from-package --dist-tag next`
 
 Commit message template:
-chore(release): add v4.0.0 to CHANGELOG.md
+chore(release): add v5.0.0 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
+<!-- v5.0.0 -->
+
+
+## v5.0.0 (2026-10-01)
+
+### :fire: Breaking Changes
+* `button`, `card`, `checkbox`, `content`, `core`, `drawer`, `flex`, `grid`, `input`, `menu`, `modal`, `notice`, `panel`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`, `vrembem`
+  * [#2972](https://github.com/sebnitu/vrembem/pull/2972) Deprecate the Section component
+* `button`, `card`, `checkbox`, `content`, `core`, `drawer`, `flex`, `grid`, `icon`, `input`, `menu`, `modal`, `notice`, `panel`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`, `vrembem`
+  * [#2971](https://github.com/sebnitu/vrembem/pull/2971) Deprecate the Icon component
+* `content`, `core`, `section`
+  * [#2970](https://github.com/sebnitu/vrembem/pull/2970) Rename the separator content module to divider
+
+### :tada: New Feature
+* `button`, `content`, `core`, `drawer`, `flex`, `grid`, `menu`, `modal`, `popover`, `table`, `utility`, `vrembem`
+  * [#2987](https://github.com/sebnitu/vrembem/pull/2987) Implement package import config short-key usage
+* `checkbox`, `core`, `radio`, `switch`, `vrembem`
+  * [#2977](https://github.com/sebnitu/vrembem/pull/2977) Add and apply form-control choice size token
+* `button`, `card`, `checkbox`, `core`, `input`, `popover`, `radio`, `switch`
+  * [#2974](https://github.com/sebnitu/vrembem/pull/2974) Add new button variant modifier
+
+### :bug: Bug Fix
+* `checkbox`, `core`, `radio`, `switch`
+  * [#3018](https://github.com/sebnitu/vrembem/pull/3018) Provide better positioning styles for form-control choice components
+* `card`, `panel`
+  * [#2973](https://github.com/sebnitu/vrembem/pull/2973) Fix content container style inconsistencies 
+
+### :house: Refactor
+* `button`, `checkbox`, `core`, `input`, `radio`, `select`, `switch`, `vrembem`
+  * [#2986](https://github.com/sebnitu/vrembem/pull/2986) Simplify form-control tokens and style output
+* `checkbox`, `core`, `radio`, `switch`
+  * [#2976](https://github.com/sebnitu/vrembem/pull/2976) Add background-color to form-control transition properties
+
+### :books: Documentation
+* `panel`, `popover`
+  * [#2969](https://github.com/sebnitu/vrembem/pull/2969) Improve documentation's mobile styles
+* `button`, `card`, `checkbox`, `content`, `core`, `drawer`, `grid`, `icon`, `menu`, `modal`, `notice`, `panel`, `popover`, `radio`, `section`, `select`, `switch`, `table`, `utility`
+  * [#2968](https://github.com/sebnitu/vrembem/pull/2968) Add package index page
+
+
 <!-- v4.0.0 -->
 
 
