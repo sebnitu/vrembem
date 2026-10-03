@@ -7,29 +7,26 @@
     (
       "background": transparent,
       "background-hover": transparent,
-      "background-active": tokens.get("button", "color"),
+      "background-active": color-mix(in oklch, tokens.get("button", "color") 4%, transparent),
       "foreground": tokens.get("button", "color"),
-      "foreground-hover": tokens.get("button", "color"),
-      "foreground-active": tokens.get("button", "color-contrast"),
-      "border-color": color-mix(in oklch, tokens.get("button", "color") 32%, transparent),
-      "border-color-hover": tokens.get("button", "color"),
+      "border-color": tokens.get("border-color"),
+      "border-color-hover": tokens.get("border-color-strong"),
       "border-color-focus": tokens.get("button", "color"),
       "border-color-active": tokens.get("button", "color"),
-      "border-width": 2px
+      "border-width": 1px
     )
   );
 }
 
-#{core.bem("button", null, "variant", "subtle")} {
+#{core.bem("button", null, "variant", "solid")} {
   @include tokens.override(
     "button",
     (
-      "background": transparent,
-      "background-hover": color-mix(in oklch, tokens.get("button", "color") 8%, transparent),
-      "background-active": color-mix(in oklch, tokens.get("button", "color") 16%, transparent),
-      "foreground": tokens.get("button", "color"),
-      "border-color": transparent,
-      "border-color-focus": transparent
+      "background": tokens.get("button", "color"),
+      "background-hover": color-mix(in oklch, tokens.get("button", "color"), transparent 8%),
+      "background-active": color-mix(in oklch, tokens.get("button", "color"), transparent 16%),
+      "foreground": tokens.get("button", "color-contrast"),
+      "border-color": transparent
     )
   );
 }
