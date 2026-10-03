@@ -8,7 +8,8 @@
     (
       "color": tokens.get("foreground-strong"),
       "color-contrast": tokens.get("background"),
-      "color-mix": transparent
+      "color-mix": transparent,
+      "color-mix-percent": 4%
     )
   );
   @include mix.base;
@@ -21,7 +22,7 @@
   &:hover {
     border-color: tokens.get("button", "border-color-hover", "border-color", transparent);
     color: tokens.get("button", "foreground-hover", "foreground", tokens.get("button", "color"));
-    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, tokens.get("button", "color") 4%, tokens.get("button", "color-mix")));
+    background-color: tokens.get("button", "background-hover", "background", color-mix(in oklch, tokens.get("button", "color") tokens.get("button", "color-mix-percent"), tokens.get("button", "color-mix")));
     box-shadow: tokens.get("button", "box-shadow-hover", "box-shadow", none);
   }
 
@@ -30,14 +31,14 @@
 
     border-color: tokens.get("button", "border-color-focus", "border-color", transparent);
     color: tokens.get("button", "foreground-focus", "foreground", tokens.get("button", "color"));
-    background-color: tokens.get("button", "background-focus", "background", color-mix(in oklch, tokens.get("button", "color") 4%, tokens.get("button", "color-mix")));
+    background-color: tokens.get("button", "background-focus", "background", color-mix(in oklch, tokens.get("button", "color") tokens.get("button", "color-mix-percent"), tokens.get("button", "color-mix")));
     box-shadow: tokens.get("button", "box-shadow-focus", "box-shadow", none);
   }
 
   &:active {
     border-color: tokens.get("button", "border-color-active", "border-color", transparent);
     color: tokens.get("button", "foreground-active", "foreground", tokens.get("button", "color"));
-    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, tokens.get("button", "color") 8%, tokens.get("button", "color-mix")));
+    background-color: tokens.get("button", "background-active", "background", color-mix(in oklch, tokens.get("button", "color") calc(tokens.get("button", "color-mix-percent") * 2), tokens.get("button", "color-mix")));
     box-shadow: tokens.get("button", "box-shadow-active", "box-shadow", none);
   }
 
