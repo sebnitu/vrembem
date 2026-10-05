@@ -38,9 +38,8 @@ Button comes with the following Sass configuration options that can be set using
     // Map for outputting button--color-[key] modifier variants
     // @type map
     "color": (
-      "default": (
-        "color-contrast": white,
-        "color-mix": black
+      "defaults": (
+        "color-mix-percent": 12%
       ),
       "primary": tokens.get("palette", "primary"),
       "secondary": tokens.get("palette", "secondary"),
@@ -61,6 +60,7 @@ Button uses design token CSS variables in a reference and fallback pattern. Vari
   "--vb-button-color": "var(--vb-foreground-strong)",
   "--vb-button-color-contrast": "var(--vb-background)",
   "--vb-button-color-mix": "transparent",
+  "--vb-button-color-mix-percent": "4%",
 
   // Form control fallbacks
   "--vb-button-size": "var(--vb-form-control-size)",
@@ -75,25 +75,25 @@ Button uses design token CSS variables in a reference and fallback pattern. Vari
   "--vb-button-gap": "var(--vb-spacing-sm)",
 
   // Base styles
-  "--vb-button-background": "var(--vb-button-color)",
-  "--vb-button-foreground": "var(--vb-button-color-contrast)",
+  "--vb-button-background": "transparent",
+  "--vb-button-foreground": "var(--vb-button-color)",
   "--vb-button-border-color": "transparent",
   "--vb-button-box-shadow": "none",
 
   // Hover state
-  "--vb-button-background-hover": "color-mix(in oklch, var(--vb-button-color), var(--vb-button-color-mix) 8%)",
+  "--vb-button-background-hover": "color-mix(in oklch, var(--vb-button-color) var(--vb-button-color-mix-percent), var(--vb-button-color-mix))",
   "--vb-button-foreground-hover": "var(--vb-button-foreground)",
   "--vb-button-border-color-hover": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-hover": "var(--vb-button-box-shadow)",
 
   // Focus state
-  "--vb-button-background-focus": "var(--vb-button-background)",
+  "--vb-button-background-focus": "color-mix(in oklch, var(--vb-button-color) var(--vb-button-color-mix-percent), var(--vb-button-color-mix))",
   "--vb-button-foreground-focus": "var(--vb-button-foreground)",
   "--vb-button-border-color-focus": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-focus": "var(--vb-button-box-shadow)",
 
   // Active state
-  "--vb-button-background-active": "color-mix(in oklch, var(--vb-button-color), var(--vb-button-color-mix) 16%)",
+  "--vb-button-background-active": "color-mix(in oklch, var(--vb-button-color) calc(var(--vb-button-color-mix-percent) * 2), var(--vb-button-color-mix))",
   "--vb-button-foreground-active": "var(--vb-button-foreground)",
   "--vb-button-border-color-active": "var(--vb-button-border-color)",
   "--vb-button-box-shadow-active": "var(--vb-button-box-shadow)",
@@ -224,23 +224,23 @@ Variant modifiers change the visual style of a button without affecting its colo
       <button class="button button--variant-outline button--color-important">Important</button>
     </div>
     <div class="flex">
-      <button class="button button--variant-subtle">Button</button>
-      <button class="button button--variant-subtle button--color-primary">Primary</button>
-      <button class="button button--variant-subtle button--color-secondary">Secondary</button>
-      <button class="button button--variant-subtle button--color-neutral">Neutral</button>
-      <button class="button button--variant-subtle button--color-important">Important</button>
+      <button class="button button--variant-solid">Button</button>
+      <button class="button button--variant-solid button--color-primary">Primary</button>
+      <button class="button button--variant-solid button--color-secondary">Secondary</button>
+      <button class="button button--variant-solid button--color-neutral">Neutral</button>
+      <button class="button button--variant-solid button--color-important">Important</button>
     </div>
   </div>
   ```html
   <button class="button button--variant-outline">Button</button>
-  <button class="button button--variant-subtle">Button</button>
+  <button class="button button--variant-solid">Button</button>
   ```
 </CodeExample>
 
 **Available variants**
 
 - `button--variant-outline`
-- `button--variant-subtle`
+- `button--variant-solid`
 
 ## button--icon
 

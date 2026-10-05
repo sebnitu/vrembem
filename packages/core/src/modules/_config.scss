@@ -27,7 +27,7 @@ $-watchers: ();
 /// direct keys in the config map.
 /// @type list
 /// @access private
-$-flags: ("variants");
+$-flags: ("breakpoints", "defaults", "variants");
 
 /// Run all property watchers of a specific property. Passes along the name of
 /// the action to the applied mixin.
@@ -72,9 +72,10 @@ $-flags: ("variants");
 ///
 /// @access private
 ///
-@function -remove-flag($keys...) {
-  // Only remove the flag if the keys don't point to a real value
-  @if -has-flag($keys...) and not map.has-key($-config, $keys...) {
+@function -maybe-remove-variants-flag($keys...) {
+  // Only strip the "variants" flag — when no literal "variants" key is
+  // stored, the parent map itself is treated as the variants result.
+  @if list.nth($keys, -1) == "variants" and not map.has-key($-config, $keys...) {
     $keys: remove-nth($keys, -1);
   }
 
@@ -122,22 +123,23 @@ $-flags: ("variants");
 
   // Check if $keys value maps to something stored in config, or if it's a flag
   @if map.has-key($-config, $keys...) or -has-flag($keys...) {
-    // Get the initial result without the flag in keys
-    $result: map.get($-config, -remove-flag($keys...)...);
+    // Get the initial result without the variants flag if it's empty
+    $result: map.get($-config, -maybe-remove-variants-flag($keys...)...);
 
-    // Store if this is a breakpoints string request
+    // Store if this is a breakpoints string request, e.g.: "block-breakpoints"
     $is-breakpoints-string: string.index(list.nth($keys, -1), "-breakpoints");
 
     // If multiple keys are provided, run them through conditional getters
     @if list.length($keys) > 1 or $is-breakpoints-string {
       // Breakpoints getter
       @if list.nth($keys, -1) == "breakpoints" or $is-breakpoints-string {
-        @if $result == true {
-          @return map.get($-config, "breakpoints");
+        // Return an empty map if no result returned
+        @if not $result {
+          @return empty-map();
         }
 
-        @if $result == false {
-          @return empty-map();
+        @if $result == true {
+          @return map.get($-config, "breakpoints");
         }
 
         @if meta.type-of($result) == "list" or meta.type-of($result) == "string" {
@@ -151,9 +153,18 @@ $-flags: ("variants");
         @error "#{$keys}: must be a boolean, list, or map. Received: #{$result}";
       }
 
+      // Defaults getter
+      @if list.nth($keys, -1) == "defaults" {
+        // Return an empty map if no result returned
+        @if not $result {
+          @return empty-map();
+        }
+      }
+
       // Variants getter
       @if list.nth($keys, -1) == "variants" {
-        $result: map.remove($result, "breakpoints", "default");
+        // Exclude keys from the variants result map
+        $result: map.remove($result, "breakpoints", "default", "defaults");
       }
     }
 

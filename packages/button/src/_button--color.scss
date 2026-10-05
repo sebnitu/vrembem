@@ -6,15 +6,15 @@
 
 @each $key, $value in config.get("button-color", "variants") {
   #{core.bem("button", null, "color", $key)} {
-    // If only a color is provided, convert it to a map
+    // If only a single value is provided, convert it to a map with color key
     @if meta.type-of($value) != "map" {
       $value: (
         "color": $value
       );
     }
 
-    // Merge value with the default
-    $value: map.deep-merge(config.get("button-color", "default"), $value);
+    // Merge modifier defaults with the provided value map
+    $value: map.deep-merge(config.get("button-color", "defaults"), $value);
 
     // Apply the token overrides
     @include tokens.override("button", $value);
