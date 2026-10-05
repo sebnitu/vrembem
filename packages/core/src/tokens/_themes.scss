@@ -13,8 +13,8 @@
       "background-alt": tokens.get("palette", "neutral", "50"),
       "background-shift": tokens.get("palette", "neutral", "75"),
 
-      "foreground": tokens.get("palette", "neutral", "950"),
-      "foreground-subtle": tokens.get("palette", "neutral", "300"),
+      "foreground": tokens.get("palette", "neutral", "900"),
+      "foreground-subtle": tokens.get("palette", "neutral", "400"),
       "foreground-accent": tokens.get("palette", "primary", "300"),
       "foreground-accent-alt": tokens.get("palette", "secondary"),
 
@@ -42,7 +42,7 @@
       "background-alt": tokens.get("palette", "neutral", "900"),
       "background-shift": tokens.get("palette", "neutral", "950"),
 
-      "foreground": tokens.get("palette", "white"),
+      "foreground": tokens.get("palette", "neutral", "50"),
       "foreground-subtle": tokens.get("palette", "neutral", "400"),
       "foreground-accent": tokens.get("palette", "primary", "200"),
       "foreground-accent-alt": tokens.get("palette", "secondary", "200"),
