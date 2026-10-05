@@ -10,7 +10,7 @@
     border: tokens.get("pre", "border", none);
     border-radius: tokens.get("pre", "border-radius", tokens.get("border-radius"));
     font-family: tokens.get("font-family-mono");
-    color: tokens.get("pre", "foreground", tokens.get("foreground-strong"));
+    color: tokens.get("pre", "foreground", tokens.get("foreground"));
     background: tokens.get("pre", "background", tokens.get("background-alt"));
 
     code {

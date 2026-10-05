@@ -57,7 +57,7 @@
   left: auto;
 
   &:hover {
-    color: tokens.get("foreground-strong");
+    color: tokens.get("foreground");
   }
 
   @include core.media-max("xs") {

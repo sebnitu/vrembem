@@ -17,7 +17,7 @@
 
   th {
     font-weight: tokens.get("font-weight-bold");
-    color: tokens.get("table", "header-foreground", tokens.get("foreground-strong"));
+    color: tokens.get("table", "header-foreground", tokens.get("foreground"));
   }
 
   caption {

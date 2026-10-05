@@ -122,10 +122,10 @@
   "astro",
   (
     "code-background": tokens.get("background-alt"),
-    "code-foreground": tokens.get("foreground-strong"),
-    "code-color-text": tokens.get("foreground-strong"),
+    "code-foreground": tokens.get("foreground"),
+    "code-color-text": tokens.get("foreground"),
     "code-token-comment": tokens.get("foreground-subtle"),
-    "code-token-keyword": tokens.get("foreground-strong"),
+    "code-token-keyword": tokens.get("foreground"),
     "light": (
       "type": "theme",
       "code-token-constant": #1b6bc6,

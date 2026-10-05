@@ -22,10 +22,6 @@
     color: fun.maybe-important(tokens.get("foreground"));
   }
 
-  #{fun.selector("foreground", "strong")} {
-    color: fun.maybe-important(tokens.get("foreground-strong"));
-  }
-
   #{fun.selector("foreground", "subtle")} {
     color: fun.maybe-important(tokens.get("foreground-subtle"));
   }

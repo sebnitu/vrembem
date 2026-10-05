@@ -5,7 +5,7 @@
   "--vb-content-line-height": "inherit",
   "--vb-content-spacing": "",
 
-  "--vb-headings-foreground": "var(--vb-foreground-strong)",
+  "--vb-headings-color": "var(--vb-foreground)",
   "--vb-headings-font-family": "inherit",
   "--vb-headings-font-weight": "var(--vb-font-weight-semi-bold)",
   "--vb-headings-line-height": "inherit",
@@ -30,7 +30,7 @@
   "--vb-code-padding": "0.125rem 0.375rem",
 
   "--vb-pre-background": "var(--vb-background-alt)",
-  "--vb-pre-foreground": "var(--vb-foreground-strong)",
+  "--vb-pre-foreground": "var(--vb-foreground)",
   "--vb-pre-border": "none",
   "--vb-pre-border-radius": "var(--vb-border-radius)",
   "--vb-pre-padding": "var(--vb-spacing-md)",

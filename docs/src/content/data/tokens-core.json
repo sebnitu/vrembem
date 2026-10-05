@@ -96,7 +96,7 @@
   "--vb-form-control-padding-sm": "var(--vb-form-control-padding-y-sm) var(--vb-form-control-padding-x-sm)",
   "--vb-form-control-padding-lg": "var(--vb-form-control-padding-y-lg) var(--vb-form-control-padding-x-lg)",
   "--vb-form-control-accent": "var(--vb-primary)",
-  "--vb-form-control-foreground": "var(--vb-foreground-strong)",
+  "--vb-form-control-foreground": "var(--vb-foreground)",
   "--vb-form-control-background": "var(--vb-background)",
   "--vb-form-control-background-disabled": "var(--vb-background-alt)",
   "--vb-form-control-background-readonly": "var(--vb-background-alt)",
@@ -188,13 +188,9 @@
     "light": "var(--vb-neutral-75)",
     "dark": "var(--vb-neutral-950)"
   },
-  "--vb-foreground-strong": {
+  "--vb-foreground": {
     "light": "var(--vb-neutral-950)",
     "dark": "var(--vb-white)"
-  },
-  "--vb-foreground": {
-    "light": "var(--vb-neutral-500)",
-    "dark": "var(--vb-neutral-200)"
   },
   "--vb-foreground-subtle": {
     "light": "var(--vb-neutral-300)",

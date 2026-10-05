@@ -90,7 +90,7 @@ $-transition-property: outline, box-shadow, border-color;
   font-size: tokens.get("panel", "title-font-size", tokens.get("font-size-lg"));
   font-weight: tokens.get("panel", "title-font-weight", tokens.get("font-weight-semi-bold"));
   line-height: tokens.get("panel", "title-line-height", inherit);
-  color: tokens.get("panel", "title-color", tokens.get("foreground-strong"));
+  color: tokens.get("panel", "title-color", tokens.get("foreground"));
 
   :where(summary) > &::after {
     @include core.size(0.8em);
