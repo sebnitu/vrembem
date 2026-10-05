@@ -14,9 +14,12 @@
       "background-shift": tokens.get("palette", "neutral", "75"),
 
       "foreground": tokens.get("palette", "neutral", "900"),
-      "foreground-subtle": tokens.get("palette", "neutral", "400"),
+      "foreground-subtle": tokens.get("palette", "neutral", "300"),
       "foreground-accent": tokens.get("palette", "primary", "300"),
       "foreground-accent-alt": tokens.get("palette", "secondary"),
+
+      "body-background": tokens.get("palette", "white"),
+      "body-foreground": tokens.get("palette", "neutral", "600"),
 
       "primary-background": tokens.get("palette", "primary", "75"),
       "primary-foreground": tokens.get("palette", "primary", "600"),
@@ -46,6 +49,9 @@
       "foreground-subtle": tokens.get("palette", "neutral", "400"),
       "foreground-accent": tokens.get("palette", "primary", "200"),
       "foreground-accent-alt": tokens.get("palette", "secondary", "200"),
+
+      "body-background": tokens.get("palette", "neutral", "800"),
+      "body-foreground": tokens.get("palette", "neutral", "200"),
 
       "primary-background": tokens.get("palette", "primary", "600"),
       "primary-foreground": tokens.get("palette", "primary", "75"),

@@ -10,7 +10,7 @@ $-transition-property: background-color, border-color, box-shadow, transform;
   flex-direction: column;
   border: tokens.get("card", "border", none);
   border-radius: tokens.get("card", "border-radius", tokens.get("border-radius"));
-  color: tokens.get("card", "foreground", tokens.get("foreground"));
+  color: tokens.get("card", "foreground", null);
   background: tokens.get("card", "background", tokens.get("background"));
   background-clip: padding-box;
   box-shadow: tokens.get("card", "box-shadow", 0 0 0 1px tokens.get("border-color"));

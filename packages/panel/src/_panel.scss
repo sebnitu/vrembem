@@ -12,7 +12,7 @@ $-transition-property: outline, box-shadow, border-color;
   flex-direction: column;
   border: tokens.get("panel", "border", none);
   border-radius: tokens.get("panel", "border-radius", tokens.get("border-radius"));
-  color: tokens.get("panel", "foreground", tokens.get("foreground"));
+  color: tokens.get("panel", "foreground", null);
   background: tokens.get("panel", "background", tokens.get("background"));
   background-clip: padding-box;
   box-shadow: tokens.get("panel", "box-shadow", 0 0 0 1px tokens.get("border-color"));
