@@ -123,7 +123,6 @@ $-flags: ("breakpoints", "defaults", "variants");
 
   // Check if $keys value maps to something stored in config, or if it's a flag
   @if map.has-key($-config, $keys...) or -has-flag($keys...) {
-    
     // Get the initial result without the variants flag if it's empty
     $result: map.get($-config, -maybe-remove-variants-flag($keys...)...);
 
@@ -135,10 +134,10 @@ $-flags: ("breakpoints", "defaults", "variants");
       // Breakpoints getter
       @if list.nth($keys, -1) == "breakpoints" or $is-breakpoints-string {
         // Return an empty map if no result returned
-        @if $result == false or $result == null {
+        @if not $result {
           @return empty-map();
         }
-        
+
         @if $result == true {
           @return map.get($-config, "breakpoints");
         }
@@ -157,7 +156,7 @@ $-flags: ("breakpoints", "defaults", "variants");
       // Defaults getter
       @if list.nth($keys, -1) == "defaults" {
         // Return an empty map if no result returned
-        @if $result == false or $result == null {
+        @if not $result {
           @return empty-map();
         }
       }
