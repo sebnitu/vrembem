@@ -6,7 +6,7 @@
   gap: tokens.get("spacing-sm") tokens.get("spacing-md");
   align-items: center;
   justify-content: space-between;
-  color: tokens.get("foreground-strong");
+  color: tokens.get("foreground");
 
   .link--hash {
     display: flex;

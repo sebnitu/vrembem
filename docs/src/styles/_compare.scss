@@ -58,7 +58,7 @@
     height: 2em;
     border: 8px solid tokens.get("background");
     border-radius: tokens.get("border-radius-circle");
-    color: tokens.get("foreground-strong");
+    color: tokens.get("foreground");
     background-color: tokens.get("compare", "background");
   }
 }

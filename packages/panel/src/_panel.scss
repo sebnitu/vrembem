@@ -12,7 +12,7 @@ $-transition-property: outline, box-shadow, border-color;
   flex-direction: column;
   border: tokens.get("panel", "border", none);
   border-radius: tokens.get("panel", "border-radius", tokens.get("border-radius"));
-  color: tokens.get("panel", "foreground", tokens.get("foreground"));
+  color: tokens.get("panel", "foreground", null);
   background: tokens.get("panel", "background", tokens.get("background"));
   background-clip: padding-box;
   box-shadow: tokens.get("panel", "box-shadow", 0 0 0 1px tokens.get("border-color"));
@@ -90,7 +90,7 @@ $-transition-property: outline, box-shadow, border-color;
   font-size: tokens.get("panel", "title-font-size", tokens.get("font-size-lg"));
   font-weight: tokens.get("panel", "title-font-weight", tokens.get("font-weight-semi-bold"));
   line-height: tokens.get("panel", "title-line-height", inherit);
-  color: tokens.get("panel", "title-color", tokens.get("foreground-strong"));
+  color: tokens.get("panel", "title-color", tokens.get("foreground"));
 
   :where(summary) > &::after {
     @include core.size(0.8em);

@@ -6,7 +6,7 @@
   padding: tokens.get("notice", "padding", 1em 1.25em);
   border: tokens.get("notice", "border", none);
   border-radius: tokens.get("notice", "border-radius", tokens.get("border-radius"));
-  color: tokens.get("notice", "foreground", tokens.get("foreground-strong"));
+  color: tokens.get("notice", "foreground", tokens.get("foreground"));
   background: tokens.get("notice", "background", tokens.get("background-shift"));
   box-shadow: tokens.get("notice", "box-shadow", none);
 

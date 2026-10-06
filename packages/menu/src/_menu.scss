@@ -47,7 +47,7 @@
   padding: tokens.get("menu", "padding-y", 0.5rem) tokens.get("menu", "padding-x", 0.75rem);
   border: none;
   border-radius: tokens.get("menu", "border-radius", tokens.get("border-radius"));
-  color: tokens.get("menu", "foreground", tokens.get("foreground-strong"));
+  color: tokens.get("menu", "foreground", tokens.get("foreground"));
   text-align: inherit;
   text-decoration: none;
   white-space: normal;
@@ -55,17 +55,17 @@
   background-clip: border-box;
 
   &:hover {
-    color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground-strong"));
+    color: tokens.get("menu", "foreground-hover", "foreground", tokens.get("foreground"));
     background-color: tokens.get("menu", "background-hover", "background", color-mix(in oklch, currentcolor 4%, transparent));
   }
 
   &:focus-visible {
-    color: tokens.get("menu", "foreground-focus", "foreground", tokens.get("foreground-strong"));
+    color: tokens.get("menu", "foreground-focus", "foreground", tokens.get("foreground"));
     background-color: tokens.get("menu", "background-focus", "background", transparent);
   }
 
   &:active {
-    color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground-strong"));
+    color: tokens.get("menu", "foreground-active", "foreground", tokens.get("foreground"));
     background-color: tokens.get("menu", "background-active", "background", color-mix(in oklch, currentcolor 8%, transparent));
   }
 

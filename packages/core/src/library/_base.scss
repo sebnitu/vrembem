@@ -37,11 +37,11 @@
   }
 
   // 1) Allows the body to be at least the screen height but grow if needed
-  // 2) Apply the foreground and background tokens
+  // 2) Apply the foreground and background body tokens
   body {
     min-height: 100vh; // 1
-    color: tokens.get("base-foreground"); // 2
-    background: tokens.get("base-background"); // 2
+    color: tokens.get("core", "body-foreground", black); // 2
+    background: tokens.get("core", "body-background", white); // 2
   }
 
   // Make media elements display block by default
@@ -101,7 +101,7 @@
   h5,
   h6 {
     font-size: inherit;
-    color: tokens.get("foreground-strong");
+    color: tokens.get("foreground");
   }
 
   // Global font weight for Chrome, Edge, and Safari

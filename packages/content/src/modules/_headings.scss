@@ -12,7 +12,7 @@
     font-size: tokens.get("headings", "font-size", 1em);
     font-weight: tokens.get("headings", "font-weight", tokens.get("font-weight-semi-bold"));
     line-height: tokens.get("headings", "line-height", inherit);
-    color: tokens.get("headings", "foreground", tokens.get("foreground-strong"));
+    color: tokens.get("headings", "color", tokens.get("foreground"));
   }
 
   @each $key, $value in config.get("content-headings") {

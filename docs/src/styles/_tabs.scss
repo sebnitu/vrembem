@@ -32,7 +32,7 @@ vb-tabs:defined {
   }
 
   &:hover {
-    color: tokens.get("foreground-strong");
+    color: tokens.get("foreground");
   }
 
   &[aria-selected="true"] {
