@@ -59,7 +59,6 @@
 @include tokens.set(
   "core", 
   (
-    "font-family": ("Barlow", system-ui, ui-sans-serif, sans-serif),
     "background-glass": oklch(from tokens.get("background") l c h / 70%),
     "padding-dynamic": clamp(1.25rem, 3vw + 0.5rem, 3rem),
     "light": (
