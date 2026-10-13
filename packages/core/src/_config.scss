@@ -31,12 +31,12 @@ $default: (
   // @type map
   "palette": (
     "neutral": oklch(74% 4% 236deg), // #a2adb4
-    "red": oklch(60% 40% 28deg),     // #ce5247
     "green": oklch(74% 40% 158deg),  // #30c883
     "blue": oklch(62% 40% 244deg),   // #008dde
+    "purple": oklch(58% 40% 305deg), // #915dc5
+    "red": oklch(60% 40% 28deg),     // #ce5247
     "orange": oklch(70% 40% 55deg),  // #e87f25
     "yellow": oklch(85% 38% 92deg),  // #f1ca44
-    "purple": oklch(58% 40% 305deg), // #915dc5
     "primary": "green",
     "secondary": "blue",
     "important": "red"
