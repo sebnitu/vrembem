@@ -24,20 +24,32 @@
   @include tokens.set("palette", "black", oklch(0% 0 0));
   @include tokens.set("palette", "white", oklch(100% 0 0));
 
+  $decimal: config.get(li("palette-round-decimal"), 4);
+  $variants: map.keys(config.get(li("palette-variants"), empty-map()));
+
   // Loop through the palette
   @each $name, $value in config.get(li("palette"), empty-map()) {
-    // Get the value from config if it's an alias
-    @if meta.type-of($value) == "string" {
-      $value: config.get("palette", $value);
-    }
+    // Store if this is an alias
+    $alias: meta.type-of($value) == "string";
 
     // Set the raw value
-    @include tokens.set("palette", "#{$name}", $value);
+    @include tokens.set("palette", "#{$name}", if(sass($alias): tokens.get("palette", $value); else: $value));
 
-    // Set the lightness, chroma and hue parts
-    @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), config.get(li("palette-round-decimal"), 4)));
-    @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), config.get(li("palette-round-decimal"), 4)));
-    @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), config.get(li("palette-round-decimal"), 4)));
+    // A string value means this is an alias
+    @if $alias {
+      @include tokens.set("palette", "#{$name}-l", tokens.get("palette", "#{$value}-l"));
+      @include tokens.set("palette", "#{$name}-c", tokens.get("palette", "#{$value}-c"));
+      @include tokens.set("palette", "#{$name}-h", tokens.get("palette", "#{$value}-h"));
+    } @else {
+      @include tokens.set("palette", "#{$name}-l", round-to(color.channel($value, "lightness", $space: oklch), $decimal));
+      @include tokens.set("palette", "#{$name}-c", round-to(color.channel($value, "chroma", $space: oklch), $decimal));
+      @include tokens.set("palette", "#{$name}-h", round-to(color.channel($value, "hue", $space: oklch), $decimal));
+    }
+
+    // Set the variants
+    @each $key in $variants {
+      @include tokens.set("palette", "#{$name}-#{$key}", if(sass($alias): tokens.get("palette", "#{$value}-#{$key}"); else: tokens.get("palette", $name, $key)));
+    }
   }
 }
 
@@ -201,11 +213,6 @@
   }
 }
 
-// Set the initial CSS variables for the palette map
-@if config.get(li("palette"), "") != "" {
-  @include -build-palette("initial");
-}
-
 // Add config watchers for when the palette or prefix-tokens values change
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-build-palette"));
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
@@ -213,3 +220,8 @@
 // Apply token hook for palette getter
 @include tokens.add-hook("getter", "palette", meta.get-function("-get"));
 @include tokens.add-hook("getter", "palette-remap", meta.get-function("-remap"));
+
+// Set the initial CSS variables for the palette map
+@if config.get(li("palette"), "") != "" {
+  @include -build-palette("initial");
+}

@@ -30,10 +30,16 @@ $default: (
   // The palette to build CSS variables from
   // @type map
   "palette": (
-    "primary": oklch(74% 40% 158deg),   // #30c883
-    "secondary": oklch(62% 40% 244deg), // #008dde
-    "neutral": oklch(74% 4% 236deg),    // #a2adb4
-    "important": oklch(60% 40% 28deg),  // #ce5247
+    "neutral": oklch(74% 4% 236deg), // #a2adb4
+    "green": oklch(74% 40% 158deg),  // #30c883
+    "blue": oklch(62% 40% 244deg),   // #008dde
+    "purple": oklch(58% 40% 305deg), // #915dc5
+    "red": oklch(60% 40% 28deg),     // #ce5247
+    "orange": oklch(70% 40% 55deg),  // #e87f25
+    "yellow": oklch(85% 38% 92deg),  // #f1ca44
+    "primary": "green",
+    "secondary": "blue",
+    "important": "red"
   ),
 
   // Number of decimal places to round colors converted to oklch color space
