@@ -698,8 +698,6 @@ $-events: ();
 ///   }
 ///
 @mixin output($component: "*") {
-  @include -emit-event("before-output", $component);
-
   :root {
     @if $component == "*" {
       @each $component in map.keys($-tokens) {

@@ -213,11 +213,6 @@
   }
 }
 
-// Set the initial CSS variables for the palette map
-@if config.get(li("palette"), "") != "" {
-  @include -build-palette("initial");
-}
-
 // Add config watchers for when the palette or prefix-tokens values change
 @include config.watch("palette", "rebuild-palette", meta.get-mixin("-build-palette"));
 @include config.watch("prefix-tokens", "rebuild-palette", meta.get-mixin("-build-palette"));
@@ -226,5 +221,7 @@
 @include tokens.add-hook("getter", "palette", meta.get-function("-get"));
 @include tokens.add-hook("getter", "palette-remap", meta.get-function("-remap"));
 
-// Add tokens event listener that runs whenever tokens are output
-@include tokens.on("before-output", "rebuild-palette", meta.get-mixin("-build-palette"));
+// Set the initial CSS variables for the palette map
+@if config.get(li("palette"), "") != "" {
+  @include -build-palette("initial");
+}
