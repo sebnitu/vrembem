@@ -17,7 +17,7 @@
 // Add custom palette values
 // prettier-ignore
 @include config.merge("palette", (
-  "dark-green": oklch(55% 20% 156deg),
+  "warm-green": oklch(60% 40% 138deg),
   "pale-green": oklch(74% 8% 156deg),
   "pale-blue": oklch(62% 12% 244deg),
 ));
@@ -27,9 +27,8 @@
 @include tokens.set("core", (
   "forest": tokens.get("palette-remap", (
     "neutral": "pale-green",
-    "primary": "dark-green",
-    "secondary": "green",
-    "important": "orange"
+    "primary": "warm-green",
+    "secondary": "orange"
   )),
   "ocean": tokens.get("palette-remap", (
     "neutral": "pale-blue",
