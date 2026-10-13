@@ -37,10 +37,13 @@
 
 // prettier-ignore
 .vrembem-logo {
-  --background-size: 12; // This should be a multiplier value (5 = 500%)
-  --gradient-color-1: #{tokens.get("palette", "primary")};
-  --gradient-color-2: #{tokens.get("palette", "secondary")};
-  --gradient-color-3: #{tokens.get("palette", "important")};
+  --background-size: 32; // This should be a multiplier value (5 = 500%)
+  --gradient-color-1: #{tokens.get("palette", "green")};
+  --gradient-color-2: #{tokens.get("palette", "blue")};
+  --gradient-color-3: #{tokens.get("palette", "purple")};
+  --gradient-color-4: #{tokens.get("palette", "red")};
+  --gradient-color-5: #{tokens.get("palette", "orange")};
+  --gradient-color-6: #{tokens.get("palette", "yellow")};
 
   display: inline-block;
   aspect-ratio: 780 / 234;
@@ -52,6 +55,12 @@
     var(--gradient-color-1),
     var(--gradient-color-2),
     var(--gradient-color-3),
+    var(--gradient-color-4),
+    var(--gradient-color-5),
+    var(--gradient-color-6),
+    var(--gradient-color-5),
+    var(--gradient-color-4),
+    var(--gradient-color-3),
     var(--gradient-color-2),
     var(--gradient-color-1)
   );
@@ -60,7 +69,7 @@
   mask-image: url("/src/assets/vrembem-logo.svg");
   mask-repeat: no-repeat;
   mask-size: contain;
-  animation: logo-gradient 20s linear infinite;
+  animation: logo-gradient 64s linear 5s infinite;
 }
 
 @keyframes logo-gradient {
