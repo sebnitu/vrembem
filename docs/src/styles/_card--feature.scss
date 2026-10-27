@@ -5,8 +5,5 @@
   padding: tokens.get("padding-dynamic");
   border-radius: tokens.get("border-radius-lg");
   text-wrap: pretty;
-
-  &:not(a) {
-    box-shadow: none;
-  }
+  box-shadow: none;
 }
