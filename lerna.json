@@ -1,9 +1,10 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "version": "5.0.1",
-  "packages": ["packages/*", "docs", "test"],
+  "packages": ["packages/*", "docs"],
   "command": {
-    "publish": {
+    "version": {
+      "allowBranch": "main",
       "message": "chore(release): bump to %s",
       "ignoreChanges": ["**/tests/**", "**/*.md", "packages/**/*.html"]
     }
