@@ -3,22 +3,50 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: weekly
+      interval: cron
+      cronjob: "0 9 1,15 * *"
+      timezone: America/Los_Angeles
+    cooldown:
+      default-days: 3
     open-pull-requests-limit: 20
     versioning-strategy: increase
-    target-branch: "next"
     labels:
-      - "dep next"
+      - "dep"
     groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
       eslint:
         patterns:
           - "eslint"
-          - "@eslint*"
+          - "eslint-*"
+          - "@eslint/*"
+          - "globals"
       stylelint:
         patterns:
-          - "stylelint*"
+          - "stylelint"
+          - "stylelint-*"
       testing:
         patterns:
-          - "vitest*"
-          - "@vitest*"
+          - "vitest"
+          - "@vitest/*"
           - "jsdom"
+          - "@testing-library/*"
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels:
+      - "dep"
+    groups:
+      actions:
+        patterns:
+          - "*"
