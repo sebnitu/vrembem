@@ -14,9 +14,9 @@
   "--vb-neutral-500": "oklch(50% var(--vb-neutral-c) var(--vb-neutral-h))",
   "--vb-neutral-600": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h))",
   "--vb-neutral-700": "oklch(30% var(--vb-neutral-c) var(--vb-neutral-h))",
-  "--vb-neutral-800": "oklch(20% calc(var(--vb-neutral-c) * 0.8) var(--vb-neutral-h))",
-  "--vb-neutral-900": "oklch(18% calc(var(--vb-neutral-c) * 0.7) var(--vb-neutral-h))",
-  "--vb-neutral-950": "oklch(16% calc(var(--vb-neutral-c) * 0.6) var(--vb-neutral-h))",
+  "--vb-neutral-800": "oklch(26% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-900": "oklch(24% var(--vb-neutral-c) var(--vb-neutral-h))",
+  "--vb-neutral-950": "oklch(22% var(--vb-neutral-c) var(--vb-neutral-h))",
   "--vb-green": "oklch(74% 0.16 158deg)",
   "--vb-green-l": "74%",
   "--vb-green-c": "0.16",
@@ -30,9 +30,9 @@
   "--vb-green-500": "oklch(50% var(--vb-green-c) var(--vb-green-h))",
   "--vb-green-600": "oklch(40% var(--vb-green-c) var(--vb-green-h))",
   "--vb-green-700": "oklch(30% var(--vb-green-c) var(--vb-green-h))",
-  "--vb-green-800": "oklch(20% calc(var(--vb-green-c) * 0.8) var(--vb-green-h))",
-  "--vb-green-900": "oklch(18% calc(var(--vb-green-c) * 0.7) var(--vb-green-h))",
-  "--vb-green-950": "oklch(16% calc(var(--vb-green-c) * 0.6) var(--vb-green-h))",
+  "--vb-green-800": "oklch(26% var(--vb-green-c) var(--vb-green-h))",
+  "--vb-green-900": "oklch(24% var(--vb-green-c) var(--vb-green-h))",
+  "--vb-green-950": "oklch(22% var(--vb-green-c) var(--vb-green-h))",
   "--vb-blue": "oklch(62% 0.16 244deg)",
   "--vb-blue-l": "62%",
   "--vb-blue-c": "0.16",
@@ -46,9 +46,9 @@
   "--vb-blue-500": "oklch(50% var(--vb-blue-c) var(--vb-blue-h))",
   "--vb-blue-600": "oklch(40% var(--vb-blue-c) var(--vb-blue-h))",
   "--vb-blue-700": "oklch(30% var(--vb-blue-c) var(--vb-blue-h))",
-  "--vb-blue-800": "oklch(20% calc(var(--vb-blue-c) * 0.8) var(--vb-blue-h))",
-  "--vb-blue-900": "oklch(18% calc(var(--vb-blue-c) * 0.7) var(--vb-blue-h))",
-  "--vb-blue-950": "oklch(16% calc(var(--vb-blue-c) * 0.6) var(--vb-blue-h))",
+  "--vb-blue-800": "oklch(26% var(--vb-blue-c) var(--vb-blue-h))",
+  "--vb-blue-900": "oklch(24% var(--vb-blue-c) var(--vb-blue-h))",
+  "--vb-blue-950": "oklch(22% var(--vb-blue-c) var(--vb-blue-h))",
   "--vb-purple": "oklch(58% 0.16 305deg)",
   "--vb-purple-l": "58%",
   "--vb-purple-c": "0.16",
@@ -62,9 +62,9 @@
   "--vb-purple-500": "oklch(50% var(--vb-purple-c) var(--vb-purple-h))",
   "--vb-purple-600": "oklch(40% var(--vb-purple-c) var(--vb-purple-h))",
   "--vb-purple-700": "oklch(30% var(--vb-purple-c) var(--vb-purple-h))",
-  "--vb-purple-800": "oklch(20% calc(var(--vb-purple-c) * 0.8) var(--vb-purple-h))",
-  "--vb-purple-900": "oklch(18% calc(var(--vb-purple-c) * 0.7) var(--vb-purple-h))",
-  "--vb-purple-950": "oklch(16% calc(var(--vb-purple-c) * 0.6) var(--vb-purple-h))",
+  "--vb-purple-800": "oklch(26% var(--vb-purple-c) var(--vb-purple-h))",
+  "--vb-purple-900": "oklch(24% var(--vb-purple-c) var(--vb-purple-h))",
+  "--vb-purple-950": "oklch(22% var(--vb-purple-c) var(--vb-purple-h))",
   "--vb-red": "oklch(60% 0.16 28deg)",
   "--vb-red-l": "60%",
   "--vb-red-c": "0.16",
@@ -78,9 +78,9 @@
   "--vb-red-500": "oklch(50% var(--vb-red-c) var(--vb-red-h))",
   "--vb-red-600": "oklch(40% var(--vb-red-c) var(--vb-red-h))",
   "--vb-red-700": "oklch(30% var(--vb-red-c) var(--vb-red-h))",
-  "--vb-red-800": "oklch(20% calc(var(--vb-red-c) * 0.8) var(--vb-red-h))",
-  "--vb-red-900": "oklch(18% calc(var(--vb-red-c) * 0.7) var(--vb-red-h))",
-  "--vb-red-950": "oklch(16% calc(var(--vb-red-c) * 0.6) var(--vb-red-h))",
+  "--vb-red-800": "oklch(26% var(--vb-red-c) var(--vb-red-h))",
+  "--vb-red-900": "oklch(24% var(--vb-red-c) var(--vb-red-h))",
+  "--vb-red-950": "oklch(22% var(--vb-red-c) var(--vb-red-h))",
   "--vb-orange": "oklch(70% 0.16 55deg)",
   "--vb-orange-l": "70%",
   "--vb-orange-c": "0.16",
@@ -94,9 +94,9 @@
   "--vb-orange-500": "oklch(50% var(--vb-orange-c) var(--vb-orange-h))",
   "--vb-orange-600": "oklch(40% var(--vb-orange-c) var(--vb-orange-h))",
   "--vb-orange-700": "oklch(30% var(--vb-orange-c) var(--vb-orange-h))",
-  "--vb-orange-800": "oklch(20% calc(var(--vb-orange-c) * 0.8) var(--vb-orange-h))",
-  "--vb-orange-900": "oklch(18% calc(var(--vb-orange-c) * 0.7) var(--vb-orange-h))",
-  "--vb-orange-950": "oklch(16% calc(var(--vb-orange-c) * 0.6) var(--vb-orange-h))",
+  "--vb-orange-800": "oklch(26% var(--vb-orange-c) var(--vb-orange-h))",
+  "--vb-orange-900": "oklch(24% var(--vb-orange-c) var(--vb-orange-h))",
+  "--vb-orange-950": "oklch(22% var(--vb-orange-c) var(--vb-orange-h))",
   "--vb-yellow": "oklch(85% 0.152 92deg)",
   "--vb-yellow-l": "85%",
   "--vb-yellow-c": "0.152",
@@ -110,9 +110,9 @@
   "--vb-yellow-500": "oklch(50% var(--vb-yellow-c) var(--vb-yellow-h))",
   "--vb-yellow-600": "oklch(40% var(--vb-yellow-c) var(--vb-yellow-h))",
   "--vb-yellow-700": "oklch(30% var(--vb-yellow-c) var(--vb-yellow-h))",
-  "--vb-yellow-800": "oklch(20% calc(var(--vb-yellow-c) * 0.8) var(--vb-yellow-h))",
-  "--vb-yellow-900": "oklch(18% calc(var(--vb-yellow-c) * 0.7) var(--vb-yellow-h))",
-  "--vb-yellow-950": "oklch(16% calc(var(--vb-yellow-c) * 0.6) var(--vb-yellow-h))",
+  "--vb-yellow-800": "oklch(26% var(--vb-yellow-c) var(--vb-yellow-h))",
+  "--vb-yellow-900": "oklch(24% var(--vb-yellow-c) var(--vb-yellow-h))",
+  "--vb-yellow-950": "oklch(22% var(--vb-yellow-c) var(--vb-yellow-h))",
   "--vb-primary": "var(--vb-green)",
   "--vb-primary-l": "var(--vb-green-l)",
   "--vb-primary-c": "var(--vb-green-c)",
@@ -272,7 +272,7 @@
   "--vb-form-control-padding-lg": "var(--vb-form-control-padding-y-lg) var(--vb-form-control-padding-x-lg)",
   "--vb-background": {
     "light": "var(--vb-white)",
-    "dark": "var(--vb-neutral-800)"
+    "dark": "var(--vb-neutral-950)"
   },
   "--vb-background-alt": {
     "light": "var(--vb-neutral-50)",
@@ -280,11 +280,11 @@
   },
   "--vb-background-shift": {
     "light": "var(--vb-neutral-75)",
-    "dark": "var(--vb-neutral-950)"
+    "dark": "var(--vb-neutral-800)"
   },
   "--vb-foreground": {
-    "light": "var(--vb-neutral-950)",
-    "dark": "var(--vb-white)"
+    "light": "var(--vb-neutral-900)",
+    "dark": "var(--vb-neutral-50)"
   },
   "--vb-foreground-subtle": {
     "light": "var(--vb-neutral-300)",
@@ -297,6 +297,14 @@
   "--vb-foreground-accent-alt": {
     "light": "var(--vb-secondary)",
     "dark": "var(--vb-secondary-200)"
+  },
+  "--vb-body-background": {
+    "light": "var(--vb-white)",
+    "dark": "var(--vb-neutral-950)"
+  },
+  "--vb-body-foreground": {
+    "light": "var(--vb-neutral-600)",
+    "dark": "var(--vb-neutral-200)"
   },
   "--vb-primary-background": {
     "light": "var(--vb-primary-75)",
@@ -344,7 +352,7 @@
   },
   "--vb-shadow-color": {
     "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
-    "dark": "oklch(16% calc(var(--vb-neutral-c) * 0.6) var(--vb-neutral-h) / 80%)"
+    "dark": "oklch(22% var(--vb-neutral-c) var(--vb-neutral-h) / 80%)"
   },
   "--vb-box-shadow-outline-color": {
     "light": "oklch(40% var(--vb-neutral-c) var(--vb-neutral-h) / 8%)",
