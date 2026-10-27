@@ -62,9 +62,9 @@ $default: (
     "500": 50%,
     "600": 40%,
     "700": 30%,
-    "800": (20%, 80%),
-    "900": (18%, 70%),
-    "950": (16%, 60%), // The darkest variant in the palette
+    "800": 26%,
+    "900": 24%,
+    "950": 22%, // The darkest variant in the palette
   ),
 
   // Whether or not to output theme tokens. If disabled, the default theme is 
