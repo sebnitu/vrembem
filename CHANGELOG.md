@@ -46,11 +46,33 @@ Prerelease from next (optional)
 - `npx lerna publish --canary --preid next --dist-tag next`
 
 Commit message template:
-chore(release): add v5.0.1 to CHANGELOG.md
+chore(release): add v6.0.0 to CHANGELOG.md
 
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
+<!-- v6.0.0 -->
+
+
+## v6.0.0 (2026-10-28)
+
+### :fire: Breaking Changes
+* `button`, `card`, `content`, `core`, `menu`, `modal`,`notice`, `panel`, `table`, `utility`, `vrembem`
+  * [#3027](https://github.com/sebnitu/vrembem/pull/3027) Audit foreground tokens
+* `button`, `core`
+  * [#3026](https://github.com/sebnitu/vrembem/pull/3026) Make subtle button styles the new default
+
+### :tada: New Feature
+* `core`
+  * [#3037](https://github.com/sebnitu/vrembem/pull/3037) Add new primitive color palette tokens
+
+### :house: Refactor
+* `content`, `core`, `flex`, `grid`, `utility`
+  * [#3060](https://github.com/sebnitu/vrembem/pull/3060) Remove spacing var calculations in favor of raw spacing values
+* `core`
+  * [#3059](https://github.com/sebnitu/vrembem/pull/3059) Improve dark mode default values
+
+
 <!-- v5.0.0 -->
 
 
