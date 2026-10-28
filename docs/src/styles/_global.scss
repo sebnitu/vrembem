@@ -43,7 +43,7 @@ dl > * + * {
 
 dt {
   display: flex;
-  gap: tokens.get("spacing-md");
+  gap: tokens.get("spacing");
   align-items: center;
   font-weight: bold;
 
@@ -61,8 +61,8 @@ dd {
 }
 
 dd + dt {
-  margin-top: tokens.get("spacing-md");
-  padding-top: tokens.get("spacing-md");
+  margin-top: tokens.get("spacing");
+  padding-top: tokens.get("spacing");
 }
 
 .padding-dynamic {

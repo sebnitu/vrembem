@@ -55,11 +55,11 @@ $default: (
   // @type map
   "spacing": (
     "0": 0,
-    "xs": tokens.get("spacing"),
-    "sm": calc(tokens.get("spacing") * 2),
-    "": calc(tokens.get("spacing") * 4),
-    "lg": calc(tokens.get("spacing") * 8),
-    "xl": calc(tokens.get("spacing") * 12)
+    "xs": tokens.get("spacing-xs"),
+    "sm": tokens.get("spacing-sm"),
+    "": tokens.get("spacing"),
+    "lg": tokens.get("spacing-lg"),
+    "xl": tokens.get("spacing-xl")
   ),
 
   // A spacing scale used to output em based spacing utilities
@@ -67,7 +67,7 @@ $default: (
   "em-spacing": (
     "xs": tokens.get("em-spacing-xs"),
     "sm": tokens.get("em-spacing-sm"),
-    "": tokens.get("em-spacing-md"),
+    "": tokens.get("em-spacing"),
     "lg": tokens.get("em-spacing-lg"),
     "xl": tokens.get("em-spacing-xl")
   ),
@@ -78,7 +78,7 @@ $default: (
     "0": 0,
     "xs": tokens.get("spacing-xs"),
     "sm": tokens.get("spacing-sm"),
-    "": tokens.get("spacing-md"),
+    "": tokens.get("spacing"),
     "lg": tokens.get("spacing-lg"),
     "xl": tokens.get("spacing-xl")
   ),

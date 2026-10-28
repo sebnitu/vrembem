@@ -6,7 +6,7 @@
 
   #{fun.selector("pre")} {
     overflow: auto;
-    padding: tokens.get("pre", "padding", tokens.get("spacing-md"));
+    padding: tokens.get("pre", "padding", tokens.get("spacing"));
     border: tokens.get("pre", "border", none);
     border-radius: tokens.get("pre", "border-radius", tokens.get("border-radius"));
     font-family: tokens.get("font-family-mono");

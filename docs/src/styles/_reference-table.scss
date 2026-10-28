@@ -92,7 +92,7 @@
   }
 
   .notice {
-    margin-top: tokens.get("spacing-md");
+    margin-top: tokens.get("spacing");
     border-radius: tokens.get("border-radius");
     font-size: tokens.get("font-size");
   }
@@ -119,7 +119,7 @@
   position: sticky;
   z-index: 2;
   top: calc(tokens.get("layout", "header-height") - 1px);
-  padding: tokens.get("spacing-md") 0;
+  padding: tokens.get("spacing") 0;
   background: tokens.get("background");
 
   .input-group {

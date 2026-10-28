@@ -152,7 +152,7 @@
 .code-example__actions {
   position: absolute;
   z-index: 2;
-  inset: auto tokens.get("spacing-md") tokens.get("spacing-md") auto;
+  inset: auto tokens.get("spacing") tokens.get("spacing") auto;
   display: flex;
   gap: tokens.get("spacing-sm");
 }
