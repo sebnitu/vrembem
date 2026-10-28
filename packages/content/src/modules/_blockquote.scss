@@ -6,14 +6,14 @@
 
   #{fun.selector("blockquote")} {
     position: relative;
-    padding: tokens.get("blockquote", "padding", tokens.get("spacing-md"));
+    padding: tokens.get("blockquote", "padding", tokens.get("spacing"));
     border: tokens.get("blockquote", "border", tokens.get("border"));
     border-radius: tokens.get("blockquote", "border-radius", tokens.get("border-radius"));
     color: tokens.get("blockquote", "foreground", currentcolor);
     background: tokens.get("blockquote", "background", transparent);
 
     > * + * {
-      margin-top: tokens.get("blockquote", "spacing", tokens.get("spacing-md"));
+      margin-top: tokens.get("blockquote", "spacing", tokens.get("spacing"));
     }
   }
 }

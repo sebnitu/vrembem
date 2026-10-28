@@ -21,8 +21,13 @@ Fixing issues with Lerna
 - Delete `node_modules` and `package-lock.json`
 - Run `npm install`
 
-Publish flow
-- Merge branch that contains appropriate PR label
+Branch flow
+- Feature, fix and dependency PRs target `next` (default branch, squash merge)
+- Hotfix PRs target `main` directly
+
+Release flow (monthly)
+- Open a PR from `next` into `main` and merge it with a merge commit (no squash)
+- `git checkout main && git pull`
 - Run `npm run sink`
 - Run `npx lerna-changelog`
 - Maybe update github auth token `GITHUB_AUTH`
@@ -31,10 +36,14 @@ Publish flow
 - Fix heading levels `####` > `###` (add end space to not change this comment)
 - Commit changes using the commit message template
 - Run `npx lerna version` (use `--force-publish` to force a bump on all packages)
-- Login to NPM `npm login`
-- Run 
-  - On main: `npx lerna publish from-package`
-  - On next: `npx lerna publish from-package --dist-tag next`
+  - Only allowed on `main`; pushes the version commit and tag
+  - The tag triggers `.github/workflows/release.yml`, which publishes to NPM,
+    creates the GitHub release from this file and merges main back into next
+  - If the sync job fails (merge conflict), sync manually:
+    `git checkout next && git merge main && git push`
+
+Prerelease from next (optional)
+- `npx lerna publish --canary --preid next --dist-tag next`
 
 Commit message template:
 chore(release): add v5.0.1 to CHANGELOG.md

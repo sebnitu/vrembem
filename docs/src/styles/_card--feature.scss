@@ -1,12 +1,9 @@
 @use "@vrembem/core/tokens";
 
 .card--feature {
-  gap: tokens.get("spacing-sm");
+  gap: tokens.get("spacing");
   padding: tokens.get("padding-dynamic");
   border-radius: tokens.get("border-radius-lg");
   text-wrap: pretty;
-
-  &:not(a) {
-    box-shadow: none;
-  }
+  box-shadow: none;
 }

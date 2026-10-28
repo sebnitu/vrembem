@@ -3,7 +3,7 @@
 .reference-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: tokens.get("spacing-sm") tokens.get("spacing-md");
+  gap: tokens.get("spacing-sm") tokens.get("spacing");
   align-items: center;
   justify-content: space-between;
   color: tokens.get("foreground");

@@ -1,27 +1,25 @@
 @use "../modules/tokens";
 
 // Rem (default) based spacing tokens
-@include tokens.set("core", "spacing", 0.25rem);
 @include tokens.set(
   "core",
   (
-    "spacing-xs": tokens.get("spacing"),
-    "spacing-sm": calc(tokens.get("spacing") * 2),
-    "spacing-md": calc(tokens.get("spacing") * 4),
-    "spacing-lg": calc(tokens.get("spacing") * 6),
-    "spacing-xl": calc(tokens.get("spacing") * 8)
+    "spacing-xs": 0.25rem,
+    "spacing-sm": 0.5rem,
+    "spacing": 1rem,
+    "spacing-lg": 1.5rem,
+    "spacing-xl": 2rem
   )
 );
 
 // Em based spacing tokens
-@include tokens.set("core", "em-spacing", 0.25em);
 @include tokens.set(
   "core",
   (
-    "em-spacing-xs": tokens.get("em-spacing"),
-    "em-spacing-sm": calc(tokens.get("em-spacing") * 2),
-    "em-spacing-md": calc(tokens.get("em-spacing") * 4),
-    "em-spacing-lg": calc(tokens.get("em-spacing") * 6),
-    "em-spacing-xl": calc(tokens.get("em-spacing") * 8)
+    "em-spacing-xs": 0.25em,
+    "em-spacing-sm": 0.5em,
+    "em-spacing": 1em,
+    "em-spacing-lg": 1.5em,
+    "em-spacing-xl": 2em
   )
 );
