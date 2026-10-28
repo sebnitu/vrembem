@@ -85,20 +85,30 @@ Utility comes with the following Sass configuration options that can be set usin
     // @type map
     "spacing": (
       "0": 0,
-      "xs": tokens.get("spacing"),
-      "sm": calc(tokens.get("spacing") * 2),
-      "": calc(tokens.get("spacing") * 4),
-      "lg": calc(tokens.get("spacing") * 8),
-      "xl": calc(tokens.get("spacing") * 12)
+      "xs": tokens.get("spacing-xs"),
+      "sm": tokens.get("spacing-sm"),
+      "": tokens.get("spacing"),
+      "lg": tokens.get("spacing-lg"),
+      "xl": tokens.get("spacing-xl")
+    ),
+
+    // A spacing scale used to output em based spacing utilities
+    // @type map
+    "em-spacing": (
+      "xs": tokens.get("em-spacing-xs"),
+      "sm": tokens.get("em-spacing-sm"),
+      "": tokens.get("em-spacing"),
+      "lg": tokens.get("em-spacing-lg"),
+      "xl": tokens.get("em-spacing-xl")
     ),
 
     // A map of gap utilities to output
     // @type map
     "gap": (
       "0": 0,
-      "xs": tokens.get("spacing"),
+      "xs": tokens.get("spacing-xs"),
       "sm": tokens.get("spacing-sm"),
-      "": tokens.get("spacing-md"),
+      "": tokens.get("spacing"),
       "lg": tokens.get("spacing-lg"),
       "xl": tokens.get("spacing-xl")
     ),
@@ -542,158 +552,170 @@ Display utilities also come with breakpoint modifiers. These can be used by pref
 
 ### margin
 
-Utilities for setting the margin property of an element. Margin variants are built using the values set in the `utility-gap` configuration option.
+Utilities for setting the margin property of an element. Margin variants are built using the values set in the `utility-spacing` configuration option.
 
 <ReferenceTable id="margin" {...UtilityProps} data={{
   "margin-0": "margin: 0;",
-  "margin-xs": "margin: var(--vb-spacing);",
-  "margin-sm": "margin: calc(var(--vb-spacing) * 2);",
-  "margin": "margin: calc(var(--vb-spacing) * 4);",
-  "margin-lg": "margin: calc(var(--vb-spacing) * 8);",
-  "margin-xl": "margin: calc(var(--vb-spacing) * 12);",
+  "margin-xs": "margin: var(--vb-spacing-xs);",
+  "margin-sm": "margin: var(--vb-spacing-sm);",
+  "margin": "margin: var(--vb-spacing);",
+  "margin-lg": "margin: var(--vb-spacing-lg);",
+  "margin-xl": "margin: var(--vb-spacing-xl);",
 
   "margin-top-0": "margin-top: 0;",
-  "margin-top-xs": "margin-top: var(--vb-spacing);",
-  "margin-top-sm": "margin-top: calc(var(--vb-spacing) * 2);",
-  "margin-top": "margin-top: calc(var(--vb-spacing) * 4);",
-  "margin-top-lg": "margin-top: calc(var(--vb-spacing) * 8);",
-  "margin-top-xl": "margin-top: calc(var(--vb-spacing) * 12);",
+  "margin-top-xs": "margin-top: var(--vb-spacing-xs);",
+  "margin-top-sm": "margin-top: var(--vb-spacing-sm);",
+  "margin-top": "margin-top: var(--vb-spacing);",
+  "margin-top-lg": "margin-top: var(--vb-spacing-lg);",
+  "margin-top-xl": "margin-top: var(--vb-spacing-xl);",
 
   "margin-bottom-0": "margin-bottom: 0;",
-  "margin-bottom-xs": "margin-bottom: var(--vb-spacing);",
-  "margin-bottom-sm": "margin-bottom: calc(var(--vb-spacing) * 2);",
-  "margin-bottom": "margin-bottom: calc(var(--vb-spacing) * 4);",
-  "margin-bottom-lg": "margin-bottom: calc(var(--vb-spacing) * 8);",
-  "margin-bottom-xl": "margin-bottom: calc(var(--vb-spacing) * 12);",
+  "margin-bottom-xs": "margin-bottom: var(--vb-spacing-xs);",
+  "margin-bottom-sm": "margin-bottom: var(--vb-spacing-sm);",
+  "margin-bottom": "margin-bottom: var(--vb-spacing);",
+  "margin-bottom-lg": "margin-bottom: var(--vb-spacing-lg);",
+  "margin-bottom-xl": "margin-bottom: var(--vb-spacing-xl);",
 
   "margin-left-0": "margin-left: 0;",
-  "margin-left-xs": "margin-left: var(--vb-spacing);",
-  "margin-left-sm": "margin-left: calc(var(--vb-spacing) * 2);",
-  "margin-left": "margin-left: calc(var(--vb-spacing) * 4);",
-  "margin-left-lg": "margin-left: calc(var(--vb-spacing) * 8);",
-  "margin-left-xl": "margin-left: calc(var(--vb-spacing) * 12);",
+  "margin-left-xs": "margin-left: var(--vb-spacing-xs);",
+  "margin-left-sm": "margin-left: var(--vb-spacing-sm);",
+  "margin-left": "margin-left: var(--vb-spacing);",
+  "margin-left-lg": "margin-left: var(--vb-spacing-lg);",
+  "margin-left-xl": "margin-left: var(--vb-spacing-xl);",
 
   "margin-right-0": "margin-right: 0;",
-  "margin-right-xs": "margin-right: var(--vb-spacing);",
-  "margin-right-sm": "margin-right: calc(var(--vb-spacing) * 2);",
-  "margin-right": "margin-right: calc(var(--vb-spacing) * 4);",
-  "margin-right-lg": "margin-right: calc(var(--vb-spacing) * 8);",
-  "margin-right-xl": "margin-right: calc(var(--vb-spacing) * 12);",
+  "margin-right-xs": "margin-right: var(--vb-spacing-xs);",
+  "margin-right-sm": "margin-right: var(--vb-spacing-sm);",
+  "margin-right": "margin-right: var(--vb-spacing);",
+  "margin-right-lg": "margin-right: var(--vb-spacing-lg);",
+  "margin-right-xl": "margin-right: var(--vb-spacing-xl);",
 
-  "margin-x-0": "margin-left: 0; margin-right: 0;",
-  "margin-x-xs": "margin-left: var(--vb-spacing); margin-right: var(--vb-spacing);",
-  "margin-x-sm": "margin-left: calc(var(--vb-spacing) * 2); margin-right: calc(var(--vb-spacing) * 2);",
-  "margin-x": "margin-left: calc(var(--vb-spacing) * 4); margin-right: calc(var(--vb-spacing) * 4);",
-  "margin-x-lg": "margin-left: calc(var(--vb-spacing) * 8); margin-right: calc(var(--vb-spacing) * 8);",
-  "margin-x-xl": "margin-left: calc(var(--vb-spacing) * 12); margin-right: calc(var(--vb-spacing) * 12);",
+  "margin-x-0": "margin-right: 0; margin-left: 0;",
+  "margin-x-xs": "margin-right: var(--vb-spacing-xs); margin-left: var(--vb-spacing-xs);",
+  "margin-x-sm": "margin-right: var(--vb-spacing-sm); margin-left: var(--vb-spacing-sm);",
+  "margin-x": "margin-right: var(--vb-spacing); margin-left: var(--vb-spacing);",
+  "margin-x-lg": "margin-right: var(--vb-spacing-lg); margin-left: var(--vb-spacing-lg);",
+  "margin-x-xl": "margin-right: var(--vb-spacing-xl); margin-left: var(--vb-spacing-xl);",
 
-  "margin-y-0": "margin-bottom: 0; margin-top: 0;",
-  "margin-y-xs": "margin-bottom: var(--vb-spacing); margin-top: var(--vb-spacing);",
-  "margin-y-sm": "margin-bottom: calc(var(--vb-spacing) * 2); margin-top: calc(var(--vb-spacing) * 2);",
-  "margin-y": "margin-bottom: calc(var(--vb-spacing) * 4); margin-top: calc(var(--vb-spacing) * 4);",
-  "margin-y-lg": "margin-bottom: calc(var(--vb-spacing) * 8); margin-top: calc(var(--vb-spacing) * 8);",
-  "margin-y-xl": "margin-bottom: calc(var(--vb-spacing) * 12); margin-top: calc(var(--vb-spacing) * 12);",
+  "margin-y-0": "margin-top: 0; margin-bottom: 0;",
+  "margin-y-xs": "margin-top: var(--vb-spacing-xs); margin-bottom: var(--vb-spacing-xs);",
+  "margin-y-sm": "margin-top: var(--vb-spacing-sm); margin-bottom: var(--vb-spacing-sm);",
+  "margin-y": "margin-top: var(--vb-spacing); margin-bottom: var(--vb-spacing);",
+  "margin-y-lg": "margin-top: var(--vb-spacing-lg); margin-bottom: var(--vb-spacing-lg);",
+  "margin-y-xl": "margin-top: var(--vb-spacing-xl); margin-bottom: var(--vb-spacing-xl);",
 
   "margin-auto": "margin: auto;",
   "margin-top-auto": "margin-top: auto;",
   "margin-bottom-auto": "margin-bottom: auto;",
   "margin-left-auto": "margin-left: auto;",
   "margin-right-auto": "margin-right: auto;",
-  "margin-x-auto": "margin-left: auto; margin-right: auto;",
-  "margin-y-auto": "margin-bottom: auto; margin-top: auto;",
+  "margin-x-auto": "margin-right: auto; margin-left: auto;",
+  "margin-y-auto": "margin-top: auto; margin-bottom: auto;",
 }} />
 
 ### padding
 
-Utilities for setting the padding property of an element. Padding variants are built using the values set in the `utility-gap` configuration option.
+Utilities for setting the padding property of an element. Padding variants are built using the values set in the `utility-spacing` configuration option.
 
 <ReferenceTable id="padding" {...UtilityProps} data={{
   "padding-0": "padding: 0;",
-  "padding-xs": "padding: var(--vb-spacing);",
-  "padding-sm": "padding: calc(var(--vb-spacing) * 2);",
-  "padding": "padding: calc(var(--vb-spacing) * 4);",
-  "padding-lg": "padding: calc(var(--vb-spacing) * 8);",
-  "padding-xl": "padding: calc(var(--vb-spacing) * 12);",
+  "padding-xs": "padding: var(--vb-spacing-xs);",
+  "padding-sm": "padding: var(--vb-spacing-sm);",
+  "padding": "padding: var(--vb-spacing);",
+  "padding-lg": "padding: var(--vb-spacing-lg);",
+  "padding-xl": "padding: var(--vb-spacing-xl);",
 
   "padding-top-0": "padding-top: 0;",
-  "padding-top-xs": "padding-top: var(--vb-spacing);",
-  "padding-top-sm": "padding-top: calc(var(--vb-spacing) * 2);",
-  "padding-top": "padding-top: calc(var(--vb-spacing) * 4);",
-  "padding-top-lg": "padding-top: calc(var(--vb-spacing) * 8);",
-  "padding-top-xl": "padding-top: calc(var(--vb-spacing) * 12);",
+  "padding-top-xs": "padding-top: var(--vb-spacing-xs);",
+  "padding-top-sm": "padding-top: var(--vb-spacing-sm);",
+  "padding-top": "padding-top: var(--vb-spacing);",
+  "padding-top-lg": "padding-top: var(--vb-spacing-lg);",
+  "padding-top-xl": "padding-top: var(--vb-spacing-xl);",
 
   "padding-bottom-0": "padding-bottom: 0;",
-  "padding-bottom-xs": "padding-bottom: var(--vb-spacing);",
-  "padding-bottom-sm": "padding-bottom: calc(var(--vb-spacing) * 2);",
-  "padding-bottom": "padding-bottom: calc(var(--vb-spacing) * 4);",
-  "padding-bottom-lg": "padding-bottom: calc(var(--vb-spacing) * 8);",
-  "padding-bottom-xl": "padding-bottom: calc(var(--vb-spacing) * 12);",
+  "padding-bottom-xs": "padding-bottom: var(--vb-spacing-xs);",
+  "padding-bottom-sm": "padding-bottom: var(--vb-spacing-sm);",
+  "padding-bottom": "padding-bottom: var(--vb-spacing);",
+  "padding-bottom-lg": "padding-bottom: var(--vb-spacing-lg);",
+  "padding-bottom-xl": "padding-bottom: var(--vb-spacing-xl);",
 
   "padding-left-0": "padding-left: 0;",
-  "padding-left-xs": "padding-left: var(--vb-spacing);",
-  "padding-left-sm": "padding-left: calc(var(--vb-spacing) * 2);",
-  "padding-left": "padding-left: calc(var(--vb-spacing) * 4);",
-  "padding-left-lg": "padding-left: calc(var(--vb-spacing) * 8);",
-  "padding-left-xl": "padding-left: calc(var(--vb-spacing) * 12);",
+  "padding-left-xs": "padding-left: var(--vb-spacing-xs);",
+  "padding-left-sm": "padding-left: var(--vb-spacing-sm);",
+  "padding-left": "padding-left: var(--vb-spacing);",
+  "padding-left-lg": "padding-left: var(--vb-spacing-lg);",
+  "padding-left-xl": "padding-left: var(--vb-spacing-xl);",
 
   "padding-right-0": "padding-right: 0;",
-  "padding-right-xs": "padding-right: var(--vb-spacing);",
-  "padding-right-sm": "padding-right: calc(var(--vb-spacing) * 2);",
-  "padding-right": "padding-right: calc(var(--vb-spacing) * 4);",
-  "padding-right-lg": "padding-right: calc(var(--vb-spacing) * 8);",
-  "padding-right-xl": "padding-right: calc(var(--vb-spacing) * 12);",
+  "padding-right-xs": "padding-right: var(--vb-spacing-xs);",
+  "padding-right-sm": "padding-right: var(--vb-spacing-sm);",
+  "padding-right": "padding-right: var(--vb-spacing);",
+  "padding-right-lg": "padding-right: var(--vb-spacing-lg);",
+  "padding-right-xl": "padding-right: var(--vb-spacing-xl);",
 
-  "padding-x-0": "padding-left: 0; padding-right: 0;",
-  "padding-x-xs": "padding-left: var(--vb-spacing); padding-right: var(--vb-spacing);",
-  "padding-x-sm": "padding-left: calc(var(--vb-spacing) * 2); padding-right: calc(var(--vb-spacing) * 2);",
-  "padding-x": "padding-left: calc(var(--vb-spacing) * 4); padding-right: calc(var(--vb-spacing) * 4);",
-  "padding-x-lg": "padding-left: calc(var(--vb-spacing) * 8); padding-right: calc(var(--vb-spacing) * 8);",
-  "padding-x-xl": "padding-left: calc(var(--vb-spacing) * 12); padding-right: calc(var(--vb-spacing) * 12);",
+  "padding-x-0": "padding-right: 0; padding-left: 0;",
+  "padding-x-xs": "padding-right: var(--vb-spacing-xs); padding-left: var(--vb-spacing-xs);",
+  "padding-x-sm": "padding-right: var(--vb-spacing-sm); padding-left: var(--vb-spacing-sm);",
+  "padding-x": "padding-right: var(--vb-spacing); padding-left: var(--vb-spacing);",
+  "padding-x-lg": "padding-right: var(--vb-spacing-lg); padding-left: var(--vb-spacing-lg);",
+  "padding-x-xl": "padding-right: var(--vb-spacing-xl); padding-left: var(--vb-spacing-xl);",
 
-  "padding-y-0": "padding-bottom: 0; padding-top: 0;",
-  "padding-y-xs": "padding-bottom: var(--vb-spacing); padding-top: var(--vb-spacing);",
-  "padding-y-sm": "padding-bottom: calc(var(--vb-spacing) * 2); padding-top: calc(var(--vb-spacing) * 2);",
-  "padding-y": "padding-bottom: calc(var(--vb-spacing) * 4); padding-top: calc(var(--vb-spacing) * 4);",
-  "padding-y-lg": "padding-bottom: calc(var(--vb-spacing) * 8); padding-top: calc(var(--vb-spacing) * 8);",
-  "padding-y-xl": "padding-bottom: calc(var(--vb-spacing) * 12); padding-top: calc(var(--vb-spacing) * 12);",
+  "padding-y-0": "padding-top: 0; padding-bottom: 0;",
+  "padding-y-xs": "padding-top: var(--vb-spacing-xs); padding-bottom: var(--vb-spacing-xs);",
+  "padding-y-sm": "padding-top: var(--vb-spacing-sm); padding-bottom: var(--vb-spacing-sm);",
+  "padding-y": "padding-top: var(--vb-spacing); padding-bottom: var(--vb-spacing);",
+  "padding-y-lg": "padding-top: var(--vb-spacing-lg); padding-bottom: var(--vb-spacing-lg);",
+  "padding-y-xl": "padding-top: var(--vb-spacing-xl); padding-bottom: var(--vb-spacing-xl);",
 }} />
 
 ### spacing
 
-Utilities for setting the margin-top property of all direct children of an element. Spacing variants are built using the values set in the `utility-gap` configuration option.
+Utilities for setting the margin-top property of all direct children of an element. Spacing variants are built using the values set in the `utility-spacing` configuration option.
 
 <ReferenceTable id="spacing" {...UtilityProps} expandable={false} data={{
   "spacing-0": "margin-top: 0;",
-  "spacing-xs": "margin-top: var(--vb-spacing);",
-  "spacing-sm": "margin-top: calc(var(--vb-spacing) * 2);",
-  "spacing": "margin-top: calc(var(--vb-spacing) * 4);",
-  "spacing-lg": "margin-top: calc(var(--vb-spacing) * 8);",
-  "spacing-xl": "margin-top: calc(var(--vb-spacing) * 12);",
+  "spacing-xs": "margin-top: var(--vb-spacing-xs);",
+  "spacing-sm": "margin-top: var(--vb-spacing-sm);",
+  "spacing": "margin-top: var(--vb-spacing);",
+  "spacing-lg": "margin-top: var(--vb-spacing-lg);",
+  "spacing-xl": "margin-top: var(--vb-spacing-xl);",
+}} />
+
+### em-spacing
+
+Utilities for setting the margin-top property of all direct children of an element using em based values. Em-spacing variants are built using the values set in the `utility-em-spacing` configuration option.
+
+<ReferenceTable id="em-spacing" {...UtilityProps} expandable={false} data={{
+  "em-spacing-xs": "margin-top: var(--vb-em-spacing-xs);",
+  "em-spacing-sm": "margin-top: var(--vb-em-spacing-sm);",
+  "em-spacing": "margin-top: var(--vb-em-spacing);",
+  "em-spacing-lg": "margin-top: var(--vb-em-spacing-lg);",
+  "em-spacing-xl": "margin-top: var(--vb-em-spacing-xl);",
 }} />
 
 ### gap
 
 Utilities for setting the gap property of an element. Gap variants are built using the values set in the `utility-gap` configuration option.
 
-<ReferenceTable id="spacing" {...UtilityProps} data={{
+<ReferenceTable id="gap" {...UtilityProps} data={{
   "gap-0": "gap: 0;",
-  "gap-xs": "gap: var(--vb-spacing);",
+  "gap-xs": "gap: var(--vb-spacing-xs);",
   "gap-sm": "gap: var(--vb-spacing-sm);",
-  "gap": "gap: var(--vb-spacing-md);",
+  "gap": "gap: var(--vb-spacing);",
   "gap-lg": "gap: var(--vb-spacing-lg);",
   "gap-xl": "gap: var(--vb-spacing-xl);",
 
   "gap-x-0": "column-gap: 0;",
-  "gap-x-xs": "column-gap: var(--vb-spacing);",
+  "gap-x-xs": "column-gap: var(--vb-spacing-xs);",
   "gap-x-sm": "column-gap: var(--vb-spacing-sm);",
-  "gap-x": "column-gap: var(--vb-spacing-md);",
+  "gap-x": "column-gap: var(--vb-spacing);",
   "gap-x-lg": "column-gap: var(--vb-spacing-lg);",
   "gap-x-xl": "column-gap: var(--vb-spacing-xl);",
 
   "gap-y-0": "row-gap: 0;",
-  "gap-y-xs": "row-gap: var(--vb-spacing);",
+  "gap-y-xs": "row-gap: var(--vb-spacing-xs);",
   "gap-y-sm": "row-gap: var(--vb-spacing-sm);",
-  "gap-y": "row-gap: var(--vb-spacing-md);",
+  "gap-y": "row-gap: var(--vb-spacing);",
   "gap-y-lg": "row-gap: var(--vb-spacing-lg);",
   "gap-y-xl": "row-gap: var(--vb-spacing-xl);",
 }} />
