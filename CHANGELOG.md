@@ -51,8 +51,6 @@ chore(release): add v6.0.0 to CHANGELOG.md
 Docs:
 https://lerna.js.org/docs/features/version-and-publish
 -->
-<!-- v6.0.0 -->
-
 
 ## v6.0.0 (2026-10-28)
 
@@ -71,10 +69,6 @@ https://lerna.js.org/docs/features/version-and-publish
   * [#3060](https://github.com/sebnitu/vrembem/pull/3060) Remove spacing var calculations in favor of raw spacing values
 * `core`
   * [#3059](https://github.com/sebnitu/vrembem/pull/3059) Improve dark mode default values
-
-
-<!-- v5.0.0 -->
-
 
 ## v5.0.1 (2026-10-01)
 
