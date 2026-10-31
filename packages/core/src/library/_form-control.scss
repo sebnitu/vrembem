@@ -20,7 +20,7 @@
   transition-duration: tokens.get("form-control-transition-duration");
   transition-property: tokens.get("form-control-transition-property");
 
-  @if $component == "input" {
+  @if $component == "input" or $component == "select" {
     padding: tokens.get($component, "padding", tokens.get("form-control-padding-y"));
   } @else {
     padding: tokens.get($component, "padding-y", tokens.get("form-control-padding-y")) tokens.get($component, "padding-x", tokens.get("form-control-padding-x"));
