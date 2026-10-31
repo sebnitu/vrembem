@@ -46,7 +46,7 @@
 
   option {
     cursor: pointer;
-    padding: tokens.get("select", "option-padding", (0.25em 1em 0.25em 0.5em));
+    padding: tokens.get("select", "option-padding", (0.5em 1em 0.5em 0.5em));
     border-radius: tokens.get("select", "option-border-radius", 0);
 
     &::checkmark {
