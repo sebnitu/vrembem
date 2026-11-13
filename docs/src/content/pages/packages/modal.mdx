@@ -7,15 +7,33 @@ icon: browsers
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/modal/_config.scss?raw";
 
-```sh
-npm install @vrembem/modal
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/modal
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/modal";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/modal";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/modal";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -26,29 +44,17 @@ Modal is built as a Sass module. Sass options are used to control CSS output, wh
 
 Modal comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/modal" with (
-  $config: (
-    // A map of CSS variable overrides to pass to the panel component if used
-    // @type map
-    "panel-override": (
-      "box-shadow": tokens.get("box-shadow-xl")
-    ),
+export const config = parseConfig(configSource, "modal");
 
-    // Map for outputting modal--size-[key] modifier variants
-    // @type map
-    "size": (
-      "default": 32rem,
-      "xs": 16rem,
-      "sm": 24rem,
-      "lg": 40rem,
-      "xl": 48rem
-    )
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

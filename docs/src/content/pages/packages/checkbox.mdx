@@ -8,14 +8,30 @@ icon: check-square
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 
-```sh
-npm install @vrembem/checkbox
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/checkbox
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/checkbox";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/checkbox";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/checkbox";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options

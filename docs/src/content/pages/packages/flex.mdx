@@ -7,15 +7,33 @@ icon: squares-four
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/flex/_config.scss?raw";
 
-```sh
-npm install @vrembem/flex
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/flex
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/flex";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/flex";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/flex";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -26,60 +44,18 @@ Flex is built as a Sass module. Sass options are used to control CSS output, whi
 
 Flex comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss" expandable>
-```scss
-@use "@vrembem/flex" with (
-  $config: (
-    // Map for outputting flex--gap-[key] modifier variants
-    // @type map
-    "gap": (
-      "breakpoints": true,
-      "default": tokens.get("spacing"),
-      "0": 0,
-      "xs": 1px,
-      "sm": tokens.get("spacing-sm"),
-      "md": tokens.get("spacing"),
-      "lg": tokens.get("spacing-lg"),
-      "xl": tokens.get("spacing-xl")
-    ),
+export const config = parseConfig(configSource, "flex");
 
-    // Map for outputting flex--wrap-[key] modifier variants
-    // @type map
-    "wrap": (
-      "breakpoints": true,
-      "default": wrap,
-      "": wrap,
-      "no": nowrap,
-      "reverse": wrap-reverse
-    ),
-
-    // Map for outputting flex--direction-[key] modifier variants
-    // @type map
-    "direction": (
-      "breakpoints": true,
-      "default": row,
-      "row": row,
-      "row-reverse": row-reverse,
-      "col": column,
-      "col-reverse": column-reverse
-    ),
-
-    // Map for outputting flex--items-[key] modifier and flex-item-[key] utility 
-    // variants.
-    // @type map
-    "items": (
-      "breakpoints": true,
-      "initial": initial, // Equivalent: 0 1 auto
-      "auto": auto, // Equivalent: 1 1 auto
-      "none": none, // Equivalent: 0 0 auto
-      "equal": 1 1 0,
-      "fill": 1 0 auto,
-      "full": 1 0 100%
-    )
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  expandable
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

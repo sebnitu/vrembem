@@ -7,15 +7,33 @@ icon: layout
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/grid/_config.scss?raw";
 
-```sh
-npm install @vrembem/grid
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/grid
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/grid";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/grid";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/grid";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -26,52 +44,18 @@ Grid is built as a Sass module. Sass options are used to control CSS output, whi
 
 Grid comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss" expandable>
-```scss
-@use "@vrembem/grid" with (
-  $config: (
-    // Map for outputting grid--cols-[num] modifier and col-[num] utility variants
-    // @type map
-    "cols": (
-      "breakpoints": true,
-      "default": 1,
-      "total": 6
-    ),
+export const config = parseConfig(configSource, "grid");
 
-    // Map for outputting grid--rows-[num] modifier and row-[num] utility variants
-    // @type map
-    "rows": (
-      "breakpoints": true,
-      "default": 1,
-      "total": 6
-    ),
-
-    // Map for outputting the grid--gap-[key] modifier variants
-    // @type map
-    "gap": (
-      "breakpoints": true,
-      "default": 2rem,
-      "0": 0,
-      "xs": 0.5rem,
-      "sm": 1rem,
-      "md": 2rem,
-      "lg": 3rem,
-      "xl": 4rem
-    ),
-
-    // Map for outputting the grid--flow-[key] modifier variants
-    // @type map
-    "flow": (
-      "default": dense,
-      "row": row,
-      "col": column,
-      "row-dense": row dense,
-      "col-dense": column dense
-    )
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  expandable
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

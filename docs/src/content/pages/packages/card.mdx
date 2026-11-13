@@ -9,14 +9,30 @@ icon: cards
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
 
-```sh
-npm install @vrembem/card
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/card
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/card";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/card";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/card";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options

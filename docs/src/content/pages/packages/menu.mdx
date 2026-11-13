@@ -9,15 +9,33 @@ icon: list
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Menu from "@/content/demos/Menu.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/menu/_config.scss?raw";
 
-```sh
-npm install @vrembem/menu
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/menu
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/menu";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/menu";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/menu";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -28,21 +46,17 @@ Menu is built as a Sass module. Sass options are used to control CSS output, whi
 
 Menu comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/menu" with (
-  $config: (
-    // Toggle for outputting menu--inline modifier breakpoint variants
-    // @type boolean
-    "inline-breakpoints": true,
+export const config = parseConfig(configSource, "menu");
 
-    // Toggle for outputting menu--full modifier breakpoint variants
-    // @type boolean
-    "full-breakpoints": true
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

@@ -9,15 +9,33 @@ icon: chat-centered-dots
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Menu from "@/content/demos/Menu.astro";
 import Icon from "@/components/Icon.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/popover/_config.scss?raw";
 
-```sh
-npm install @vrembem/popover
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/popover
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/popover";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/popover";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/popover";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 Popover provides two JavaScript entries depending on how you want to register the custom element.
@@ -48,22 +66,17 @@ Popover is built as a Sass module. Sass options are used to control CSS output, 
 
 Popover comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/popover" with (
-  $config: (
-    // Map for outputting popover--width-[key] modifier variants
-    // @type map
-    "width": (
-      "default": 14rem,
-      "auto": "fit-content",
-      "sm": 10rem,
-      "lg": 18rem
-    )
-  )
-);
-```
-</CodeExample>
+export const config = parseConfig(configSource, "popover");
+
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

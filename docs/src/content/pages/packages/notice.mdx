@@ -10,14 +10,30 @@ import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
 import ResetExampleButton from "@/components/ResetExampleButton.astro";
 
-```sh
-npm install @vrembem/notice
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/notice
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/notice";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/notice";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/notice";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options

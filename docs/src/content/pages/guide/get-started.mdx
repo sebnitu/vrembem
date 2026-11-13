@@ -209,32 +209,31 @@ For individual packages, the same pattern applies.
 
 Vrembem packages expose a `$config` Sass map that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-When configuring an individual package directly, option keys should not be prefixed with the package name:
+When configuring an individual package directly, option keys should not be prefixed with the package name. When configuring packages through the `vrembem` library entry, package specific configurations should be prefixed with their name, while core configurations are not prefixed:
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/button" with (
-  $config: (
-    "block-breakpoints": false
-  )
-);
-```
-</CodeExample>
+<CodeExample lang="scss" tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```scss
+    @use "@vrembem/button" with (
+      $config: (
+        "block-breakpoints": false
+      )
+    );
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```scss
+    @use "vrembem" with (
+      $config: (
+        // Core options are not prefixed
+        "theme-output": false,
 
-When configuring packages through the `vrembem` library entry, package specific configurations should be prefixed with their name. Core configurations are not prefixed.
-
-<CodeExample lang="scss">
-```scss
-@use "vrembem" with (
-  $config: (
-    // Core options are not prefixed
-    "theme-output": false,
-
-    // Package specific option should be prefixed with the package name
-    "button-block-breakpoints": false
-  )
-);
-```
+        // Package specific option should be prefixed with the package name
+        "button-block-breakpoints": false
+      )
+    );
+    ```
+  </TabsPanel>
 </CodeExample>
 
 Check each package's own documentation page for the specific options it supports. For more on how the configuration system works under the hood, see the [`core/config`](/packages/core/config) module documentation.

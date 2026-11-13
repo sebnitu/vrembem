@@ -7,15 +7,33 @@ icon: sidebar-simple
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/drawer/_config.scss?raw";
 
-```sh
-npm install @vrembem/drawer
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/drawer
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-  ```scss
-  @use "@vrembem/drawer";
-  ```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/drawer";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/drawer";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 Drawer provides two JavaScript entries depending on how you want to register the custom element.
@@ -59,21 +77,17 @@ The custom element observes the following attributes. Changes made after the ele
 
 Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/drawer" with (
-  $config: (
-    // Sets the default breakpoint for drawers
-    // @type string | number
-    "breakpoint": "md",
+export const config = parseConfig(configSource, "drawer");
 
-    // Set the default position of modal drawers
-    // @type string
-    "position": "left"
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 

@@ -7,15 +7,33 @@ icon: table
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/table/_config.scss?raw";
 
-```sh
-npm install @vrembem/table
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/table
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/table";
-```
+<CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
+  <TabsPanel label="SCSS">
+    ```scss
+    @use "@vrembem/table";
+    ```
+  </TabsPanel>
+  <TabsPanel label="CSS">
+    ```css
+    @import "@vrembem/table";
+    ```
+  </TabsPanel>
 </CodeExample>
 
 ## Options
@@ -26,20 +44,17 @@ Table is built as a Sass module. Sass options are used to control CSS output, wh
 
 Table comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/table" with (
-  $config: (
-    // Toggle for outputting table--mobile modifier breakpoint variants
-    // @type boolean
-    "mobile": (
-      "breakpoints": true,
-      "attr": "data-mobile-label"
-    )
-  )
-);
-```
-</CodeExample>
+export const config = parseConfig(configSource, "table");
+
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
+  ]}
+/>
 
 ### Design tokens
 
