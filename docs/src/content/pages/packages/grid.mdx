@@ -10,9 +10,18 @@ import ReferenceTable from "@/components/ReferenceTable.astro";
 import { parseConfig } from "@/modules/parseConfig";
 import configSource from "@vrembem/grid/_config.scss?raw";
 
-```sh
-npm install @vrembem/grid
-```
+<CodeExample tabs tabsSyncKey="config-import" tabsLabel="Select your preferred import method">
+  <TabsPanel label="Package">
+    ```sh
+    npm install @vrembem/grid
+    ```
+  </TabsPanel>
+  <TabsPanel label="Library">
+    ```sh
+    npm install vrembem
+    ```
+  </TabsPanel>
+</CodeExample>
 
 <CodeExample tabs tabsSyncKey="entry" tabsLabel="Select your preferred entry">
   <TabsPanel label="SCSS">
