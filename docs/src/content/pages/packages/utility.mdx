@@ -10,8 +10,8 @@ import Icon from "@/components/Icon.astro";
 import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import utilityConfigSource from "@vrembem/utility/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/utility/_config.scss?raw";
 
 export const UtilityProps = {
   filter: false,
@@ -41,7 +41,7 @@ npm install @vrembem/utility
 
 Utility comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const utilityConfig = buildPackageConfig("utility", utilityConfigSource);
+export const config = parseConfig(configSource, "utility");
 
 <CodeExample
   lang="scss"
@@ -49,8 +49,8 @@ export const utilityConfig = buildPackageConfig("utility", utilityConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: utilityConfig },
-    { label: "Library", code: toLibraryConfig(utilityConfig, "utility") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

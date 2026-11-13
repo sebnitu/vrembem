@@ -7,8 +7,8 @@ icon: sidebar-simple
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import drawerConfigSource from "@vrembem/drawer/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/drawer/_config.scss?raw";
 
 ```sh
 npm install @vrembem/drawer
@@ -68,15 +68,15 @@ The custom element observes the following attributes. Changes made after the ele
 
 Drawer comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const drawerConfig = buildPackageConfig("drawer", drawerConfigSource);
+export const config = parseConfig(configSource, "drawer");
 
 <CodeExample
   lang="scss"
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: drawerConfig },
-    { label: "Library", code: toLibraryConfig(drawerConfig, "drawer") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

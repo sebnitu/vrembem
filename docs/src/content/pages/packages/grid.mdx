@@ -7,8 +7,8 @@ icon: layout
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import gridConfigSource from "@vrembem/grid/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/grid/_config.scss?raw";
 
 ```sh
 npm install @vrembem/grid
@@ -35,7 +35,7 @@ Grid is built as a Sass module. Sass options are used to control CSS output, whi
 
 Grid comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const gridConfig = buildPackageConfig("grid", gridConfigSource);
+export const config = parseConfig(configSource, "grid");
 
 <CodeExample
   lang="scss"
@@ -43,8 +43,8 @@ export const gridConfig = buildPackageConfig("grid", gridConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: gridConfig },
-    { label: "Library", code: toLibraryConfig(gridConfig, "grid") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

@@ -8,8 +8,8 @@ icon: gear
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import data from "@/content/data/tokens-core.json";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import coreConfigSource from "@vrembem/core/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/core/_config.scss?raw";
 
 ```sh
 npm install @vrembem/core
@@ -39,7 +39,7 @@ Vrembem uses Sass modules to manage global configuration and design tokens throu
 
 Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const coreConfig = buildPackageConfig("core", coreConfigSource);
+export const config = parseConfig(configSource, "core");
 
 <CodeExample
   lang="scss"
@@ -47,8 +47,8 @@ export const coreConfig = buildPackageConfig("core", coreConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: coreConfig },
-    { label: "Library", code: toLibraryConfig(coreConfig, "core") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

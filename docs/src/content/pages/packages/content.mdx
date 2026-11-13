@@ -10,8 +10,8 @@ import ReferenceBar from "@/components/ReferenceBar.astro";
 import ReferenceCard from "@/components/ReferenceCard.astro";
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import data from "@/content/data/tokens-content.json";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import contentConfigSource from "@vrembem/content/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/content/_config.scss?raw";
 
 ```sh
 npm install @vrembem/content
@@ -38,7 +38,7 @@ Content is built as a Sass module. Sass options are used to control CSS output, 
 
 Content comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const contentConfig = buildPackageConfig("content", contentConfigSource);
+export const config = parseConfig(configSource, "content");
 
 <CodeExample
   lang="scss"
@@ -46,8 +46,8 @@ export const contentConfig = buildPackageConfig("content", contentConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: contentConfig },
-    { label: "Library", code: toLibraryConfig(contentConfig, "content") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

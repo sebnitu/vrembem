@@ -9,8 +9,8 @@ icon: chat-centered-dots
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Menu from "@/content/demos/Menu.astro";
 import Icon from "@/components/Icon.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import popoverConfigSource from "@vrembem/popover/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/popover/_config.scss?raw";
 
 ```sh
 npm install @vrembem/popover
@@ -57,15 +57,15 @@ Popover is built as a Sass module. Sass options are used to control CSS output, 
 
 Popover comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const popoverConfig = buildPackageConfig("popover", popoverConfigSource);
+export const config = parseConfig(configSource, "popover");
 
 <CodeExample
   lang="scss"
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: popoverConfig },
-    { label: "Library", code: toLibraryConfig(popoverConfig, "popover") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

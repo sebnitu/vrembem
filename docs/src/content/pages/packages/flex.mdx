@@ -7,8 +7,8 @@ icon: squares-four
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import flexConfigSource from "@vrembem/flex/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/flex/_config.scss?raw";
 
 ```sh
 npm install @vrembem/flex
@@ -35,7 +35,7 @@ Flex is built as a Sass module. Sass options are used to control CSS output, whi
 
 Flex comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const flexConfig = buildPackageConfig("flex", flexConfigSource);
+export const config = parseConfig(configSource, "flex");
 
 <CodeExample
   lang="scss"
@@ -43,8 +43,8 @@ export const flexConfig = buildPackageConfig("flex", flexConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: flexConfig },
-    { label: "Library", code: toLibraryConfig(flexConfig, "flex") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

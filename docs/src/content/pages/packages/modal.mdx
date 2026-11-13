@@ -7,8 +7,8 @@ icon: browsers
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import modalConfigSource from "@vrembem/modal/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/modal/_config.scss?raw";
 
 ```sh
 npm install @vrembem/modal
@@ -35,15 +35,15 @@ Modal is built as a Sass module. Sass options are used to control CSS output, wh
 
 Modal comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const modalConfig = buildPackageConfig("modal", modalConfigSource);
+export const config = parseConfig(configSource, "modal");
 
 <CodeExample
   lang="scss"
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: modalConfig },
-    { label: "Library", code: toLibraryConfig(modalConfig, "modal") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 

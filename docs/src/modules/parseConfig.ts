@@ -1,18 +1,37 @@
+export type ParsedConfig = {
+  package: string;
+  library: string;
+};
+
 /**
- * Builds a package-style Sass `with` clause config example directly from a
- * package's own `_config.scss` source, using its `$default` map as the
- * single source of truth. This keeps the documentation in sync with the
- * actual config options without having to manually duplicate them.
+ * Builds Sass `with` clause config examples directly from a package's own
+ * `_config.scss` source, using its `$default` map as the single source of
+ * truth. This keeps the documentation in sync with the actual config options
+ * without having to manually duplicate them.
  *
- * @param pkg
- *   The package name, e.g. "button".
  * @param source
  *   The raw contents of the package's `src/_config.scss` file.
+ * @param pkg
+ *   The package name, e.g. "button".
  *
  * @returns
- *   A `@use "@vrembem/<pkg>" with ($config: (...));` source string.
+ *   `package`: A `@use "@vrembem/<pkg>" with (...)` example.
+ *   `library`: The `@use "vrembem" with (...)` equivalent, where top-level
+ *   config keys are prefixed with the package name (except for "core", whose
+ *   options are not namespaced in the library import).
  */
-export function buildPackageConfig(pkg: string, source: string): string {
+export function parseConfig(source: string, pkg: string): ParsedConfig {
+  const packageConfig = toPackageConfig(source, pkg);
+  return {
+    package: packageConfig,
+    library: toLibraryConfig(packageConfig, pkg)
+  };
+}
+
+/**
+ * Wraps a package's `$default` map in a package-style `with` clause.
+ */
+function toPackageConfig(source: string, pkg: string): string {
   const body = extractDefaultMap(source)
     .replace(/\n$/, "")
     .split("\n")
@@ -67,23 +86,13 @@ function extractDefaultMap(source: string): string {
 }
 
 /**
- * Transforms a package-style Sass `with` clause config example into its
- * library (barrel) import equivalent. Keys that live directly inside the
- * `$config` map are prefixed with the package name, since that's how the
- * `vrembem` barrel import namespaces package specific options (see
- * `core/config`'s `merge-with-default` mixin). Nested map keys are left
+ * Transforms a package-style config example into its library (barrel) import
+ * equivalent. Keys directly inside the `$config` map are prefixed with the
+ * package name, matching how the `vrembem` import namespaces package options
+ * (see `core/config`'s `merge-with-default` mixin). Nested map keys are left
  * untouched.
- *
- * @param source
- *   The package-style Sass source, e.g. `@use "@vrembem/button" with (...)`.
- * @param pkg
- *   The package name, e.g. "button". The "core" package is a special case
- *   since its options are not prefixed in the library import.
- *
- * @returns
- *   The equivalent `@use "vrembem" with (...)` source.
  */
-export function toLibraryConfig(source: string, pkg: string): string {
+function toLibraryConfig(source: string, pkg: string): string {
   const result = source.replace(
     new RegExp(`@use\\s+"@vrembem\\/${pkg}"`),
     `@use "vrembem"`

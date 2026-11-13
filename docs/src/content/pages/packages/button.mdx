@@ -8,8 +8,8 @@ icon: plus-square
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import Icon from "@/components/Icon.astro";
-import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
-import buttonConfigSource from "@vrembem/button/_config.scss?raw";
+import { parseConfig } from "@/modules/parseConfig";
+import configSource from "@vrembem/button/_config.scss?raw";
 
 ```sh
 npm install @vrembem/button
@@ -36,7 +36,7 @@ Button is built as a Sass module. Sass options are used to control CSS output, w
 
 Button comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-export const buttonConfig = buildPackageConfig("button", buttonConfigSource);
+export const config = parseConfig(configSource, "button");
 
 <CodeExample
   lang="scss"
@@ -44,8 +44,8 @@ export const buttonConfig = buildPackageConfig("button", buttonConfigSource);
   tabsSyncKey="config-import"
   tabsLabel="Select your preferred import method"
   tabs={[
-    { label: "Package", code: buttonConfig },
-    { label: "Library", code: toLibraryConfig(buttonConfig, "button") }
+    { label: "Package", code: config.package },
+    { label: "Library", code: config.library }
   ]}
 />
 
