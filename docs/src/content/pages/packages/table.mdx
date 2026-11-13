@@ -7,6 +7,8 @@ icon: table
 ---
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
+import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
+import tableConfigSource from "@vrembem/table/_config.scss?raw";
 
 ```sh
 npm install @vrembem/table
@@ -26,20 +28,17 @@ Table is built as a Sass module. Sass options are used to control CSS output, wh
 
 Table comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss">
-```scss
-@use "@vrembem/table" with (
-  $config: (
-    // Toggle for outputting table--mobile modifier breakpoint variants
-    // @type boolean
-    "mobile": (
-      "breakpoints": true,
-      "attr": "data-mobile-label"
-    )
-  )
-);
-```
-</CodeExample>
+export const tableConfig = buildPackageConfig("table", tableConfigSource);
+
+<CodeExample
+  lang="scss"
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: tableConfig },
+    { label: "Library", code: toLibraryConfig(tableConfig, "table") }
+  ]}
+/>
 
 ### Design tokens
 

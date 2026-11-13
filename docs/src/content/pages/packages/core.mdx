@@ -8,6 +8,8 @@ icon: gear
 
 import ReferenceTable from "@/components/ReferenceTable.astro";
 import data from "@/content/data/tokens-core.json";
+import { buildPackageConfig, toLibraryConfig } from "@/modules/configImport";
+import coreConfigSource from "@vrembem/core/_config.scss?raw";
 
 ```sh
 npm install @vrembem/core
@@ -30,95 +32,18 @@ Vrembem uses Sass modules to manage global configuration and design tokens throu
 
 Core comes with the following Sass configuration options that can be set using either the [config module](/packages/core/config#using-config-module) or [Sass `with` clause](/packages/core/config#using-with-clause) methods.
 
-<CodeExample lang="scss" expandable>
-```scss
-@use "@vrembem/core" with (
-  $config: (
-    // A prefix to apply to block class names. Provided value is automatically 
-    // suffixed with a "-" character when applied.
-    // @type string
-    "prefix-blocks": "",
+export const coreConfig = buildPackageConfig("core", coreConfigSource);
 
-    // A prefix to apply to element class names
-    // @type string
-    "prefix-elements": "__",
-
-    // A prefix to apply to modifier class names
-    // @type string
-    "prefix-modifiers": "--",
-
-    // A prefix to apply to modifier value class names
-    // @type string
-    "prefix-modifier-values": "-",
-
-    // A prefix to apply to CSS variable tokens. Map values requires a default
-    // key and value along with any component specific prefixes as needed.
-    // Provided value(s) are automatically suffixed with a "-" character.
-    // @type string | map
-    "prefix-tokens": "vb",
-
-    // The palette to build CSS variables from
-    // @type map
-    "palette": (
-      "neutral": oklch(74% 4% 236deg), // #a2adb4
-      "green": oklch(74% 40% 158deg),  // #30c883
-      "blue": oklch(62% 40% 244deg),   // #008dde
-      "purple": oklch(58% 40% 305deg), // #915dc5
-      "red": oklch(60% 40% 28deg),     // #ce5247
-      "orange": oklch(70% 40% 55deg),  // #e87f25
-      "yellow": oklch(85% 38% 92deg),  // #f1ca44
-      "primary": "green",
-      "secondary": "blue",
-      "important": "red"
-    ),
-
-    // Number of decimal places to round colors converted to oklch color space
-    // @type number
-    "palette-round-decimal": 4,
-
-    // A map of key/value pairs for preset lightness and chroma variants. These
-    // are used as a lookup map whenever the key is used in a palette get call.
-    // Example:
-    // - tokens.get("palette", "primary", "500") => oklch(50% var(--vb-primary-c) var(--vb-primary-h))
-    // - tokens.get("palette", "primary", "800") => oklch(20% calc(var(--vb-primary-c) * 0.8) var(--vb-primary-h))
-    // @type map
-    "palette-variants": (
-      "50":  (98%, 10%), // The lightest variant in the palette
-      "75":  (96%, 20%),
-      "100": (90%, 40%),
-      "200": (80%, 80%),
-      "300": 70%,
-      "400": 60%,
-      "500": 50%,
-      "600": 40%,
-      "700": 30%,
-      "800": 26%,
-      "900": 24%,
-      "950": 22%, // The darkest variant in the palette
-    ),
-
-    // Whether or not to output theme tokens. If disabled, the default theme is 
-    // output as normal base tokens in the :root selector.
-    // @type boolean
-    "theme-output": true,
-
-    // Sets the default theme option
-    // @type string
-    "theme-default": "light",
-
-    // A map of breakpoint key/value pairs
-    // @type map
-    "breakpoints": (
-      "xs": 480px,
-      "sm": 620px,
-      "md": 760px,
-      "lg": 990px,
-      "xl": 1380px
-    )
-  )
-);
-```
-</CodeExample>
+<CodeExample
+  lang="scss"
+  expandable
+  tabsSyncKey="config-import"
+  tabsLabel="Select your preferred import method"
+  tabs={[
+    { label: "Package", code: coreConfig },
+    { label: "Library", code: toLibraryConfig(coreConfig, "core") }
+  ]}
+/>
 
 ## Design tokens
 
