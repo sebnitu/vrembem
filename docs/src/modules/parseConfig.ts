@@ -21,24 +21,52 @@ export type ParsedConfig = {
  *   options are not namespaced in the library import).
  */
 export function parseConfig(source: string, pkg: string): ParsedConfig {
-  const packageConfig = toPackageConfig(source, pkg);
+  let map: string;
+
+  try {
+    map = extractDefaultMap(source);
+  } catch (error) {
+    throw new Error(
+      `Failed to parse @vrembem/${pkg} config: ${(error as Error).message}`,
+      { cause: error }
+    );
+  }
+
   return {
-    package: packageConfig,
-    library: toLibraryConfig(packageConfig, pkg)
+    package: toPackageConfig(map, pkg),
+    library: toLibraryConfig(map, pkg)
   };
 }
 
 /**
- * Wraps a package's `$default` map in a package-style `with` clause.
+ * Wraps a config map in a package import `with` clause.
  */
-function toPackageConfig(source: string, pkg: string): string {
-  const body = extractDefaultMap(source)
+function toPackageConfig(map: string, pkg: string): string {
+  return toWithClause(`@vrembem/${pkg}`, map);
+}
+
+/**
+ * Wraps a config map in a library (barrel) import `with` clause. Top-level
+ * keys are prefixed with the package name, matching how the `vrembem` import
+ * namespaces package options (see `core/config`'s `merge-with-default` mixin).
+ * Nested map keys are left untouched. Core options are not namespaced.
+ */
+function toLibraryConfig(map: string, pkg: string): string {
+  return toWithClause("vrembem", pkg === "core" ? map : prefixKeys(map, pkg));
+}
+
+/**
+ * Wraps a config map in a `@use "<module>" with ($config: (...));` clause,
+ * indenting the map contents to fit.
+ */
+function toWithClause(module: string, map: string): string {
+  const body = map
     .replace(/\n$/, "")
     .split("\n")
     .map((line) => (line.length ? `  ${line}` : line))
     .join("\n");
 
-  return `@use "@vrembem/${pkg}" with (\n  $config: (${body}\n  )\n);`;
+  return `@use "${module}" with (\n  $config: (${body}\n  )\n);`;
 }
 
 /**
@@ -55,14 +83,68 @@ function extractDefaultMap(source: string): string {
 
   const openIndex = start + marker.length - 1;
   let depth = 0;
+  let closeIndex = -1;
+
+  scanParens(source, openIndex, (index, delta) => {
+    depth += delta;
+    if (depth === 0) {
+      closeIndex = index;
+      return true;
+    }
+  });
+
+  if (closeIndex === -1) {
+    throw new Error(`Could not find closing paren for "${marker}"`);
+  }
+
+  return source.slice(openIndex + 1, closeIndex);
+}
+
+/**
+ * Prefixes the top-level keys of a config map with the package name.
+ */
+function prefixKeys(map: string, pkg: string): string {
+  let depth = 0;
+
+  return map
+    .split("\n")
+    .map((line) => {
+      if (depth === 0) {
+        line = line.replace(/^(\s*)"([\w-]+)":/, `$1"${pkg}-$2":`);
+      }
+      depth += getDepthDelta(line);
+      return line;
+    })
+    .join("\n");
+}
+
+/**
+ * Counts the net change in paren depth for a single line.
+ */
+function getDepthDelta(line: string): number {
+  let delta = 0;
+  scanParens(line, 0, (_, change) => {
+    delta += change;
+  });
+  return delta;
+}
+
+/**
+ * Walks Sass source from `start`, calling `onParen` for each paren that is
+ * not inside a quoted string or `//` comment. `delta` is `1` for an opening
+ * paren and `-1` for a closing one. Return `true` from `onParen` to stop early.
+ */
+function scanParens(
+  source: string,
+  start: number,
+  onParen: (index: number, delta: 1 | -1) => boolean | void
+): void {
   let inString = false;
-  let i = openIndex;
 
-  for (; i < source.length; i++) {
+  for (let i = start; i < source.length; i++) {
     const char = source[i];
-    const prev = source[i - 1];
 
-    if (char === '"' && prev !== "\\") {
+    if (char === '"' && source[i - 1] !== "\\") {
       inString = !inString;
       continue;
     }
@@ -71,86 +153,13 @@ function extractDefaultMap(source: string): string {
 
     if (char === "/" && source[i + 1] === "/") {
       const newline = source.indexOf("\n", i);
-      i = newline === -1 ? source.length : newline;
+      if (newline === -1) return;
+      i = newline;
       continue;
     }
 
-    if (char === "(") depth++;
-    if (char === ")") {
-      depth--;
-      if (depth === 0) break;
+    if (char === "(" || char === ")") {
+      if (onParen(i, char === "(" ? 1 : -1)) return;
     }
   }
-
-  return source.slice(openIndex + 1, i);
-}
-
-/**
- * Transforms a package-style config example into its library (barrel) import
- * equivalent. Keys directly inside the `$config` map are prefixed with the
- * package name, matching how the `vrembem` import namespaces package options
- * (see `core/config`'s `merge-with-default` mixin). Nested map keys are left
- * untouched.
- */
-function toLibraryConfig(source: string, pkg: string): string {
-  const result = source.replace(
-    new RegExp(`@use\\s+"@vrembem\\/${pkg}"`),
-    `@use "vrembem"`
-  );
-
-  // Core options are not namespaced in the library import
-  if (pkg === "core") return result;
-
-  const lines = result.split("\n");
-  let depth = 0;
-  let baseDepth: number | null = null;
-
-  const transformed = lines.map((line) => {
-    // Keys only get prefixed at the depth directly inside `$config: ( ... )`
-    if (baseDepth !== null && depth === baseDepth) {
-      const match = line.match(/^(\s*)"([\w-]+)":/);
-      if (match) {
-        const [full, indent, key] = match;
-        line = line.replace(full, `${indent}"${pkg}-${key}":`);
-      }
-    }
-
-    depth += getDepthDelta(line);
-
-    if (baseDepth === null && line.includes("$config:")) {
-      baseDepth = depth;
-    }
-
-    return line;
-  });
-
-  return transformed.join("\n");
-}
-
-/**
- * Counts the net change in paren depth for a single line, ignoring parens
- * inside quoted strings or after a `//` comment marker.
- */
-function getDepthDelta(line: string): number {
-  let delta = 0;
-  let inString = false;
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    const prev = line[i - 1];
-
-    if (char === '"' && prev !== "\\") {
-      inString = !inString;
-      continue;
-    }
-
-    if (inString) continue;
-
-    if (char === "/" && line[i + 1] === "/") break;
-
-    if (char === "(") delta++;
-    if (char === ")") delta--;
-  }
-
-  return delta;
 }
