@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^8.1.2",
+    "@astrojs/mdx": "^8.1.5",
     "@types/node": "^26.6.6",
-    "astro": "^7.4.4",
+    "astro": "^7.4.11",
     "esbuild": "^0.28.1",
     "vrembem": "^6.0.0"
   },
